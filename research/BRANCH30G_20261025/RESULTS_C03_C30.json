@@ -1,0 +1,1037 @@
+{
+  "campaign": "PF-BR30G",
+  "method": "28 distinct A-J retrospective post-exposure secondary-source contrasts",
+  "input": {
+    "n": 2175,
+    "minDate": "2023-09-19",
+    "maxDate": "2026-09-30",
+    "source": "MarcoAnarmo/CongresoAbierto data/raw/votaciones/pleno.jsonl",
+    "git_blob_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+  },
+  "cycles": {
+    "C03": {
+      "summary": {
+        "monthsTotal": 33,
+        "months10OrMore": 29,
+        "bottomMonths": [
+          {
+            "month": "2023-12",
+            "n": 21,
+            "totalPositions": 7350,
+            "nominal": 6391,
+            "weightedCoverage": 0.869524,
+            "voteMeanCoverage": 0.869524
+          },
+          {
+            "month": "2024-01",
+            "n": 19,
+            "totalPositions": 6650,
+            "nominal": 5882,
+            "weightedCoverage": 0.884511,
+            "voteMeanCoverage": 0.884511
+          },
+          {
+            "month": "2024-02",
+            "n": 48,
+            "totalPositions": 16800,
+            "nominal": 15065,
+            "weightedCoverage": 0.896726,
+            "voteMeanCoverage": 0.896726
+          },
+          {
+            "month": "2024-03",
+            "n": 76,
+            "totalPositions": 26600,
+            "nominal": 23961,
+            "weightedCoverage": 0.900789,
+            "voteMeanCoverage": 0.900789
+          }
+        ],
+        "topMonths": [
+          {
+            "month": "2026-05",
+            "n": 34,
+            "totalPositions": 11900,
+            "nominal": 11764,
+            "weightedCoverage": 0.988571,
+            "voteMeanCoverage": 0.988571
+          },
+          {
+            "month": "2026-09",
+            "n": 119,
+            "totalPositions": 41650,
+            "nominal": 41277,
+            "weightedCoverage": 0.991044,
+            "voteMeanCoverage": 0.991044
+          },
+          {
+            "month": "2026-06",
+            "n": 103,
+            "totalPositions": 36050,
+            "nominal": 35844,
+            "weightedCoverage": 0.994286,
+            "voteMeanCoverage": 0.994286
+          },
+          {
+            "month": "2026-07",
+            "n": 76,
+            "totalPositions": 26600,
+            "nominal": 26448,
+            "weightedCoverage": 0.994286,
+            "voteMeanCoverage": 0.994286
+          }
+        ],
+        "weightedMonthlyRange": 0.124762
+      },
+      "unit": "month",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C04": {
+      "summary": {
+        "sessionsWithMultipleVotes": 140,
+        "shareVariable": 0.014286,
+        "meanMaxMin": 0.013918,
+        "maxRange": 1,
+        "top": [
+          {
+            "session": "202",
+            "n": 21,
+            "r": 1
+          },
+          {
+            "session": "89",
+            "n": 5,
+            "r": 0.9485714285714286
+          },
+          {
+            "session": "2",
+            "n": 2,
+            "r": 0
+          },
+          {
+            "session": "3",
+            "n": 4,
+            "r": 0
+          },
+          {
+            "session": "9",
+            "n": 5,
+            "r": 0
+          }
+        ]
+      },
+      "unit": "session",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C05": {
+      "summary": {
+        "years": {
+          "2023": {
+            "weighted": 0.858304,
+            "unweighted": 0.858304,
+            "difference_pp": 0,
+            "votes": 32
+          },
+          "2024": {
+            "weighted": 0.923343,
+            "unweighted": 0.923343,
+            "difference_pp": 0,
+            "votes": 862
+          },
+          "2025": {
+            "weighted": 0.96824,
+            "unweighted": 0.96824,
+            "difference_pp": 0,
+            "votes": 741
+          },
+          "2026": {
+            "weighted": 0.990979,
+            "unweighted": 0.990979,
+            "difference_pp": 0,
+            "votes": 540
+          }
+        }
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C06": {
+      "summary": {
+        "topDecileN": 218,
+        "shareAllMissingTopDecile": 0.25342,
+        "giniOfMissingPerVote": 0.433027,
+        "allMissing": 34654,
+        "maxMissingVote": {
+          "id": "s89-v005",
+          "missing": 350
+        }
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C07": {
+      "summary": {
+        "years": {
+          "2023": {
+            "S": {
+              "total": 6600,
+              "missing": 978,
+              "rate": 0.148182
+            },
+            "N": {
+              "total": 3867,
+              "missing": 540,
+              "rate": 0.139643
+            },
+            "A": {
+              "total": 637,
+              "missing": 62,
+              "rate": 0.097331
+            },
+            "X": {
+              "total": 96,
+              "missing": 7,
+              "rate": 0.072917
+            }
+          },
+          "2024": {
+            "S": {
+              "total": 133341,
+              "missing": 9341,
+              "rate": 0.070053
+            },
+            "N": {
+              "total": 135182,
+              "missing": 11176,
+              "rate": 0.082674
+            },
+            "A": {
+              "total": 29387,
+              "missing": 2099,
+              "rate": 0.071426
+            },
+            "X": {
+              "total": 3760,
+              "missing": 509,
+              "rate": 0.135372
+            }
+          },
+          "2025": {
+            "S": {
+              "total": 121023,
+              "missing": 4008,
+              "rate": 0.033118
+            },
+            "N": {
+              "total": 113172,
+              "missing": 3249,
+              "rate": 0.028709
+            },
+            "A": {
+              "total": 22535,
+              "missing": 565,
+              "rate": 0.025072
+            },
+            "X": {
+              "total": 2618,
+              "missing": 415,
+              "rate": 0.158518
+            }
+          },
+          "2026": {
+            "S": {
+              "total": 89653,
+              "missing": 937,
+              "rate": 0.010451
+            },
+            "N": {
+              "total": 79353,
+              "missing": 526,
+              "rate": 0.006629
+            },
+            "A": {
+              "total": 18495,
+              "missing": 115,
+              "rate": 0.006218
+            },
+            "X": {
+              "total": 1499,
+              "missing": 127,
+              "rate": 0.084723
+            }
+          }
+        }
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C08": {
+      "summary": {
+        "byYear": {
+          "2023": {
+            "missingRateYes": 0.148182,
+            "missingRateNo": 0.139643,
+            "yesMinusNo_pp": 0.853868
+          },
+          "2024": {
+            "missingRateYes": 0.070053,
+            "missingRateNo": 0.082674,
+            "yesMinusNo_pp": -1.262026
+          },
+          "2025": {
+            "missingRateYes": 0.033118,
+            "missingRateNo": 0.028709,
+            "yesMinusNo_pp": 0.440916
+          },
+          "2026": {
+            "missingRateYes": 0.010451,
+            "missingRateNo": 0.006629,
+            "yesMinusNo_pp": 0.38228
+          }
+        }
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C09": {
+      "summary": {
+        "zeroNominalVotes": [
+          {
+            "id": "s89-v005",
+            "date": "2025-01-22",
+            "totals": 350,
+            "type": "Dictamen de la Comisión del Estatuto de los Diputados."
+          },
+          {
+            "id": "s202-v021",
+            "date": "2026-09-30",
+            "totals": 350,
+            "type": "Dictámenes de la Comisión del Estatuto."
+          }
+        ],
+        "n": 2,
+        "positionsMissing": 700
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C10": {
+      "summary": {
+        "qualifyingTypes": 9,
+        "lowest": [
+          {
+            "tipo": "Avocación de iniciativas legislativas.",
+            "n": 26,
+            "totalPositions": 9098,
+            "nominal": 8618,
+            "weightedCoverage": 0.947241,
+            "voteMeanCoverage": 0.94724
+          },
+          {
+            "tipo": "Debates de totalidad de iniciativas legislativas.",
+            "n": 39,
+            "totalPositions": 13648,
+            "nominal": 12951,
+            "weightedCoverage": 0.94893,
+            "voteMeanCoverage": 0.948929
+          },
+          {
+            "tipo": "Proposiciones no de Ley.",
+            "n": 314,
+            "totalPositions": 109888,
+            "nominal": 104473,
+            "weightedCoverage": 0.950723,
+            "voteMeanCoverage": 0.950718
+          },
+          {
+            "tipo": "Mociones consecuencia de interpelaciones urgentes.",
+            "n": 623,
+            "totalPositions": 218040,
+            "nominal": 207988,
+            "weightedCoverage": 0.953898,
+            "voteMeanCoverage": 0.953897
+          },
+          {
+            "tipo": "Toma en consideración de Proposiciones de Ley.",
+            "n": 113,
+            "totalPositions": 39545,
+            "nominal": 37802,
+            "weightedCoverage": 0.955924,
+            "voteMeanCoverage": 0.955922
+          }
+        ],
+        "highest": [
+          {
+            "tipo": "Toma en consideración de Proposiciones de Ley.",
+            "n": 113,
+            "totalPositions": 39545,
+            "nominal": 37802,
+            "weightedCoverage": 0.955924,
+            "voteMeanCoverage": 0.955922
+          },
+          {
+            "tipo": "Dictámenes de Comisiones sobre iniciativas legislativas.",
+            "n": 508,
+            "totalPositions": 177800,
+            "nominal": 170045,
+            "weightedCoverage": 0.956384,
+            "voteMeanCoverage": 0.956384
+          },
+          {
+            "tipo": "Dictámenes de la Comisión de Asuntos Exteriores sobre Convenios internacionales.",
+            "n": 59,
+            "totalPositions": 20650,
+            "nominal": 19869,
+            "weightedCoverage": 0.962179,
+            "voteMeanCoverage": 0.962179
+          },
+          {
+            "tipo": "Enmiendas del Senado.",
+            "n": 249,
+            "totalPositions": 87150,
+            "nominal": 83970,
+            "weightedCoverage": 0.963511,
+            "voteMeanCoverage": 0.963511
+          },
+          {
+            "tipo": "Convalidación o derogación de Reales Decretos-leyes.",
+            "n": 97,
+            "totalPositions": 33950,
+            "nominal": 32850,
+            "weightedCoverage": 0.967599,
+            "voteMeanCoverage": 0.967599
+          }
+        ]
+      },
+      "unit": "type",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C11": {
+      "summary": {
+        "spearmanNumberOfGroupRowsVsCoverage": -0.004889,
+        "minimumGroups": 0,
+        "maximumGroups": 10
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C12": {
+      "summary": {
+        "spearmanNormalizedAbsYesNoMarginVsCoverage": 0.012063,
+        "n": 2175
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C13": {
+      "summary": {
+        "bins": {
+          "0-5": {
+            "n": 222,
+            "strict": 62,
+            "tie": 19,
+            "noNominal": 0,
+            "strictRate": 0.279279
+          },
+          "6-20": {
+            "n": 452,
+            "strict": 63,
+            "tie": 5,
+            "noNominal": 0,
+            "strictRate": 0.139381
+          },
+          ">20": {
+            "n": 1501,
+            "strict": 0,
+            "tie": 0,
+            "noNominal": 2,
+            "strictRate": 0
+          }
+        }
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C14": {
+      "summary": {
+        "included": 2173,
+        "robustCertified": 1655,
+        "shareRobust": 0.76162,
+        "mismatchesAmongRobust": 0,
+        "ambiguous": 518,
+        "ambiguousActuallyStrict": 125
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C15": {
+      "summary": {
+        "sessionsContainingStrict": 37,
+        "top5OfStrict": 0.352,
+        "herfindahl": 0.044608,
+        "topSessions": [
+          {
+            "sess": "23",
+            "strict": 10,
+            "all": 18
+          },
+          {
+            "sess": "52",
+            "strict": 9,
+            "all": 46
+          },
+          {
+            "sess": "56",
+            "strict": 9,
+            "all": 77
+          },
+          {
+            "sess": "40",
+            "strict": 8,
+            "all": 61
+          },
+          {
+            "sess": "43",
+            "strict": 8,
+            "all": 36
+          }
+        ]
+      },
+      "unit": "session",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C16": {
+      "summary": {
+        "rowsAtLeastTwoExpressed": 19494,
+        "unanimityUnweighted": 0.887453,
+        "unanimityByExpressedVotes": 0.940463,
+        "note": "Size-dependent descriptive statistic"
+      },
+      "unit": "group_vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C17": {
+      "summary": {
+        "overallMeanEntropyNormalized": 0.0528,
+        "meanEntropyByYear": {
+          "2023": {
+            "n": 287,
+            "meanEntropy": 0.043247
+          },
+          "2024": {
+            "n": 7702,
+            "meanEntropy": 0.051739
+          },
+          "2025": {
+            "n": 6657,
+            "meanEntropy": 0.053429
+          },
+          "2026": {
+            "n": 4848,
+            "meanEntropy": 0.054189
+          }
+        }
+      },
+      "unit": "group_vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C18": {
+      "summary": {
+        "byYear": {
+          "2023": {
+            "n": 128,
+            "unanimous": 0.945313
+          },
+          "2024": {
+            "n": 3444,
+            "unanimous": 0.957898
+          },
+          "2025": {
+            "n": 2960,
+            "unanimous": 0.9625
+          },
+          "2026": {
+            "n": 2156,
+            "unanimous": 0.963358
+          }
+        }
+      },
+      "unit": "group_vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C19": {
+      "summary": {
+        "pairsCompared": 77495,
+        "overallShareSameClearMode": 0.53388,
+        "distinctGroupPairs": 45,
+        "excluded": "ties and group-vote with zero S/N/A"
+      },
+      "unit": "group_pair_vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C20": {
+      "summary": {
+        "qualifyingPairs": 36,
+        "largestChanges": [
+          {
+            "pair": [
+              "GJxCAT",
+              "GR"
+            ],
+            "n2024": 839,
+            "n2025": 738,
+            "agree2024": 0.742551,
+            "agree2025": 0.616531,
+            "delta": -0.126019
+          },
+          {
+            "pair": [
+              "GJxCAT",
+              "GV (EAJ-PNV)"
+            ],
+            "n2024": 821,
+            "n2025": 738,
+            "agree2024": 0.741778,
+            "agree2025": 0.636856,
+            "delta": -0.104922
+          },
+          {
+            "pair": [
+              "GJxCAT",
+              "GSUMAR"
+            ],
+            "n2024": 843,
+            "n2025": 738,
+            "agree2024": 0.680902,
+            "agree2025": 0.588076,
+            "delta": -0.092826
+          },
+          {
+            "pair": [
+              "GR",
+              "GV (EAJ-PNV)"
+            ],
+            "n2024": 836,
+            "n2025": 740,
+            "agree2024": 0.694976,
+            "agree2025": 0.604054,
+            "delta": -0.090922
+          },
+          {
+            "pair": [
+              "GJxCAT",
+              "GMx"
+            ],
+            "n2024": 839,
+            "n2025": 724,
+            "agree2024": 0.669845,
+            "agree2025": 0.585635,
+            "delta": -0.08421
+          },
+          {
+            "pair": [
+              "GEH Bildu",
+              "GJxCAT"
+            ],
+            "n2024": 838,
+            "n2025": 738,
+            "agree2024": 0.705251,
+            "agree2025": 0.630081,
+            "delta": -0.075169
+          },
+          {
+            "pair": [
+              "GJxCAT",
+              "GS"
+            ],
+            "n2024": 843,
+            "n2025": 738,
+            "agree2024": 0.696323,
+            "agree2025": 0.621951,
+            "delta": -0.074371
+          },
+          {
+            "pair": [
+              "GR",
+              "GS"
+            ],
+            "n2024": 858,
+            "n2025": 740,
+            "agree2024": 0.69697,
+            "agree2025": 0.622973,
+            "delta": -0.073997
+          },
+          {
+            "pair": [
+              "GSUMAR",
+              "GVOX"
+            ],
+            "n2024": 860,
+            "n2025": 740,
+            "agree2024": 0.189535,
+            "agree2025": 0.245946,
+            "delta": 0.056411
+          },
+          {
+            "pair": [
+              "GS",
+              "GSUMAR"
+            ],
+            "n2024": 862,
+            "n2025": 740,
+            "agree2024": 0.808585,
+            "agree2025": 0.863514,
+            "delta": 0.054929
+          }
+        ],
+        "warning": "Does not identify individual affiliation or influence"
+      },
+      "unit": "group_pair_year",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C21": {
+      "summary": {
+        "groupExclusionSignChanges": 2982,
+        "distinctVotesAffected": 1033,
+        "topGroups": [
+          {
+            "group": "GS",
+            "n": 650
+          },
+          {
+            "group": "GSUMAR",
+            "n": 469
+          },
+          {
+            "group": "GP",
+            "n": 399
+          },
+          {
+            "group": "GR",
+            "n": 310
+          },
+          {
+            "group": "GJxCAT",
+            "n": 309
+          },
+          {
+            "group": "GVOX",
+            "n": 295
+          },
+          {
+            "group": "GEH Bildu",
+            "n": 226
+          },
+          {
+            "group": "GMx",
+            "n": 186
+          },
+          {
+            "group": "GV (EAJ-PNV)",
+            "n": 138
+          }
+        ],
+        "warning": "Mechanical leave-group-out arithmetic, NOT a causal pivotal-voter estimate"
+      },
+      "unit": "group_vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C22": {
+      "summary": {
+        "types": 9,
+        "lowestYes": [
+          {
+            "tipo": "Debates de totalidad de iniciativas legislativas.",
+            "n": 39,
+            "yes": 0.153846,
+            "no": 0.846154,
+            "tie": 0
+          },
+          {
+            "tipo": "Dictámenes de Comisiones sobre iniciativas legislativas.",
+            "n": 508,
+            "yes": 0.181102,
+            "no": 0.816929,
+            "tie": 0.001969
+          },
+          {
+            "tipo": "Mociones consecuencia de interpelaciones urgentes.",
+            "n": 623,
+            "yes": 0.433387,
+            "no": 0.560193,
+            "tie": 0.006421
+          },
+          {
+            "tipo": "Enmiendas del Senado.",
+            "n": 249,
+            "yes": 0.493976,
+            "no": 0.502008,
+            "tie": 0.004016
+          },
+          {
+            "tipo": "Proposiciones no de Ley.",
+            "n": 314,
+            "yes": 0.535032,
+            "no": 0.433121,
+            "tie": 0.031847
+          }
+        ],
+        "highestYes": [
+          {
+            "tipo": "Proposiciones no de Ley.",
+            "n": 314,
+            "yes": 0.535032,
+            "no": 0.433121,
+            "tie": 0.031847
+          },
+          {
+            "tipo": "Toma en consideración de Proposiciones de Ley.",
+            "n": 113,
+            "yes": 0.539823,
+            "no": 0.460177,
+            "tie": 0
+          },
+          {
+            "tipo": "Convalidación o derogación de Reales Decretos-leyes.",
+            "n": 97,
+            "yes": 0.876289,
+            "no": 0.113402,
+            "tie": 0.010309
+          },
+          {
+            "tipo": "Avocación de iniciativas legislativas.",
+            "n": 26,
+            "yes": 0.961538,
+            "no": 0.038462,
+            "tie": 0
+          },
+          {
+            "tipo": "Dictámenes de la Comisión de Asuntos Exteriores sobre Convenios internacionales.",
+            "n": 59,
+            "yes": 0.966102,
+            "no": 0.033898,
+            "tie": 0
+          }
+        ]
+      },
+      "unit": "type",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C23": {
+      "summary": {
+        "withDissentCodes": {
+          "n": 396,
+          "totalPositions": 138597,
+          "nominal": 132505,
+          "weightedCoverage": 0.956045,
+          "voteMeanCoverage": 0.956044
+        },
+        "withoutDissentCodes": {
+          "n": 1779,
+          "totalPositions": 622621,
+          "nominal": 594059,
+          "weightedCoverage": 0.954126,
+          "voteMeanCoverage": 0.954125
+        },
+        "differenceCoverage_pp": 0.1919,
+        "warning": "di derived from current-roster subset, not independent measure of discipline"
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C24": {
+      "summary": {
+        "assent": {
+          "n": 0,
+          "totalPositions": 0,
+          "nominal": 0,
+          "weightedCoverage": null,
+          "voteMeanCoverage": null
+        },
+        "other": {
+          "n": 2175,
+          "totalPositions": 761218,
+          "nominal": 726564,
+          "weightedCoverage": 0.954476,
+          "voteMeanCoverage": 0.954474
+        },
+        "assentCount": 0
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C25": {
+      "summary": {
+        "uniqueCodes": 350,
+        "firstSeenYear": {
+          "2023": 305,
+          "2024": 27,
+          "2025": 11,
+          "2026": 7
+        },
+        "lastSeenYear": {
+          "2026": 350
+        },
+        "observedInNYears": {
+          "1": 7,
+          "2": 11,
+          "3": 27,
+          "4": 305
+        },
+        "warning": "First/last observation is not membership start/end"
+      },
+      "unit": "code_year",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C26": {
+      "summary": {
+        "n": 2156,
+        "brierExpandingBaseRate": 0.249226,
+        "brierAlwaysYes": 0.539425,
+        "targetYesFraction": 0.460575,
+        "byYear": {
+          "2023": {
+            "n": 32,
+            "expanding": 0.247483,
+            "alwaysYes": 0.34375
+          },
+          "2024": {
+            "n": 852,
+            "expanding": 0.245312,
+            "alwaysYes": 0.588028
+          },
+          "2025": {
+            "n": 740,
+            "expanding": 0.248162,
+            "alwaysYes": 0.55
+          },
+          "2026": {
+            "n": 532,
+            "expanding": 0.257079,
+            "alwaysYes": 0.458647
+          }
+        },
+        "warning": "Retrospective replay on archive snapshot, NO as-of certified"
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C27": {
+      "summary": {
+        "n": 2156,
+        "types": 45,
+        "brierByType": 0.20626,
+        "brierGlobal": 0.249226,
+        "deltaTypeMinusGlobal": -0.042966,
+        "warning": "Retrospective same-source, model sees archived vote ordering not field release timestamps"
+      },
+      "unit": "vote",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C28": {
+      "summary": {
+        "sessions": 144,
+        "holdoutSessions": 143,
+        "MAE_lastSession": 0.004145,
+        "MAE_expandingHistorical": 0.033849,
+        "deltaPersistenceMinusHistorical": -0.029704,
+        "warning": "Retrospective archival snapshot, not live predictability"
+      },
+      "unit": "session",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C29": {
+      "summary": {
+        "missingKeys": {
+          "id": 0,
+          "fuente": 0,
+          "fecha": 0,
+          "sesion": 0,
+          "numero": 0,
+          "tipo": 0,
+          "totales": 0,
+          "votos": 0,
+          "grupos": 0
+        },
+        "badHttps": 0,
+        "unknownGroupRows": 4,
+        "duplicateVoteIds": 0,
+        "groupAggregateMismatchedVotes": 2,
+        "sourceRows": 2175
+      },
+      "unit": "schema",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    },
+    "C30": {
+      "summary": {
+        "fullNominalCoverageVotes": 95,
+        "groupTotalsConsistent": 2173,
+        "nominalOriginalIndependentlyMatched": 0,
+        "historicalRosterWithAsOfVerified": 0,
+        "eligibleForRealPersonFantasyScores": 0,
+        "sourceVotes": 2175,
+        "AB_DECIDE": "COMPLETE_RETROSPECTIVE_CYCLES; REPAIR_SOURCE_BEFORE_REAL_PERSON_PREDICTION_OR_POINTS",
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "unit": "governance",
+      "exposure": "same_secondary_blob",
+      "source_n": 2175,
+      "distinct_sources": 1
+    }
+  }
+}
