@@ -1,0 +1,108 @@
+{
+  "dataset": "MarcoAnarmo/CongresoAbierto data/raw/votaciones/pleno.jsonl",
+  "source_git_blob_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+  "raw_bytes_from_git_tree": 4778066,
+  "date_min": "2023-09-19",
+  "date_max": "2026-09-30",
+  "votations": 2175,
+  "unique_vote_ids": 2175,
+  "sessions": 144,
+  "total_positions": 761218,
+  "nominal_linked": 726564,
+  "not_linked_or_unavailable": 34654,
+  "fully_linked_votes": 95,
+  "partially_linked_votes": 2078,
+  "votes_with_nominal": 2173,
+  "votes_without_nominal": 2,
+  "groups_rows": 19561,
+  "group_total_mismatches": 0,
+  "totals_exceed_350": 0,
+  "totals_less_350": 32,
+  "missing_on_nominal_votes_by_category": {
+    "YES": 14579,
+    "NO": 15491,
+    "ABSTAIN": 2841,
+    "NO_VOTE": 1043
+  },
+  "explicit_no_votes": 7973,
+  "yearly": {
+    "2023": {
+      "n_votes": 32,
+      "n_sessions": 5,
+      "nominal_votations": 32,
+      "total_positions": 11200,
+      "nominal_linked": 9613,
+      "coverage_all": 0.8583035714285714,
+      "coverage_nominal_available": 0.8583035714285714,
+      "not_linked_on_nominal_votations": 1587,
+      "declared_no_vote": 96
+    },
+    "2024": {
+      "n_votes": 862,
+      "n_sessions": 52,
+      "nominal_votations": 862,
+      "total_positions": 301670,
+      "nominal_linked": 278545,
+      "coverage_all": 0.9233433884708456,
+      "coverage_nominal_available": 0.9233433884708456,
+      "not_linked_on_nominal_votations": 23125,
+      "declared_no_vote": 3760
+    },
+    "2025": {
+      "n_votes": 741,
+      "n_sessions": 50,
+      "nominal_votations": 740,
+      "total_positions": 259348,
+      "nominal_linked": 251111,
+      "coverage_all": 0.9682395854219041,
+      "coverage_nominal_available": 0.9695480273978949,
+      "not_linked_on_nominal_votations": 7887,
+      "declared_no_vote": 2618
+    },
+    "2026": {
+      "n_votes": 540,
+      "n_sessions": 37,
+      "nominal_votations": 539,
+      "total_positions": 189000,
+      "nominal_linked": 187295,
+      "coverage_all": 0.990978835978836,
+      "coverage_nominal_available": 0.9928173866949377,
+      "not_linked_on_nominal_votations": 1355,
+      "declared_no_vote": 1499
+    }
+  },
+  "coverage_on_nominal_votes": 0.9553541139065742,
+  "coverage_session_weighted": 0.9527529904034194,
+  "nominal_code_union": 350,
+  "distinct_code_count_by_year": {
+    "2023": 305,
+    "2024": 332,
+    "2025": 343,
+    "2026": 350
+  },
+  "overlap_2023_2026": 305,
+  "tied_group_vote_instances": 36,
+  "group_modal_share_expressed": 0.9945253534601892,
+  "group_modal_share_without_mixed_and_small": 0.9991848793042096,
+  "first_half_nominal_coverage": 0.9273739048070092,
+  "last_half_nominal_coverage": 0.9833065228362352,
+  "diff_2026minus2023_cluster_bootstrap95_LCG1000": [
+    0.12417809282351122,
+    0.1571597466572836
+  ],
+  "cluster_bootstrap_seed": 20261025,
+  "external_source_reported_20261025": {
+    "name": "quienvota.org",
+    "votes": 2176,
+    "individuals": 761568,
+    "member_distinct": 412
+  },
+  "limits": [
+    "source processed from official Congress data; not independent official JSON validation",
+    "historical identities resolved against present-day directory",
+    "two vote records have no nominal codes",
+    "2023 includes only 5 sessions",
+    "all 2175 votes are correlated across sessions and people",
+    "source dates not publication availability timestamps"
+  ]
+}
