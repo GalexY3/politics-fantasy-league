@@ -1,6 +1,6 @@
 {
   "dataset_class": "FIXTURE",
-  "description": "ENTIRELY FICTIONAL organisations and persons. Validates data model, NOT current Spanish politics.",
+  "description": "ENTIRELY FICTIONAL. Includes an interest group distinct from parties and coalition actors. Not a dataset of Spanish politics.",
   "sources": [
     {
       "id": "FX-ORG",
@@ -76,6 +76,13 @@
       "name": "Tomás Ficticio",
       "source_id": "FX-ORG",
       "public_role_documented": true,
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:ig1",
+      "kind": "INTEREST_GROUP",
+      "name": "Foro de Interés Ficticio",
+      "source_id": "FX-ORG",
       "jurisdiction": "ES"
     }
   ],
@@ -153,6 +160,10 @@
         {
           "actor_id": "FIX:pl1",
           "role": "ORGANIZER"
+        },
+        {
+          "actor_id": "FIX:ig1",
+          "role": "ATTENDEE_PUBLIC"
         }
       ]
     },
