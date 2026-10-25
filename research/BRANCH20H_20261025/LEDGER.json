@@ -1,0 +1,1277 @@
+{
+  "campaign_id": "PF-BR20H",
+  "date": "2026-10-25",
+  "authorized": 20,
+  "completed_AJ": 20,
+  "remaining": 0,
+  "branching": true,
+  "DRIFT_from_parliament": "D2.0",
+  "CT2_new_branch": {
+    "before": 20,
+    "after": 20,
+    "meaning": "ordinal judgment, not probability"
+  },
+  "CT2_legacy_predictive": 24,
+  "VSDS_project": 1,
+  "new_N1": 0,
+  "N2": 0,
+  "N3": 0,
+  "source_field_confirmation": 0,
+  "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+  "results_commit": "996ea8e497c63b7512551d0cf7dcfb574b368eda",
+  "statement": "20 executed local acceptance cycles, not 20 independent real-world experiments",
+  "cycles": [
+    {
+      "id": "PF-BR20H-C01",
+      "branch": "fuentes",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 2,
+      "A": {
+        "question": "Catálogo verificable no equivale a captura real",
+        "estimand": "Software acceptance Distinguir DOCUMENTED_ONLY de RAW_CAPTURED",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Catálogo verificable no equivale a captura real",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Distinguir DOCUMENTED_ONLY de RAW_CAPTURED",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C02",
+      "branch": "ontología",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Separar instituciones, partidos, coaliciones y grupos de interés",
+        "estimand": "Software acceptance Distinguir al menos siete tipos de entidad",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Separar instituciones, partidos, coaliciones y grupos de interés",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Distinguir al menos siete tipos de entidad",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": {
+          "cycle": "C02",
+          "issue": "Incorrect assertion of number of fixture entity kinds, 5 instead of 6",
+          "initial_result": "FAIL",
+          "repair": "Correct count and add INTEREST_GROUP explicit case",
+          "final_result": "PASS"
+        },
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C03",
+      "branch": "personas",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Admitir actores públicos sin escaño",
+        "estimand": "Software acceptance PERSON no exige ELECTED_TO",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Admitir actores públicos sin escaño",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "PERSON no exige ELECTED_TO",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C04",
+      "branch": "identidad",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Conservar homónimos sin fusión",
+        "estimand": "Software acceptance UNRESOLVED_HOMONYM",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Conservar homónimos sin fusión",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "UNRESOLVED_HOMONYM",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C05",
+      "branch": "identidad",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "IDs estables independientes del nombre",
+        "estimand": "Software acceptance MATCH mediante namespace y external ID",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "IDs estables independientes del nombre",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "MATCH mediante namespace y external ID",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C06",
+      "branch": "procedencia",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Fallar si una afirmación no tiene origen",
+        "estimand": "Software acceptance MISSING_SOURCES",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Fallar si una afirmación no tiene origen",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "MISSING_SOURCES",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C07",
+      "branch": "tiempo",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Distinguir tiempo de acto y fecha de captura",
+        "estimand": "Software acceptance valid_from diferente de observed_at",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Distinguir tiempo de acto y fecha de captura",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "valid_from diferente de observed_at",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C08",
+      "branch": "tiempo",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Reconstruir cambio histórico de cargo",
+        "estimand": "Software acceptance roleAt respeta intervalos",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Reconstruir cambio histórico de cargo",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "roleAt respeta intervalos",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C09",
+      "branch": "candidatura",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Candidatura no es militancia",
+        "estimand": "Software acceptance No crear afiliación",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Candidatura no es militancia",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "No crear afiliación",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C10",
+      "branch": "coaliciones",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Multiplicidad de participantes políticos",
+        "estimand": "Software acceptance Tres partidos en una coalición",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Multiplicidad de participantes políticos",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Tres partidos en una coalición",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C11",
+      "branch": "ideas",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Documentar posiciones temáticas sin reduccionismo",
+        "estimand": "Software acceptance Declaración literal sin puntuación ideológica",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Documentar posiciones temáticas sin reduccionismo",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Declaración literal sin puntuación ideológica",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C12",
+      "branch": "eventos",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 1.7,
+      "A": {
+        "question": "Incluir reuniones y actos extraparlamentarios",
+        "estimand": "Software acceptance PUBLIC_MEETING fuera del Congreso",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Incluir reuniones y actos extraparlamentarios",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "PUBLIC_MEETING fuera del Congreso",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C13",
+      "branch": "causalidad",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No inferir poder de un acto público",
+        "estimand": "Software acceptance Rechazar campo influence_score",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No inferir poder de un acto público",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Rechazar campo influence_score",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C14",
+      "branch": "privacidad",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 1.6,
+      "A": {
+        "question": "No registrar adhesiones políticas privadas",
+        "estimand": "Software acceptance Rechazar personas privadas y contactos",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No registrar adhesiones políticas privadas",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Rechazar personas privadas y contactos",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C15",
+      "branch": "conflictos",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No resolver contradicciones arbitrariamente",
+        "estimand": "Software acceptance Preservar CONFLICT y diferenciar periodos",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No resolver contradicciones arbitrariamente",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Preservar CONFLICT y diferenciar periodos",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C16",
+      "branch": "asof",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No introducir evidencia futura en análisis histórico",
+        "estimand": "Software acceptance Corte temporal fuente y publicación",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No introducir evidencia futura en análisis histórico",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Corte temporal fuente y publicación",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": {
+          "cycle": "C16",
+          "issue": "Fixture treated Oct capture as available in June",
+          "initial_result": "FAIL",
+          "repair": "Add March-captured source to pre-Jun as-of test, preserving date availability",
+          "final_result": "PASS"
+        },
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C17",
+      "branch": "búsqueda",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No ordenar actores por tamaño de escaños",
+        "estimand": "Software acceptance Filtro por rol y tipo sin ranking",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No ordenar actores por tamaño de escaños",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Filtro por rol y tipo sin ranking",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C18",
+      "branch": "cobertura",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No equiparar falta de dato con ausencia",
+        "estimand": "Software acceptance Estado UNKNOWN separado de ABSENT",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No equiparar falta de dato con ausencia",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Estado UNKNOWN separado de ABSENT",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C19",
+      "branch": "juego",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "No valorar personas reales automáticamente",
+        "estimand": "Software acceptance Gate de puntuación no habilitado",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "No valorar personas reales automáticamente",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Gate de puntuación no habilitado",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    },
+    {
+      "id": "PF-BR20H-C20",
+      "branch": "integración",
+      "status": "A_J_COMPLETED_SOFTWARE",
+      "DRIFT_D": 0.7,
+      "A": {
+        "question": "Compatibilidad de eventos y entidades",
+        "estimand": "Software acceptance Bundle ficticio referencialmente válido",
+        "unit": "One synthetic contract"
+      },
+      "B": {
+        "H1": "Compatibilidad de eventos y entidades",
+        "H0": "A parliamentary-only model is sufficient",
+        "H_other": "Fixtures and data-source assumptions generate artificial success"
+      },
+      "C": {
+        "prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+        "endpoint": "Bundle ficticio referencialmente válido",
+        "negative_control": "Invalid or competing representation should be rejected",
+        "design": "Fixed before implementation; post-documentary exposure, no field holdout"
+      },
+      "D": {
+        "source": "src/politics_fantasy/political_universe.mjs",
+        "test": "tests/test_political_universe.mjs",
+        "executor": "V8 pure JavaScript; no Node clean checkout verification"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "repair": null,
+        "source_type": "FIXTURE/LEGAL_DOCUMENTATION",
+        "real_data_record_count": 0
+      },
+      "F": {
+        "adversary": "Strong rival is a role/event graph of similar scope, not a simplistic parliamentary baseline",
+        "finding": "Acceptances demonstrate local invariants, not better coverage in Spanish field data",
+        "failure_scope": "No official party/candidate list parsed"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_field": "NOT_EXECUTED"
+      },
+      "H": {
+        "abductive_update": "Feature implementable under the tested fixture and constraints",
+        "against": "No representative real-world data; no superior accuracy demonstrated",
+        "new_prior": "Conditionally feasible, NOT externally validated"
+      },
+      "I": {
+        "internal_test": "PASS",
+        "causal": "NONE",
+        "external": "UNKNOWN",
+        "novelty": "NOT_ESTABLISHED",
+        "grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_before": 20,
+        "CT2_after": 20
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL; CONTINUE_ONLY_WITH_NEW_SOURCE",
+        "next": "Capture original official registrations, candidacies and public-role records with provenance"
+      }
+    }
+  ]
+}
