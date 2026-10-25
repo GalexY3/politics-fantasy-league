@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "politics-fantasy-lab"
+version = "0.2.0"
+description = "Political data-science research laboratory with local synthetic fantasy prototype"
+requires-python = ">=3.10"
+license = {text = "All rights reserved pending explicit licensing decision"}
+authors = []
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+plots = ["matplotlib>=3.6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[project.scripts]
+politics-fantasy-demo = "politics_fantasy.server:main"
+
+[tool.setuptools.package-data]
+politics_fantasy = ["web/*.html", "web/*.css", "web/*.js"]

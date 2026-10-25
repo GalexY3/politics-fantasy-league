@@ -1,0 +1,25 @@
+................................................./usr/lib/python3.13/ast.py:50: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f12420bfe20>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+                        [100%]
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.13.5-final-0 ________________
+
+Name                                 Stmts   Miss  Cover
+--------------------------------------------------------
+src/politics_fantasy/__init__.py         1      0   100%
+src/politics_fantasy/events.py          40      3    92%
+src/politics_fantasy/forecast.py        34      6    82%
+src/politics_fantasy/ingest.py          58     14    76%
+src/politics_fantasy/network.py         34      3    91%
+src/politics_fantasy/product.py        170      6    96%
+src/politics_fantasy/quality.py         51      9    82%
+src/politics_fantasy/scoring.py         29      3    90%
+src/politics_fantasy/server.py          85     22    74%
+src/politics_fantasy/simulation.py      39      6    85%
+src/politics_fantasy/warehouse.py       91      6    93%
+--------------------------------------------------------
+TOTAL                                  632     78    88%
+49 passed in 4.47s
+
+JS syntax: PASS (node --check)
