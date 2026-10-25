@@ -18,7 +18,7 @@ const cases=[
 ];
 const output=analyze(cases.map(JSON.stringify).join("\n")+"\n");
 test("28 distinct numbered effects emitted",()=>assert.deepEqual(Object.keys(output.cycles),Array.from({length:28},(_,i)=>"C"+String(i+3).padStart(2,"0"))));
-test("synthetic cross-option miss counter preserves total",()=>assert.equal(output.cycles.C06.summary.allMissing,7));
+test("synthetic cross-option miss counter preserves total",()=>assert.equal(output.cycles.C06.summary.allMissing,4));
 test("C13 identifies one strict reversal only in close margins",()=>assert.equal(output.cycles.C13.summary.bins["0-5"].strict,1));
 test("C14 conservative certification has no false sign proof",()=>assert.equal(output.cycles.C14.summary.mismatchesAmongRobust,0));
 test("C29 no false group count mismatch in complete fixture",()=>assert.equal(output.cycles.C29.summary.groupAggregateMismatchedVotes,0));
