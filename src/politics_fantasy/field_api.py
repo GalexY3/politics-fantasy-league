@@ -43,6 +43,15 @@ def local_field_status(path: Path | None) -> dict:
             raise ValueError('Bad count')
         if any(not isinstance(sums.get(k),int) or isinstance(sums[k],bool) or sums[k]<0 for k in ('n_rows','sum_yes','sum_no','sum_abstain','sum_no_vote')):
             raise ValueError('Bad aggregate')
+        group=loaded.get('group_audit')
+        if group is not None:
+            if not isinstance(group,dict):raise ValueError('Bad group audit')
+            group_keys=('group_rows','group_labels','votations','years','total_expressed','total_explicit_nonvote',
+                        'nominal_group_undercounts','nominal_group_overages','group_date_conflicts')
+            if any(type(group.get(k)) is not int or group[k]<0 for k in group_keys):
+                raise ValueError('Group counts invalid')
+            if type(group.get('aggregate_consistent')) is not bool or type(group.get('nominal_group_complete')) is not bool:
+                raise ValueError('Group consistency invalid')
         return {'mode':'USER_SUPPLIED_CSV_UNCERTIFIED', 'certified':False,
                 'real_person_scoring':False,'VSDS':1,'report_sha256':signature,
                 'n_nominal_rows':votes['n_rows'],'n_votations':votes['n_votations'],
@@ -54,6 +63,16 @@ def local_field_status(path: Path | None) -> dict:
                 'sum_aggregate_abstain':sums['sum_abstain'],
                 'sum_aggregate_no_vote':sums['sum_no_vote'],
                 'reconciliation_complete':loaded.get('reconciliation',{}).get('any_unresolved') is False,
+                'group_audit':None if group is None else {
+                    'group_rows':group['group_rows'],'group_labels':group['group_labels'],
+                    'votations':group['votations'],
+                    'aggregate_consistent':group['aggregate_consistent'],
+                    'nominal_group_complete':group['nominal_group_complete'],
+                    'nominal_group_undercounts':group['nominal_group_undercounts'],
+                    'nominal_group_overages':group['nominal_group_overages'],
+                    'group_date_conflicts':group['group_date_conflicts'],
+                    'interpretation':'RECUENTOS_DESCRIPTIVOS_NO_DISCIPLINA',
+                    'certified':False},
                 'message':'CSV aportados localmente. Sin certificación histórica ni predicción política validada.'}
     except (OSError,ValueError,UnicodeError,TypeError,KeyError,AttributeError):
         return {'mode':'FIELD_REPORT_REJECTED','certified':False,'real_person_scoring':False,'VSDS':1,
