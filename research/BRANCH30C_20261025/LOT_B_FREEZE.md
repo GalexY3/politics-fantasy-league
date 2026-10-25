@@ -1,0 +1,6 @@
+# Lote B C07–C12 — freeze después de A
+Disparador: A 6/6 pasa sobre fixtures; posible rama D1.8 hacia medidas sociológicas de grupo.
+Unidad: pareja votación-grupo del tercer CSV. Estimando descriptivo: concentración de votos expresados observados, no obediencia de una persona ni causa.
+C07 tasa de NO_VOTE explícita con denominador de filas del grupo (incluye NO_VOTE). C08 concentración de opción modal entre expresados con soporte n >=1; si todos NO_VOTE, None. C09 empate no produce "desviación". C10 abstención como elección expresada distinta de NO_VOTE. C11 reproducibilidad sin depender del orden del CSV; C12 historia de diferencias por fecha sin reetiquetar grupos actuales.
+Rival: usar grupo del diputado hoy, excluir abstenciones o imputar no-voto a filas ausentes, confundir mayoría con disciplina. Falsadores: una observación de ausencia implícita cambia índice; un empate cuenta disidencia; permutar filas cambia resultados; cambiar fecha sin valores altera índice.
+Instrumento: 6 nuevos tests, pasar suite anterior y primer test clean-room. Hallazgos científicos 0/3; VSDS máximo 1/3 hasta corpus real y verificación externa.
