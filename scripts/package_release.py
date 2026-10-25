@@ -24,10 +24,10 @@ def pack(target:Path):
     for p in paths:
         rel=p.relative_to(ROOT).as_posix()
         records[rel]={'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size}
-    manifest={'release':'PFL_PRODUCT_AB20_PLUS_AUTH45','date':'2026-10-24',
-              'methodology':'AB 3.2.1', 'verified_tests':49,
+    manifest={'release':'PFL_V0_4_BRANCH30_VSDS','date':'2026-10-25',
+              'methodology':'AB 3.2.1', 'verified_tests':87,
               'evidence_state':'LOCAL_SYNTHETIC_PRODUCT_NO_VALIDATED_REAL_POLITICAL_SCORING',
-              'github_published':False,'files':records}
+              'github_published':True,'github_hosting':'TEMPORARY_IN_Metodologia-AB','files':records}
     manifest_path=ROOT/'MANIFEST_SHA256.json'
     manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
     target.parent.mkdir(parents=True,exist_ok=True)
