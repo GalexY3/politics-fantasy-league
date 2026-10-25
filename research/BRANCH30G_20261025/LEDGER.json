@@ -42,12 +42,22 @@
       "B": "H1 catálogo actual restringe la identificación retrospectiva; H0 fallos de extracción; H_otra reglas o revisiones distintas.",
       "C": "Revisar importador versionado, TSV y metadatos externos; emparejamiento voto a voto requerido para atribución.",
       "D": "El TSV publicado contiene 350 códigos y 350 nombres únicos; el proveedor externo declara 412 históricos (350 activos).",
-      "E": "Verificación documental sobre código de importador y metadatos de un segundo proveedor; no examen nominal oficial.",
+      "E": {
+        "executed": true,
+        "kind": "DOCUMENTARY_SOURCE_AUDIT",
+        "observed": "Verificación documental sobre código de importador y metadatos de un segundo proveedor; no examen nominal oficial.",
+        "field_original_nominal_used": false
+      },
       "F": "No concluir que 62 personas son los nombres faltantes del otro archivo; metadatos de universos no armonizados.",
-      "G": "NO_EXTERNAL_NOMINAL_MATCH; metadatos externos no son cotejo de contenido de los mismos votos.",
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_or_fixture_only": "NO_EXTERNAL_NOMINAL_MATCH; metadatos externos no son cotejo de contenido de los mismos votos."
+      },
       "H": "El mecanismo de pérdida por ausencia en mapa de nombres está identificado en el CÓDIGO; magnitud y personas siguen sin identificarse.",
       "I": "Mecanismo técnico de importador, validez poblacional desconocida, sin causalidad observacional ni novedad acreditada.",
-      "J": "REPAIR_SOURCE: concordancia oficial/derivado por voto y roster histórico."
+      "J": "REPAIR_SOURCE: concordancia oficial/derivado por voto y roster histórico.",
+      "analysis_executed": true,
+      "is_independent_field_experiment": false
     },
     {
       "id": "PF-BR30G-C02",
@@ -62,12 +72,22 @@
       "B": "H1 nombre sin enlace; H0 completo; H_otra colisiones, opción inválida o error del derivado.",
       "C": "Original JSON + TSV exacto + registro derivado; emitir solo estadísticas y hashes, fixtures negativos.",
       "D": "src/politics_fantasy/identity_reconcile.py y scripts/identity_reconcile_offline.py. Prueba de schema fail-closed.",
-      "E": "12 tests unitarios ejecutados localmente sobre implementación análoga y un smoke de CLI con datos inventados; NO se ejecutó remotamente clon limpio ni contra JSON parlamentario real.",
+      "E": {
+        "executed": true,
+        "kind": "SOFTWARE_SYNTHETIC_TEST",
+        "observed": "12 tests unitarios ejecutados localmente sobre implementación análoga y un smoke de CLI con datos inventados; NO se ejecutó remotamente clon limpio ni contra JSON parlamentario real.",
+        "field_original_nominal_used": false
+      },
       "F": "Rechaza duplicados, conteos inválidos, categoría desconocida; no fuzzy matching, no salida de nombres.",
-      "G": "NO_EXTERNAL_FIELD_REPLICATION. Pruebas sintéticas verifican ingeniería, no validez sociológica.",
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_or_fixture_only": "NO_EXTERNAL_FIELD_REPLICATION. Pruebas sintéticas verifican ingeniería, no validez sociológica."
+      },
       "H": "Prior técnico nuevo: preservar categorías de no enlace como distintas de No vota; no evidencia sobre incidencia española.",
       "I": "Funcionamiento de software condicionado al formato supuesto del JSON; VSDS y CT2 conservados.",
-      "J": "CONTINUE_CONDITIONAL: ejecutar con originales oficiales y versión del roster."
+      "J": "CONTINUE_CONDITIONAL: ejecutar con originales oficiales y versión del roster.",
+      "analysis_executed": true,
+      "is_independent_field_experiment": false
     },
     {
       "id": "PF-BR30G-C03",
