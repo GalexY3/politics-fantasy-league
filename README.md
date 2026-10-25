@@ -1,15 +1,9 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
-**Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.8.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
+**Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.6.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
 
-
-## 25/10/2026 · v0.8: BRANCH30E, auditoría del fichero histórico de la XV Legislatura
-
-**30 fichas A–J completas**, 10 auditorías de código y votaciones seleccionadas más 20 contrastes descriptivos sobre un único archivo secundario de **2.175 votaciones**. **No** son 30 experimentos independientes ni validación causal. Se ha hallado una brecha importante de observabilidad: **761.218 posiciones de voto, 726.564 códigos nominales vinculados y 34.654 posiciones no vinculadas o no disponibles en este dataset**. La cobertura de códigos por año es 85,83% (2023), 92,33% (2024), 96,82% (2025) y 99,10% (2026). El importador fuente calcula agregados antes de filtrar a nombres resolubles contra un catálogo; no confundir huecos con «No vota» ni con ausencia. Archivo histórico por [Congreso Abierto](https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl), blob `71918bb...`; fuente secundaria sujeta a atribución, sin verificación nominal oficial completa.
-
-**Producción:** módulo seguro `src/politics_fantasy/historical_coverage.py` + CLI `scripts/audit_public_pleno.py` (sin nombres/códigos en el output; hash Git blob verificado), **163 pruebas locales superadas**. El original de 4,8 MB se analizó mediante conector GitHub, no se descargó como archivo a esta máquina. [Informe](research/BRANCH30E_20261025/REPORT.md), [ledger A–J](research/BRANCH30E_20261025/CYCLES_AJ.json), [priors](research/BRANCH30E_20261025/PRIORS_DELTA.md), [datos agregados](research/BRANCH30E_20261025/HISTORICAL_SUMMARY.json). VSDS 1/3, CT2 24/100, 0 hallazgos 2/3. Continuar solo con acceso oficial independiente, roster histórico y marcas de publicación.
 
 ## 25/10/2026 · v0.6: BRANCH30C, tres fuentes y puerta de identificabilidad
 
@@ -126,3 +120,15 @@ Alojamiento temporal en `GalexY3/Metodologia-AB/proyectos/politics-fantasy-leagu
 ## AB30D · 30 ciclos completos A–J (2026-10-25)
 
 Investigación metodológica sobre generadores sintéticos — **no** resultado empírico español. [Informe y auditoría](research/AB30_COMPLETOS_20261025/REPORT.md), [ledger A–J auditado](research/AB30_COMPLETOS_20261025/RESULTS_AUDITED.json), [prerregistro congelado](research/AB30_COMPLETOS_20261025/PREREG.json). Ejecución reproducible: `pip install -e .[research,test]` y `python scripts/ab30d_full.py --out /ruta/result.json`; después `python scripts/audit_ab30d.py` para auditar el registro canónico sin sobrescribir el resultado bruto. Resultados: 30 pruebas computacionales ejecutadas, 0 ensayos empíricos nominales; VSDS 1/3, CT2 24/100.
+
+## v0.8 — Auditoría longitudinal del corpus parlamentario secundario (25-10-2026)
+
+En [PF-BR30F](research/BRANCH30F_20261025/REPORT.md) constan 30 auditorías **post hoc** A–J sobre un *único* archivo secundario `pleno.jsonl` de Congreso Abierto: 2.175 votaciones, 726.564 votos nominales identificados frente a 761.218 posiciones agregadas, 34.654 posiciones sin correspondencia nominal y 149 discrepancias en el signo de la mayoría Sí−No si se usa exclusivamente el subconjunto nominal. **No** son 30 experimentos de campo independientes ni resultados oficiales corregidos. VSDS 1/3, CT2 24/100 sin ascenso; sin atribución de ausencia personal. Prerregistro: [GitHub (commit 5b5a85a)](https://github.com/GalexY3/Metodologia-AB/blob/5b5a85a6c470beb6f3d86084f883c4806220e3fd/proyectos/politics-fantasy-league/research/BRANCH30F_20261025/PREREG.md).
+
+Reproducción (descargar legítimamente la fuente por separado; no se redistribuye archivo nominal en este ZIP):
+
+```
+python scripts/audit_pleno_full.py /ruta/pleno.jsonl --strict-git-blob --out audit.json
+```
+
+La comparación estructural contra un voto oficial JSON descargado y un JSON secundario de votaciones se hace con `python scripts/compare_original_vote.py oficial.json fuente_secundaria.json --id s175-v003`. **No** verifica un censo histórico por sí misma. No utilizar la fuente de octubre de 2026 como si hubiese estado disponible en predicciones realizadas antes de esa fecha.
