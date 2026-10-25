@@ -1,9 +1,15 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
-**Estado (24-10-2026): prototipo de investigación + aplicación local de fantasy v0.4.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
+**Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.5.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
 
+
+## 25/10/2026 · v0.5: BRANCH30B, análisis de CSV parlamentarios offline
+
+30 contratos de producción desarrollados en 5 ramas adaptativas A–E. La suite supera **117/117** pruebas; ninguna de ellas comprueba microdatos parlamentarios reales ni aumenta VSDS (**1/3**) o CT2 (**24/100**). El nuevo módulo `field_ingest.py` acepta exports CSV individuales y agregados documentados por Congreso Abierto, con identificadores/hashes, vocabulario cerrado, avisos de filtrado y conciliación sin inferir inasistencias. La CLI `python -m politics_fantasy.field_cli` permite preparar un recibo de auditoría JSON de forma offline y atómica; `GET /api/field` solo presenta indicadores agregados de un recibo local verificado. No puntúa diputados reales. Ver [manual de CSV](docs/CSV_CAMPO_OFFLINE_v0_5.md) e [informe BR30B](research/BRANCH30B_20261025/REPORT.md). 
+
+Los datos de campo reales **NO fueron descargados** desde este entorno: la capa queda instrumentada y pendiente de cotejo externo contra la fuente del Congreso. El código está en alojamiento GitHub temporal, pendiente de migrar al repositorio dedicado. Este nuevo bloque de 30 ciclos BRANCHING está completo como ingeniería; no descuenta el saldo previo de 12 PF-B50, 45 PF-F45 y 19 AB20.
 
 ## 25/10/2026 · v0.4: escala VSDS y BRANCH30
 
