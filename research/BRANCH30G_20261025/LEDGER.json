@@ -1,0 +1,328 @@
+{
+  "campaign_id": "PF-BR30G",
+  "date": "2026-10-25",
+  "authorized": 30,
+  "completed_AJ_documentary": 1,
+  "completed_AJ_production_synthetic": 1,
+  "official_nominal_empirical_confirmations": 0,
+  "remaining": 28,
+  "CT2_predictive": {
+    "before": 24,
+    "after": 24,
+    "scale": "ordinal_not_probability"
+  },
+  "VSDS": {
+    "before": 1,
+    "after": 1
+  },
+  "N1_new": 0,
+  "N2_new": 0,
+  "N3_new": 0,
+  "raw_official_download": "BLOCKED",
+  "source": {
+    "congreso": "https://www.congreso.es/es/opendata/votaciones",
+    "quienvota": "https://www.quienvota.org/",
+    "secondary": "https://github.com/MarcoAnarmo/CongresoAbierto",
+    "current_roster_git_blob": "fed1b07bbc8c592bc367be45ae21ece9a8c63e02",
+    "importer_git_blob": "2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+  },
+  "previous_authorized_balances_preserved": {
+    "B50": 12,
+    "FREE45": 45,
+    "AB20": 19
+  },
+  "cycles": [
+    {
+      "id": "PF-BR30G-C01",
+      "status": "A_J_COMPLETED_DOCUMENTARY",
+      "branch": "SOURCE_TRIANGULATION",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE",
+      "DRIFT_D": 1,
+      "A": "Estimando de metadatos: cardinalidad del catálogo actual y de las personas históricas declaradas por otro proveedor; no estimación del número de huecos explicados.",
+      "B": "H1 catálogo actual restringe la identificación retrospectiva; H0 fallos de extracción; H_otra reglas o revisiones distintas.",
+      "C": "Revisar importador versionado, TSV y metadatos externos; emparejamiento voto a voto requerido para atribución.",
+      "D": "El TSV publicado contiene 350 códigos y 350 nombres únicos; el proveedor externo declara 412 históricos (350 activos).",
+      "E": "Verificación documental sobre código de importador y metadatos de un segundo proveedor; no examen nominal oficial.",
+      "F": "No concluir que 62 personas son los nombres faltantes del otro archivo; metadatos de universos no armonizados.",
+      "G": "NO_EXTERNAL_NOMINAL_MATCH; metadatos externos no son cotejo de contenido de los mismos votos.",
+      "H": "El mecanismo de pérdida por ausencia en mapa de nombres está identificado en el CÓDIGO; magnitud y personas siguen sin identificarse.",
+      "I": "Mecanismo técnico de importador, validez poblacional desconocida, sin causalidad observacional ni novedad acreditada.",
+      "J": "REPAIR_SOURCE: concordancia oficial/derivado por voto y roster histórico."
+    },
+    {
+      "id": "PF-BR30G-C02",
+      "status": "A_J_COMPLETED_SOFTWARE_SYNTHETIC",
+      "branch": "ORIGINAL_VOTE_RECONCILIATION",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE",
+      "DRIFT_D": 1,
+      "A": "Distribución por categoría de nombre original resoluble/no resoluble y concordancia exacta de código-opción con derivado.",
+      "B": "H1 nombre sin enlace; H0 completo; H_otra colisiones, opción inválida o error del derivado.",
+      "C": "Original JSON + TSV exacto + registro derivado; emitir solo estadísticas y hashes, fixtures negativos.",
+      "D": "src/politics_fantasy/identity_reconcile.py y scripts/identity_reconcile_offline.py. Prueba de schema fail-closed.",
+      "E": "12 tests unitarios ejecutados localmente sobre implementación análoga y un smoke de CLI con datos inventados; NO se ejecutó remotamente clon limpio ni contra JSON parlamentario real.",
+      "F": "Rechaza duplicados, conteos inválidos, categoría desconocida; no fuzzy matching, no salida de nombres.",
+      "G": "NO_EXTERNAL_FIELD_REPLICATION. Pruebas sintéticas verifican ingeniería, no validez sociológica.",
+      "H": "Prior técnico nuevo: preservar categorías de no enlace como distintas de No vota; no evidencia sobre incidencia española.",
+      "I": "Funcionamiento de software condicionado al formato supuesto del JSON; VSDS y CT2 conservados.",
+      "J": "CONTINUE_CONDITIONAL: ejecutar con originales oficiales y versión del roster."
+    },
+    {
+      "id": "PF-BR30G-C03",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C04",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C05",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C06",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C07",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C08",
+      "status": "NOT_EXECUTED",
+      "branch": "OFFICIAL_PAIR_AUDIT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C09",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C10",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C11",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C12",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C13",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C14",
+      "status": "NOT_EXECUTED",
+      "branch": "HISTORICAL_ROSTER",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C15",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C16",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C17",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C18",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C19",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C20",
+      "status": "NOT_EXECUTED",
+      "branch": "COVERAGE_SENSITIVITY",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C21",
+      "status": "NOT_EXECUTED",
+      "branch": "FORECAST_BASELINES",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C22",
+      "status": "NOT_EXECUTED",
+      "branch": "FORECAST_BASELINES",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C23",
+      "status": "NOT_EXECUTED",
+      "branch": "FORECAST_BASELINES",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C24",
+      "status": "NOT_EXECUTED",
+      "branch": "FORECAST_BASELINES",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C25",
+      "status": "NOT_EXECUTED",
+      "branch": "FORECAST_BASELINES",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C26",
+      "status": "NOT_EXECUTED",
+      "branch": "FANTASY_PRODUCT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C27",
+      "status": "NOT_EXECUTED",
+      "branch": "FANTASY_PRODUCT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C28",
+      "status": "NOT_EXECUTED",
+      "branch": "FANTASY_PRODUCT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C29",
+      "status": "NOT_EXECUTED",
+      "branch": "FANTASY_PRODUCT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    },
+    {
+      "id": "PF-BR30G-C30",
+      "status": "NOT_EXECUTED",
+      "branch": "FANTASY_PRODUCT",
+      "CT2_before": 24,
+      "CT2_after": 24,
+      "grade_0_3": 0,
+      "external_replication": "NOT_AVAILABLE"
+    }
+  ]
+}
