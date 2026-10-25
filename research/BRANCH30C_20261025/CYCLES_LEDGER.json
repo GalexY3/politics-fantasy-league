@@ -1,0 +1,1889 @@
+{
+  "schema_version": "PFL-AJ-1.0",
+  "campaign": "BRANCH30C_20261025",
+  "authorization": {
+    "count": 30,
+    "mode": "BRANCHING_AND_PRODUCTION",
+    "remaining_this_block": 0,
+    "untouched_prior_balances": {
+      "B50": 12,
+      "F45": 45,
+      "AB20": 19
+    }
+  },
+  "evidence_status": "SYNTHETIC_TESTS_ONLY_NO_CSV_REAL",
+  "scientific_novelty_levels": {
+    "N1": 0,
+    "N2": 0,
+    "N3": 0
+  },
+  "project_VSDS": 1,
+  "CT2_prediction": 24,
+  "baseline_tests": 117,
+  "release_tests": 147,
+  "data_units_independent": false,
+  "pre_registered_in_github": {
+    "A": {
+      "commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "file": "PREREG.md",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "D": "D1.2"
+    },
+    "B": {
+      "commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "file": "LOT_B_FREEZE.md",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "D": "D1.8"
+    },
+    "C": {
+      "commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "file": "LOT_C_FREEZE.md",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "D": "D1.5"
+    },
+    "D": {
+      "commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "file": "LOT_D_FREEZE.md",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "D": "D2.0"
+    },
+    "E": {
+      "commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "file": "LOT_E_FREEZE.md",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "D": "D2.0"
+    }
+  },
+  "cycles": [
+    {
+      "cycle_id": "PFL-BR30C-01",
+      "parent": "PFL-BR30B-30",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "CSV por grupo: esquema nominal y etiquetas; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_01_group_csv_field_id_and_label",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-02",
+      "parent": "PFL-BR30C-01",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "Capacidad del Congreso y no negativos; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_02_group_nonnegative_capacity",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-03",
+      "parent": "PFL-BR30C-02",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "Duplicados de pareja voto-grupo; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_03_group_duplicate_rejected",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-04",
+      "parent": "PFL-BR30C-03",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "Mayoría explícita, empates y no-voto; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_04_majority_ties_and_no_vote",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-05",
+      "parent": "PFL-BR30C-04",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "Conciliación grupos versus agregado; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_05_group_aggregate_reconciliation",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-06",
+      "parent": "PFL-BR30C-05",
+      "branch": "INGESTA_Y_CONSERVACION",
+      "branch_distance_D": "D1.2",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "39a839b083a38c427bd5197db6634e08a8cc9a73",
+      "prereg_path": "PREREG.md",
+      "result_commit": null,
+      "A_truth_contract": "Conciliación nominal-grupo sin imputar ausencias; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Sumar todos los votos y grupos sin validar claves, categorías ni cobertura.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupvotes.py",
+        "test_function": "test_br30c_06_group_nominal_does_not_infer_missing",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-07",
+      "parent": "PFL-BR30C-06",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "No-voto observado y denominadores; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_07_nonvote_denominator_explicit",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-08",
+      "parent": "PFL-BR30C-07",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Concentración modal o no identificada; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_08_modal_concentration_and_undefined",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-09",
+      "parent": "PFL-BR30C-08",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Empates y disidencia no estimable; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_09_tie_not_dissent",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-10",
+      "parent": "PFL-BR30C-09",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Abstención como opción expresada; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_10_abstention_counts_as_expressed",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-11",
+      "parent": "PFL-BR30C-10",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Invariancia frente a orden de filas; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_11_order_permutation_invariant",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-12",
+      "parent": "PFL-BR30C-11",
+      "branch": "SOCIOLOGIA_DE_GRUPOS",
+      "branch_distance_D": "D1.8",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "27d47ecabe4f59bee15d4d9b0507282656aa77ef",
+      "prereg_path": "LOT_B_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Cohortes históricas por año y grupo; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Tratar mayorías de partido como disciplina individual y faltantes como no-votos.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_groupmetrics.py",
+        "test_function": "test_br30c_12_group_year_cohorts_not_overwritten",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-13",
+      "parent": "PFL-BR30C-12",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Límite estricto de tamaño leído; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_13_bounded_input_bytes",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-14",
+      "parent": "PFL-BR30C-13",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Rechazo de encabezado repetido; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_14_duplicate_header_fail_closed",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-15",
+      "parent": "PFL-BR30C-14",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Conflictos de fecha intragrupo; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_15_conflicting_group_vote_dates",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-16",
+      "parent": "PFL-BR30C-15",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Subcobertura nominal y categorías desconocidas; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_16_missing_nominal_is_not_no_vote",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-17",
+      "parent": "PFL-BR30C-16",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Cambios de snapshot invariantes al orden; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_17_release_diff_ignores_row_position",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-18",
+      "parent": "PFL-BR30C-17",
+      "branch": "INTEGRIDAD_Y_REVISIONES",
+      "branch_distance_D": "D1.5",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "f943227deb81f73f2dafe7d50088f2f0be2325cf",
+      "prereg_path": "LOT_C_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Separar fecha de observación y publicación; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Asumir que CSV históricos son inmutables, fechas homogéneas y descargas seguras.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_hardening.py",
+        "test_function": "test_br30c_18_snapshot_not_publication_history",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-19",
+      "parent": "PFL-BR30C-18",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Informe opcional de tercera tabla; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_19_optional_third_table_report",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-20",
+      "parent": "PFL-BR30C-19",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Retrocompatibilidad dos CSV; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_20_backward_compatible_report_unchanged",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-21",
+      "parent": "PFL-BR30C-20",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "CLI inválida sin crear artefacto; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_21_cli_group_invalid_rejected_atomically",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-22",
+      "parent": "PFL-BR30C-21",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Ausencia de nombres y puntuación personal; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_22_signed_report_privacy",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-23",
+      "parent": "PFL-BR30C-22",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "API allowlist y fallo por alteración; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_23_whitelist_group_api_and_tamper_fail_closed",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-24",
+      "parent": "PFL-BR30C-23",
+      "branch": "PRODUCTO_Y_PRIVACIDAD",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "7cd99f3b1b8ad0676f1e46091d617bb63e47242f",
+      "prereg_path": "LOT_D_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Panel legible con advertencias sociológicas; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Publicar nominales o aceptar CSV manipulados en el navegador, romper retrocompatibilidad.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_group_report.py",
+        "test_function": "test_br30c_24_ui_group_limits_visible",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-25",
+      "parent": "PFL-BR30C-24",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Conciliación no certifica inferencia; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_25_consistency_is_not_scientific_ready",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-26",
+      "parent": "PFL-BR30C-25",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Cambio de grupo observado no es causa; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_26_group_change_not_defection",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-27",
+      "parent": "PFL-BR30C-26",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Corte temporal bloquea descargas tardías; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_27_historical_asof_never_leaks_new_download",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-28",
+      "parent": "PFL-BR30C-27",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Falta de censo implica estimando desconocido; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_28_no_roster_no_eligibility_claim",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-29",
+      "parent": "PFL-BR30C-28",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "Cotas algebraicas bajo censo independiente; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_29_algebraic_bounds_for_explicit_roster",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "CONTINUE_PRODUCT",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    },
+    {
+      "cycle_id": "PFL-BR30C-30",
+      "parent": "PFL-BR30C-29",
+      "branch": "IDENTIFICACION_Y_MISSINGNESS",
+      "branch_distance_D": "D2.0",
+      "mode": "PRODUCTION_AJ",
+      "scientific_status": "NOT_EXECUTED_FIELD_STUDY",
+      "prereg_commit": "42c9d34fd66d2ce14a9520b970cc8dd2132463dc",
+      "prereg_path": "LOT_E_FREEZE.md",
+      "result_commit": null,
+      "A_truth_contract": "CLI reproducible de tres fuentes end-to-end; unidad: fila/votación/grupo o recibo sintético; resultado válido solo local.",
+      "B_rivals": {
+        "design_claim": "La instrumentación rechaza el falsador y conserva categorías nominales.",
+        "competent_rival": "Utilizar fecha del voto como timestamp de disponibilidad e imputar elegibilidad sin censo.",
+        "open_other": "Variaciones de CSV real no inspeccionado pueden invalidar la interfaz."
+      },
+      "C_frozen_design": {
+        "test_file": "tests/test_readiness.py",
+        "test_function": "test_br30c_30_three_source_cli_end_to_end",
+        "criterion": "Prueba pasa sin modificar las observaciones; casos adversariales no generan inferencia política falsa.",
+        "data": "SYNTHETIC_FIXTURE_ONLY",
+        "selection": "Diseño adaptativo después de resultados del lote anterior"
+      },
+      "D_instruments": {
+        "python": "3.10+",
+        "pytest": "pytest -q",
+        "software": "standard library runtime",
+        "source_version": "v0.5 local ZIP + incrementos v0.6"
+      },
+      "E_execution": {
+        "status": "PASS",
+        "command": "PYTHONPATH=src pytest -q",
+        "suite_total_passed": 147
+      },
+      "F_adversarial_audit": {
+        "negative_control": "Ausencias, inconsistencias, empate, cambio, corrupción o desfase temporal según el contrato.",
+        "remaining_risk": "Solo fixtures definidas por el desarrollador; auditor independiente no ejecutado."
+      },
+      "G_confirmation": {
+        "independent_field": "NOT_AVAILABLE",
+        "clean_room_tests": "PENDING_RELEASE_VERIFICATION",
+        "source_level_replication": "NOT_AVAILABLE"
+      },
+      "H_abductive_revision": {
+        "update": "Mejora de fiabilidad de software dentro del supuesto explícito; no prueba relaciones sociológicas.",
+        "new_prior": "Conciliar archivos no demuestra fuentes completas ni disponibilidad histórica."
+      },
+      "I_multidimensional_verdict": {
+        "software_validity": "UNIT_TEST_SUPPORTED",
+        "scientific_validity": "UNTESTED",
+        "transportability": "UNTESTED_WITH_REAL_CSV",
+        "originality": "NO_CLAIM",
+        "VSDS_project": 1,
+        "scientific_grade_0_3": 0,
+        "CT2_prediction": 24
+      },
+      "J_decide": "REPAIR_SOURCE_ACCESS",
+      "falsification_rule": "Si una fila ausente se interpreta como NO_VOTE o un grupo/timestamp no certificado se acepta para inferencia, INVALID.",
+      "limitations": "Test técnico del mismo equipo, no evidencia causal ni muestra independiente.",
+      "fact_ledger": "N1=0;N2=0;N3=0; ninguna afirmación novedosa sobre comportamiento político español."
+    }
+  ]
+}
