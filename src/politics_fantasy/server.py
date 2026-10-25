@@ -15,6 +15,7 @@ from .product import GameError, add_club, seed_demo, set_lineup, state, transfer
 from .lab import local_lab_report
 from .field_api import local_field_status
 from .actor_api import local_actor_universe_status
+from .electoral_atlas import atlas_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -55,6 +56,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,local_lab_report())
             if route == '/api/field':
                 return self.reply(200,local_field_status(field_path))
+            if route == '/api/electoral-atlas':
+                return self.reply(200,atlas_status())
             if route == '/api/actors':
                 return self.reply(200,local_actor_universe_status())
             if route == '/api/health':
