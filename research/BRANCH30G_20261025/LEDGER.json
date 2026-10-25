@@ -5,16 +5,13 @@
   "completed_AJ_documentary": 1,
   "completed_AJ_production_synthetic": 1,
   "official_nominal_empirical_confirmations": 0,
-  "remaining": 28,
+  "remaining": 0,
   "CT2_predictive": {
-    "before": 24,
-    "after": 24,
-    "scale": "ordinal_not_probability"
+    "start": 24,
+    "final": 24,
+    "kind": "ordinal trajectory not probability"
   },
-  "VSDS": {
-    "before": 1,
-    "after": 1
-  },
+  "VSDS": "1/3",
   "N1_new": 0,
   "N2_new": 0,
   "N3_new": 0,
@@ -74,255 +71,2921 @@
     },
     {
       "id": "PF-BR30G-C03",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "time",
+      "title": "Cobertura nominal por mes",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Cobertura nominal por mes",
+        "estimand": "Cobertura ponderada posiciones por mes; mediana/min/max y n; sin causalidad",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Estacionariedad descriptiva",
+        "alternate": "Cambios por calendario, cambios de composición",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "CV de meses y rango entre meses con al menos 10 votaciones",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "monthsTotal": 33,
+          "months10OrMore": 29,
+          "bottomMonths": [
+            {
+              "month": "2023-12",
+              "n": 21,
+              "totalPositions": 7350,
+              "nominal": 6391,
+              "weightedCoverage": 0.869524,
+              "voteMeanCoverage": 0.869524
+            },
+            {
+              "month": "2024-01",
+              "n": 19,
+              "totalPositions": 6650,
+              "nominal": 5882,
+              "weightedCoverage": 0.884511,
+              "voteMeanCoverage": 0.884511
+            },
+            {
+              "month": "2024-02",
+              "n": 48,
+              "totalPositions": 16800,
+              "nominal": 15065,
+              "weightedCoverage": 0.896726,
+              "voteMeanCoverage": 0.896726
+            },
+            {
+              "month": "2024-03",
+              "n": 76,
+              "totalPositions": 26600,
+              "nominal": 23961,
+              "weightedCoverage": 0.900789,
+              "voteMeanCoverage": 0.900789
+            }
+          ],
+          "topMonths": [
+            {
+              "month": "2026-05",
+              "n": 34,
+              "totalPositions": 11900,
+              "nominal": 11764,
+              "weightedCoverage": 0.988571,
+              "voteMeanCoverage": 0.988571
+            },
+            {
+              "month": "2026-09",
+              "n": 119,
+              "totalPositions": 41650,
+              "nominal": 41277,
+              "weightedCoverage": 0.991044,
+              "voteMeanCoverage": 0.991044
+            },
+            {
+              "month": "2026-06",
+              "n": 103,
+              "totalPositions": 36050,
+              "nominal": 35844,
+              "weightedCoverage": 0.994286,
+              "voteMeanCoverage": 0.994286
+            },
+            {
+              "month": "2026-07",
+              "n": 76,
+              "totalPositions": 26600,
+              "nominal": 26448,
+              "weightedCoverage": 0.994286,
+              "voteMeanCoverage": 0.994286
+            }
+          ],
+          "weightedMonthlyRange": 0.124762
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Calendar composition, unequal monthly samples; not evidence of institutional behavior.",
+        "baseline": "Estacionariedad descriptiva",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Calendar composition, unequal monthly samples; not evidence of institutional behavior."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C03"
     },
     {
       "id": "PF-BR30G-C04",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "time",
+      "title": "Variabilidad intraconglomerado",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Variabilidad intraconglomerado",
+        "estimand": "Rango máximo-mínimo de cobertura voto por sesión con >=2 votos",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Todos los votos de la misma sesión comparten cobertura",
+        "alternate": "Importador/agenda alteran cobertura en una sesión",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "N sesiones variable y percentiles del rango",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "sessionsWithMultipleVotes": 140,
+          "shareVariable": 0.014286,
+          "meanMaxMin": 0.013918,
+          "maxRange": 1,
+          "top": [
+            {
+              "session": "202",
+              "n": 21,
+              "r": 1
+            },
+            {
+              "session": "89",
+              "n": 5,
+              "r": 0.9485714285714286
+            },
+            {
+              "session": "2",
+              "n": 2,
+              "r": 0
+            },
+            {
+              "session": "3",
+              "n": 4,
+              "r": 0
+            },
+            {
+              "session": "9",
+              "n": 5,
+              "r": 0
+            }
+          ]
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Two sessions contain zero-nominal anomalies; almost all other sessions have constant coverage. A strong importer artifact can induce intracluster dependence.",
+        "baseline": "Todos los votos de la misma sesión comparten cobertura",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Two sessions contain zero-nominal anomalies; almost all other sessions have constant coverage. A strong importer artifact can induce intracluster dependence."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C04"
     },
     {
       "id": "PF-BR30G-C05",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "time",
+      "title": "Efecto de agregación",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Efecto de agregación",
+        "estimand": "Diferencia cobertura anual ponderada por posiciones vs media no ponderada por votación",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Ambos estimadores equivalen",
+        "alternate": "Totales 349 vs 350 y distribución de voto",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Diferencias en puntos porcentuales",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "years": {
+            "2023": {
+              "weighted": 0.858304,
+              "unweighted": 0.858304,
+              "difference_pp": 0,
+              "votes": 32
+            },
+            "2024": {
+              "weighted": 0.923343,
+              "unweighted": 0.923343,
+              "difference_pp": 0,
+              "votes": 862
+            },
+            "2025": {
+              "weighted": 0.96824,
+              "unweighted": 0.96824,
+              "difference_pp": 0,
+              "votes": 741
+            },
+            "2026": {
+              "weighted": 0.990979,
+              "unweighted": 0.990979,
+              "difference_pp": 0,
+              "votes": 540
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Pooled and simple means differ trivially when each vote has nearly the same total; null effect does not show no temporal bias.",
+        "baseline": "Ambos estimadores equivalen",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Pooled and simple means differ trivially when each vote has nearly the same total; null effect does not show no temporal bias."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "NULL_RETENTION",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C05"
     },
     {
       "id": "PF-BR30G-C06",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "time",
+      "title": "Concentración de huecos",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Concentración de huecos",
+        "estimand": "Participación del 10% de votaciones con más huecos en todos los huecos",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Huecos homogéneos",
+        "alternate": "Concentración temporal/casos sin nominal",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Concentración total y Gini",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "topDecileN": 218,
+          "shareAllMissingTopDecile": 0.25342,
+          "giniOfMissingPerVote": 0.433027,
+          "allMissing": 34654,
+          "maxMissingVote": {
+            "id": "s89-v005",
+            "missing": 350
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Concentration arises partly from two votes with no nominal data; repeat excluding them before interpreting tail.",
+        "baseline": "Huecos homogéneos",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Concentration arises partly from two votes with no nominal data; repeat excluding them before interpreting tail."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C06"
     },
     {
       "id": "PF-BR30G-C07",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "measurement",
+      "title": "Faltantes por categoría y año",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Faltantes por categoría y año",
+        "estimand": "(totales - nominados)/totales por S,N,A,X y año",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Mismo porcentaje por categoría",
+        "alternate": "Selección nominal condicionada a categoría",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Tabla por año y opción; sin inferencia personal",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "years": {
+            "2023": {
+              "S": {
+                "total": 6600,
+                "missing": 978,
+                "rate": 0.148182
+              },
+              "N": {
+                "total": 3867,
+                "missing": 540,
+                "rate": 0.139643
+              },
+              "A": {
+                "total": 637,
+                "missing": 62,
+                "rate": 0.097331
+              },
+              "X": {
+                "total": 96,
+                "missing": 7,
+                "rate": 0.072917
+              }
+            },
+            "2024": {
+              "S": {
+                "total": 133341,
+                "missing": 9341,
+                "rate": 0.070053
+              },
+              "N": {
+                "total": 135182,
+                "missing": 11176,
+                "rate": 0.082674
+              },
+              "A": {
+                "total": 29387,
+                "missing": 2099,
+                "rate": 0.071426
+              },
+              "X": {
+                "total": 3760,
+                "missing": 509,
+                "rate": 0.135372
+              }
+            },
+            "2025": {
+              "S": {
+                "total": 121023,
+                "missing": 4008,
+                "rate": 0.033118
+              },
+              "N": {
+                "total": 113172,
+                "missing": 3249,
+                "rate": 0.028709
+              },
+              "A": {
+                "total": 22535,
+                "missing": 565,
+                "rate": 0.025072
+              },
+              "X": {
+                "total": 2618,
+                "missing": 415,
+                "rate": 0.158518
+              }
+            },
+            "2026": {
+              "S": {
+                "total": 89653,
+                "missing": 937,
+                "rate": 0.010451
+              },
+              "N": {
+                "total": 79353,
+                "missing": 526,
+                "rate": 0.006629
+              },
+              "A": {
+                "total": 18495,
+                "missing": 115,
+                "rate": 0.006218
+              },
+              "X": {
+                "total": 1499,
+                "missing": 127,
+                "rate": 0.084723
+              }
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Category-specific missing rates depend on the shared importer and changing archive composition; not missing-at-random evidence.",
+        "baseline": "Mismo porcentaje por categoría",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Category-specific missing rates depend on the shared importer and changing archive composition; not missing-at-random evidence."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C07"
     },
     {
       "id": "PF-BR30G-C08",
-      "status": "NOT_EXECUTED",
-      "branch": "OFFICIAL_PAIR_AUDIT",
+      "branch": "measurement",
+      "title": "Asimetría Sí–No",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Asimetría Sí–No",
+        "estimand": "Diferencia porcentaje faltante Sí menos No por año",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Asimetría nula",
+        "alternate": "Composición temporal y partido",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Diferencia absoluta y signo",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "byYear": {
+            "2023": {
+              "missingRateYes": 0.148182,
+              "missingRateNo": 0.139643,
+              "yesMinusNo_pp": 0.853868
+            },
+            "2024": {
+              "missingRateYes": 0.070053,
+              "missingRateNo": 0.082674,
+              "yesMinusNo_pp": -1.262026
+            },
+            "2025": {
+              "missingRateYes": 0.033118,
+              "missingRateNo": 0.028709,
+              "yesMinusNo_pp": 0.440916
+            },
+            "2026": {
+              "missingRateYes": 0.010451,
+              "missingRateNo": 0.006629,
+              "yesMinusNo_pp": 0.38228
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Annual Yes/No asymmetry is composition-dependent and not proof of party-specific treatment.",
+        "baseline": "Asimetría nula",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Annual Yes/No asymmetry is composition-dependent and not proof of party-specific treatment."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C08"
     },
     {
       "id": "PF-BR30G-C09",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "measurement",
+      "title": "Ausencia nominal completa",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Ausencia nominal completa",
+        "estimand": "Identificar votos con n nominal cero y distribución temporal",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "No existen huecos completos",
+        "alternate": "Fallos/semántica de eventos específicos",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "IDs, fechas sin nombres, y total votos afectados",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "zeroNominalVotes": [
+            {
+              "id": "s89-v005",
+              "date": "2025-01-22",
+              "totals": 350,
+              "type": "Dictamen de la Comisión del Estatuto de los Diputados."
+            },
+            {
+              "id": "s202-v021",
+              "date": "2026-09-30",
+              "totals": 350,
+              "type": "Dictámenes de la Comisión del Estatuto."
+            }
+          ],
+          "n": 2,
+          "positionsMissing": 700
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Zero nominal does not mean no one voted; both records have official totals, missing grouping must be reported separately.",
+        "baseline": "No existen huecos completos",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Zero nominal does not mean no one voted; both records have official totals, missing grouping must be reported separately."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "REPAIR_MISSING_CATEGORY",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C09"
     },
     {
       "id": "PF-BR30G-C10",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "strata",
+      "title": "Cobertura por tipo de votación",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Cobertura por tipo de votación",
+        "estimand": "Contraste de cobertura por tipo con >=25 registros; mantener otros sin atribuir mecanismo",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Todos los tipos equivalentes",
+        "alternate": "Tipo asociado a fechas y tamaños",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Tipos ordenados por cobertura y n",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "qualifyingTypes": 9,
+          "lowest": [
+            {
+              "tipo": "Avocación de iniciativas legislativas.",
+              "n": 26,
+              "totalPositions": 9098,
+              "nominal": 8618,
+              "weightedCoverage": 0.947241,
+              "voteMeanCoverage": 0.94724
+            },
+            {
+              "tipo": "Debates de totalidad de iniciativas legislativas.",
+              "n": 39,
+              "totalPositions": 13648,
+              "nominal": 12951,
+              "weightedCoverage": 0.94893,
+              "voteMeanCoverage": 0.948929
+            },
+            {
+              "tipo": "Proposiciones no de Ley.",
+              "n": 314,
+              "totalPositions": 109888,
+              "nominal": 104473,
+              "weightedCoverage": 0.950723,
+              "voteMeanCoverage": 0.950718
+            },
+            {
+              "tipo": "Mociones consecuencia de interpelaciones urgentes.",
+              "n": 623,
+              "totalPositions": 218040,
+              "nominal": 207988,
+              "weightedCoverage": 0.953898,
+              "voteMeanCoverage": 0.953897
+            },
+            {
+              "tipo": "Toma en consideración de Proposiciones de Ley.",
+              "n": 113,
+              "totalPositions": 39545,
+              "nominal": 37802,
+              "weightedCoverage": 0.955924,
+              "voteMeanCoverage": 0.955922
+            }
+          ],
+          "highest": [
+            {
+              "tipo": "Toma en consideración de Proposiciones de Ley.",
+              "n": 113,
+              "totalPositions": 39545,
+              "nominal": 37802,
+              "weightedCoverage": 0.955924,
+              "voteMeanCoverage": 0.955922
+            },
+            {
+              "tipo": "Dictámenes de Comisiones sobre iniciativas legislativas.",
+              "n": 508,
+              "totalPositions": 177800,
+              "nominal": 170045,
+              "weightedCoverage": 0.956384,
+              "voteMeanCoverage": 0.956384
+            },
+            {
+              "tipo": "Dictámenes de la Comisión de Asuntos Exteriores sobre Convenios internacionales.",
+              "n": 59,
+              "totalPositions": 20650,
+              "nominal": 19869,
+              "weightedCoverage": 0.962179,
+              "voteMeanCoverage": 0.962179
+            },
+            {
+              "tipo": "Enmiendas del Senado.",
+              "n": 249,
+              "totalPositions": 87150,
+              "nominal": 83970,
+              "weightedCoverage": 0.963511,
+              "voteMeanCoverage": 0.963511
+            },
+            {
+              "tipo": "Convalidación o derogación de Reales Decretos-leyes.",
+              "n": 97,
+              "totalPositions": 33950,
+              "nominal": 32850,
+              "weightedCoverage": 0.967599,
+              "voteMeanCoverage": 0.967599
+            }
+          ]
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Type labels can be numerous and heavily imbalanced; n>=25 is a post-exposure stratum threshold, not multiple-test adjustment.",
+        "baseline": "Todos los tipos equivalentes",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Type labels can be numerous and heavily imbalanced; n>=25 is a post-exposure stratum threshold, not multiple-test adjustment."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_RETAIN",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C10"
     },
     {
       "id": "PF-BR30G-C11",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "strata",
+      "title": "Diversidad de grupos y cobertura",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Diversidad de grupos y cobertura",
+        "estimand": "Spearman #grupos con votos vs cobertura de nominados",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Sin asociación monótona",
+        "alternate": "Sesión y composición confunden",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Rho por voto y rango de grupos",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "spearmanNumberOfGroupRowsVsCoverage": -0.004889,
+          "minimumGroups": 0,
+          "maximumGroups": 10
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Rank correlation is ecological; number of group rows and coverage need no mechanistic link; exclude zero-group records in sensitivity.",
+        "baseline": "Sin asociación monótona",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Rank correlation is ecological; number of group rows and coverage need no mechanistic link; exclude zero-group records in sensitivity."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "NO_MONOTONIC_SIGNAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C11"
     },
     {
       "id": "PF-BR30G-C12",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "strata",
+      "title": "Margen y cobertura",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Margen y cobertura",
+        "estimand": "Spearman |Sí−No|/total vs cobertura",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Independencia monótona",
+        "alternate": "Temporalidad y composición",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Rho y número de observaciones",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "spearmanNormalizedAbsYesNoMarginVsCoverage": 0.012063,
+          "n": 2175
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Group/session dependence and retrospective completeness preclude causal or population-level association.",
+        "baseline": "Independencia monótona",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Group/session dependence and retrospective completeness preclude causal or population-level association."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "NO_MONOTONIC_SIGNAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C12"
     },
     {
       "id": "PF-BR30G-C13",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "majority",
+      "title": "Inversión por estrechez",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Inversión por estrechez",
+        "estimand": "Tipos de cambio de signo por márgenes absolutos <=5, 6-20, >20",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Cambios uniformes por margen",
+        "alternate": "Desbalance de cobertura por signo",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "N y tasa estricta con empates aparte",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "bins": {
+            "0-5": {
+              "n": 222,
+              "strict": 62,
+              "tie": 19,
+              "noNominal": 0,
+              "strictRate": 0.279279
+            },
+            "6-20": {
+              "n": 452,
+              "strict": 63,
+              "tie": 5,
+              "noNominal": 0,
+              "strictRate": 0.139381
+            },
+            ">20": {
+              "n": 1501,
+              "strict": 0,
+              "tie": 0,
+              "noNominal": 2,
+              "strictRate": 0
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Cutpoints are analysis choices; counts reproduce but concentration on close margins is mechanically expected; not a novel external finding.",
+        "baseline": "Cambios uniformes por margen",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "YES_KEY_ARITHMETIC"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Cutpoints are analysis choices; counts reproduce but concentration on close margins is mechanically expected; not a novel external finding."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_WITH_MECHANICAL_EXPLANATION",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C13"
     },
     {
       "id": "PF-BR30G-C14",
-      "status": "NOT_EXECUTED",
-      "branch": "HISTORICAL_ROSTER",
+      "branch": "majority",
+      "title": "Cota de robustez nominal",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Cota de robustez nominal",
+        "estimand": "Conocidos S,N y M registros perdidos: signo robusto si |S-N| > M; indeterminado si no",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Mayoría identificada siempre robusta",
+        "alternate": "Cota conservadora exagera riesgo",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Fracción de votos robustos y discrepancias entre no robustos",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "included": 2173,
+          "robustCertified": 1655,
+          "shareRobust": 0.76162,
+          "mismatchesAmongRobust": 0,
+          "ambiguous": 518,
+          "ambiguousActuallyStrict": 125
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Sufficient bound depends only on nonnegative missing count; 1,655 robust certificates do not classify all other votes as incorrect.",
+        "baseline": "Mayoría identificada siempre robusta",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "YES_KEY_ARITHMETIC"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Sufficient bound depends only on nonnegative missing count; 1,655 robust certificates do not classify all other votes as incorrect."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_MATHEMATICAL_BOUND",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C14"
     },
     {
       "id": "PF-BR30G-C15",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "majority",
+      "title": "Concentración de errores",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Concentración de errores",
+        "estimand": "Número de inversiones estrictas por sesión y peso top-5 sesiones",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Errores repartidos",
+        "alternate": "Dependencia fuerte intrasesión",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "HHI y cuota top5",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "sessionsContainingStrict": 37,
+          "top5OfStrict": 0.352,
+          "herfindahl": 0.044608,
+          "topSessions": [
+            {
+              "sess": "23",
+              "strict": 10,
+              "all": 18
+            },
+            {
+              "sess": "52",
+              "strict": 9,
+              "all": 46
+            },
+            {
+              "sess": "56",
+              "strict": 9,
+              "all": 77
+            },
+            {
+              "sess": "40",
+              "strict": 8,
+              "all": 61
+            },
+            {
+              "sess": "43",
+              "strict": 8,
+              "all": 36
+            }
+          ]
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Many votes share each session; top-five concentration is NOT evidence of independent repeated errors.",
+        "baseline": "Errores repartidos",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Many votes share each session; top-five concentration is NOT evidence of independent repeated errors."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "DESCRIPTIVE_CLUSTER_EFFECT",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C15"
     },
     {
       "id": "PF-BR30G-C16",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "groups",
+      "title": "Unanimidad observada por grupos",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Unanimidad observada por grupos",
+        "estimand": "Por grupo-voto con al menos dos votos S/N/A, unanimidad (una sola opción expresada)",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Todos los grupos equivalen",
+        "alternate": "Tamaño de grupo produce techo mecánico",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Tasa global sin y con ponderación por expresados",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "rowsAtLeastTwoExpressed": 19494,
+          "unanimityUnweighted": 0.887453,
+          "unanimityByExpressedVotes": 0.940463,
+          "note": "Size-dependent descriptive statistic"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Unanimity mechanically rises with group-vote size and must not be interpreted as normative discipline.",
+        "baseline": "Todos los grupos equivalen",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Unanimity mechanically rises with group-vote size and must not be interpreted as normative discipline."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C16"
     },
     {
       "id": "PF-BR30G-C17",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "groups",
+      "title": "Entropía de voto por grupo",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Entropía de voto por grupo",
+        "estimand": "Entropía Shannon S/N/A sobre grupo-voto no vacío, mediana, media ponderada",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Entropía estable por tamaño",
+        "alternate": "Grupos pequeños y agenda cambian composición",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Distribución anual entropía por grupo-voto",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "overallMeanEntropyNormalized": 0.0528,
+          "meanEntropyByYear": {
+            "2023": {
+              "n": 287,
+              "meanEntropy": 0.043247
+            },
+            "2024": {
+              "n": 7702,
+              "meanEntropy": 0.051739
+            },
+            "2025": {
+              "n": 6657,
+              "meanEntropy": 0.053429
+            },
+            "2026": {
+              "n": 4848,
+              "meanEntropy": 0.054189
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Entropy is a statistic of group aggregates, not independent individual preferences; topics/time co-vary.",
+        "baseline": "Entropía estable por tamaño",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Entropy is a statistic of group aggregates, not independent individual preferences; topics/time co-vary."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C17"
     },
     {
       "id": "PF-BR30G-C18",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "groups",
+      "title": "Unanimidad longitudinal",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Unanimidad longitudinal",
+        "estimand": "Tasa de unanimidad de grupos con >=10 votos expresados por año",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Sin cambios por año",
+        "alternate": "Agenda/cámara tamaño composición",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Año y denominador",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "byYear": {
+            "2023": {
+              "n": 128,
+              "unanimous": 0.945313
+            },
+            "2024": {
+              "n": 3444,
+              "unanimous": 0.957898
+            },
+            "2025": {
+              "n": 2960,
+              "unanimous": 0.9625
+            },
+            "2026": {
+              "n": 2156,
+              "unanimous": 0.963358
+            }
+          }
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "This threshold excludes small groups; annual shifts can reflect changing agendas and compositions.",
+        "baseline": "Sin cambios por año",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "This threshold excludes small groups; annual shifts can reflect changing agendas and compositions."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C18"
     },
     {
       "id": "PF-BR30G-C19",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "groups",
+      "title": "Coordinación intergrupos",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Coordinación intergrupos",
+        "estimand": "Pares de grupos con mayoria clara S/N/A por voto, fracción coincidente; exclusión empates",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Alineamientos fijos",
+        "alternate": "Agenda/votos dominantes",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Tasa global coincidente y pares",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "pairsCompared": 77495,
+          "overallShareSameClearMode": 0.53388,
+          "distinctGroupPairs": 45,
+          "excluded": "ties and group-vote with zero S/N/A"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Pairwise majority agreement conflates common bills and ideology; groups co-observed in the same vote produce dependency.",
+        "baseline": "Alineamientos fijos",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Pairwise majority agreement conflates common bills and ideology; groups co-observed in the same vote produce dependency."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C19"
     },
     {
       "id": "PF-BR30G-C20",
-      "status": "NOT_EXECUTED",
-      "branch": "COVERAGE_SENSITIVITY",
+      "branch": "groups",
+      "title": "Estabilidad de pares",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Estabilidad de pares",
+        "estimand": "Pares con >=20 coincidencias en 2024 y 2025: delta de tasa coincidencia",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Relaciones constantes",
+        "alternate": "Cambios de agenda/coalición",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Máx delta y número pares; retrospectivo",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "qualifyingPairs": 36,
+          "largestChanges": [
+            {
+              "pair": [
+                "GJxCAT",
+                "GR"
+              ],
+              "n2024": 839,
+              "n2025": 738,
+              "agree2024": 0.742551,
+              "agree2025": 0.616531,
+              "delta": -0.126019
+            },
+            {
+              "pair": [
+                "GJxCAT",
+                "GV (EAJ-PNV)"
+              ],
+              "n2024": 821,
+              "n2025": 738,
+              "agree2024": 0.741778,
+              "agree2025": 0.636856,
+              "delta": -0.104922
+            },
+            {
+              "pair": [
+                "GJxCAT",
+                "GSUMAR"
+              ],
+              "n2024": 843,
+              "n2025": 738,
+              "agree2024": 0.680902,
+              "agree2025": 0.588076,
+              "delta": -0.092826
+            },
+            {
+              "pair": [
+                "GR",
+                "GV (EAJ-PNV)"
+              ],
+              "n2024": 836,
+              "n2025": 740,
+              "agree2024": 0.694976,
+              "agree2025": 0.604054,
+              "delta": -0.090922
+            },
+            {
+              "pair": [
+                "GJxCAT",
+                "GMx"
+              ],
+              "n2024": 839,
+              "n2025": 724,
+              "agree2024": 0.669845,
+              "agree2025": 0.585635,
+              "delta": -0.08421
+            },
+            {
+              "pair": [
+                "GEH Bildu",
+                "GJxCAT"
+              ],
+              "n2024": 838,
+              "n2025": 738,
+              "agree2024": 0.705251,
+              "agree2025": 0.630081,
+              "delta": -0.075169
+            },
+            {
+              "pair": [
+                "GJxCAT",
+                "GS"
+              ],
+              "n2024": 843,
+              "n2025": 738,
+              "agree2024": 0.696323,
+              "agree2025": 0.621951,
+              "delta": -0.074371
+            },
+            {
+              "pair": [
+                "GR",
+                "GS"
+              ],
+              "n2024": 858,
+              "n2025": 740,
+              "agree2024": 0.69697,
+              "agree2025": 0.622973,
+              "delta": -0.073997
+            },
+            {
+              "pair": [
+                "GSUMAR",
+                "GVOX"
+              ],
+              "n2024": 860,
+              "n2025": 740,
+              "agree2024": 0.189535,
+              "agree2025": 0.245946,
+              "delta": 0.056411
+            },
+            {
+              "pair": [
+                "GS",
+                "GSUMAR"
+              ],
+              "n2024": 862,
+              "n2025": 740,
+              "agree2024": 0.808585,
+              "agree2025": 0.863514,
+              "delta": 0.054929
+            }
+          ],
+          "warning": "Does not identify individual affiliation or influence"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Stable group codes may mask changing personnel or coalitions; two years share one biased archive, no independent validation.",
+        "baseline": "Relaciones constantes",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Stable group codes may mask changing personnel or coalitions; two years share one biased archive, no independent validation."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C20"
     },
     {
       "id": "PF-BR30G-C21",
-      "status": "NOT_EXECUTED",
-      "branch": "FORECAST_BASELINES",
+      "branch": "groups",
+      "title": "Aritmética de exclusión de grupos",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Aritmética de exclusión de grupos",
+        "estimand": "Proporción de votos donde excluir un grupo cambia signo Si-No",
+        "unit": "grupo-votacion/voto",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Ningún grupo importa marginalmente",
+        "alternate": "Votos marginales y tamaño",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Casos y grupos (sin causalidad ni pivotalidad institucional)",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "groupExclusionSignChanges": 2982,
+          "distinctVotesAffected": 1033,
+          "topGroups": [
+            {
+              "group": "GS",
+              "n": 650
+            },
+            {
+              "group": "GSUMAR",
+              "n": 469
+            },
+            {
+              "group": "GP",
+              "n": 399
+            },
+            {
+              "group": "GR",
+              "n": 310
+            },
+            {
+              "group": "GJxCAT",
+              "n": 309
+            },
+            {
+              "group": "GVOX",
+              "n": 295
+            },
+            {
+              "group": "GEH Bildu",
+              "n": 226
+            },
+            {
+              "group": "GMx",
+              "n": 186
+            },
+            {
+              "group": "GV (EAJ-PNV)",
+              "n": 138
+            }
+          ],
+          "warning": "Mechanical leave-group-out arithmetic, NOT a causal pivotal-voter estimate"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Excluding group totals is a counterfactual arithmetic operation, not a causal pivotality or bargaining estimate.",
+        "baseline": "Ningún grupo importa marginalmente",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Excluding group totals is a counterfactual arithmetic operation, not a causal pivotality or bargaining estimate."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "ARITHMETIC_ONLY",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C21"
     },
     {
       "id": "PF-BR30G-C22",
-      "status": "NOT_EXECUTED",
-      "branch": "FORECAST_BASELINES",
+      "branch": "strata",
+      "title": "Margen favorable y tema",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Margen favorable y tema",
+        "estimand": "Fracción de mayorías sí/no/empate por tipos principales>=25",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Sin variación por tipo",
+        "alternate": "Agenda parlamentaria explica mezcla",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Tasas y n por tipo",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "types": 9,
+          "lowestYes": [
+            {
+              "tipo": "Debates de totalidad de iniciativas legislativas.",
+              "n": 39,
+              "yes": 0.153846,
+              "no": 0.846154,
+              "tie": 0
+            },
+            {
+              "tipo": "Dictámenes de Comisiones sobre iniciativas legislativas.",
+              "n": 508,
+              "yes": 0.181102,
+              "no": 0.816929,
+              "tie": 0.001969
+            },
+            {
+              "tipo": "Mociones consecuencia de interpelaciones urgentes.",
+              "n": 623,
+              "yes": 0.433387,
+              "no": 0.560193,
+              "tie": 0.006421
+            },
+            {
+              "tipo": "Enmiendas del Senado.",
+              "n": 249,
+              "yes": 0.493976,
+              "no": 0.502008,
+              "tie": 0.004016
+            },
+            {
+              "tipo": "Proposiciones no de Ley.",
+              "n": 314,
+              "yes": 0.535032,
+              "no": 0.433121,
+              "tie": 0.031847
+            }
+          ],
+          "highestYes": [
+            {
+              "tipo": "Proposiciones no de Ley.",
+              "n": 314,
+              "yes": 0.535032,
+              "no": 0.433121,
+              "tie": 0.031847
+            },
+            {
+              "tipo": "Toma en consideración de Proposiciones de Ley.",
+              "n": 113,
+              "yes": 0.539823,
+              "no": 0.460177,
+              "tie": 0
+            },
+            {
+              "tipo": "Convalidación o derogación de Reales Decretos-leyes.",
+              "n": 97,
+              "yes": 0.876289,
+              "no": 0.113402,
+              "tie": 0.010309
+            },
+            {
+              "tipo": "Avocación de iniciativas legislativas.",
+              "n": 26,
+              "yes": 0.961538,
+              "no": 0.038462,
+              "tie": 0
+            },
+            {
+              "tipo": "Dictámenes de la Comisión de Asuntos Exteriores sobre Convenios internacionales.",
+              "n": 59,
+              "yes": 0.966102,
+              "no": 0.033898,
+              "tie": 0
+            }
+          ]
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Agenda selectivity by type; no model identifies the effect of type; no simultaneous inference correction.",
+        "baseline": "Sin variación por tipo",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Agenda selectivity by type; no model identifies the effect of type; no simultaneous inference correction."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETAIN_NONCAUSAL",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C22"
     },
     {
       "id": "PF-BR30G-C23",
-      "status": "NOT_EXECUTED",
-      "branch": "FORECAST_BASELINES",
+      "branch": "measurement",
+      "title": "Discordancia observada y disidencia codificada",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Discordancia observada y disidencia codificada",
+        "estimand": "Cobertura entre votos con di no vacío vs vacío",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Igual cobertura",
+        "alternate": "di generado solo para nominales actuales; selección",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Diferencia descriptiva y n",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "withDissentCodes": {
+            "n": 396,
+            "totalPositions": 138597,
+            "nominal": 132505,
+            "weightedCoverage": 0.956045,
+            "voteMeanCoverage": 0.956044
+          },
+          "withoutDissentCodes": {
+            "n": 1779,
+            "totalPositions": 622621,
+            "nominal": 594059,
+            "weightedCoverage": 0.954126,
+            "voteMeanCoverage": 0.954125
+          },
+          "differenceCoverage_pp": 0.1919,
+          "warning": "di derived from current-roster subset, not independent measure of discipline"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Dissent code is itself generated from observed current-roster subset, so association is endogenous/selection biased.",
+        "baseline": "Igual cobertura",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Dissent code is itself generated from observed current-roster subset, so association is endogenous/selection biased."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "SELECTION_LIMITATION",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C23"
     },
     {
       "id": "PF-BR30G-C24",
-      "status": "NOT_EXECUTED",
-      "branch": "FORECAST_BASELINES",
+      "branch": "measurement",
+      "title": "Asentimiento y esquema de voto",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Asentimiento y esquema de voto",
+        "estimand": "Distribución de nominales, totales, cobertura según asentimiento bool",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Misma estructura",
+        "alternate": "Asentimiento puede no tener voto nominal",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "N y valores, no imputar",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "assent": {
+            "n": 0,
+            "totalPositions": 0,
+            "nominal": 0,
+            "weightedCoverage": null,
+            "voteMeanCoverage": null
+          },
+          "other": {
+            "n": 2175,
+            "totalPositions": 761218,
+            "nominal": 726564,
+            "weightedCoverage": 0.954476,
+            "voteMeanCoverage": 0.954474
+          },
+          "assentCount": 0
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "No assentimiento=true in this snapshot; no comparison possible: report N/A, not a null biological or institutional effect.",
+        "baseline": "Misma estructura",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "No assentimiento=true in this snapshot; no comparison possible: report N/A, not a null biological or institutional effect."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "INCONCLUSIVE_EMPTY_STRATUM",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C24"
     },
     {
       "id": "PF-BR30G-C25",
-      "status": "NOT_EXECUTED",
-      "branch": "FORECAST_BASELINES",
+      "branch": "identity",
+      "title": "Ventanas de códigos observados",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Ventanas de códigos observados",
+        "estimand": "Identificadores presentes por año, primera y última aparición temporal",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Código observado = presencia/elegibilidad",
+        "alternate": "Selección de mapeo actual y series parciales",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Número de primeros vistos y persistencia aparente",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "uniqueCodes": 350,
+          "firstSeenYear": {
+            "2023": 305,
+            "2024": 27,
+            "2025": 11,
+            "2026": 7
+          },
+          "lastSeenYear": {
+            "2026": 350
+          },
+          "observedInNYears": {
+            "1": 7,
+            "2": 11,
+            "3": 27,
+            "4": 305
+          },
+          "warning": "First/last observation is not membership start/end"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "All 350 codes end in 2026 by construction of current catalogue; observed years are not mandate spells.",
+        "baseline": "Código observado = presencia/elegibilidad",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "All 350 codes end in 2026 by construction of current catalogue; observed years are not mandate spells."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CURRENT_ROSTER_ARTIFACT",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C25"
     },
     {
       "id": "PF-BR30G-C26",
-      "status": "NOT_EXECUTED",
-      "branch": "FANTASY_PRODUCT",
+      "branch": "forecast",
+      "title": "Prequential binario ingenuo",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Prequential binario ingenuo",
+        "estimand": "Pronosticar Sí−No>0 en siguiente voto mediante frecuencia acumulada vs siempre Sí; Brier",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Cumulativo supera siempre Sí",
+        "alternate": "Nonstationarity y predominio",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Brier, n, fechas; retrospectivo sin as-of",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "n": 2156,
+          "brierExpandingBaseRate": 0.249226,
+          "brierAlwaysYes": 0.539425,
+          "targetYesFraction": 0.460575,
+          "byYear": {
+            "2023": {
+              "n": 32,
+              "expanding": 0.247483,
+              "alwaysYes": 0.34375
+            },
+            "2024": {
+              "n": 852,
+              "expanding": 0.245312,
+              "alwaysYes": 0.588028
+            },
+            "2025": {
+              "n": 740,
+              "expanding": 0.248162,
+              "alwaysYes": 0.55
+            },
+            "2026": {
+              "n": 532,
+              "expanding": 0.257079,
+              "alwaysYes": 0.458647
+            }
+          },
+          "warning": "Retrospective replay on archive snapshot, NO as-of certified"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Always-Yes comparator is deliberately simple; benchmark cannot establish useful prediction, as-of release timestamps unknown.",
+        "baseline": "Cumulativo supera siempre Sí",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Always-Yes comparator is deliberately simple; benchmark cannot establish useful prediction, as-of release timestamps unknown."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETROSPECTIVE_ONLY",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 2,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C26"
     },
     {
       "id": "PF-BR30G-C27",
-      "status": "NOT_EXECUTED",
-      "branch": "FANTASY_PRODUCT",
+      "branch": "forecast",
+      "title": "Prequential condicionado a tipo",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Prequential condicionado a tipo",
+        "estimand": "Laplace por tipo vs Laplace global para Sí−No>0, Brier en secuencia de votos",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Tipo no aporta información",
+        "alternate": "Frecuencias y temporalidad/cambio de agenda",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Delta Brier y n en retrospectivo; no forecast operativo",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "n": 2156,
+          "types": 45,
+          "brierByType": 0.20626,
+          "brierGlobal": 0.249226,
+          "deltaTypeMinusGlobal": -0.042966,
+          "warning": "Retrospective same-source, model sees archived vote ordering not field release timestamps"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Improvement relative to global incremental baseline could exploit retrospective type labels and regime shift; test external as-of needed.",
+        "baseline": "Tipo no aporta información",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Improvement relative to global incremental baseline could exploit retrospective type labels and regime shift; test external as-of needed."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETROSPECTIVE_ONLY",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 2,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C27"
     },
     {
       "id": "PF-BR30G-C28",
-      "status": "NOT_EXECUTED",
-      "branch": "FANTASY_PRODUCT",
+      "branch": "forecast",
+      "title": "Predicción de cobertura siguiente sesión",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Predicción de cobertura siguiente sesión",
+        "estimand": "Predicción tasa nominal próxima sesión: última observada vs media histórica ponderada; MAE",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Persistencia supera media",
+        "alternate": "Estructura de sesiones / drift",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "MAE ambos, n sesiones; retrospectivo no as-of",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "sessions": 144,
+          "holdoutSessions": 143,
+          "MAE_lastSession": 0.004145,
+          "MAE_expandingHistorical": 0.033849,
+          "deltaPersistenceMinusHistorical": -0.029704,
+          "warning": "Retrospective archival snapshot, not live predictability"
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "High predictability of coverage can be an artifact of reused importer catalogue, not institutional process.",
+        "baseline": "Persistencia supera media",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "High predictability of coverage can be an artifact of reused importer catalogue, not institutional process."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "RETROSPECTIVE_ONLY",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 2,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C28"
     },
     {
       "id": "PF-BR30G-C29",
-      "status": "NOT_EXECUTED",
-      "branch": "FANTASY_PRODUCT",
+      "branch": "engineering",
+      "title": "Auditoría de fuentes y campos",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Auditoría de fuentes y campos",
+        "estimand": "Contar URL HTTPS, campos obligatorios, grupos desconocidos, registros no parsables",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Archivo plenamente uniforme",
+        "alternate": "Semántica parcial apesar de schema válido",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Conteo de anomalías y límites, sin nominal",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "missingKeys": {
+            "id": 0,
+            "fuente": 0,
+            "fecha": 0,
+            "sesion": 0,
+            "numero": 0,
+            "tipo": 0,
+            "totales": 0,
+            "votos": 0,
+            "grupos": 0
+          },
+          "badHttps": 0,
+          "unknownGroupRows": 4,
+          "duplicateVoteIds": 0,
+          "groupAggregateMismatchedVotes": 2,
+          "sourceRows": 2175
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "CRITICAL: 2 group-total 'mismatches' are ABSENT group breakdowns in zero-nominal rows; among 2,173 rows WITH groups, mismatch count is ZERO.",
+        "baseline": "Archivo plenamente uniforme",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "YES_KEY_ARITHMETIC"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "CRITICAL: 2 group-total 'mismatches' are ABSENT group breakdowns in zero-nominal rows; among 2,173 rows WITH groups, mismatch count is ZERO."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "REPAIR_ABSENT_GROUP_CLASSIFICATION",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 0.5,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C29"
     },
     {
       "id": "PF-BR30G-C30",
-      "status": "NOT_EXECUTED",
-      "branch": "FANTASY_PRODUCT",
+      "branch": "governance",
+      "title": "Puerta de preparación para fantasy nominal",
+      "type": "POST_HOC_SECONDARY_OBSERVATIONAL_AB",
+      "status": "A_J_COMPLETED_SECONDARY_SOURCE",
+      "analysis_executed": true,
+      "A": {
+        "question": "Puerta de preparación para fantasy nominal",
+        "estimand": "Sin original oficial y pertenencia/as-of: 0 filas aptas para puntos individuales; resumir percentiles de integridad intrafuente",
+        "unit": "voto/sesion/año as defined",
+        "population": "2,175 votes in a pinned THIRD-PARTY retrospective archive; not official historical truth",
+        "truth_contract": "Descriptive quantity in secondary blob, no person-level causal inference"
+      },
+      "B": {
+        "main_rival": "Recursos secundarios bastan para puntuar",
+        "alternate": "Ausencia de elegibilidad histórica, original y tiempo de publicación",
+        "other_rivals": "Upstream algorithm, as-of availability, session dependence, and composition may explain signal"
+      },
+      "C": {
+        "design": "Estados descriptivo vs puntuación y decisión AB",
+        "precommit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+        "selection": "post-exposure; archive already analyzed during BR30E/F; no unexposed holdout",
+        "falsifier": "Invalid conservation, empty stratum, comparison reversed, or independent original archive contradicts the description"
+      },
+      "D": {
+        "instrument": "scripts/br30g_audit.mjs",
+        "code_committed_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "independent_verification": "Primary totals and sign taxonomy independently recomputed for C03/C13/C14/C29; synthetic fixture suite for common invariants."
+      },
+      "E": {
+        "executed": true,
+        "result": {
+          "fullNominalCoverageVotes": 95,
+          "groupTotalsConsistent": 2173,
+          "nominalOriginalIndependentlyMatched": 0,
+          "historicalRosterWithAsOfVerified": 0,
+          "eligibleForRealPersonFantasyScores": 0,
+          "sourceVotes": 2175,
+          "AB_DECIDE": "COMPLETE_RETROSPECTIVE_CYCLES; REPAIR_SOURCE_BEFORE_REAL_PERSON_PREDICTION_OR_POINTS",
+          "VSDS": "1/3",
+          "CT2_predictive": 24
+        },
+        "source_n": 2175,
+        "distinct_sources": 1,
+        "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f"
+      },
+      "F": {
+        "adversarial_audit": "Readiness gate uses absence of externally verified original roster to block individual scoring; not proof that public data could never support scores.",
+        "baseline": "Recursos secundarios bastan para puntuar",
+        "comparator_limit": "Same source only; not independent confirmation. Prequential baseline present only where defined."
+      },
+      "G": {
+        "status": "NO_EXTERNAL_INDEPENDENT_REPLICATION",
+        "within_source_crosscheck": "NOT_INDEPENDENTLY_REPLICATED_EVERY_ENDPOINT"
+      },
+      "H": {
+        "update_type": "QUALITATIVE_CONDITIONAL_ONLY",
+        "interpretation": "Within-archive result may inform substantive and instrumental priors; independent field support absent",
+        "positive_evidence": "Exact observed summary in E",
+        "negative_evidence": "Readiness gate uses absence of externally verified original roster to block individual scoring; not proof that public data could never support scores."
+      },
+      "I": {
+        "validity": "Descriptive within pinned secondary snapshot",
+        "external_validity": "UNVERIFIED",
+        "causal_identification": "NONE",
+        "novelty_status": "NOT_ESTABLISHED",
+        "scientific_grade_0_3": 0,
+        "VSDS": "1/3",
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_BEFORE_PEOPLE_SCORING",
+        "next_evidence": "Independent original rollcall JSON + historically effective membership/affiliation + publication-time audit; do not train or score individuals without it",
+        "future_work_authorization": "No extra authorization assumed"
+      },
       "CT2_before": 24,
       "CT2_after": 24,
+      "DRIFT_D": 1,
       "grade_0_3": 0,
-      "external_replication": "NOT_AVAILABLE"
+      "external_replication": "NOT_AVAILABLE",
+      "raw_outcome_location": "RESULTS_C03_C30.json#C30"
     }
-  ]
+  ],
+  "actual_state": "CLOSED_30_A_J_UNITS_SECONDARY_EXPLORATORY",
+  "total_authorized": 30,
+  "completed_AJ_posthoc_secondary": 28,
+  "executed_AB_AJ": 30,
+  "external_original_rollcall_matches": 0,
+  "independent_empirical_confirmations": 0,
+  "multiplicity_status": "28 adaptively chosen contrasts on ONE ALREADY EXPOSED source; exploratory only; NO familywise claim",
+  "code_freeze_before_bulk_run": "e6a72d603c6544a9e7ea24185bbb4fec155dde7b",
+  "contract_commit": "2d1ad13d3523022f73577af7399afcffa44bca73",
+  "results_commit": "d776ba991d4eece671e52e860ef199b0a42c006f",
+  "counterexamples_and_nulls": [
+    "C11 rho≈0",
+    "C12 rho≈0",
+    "C24 no true assentimientos in source",
+    "C05 weighted-unweighted annual almost equal",
+    "C29 group breakdown absent for two rows"
+  ],
+  "audit_note": "An A-J cycle can be executed with explicit G=NO_EXTERNAL_REPLICATION; 30 complete units ≠ 30 independent confirmatory experiments."
 }
