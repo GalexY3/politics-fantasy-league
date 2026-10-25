@@ -1,9 +1,17 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
-**Estado (24-10-2026): prototipo de investigación + aplicación local de fantasy v0.3.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
+**Estado (24-10-2026): prototipo de investigación + aplicación local de fantasy v0.4.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
 
+
+## 25/10/2026 · v0.4: escala VSDS y BRANCH30
+
+**VSDS (0/3–3/3) valora sociología y data science para este proyecto, no descubrimiento original.** Actualmente VSDS-1/3 por herramienta reproducible y tests; AB científico 0/3, CT2 predicción 24/100 (sin cambio). Ver [`docs/VSDS_PROYECTO.md`](docs/VSDS_PROYECTO.md).
+
+30 incrementos de producción con ensayos deterministas y ledger A–J, en 5 lotes prerregistrados previamente mediante commits GitHub: seguridad nominal histórica, indicadores sociológicos, comparación relacional, validación de pronóstico y panel local. Test suite 87/87; datos de laboratorio **100 % inventados**; no hay ingesta nominal española certificada ni validación científica externa. Ver [`research/BRANCH30_20261025/REPORT.md`](research/BRANCH30_20261025/REPORT.md). Esta tanda consume **30 de los 42** ciclos pendientes de B50 (saldo 12), no inventa un nuevo bloque de 30 adicionales. Siguen pendientes 45 F45 y 19 PF-AB20. El alojamiento GitHub en `Metodologia-AB/proyectos/politics-fantasy-league` es **provisional**, con migración obligatoria al repositorio propio.
+
+El nuevo endpoint `GET /api/lab` y su panel de observatorio contienen once filas nominales **sintéticas**, tasas con desconocidos visibles, disidencia descriptiva, diversidad y baseline de acuerdo por marginales. **No influyen en el fantasy**. Detalles: [`docs/OBSERVATORIO_v0_4.md`](docs/OBSERVATORIO_v0_4.md).
 
 ## Producto ejecutable (nuevo, 24/10/2026)
 
