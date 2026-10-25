@@ -1,0 +1,85 @@
+{
+  "cycle_id": "PF-AB30-FULL-C27",
+  "branch": "E",
+  "status": "EXPERIMENTAL_AB_SIMULATION",
+  "A": {
+    "question": "Pronóstico por grupo con estructura real",
+    "estimand": "Paired difference of estimation/prediction error under specified DGP",
+    "population": "Independent Monte Carlo generator draws",
+    "outcome_proxy": "counts, proportions or loss, not political virtue",
+    "interference": "Session and group shocks only when explicitly simulated"
+  },
+  "B": {
+    "H1": "Stable group heterogeneity can improve time-holdout logloss",
+    "H0": "Group estimate performs no better than global shrinkage",
+    "H_others": "Group-level signal improves score only under stable heterogeneity."
+  },
+  "C": {
+    "design": "600 train/test DGP draws, both arms see same train/labels",
+    "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+    "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+    "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+    "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+  },
+  "D": {
+    "source_provenance": {
+      "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+      "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+      "curated_generated_at": "2026-10-05T13:47:46.103Z",
+      "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+    },
+    "instrument": "scripts/ab30_full.py",
+    "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+    "seed": 20288268,
+    "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+  },
+  "E": {
+    "result": {
+      "mean_paired_delta": 0.04589780338583349,
+      "bootstrap_95_ci_mean": [
+        0.043737,
+        0.048315
+      ],
+      "empirical_2.5_97.5_quantiles": [
+        0.000628,
+        0.105669
+      ],
+      "mc_replicates": 600,
+      "seed": 20288268
+    },
+    "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+    "did_execute": true
+  },
+  "F": {
+    "strongest_rival": "Group-level signal improves score only under stable heterogeneity.",
+    "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+    "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+    "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+  },
+  "G": {
+    "external_replication": "NOT_AVAILABLE",
+    "independent_confirmation": false,
+    "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+  },
+  "H": {
+    "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+    "abductive_rival": "Group-level signal improves score only under stable heterogeneity.",
+    "new_prior_observation": "PFL-AB30-27",
+    "evidence_origin": "SYNTHETIC_SIMULATION"
+  },
+  "I": {
+    "internal_validity": "Only conditional on generator, unit design and code",
+    "causal_identification": "NONE_REAL_WORLD",
+    "transportability": "NOT_ESTABLISHED",
+    "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+    "reproducibility": "Re-executable given frozen code/source and seed",
+    "grade_0_3_science": 0,
+    "VSDS_grade_project": 1,
+    "CT2_before": 24,
+    "CT2_after": 24
+  },
+  "J": {
+    "decision": "CONTINUE_WITH_FIELD_DATA",
+    "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+  }
+}
