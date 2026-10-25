@@ -1,9 +1,17 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
-**Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.5.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
+**Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.6.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
 
+
+## 25/10/2026 · v0.6: BRANCH30C, tres fuentes y puerta de identificabilidad
+
+**30 contratos adicionales con BRANCHING completados como ingeniería**, en cinco ramas A–E, con pruebas sobre fixtures sintéticos. **147 pruebas superadas**, 0 experimentos independientes sobre datos políticos españoles, sin cambio de VSDS **1/3** ni CT2 **24/100**. El CSV opcional **Voto de cada grupo** (`votacion_id,fecha,grupo,si,no,abstencion,no_vota`) permite conciliación entre las tres tablas, medición de dispersión por grupo sin atribuir disciplina partidista, detección de grupos incompletos y revisión entre snapshots.
+
+Ejemplo sin instalar: `PYTHONPATH=src python -m politics_fantasy.field_cli --individual RUTA_VOTOS.csv --aggregate RUTA_VOTACIONES.csv --group RUTA_GRUPOS.csv --acquired-at FECHA_REAL_CON_ZONA --out data/local_field/report.json`. El argumento `--group` es **opcional** para conservar compatibilidad con v0.5. Un `report_sha256` es detección de alteración, **no certificación de autenticidad**. El observatorio lee un resumen cerrado, nunca nombres ni filas nominales. Ver [manual v0.6](docs/TRES_CSV_Y_READINESS_v0_6.md) e [informe con ledger A–J](research/BRANCH30C_20261025/REPORT.md).
+
+**Publicación**: rama main de `GalexY3/Metodologia-AB/proyectos/politics-fantasy-league/` como alojamiento temporal, no modificación de las normas del método; migrar a `GalexY3/polictics_fantasy_league` en cuanto sea posible. Nueva autorización independiente de BRANCHING 30; los saldos anteriores 12 B50 / 45 libres / 19 AB20 no se consumen.
 
 ## 25/10/2026 · v0.5: BRANCH30B, análisis de CSV parlamentarios offline
 
@@ -100,7 +108,7 @@ LALIGA Fantasy: https://laligafantasy.zendesk.com/hc/es/articles/360025679853-Re
 
 ## Publicación remota
 
-Intento de escritura mediante conector GitHub, 24-10-2026: rechazado con HTTP 403 `Resource not accessible by integration` para archivos, blobs e incidencias del repositorio nuevo. Este árbol es un **entregable local verificado**; no afirmar que está publicado en GitHub. Reintentar después de revisar permisos de instalación del conector.
+Incidencia histórica, resuelta mediante alojamiento alternativo: el intento de escritura del 24-10-2026 fue rechazado con HTTP 403 `Resource not accessible by integration` para archivos, blobs e incidencias del repositorio nuevo. Desde el 25-10-2026 se publica en la carpeta provisional de Metodologia-AB; el repositorio específico continúa pendiente de migración.
 
 ## Alojamiento y autorización nuevos (25/10/2026)
 
