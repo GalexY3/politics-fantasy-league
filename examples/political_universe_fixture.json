@@ -1,0 +1,174 @@
+{
+  "dataset_class": "FIXTURE",
+  "description": "ENTIRELY FICTIONAL organisations and persons. Validates data model, NOT current Spanish politics.",
+  "sources": [
+    {
+      "id": "FX-ORG",
+      "kind": "FIXTURE",
+      "state": "FIXTURE",
+      "url": "https://fixture.example/universe/orgs",
+      "observed_at": "2026-10-25T16:00:00Z",
+      "license": "SYNTHETIC"
+    },
+    {
+      "id": "FX-EVENTS",
+      "kind": "FIXTURE",
+      "state": "FIXTURE",
+      "url": "https://fixture.example/universe/events",
+      "observed_at": "2026-10-25T16:00:00Z",
+      "license": "SYNTHETIC"
+    }
+  ],
+  "actors": [
+    {
+      "id": "FIX:p1",
+      "kind": "PARTY",
+      "name": "Partido Horizonte",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:p2",
+      "kind": "PARTY",
+      "name": "Partido Esfera",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:p3",
+      "kind": "PARTY",
+      "name": "Partido Bosque",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:c1",
+      "kind": "COALITION",
+      "name": "Coalición Tres Vías",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:a1",
+      "kind": "ELECTORS_GROUP",
+      "name": "Agrupación Río Azul",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:pl1",
+      "kind": "CIVIC_PLATFORM",
+      "name": "Plataforma Vecinal Lluvia",
+      "source_id": "FX-ORG",
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:per1",
+      "kind": "PERSON",
+      "name": "Nia Inventada",
+      "source_id": "FX-ORG",
+      "public_role_documented": true,
+      "jurisdiction": "ES"
+    },
+    {
+      "id": "FIX:per2",
+      "kind": "PERSON",
+      "name": "Tomás Ficticio",
+      "source_id": "FX-ORG",
+      "public_role_documented": true,
+      "jurisdiction": "ES"
+    }
+  ],
+  "claims": [
+    {
+      "id": "FX-COAL-1",
+      "relation": "COALITION_MEMBER",
+      "subject_id": "FIX:p1",
+      "object_id": "FIX:c1",
+      "source_id": "FX-ORG",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-01-10T12:00:00Z"
+    },
+    {
+      "id": "FX-COAL-2",
+      "relation": "COALITION_MEMBER",
+      "subject_id": "FIX:p2",
+      "object_id": "FIX:c1",
+      "source_id": "FX-ORG",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-01-10T12:00:00Z"
+    },
+    {
+      "id": "FX-NOM",
+      "relation": "CANDIDATE_FOR",
+      "subject_id": "FIX:per1",
+      "object_id": "FIX:a1",
+      "source_id": "FX-ORG",
+      "valid_from": "2026-04-01",
+      "valid_to": null,
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-04-01T08:00:00Z"
+    },
+    {
+      "id": "FX-SPOKE",
+      "relation": "PUBLIC_SPOKESPERSON",
+      "subject_id": "FIX:per2",
+      "object_id": "FIX:p3",
+      "source_id": "FX-ORG",
+      "valid_from": "2026-05-01",
+      "valid_to": null,
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-05-01T12:00:00Z"
+    },
+    {
+      "id": "FX-POLICY",
+      "relation": "DECLARED_POLICY_POSITION",
+      "subject_id": "FIX:p3",
+      "source_id": "FX-ORG",
+      "valid_from": "2026-06-01",
+      "valid_to": null,
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-06-01T12:00:00Z",
+      "issue": "transporte",
+      "exact_statement": "Proponemos mejorar conexiones de autobús interurbano."
+    }
+  ],
+  "events": [
+    {
+      "id": "FX-MEET",
+      "kind": "PUBLIC_MEETING",
+      "source_id": "FX-EVENTS",
+      "occurred_on": "2026-09-02",
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-09-02T12:00:00Z",
+      "participants": [
+        {
+          "actor_id": "FIX:per2",
+          "role": "SPEAKER"
+        },
+        {
+          "actor_id": "FIX:pl1",
+          "role": "ORGANIZER"
+        }
+      ]
+    },
+    {
+      "id": "FX-STMT",
+      "kind": "PUBLIC_STATEMENT",
+      "source_id": "FX-EVENTS",
+      "occurred_on": "2026-10-02",
+      "observed_at": "2026-10-25T16:00:00Z",
+      "first_public_at": "2026-10-02T12:00:00Z",
+      "participants": [
+        {
+          "actor_id": "FIX:per1",
+          "role": "SPEAKER"
+        }
+      ]
+    }
+  ]
+}
