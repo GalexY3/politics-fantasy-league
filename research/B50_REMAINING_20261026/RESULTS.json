@@ -1,0 +1,106 @@
+{
+  "campaign": "PF-B50-remaining-C39-C50",
+  "date": "2026-10-26",
+  "contract": "fdd53fe2cd1296121baf03a00c36a68f50cbfc80",
+  "evaluation": "Same sources and published code; fixture/secondary acceptance tests, not 12 independent political experiments",
+  "code_refs": [
+    "82bb82bcf2bf6234ac2e93e5be4d2d47ebde90b2",
+    "f5b36cf294e2d41dac60c07597af59cc6a0e0664",
+    "6fca0a47ab8147c7dd2ed331f25c10e41c2ebef6",
+    "73cfd279de40306550731b55d73c9ec89b3c4ad1",
+    "5b59c7aae5d9abce7c5828834193cce7c1622876"
+  ],
+  "raw_refs": [
+    {
+      "name": "anerodata",
+      "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+    },
+    {
+      "name": "rOpenSpain",
+      "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "PF-B50-39",
+      "title": "Reject nonverified official source",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-40",
+      "title": "RFC4180 quoted fields and negative malformed CSV",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-41",
+      "title": "1977-2019 historical dataset with clearly scoped party codes",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-42",
+      "title": "2023 52 province rows, homogeneous paired fields",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-43",
+      "title": "2023 electoral labels with votes but no Congressional seat",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-44",
+      "title": "Separate recorded seat and nonseat labels",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-45",
+      "title": "Pin both Git file SHA IDs without claiming official source",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-46",
+      "title": "Unknown representation without evidence; no default absence",
+      "result": "ERROR",
+      "detail": "Error: BAD_ACTOR_ID"
+    },
+    {
+      "id": "PF-B50-47",
+      "title": "No cross-source identity merge without temporal compatibility",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-48",
+      "title": "Published historical atlas is unscored and labels source pinned",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-49",
+      "title": "UI filters by alphabetic name with source disclaimer",
+      "result": "PASS"
+    },
+    {
+      "id": "PF-B50-50",
+      "title": "API has read-only atlas route and no real person game scoring",
+      "result": "PASS"
+    }
+  ],
+  "passes": 11,
+  "failures": [
+    {
+      "id": "PF-B50-46",
+      "title": "Unknown representation without evidence; no default absence",
+      "result": "ERROR",
+      "detail": "Error: BAD_ACTOR_ID"
+    }
+  ],
+  "source_analysis": {
+    "n_2023_labels": 59,
+    "nonseat_positive_vote": 48,
+    "n_historical_rows": 1057,
+    "yearRange": [
+      1977,
+      2019
+    ]
+  },
+  "real_original_official_executions": 0,
+  "field_certified_persons": 0
+}
