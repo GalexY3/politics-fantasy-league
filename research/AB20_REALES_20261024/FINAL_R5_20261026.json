@@ -1,0 +1,1183 @@
+{
+  "campaign": "PF-AB20",
+  "date": "2026-10-26",
+  "previous_pilot_C01": "EXPLORATORY_COMPLETED_NOT_CONFIRMATORY",
+  "remaining_C02_C20_originally_authorized": 19,
+  "closed_by_R5": 19,
+  "field_empirical_validated": 0,
+  "independent_replications": 0,
+  "still_authorized_in_this_block": 0,
+  "scientific_novelty_N1_N2_N3": 0,
+  "CT2_before_after": [
+    24,
+    24
+  ],
+  "VSDS": 1,
+  "source_capabilities": {
+    "dataset_2023": {
+      "source": "anerodata 202307.csv",
+      "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33",
+      "rows": 52,
+      "label_count": 59
+    },
+    "historic": {
+      "source": "rOpenSpain/infoelectoral data/partidos_generales.csv",
+      "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3",
+      "rows": 1057,
+      "year_max": 2019
+    },
+    "parliament_secondary": {
+      "source": "MarcoAnarmo/CongresoAbierto pleno.jsonl",
+      "sha": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+      "rows": 2175
+    },
+    "official_download_attempt": {
+      "congreso_json": "CACHE_MISS_ON_OFFICIAL_JSON",
+      "ministerio_xlsx": "DNS_UNAVAILABLE",
+      "independent_original_rows": 0
+    }
+  },
+  "method": "All A-J recorded with R5 STOP when necessary field data unavailable. These 19 are CONCLUDED SCREENING CYCLES, not 19 empirical experiments.",
+  "cycles": [
+    {
+      "id": "PF-AB20-C02",
+      "title": "JSON-vs-HTML: Desacuerdo entre recuentos web y payload nominal",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "JSON-vs-HTML: Desacuerdo entre recuentos web y payload nominal",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "Original Congress nominal JSON request was cache miss; secondary vote blob is not the original."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "Original Congress nominal JSON request was cache miss; secondary vote blob is not the original.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C03",
+      "title": "Bitemporalidad: Inferencia errónea de disponibilidad retroactiva",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Bitemporalidad: Inferencia errónea de disponibilidad retroactiva",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No historical public-at timestamps; a Github Git SHA of a current snapshot cannot substitute."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No historical public-at timestamps; a Github Git SHA of a current snapshot cannot substitute.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C04",
+      "title": "Cobertura longitudinal: Periodos aparentemente vacíos por ausencia de ingesta",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Cobertura longitudinal: Periodos aparentemente vacíos por ausencia de ingesta",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "2023 electoral source contains 52 province aggregates, not a census of parliamentary sessions."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "2023 electoral source contains 52 province aggregates, not a census of parliamentary sessions.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C05",
+      "title": "Cambios de identidad: Nombres duplicados/variantes llevan a atribución incorrecta",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Cambios de identidad: Nombres duplicados/variantes llevan a atribución incorrecta",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "Historically coded organizations have 149 codes associated with multiple denomination strings; not individual identity evidence."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "Historically coded organizations have 149 codes associated with multiple denomination strings; not individual identity evidence.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C06",
+      "title": "Mandatos y grupos: Afiliación retrospectiva induce fuga del futuro",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Mandatos y grupos: Afiliación retrospectiva induce fuga del futuro",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No historical role-by-week roster or political group membership with valid-from/valid-to."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No historical role-by-week roster or political group membership with valid-from/valid-to.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C07",
+      "title": "Eventos e iniciativas: Falsa independencia entre votaciones de la misma iniciativa",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Eventos e iniciativas: Falsa independencia entre votaciones de la misma iniciativa",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No official expediente-vote grouping with verified release times available."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No official expediente-vote grouping with verified release times available.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C08",
+      "title": "Elegibilidad: Recuentos sin exposición inflan actividad de cargos",
+      "branch": "source_integrity",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Elegibilidad: Recuentos sin exposición inflan actividad de cargos",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No deputy-week eligibility or opportunity denominator; observed electoral slate votes are different construct."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No deputy-week eligibility or opportunity denominator; observed electoral slate votes are different construct.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C09",
+      "title": "Baselines: Un modelo de media histórica es rival competente",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Baselines: Un modelo de media histórica es rival competente",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No person-week outcome labels or feature availability; no train/test baseline possible."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No person-week outcome labels or feature availability; no train/test baseline possible.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C10",
+      "title": "Heterogeneidad: Dispersión no Poisson por posición y agenda",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Heterogeneidad: Dispersión no Poisson por posición y agenda",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No person-week counts; aggregate party votes per province are not deputy activity counts."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No person-week counts; aggregate party votes per province are not deputy activity counts.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C11",
+      "title": "Estructura temporal: Calendario explica actividad mejor que reputación",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Estructura temporal: Calendario explica actividad mejor que reputación",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No known-in-advance full parliamentary calendar paired with person-week activity."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No known-in-advance full parliamentary calendar paired with person-week activity.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C12",
+      "title": "Jerarquía: Pooling parcial generaliza mejor para actividad escasa",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Jerarquía: Pooling parcial generaliza mejor para actividad escasa",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No sparse individual activity vectors by identity and exposure."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No sparse individual activity vectors by identity and exposure.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C13",
+      "title": "Modelos de secuencia: Autocorrelación varía según temporalidad legislativa",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Modelos de secuencia: Autocorrelación varía según temporalidad legislativa",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No longitudinal person-week series, only election year aggregate and one 2023 provincial cross-section."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No longitudinal person-week series, only election year aggregate and one 2023 provincial cross-section.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C14",
+      "title": "Validación de fuentes: Resúmenes tercerizados difieren de material oficial",
+      "branch": "model_baselines",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Validación de fuentes: Resúmenes tercerizados difieren de material oficial",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "Official result Excel download failed in runtime DNS; no independent same-unit pair. Two GitHub repos are secondary."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "Official result Excel download failed in runtime DNS; no independent same-unit pair. Two GitHub repos are secondary.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C15",
+      "title": "Fuga temporal: Backfills alteran artificialmente el forecast",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Fuga temporal: Backfills alteran artificialmente el forecast",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "Missing independently measured first_public_at/backfill history."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "Missing independently measured first_public_at/backfill history.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C16",
+      "title": "Grafo institucional: Centralidad aporta predicción incremental",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Grafo institucional: Centralidad aporta predicción incremental",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No person-linked institutional network and future person-week labels."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No person-linked institutional network and future person-week labels.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C17",
+      "title": "Control grafo: Mejora atribuible solo a tamaño/roles",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Control grafo: Mejora atribuible solo a tamaño/roles",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No graph null topology or equal-budget actor network baseline."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No graph null topology or equal-budget actor network baseline.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C18",
+      "title": "Variación de régimen: Inestabilidad de predicción entre etapas legislativas",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Variación de régimen: Inestabilidad de predicción entre etapas legislativas",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "2023 provincial data and historical table have disjoint years and non-equivalent identity keys."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "2023 provincial data and historical table have disjoint years and non-equivalent identity keys.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C19",
+      "title": "Equidad scoring: Puntos de actividad dependen de cargo/exposición",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Equidad scoring: Puntos de actividad dependen de cargo/exposición",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "No validated person-level activity, office duration or score exposure. Fantasy scores remain demo synthetic."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "No validated person-level activity, office duration or score exposure. Fantasy scores remain demo synthetic.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    },
+    {
+      "id": "PF-AB20-C20",
+      "title": "Simulación versus política: ABM aparenta descubrimiento por supuesto impuesto",
+      "branch": "causal_network_scoring",
+      "status": "A_J_CLOSED_R5_EVIDENCE_UNAVAILABLE",
+      "completion_kind": "EVIDENCE_FEASIBILITY_ADJUDICATION_NOT_EMPIRICAL_EXPERIMENT",
+      "A": {
+        "estimand_from_prior_backlog": "Simulación versus política: ABM aparenta descubrimiento por supuesto impuesto",
+        "unit": "Original field / person-week data, where required",
+        "source_basis": "AB20 2026-10-24 C02–C20 original contract retained"
+      },
+      "B": {
+        "H1": "A longitudinal institutional/personal mechanism is identifiable with primary as-of evidence",
+        "H0": "Apparent pattern is due to coverage/provenance/stronger baseline",
+        "H2": "Null when verified temporal/person identifiers unavailable"
+      },
+      "C": {
+        "discriminating_test": "Try to identify correct linked person-week field inputs and independent original timestamp; if absent, STOP_R5",
+        "preexposed_design": true,
+        "required": "Original nominal events + dated roster + public-at + independence as relevant"
+      },
+      "D": {
+        "checked": "2023 52-province secondary labels; historical 1057-row party series; 2175 secondary Congress votes; official linked source accessible only as catalogue metadata",
+        "instrumentation": "Source capability audit and original URL attempt",
+        "original_raw_validated": false
+      },
+      "E": {
+        "performed_source_access_and_field_requirement_check": true,
+        "original_independent_experiment_performed": false,
+        "observed": "NOT_IDENTIFIABLE_WITH_CURRENT_EVIDENCE",
+        "blocker": "Only mathematical/synthetic simulation could be run; no empirical mechanism validation without microdata."
+      },
+      "F": {
+        "adversarial": "Source redefinition would change outcome/target; cannot substitute provincial party vote columns for person-week parliamentary activity",
+        "rival": "Secondary source apparent signal can be artifact of identity / time / coverage"
+      },
+      "G": {
+        "external_confirmation": "NONE",
+        "independent_original_nominal": "NONE",
+        "cross_field_replication": "NOT_EXECUTED"
+      },
+      "H": {
+        "AB_update": "Evidence availability lower than assumed; retain substantive hypotheses untested",
+        "positive": "Secondary aggregate data exists for some organizations",
+        "negative": "Only mathematical/synthetic simulation could be run; no empirical mechanism validation without microdata.",
+        "substantive_discovery": false
+      },
+      "I": {
+        "scientific_grade": 0,
+        "empirical_test_valid": false,
+        "negative_or_positive_substantive_inference": "NONE",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "STOP_R5_THIS_ESTIMAND_UNTIL_PRIMARY_FIELD_DATA",
+        "next": "Build original-download and roster pipeline (product cycles) before reopening; do not spend more slots on same archive"
+      }
+    }
+  ]
+}
