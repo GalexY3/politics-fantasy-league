@@ -1,0 +1,1904 @@
+{
+  "campaign": "PFL-BR30B",
+  "date": "2026-10-25",
+  "authorised_new_block": 30,
+  "actual_production_increment_contracts_completed": 30,
+  "actual_field_science_experiments": 0,
+  "unique_scientific_discoveries": {
+    "N1": 0,
+    "N2": 0,
+    "N3": 0
+  },
+  "VSDS": {
+    "project_grade": 1,
+    "scientific_discovery_grade": 0
+  },
+  "CT2": {
+    "individual_parliamentary_predictive": 24,
+    "scale": "ordinal_1_to_100_not_probability"
+  },
+  "prior_authorisations_preserved": {
+    "PF_B50": 12,
+    "PF_F45": 45,
+    "PF_AB20": 19
+  },
+  "new_grant_remaining": 0,
+  "assurance": "30 independent acceptance contracts NOT 30 independent field experiments",
+  "prereg_commit": "23d66bc5b1270feb510699c022401753e234505a",
+  "last_lot_preimplementation_freeze": "d284d7104a04ac1e45a49aed3c484f552ceea0ba",
+  "code_freeze_before_first_test": false,
+  "data_provenance": {
+    "official_votes_reference": "https://www.congreso.es/es/opendata/votaciones",
+    "third_party_schema_reference": "https://congresoabierto.org/datos/",
+    "schema_not_corpus": "NOT_DOWNLOADED_FROM_THIS_EXECUTION",
+    "direct_download_error": "NETWORK_DNS_UNAVAILABLE_LOCAL_ENV"
+  },
+  "cycles": [
+    {
+      "id": "PFL-BR30B-01",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30-30",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Preservación del identificador parlamentario con ceros iniciales",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_01_schema_and_identity_preserves_leading_zeros fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_01_schema_and_identity_preserves_leading_zeros",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-02",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30B-01",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Vocabulario de voto cerrado (elecciones no documentadas rechazadas)",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_02_choice_is_closed_vocabulary fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_02_choice_is_closed_vocabulary",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-03",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30B-02",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Identidad nominal y duplicados no sobreescribibles",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_03_duplicates_rejected_even_if_identical fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_03_duplicates_rejected_even_if_identical",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-04",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30B-03",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Ausencia de certificación espuria de publicación y afiliación",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_04_no_guessing_source_publication_or_group_history fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_04_no_guessing_source_publication_or_group_history",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-05",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30B-04",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Recuentos enteros no negativos y esquema agregado documentado",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_05_aggregate_schema_counts_checked fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_05_aggregate_schema_counts_checked",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-06",
+      "branch": "adaptador_csv_y_procedencia",
+      "parent": "PFL-BR30B-05",
+      "drift_D_score": 0.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Hash SHA256 de bytes crudos y desconocidos no imputados",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_06_byte_hash_and_missing_census_not_fabricated fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_06_byte_hash_and_missing_census_not_fabricated",
+        "test_file": "tests/test_field_ingest.py",
+        "source_file": "src/politics_fantasy/field_ingest.py",
+        "source_sha256": "efa8005107a4da4fef62bb7a5345d2535fb7b59eef02c8ac964f3e477e0ff27f",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-07",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-06",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Conciliación nominal-agregado con alcance limitado",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_07_equal_sources_only_consistent fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_07_equal_sources_only_consistent",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-08",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-07",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Filtrado detectado sin confundir ausencias con no-votos",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_08_partial_filter_not_spurious_absence fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_08_partial_filter_not_spurious_absence",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-09",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-08",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Conflicto cuando el nominal supera el agregado",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_09_excess_nominal_is_discrepancy fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_09_excess_nominal_is_discrepancy",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-10",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-09",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Eventos faltantes se distinguen de eventos con cero votos",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_10_missing_table_events_not_zero_filled fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_10_missing_table_events_not_zero_filled",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-11",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-10",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Conservación de grupos como etiquetas históricas no acreditadas",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_11_group_counts_no_unobserved_members fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_11_group_counts_no_unobserved_members",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-12",
+      "branch": "conciliacion_y_cobertura",
+      "parent": "PFL-BR30B-11",
+      "drift_D_score": 1.2,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Comparación de instantáneas sin confundir orden con modificación",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_12_snapshot_delta_not_false_revision_from_order fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_12_snapshot_delta_not_false_revision_from_order",
+        "test_file": "tests/test_reconcile.py",
+        "source_file": "src/politics_fantasy/reconcile.py",
+        "source_sha256": "9067dd1a67292f6fda0ce9cb3e8ab76573a7a377f92c30f99137f2607c2cd3bb",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-13",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-12",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Disponibilidad del CSV a partir de fecha de captura y no evento",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_13_asof_respects_local_acquisition_not_old_event_date fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_13_asof_respects_local_acquisition_not_old_event_date",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-14",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-13",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Rechazo de fechas sin zona horaria en cortes bitemporales",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_14_naive_asof_rejected fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_14_naive_asof_rejected",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-15",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-14",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Capacidad de 350 escaños como bandera diagnóstica, no verdad",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_15_chamber_capacity_is_warning_not_truth fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_15_chamber_capacity_is_warning_not_truth",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-16",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-15",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Imposibilidad de autocertificación de evidencia institucional",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_16_field_gate_cannot_self_certify_sources fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_16_field_gate_cannot_self_certify_sources",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-17",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-16",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Bootstrap/independencia: inventario por sesiones y no filas",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_17_cluster_inference_not_row_as_independent fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_17_cluster_inference_not_row_as_independent",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-18",
+      "branch": "calidad_bitemporal_sociologica",
+      "parent": "PFL-BR30B-17",
+      "drift_D_score": 1.4,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Temas por palabras clave no confundidos con clasificación oficial",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_18_topics_are_not_institutional_classification fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_18_topics_are_not_institutional_classification",
+        "test_file": "tests/test_field_audit.py",
+        "source_file": "src/politics_fantasy/field_audit.py",
+        "source_sha256": "ff05b43d10136a0069a66d1a0e51950c21ffaf092e4fdd17ad382a32874c6c10",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-19",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-18",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Emisión de recibo agregado con trazabilidad de bytes",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_19_report_produced_with_field_provenance fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_19_report_produced_with_field_provenance",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-20",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-19",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Reproducibilidad determinista del recibo de auditoría",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_20_report_digest_reproducible fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_20_report_digest_reproducible",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-21",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-20",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Exportación exclusiva sin reescritura silenciosa",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_21_write_once_not_silent_overwrite fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_21_write_once_not_silent_overwrite",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-22",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-21",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Minimización de identificadores y nombres en el informe",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_22_report_has_no_deputy_identifiers_or_names fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_22_report_has_no_deputy_identifiers_or_names",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-23",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-22",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Reconciliación aritmética no implica fuente certificada",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_23_no_false_source_attestation_on_perfect_match fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_23_no_false_source_attestation_on_perfect_match",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-24",
+      "branch": "producto_offline_reproducible",
+      "parent": "PFL-BR30B-23",
+      "drift_D_score": 1.9,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "CLI offline ejecutable y rechazo de timestamp ingenuo",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_24_cli_end_to_end_and_reject_naive_timestamp fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_24_cli_end_to_end_and_reject_naive_timestamp",
+        "test_file": "tests/test_field_cli.py",
+        "source_file": "src/politics_fantasy/field_cli.py",
+        "source_sha256": "529b67ab3f7a8f2c369e7e06e1b9304974aabc44f00ba268fae4cb2d63d49b2e",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-25",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-24",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Estado explícito de ausencia de archivo nominal",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_25_missing_receipt_cannot_implicate_real_mps fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_25_missing_receipt_cannot_implicate_real_mps",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-26",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-25",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Firma SHA del recibo y vista agregada restringida",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_26_valid_report_digest_check_and_sanitized_counts fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_26_valid_report_digest_check_and_sanitized_counts",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-27",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-26",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Rechazo de modificación posterior del recibo",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_27_tampering_report_returns_rejected fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_27_tampering_report_returns_rejected",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-28",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-27",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "La API no emite filas nominales ni nombres propios",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_28_client_never_receives_personal_rows fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_28_client_never_receives_personal_rows",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-29",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-28",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "Avisos de origen y límites en interfaz del observatorio",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_29_frontend_visible_limits_and_offline_documentation fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_29_frontend_visible_limits_and_offline_documentation",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    },
+    {
+      "id": "PFL-BR30B-30",
+      "branch": "api_y_observatorio_navegable",
+      "parent": "PFL-BR30B-29",
+      "drift_D_score": 2.0,
+      "cycle_kind": "PRODUCTION_ACCEPTANCE_AB_A_J",
+      "state": "TESTED_LOCAL_SYNTHETIC_NOT_SCIENTIFIC_EXPERIMENT",
+      "A": {
+        "question": "HTTP solo lectura y aislamiento entre observatorio y juego ficticio",
+        "unit": "synthetic offline CSV or app API contract",
+        "target": "semantic consistency and engineering safety, not actual deputy behavior"
+      },
+      "B": {
+        "claim": "Implementation satisfies specified invariant",
+        "competent_rival": "An unverified but apparently plausible parser or UI that confounds missingness, affiliation, provenance or scoring",
+        "null": "Invariant could fail on edge-cases or actual undocumented upstream schemas"
+      },
+      "C": {
+        "design": "Acceptance and adverse fixture defined for numbered contract",
+        "falsifier": "test_b30b_30_local_get_read_only_and_synthetic_game_isolation fails or a corresponding counterexample survives",
+        "prereg_scope": "INITIAL_CAMPAIGN_FREEZE_BROAD_DESIGN_ONLY; lot E specifics in GitHub pre-implementation"
+      },
+      "D": {
+        "test_name": "test_b30b_30_local_get_read_only_and_synthetic_game_isolation",
+        "test_file": "tests/test_field_api.py",
+        "source_file": "src/politics_fantasy/field_api.py",
+        "source_sha256": "f40c1acf047537400fbf763226c802eba8acb31051f23d7e52fcbaa5754ea5d9",
+        "code_frozen_before_test": false
+      },
+      "E": {
+        "execution": "PASS_LOCAL",
+        "artifact": "research/BRANCH30B_20261025/QA.txt",
+        "fixtures": "LOCAL_SYNTHETIC_OR_TEMPFILE",
+        "field_samples_imported": 0
+      },
+      "F": {
+        "adversarial_risk": "Source may be edited or filtered; a passing test does not establish real-world source identity, historical roster or original publishing timestamp",
+        "baseline": "Fail-closed vs permissive underdocumented parser; not an empirical predictive competitor"
+      },
+      "G": {
+        "confirmation": "NOT_EXTERNALLY_REPLICATED",
+        "independence": "Same implementation and locally authored fixtures"
+      },
+      "H": {
+        "abductive_update": "Technical semantics are instrumentable; external field evidence remains the binding bottleneck",
+        "priors": "NO_NEW_SCIENTIFIC_PRIOR; engineering reliability conditional on tests"
+      },
+      "I": {
+        "local_engineering": "PASS",
+        "external_validity": "NOT_EVALUATED",
+        "causal_evidence": false,
+        "field_sociological_utility_proven": false,
+        "VSDS_project_level": 1,
+        "AB_scientific_discovery_grade": 0,
+        "CT2_predictive": 24
+      },
+      "J": {
+        "decision": "REPAIR_FIELD_DATA_ACCESS",
+        "next_evidence": "Independently acquired full nominal CSV, official per-vote JSON, historical roster, and independent baseline evaluation"
+      },
+      "project_finding_1_3_new": false
+    }
+  ],
+  "notes": [
+    "A/B/C/D contracts had broad design documented initially; specific B/C/D test design was not GitHub-frozen before running.",
+    "No independent visual browser QA: Chromium navigation blocked by host administrative policy.",
+    "The code was verified by static JS parsing, Python testing and HTTP-local integration.",
+    "No raw political data provided or imported; all tests and performance benchmark synthetic."
+  ]
+}
