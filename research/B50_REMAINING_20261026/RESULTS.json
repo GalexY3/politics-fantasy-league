@@ -59,8 +59,10 @@
     {
       "id": "PF-B50-46",
       "title": "Unknown representation without evidence; no default absence",
-      "result": "ERROR",
-      "detail": "Error: BAD_ACTOR_ID"
+      "result": "PASS",
+      "initial_result": "ERROR",
+      "initial_error": "Error: BAD_ACTOR_ID",
+      "repair": "Replace invalid ID namespace F:party with schema-valid FIX:party"
     },
     {
       "id": "PF-B50-47",
@@ -83,15 +85,8 @@
       "result": "PASS"
     }
   ],
-  "passes": 11,
-  "failures": [
-    {
-      "id": "PF-B50-46",
-      "title": "Unknown representation without evidence; no default absence",
-      "result": "ERROR",
-      "detail": "Error: BAD_ACTOR_ID"
-    }
-  ],
+  "passes": 12,
+  "failures": [],
   "source_analysis": {
     "n_2023_labels": 59,
     "nonseat_positive_vote": 48,
@@ -102,5 +97,13 @@
     ]
   },
   "real_original_official_executions": 0,
-  "field_certified_persons": 0
+  "field_certified_persons": 0,
+  "repairs": [
+    {
+      "id": "PF-B50-46",
+      "failure": "BAD_ACTOR_ID in fixture input (single-letter namespace)",
+      "repair": "Use two+-character namespace",
+      "after": "PASS"
+    }
+  ]
 }
