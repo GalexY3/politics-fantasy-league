@@ -1,0 +1,1839 @@
+{
+  "date": "2026-10-25",
+  "method": "AB_3_2_1",
+  "contract": "30 complete A-J loops, synthetic analytical probes if field data unavailable",
+  "run_status": "FROZEN_PENDING_EXECUTION",
+  "num_cases": 30,
+  "cases": [
+    {
+      "id": "M01",
+      "branch": "Medición",
+      "title": "MCAR y precisión",
+      "A": {
+        "claim": "Comparar ponderación por probabilidad observada frente a media observada bajo ausencia MCAR",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "diferencia de error absoluto de tasa de voto positivo",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "la ponderación no mejora necesariamente bajo MCAR",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          100000,
+          100079
+        ],
+        "confirmation_seeds": [
+          900000,
+          900079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: MCAR bajo dos prevalencias",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "M02",
+      "branch": "Medición",
+      "title": "MAR por grupo",
+      "A": {
+        "claim": "Comparar estimador estratificado frente a media observada si hay ausencia diferencial por grupo",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "diferencia de error absoluto en media poblacional",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "estratificar no mejora si no hay distorsión de composición",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          101000,
+          101079
+        ],
+        "confirmation_seeds": [
+          901000,
+          901079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: sesgo diferencial de grupos",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "M03",
+      "branch": "Medición",
+      "title": "MNAR no identificable",
+      "A": {
+        "claim": "Comprobar si ponderación por grupo resuelve ausencia dependiente de la opción dentro de cada grupo",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error absoluto frente a tasa verdadera",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "ponderar grupos no resuelve selección MNAR",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          102000,
+          102079
+        ],
+        "confirmation_seeds": [
+          902000,
+          902079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: selección dependiente del outcome",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "M04",
+      "branch": "Medición",
+      "title": "Abstención distinta de no-voto",
+      "A": {
+        "claim": "Contrastar cuota entre votos expresados frente a codificación que confunde abstención y no-voto",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de cuota entre expresados",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "diferencia desaparece sin no-votos",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          103000,
+          103079
+        ],
+        "confirmation_seeds": [
+          903000,
+          903079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: variar no-voto independiente",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "M05",
+      "branch": "Medición",
+      "title": "Censo elegible y cotas",
+      "A": {
+        "claim": "Verificar cobertura de cotas de proporción con ausentes y censo verificado frente a punto completo-casos",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "cobertura del valor verdadero",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "cotas no aportan bajo cobertura total",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          104000,
+          104079
+        ],
+        "confirmation_seeds": [
+          904000,
+          904079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: ausencias de diferentes opciones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "M06",
+      "branch": "Medición",
+      "title": "Revisiones y doble recuento",
+      "A": {
+        "claim": "Contrastar última revisión frente a acumulación sin deduplicación",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de tasa al cierre del evento",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "no hay daño sin revisiones",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          105000,
+          105079
+        ],
+        "confirmation_seeds": [
+          905000,
+          905079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: corrección as-of y versiones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C07",
+      "branch": "Composición",
+      "title": "Estandarización y Simpson",
+      "A": {
+        "claim": "Cuantificar error del estimando de pesos comunes bajo cambio de mezcla temática",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de tasa estandarizada",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "tasa agregada suficiente cuando mezcla igual",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          106000,
+          106079
+        ],
+        "confirmation_seeds": [
+          906000,
+          906079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: mezcla de dos temas",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C08",
+      "branch": "Composición",
+      "title": "Sin cambio de agenda",
+      "A": {
+        "claim": "Control nulo de estandarización cuando no cambia la mezcla temática",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de tasa estandarizada",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "la estandarización no debe ganar sistemáticamente",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          107000,
+          107079
+        ],
+        "confirmation_seeds": [
+          907000,
+          907079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: repetición aleatoria sin shift",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C09",
+      "branch": "Composición",
+      "title": "Estrato raro",
+      "A": {
+        "claim": "Evaluar regularización de estrato escaso frente a estimación separada",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error cuadrático del estrato raro",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "shrinkage puede introducir sesgo",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          108000,
+          108079
+        ],
+        "confirmation_seeds": [
+          908000,
+          908079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: rareza y distancia interestratos",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C10",
+      "branch": "Composición",
+      "title": "Cambio temporal de agenda",
+      "A": {
+        "claim": "Comparar media dinámica reciente vs media histórica al variar una mezcla",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error predictivo del próximo periodo",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "histórico puede ganar si entorno estacionario",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          109000,
+          109079
+        ],
+        "confirmation_seeds": [
+          909000,
+          909079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: drift abrupto vs constante",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C11",
+      "branch": "Composición",
+      "title": "Cambio de grupo",
+      "A": {
+        "claim": "Evaluar reetiquetado por grupo actual frente a etiqueta de grupo en el evento",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de estimación de tasa histórica de grupo",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "no cambia sin traslados",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          110000,
+          110079
+        ],
+        "confirmation_seeds": [
+          910000,
+          910079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: fracción de traslados",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "C12",
+      "branch": "Composición",
+      "title": "Mayoría y empate",
+      "A": {
+        "claim": "Cuantificar falsa discordancia al forzar ganador en empate frente a declarar indefinido",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "proporción de declaraciones incorrectas",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "ninguna diferencia sin empates",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          111000,
+          111079
+        ],
+        "confirmation_seeds": [
+          911000,
+          911079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: empates programados aleatorios",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T13",
+      "branch": "Temporal",
+      "title": "Filtración temporal",
+      "A": {
+        "claim": "Medir sesgo aparente al construir predictor con información futura contra as-of",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "optimismo entre evaluación aparente y futuro real",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "no ventaja realizable del predictor no desplegable",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          112000,
+          112079
+        ],
+        "confirmation_seeds": [
+          912000,
+          912079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: retardo de publicaciones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T14",
+      "branch": "Temporal",
+      "title": "Sesión como clúster",
+      "A": {
+        "claim": "Comparar validación aleatoria y por sesiones en un proceso con shock de sesión",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "optimismo de estimación del riesgo fuera de sesión",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin shock resultados coinciden",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          113000,
+          113079
+        ],
+        "confirmation_seeds": [
+          913000,
+          913079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: correlación intrasesión",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T15",
+      "branch": "Temporal",
+      "title": "Error estándar por sesión",
+      "A": {
+        "claim": "Evaluar cobertura de IC IID vs IC agrupado por sesión",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "cobertura de media poblacional",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "si efecto sesión nulo ambos calibran",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          114000,
+          114079
+        ],
+        "confirmation_seeds": [
+          914000,
+          914079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: número de sesiones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T16",
+      "branch": "Temporal",
+      "title": "Snapshot retrospectivo",
+      "A": {
+        "claim": "Evaluar estimación as-of cuando se conoce revisión nueva después del corte",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error en estado histórico conocido",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin revisiones posteriores ambos coinciden",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          115000,
+          115079
+        ],
+        "confirmation_seeds": [
+          915000,
+          915079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: tasa de backfills",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T17",
+      "branch": "Temporal",
+      "title": "Variables de tema futuras",
+      "A": {
+        "claim": "Comparar predictor con temas de siguiente periodo conocidos retrospectivamente vs predictor desplegable",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "diferencia optimismo en estimación",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin relación tema outcome no mejora",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          116000,
+          116079
+        ],
+        "confirmation_seeds": [
+          916000,
+          916079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: dependencia del tema",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "T18",
+      "branch": "Temporal",
+      "title": "Bootstrap serial",
+      "A": {
+        "claim": "Comparar intervalos de bootstrap IID vs de bloques bajo sesiones autocorrelacionadas",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "cobertura de media",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin autocorrelación no se impone block advantage",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          117000,
+          117079
+        ],
+        "confirmation_seeds": [
+          917000,
+          917079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: dependencia entre sesiones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R19",
+      "branch": "Relaciones",
+      "title": "Acuerdo esperado",
+      "A": {
+        "claim": "Distinguir acuerdo observado de exceso sobre azar bajo marginales asimétricas",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de estimación del exceso verdadero",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin asimetría el sesgo disminuye",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          118000,
+          118079
+        ],
+        "confirmation_seeds": [
+          918000,
+          918079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: prevalencia de sí",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R20",
+      "branch": "Relaciones",
+      "title": "Confusión por grupo",
+      "A": {
+        "claim": "Contrastar correlación cruda vs condicionada por grupo cuando no hay efecto entre pares",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de asociación residual",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "si grupos no difieren no hay sesgo",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          119000,
+          119079
+        ],
+        "confirmation_seeds": [
+          919000,
+          919079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: polarización entre grupos",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R21",
+      "branch": "Relaciones",
+      "title": "Shock compartido",
+      "A": {
+        "claim": "Cuantificar co-voto correlacionado sin ninguna arista causal",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "falsos positivos de asociación causal",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "si no hay shock desaparece",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          120000,
+          120079
+        ],
+        "confirmation_seeds": [
+          920000,
+          920079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: intensidad de shock",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R22",
+      "branch": "Relaciones",
+      "title": "Tamaño de grupo",
+      "A": {
+        "claim": "Evaluar comparación de grado crudo vs densidad normalizada en grupos de tamaños distintos",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "diferencia espuria por tamaño",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "con tamaños iguales coinciden",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          121000,
+          121079
+        ],
+        "confirmation_seeds": [
+          921000,
+          921079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: ratio de tamaños",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R23",
+      "branch": "Relaciones",
+      "title": "Aristas ausentes MAR",
+      "A": {
+        "claim": "Contrastar tasa de conexiones observada vs reponderada con probabilidad de observación conocida",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de densidad de red",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "ponderar no siempre reduce varianza",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          122000,
+          122079
+        ],
+        "confirmation_seeds": [
+          922000,
+          922079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: propensión heterogénea",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "R24",
+      "branch": "Relaciones",
+      "title": "Doble conteo de díadas",
+      "A": {
+        "claim": "Evaluar contador de dyadas en matriz simétrica vs contador único",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error sobre número de relaciones reales",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin simetría el supuesto de díadas no aplica",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          123000,
+          123079
+        ],
+        "confirmation_seeds": [
+          923000,
+          923079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: representación orientada vs no orientada",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F25",
+      "branch": "Fantasy/ML",
+      "title": "Exposición desigual",
+      "A": {
+        "claim": "Contrastar recuento bruto y rendimiento por oportunidad bajo distinta exposición",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de calidad sintética definida por probabilidad",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin diferencias de exposición no hay ventaja",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          124000,
+          124079
+        ],
+        "confirmation_seeds": [
+          924000,
+          924079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: heterogeneidad de exposición",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F26",
+      "branch": "Fantasy/ML",
+      "title": "Popularidad y cobertura",
+      "A": {
+        "claim": "Contrastar media observada vs ajuste estratificado por cobertura en popularidad",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "error de valor medio sintético",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "si cobertura igual no corrige",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          125000,
+          125079
+        ],
+        "confirmation_seeds": [
+          925000,
+          925079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: frecuencia de exposición pública",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F27",
+      "branch": "Fantasy/ML",
+      "title": "Proxy Goodhart",
+      "A": {
+        "claim": "Simular optimización de un score correlacionado imperfectamente con outcome verdadero",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "cambio en outcome verdadero tras seleccionar por proxy",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "proxy perfecto equivale a outcome",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          126000,
+          126079
+        ],
+        "confirmation_seeds": [
+          926000,
+          926079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: intensidad de selección",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F28",
+      "branch": "Fantasy/ML",
+      "title": "Rankings con pocos eventos",
+      "A": {
+        "claim": "Contrastar clasificación por tasa bruta vs regularización con prior de la población",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "regret de selección de top en holdout",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "regularización sesga si la población es heterogénea",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          127000,
+          127079
+        ],
+        "confirmation_seeds": [
+          927000,
+          927079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: baja exposición",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F29",
+      "branch": "Fantasy/ML",
+      "title": "Métrica propia para eventos raros",
+      "A": {
+        "claim": "Contrastar selección por accuracy y log loss para evento minoritario",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "log loss en holdout",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "si probabilidades iguales no hay diferencia",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          128000,
+          128079
+        ],
+        "confirmation_seeds": [
+          928000,
+          928079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: prevalencia y calibración",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    },
+    {
+      "id": "F30",
+      "branch": "Fantasy/ML",
+      "title": "Congelación de puntuaciones",
+      "A": {
+        "claim": "Evaluar cambios retroactivos tras backfill frente a score congelado as-of",
+        "unit": "dataset sintético generado por realización independiente",
+        "population": "modelos generativos artificiales especificados en scripts/ab30d_full.py",
+        "estimand": "tasa de alteraciones retrospectivas del ranking",
+        "true_outcome": "estado conocido del generador",
+        "proxy_outcome": "estadístico observado",
+        "interference": "posible dependencia intrasesión o entre pares según caso"
+      },
+      "B": {
+        "preferred": "una medición/estimador que explicita el mecanismo reduce el error frente a la alternativa",
+        "rival": "sin backfill ambos coinciden",
+        "H_other": "el estimador contrario puede ser igual o mejor por varianza o sesgo de regularización"
+      },
+      "C": {
+        "design": "80 realizaciones prereg en desarrollo y 80 realizaciones independientes de confirmación sintética con generador de stress alterado; paired comparison",
+        "main_seeds": [
+          129000,
+          129079
+        ],
+        "confirmation_seeds": [
+          929000,
+          929079
+        ],
+        "metric": "error o cobertura definidos en el encabezado del caso",
+        "strong_baseline": "control plausible con misma información observada; oracle sólo como verdad de evaluación, jamás predictor",
+        "null_control": "ablación del mecanismo específico: fracción de revisiones",
+        "pass_criterion": "IC bootstrap percentil del efecto pareado excluye 0 en confirmación y mismo signo (NO requisito de descubrir algo)",
+        "multiplicity": "30 hipótesis no pre-declaradas confirmatorias; familia exploratoria, no reivindicar control global FWER"
+      },
+      "D": {
+        "code": "scripts/ab30d_full.py",
+        "freeze": "código y contrato versionados antes de ejecutar",
+        "invariants": "sin contaminación entre semillas de desarrollo y confirmación; parámetros del generador declarados; sin uso del outcome latente en predictores"
+      },
+      "E": {
+        "status": "NOT_EXECUTED"
+      },
+      "F": {
+        "status": "PENDING"
+      },
+      "G": {
+        "status": "PENDING"
+      },
+      "H": {
+        "prior_qualitative": "Mecanismo podría hacer relevante el estimador; incertidumbre alta fuera del generador",
+        "update": "PENDING"
+      },
+      "I": {
+        "scientific_novelty": "0/3 hasta prior art y contraste externo",
+        "real_world_validity": "NONE_SYNTHETIC",
+        "VSDS": "max_1/3"
+      },
+      "J": {
+        "decision": "NOT_EXECUTED"
+      }
+    }
+  ]
+}
