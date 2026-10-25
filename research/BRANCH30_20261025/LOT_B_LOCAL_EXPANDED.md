@@ -1,0 +1,3 @@
+## LOT B: descriptive sociology, cycles BR30-07..12
+Decided after 6/6 A controls passed with historical as-of preserved; prerequisite now satisfied for synthetic descriptive tests (NOT Spanish political findings). New branch D1.7: from record integrity to sociological measurement.
+07 explicit non-response not inferred from gaps; 08 participation denominator from recorded eligible opportunities; 09 group prevalence denominator and within-person grain; 10 majority within group at event time; 11 ties and special heterogeneous groups excluded from dissidence; 12 true abstention included as legitimate expressed choice, NO_VOTE excluded from majority. Each test has a naive counterfactual and a fail condition. No empirical source yet; VSDS capped at 1.
