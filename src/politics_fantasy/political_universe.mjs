@@ -53,7 +53,8 @@ export function addActor(reg,a){
  assert(typeof a.name==="string"&&a.name.trim().length>1&&a.name.length<=160,"BAD_ACTOR_NAME");
  assert(typeof a.id==="string"&&/^[A-Z][A-Z0-9_]{1,31}:[A-Za-z0-9._-]{1,80}$/.test(a.id),"BAD_ACTOR_ID");
  assert(typeof a.source_id==="string","ACTOR_REQUIRES_SOURCE");
- lookup(reg,"sources",a.source_id);
+ const src=lookup(reg,"sources",a.source_id);
+ assert(src.state!=="DOCUMENTED_ONLY","ACTOR_SOURCE_NOT_CAPTURED");
  unique(reg,"actors",a.id);
  if(a.kind==="PERSON")assert(a.public_role_documented===true,"PRIVATE_PERSON_EXCLUDED");
  let out={id:a.id,kind:a.kind,name:a.name.trim(),source_id:a.source_id,
@@ -75,6 +76,7 @@ export function addClaim(reg,c){
  assert(ROLES.includes(c.relation),"UNKNOWN_RELATION");
  assert(typeof c.id==="string"&&c.id.length>0,"BAD_CLAIM_ID");unique(reg,"claims",c.id);
  const subject=lookup(reg,"actors",c.subject_id),source=lookup(reg,"sources",c.source_id);
+ assert(source.state!=="DOCUMENTED_ONLY","CLAIM_SOURCE_NOT_CAPTURED");
  assert(isoDate(c.valid_from),"BAD_VALID_FROM");
  assert(c.valid_to===null||c.valid_to===undefined||isoDate(c.valid_to),"BAD_VALID_TO");
  assert(!c.valid_to||c.valid_to>c.valid_from,"BAD_INTERVAL");
@@ -114,6 +116,7 @@ export function addEvent(reg,e){
  assert(EVENTS.includes(e.kind),"UNKNOWN_EVENT");
  assert(typeof e.id==="string"&&e.id.length>0,"BAD_EVENT_ID");unique(reg,"events",e.id);
  const s=lookup(reg,"sources",e.source_id);
+ assert(s.state!=="DOCUMENTED_ONLY","EVENT_SOURCE_NOT_CAPTURED");
  assert(isoDate(e.occurred_on),"BAD_EVENT_DATE");
  assert(instant(e.observed_at)&&Date.parse(e.observed_at)<=Date.parse(s.observed_at),"BAD_EVENT_OBSERVATION");
  assert(e.first_public_at===null||e.first_public_at===undefined||instant(e.first_public_at),"BAD_EVENT_PUBLIC");
