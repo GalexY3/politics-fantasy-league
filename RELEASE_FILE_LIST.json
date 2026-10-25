@@ -1,12 +1,11 @@
 {
-  "release": "v0.6.0",
+  "release": "v0.7 AB30D",
   "files": [
     ".github/workflows/ci.yml",
     ".gitignore",
     "MANIFEST_SHA256.json",
     "R/weekly_models.R",
     "README.md",
-    "RELEASE_FILE_LIST.json",
     "data/pilot_official_webview/20260723_vote_totals_MANUAL.csv",
     "data/pilot_official_webview/SOURCE_LIMITATIONS.md",
     "docs/ALMACEN_BITEMPORAL.md",
@@ -43,6 +42,16 @@
     "research/AB20_REALES_20261024/campaign.json",
     "research/AB20_REALES_20261024/visualize_ct2.py",
     "research/AB30_C01_C30.md",
+    "research/AB30_COMPLETOS_20261025/AB30_audit_types.png",
+    "research/AB30_COMPLETOS_20261025/CT2_full.png",
+    "research/AB30_COMPLETOS_20261025/CT2_zoom.png",
+    "research/AB30_COMPLETOS_20261025/GOVERNANCE.json",
+    "research/AB30_COMPLETOS_20261025/PREREG.json",
+    "research/AB30_COMPLETOS_20261025/PRIORS_DELTA.md",
+    "research/AB30_COMPLETOS_20261025/README.md",
+    "research/AB30_COMPLETOS_20261025/REPORT.md",
+    "research/AB30_COMPLETOS_20261025/RESULTS.json",
+    "research/AB30_COMPLETOS_20261025/RESULTS_AUDITED.json",
     "research/AB30_CYCLES.json",
     "research/AB65_20261024/FREE45_LEDGER.json",
     "research/AB65_20261024/PRODUCTION_DELIVERY.md",
@@ -92,6 +101,8 @@
     "run_demo.py",
     "scripts/HELP_PUBLISH.md",
     "scripts/ab20_c01_pilot.py",
+    "scripts/ab30d_full.py",
+    "scripts/audit_ab30d.py",
     "scripts/bench_field_csv_synthetic.py",
     "scripts/bench_warehouse_synthetic.py",
     "scripts/build_ab20_ledger.py",
@@ -130,6 +141,7 @@
     "start_linux_mac.sh",
     "start_windows.bat",
     "tests/test_ab20_pilot.py",
+    "tests/test_ab30d_full.py",
     "tests/test_core.py",
     "tests/test_evaluation.py",
     "tests/test_field_api.py",
@@ -152,6 +164,7 @@
     "tests/test_rollcall.py",
     "tests/test_sociometrics.py",
     "tests/test_structural.py",
-    "tests/test_warehouse.py"
+    "tests/test_warehouse.py",
+    "RELEASE_FILE_LIST.json"
   ]
 }

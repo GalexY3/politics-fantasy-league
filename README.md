@@ -1,18 +1,5 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
-## 25/10/2026 · v0.7: 30 ciclos A–J completos (PF-AB30-FULL)
-
-Se ejecutaron **18 auditorías retrospectivas** sobre siete votaciones seleccionadas del JSON público de Congreso Abierto y 20 recuentos agregados transcritos de una sola sesión, más **12 experimentos metodológicos sintéticos** con 600 realizaciones cada uno. Cada ciclo tiene ficha A–J, resultado, hipótesis rival, falsador, auditoría, decisión y procedencia. El informe principal es [`research/AB30_FULL_20261025/REPORT.md`](research/AB30_FULL_20261025/REPORT.md); hay `LEDGER.json`, `C01..C30.json` y errata inmutable de C05.
-
-La fuente secundaria seleccionada contiene **7/7 votaciones con totales 350**, pero **6/7** tienen menos registros nominales, sumando **42 entradas omitidas** en esos siete ejemplos. No significa ausencias reales ni afectación de 42 diputados distintos. No hay fuente oficial nominal independiente cotejada; no se extrapola a la legislatura. Ver cuenta anónima con enlace/hash de fuente en `data/upstream_curated_7/`.
-
-**Pre-reg GitHub:** `3bfd2815cf3baf2eabe77830fd2e9a750aafe10f`; **código y datos congelados antes de ejecutar:** `d08a90bae7cb2176b137a3e15b547ec3482303b6`. Los 18 ciclos A–C siguen **POST_HOC_AUDIT** porque los datos ya se habían visto al diseñar; los 12 D–E son experimentos **dentro de generador sintético**, no replicaciones externas. En C05 se conserva errata Pearson/Spearman sin sobrescribir el valor original. **VSDS 1/3** y CT2 predictivo **24/100**, sin cambio; grados científicos originales 2/3 = 0. La suite global supera **152 tests**.
-
-Reproducir investigación (extra: `pip install numpy scipy matplotlib pytest`): `python scripts/ab30_full.py --prereg-commit 3bfd2815cf3baf2eabe77830fd2e9a750aafe10f --code-commit d08a90bae7cb2176b137a3e15b547ec3482303b6`; `python scripts/plot_ab30_full.py`. Para las 147 pruebas previas del producto solo se requiere pytest.
-
-El proyecto permanece alojado temporalmente en `GalexY3/Metodologia-AB/proyectos/politics-fantasy-league/`, y se migrará a `GalexY3/polictics_fantasy_league` cuando se habilite escritura. Las autorizaciones antiguas pendientes 12 B50, 45 libres y 19 AB20 son independientes y no se consumen.
-
-
 **Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.6.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
@@ -128,3 +115,8 @@ Incidencia histórica, resuelta mediante alojamiento alternativo: el intento de 
 Alojamiento temporal en `GalexY3/Metodologia-AB/proyectos/politics-fantasy-league/`; **migrar obligatoriamente** a `GalexY3/polictics_fantasy_league` cuando la integración pueda escribir allí. Ver `research/BRANCH50_20261025/MIGRATION.md`.
 
 50 ciclos con branching autorizados; ejecución inicial: 8 incrementos de ingeniería locales (no experimentos científicos confirmatorios) y 42 ciclos nuevos pendientes. Consultar `research/BRANCH50_20261025/CYCLES.json`. Las 45 plazas libres anteriores NO se consumen con este bloque; AB20 mantiene 19 ciclos pendientes.
+
+
+## AB30D · 30 ciclos completos A–J (2026-10-25)
+
+Investigación metodológica sobre generadores sintéticos — **no** resultado empírico español. [Informe y auditoría](research/AB30_COMPLETOS_20261025/REPORT.md), [ledger A–J auditado](research/AB30_COMPLETOS_20261025/RESULTS_AUDITED.json), [prerregistro congelado](research/AB30_COMPLETOS_20261025/PREREG.json). Ejecución reproducible: `pip install -e .[research,test]` y `python scripts/ab30d_full.py --out /ruta/result.json`; después `python scripts/audit_ab30d.py` para auditar el registro canónico sin sobrescribir el resultado bruto. Resultados: 30 pruebas computacionales ejecutadas, 0 ensayos empíricos nominales; VSDS 1/3, CT2 24/100.
