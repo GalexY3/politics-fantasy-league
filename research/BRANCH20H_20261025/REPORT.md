@@ -54,6 +54,8 @@ El fichero de referencia para la nueva población es [docs/UNIVERSO_ACTORES_POLI
 
 Hay un [CLI local offline](../../scripts/actor_universe_cli.mjs) para leer un JSON contractual y emitir una auditoría agregada sin exponer identificaciones personales. El ejemplo [political_universe_fixture.json](../../examples/political_universe_fixture.json) es **completamente ficticio**. El CLI está escrito y publicado pero **no se probó como proceso real Node en checkout limpio**; el motor y sus tests puros se ejecutaron dentro de V8 de la sesión.
 
+Se integró además un **adaptador de estado de lectura Python** (`src/politics_fantasy/actor_api.py`), expuesto en el servidor local de demo mediante **GET /api/actors**; no devuelve nombres o filiaciones ni permite valorar personas. Se ejecutaron **4/4 comprobaciones Python en una copia local del adaptador** (sin clonar el repositorio completo): casos sin archivo, origen de campo rechazado, recuento ficticio anonimizado y fuentes pretendidamente oficiales rechazadas. El **endpoint HTTP completo no se ha sometido a prueba integrada en este entorno**; no equivale a validación de despliegue.
+
 ## 3. Contabilidad de los 20 ciclos A–J
 
 Los criterios fueron congelados documentalmente ANTES del código en commit GitHub **2b4bddf77b0eb9b513fd153320413324642f4a86**. Las pruebas verificaron invariantes locales, no personas reales. Cada ciclo documenta rivales B, falsador C, ejecución E, auditoría F, ausencia de replicación externa G, revisión H, juicio I y decisión J individualizados en [LEDGER.json](LEDGER.json).
