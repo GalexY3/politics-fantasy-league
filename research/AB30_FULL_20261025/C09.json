@@ -1,0 +1,93 @@
+{
+  "cycle_id": "PF-AB30-FULL-C09",
+  "branch": "B",
+  "status": "POST_HOC_AUDIT",
+  "A": {
+    "question": "Margen de dos opciones o tres",
+    "estimand": "Defined sample diagnostic",
+    "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+    "outcome_proxy": "counts, proportions or loss, not political virtue",
+    "interference": "within-session/group political dependence not modeled"
+  },
+  "B": {
+    "H1": "Adding abstention to margin denominator changes apparent competitiveness",
+    "H0": "Margin independent of abstention share",
+    "H_others": "Metric denominator rather than substantively different polarization."
+  },
+  "C": {
+    "design": "Compare absolute yes-no gap over 2 vs 3 expressed options",
+    "falsifier": "Abstentions never change margin.",
+    "budget": "7+20 secondary field rows, no new sampling",
+    "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+    "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+  },
+  "D": {
+    "source_provenance": {
+      "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+      "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+      "curated_generated_at": "2026-10-05T13:47:46.103Z",
+      "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+    },
+    "instrument": "scripts/ab30_full.py",
+    "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+    "seed": null,
+    "controls": "Competing denominators and group+nominal checks"
+  },
+  "E": {
+    "result": {
+      "two_option_margin": [
+        0.03207,
+        0.598174,
+        0.00295,
+        0.020896,
+        0.043988,
+        0.02029,
+        0.02029
+      ],
+      "three_option_margin": [
+        0.031609,
+        0.378613,
+        0.002882,
+        0.020231,
+        0.043228,
+        0.02029,
+        0.02029
+      ],
+      "max_delta": 0.219561
+    },
+    "source_scope": "CURATED_REAL_EXPLORATORY",
+    "did_execute": true
+  },
+  "F": {
+    "strongest_rival": "Metric denominator rather than substantively different polarization.",
+    "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+    "selection_exposure": "Entire 7 vote panel was inspected before design.",
+    "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+  },
+  "G": {
+    "external_replication": "NOT_AVAILABLE",
+    "independent_confirmation": false,
+    "synthetic_mc": null
+  },
+  "H": {
+    "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+    "abductive_rival": "Metric denominator rather than substantively different polarization.",
+    "new_prior_observation": "PFL-AB30-09",
+    "evidence_origin": "SECONDARY_OBSERVATION"
+  },
+  "I": {
+    "internal_validity": "Limited by manual transfer/source selection",
+    "causal_identification": "NONE_REAL_WORLD",
+    "transportability": "NOT_ESTABLISHED",
+    "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+    "reproducibility": "Re-executable given frozen code/source and seed",
+    "grade_0_3_science": 0,
+    "VSDS_grade_project": 1,
+    "CT2_before": 24,
+    "CT2_after": 24
+  },
+  "J": {
+    "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+    "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+  }
+}

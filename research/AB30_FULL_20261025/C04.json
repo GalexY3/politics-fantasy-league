@@ -1,0 +1,78 @@
+{
+  "cycle_id": "PF-AB30-FULL-C04",
+  "branch": "A",
+  "status": "POST_HOC_AUDIT",
+  "A": {
+    "question": "No-voto frente a omisión de fila",
+    "estimand": "Defined sample diagnostic",
+    "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+    "outcome_proxy": "counts, proportions or loss, not political virtue",
+    "interference": "within-session/group political dependence not modeled"
+  },
+  "B": {
+    "H1": "A missing dictionary entry is not equivalent to an explicit NO_VOTE",
+    "H0": "Missing-record count equals explicit NO_VOTE for every motion",
+    "H_others": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect."
+  },
+  "C": {
+    "design": "Contrast missing keys with official-value NO_VOTE count at same event",
+    "falsifier": "Gap can be equated to aggregate no-votes in every record.",
+    "budget": "7+20 secondary field rows, no new sampling",
+    "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+    "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+  },
+  "D": {
+    "source_provenance": {
+      "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+      "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+      "curated_generated_at": "2026-10-05T13:47:46.103Z",
+      "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+    },
+    "instrument": "scripts/ab30_full.py",
+    "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+    "seed": null,
+    "controls": "Competing denominators and group+nominal checks"
+  },
+  "E": {
+    "result": {
+      "explicit_nonvote": 26,
+      "missing_nominal": 42,
+      "nominal_nonvote": 21,
+      "gap_minus_recorded_nonvote": 16
+    },
+    "source_scope": "CURATED_REAL_EXPLORATORY",
+    "did_execute": true
+  },
+  "F": {
+    "strongest_rival": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect.",
+    "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+    "selection_exposure": "Entire 7 vote panel was inspected before design.",
+    "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+  },
+  "G": {
+    "external_replication": "NOT_AVAILABLE",
+    "independent_confirmation": false,
+    "synthetic_mc": null
+  },
+  "H": {
+    "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+    "abductive_rival": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect.",
+    "new_prior_observation": "PFL-AB30-04",
+    "evidence_origin": "SECONDARY_OBSERVATION"
+  },
+  "I": {
+    "internal_validity": "Limited by manual transfer/source selection",
+    "causal_identification": "NONE_REAL_WORLD",
+    "transportability": "NOT_ESTABLISHED",
+    "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+    "reproducibility": "Re-executable given frozen code/source and seed",
+    "grade_0_3_science": 0,
+    "VSDS_grade_project": 1,
+    "CT2_before": 24,
+    "CT2_after": 24
+  },
+  "J": {
+    "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+    "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+  }
+}
