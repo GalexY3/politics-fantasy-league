@@ -13,14 +13,16 @@ from urllib.parse import urlsplit
 
 from .product import GameError, add_club, seed_demo, set_lineup, state, transfer
 from .lab import local_lab_report
+from .field_api import local_field_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
 PROJECT=HERE.parent.parent
 PILOT=PROJECT/'data/pilot_official_webview/20260723_vote_totals_MANUAL.csv'
+FIELD=PROJECT/'data/local_field/report.json'
 
 
-def handler_factory(db_path: Path, pilot_path: Path | None):
+def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None):
     class Handler(BaseHTTPRequestHandler):
         server_version = 'PoliticsFantasyDemo/0.2'
         sys_version = ''
@@ -50,6 +52,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None):
                 return self.reply(200,state(db_path,pilot_csv=pilot_path))
             if route == '/api/lab':
                 return self.reply(200,local_lab_report())
+            if route == '/api/field':
+                return self.reply(200,local_field_status(field_path))
             if route == '/api/health':
                 return self.reply(200,{'ok':True,'mode':'SYNTHETIC_DEMO','real_player_scoring':False})
             assets={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/style.css':'style.css'}
@@ -95,9 +99,9 @@ def handler_factory(db_path: Path, pilot_path: Path | None):
     return Handler
 
 
-def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT):
+def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT, field_path: Path | None=FIELD):
     seed_demo(db_path)
-    server=ThreadingHTTPServer(('127.0.0.1',port),handler_factory(db_path,pilot_path))
+    server=ThreadingHTTPServer(('127.0.0.1',port),handler_factory(db_path,pilot_path,field_path))
     print(f'Politics Fantasy League · DEMO SINTÉTICA · http://127.0.0.1:{server.server_port}',flush=True)
     print('Sin autenticación: NO exponer a internet. No hay puntos políticos reales.',flush=True)
     try:
