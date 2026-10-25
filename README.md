@@ -1,5 +1,25 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## PF-BR20H — universo político no restringido al Congreso (25/10/2026)
+
+Por autorización adicional, **20 ciclos AB A–J con branching terminados** como **ingeniería basada en categorías legales y fixtures ficticias**: primer pase 18/20, reparaciones C02/C16, segundo pase **20/20**. Ninguna de estas ejecuciones constituye un ensayo sociológico independiente con partidos/personas españoles. VSDS sigue **1/3**; CT2 de la NUEVA rama multiactor = **20/100** sin cambio (ordinal y distinta de la predictiva parlamentaria 24/100). N1/N2/N3 nuevos = 0. Permanecen intactos los saldos autorizados B50=12, AB20=19, F45=45.
+
+El nuevo motor de actores y eventos distingue partidos, federaciones, coaliciones, agrupaciones electorales, plataformas, asociaciones, sindicatos, grupos de interés, medios, instituciones y personas con roles políticos públicos documentados. Los escaños son un dato temporal explícito, no condición de inclusión ni medida de poder. No se infieren afiliaciones privadas, etiquetas ideológicas o influencia causal. 9 figuras/entidades y 2 eventos del ejemplo son **totalmente inventados**.
+
+- [Informe final y falsadores](research/BRANCH20H_20261025/REPORT.md)
+- [Ledger de 20 fichas A–J](research/BRANCH20H_20261025/LEDGER.json)
+- [Prerregistro anterior al código](research/BRANCH20H_20261025/PREREG.md)
+- [Pruebas e integración ficticia](research/BRANCH20H_20261025/RESULTS.json)
+- [Priors nuevos con evidencia negativa](research/BRANCH20H_20261025/PRIORS_DELTA.md)
+- [Fuentes y límites de población](docs/UNIVERSO_ACTORES_POLITICOS_20261025.md)
+- [Motor JS](src/politics_fantasy/political_universe.mjs) · [CLI offline](scripts/actor_universe_cli.mjs) · [tests JS](tests/test_political_universe.mjs)
+- [Bundle completamente ficticio](examples/political_universe_fixture.json)
+- [Ruta Python /api/actors](src/politics_fantasy/actor_api.py): devuelve cobertura agregada del ejemplo, no nombres ni scores. [Tests Python](tests/test_actor_api.py) con 4 comprobaciones superadas sobre una copia local del adaptador; no se ha probado el endpoint HTTP sobre checkout limpio.
+
+**Bloqueos verdaderos:** falta descargar y conciliar un extracto oficial del Registro de Partidos Políticos, candidaturas proclamadas y roles documentados con identidad y temporalidad. Un catálogo público no equivale a dato capturado.
+
+
+
 **Estado (25-10-2026): prototipo de investigación + aplicación local de fantasy v0.6.0. No desplegado, sin autenticación, sin predicciones políticas validadas.**
 
 Repositorio preparado para `GalexY3/polictics_fantasy_league`. El nombre de la carpeta es legible; se conserva la grafía real del repositorio remoto cuando se publique.
