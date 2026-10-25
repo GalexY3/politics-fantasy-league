@@ -1,0 +1,483 @@
+{
+  "type": "REAL_SECONDARY_ELECTORAL_DESCRIPTIVE",
+  "date": "2026-10-26",
+  "provenance": [
+    {
+      "repo": "anerodata/data-elecciones-congreso-espana",
+      "path": "202307.csv",
+      "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+    },
+    {
+      "repo": "rOpenSpain/infoelectoral",
+      "path": "data/partidos_generales.csv",
+      "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+    }
+  ],
+  "source2023": {
+    "dataset": "2023-secondary-province-columns",
+    "scope": "CANDIDACY_LABELS_NOT_VERIFIED_DISTINCT_PARTIES",
+    "provinces": 52,
+    "rows": 52,
+    "labels": 59,
+    "with_positive_vote_no_seat": 48,
+    "with_seat": 11,
+    "labels_data": [
+      {
+        "source_column": "PARTIDO POPULAR_PP",
+        "election": "2023-07",
+        "votes": 8160837,
+        "seats": 137,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "PARTIDO SOCIALISTA OBRERO ESPAÑOL_PSOE",
+        "election": "2023-07",
+        "votes": 7821718,
+        "seats": 121,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "VOX_VOX",
+        "election": "2023-07",
+        "votes": 3057000,
+        "seats": 33,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "SUMAR_SUMAR",
+        "election": "2023-07",
+        "votes": 3044996,
+        "seats": 31,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "ESQUERRA REPUBLICANA DE CATALUNYA_ERC",
+        "election": "2023-07",
+        "votes": 466020,
+        "seats": 7,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "JUNTS PER CATALUNYA - JUNTS_JxCAT - JUNTS",
+        "election": "2023-07",
+        "votes": 395429,
+        "seats": 7,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "EUSKAL HERRIA BILDU_EH Bildu",
+        "election": "2023-07",
+        "votes": 335129,
+        "seats": 6,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "EUZKO ALDERDI JELTZALEA-PARTIDO NACIONALISTA VASCO_EAJ-PNV",
+        "election": "2023-07",
+        "votes": 277289,
+        "seats": 5,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "BLOQUE NACIONALISTA GALEGO_B.N.G.",
+        "election": "2023-07",
+        "votes": 153995,
+        "seats": 1,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "COALICIÓN CANARIA_CCa",
+        "election": "2023-07",
+        "votes": 116363,
+        "seats": 1,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "UNION DEL PUEBLO NAVARRO_U.P.N.",
+        "election": "2023-07",
+        "votes": 52188,
+        "seats": 1,
+        "electoral_status": "CONGRESS_SEAT_RECORDED"
+      },
+      {
+        "source_column": "PARTIDO ANIMALISTA CON EL MEDIO AMBIENTE_PACMA",
+        "election": "2023-07",
+        "votes": 169237,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "CANDIDATURA D'UNITAT POPULAR-PER LA RUPTURA_CUP-PR",
+        "election": "2023-07",
+        "votes": 99644,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "FRENTE OBRERO_FO",
+        "election": "2023-07",
+        "votes": 46274,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "NUEVA CANARIAS - BLOQUE CANARISTA_NC-bc",
+        "election": "2023-07",
+        "votes": 45595,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIT DEMÒCRATA EUROPEU CATALÀ-ESPAI CIU_PDeCAT-E-CiU",
+        "election": "2023-07",
+        "votes": 32016,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "RECORTES CERO_RECORTES CERO",
+        "election": "2023-07",
+        "votes": 23421,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "POR UN MUNDO MÁS JUSTO_PUM+J",
+        "election": "2023-07",
+        "votes": 23290,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "UNIÓN DEL PUEBLO LEONÉS_U.P.L.",
+        "election": "2023-07",
+        "votes": 23201,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ARAGÓN EXISTE - COALICIÓN EXISTE_EXISTE",
+        "election": "2023-07",
+        "votes": 20440,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO COMUNISTA DE LOS TRABAJADORES DE ESPAÑA_PCTE",
+        "election": "2023-07",
+        "votes": 18218,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "GEROA BAI_GBAI",
+        "election": "2023-07",
+        "votes": 9938,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "SORIA ¡YA!_SY",
+        "election": "2023-07",
+        "votes": 9697,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ADELANTE ANDALUCÍA_ADELANTE ANDALUCÍA",
+        "election": "2023-07",
+        "votes": 9191,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ESCAÑOS EN BLANCO PARA DEJAR ESCAÑOS VACÍOS_ESCAÑOS EN BLANCO",
+        "election": "2023-07",
+        "votes": 8448,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "JAÉN MERECE MÁS_JM+",
+        "election": "2023-07",
+        "votes": 8293,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "POR ÁVILA_XAV",
+        "election": "2023-07",
+        "votes": 7362,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "BLOQUE EXTREMEÑO_BQEX",
+        "election": "2023-07",
+        "votes": 5807,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "CAMINANDO JUNTOS_CJ",
+        "election": "2023-07",
+        "votes": 5620,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "FALANGE ESPAÑOLA DE LAS J.O.N.S._FE de las JONS",
+        "election": "2023-07",
+        "votes": 4683,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO ARAGONÉS_PAR",
+        "election": "2023-07",
+        "votes": 4173,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ESPAÑA VACIADA_ESPAÑA VACIADA",
+        "election": "2023-07",
+        "votes": 3158,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO HUMANISTA_PH",
+        "election": "2023-07",
+        "votes": 2902,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ASTURIAS EXISTE-ESPAÑA VACIADA_ASTURIAS EXISTE EV",
+        "election": "2023-07",
+        "votes": 2314,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "POR HUELVA_XH",
+        "election": "2023-07",
+        "votes": 1931,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "VAMOS PALENCIA_VP",
+        "election": "2023-07",
+        "votes": 1917,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ZAMORA SÍ_Zsi",
+        "election": "2023-07",
+        "votes": 1843,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "VÍA BURGALESA_VB",
+        "election": "2023-07",
+        "votes": 1774,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "POR MI REGIÓN_POR MI REGIÓN",
+        "election": "2023-07",
+        "votes": 1698,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "AHORA CANARIAS-PARTIDO COMUNISTA DEL PUEBLO CANARIO_AHORA CANARIAS-PCPC",
+        "election": "2023-07",
+        "votes": 1674,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO AUTÓNOMOS_PARTIDO AUTÓNOMOS",
+        "election": "2023-07",
+        "votes": 1446,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ESTAT VALENCIÀ DEL BENESTAR_EVB",
+        "election": "2023-07",
+        "votes": 1442,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "COALICIÓN POR MELILLA_CpM",
+        "election": "2023-07",
+        "votes": 1298,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "JUNTOS POR GRANADA_JxG",
+        "election": "2023-07",
+        "votes": 1218,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ESPAÑA VACIADA-PARTIDO CASTELLANO-TIERRA COMUNERA_EV-PCAS-TC",
+        "election": "2023-07",
+        "votes": 1184,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO REGIONALISTA DEL PAÍS LEONÉS_PREPAL",
+        "election": "2023-07",
+        "votes": 964,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "SOMOS CÁCERES_Somos Cc",
+        "election": "2023-07",
+        "votes": 963,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ALMERIENSES - REGIONALISTAS PRO ALMERÍA_ALM",
+        "election": "2023-07",
+        "votes": 874,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "FEDERACIÓN DE LOS INDEPENDIENTES DE ARAGÓN_F.I.A.",
+        "election": "2023-07",
+        "votes": 506,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "TERCERA EDAD EN ACCIÓN_3e",
+        "election": "2023-07",
+        "votes": 484,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "UNIDAD CASTELLANA_Ud.Ca",
+        "election": "2023-07",
+        "votes": 463,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "GRUPO INDEPENDIENTE PALENCIA TIERRA VIVA_GITV",
+        "election": "2023-07",
+        "votes": 366,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "PARTIDO UNIONISTA ESTADO DE ESPAÑA_PUEDE",
+        "election": "2023-07",
+        "votes": 269,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "ENTRE VEÏNS CATALUNYA_EVC",
+        "election": "2023-07",
+        "votes": 265,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "LIBRES_LB",
+        "election": "2023-07",
+        "votes": 263,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "UNIDOS POR LA SOLIDARIDAD INTERNACIONAL_UNIDOS SI",
+        "election": "2023-07",
+        "votes": 253,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "REFERÉNDUM SISTEMA DINERO_+RDS+",
+        "election": "2023-07",
+        "votes": 165,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "COALICIÓN DE CENTRO DEMOCRÁTICO_CCD",
+        "election": "2023-07",
+        "votes": 153,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      },
+      {
+        "source_column": "FUERZA CÍVICA_FUERZA CÍVICA",
+        "election": "2023-07",
+        "votes": 115,
+        "seats": 0,
+        "electoral_status": "VOTES_WITHOUT_CONGRESS_SEAT"
+      }
+    ]
+  },
+  "sourceHistorical": {
+    "dataset": "rOpenSpain/infoelectoral-historic",
+    "rows": 1057,
+    "elections_by_year": {
+      "1977": 82,
+      "1979": 52,
+      "1982": 61,
+      "1986": 51,
+      "1989": 63,
+      "1993": 85,
+      "1996": 69,
+      "2000": 97,
+      "2004": 96,
+      "2008": 98,
+      "2011": 62,
+      "2015": 56,
+      "2016": 51,
+      "2019": 134
+    },
+    "distinct_dataset_codes": 260,
+    "positive_vote_rows": 1037,
+    "zero_vote_rows": 20,
+    "codes_with_multiple_denominations": 149,
+    "important_limit": "This is 1977-2019 longitudinal list, not the up-to-date RPP nor a historical person-role roster"
+  },
+  "crossSource": {
+    "sources": 2,
+    "overlap_years": 0,
+    "historical_last_year": 2019,
+    "recent_election_year": 2023,
+    "cross_source_identity_merge": "NOT_PERFORMED",
+    "official_independent_replication": false,
+    "political_impact_inferred": false
+  },
+  "coverage": {
+    "electoral_labels": 59,
+    "zero_seat_labels_with_votes": 48,
+    "nonparliament_inclusion_factor": 48,
+    "not_a_measure_of_influence": true,
+    "warning": "A 2023 slate/coalition label is not necessarily a registered party; this dataset does not contain people"
+  },
+  "gate": "NOT_OFFICIAL_INDEPENDENT_VALIDATION",
+  "note": "Do not infer influence, political quality, personal identity, current registration or result predictions from labels/votes."
+}
