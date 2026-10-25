@@ -1,0 +1,1997 @@
+{
+  "campaign": "PFL-BR30E",
+  "authorized": 30,
+  "full_A_to_J_documented": 30,
+  "source_audits_not_independent_experiments": 30,
+  "empirical_causal_experiments": 0,
+  "independent_nominal_confirmations": 0,
+  "source_data": "public secondary curated and 2175-vote file",
+  "status": "DESCRIPTIVE_POSTHOC_OR_SOURCE_EXPOSED",
+  "levels": {
+    "VSDS": 1,
+    "CT2_predictive": 24,
+    "AB_2_of_3": 0
+  },
+  "cycles": [
+    {
+      "id": "PF_AB30E_C01",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Importador: orden de cómputo y resolución de identidades",
+      "A": {
+        "estimand": "Importador: orden de cómputo y resolución de identidades",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Los totales se calculan antes de intentar emparejar nombres con catálogo vigente",
+        "null_or_rival": "El programa alteraría los agregados cuando falla el match",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Revisar orden de cuenta[letra]++ y if(cod) de importar-votaciones.ts",
+        "falsifier": "El programa alteraría los agregados cuando falla el match",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "El contador oficial se incrementa antes de if(cod); grupoDe y votos solo si cod existe",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/scripts/importar-votaciones.ts"
+      },
+      "F": {
+        "adversarial_audit": "Rastro de implementación, no verificación de cada registro",
+        "strongest_rival": "El programa alteraría los agregados cuando falla el match",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Rastro de implementación, no verificación de cada registro"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C02",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Capacidad mecánica de producir huecos",
+      "A": {
+        "estimand": "Capacidad mecánica de producir huecos",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Bajo proyección parcial de nombres se mantiene suma agregada pero disminuye número vinculado",
+        "null_or_rival": "No puede aparecer hueco si totales son correctos",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Derivar identidad recuento_total = recuento_nominal + nombres_no_resueltos",
+        "falsifier": "No puede aparecer hueco si totales son correctos",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "Suma independiente de mapa actual; igualdad solo si todos resueltos",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/scripts/importar-votaciones.ts"
+      },
+      "F": {
+        "adversarial_audit": "Identidad condicionada al mecanismo del programa, no explicación exclusiva",
+        "strongest_rival": "No puede aparecer hueco si totales son correctos",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Identidad condicionada al mecanismo del programa, no explicación exclusiva"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C03",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Descomposición de siete votaciones curadas",
+      "A": {
+        "estimand": "Descomposición de siete votaciones curadas",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Diferencia agregados-nominal = 42 posiciones de votación",
+        "null_or_rival": "Un recuento distinto contradice la transcripción anterior",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Sumar 4,0,4,4,4,8,18 y 21+16+0+5",
+        "falsifier": "Un recuento distinto contradice la transcripción anterior",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "42 posiciones; 21 YES, 16 NO, 0 ABSTAIN, 5 NO_VOTE",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/congreso/votaciones.json"
+      },
+      "F": {
+        "adversarial_audit": "Muestra seleccionada, no población general",
+        "strongest_rival": "Un recuento distinto contradice la transcripción anterior",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Muestra seleccionada, no población general"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C04",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "No votar no es no tener ID",
+      "A": {
+        "estimand": "No votar no es no tener ID",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "NO_VOTE declarado y falta por catálogo son mecanismos distintos",
+        "null_or_rival": "Ambos son siempre equivalentes",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparar NO_VOTE declarado (26) y huecos de ID (42) en siete votos",
+        "falsifier": "Ambos son siempre equivalentes",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "26 no-votos explícitos frente a 42 posiciones sin correspondencia",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/congreso/votaciones.json"
+      },
+      "F": {
+        "adversarial_audit": "26 es total declarado explícito en siete ejemplos, no asistencia ni ausencia personal",
+        "strongest_rival": "Ambos son siempre equivalentes",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "26 es total declarado explícito en siete ejemplos, no asistencia ni ausencia personal"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C05",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "RDL 8/2026: cotejo oficial agregado",
+      "A": {
+        "estimand": "RDL 8/2026: cotejo oficial agregado",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "La terna 166/177/5 coincide con ficha institucional de 28/04",
+        "null_or_rival": "Alguna categoría difiere",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparación exacta mismo expediente 130/000039, misma fecha",
+        "falsifier": "Alguna categoría difiere",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "166/177/5 coincide",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "No coteja nominal oficial ni fecha de primera publicación",
+        "strongest_rival": "Alguna categoría difiere",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No coteja nominal oficial ni fecha de primera publicación"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C06",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Alquiler temporada 2024: cotejo oficial",
+      "A": {
+        "estimand": "Alquiler temporada 2024: cotejo oficial",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Terna 176/169/0 coincide con 17/12/2024",
+        "null_or_rival": "Alguna categoría difiere",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparación exacta expediente 122/000136",
+        "falsifier": "Alguna categoría difiere",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "176/169/0 coincide",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "No certifica lista nominal",
+        "strongest_rival": "Alguna categoría difiere",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No certifica lista nominal"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C07",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Pisos turísticos 2025: cotejo oficial",
+      "A": {
+        "estimand": "Pisos turísticos 2025: cotejo oficial",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Terna 176/169/0 coincide con 07/10/2025",
+        "null_or_rival": "Alguna categoría difiere",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparación por fecha y expediente 122/000214",
+        "falsifier": "Alguna categoría difiere",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "176/169/0 coincide",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "No certifica lista nominal",
+        "strongest_rival": "Alguna categoría difiere",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No certifica lista nominal"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C08",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Ocupación 2026: cotejo oficial",
+      "A": {
+        "estimand": "Ocupación 2026: cotejo oficial",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Terna 171/164/11 coincide con 19/05/2026",
+        "null_or_rival": "Alguna categoría difiere",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparación expediente 122/000254",
+        "falsifier": "Alguna categoría difiere",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "171/164/11 coincide",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "No certifica lista nominal",
+        "strongest_rival": "Alguna categoría difiere",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No certifica lista nominal"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C09",
+      "parent": "PFL-BR30E",
+      "type": "POST_HOC_AUDIT",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Vivienda Sumar septiembre: cotejo oficial",
+      "A": {
+        "estimand": "Vivienda Sumar septiembre: cotejo oficial",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Terna 44/175/127 coincide con 15/09/2026",
+        "null_or_rival": "Alguna categoría difiere",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparación expediente 122/000251",
+        "falsifier": "Alguna categoría difiere",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "44/175/127 coincide",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "No certifica lista nominal",
+        "strongest_rival": "Alguna categoría difiere",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No certifica lista nominal"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C10",
+      "parent": "PFL-BR30E",
+      "type": "INCONCLUSIVE_SOURCE_SCOPE",
+      "prereg_git": "ea1cb76df82e67c44c0e25c2c1f6b9732e3a5f32",
+      "research_title": "Cotejo agregado y límites de identidad",
+      "A": {
+        "estimand": "Cotejo agregado y límites de identidad",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "source-selected 7 votes",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Que coincidan los totales no demuestra correspondencia nominal completa",
+        "null_or_rival": "Totales permiten inferir lista de individuos sin ambigüedad",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Buscar evidencia nominal independiente para los cinco casos",
+        "falsifier": "Totales permiten inferir lista de individuos sin ambigüedad",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "publicly known seven votes"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+        "code_freeze": "upstream source code hash 2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e"
+      },
+      "E": {
+        "observed": "Ninguna de las cinco páginas agregadas resuelve los nombres ausentes",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://www.congreso.es/es/opendata/votaciones"
+      },
+      "F": {
+        "adversarial_audit": "Concluir incertidumbre residual, no ausencia o error del Congreso",
+        "strongest_rival": "Totales permiten inferir lista de individuos sin ambigüedad",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "posthoc"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Concluir incertidumbre residual, no ausencia o error del Congreso"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C11",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Ámbito temporal del archivo de Pleno",
+      "A": {
+        "estimand": "Ámbito temporal del archivo de Pleno",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Archivo revisado contiene 2175 votos 2023-09-19 a 2026-09-30",
+        "null_or_rival": "Otra cantidad o fechas lo contradicen",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Contar JSONL tras sha y fechas ISO",
+        "falsifier": "Otra cantidad o fechas lo contradicen",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "2175 votos; 2023-09-19—2026-09-30",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Universo de archivo secundario, no censo de votaciones secretas",
+        "strongest_rival": "Otra cantidad o fechas lo contradicen",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Universo de archivo secundario, no censo de votaciones secretas"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C12",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Unicidad de votaciones",
+      "A": {
+        "estimand": "Unicidad de votaciones",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "No hay IDs de votación duplicados en archivo",
+        "null_or_rival": "Existen colisiones de clave sesión+votación",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Contar IDs distintos",
+        "falsifier": "Existen colisiones de clave sesión+votación",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "2175 ids únicos para 2175 registros",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No certifica completitud de sesiones",
+        "strongest_rival": "Existen colisiones de clave sesión+votación",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No certifica completitud de sesiones"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C13",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Conservación de capacidad de la Cámara",
+      "A": {
+        "estimand": "Conservación de capacidad de la Cámara",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Ningún total supera 350; algunos son inferiores",
+        "null_or_rival": "Algún total > 350",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Suma de cuatro categorías por fila",
+        "falsifier": "Algún total > 350",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "0 >350; 32 menores de 350",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No equiparar total<350 a diputado ausente",
+        "strongest_rival": "Algún total > 350",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No equiparar total<350 a diputado ausente"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C14",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Suma de votos de grupos históricos",
+      "A": {
+        "estimand": "Suma de votos de grupos históricos",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Suma de 4 opciones por grupo igual a agregado cuando existe grupo",
+        "null_or_rival": "Existen grupos que no concilian",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Reagregar 19561 grupo×voto",
+        "falsifier": "Existen grupos que no concilian",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "0 conflictos; 19561 registros de grupo",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Derivados de mismo JSON del Congreso, no fuentes independientes",
+        "strongest_rival": "Existen grupos que no concilian",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Derivados de mismo JSON del Congreso, no fuentes independientes"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C15",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Magnitud de falta de vinculación nominal",
+      "A": {
+        "estimand": "Magnitud de falta de vinculación nominal",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "34654 posiciones no están vinculadas o carecen de nominal",
+        "null_or_rival": "Todos los votos están nominalizados",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "761218 - 726564",
+        "falsifier": "Todos los votos están nominalizados",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "34654 posiciones; incluye 700 de dos votos sin nominal",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Denominador es posición-voto, no persona única",
+        "strongest_rival": "Todos los votos están nominalizados",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Denominador es posición-voto, no persona única"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C16",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Diferencia por categoría en votos con nominal",
+      "A": {
+        "estimand": "Diferencia por categoría en votos con nominal",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Faltantes aparecen también en Sí y No, no solo No vota",
+        "null_or_rival": "Toda diferencia es NO_VOTE",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Suma por S/N/A/X en 2173 votos",
+        "falsifier": "Toda diferencia es NO_VOTE",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "YES 14579; NO 15491; ABSTAIN 2841; NO_VOTE 1043",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No deduce por qué persona concreta falta",
+        "strongest_rival": "Toda diferencia es NO_VOTE",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No deduce por qué persona concreta falta"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C17",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Frecuencia de correspondencia completa",
+      "A": {
+        "estimand": "Frecuencia de correspondencia completa",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "La mayoría de votaciones tiene mapeo nominal parcial",
+        "null_or_rival": "La mayoría es completa",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Contar igualdades y déficits sobre 2173 votos con nominal",
+        "falsifier": "La mayoría es completa",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "95 completas; 2078 parciales",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Dependencia fuerte entre votos del mismo periodo",
+        "strongest_rival": "La mayoría es completa",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Dependencia fuerte entre votos del mismo periodo"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C18",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Tamaño por año",
+      "A": {
+        "estimand": "Tamaño por año",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Distribución de votaciones y sesiones varía entre años",
+        "null_or_rival": "Volumen uniforme en años",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Contar votos/sesiones por año",
+        "falsifier": "Volumen uniforme en años",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "2023:32/5; 2024:862/52; 2025:741/50; 2026:540/37",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "2023 y 2026 no son años completos",
+        "strongest_rival": "Volumen uniforme en años",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "2023 y 2026 no son años completos"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C19",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Cobertura nominal por año",
+      "A": {
+        "estimand": "Cobertura nominal por año",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Proporción de IDs vinculados crece en año del evento",
+        "null_or_rival": "Es similar en 2023 y 2026",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Dividir vinculados/posiciones por año",
+        "falsifier": "Es similar en 2023 y 2026",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "2023 85.830%; 2024 92.334%; 2025 96.824%; 2026 99.098%",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Efecto esperado por catalogación retrospectiva y cobertura, no participación",
+        "strongest_rival": "Es similar en 2023 y 2026",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Efecto esperado por catalogación retrospectiva y cobertura, no participación"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C20",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Sensibilidad al clustering por sesión",
+      "A": {
+        "estimand": "Sensibilidad al clustering por sesión",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Desigualdad 2026-2023 persiste al remuestrear sesiones",
+        "null_or_rival": "Diferencia desaparece al tratar sesiones como bloques",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Bootstrap 1000 resamples de sesiones; LCG semilla 20261025",
+        "falsifier": "Diferencia desaparece al tratar sesiones como bloques",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "Intervalo de sensibilidad 12.42 a 15.72 puntos porcentuales",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "5 sesiones en 2023; NO intervalo inferencial de población aleatoria",
+        "strongest_rival": "Diferencia desaparece al tratar sesiones como bloques",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "5 sesiones en 2023; NO intervalo inferencial de población aleatoria"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C21",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Votos sin nominal",
+      "A": {
+        "estimand": "Votos sin nominal",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Existen registros con total pero sin mapa nominal",
+        "null_or_rival": "Todos son mapeados al menos parcialmente",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Inspeccionar map S/N/A/X vacío",
+        "falsifier": "Todos son mapeados al menos parcialmente",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "Dos votaciones sin nominal (2025-01-22 y 2026-09-30)",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Posible forma de votación/procedimiento; no imputar 350 ausentes",
+        "strongest_rival": "Todos son mapeados al menos parcialmente",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Posible forma de votación/procedimiento; no imputar 350 ausentes"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C22",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "No-votos declarados y temporalidad",
+      "A": {
+        "estimand": "No-votos declarados y temporalidad",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Los no-votos explícitos cambian por periodo",
+        "null_or_rival": "Categoría NO_VOTE es residual de falta de ID",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Contar totales.noVota por año",
+        "falsifier": "Categoría NO_VOTE es residual de falta de ID",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "7973 explícitos total; por año 96/3760/2618/1499",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No ausencias personales; sintaxis fuente preservada",
+        "strongest_rival": "Categoría NO_VOTE es residual de falta de ID",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No ausencias personales; sintaxis fuente preservada"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C23",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Tamaño de grupo y denominadores",
+      "A": {
+        "estimand": "Tamaño de grupo y denominadores",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "19561 filas grupo×voto; grupos de composición variable",
+        "null_or_rival": "Un grupo fijo y uniforme funciona en todos los periodos",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Revisar 4 contadores por grupo y votos",
+        "falsifier": "Un grupo fijo y uniforme funciona en todos los periodos",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "19561 pares de grupo histórico y votación",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No asumir disciplina de grupos por suma aritmética",
+        "strongest_rival": "Un grupo fijo y uniforme funciona en todos los periodos",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No asumir disciplina de grupos por suma aritmética"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C24",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Empates en opción modal",
+      "A": {
+        "estimand": "Empates en opción modal",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Los empates entre opciones expresadas deben registrarse",
+        "null_or_rival": "Nunca existen empates",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Mayoría clara entre S/N/A, excluyendo X",
+        "falsifier": "Nunca existen empates",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "36 pares grupo-voto con empate de opción expresada",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Grupo Mixto heterogéneo",
+        "strongest_rival": "Nunca existen empates",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Grupo Mixto heterogéneo"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C25",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Concentración modal por grupo",
+      "A": {
+        "estimand": "Concentración modal por grupo",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "La concentración es alta en conteos por grupo",
+        "null_or_rival": "Conteos internos se reparten homogéneamente",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Suma maxima(S,N,A) / suma expresados por grupo",
+        "falsifier": "Conteos internos se reparten homogéneamente",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "99.4525% de los votos expresados",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Descriptivo de agregado, no métrica de obediencia ni causalidad",
+        "strongest_rival": "Conteos internos se reparten homogéneamente",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Descriptivo de agregado, no métrica de obediencia ni causalidad"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C26",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Ablación de grupo mixto y grupos pequeños",
+      "A": {
+        "estimand": "Ablación de grupo mixto y grupos pequeños",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Cambiar universo analítico modifica concentración modal",
+        "null_or_rival": "Excluir grupos heterogéneos y pequeños no cambia indicador",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Excluir GMx y grupos con <=5 votos totales",
+        "falsifier": "Excluir grupos heterogéneos y pequeños no cambia indicador",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "99.9185% concentración filtrada vs 99.4525% completa",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Selección de universos impide comparar como efecto causal",
+        "strongest_rival": "Excluir grupos heterogéneos y pequeños no cambia indicador",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Selección de universos impide comparar como efecto causal"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C27",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Ponderación de votaciones frente a sesiones",
+      "A": {
+        "estimand": "Ponderación de votaciones frente a sesiones",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Media de cobertura depende de unidad de agregación",
+        "null_or_rival": "Ambos estimadores son iguales",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Cobertura ponderada por fila vs media igual por sesión",
+        "falsifier": "Ambos estimadores son iguales",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "95.5354% por posición-voto vs 95.2753% media por sesión",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No confundir unidades ni inferir significación",
+        "strongest_rival": "Ambos estimadores son iguales",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No confundir unidades ni inferir significación"
+      },
+      "J": {
+        "decision": "CONTINUE_AUDIT_NO_CAUSAL_CLAIM",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C28",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Sensibilidad a mitad temporal",
+      "A": {
+        "estimand": "Sensibilidad a mitad temporal",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Cobertura primera y segunda mitad difiere",
+        "null_or_rival": "Ambas mitades son idénticas",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Dividir 2173 eventos nominalizados por orden temporal",
+        "falsifier": "Ambas mitades son idénticas",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "92.7374% primera mitad vs 98.3307% segunda",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "Corte arbitrario, estudio exploratorio, efecto del propio matching",
+        "strongest_rival": "Ambas mitades son idénticas",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Corte arbitrario, estudio exploratorio, efecto del propio matching"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C29",
+      "parent": "PFL-BR30E",
+      "type": "SOURCE_AUDIT_EXPLORATORY",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Identidades resolubles a lo largo del tiempo",
+      "A": {
+        "estimand": "Identidades resolubles a lo largo del tiempo",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Universo de IDs vinculados crece de 305 a 350 a lo largo de periodo",
+        "null_or_rival": "Cobertura de códigos igual desde el inicio",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Unión de códigos por año sin publicarlos",
+        "falsifier": "Cobertura de códigos igual desde el inicio",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "305/332/343/350; unión total 350; 305 comunes 2023/2026",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://github.com/MarcoAnarmo/CongresoAbierto/blob/main/data/raw/votaciones/pleno.jsonl"
+      },
+      "F": {
+        "adversarial_audit": "No representar composición efectiva histórica de la Cámara",
+        "strongest_rival": "Cobertura de códigos igual desde el inicio",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "No representar composición efectiva histórica de la Cámara"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    },
+    {
+      "id": "PF_AB30E_C30",
+      "parent": "PFL-BR30E",
+      "type": "INCONCLUSIVE_SOURCE_SCOPE",
+      "prereg_git": "db28924d3fac80fe635f7baeece013372bc94488",
+      "research_title": "Triangulación macro con otro observatorio",
+      "A": {
+        "estimand": "Triangulación macro con otro observatorio",
+        "unit": "vote, group-vote or source definition as indicated",
+        "population": "2175 historical votes in one secondary file",
+        "field_data_provenance": "secondary public parliamentary-source reconstruction, not direct independent official nominal certification",
+        "outcome_truth": "source-measured counts; original official JSON must be compared separately"
+      },
+      "B": {
+        "preferred": "Fuentes publican recuentos no idénticos y no son comparables fila a fila sin emparejar",
+        "null_or_rival": "Cifras idénticas y definiciones sincronizadas",
+        "H_otras": "schema drift; catalog censoring; delayed publication; editorial selection"
+      },
+      "C": {
+        "design": "Comparar solo metadatos agregados publicados a 25/10/2026",
+        "falsifier": "Cifras idénticas y definiciones sincronizadas",
+        "budget": "one source audit, no repeated optional testing; no confirmatory p-value",
+        "preselection": "fixed upstream history; first coarse counts exposed before B freeze"
+      },
+      "D": {
+        "instrument": "GitHub blob-locked source count; independent aggregation/check where possible; test suite",
+        "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+        "code_freeze": "a309b5d58f2f2b6e5b113be8409be947c3a4d6b6"
+      },
+      "E": {
+        "observed": "CongresoAbierto 2175/726564/350 códigos; QuienVota 2176/761568/412 personas históricas",
+        "status": "EXECUTED_DESCRIPTIVE_SOURCE_AUDIT",
+        "data_source": "https://quienvota.org/"
+      },
+      "F": {
+        "adversarial_audit": "Diferencia 1 votación y 35004 votos reportados; no confirmar causas por falta de join",
+        "strongest_rival": "Cifras idénticas y definiciones sincronizadas",
+        "control_result": "checks against alternative category / denominator; does not remove source dependence",
+        "selection_exposure": "source-exposed exploratory after preliminary read"
+      },
+      "G": {
+        "independent_external_replication": "NOT_AVAILABLE",
+        "reason": "public secondary transformations and official aggregates do not independently verify individual historical identities"
+      },
+      "H": {
+        "prior_update": "Source coverage / roster history remains an evidence bottleneck; mechanistic explanation strengthens only instrument inference, not causality",
+        "no_posterior_numeric_due_to_selection": true,
+        "next_discriminating_evidence": "original official nominal JSON and rosters by date; independent join"
+      },
+      "I": {
+        "internal_validity": "descriptive arithmetic/code inspection within frozen blob",
+        "external_validity": "NOT_ESTABLISHED",
+        "causal_identification": "NONE",
+        "scientific_originality": "NOT_CLAIMED",
+        "value_for_sociology": "audit observability; avoid false participation/rankings",
+        "ethics": "no individual identity rows copied into report",
+        "limitations": "Diferencia 1 votación y 35004 votos reportados; no confirmar causas por falta de join"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "reason": "next meaningful evidence must be independent nominal/roster source; R5 prevents redundant resampling",
+        "VSDS_project_after": "1/3",
+        "CT2_predictive_after": 24,
+        "AB_grade": "0/3 (no novel external confirmation)"
+      }
+    }
+  ]
+}
