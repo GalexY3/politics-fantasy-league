@@ -229,3 +229,4 @@ El bloque está **autorizado**, pero cada entrada es un **candidato** condiciona
 - H **prior**: NO_UPDATED, a la espera de evidencia.
 - I **dictamen**: NOT_ASSESSED; CT2 no puntuado.
 - J **decisión**: NOT_MADE; decidir después de ciclo precedente.
+
