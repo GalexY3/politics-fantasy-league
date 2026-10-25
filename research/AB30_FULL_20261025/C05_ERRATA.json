@@ -1,0 +1,14 @@
+{
+  "cycle_id":"PF-AB30-FULL-C05",
+  "original_code_commit":"d08a90bae7cb2176b137a3e15b547ec3482303b6",
+  "severity":"STATISTIC_MISLABELED",
+  "original_label":"spearman_approx_corr",
+  "actual_computation":"Pearson product-moment correlation of chronological ordinal position [0..6] with nominal missing count",
+  "old_value":-0.8285098499285157,
+  "correct_rank_statistic":"Spearman rho with average ranks for ties",
+  "correct_value":-0.9063269671749657,
+  "independent_manual_check":"scipy.stats.spearmanr(range(7),[18,8,4,4,4,4,0])",
+  "interpretation":"Both describe a monotone ordering in seven cherry-picked source examples. Neither is a validated time trend or causal effect.",
+  "original_result_mutated":false,
+  "decision":"CORRECT_LABEL_IN_REPORT; KEEP_ORIGINAL_C05_AS_INVALID_FOR_SPEARMAN_CLAIM; separate prospective tests needed"
+}

@@ -1,0 +1,2599 @@
+{
+  "campaign": "PF-AB30-FULL",
+  "prereg": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f",
+  "frozen_code": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+  "cycles": [
+    {
+      "cycle_id": "PF-AB30-FULL-C01",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Conservación grupos-total",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Group counts equal aggregate counts in all seven source records",
+        "H0": "At least one source record fails conservation",
+        "H_others": "Source curator may construct both levels from the same raw records; agreement is not independent corroboration."
+      },
+      "C": {
+        "design": "Compare 4-way count vector per motion to sum of nine groups, plus total seats",
+        "falsifier": "Any source aggregate differs from sum(groups) or 350.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "sum_to_350": 7,
+          "group_totals_equal": 7
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Source curator may construct both levels from the same raw records; agreement is not independent corroboration.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Source curator may construct both levels from the same raw records; agreement is not independent corroboration.",
+        "new_prior_observation": "PFL-AB30-01",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C02",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Cobertura nominal de fuente curada",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Some displayed individual dictionaries are incomplete",
+        "H0": "All seven nominal dictionaries contain 350 entries",
+        "H_others": "Partial member dictionary, rather than truly absent MPs, explains shortfall."
+      },
+      "C": {
+        "design": "Compare nominal dictionary counts with 350 total categories for each motion",
+        "falsifier": "A source has nominal count 350 in all seven.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "nominal_n": [
+            346,
+            350,
+            346,
+            346,
+            346,
+            342,
+            332
+          ],
+          "missing_by_vote": [
+            4,
+            0,
+            4,
+            4,
+            4,
+            8,
+            18
+          ],
+          "incomplete": 6,
+          "total_missing": 42
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Partial member dictionary, rather than truly absent MPs, explains shortfall.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Partial member dictionary, rather than truly absent MPs, explains shortfall.",
+        "new_prior_observation": "PFL-AB30-02",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C03",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Distribución por categoría de filas faltantes",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Missing nominal entries vary across recorded choices",
+        "H0": "Missingness is only in NO_VOTE category",
+        "H_others": "Missingness differs by vote category due to snapshot selection."
+      },
+      "C": {
+        "design": "Subtract nominal category histogram from totals for each motion",
+        "falsifier": "All missing occur in recorded no-votes.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "missing_by_choice": [
+            21,
+            16,
+            0,
+            5
+          ],
+          "per_vote_by_choice": [
+            [
+              2,
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              2,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              2,
+              1,
+              0,
+              1
+            ],
+            [
+              3,
+              4,
+              0,
+              1
+            ],
+            [
+              11,
+              6,
+              0,
+              1
+            ]
+          ]
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Missingness differs by vote category due to snapshot selection.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Missingness differs by vote category due to snapshot selection.",
+        "new_prior_observation": "PFL-AB30-03",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C04",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "No-voto frente a omisión de fila",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "A missing dictionary entry is not equivalent to an explicit NO_VOTE",
+        "H0": "Missing-record count equals explicit NO_VOTE for every motion",
+        "H_others": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect."
+      },
+      "C": {
+        "design": "Contrast missing keys with official-value NO_VOTE count at same event",
+        "falsifier": "Gap can be equated to aggregate no-votes in every record.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "explicit_nonvote": 26,
+          "missing_nominal": 42,
+          "nominal_nonvote": 21,
+          "gap_minus_recorded_nonvote": 16
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "No-vote is explicitly reported in totals; missing mapping is a distinct data defect.",
+        "new_prior_observation": "PFL-AB30-04",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C05",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Cobertura y fechas de selección",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Recorded dictionary coverage varies by example date",
+        "H0": "Coverage is 350 throughout the selected sequence",
+        "H_others": "Curated initiative and identity mapping process causes variable coverage; calendar alone not causal."
+      },
+      "C": {
+        "design": "Order 7 documented dates; list coverage changes, no causal time hypothesis",
+        "falsifier": "No variation across dates.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "ordered_dates": [
+            "2024-12-17",
+            "2025-10-07",
+            "2026-04-21",
+            "2026-04-28",
+            "2026-05-19",
+            "2026-05-20",
+            "2026-09-15"
+          ],
+          "ordered_missing": [
+            18,
+            8,
+            4,
+            4,
+            4,
+            4,
+            0
+          ],
+          "spearman_approx_corr": -0.82851
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Curated initiative and identity mapping process causes variable coverage; calendar alone not causal.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Curated initiative and identity mapping process causes variable coverage; calendar alone not causal.",
+        "new_prior_observation": "PFL-AB30-05",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C06",
+      "branch": "A",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Heterogeneidad modal del grupo Mixto",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "At least one group-in-motion has a nonunanimous expressed vote",
+        "H0": "All groups show perfect unanimity",
+        "H_others": "Group-level unanimity in selected votes does not identify individual discipline or political cause."
+      },
+      "C": {
+        "design": "Compute modal category / expressed choices; keep Mixto separate",
+        "falsifier": "Observed modal shares are necessarily all equal 1.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "n_group_votes_expressed": 63,
+          "fully_unanimous": 55,
+          "mixto_modal": [
+            0.875,
+            0.666667,
+            0.75,
+            0.75,
+            0.75,
+            0.888889,
+            0.875
+          ],
+          "all_group_modal_mean": 0.976956
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Group-level unanimity in selected votes does not identify individual discipline or political cause.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Group-level unanimity in selected votes does not identify individual discipline or political cause.",
+        "new_prior_observation": "PFL-AB30-06",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C07",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Proporción Sí con diferentes denominadores",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Yes share differs with eligible-vs-expressed denominators",
+        "H0": "Both share definitions coincide in each chosen motion",
+        "H_others": "Difference is purely definitional, not behavioral."
+      },
+      "C": {
+        "design": "Contrast yes/(yes+no+abstain) vs yes/350",
+        "falsifier": "Both denominators always coincide.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "yes_over_expressed": [
+            0.477011,
+            0.127168,
+            0.487032,
+            0.49422,
+            0.512968,
+            0.510145,
+            0.510145
+          ],
+          "yes_over_350": [
+            0.474286,
+            0.125714,
+            0.482857,
+            0.488571,
+            0.508571,
+            0.502857,
+            0.502857
+          ],
+          "mean_gap_percentage_points": 0.471062
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Difference is purely definitional, not behavioral.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Difference is purely definitional, not behavioral.",
+        "new_prior_observation": "PFL-AB30-07",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C08",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Abstención explícita y No vota",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Abstentions occur as expressed votes independently of explicit non-votes",
+        "H0": "Abstain and non-vote are observationally identical categories",
+        "H_others": "Abstención vs No vota are separate administrative choices; not indifference."
+      },
+      "C": {
+        "design": "Report proportion of abstain among expressions and NO_VOTE among 350",
+        "falsifier": "Abstain and NoVota numerically identical across votes.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "abstention_expressed_share": [
+            0.014368,
+            0.367052,
+            0.023055,
+            0.031792,
+            0.017291,
+            0.0,
+            0.0
+          ],
+          "explicit_nonvote_share": [
+            0.005714,
+            0.011429,
+            0.008571,
+            0.011429,
+            0.008571,
+            0.014286,
+            0.014286
+          ],
+          "votes_with_abstentions": 5
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Abstención vs No vota are separate administrative choices; not indifference.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Abstención vs No vota are separate administrative choices; not indifference.",
+        "new_prior_observation": "PFL-AB30-08",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C09",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Margen de dos opciones o tres",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Adding abstention to margin denominator changes apparent competitiveness",
+        "H0": "Margin independent of abstention share",
+        "H_others": "Metric denominator rather than substantively different polarization."
+      },
+      "C": {
+        "design": "Compare absolute yes-no gap over 2 vs 3 expressed options",
+        "falsifier": "Abstentions never change margin.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "two_option_margin": [
+            0.03207,
+            0.598174,
+            0.00295,
+            0.020896,
+            0.043988,
+            0.02029,
+            0.02029
+          ],
+          "three_option_margin": [
+            0.031609,
+            0.378613,
+            0.002882,
+            0.020231,
+            0.043228,
+            0.02029,
+            0.02029
+          ],
+          "max_delta": 0.219561
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Metric denominator rather than substantively different polarization.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Metric denominator rather than substantively different polarization.",
+        "new_prior_observation": "PFL-AB30-09",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C10",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Concentración grupo vs pleno",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Group-modal concentration differs from plenary-wide concentration",
+        "H0": "Group and plenary concentration identical across motions",
+        "H_others": "Grouping mechanically raises concentration; not proof of party discipline."
+      },
+      "C": {
+        "design": "Equal-motion average of modal shares; distinguish ecological arithmetic",
+        "falsifier": "No ecological gap across all selected votes.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "per_vote_group_mean_modal": [
+            0.986111,
+            0.962146,
+            0.972222,
+            0.972222,
+            0.972222,
+            0.987654,
+            0.986111
+          ],
+          "per_vote_plenary_modal": [
+            0.508621,
+            0.50578,
+            0.489914,
+            0.49422,
+            0.512968,
+            0.510145,
+            0.510145
+          ],
+          "avg_difference": 0.472414
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Grouping mechanically raises concentration; not proof of party discipline.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Grouping mechanically raises concentration; not proof of party discipline.",
+        "new_prior_observation": "PFL-AB30-10",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C11",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Tamaño grupo y concentración estimada",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Small-group and large-group modal concentration differ in observed data",
+        "H0": "Observed means are identical across size thresholds",
+        "H_others": "Small-n modal indices are more volatile even under identical latent rates."
+      },
+      "C": {
+        "design": "Compare groups <=10 to >10 members, report counts and selection risk",
+        "falsifier": "No gap or sample size effect.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "small_n": 35,
+          "large_n": 28,
+          "small_mean": 0.95873,
+          "large_mean": 0.999737,
+          "difference": -0.041007
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Small-n modal indices are more volatile even under identical latent rates.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Small-n modal indices are more volatile even under identical latent rates.",
+        "new_prior_observation": "PFL-AB30-11",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C12",
+      "branch": "B",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Leave-one-vote-out en siete iniciativas",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Mean yes-share varies materially on deleting one of 7 selected votes",
+        "H0": "Leave-one-out estimates all equal",
+        "H_others": "Selection of seven initiatives creates instability; no temporal trend identified."
+      },
+      "C": {
+        "design": "Recompute selected-sample mean omitting each motion in turn",
+        "falsifier": "One deletion does not affect rate.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "grand_mean_yes_share": 0.440816,
+          "leave_one_out_range": [
+            0.435238,
+            0.493333,
+            0.43381,
+            0.432857,
+            0.429524,
+            0.430476,
+            0.430476
+          ],
+          "range_width": 0.06381
+        },
+        "source_scope": "CURATED_REAL_EXPLORATORY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Selection of seven initiatives creates instability; no temporal trend identified.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Selection of seven initiatives creates instability; no temporal trend identified.",
+        "new_prior_observation": "PFL-AB30-12",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C13",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Contados en dos fuentes sin censo común",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Counted totals differ across manually transcribed and curated tables",
+        "H0": "Both sample means of counted choices equal",
+        "H_others": "Manual data excludes no-vote counts while curated includes them: noncomparable administrative estimands."
+      },
+      "C": {
+        "design": "Compare mean 350-category total to manual 3-category total; assess comparability",
+        "falsifier": "Definitions match and sample distributions coincide.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "curated_counted_mean": 350.0,
+          "manual_counted_mean": 347.45,
+          "mean_difference": 2.55
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Manual data excludes no-vote counts while curated includes them: noncomparable administrative estimands.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Manual data excludes no-vote counts while curated includes them: noncomparable administrative estimands.",
+        "new_prior_observation": "PFL-AB30-13",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C14",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Proporción Sí en dos muestras no apareadas",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Yes-share differs in the two convenience samples",
+        "H0": "Both convenience-sample means identical",
+        "H_others": "Different dates and selected motions, so contrast has no causal or population interpretation."
+      },
+      "C": {
+        "design": "Use expressed denominator consistently, no independence claim",
+        "falsifier": "Observed samples identical under same definition.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "curated_yes_mean": 0.445527,
+          "manual_yes_mean": 0.651818,
+          "difference": -0.206291,
+          "ranges": [
+            [
+              0.127168,
+              0.512968
+            ],
+            [
+              0.094828,
+              1.0
+            ]
+          ]
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Different dates and selected motions, so contrast has no causal or population interpretation.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Different dates and selected motions, so contrast has no causal or population interpretation.",
+        "new_prior_observation": "PFL-AB30-14",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C15",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Abstenciones en muestras no apareadas",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Abstention shares differ across disjoint selected samples",
+        "H0": "Both sample means identical",
+        "H_others": "Agenda and date differ, not systematic institutional change."
+      },
+      "C": {
+        "design": "Same ratios per recorded event; mark session clustering",
+        "falsifier": "No difference in sample means.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "curated_abstain_mean": 0.064794,
+          "manual_abstain_mean": 0.074593,
+          "difference": -0.009799
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Agenda and date differ, not systematic institutional change.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Agenda and date differ, not systematic institutional change.",
+        "new_prior_observation": "PFL-AB30-15",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C16",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Margen medio en muestras no apareadas",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Absolute binary margin differs across selected sources",
+        "H0": "Margins equal on average",
+        "H_others": "Motion selection and same-day clustering confound comparison."
+      },
+      "C": {
+        "design": "Use identical denominator, no population test",
+        "falsifier": "Both samples have identical margins.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "curated_absolute_margin": 0.073877,
+          "manual_absolute_margin": 0.501231,
+          "difference": -0.427353
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Motion selection and same-day clustering confound comparison.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Motion selection and same-day clustering confound comparison.",
+        "new_prior_observation": "PFL-AB30-16",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C17",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Dependencia de una única sesión",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Rows in manual source share a session; iid 20-sessions premise false",
+        "H0": "Manual 20 rows represent distinct sessions",
+        "H_others": "Within-session repeated voting decisions correlated by legislative agenda."
+      },
+      "C": {
+        "design": "Check session ID count and serial sample lag correlation",
+        "falsifier": "An independent-session model claims 20 sessions rather than 1.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "manual_same_session_rows": 20,
+          "within_session_lag1_corr": 0.334056,
+          "independent_sessions": 1,
+          "independent_n_bounded_by_sessions": 1
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Within-session repeated voting decisions correlated by legislative agenda.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Within-session repeated voting decisions correlated by legislative agenda.",
+        "new_prior_observation": "PFL-AB30-17",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C18",
+      "branch": "C",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "question": "Sesgo de selección y tamaño muestral",
+        "estimand": "Defined sample diagnostic",
+        "population": "7 externally curated examples + 20 unmatched manually transcribed same-day events",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "within-session/group political dependence not modeled"
+      },
+      "B": {
+        "H1": "Total 27 row count overstates independent institutional coverage",
+        "H0": "All 27 events are a random cross-session sample",
+        "H_others": "Selection and look-ahead invalidate p-values for legislature-wide claims."
+      },
+      "C": {
+        "design": "Audit selection process, unique sessions and available holdout",
+        "falsifier": "Evidence from random holdout was collected before formulating hypotheses.",
+        "budget": "7+20 secondary field rows, no new sampling",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": null,
+        "controls": "Competing denominators and group+nominal checks"
+      },
+      "E": {
+        "result": {
+          "curated_n": 7,
+          "manual_n": 20,
+          "combined_naive_n": 27,
+          "effective_scope": "7 selected initiatives and 1 additional plenary session; no random population draw",
+          "future_confirmatory_holdout": 0
+        },
+        "source_scope": "CROSS_SOURCE_DESCRIPTIVE_UNMATCHED",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Selection and look-ahead invalidate p-values for legislature-wide claims.",
+        "adversarial_audit": "Seven curated votes or twenty manual transcriptions are exploratory and selected, not random.",
+        "selection_exposure": "Entire 7 vote panel was inspected before design.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": null
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Selection and look-ahead invalidate p-values for legislature-wide claims.",
+        "new_prior_observation": "PFL-AB30-18",
+        "evidence_origin": "SECONDARY_OBSERVATION"
+      },
+      "I": {
+        "internal_validity": "Limited by manual transfer/source selection",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE_OR_MEASUREMENT",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C19",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "IPW bajo missing completely at random",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Under constant MCAR, constant IPW cannot beat observed mean",
+        "H0": "Known constant weighting improves observed mean MAE",
+        "H_others": "Constant IPW and observed mean coincide algebraically under MCAR."
+      },
+      "C": {
+        "design": "600 paired MCAR simulations; posterior difference CI; use equal information",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20280196,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.0,
+          "bootstrap_95_ci_mean": [
+            0.0,
+            0.0
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.0,
+            0.0
+          ],
+          "mc_replicates": 600,
+          "seed": 20280196,
+          "mean_estimator_bias": 0.0005879506071953984
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Constant IPW and observed mean coincide algebraically under MCAR.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Constant IPW and observed mean coincide algebraically under MCAR.",
+        "new_prior_observation": "PFL-AB30-19",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C20",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "IPW mal especificado bajo MNAR",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Under outcome-dependent MNAR, MCAR weighting does not remove bias",
+        "H0": "Constant weights fully correct MNAR selection",
+        "H_others": "An incorrect propensity cannot remove outcome-dependent selection."
+      },
+      "C": {
+        "design": "600 paired MNAR simulations; report observed signed bias and error",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20281205,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.0,
+          "bootstrap_95_ci_mean": [
+            0.0,
+            0.0
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.0,
+            0.0
+          ],
+          "mc_replicates": 600,
+          "seed": 20281205,
+          "mean_estimator_bias": -0.22273926845801673
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "An incorrect propensity cannot remove outcome-dependent selection.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "An incorrect propensity cannot remove outcome-dependent selection.",
+        "new_prior_observation": "PFL-AB30-20",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C21",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "No respuesta como denominador implícito",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Assuming missing responses are zero biases population yes-share",
+        "H0": "Denominator 350 and respondent denominator equally accurate",
+        "H_others": "Treating unrecorded entries as denominator=350 introduces attenuation."
+      },
+      "C": {
+        "design": "600 randomized dropout realizations; paired absolute error",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20282214,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.08227455344472243,
+          "bootstrap_95_ci_mean": [
+            0.080899,
+            0.083489
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.043701,
+            0.110519
+          ],
+          "mc_replicates": 600,
+          "seed": 20282214
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Treating unrecorded entries as denominator=350 introduces attenuation.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Treating unrecorded entries as denominator=350 introduces attenuation.",
+        "new_prior_observation": "PFL-AB30-21",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "CONTINUE_WITH_FIELD_DATA",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C22",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Afiliación actual frente a histórica",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Using current group label alters historical group effect",
+        "H0": "Current labels produce identical estimate to historical labels",
+        "H_others": "Current labels introduce look-ahead misclassification of historical group."
+      },
+      "C": {
+        "design": "600 randomized group transfers, paired absolute estimation errors",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20283223,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.1607335401128479,
+          "bootstrap_95_ci_mean": [
+            0.158458,
+            0.16286
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.104564,
+            0.220597
+          ],
+          "mc_replicates": 600,
+          "seed": 20283223
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Current labels introduce look-ahead misclassification of historical group.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Current labels introduce look-ahead misclassification of historical group.",
+        "new_prior_observation": "PFL-AB30-22",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "CONTINUE_WITH_FIELD_DATA",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C23",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Información adicional de agregados frente a nominales",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Complete aggregate recovers exact share whereas incomplete nominal does not",
+        "H0": "Complete aggregate and partial nominal equally accurate",
+        "H_others": "Exact aggregate is additional privileged information, not a fair model advantage."
+      },
+      "C": {
+        "design": "Compare extra-information arm to partial-data arm; flag non-parity",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20284232,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.01461190784011986,
+          "bootstrap_95_ci_mean": [
+            0.013684,
+            0.015477
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.000685,
+            0.043049
+          ],
+          "mc_replicates": 600,
+          "seed": 20284232
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Exact aggregate is additional privileged information, not a fair model advantage.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Exact aggregate is additional privileged information, not a fair model advantage.",
+        "new_prior_observation": "PFL-AB30-23",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C24",
+      "branch": "D",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Sesgo de concentración en grupos pequeños",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Small-group modal concentration is upward biased by finite sample",
+        "H0": "Small and large groups have same modal-share expectation under p=.5",
+        "H_others": "Max of noisy small-group proportions is upward biased."
+      },
+      "C": {
+        "design": "600 independent binomial draws n=5 vs n=130, paired difference",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20285241,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.1567692307692308,
+          "bootstrap_95_ci_mean": [
+            0.147101,
+            0.166877
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.015385,
+            0.476923
+          ],
+          "mc_replicates": 600,
+          "seed": 20285241
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Max of noisy small-group proportions is upward biased.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Max of noisy small-group proportions is upward biased.",
+        "new_prior_observation": "PFL-AB30-24",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "CONTINUE_WITH_FIELD_DATA",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C25",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Clustering por sesión vs pseudo-replicación",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Ignoring shared session shocks understates uncertainty",
+        "H0": "Naive iid SE and session SE have same coverage",
+        "H_others": "Individual rows share session shocks and violate iid standard errors."
+      },
+      "C": {
+        "design": "600 synthetic panels with 12 independent session shocks x100 voters",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20286250,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.07096130659462242,
+          "bootstrap_95_ci_mean": [
+            0.069574,
+            0.072399
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.036896,
+            0.107358
+          ],
+          "mc_replicates": 600,
+          "seed": 20286250,
+          "naive_coverage": 0.34,
+          "session_cluster_coverage": 0.95
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Individual rows share session shocks and violate iid standard errors.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Individual rows share session shocks and violate iid standard errors.",
+        "new_prior_observation": "PFL-AB30-25",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "CONTINUE_WITH_FIELD_DATA",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C26",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Fuga de información futura artificial",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Future target access creates spurious perfect prediction",
+        "H0": "Future-informed and as-of predictors have equal forecast error",
+        "H_others": "Model with observed future y is not available at prediction time."
+      },
+      "C": {
+        "design": "600 paired Bernoulli future outcomes; mark information violation",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20287259,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.4588061528150543,
+          "bootstrap_95_ci_mean": [
+            0.455601,
+            0.46168
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.377325,
+            0.501788
+          ],
+          "mc_replicates": 600,
+          "seed": 20287259
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Model with observed future y is not available at prediction time.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Model with observed future y is not available at prediction time.",
+        "new_prior_observation": "PFL-AB30-26",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C27",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Pronóstico por grupo con estructura real",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Stable group heterogeneity can improve time-holdout logloss",
+        "H0": "Group estimate performs no better than global shrinkage",
+        "H_others": "Group-level signal improves score only under stable heterogeneity."
+      },
+      "C": {
+        "design": "600 train/test DGP draws, both arms see same train/labels",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20288268,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.04589780338583349,
+          "bootstrap_95_ci_mean": [
+            0.043737,
+            0.048315
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.000628,
+            0.105669
+          ],
+          "mc_replicates": 600,
+          "seed": 20288268
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Group-level signal improves score only under stable heterogeneity.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Group-level signal improves score only under stable heterogeneity.",
+        "new_prior_observation": "PFL-AB30-27",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "CONTINUE_WITH_FIELD_DATA",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C28",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Pronóstico por grupo con estructura nula",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "With no group effect, group estimates offer no systematic predictive improvement",
+        "H0": "Group model always improves logloss even under group-null",
+        "H_others": "Group model should not dominate competent global baseline when effect is null."
+      },
+      "C": {
+        "design": "600 train/test DGP draws, constant p=.5 across groups",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20289277,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": -0.004562168635956313,
+          "bootstrap_95_ci_mean": [
+            -0.005071,
+            -0.004066
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            -0.018752,
+            0.005792
+          ],
+          "mc_replicates": 600,
+          "seed": 20289277
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Group model should not dominate competent global baseline when effect is null.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Group model should not dominate competent global baseline when effect is null.",
+        "new_prior_observation": "PFL-AB30-28",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C29",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Pronóstico bajo cambio de régimen",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "A group regime reversal can destroy group-model advantage",
+        "H0": "Group model remains superior under q -> 1-q shift",
+        "H_others": "Group model may fail after label mechanism inversion."
+      },
+      "C": {
+        "design": "600 shifted holdouts, compare matched-information models",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20290286,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": -0.1555545978935361,
+          "bootstrap_95_ci_mean": [
+            -0.163064,
+            -0.149315
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            -0.355261,
+            -0.033563
+          ],
+          "mc_replicates": 600,
+          "seed": 20290286
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Group model may fail after label mechanism inversion.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Group model may fail after label mechanism inversion.",
+        "new_prior_observation": "PFL-AB30-29",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    },
+    {
+      "cycle_id": "PF-AB30-FULL-C30",
+      "branch": "E",
+      "status": "EXPERIMENTAL_AB_SIMULATION",
+      "A": {
+        "question": "Multiplicidad sin y con Bonferroni",
+        "estimand": "Paired difference of estimation/prediction error under specified DGP",
+        "population": "Independent Monte Carlo generator draws",
+        "outcome_proxy": "counts, proportions or loss, not political virtue",
+        "interference": "Session and group shocks only when explicitly simulated"
+      },
+      "B": {
+        "H1": "Searching 20 true-null hypotheses raises familywise false positives",
+        "H0": "Uncorrected and Bonferroni FWER equal at 0.05",
+        "H_others": "Familywise multiple testing inflates chance findings without correction."
+      },
+      "C": {
+        "design": "600 complete null test families of 20 independent z-tests",
+        "falsifier": "Paired mean difference crosses zero or shifts sign under ablation/alternative DGP",
+        "budget": "600 paired DGP realizations, 500 bootstrap resamples of independent draws",
+        "multiplicity": "30 exploratory claims, no unadjusted confirmatory testing",
+        "prereg_ledger": "3bfd2815cf3baf2eabe77830fd2e9a750aafe10f"
+      },
+      "D": {
+        "source_provenance": {
+          "curated_7_sha256": "f70674dc4fe3a05fc5896708da85408d879485f1513fe9d6cab40c7496409fbc",
+          "curated_original_blob_sha1": "ecaf3b02b9a453265d6bcb588a9121ddaae9ed78",
+          "curated_generated_at": "2026-10-05T13:47:46.103Z",
+          "manual_20_sha256": "695c0c16c8303f849cb10508f3ddda99678de9c44bc7e71d5a3d56fc8c0eba6c"
+        },
+        "instrument": "scripts/ab30_full.py",
+        "instrument_frozen_commit": "d08a90bae7cb2176b137a3e15b547ec3482303b6",
+        "seed": 20291295,
+        "controls": "Competent same-information baseline, except C23/C26 explicitly compare unequal-information arms to diagnose unfair advantage"
+      },
+      "E": {
+        "result": {
+          "mean_paired_delta": 0.61,
+          "bootstrap_95_ci_mean": [
+            0.571667,
+            0.648333
+          ],
+          "empirical_2.5_97.5_quantiles": [
+            0.0,
+            1.0
+          ],
+          "mc_replicates": 600,
+          "seed": 20291295,
+          "raw_FWER": 0.6616666666666666,
+          "bonferroni_FWER": 0.051666666666666666
+        },
+        "source_scope": "SYNTHETIC_MECHANISM_ONLY",
+        "did_execute": true
+      },
+      "F": {
+        "strongest_rival": "Familywise multiple testing inflates chance findings without correction.",
+        "adversarial_audit": "Monte Carlo conditions are stipulated; no transport to real Spanish institutions.",
+        "selection_exposure": "Preset seed and tests, but one modeled DGP; model choice informed by known literature.",
+        "risk": "Self-constructed endpoint and same DGP can mechanically favor one treatment."
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "independent_confirmation": false,
+        "synthetic_mc": "600 independent generated realizations, not independent empirical cohorts."
+      },
+      "H": {
+        "posterior_update": "No calibrated numerical posterior; descriptive or conditional update only.",
+        "abductive_rival": "Familywise multiple testing inflates chance findings without correction.",
+        "new_prior_observation": "PFL-AB30-30",
+        "evidence_origin": "SYNTHETIC_SIMULATION"
+      },
+      "I": {
+        "internal_validity": "Only conditional on generator, unit design and code",
+        "causal_identification": "NONE_REAL_WORLD",
+        "transportability": "NOT_ESTABLISHED",
+        "novelty": "NOT_ASSESSED_AGAINST_LITERATURE",
+        "reproducibility": "Re-executable given frozen code/source and seed",
+        "grade_0_3_science": 0,
+        "VSDS_grade_project": 1,
+        "CT2_before": 24,
+        "CT2_after": 24
+      },
+      "J": {
+        "decision": "STOP_LOCAL_UNTIL_FIELD_REPLICATION",
+        "reason": "Another similar source snapshot or DGP realization is not an independent external validation."
+      }
+    }
+  ],
+  "scientific_novel_2_3": 0,
+  "VSDS": 1,
+  "CT2": 24,
+  "C05_errata_kept_separate": true
+}
