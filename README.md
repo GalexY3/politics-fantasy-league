@@ -132,3 +132,17 @@ python scripts/audit_pleno_full.py /ruta/pleno.jsonl --strict-git-blob --out aud
 ```
 
 La comparación estructural contra un voto oficial JSON descargado y un JSON secundario de votaciones se hace con `python scripts/compare_original_vote.py oficial.json fuente_secundaria.json --id s175-v003`. **No** verifica un censo histórico por sí misma. No utilizar la fuente de octubre de 2026 como si hubiese estado disponible en predicciones realizadas antes de esa fecha.
+
+
+## BRANCH30G (25-10-2026) — campaña abierta, auditor de correspondencia
+
+La autorización de **30 ciclos con BRANCHING** se encuentra en ejecución. **2 fichas A–J completadas** (1 documental, 1 producción con 12 tests de fixtures), **28 pendientes**; 0 cotejos oficiales nominales independientes. Se ha verificado que el TSV de correspondencias del importador de Congreso Abierto solo incluye 350 nombres/códigos, mientras que el observatorio independiente Quién Vota declara 412 personas históricas (350 activas). **No se atribuye ninguna de las 34.654 posiciones no enlazadas a personas concretas** sin revisar originales.
+
+- [Prerregistro BR30G](research/BRANCH30G_20261025/PREREG.md)
+- [Informe intermedio y límites](research/BRANCH30G_20261025/REPORT.md)
+- [Ledger con estado real](research/BRANCH30G_20261025/LEDGER.json)
+- [Priors nuevos sin reemplazar históricos](research/BRANCH30G_20261025/PRIORS_DELTA.md)
+- [Auditor nominal original/derivado](src/politics_fantasy/identity_reconcile.py)
+- [CLI offline de una votación](scripts/identity_reconcile_offline.py)
+
+**No se ha incrementado** VSDS (1/3), CT2 predictivo (24/100) ni niveles originales de novedad AB.
