@@ -1,0 +1,372 @@
+{
+  "campaign": "PF-F45",
+  "as_of": "2026-10-26",
+  "authorization": "45 previously authorized free/adaptive loops after PF-AB20; PF-AB20 C02-20 closed R5",
+  "status": "TEST_CONTRACT_FROZEN_BEFORE_THIS_45_SUITE_RUN_BUT_AFTER_PRIOR_SOURCE_EXPOSURE",
+  "kind": "PRODUCTION_AND_SOURCE_QUALITY_QA",
+  "unit": "One distinctive falsifiable acceptance check per AB cycle; NOT independent statistical studies",
+  "A_to_J": "A endpoint; B rival; C test/negative condition; D source/repro code; E run outcome; F adversarial source artifact; G no external validation; H conditional prior update; I software yes/no novelty0 and VSDS1; J repair or close",
+  "disclosure": "Codes and two public source contents were already inspected in previous campaigns; this is not a scientific preregistration",
+  "cycles": [
+    {
+      "id": "PF-F01",
+      "branch": "quality",
+      "endpoint": "Source inventory has two pinned distinct repositories",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F02",
+      "branch": "quality",
+      "endpoint": "2023 source contains named province fields",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F03",
+      "branch": "quality",
+      "endpoint": "2023 vote columns paired with seat columns",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F04",
+      "branch": "quality",
+      "endpoint": "2023 CSV rows have uniform width",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F05",
+      "branch": "quality",
+      "endpoint": "2023 contains 52 province entities",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F06",
+      "branch": "quality",
+      "endpoint": "Province keys are unique under source schema",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F07",
+      "branch": "quality",
+      "endpoint": "2023 electorate labels total 59 in pinned source",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F08",
+      "branch": "quality",
+      "endpoint": "11 distinct labels have Congressional seats",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F09",
+      "branch": "quality",
+      "endpoint": "48 labels received votes without seats",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F10",
+      "branch": "quality",
+      "endpoint": "All 59 electoral labels received >0 in some province",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F11",
+      "branch": "quality",
+      "endpoint": "No negative votes/seats in accepted 2023 source",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F12",
+      "branch": "quality",
+      "endpoint": "No empty electoral label identity",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F13",
+      "branch": "quality",
+      "endpoint": "Historic CSV has 1057 rows",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F14",
+      "branch": "quality",
+      "endpoint": "Historic CSV spans 14 election years",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F15",
+      "branch": "quality",
+      "endpoint": "Historic dataset uses 260 dataset-specific codes",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F16",
+      "branch": "robustness",
+      "endpoint": "Historically re-used identifiers/denominations flagged not merged",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F17",
+      "branch": "robustness",
+      "endpoint": "Parser handles quoted commas",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F18",
+      "branch": "robustness",
+      "endpoint": "Parser handles doubled escaped quotes",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F19",
+      "branch": "robustness",
+      "endpoint": "Parser accepts UTF8 BOM",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F20",
+      "branch": "robustness",
+      "endpoint": "Parser normalizes CRLF",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F21",
+      "branch": "robustness",
+      "endpoint": "Ragged rows rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F22",
+      "branch": "robustness",
+      "endpoint": "Unclosed quote rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F23",
+      "branch": "robustness",
+      "endpoint": "Misplaced quote rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F24",
+      "branch": "robustness",
+      "endpoint": "Header-only CSV rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F25",
+      "branch": "robustness",
+      "endpoint": "Missing base province column rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F26",
+      "branch": "robustness",
+      "endpoint": "Vote-seat columns not paired rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F27",
+      "branch": "robustness",
+      "endpoint": "Duplicate province rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F28",
+      "branch": "robustness",
+      "endpoint": "Bad numeric vote value rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F29",
+      "branch": "robustness",
+      "endpoint": "Unsafe integer rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F30",
+      "branch": "robustness",
+      "endpoint": "Negative historic vote rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F31",
+      "branch": "actors",
+      "endpoint": "No seat status inferred when no evidence",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F32",
+      "branch": "actors",
+      "endpoint": "Private person without public role rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F33",
+      "branch": "actors",
+      "endpoint": "Personal contact fields rejected",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F34",
+      "branch": "actors",
+      "endpoint": "Interest groups different from registered parties",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F35",
+      "branch": "actors",
+      "endpoint": "Exact stable external IDs take precedence over display names",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F36",
+      "branch": "actors",
+      "endpoint": "Homonym conflict flagged without merging",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F37",
+      "branch": "actors",
+      "endpoint": "Historic roles selected by valid-date interval",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F38",
+      "branch": "actors",
+      "endpoint": "Person with documented spokesperson role without parliamentary link accepted",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F39",
+      "branch": "actors",
+      "endpoint": "Historical snapshot excludes source captured in future",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F40",
+      "branch": "actors",
+      "endpoint": "Unknown public-at excludes claims from as-of",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F41",
+      "branch": "actors",
+      "endpoint": "Real person scoring gate permanently disabled",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F42",
+      "branch": "actors",
+      "endpoint": "Issue-specific statements preserved without ideological coordinates",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F43",
+      "branch": "actors",
+      "endpoint": "Candidacy not equated to private party membership",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F44",
+      "branch": "actors",
+      "endpoint": "Coalition accepts multiple distinct member parties",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    },
+    {
+      "id": "PF-F45",
+      "branch": "actors",
+      "endpoint": "Atlas frontend and server source preserve disclaimers/read-only/no person scores",
+      "evidence": "GitHub source 2023 and historical dataset, deterministic fixtures and app code",
+      "expected": "PASS",
+      "limitation": "Source-derived software and synthetic QA only; no individual political ranking/real original confirmation"
+    }
+  ]
+}
