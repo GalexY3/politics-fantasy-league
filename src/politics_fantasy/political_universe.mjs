@@ -4,7 +4,7 @@
  */
 export const KINDS = Object.freeze(["PERSON","PARTY","FEDERATION","COALITION",
  "ELECTORS_GROUP","CIVIC_PLATFORM","CIVIL_ORG","UNION","THINK_TANK",
- "MEDIA_ORG","PUBLIC_BODY","CANDIDACY","CAMPAIGN"]);
+ "MEDIA_ORG","PUBLIC_BODY","CANDIDACY","CAMPAIGN","INTEREST_GROUP"]);
 export const ROLES = Object.freeze(["REGISTERED_PARTY","CANDIDATE_FOR",
  "ELECTED_TO","DOCUMENTED_LEADERSHIP","PUBLIC_SPOKESPERSON",
  "COALITION_MEMBER","PUBLIC_ADVOCACY","DECLARED_POLICY_POSITION",
@@ -158,8 +158,19 @@ export function representation(reg,id,cutoff=null){
  const claims=cutoff?timeView(reg,cutoff).claims:reg.claims;
  const statuses=claims.filter(c=>c.subject_id===id&&c.relation==="SEAT_STATUS");
  if(!statuses.length)return "UNKNOWN";
- if(new Set(statuses.map(c=>c.value)).size>1)return "CONFLICT_REVIEW_REQUIRED";
- return statuses.at(-1).value;
+ const day=cutoff ? cutoff.slice(0,10):null;
+ const relevant=day?statuses.filter(c=>within(day,c.valid_from,c.valid_to)):statuses;
+ if(!relevant.length)return "UNKNOWN";
+ const kinds=new Set(relevant.map(c=>c.value));
+ if(kinds.size>1){
+  if(day)return "CONFLICT_REVIEW_REQUIRED";
+  for(let i=0;i<relevant.length;i++)for(let j=i+1;j<relevant.length;j++){
+   const a=relevant[i],b=relevant[j];
+   if(a.value!==b.value && (!a.valid_to||a.valid_to>b.valid_from) && (!b.valid_to||b.valid_to>a.valid_from))return "CONFLICT_REVIEW_REQUIRED";
+  }
+  return "HISTORICAL_STATUS_DATE_REQUIRED";
+ }
+ return relevant.at(-1).value;
 }
 export function issueClaims(reg,issue){
  assert(typeof issue==="string"&&issue.length>0,"ISSUE_QUERY_REQUIRED");
