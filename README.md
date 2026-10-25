@@ -134,15 +134,19 @@ python scripts/audit_pleno_full.py /ruta/pleno.jsonl --strict-git-blob --out aud
 La comparación estructural contra un voto oficial JSON descargado y un JSON secundario de votaciones se hace con `python scripts/compare_original_vote.py oficial.json fuente_secundaria.json --id s175-v003`. **No** verifica un censo histórico por sí misma. No utilizar la fuente de octubre de 2026 como si hubiese estado disponible en predicciones realizadas antes de esa fecha.
 
 
-## BRANCH30G (25-10-2026) — campaña abierta, auditor de correspondencia
+## BRANCH30G (25-10-2026) — 30 ciclos A–J CERRADOS, no confirmatorios
 
-La autorización de **30 ciclos con BRANCHING** se encuentra en ejecución. **2 fichas A–J completadas** (1 documental, 1 producción con 12 tests de fixtures), **28 pendientes**; 0 cotejos oficiales nominales independientes. Se ha verificado que el TSV de correspondencias del importador de Congreso Abierto solo incluye 350 nombres/códigos, mientras que el observatorio independiente Quién Vota declara 412 personas históricas (350 activas). **No se atribuye ninguna de las 34.654 posiciones no enlazadas a personas concretas** sin revisar originales.
+**30/30 unidades A–J completadas:** C01 documental, C02 de ingeniería (fixtures sintéticas), **C03–C30: 28 análisis distintos retrospectivos sobre un único archivo secundario real de 2.175 votaciones**. Las 28 pruebas **NO** son fuentes ni confirmaciones independientes ni 28 hallazgos. El prerregistro específico fue congelado antes de este nuevo lote, pero sus preguntas ya estaban influidas por BR30E/F. La nueva fuente original oficial nominal y el roster histórico permanecen sin cotejo, así que **0 validaciones oficiales nominales independientes**. VSDS=1/3; CT2=24/100; N1/N2/N3 nuevos=0.
 
-- [Prerregistro BR30G](research/BRANCH30G_20261025/PREREG.md)
-- [Informe intermedio y límites](research/BRANCH30G_20261025/REPORT.md)
-- [Ledger con estado real](research/BRANCH30G_20261025/LEDGER.json)
-- [Priors nuevos sin reemplazar históricos](research/BRANCH30G_20261025/PRIORS_DELTA.md)
-- [Auditor nominal original/derivado](src/politics_fantasy/identity_reconcile.py)
-- [CLI offline de una votación](scripts/identity_reconcile_offline.py)
+Hallazgos locales: de 2.173 votos con códigos identificados, **1.655** tienen certificado conservador de mayoría; **125** inversiones estrictas del signo nominal frente a totales (todas con margen oficial absoluto ≤20); un predictor online retrospectivo de Sí/No condicionado a tipo obtiene Brier **0,2063** frente a **0,2492** sin tipo, sin validación as-of. Estas cifras **no** alteran resultados del Congreso, ni miden influencia de diputados ni acreditan predicción en vivo.
 
-**No se ha incrementado** VSDS (1/3), CT2 predictivo (24/100) ni niveles originales de novedad AB.
+- [Informe final, 30 ciclos y dictamen](research/BRANCH30G_20261025/REPORT.md)
+- [Ledger íntegro individual A–J](research/BRANCH30G_20261025/LEDGER.json)
+- [Preregistro C03–C30](research/BRANCH30G_20261025/PREREG_C03_C30.json)
+- [Resultados brutos de los 28 contrastes](research/BRANCH30G_20261025/RESULTS_C03_C30.json)
+- [Auditoría y reparación de desglose por grupos](research/BRANCH30G_20261025/AUDIT_ADVERSARIAL.md)
+- [Priors acumulativos, positivos y negativos](research/BRANCH30G_20261025/PRIORS_DELTA.md)
+- [Código Node puro](scripts/br30g_audit.mjs) · [CLI SHA1 pinned](scripts/run_br30g_audit.mjs) · [QA sintética](tests/test_br30g_audit.mjs)
+- [CT2 30 puntos (ordinal)](research/BRANCH30G_20261025/CT2_TRAJECTORY.csv)
+
+Conservar los saldos independientes 12 B50 / 45 libres / 19 AB20. El nombre del repositorio separado `GalexY3/polictics_fantasy_league` se mantiene sin migración (históricamente vacío); este alojamiento es temporal.
