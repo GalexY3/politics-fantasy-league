@@ -1,0 +1,192 @@
+{
+  "campaign": "PF-BR20H",
+  "date": "2026-10-25",
+  "contract_prereg_commit": "2b4bddf77b0eb9b513fd153320413324642f4a86",
+  "source_code_blob_sha": "f5b36cf294e2d41dac60c07597af59cc6a0e0664",
+  "test_source_blob_sha": "2e1b8c1555b9cd748902fd88620cb34b7fa3c7df",
+  "fixture_blob_sha": "802c81ad6ddc071e39194a77cf7ef39060a3a05f",
+  "execution_runner": "V8 JavaScript pure module/test harness (NOT a Node CLI or clean-checkout test)",
+  "evidence_class": "SOFTWARE_SYNTHETIC_PLUS_DOCUMENTARY",
+  "outcomes": [
+    {
+      "id": "C01",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C02",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C03",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C04",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C05",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C06",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C07",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C08",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C09",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C10",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C11",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C12",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C13",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C14",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C15",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C16",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C17",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C18",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C19",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    },
+    {
+      "id": "C20",
+      "status": "PASS",
+      "instrument": "V8_JS_PURE_FUNCTION_TEST"
+    }
+  ],
+  "passed": 20,
+  "failed": 0,
+  "fixture": {
+    "integrity": {
+      "valid": true,
+      "problems": [],
+      "counts": {
+        "sources": 2,
+        "actors": 9,
+        "claims": 5,
+        "events": 2
+      }
+    },
+    "coverage": {
+      "actors": 9,
+      "organizations": 7,
+      "actorTypes": {
+        "PERSON": 2,
+        "PARTY": 3,
+        "FEDERATION": 0,
+        "COALITION": 1,
+        "ELECTORS_GROUP": 1,
+        "CIVIC_PLATFORM": 1,
+        "CIVIL_ORG": 0,
+        "UNION": 0,
+        "THINK_TANK": 0,
+        "MEDIA_ORG": 0,
+        "PUBLIC_BODY": 0,
+        "CANDIDACY": 0,
+        "CAMPAIGN": 0,
+        "INTEREST_GROUP": 1
+      },
+      "sourceTypes": {
+        "OFFICIAL": 0,
+        "PUBLISHED_BY_ACTOR": 0,
+        "SECONDARY": 0,
+        "JOURNALISM": 0,
+        "FIXTURE": 2
+      },
+      "seatStatus": {
+        "PRESENT": 0,
+        "ABSENT": 0,
+        "UNKNOWN": 7,
+        "CONFLICT_REVIEW_REQUIRED": 0
+      },
+      "undocumented_first_public": 0,
+      "eventsWithoutFirstPublic": 0,
+      "unresolved_homonyms": 0
+    },
+    "asof_2026_10_01": {
+      "visible_events": 0
+    },
+    "asof_2026_10_26": {
+      "visible_events": 2
+    }
+  },
+  "field": {
+    "corpus_type": "NO_REAL_SPANISH_PARTIES_OR_PEOPLE_IMPORTED",
+    "official_registry_materialized": false,
+    "official_candidate_list_materialized": false,
+    "original_official_actors_cotejados": 0,
+    "independent_field_replication": false
+  },
+  "repairs": [
+    {
+      "cycle": "C02",
+      "issue": "Incorrect assertion of number of fixture entity kinds, 5 instead of 6",
+      "initial_result": "FAIL",
+      "repair": "Correct count and add INTEREST_GROUP explicit case",
+      "final_result": "PASS"
+    },
+    {
+      "cycle": "C16",
+      "issue": "Fixture treated Oct capture as available in June",
+      "initial_result": "FAIL",
+      "repair": "Add March-captured source to pre-Jun as-of test, preserving date availability",
+      "final_result": "PASS"
+    }
+  ],
+  "interpretation": "20 distinct acceptance contracts passed, no 20 external empirical/causal proofs; no evidence for ranking or scoring real political actors"
+}
