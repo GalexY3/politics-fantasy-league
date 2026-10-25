@@ -1,0 +1,17 @@
+# BRANCH30E (2026-10-25): hasta 30 ciclos AB completos, branching
+
+Autorización expresa del investigador. No consumir los saldos anteriores (12 B50, 45 libres, 19 AB20). Proyecto alojado temporalmente en `GalexY3/Metodologia-AB`; migrar después a `GalexY3/polictics_fantasy_league`.
+
+## Bloque inicial A: auditoría de procedencia e identidad (A01-A10)
+
+**R1 / estimando:** capacidad de preservar y comparar el total de votos del Congreso y el recuento de votos con identidad resoluble; unidad `votación`, NO `diputado ausente`. Universo: 7 votaciones temáticas curadas en Congreso Abierto (NO selección aleatoria de legislatura). Los efectos no son causales. **Prior epistémico:** mapeo nombres a catálogo actual puede dejar fuera diputados anteriores sin afectar al agregado. Hipótesis rival: omisión de votos oficiales, desfase de versiones o fallo de importación; H_otra: normalización de apellidos.
+
+**C01**: localizar en importador público el orden operaciones cómputo vs resolución de identidad; falsador: no conserva votos del no resuelto en totales. **C02**: probar algebraicamente que, si se descartan IDs sin recontar agregados, una brecha positiva es posible aun cuando el total se conserve; falsador: los dos contadores siempre son iguales. **C03**: verificar por categorías las diferencias 42 de los 7 registros derivados contra 350; falsador: descomposición no aditiva. **C04**: verificar que NO_VOTA explícito no corresponde a diferencia por identidad. **C05–C09**: pares agregado secundario / HTML oficial para rdl-8-2026, alquiler-temporada-2024-12, pisos-turisticos-2025, okupacion-pp-2026, ley-vivienda-sumar-2026; exige coincidencia exacta de SI/NO/ABST y día/expediente. **C10**: examinar si cinco comparaciones oficiales certifican por sí solas el diccionario individual; falsador: aportan listas nominales independientes verificadas (no solo totales).
+
+**F adversarial:** segunda ruta de cálculo independiente para 7 registros; mutación de una categoría; comprobar título/expediente en el HTML primario. Las selecciones son retrospectivas y expuestas: estas diez pruebas son descriptivas/exploratorias; no evidencia confirmatoria ni replicación externa. No inferir causalidad, disciplina, asistencia ni faltas individuales. **G:** revisión documental entre fuentes dependientes; no confirmación independiente de identidad. **H:** priors cualitativos con procedencia. **I:** validez interna acotada, selección n=7, bajo poder para generalización. **J:** REPAIR_SOURCE hasta disponer de nominal oficial y roster histórico.
+
+**Entrada de datos:** origen Git blob `ecaf3b02b9a453265d6bcb588a9121ddaae9ed78` (`data/congreso/votaciones.json`), importador `2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e`, tabla derivada `derived_anonymous_counts.json` ya almacenada en el repositorio del proyecto. Para comparación oficial, URLs exactas y fecha desde Congreso. Solo usar recuentos observados, sin editar el código de fuente. Archivo original del Congreso no descargado/validado a nivel nominal.
+
+**Bifurcación:** si A detecta causa instrumentable, B concentra trabajo en crear un parser oficial de JSON y pruebas de identidad sin filtrar antes del conteo; congelar contratos de B antes de codificar. Si A no aporta información nueva, STOP/SUSPEND bajo R5 en vez de inventar veinte preguntas redundantes. Los ciclos C11–C30 quedan autorizados, NO_EJECUTADOS, sujetos a evidence-gate.
+
+**CT2:** predicción parlamentaria 24/100 (escala ordinal). **VSDS:** 1/3. **N2:** 0. No subir puntajes por checks, hashes o cantidad de ciclos.
