@@ -1,0 +1,69 @@
+{
+  "source": {
+    "provider": "Congreso Abierto, derived from Congreso de los Diputados",
+    "repository": "https://github.com/MarcoAnarmo/CongresoAbierto",
+    "path": "data/raw/votaciones/pleno.jsonl",
+    "git_blob_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+    "code_importer_git_blob_sha1": "2a9d63c7b247cf6ad2a74b03e9c4afd2a6bfa47e",
+    "status": "SECONDARY_DERIVED_NOT_INDEPENDENTLY_CERTIFIED",
+    "first_publication_as_of_each_vote": "NOT_VERIFIED"
+  },
+  "population_in_this_snapshot": {
+    "votes": 2175,
+    "session_clusters": 144,
+    "date_start": "2023-09-19",
+    "date_end": "2026-09-30",
+    "nominal_records": 726564,
+    "aggregated_positions": 761218,
+    "missing_nominal_positions": 34654,
+    "missing_in_votes_with_some_nominal": 33954,
+    "positions_in_two_empty_nominal_votes": 700,
+    "unique_individual_codes_over_all_years": 350,
+    "group_rows": 19561,
+    "group_rows_with_unknown_group": 4,
+    "duplicate_vote_ids": 0,
+    "duplicate_nominal_codes_within_vote": 0,
+    "group_total_disagreements": 0,
+    "vote_totals_349": 32,
+    "vote_totals_above_350": 0,
+    "votes_full_nominal_coverage": 95,
+    "votes_partial_nominal_coverage": 2078,
+    "votes_zero_nominal": 2
+  },
+  "missing_by_option": {"yes":15264,"no":15491,"abstention":2841,"no_vote_explicit":1058},
+  "yearly": {
+    "2023":{"votes":32,"sessions":5,"nominal":9613,"total":11200,"missing":1587,"coverage":0.8583035714285714,"unique_codes":305,"flips":15},
+    "2024":{"votes":862,"sessions":52,"nominal":278545,"total":301670,"missing":23125,"coverage":0.9233433884708456,"unique_codes":332,"flips":124},
+    "2025":{"votes":741,"sessions":50,"nominal":251111,"total":259348,"missing":8237,"coverage":0.9682395854219041,"unique_codes":343,"flips":4},
+    "2026":{"votes":540,"sessions":37,"nominal":187295,"total":189000,"missing":1705,"coverage":0.990978835978836,"unique_codes":350,"flips":6}
+  },
+  "group_voting_concentration": {
+    "observed_group_votations_with_expressed_votes":19500,"tie_cases":36,
+    "mean_modal_share":0.975597491995226,
+    "n_small_group_le10":10812,"mean_modal_small":0.9568259326791445,
+    "n_large_group_ge30":6515,"mean_modal_large":0.9992718850882919
+  },
+  "historical_coverage_bootstrap": {
+    "2026_minus_2023":{"delta":0.13267526455026457,"ci95":[0.12182043609399029,0.1549206349206349],"sessions":[5,37]},
+    "2025_minus_2024":{"delta":0.04489619695105851,"ci95":[0.03401644854257446,0.055121423837199646],"sessions":[52,50]},
+    "method":"Descriptive resampling of session-clusters; 3000 xorshift32 draws in JS with initial seed 0x9e3779b9 and sequential consumption. Not causal or independent corroboration."
+  },
+  "nominal_vote_majority": {
+    "eligible_with_nominal":2173,"flips_of_yes_no_sign":149,"flip_fraction":0.06856879889553613,
+    "by_year":{"2023":15,"2024":124,"2025":4,"2026":6},
+    "definition":"Compare sign(total yes - total no) to sign(identified yes - identified no); ties counted as different, exclude zero-nominal rows. Does NOT alter official results."
+  },
+  "seven_purposive_cases": {
+    "n":7,"yes_share_among_expressed":0.44554455445544555,"rest_yes_share":0.46553972251708464,
+    "coverage_seven":0.9828571428571429,"coverage_rest":0.9543839487168674,
+    "not_random_sample":true
+  },
+  "grade":{"VSDS_project":1,"CT2_predictive":24,"AB_novel_level_2":0},
+  "methodological_warnings":[
+    "These are 30 A-J post-hoc audits sharing ONE source, not 30 independent experiments.",
+    "No original official nominal JSON matched against secondary nominal rows in this release.",
+    "No historical eligible-membership table and no first-publication time for each vote.",
+    "Full archive is sourced from third-party import and verified against third-party source code. No causal inference.",
+    "Do not award fantasy points to real parliamentarians or use this retrospective archive for as-of forecasts."
+  ]
+}

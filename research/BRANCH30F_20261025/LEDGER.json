@@ -1,0 +1,1754 @@
+{
+  "campaign": "PF-BR30F",
+  "source_git_blob": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1",
+  "authorized_new_cycles": 30,
+  "A_J_audit_records": [
+    {
+      "id": "PF-BR30F-A01",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Identificación única de votaciones",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "id repetido / recuento inesperado",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "id repetido / recuento inesperado",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "2175 filas e identificadores únicos; 0 repetidos",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Se encontrarían colisiones de id",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A02",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Cobertura temporal y unidad de sesión",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "sesión distinta vs sesión duplicada por fecha",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "sesión distinta vs sesión duplicada por fecha",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "2023-09-19 a 2026-09-30; 144 sesiones con fecha, 2175 votaciones",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Variar definición de sesión altera la agrupación",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A03",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Conservación agregado-grupo",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "diferencias al agregar grupos",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "diferencias al agregar grupos",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "0 discrepancias de grupo-total donde existe desglose; 19561 filas de grupo",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Los grupos son derivados de la misma fuente",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A04",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Acotación nominal por categoría",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "identificados > total de una opción",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "identificados > total de una opción",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "0 votos con exceso nominal; 0 duplicados dentro de voto",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "La ausencia de exceso no identifica miembros faltantes",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A05",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Recuento de posiciones no identificadas",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "diccionario nominal completo",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "diccionario nominal completo",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "761218 posiciones agregadas - 726564 nominales = 34654; 33954 si se excluyen 2 votos sin nominal",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Las posiciones no equivalen a diputados ausentes",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A06",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Votos sin contenido nominal",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "los votos sin registros se interpretarían como NO_VOTE",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "los votos sin registros se interpretarían como NO_VOTE",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "2 votaciones con cero nominal (s89-v005 y s202-v021), 700 posiciones",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No confundir falta de campo con conducta",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A07",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Total de escaños por votación",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "siempre 350 posiciones",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "siempre 350 posiciones",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "32 votaciones contabilizan 349; ninguna >350",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No imponer denominador fijo 350",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A08",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Opción No vota explícita frente a ausencia",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "sin código equivale a No vota",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "sin código equivale a No vota",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "7973 No vota totales; 6915 identificados; diferencia 1058 (13.27 %)",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Puede haber nombres no indexados en cualquiera de las opciones",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A09",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Duplicación del voto por código",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "una persona duplicada en dos categorías",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "una persona duplicada en dos categorías",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "0 votos con código individual duplicado entre categorías",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No prueba que el código represente titular correcto históricamente",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-A10",
+      "branch": "integrity",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Grupos de adscripción no resueltos",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "todos los grupos etiquetados",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "todos los grupos etiquetados",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "4 filas de grupo etiquetadas ?; 10 etiquetas distintas con ?",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No imputar adscripción al partido actual",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B11",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Cobertura ponderada por año",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "cobertura nominal estable en el tiempo",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "cobertura nominal estable en el tiempo",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "2023 85.83%; 2024 92.33%; 2025 96.82%; 2026 99.10%",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Descripción de catálogo secundario, no voto real",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B12",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Contraste descriptivo 2026−2023",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "sin gradiente temporal",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "sin gradiente temporal",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "+13.27 puntos; bootstrap por sesión (5 vs 37), IC95 descriptivo +12.18 a +15.49",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Pocas sesiones 2023; no CI causal",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B13",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Heterogeneidad de cobertura por sesión",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "todas las sesiones tienen cobertura igual",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "todas las sesiones tienen cobertura igual",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "144 sesiones; cobertura mínima 75.89%, mediana 96%, máxima 100%",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Tasas ponderadas por sesión y voto difieren",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B14",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Contraste descriptivo 2025−2024",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "ausencia de diferencia longitudinal",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "ausencia de diferencia longitudinal",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "+4.49 puntos; bootstrap por sesión (52 vs 50), IC95 +3.40 a +5.51",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Variación de miembros y captura no separada",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B15",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Trayectoria por mes",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "no existe estructura temporal",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "no existe estructura temporal",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "33 meses con votos; 2023-09 83.43%, 2026-09 99.10%",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No extrapolar meses sin votaciones",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B16",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Selección diferencial por voto expresado",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "mismo porcentaje de faltantes por categoría",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "mismo porcentaje de faltantes por categoría",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "Sí 4.35%, No 4.67%, Abstención 4.00%, No vota 13.27%",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Categorías descriptivas de fuente derivada",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B17",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Sensibilidad de la proporción de Sí",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "nominal permite reconstruir misma proporción que agregados",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "nominal permite reconstruir misma proporción que agregados",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "diferencia nominal−agregado en Sí/(Sí+No): 2023 -0.233 pp; 2024 +0.342 pp; 2025 -0.114 pp; 2026 -0.096 pp",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Sesgos anuales pueden cancelarse",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B18",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Tipo de iniciativa y cobertura",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "todos los tipos tienen igual cobertura",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "todos los tipos tienen igual cobertura",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "45 tipos declarados; ejemplos Mociones (n=623, 95.39%) y Dictámenes (n=508,95.64%)",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Composición temporal confunde tipo",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B19",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Dependencia entre votaciones de una sesión",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "2175 ensayos independientes",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "2175 ensayos independientes",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "2175 votos organizados en 144 sesiones; CI agrupado necesario",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Misma dependencia no demuestra ICC causal",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-B20",
+      "branch": "longitudinal",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Sensibilidad a votos sin nominal",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "incluir filas vacías no cambia estimandos",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "incluir filas vacías no cambia estimandos",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "eliminar 2 votos sin nominal reduce diferencia de 34654 a 33954 posiciones",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Pérdida de 700 posiciones no desaparece del origen",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C21",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Distorsión del margen Sí-No entre expresados",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "nominal produce margen idéntico",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "nominal produce margen idéntico",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "diferencia media del margen nominal−agregado +0.00198; diferencia absoluta media 0.00801",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "La media casi nula oculta errores fuertes",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C22",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Inversión del signo de Sí-No",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "mayoría nominal coincide siempre con agregada",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "mayoría nominal coincide siempre con agregada",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "149 cambios entre 2173 votos con nominal (6.8569%): 2023 15, 2024 124, 2025 4, 2026 6",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No cambia el resultado oficial; error de estimación por subcobertura",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C23",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Denominador fijo 350",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "350 es denominador universal",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "350 es denominador universal",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "32 votaciones total=349; excluirlas altera indicadores de exposición",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Aforo legislativo no idéntico a votos registrados",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "AUDIT_ONLY",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C24",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Concentración modal en recuentos de grupos",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "concentración idéntica en todo grupo",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "concentración idéntica en todo grupo",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "19500 filas grupo-voto con votos expresados; concentración modal media 0.97560; 36 empates",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Medida ecológica, no disciplina causal individual",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C25",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Efecto del tamaño de grupo",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "la concentración modal es independiente del tamaño",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "la concentración modal es independiente del tamaño",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "grupos con hasta 10 votos expresados: media 0.95683 (n=10812); grupos desde 30: 0.99927 (n=6515)",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Tamaño, composición y Mixto confunden comparación",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C26",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Incidencia de la clusterización en precisión",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "intervalo de voto-iid adecuado",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "intervalo de voto-iid adecuado",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "falta por posición ponderada aprox. 4.55%; bootstrap 2000 sesiones IC95 3.75–5.46%; SE iid por votación 0.000955",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Remuestreo dentro de una sola fuente, no confirmación externa",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C27",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Identificación voto-grupo-persona",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "se infiere el grupo histórico desde código nominal presente",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "se infiere el grupo histórico desde código nominal presente",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "la estructura nominal almacena códigos por opción, grupos como recuentos agregados, no unión individual comprobable sin tabla histórica",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Parada de inferencia individual por ausencia de enlace",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C28",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Sesgo de selección de siete votaciones",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "siete casos representan el archivo completo",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "siete casos representan el archivo completo",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "Sí entre expresados 44.55% siete frente a 46.55% resto; cobertura siete 98.29% frente a 95.44% resto",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Selección deliberada temática y población no aleatoria",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "CONTINUE_CONDITIONAL",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C29",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Conservación algebraica y controles negativos",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "identidades internas se violan",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "identidades internas se violan",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "350 escaños no es denominador universal; se verifica que la suma por opciones de brecha = 15264+15491+2841+1058 = 34654, sin excesos, grupo-total perfecto",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "Consistencia de una fuente no sustituye triangulación independiente",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "AUDIT_ONLY",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    },
+    {
+      "id": "PF-BR30F-C30",
+      "branch": "inference_quality",
+      "status": "POST_HOC_AUDIT",
+      "A": {
+        "estimand": "Puerta de preparación para predicción y puntuación",
+        "unit": "vote, vote-position, group-vote, session or year as declared",
+        "target_population": "archive of 2175 records in one secondary Git blob, NOT all Spanish parliamentary votes"
+      },
+      "B": {
+        "primary_rival": "archivo secundario permite predicción as-of y fantasy real",
+        "alternative": "structural source-coverage variation and historical identity matching; competing explanations may remain"
+      },
+      "C": {
+        "design": "Same-record, same-information descriptive audit; grouped by session where relevant; selection and holdout previously exposed",
+        "falsifier": "archivo secundario permite predicción as-of y fantasy real",
+        "preregistered_source": "research/BRANCH30F_20261025/PREREG.md",
+        "preregister_qualification": "group-level protocols frozen before the second extraction, but most source features and hypotheses were already exposed to researcher; post-hoc, not confirmatory"
+      },
+      "D": {
+        "instrument": "Pinned Git blob SHA1, four vote categories S N A X, separate nominal-vs-total counts; no implicit NO_VOTE",
+        "invariants": "per-option nominal <= total; group-count conservation; unique ids/codes; no invented historical membership"
+      },
+      "E": {
+        "executed": true,
+        "observed": "NO_READY: sin timestamp original de publicación, censo histórico, fuente nominal oficial pareada ni predicción temporal validada",
+        "source_sha1": "71918bb689c7a62cfbbdafe0b9248eac6b5c4be1"
+      },
+      "F": {
+        "adversarial_audit": "No asignar puntos a políticos reales ni emitir pronósticos empíricos",
+        "competent_baseline": "aggregate recuento (same data-source) vs nominal dictionary, or correct session cluster unit; NOT independent official corroboration"
+      },
+      "G": {
+        "external_replication": "NOT_AVAILABLE",
+        "within_source_replication": "programmatic checks; no independent original official nominal certification"
+      },
+      "H": {
+        "abductive_revision": "Retain identity-resolution/capture and time composition as rival to behavioral interpretation; do not update to causal claim",
+        "prior_change": "Higher priority to historical deputies roster and original release timestamps; evidence remains selected secondary archive"
+      },
+      "I": {
+        "internal_consistency": "tested in secondary data; audit not causal",
+        "external_validity": "unknown",
+        "causal_identification": "none",
+        "novelty": "not established",
+        "VSDS": "1/3",
+        "scientific_grade": "0/3 (not independent discovery)"
+      },
+      "J": {
+        "decision": "REPAIR_SOURCE",
+        "next_discriminant": "Match same vote against original Congreso JSON and historical roster with first-publication timestamp",
+        "budget_rule": "No further synthetic repetitions as substitute for official verification"
+      },
+      "depends_on": [
+        "source archive 2026-10-25 snapshot"
+      ],
+      "cycle_consumed_as_independent_field_experiment": false
+    }
+  ],
+  "type": "30 post-hoc A-J audits of same secondary source, not 30 independent experimental replications",
+  "G": "no external replication",
+  "CT2_pred": 24,
+  "VSDS": 1,
+  "N1": 0,
+  "N2": 0,
+  "N3": 0
+}
