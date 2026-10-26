@@ -62,3 +62,23 @@ El bloque de 30 A–J BR30J no logró todavía capturar un padrón nacional de p
 [Ledger BR30J con fichas A–J](BRANCH30J_20261026/LEDGER.json) · [Resultados 30/30 y runtime no verificado](BRANCH30J_20261026/RESULTS_FINAL.json) · [Informe de limitaciones y siguiente evidencia](BRANCH30J_20261026/REPORT.md).
 
 **N1/N2/N3 nuevos 0. VSDS 1/3. CT2 multiactor 20/100 y predictiva parlamentaria 24/100 sin incremento**, ordinales y no probabilísticos. R5 de RPP/candidaturas oficiales sigue sin levantarse.
+
+
+## BR20K — índice de progreso versionado (26/10/2026)
+
+Se añade una familia **PF-K01–PF-K06** de priors de medición y gobernanza, **sin borrar ni reinterpretar los priors anteriores**. Evidencia favorable/adversa, falsadores, alcance y procedencia íntegros en [BR20K/PRIORS_DELTA.md](BRANCH20K_20261026/PRIORS_DELTA.md).
+
+| ID | Síntesis | Límite principal |
+|---|---|---|
+| PF-K01 | Índice de madurez solo interpretable sobre un denominador de producto versionado | Pesos y niveles son criterios del investigador, no horas observadas |
+| PF-K02 | Readiness de lanzamiento debe ser gate independiente del avance porcentual | Los 6 gates dependen de la arquitectura de V1 |
+| PF-K03 | Más objetivos pueden reducir el porcentaje sin pérdida de progreso efectivo | Ejemplo V2 es hipotético, no una revisión adoptada |
+| PF-K04 | URL oficial legible o SHA de archivo local no equivale a original autenticado | Falta importar RPP y cohorte histórica de personas |
+| PF-K05 | Avance del trabajo no altera VSDS o CT2 por sí solo | Requiere evidencia sociológica/predictiva independiente |
+| PF-K06 | Prueba Node/Python publicada no equivale a prueba ejecutada | No hay corrida nativa o navegador E2E verificada |
+
+La [métrica V1 PFL-V1-20261026](../product/progress_snapshot_v1_20261026.json) adjudica **33,725% (33,7% visible), 9 sublíneas y 36 hitos**, con seis bloqueos de lanzamiento. No expresa tiempo o probabilidad de entrega. La prueba de ampliar municipios da **32,330%** en ejemplo hipotético, cero variación del trabajo ejecutado.
+
+[Ledger BR20K A–J](BRANCH20K_20261026/LEDGER.json) · [Informe](BRANCH20K_20261026/REPORT.md).
+
+**Misma situación epistémica:** VSDS 1/3, CT2 multiactor 20/100, CT2 parlamentaria 24/100; N1/N2/N3 nuevos = 0.
