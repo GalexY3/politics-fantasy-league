@@ -1,5 +1,24 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## BR30I — 30 ciclos AB con contraste oficial documental (26/10/2026)
+
+**30/30 ciclos A–J completos** sobre una nueva rama de conciliación de los resultados electorales de 2023 con el cuadro oficial de la JEC/BOE, coaliciones y producto. **30 checks V8 PASS**, pero NO 30 experimentos de campo independientes; algunos son controles aritméticos dependientes, otros auditorías documentales y los últimos comprobaciones estáticas de integración.
+
+La evidencia documental nueva: **52/52 provincias × seis magnitudes = 312/312 coincidencias** entre BOE/JEC Cuadro I, transcrito manualmente, y `anerodata 202307.csv`; **52/52 sumas de 59 opciones** igualan los votos a candidaturas; **cinco totales nacionales** de listas sin escaños concilian con Cuadro III JEC. Fuente primaria **consultada** pero PDF original **no descargado ni certificado criptográficamente**. En 2023, las **48/59 etiquetas con votos sin escaños** suman **606.450 votos (2,48% de los votos a candidaturas)**, sin medir mérito, influencia, ideología, ni número de partidos inscritos.
+
+Se diferencian 12 referencias de coaliciones JEC y cuatro provinciales JEP; **10 enlazan por siglas exactas** con el archivo electoral, pero el vínculo no atribuye partidos integrantes ni personas. [Grafo fuente](data/observatory/electoral_actor_graph_2023.json): 59 etiquetas + 16 coaliciones, 10 aristas, **cero personas evaluadas**. El [Atlas](data/observatory/electoral_atlas_2023.json) y [pestaña web](src/politics_fantasy/web/app.js) muestran evidencia JEC por etiqueta. Se añadió [runner offline](scripts/run_jec2023_audit.mjs), [tests Node](tests/test_jec2023_audit.mjs), y [workflow CI](https://github.com/GalexY3/Metodologia-AB/blob/main/.github/workflows/politics-fantasy-evidence.yml) **creado pero aún sin ejecución verificada**; el servidor HTTP Python y E2E visual aún no verificados.
+
+- [Informe final BR30I](research/BRANCH30I_20261026/REPORT.md)
+- [Ledger 30 fichas A–J](research/BRANCH30I_20261026/LEDGER.json)
+- [Priors PF-I01–I10 integrados al ledger](research/PRIORS.md)
+- [Resultados individuales de la batería (30/30)](research/BRANCH30I_20261026/RESULTS_C01_C30_POST_MERGE.json)
+- [Cotejo externo JEC](research/BRANCH30I_20261026/RESULTS_JEC_2023_FULL.json)
+- [Transcripción JEC y limitación de fuente](research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv)
+- [Referencias oficiales de coaliciones](research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json)
+- [Prerregistro exploratorio y exposición previa documentada](research/BRANCH30I_20261026/PREREG_C01_C30.json)
+
+**CT2 predictiva 24/100 y multiactor 20/100 sin incremento, VSDS 1/3; N1/N2/N3 nuevos = 0.** Las 30 plazas recién autorizadas quedan cerradas; se solicita un nuevo bloque condicionado a NUEVAS fuentes primarias de actores y personas, no repetir la misma elección.
+
 ## Continuación del 26/10/2026 — fuentes electorales y cierres AB
 
 **Documento de referencia:** [Informe y contabilidad final](research/CONTINUACION_20261026/REPORT.md).
