@@ -1,0 +1,224 @@
+{
+  "campaign": "PF-BR20K",
+  "date": "2026-10-26",
+  "method": "AB_3_2_1_BRANCHED_SOURCE_AND_PROGRESS_INDEX",
+  "prereg_git_sha": "2c2e6da1fceaf93f37820546ee95e60b48db16d6",
+  "source_scope_git_sha": "ea1f68d16fdcf6a7917c188495eacbdf1a3783b3",
+  "scope_id": "PFL-V1-20261026",
+  "baseline_index": 33.725,
+  "sub_tracks": 9,
+  "milestones": 36,
+  "release_ready": false,
+  "release_blockers": 6,
+  "field_party_registry_rows_captured": 0,
+  "actual_persons_verified": 0,
+  "novel_sociology_confirmed": 0,
+  "unverified_native_executions": [
+    "Node native CI",
+    "Python progress endpoint",
+    "Browser E2E",
+    "Live original registry ingestion"
+  ],
+  "results": [
+    {
+      "id": "PF-BR20K-C01",
+      "branch": "scope",
+      "question": "Definir V1 finita y pesos de sublíneas, fijar 36 hitos sin alterar escala VSDS/CT2",
+      "expected_endpoint": "Existencia y validación de 9 vías, 36 hitos, pesos suman 100",
+      "observed": "V1 scope 9 weighted lanes, 36 evidence-linked milestones and explicit exclusions",
+      "adjudication": "PASS_BASELINE_CREATED",
+      "evidence_ref": "product/progress_scope_v1.json",
+      "evidence_class": "SOURCE_REVIEW_PLUS_CODE"
+    },
+    {
+      "id": "PF-BR20K-C02",
+      "branch": "measurement",
+      "question": "Madurez graduada sustentada en evidencia y versión, no autocompletado por número de ciclos",
+      "expected_endpoint": "Rechazo de hitos sin ID, peso, fuente o nivel válido",
+      "observed": "Schema validation rejects duplicate milestones, false weights and undocumented levels",
+      "adjudication": "PASS_V8",
+      "evidence_ref": "tests/test_progress_model.mjs",
+      "evidence_class": "ENGINEERING_TEST_V8"
+    },
+    {
+      "id": "PF-BR20K-C03",
+      "branch": "measurement",
+      "question": "Índice ponderado y desglose por vías",
+      "expected_endpoint": "V1 calcula 33.725% con nueve contribuciones trazables",
+      "observed": "Weighted total 33.725%, per-track contributions audit to full index",
+      "adjudication": "PASS_V8",
+      "evidence_ref": "product/progress_snapshot_v1_20261026.json",
+      "evidence_class": "ENGINEERING_TEST_V8"
+    },
+    {
+      "id": "PF-BR20K-C04",
+      "branch": "scope",
+      "question": "Efecto diferencial de nueva versión y avances reales",
+      "expected_endpoint": "Descomposición algebraica exacta work+scope = cambio global",
+      "observed": "Work-first scope decomposition verified including simultaneous work and new scope",
+      "adjudication": "PASS_V8",
+      "evidence_ref": "product/progress_scope_change_example.json",
+      "evidence_class": "ENGINEERING_TEST_V8"
+    },
+    {
+      "id": "PF-BR20K-C05",
+      "branch": "scope",
+      "question": "Evitar que avance aparente equivalga a viabilidad para usuarios",
+      "expected_endpoint": "Seis gates explícitos de release bloqueados pese al 33.7%",
+      "observed": "Six release blockers despite 33.7% maturity; real scoring remains locked",
+      "adjudication": "PASS_V8",
+      "evidence_ref": "product/progress_snapshot_v1_20261026.json",
+      "evidence_class": "ENGINEERING_TEST_V8"
+    },
+    {
+      "id": "PF-BR20K-C06",
+      "branch": "scope",
+      "question": "Escenario de municipios completos y crecimiento real del denominador",
+      "expected_endpoint": "Nuevo hito no iniciado baja score 33.725->32.33, trabajo=0",
+      "observed": "Hypothetical fifth municipal milestone: 33.725 -> 32.330; -1.395 scope pp, no work effect",
+      "adjudication": "PASS_V8_HYPOTHETICAL",
+      "evidence_ref": "product/progress_scope_v2_EXAMPLE_NOT_ADOPTED.json",
+      "evidence_class": "COUNTERFACTUAL_SOFTWARE"
+    },
+    {
+      "id": "PF-BR20K-C07",
+      "branch": "sources",
+      "question": "Verificar disponibilidad oficial del RPP y distinguir interfaz de corpus original",
+      "expected_endpoint": "Contraste documental público; sin nuevos registros originales",
+      "observed": "RPP query and PDF are documented; 0 original registry rows ingested",
+      "adjudication": "STOP_R5",
+      "evidence_ref": "research/BRANCH20K_20261026/ORIGINAL_SOURCE_DISCOVERY.md",
+      "evidence_class": "OFFICIAL_METADATA_ONLY"
+    },
+    {
+      "id": "PF-BR20K-C08",
+      "branch": "sources",
+      "question": "Cotejar existencia de padrón histórico Congreso y recursos JEC",
+      "expected_endpoint": "Catálogos verificados pero no equivalentes a relaciones individuales extraídas",
+      "observed": "Official July-2026 active deputy JSON was readable by web but not downloaded/hashed into warehouse",
+      "adjudication": "STOP_R5_WITH_SCHEMA_OBSERVATION",
+      "evidence_ref": "research/BRANCH20K_20261026/ORIGINAL_SOURCE_DISCOVERY.md",
+      "evidence_class": "OFFICIAL_SCHEMA_DOCUMENTARY"
+    },
+    {
+      "id": "PF-BR20K-C09",
+      "branch": "source_quality",
+      "question": "Control de integridad de originales sin suplantar autenticidad",
+      "expected_endpoint": "La métrica no otorga lvl4 por un checksum local no autenticado",
+      "observed": "Content SHA256 importer exists; original publisher authentication and process runtime not established",
+      "adjudication": "PARTIAL_CODE_ONLY",
+      "evidence_ref": "scripts/ingest_political_evidence.mjs",
+      "evidence_class": "CODE_NOT_FIELD"
+    },
+    {
+      "id": "PF-BR20K-C10",
+      "branch": "identity",
+      "question": "Auditar cobertura empírica de IDs jurídicos y personas públicas",
+      "expected_endpoint": "0 personas reconciliadas; status auditado no valorado como completado",
+      "observed": "No actual public person/registered political legal entity reconciled across original sources",
+      "adjudication": "STOP_R5",
+      "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+      "evidence_class": "NO_FIELD_COHORT"
+    },
+    {
+      "id": "PF-BR20K-C11",
+      "branch": "identity",
+      "question": "Distinguir roles temporales implementados vs verificados",
+      "expected_endpoint": "Roles V8 fixture solo nivel2 para integración real y nivel3 para schema",
+      "observed": "Temporal role code and synthetic fixture tests exist; true historical field roles not verified",
+      "adjudication": "PASS_PREVIOUS_V8_ONLY",
+      "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+      "evidence_class": "SYNTHETIC_TEST"
+    },
+    {
+      "id": "PF-BR20K-C12",
+      "branch": "events",
+      "question": "Determinar si eventos extradiputacionales ya sostienen puntuación nominal",
+      "expected_endpoint": "Puerta de eventos-persona sin verificar; score personal inhabilitado",
+      "observed": "No real political-person events fit for gameplay scoring",
+      "adjudication": "STOP_R5",
+      "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+      "evidence_class": "NO_FIELD_COHORT"
+    },
+    {
+      "id": "PF-BR20K-C13",
+      "branch": "science",
+      "question": "Anclar sublínea TFM a metodología AB vs construcción de juego",
+      "expected_endpoint": "Separar protocolos y baselines sintéticos de validación prospectiva de campo",
+      "observed": "Plan TFM defines person-week estimand, baselines, rivals and as-of requirements; not a field forecast",
+      "adjudication": "PASS_METHOD_REVIEW",
+      "evidence_ref": "docs/PLAN_TFM.md",
+      "evidence_class": "METHODOLOGY_DOCUMENTARY"
+    },
+    {
+      "id": "PF-BR20K-C14",
+      "branch": "game",
+      "question": "Confirmar capacidades reales del prototipo sin atribuir resultados políticos",
+      "expected_endpoint": "Game demo local, reglas sintéticas y ausencia de scoring reales correctamente valoradas",
+      "observed": "Local game market and scoring demo with 49 tests logged in older version, not public deployment",
+      "adjudication": "PASS_HISTORICAL_LOG",
+      "evidence_ref": "product/QA_RUN_20261024.txt",
+      "evidence_class": "HISTORICAL_QA_LOG"
+    },
+    {
+      "id": "PF-BR20K-C15",
+      "branch": "ui",
+      "question": "Publicar progreso, detalle de sublíneas y estado de preparación en interfaz",
+      "expected_endpoint": "GET /api/progress y pestaña UI con barras y bloqueos",
+      "observed": "App UI progress tab and JSON fetch implemented; frontend syntax PASS in V8, no browser E2E",
+      "adjudication": "PASS_STATIC_JS",
+      "evidence_ref": "src/politics_fantasy/web/app.js",
+      "evidence_class": "STATIC_FRONTEND"
+    },
+    {
+      "id": "PF-BR20K-C16",
+      "branch": "api",
+      "question": "Implementar cálculo Python de solo lectura, con fail-closed",
+      "expected_endpoint": "JSON válido; rechazar estructura falsa, puntuación según V1",
+      "observed": "Python /api/progress adapter implemented but not executed with Python interpreter in this turn",
+      "adjudication": "CODE_PRESENT_NATIVE_NOT_RUN",
+      "evidence_ref": "src/politics_fantasy/progress_api.py",
+      "evidence_class": "CODE_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR20K-C17",
+      "branch": "qa",
+      "question": "Pruebas Node de invariantes, versiones y ampliación del alcance",
+      "expected_endpoint": "Batería nativa publicada + ejecución pura V8 verificada",
+      "observed": "20 pure JS progress model assertions pass; Node-runner availability not independently observed",
+      "adjudication": "PASS_20_V8",
+      "evidence_ref": "tests/test_progress_model.mjs",
+      "evidence_class": "ENGINEERING_TEST_V8"
+    },
+    {
+      "id": "PF-BR20K-C18",
+      "branch": "qa",
+      "question": "Pruebas Python/HTTP ruta progreso y paridad numérica",
+      "expected_endpoint": "Tests publicados, distinguir ejecución real de análisis fuente",
+      "observed": "Python API HTTP/Node subprocess tests written and wired to CI; native jobs unverified",
+      "adjudication": "CODE_PRESENT_NATIVE_NOT_RUN",
+      "evidence_ref": "tests/test_progress_http.py",
+      "evidence_class": "CODE_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR20K-C19",
+      "branch": "governance",
+      "question": "Registro auditable scope revisiones + evidencia cada hito",
+      "expected_endpoint": "Baseline, snapshot, ejemplo de nueva versión y dependencias en informes",
+      "observed": "Immutable V1 progress snapshot, hypothetical V2 and explanatory documentation published",
+      "adjudication": "PASS_VERSIONED_ARTIFACT",
+      "evidence_ref": "docs/PROGRESO_Y_ALCANCE_v1.md",
+      "evidence_class": "ARTIFACT_AUDIT"
+    },
+    {
+      "id": "PF-BR20K-C20",
+      "branch": "integration",
+      "question": "Actualizar ledger AB, priors, README, CI y dictamen J",
+      "expected_endpoint": "20 A–J completos, estados observados con ausencia de replicación externa explícita",
+      "observed": "20 distinct A–J to be persisted in campaign ledger and README with explicit no-field caveats",
+      "adjudication": "CLOSE_AJ_PENDING_LEDGER_VERIFY",
+      "evidence_ref": "research/BRANCH20K_20261026/LEDGER.json",
+      "evidence_class": "GOVERNANCE"
+    }
+  ]
+}
