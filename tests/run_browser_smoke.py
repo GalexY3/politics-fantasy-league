@@ -65,6 +65,9 @@ def main():
             assert "36,4" in content,repr(content[:400])
             assert "Fuentes y datos" in content
             assert "Privacidad, seguridad y licencias" in content
+            assert page.locator("progress.scope-progress").count()==10
+            assert float(page.locator("progress.scope-progress").first.get_attribute("value"))==36.35
+            results["passes"].append("Native progress bars visible with external CSS and strict CSP")
             assert "NO está listo" in content
             results["passes"].append("Chromium progress V2 nine sublines and no-publication warning")
             page.locator("[data-tab='market']").click()
