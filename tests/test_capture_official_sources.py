@@ -56,7 +56,7 @@ def test_capture_sha256_only_with_correct_institution_domain(monkeypatch,tmp_pat
     assert reply["capture_status"]=="RAW_BYTES_CAPTURED"
     assert reply["bytes"]==len(b'[{"PUBLIC":"DATO_PUBLICO_DEMO"}]')
     assert len(reply["sha256"])==64
-    assert (tmp_path/"test.json").read_bytes()==b'[{"PUBLIC":"DATO"}]'
+    assert (tmp_path/"test.json").read_bytes()==b'[{"PUBLIC":"DATO_PUBLICO_DEMO"}]'
 
 def test_redirect_to_third_party_rejected(monkeypatch,tmp_path):
     monkeypatch.setattr(C,"ROOT",tmp_path)
