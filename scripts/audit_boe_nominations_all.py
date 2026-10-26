@@ -42,6 +42,7 @@ def extract(text:str)->dict:
     marks=list(JUNTA.finditer(text))
     if not marks:raise ValueError("NO_PROVINCIAL_JUNTAS")
     parsed=[]
+    quarantined=[]
     issues=[]
     for index,m in enumerate(marks):
         province=clean(m.group(1))
@@ -77,9 +78,20 @@ def extract(text:str)->dict:
             issues.append({"province":province,"code":"NO_LIST_HEADINGS_EXTRACTED"})
             continue
         if indices!=list(range(1,len(indices)+1)):
+            missing=sorted(set(range(1,max(indices)+1))-set(indices)) if indices else []
             issues.append({"province":province,"code":"NON_SEQUENTIAL_LIST_POSITIONS",
-                "indices":indices[:30]})
-            # Fail closed for that province: inconsistent section cannot be certified.
+                "indices":indices[:30], "missing_ordinal_positions":missing})
+            # Preserve observed public LIST labels under quarantine, not counted as
+            # complete/certified, no individual candidates or made-up missing labels.
+            quarantined.append({"province_label":province,
+                "province_id":province_id(province),
+                "quality_status":"UNRESOLVED_NON_SEQUENTIAL",
+                "observed_list_headings":len(lists),
+                "observed_positions":indices,
+                "missing_ordinal_positions":missing,
+                "not_a_complete_candidacy_list":True,
+                "observed_labels_only":lists,
+                "people_identified":0,"legal_registered_parties_confirmed":0})
             continue
         if any("NO PROCLAMADA" in z for z in segment.upper().splitlines()):
             issues.append({"province":province,"code":"CONTAINS_NON_PROCLAMATION_NOTICE_REVIEW"})
@@ -97,7 +109,9 @@ def extract(text:str)->dict:
         "province_sections_parsed":len(parsed),
         "list_headings_extracted":sum(x["congress_candidacies"] for x in parsed),
         "distinct_label_acronyms":len({x["acronym"] for p in parsed for x in p["lists"]}),
-        "provinces":parsed,"issues":issues,
+        "provinces":parsed,"quarantined_provinces":quarantined,
+        "quarantined_observed_list_headings":sum(x["observed_list_headings"] for x in quarantined),
+        "issues":issues,
         "uncertain_province_sections":len(issues),
         "legal_parties_confirmed":0,"people_public_roles_joined":0,
         "official_population_denominator_confirmed":False,
@@ -128,14 +142,16 @@ def main():
     a=audit(Path(sys.argv[1]))
     Path(sys.argv[2]).write_text(json.dumps(a,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     summary={k:a[k] for k in ("sha256","province_sections_detected","province_sections_parsed",
-        "list_headings_extracted","distinct_label_acronyms","uncertain_province_sections")}
+        "list_headings_extracted","distinct_label_acronyms",
+        "quarantined_observed_list_headings","uncertain_province_sections")}
     print("BOE_NOMINATION_ATLAS="+json.dumps(summary,ensure_ascii=False))
     print("BOE_NOMINATION_ERRORS="+json.dumps(a["issues"][:12],ensure_ascii=False))
     # Log bounded, ASCII-escaped PUBLIC CANDIDACY LABELS only, never people names.
     # Chunks enable reproducible import without putting PDF/persons into Git commits.
     safe={k:a[k] for k in ("source_document","source_date","election","sha256",
         "original_bytes","province_sections_detected","province_sections_parsed",
-        "list_headings_extracted","distinct_label_acronyms","provinces","issues",
+        "list_headings_extracted","distinct_label_acronyms","provinces",
+        "quarantined_provinces","quarantined_observed_list_headings","issues",
         "legal_parties_confirmed","people_public_roles_joined",
         "official_population_denominator_confirmed")}
     compact=json.dumps(safe,ensure_ascii=True,separators=(",",":"))
