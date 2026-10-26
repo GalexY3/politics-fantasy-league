@@ -30,7 +30,7 @@
     0
   ],
   "prereg_sha": "2c2e6da1fceaf93f37820546ee95e60b48db16d6",
-  "results_sha": "7bda3717692de315ca079946dd41fea4cd7c27bc",
+  "results_sha": "86ae9746be4080343d18cb7205ad100bdf39bd58",
   "method": "20 feasibility/engineering AB A-J records, NOT 20 independent field studies; 4 R5 evidence stops, 2 explicit native execution unknown",
   "cycles": [
     {
@@ -1241,8 +1241,8 @@
       },
       "E": {
         "performed_local_review": true,
-        "observed": "20 distinct A–J to be persisted in campaign ledger and README with explicit no-field caveats",
-        "adjudication": "CLOSE_AJ_PENDING_LEDGER_VERIFY",
+        "observed": "Ledger of 20 full A-J cycles, full report and six new priors have been published and verified by successful repository file writes",
+        "adjudication": "PASS_LEDGER_CLOSED",
         "independent_field_experiment_executed": false,
         "native_runtime": "AS_DOCUMENTED"
       },
@@ -1266,12 +1266,22 @@
         "CT2_multiactor": 20,
         "CT2_predictive": 24,
         "external_validity": "NOT_ESTABLISHED",
-        "software_or_documentary_result": "CLOSE_AJ_PENDING_LEDGER_VERIFY"
+        "software_or_documentary_result": "PASS_LEDGER_CLOSED"
       },
       "J": {
         "decision": "CLOSE_ENGINEERING_CONTRACT",
         "next_step": "Reevaluate on new evidence, preserving baseline revision"
       }
     }
-  ]
+  ],
+  "quality_control": {
+    "source_results_sha": "86ae9746be4080343d18cb7205ad100bdf39bd58",
+    "all_AJ": true,
+    "full_20": true,
+    "counts": {
+      "PASS": 13,
+      "R5": 4,
+      "PENDING_NATIVE_OR_PARTIAL": 3
+    }
+  }
 }
