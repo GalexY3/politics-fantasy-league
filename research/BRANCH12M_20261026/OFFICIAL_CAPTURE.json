@@ -1,0 +1,55 @@
+{
+  "campaign": "PF-BR12M",
+  "as_of": "2026-10-26",
+  "workflow_run_id": 40257855073,
+  "more_recent_capture_run_id": 40258185858,
+  "reference_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40257855073",
+  "capture_method": "GitHub ubuntu-latest Python 3.11 urllib HTTPS with system CA, final host exact match, streamed ≤35MB, SHA256 raw",
+  "original_raw_pdf_bytes_stored_in_private_artifact_temporarily": true,
+  "artifact_retention_days": 3,
+  "published_raw_data_files_in_repository": false,
+  "captures": [
+    {
+      "id": "boe_jec_2023_original",
+      "url": "https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf",
+      "status": "RAW_BYTES_CAPTURED",
+      "bytes": 1915000,
+      "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+      "kind": "original institutional PDF",
+      "verify": "HTTPS institutional domain + valid PDF magic/EOF + independent SHA256 readback on CI",
+      "numerical_tables_automatic_corroboration": "PENDING_PDFTOTEXT_CI",
+      "rights": "REUSE_CONDITIONS_NOT_CERTIFIED_IN_THIS_CAMPAIGN",
+      "publisher_signed_digest": false,
+      "first_public_at_per_individual_row": "UNKNOWN"
+    },
+    {
+      "id": "congress_active_20260810",
+      "url": "https://www.congreso.es/webpublica/opendata/diputados/DiputadosActivos__20260810050006.json",
+      "status": "STOP_R5_NETWORK_OR_FORMAT",
+      "error": "HTTP 404",
+      "file_sha256": null
+    },
+    {
+      "id": "congress_all_20260810",
+      "url": "https://www.congreso.es/webpublica/opendata/diputados/Diput__20260810050141.json",
+      "status": "STOP_R5_NETWORK_OR_FORMAT",
+      "error": "HTTP 404",
+      "file_sha256": null
+    },
+    {
+      "id": "interior_congress_elections",
+      "url": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso.xlsx",
+      "status": "STOP_R5_NETWORK_OR_FORMAT",
+      "error": "SSL CERTIFICATE_VERIFY_FAILED: unable to get local issuer certificate",
+      "tls_bypass_attempted": false,
+      "file_sha256": null
+    }
+  ],
+  "evidence_boundaries": [
+    "One official historical PDF document downloaded; not an official RPP party register nor historical roster of individuals",
+    "One source authentic HTTPS transport and bytes integrity does not verify content authorship by cryptographic signature",
+    "Manual prior source transcribed 52x6, but before new automated original-PDF-table check these remain distinct operations",
+    "Do not increase scientific VSDS/CT2 based on downloading a PDF",
+    "Numerical data are not current political-party membership or influence measurements"
+  ]
+}
