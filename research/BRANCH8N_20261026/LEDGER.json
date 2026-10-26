@@ -1,0 +1,629 @@
+{
+  "campaign": "PF-BR8N",
+  "date": "2026-10-26",
+  "authorization": 8,
+  "closed_AJ": 8,
+  "remaining": 0,
+  "branching": true,
+  "method": "AB_3_2_1",
+  "DRIFT_D": "D1.1 original public electoral candidacies + local browser validation without redefining PFL V1",
+  "main_evidence": "NATIVE_EVIDENCE.json",
+  "prereg_sha": "a446ac762a5c3472eaec5b479f0ac71fd97aaff3",
+  "results_sha": "043fb2b45c9b8d27306076b53fc03c76c6280a34",
+  "official_original_candidacies_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+  "native_results": {
+    "Node": 95,
+    "Python": 59,
+    "Chromium_green": true
+  },
+  "crosswalk": {
+    "exact": 8,
+    "zero_seat_labels": 4,
+    "legal_parties_confirmed": 0,
+    "persons_joined": 0
+  },
+  "progress": {
+    "scope": "PFL-V1-20261026",
+    "previous_revision": 2,
+    "new_revision": 3,
+    "previous_pct": 35.45,
+    "new_pct": 36.35,
+    "work_effect_pp": 0.9,
+    "scope_effect_pp": 0,
+    "release_gates_remaining": 6
+  },
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "cycles": [
+    {
+      "id": "PF-BR8N-N01",
+      "branch": "source",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "DOCUMENTARY_PRIMARY_BOUNDED",
+      "A": {
+        "question": "Download BOE-A-2023-15066 official proclaimed candidacies document with exact HTTPS institutional host, original bytes and hash",
+        "estimand": "Authenticated original 2023 nomination artifact available",
+        "unit": "Document/list-label/aggregate official publication"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "NO_ORIGINAL_CAPTURE",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_ORIGINAL_RAW",
+        "observation": "Original BOE-A-2023-15066 captured through www.boe.es HTTPS: 4,298,580 bytes, SHA256 verified",
+        "original_file_bytes_2023_document": 4298580,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": null
+      },
+      "F": {
+        "adversarial": "Official HTTPS PDF has a stable SHA but no independent publisher-signed digest, no verified rights for downstream personal redistribution and may receive corrections",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N01 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_ORIGINAL_RAW",
+        "evidence_against": "Official HTTPS PDF has a stable SHA but no independent publisher-signed digest, no verified rights for downstream personal redistribution and may receive corrections",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N02",
+      "branch": "source",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "DOCUMENTARY_PRIMARY_BOUNDED",
+      "A": {
+        "question": "Establish conservative extraction and count of candidature groups excluding people and Senate",
+        "estimand": "Bounded exact sample from authentic BOE with nominated organizations, territorial scope and no inferred membership",
+        "unit": "Document/list-label/aggregate official publication"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "PARSER_FALSE_MERGE",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_BOUNDED_EXTRACTION",
+        "observation": "Eight Albacete Congreso proclaimed list acronyms recovered from 2023 original, people/parties legal IDs not populated",
+        "original_file_bytes_2023_document": 4298580,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": null
+      },
+      "F": {
+        "adversarial": "PDF parser is narrowly conditional on one province/document layout; non-proclaimed notices and Senate titles exist elsewhere",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N02 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_BOUNDED_EXTRACTION",
+        "evidence_against": "PDF parser is narrowly conditional on one province/document layout; non-proclaimed notices and Senate titles exist elsewhere",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N03",
+      "branch": "source",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "DOCUMENTARY_PRIMARY_BOUNDED",
+      "A": {
+        "question": "Corroborate original election outcome versus candidature presence while keeping nonseat actors",
+        "estimand": "Independent BOE document links candidature proposals to 2023 electoral labels only if evidence supports; track unresolved aliases",
+        "unit": "Document/list-label/aggregate official publication"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "INVALID_JOIN_OR_LEGAL_PARTY_CLAIM",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_CONSERVATIVE_CROSSWALK",
+        "observation": "8/8 unique exact acronym crosswalk versus prior secondary national 2023 dataset, 4 national no-seat labels; no legal party inference",
+        "original_file_bytes_2023_document": 4298580,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": null
+      },
+      "F": {
+        "adversarial": "Two sources may copy shared original election labels; exact siglas do not prove independent origin, legal identity or province-local national totals",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N03 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_CONSERVATIVE_CROSSWALK",
+        "evidence_against": "Two sources may copy shared original election labels; exact siglas do not prove independent origin, legal identity or province-local national totals",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N04",
+      "branch": "identity",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "IDENTITY_GUARD_WITH_R5",
+      "A": {
+        "question": "Enforce role/candidacy/coalition identity distinctions and uncertainty",
+        "estimand": "No party-membership inference, no conflation of list and legal-party records, matching is conservative",
+        "unit": "Institutional identity-role evidence"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "IDENTITY_FALSE_POSITIVES",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PARTIAL_R5_IDENTITY",
+        "observation": "Collision negative test fails closed, authentic RPP roster and individual public-candidate linkage not yet reconciled",
+        "original_file_bytes_2023_document": null,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": null
+      },
+      "F": {
+        "adversarial": "Legal party registry source not captured; no person public-role history, affiliation or legal party registration should be invented from list label",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N04 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PARTIAL_R5_IDENTITY",
+        "evidence_against": "Legal party registry source not captured; no person public-role history, affiliation or legal party registration should be invented from list label",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "R5_LEGAL_IDENTITY_NOT_RESOLVED",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_CYCLE_STOP_R5_SUBSTANTIVE_IDENTITY",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N05",
+      "branch": "product",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "NATIVE_SOFTWARE_E2E",
+      "A": {
+        "question": "Integrate read-only electoral candidacy source status into local observatory, no real person grading",
+        "estimand": "Source provenance is inspectable in UI/API with error state and privacy filtering",
+        "unit": "Actual source-backed local app or progress milestone"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "UI_MISREPRESENTS_FICTION",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_BOUNDED_ATLAS_UI",
+        "observation": "Local API original BOE checksum, eight source-list labels, 0 people scored; browser displayed source panel in green CI",
+        "original_file_bytes_2023_document": null,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": 40315022251
+      },
+      "F": {
+        "adversarial": "Local atlas UI can correctly show eight list labels yet still omit other 51 electoral constituencies or mislead about parties if warning removed",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N05 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_BOUNDED_ATLAS_UI",
+        "evidence_against": "Local atlas UI can correctly show eight list labels yet still omit other 51 electoral constituencies or mislead about parties if warning removed",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N06",
+      "branch": "browser",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "NATIVE_SOFTWARE_E2E",
+      "A": {
+        "question": "Run actual browser smoke test for navigation game and project-progress page with localhost HTTP app",
+        "estimand": "Native browser test success or explicit STOP_R5 if browser unavailable; no fabricated browser screenshots",
+        "unit": "Actual source-backed local app or progress milestone"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "NATIVE_BROWSER_FAIL",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_CHROMIUM_E2E",
+        "observation": "Real Chromium navigation to market, atlas, progress in green CI; no uncaught JS exceptions",
+        "original_file_bytes_2023_document": null,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": 40315022251
+      },
+      "F": {
+        "adversarial": "Browser Chromium smoke is not a blind usability panel, device accessibility suite, public internet deployment or penetration test",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N06 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_CHROMIUM_E2E",
+        "evidence_against": "Browser Chromium smoke is not a blind usability panel, device accessibility suite, public internet deployment or penetration test",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N07",
+      "branch": "security",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "NATIVE_SOFTWARE_E2E",
+      "A": {
+        "question": "Adversarial HTTP/browser tests: local-host-only, no profile leak, request origin constraints",
+        "estimand": "Security controls pass on local demo; no claim of multiuser hardening",
+        "unit": "Actual source-backed local app or progress milestone"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "AUTH_OR_ORIGIN_BYPASS",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_LOCAL_HOST_SECURITY_SCOPE",
+        "observation": "Host external domain denied HTTP 403 in browser suite, no authentication or production security audit claimed",
+        "original_file_bytes_2023_document": null,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": 40315022251
+      },
+      "F": {
+        "adversarial": "Host check validates one localhost networking boundary; app lacks multiuser authentication, session management and a production CSRF model",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N06 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_LOCAL_HOST_SECURITY_SCOPE",
+        "evidence_against": "Host check validates one localhost networking boundary; app lacks multiuser authentication, session management and a production CSRF model",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    },
+    {
+      "id": "PF-BR8N-N08",
+      "branch": "governance",
+      "status": "AB_A_TO_J_COMPLETE",
+      "evidence_category": "GOVERNANCE",
+      "A": {
+        "question": "Close full A-J and revise scope progress only if material source/browser evidence warrants it",
+        "estimand": "Complete ledger, reasoned progress delta V2→V3 or unchanged, preserve all old priors and 6 launch gates",
+        "unit": "Actual source-backed local app or progress milestone"
+      },
+      "B": {
+        "hypothesis": "The new official dataset or browser validation can address this narrowly framed endpoint",
+        "null_hypothesis": "Prior prototype and metadata remain insufficient for field-level legal persons",
+        "strong_rival": "Ambiguous acronyms, fake person affiliation, secondary-source dependence and unverified public deployment"
+      },
+      "C": {
+        "prereg_contract": "PREREG.json",
+        "falsifier": "GOODHART_PERCENT",
+        "pre_exposed_public_sources": true,
+        "causal_pre_registration": false,
+        "acceptance_rule": "Accept only original SHA/machine extraction, unique exact link, native browser/API logs or documented STOP"
+      },
+      "D": {
+        "instruments": [
+          "scripts/capture_official_sources.py",
+          "scripts/audit_proclaimed_candidates.py",
+          "scripts/audit_candidacy_crosswalk.mjs",
+          "src/politics_fantasy/candidacy_api.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "primary_document": "BOE-A-2023-15066",
+        "test_runner": 40315022251,
+        "result_path": "RESULTS.json"
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS_GOVERNANCE_AND_PROGRESS",
+        "observation": "V3 scope unchanged; 36.35% (+0.9pp work, 0 scope); six release blockers and VSDS/CT2 unchanged, governance files",
+        "original_file_bytes_2023_document": null,
+        "individual_legal_identity_matches": 0,
+        "native_browser_run": null
+      },
+      "F": {
+        "adversarial": "36.35% is conventionally weighted milestone maturity, not probability or remaining engineering hours. CSS fix requires latest runner verification",
+        "alternative": "Strong authenticated RPP legal-party and public-person registry still absent"
+      },
+      "G": {
+        "document_original_downloaded": true,
+        "independent_external_social_replication": false,
+        "validation_sample": "ONE_2023_PROVINCE_CONGRESS_LISTS",
+        "browser_localhost_only": true,
+        "no_comparable_prospective_sociological_cohort": true
+      },
+      "H": {
+        "prior_delta": "PF-N06 in PRIORS_DELTA.md; update technical confidence only",
+        "positive_evidence": "PASS_GOVERNANCE_AND_PROGRESS",
+        "evidence_against": "36.35% is conventionally weighted milestone maturity, not probability or remaining engineering hours. CSS fix requires latest runner verification",
+        "numeric_bayesian_posterior": null
+      },
+      "I": {
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "source_risk": "BOUNDED_ENGINEERING_ACCEPTANCE",
+        "political_influence_inference": false
+      },
+      "J": {
+        "decision": "CLOSE_TECHNICAL_ACCEPTANCE",
+        "next_evidence": "Authentic RPP and public-role registry with temporal IDs; human-compatible historical roles and stronger user/security validation",
+        "unused_cycle_authorization": 0
+      }
+    }
+  ]
+}
