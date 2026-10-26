@@ -40,8 +40,23 @@ def atlas_status(path: Path | None = None) -> dict:
                     or (r["votes"] > 0 and r["seats"] == 0 and r["seat_status"] != "VOTES_WITHOUT_CONGRESS_SEAT")
                     or (r["seats"] > 0 and r["seat_status"] != "CONGRESS_SEAT_RECORDED")):
                 return {**blocked, "error": "ATLAS_ROW_BAD"}
-        public = [{"id":x["id"], "name":x["name"], "votes":x["votes"],
-                   "seats":x["seats"], "seat_status":x["seat_status"]} for x in rows]
+        audit = obj.get("documentary_audit", {})
+        if audit and (audit.get("reference_original_pdf_bytes_verified") is not False
+                or audit.get("metric_cells_matched") != 312
+                or audit.get("districts_matched") != 52):
+            return {**blocked, "error": "ATLAS_DOCUMENTARY_AUDIT_INVALID"}
+        public = []
+        for x in rows:
+            link = x.get("official_coalition_acronym_link")
+            if link is not None and (not isinstance(link, dict)
+                    or link.get("matching_method") != "EXACT_UNIQUE_ACRONYM_NOT_LEGAL_IDENTITY"
+                    or not isinstance(link.get("JEC_reference_id"), str)):
+                return {**blocked, "error": "ATLAS_COALITION_LINK_INVALID"}
+            public.append({"id":x["id"], "name":x["name"], "votes":x["votes"],
+                           "seats":x["seats"], "seat_status":x["seat_status"],
+                           "coalition_acronym_documented":link is not None,
+                           "official_national_votes_documentarily_checked":
+                               x.get("jec_table_iii_national_total_match") is True})
         public.sort(key=lambda x: x["name"].casefold())
         return {"ok": True, "year": 2023, "election": "Congreso, julio de 2023",
                 "dataset_class": "HISTORICAL_SECONDARY_AGGREGATE",
@@ -53,6 +68,14 @@ def atlas_status(path: Path | None = None) -> dict:
                 "labels_with_votes_no_congress_seat": sum(x["seat_status"] == "VOTES_WITHOUT_CONGRESS_SEAT" for x in public),
                 "labels_with_congress_seat": sum(x["seat_status"] == "CONGRESS_SEAT_RECORDED" for x in public),
                 "labels": public,
+                "jec_documentary_check": {
+                    "provinces": audit.get("districts_matched", 0),
+                    "aggregate_comparisons": audit.get("metric_cells_matched", 0),
+                    "pdf_original_bytes_certified": False,
+                    "party_option_votes_checked": sum(
+                        x["official_national_votes_documentarily_checked"] for x in public),
+                    "official_coalition_acronyms_matched": sum(
+                        x["coalition_acronym_documented"] for x in public)},
                 "limitations": obj.get("limitations", [])}
     except (ValueError, OSError, UnicodeError, TypeError, KeyError):
         return {**blocked, "error": "ATLAS_DATA_INVALID"}
