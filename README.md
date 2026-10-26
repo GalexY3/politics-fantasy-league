@@ -1,5 +1,15 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## BR8N — candidaturas originales y navegador real (26/10/2026)
+
+**8/8 ciclos AB con BRANCHING completados:** siete pruebas o integraciones técnicas/documentales aceptadas y un **PARTIAL_R5** porque aún falta identidad real de personas y partidos. [Ledger A–J](research/BRANCH8N_20261026/LEDGER.json) · [Informe](research/BRANCH8N_20261026/REPORT.md) · [Priors](research/PRIORS.md).
+
+**Dos fuentes BOE originales de la misma elección 2023 están capturadas y auditadas**: resultados 2023 BOE 18907 (52×6=312 cifras), y proclamación BOE 15066 (4.298.580 bytes, SHA256 `d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20`). De la última se extrajeron **8 etiquetas de candidaturas al Congreso en Albacete**, en [archivo de evidencia](data/observatory/boe_2023_albacete_verified.json). Cruce por sigla única **8/8** con [atlas secundario 2023](data/observatory/electoral_atlas_2023.json): **4 con votos nacionales, cero escaños** (FO, PACMA, PUM+J, Recortes Cero). Son candidaturas, NO un registro jurídico de ocho partidos ni identidad individual de personas. [Analizador conservador](scripts/audit_candidacy_crosswalk.mjs) y [negativos](tests/test_audit_candidacy_crosswalk.mjs).
+
+**Producto local:** `GET /api/verified-candidacies` devuelve siglas, fecha, provincia, fuente y SHA-256; [Atlas](src/politics_fantasy/web/app.js) integra el documento y advierte de límites. Ningún perfil ni puntuación sobre figuras reales. [GitHub Actions 40316425686](https://github.com/GalexY3/Metodologia-AB/actions/runs/40316425686): tres jobs verdes, **98 pruebas Node + 59 Python**, navegador Chromium real comprobó atlas, mercado, progreso **con 10 barras semánticas CSP-safe** y Host externo rechazado 403. No equivale a despliegue público ni acceso multiusuario seguro.
+
+**Métrica vigente revisión 3: 36,350 % (36,4 % redondeado)**, antes 35,450 %; **+0,900 puntos por evidencia de UI/QA**, cambio de scope 0 (36 hitos/9 vías). [Scope V3](product/progress_scope_v3_20261026.json) · [snapshot V3](product/progress_snapshot_v3_20261026.json) · [tabla de nueve subvías](docs/PROGRESO_Y_ALCANCE_v3.md). Seis gates de lanzamiento sin cumplir. VSDS 1/3 y CT2 multiactor 20/100, predictiva parlamentaria 24/100 sin cambios.
+
 ## BR12M — primer documento oficial original y CI nativa, 12/12 (26/10/2026)
 
 **12/12 ciclos AB 3.2.1 con BRANCHING cerrados**: 9 adjudicaciones técnicas/documentales exitosas y 3 STOP_R5 (dos rutas fuente oficiales inaccesibles y sin RPP/identidad de personas reconciliada). [Informe final](research/BRANCH12M_20261026/REPORT.md) y [ledger A–J](research/BRANCH12M_20261026/LEDGER.json).
