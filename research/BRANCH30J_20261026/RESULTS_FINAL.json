@@ -1,0 +1,201 @@
+{
+  "campaign": "PF-BR30J",
+  "date": "2026-10-26",
+  "mode": "30 exploratory/documentary/software AB contracts; no verified raw original Spanish party or people datasets",
+  "pre_reg_file": "research/BRANCH30J_20261026/PREREG.json",
+  "source_catalogue": {
+    "total": 8,
+    "official_original_rows_new": 0,
+    "metadata_only": 7
+  },
+  "municipal_2023_secondary_excerpt": {
+    "n_labels": 41,
+    "source": "https://resultados-elecciones.rtve.es/municipales/2023/",
+    "original_official_cotejo": false,
+    "exhaustive": false
+  },
+  "fixture_integration": {
+    "sources": 3,
+    "entities": 7,
+    "roles": 4,
+    "events": 2,
+    "claims": 1,
+    "asofMayEvents": 1,
+    "asofNovemberEvents": 2,
+    "duplicateEventReview": 1,
+    "population_denominator": null,
+    "actual_real_people": 0
+  },
+  "execution": {
+    "runner": "V8 PURE MODULE (no Node FS, Python or HTTP executed)",
+    "tests_total": 30,
+    "passed": 30,
+    "failed": 0,
+    "ui_parse": "PASS",
+    "standalone_node_cli_tests": "CODE_WRITTEN_NOT_RUN",
+    "python_unit_tests": "CODE_WRITTEN_NOT_RUN",
+    "python_loopback_HTTP_tests": "CODE_WRITTEN_NOT_RUN",
+    "GitHub_CI": "WORKFLOW_UPDATED_NOT_OBSERVED"
+  },
+  "source_file_sha": {
+    "warehouse": "dc16438d296871e5c171f3579b2a469e18bfb5f5",
+    "tests": "17b01045822f8055a5985885a538c5df56c85918",
+    "fixture": "57ee755f0bc7cfa0e544d27b0106dc41d04cb9c9",
+    "catalogue": "7d874234d17ffd9844a3c3123fc507401a20b10f",
+    "server": "1dabf2e1133389488fa734fe6a45e826559566a8",
+    "app": "5c4e0679b8c1eb45abb9cee59ee043aa8cb9c30b",
+    "ingestCLI": "5eca67c4a68342e81817111990758d21c8e69213"
+  },
+  "cases": [
+    {
+      "id": "PF-BR30J-S01",
+      "title": "Registry metadata has no actual captured raw parties",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S02",
+      "title": "Interior elected officials catalogue is not an ingested roster",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S03",
+      "title": "JEC candidates are separate from juridical party registration",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S04",
+      "title": "At least one official municipal source other than national Congress",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S05",
+      "title": "RAW source fails without recomputed SHA256",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S06",
+      "title": "Catalog-only source cannot back a political actor",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S07",
+      "title": "Unknown rights do not pass reuse gate",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-S08",
+      "title": "Source revisions retained under distinct IDs, duplicates rejected",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I09",
+      "title": "Stable name-independent exact namespace ID resolution",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I10",
+      "title": "Homonym names remain unresolved without external ID",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I11",
+      "title": "Coalition only has members when an explicit role is sourced",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I12",
+      "title": "Candidacy does not silently create party membership",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I13",
+      "title": "Effective intervals exclude expired spokesperson role",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-I14",
+      "title": "Seat status is unknown without official dated claim",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E15",
+      "title": "Non-parliament public debate with documented participants",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E16",
+      "title": "As-of excludes even published fact if source observed later",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E17",
+      "title": "No numeric influence scoring accepted",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E18",
+      "title": "Civic platform may organize events without parliamentary seat",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E19",
+      "title": "Public event corrections retain both versions",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E20",
+      "title": "Duplicate external event IDs trigger review, not double-count assumption",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-E21",
+      "title": "Ordinary private person records rejected",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-M22",
+      "title": "Coverage denominator remains unknown",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-M23",
+      "title": "Coverage stratified by actor and source type, without ranking",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-M24",
+      "title": "Absent office claims not inferred from public events",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-M25",
+      "title": "No longitudinal forecasting without timestamped primary field data",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-M26",
+      "title": "Conflicting dated office claims produce review status",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-P27",
+      "title": "End-to-end fictional bundle integrity validates all references",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-P28",
+      "title": "Demo exposes aggregate readiness but not personal labels",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-P29",
+      "title": "30 test cases are registered for standalone Node, with errors reported",
+      "assertion": "PASS"
+    },
+    {
+      "id": "PF-BR30J-P30",
+      "title": "Conservative readiness reports no real people verified",
+      "assertion": "PASS"
+    }
+  ]
+}
