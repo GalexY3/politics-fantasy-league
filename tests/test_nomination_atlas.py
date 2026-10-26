@@ -17,6 +17,8 @@ def test_verified_bounded_source_25_provinces_263_distinct_lists():
     assert d["n_candidacies"]==263
     assert d["detected_provincial_sections"]==52
     assert d["unresolved_provincial_sections"]==27
+    assert d["extracted_without_known_notices"]==16
+    assert d["extracted_with_review_notices"]==9
     assert d["real_people_joined"]==0
     assert d["legal_parties_verified"]==0
     assert d["real_people_scoring"] is False
