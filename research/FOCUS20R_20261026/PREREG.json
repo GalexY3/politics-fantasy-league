@@ -1,0 +1,175 @@
+{
+  "campaign": "PF-FOCUS20R",
+  "date": "2026-10-26",
+  "authorized": 20,
+  "branching_option": true,
+  "selected_strategy": "FOCUS_NOT_DRIFT",
+  "decision_basis": "Five prior audits found 27 incomplete provinces and nine source warnings, plus nested privacy bug; focus original-source correctness rather than unrelated game features",
+  "protocol": "AB_3_2_1 A-J",
+  "source_and_prior_exposure": "BOE 2023 same original known and adaptively analyzed; not blinded confirmatory science",
+  "autonomy": "User granted branching, drift or focus; author chooses FOCUS grounded in R5 and data quality",
+  "no_field_invention": true,
+  "scope_baseline": "PFL-V1-20261026/revision3 36.35%; do not increase unless provenance supports one exact milestone",
+  "cycles": [
+    {
+      "id": "PF-FOCUS20R-P01",
+      "branch": "original",
+      "question": "Revalidate exact BOE 15066 PDF digest and transfer size",
+      "falsifier": "Known SHA256 and original bytes in native workflow, or STOP",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P02",
+      "branch": "parsing",
+      "question": "Certify 52 territorial commission headings without treating them as complete lists",
+      "falsifier": "All 52 headings recognized; national completeness separately false",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P03",
+      "branch": "quality",
+      "question": "Quarantine 27 sections with gaps including their partial observations",
+      "falsifier": "No gap-filled list created; incomplete labels remain under review",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P04",
+      "branch": "quality",
+      "question": "Differentiate 16 clean extracted sections",
+      "falsifier": "No-known-notice group explicitly distinct from rest",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P05",
+      "branch": "quality",
+      "question": "Differentiate nine extracted sections with no-proclamation notices",
+      "falsifier": "All nine carry review warnings and no legal acceptance claim",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P06",
+      "branch": "integrity",
+      "question": "Preserve 263 accepted nomination records from 25 contiguous sections",
+      "falsifier": "Total equals manifest and sum per province",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P07",
+      "branch": "identity",
+      "question": "Prevent cross-territory homonym merges",
+      "falsifier": "Unique IDs use original+province+chamber+ordinal; repeated acronym ≠ legal identity",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P08",
+      "branch": "privacy",
+      "question": "Prevent person/legal-party/influence attributes in source parser and public API",
+      "falsifier": "Both accepted and quarantined records contain zero people or identity assertion",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P09",
+      "branch": "comparison",
+      "question": "Compare original public candidacies with secondary nationally-seated benchmark conservatively",
+      "falsifier": "Exact matching only, no venue/territory vote attribution",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P10",
+      "branch": "measurement",
+      "question": "Quantify partial denominator within BOE but not all parties/persons in Spain",
+      "falsifier": "Separately expose 52 document sections, 25 accepted, 27 blocked, unknown population coverage",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P11",
+      "branch": "quality",
+      "question": "Recompute extraction from original rather than claim hand-edited results",
+      "falsifier": "Raw doc SHA fixed; a local fixture cannot impersonate original",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P12",
+      "branch": "provenance",
+      "question": "Distinguish institution-host TLS from publisher-signed digest",
+      "falsifier": "Publisher-signed checksum absent stated explicitly",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P13",
+      "branch": "rights",
+      "question": "Keep actual reuse conditions unknown when rights not certified",
+      "falsifier": "No blanket public license asserted for candidate personal rows",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P14",
+      "branch": "temporal",
+      "question": "Enforce 2023-vintage label and distinguish first-public date from capture date",
+      "falsifier": "No 2026-party activity claims based on 2023 lists",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P15",
+      "branch": "api",
+      "question": "API exposes data-quality triage for quarantined source segments",
+      "falsifier": "Read-only status, non-certified labels disallowed from scoring endpoints",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P16",
+      "branch": "ui",
+      "question": "Atlas conveys clean, review and incomplete status without concealing any category",
+      "falsifier": "Browser text and role/status labels visible; no misleading 'certified countrywide' wording",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P17",
+      "branch": "qa",
+      "question": "Add browser keyboard/DOM and hostile input tests",
+      "falsifier": "Native Chromium assertions PASS or failures recorded",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P18",
+      "branch": "progress",
+      "question": "Version project scope without expanding it based on verified partial original source",
+      "falsifier": "Only src.local evidence-backed milestone changes; six gates unaffected",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P19",
+      "branch": "CI",
+      "question": "Native Node/Python/Chromium and raw source extraction work after repair",
+      "falsifier": "All actual CI jobs green, source and test numbers logged",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-FOCUS20R-P20",
+      "branch": "governance",
+      "question": "Close A-J, preserve prior ledger, classify science vs engineering",
+      "falsifier": "20 signed evidence-linked A-J cycles, no artificial N1-3/VSDS/CT2 uplift",
+      "rival": "A source-cleaning script can mislead without independent source/document assurance",
+      "status": "PRE_REGISTERED"
+    }
+  ]
+}
