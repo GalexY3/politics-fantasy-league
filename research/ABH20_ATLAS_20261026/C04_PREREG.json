@@ -1,0 +1,40 @@
+{
+  "id": "C04",
+  "mode": "AB-H/AB-P",
+  "status": "PREREGISTERED",
+  "A": {
+    "goal": "Invariantes de fallo cerrado bajo tipos de entrada JSON no esperados"
+  },
+  "B": {
+    "H1": "El validador acepta cualquier objeto JSON sin excepción y retorna QUARANTINED",
+    "H0": "un tipo no hashable produce excepción",
+    "Hother": "nested mapping y claves maliciosas alteran código de razones"
+  },
+  "C": {
+    "dataset": "lista de valores unhashable para scope y campos anómalos",
+    "controls": "10 casos existentes deben seguir pasando"
+  },
+  "D": {
+    "acceptance": "12+ tests stdlib Python PASS; no unhandled TypeError on list/dict"
+  },
+  "E": {
+    "instrument": "patch source_eligibility.py, local unittest, no GitHub Actions"
+  },
+  "F": {
+    "pending": true
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "complaint_id": "PFL-ABH-SEC-001"
+  },
+  "I": {
+    "launch_gate_effect": 0
+  },
+  "J": {
+    "next": "reopen HTTP integration only after repair"
+  },
+  "CT2_before": 29,
+  "grade_0_3": 0
+}

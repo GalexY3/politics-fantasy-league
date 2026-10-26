@@ -1,0 +1,38 @@
+{
+  "id": "C03",
+  "mode": "AB-H/AB-P",
+  "status": "CLOSED_FAILED_ADVERSARIAL_PRE_INTEGRATION",
+  "planned": "Integrar en HTTP un módulo de explicación de elegibilidad",
+  "observed": {
+    "local_adversarial": "assess_evidence({'scope': []}) -> TypeError unhashable type list; dictionary also TypeError",
+    "HTTP_integrated": false,
+    "server_modified": false,
+    "CI_run": false,
+    "original_local_tests_prev": 10
+  },
+  "rivals": {
+    "safe_untrusted_schema": "REFUTED by input list",
+    "only_valid_inputs": "REJECTED as HTTP client is untrusted"
+  },
+  "AB_P": {
+    "deliverable_accepted": false,
+    "gates_opened": 0
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "complaints": [
+    {
+      "id": "PFL-ABH-SEC-001",
+      "type": "TECHNICAL",
+      "severity": "major",
+      "status": "verified",
+      "description": "Unhashable malicious scope value escapes fail-closed policy and raises TypeError",
+      "cause": "untyped 'scope not in set' branch",
+      "mitigation": "validate isinstance(scope,str) before membership"
+    }
+  ],
+  "decision": "C04 repair schema guard and add regression for hostile containers before HTTP integration"
+}
