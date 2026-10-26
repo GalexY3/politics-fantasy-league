@@ -1,0 +1,254 @@
+{
+  "campaign": "PF-BR30J",
+  "date": "2026-10-26",
+  "prereg_commit": "b3e9fc4c31e08da8b2922146c5a241acc68fd7d3",
+  "evidence": "PUBLIC_OFFICIAL_DATA_CATALOGUE_METADATA_AND_SECONDARY_MUNICIPAL_AGGREGATES; 30 local V8 QA checks of new warehouse; NOT official original field validation",
+  "source_docs": [
+    {
+      "id": "RPP",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "INTERIOR_NATIONAL",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "JEC_CANDIDACIES",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "CONGRESO_HISTORY",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "BIZKAIA_MUNICIPAL",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "JEC_MUNICIPAL_BOE",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    },
+    {
+      "id": "OPENSOURCE_2023",
+      "state": "KNOWN_SECONDARY",
+      "verified_capture": true
+    },
+    {
+      "id": "VOTOMUNICIPAL_2023",
+      "state": "DOCUMENTED_ONLY",
+      "verified_capture": false
+    }
+  ],
+  "official_registry_rows_imported": 0,
+  "real_public_people_verified": 0,
+  "municipal_secondary_sample": {
+    "source_url": "https://resultados-elecciones.rtve.es/municipales/2023/",
+    "labels": 41,
+    "scope": "PARTIAL_NEVER_WHOLE_ELECTORATE",
+    "legal_identity_reconciled": 0,
+    "raw_document_signed": false
+  },
+  "source_integrity": {
+    "sha256_raw_content_checked_in_cli_runtime": false,
+    "code_cli_writes_sha256": true,
+    "publisher_origin_authentication": false
+  },
+  "run": {
+    "location": "V8 JS functions via GitHub connector",
+    "cases": 30,
+    "pass": 30,
+    "fail": 0,
+    "frontendSyntax": "PARSE_PASS",
+    "node_cli_child_process_tests_published_but_not_executed": true,
+    "python_pytest_published_but_not_executed": true,
+    "CI_workflow_published_not_run_verified": true
+  },
+  "cycles": [
+    {
+      "id": "PF-BR30J-S01",
+      "endpoint": "Registry metadata has no actual captured raw parties",
+      "outcome": "PASS",
+      "kind": "DOCUMENTARY_METADATA_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S02",
+      "endpoint": "Interior elected officials catalogue is not an ingested roster",
+      "outcome": "PASS",
+      "kind": "DOCUMENTARY_METADATA_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S03",
+      "endpoint": "JEC candidates are separate from juridical party registration",
+      "outcome": "PASS",
+      "kind": "DOCUMENTARY_METADATA_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S04",
+      "endpoint": "At least one official municipal source other than national Congress",
+      "outcome": "PASS",
+      "kind": "DOCUMENTARY_METADATA_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S05",
+      "endpoint": "RAW source fails without recomputed SHA256",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S06",
+      "endpoint": "Catalog-only source cannot back a political actor",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S07",
+      "endpoint": "Unknown rights do not pass reuse gate",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-S08",
+      "endpoint": "Source revisions retained under distinct IDs, duplicates rejected",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I09",
+      "endpoint": "Stable name-independent exact namespace ID resolution",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I10",
+      "endpoint": "Homonym names remain unresolved without external ID",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I11",
+      "endpoint": "Coalition only has members when an explicit role is sourced",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I12",
+      "endpoint": "Candidacy does not silently create party membership",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I13",
+      "endpoint": "Effective intervals exclude expired spokesperson role",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-I14",
+      "endpoint": "Seat status is unknown without official dated claim",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E15",
+      "endpoint": "Non-parliament public debate with documented participants",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E16",
+      "endpoint": "As-of excludes even published fact if source observed later",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E17",
+      "endpoint": "No numeric influence scoring accepted",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E18",
+      "endpoint": "Civic platform may organize events without parliamentary seat",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E19",
+      "endpoint": "Public event corrections retain both versions",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E20",
+      "endpoint": "Duplicate external event IDs trigger review, not double-count assumption",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-E21",
+      "endpoint": "Ordinary private person records rejected",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-M22",
+      "endpoint": "Coverage denominator remains unknown",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-M23",
+      "endpoint": "Coverage stratified by actor and source type, without ranking",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-M24",
+      "endpoint": "Absent office claims not inferred from public events",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-M25",
+      "endpoint": "No longitudinal forecasting without timestamped primary field data",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-M26",
+      "endpoint": "Conflicting dated office claims produce review status",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-P27",
+      "endpoint": "End-to-end fictional bundle integrity validates all references",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-P28",
+      "endpoint": "Demo exposes aggregate readiness but not personal labels",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-P29",
+      "endpoint": "30 test cases are registered for standalone Node, with errors reported",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    },
+    {
+      "id": "PF-BR30J-P30",
+      "endpoint": "Conservative readiness reports no real people verified",
+      "outcome": "PASS",
+      "kind": "SOFTWARE_SYNTHETIC_OR_STATIC_CHECK"
+    }
+  ]
+}
