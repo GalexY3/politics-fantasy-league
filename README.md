@@ -1,5 +1,18 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## BR20K — avance del proyecto con alcance dinámico (26/10/2026)
+
+**20/20 ciclos AB 3.2.1 con BRANCHING concluidos** (13 verificaciones locales/documentales satisfechas, 4 STOP_R5 de fuentes reales e identidades, 3 trabajos de código con ejecución nativa todavía no verificada). No se presentan como 20 estudios empíricos, ni hay nuevas filas oficiales RPP autentificadas.
+
+**Índice de progreso PFL-V1-20261026 = 33,725 % (33,7 % redondeado)**, calculado sobre 9 sublíneas y 36 hitos ponderados. Estado de lanzamiento **NO LISTO**, seis dependencias críticas pendientes. Es madurez de trabajo contra un alcance acordado, **no la probabilidad de éxito, coste temporal o valor científico**. Si el alcance cambia, nuevo revisionado y comparación: añadir hipotéticamente cobertura municipal exhaustiva reduce el índice a **32,330 %** por efecto de scope **−1,395 puntos**, con efecto trabajo 0. El ejemplo **NO está adoptado como scope actual**.
+
+- [Método, pesos y las nueve vías](docs/PROGRESO_Y_ALCANCE_v1.md) · [Alcance V1](product/progress_scope_v1.json) · [Snapshot congelado](product/progress_snapshot_v1_20261026.json)
+- [Motor JS de cálculo/revisión](src/politics_fantasy/progress_model.mjs) · [CLI offline](scripts/progress_report.mjs) · [20 pruebas de modelo](tests/test_progress_model.mjs), **20/20 comprobaciones puras V8**.
+- [Panel web Progreso y /api/progress](src/politics_fantasy/web/app.js) · [adaptador Python](src/politics_fantasy/progress_api.py); tests Python/HTTP publicados y CI actualizado, **sin ejecución nativa acreditada**.
+- [Informe BR20K completo](research/BRANCH20K_20261026/REPORT.md) · [ledger individual A–J](research/BRANCH20K_20261026/LEDGER.json) · [resultados](research/BRANCH20K_20261026/RESULTS.json) · [nuevos priors PF-K01–PF-K06](research/PRIORS.md).
+
+La meta v1 **no** incluye perfilar votantes, inferir mérito/ideología individual o recopilar toda comunicación informal. Fuentes y personas públicas auténticas siguen pendientes: se confirmó la legibilidad documental de un endpoint JSON del Congreso de julio de 2026, pero sus bytes íntegros no se integraron ni fueron autentificados. VSDS 1/3 y CT2 previas sin cambios.
+
 ## BR30J — universo multiactor con pruebas de evidencias (26/10/2026)
 
 **Cerrados 30/30 contratos AB A–J con BRANCHING**, distinguiendo **4 cierres STOP_R5 por falta de archivos oficiales originales** de **26 aceptaciones de infraestructura/medición**, de las cuales algunas son revisión estática. **30/30 checks V8 PASS sobre un universo inventado y catálogos**, no 30 experimentos sociológicos independientes ni datos de personas reales validados.
