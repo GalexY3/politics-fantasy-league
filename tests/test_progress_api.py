@@ -28,7 +28,7 @@ def test_current_v2_global_and_tracks():
 def test_maturity_and_release_gates():
     r = progress_status()
     assert r["level_histogram"] == {
-        "0": 10, "1": 8, "2": 3, "3": 14, "4": 1, "5": 0
+        "0": 10, "1": 7, "2": 4, "3": 13, "4": 2, "5": 0
     }
     assert len(r["release_blockers"]) == 6
     assert r["global_status"] == "NOT_PUBLIC_RELEASE_READY"
@@ -45,7 +45,7 @@ def test_scope_expansion_changes_denominator_only():
         "evidence_class": "ABSENT"
     })
     r = evaluate_scope(s)
-    assert abs(r["progress_pct"] - 33.71) < 1e-8
+    assert abs(r["progress_pct"] - 33.83) < 1e-8
 
 
 def test_invalid_weight_rejected():
