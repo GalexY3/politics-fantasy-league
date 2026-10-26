@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, picks:[], message:'' };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, evidence:null, picks:[], message:'' };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const count = n => new Intl.NumberFormat('es-ES').format(n);
@@ -8,7 +8,7 @@ const day = iso => new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',
 const money = n => `${count(n)} CR`;
 function notice(msg, error=false){ const t=el('toast'); t.textContent=msg; t.className=error?'visible error':'visible'; clearTimeout(notice.timer); notice.timer=setTimeout(()=>t.className='',3600); }
 async function call(route, body){ const response=await fetch(route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); const result=await response.json();if(!response.ok)throw new Error(result.message||result.error||'Error');return result.result; }
-async function refresh(){ const [response,labResponse,fieldResponse,atlasResponse]=await Promise.all([fetch('/api/state',{cache:'no-store'}),fetch('/api/lab',{cache:'no-store'}),fetch('/api/field',{cache:'no-store'}),fetch('/api/electoral-atlas',{cache:'no-store'})]); if(!response.ok||!labResponse.ok||!fieldResponse.ok)throw new Error('Servicio no disponible'); ui.state=await response.json();ui.lab=await labResponse.json();ui.field=await fieldResponse.json();ui.atlas=await atlasResponse.json();if(!ui.state.clubs.some(c=>c.id===ui.club)) ui.club=ui.state.clubs[0]?.id; draw(); }
+async function refresh(){ const [response,labResponse,fieldResponse,atlasResponse,evidenceResponse]=await Promise.all([fetch('/api/state',{cache:'no-store'}),fetch('/api/lab',{cache:'no-store'}),fetch('/api/field',{cache:'no-store'}),fetch('/api/electoral-atlas',{cache:'no-store'}),fetch('/api/evidence-readiness',{cache:'no-store'})]); if(!response.ok||!labResponse.ok||!fieldResponse.ok)throw new Error('Servicio no disponible'); ui.state=await response.json();ui.lab=await labResponse.json();ui.field=await fieldResponse.json();ui.atlas=await atlasResponse.json();ui.evidence=evidenceResponse.ok?await evidenceResponse.json():{ok:false,error:'READINESS_UNAVAILABLE'};if(!ui.state.clubs.some(c=>c.id===ui.club)) ui.club=ui.state.clubs[0]?.id; draw(); }
 function selected(){return ui.state.clubs.find(x=>x.id===ui.club);}
 function own(){return ui.state.figures.filter(x=>x.owner_id===ui.club);}
 function available(){return ui.state.figures.filter(x=>!x.owner_id);}
@@ -42,7 +42,17 @@ ${warning()}<section class="metrics">${stat('Recuentos',count(rows.length),'Una 
 <section class="card"><div class="section-title"><h2>Contrato de evidencia</h2><span>Transparencia</span></div><p class="eyebrow" style="color:var(--amber)">AGREGADO, NO NOMINAL</p><p class="help">${esc(o.provenance||'Sin datos fuente incorporados.')}</p><p class="help">No hay rastreo certificado de la fecha de primera publicación ni instantáneas JSON oficiales verificadas. Por ello no se atribuyen votos a personas, no se entrenan modelos políticos y los votos no generan puntos.</p><div class="section-title"><h2>Control de calidad</h2><span>Solo aritmética</span></div><div class="listrow"><div class="identity"><strong>Recuentos ≤ 350</strong><small>Verificación de límite superior, no de ausencia</small></div><span class="amount">${count(rows.filter(v=>v.total<=350).length)}/${rows.length}</span></div><div class="listrow"><div class="identity"><strong>Fuente nominal</strong><small>Necesaria para atribución individual</small></div><span class="amount" style="color:var(--amber)">NO VERIFICADA</span></div><p class="footnote">Datos abiertos del Congreso: <a href="https://www.congreso.es/es/opendata/votaciones" target="_blank" rel="noopener noreferrer">portal oficial</a>. Conectar a un payload JSON nominal requiere validar su estructura y hash de origen.</p></section></div>
 ${labPanel()}
 ${fieldPanel()}
+${evidencePanel()}
 <section class="card"><div class="section-title"><h2>Datos agregados registrados</h2><span>${rows.length} observaciones</span></div><div class="tablewrap"><table><thead><tr><th>Votación</th><th>A favor</th><th>En contra</th><th>Abstenciones</th><th>Total</th><th>Categoría</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${String(i+1).padStart(2,'0')} / ${esc(r.id.slice(-3))}</td><td>${r.yes}</td><td>${r.no}</td><td>${r.abstain}</td><td>${r.total}</td><td style="color:var(--amber)">TRANSCRIPCIÓN</td></tr>`).join('')}</tbody></table></div></section>`;}
+function evidencePanel(){const x=ui.evidence||{};
+const t=x.entities_by_type||{};
+const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
+return `<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
+<p class="help">Partidos, coaliciones, agrupaciones, plataformas y personas con roles públicos documentados no necesitan escaños para ser representables. Datos actuales: solo fixtures del laboratorio.</p>
+${stat('Entidades de ejemplo',count(x.entities||0),'Ficticias')}${stat('Eventos de ejemplo',count(x.events||0),'No son influencia')}
+<p class="help">${groups||'Sin registro de entidades verificable'}</p>
+<div class="warning">0 personas reales verificadas. Sin puntuaciones de mérito político. Las fuentes oficiales están inventariadas, pero sus ficheros originales y las fechas as-of necesitan comprobación.</div>
+</section>`;}
 function fieldPanel(){const f=ui.field||{};
 const imported=f.mode==='USER_SUPPLIED_CSV_UNCERTIFIED';
 const status=imported?'CSV LOCAL · SIN CERTIFICAR':f.mode==='FIELD_REPORT_REJECTED'?'INFORME RECHAZADO':'SIN CSV NOMINALES IMPORTADOS';
