@@ -1,0 +1,649 @@
+{
+  "schema_version": "1.1",
+  "project_id": "politics-fantasy-league-20261026",
+  "title": "Politics Fantasy League · Mapa de trabajo",
+  "mode": "hybrid",
+  "created_at": "2026-10-26T19:24:54+00:00",
+  "updated_at": "2026-10-26T19:27:13+00:00",
+  "nodes": [
+    {
+      "id": "root",
+      "title": "Politics Fantasy League · Mapa de trabajo",
+      "kind": "project",
+      "mode": "hybrid",
+      "status": "active",
+      "detail": "Juego fantasy local y observatorio político; ciencia, datos de campo y lanzamiento evaluados por separado. Corte documental 26/10/2026.",
+      "sources": [],
+      "created_at": "2026-10-26T19:24:54+00:00",
+      "updated_at": "2026-10-26T19:24:54+00:00",
+      "phase": null,
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_f45cde05dc73",
+      "title": "Juego fantasy jugable",
+      "kind": "goal",
+      "mode": "project",
+      "status": "active",
+      "detail": "Modo producto: entrega verificable, reglas claras, aceptación de usuarios.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_24887f9afdd7",
+      "title": "Investigación y medición política",
+      "kind": "goal",
+      "mode": "research",
+      "status": "active",
+      "detail": "Pregunta científica independiente del éxito de producto.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_80498d9bc193",
+      "title": "Fuentes y evidencias",
+      "kind": "milestone",
+      "mode": "project",
+      "status": "active",
+      "detail": "Captura de hechos verificables y conservación de fuentes originales.",
+      "sources": [
+        "docs/ARQUITECTURA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "specify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_e9357d367f2c",
+      "title": "Atlas electoral histórico 2023",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "validated",
+      "detail": "BOE original y cotejos descritos en el README. Limitados a candidaturas, sin identidades individuales.",
+      "sources": [
+        "README.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "La funcionalidad o corpus funciona dentro de su alcance explícitamente limitado; no habilita producción pública.",
+        "evidence": [
+          "README.md"
+        ],
+        "verified_by": "Revisión documental del repositorio, 26/10/2026",
+        "verified": true,
+        "at": "2026-10-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "n_ca9094a596e4",
+      "title": "Identidad longitudinal de personas",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Pendiente de reconciliar personas reales, organizaciones y periodos. Bloqueo de lanzamiento.",
+      "sources": [
+        "docs/UNIVERSO_ACTORES_POLITICOS_20261025.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_fdb37e730626",
+      "title": "Eventos atribuibles y temporales",
+      "kind": "task",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Sin registros longitudinales por persona no es válido puntuar actividad real.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_912a9abb9336",
+      "title": "Demo local de mercado y clubes",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "validated",
+      "detail": "Prototipo ejecutable con figuras inventadas; no es servicio público.",
+      "sources": [
+        "docs/PRODUCTO_LOCAL_v0_2.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "La funcionalidad o corpus funciona dentro de su alcance explícitamente limitado; no habilita producción pública.",
+        "evidence": [
+          "docs/PRODUCTO_LOCAL_v0_2.md"
+        ],
+        "verified_by": "Revisión documental del repositorio, 26/10/2026",
+        "verified": true,
+        "at": "2026-10-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "n_55716c49e5d2",
+      "title": "Identidades de usuario y seguridad",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Autenticación/autorización y despliegue seguro pendientes.",
+      "sources": [
+        "docs/PROGRESO_Y_ALCANCE_v3.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_1b097dac0a56",
+      "title": "¿Qué miden los puntos fantasy?",
+      "kind": "question",
+      "mode": "research",
+      "status": "open",
+      "detail": "Los puntos son convenciones del juego, no mérito político ni causalidad.",
+      "sources": [
+        "docs/VALIDACION_ETICA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "specify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_b467123cb4c0",
+      "title": "Predicción de eventos as-of",
+      "kind": "hypothesis",
+      "mode": "research",
+      "status": "proposed",
+      "detail": "Evaluar una predicción temporal de eventos observables frente a baselines fuertes.",
+      "sources": [
+        "docs/ARQUITECTURA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_e880266349fb",
+      "title": "¿Sesgo por visibilidad y cargo?",
+      "kind": "question",
+      "mode": "research",
+      "status": "open",
+      "detail": "Estudiar el efecto de la exposición institucional sobre puntuaciones.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_faa4236b7431",
+      "title": "Lanzamiento público",
+      "kind": "milestone",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Seis gates pendientes; % de madurez no implica aptitud para lanzamiento.",
+      "sources": [
+        "docs/PROGRESO_Y_ALCANCE_v3.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "release",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_3a9a784cf7c0",
+      "title": "Revisión AB de la trazabilidad",
+      "kind": "method_change",
+      "mode": "meta",
+      "status": "proposed",
+      "detail": "Propuesta universal de registrar mejoras y fricciones por ejecución.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "operate",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_62c84e9d209d",
+      "from": "root",
+      "to": "n_f45cde05dc73",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_df8071b97b3b",
+      "from": "root",
+      "to": "n_24887f9afdd7",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_ae678e2bed87",
+      "from": "n_f45cde05dc73",
+      "to": "n_80498d9bc193",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_c560ec7102fa",
+      "from": "n_80498d9bc193",
+      "to": "n_e9357d367f2c",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_864b535a935f",
+      "from": "n_80498d9bc193",
+      "to": "n_ca9094a596e4",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_d69b1df896c9",
+      "from": "n_80498d9bc193",
+      "to": "n_fdb37e730626",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_b518980a54ee",
+      "from": "n_ca9094a596e4",
+      "to": "n_fdb37e730626",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_a620aebebbc2",
+      "from": "n_f45cde05dc73",
+      "to": "n_912a9abb9336",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_c24c65a9be6d",
+      "from": "n_f45cde05dc73",
+      "to": "n_55716c49e5d2",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_68167a1d3dcb",
+      "from": "n_55716c49e5d2",
+      "to": "n_912a9abb9336",
+      "relation": "related_to"
+    },
+    {
+      "id": "e_33d0a0e38d32",
+      "from": "n_24887f9afdd7",
+      "to": "n_1b097dac0a56",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_a143fd2a3789",
+      "from": "n_24887f9afdd7",
+      "to": "n_b467123cb4c0",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_8b1459600d87",
+      "from": "n_1b097dac0a56",
+      "to": "n_e880266349fb",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_202ad67cf0a0",
+      "from": "n_fdb37e730626",
+      "to": "n_b467123cb4c0",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_bdb50dd809f8",
+      "from": "n_b467123cb4c0",
+      "to": "n_f45cde05dc73",
+      "relation": "related_to"
+    },
+    {
+      "id": "e_1b1e6bf9db9e",
+      "from": "n_f45cde05dc73",
+      "to": "n_faa4236b7431",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_9b0265f82585",
+      "from": "n_ca9094a596e4",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_b56d95c8daa5",
+      "from": "n_55716c49e5d2",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_83bff118fc67",
+      "from": "root",
+      "to": "n_3a9a784cf7c0",
+      "relation": "branches_from"
+    },
+    {
+      "id": "dep_fantasy_identity",
+      "from": "n_faa4236b7431",
+      "to": "n_ca9094a596e4",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_fantasy_security",
+      "from": "n_faa4236b7431",
+      "to": "n_55716c49e5d2",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_fantasy_events",
+      "from": "n_faa4236b7431",
+      "to": "n_fdb37e730626",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_predict_events",
+      "from": "n_b467123cb4c0",
+      "to": "n_fdb37e730626",
+      "relation": "depends_on"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt_36b6651ac9e4",
+      "at": "2026-10-26T19:24:54+00:00",
+      "actor": "cli",
+      "action": "map_initialized",
+      "payload": {
+        "mode": "hybrid"
+      }
+    },
+    {
+      "id": "evt_40a9dd1b8ee8",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_f45cde05dc73",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_9e93fe975c06",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_24887f9afdd7",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_d2622c3c3f65",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_80498d9bc193",
+        "parent": "n_f45cde05dc73"
+      }
+    },
+    {
+      "id": "evt_6cd9145e6c7c",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_e9357d367f2c",
+        "parent": "n_80498d9bc193"
+      }
+    },
+    {
+      "id": "evt_fc822857658c",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_ca9094a596e4",
+        "parent": "n_80498d9bc193"
+      }
+    },
+    {
+      "id": "evt_d9feab1c1c95",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_fdb37e730626",
+        "parent": "n_80498d9bc193"
+      }
+    },
+    {
+      "id": "evt_82895e44238e",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_912a9abb9336",
+        "parent": "n_f45cde05dc73"
+      }
+    },
+    {
+      "id": "evt_69bd6534f2bd",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_55716c49e5d2",
+        "parent": "n_f45cde05dc73"
+      }
+    },
+    {
+      "id": "evt_f42a0be18a1f",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_1b097dac0a56",
+        "parent": "n_24887f9afdd7"
+      }
+    },
+    {
+      "id": "evt_f52001e50ca9",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_b467123cb4c0",
+        "parent": "n_24887f9afdd7"
+      }
+    },
+    {
+      "id": "evt_bac20ae0502f",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_e880266349fb",
+        "parent": "n_1b097dac0a56"
+      }
+    },
+    {
+      "id": "evt_b715291e0e59",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_faa4236b7431",
+        "parent": "n_f45cde05dc73"
+      }
+    },
+    {
+      "id": "evt_13f9cc092e15",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_3a9a784cf7c0",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_99862de1df7e",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "example_assembled",
+      "payload": {
+        "origin": "ejemplo documentado, sin sincronización live"
+      }
+    }
+  ],
+  "runs": [],
+  "complaints": [],
+  "method": {
+    "version": "AB 3.2.1 + O7 pilot",
+    "mutable": true
+  },
+  "context": {
+    "snapshot": "2026-10-26",
+    "project_progress_pct": 36.35,
+    "progress_semantics": "Índice de madurez de alcance V3, NO probabilidad ni fracción de trabajo restante",
+    "publication_gates_open": 6,
+    "scope_version": "PFL-V1-20261026 revisión 3",
+    "verified_live": false
+  },
+  "project_contract": {
+    "scope_version": "PFL-V1-20261026-r3",
+    "outcome": "Juego fantasy político verificable, con mercado, jornadas y puntuación transparente, evitando confundir hechos, estimaciones y reglas normativas.",
+    "audience": "Jugadores del prototipo, analistas y evaluadores de datos políticos",
+    "out_of_scope": [
+      "Perfilado ideológico de ciudadanos",
+      "Predicción política basada en personas sin identidad real certificada",
+      "Publicación segura multiusuario sin controles"
+    ],
+    "release_gates": [
+      {
+        "id": "data_registry",
+        "label": "Fuente original suficiente del Registro de Partidos y candidaturas",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "identity",
+        "label": "Identidad individual multifuente con vigencia temporal",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "events",
+        "label": "Eventos verificables por persona y fecha",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "authentication",
+        "label": "Autenticación y autorización multiusuario",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "e2e",
+        "label": "E2E completo más allá del smoke local",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "deployment",
+        "label": "Despliegue público seguro",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      }
+    ],
+    "scope_history": [
+      {
+        "version": "PFL-V1-20261026-r3",
+        "at": "2026-10-26T00:00:00+00:00",
+        "reason": "Snapshot documental de revisión 3, no medición en vivo"
+      }
+    ]
+  }
+}

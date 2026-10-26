@@ -249,3 +249,10 @@ Hallazgos locales: de 2.173 votos con códigos identificados, **1.655** tienen c
 - [CT2 30 puntos (ordinal)](research/BRANCH30G_20261025/CT2_TRAJECTORY.csv)
 
 Conservar los saldos independientes 12 B50 / 45 libres / 19 AB20. El nombre del repositorio separado `GalexY3/polictics_fantasy_league` se mantiene sin migración (históricamente vacío); este alojamiento es temporal.
+
+
+## AB Atlas / AB-P: seguimiento visual y actualización incremental (26-10-2026)
+
+[Mapa y protocolo de Politics Fantasy](ab_atlas/README.md): el proyecto se sigue como AB-H (producto AB-P + subinvestigaciones AB-R). Incluye [HTML navegable](ab_atlas/AB_Atlas_Politics_Fantasy.html), [seed versionado](ab_atlas/seed.json), [briefing](ab_atlas/CURRENT.md), [deltas append-only](ab_atlas/updates/README.md) y [herramienta Python universal](../../ab_atlas/README.md).
+
+**Al finalizar bloques de X ciclos**, ChatGPT debe añadir únicamente los cambios relevantes al grafo, verificar la secuencia y el ledger, actualizar `CURRENT.md`, y evitar regenerar HTML innecesariamente. Un test de código no eleva CT2/VSDS ni convierte la demo en lanzamiento listo; persisten los seis gates críticos hasta evidencia independiente.

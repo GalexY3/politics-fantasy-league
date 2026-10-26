@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "project_id": "ab-sistema-meta",
+  "title": "AB · Sistema meta",
+  "mode": "meta",
+  "created_at": "2026-10-26T19:24:53+00:00",
+  "updated_at": "2026-10-26T19:27:13+00:00",
+  "nodes": [
+    {
+      "id": "root",
+      "title": "AB · Sistema meta",
+      "kind": "project",
+      "mode": "meta",
+      "status": "active",
+      "detail": "Meta-investigación sobre eficacia de AB; hipótesis metodológicas sometidas a evaluación.",
+      "sources": [],
+      "created_at": "2026-10-26T19:24:53+00:00",
+      "updated_at": "2026-10-26T19:24:53+00:00"
+    },
+    {
+      "id": "n_24e84d2b3921",
+      "title": "¿AB supera a un procedimiento competente?",
+      "kind": "question",
+      "mode": "meta",
+      "status": "open",
+      "detail": "Contraste end-to-end con igual presupuesto, condiciones ciegas e independencia.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_bc9903c64b70",
+      "title": "AB-E2E-01",
+      "kind": "experiment",
+      "mode": "meta",
+      "status": "blocked",
+      "detail": "Preregistro e infraestructura creados; agentes independientes y evaluación pendientes.",
+      "sources": [
+        "benchmarks/AB_E2E_01/README.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_dfa597d3900d",
+      "title": "Grafo universal de memoria",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Herramienta para registrar preguntas, dependencia, cierres y evidencia de cualquier proyecto.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_e4df84831b93",
+      "title": "Quejas por ejecución",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Toda ejecución obtiene recibo ligero; incidencias trazables y priorizadas.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_2a2267afd15f",
+      "title": "¿Riesgo de burocracia excesiva?",
+      "kind": "question",
+      "mode": "meta",
+      "status": "open",
+      "detail": "Medir overhead y utilidad de cada exigencia de documentación.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_e23beba22b38",
+      "title": "AB-META: cambios de metodología",
+      "kind": "method_change",
+      "mode": "meta",
+      "status": "proposed",
+      "detail": "RFC -> contraste con alternativa -> aprobación -> versión -> rollback y seguimiento.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    },
+    {
+      "id": "n_38af343d7a1e",
+      "title": "Corregir sin reescribir pruebas pasadas",
+      "kind": "decision",
+      "mode": "meta",
+      "status": "validated",
+      "detail": "Cambios prospectivos; versionar migraciones y conservar errores.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_609d8fd7a5f7",
+      "from": "root",
+      "to": "n_24e84d2b3921",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_a3c8f1509fe0",
+      "from": "n_24e84d2b3921",
+      "to": "n_bc9903c64b70",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_7d784b2ea968",
+      "from": "root",
+      "to": "n_dfa597d3900d",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_b57123203a33",
+      "from": "n_dfa597d3900d",
+      "to": "n_e4df84831b93",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_8a9b7f5d09ac",
+      "from": "root",
+      "to": "n_2a2267afd15f",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_317b6ee6aeb4",
+      "from": "root",
+      "to": "n_e23beba22b38",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_fb91c70ebfd6",
+      "from": "n_e23beba22b38",
+      "to": "n_38af343d7a1e",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_6c66bbdc834e",
+      "from": "n_e4df84831b93",
+      "to": "n_e23beba22b38",
+      "relation": "improves"
+    },
+    {
+      "id": "e_56c86ac03d23",
+      "from": "n_2a2267afd15f",
+      "to": "n_e23beba22b38",
+      "relation": "related_to"
+    },
+    {
+      "id": "e_38925000ba21",
+      "from": "n_bc9903c64b70",
+      "to": "n_e23beba22b38",
+      "relation": "tests"
+    }
+  ],
+  "events": [
+    {
+      "id": "evt_3ddeb323cc07",
+      "at": "2026-10-26T19:24:53+00:00",
+      "actor": "cli",
+      "action": "map_initialized",
+      "payload": {
+        "mode": "meta"
+      }
+    },
+    {
+      "id": "evt_2fc9a4aa34e1",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_24e84d2b3921",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_3eb3788bbbf7",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_bc9903c64b70",
+        "parent": "n_24e84d2b3921"
+      }
+    },
+    {
+      "id": "evt_b151a30ff271",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_dfa597d3900d",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_d11a8aa081df",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_e4df84831b93",
+        "parent": "n_dfa597d3900d"
+      }
+    },
+    {
+      "id": "evt_3bc37d35ac7c",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_2a2267afd15f",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_de1a486e04e9",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_e23beba22b38",
+        "parent": "root"
+      }
+    },
+    {
+      "id": "evt_59bf12e6a6fa",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "node_created",
+      "payload": {
+        "node": "n_38af343d7a1e",
+        "parent": "n_e23beba22b38"
+      }
+    },
+    {
+      "id": "evt_a7c1397dbfad",
+      "at": "2026-10-26T19:27:13+00:00",
+      "actor": "cli",
+      "action": "example_assembled",
+      "payload": {
+        "origin": "ejemplo explicativo; no representa resultados experimentales"
+      }
+    }
+  ],
+  "runs": [],
+  "complaints": [],
+  "method": {
+    "version": "AB 3.2.1 (referencia; mapa propuesto)",
+    "mutable": true
+  }
+}
