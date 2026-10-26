@@ -1,0 +1,45 @@
+{
+  "id": "C01",
+  "mode": "AB-H/AB-P",
+  "status": "CLOSED_BOUNDED",
+  "observed": {
+    "main_endpoints": [
+      "/api/state",
+      "/api/actors",
+      "/api/verified-candidacies",
+      "/api/official-nominations",
+      "/api/evidence-readiness"
+    ],
+    "PR14_only_endpoint": "/api/verified-rollcalls",
+    "current_verified_individual_score_routes": 0,
+    "existing_field_status": "SYNTHETIC_ONLY",
+    "local_only_network_binding": "127.0.0.1",
+    "launch_auth": "NOT_PRESENT"
+  },
+  "finding": "No explicit user-level documentary admission reasons; PR14 historical vote API not merged in main",
+  "rivals": {
+    "immediate_merge": "REJECTED: unresolved PR11/12/14 stack",
+    "read_only": "PREFERRED_SCOPE_LIMITED"
+  },
+  "AB_P": {
+    "accepted": false,
+    "criterion": "Create explanatory policy endpoint validated locally first",
+    "gate_effect": 0
+  },
+  "AB_R": {
+    "new_scientific_claims": 0,
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "complaint": {
+    "id": "PFL-ABH-C01-UX",
+    "severity": "moderate",
+    "category": "UX",
+    "description": "No accessible explicit explanation of which real sources fail eligibility",
+    "status": "triaged",
+    "suspected": "features across branches",
+    "confirmed_defect": false
+  },
+  "next": "C02 formulate eligibility state machine with fail-closed input contract"
+}

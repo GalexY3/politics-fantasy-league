@@ -1,0 +1,55 @@
+{
+  "id": "C02",
+  "mode": "AB-H/AB-P",
+  "A": {
+    "outcome": "Frozen eligibility interface, no source publication/identity inference",
+    "recipient": "frontend user and auditor"
+  },
+  "B": {
+    "variants": [
+      "hardcode success based on SHA",
+      "policy preserving quarantined/unknown flags",
+      "publish score route anyway"
+    ]
+  },
+  "C": {
+    "baseline": "Existing /api/evidence-readiness status",
+    "risks": [
+      "unknown treated as verified",
+      "timestamp fabricated",
+      "client-supplied attestation"
+    ]
+  },
+  "D": {
+    "acceptance": [
+      "never score a real person",
+      "identity unknown => blocked",
+      "first_public unknown => blocked for forecast-grade use",
+      "official source not equivalent to legal rights",
+      "hash not signed authenticity",
+      "invalid schema reason code"
+    ],
+    "falsifier": "ELIGIBLE_FOR_PERSON_SCORING with missing authorization"
+  },
+  "E": {
+    "build": "Source eligibility policy module + stdlib Python tests locally, then API if pass"
+  },
+  "F": {
+    "instrument": "pure Python synthetic inputs"
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "complaints": "record failures rather than erase"
+  },
+  "I": {
+    "no_readiness_change": true
+  },
+  "J": {
+    "decision": "implement and test module; choose integration only after test"
+  },
+  "grade_0_3": 0,
+  "CT2_before": 29,
+  "status": "PREREGISTERED"
+}
