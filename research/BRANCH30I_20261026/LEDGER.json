@@ -1,0 +1,2220 @@
+{
+  "campaign": "PF-BR30I",
+  "date": "2026-10-26",
+  "authorization": "User granted 30 AB 3.2.1 branching cycles 2026-10-26",
+  "count_authorized": 30,
+  "count_closed_AJ": 30,
+  "count_remaining": 0,
+  "distinct_source_studies": 1,
+  "official_primary_documents": [
+    "JEC/BOE 2023 Cuadro I (PDF manually transcribed)",
+    "BOE Cuadro III (five published totals read from web)",
+    "JEC 2023 national and provincial coalition HTML pages"
+  ],
+  "real_secondary_input": "anerodata 202307.csv and historic rOpenSpain 1977-2019 data",
+  "observed_external_documentary_reconciliation": {
+    "official_districts": 52,
+    "official_cells_agreeing": 312,
+    "official_cells_disagreeing": 0,
+    "secondary_option_sum_agrees": 52,
+    "BOE_III_party_totals_agree": 5,
+    "municipal_or_territorial_actors_individually_verified": 0
+  },
+  "actor_data": {
+    "historical_electoral_labels": 59,
+    "no_Congress_seats_with_votes": 48,
+    "documented_JEC_JEP_coalition_references": 16,
+    "conservative_exact_acronym_links": 10,
+    "same_dataset_no_seat_vote_share": 0.024765783761404942,
+    "public_people_profiles_verified": 0
+  },
+  "production": {
+    "historical_actor_graph_nodes": 75,
+    "graph_acronym_edges": 10,
+    "endpoint": "GET /api/electoral-atlas",
+    "frontend_tab": "Atlas electoral",
+    "CI_workflow": "/.github/workflows/politics-fantasy-evidence.yml",
+    "CI_runtime_verified": false,
+    "Python_HTTP_e2e_verified": false
+  },
+  "research_ethics": {
+    "no_individual_evaluation": true,
+    "no_influence_causal_inference": true,
+    "no_private_affiliation_data": true
+  },
+  "scientific_discoveries_new": {
+    "N1": 0,
+    "N2": 0,
+    "N3": 0
+  },
+  "VSDS_project_before": 1,
+  "VSDS_project_after": 1,
+  "CT2_branches": {
+    "parliament_predictive": {
+      "before": 24,
+      "after": 24
+    },
+    "multi_actor": {
+      "before": 20,
+      "after": 20
+    }
+  },
+  "DRIFT": "D1.4 = continued multiactor study, added official/secondary cross-source calibration without changing objective",
+  "pre_reg_status": "Retrospective prereg for C01-C11 due already exposed results; pre-execution for remaining code checks but source known",
+  "prereg_commit": "3281dbc56bc89302e7ba289d5ade63d68b684991",
+  "suite_commit": "251cc69ce01f063d91c01cfe3abe61e86a55152d",
+  "rerun_commit": "cf6c34574deb67159ace0edd7cfd079f99ab7bcd",
+  "output_count": 30,
+  "cycles": [
+    {
+      "id": "PF-BR30I-C01",
+      "branch": "Provinces",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Cardinality and exact code join: 52 of 52",
+        "estimand": "52 one-to-one links",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Cardinality and exact code join: 52 of 52",
+        "rival": "Missing/duplicated province source"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "paired": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "One 2023 BOE source and one secondary CSV; 52 provinces are dependent observations in one election; an exact join can be influenced by how the secondary was originally sourced.",
+        "competing_baseline": "Missing/duplicated province source",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "One 2023 BOE source and one secondary CSV; 52 provinces are dependent observations in one election; an exact join can be influenced by how the secondary was originally sourced."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C02",
+      "branch": "Official aggregate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Electoral census official vs secondary, province & national",
+        "estimand": "52 exact census matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Electoral census official vs secondary, province & national",
+        "rival": "Time/version changes"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "cells_equal": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "National and province census definitions may include CERA; same value does not prove every party column correct.",
+        "competing_baseline": "Time/version changes",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "National and province census definitions may include CERA; same value does not prove every party column correct."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C03",
+      "branch": "Official aggregate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Voters official vs secondary",
+        "estimand": "52 exact voter matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Voters official vs secondary",
+        "rival": "CERA and late corrections"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "cells_equal": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "No evidence of original date of publication of specific CSV version; a retrospective match is not prospective timeliness.",
+        "competing_baseline": "CERA and late corrections",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "No evidence of original date of publication of specific CSV version; a retrospective match is not prospective timeliness."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C04",
+      "branch": "Official aggregate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Valid votes official vs secondary",
+        "estimand": "52 exact valid-vote matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Valid votes official vs secondary",
+        "rival": "Counting/definition divergence"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "cells_equal": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "A source can be internally arithmetically consistent and still omit/rename candidates.",
+        "competing_baseline": "Counting/definition divergence",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "A source can be internally arithmetically consistent and still omit/rename candidates."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C05",
+      "branch": "Official aggregate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Candidate votes official vs secondary",
+        "estimand": "52 exact candidate-vote matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Candidate votes official vs secondary",
+        "rival": "Excluded ballot list"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "cells_equal": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Account of candidate votes excludes blank and null ballots by definition; document semantics.",
+        "competing_baseline": "Excluded ballot list",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Account of candidate votes excludes blank and null ballots by definition; document semantics."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C06",
+      "branch": "Official aggregate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Blank and null votes official vs secondary",
+        "estimand": "104 exact matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Blank and null votes official vs secondary",
+        "rival": "Misclassified abstention"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "cells_equal": 104
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Blank/null may be correct while party-level identity is wrong; no individual party inference.",
+        "competing_baseline": "Misclassified abstention",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Blank/null may be correct while party-level identity is wrong; no individual party inference."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C07",
+      "branch": "Arithmetic",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Valid = candidacy votes + blank ballots",
+        "estimand": "52 independent algebraic equalities",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Valid = candidacy votes + blank ballots",
+        "rival": "Wrong field semantics"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "identities": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Identity is a conserved accounting relationship: 52 equalities are not independent discoveries.",
+        "competing_baseline": "Wrong field semantics",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Identity is a conserved accounting relationship: 52 equalities are not independent discoveries."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C08",
+      "branch": "Arithmetic",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Voters = valid + null ballots",
+        "estimand": "52 independent algebraic equalities",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Voters = valid + null ballots",
+        "rival": "Missing category"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "identities": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Same as C07; did not compare cast vs eligible population.",
+        "competing_baseline": "Missing category",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Same as C07; did not compare cast vs eligible population."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C09",
+      "branch": "Party-column accounting",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Sum of 59 option votes = candidate votes per province",
+        "estimand": "52 matches",
+        "unit": "Province and election metric",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Sum of 59 option votes = candidate votes per province",
+        "rival": "Missing electoral option / duplicated list"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "district_sums_equal": 52
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "59 labels are source columns and can include coalitions not registered parties; 52 checks of aggregate sum cannot authenticate label text.",
+        "competing_baseline": "Missing electoral option / duplicated list",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "59 labels are source columns and can include coalitions not registered parties; 52 checks of aggregate sum cannot authenticate label text."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C10",
+      "branch": "Seat accounting",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Sum of province election seats and source national = 350",
+        "estimand": "52 seat allocations sum 350; province seats consistent with recorded integer",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Sum of province election seats and source national = 350",
+        "rival": "Party-vs-district duplication"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "seats": 350,
+          "labels_with_seats": 11
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "National 350 seats is a constitutional election-specific total, not equal to current member roster at arbitrary date.",
+        "competing_baseline": "Party-vs-district duplication",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "National 350 seats is a constitutional election-specific total, not equal to current member roster at arbitrary date."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C11",
+      "branch": "Direct JEC nonseat option totals",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_DOCUMENTARY_RECONCILIATION",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Five official BOE Table III national vote totals vs secondary",
+        "estimand": "5 exact votes",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Five official BOE Table III national vote totals vs secondary",
+        "rival": "Same labels but different source totals"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": true,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "verified_official_party_totals": 5
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Five official BOE III totals selected after already seeing source; not a random label holdout or exhaustive option verification.",
+        "competing_baseline": "Same labels but different source totals",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Five official BOE III totals selected after already seeing source; not a random label holdout or exhaustive option verification."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C12",
+      "branch": "Coalition legal forms",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_JEC_DOCUMENTARY_CROSSWALK",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "JEC 12 national + 4 JEP provincial distinct typed",
+        "estimand": "16 documented coalition forms, separate scope",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "JEC 12 national + 4 JEP provincial distinct typed",
+        "rival": "Coalitions misclassified as registered parties"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "JEC": 12,
+          "JEP": 4
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "12 central and 4 provincial lists do not establish all coalitions ever or all local public actors.",
+        "competing_baseline": "Coalitions misclassified as registered parties",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "12 central and 4 provincial lists do not establish all coalitions ever or all local public actors."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C13",
+      "branch": "Coalition-to-slate mapping",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_JEC_DOCUMENTARY_CROSSWALK",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "Strict acronym match without ambiguous guesses",
+        "estimand": "Only unique suffix matches",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Strict acronym match without ambiguous guesses",
+        "rival": "Common short acronym collision"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "unique_exact_candidates": 10,
+          "unresolved": 4
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Exact acronym is a conservative string link only. Four unmatched candidates need manual review, not proof of no affiliation.",
+        "competing_baseline": "Common short acronym collision",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Exact acronym is a conservative string link only. Four unmatched candidates need manual review, not proof of no affiliation."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C14",
+      "branch": "Congress/Senate role scope",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_JEC_DOCUMENTARY_CROSSWALK",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "Do not count explicitly Senate-only coalition as Congress-only",
+        "estimand": "2 excluded from Congress inference",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Do not count explicitly Senate-only coalition as Congress-only",
+        "rival": "Conflation chambers"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "senate_only_excluded": 2
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Two Senate-only entries cannot justify any Congress inference; other entries may still have dual constituency scope.",
+        "competing_baseline": "Conflation chambers",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Two Senate-only entries cannot justify any Congress inference; other entries may still have dual constituency scope."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C15",
+      "branch": "Territorial scope",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "OFFICIAL_JEC_DOCUMENTARY_CROSSWALK",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "JEC and JEP jurisdiction/provenance separated",
+        "estimand": "provenance and scope never lost",
+        "unit": "Actor/source/contract case",
+        "population": "2023 Spain general election documentary aggregate"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "JEC and JEP jurisdiction/provenance separated",
+        "rival": "Local/general collapse"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "provincial_scope_count": 4
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Do not fold JEC and JEP authorities or territories into a party membership assertion.",
+        "competing_baseline": "Local/general collapse",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "YES_JEC_ONE_OR_TWO_DOCUMENTS_MANUALLY_TRANSCRIBED",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Do not fold JEC and JEP authorities or territories into a party membership assertion."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "CONDITIONAL_DOCUMENTARY_AGGREGATE_ONLY",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C16",
+      "branch": "Identity",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "No automatic legal-party identity from candidacy label",
+        "estimand": "Unknown identity until official registry ID",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "No automatic legal-party identity from candidacy label",
+        "rival": "Common strings and coalition aliases"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "party_legal_ids_produced": 0
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Coalition party memberships are not in these text strings; no inferred affiliation allowed.",
+        "competing_baseline": "Common strings and coalition aliases",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Coalition party memberships are not in these text strings; no inferred affiliation allowed."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C17",
+      "branch": "Historical data incompatibility",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "1977–2019 keys cannot be joined mechanically to 2023 labels",
+        "estimand": "0 automatic cross-source identity claims",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "1977–2019 keys cannot be joined mechanically to 2023 labels",
+        "rival": "Backfilled denomination"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "historical_rows": 1057,
+          "manual_merges": 0
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "2019 historical archive and 2023 archive lack overlap, stable legal IDs and temporal availability.",
+        "competing_baseline": "Backfilled denomination",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "2019 historical archive and 2023 archive lack overlap, stable legal IDs and temporal availability."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C18",
+      "branch": "Nonseat observation",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "2023 votes-positive without Congress seat preserved",
+        "estimand": "48 electoral labels retaining category",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "2023 votes-positive without Congress seat preserved",
+        "rival": "Omission of no-seat labels"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "labels": 59,
+          "positive_no_seat": 48
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "No-seat options reflect vote participation, not causal impact, quality, merit or relevance.",
+        "competing_baseline": "Omission of no-seat labels",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "No-seat options reflect vote participation, not causal impact, quality, merit or relevance."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C19",
+      "branch": "District option diversity",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "Observed count of positive-vote slates by province",
+        "estimand": "Factual distribution with denominators",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Observed count of positive-vote slates by province",
+        "rival": "Different ballot availability"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "range": [
+            8,
+            14
+          ]
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Observed options reflect 2023 election availability and zero-vote missing conventions, not structural longevity.",
+        "competing_baseline": "Different ballot availability",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Observed options reflect 2023 election availability and zero-vote missing conventions, not structural longevity."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C20",
+      "branch": "Coverage composition",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SECONDARY_DATA_AND_IDENTITY",
+      "DRIFT_D": 1.4,
+      "A": {
+        "question": "Share candidate votes from no-seat options per province",
+        "estimand": "Descriptive shares, no rankings",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Share candidate votes from no-seat options per province",
+        "rival": "Unknown person influence"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "nonseat_label_votes": 606450,
+          "share": 0.024765783761404942,
+          "causal_inference": false
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "No-seat share is a proportion of votes to options with zero seats, not influence, ideology or individual behavior; 52 regions are not a person sample.",
+        "competing_baseline": "Unknown person influence",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "No-seat share is a proportion of votes to options with zero seats, not influence, ideology or individual behavior; 52 regions are not a person sample."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C21",
+      "branch": "Provenance",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SOFTWARE_PROVENANCE_AND_NEGATIVE_TEST",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Materialized official transcript vs original PDF bytes distinction",
+        "estimand": "captured-original false, manual-transcription true",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Materialized official transcript vs original PDF bytes distinction",
+        "rival": "False official-download flag"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "raw_official_bytes_validated": false,
+          "manual": true
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "BOE official document read on web but not binary downloaded to warehouse; handwritten transcription and source hashes differ epistemically.",
+        "competing_baseline": "False official-download flag",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "BOE official document read on web but not binary downloaded to warehouse; handwritten transcription and source hashes differ epistemically."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C22",
+      "branch": "Temporal gate",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SOFTWARE_PROVENANCE_AND_NEGATIVE_TEST",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Unknown original first-public-at not turned into historical availability",
+        "estimand": "historical labels remain ineligible for as-of prediction",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Unknown original first-public-at not turned into historical availability",
+        "rival": "Leakage in prequential forecast"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "asof_certified": false
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Historical as-of requires the earliest publishable snapshot, not a final-record downloaded in 2026.",
+        "competing_baseline": "Leakage in prequential forecast",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Historical as-of requires the earliest publishable snapshot, not a final-record downloaded in 2026."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C23",
+      "branch": "Adversarial corruption",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SOFTWARE_PROVENANCE_AND_NEGATIVE_TEST",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Mutated official province tally causes named discrepancy",
+        "estimand": "detect changed source cell",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Mutated official province tally causes named discrepancy",
+        "rival": "Uncaught partial overwrite"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": true
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "corruption_detected": true
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Negative control with one mutation is a limited adversary; other failure modes may go undetected.",
+        "competing_baseline": "Uncaught partial overwrite",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Negative control with one mutation is a limited adversary; other failure modes may go undetected."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C24",
+      "branch": "Source integrity",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SOFTWARE_PROVENANCE_AND_NEGATIVE_TEST",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Duplicate province or blank code rejected",
+        "estimand": "fail closed",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Duplicate province or blank code rejected",
+        "rival": "Silent deduplication"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": true
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "duplicate_rejected": true
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Source duplicate rejection is a software test; real data could contain other subtle anomalies.",
+        "competing_baseline": "Silent deduplication",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Source duplicate rejection is a software test; real data could contain other subtle anomalies."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C25",
+      "branch": "Ethics/persons",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "SOFTWARE_PROVENANCE_AND_NEGATIVE_TEST",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "No unverified private affiliations or person ratings inferred",
+        "estimand": "gates closed",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "No unverified private affiliations or person ratings inferred",
+        "rival": "Party/candidate proxy"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "private_person_rejected": true,
+          "real_ratings_allowed": false
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Privacy guard does not certify legal basis or consent for all future profile fields; do not score people.",
+        "competing_baseline": "Party/candidate proxy",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Privacy guard does not certify legal basis or consent for all future profile fields; do not score people."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C26",
+      "branch": "Python data adapter",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "PRODUCT_STATIC_REVIEW_AND_GOVERNANCE",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Schema and provenance checked before UI exposure",
+        "estimand": "offline Python test cases",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Schema and provenance checked before UI exposure",
+        "rival": "Untrusted JSON accepted"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "reviewed_static_code": true,
+          "node_or_python_runtime_executed": false
+        },
+        "evidence_status": "STATIC_SOURCE_REVIEW_NOT_RUNTIME",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Reviewed Python source, not Python bytecode execution or HTTP integration; possible runtime regressions remain.",
+        "competing_baseline": "Untrusted JSON accepted",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Reviewed Python source, not Python bytecode execution or HTTP integration; possible runtime regressions remain."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_STATIC_SOURCE_AND_REPAIR_RUNTIME_VALIDATION_NEXT",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C27",
+      "branch": "Frontend UI",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "PRODUCT_STATIC_REVIEW_AND_GOVERNANCE",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Visible inclusive atlas with no real-person score and source disclaimer",
+        "estimand": "static code and functional render tests",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Visible inclusive atlas with no real-person score and source disclaimer",
+        "rival": "Reactively sorting votes into rating"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "navigation_present": true,
+          "disclaimer_present": true,
+          "reviewed_static_code": true
+        },
+        "evidence_status": "STATIC_SOURCE_REVIEW_NOT_RUNTIME",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Frontend strings exist, but actual DOM event handling and mobile layout not browser-tested.",
+        "competing_baseline": "Reactively sorting votes into rating",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Frontend strings exist, but actual DOM event handling and mobile layout not browser-tested."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_STATIC_SOURCE_AND_REPAIR_RUNTIME_VALIDATION_NEXT",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C28",
+      "branch": "HTTP demo integration",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "PRODUCT_STATIC_REVIEW_AND_GOVERNANCE",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "GET atlas/health read-only and contract-compatible",
+        "estimand": "server smoke with temporary port or limitation",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "GET atlas/health read-only and contract-compatible",
+        "rival": "Unprotected mutating endpoint"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "read_only_get_route": true,
+          "loopback_only": true,
+          "HTTP_E2E_executed": false
+        },
+        "evidence_status": "STATIC_SOURCE_REVIEW_NOT_RUNTIME",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Loopback server route exists but actual Python HTTP and security testing not performed here.",
+        "competing_baseline": "Unprotected mutating endpoint",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Loopback server route exists but actual Python HTTP and security testing not performed here."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_STATIC_SOURCE_AND_REPAIR_RUNTIME_VALIDATION_NEXT",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C29",
+      "branch": "Reproducibility",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "PRODUCT_STATIC_REVIEW_AND_GOVERNANCE",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Clean runner verifies all known source/fixture checks",
+        "estimand": "replay with hash and test results",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "Clean runner verifies all known source/fixture checks",
+        "rival": "Test harness uses stale path"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "runner_written": true,
+          "clean_node_run": false
+        },
+        "evidence_status": "STATIC_SOURCE_REVIEW_NOT_RUNTIME",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Offline runner exists; third-party CSV fetch and GitHub Action workflow not observed completing.",
+        "competing_baseline": "Test harness uses stale path",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Offline runner exists; third-party CSV fetch and GitHub Action workflow not observed completing."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_STATIC_SOURCE_AND_REPAIR_RUNTIME_VALIDATION_NEXT",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    },
+    {
+      "id": "PF-BR30I-C30",
+      "branch": "Governance",
+      "status": "CLOSED_A_J_EXPLORATORY",
+      "evidence_class": "PRODUCT_STATIC_REVIEW_AND_GOVERNANCE",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "All 30 cycles A–J with priors and CT2 documented",
+        "estimand": "ledger audit source/validation statuses",
+        "unit": "Actor/source/contract case",
+        "population": "Archived secondary source or source-level software test"
+      },
+      "B": {
+        "H0": "A rival documentation, coding or source-exposure mechanism could explain agreement or apparent inclusion",
+        "H1": "All 30 cycles A–J with priors and CT2 documented",
+        "rival": "Quota-filling or fake validation"
+      },
+      "C": {
+        "precommit": "research/BRANCH30I_20261026/PREREG_C01_C30.json",
+        "falsifier": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+        "after_previous_exposure": false,
+        "negative_control": false
+      },
+      "D": {
+        "instrument": "scripts/br30i_suite.mjs; scripts/jec2023_audit.mjs; scripts/electoral_source_audit.mjs",
+        "sources": [
+          "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+          "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+          "anerodata/data-elecciones-congreso-espana 202307.csv"
+        ],
+        "official_original_binary_sha": null,
+        "source_snapshot_notes": "Official HTML/PDF manually transcribed, secondary CSV from GitHub connector"
+      },
+      "E": {
+        "executed": true,
+        "observed": "PASS",
+        "endpoint_result": {
+          "original_field_persons_validated": 0,
+          "actual_source_documentary_cells": 312,
+          "AB_grade_not_inferred": true
+        },
+        "evidence_status": "V8_PURE_FUNCTION_EXECUTED",
+        "independent_person_records": 0
+      },
+      "F": {
+        "adversarial_audit": "Closing 30 A–J source/QA cycles does not imply 30 new independent empirical experiments.",
+        "competing_baseline": "Quota-filling or fake validation",
+        "substantive_falsification": "None established from the acceptance run"
+      },
+      "G": {
+        "official_documentary_reference": "NOT_APPLICABLE_OR_NOT_INDEPENDENT",
+        "independent_field_replication": false,
+        "full_pdf_binary_audit": false,
+        "clean_Node_Python_CI_verified": false
+      },
+      "H": {
+        "updated_abductive_prior": "Documentary or engineering endpoint supported within specified scope; do not generalize to causal political influence",
+        "uncertainty": "No complete current party register or real person cohort; temporal publication availability unknown",
+        "contrary_evidence": "Closing 30 A–J source/QA cycles does not imply 30 new independent empirical experiments."
+      },
+      "I": {
+        "software_acceptance": "PASS",
+        "scientific_novelty_0_3": 0,
+        "external_validity": "NOT_ESTABLISHED",
+        "VSDS": 1,
+        "CT2_predictive": 24,
+        "CT2_multiactor": 20
+      },
+      "J": {
+        "decision": "ACCEPT_WITH_EXPLICIT_SCOPE",
+        "next_evidence": "Obtain primary bytes, official party/candidacy roster, historical role intervals, and independent app/runtime validation before operational deployment"
+      }
+    }
+  ]
+}
