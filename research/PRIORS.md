@@ -82,3 +82,19 @@ La [métrica V1 PFL-V1-20261026](../product/progress_snapshot_v1_20261026.json) 
 [Ledger BR20K A–J](BRANCH20K_20261026/LEDGER.json) · [Informe](BRANCH20K_20261026/REPORT.md).
 
 **Misma situación epistémica:** VSDS 1/3, CT2 multiactor 20/100, CT2 parlamentaria 24/100; N1/N2/N3 nuevos = 0.
+
+
+## BR12M — evidencia original y pruebas nativas (26/10/2026)
+
+Los priors PF-P, PF-MG/H/I/J/K precedentes siguen intactos. Se suman PF-M01–PF-M06 con procedencia, evidencia contraria, falsadores y límites, desarrollados en [BR12M/PRIORS_DELTA.md](BRANCH12M_20261026/PRIORS_DELTA.md).
+
+| Prior | Resultado nuevo | Alcance y límite |
+|---|---|---|
+| PF-M01 | Run [40258776701](https://github.com/GalexY3/Metodologia-AB/actions/runs/40258776701): 91 Node + 50 Python PASS | QA nativa, no replicación empírica social |
+| PF-M02 | **PDF original BOE** recuperado con HTTPS, SHA256 **f2146cf…d2f8a**, 52×6=**312 celdas** cotejadas automáticamente y sin diferencia | Solo resultados agregados de una elección 2023; no registro RPP |
+| PF-M03 | Dos JSON Congress 404, Interior XLSX falla TLS; no se desactivó autenticación | R5 de rutas específicas, no prueba de inexistencia |
+| PF-M04 | Revisión 2 del mismo scope: **33,725→35,450%**; **+1,725 pp trabajo**; scope 0 | Madurez subjetiva de hitos, no tiempo restante |
+| PF-M05 | Corpus de resultados electoral ≠ identidades jurídicas o actividad individual | 0 personas nacionales validadas y scoring real cerrado |
+| PF-M06 | Artefacto privado expira en 3 días, SHA/URL/código quedan documentados | Custodia original a largo plazo aún no certificada |
+
+[12 A–J BR12M](BRANCH12M_20261026/LEDGER.json) · [informe y fuentes negativas](BRANCH12M_20261026/REPORT.md) · [V2 actual](../product/progress_snapshot_v2_20261026.json). Se preserva **VSDS 1/3; CT2 multiactor 20/100 y predictiva 24/100; N1/N2/N3 científicos nuevos 0**.
