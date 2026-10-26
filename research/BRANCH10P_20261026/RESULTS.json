@@ -1,0 +1,94 @@
+{
+  "campaign": "PF-BR10P",
+  "date": "2026-10-26",
+  "authorized": 10,
+  "closed": 10,
+  "phase": "INITIAL_SOURCE_EXPANSION",
+  "source": "BOE-A-2023-15066 original full PDF",
+  "source_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+  "source_run": 40322243535,
+  "source_issues": 36,
+  "source_classes": {
+    "detected": 52,
+    "strictly_parsed": 25,
+    "without_known_notice": 16,
+    "with_review_notice": 9,
+    "nonsequential_quarantined": 27,
+    "extracted_list_records": 263,
+    "unique_acronyms": 50
+  },
+  "people_profiles": 0,
+  "legal_party_id_matches": 0,
+  "scope": "ONE_2023_GENERAL_ELECTION",
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "tests_native": "Node/Python source+app green; browser before final audit repair had assertion against CSS uppercasing; final audit continues in AUDIT5Q",
+  "cycles": [
+    {
+      "id": "PF-BR10P-C01",
+      "branch": "source",
+      "observed": "BOE institutional original 4,298,580 bytes, SHA256 matched, 52 provincial commissions recognized",
+      "status": "PASS_ORIGINAL_SOURCE"
+    },
+    {
+      "id": "PF-BR10P-C02",
+      "branch": "parser",
+      "observed": "Uppercase heading bug including short VOX repaired; 25 ordered province sections parsed; Congress separated from Senate",
+      "status": "PASS_BOUNDED_PARSER"
+    },
+    {
+      "id": "PF-BR10P-C03",
+      "branch": "parser",
+      "observed": "27 provinces have missing/atypical sequence positions; parser quarantines instead of inventing headings",
+      "status": "STOP_R5_REVIEW"
+    },
+    {
+      "id": "PF-BR10P-C04",
+      "branch": "representation",
+      "observed": "263 distinct candidacy positions from 25 parsed provincial sections; 50 distinct acronyms, not 263 parties",
+      "status": "PASS_PARTIAL_DISCOVERY"
+    },
+    {
+      "id": "PF-BR10P-C05",
+      "branch": "identity",
+      "observed": "Each record keyed by BOE/province/Congress/ordinal; acronyms may repeat without merging",
+      "status": "PASS_TYPED_IDENTIFIERS"
+    },
+    {
+      "id": "PF-BR10P-C06",
+      "branch": "identity",
+      "observed": "Nine of 25 extracted provincial sections mention no-proclamation and require further document-level adjudication",
+      "status": "PARTIAL_R5_NONPROCLAMATION"
+    },
+    {
+      "id": "PF-BR10P-C07",
+      "branch": "join",
+      "observed": "Prior eight Albacete original labels remain exact matches to secondary election-wide totals, no party-legal inference",
+      "status": "PASS_EXACT_MATCH_BOUNDARY"
+    },
+    {
+      "id": "PF-BR10P-C08",
+      "branch": "api",
+      "observed": "Local GET /api/official-nominations returns 25 province summaries, 263 list IDs, no people or scoring",
+      "status": "PASS_READONLY_API_SOURCE"
+    },
+    {
+      "id": "PF-BR10P-C09",
+      "branch": "qa",
+      "observed": "Native Python source-parser, API and integrity tests on GitHub runner; browser panel tested with case-fold repairs",
+      "status": "PASS_NATIVE_SOURCE_AND_QA"
+    },
+    {
+      "id": "PF-BR10P-C10",
+      "branch": "governance",
+      "observed": "Frozen prereg, data, scoped methodology, source caveats, priors and A-J records written to repository",
+      "status": "PASS_GOVERNANCE"
+    }
+  ]
+}
