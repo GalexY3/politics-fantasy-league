@@ -1,0 +1,90 @@
+{
+  "campaign": "PF-BR8N",
+  "date": "2026-10-26",
+  "authorization": "USER_GRANTED_8_BRANCHING",
+  "protocol": "AB-3.2.1_A_J",
+  "preexposure": "Public BOE/JEC source discovery and prior BR12M results were seen before these contracts. New code, CI and audits are prospective engineering tests, not blinded confirmatory science.",
+  "objective": "Expand the political universe beyond Parliament with a real original candidacies dataset from BOE; validate party/candidacy/legal distinctions and browser navigation on the playable fictional demo; preserve security gates.",
+  "cycles": [
+    {
+      "id": "PF-BR8N-N01",
+      "branch": "source",
+      "question": "Download BOE-A-2023-15066 official proclaimed candidacies document with exact HTTPS institutional host, original bytes and hash",
+      "endpoint": "Authenticated original 2023 nomination artifact available",
+      "falsifier": "NO_ORIGINAL_CAPTURE",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N02",
+      "branch": "source",
+      "question": "Establish conservative extraction and count of candidature groups excluding people and Senate",
+      "endpoint": "Bounded exact sample from authentic BOE with nominated organizations, territorial scope and no inferred membership",
+      "falsifier": "PARSER_FALSE_MERGE",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N03",
+      "branch": "source",
+      "question": "Corroborate original election outcome versus candidature presence while keeping nonseat actors",
+      "endpoint": "Independent BOE document links candidature proposals to 2023 electoral labels only if evidence supports; track unresolved aliases",
+      "falsifier": "INVALID_JOIN_OR_LEGAL_PARTY_CLAIM",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N04",
+      "branch": "identity",
+      "question": "Enforce role/candidacy/coalition identity distinctions and uncertainty",
+      "endpoint": "No party-membership inference, no conflation of list and legal-party records, matching is conservative",
+      "falsifier": "IDENTITY_FALSE_POSITIVES",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N05",
+      "branch": "product",
+      "question": "Integrate read-only electoral candidacy source status into local observatory, no real person grading",
+      "endpoint": "Source provenance is inspectable in UI/API with error state and privacy filtering",
+      "falsifier": "UI_MISREPRESENTS_FICTION",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N06",
+      "branch": "browser",
+      "question": "Run actual browser smoke test for navigation game and project-progress page with localhost HTTP app",
+      "endpoint": "Native browser test success or explicit STOP_R5 if browser unavailable; no fabricated browser screenshots",
+      "falsifier": "NATIVE_BROWSER_FAIL",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N07",
+      "branch": "security",
+      "question": "Adversarial HTTP/browser tests: local-host-only, no profile leak, request origin constraints",
+      "endpoint": "Security controls pass on local demo; no claim of multiuser hardening",
+      "falsifier": "AUTH_OR_ORIGIN_BYPASS",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    },
+    {
+      "id": "PF-BR8N-N08",
+      "branch": "governance",
+      "question": "Close full A-J and revise scope progress only if material source/browser evidence warrants it",
+      "endpoint": "Complete ledger, reasoned progress delta V2→V3 or unchanged, preserve all old priors and 6 launch gates",
+      "falsifier": "GOODHART_PERCENT",
+      "confidence": "UNTESTED_PROSPECTIVE_ENGINEERING",
+      "status": "PRE_REGISTERED"
+    }
+  ],
+  "grade_rule": "Never interpret test count as studies or project maturity. N1/N2/N3 scientific only on independent original comparative inference; keep VSDS 1/3 and CT2 ordinal unchanged absent such evidence.",
+  "source_targets": [
+    "https://www.boe.es/boe/dias/2023/06/27/pdfs/BOE-A-2023-15066.pdf",
+    "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2023-15066",
+    "https://www.juntaelectoralcentral.es/cs/jec/elecciones/coalicionesJECGenerales"
+  ],
+  "baseline_progress": "PFL-V1-20261026 revision2 35.45%, six deployment gates remain",
+  "stop_rule": "Failures/ambiguity are STOP_R5, never certify invented original rows"
+}
