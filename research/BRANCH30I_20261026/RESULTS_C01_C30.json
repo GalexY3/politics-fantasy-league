@@ -1,0 +1,299 @@
+{
+  "campaign": "PF-BR30I",
+  "date": "2026-10-26",
+  "execution": "V8 JavaScript pure-module 30 test harness; no Node clean checkout or Python HTTP E2E",
+  "code_sha": "373d71aefe4819db865f194f265782d53c34e06d",
+  "source_refs": [
+    {
+      "repo": "GalexY3/Metodologia-AB",
+      "path": "research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv",
+      "sha": "601a1fde41c79d9f9cc9be4b220b63c0f30ca746"
+    },
+    {
+      "repo": "GalexY3/Metodologia-AB",
+      "path": "research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json",
+      "sha": "3ed161428c5c5ec347c63cfd898812d8331aea32"
+    },
+    {
+      "repo": "anerodata/data-elecciones-congreso-espana",
+      "path": "202307.csv",
+      "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+    },
+    {
+      "repo": "rOpenSpain/infoelectoral",
+      "path": "data/partidos_generales.csv",
+      "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+    }
+  ],
+  "research_scope": "Exploratory documentary official Table I and source/coalition official HTML transcriptions; secondary CSV data. No raw BOE PDF bytes or living people verified.",
+  "summary": {
+    "prepared": 30,
+    "source_scope": "JEC transcription + 2023 secondary CSV + official coalition HTML transcription; field provenance imperfect"
+  },
+  "outcomes": [
+    {
+      "id": "PF-BR30I-C01",
+      "branch": "documentary",
+      "outcome": "PASS",
+      "result": {
+        "paired": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C02",
+      "branch": "external_counts",
+      "outcome": "PASS",
+      "result": {
+        "cells_equal": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C03",
+      "branch": "external_counts",
+      "outcome": "PASS",
+      "result": {
+        "cells_equal": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C04",
+      "branch": "external_counts",
+      "outcome": "PASS",
+      "result": {
+        "cells_equal": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C05",
+      "branch": "external_counts",
+      "outcome": "PASS",
+      "result": {
+        "cells_equal": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C06",
+      "branch": "external_counts",
+      "outcome": "PASS",
+      "result": {
+        "cells_equal": 104
+      }
+    },
+    {
+      "id": "PF-BR30I-C07",
+      "branch": "conservation",
+      "outcome": "PASS",
+      "result": {
+        "identities": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C08",
+      "branch": "conservation",
+      "outcome": "PASS",
+      "result": {
+        "identities": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C09",
+      "branch": "source_totals",
+      "outcome": "PASS",
+      "result": {
+        "district_sums_equal": 52
+      }
+    },
+    {
+      "id": "PF-BR30I-C10",
+      "branch": "seats",
+      "outcome": "PASS",
+      "result": {
+        "seats": 350,
+        "labels_with_seats": 11
+      }
+    },
+    {
+      "id": "PF-BR30I-C11",
+      "branch": "external_party_totals",
+      "outcome": "PASS",
+      "result": {
+        "verified_official_party_totals": 5
+      }
+    },
+    {
+      "id": "PF-BR30I-C12",
+      "branch": "official_coalition",
+      "outcome": "PASS",
+      "result": {
+        "JEC": 12,
+        "JEP": 4
+      }
+    },
+    {
+      "id": "PF-BR30I-C13",
+      "branch": "entity_mapping",
+      "outcome": "PASS",
+      "result": {
+        "unique_exact_candidates": 10,
+        "unresolved": 4
+      }
+    },
+    {
+      "id": "PF-BR30I-C14",
+      "branch": "chamber_scope",
+      "outcome": "PASS",
+      "result": {
+        "senate_only_excluded": 2
+      }
+    },
+    {
+      "id": "PF-BR30I-C15",
+      "branch": "territorial_scope",
+      "outcome": "PASS",
+      "result": {
+        "provincial_scope_count": 4
+      }
+    },
+    {
+      "id": "PF-BR30I-C16",
+      "branch": "identity_safety",
+      "outcome": "PASS",
+      "result": {
+        "party_legal_ids_produced": 0
+      }
+    },
+    {
+      "id": "PF-BR30I-C17",
+      "branch": "historical_distinction",
+      "outcome": "PASS",
+      "result": {
+        "historical_rows": 1057,
+        "manual_merges": 0
+      }
+    },
+    {
+      "id": "PF-BR30I-C18",
+      "branch": "no_seat",
+      "outcome": "PASS",
+      "result": {
+        "labels": 59,
+        "positive_no_seat": 48
+      }
+    },
+    {
+      "id": "PF-BR30I-C19",
+      "branch": "geographic_observation",
+      "outcome": "PASS",
+      "result": {
+        "range": [
+          8,
+          14
+        ]
+      }
+    },
+    {
+      "id": "PF-BR30I-C20",
+      "branch": "measurement_caution",
+      "outcome": "PASS",
+      "result": {
+        "nonseat_label_votes": 606450,
+        "share": 0.024765783761404942,
+        "causal_inference": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C21",
+      "branch": "provenance",
+      "outcome": "PASS",
+      "result": {
+        "raw_official_bytes_validated": false,
+        "manual": true
+      }
+    },
+    {
+      "id": "PF-BR30I-C22",
+      "branch": "asof",
+      "outcome": "PASS",
+      "result": {
+        "asof_certified": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C23",
+      "branch": "mutation_control",
+      "outcome": "PASS",
+      "result": {
+        "corruption_detected": true
+      }
+    },
+    {
+      "id": "PF-BR30I-C24",
+      "branch": "identity_negative",
+      "outcome": "PASS",
+      "result": {
+        "duplicate_rejected": true
+      }
+    },
+    {
+      "id": "PF-BR30I-C25",
+      "branch": "person_privacy",
+      "outcome": "PASS",
+      "result": {
+        "private_person_rejected": true,
+        "real_ratings_allowed": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C26",
+      "branch": "python_adapter",
+      "outcome": "PASS",
+      "result": {
+        "reviewed_static_code": true,
+        "node_or_python_runtime_executed": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C27",
+      "branch": "frontend",
+      "outcome": "PASS",
+      "result": {
+        "navigation_present": true,
+        "disclaimer_present": true,
+        "reviewed_static_code": true
+      }
+    },
+    {
+      "id": "PF-BR30I-C28",
+      "branch": "server",
+      "outcome": "PASS",
+      "result": {
+        "read_only_get_route": true,
+        "loopback_only": true,
+        "HTTP_E2E_executed": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C29",
+      "branch": "replay",
+      "outcome": "PASS",
+      "result": {
+        "runner_written": true,
+        "clean_node_run": false
+      }
+    },
+    {
+      "id": "PF-BR30I-C30",
+      "branch": "ab_governance",
+      "outcome": "PASS",
+      "result": {
+        "original_field_persons_validated": 0,
+        "actual_source_documentary_cells": 312,
+        "AB_grade_not_inferred": true
+      }
+    }
+  ],
+  "passed": 30,
+  "failed": 0,
+  "external_corroboration": "312 manually transcribed official BOE numbers exactly match 2023 secondary; 5 official national candidate totals; all 52 source slate sums; no party IDs verified.",
+  "real_people_scored": 0
+}
