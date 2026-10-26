@@ -79,6 +79,9 @@ def main():
             assert "Atlas" in atlas or "atlas" in atlas,atlas[:250]
             assert "Candidaturas proclamadas" in atlas
             assert "RECORTES CERO" in atlas
+            assert "Provincias comprobadas" in atlas and "Secciones pendientes" in atlas
+            assert "263" in atlas and "25" in atlas
+            results["passes"].append("Original BOE multiprovince 263 electoral-list atlas and 27 uncertainty sections shown in Chromium")
             assert "No procede inferirlos" in atlas
             results["passes"].append("Chromium visualises official BOE eight candidacy labels with no legal-party inference")
             results["passes"].append("Chromium navigation to historical electoral atlas")
