@@ -1,0 +1,294 @@
+{
+  "program": "PF-BR30I",
+  "date": "2026-10-26",
+  "authorized_by_user": 30,
+  "scope": "Inclusive Spanish political-party/candidacy and civil actor universe, official-vs-secondary validation and technical integration",
+  "method": "AB-3.2.1 A-J with branching",
+  "registration": "EXPLORATORY_BEFORE_EXECUTION_OF_NEW_CONTRASTS_BUT_AFTER_SEVERAL_DOCUMENTARY_RESULT_DISCOVERIES",
+  "preknown": [
+    "Official JEC Table I 52 provinces and 6 metrics matched 2023 secondary: result already observed before prereg, not a prospective hypothesis",
+    "52 candidate-vote sums from source columns matched aggregate source, already observed",
+    "Five official 2023 nonseat candidate totals matched secondary, already observed",
+    "Official JEC coalitions pages 12+4 documented before prereg"
+  ],
+  "rules": [
+    "Each cycle retains A through J; documentary and software acceptances labeled, empirical conclusions never imported from synthetic fixtures",
+    "No party/person ranking or inferred ideological/personality score",
+    "No true as-of when original publication timestamp cannot be observed",
+    "C27-C29 may STOP_R5 if clean Node/Python environment unavailable",
+    "CT2 ordinal separate branches; avoid updating for more code",
+    "Review negative/null evidence in priors"
+  ],
+  "targets": [
+    {
+      "id": "PF-BR30I-C01",
+      "branch": "Provinces",
+      "estimand": "Cardinality and exact code join: 52 of 52",
+      "rival": "Missing/duplicated province source",
+      "primary_endpoint": "52 one-to-one links",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C02",
+      "branch": "Official aggregate",
+      "estimand": "Electoral census official vs secondary, province & national",
+      "rival": "Time/version changes",
+      "primary_endpoint": "52 exact census matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C03",
+      "branch": "Official aggregate",
+      "estimand": "Voters official vs secondary",
+      "rival": "CERA and late corrections",
+      "primary_endpoint": "52 exact voter matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C04",
+      "branch": "Official aggregate",
+      "estimand": "Valid votes official vs secondary",
+      "rival": "Counting/definition divergence",
+      "primary_endpoint": "52 exact valid-vote matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C05",
+      "branch": "Official aggregate",
+      "estimand": "Candidate votes official vs secondary",
+      "rival": "Excluded ballot list",
+      "primary_endpoint": "52 exact candidate-vote matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C06",
+      "branch": "Official aggregate",
+      "estimand": "Blank and null votes official vs secondary",
+      "rival": "Misclassified abstention",
+      "primary_endpoint": "104 exact matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C07",
+      "branch": "Arithmetic",
+      "estimand": "Valid = candidacy votes + blank ballots",
+      "rival": "Wrong field semantics",
+      "primary_endpoint": "52 independent algebraic equalities",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C08",
+      "branch": "Arithmetic",
+      "estimand": "Voters = valid + null ballots",
+      "rival": "Missing category",
+      "primary_endpoint": "52 independent algebraic equalities",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C09",
+      "branch": "Party-column accounting",
+      "estimand": "Sum of 59 option votes = candidate votes per province",
+      "rival": "Missing electoral option / duplicated list",
+      "primary_endpoint": "52 matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C10",
+      "branch": "Seat accounting",
+      "estimand": "Sum of province election seats and source national = 350",
+      "rival": "Party-vs-district duplication",
+      "primary_endpoint": "52 seat allocations sum 350; province seats consistent with recorded integer",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C11",
+      "branch": "Direct JEC nonseat option totals",
+      "estimand": "Five official BOE Table III national vote totals vs secondary",
+      "rival": "Same labels but different source totals",
+      "primary_endpoint": "5 exact votes",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C12",
+      "branch": "Coalition legal forms",
+      "estimand": "JEC 12 national + 4 JEP provincial distinct typed",
+      "rival": "Coalitions misclassified as registered parties",
+      "primary_endpoint": "16 documented coalition forms, separate scope",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C13",
+      "branch": "Coalition-to-slate mapping",
+      "estimand": "Strict acronym match without ambiguous guesses",
+      "rival": "Common short acronym collision",
+      "primary_endpoint": "Only unique suffix matches",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C14",
+      "branch": "Congress/Senate role scope",
+      "estimand": "Do not count explicitly Senate-only coalition as Congress-only",
+      "rival": "Conflation chambers",
+      "primary_endpoint": "2 excluded from Congress inference",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C15",
+      "branch": "Territorial scope",
+      "estimand": "JEC and JEP jurisdiction/provenance separated",
+      "rival": "Local/general collapse",
+      "primary_endpoint": "provenance and scope never lost",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C16",
+      "branch": "Identity",
+      "estimand": "No automatic legal-party identity from candidacy label",
+      "rival": "Common strings and coalition aliases",
+      "primary_endpoint": "Unknown identity until official registry ID",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C17",
+      "branch": "Historical data incompatibility",
+      "estimand": "1977–2019 keys cannot be joined mechanically to 2023 labels",
+      "rival": "Backfilled denomination",
+      "primary_endpoint": "0 automatic cross-source identity claims",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C18",
+      "branch": "Nonseat observation",
+      "estimand": "2023 votes-positive without Congress seat preserved",
+      "rival": "Omission of no-seat labels",
+      "primary_endpoint": "48 electoral labels retaining category",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C19",
+      "branch": "District option diversity",
+      "estimand": "Observed count of positive-vote slates by province",
+      "rival": "Different ballot availability",
+      "primary_endpoint": "Factual distribution with denominators",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C20",
+      "branch": "Coverage composition",
+      "estimand": "Share candidate votes from no-seat options per province",
+      "rival": "Unknown person influence",
+      "primary_endpoint": "Descriptive shares, no rankings",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C21",
+      "branch": "Provenance",
+      "estimand": "Materialized official transcript vs original PDF bytes distinction",
+      "rival": "False official-download flag",
+      "primary_endpoint": "captured-original false, manual-transcription true",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C22",
+      "branch": "Temporal gate",
+      "estimand": "Unknown original first-public-at not turned into historical availability",
+      "rival": "Leakage in prequential forecast",
+      "primary_endpoint": "historical labels remain ineligible for as-of prediction",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C23",
+      "branch": "Adversarial corruption",
+      "estimand": "Mutated official province tally causes named discrepancy",
+      "rival": "Uncaught partial overwrite",
+      "primary_endpoint": "detect changed source cell",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C24",
+      "branch": "Source integrity",
+      "estimand": "Duplicate province or blank code rejected",
+      "rival": "Silent deduplication",
+      "primary_endpoint": "fail closed",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C25",
+      "branch": "Ethics/persons",
+      "estimand": "No unverified private affiliations or person ratings inferred",
+      "rival": "Party/candidate proxy",
+      "primary_endpoint": "gates closed",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C26",
+      "branch": "Python data adapter",
+      "estimand": "Schema and provenance checked before UI exposure",
+      "rival": "Untrusted JSON accepted",
+      "primary_endpoint": "offline Python test cases",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C27",
+      "branch": "Frontend UI",
+      "estimand": "Visible inclusive atlas with no real-person score and source disclaimer",
+      "rival": "Reactively sorting votes into rating",
+      "primary_endpoint": "static code and functional render tests",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C28",
+      "branch": "HTTP demo integration",
+      "estimand": "GET atlas/health read-only and contract-compatible",
+      "rival": "Unprotected mutating endpoint",
+      "primary_endpoint": "server smoke with temporary port or limitation",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C29",
+      "branch": "Reproducibility",
+      "estimand": "Clean runner verifies all known source/fixture checks",
+      "rival": "Test harness uses stale path",
+      "primary_endpoint": "replay with hash and test results",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    },
+    {
+      "id": "PF-BR30I-C30",
+      "branch": "Governance",
+      "estimand": "All 30 cycles A–J with priors and CT2 documented",
+      "rival": "Quota-filling or fake validation",
+      "primary_endpoint": "ledger audit source/validation statuses",
+      "discriminant": "A clean source/fixture contradiction invalidates endpoint; preserve failed checks",
+      "status": "FROZEN_PRE_RUN_FOR_REMAINDER"
+    }
+  ]
+}
