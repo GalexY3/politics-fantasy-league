@@ -74,6 +74,10 @@ def main():
             page.locator("[data-tab='atlas']").click()
             atlas=page.locator("#content").inner_text()
             assert "Atlas" in atlas or "atlas" in atlas,atlas[:250]
+            assert "Candidaturas proclamadas" in atlas
+            assert "RECORTES CERO" in atlas
+            assert "No procede inferirlos" in atlas
+            results["passes"].append("Chromium visualises official BOE eight candidacy labels with no legal-party inference")
             results["passes"].append("Chromium navigation to historical electoral atlas")
             assert not errors,repr(errors[:5])
             results["passes"].append("No uncaught JavaScript page errors")
