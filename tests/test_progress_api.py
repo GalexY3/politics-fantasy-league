@@ -13,22 +13,22 @@ def baseline():
     return json.loads(DEFAULT_SCOPE.read_text(encoding="utf8"))
 
 
-def test_current_v2_global_and_tracks():
+def test_current_v3_global_and_tracks():
     r = progress_status()
     assert r["ok"] is True
-    assert abs(r["progress_pct"] - 35.45) < 1e-8
-    assert r["progress_display_pct"] == 35.5
-    assert r["revision"] == 2
+    assert abs(r["progress_pct"] - 36.35) < 1e-8
+    assert r["progress_display_pct"] == 36.4
+    assert r["revision"] == 3
     assert r["track_count"] == 9
     assert r["milestone_count"] == 36
     assert sum(t["weight"] for t in r["tracks"]) == 100
-    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 35.45) < 1e-8
+    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 36.35) < 1e-8
 
 
 def test_maturity_and_release_gates():
     r = progress_status()
     assert r["level_histogram"] == {
-        "0": 10, "1": 7, "2": 4, "3": 13, "4": 2, "5": 0
+        "0": 10, "1": 7, "2": 2, "3": 15, "4": 2, "5": 0
     }
     assert len(r["release_blockers"]) == 6
     assert r["global_status"] == "NOT_PUBLIC_RELEASE_READY"
@@ -45,7 +45,7 @@ def test_scope_expansion_changes_denominator_only():
         "evidence_class": "ABSENT"
     })
     r = evaluate_scope(s)
-    assert abs(r["progress_pct"] - 33.83) < 1e-8
+    assert abs(r["progress_pct"] - 34.73) < 1e-8
 
 
 def test_invalid_weight_rejected():
