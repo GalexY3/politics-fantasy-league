@@ -39,9 +39,10 @@ def extract_albacete_lists(text):
     if "CONGRESO DE LOS DIPUTADOS" not in text:
         raise ValueError("CONGRESS_SEGMENT_MISSING")
     text=text.split("CONGRESO DE LOS DIPUTADOS",1)[1]
-    if "\nSENADO" not in text:
+    senate=re.search(r"(?m)^[ \t]*SENADO[ \t]*$",text)
+    if senate is None:
         raise ValueError("SENATE_BOUNDARY_MISSING")
-    text=text.split("\nSENADO",1)[0]
+    text=text[:senate.start()]
     rows=[]
     for raw in text.splitlines():
         line=normalized(raw)
