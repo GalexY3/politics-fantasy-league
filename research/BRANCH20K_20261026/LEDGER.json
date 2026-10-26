@@ -1,0 +1,1277 @@
+{
+  "campaign": "PF-BR20K",
+  "date": "2026-10-26",
+  "authorized": 20,
+  "completed_AJ": 20,
+  "remaining": 0,
+  "branching": true,
+  "scope_version": "PFL-V1-20261026/r1",
+  "global_progress_pct": 33.725,
+  "tracks": 9,
+  "milestones": 36,
+  "release_blockers": 6,
+  "scenario_scope_effect_pp": -1.395,
+  "DRIFT": "D1.0 metric and evidence governance within same product scope",
+  "field_original_party_rows": 0,
+  "verified_public_people": 0,
+  "local_V8_tests": {
+    "passed": 20,
+    "total": 20
+  },
+  "native_Node": "NOT_VERIFIED",
+  "native_Python": "NOT_VERIFIED",
+  "HTTP_E2E": "NOT_VERIFIED",
+  "VSDS_project_0_3": 1,
+  "CT2_multiactor_ordinal": 20,
+  "CT2_predictive_ordinal": 24,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "prereg_sha": "2c2e6da1fceaf93f37820546ee95e60b48db16d6",
+  "results_sha": "7bda3717692de315ca079946dd41fea4cd7c27bc",
+  "method": "20 feasibility/engineering AB A-J records, NOT 20 independent field studies; 4 R5 evidence stops, 2 explicit native execution unknown",
+  "cycles": [
+    {
+      "id": "PF-BR20K-C01",
+      "branch": "scope",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Definir V1 finita y pesos de sublíneas, fijar 36 hitos sin alterar escala VSDS/CT2",
+        "estimand": "Existencia y validación de 9 vías, 36 hitos, pesos suman 100",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Definir V1 finita y pesos de sublíneas, fijar 36 hitos sin alterar escala VSDS/CT2",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/progress_scope_v1.json",
+        "evidence_class": "SOURCE_REVIEW_PLUS_CODE",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "V1 scope 9 weighted lanes, 36 evidence-linked milestones and explicit exclusions",
+        "adjudication": "PASS_BASELINE_CREATED",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Scope weights and meaning of complete V1 are judgments, not time estimates",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Scope weights and meaning of complete V1 are judgments, not time estimates",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_BASELINE_CREATED"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C02",
+      "branch": "measurement",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Madurez graduada sustentada en evidencia y versión, no autocompletado por número de ciclos",
+        "estimand": "Rechazo de hitos sin ID, peso, fuente o nivel válido",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Madurez graduada sustentada en evidencia y versión, no autocompletado por número de ciclos",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "tests/test_progress_model.mjs",
+        "evidence_class": "ENGINEERING_TEST_V8",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Schema validation rejects duplicate milestones, false weights and undocumented levels",
+        "adjudication": "PASS_V8",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Maturity score is manually adjudicated; syntax-valid evidence reference can still be wrong",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Maturity score is manually adjudicated; syntax-valid evidence reference can still be wrong",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_V8"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C03",
+      "branch": "measurement",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Índice ponderado y desglose por vías",
+        "estimand": "V1 calcula 33.725% con nueve contribuciones trazables",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Índice ponderado y desglose por vías",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/progress_snapshot_v1_20261026.json",
+        "evidence_class": "ENGINEERING_TEST_V8",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Weighted total 33.725%, per-track contributions audit to full index",
+        "adjudication": "PASS_V8",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Different maturity multipliers produce different total percentage",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Different maturity multipliers produce different total percentage",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_V8"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C04",
+      "branch": "scope",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Efecto diferencial de nueva versión y avances reales",
+        "estimand": "Descomposición algebraica exacta work+scope = cambio global",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Efecto diferencial de nueva versión y avances reales",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/progress_scope_change_example.json",
+        "evidence_class": "ENGINEERING_TEST_V8",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Work-first scope decomposition verified including simultaneous work and new scope",
+        "adjudication": "PASS_V8",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Work/scope decomposition is work-first, not a unique causal attribution",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Work/scope decomposition is work-first, not a unique causal attribution",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_V8"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C05",
+      "branch": "scope",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Evitar que avance aparente equivalga a viabilidad para usuarios",
+        "estimand": "Seis gates explícitos de release bloqueados pese al 33.7%",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Evitar que avance aparente equivalga a viabilidad para usuarios",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/progress_snapshot_v1_20261026.json",
+        "evidence_class": "ENGINEERING_TEST_V8",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Six release blockers despite 33.7% maturity; real scoring remains locked",
+        "adjudication": "PASS_V8",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Aggregate progress cannot clear six missing release-critical controls",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Aggregate progress cannot clear six missing release-critical controls",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_V8"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C06",
+      "branch": "scope",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Escenario de municipios completos y crecimiento real del denominador",
+        "estimand": "Nuevo hito no iniciado baja score 33.725->32.33, trabajo=0",
+        "unit": "Scope milestone/weighted percentage",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Escenario de municipios completos y crecimiento real del denominador",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": true,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/progress_scope_v2_EXAMPLE_NOT_ADOPTED.json",
+        "evidence_class": "COUNTERFACTUAL_SOFTWARE",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Hypothetical fifth municipal milestone: 33.725 -> 32.330; -1.395 scope pp, no work effect",
+        "adjudication": "PASS_V8_HYPOTHETICAL",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Example V2 is hypothetical and has not been adopted as project scope",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Example V2 is hypothetical and has not been adopted as project scope",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_V8_HYPOTHETICAL"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C07",
+      "branch": "sources",
+      "kind": "EVIDENCE_FEASIBILITY_R5",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Verificar disponibilidad oficial del RPP y distinguir interfaz de corpus original",
+        "estimand": "Contraste documental público; sin nuevos registros originales",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Verificar disponibilidad oficial del RPP y distinguir interfaz de corpus original",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH20K_20261026/ORIGINAL_SOURCE_DISCOVERY.md",
+        "evidence_class": "OFFICIAL_METADATA_ONLY",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "RPP query and PDF are documented; 0 original registry rows ingested",
+        "adjudication": "STOP_R5",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Reachable RPP search tool does not establish current full downloadable dataset",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "No support for field readiness without original source",
+        "evidence_against": "Reachable RPP search tool does not establish current full downloadable dataset",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "STOP_R5"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_EVIDENCE",
+        "next_step": "Obtain original official person/party rows with license and published as-of"
+      }
+    },
+    {
+      "id": "PF-BR20K-C08",
+      "branch": "sources",
+      "kind": "EVIDENCE_FEASIBILITY_R5",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Cotejar existencia de padrón histórico Congreso y recursos JEC",
+        "estimand": "Catálogos verificados pero no equivalentes a relaciones individuales extraídas",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Cotejar existencia de padrón histórico Congreso y recursos JEC",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH20K_20261026/ORIGINAL_SOURCE_DISCOVERY.md",
+        "evidence_class": "OFFICIAL_SCHEMA_DOCUMENTARY",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Official July-2026 active deputy JSON was readable by web but not downloaded/hashed into warehouse",
+        "adjudication": "STOP_R5_WITH_SCHEMA_OBSERVATION",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Active-roster JSON is July snapshot, not historical role panel or verified raw export",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "No support for field readiness without original source",
+        "evidence_against": "Active-roster JSON is July snapshot, not historical role panel or verified raw export",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "STOP_R5_WITH_SCHEMA_OBSERVATION"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_EVIDENCE",
+        "next_step": "Obtain original official person/party rows with license and published as-of"
+      }
+    },
+    {
+      "id": "PF-BR20K-C09",
+      "branch": "source_quality",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Control de integridad de originales sin suplantar autenticidad",
+        "estimand": "La métrica no otorga lvl4 por un checksum local no autenticado",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Control de integridad de originales sin suplantar autenticidad",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "scripts/ingest_political_evidence.mjs",
+        "evidence_class": "CODE_NOT_FIELD",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Content SHA256 importer exists; original publisher authentication and process runtime not established",
+        "adjudication": "PARTIAL_CODE_ONLY",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Content hash proves bytes, not publishing authority or licensing",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Content hash proves bytes, not publishing authority or licensing",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PARTIAL_CODE_ONLY"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C10",
+      "branch": "identity",
+      "kind": "EVIDENCE_FEASIBILITY_R5",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Auditar cobertura empírica de IDs jurídicos y personas públicas",
+        "estimand": "0 personas reconciliadas; status auditado no valorado como completado",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Auditar cobertura empírica de IDs jurídicos y personas públicas",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH30J_20261026/REPORT.md",
+        "evidence_class": "NO_FIELD_COHORT",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "No actual public person/registered political legal entity reconciled across original sources",
+        "adjudication": "STOP_R5",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Names can hide homonyms and changing legal-party identities",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "No support for field readiness without original source",
+        "evidence_against": "Names can hide homonyms and changing legal-party identities",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "STOP_R5"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_EVIDENCE",
+        "next_step": "Obtain original official person/party rows with license and published as-of"
+      }
+    },
+    {
+      "id": "PF-BR20K-C11",
+      "branch": "identity",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Distinguir roles temporales implementados vs verificados",
+        "estimand": "Roles V8 fixture solo nivel2 para integración real y nivel3 para schema",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Distinguir roles temporales implementados vs verificados",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+        "evidence_class": "SYNTHETIC_TEST",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Temporal role code and synthetic fixture tests exist; true historical field roles not verified",
+        "adjudication": "PASS_PREVIOUS_V8_ONLY",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Role interval fixtures can pass while real source dates disagree",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Role interval fixtures can pass while real source dates disagree",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_PREVIOUS_V8_ONLY"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C12",
+      "branch": "events",
+      "kind": "EVIDENCE_FEASIBILITY_R5",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Determinar si eventos extradiputacionales ya sostienen puntuación nominal",
+        "estimand": "Puerta de eventos-persona sin verificar; score personal inhabilitado",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Determinar si eventos extradiputacionales ya sostienen puntuación nominal",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH30J_20261026/REPORT.md",
+        "evidence_class": "NO_FIELD_COHORT",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "No real political-person events fit for gameplay scoring",
+        "adjudication": "STOP_R5",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Observed public appearances are not comparable person-week outcome labels",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "No support for field readiness without original source",
+        "evidence_against": "Observed public appearances are not comparable person-week outcome labels",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "STOP_R5"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_EVIDENCE",
+        "next_step": "Obtain original official person/party rows with license and published as-of"
+      }
+    },
+    {
+      "id": "PF-BR20K-C13",
+      "branch": "science",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Anclar sublínea TFM a metodología AB vs construcción de juego",
+        "estimand": "Separar protocolos y baselines sintéticos de validación prospectiva de campo",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Anclar sublínea TFM a metodología AB vs construcción de juego",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "docs/PLAN_TFM.md",
+        "evidence_class": "METHODOLOGY_DOCUMENTARY",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Plan TFM defines person-week estimand, baselines, rivals and as-of requirements; not a field forecast",
+        "adjudication": "PASS_METHOD_REVIEW",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "TFM protocol alone does not show prediction beats credible baselines",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "TFM protocol alone does not show prediction beats credible baselines",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_METHOD_REVIEW"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C14",
+      "branch": "game",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Confirmar capacidades reales del prototipo sin atribuir resultados políticos",
+        "estimand": "Game demo local, reglas sintéticas y ausencia de scoring reales correctamente valoradas",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Confirmar capacidades reales del prototipo sin atribuir resultados políticos",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "product/QA_RUN_20261024.txt",
+        "evidence_class": "HISTORICAL_QA_LOG",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Local game market and scoring demo with 49 tests logged in older version, not public deployment",
+        "adjudication": "PASS_HISTORICAL_LOG",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "49 older passing tests do not validate current app as publicly deployable",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "49 older passing tests do not validate current app as publicly deployable",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_HISTORICAL_LOG"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C15",
+      "branch": "ui",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Publicar progreso, detalle de sublíneas y estado de preparación en interfaz",
+        "estimand": "GET /api/progress y pestaña UI con barras y bloqueos",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Publicar progreso, detalle de sublíneas y estado de preparación en interfaz",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "src/politics_fantasy/web/app.js",
+        "evidence_class": "STATIC_FRONTEND",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "App UI progress tab and JSON fetch implemented; frontend syntax PASS in V8, no browser E2E",
+        "adjudication": "PASS_STATIC_JS",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Syntax-valid JS does not demonstrate layout or browser runtime success",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Syntax-valid JS does not demonstrate layout or browser runtime success",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_STATIC_JS"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C16",
+      "branch": "api",
+      "kind": "SOFTWARE_IMPLEMENTED_RUNTIME_PENDING",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Implementar cálculo Python de solo lectura, con fail-closed",
+        "estimand": "JSON válido; rechazar estructura falsa, puntuación según V1",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Implementar cálculo Python de solo lectura, con fail-closed",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "src/politics_fantasy/progress_api.py",
+        "evidence_class": "CODE_NOT_EXECUTED",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Python /api/progress adapter implemented but not executed with Python interpreter in this turn",
+        "adjudication": "CODE_PRESENT_NATIVE_NOT_RUN",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "NOT_EXECUTED"
+      },
+      "F": {
+        "adversarial_analysis": "Python source not executed; parity with JS remains a proposed test",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NO"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Python source not executed; parity with JS remains a proposed test",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "CODE_PRESENT_NATIVE_NOT_RUN"
+      },
+      "J": {
+        "decision": "PENDING_NATIVE_EXECUTION",
+        "next_step": "Execute tests in clean runner; do not claim PASS"
+      }
+    },
+    {
+      "id": "PF-BR20K-C17",
+      "branch": "qa",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Pruebas Node de invariantes, versiones y ampliación del alcance",
+        "estimand": "Batería nativa publicada + ejecución pura V8 verificada",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Pruebas Node de invariantes, versiones y ampliación del alcance",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "tests/test_progress_model.mjs",
+        "evidence_class": "ENGINEERING_TEST_V8",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "20 pure JS progress model assertions pass; Node-runner availability not independently observed",
+        "adjudication": "PASS_20_V8",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "V8 pure code tests do not guarantee all Node imports/FS in clean runner",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "V8 pure code tests do not guarantee all Node imports/FS in clean runner",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_20_V8"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C18",
+      "branch": "qa",
+      "kind": "SOFTWARE_IMPLEMENTED_RUNTIME_PENDING",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Pruebas Python/HTTP ruta progreso y paridad numérica",
+        "estimand": "Tests publicados, distinguir ejecución real de análisis fuente",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Pruebas Python/HTTP ruta progreso y paridad numérica",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "tests/test_progress_http.py",
+        "evidence_class": "CODE_NOT_EXECUTED",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Python API HTTP/Node subprocess tests written and wired to CI; native jobs unverified",
+        "adjudication": "CODE_PRESENT_NATIVE_NOT_RUN",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "NOT_EXECUTED"
+      },
+      "F": {
+        "adversarial_analysis": "Python HTTP smoke tests published but native execution unknown",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NO"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Python HTTP smoke tests published but native execution unknown",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "CODE_PRESENT_NATIVE_NOT_RUN"
+      },
+      "J": {
+        "decision": "PENDING_NATIVE_EXECUTION",
+        "next_step": "Execute tests in clean runner; do not claim PASS"
+      }
+    },
+    {
+      "id": "PF-BR20K-C19",
+      "branch": "governance",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Registro auditable scope revisiones + evidencia cada hito",
+        "estimand": "Baseline, snapshot, ejemplo de nueva versión y dependencias en informes",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Registro auditable scope revisiones + evidencia cada hito",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "docs/PROGRESO_Y_ALCANCE_v1.md",
+        "evidence_class": "ARTIFACT_AUDIT",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "Immutable V1 progress snapshot, hypothetical V2 and explanatory documentation published",
+        "adjudication": "PASS_VERSIONED_ARTIFACT",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Retrospective reweightings must not overwrite baseline or become real goals",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Retrospective reweightings must not overwrite baseline or become real goals",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "PASS_VERSIONED_ARTIFACT"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    },
+    {
+      "id": "PF-BR20K-C20",
+      "branch": "integration",
+      "kind": "LOCAL_SOFTWARE_OR_DOCUMENTARY",
+      "state": "AB_A_J_RECORDED",
+      "A": {
+        "question": "Actualizar ledger AB, priors, README, CI y dictamen J",
+        "estimand": "20 A–J completos, estados observados con ausencia de replicación externa explícita",
+        "unit": "Repo source/contract event",
+        "population": "Fixed PFL-V1 objective; no real political population sample"
+      },
+      "B": {
+        "H1": "Actualizar ledger AB, priors, README, CI y dictamen J",
+        "H0": "A source/metric shortcut could mimic completion",
+        "rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One violated contract must be recorded as FAIL / R5 rather than counted as successful field inference",
+        "preexposed": false,
+        "design": "Software/documentary audit, not statistical preregistration of field sample"
+      },
+      "D": {
+        "instrument": "src/politics_fantasy/progress_model.mjs; product/progress_scope_v1.json; tests/test_progress_model.mjs",
+        "evidence_path": "research/BRANCH20K_20261026/LEDGER.json",
+        "evidence_class": "GOVERNANCE",
+        "original_person_rows_available": 0
+      },
+      "E": {
+        "performed_local_review": true,
+        "observed": "20 distinct A–J to be persisted in campaign ledger and README with explicit no-field caveats",
+        "adjudication": "CLOSE_AJ_PENDING_LEDGER_VERIFY",
+        "independent_field_experiment_executed": false,
+        "native_runtime": "AS_DOCUMENTED"
+      },
+      "F": {
+        "adversarial_analysis": "Number of AB cycles can be Goodharted; no scientific grade inflation",
+        "null_rival": "Subjective milestone maturity and incomplete source proof can artificially overstate readiness"
+      },
+      "G": {
+        "independent_field_replication": "NONE",
+        "source_original_verified": false,
+        "clean_Node_or_Python_run": "NOT_REQUIRED_FOR_THIS_ASSERTION"
+      },
+      "H": {
+        "belief_update": "Local technical feasibility or documentation supported, not sociological success",
+        "evidence_against": "Number of AB cycles can be Goodharted; no scientific grade inflation",
+        "new_scientific_result": false
+      },
+      "I": {
+        "grade_novelty_0_3": 0,
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "external_validity": "NOT_ESTABLISHED",
+        "software_or_documentary_result": "CLOSE_AJ_PENDING_LEDGER_VERIFY"
+      },
+      "J": {
+        "decision": "CLOSE_ENGINEERING_CONTRACT",
+        "next_step": "Reevaluate on new evidence, preserving baseline revision"
+      }
+    }
+  ]
+}
