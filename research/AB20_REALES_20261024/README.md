@@ -1,5 +1,7 @@
 # Bloque experimental PF-AB20 autorizado el 24/10/2026
 
+> **Actualización 26/10/2026:** 19 candidatas C02–C20 han recibido A–J de **cribado de disponibilidad de evidencia** y una decisión J=STOP_R5, documentadas en [FINAL_R5_20261026.json](FINAL_R5_20261026.json). No son 19 experimentos de campo ejecutados ni se reconoce validación científica. Los originales nominales oficiales, el elenco histórico y las fechas as-of siguen inaccesibles en el entorno. El texto siguiente es el estado anterior de 24/10, mantenido como antecedente, no saldo actual.
+
 **Autorizados 20**. Hasta este cierre, **0 ciclos experimentales AB plenamente validados con microdatos**, **1 piloto observacional exploratorio C01 ejecutado**, **19 ciclos aún disponibles y NO_EXECUTED**. La ejecución C01 cuenta como una unidad de trabajo del bloque por transparencia, pero es `INCOMPLETE_FREEZE` según O2/O3, sin graduación 1/3 ni consumo de confirmación. Saldo provisional: 19. No equiparar C01 con una replicación ni convertir C02–C20 en ciclos consumidos.
 
 - `PREREG_C01.md` y `PREREG_SHA256.txt`: congelación local anterior a la evaluación aritmética, insuficiente frente a GitHub freeze.
