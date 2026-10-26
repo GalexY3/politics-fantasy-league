@@ -18,6 +18,7 @@ from .actor_api import local_actor_universe_status
 from .electoral_atlas import atlas_status
 from .evidence_warehouse_status import status as evidence_status
 from .progress_api import progress_status
+from .candidacy_api import status as official_candidacies_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -62,6 +63,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,progress_status())
             if route == '/api/evidence-readiness':
                 return self.reply(200,evidence_status())
+            if route == '/api/verified-candidacies':
+                return self.reply(200,official_candidacies_status())
             if route == '/api/electoral-atlas':
                 return self.reply(200,atlas_status())
             if route == '/api/actors':
