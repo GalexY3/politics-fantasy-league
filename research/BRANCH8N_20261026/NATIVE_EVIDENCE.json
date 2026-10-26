@@ -1,8 +1,8 @@
 {
   "campaign": "PF-BR8N",
   "date": "2026-10-26",
-  "verified_fully_green_run": 40315022251,
-  "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40315022251",
+  "verified_fully_green_run": 40316425686,
+  "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40316425686",
   "repository": "GalexY3/Metodologia-AB",
   "jobs": [
     {
@@ -19,17 +19,17 @@
     }
   ],
   "native_checks": {
-    "node_suites": 8,
-    "node_tests": 95,
+    "node_suites": 9,
+    "node_tests": 98,
     "python_pytest_pass": 59,
     "headless_chromium_browser": true,
     "browser_passes": [
-      "Progress V2 and six blocked launch gates",
-      "Host foreign domain rejected with HTTP 403",
+      "V3 scope progress 36.4 visible, six launch gates blocked",
+      "Host external origin denied HTTP 403",
+      "Ten semantic HTML progress bars under strict CSS/CSP displayed",
       "Market navigation",
-      "Atlas navigation",
-      "Official BOE eight Albacete candidacy list panel displayed without inferred party identity",
-      "No uncaught JavaScript page errors"
+      "Original BOE eight Albacete list labels displayed without legal-party inference",
+      "Atlas navigation, no uncaught JavaScript errors"
     ]
   },
   "official_originals": [
@@ -60,7 +60,7 @@
     "progress": 36.35,
     "source": "product/progress_snapshot_v3_20261026.json",
     "evidence_based_on_successful_browser_flow": true,
-    "latest_visual_semantic_progress_component_native_status": "PENDING_ADDITIONAL_BROWSER_RECHECK; original browser smoke was green before replacement of inline progress with native controls"
+    "latest_visual_semantic_progress_component_native_status": "PASS_CURRENT_CHROMIUM_40316425686"
   },
   "primary_R5": [
     "Registry of registered legal parties not materialized",
@@ -70,5 +70,18 @@
   "privacy": "No real-person scores, private memberships, or ideology in dataset",
   "artifact_policy": "Original PDF files and browser screenshot remain temporary private CI artifacts with 3-day retention, only SHA256 + safe aggregates committed",
   "causal_field_claims": 0,
-  "original_candidacy_scope": "One province, one 2023 Congress election"
+  "original_candidacy_scope": "One province, one 2023 Congress election",
+  "artifacts": [
+    {
+      "id": 12647152188,
+      "type": "Private browser screenshot and QA JSON",
+      "expires": "2026-10-29T11:37:55Z"
+    },
+    {
+      "id": 12647102291,
+      "type": "Original BOE PDFs and hashes",
+      "expires": "2026-10-29T11:37:43Z"
+    }
+  ],
+  "latest_verified_source_commit": "ca15aef2b3457321358e80f79ea79e8e0c0ad60e"
 }
