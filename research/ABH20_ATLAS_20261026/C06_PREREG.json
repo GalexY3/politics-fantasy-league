@@ -1,0 +1,42 @@
+{
+  "id": "C06",
+  "mode": "AB-H/AB-P",
+  "status": "PREREGISTERED",
+  "A": {
+    "goal": "Execute actual handler GET and hostile-Host HTTP assertions on full app code"
+  },
+  "B": {
+    "H1": "both pass",
+    "H0": "fails at runtime or unrelated import/DB",
+    "Hother": "runtime unavailable, do not promote"
+  },
+  "C": {
+    "environment": "local container; no GitHub Actions",
+    "test": "tests/test_source_eligibility_http.py",
+    "needed": "full checkout or all application imports"
+  },
+  "D": {
+    "acceptance": "pytest or unittest pass in real repo—not mocked server"
+  },
+  "E": {
+    "budget": "no Actions",
+    "pending": true
+  },
+  "F": {
+    "pending": true
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "costRisk": "avoid Actions during budget alert"
+  },
+  "I": {
+    "readiness_change": 0
+  },
+  "J": {
+    "stop_if_no_runtime": true
+  },
+  "CT2_before": 29,
+  "grade_0_3": 0
+}

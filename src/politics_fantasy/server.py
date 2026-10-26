@@ -20,6 +20,7 @@ from .evidence_warehouse_status import status as evidence_status
 from .progress_api import progress_status
 from .candidacy_api import status as official_candidacies_status
 from .nomination_atlas import status as nomination_atlas_status
+from .source_eligibility import policy_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -62,6 +63,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,local_field_status(field_path))
             if route == '/api/progress':
                 return self.reply(200,progress_status())
+            if route == '/api/eligibility-policy':
+                return self.reply(200,policy_status())
             if route == '/api/evidence-readiness':
                 return self.reply(200,evidence_status())
             if route == '/api/official-nominations':

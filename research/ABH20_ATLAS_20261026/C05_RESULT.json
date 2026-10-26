@@ -1,0 +1,27 @@
+{
+  "id": "C05",
+  "mode": "AB-H/AB-P",
+  "status": "CLOSED_CODE_PROPOSED_NOT_EXECUTED",
+  "observed": {
+    "modified_code": "src/politics_fantasy/server.py",
+    "route": "GET /api/eligibility-policy",
+    "new_POST_routes": 0,
+    "Host_guard": "existing _is_local_host before route",
+    "test_written": "tests/test_source_eligibility_http.py",
+    "test_executed": false,
+    "local_module_tests_prev": 12,
+    "CI": "NOT_RUN"
+  },
+  "AB_P": {
+    "implementation_present": true,
+    "local_HTTP_acceptance_pending": true,
+    "release_gates_unchanged": 6
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "adversarial": "Unexecuted integration tests cannot certify end-to-end behavior. No score route added.",
+  "decision": "C06 test exact API against full repository locally if available; otherwise R5 and remain unverified"
+}
