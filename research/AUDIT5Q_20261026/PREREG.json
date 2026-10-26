@@ -1,0 +1,47 @@
+{
+  "campaign": "PF-AUDIT5Q",
+  "date": "2026-10-26",
+  "authorized": 5,
+  "source_scope": "All current project code, 2023 official BOE artifacts, cumulative AB priors and progress V1-V3",
+  "method": "AB3.2.1_A-J_REPAIR",
+  "stage": "AFTER_INITIAL_10_CYCLE_SOURCE_BRANCH",
+  "condition": "Audit remains epistemically open until first block parser valid; do not call a CI pass with zero provincial rows a source success",
+  "prior_exposure": "Existing source and code are known; adversarial software audit is not independent science",
+  "cycles": [
+    {
+      "id": "PF-AUDIT5Q-A01",
+      "branch": "SOURCE",
+      "question": "Review original document extraction against raw PDFs, labels and validity/retention",
+      "falsifier": "No invented national data or partisan/legal identity joins; preserve parser failures",
+      "status": "PRE_REGISTERED_AUDIT"
+    },
+    {
+      "id": "PF-AUDIT5Q-A02",
+      "branch": "SECURITY",
+      "question": "Adversarial nested payload tests on events/roles/sources and unauthorized scoring attributes",
+      "falsifier": "Unknown or sensitive nested attributes rejected before accepted into evidence registry",
+      "status": "PRE_REGISTERED_AUDIT"
+    },
+    {
+      "id": "PF-AUDIT5Q-A03",
+      "branch": "PRODUCT",
+      "question": "Audit read-only API integrity, browser and CSRF/Host/Origin paths",
+      "falsifier": "No individual or voter information emitted; strict CSP, no public hosting claim",
+      "status": "PRE_REGISTERED_AUDIT"
+    },
+    {
+      "id": "PF-AUDIT5Q-A04",
+      "branch": "MEASUREMENT",
+      "question": "Audit 36 tracked milestones, V1-V3 source refs, six gates, scores",
+      "falsifier": "Versioned progress changes only when falsifiable maturity evidence improves, not count of cycles",
+      "status": "PRE_REGISTERED_AUDIT"
+    },
+    {
+      "id": "PF-AUDIT5Q-A05",
+      "branch": "REPAIR",
+      "question": "Re-run native CI after fixes and record unchanged/blocking limitations",
+      "falsifier": "Negative tests + original source audit reproducible or mark STOP_R5; audit ledger A-J",
+      "status": "PRE_REGISTERED_AUDIT"
+    }
+  ]
+}
