@@ -1,0 +1,846 @@
+{
+  "campaign": "PF-BR12M",
+  "date": "2026-10-26",
+  "user_authorized": 12,
+  "closed_A_J": 12,
+  "remaining": 0,
+  "method": "AB_3_2_1_BRANCHING_R5",
+  "DRIFT": "D1.0 — original scope maintained, native QA and primary provenance increased",
+  "new_original_official_documents": 1,
+  "new_official_party_registry_rows": 0,
+  "new_verified_public_persons": 0,
+  "CI_run_id": 40258776701,
+  "native_tests": {
+    "Node": 91,
+    "Python": 50,
+    "failures": 0
+  },
+  "original_pdf": {
+    "bytes": 1915000,
+    "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+    "reconciled_electoral_cells": 312,
+    "mismatches": 0
+  },
+  "scope_revision": 2,
+  "progress_before": 33.725,
+  "progress_after": 35.45,
+  "work_effect_pp": 1.725,
+  "scope_effect_pp": 0,
+  "release_blockers": 6,
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "prereg_sha": "d850b7939168b3ab775b88bf730f472ace5b7cf1",
+  "results_sha": "a516176f2e62385863162a50689f6ff5949e0fcb",
+  "cycles": [
+    {
+      "id": "PF-BR12M-C01",
+      "branch": "native_qa",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "NATIVE_QA",
+      "A": {
+        "question": "CI reality check",
+        "estimand": "Confirm existing GitHub Actions checkout Node/Python execution with genuine success logs",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": true,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_NATIVE_CI",
+        "observed": "CI job source-and-app-checks success and original-source-download success",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "Previously passing CI may not describe latest checkout; use exact SHA",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "Previously passing CI may not describe latest checkout; use exact SHA",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_NATIVE_CI",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C02",
+      "branch": "native_qa",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "NATIVE_QA",
+      "A": {
+        "question": "Native JS progress",
+        "estimand": "Run progress model and JS provenance suites on real GitHub Action runner",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_NATIVE_JS",
+        "observed": "91 Node tests, all successful",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "91 Node tests are engineering checks, not 91 independent political-field trials",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "91 Node tests are engineering checks, not 91 independent political-field trials",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_NATIVE_JS",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C03",
+      "branch": "native_qa",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "NATIVE_QA",
+      "A": {
+        "question": "Native Python APIs",
+        "estimand": "Run Python/HTTP loopback endpoint and progress parity tests on real runner",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_NATIVE_PYTHON",
+        "observed": "50 Python tests, all successful",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "50 Python tests are local/HTTP/fixture checks; no public deployment or browser coverage",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "50 Python tests are local/HTTP/fixture checks; no public deployment or browser coverage",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_NATIVE_PYTHON",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C04",
+      "branch": "security_qa",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "ENGINEERING_QA",
+      "A": {
+        "question": "Adversarial CLI",
+        "estimand": "Run file checksum/path traversal/type restriction child-process tests",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_NEGATIVE_CONTROLS",
+        "observed": "CLI test suite passed on Ubuntu in native CI; no personal field corpus",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "SHA checks local bytes, not the state-authority identity of a publisher",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "SHA checks local bytes, not the state-authority identity of a publisher",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_NEGATIVE_CONTROLS",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C05",
+      "branch": "primary_capture",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "ORIGINAL_SOURCE_R5",
+      "A": {
+        "question": "Official fetch - Congreso",
+        "estimand": "Download official Congress JSON directly via HTTPS; store SHA256 raw artifact if possible",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "OFFICIAL_CAPTURE.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "STOP_R5_ORIGINAL_404",
+        "observed": "Both institutional links returned HTTP 404; 0 original JSON bytes",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "404 is a failure for an exact dated URL, not proof the Congreso API is unavailable everywhere",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "No field availability update; R5 retained",
+        "contra_evidence": "404 is a failure for an exact dated URL, not proof the Congreso API is unavailable everywhere",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "STOP_R5_ORIGINAL_404",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "STOP_R5_UNTIL_VALID_ORIGINAL_RESOURCE",
+        "next_data": "Recover valid HTTPS authoritative person/party registry and formal license",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C06",
+      "branch": "primary_capture",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "ORIGINAL_SOURCE_R5",
+      "A": {
+        "question": "Official fetch - Interior",
+        "estimand": "Download original Interior election XLSX over HTTPS; hash and inspect bounded schema",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "OFFICIAL_CAPTURE.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "STOP_R5_TLS",
+        "observed": "SSL chain validation failed; refused TLS bypass; 0 XLSX bytes",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "TLS certificate-chain failure must not be solved by insecure bypass or accepted as acquired data",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "No field availability update; R5 retained",
+        "contra_evidence": "TLS certificate-chain failure must not be solved by insecure bypass or accepted as acquired data",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "STOP_R5_TLS",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "STOP_R5_UNTIL_VALID_ORIGINAL_RESOURCE",
+        "next_data": "Recover valid HTTPS authoritative person/party registry and formal license",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C07",
+      "branch": "primary_capture",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "PRIMARY_ORIGINAL_DOCUMENT",
+      "A": {
+        "question": "Original source authenticity",
+        "estimand": "Compare actual final HTTPS URL, binary signature, schema, dates and rights independently of source metadata",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "OFFICIAL_CAPTURE.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_ONE_OFFICIAL_PRIMARY",
+        "observed": "1,915,000 raw bytes, SHA256 f2146c..., 52 provinces×6 fields from actual PDF=312/312 concordant",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": true
+      },
+      "F": {
+        "adversarial": "Official BOE PDF original and exact numeric comparison establish bounded provenance of 2023 aggregate data; person identities and license of all derivatives remain unresolved",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "One exact official PDF original now materialized and 312 numeric cells revalidated",
+        "contra_evidence": "Official BOE PDF original and exact numeric comparison establish bounded provenance of 2023 aggregate data; person identities and license of all derivatives remain unresolved",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_ONE_OFFICIAL_PRIMARY",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C08",
+      "branch": "identity",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "IDENTITY_R5",
+      "A": {
+        "question": "Legal/identity gate",
+        "estimand": "Do not infer registered party, candidacy, historic membership, or person profile without validated identities",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "OFFICIAL_CAPTURE.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "STOP_R5_REAL_IDENTITIES",
+        "observed": "0 person profiles or organizational legal identifiers reconciled, game scoring gate closed",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "An official 2023 PDF of elections is not a registry of legal parties or an updated national current roster",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "No field availability update; R5 retained",
+        "contra_evidence": "An official 2023 PDF of elections is not a registry of legal parties or an updated national current roster",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "STOP_R5_REAL_IDENTITIES",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "STOP_R5_UNTIL_VALID_ORIGINAL_RESOURCE",
+        "next_data": "Recover valid HTTPS authoritative person/party registry and formal license",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C09",
+      "branch": "data_quality",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "QA_PRIMARY",
+      "A": {
+        "question": "Schema invariants and negative controls",
+        "estimand": "Detect corrupt XLSX/JSON and fail closed on missing source field / untrusted provenance",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_ADVERSARIAL_PDF",
+        "observed": "Original PDF shape and 52×6 extract passed; parser negative controls exercised by pytest",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "The 52-by-6 match validates one numerical table, not all candidature labels, parties, or historical corrections",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "The 52-by-6 match validates one numerical table, not all candidature labels, parties, or historical corrections",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_ADVERSARIAL_PDF",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C10",
+      "branch": "progress",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "PROGRESS",
+      "A": {
+        "question": "Progress scope update",
+        "estimand": "Reassess milestone levels only if native or field evidence truly improves readiness; freeze scope V1 revision",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "../../product/progress_snapshot_v2_20261026.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_WEIGHTED_SCOPE_REVISION",
+        "observed": "33.725%→35.45% (+1.725pp work, 0pp scope); sources 38.75→45%, QA32.5→40%; six release gates remain",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "Progress weights and maturity levels are subjective project conventions; 35.45% is not delivery probability",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "Progress weights and maturity levels are subjective project conventions; 35.45% is not delivery probability",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_WEIGHTED_SCOPE_REVISION",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C11",
+      "branch": "ci",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "INDEPENDENT_RUNNER_QA",
+      "A": {
+        "question": "Executable regression",
+        "estimand": "Integrate source capture tests with CI and verify failure/success from observed run",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "NATIVE_CI.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_CLEAN_GITHUB_ACTIONS",
+        "observed": "Run 40258776701: 7 Node suites/91 tests + 50 pytest passed; real original PDF numeric match; raw kept temporary artifact",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "Successful CI is authentic native runner QA, not an external field replication; raw artifact expires in 3 days",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "Successful CI is authentic native runner QA, not an external field replication; raw artifact expires in 3 days",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_CLEAN_GITHUB_ACTIONS",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    },
+    {
+      "id": "PF-BR12M-C12",
+      "branch": "governance",
+      "status": "COMPLETE_A_J_WITH_SCOPE",
+      "kind": "GOVERNANCE",
+      "A": {
+        "question": "Cumulative AB ledger",
+        "estimand": "Complete individual A-J, preserve priors evidence and explicit next conditions",
+        "unit": "source download, original PDF value, native test or versioned milestone"
+      },
+      "B": {
+        "H1": "A measurable improvement over earlier static reviews is feasible",
+        "H0": "Earlier success can be stale or a transport artifact",
+        "rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "C": {
+        "preregistered": "research/BRANCH12M_20261026/PREREG.json",
+        "previously_exposed": false,
+        "discriminant": "Binary status plus SHA, direct document-vs-transcript, or actual CI pass rather than source-only code"
+      },
+      "D": {
+        "instrument_paths": [
+          "scripts/capture_official_sources.py",
+          "scripts/verify_boe_table_pdf.py",
+          ".github/workflows/politics-fantasy-evidence.yml"
+        ],
+        "result_ref": "LEDGER.json",
+        "CI_run_id": 40258776701,
+        "raw_original_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+      },
+      "E": {
+        "activity_executed": true,
+        "status": "PASS_DOCUMENTATION",
+        "observed": "Governance artifacts published, no scientific grade inflation, remaining authorization 0",
+        "verified_national_party_roster": false,
+        "authentic_original_new_document": false
+      },
+      "F": {
+        "adversarial": "AB completion count and scientifically new findings must remain distinct to avoid quota Goodhart",
+        "alternative": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution"
+      },
+      "G": {
+        "native_QA_independent_environment": "GITHUB_ACTIONS_UBUNTU",
+        "independent_sociological_replication": false,
+        "documentary_validation": "Official BOE-A-2023-18907 PDF table I only",
+        "asof_person_history_verified": false
+      },
+      "H": {
+        "updated_prior": "Local technical feasibility improved only within observed test",
+        "contra_evidence": "AB completion count and scientifically new findings must remain distinct to avoid quota Goodhart",
+        "posterior_numeric_estimate": null
+      },
+      "I": {
+        "engineering_result": "PASS_DOCUMENTATION",
+        "scientific_novelty_0_3": 0,
+        "VSDS_0_3": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "release_readiness": "BLOCKED",
+        "influence_or_merit_inferred": false
+      },
+      "J": {
+        "decision": "CLOSE_ACCEPTANCE",
+        "next_data": "Extend official source reliability and public deployment QA only after primary source",
+        "remaining_authorization_after_campaign": 0
+      }
+    }
+  ]
+}
