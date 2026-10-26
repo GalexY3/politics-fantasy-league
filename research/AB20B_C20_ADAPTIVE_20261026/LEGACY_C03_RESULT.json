@@ -1,0 +1,46 @@
+{
+  "id": "C03",
+  "type": "EXPERIMENTAL_AB_DOCUMENTARY",
+  "status": "CLOSED_BOUNDED",
+  "source": "BOCG-15-D-551",
+  "url": "https://www.congreso.es/en/busqueda-de-publicaciones?_publicaciones_id_texto=%28BOCG-15-D-551.CODI.%29&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_state=normal",
+  "published": "2026-06-16",
+  "observed": {
+    "PLENO_EXIT": [
+      {
+        "name": "MONTERO CUADRADO, María Jesús",
+        "day": "2026-06-11"
+      },
+      {
+        "name": "ROMANÍ CANTERA, José Ignacio",
+        "day": "2026-06-08"
+      }
+    ],
+    "PLENO_ENTER": [
+      {
+        "name": "MARÍN APARICIO, Inmaculada",
+        "day": "2026-06-10",
+        "party": "PP"
+      },
+      {
+        "name": "PACHÓN MARTÍN, Brígida",
+        "day": "2026-06-11",
+        "party": "PSOE"
+      }
+    ],
+    "GROUP_PP_EXIT_ENTER": "Romani→Marín",
+    "GROUP_PSOE_EXIT_ENTER": "Montero→Pachón",
+    "INTERNAL_DEPARTURE": "Montero Diputación Permanente"
+  },
+  "hypotheses": {
+    "H1": "SUPPORTED: PP and PSOE have separate event streams, not date-only pairings",
+    "H0": "REFUTED; globally pairing by date would misassign"
+  },
+  "adversarial": "Cannot deduce a legal exact replacement pairing solely from shared party or date, requires official seat/circumscription credentials; pairing above is colloquial within group.",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "grade_0_3": 0,
+  "next": "C04 inspect credential presentation date vs acquisition of full deputy status as different procedural clocks",
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}

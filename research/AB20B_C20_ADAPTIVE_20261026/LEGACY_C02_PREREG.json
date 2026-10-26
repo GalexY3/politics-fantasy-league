@@ -1,0 +1,46 @@
+{
+  "id": "C02",
+  "parent": "C01",
+  "branch": "TEMPORAL_ENTITY_GRAPH",
+  "status": "PREREGISTERED",
+  "A": {
+    "question": "Does a different official BOCG show mismatched numbers of PLENO exits vs entries, making simple paired replacement unsafe?",
+    "estimand": "counts PLENO Baja vs Alta per publication and whether each event implies pairing",
+    "unit": "distinct PLENO event",
+    "scope": "BOCG XV Serie D 194 13/09/2024"
+  },
+  "B": {
+    "H1": "Entrants and leavers not numerically equal in the same publication",
+    "H0": "One-to-one pairing as in C01",
+    "H_other": "some events occurred earlier but were grouped in publication"
+  },
+  "C": {
+    "source": "BOCG-15-D-194 13/09/2024",
+    "comparison": "C01 1 exit/1 entry",
+    "falsifier": "equal 1:1 counts and dates"
+  },
+  "D": {
+    "instrument": "manual official source sections; no Actions"
+  },
+  "E": {
+    "status": "FROZEN_PRE_OBSERVATION"
+  },
+  "F": {
+    "selection_bias": "source found in exploratory discovery; cannot treat as blind holdout"
+  },
+  "G": {
+    "holdout": "EXPLORATORY"
+  },
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": 0
+  },
+  "I": {
+    "scope": "source interpretability, not group change generalization"
+  },
+  "J": {
+    "next_decision": "after actual counts"
+  },
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}

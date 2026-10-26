@@ -1,0 +1,49 @@
+{
+  "id": "C01",
+  "parent": "AB20-C20",
+  "branch": "TEMPORAL_ENTITY_GRAPH",
+  "planned_before_target_read": true,
+  "source_exposure": "General links were discovered; no holdout or causal confirmation claimed",
+  "A": {
+    "question": "Can official BOCG publication simultaneously record changes of parliamentary seat and parliamentary group, with separately observed dates?",
+    "estimand": "event-kind-specific exact dates and whether seat and group should be treated as separate temporal facts",
+    "population": "one bounded Congressional BOCG of June 2025",
+    "unit": "documented change event",
+    "outcome": "distinct source-scoped event kinds"
+  },
+  "B": {
+    "H1": "seat and group transfers appear in distinct sections with coherent but nonidentical nature",
+    "H0": "public source lacks distinct event typing",
+    "Hother": "several organizational roles mixed; naive parser mislabels"
+  },
+  "C": {
+    "source": "BOCG-15-D-355",
+    "budget": "one original document",
+    "negative_control": "pleno credential number must not be interpreted as immutable person ID",
+    "falsifier": "no distinct source sections or no effective dates"
+  },
+  "D": {
+    "instrument": "manual source text+legal role audit, no Actions"
+  },
+  "E": {
+    "status": "PREREG_BEFORE_TARGET_SECTION_READ"
+  },
+  "F": {
+    "adversarial": "single institutional publication, no external independent validation"
+  },
+  "G": {
+    "holdout": "NONE, exploratory"
+  },
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": 0
+  },
+  "I": {
+    "limitations": "document facts not causal attribution"
+  },
+  "J": {
+    "next": "choose only after observed discrepancy/compatibility"
+  },
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}

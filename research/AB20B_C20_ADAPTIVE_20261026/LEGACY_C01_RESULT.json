@@ -1,0 +1,71 @@
+{
+  "id": "C01",
+  "grade_0_3": 0,
+  "type": "EXPERIMENTAL_AB_DOCUMENTARY",
+  "status": "CLOSED_BOUNDED",
+  "primary_source": "BOCG-15-D-355 12/06/2025",
+  "publication_date": "2025-06-12",
+  "source_url": "https://www.congreso.es/es/busqueda-de-publicaciones?_publicaciones_id_texto=BOCG-15-D-355.CODI.&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_state=normal",
+  "events": [
+    {
+      "kind": "PLENO_SEAT",
+      "change": "EXIT",
+      "name": "GUIJARRO CEBALLOS, María",
+      "effective_date": "2025-06-04"
+    },
+    {
+      "kind": "PLENO_SEAT",
+      "change": "ENTER",
+      "name": "BLANCO ARRÚE, Gabriel",
+      "effective_date": "2025-06-10"
+    },
+    {
+      "kind": "GROUP",
+      "change": "EXIT",
+      "group": "Socialista",
+      "name": "GUIJARRO CEBALLOS, María",
+      "effective_date": "2025-06-04"
+    },
+    {
+      "kind": "GROUP",
+      "change": "ENTER",
+      "group": "Socialista",
+      "name": "BLANCO ARRÚE, Gabriel",
+      "effective_date": "2025-06-10"
+    },
+    {
+      "kind": "INTERNAL_ORGAN",
+      "change": "EXIT",
+      "group": "Socialista",
+      "name": "GUIJARRO CEBALLOS, María",
+      "effective_date": "2025-06-04"
+    }
+  ],
+  "key_observation": "A timed replacement is a pair of person+seat changes with group transfer consequences; not a group migration by same person.",
+  "pre_registered": "C01_PREREG.json",
+  "rivals": {
+    "H1": "SUPPORTED: distinct section types and dates",
+    "H0": "REFUTED for this notice",
+    "H_other": "Internal organ events mixed in the same bulletin; source heading essential"
+  },
+  "selection_exposure": "Public source was already retrieved in discovery; exploratory not independent",
+  "validity_audit": "Date of full status of deputy is not necessarily instantaneous first_public. Credential serial 400 not permanent person ID.",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "CT2_reason": "Source establishes known case but does not resolve unknown historical identity; no CT2 increase.",
+  "priors_update": [
+    {
+      "id": "PF-ID20B-01",
+      "proposition": "Replacement of parliamentary mandate and movement of group membership are separate dated events and must not be conflated with same-person group migration",
+      "provenance": "BOCG-15-D-355 2025-06-12",
+      "scope": "one documented replacement",
+      "uncertainty": "other entry/exit dates may have alternative procedural effects",
+      "support": "separate PLENO and GROUP sections for Guijarro/Blanco",
+      "against": "does not identify immutable person IDs",
+      "falsifier": "another official paired seat change lacks separate group record"
+    }
+  ],
+  "next": "C02 test whether a BOCG can have unequal counts of seat entries and exits, invalidating naive 1-for-1 assumptions",
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}

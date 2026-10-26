@@ -1,0 +1,45 @@
+{
+  "id": "C04",
+  "parent": "C03",
+  "status": "PREREGISTERED",
+  "A": {
+    "question": "Does the original 2026 BOCG put deputy credential-presentation day before the official acquisition of full deputy condition?",
+    "unit": "two entrants",
+    "estimand": "calendar-day lag credential presentation→full deputy condition",
+    "truth": "same source named records in PLENO section B/C and A"
+  },
+  "B": {
+    "H1": "both cases show lag of one day",
+    "H0": "dates equal or irrelevant",
+    "Hother": "credentials record filing and publication dates, different semantics"
+  },
+  "C": {
+    "source": "BOCG-15-D-551 original same source different sections, exploratory within-document, no independent holdout",
+    "negative_control": "sequence numbers 409/410 must not be interpreted as stable IDs",
+    "falsifier": "both dates identical"
+  },
+  "D": {
+    "method": "documentary within-person exact name, compute integer date differences"
+  },
+  "E": {
+    "status": "PRE_OBSERVATION_INTERNAL"
+  },
+  "F": {
+    "adversarial": "publication date is 16 June and is not time of credential or role"
+  },
+  "G": {
+    "holdout": "NONE"
+  },
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": 0
+  },
+  "I": {
+    "limits": "one parliamentary document only"
+  },
+  "J": {
+    "next": "adapt after observed lag"
+  },
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}

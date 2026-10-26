@@ -1,0 +1,44 @@
+{
+  "id": "C03",
+  "parent": "C02",
+  "status": "PREREGISTERED",
+  "A": {
+    "question": "Can two simultaneous (separate parties) seat turnover events be represented without erroneously joining candidates by date or credential order?",
+    "unit": "source-scoped role event",
+    "estimand": "count seat exit-enter per parliamentary group and effective date",
+    "population": "BOCG 15-D-551 Jun2026"
+  },
+  "B": {
+    "H1": "PP and PSOE have separate timed turnovers, no cross-party identity relation",
+    "H0": "same-day grouping forces wrong pairing",
+    "Hother": "internal organ exit overlaps PSOE member and should not count twice as seat exit"
+  },
+  "C": {
+    "source": "BOCG-15-D-551 original HTML or exact publisher snippet",
+    "baseline": "naive date-only pairing",
+    "falsifier": "not two group-specific changes or source lacks event labels"
+  },
+  "D": {
+    "instrument": "manual public BOCG section-grounded audit"
+  },
+  "E": {
+    "freeze": true
+  },
+  "F": {
+    "adversarial": "same-day turnover ≠ equivalent legal role across persons"
+  },
+  "G": {
+    "holdout": "EXPLORATORY"
+  },
+  "H": {
+    "CT2_before": 29
+  },
+  "I": {
+    "grade_0_3": 0
+  },
+  "J": {
+    "choose_after_observation": true
+  },
+  "source_reference_branch": "research/pfl-ab20b-historical-identity-20261026",
+  "imported_as_current_cycle": false
+}
