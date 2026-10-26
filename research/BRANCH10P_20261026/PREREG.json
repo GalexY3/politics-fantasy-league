@@ -1,0 +1,109 @@
+{
+  "campaign": "PF-BR10P",
+  "date": "2026-10-26",
+  "authorized": 10,
+  "method": "AB_3_2_1 A-J with branching or focus as explicitly authorized",
+  "block_description": "Expand authenticated 2023 BOE nominations from one to multiple provinces without conflating candidacies with legal parties or persons",
+  "prior_source_exposure": "Previously observed one-province BOE source and 2023 election; testing software/document provenance, NOT prospective population science",
+  "adversaries": [
+    "parsing error",
+    "selection/coverage bias",
+    "false party legal identity",
+    "historic data used as live source",
+    "overclaiming browser/CI",
+    "privacy leakage"
+  ],
+  "completion_rule": "Each cycle A-J records executed evidence or STOP_R5 with evidence, not tests counted as scientific experiments",
+  "cycles": [
+    {
+      "id": "PF-BR10P-C01",
+      "branch": "source",
+      "question": "Capture whole BOE 15066 as text and verify full original PDF sha",
+      "strict_acceptance": "Original digest verified in CI and extraction manifest bounded",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C02",
+      "branch": "parser",
+      "question": "Segment congressional nomination headings across provincial electoral commissions",
+      "strict_acceptance": "Parser rejects empty/no-boundary and never includes Senate records",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C03",
+      "branch": "parser",
+      "question": "Handle atypical names, accents and broken headings without inventing province",
+      "strict_acceptance": "Unrecognized/ambiguous province lines flagged not silently normalized",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C04",
+      "branch": "representation",
+      "question": "Count lists across distinct provinces instead of extrapolating Albacete",
+      "strict_acceptance": "Official extraction reports number and provenance, not national coverage without completeness",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C05",
+      "branch": "identity",
+      "question": "Model candidature ID as (BOE document,province,chamber,order), not acronym",
+      "strict_acceptance": "Duplicate acronym across provinces stays separate candidature; legal party unknown",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C06",
+      "branch": "identity",
+      "question": "Preserve non-proclaimed and historical caveats",
+      "strict_acceptance": "No automatic certification of registered party, seat, affiliation, or presence in 2026",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C07",
+      "branch": "join",
+      "question": "Expose exact unique acronym crosswalk as qualified cross-source observation",
+      "strict_acceptance": "Ambiguous secondary join remains unresolved; never claims legal matching",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C08",
+      "branch": "api",
+      "question": "Create read-only aggregate official multi-province nomination API",
+      "strict_acceptance": "Raw people, private affiliations and scores not exposed",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C09",
+      "branch": "qa",
+      "question": "Run genuine Node/Python/Chromium CI for new parser/route with anti-corruption cases",
+      "strict_acceptance": "Native logs pass or explicit failed state retained",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    },
+    {
+      "id": "PF-BR10P-C10",
+      "branch": "governance",
+      "question": "Close C01-C10 with original source provenance and bounded scientific interpretation",
+      "strict_acceptance": "Ten full A-J entries, source classifications and R5 kept",
+      "rival": "Single-province fixture, source labels and parser output may spuriously appear representative",
+      "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+      "status": "PREREGISTERED_ENGINEERING"
+    }
+  ]
+}
