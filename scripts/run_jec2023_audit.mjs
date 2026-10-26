@@ -14,11 +14,14 @@ const base=new URL("../",import.meta.url);
 const get=(name)=>readFileSync(new URL(name,base),"utf8");
 if(process.argv.length!==3)throw Error("Usage: node scripts/run_jec2023_audit.mjs /path/to/202307.csv");
 const raw=readFileSync(process.argv[2]);
+const GIT_BLOB_SHA1_EXPECTED="59a7734f0deba570ea87681236ecd4c9008ebd33";
+const git_blob_sha1=createHash("sha1").update("blob "+raw.length+"\0").update(raw).digest("hex");
+if(git_blob_sha1!==GIT_BLOB_SHA1_EXPECTED)throw Error("SECONDARY_REVISION_NOT_PINNED: "+git_blob_sha1);
 const transcription=get("research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv");
 const coalitions=JSON.parse(get("research/BRANCH30I_20261026/JEC_COALITIONS_2023_TRANSCRIPTION.json"));
 const atlas=JSON.parse(get("data/observatory/electoral_atlas_2023.json"));
 const tab=officialTable(transcription),csv=parseCSV(raw.toString("utf8")),comparison=compareJEC(tab,csv);
-const result={schema:"PF-BR30I-JEC-2023-v1",secondary_sha256:createHash("sha256").update(raw).digest("hex"),
+const result={schema:"PF-BR30I-JEC-2023-v1",secondary_sha256:createHash("sha256").update(raw).digest("hex"),secondary_git_blob_sha1:git_blob_sha1,
  official_reference_kind:"JEC_TABLE_I_MANUAL_TRANSCRIPTION_NOT_PDF_BYTES",
  official_document:"https://www.boe.es/buscar/doc.php?id=BOE-A-2023-18907",
  comparison,nonseatOfficialFive:compareFiveBOEIII(atlas),
