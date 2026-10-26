@@ -17,10 +17,17 @@
       "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
       "kind": "original institutional PDF",
       "verify": "HTTPS institutional domain + valid PDF magic/EOF + independent SHA256 readback on CI",
-      "numerical_tables_automatic_corroboration": "PENDING_PDFTOTEXT_CI",
+      "numerical_tables_automatic_corroboration": "VERIFIED_52_DISTRICTS_SIX_FIELDS_FROM_ORIGINAL_PDF",
       "rights": "REUSE_CONDITIONS_NOT_CERTIFIED_IN_THIS_CAMPAIGN",
       "publisher_signed_digest": false,
-      "first_public_at_per_individual_row": "UNKNOWN"
+      "first_public_at_per_individual_row": "UNKNOWN",
+      "full_original_pdf_numeric_audit": {
+        "matched": 312,
+        "mismatches": 0,
+        "pdf_page": 2,
+        "tool": "pdftotext -layout + scripts/verify_boe_table_pdf.py",
+        "runner_job_conclusion": "success"
+      }
     },
     {
       "id": "congress_active_20260810",
@@ -51,5 +58,9 @@
     "Manual prior source transcribed 52x6, but before new automated original-PDF-table check these remain distinct operations",
     "Do not increase scientific VSDS/CT2 based on downloading a PDF",
     "Numerical data are not current political-party membership or influence measurements"
-  ]
+  ],
+  "latest_fully_successful_run": 40258316221,
+  "latest_runner_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40258316221",
+  "ephemeral_artifact_id": 12623510626,
+  "ephemeral_artifact_expires": "2026-10-29T02:17:08Z"
 }
