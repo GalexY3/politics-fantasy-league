@@ -44,7 +44,7 @@ def main():
         check_server()
         with urlopen(BASE+"/api/progress",timeout=4) as h:
             obj=json.load(h)
-            assert obj["revision"]==2 and obj["progress_display_pct"]==35.5
+            assert obj["revision"]==3 and obj["progress_display_pct"]==36.4
             assert len(obj["release_blockers"])==6
         results["passes"].append("HTTP local progress V2 and six blocked launch gates")
         try:
@@ -62,7 +62,7 @@ def main():
             page.locator("[data-tab='progress']").click()
             page.locator("#content").get_by_text("Progreso del proyecto",exact=False).first.wait_for(timeout=20000)
             content=page.locator("#content").inner_text()
-            assert "35,5" in content,repr(content[:400])
+            assert "36,4" in content,repr(content[:400])
             assert "Fuentes y datos" in content
             assert "Privacidad, seguridad y licencias" in content
             assert "NO está listo" in content
