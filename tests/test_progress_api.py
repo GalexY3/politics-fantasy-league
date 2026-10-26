@@ -13,15 +13,16 @@ def baseline():
     return json.loads(DEFAULT_SCOPE.read_text(encoding="utf8"))
 
 
-def test_v1_global_and_tracks():
+def test_current_v2_global_and_tracks():
     r = progress_status()
     assert r["ok"] is True
-    assert abs(r["progress_pct"] - 33.725) < 1e-8
-    assert r["progress_display_pct"] == 33.7
+    assert abs(r["progress_pct"] - 35.45) < 1e-8
+    assert r["progress_display_pct"] == 35.5
+    assert r["revision"] == 2
     assert r["track_count"] == 9
     assert r["milestone_count"] == 36
     assert sum(t["weight"] for t in r["tracks"]) == 100
-    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 33.725) < 1e-8
+    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 35.525) < 1e-8
 
 
 def test_maturity_and_release_gates():
@@ -44,7 +45,7 @@ def test_scope_expansion_changes_denominator_only():
         "evidence_class": "ABSENT"
     })
     r = evaluate_scope(s)
-    assert abs(r["progress_pct"] - 32.33) < 1e-8
+    assert abs(r["progress_pct"] - 33.71) < 1e-8
 
 
 def test_invalid_weight_rejected():
