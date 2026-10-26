@@ -1,6 +1,6 @@
 {
   "program": "Politics Fantasy League",
-  "as_of": "2026-10-24",
+  "as_of": "2026-10-26",
   "authorization": "USER_GRANTED_45_FREE_LOOPS_AFTER_PF_AB20",
   "preceding_campaign": {
     "name": "PF-AB20",
@@ -10,414 +10,3221 @@
   "method": "AB_3.2.1_A_TO_J",
   "branching": "FREE_ADAPTIVE_WITH_PRODUCTION_REQUIRED",
   "interpretation": "45 slots authorized not yet started; preparatory engineering deliveries below do NOT count as completed AB loops",
-  "remaining_slots": 45,
-  "started": 0,
-  "closed": 0,
+  "remaining_slots": 0,
+  "started": 45,
+  "closed": 45,
   "slots": [
     {
       "id": "PF-F01",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Source inventory has two pinned distinct repositories",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Source inventory has two pinned distinct repositories",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F02",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "2023 source contains named province fields",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "2023 source contains named province fields",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F03",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "2023 vote columns paired with seat columns",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "2023 vote columns paired with seat columns",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F04",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "2023 CSV rows have uniform width",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "2023 CSV rows have uniform width",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F05",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "2023 contains 52 province entities",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "2023 contains 52 province entities",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F06",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Province keys are unique under source schema",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Province keys are unique under source schema",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F07",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "2023 electorate labels total 59 in pinned source",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "2023 electorate labels total 59 in pinned source",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F08",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "11 distinct labels have Congressional seats",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "11 distinct labels have Congressional seats",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F09",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "48 labels received votes without seats",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "48 labels received votes without seats",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F10",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "All 59 electoral labels received >0 in some province",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "All 59 electoral labels received >0 in some province",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F11",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "No negative votes/seats in accepted 2023 source",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "No negative votes/seats in accepted 2023 source",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F12",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "No empty electoral label identity",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "No empty electoral label identity",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F13",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Historic CSV has 1057 rows",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historic CSV has 1057 rows",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F14",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Historic CSV spans 14 election years",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historic CSV spans 14 election years",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F15",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "quality",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.4,
+      "A": {
+        "question": "Historic dataset uses 260 dataset-specific codes",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historic dataset uses 260 dataset-specific codes",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F16",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Historically re-used identifiers/denominations flagged not merged",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historically re-used identifiers/denominations flagged not merged",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F17",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Parser handles quoted commas",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Parser handles quoted commas",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F18",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Parser handles doubled escaped quotes",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Parser handles doubled escaped quotes",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F19",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Parser accepts UTF8 BOM",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Parser accepts UTF8 BOM",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F20",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Parser normalizes CRLF",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Parser normalizes CRLF",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F21",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Ragged rows rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Ragged rows rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F22",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Unclosed quote rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Unclosed quote rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F23",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Misplaced quote rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Misplaced quote rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F24",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Header-only CSV rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Header-only CSV rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F25",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Missing base province column rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Missing base province column rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F26",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Vote-seat columns not paired rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Vote-seat columns not paired rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F27",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Duplicate province rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Duplicate province rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F28",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Bad numeric vote value rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Bad numeric vote value rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F29",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Unsafe integer rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Unsafe integer rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F30",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "robustness",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 0.6,
+      "A": {
+        "question": "Negative historic vote rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Negative historic vote rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F31",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "No seat status inferred when no evidence",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "No seat status inferred when no evidence",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F32",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Private person without public role rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Private person without public role rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F33",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Personal contact fields rejected",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Personal contact fields rejected",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F34",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Interest groups different from registered parties",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Interest groups different from registered parties",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F35",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Exact stable external IDs take precedence over display names",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Exact stable external IDs take precedence over display names",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F36",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Homonym conflict flagged without merging",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Homonym conflict flagged without merging",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F37",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Historic roles selected by valid-date interval",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historic roles selected by valid-date interval",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F38",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Person with documented spokesperson role without parliamentary link accepted",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Person with documented spokesperson role without parliamentary link accepted",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F39",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Historical snapshot excludes source captured in future",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Historical snapshot excludes source captured in future",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F40",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Unknown public-at excludes claims from as-of",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Unknown public-at excludes claims from as-of",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F41",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Real person scoring gate permanently disabled",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Real person scoring gate permanently disabled",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F42",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Issue-specific statements preserved without ideological coordinates",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Issue-specific statements preserved without ideological coordinates",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F43",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Candidacy not equated to private party membership",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Candidacy not equated to private party membership",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F44",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Coalition accepts multiple distinct member parties",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Coalition accepts multiple distinct member parties",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     },
     {
       "id": "PF-F45",
-      "status": "AUTHORIZED_NOT_STARTED",
-      "branch": null,
-      "hypothesis_or_acceptance": null,
-      "artifact": null,
-      "evidence": null,
-      "verdict": null
+      "status": "A_J_COMPLETED_SOFTWARE_QA_NOT_FIELD_CONFIRMATION",
+      "branch": "actors",
+      "kind": "AB_PRODUCT_ACCEPTANCE",
+      "DRIFT_D": 1.3,
+      "A": {
+        "question": "Atlas frontend and server source preserve disclaimers/read-only/no person scores",
+        "estimand": "Pass/fail specified deterministic software/source invariant",
+        "unit": "Software test input / historical secondary row, not independent observations"
+      },
+      "B": {
+        "H1": "Atlas frontend and server source preserve disclaimers/read-only/no person scores",
+        "H0": "Simpler input convention or restricted parliamentary model satisfies this invariant",
+        "H2": "Encoding/coverage artifacts or fixture construction give false confidence"
+      },
+      "C": {
+        "contract": "research/FREE45_20261026/PREREG_45.json",
+        "primary_endpoint": "Correct acceptance or explicit rejection as specified",
+        "selection": "Predeclared this test harness before executing 45-suite but original source already exposed"
+      },
+      "D": {
+        "code": "scripts/free45_suite.mjs",
+        "source": "scripts/electoral_source_audit.mjs; src/politics_fantasy/political_universe.mjs",
+        "sources": [
+          {
+            "repo": "anerodata/data-elecciones-congreso-espana",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "repo": "rOpenSpain/infoelectoral",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ],
+        "runner": "V8 ECMAScript module functions"
+      },
+      "E": {
+        "executed": true,
+        "outcome": "PASS",
+        "detail": null,
+        "field_dataset": "Two real historical secondary files for data tests; invented events/persons for actor tests"
+      },
+      "F": {
+        "adversarial": "Pass on source snapshot not sufficient to show live registry coverage; fixture checks cannot identify actual Spanish political effects",
+        "rival": "Legal categories, temporal availability, source licenses and identities not verified in the primary original"
+      },
+      "G": {
+        "independent_external_original_confirmation": "NOT_AVAILABLE",
+        "clean_clone_Node": "NOT_RUN",
+        "cross_dataset_independence": "NONE"
+      },
+      "H": {
+        "updated_prior": "Acceptance logic operational under tested inputs",
+        "negative_evidence": "No person-level field data, no as-of original and no explanatory impact analysis",
+        "substantive_new_prior": false
+      },
+      "I": {
+        "engineering_acceptance": "PASS",
+        "scientific_novelty_grade": 0,
+        "real_causal_inference": "NONE",
+        "external_field_validity": "UNVERIFIED",
+        "CT2_before": 20,
+        "CT2_after": 20,
+        "VSDS_project": 1
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_QA; FIELD_SOURCE_NEXT",
+        "scope": "Do not claim scientific discovery from synthetic/secondary QA",
+        "next_evidence": "Get official original primary corpus and longitudinal persons, consent/legal, first public timestamps"
+      }
     }
-  ]
+  ],
+  "final_summary": {
+    "new_QA_cycles": 45,
+    "passes": 45,
+    "failures": 0,
+    "field_original_validations": 0,
+    "N1_N2_N3_new": 0,
+    "CT2_multiactor_before_after": [
+      20,
+      20
+    ],
+    "VSDS": 1,
+    "method": "45 A-J PRODUCT ACCEPTANCE cycles, not 45 independent field experiments",
+    "prereg_file": "research/FREE45_20261026/PREREG_45.json",
+    "results_file": "research/FREE45_20261026/RESULTS.json",
+    "source_code": "scripts/free45_suite.mjs",
+    "methodological_warning": "No prereg before source exposure or prior source implementation"
+  }
 }
