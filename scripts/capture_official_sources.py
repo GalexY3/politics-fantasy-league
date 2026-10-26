@@ -30,6 +30,7 @@ TARGETS = (
     ("congress_all_20260810", "https://www.congreso.es/webpublica/opendata/diputados/Diput__20260810050141.json", "json", "www.congreso.es"),
     ("interior_congress_elections", "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso.xlsx", "xlsx", "descargas.interior.gob.es"),
     ("boe_jec_2023_original", "https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf", "pdf", "www.boe.es"),
+    ("boe_2023_proclaimed_lists", "https://www.boe.es/boe/dias/2023/06/27/pdfs/BOE-A-2023-15066.pdf", "pdf", "www.boe.es"),
 )
 XMLNS = {"s":"http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
