@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[2]
-DEFAULT_SCOPE = PROJECT / "product/progress_scope_v1.json"
+DEFAULT_SCOPE = PROJECT / "product/progress_scope_v2_20261026.json"
 MATURITY = (0.0, 0.1, 0.4, 0.6, 0.85, 1.0)
 RELEASE_REQUIREMENTS = {
     "src.registry": (4, "Registro de partidos/candidaturas sin originales auditados"),
