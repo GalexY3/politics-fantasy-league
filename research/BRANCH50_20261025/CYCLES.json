@@ -474,7 +474,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Vocabulario de elecciones nominales",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Rechazar elecciones fuera de YES, NO, ABSTAIN, NO_VOTE",
         "competent_rival": "NO_VOTE explícito no equivale a ausente",
@@ -519,7 +523,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-10",
@@ -528,7 +533,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Contradicción intrarrevisión",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Fallo cerrado ante dos decisiones incompatibles",
         "competent_rival": "Primera fila ganadora por azar",
@@ -573,7 +582,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-11",
@@ -582,7 +592,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Corte de publicación",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Exclusión de votos publicados después de corte",
         "competent_rival": "Usar únicamente occurred_at",
@@ -627,7 +641,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-12",
@@ -636,7 +651,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Corte de adquisición",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Exclusión de información integrada después de corte",
         "competent_rival": "Retrodatar observaciones por fecha declarada",
@@ -681,7 +700,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-13",
@@ -690,7 +710,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Revisión conocida más reciente",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "No resucitar versiones antiguas ni conocer futuras",
         "competent_rival": "Última fila en orden de lectura",
@@ -735,7 +759,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-14",
@@ -744,7 +769,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "contratos_nominales",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Afiliación histórica",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Retener group_at_vote por voto, no grupo presente",
         "competent_rival": "Reasignación retrospectiva",
@@ -789,7 +818,8 @@
         "decision": "CONTINUE_NEXT_BRANCH",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-15",
@@ -798,7 +828,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Missingness real",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Ausencia de fila deviene UNKNOWN, nunca NO_VOTE",
         "competent_rival": "Codificar silencio como ausencia",
@@ -843,7 +877,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-16",
@@ -852,7 +887,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Exposición elegible",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Tasa solo con censo íntegro, no censos duplicados",
         "competent_rival": "Dividir por n registrado",
@@ -897,7 +936,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-17",
@@ -906,7 +946,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Grano grupo–voto–actor",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Contar cambios de grupo en el evento correcto",
         "competent_rival": "Agregado por persona o grupo actual",
@@ -951,7 +995,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-18",
@@ -960,7 +1005,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Mayoría temporal",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Mayoría de grupo por cada votación, no global",
         "competent_rival": "Moda de toda la legislatura",
@@ -1005,7 +1054,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-19",
@@ -1014,7 +1064,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Empates y Mixto",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Excluir empates y Mixto del denominador de discrepancia",
         "competent_rival": "Contar toda diferencia como disidencia",
@@ -1059,7 +1113,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-20",
@@ -1068,7 +1123,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "medicion_sociologica",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Abstención expresada",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "ABSTAIN cuenta como decisión; NO_VOTE no votó",
         "competent_rival": "Tratar abstención como missing",
@@ -1113,7 +1172,8 @@
         "decision": "CONTINUE_NEXT_BRANCH",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-21",
@@ -1122,7 +1182,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Margen mayoritario",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Márgenes sobre solo votos expresos, vacío es unknown",
         "competent_rival": "Dividir por escaños nominales",
@@ -1167,7 +1231,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-22",
@@ -1176,7 +1241,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Diversidad expresada",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Entropía normalizada de YES/NO/ABSTAIN",
         "competent_rival": "Incluir silencios como opción política",
@@ -1221,7 +1290,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-23",
@@ -1230,7 +1300,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Estandarización directa",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Pesos comunes y censos de estratos completos",
         "competent_rival": "Media cruda de agenda sesgada",
@@ -1275,7 +1349,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-24",
@@ -1284,7 +1359,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Simpson descriptivo",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Detectar inversión agregada sin inferir causalidad",
         "competent_rival": "Ignorar composición de estratos",
@@ -1329,7 +1408,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-25",
@@ -1338,7 +1418,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Exposición conjunta",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Acuerdo entre actores solo ante coobservación expresada",
         "competent_rival": "Asumir no-voto como desacuerdo/acuerdo",
@@ -1383,7 +1467,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-26",
@@ -1392,7 +1477,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "estructura_relacional",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Comparador de marginales",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Acuerdo esperado empírico por marginales de pares",
         "competent_rival": "Declarar afinidad por coincidencia bruta",
@@ -1437,7 +1526,8 @@
         "decision": "CONTINUE_NEXT_BRANCH",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-27",
@@ -1446,7 +1536,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Logloss Poisson completo",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Factorial y caso lambda=0 en pérdida propia",
         "competent_rival": "Ignorar constante y los ceros",
@@ -1491,7 +1585,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-28",
@@ -1500,7 +1595,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "MAE de conteos",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "MAE válida solo sobre conteos y tasas finitas",
         "competent_rival": "Evaluar sin rango de dominio",
@@ -1545,7 +1644,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-29",
@@ -1554,7 +1654,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Skill baseline",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "No dividir por pérdida del baseline cero",
         "competent_rival": "Rival nulo deliberadamente débil",
@@ -1599,7 +1703,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-30",
@@ -1608,7 +1713,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Calibración por intervalos",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Bin sin soporte no reporta tasa ficticia",
         "competent_rival": "Interpolar faltantes como acierto",
@@ -1653,7 +1762,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-31",
@@ -1662,7 +1772,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Walk-forward con embargo",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Separación temporal train-gap-test sin solapes",
         "competent_rival": "Split aleatorio con fuga",
@@ -1707,7 +1821,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-32",
@@ -1716,7 +1831,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "evaluacion_temporal",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Bootstrap por sesión",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Sesión como cluster, semilla fija",
         "competent_rival": "Pseudorreplicar votos intrasesión",
@@ -1761,7 +1880,8 @@
         "decision": "CONTINUE_NEXT_BRANCH",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-33",
@@ -1770,7 +1890,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Fixture nominal determinista",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Once registros reproducibles con IDs ficticios",
         "competent_rival": "Datos de políticos inventados presentados como reales",
@@ -1815,7 +1939,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-34",
@@ -1824,7 +1949,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Reporte con desconocidos",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Censo de 3 oportunidades con no-voto y unknown separados",
         "competent_rival": "Dar cero por omisión de fila",
@@ -1869,7 +1998,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-35",
@@ -1878,7 +2008,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Reporte comparativo",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Comparador de acuerdo observado y esperado con n conjunta",
         "competent_rival": "Etiquetar covoto como influencia",
@@ -1923,7 +2057,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-36",
@@ -1932,7 +2067,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Escala VSDS local",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "No subir de 1 por fixture; ciencia AB por separado",
         "competent_rival": "Equiparar demo con descubrimiento",
@@ -1977,7 +2116,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-37",
@@ -1986,7 +2126,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "API readonly separada",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "/api/lab retorna demo independiente del estado del fantasy",
         "competent_rival": "Unificar puntuación real y sintética",
@@ -2031,7 +2175,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-38",
@@ -2040,7 +2185,11 @@
       "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
       "branch": "integracion_producto",
       "kind": "PRODUCTION_REFERENCE",
-      "A": "Full A-J defined and retained in referenced B30 record",
+      "A": {
+        "question": "Interfaz informativa",
+        "estimand": "Correcto cumplimiento del invariante en datos sintéticos",
+        "population": "Fixtures sintéticas, no política española"
+      },
       "B": {
         "claim": "Mostrar advertencia y desconocidos; JS sintaxis válida",
         "competent_rival": "Ocultar limitación al usuario",
@@ -2085,7 +2234,8 @@
         "decision": "CONTINUE_PRODUCTION",
         "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
       },
-      "nonduplicative": true
+      "nonduplicative": true,
+      "referenced_ab_fields_present": true
     },
     {
       "id": "PF-B50-39",
@@ -2832,5 +2982,11 @@
     "referenced_B30_C09_C38": 30,
     "new_secondary_product_C39_C50": 12,
     "total": 50
+  },
+  "reference_audit": {
+    "referenced_cycles": 30,
+    "all_AJ_source_present": true,
+    "missing_ABC_details": [],
+    "primary_AJ_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json"
   }
 }
