@@ -1,5 +1,15 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## Continuación del 26/10/2026 — fuentes electorales y cierres AB
+
+**Documento de referencia:** [Informe y contabilidad final](research/CONTINUACION_20261026/REPORT.md).
+
+Las **76 plazas previamente disponibles** se adjudicaron de forma explícita: **12 nuevos tests PF-B50** sobre fuentes/atlas, **19 cribados PF-AB20 cerrados STOP_R5** por falta de originales (NO experimentos empíricos ejecutados), y **45 tests de producción F45**. Las 57 pruebas nuevas tienen PASS tras reparar C46 del B50; no se verificaron originales del Ministerio ni se ejecutó un navegador E2E. B50 se reconcilió 8 previas + 30 del ledger B30 por REFERENCIA + 12 pruebas nuevas, sin volver a contabilizar los 30. VSDS 1/3, CT2 predictiva 24/100, CT2 multiactor 20/100; no se inventan descubrimientos.
+
+Nuevo **Atlas electoral 2023**: 52 provincias, 59 etiquetas candidaturas en el CSV secundario y 48 con votos positivos pero cero escaños, que no son necesariamente 48 partidos jurídicos diferentes. Código y dataset: [atlas JSON](data/observatory/electoral_atlas_2023.json), [parser y contraste histórico](scripts/electoral_source_audit.mjs), [adaptador Python](src/politics_fantasy/electoral_atlas.py) y nueva pestaña HTML/JS. La fuente histórica rOpenSpain suma 1057 filas de 14 años 1977–2019; no se han enlazado sus códigos con etiquetas de 2023. **Sin scoring real de personas**, fuente original aún pendiente.
+
+El nuevo bloque sugerido por AB O6 es **30 ciclos BRANCHING adicionales**, no autorizados ni ejecutados. Deben priorizar capturar registros oficiales originales y el universo de actores políticos con y sin escaños, reconstrucción histórica, ETL y pruebas en navegador, no 30 checks del mismo CSV.
+
 ## PF-BR20H — universo político no restringido al Congreso (25/10/2026)
 
 Por autorización adicional, **20 ciclos AB A–J con branching terminados** como **ingeniería basada en categorías legales y fixtures ficticias**: primer pase 18/20, reparaciones C02/C16, segundo pase **20/20**. Ninguna de estas ejecuciones constituye un ensayo sociológico independiente con partidos/personas españoles. VSDS sigue **1/3**; CT2 de la NUEVA rama multiactor = **20/100** sin cambio (ordinal y distinta de la predictiva parlamentaria 24/100). N1/N2/N3 nuevos = 0. Permanecen intactos los saldos autorizados B50=12, AB20=19, F45=45.
