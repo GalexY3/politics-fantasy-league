@@ -1,0 +1,2346 @@
+{
+  "campaign": "PF-BR30J",
+  "date": "2026-10-26",
+  "authorized": 30,
+  "completed_AJ": 30,
+  "remaining": 0,
+  "branching": true,
+  "protocol": "AB_3_2_1",
+  "scope": "political actor universe including actors without seats and source-first historical evidence; source acquisition attempts constrained by remote access",
+  "field_published_original_rows_new": 0,
+  "independent_person_reconciliations": 0,
+  "municipal_secondary_excerpt_labels": 41,
+  "fixture_counts": {
+    "sources": 3,
+    "entities": 7,
+    "roles": 4,
+    "events": 2,
+    "claims": 1,
+    "asofMayEvents": 1,
+    "asofNovemberEvents": 2,
+    "duplicateEventReview": 1,
+    "population_denominator": null,
+    "actual_real_people": 0
+  },
+  "tests_local": {
+    "V8": 30,
+    "passes": 30,
+    "Node_cli": "NOT_RUN",
+    "Python_unit": "NOT_RUN",
+    "Python_HTTP": "NOT_RUN",
+    "GitHub_Actions": "NOT_VERIFIED"
+  },
+  "DRIFT": "D1.3—same multiactor question, added strict source ingestion and municipal references",
+  "validation_by_class": {
+    "new_official_catalogue_metadata_checks": 4,
+    "software_data_identity_event_measurement_source_tests": 22,
+    "product_static_governance_checks": 4,
+    "original_empirical_confirmations": 0
+  },
+  "VSDS": {
+    "before": 1,
+    "after": 1
+  },
+  "CT2": {
+    "multi_actor": {
+      "before": 20,
+      "after": 20,
+      "meaning": "ordinal, not probability"
+    },
+    "parliament_predictive": {
+      "before": 24,
+      "after": 24
+    }
+  },
+  "scientific_findings": {
+    "N1": 0,
+    "N2": 0,
+    "N3": 0
+  },
+  "priors_delta": "PRIORS_DELTA.md",
+  "raw_results": "RESULTS_FINAL.json",
+  "source_catalogue": "SOURCE_CATALOGUE.json",
+  "pre_reg_sha": "811b533406bdf43dedfdb3e4ae899ca8efb16282",
+  "cycles": [
+    {
+      "id": "PF-BR30J-S01",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 1.2,
+      "A": {
+        "question": "Fuente oficial Registro de Partidos vs catálogo de acceso",
+        "estimand": "documentar endpoint, formato, obtención sin inventar filas",
+        "unit": "Source provider/distribution metadata",
+        "true_outcome": "Real source rows, not obtained",
+        "population": "Provider catalogue"
+      },
+      "B": {
+        "H1": "Fuente oficial Registro de Partidos vs catálogo de acceso",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "SOURCE_CATALOGUE.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": 0,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "RPP is a search/PDF interface documented by datos.gob, not captured registry rows; legal-party denominator unknown.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Source exists as described publicly; no update to belief that real records can already be imported",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "RPP is a search/PDF interface documented by datos.gob, not captured registry rows; legal-party denominator unknown.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_SOURCE_ROWS_NOT_ACQUIRED",
+        "next_evidence": "Capture and hash authentic original party/candidacy register rows with licences",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S02",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 1.2,
+      "A": {
+        "question": "Cargos y electos del Congreso oficiales",
+        "estimand": "documentar distribuciones y contrato de campos sin inventar descargas",
+        "unit": "Source provider/distribution metadata",
+        "true_outcome": "Real source rows, not obtained",
+        "population": "Provider catalogue"
+      },
+      "B": {
+        "H1": "Cargos y electos del Congreso oficiales",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "SOURCE_CATALOGUE.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": 0,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Interior XLSX catalogue and Congress active-roster links do not imply local bytes, up-to-date affiliation or licensing.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Source exists as described publicly; no update to belief that real records can already be imported",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Interior XLSX catalogue and Congress active-roster links do not imply local bytes, up-to-date affiliation or licensing.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_SOURCE_ROWS_NOT_ACQUIRED",
+        "next_evidence": "Capture and hash authentic original party/candidacy register rows with licences",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S03",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 1.2,
+      "A": {
+        "question": "Candidaturas JEC y diferentes jurisdicciones",
+        "estimand": "distinguir proclamación electoral y partido inscrito",
+        "unit": "Source provider/distribution metadata",
+        "true_outcome": "Real source rows, not obtained",
+        "population": "Provider catalogue"
+      },
+      "B": {
+        "H1": "Candidaturas JEC y diferentes jurisdicciones",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "SOURCE_CATALOGUE.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": 0,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "JEC BOE proclaimed candidacies and RPP legal parties are not equivalent entities; their names cannot be auto-joined.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Source exists as described publicly; no update to belief that real records can already be imported",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "JEC BOE proclaimed candidacies and RPP legal parties are not equivalent entities; their names cannot be auto-joined.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_SOURCE_ROWS_NOT_ACQUIRED",
+        "next_evidence": "Capture and hash authentic original party/candidacy register rows with licences",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S04",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 1.2,
+      "A": {
+        "question": "Fuentes municipales/autonómicas distintas del Congreso",
+        "estimand": "registrar >1 nivel y cobertura declarada sin atribuir datos",
+        "unit": "Source provider/distribution metadata",
+        "true_outcome": "Real source rows, not obtained",
+        "population": "Provider catalogue"
+      },
+      "B": {
+        "H1": "Fuentes municipales/autonómicas distintas del Congreso",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "SOURCE_CATALOGUE.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": 0,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 41
+      },
+      "F": {
+        "adversarial": "Municipal Bizkaia metadata and BOE 2023 local publications demonstrate available levels but not countrywide coverage.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Source exists as described publicly; no update to belief that real records can already be imported",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Municipal Bizkaia metadata and BOE 2023 local publications demonstrate available levels but not countrywide coverage.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_ORIGINAL_SOURCE_ROWS_NOT_ACQUIRED",
+        "next_evidence": "Capture and hash authentic original party/candidacy register rows with licences",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S05",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Manifest de capturas originales",
+        "estimand": "bytes sha256 + tipo/licencia/tiempo y source-id verificables",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Manifest de capturas originales",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "A digest recomputed from a file proves content stability, NOT that the file was received from the stated official publisher.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "A digest recomputed from a file proves content stability, NOT that the file was received from the stated official publisher.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S06",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Prevención de false provenance",
+        "estimand": "rechazo de manifests no verificados o falsa categoría oficial",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Prevención de false provenance",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Failing closed on metadata-only source prevents fabricated records, but a malicious bundle might misrepresent captured provenance.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Failing closed on metadata-only source prevents fabricated records, but a malicious bundle might misrepresent captured provenance.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S07",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Licencias y posibilidades de redistribución",
+        "estimand": "distinguir licencia desconocida de permitida",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Licencias y posibilidades de redistribución",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Unknown terms do not establish redistribution rights. Even a genuine official page may have different terms per distribution.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Unknown terms do not establish redistribution rights. Even a genuine official page may have different terms per distribution.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-S08",
+      "branch": "sources",
+      "kind": "SOURCE_SCREENING_OR_VALIDATION",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Control de versiones de fuentes",
+        "estimand": "las revisiones se registran, no sobrescriben histórico",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Control de versiones de fuentes",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Revision IDs preserve distinct snapshots, but legal identity changes require separate historical reconciliation.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Revision IDs preserve distinct snapshots, but legal identity changes require separate historical reconciliation.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I09",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Identidad de organización con namespace/ID",
+        "estimand": "IDs externos estables, no nombres ni siglas",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Identidad de organización con namespace/ID",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Namespace IDs resolve exact keys only; without a verified issuer of those IDs external person matching remains unproven.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Namespace IDs resolve exact keys only; without a verified issuer of those IDs external person matching remains unproven.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I10",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Homonimia y denominaciones históricas",
+        "estimand": "colisiones no se fusionan automáticamente",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Homonimia y denominaciones históricas",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Two homonyms can still be the same actual person; record uncertainty, do not assert two unique people.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Two homonyms can still be the same actual person; record uncertainty, do not assert two unique people.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I11",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Coalición vs partidos miembros",
+        "estimand": "vínculos organizacionales no se deducen de etiqueta",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Coalición vs partidos miembros",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "A coalition label does not imply member-party identity; the tested relation is invented and may not reflect legal files.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "A coalition label does not imply member-party identity; the tested relation is invented and may not reflect legal files.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I12",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Relación candidatura-persona en fechas",
+        "estimand": "candidate_of separado de afiliación y cargo",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Relación candidatura-persona en fechas",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Candidacy role differs from affiliation. No inference of private membership; people in fixture are invented.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Candidacy role differs from affiliation. No inference of private membership; people in fixture are invented.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I13",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Roles temporalmente válidos",
+        "estimand": "intervalos sin sustitución retroactiva",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Roles temporalmente válidos",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Interval queries test effective-time semantics, not historical office source correctness.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Interval queries test effective-time semantics, not historical office source correctness.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-I14",
+      "branch": "identity",
+      "kind": "IDENTITY_AND_ROLES",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Estado de escaño triestado",
+        "estimand": "UNKNOWN frente a PRESENT/ABSENT documentados",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Estado de escaño triestado",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "UNKNOWN office status is an epistemic label, not evidence of no representation.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "UNKNOWN office status is an epistemic label, not evidence of no representation.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E15",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Fuente documental de un evento público",
+        "estimand": "tipo, fuente y fecha; rechazar no verificable",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Fuente documental de un evento público",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "A documented public debate can be recorded without parliamentary context but event validity depends on original publication.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "A documented public debate can be recorded without parliamentary context but event validity depends on original publication.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E16",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Primera publicación vs captura",
+        "estimand": "no visibilidad histórica de datos posteriores",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Primera publicación vs captura",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "As-of excludes future capture, but self-declared first_public_at also requires external verification.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "As-of excludes future capture, but self-declared first_public_at also requires external verification.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E17",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Participación en un evento vs influencia",
+        "estimand": "no crear score causal del evento",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Participación en un evento vs influencia",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Rejecting influence score prevents one false claim; does not estimate real causal influence.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Rejecting influence score prevents one false claim; does not estimate real causal influence.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E18",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Organización pública sin escaños como emisor",
+        "estimand": "admitir partidos/agrupaciones/plataformas",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Organización pública sin escaños como emisor",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Civic organisations may appear in public activity; no representative sampling nor substantive real-world influence inferred.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Civic organisations may appear in public activity; no representative sampling nor substantive real-world influence inferred.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E19",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Contradicciones y correcciones de eventos",
+        "estimand": "conservar claims y versiones con procedencia",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Contradicciones y correcciones de eventos",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Two versions of one public event are retained; no real original correction document validated.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Two versions of one public event are retained; no real original correction document validated.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E20",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Deduplicación de un mismo acontecimiento",
+        "estimand": "no doble conteo por múltiples fuentes",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Deduplicación de un mismo acontecimiento",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "A duplicate external event ID is flagged, not automatically merged, because distinct issuers can reuse IDs.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "A duplicate external event ID is flagged, not automatically merged, because distinct issuers can reuse IDs.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-E21",
+      "branch": "events",
+      "kind": "DOCUMENTED_EVENT_ENGINEERING",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Control de datos personales sensibles",
+        "estimand": "excluir personas privadas y membresía inferida",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Control de datos personales sensibles",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Private-person filter prevents obviously private records, but further privacy/legal review is needed for actual profiles.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Private-person filter prevents obviously private records, but further privacy/legal review is needed for actual profiles.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-M22",
+      "branch": "measurement",
+      "kind": "MEASUREMENT_AND_BIAS",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Denominador de cobertura verificable",
+        "estimand": "no estimar tasa nacional sin total poblacional",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Denominador de cobertura verificable",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 41
+      },
+      "F": {
+        "adversarial": "There is no census of all politically active public persons; cannot produce a national coverage rate.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "There is no census of all politically active public persons; cannot produce a national coverage rate.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-M23",
+      "branch": "measurement",
+      "kind": "MEASUREMENT_AND_BIAS",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Sesgo de fuente vs actividad real",
+        "estimand": "producir tabla cobertura por tipo y procedencia",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Sesgo de fuente vs actividad real",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 41
+      },
+      "F": {
+        "adversarial": "Stratification reflects fixture design, not unbiased proportions of real political groups.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Stratification reflects fixture design, not unbiased proportions of real political groups.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-M24",
+      "branch": "measurement",
+      "kind": "MEASUREMENT_AND_BIAS",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "No representación como situación documentada",
+        "estimand": "zero seats no fuerza zero actividad",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "No representación como situación documentada",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 41
+      },
+      "F": {
+        "adversarial": "Observed participation is not an indicator of institutional office or lack thereof.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Observed participation is not an indicator of institutional office or lack thereof.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-M25",
+      "branch": "measurement",
+      "kind": "MEASUREMENT_AND_BIAS",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Modelo temporal y comparador competente",
+        "estimand": "no entrenar sin labels as-of y split limpio",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Modelo temporal y comparador competente",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Without as-of-original labels and realistic baselines, a prospective forecasting experiment is not identifiable.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Without as-of-original labels and realistic baselines, a prospective forecasting experiment is not identifiable.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-M26",
+      "branch": "measurement",
+      "kind": "MEASUREMENT_AND_BIAS",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.5,
+      "A": {
+        "question": "Auditoría adversarial de inferencias",
+        "estimand": "casos contradictorios son no identificables",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Auditoría adversarial de inferencias",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Conflicting records are unresolved; original issuer and effective dates determine eventual adjudication.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Conflicting records are unresolved; original issuer and effective dates determine eventual adjudication.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-P27",
+      "branch": "product",
+      "kind": "PRODUCT_AND_GOVERNANCE",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Importador offline de bundles",
+        "estimand": "acepta ficheros válidos y bloquea registros no certificados",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Importador offline de bundles",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Referential integrity on a wholly invented bundle is limited local engineering evidence, not full data quality of Spain.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Referential integrity on a wholly invented bundle is limited local engineering evidence, not full data quality of Spain.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-P28",
+      "branch": "product",
+      "kind": "PRODUCT_AND_GOVERNANCE",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Integración API local read-only",
+        "estimand": "endpoint nuevo con QA HTTP, sin publicar datos privados",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Integración API local read-only",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_VERIFIED",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "Static presence of route does not demonstrate actual HTTP execution nor adversarial browser behavior.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "Static presence of route does not demonstrate actual HTTP execution nor adversarial browser behavior.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_STATIC_QA_RUNTIME_UNVERIFIED",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-P29",
+      "branch": "product",
+      "kind": "PRODUCT_AND_GOVERNANCE",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Pruebas reales Python/Node",
+        "estimand": "ejecutar suite limpia sobre archivos creados y registrar fallos",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Pruebas reales Python/Node",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_VERIFIED",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "A standalone Node process suite exists, but has NOT been run in this environment; no claim of passing it.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "A standalone Node process suite exists, but has NOT been run in this environment; no claim of passing it.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_STATIC_QA_RUNTIME_UNVERIFIED",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    },
+    {
+      "id": "PF-BR30J-P30",
+      "branch": "product",
+      "kind": "PRODUCT_AND_GOVERNANCE",
+      "status": "A_J_CONCLUDED_EXPLORATORY",
+      "DRIFT_D": 0.8,
+      "A": {
+        "question": "Ledger y documentación incremental",
+        "estimand": "A–J completo/30 + priors/no falsos experimentos",
+        "unit": "One typed software assertion or documented source claim",
+        "true_outcome": "Correct local invariant; no political-person outcome",
+        "population": "Fictitious actors and sources"
+      },
+      "B": {
+        "H1": "Ledger y documentación incremental",
+        "H0": "A parliamentary-only or provenance-free baseline could seem to satisfy this feature without addressing traceability",
+        "rivals": [
+          "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+          "Availability and homonyms may differ in authentic field data"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "One counterexample violates the endpoint; preserve failures",
+        "threshold": "Pass strict endpoint or preserve failure; do not conflate field and QA",
+        "adaptive_context": "Known previous campaigns and official source descriptions; not an independent confirmation holdout"
+      },
+      "D": {
+        "code": [
+          "src/politics_fantasy/evidence_warehouse.mjs",
+          "tests/test_evidence_warehouse.mjs"
+        ],
+        "source_document": "examples/actor_evidence_fixture_30j.json",
+        "native_capture_recomputed_sha_for_real_official": null,
+        "source_version": "RESULTS_FINAL.json refs"
+      },
+      "E": {
+        "unit_executed": "V8 local acceptance test",
+        "test_passed": true,
+        "result": "PASS",
+        "official_original_rows_observed": null,
+        "real_people_sample_size": 0,
+        "node_python_http_e2e": "NOT_APPLICABLE",
+        "secondary_municipal_excerpt_relevant": 0
+      },
+      "F": {
+        "adversarial": "30 local acceptance checks share a fixture and authored source contracts, not 30 confirmatory replications.",
+        "assumptions_that_could_fail": "One counterexample violates the endpoint; preserve failures",
+        "baselines_not_tested": "Strong observational/forecast rivals need authenticated originals and date-valid cohort"
+      },
+      "G": {
+        "independent_original_field_replication": false,
+        "same_fixture_suite_not_independent": true,
+        "comparison_to_real_field": "NOT_RUN"
+      },
+      "H": {
+        "abductive_update": "Contract is locally implementable on explicit fixture, but validity outside fixture unknown",
+        "positive_evidence": "Software/source metadata assertion passed",
+        "negative_or_missing": "30 local acceptance checks share a fixture and authored source contracts, not 30 confirmatory replications.",
+        "posterior_probability": null
+      },
+      "I": {
+        "software_verdict": "PASS",
+        "scientific_novelty_grade_0_3": 0,
+        "VSDS_project": 1,
+        "CT2_multiactor_ordinal": 20,
+        "CT2_predictive_ordinal": 24,
+        "external_validity": "NOT_DEMONSTRATED",
+        "causal_identification": "NONE"
+      },
+      "J": {
+        "decision": "COMPLETE_LOCAL_ENGINEERING_ACCEPTANCE_CONTINUE_FIELD_REPAIR",
+        "next_evidence": "Run real Node/Python/HTTP tests and ingest official raw sources before attempting empirical identification",
+        "no_additional_cycles_implicitly_authorized": true
+      }
+    }
+  ]
+}
