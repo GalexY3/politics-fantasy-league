@@ -1,5 +1,17 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## BR12M — primer documento oficial original y CI nativa, 12/12 (26/10/2026)
+
+**12/12 ciclos AB 3.2.1 con BRANCHING cerrados**: 9 adjudicaciones técnicas/documentales exitosas y 3 STOP_R5 (dos rutas fuente oficiales inaccesibles y sin RPP/identidad de personas reconciliada). [Informe final](research/BRANCH12M_20261026/REPORT.md) y [ledger A–J](research/BRANCH12M_20261026/LEDGER.json).
+
+**Resultados verificados, no solo código:** [GitHub Actions run 40258776701](https://github.com/GalexY3/Metodologia-AB/actions/runs/40258776701): siete suites con **91 tests Node**, pytest **50 tests Python**, todos PASS, dos jobs success. Se descargó mediante HTTPS y verificó SHA256 el PDF oficial [BOE-A-2023-18907](https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf): **1.915.000 bytes, SHA256 `f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a`**. Reextracción real `pdftotext` del cuadro I: **52 provincias × seis cifras = 312/312 coincidentes** con nuestra transcripción de 2023. Se conserva el original temporalmente en artefacto privado Actions, expira 29/10/2026; la URL, SHA y script de captura persisten. El cuadro no es una cohorte de personas o partidos RPP.
+
+Negativos: Congreso JSON de agosto 2026 devolvió 404 en las dos URLs probadas; el XLSX de Interior no pasó validación TLS; se dejó constancia R5 sin desactivar certificados. **0 personas públicas reales reconciliadas, 0 registros jurídicos originales RPP adquiridos**, sin puntuaciones reales.
+
+**Progreso vigente: PFL-V1-20261026 revisión 2 = 35,450% (35,5% visible).** Antes era 33,725%; mejora **+1,725 puntos por trabajo verificado**, **0 por scope** (las 9 vías y 36 hitos siguen intactos). [Snapshot V2](product/progress_snapshot_v2_20261026.json), [scope V2](product/progress_scope_v2_20261026.json), [scope V1 histórico](product/progress_scope_v1.json) y [documentación](docs/PROGRESO_Y_ALCANCE_v1.md). **Seis condiciones bloquean lanzamiento público**; VSDS=1/3 y CT2 sin cambios.
+
+Software añadido: [captura oficial y SHA](scripts/capture_official_sources.py), [reconciliación automática PDF](scripts/verify_boe_table_pdf.py), [tests adversariales](tests/test_verify_boe_table_pdf.py), [API progreso](src/politics_fantasy/progress_api.py) y [pestaña web](src/politics_fantasy/web/app.js). [Priors de BR12M](research/PRIORS.md). N1/N2/N3 científicos nuevos: 0.
+
 ## BR20K — avance del proyecto con alcance dinámico (26/10/2026)
 
 **20/20 ciclos AB 3.2.1 con BRANCHING concluidos** (13 verificaciones locales/documentales satisfechas, 4 STOP_R5 de fuentes reales e identidades, 3 trabajos de código con ejecución nativa todavía no verificada). No se presentan como 20 estudios empíricos, ni hay nuevas filas oficiales RPP autentificadas.
