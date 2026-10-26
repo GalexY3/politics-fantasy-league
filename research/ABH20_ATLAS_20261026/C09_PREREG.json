@@ -1,0 +1,41 @@
+{
+  "id": "C09",
+  "mode": "AB-H/AB-R",
+  "status": "PREREGISTERED_AFTER_LINK_DISCOVERY",
+  "A": {
+    "question": "Does the official linked deputy declaration original explicitly print extended name and XV membership, allowing one source-scoped alias bridge to profile code 44?",
+    "estimand": "direct primary document alias bridge for one identified case"
+  },
+  "B": {
+    "H1": "original PDF at profile link includes full name Cuesta Rodríguez María del Socorro and XV role, thus bridge across same institutional page",
+    "H0": "original PDF contains only the shorter name or different person",
+    "Hother": "original file inaccessible; hold candidate quarantined"
+  },
+  "C": {
+    "source": "https://www.congreso.es/docinte/registro_intereses_diputado_44.pdf",
+    "method": "web.open on PDF and screenshot page0 before adjudication",
+    "falsifier": "does not include expected full name"
+  },
+  "D": {
+    "environment": "web read/screenshot only, no Actions"
+  },
+  "E": {
+    "status": "BEFORE_DIRECT_PDF_ADJUDICATION"
+  },
+  "F": {
+    "limits": "even full PDF link does not certify cross-legislature stable ID"
+  },
+  "G": {
+    "holdout": "SOURCE_EXPOSED EXPLORATORY"
+  },
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": 0
+  },
+  "I": {
+    "no_person_scores": true
+  },
+  "J": {
+    "decision": "On inaccessible PDF, stop identity attribution and focus on unblock source access; preserve 11 unused cycles"
+  }
+}
