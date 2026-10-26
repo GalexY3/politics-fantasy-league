@@ -1,0 +1,58 @@
+{
+  "campaign": "PF-BR12M",
+  "date": "2026-10-26",
+  "most_recent_successful_commit": "c76e4504deeb15abf3c1f836e37135ccf99926e1",
+  "run_id": 40258316221,
+  "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40258316221",
+  "jobs": [
+    {
+      "name": "source-and-app-checks",
+      "conclusion": "success",
+      "details": "Node suites including progress and CLI ingestion, Python pytest integration including local HTTP, plus secondary CSV pinned and JEC replay"
+    },
+    {
+      "name": "original-source-download",
+      "conclusion": "success",
+      "details": "4 direct institutional URL attempted with verified TLS; BOE PDF captured; page 2 extracted by newly installed pdftotext, 52x6 reconciled"
+    }
+  ],
+  "original_pdf": {
+    "original_download_url": "https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf",
+    "bytes": 1915000,
+    "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+    "digest_verified_in_runner": true,
+    "actual_pdf_table_automatic_extraction": true,
+    "table_page": 2,
+    "districts": 52,
+    "comparable_fields_per_district": 6,
+    "matched_fields": 312,
+    "disagreements": 0,
+    "source_status": "ORIGINAL_BOE_2023_AUDITED_RAW_BYTES",
+    "gaps": [
+      "No individuals or registered-parties original database",
+      "Automatic check covers only official table I; BOE II/III not automatically certified in this cycle",
+      "External HTTPS provider timestamp and rights per record not verified"
+    ]
+  },
+  "source_attempts": {
+    "total": 4,
+    "success": 1,
+    "stop_r5": 3,
+    "congress_20260810_active": "HTTP 404",
+    "congress_20260810_all": "HTTP 404",
+    "interior_congress_xlsx": "TLS certificate chain not accepted; verification NOT disabled"
+  },
+  "ephemeral_artifact": {
+    "id": 12623510626,
+    "workflow": 40258316221,
+    "expires_at": "2026-10-29T02:17:08Z",
+    "contains_raw_pdf": true,
+    "location": "Private GitHub Actions artifact, NOT in repository current source files",
+    "sha256_artifact_archive": "10546d57ad5e801e956c31be7e62c53363a6b3669634568fcc9ef05a91311fbf"
+  },
+  "claims_not_made": [
+    "BOE PDF checksum is not independently publisher-signed",
+    "original file does not provide verified first-public-at for later CSV snapshots",
+    "not an official current party or person legal registry"
+  ]
+}
