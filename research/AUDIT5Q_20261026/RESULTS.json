@@ -1,0 +1,62 @@
+{
+  "campaign": "PF-AUDIT5Q",
+  "authorized": 5,
+  "completed": 5,
+  "remaining": 0,
+  "date": "2026-10-26",
+  "review_scope": "all prior PFL source/person privacy/CI/progress data",
+  "reference_green_run": 40324283292,
+  "scope_percent_before_after": [
+    36.35,
+    36.35
+  ],
+  "source": {
+    "fifty_two_headings": 52,
+    "strictly_parsed": 25,
+    "without_notice": 16,
+    "with_review_notice": 9,
+    "quarantined": 27
+  },
+  "real_parties_register_complete": false,
+  "real_public_people_verified": 0,
+  "scientific_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "findings": [
+    {
+      "id": "PF-AUDIT5Q-A01",
+      "branch": "SOURCE",
+      "observation": "Original PDF source auditable; 16 sections with no known notice, nine still require nonproclamation review, 27 non-sequential sections quarantined. 263 list labels only from accepted source sections.",
+      "status": "PASS_PARTIAL_WITH_R5"
+    },
+    {
+      "id": "PF-AUDIT5Q-A02",
+      "branch": "SECURITY",
+      "observation": "Deep recursively check names of untrusted nested fields and prototype pollution in official-actor engine, with 6 native JS negative tests.",
+      "status": "PASS_REPAIRED"
+    },
+    {
+      "id": "PF-AUDIT5Q-A03",
+      "branch": "PRODUCT",
+      "observation": "CSP-safe browser UI preserved; test assertion repaired to compare uppercase rendered labels; API now flags 16/9/27, with Host 403 and local source checks.",
+      "status": "PASS_REPAIRED"
+    },
+    {
+      "id": "PF-AUDIT5Q-A04",
+      "branch": "MEASUREMENT",
+      "observation": "Progress V3 36.35% maintained until genuinely new milestone maturity; six critical release gates remain. Previous V1 and V2 snapshots unmodified.",
+      "status": "PASS_SCOPE_AUDIT"
+    },
+    {
+      "id": "PF-AUDIT5Q-A05",
+      "branch": "REPAIR",
+      "observation": "Latest stable GitHub Actions 40324283292 has three successful jobs including Node, Python, Chromium and raw BOE source audits, after preserving earlier failures.",
+      "status": "PASS_NATIVE_CI"
+    }
+  ]
+}
