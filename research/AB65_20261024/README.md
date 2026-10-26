@@ -1,5 +1,7 @@
 # Gobernanza de la ampliación — autorización de 45 bucles libres
 
+> **Estado actualizado 26/10/2026:** las 45 plazas PF-F01–F45 están cerradas como **pruebas A–J de ingeniería y calidad**, ejecutadas por V8 con dos archivos electorales secundarios históricos y fixtures ficticias. Las 45 aserciones pasan, pero no hay 45 experimentos sociológicos independientes ni validación de personas o registro oficial. Contrato: [PREREG_45.json](../FREE45_20261026/PREREG_45.json); resultados: [RESULTS.json](../FREE45_20261026/RESULTS.json); [ledger de ciclos](FREE45_LEDGER.json). El texto posterior conserva el plan original previo a la ejecución y el sentido de la autorización.
+
 **Fecha de la concesión del usuario:** 24-10-2026.
 
 Interpretación secuencial explícita del encargo: **terminar primero el bloque experimental PF-AB20** (el piloto C01 está cerrado solo como exploración, C02–C20 pendientes/no ejecutados). **Después** quedan autorizados **45 bucles libres adicionales**, con branching entre producción, extracción/ingeniería de datos y ciencia aplicada. "Libres" significa autonomía para elegir las preguntas concretas, rutas y pivotes basándose en la evidencia; **no** significa falsear ejecuciones ni omitir controles AB 3.2.1.
