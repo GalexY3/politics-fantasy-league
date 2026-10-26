@@ -47,6 +47,12 @@ def main():
             assert obj["revision"]==3 and obj["progress_display_pct"]==36.4
             assert len(obj["release_blockers"])==6
         results["passes"].append("HTTP local progress V2 and six blocked launch gates")
+        with urlopen(BASE+"/api/official-nominations",timeout=6) as h:
+            nominations=json.load(h)
+        assert nominations["ok"] is True,nominations
+        assert nominations["n_provinces"]==25 and nominations["n_candidacies"]==263,nominations
+        results["passes"].append("HTTP source-backed 25-province nomination atlas has 263 lists and 27 uncertainties")
+
         try:
             with urlopen(Request(BASE+"/api/progress",headers={"Host":"foreign.invalid"}),timeout=4):
                 raise AssertionError("HOST_ALLOWLIST_BYPASS")
@@ -79,7 +85,7 @@ def main():
             assert "Atlas" in atlas or "atlas" in atlas,atlas[:250]
             assert "Candidaturas proclamadas" in atlas
             assert "RECORTES CERO" in atlas
-            assert "Provincias comprobadas" in atlas and "Secciones pendientes" in atlas
+            assert "Provincias comprobadas" in atlas and "Secciones pendientes" in atlas, atlas[:2500]
             assert "263" in atlas and "25" in atlas
             results["passes"].append("Original BOE multiprovince 263 electoral-list atlas and 27 uncertainty sections shown in Chromium")
             assert "No procede inferirlos" in atlas
