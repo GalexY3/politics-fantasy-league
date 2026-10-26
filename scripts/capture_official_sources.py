@@ -29,10 +29,16 @@ TARGETS = (
     ("congress_active_20260810", "https://www.congreso.es/webpublica/opendata/diputados/DiputadosActivos__20260810050006.json", "json", "www.congreso.es"),
     ("congress_all_20260810", "https://www.congreso.es/webpublica/opendata/diputados/Diput__20260810050141.json", "json", "www.congreso.es"),
     ("interior_congress_elections", "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso.xlsx", "xlsx", "descargas.interior.gob.es"),
+    ("boe_jec_2023_original", "https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf", "pdf", "www.boe.es"),
 )
 XMLNS = {"s":"http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 def introspect(data:bytes, kind:str)->dict:
+    if kind=="pdf":
+        if not data.startswith(b"%PDF-") or b"%%EOF" not in data[-1024:]:
+            raise ValueError("INVALID_PDF_MAGIC_OR_FOOTER")
+        return {"format":"pdf","signature_valid":True,"size_bytes":len(data),
+            "notice":"PDF original stored in private short-lived artifact; exact table text not certified automatically"}
     if kind=="xlsx":
         if not data.startswith(b"PK\x03\x04"):raise ValueError("WRONG_OFFICE_SIGNATURE")
         with zipfile.ZipFile(io.BytesIO(data)) as z:
@@ -79,7 +85,7 @@ def fetch_target(name,url,kind,required_hostname,opener=urlopen)->dict:
             st=reply.status
             if st!=200:raise ValueError("SOURCE_HTTP_NOT_200")
         shape=introspect(body,kind)
-        suffix=".json" if kind=="json" else ".xlsx"
+        suffix={"json":".json","xlsx":".xlsx","pdf":".pdf"}[kind]
         destination=ROOT/(name+suffix)
         destination.write_bytes(body)
         result.update({"capture_status":"RAW_BYTES_CAPTURED","original_binary_captured":True,
