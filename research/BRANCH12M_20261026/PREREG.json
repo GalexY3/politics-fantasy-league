@@ -1,0 +1,140 @@
+{
+  "program": "PF-BR12M",
+  "date": "2026-10-26",
+  "authorized": 12,
+  "branching": true,
+  "protocol": "AB 3.2.1 A-J",
+  "objective": "Execute actual CI and download at least one authentic officially hosted political dataset with bytes/hashes; keep fallback STOP_R5 if direct access fails; update scope-index based on evidence",
+  "evidence_preexposure": "C01 native CI pass for prior BR20K commit seen before this prereg, retrospectively reported. Other direct official fetches not yet run. Source URLs public and the dataset examples are known; no scientific confirmatory field preregistration.",
+  "testable_units": "independent reproducible native test/log or HTTPS capture; separate engineering, documentary and substantive field validity",
+  "rules": [
+    "no fake hashes, official bytes or authenticated first_public_at",
+    "binary SHA only proves integrity of downloaded bytes, not semantics/license/time published",
+    "only show anonymized raw schemas; no user-facing roster names",
+    "version progress based on auditable changes, preserve prior frozen scope and old snapshot",
+    "j=STOP_R5 for blocked field tests, not pass",
+    "n1/2/3 scientific and VSDS / CT2 remain independent"
+  ],
+  "cycles": [
+    {
+      "id": "PF-BR12M-C01",
+      "title": "CI reality check",
+      "branch": "native_qa",
+      "endpoint": "Confirm existing GitHub Actions checkout Node/Python execution with genuine success logs",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C02",
+      "title": "Native JS progress",
+      "branch": "native_qa",
+      "endpoint": "Run progress model and JS provenance suites on real GitHub Action runner",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C03",
+      "title": "Native Python APIs",
+      "branch": "native_qa",
+      "endpoint": "Run Python/HTTP loopback endpoint and progress parity tests on real runner",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C04",
+      "title": "Adversarial CLI",
+      "branch": "security_qa",
+      "endpoint": "Run file checksum/path traversal/type restriction child-process tests",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C05",
+      "title": "Official fetch - Congreso",
+      "branch": "primary_capture",
+      "endpoint": "Download official Congress JSON directly via HTTPS; store SHA256 raw artifact if possible",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C06",
+      "title": "Official fetch - Interior",
+      "branch": "primary_capture",
+      "endpoint": "Download original Interior election XLSX over HTTPS; hash and inspect bounded schema",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C07",
+      "title": "Original source authenticity",
+      "branch": "primary_capture",
+      "endpoint": "Compare actual final HTTPS URL, binary signature, schema, dates and rights independently of source metadata",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C08",
+      "title": "Legal/identity gate",
+      "branch": "identity",
+      "endpoint": "Do not infer registered party, candidacy, historic membership, or person profile without validated identities",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C09",
+      "title": "Schema invariants and negative controls",
+      "branch": "data_quality",
+      "endpoint": "Detect corrupt XLSX/JSON and fail closed on missing source field / untrusted provenance",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C10",
+      "title": "Progress scope update",
+      "branch": "progress",
+      "endpoint": "Reassess milestone levels only if native or field evidence truly improves readiness; freeze scope V1 revision",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C11",
+      "title": "Executable regression",
+      "branch": "ci",
+      "endpoint": "Integrate source capture tests with CI and verify failure/success from observed run",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    },
+    {
+      "id": "PF-BR12M-C12",
+      "title": "Cumulative AB ledger",
+      "branch": "governance",
+      "endpoint": "Complete individual A-J, preserve priors evidence and explicit next conditions",
+      "H1": "A measurable improvement over earlier static reviews is feasible",
+      "H0": "Earlier success can be stale or a transport artifact",
+      "strong_rival": "Network/URL failures, CI mixed-code regressions, unverified rights, synthetic-input substitution",
+      "status": "CONTRACTED_BEFORE_NEW_EXECUTION_EXCEPT_C01"
+    }
+  ]
+}
