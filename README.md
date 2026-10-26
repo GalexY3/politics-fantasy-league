@@ -1,5 +1,20 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## BR30J — universo multiactor con pruebas de evidencias (26/10/2026)
+
+**Cerrados 30/30 contratos AB A–J con BRANCHING**, distinguiendo **4 cierres STOP_R5 por falta de archivos oficiales originales** de **26 aceptaciones de infraestructura/medición**, de las cuales algunas son revisión estática. **30/30 checks V8 PASS sobre un universo inventado y catálogos**, no 30 experimentos sociológicos independientes ni datos de personas reales validados.
+
+- **Ocho fuentes catalogadas:** Registro de Partidos, Interior, JEC, Congreso, open data municipal, BOE y dos editoriales secundarias. Excepto el CSV de generales 2023 anteriormente analizado, las distribuciones son metadatos de acceso **sin ficheros oficiales originales descargados**. [Inventario](research/BRANCH30J_20261026/SOURCE_CATALOGUE.json).
+- **Nuevo almacén de hechos** [evidence_warehouse.mjs](src/politics_fantasy/evidence_warehouse.mjs): actor/organización/candidatura/evento/rol, conflictos de identidad, intervalos históricos y capturas, control de eventos duplicados, sin inferir afiliación privada o influencia ni inventar denominador de cobertura.
+- **Nuevo importador offline** [ingest_political_evidence.mjs](scripts/ingest_political_evidence.mjs) con SHA256 **recalculado** del archivo y rutas confinadas; su resultado sigue **sin autenticar al emisor** por disponer de un hash. [Tests V8](tests/test_evidence_warehouse.mjs) 30/30 comprobados. [Tests de CLI Node](tests/test_evidence_ingest_cli.mjs) escritos pero no ejecutados aquí.
+- **Nuevo ejemplo íntegramente ficticio** [actor_evidence_fixture_30j.json](examples/actor_evidence_fixture_30j.json): 7 entidades, 4 roles, 2 versiones de evento, 3 fuentes, 1 declaración. Ninguna persona auténtica.
+- [Resultados municipales 2023 de RTVE, 41 etiquetas históricas](research/BRANCH30J_20261026/RTVE_MUNICIPAL_2023_SECONDARY_SAMPLE.json): *muestra parcial de un portal secundario*, no censo de partidos ni fuente original. [votomunicipal.es](https://votomunicipal.es/datos-abiertos/) anuncia microdatos municipales CC BY 4.0; se documentó su disponibilidad, **no se descargaron**.
+- **App**: `GET /api/evidence-readiness` con [adaptador Python](src/politics_fantasy/evidence_warehouse_status.py), panel integrado en [frontend del observatorio](src/politics_fantasy/web/app.js), datos agregados exclusivamente ficticios. [Pruebas Python](tests/test_evidence_warehouse_status.py) y [prueba HTTP loopback](tests/test_evidence_http_smoke.py) publicadas, no ejecutadas localmente en este turno; [CI de GitHub](https://github.com/GalexY3/Metodologia-AB/blob/main/.github/workflows/politics-fantasy-evidence.yml) actualizado, job no verificado.
+
+**Artefactos de investigación:** [Informe BR30J](research/BRANCH30J_20261026/REPORT.md) · [ledger 30 A–J](research/BRANCH30J_20261026/LEDGER.json) · [prereg exploratorio](research/BRANCH30J_20261026/PREREG.json) · [resultados finales y límites de ejecución](research/BRANCH30J_20261026/RESULTS_FINAL.json) · [priors PF-J01–J08](research/PRIORS.md).
+
+**VSDS 1/3; CT2 multiactor 20/100 y CT2 predictiva parlamentaria 24/100 sin cambio. N1/N2/N3 nuevos=0.** El siguiente bloque propuesto (no autorizado) es 20 BRANCHING condicionados a obtener primero originales con procedencia y a ejecutar el código nativamente; no más análisis repetidos del CSV 2023.
+
 ## BR30I — 30 ciclos AB con contraste oficial documental (26/10/2026)
 
 **30/30 ciclos A–J completos** sobre una nueva rama de conciliación de los resultados electorales de 2023 con el cuadro oficial de la JEC/BOE, coaliciones y producto. **30 checks V8 PASS**, pero NO 30 experimentos de campo independientes; algunos son controles aritméticos dependientes, otros auditorías documentales y los últimos comprobaciones estáticas de integración.
