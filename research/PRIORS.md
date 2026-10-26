@@ -18,3 +18,27 @@ Estado: hipótesis / compromisos de diseño; **ninguna probabilidad a posteriori
 | PF-P12 | La interfaz fantasy puede aumentar comprensión de instituciones sin polarizar a usuarios. | NO_VALIDADO; hipótesis de investigación futura | Diseño pedagógico plausible | Experimento con pre/post y grupo control observa efectos nulos o adversos |
 
 Al actualizar: conservar ID, evidencia, falsador, riesgos de selección y vínculo a commit/prueba. PF-P04 es una hipótesis de trabajo, no un hallazgo.
+
+
+## Apéndice acumulativo · BR30I, 26/10/2026
+
+Los priors PF-P01–PF-P12 anteriores siguen íntegros. Los hallazgos de campañas PF-MG, PF-H y PF-CONT se conservan en los respectivos archivos fuente: [BR30G/PRIORS_DELTA.md](BRANCH30G_20261025/PRIORS_DELTA.md), [BR20H/PRIORS_DELTA.md](BRANCH20H_20261025/PRIORS_DELTA.md) y [CONTINUACION_20261026/REPORT.md](CONTINUACION_20261026/REPORT.md). Ninguna clasificación pasada cambia por este apéndice.
+
+La procedencia, evidencias contrarias, incertidumbres y falsadores completos de PF-I01–PF-I10 están en **[BR30I/PRIORS_DELTA.md](BRANCH30I_20261026/PRIORS_DELTA.md)**, que forma parte **del ledger acumulativo** junto a esta síntesis, no una sustitución.
+
+| Nuevo ID | Síntesis del prior | Grado epistémico | Principal limitación/falsador |
+|---|---|---|---|
+| PF-I01 | 52×6=312 recuentos electorales oficiales JEC 2023 transcritos coinciden con el dataset secundario. | COMPARACIÓN DOCUMENTAL DE UNA ELECCIÓN | Verificar bytes de PDF y correcciones posteriores |
+| PF-I02 | 59 opciones del CSV suman los votos a candidaturas en cada provincia. | CONSERVACIÓN AGREGADA | Las denominaciones/identidades de listas no quedan certificadas |
+| PF-I03 | Cinco totales nacionales no representados coinciden con el Cuadro III JEC. | CONTRASTE DOCUMENTAL RETROSPECTIVO | Solo 5 seleccionados post hoc, no 54 restantes |
+| PF-I04 | 48 de 59 opciones registran votos y cero escaños; 606.450 votos (≈2,4766%). | DESCRIPTIVO DEL ARCHIVO 2023 | No significa 48 partidos legales, ni influencia |
+| PF-I05 | Páginas JEC/JEP muestran 12+4 referencias de coalición para las generales 2023. | DOCUMENTAL TERRITORIAL | No equivale a censo exhaustivo jurídico/territorial |
+| PF-I06 | 10 siglas de coalición enlazan exactamente y de forma única con opción del CSV; 4 sin match exacto y 2 solo Senado. | ENLACE DE TEXTO CONSERVADOR | Match no prueba identidad legal o partidos integrantes |
+| PF-I07 | 52 provincias muestran entre 8–14 opciones con votos en fuente. | DESCRIPTIVO ELECTORAL | No mide pluralismo ideológico ni trayectoria de organizaciones |
+| PF-I08 | Datos finales de 2026 no prueban su disponibilidad as-of en 2023 para modelización histórica. | PRIOR DE CONTROL TEMPORAL | Conseguir snapshots independientes first_public_at |
+| PF-I09 | Grafo 75 nodos/10 aristas y atlas con procedencia documental programados. | VALIDEZ DE INGENIERÍA CONDICIONADA | GitHub Actions, HTTP Python y navegador E2E aún no certificados |
+| PF-I10 | Treinta ciclos AB con datos dependientes y QA no son treinta experimentos científicos independientes. | PRIOR METODOLÓGICO | Nuevas fuentes/muestras independientes podrían cambiar conclusiones |
+
+**Evidencia acumulativa nueva:** [LEDGER A–J BR30I](BRANCH30I_20261026/LEDGER.json), [JEC/atlas contraste](BRANCH30I_20261026/RESULTS_JEC_2023_FULL.json), [prueba de 30 endpoints](BRANCH30I_20261026/RESULTS_C01_C30_POST_MERGE.json).
+
+**Estado global de la investigación:** nuevas contribuciones N1/N2/N3=0; VSDS 1/3; CT2 multiactor 20/100 y CT2 predictiva 24/100, inalteradas; son ordinales de ramas distintas, **no probabilidades**. Mantener la discrepancia entre calidad de datos agregados corroborada y ausencia de validación histórica de personas.
