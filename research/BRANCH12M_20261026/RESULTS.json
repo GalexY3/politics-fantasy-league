@@ -1,0 +1,145 @@
+{
+  "campaign": "PF-BR12M",
+  "date": "2026-10-26",
+  "authorization": 12,
+  "completed": 12,
+  "remaining": 0,
+  "evidence_source_run": 40258776701,
+  "CI": {
+    "node": 91,
+    "pytest": 50,
+    "passed": 141,
+    "failed": 0,
+    "jobs": [
+      "source-and-app-checks: success",
+      "original-source-download: success"
+    ]
+  },
+  "primary_capture": {
+    "official_document": "BOE-A-2023-18907 PDF",
+    "raw_bytes": 1915000,
+    "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+    "numerical_cells_reconciled": 312,
+    "discrepancies": 0,
+    "party_registry_rows_new": 0,
+    "real_person_roster_rows_new": 0,
+    "artifact_id": 12623134883,
+    "artifact_expires_utc": "2026-10-29T02:22:51Z"
+  },
+  "failed_primary_attempts": 3,
+  "progress": {
+    "scope": "PFL-V1-20261026",
+    "revision_before": 1,
+    "revision_after": 2,
+    "old_pct": 33.725,
+    "new_pct": 35.45,
+    "work_effect_pp": 1.725,
+    "scope_effect_pp": 0,
+    "release_gate_count": 6
+  },
+  "VSDS": 1,
+  "CT2": {
+    "multiactor": 20,
+    "predictive": 24
+  },
+  "scientific_novelty_new": 0,
+  "epistemic_caution": "9 local source/engineering successes and 3 R5 stops; NOT 12 independent field experiments. Original 2023 BOE document ≠ verified full party register or current individuals.",
+  "cycles": [
+    {
+      "id": "PF-BR12M-C01",
+      "status": "PASS_NATIVE_CI",
+      "aim": "Previous CI run and new build confirm native execution, not static inference",
+      "observed": "CI job source-and-app-checks success and original-source-download success",
+      "evidence": "NATIVE_CI.json",
+      "className": "NATIVE_QA"
+    },
+    {
+      "id": "PF-BR12M-C02",
+      "status": "PASS_NATIVE_JS",
+      "aim": "Seven distinct Node suites executed on current checkout",
+      "observed": "91 Node tests, all successful",
+      "evidence": "NATIVE_CI.json",
+      "className": "NATIVE_QA"
+    },
+    {
+      "id": "PF-BR12M-C03",
+      "status": "PASS_NATIVE_PYTHON",
+      "aim": "Python pytest native run including local HTTP and progress endpoint",
+      "observed": "50 Python tests, all successful",
+      "evidence": "NATIVE_CI.json",
+      "className": "NATIVE_QA"
+    },
+    {
+      "id": "PF-BR12M-C04",
+      "status": "PASS_NEGATIVE_CONTROLS",
+      "aim": "Real Node child process tests check SHA mismatch, path traversal, invalid class",
+      "observed": "CLI test suite passed on Ubuntu in native CI; no personal field corpus",
+      "evidence": "NATIVE_CI.json",
+      "className": "ENGINEERING_QA"
+    },
+    {
+      "id": "PF-BR12M-C05",
+      "status": "STOP_R5_ORIGINAL_404",
+      "aim": "Attempted direct official Congress current/all-deputies JSON (August 2026 snapshots)",
+      "observed": "Both institutional links returned HTTP 404; 0 original JSON bytes",
+      "evidence": "OFFICIAL_CAPTURE.json",
+      "className": "ORIGINAL_SOURCE_R5"
+    },
+    {
+      "id": "PF-BR12M-C06",
+      "status": "STOP_R5_TLS",
+      "aim": "Attempted Ministry of Interior original Congress elections XLSX via system CA",
+      "observed": "SSL chain validation failed; refused TLS bypass; 0 XLSX bytes",
+      "evidence": "OFFICIAL_CAPTURE.json",
+      "className": "ORIGINAL_SOURCE_R5"
+    },
+    {
+      "id": "PF-BR12M-C07",
+      "status": "PASS_ONE_OFFICIAL_PRIMARY",
+      "aim": "Original BOE JEC 2023 institutional HTTPS PDF downloaded",
+      "observed": "1,915,000 raw bytes, SHA256 f2146c..., 52 provinces×6 fields from actual PDF=312/312 concordant",
+      "evidence": "OFFICIAL_CAPTURE.json",
+      "className": "PRIMARY_ORIGINAL_DOCUMENT"
+    },
+    {
+      "id": "PF-BR12M-C08",
+      "status": "STOP_R5_REAL_IDENTITIES",
+      "aim": "Official PDF election outcomes are not a valid full party/legal identity and person-week roster",
+      "observed": "0 person profiles or organizational legal identifiers reconciled, game scoring gate closed",
+      "evidence": "OFFICIAL_CAPTURE.json",
+      "className": "IDENTITY_R5"
+    },
+    {
+      "id": "PF-BR12M-C09",
+      "status": "PASS_ADVERSARIAL_PDF",
+      "aim": "Reject corrupt PDFs/source redirects and mutate 52×6 table check",
+      "observed": "Original PDF shape and 52×6 extract passed; parser negative controls exercised by pytest",
+      "evidence": "NATIVE_CI.json",
+      "className": "QA_PRIMARY"
+    },
+    {
+      "id": "PF-BR12M-C10",
+      "status": "PASS_WEIGHTED_SCOPE_REVISION",
+      "aim": "Adopt revision2 on unchanged scope only for evidence-backed milestones",
+      "observed": "33.725%→35.45% (+1.725pp work, 0pp scope); sources 38.75→45%, QA32.5→40%; six release gates remain",
+      "evidence": "../../product/progress_snapshot_v2_20261026.json",
+      "className": "PROGRESS"
+    },
+    {
+      "id": "PF-BR12M-C11",
+      "status": "PASS_CLEAN_GITHUB_ACTIONS",
+      "aim": "CI artifact and logs confirm both jobs on exact commit success",
+      "observed": "Run 40258776701: 7 Node suites/91 tests + 50 pytest passed; real original PDF numeric match; raw kept temporary artifact",
+      "evidence": "NATIVE_CI.json",
+      "className": "INDEPENDENT_RUNNER_QA"
+    },
+    {
+      "id": "PF-BR12M-C12",
+      "status": "PASS_DOCUMENTATION",
+      "aim": "Persist 12 full A-J evaluations, cumulative priors and report, preserving prior results",
+      "observed": "Governance artifacts published, no scientific grade inflation, remaining authorization 0",
+      "evidence": "LEDGER.json",
+      "className": "GOVERNANCE"
+    }
+  ]
+}
