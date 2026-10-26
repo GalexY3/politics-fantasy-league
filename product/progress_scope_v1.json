@@ -1,0 +1,429 @@
+{
+  "project": "Politics Fantasy League",
+  "scope_id": "PFL-V1-20261026",
+  "revision": 1,
+  "review_date": "2026-10-26",
+  "type": "BASELINE_PUBLIC_V1_PLUS_SCIENTIFIC_OBSERVATORY",
+  "target": "Producto web seguro, con registro verificable de formaciones políticas españolas y perfiles de rol público, candidaturas y eventos nacionales y muestra multiterritorial, juego basado en eventos admisibles, calidad científica y piloto de usuarios. No exige enumerar a todos los ciudadanos políticamente activos.",
+  "not_in_scope": [
+    "Inferencia de ideología, reputación, calidad o influencia causal de personas",
+    "Recopilar membresías privadas o electorados individuales",
+    "Cobertura absolutamente exhaustiva de toda comunicación informal de España",
+    "Aplicaciones nativas iOS/Android en v1"
+  ],
+  "method": {
+    "maturity_values": {
+      "0": 0,
+      "1": 0.1,
+      "2": 0.4,
+      "3": 0.6,
+      "4": 0.85,
+      "5": 1
+    },
+    "labels": {
+      "0": "No iniciado o bloqueado",
+      "1": "Especificado",
+      "2": "Implementado sin prueba completa",
+      "3": "Probado localmente",
+      "4": "Validado documentalmente/en campo delimitado",
+      "5": "Operativo y verificado en el alcance definido"
+    },
+    "formula": "sum(track.weight * sum(milestone.size * maturity_value[milestone.level]) / sum(milestone.size)) / sum(track.weight) * 100",
+    "scope_change_rule": "New functionality: new unique milestone IDs and/or versioned weights; preserve previous snapshot; never silently rewrite previous percentage. Compare progress as work_effect + scope_effect.",
+    "source_type": "MANUAL_EVIDENCE_BASED_ADJUDICATION_NOT_OBJECTIVE_POPULATION_ESTIMATE",
+    "guardrails": [
+      "No denominar % de éxito científico ni probabilidad de lanzamiento",
+      "Sin pruebas reales, no adjudicar nivel 4/5 por ejecutar fixtures",
+      "Fuentes o personas reales no verificadas bloquean readiness del juego real y del lanzamiento"
+    ]
+  },
+  "tracks": [
+    {
+      "id": "sources",
+      "name": "Fuentes y datos",
+      "weight": 18,
+      "milestones": [
+        {
+          "id": "src.catalog",
+          "name": "Inventario oficial y trazabilidad de fuentes",
+          "level": 3,
+          "size": 1,
+          "why": "Catálogos oficiales e historial de procedencia, pero derechos sin resolver en muchos recursos",
+          "evidence_ref": "research/BRANCH30J_20261026/SOURCE_CATALOGUE.json",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "src.election",
+          "name": "Conciliación electoral pública del Congreso 2023",
+          "level": 4,
+          "size": 1,
+          "why": "312 celdas agregadas BOE/JEC transcritas a mano coinciden; no archivo oficial binario autenticado",
+          "evidence_ref": "research/BRANCH30I_20261026/RESULTS_JEC_2023_FULL.json",
+          "evidence_class": "DOCUMENTARY_CROSS_CHECK"
+        },
+        {
+          "id": "src.registry",
+          "name": "Registro completo de partidos y candidaturas proclamadas originales",
+          "level": 0,
+          "size": 1,
+          "why": "Ningún corpus RPP original verificado",
+          "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+          "evidence_class": "ABSENT"
+        },
+        {
+          "id": "src.local",
+          "name": "Cobertura oficial original autonómica y municipal",
+          "level": 1,
+          "size": 1,
+          "why": "Solo fuentes identificadas y extracto secundario parcial; originales no importados",
+          "evidence_ref": "research/BRANCH30J_20261026/RTVE_MUNICIPAL_2023_SECONDARY_SAMPLE.json",
+          "evidence_class": "DESIGN"
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "name": "Identidad, coaliciones e historial",
+      "weight": 12,
+      "milestones": [
+        {
+          "id": "id.schema",
+          "name": "Esquema multiactor y referencias",
+          "level": 3,
+          "size": 1,
+          "why": "Pruebas locales de tipos y claves",
+          "evidence_ref": "src/politics_fantasy/evidence_warehouse.mjs",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "id.ambiguities",
+          "name": "Homónimos, conflictos y coaliciones explícitas",
+          "level": 3,
+          "size": 1,
+          "why": "Contratos sintéticos comprobados en V8",
+          "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "id.real",
+          "name": "Identificación jurídica auténtica multifuente",
+          "level": 0,
+          "size": 1,
+          "why": "Cero personas públicas españolas reconciliadas entre fuentes originales",
+          "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+          "evidence_class": "ABSENT"
+        },
+        {
+          "id": "id.temporal",
+          "name": "Roles y adscripciones bitemporales",
+          "level": 2,
+          "size": 1,
+          "why": "Instrumentación temporal implementada; faltan cargos y fuentes reales fechadas",
+          "evidence_ref": "src/politics_fantasy/evidence_warehouse.mjs",
+          "evidence_class": "CODE_PRESENT_NOT_END_TO_END"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Acontecimientos políticos",
+      "weight": 10,
+      "milestones": [
+        {
+          "id": "ev.schema",
+          "name": "Modelo documental de acciones y participaciones",
+          "level": 3,
+          "size": 1,
+          "why": "Validado sobre ejemplos ficticios",
+          "evidence_ref": "tests/test_evidence_warehouse.mjs",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "ev.time",
+          "name": "Correcciones, duplicados y conocimiento temporal",
+          "level": 3,
+          "size": 1,
+          "why": "Test de duplicados y corte as-of sobre ejemplos",
+          "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "ev.extra",
+          "name": "Corpus real de eventos extraparlamentarios",
+          "level": 1,
+          "size": 1,
+          "why": "Solo taxonomía y fuentes previstas, sin corpus reconciliado",
+          "evidence_ref": "research/BRANCH30J_20261026/PREREG.json",
+          "evidence_class": "DESIGN"
+        },
+        {
+          "id": "ev.person",
+          "name": "Eventos de persona vinculados a institución y fecha",
+          "level": 0,
+          "size": 1,
+          "why": "Sin cohortes reales elegibles para adjudicación",
+          "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+          "evidence_class": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Investigación, predicción y evaluación",
+      "weight": 14,
+      "milestones": [
+        {
+          "id": "sci.protocol",
+          "name": "Estimandos, hipótesis y protocolo AB",
+          "level": 3,
+          "size": 1,
+          "why": "Plan TFM con contraste y rivales documentados",
+          "evidence_ref": "docs/PLAN_TFM.md",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "sci.baseline",
+          "name": "Modelos de referencia y evaluación de simulación",
+          "level": 2,
+          "size": 1,
+          "why": "Código y tests históricos en demo; no benchmark de campo",
+          "evidence_ref": "src/politics_fantasy/forecast.py",
+          "evidence_class": "CODE_PRESENT_NOT_END_TO_END"
+        },
+        {
+          "id": "sci.field",
+          "name": "Evaluación prospectiva y replicación externa",
+          "level": 0,
+          "size": 1,
+          "why": "No existe as-of original, cohorte ni evaluación fuera de muestra validada",
+          "evidence_ref": "research/AB20_REALES_20261024/FINAL_R5_20261026.json",
+          "evidence_class": "ABSENT"
+        },
+        {
+          "id": "sci.fairness",
+          "name": "Sesgos, exposición y cobertura por rol",
+          "level": 1,
+          "size": 1,
+          "why": "Criterios diseñados; no cuantificados sobre universo representativo",
+          "evidence_ref": "docs/VSDS_PROYECTO.md",
+          "evidence_class": "DESIGN"
+        }
+      ]
+    },
+    {
+      "id": "game",
+      "name": "Mecánicas y motor de juego",
+      "weight": 16,
+      "milestones": [
+        {
+          "id": "game.core",
+          "name": "Demo jugable local con clubs y jornadas",
+          "level": 3,
+          "size": 1,
+          "why": "Motor SQLite demo con prueba histórica 49 PASS",
+          "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "game.market",
+          "name": "Mercado, presupuestos y alineaciones",
+          "level": 3,
+          "size": 1,
+          "why": "Operaciones transaccionales de demo y pruebas previas",
+          "evidence_ref": "product/QA_RUN_20261024.txt",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "game.rule",
+          "name": "Puntuación por reglas versionadas",
+          "level": 3,
+          "size": 1,
+          "why": "Regla sintética testeada; sin evaluación de personas reales",
+          "evidence_ref": "src/politics_fantasy/scoring.py",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "game.real",
+          "name": "Liga real segura con eventos atribuibles",
+          "level": 0,
+          "size": 1,
+          "why": "Bloqueada por fuente nominal, cobertura y equidad",
+          "evidence_ref": "docs/ARQUITECTURA.md",
+          "evidence_class": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "ui",
+      "name": "Interfaz y experiencia de usuario",
+      "weight": 10,
+      "milestones": [
+        {
+          "id": "ui.pages",
+          "name": "Interfaz web y navegación básica",
+          "level": 2,
+          "size": 1,
+          "why": "HTML/CSS/JS publicados; no QA navegador de versión actual",
+          "evidence_ref": "src/politics_fantasy/web/app.js",
+          "evidence_class": "CODE_PRESENT_NOT_END_TO_END"
+        },
+        {
+          "id": "ui.atlas",
+          "name": "Atlas electoral y observatorio",
+          "level": 3,
+          "size": 1,
+          "why": "Integrados en código, parser JS y contratos V8; no E2E",
+          "evidence_ref": "research/BRANCH30I_20261026/RESULTS_C01_C30_POST_MERGE.json",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "ui.access",
+          "name": "Accesibilidad, móvil y pruebas con usuarios",
+          "level": 1,
+          "size": 1,
+          "why": "Diseño responsive declarado, sin auditoría accesibilidad formal ni estudio de usuarios",
+          "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+          "evidence_class": "DESIGN"
+        },
+        {
+          "id": "ui.flow",
+          "name": "Flujo completo con datos actuales y confianza",
+          "level": 0,
+          "size": 1,
+          "why": "Sin prueba validada de usuarios y fuentes reales",
+          "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+          "evidence_class": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Privacidad, seguridad y licencias",
+      "weight": 8,
+      "milestones": [
+        {
+          "id": "sec.loopback",
+          "name": "Seguridad básica de demo local",
+          "level": 3,
+          "size": 1,
+          "why": "Bind loopback, Host/Origin, límite de payload documentados",
+          "evidence_ref": "src/politics_fantasy/server.py",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "sec.auth",
+          "name": "Autenticación y autorización multiusuario",
+          "level": 0,
+          "size": 1,
+          "why": "Inexistente; no publicar servidor a internet",
+          "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+          "evidence_class": "ABSENT"
+        },
+        {
+          "id": "sec.rights",
+          "name": "Derechos, privacidad y fuente acreditada",
+          "level": 1,
+          "size": 1,
+          "why": "Requisitos y gates diseñados, faltan licencias por recurso y auditoría legal",
+          "evidence_ref": "docs/FUENTES_Y_LICENCIAS.md",
+          "evidence_class": "DESIGN"
+        },
+        {
+          "id": "sec.ops",
+          "name": "Amenazas, backups, incidentes y abuso",
+          "level": 1,
+          "size": 1,
+          "why": "Plan de operaciones, no operación demostrada",
+          "evidence_ref": "docs/OPERACIONES_v0_3.md",
+          "evidence_class": "DESIGN"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "name": "Pruebas y reproducibilidad",
+      "weight": 8,
+      "milestones": [
+        {
+          "id": "qa.py",
+          "name": "Suite Python histórica ejecutada",
+          "level": 3,
+          "size": 1,
+          "why": "Registro de 49 pruebas anteriores y 88% cobertura en módulos del momento",
+          "evidence_ref": "product/QA_RUN_20261024.txt",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "qa.js",
+          "name": "Pruebas de contratos multiactor",
+          "level": 3,
+          "size": 1,
+          "why": "30 checks V8 y tests Node publicados",
+          "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "qa.endtoend",
+          "name": "Pruebas de procesos Node/Python HTTP CI y navegador",
+          "level": 1,
+          "size": 1,
+          "why": "Tests escritos, ejecución actual NO verificada",
+          "evidence_ref": "tests/test_evidence_http_smoke.py",
+          "evidence_class": "DESIGN"
+        },
+        {
+          "id": "qa.independent",
+          "name": "Reproducción independiente de fuentes y producto",
+          "level": 0,
+          "size": 1,
+          "why": "No disponible",
+          "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+          "evidence_class": "ABSENT"
+        }
+      ]
+    },
+    {
+      "id": "launch",
+      "name": "Operación, pilotos y lanzamiento",
+      "weight": 4,
+      "milestones": [
+        {
+          "id": "launch.docs",
+          "name": "Guía para ejecutar localmente",
+          "level": 3,
+          "size": 1,
+          "why": "Instalación demo documentada; revisión de paquete posterior necesaria",
+          "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+          "evidence_class": "LOCAL_TEST_OR_OLDER_LOG"
+        },
+        {
+          "id": "launch.rules",
+          "name": "Temporadas, onboarding y reglas operativas",
+          "level": 1,
+          "size": 1,
+          "why": "Mecánicas de demostración, sin operación con personas usuarias reales",
+          "evidence_ref": "docs/ARQUITECTURA.md",
+          "evidence_class": "DESIGN"
+        },
+        {
+          "id": "launch.hosted",
+          "name": "Despliegue público autenticado",
+          "level": 0,
+          "size": 1,
+          "why": "Inexistente y deliberadamente deshabilitado",
+          "evidence_ref": "src/politics_fantasy/server.py",
+          "evidence_class": "ABSENT"
+        },
+        {
+          "id": "launch.pilot",
+          "name": "Piloto, retención y medición con usuarios",
+          "level": 0,
+          "size": 1,
+          "why": "Sin estudio de usuarios",
+          "evidence_ref": "docs/PLAN_TFM.md",
+          "evidence_class": "ABSENT"
+        }
+      ]
+    }
+  ]
+}
