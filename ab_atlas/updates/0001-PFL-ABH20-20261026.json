@@ -1,0 +1,336 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0001-PFL-ABH20-20261026",
+  "parent_batch": "",
+  "at": "2026-10-26T21:05:00+00:00",
+  "actor": "chatgpt",
+  "reason": "AB-H 9 genuine cycles incl 2 STOP_R5, source alias candidate, product policy and complaints; no launch gate waived",
+  "ops": [
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-ABH-2024-NAME",
+        "title": "¿Existía el nombre electoral del voto de 2024 en fuentes oficiales?",
+        "kind": "question",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Sí, aparece en DSCD-15-PL-16 y en una iniciativa institucional de 2024. Respuesta documental sobre nombre/rol, no identidad inmutable.",
+        "sources": [
+          "research/ABH20_ATLAS_20261026/C07_RESULT.json"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-ABH-2024-ALIAS",
+        "title": "¿Cuesta Rodríguez María del Socorro equivale a ficha XV código 44?",
+        "kind": "question",
+        "mode": "research",
+        "status": "blocked",
+        "detail": "Candidata de alias: ficha código 44 muestra María Cuesta Rodríguez; iniciativa muestra María del Socorro; declaración PDF enlazada no pudo inspeccionarse. STOP_R5, no crosswalk legal ni puntuación.",
+        "sources": [
+          "research/ABH20_ATLAS_20261026/C08_RESULT.json",
+          "research/ABH20_ATLAS_20261026/C09_RESULT.json"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-ABH-ELIG-POLICY",
+        "title": "Política explicativa de elegibilidad documental",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "Módulo de cuarentena fail-closed, 12 tests unitarios locales, GET añadido; aún falta comprobar HTTP contra app completa. Ninguna persona puntúa.",
+        "sources": [
+          "src/politics_fantasy/source_eligibility.py",
+          "tests/test_source_eligibility.py"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-ABH-HTTP-CHECK",
+        "title": "Prueba HTTP real y auditabilidad del source crosswalk",
+        "kind": "blocker",
+        "mode": "project",
+        "status": "blocked",
+        "detail": "Test HTTP del repo completo no ejecutable sin checkout/CI bajo alerta de minutos. Código existe; gate E2E sigue cerrado.",
+        "sources": [
+          "tests/test_source_eligibility_http.py",
+          "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.set",
+      "id": "n_ca9094a596e4",
+      "set": {
+        "detail": "Bloqueado. Oficial XV código 44 como candidato de alias, pero sin PDF original inspeccionado ni crosswalk multifuente certificado. Ver C07–C09."
+      },
+      "reason": "Nuevas fuentes respaldan existencia documental pero no ID legal persistente"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E1",
+      "from": "n_24887f9afdd7",
+      "to": "PFL-ABH-2024-NAME",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E2",
+      "from": "PFL-ABH-2024-NAME",
+      "to": "PFL-ABH-2024-ALIAS",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E3",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-ABH-2024-ALIAS",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E4",
+      "from": "n_80498d9bc193",
+      "to": "PFL-ABH-ELIG-POLICY",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E5",
+      "from": "PFL-ABH-ELIG-POLICY",
+      "to": "PFL-ABH-HTTP-CHECK",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-ABH-E6",
+      "from": "PFL-ABH-HTTP-CHECK",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R01",
+        "activity": "AB-H ciclo C01 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C01_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R02",
+        "activity": "AB-H ciclo C02 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C02_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 4
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R03",
+        "activity": "AB-H ciclo C03 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C03_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R04",
+        "activity": "AB-H ciclo C04 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C04_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R05",
+        "activity": "AB-H ciclo C05 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C05_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R06",
+        "activity": "AB-H ciclo C06 — evidencia y decisión secuencial",
+        "status": "stopped",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R07",
+        "activity": "AB-H ciclo C07 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C07_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R08",
+        "activity": "AB-H ciclo C08 — evidencia y decisión secuencial",
+        "status": "completed",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C08_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH26-R09",
+        "activity": "AB-H ciclo C09 — evidencia y decisión secuencial",
+        "status": "stopped",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C09_RESULT.json"
+        ],
+        "cost": {
+          "GitHub_Actions_explicit": 0,
+          "GitHub_Actions_unintended_preguard": 0
+        },
+        "scope": "PFL-V1 rev3",
+        "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+        "complaint_ids": []
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-ABH-COMP-001",
+        "run_id": "PFL-ABH26-R03",
+        "category": "security",
+        "severity": "major",
+        "source": "agent/local-test",
+        "description": "Unhashable JSON scope raised TypeError before validation. Corrected in C04 and 12 local tests; full HTTP still unverified.",
+        "status": "triaged",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C03_RESULT.json",
+          "research/ABH20_ATLAS_20261026/C04_RESULT.json"
+        ],
+        "suspected_cause": "set membership before isinstance",
+        "verified_cause": "scope list/dict unhashable",
+        "resolution": "local guard repaired; integration test pending"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-ABH-COMP-002",
+        "run_id": "PFL-ABH26-R02",
+        "category": "cost",
+        "severity": "major",
+        "source": "agent/GitHub",
+        "description": "Four Actions workflows auto-triggered on new main-derived research branch before workflow trigger was restricted. Two were already in progress; account budget warning exists.",
+        "status": "triaged",
+        "evidence": [
+          "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+        ],
+        "suspected_cause": "main workflow broad push path filters",
+        "verified_cause": "push event triggered in research branch",
+        "resolution": "on.push restricted to main; no new runs observed after patch"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-ABH-COMP-003",
+        "run_id": "PFL-ABH26-R01",
+        "category": "ux",
+        "severity": "minor",
+        "source": "agent/review",
+        "description": "Existing product status is not a user-readable explanation of eligibility reasons",
+        "status": "open",
+        "suspected_cause": "status API lacks focused explanatory route",
+        "resolution": "new explanatory endpoint written, HTTP test not executed"
+      }
+    }
+  ]
+}
