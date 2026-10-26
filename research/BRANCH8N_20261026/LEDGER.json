@@ -9,12 +9,13 @@
   "DRIFT_D": "D1.1 original public electoral candidacies + local browser validation without redefining PFL V1",
   "main_evidence": "NATIVE_EVIDENCE.json",
   "prereg_sha": "a446ac762a5c3472eaec5b479f0ac71fd97aaff3",
-  "results_sha": "043fb2b45c9b8d27306076b53fc03c76c6280a34",
+  "results_sha": "1581912101fcd880f3c83f873926ea65e2bbc0e8",
   "official_original_candidacies_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
   "native_results": {
-    "Node": 95,
+    "Node": 98,
     "Python": 59,
-    "Chromium_green": true
+    "Chromium_green": true,
+    "validated_green_run": 40316425686
   },
   "crosswalk": {
     "exact": 8,
@@ -443,10 +444,10 @@
       "E": {
         "executed": true,
         "status": "PASS_CHROMIUM_E2E",
-        "observation": "Real Chromium navigation to market, atlas, progress in green CI; no uncaught JS exceptions",
+        "observation": "Real headless Chromium on current V3 application: 10 native progress bars, 36.4% displayed, market/atlas navigation, original BOE candidacy panel, no page JS errors.",
         "original_file_bytes_2023_document": null,
         "individual_legal_identity_matches": 0,
-        "native_browser_run": 40315022251
+        "native_browser_run": 40316425686
       },
       "F": {
         "adversarial": "Browser Chromium smoke is not a blind usability panel, device accessibility suite, public internet deployment or penetration test",
@@ -516,10 +517,10 @@
       "E": {
         "executed": true,
         "status": "PASS_LOCAL_HOST_SECURITY_SCOPE",
-        "observation": "Host external domain denied HTTP 403 in browser suite, no authentication or production security audit claimed",
+        "observation": "Real Chromium and HTTP localhost Host forged domain returned 403, CSP-compatible progress bars; no authentication or production security audit claimed.",
         "original_file_bytes_2023_document": null,
         "individual_legal_identity_matches": 0,
-        "native_browser_run": 40315022251
+        "native_browser_run": 40316425686
       },
       "F": {
         "adversarial": "Host check validates one localhost networking boundary; app lacks multiuser authentication, session management and a production CSRF model",
@@ -625,5 +626,16 @@
         "unused_cycle_authorization": 0
       }
     }
-  ]
+  ],
+  "validation": {
+    "all_AJ": true,
+    "user_authorized": 8,
+    "completed": 8,
+    "remaining": 0,
+    "technical_pass": 7,
+    "identity_partial_r5": 1,
+    "original_candidacy_file": "BOE-A-2023-15066",
+    "canonical_legal_party_ids": 0,
+    "real_people_matched": 0
+  }
 }
