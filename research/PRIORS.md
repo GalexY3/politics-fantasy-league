@@ -42,3 +42,23 @@ La procedencia, evidencias contrarias, incertidumbres y falsadores completos de 
 **Evidencia acumulativa nueva:** [LEDGER A–J BR30I](BRANCH30I_20261026/LEDGER.json), [JEC/atlas contraste](BRANCH30I_20261026/RESULTS_JEC_2023_FULL.json), [prueba de 30 endpoints](BRANCH30I_20261026/RESULTS_C01_C30_POST_MERGE.json).
 
 **Estado global de la investigación:** nuevas contribuciones N1/N2/N3=0; VSDS 1/3; CT2 multiactor 20/100 y CT2 predictiva 24/100, inalteradas; son ordinales de ramas distintas, **no probabilidades**. Mantener la discrepancia entre calidad de datos agregados corroborada y ausencia de validación histórica de personas.
+
+
+## BR30J · ampliación de fuentes y trazabilidad (26/10/2026)
+
+El bloque de 30 A–J BR30J no logró todavía capturar un padrón nacional de partidos y personas con documentos originales. Añade **ocho priors PF-J01–PF-J08** que se preservan en el ledger acumulativo, con evidencia a favor, adversa, incertidumbre, procedencia y falsador en [BRANCH30J/PRIORS_DELTA.md](BRANCH30J_20261026/PRIORS_DELTA.md). Ningún prior anterior se reemplaza.
+
+| ID | Priorización/hipótesis | Alcance y evidencia | Contraevidencia / falsador |
+|---|---|---|---|
+| PF-J01 | Catálogo oficial ≠ datos oficiales capturados | Ocho superficies documentadas, cero filas oficiales nuevas | Primer original auténtico materializado con licencia/historial |
+| PF-J02 | SHA256 de bytes ≠ firma/autenticación del emisor | CLI de ingesta escrita y control V8 de rechazo | Verificar procedencia mediante origen independiente y checksum |
+| PF-J03 | Persona, partido, coalición, candidatura y plataforma tienen identidades diferentes | 7 figuras inventadas con relaciones tipadas y homonimia | Fallo en vínculo real documentado de organizaciones/personas |
+| PF-J04 | Dos capturas del mismo evento no prueban dos eventos | As-of y revisión verificados solo en fixture V8 | Duplicación/retroactividad falsa en corpus real |
+| PF-J05 | Participación pública sin escaño no mide influencia causal | Contratos sin `influence_score`; actor/evento no parlamentario ficticio | Experimento causal externo con control de intervenciones |
+| PF-J06 | Cobertura nacional sin denominador real no identificable | `coverage_rate:null` en auditor | Censo de población objetivo válida y cobertura auditable |
+| PF-J07 | Elecciones municipales 2023 son universo distinto de generales | 41 siglas de RTVE transcritas parcialmente, datos CC BY de votomunicipal anunciados sin descargar | Archivo municipal original y emparejamiento legal por municipio |
+| PF-J08 | 30 checks V8 no son 30 experimentos de campo | 30/30 PASS sintéticos/documentales y cero personas reales nuevas | Pruebas prospectivas independientes con fuentes originales |
+
+[Ledger BR30J con fichas A–J](BRANCH30J_20261026/LEDGER.json) · [Resultados 30/30 y runtime no verificado](BRANCH30J_20261026/RESULTS_FINAL.json) · [Informe de limitaciones y siguiente evidencia](BRANCH30J_20261026/REPORT.md).
+
+**N1/N2/N3 nuevos 0. VSDS 1/3. CT2 multiactor 20/100 y predictiva parlamentaria 24/100 sin incremento**, ordinales y no probabilísticos. R5 de RPP/candidaturas oficiales sigue sin levantarse.
