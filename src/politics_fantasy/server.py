@@ -17,6 +17,7 @@ from .field_api import local_field_status
 from .actor_api import local_actor_universe_status
 from .electoral_atlas import atlas_status
 from .evidence_warehouse_status import status as evidence_status
+from .progress_api import progress_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -57,6 +58,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,local_lab_report())
             if route == '/api/field':
                 return self.reply(200,local_field_status(field_path))
+            if route == '/api/progress':
+                return self.reply(200,progress_status())
             if route == '/api/evidence-readiness':
                 return self.reply(200,evidence_status())
             if route == '/api/electoral-atlas':
