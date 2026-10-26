@@ -1,0 +1,87 @@
+{
+  "campaign": "PF-BR8N",
+  "date": "2026-10-26",
+  "authorized": 8,
+  "closed": 8,
+  "remaining": 0,
+  "source_audit_run": 40314178979,
+  "integrated_native_run": 40315022251,
+  "integrated_native_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40315022251",
+  "original_documents_now_confirmed": 2,
+  "original_candidacies_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+  "original_candidacies_bytes": 4298580,
+  "scope_of_candidacies": "Albacete, Congreso 2023",
+  "number_of_candidacy_labels": 8,
+  "crosswalk_exact_unique": 8,
+  "crosswalk_national_no_seats": 4,
+  "verified_registered_parties": 0,
+  "verified_people_joined": 0,
+  "JS_tests_native": 95,
+  "Python_tests_native": 59,
+  "browser_executed": true,
+  "browser_initial_status": "SUCCESS",
+  "latest_CSS_progress_recheck": "CODE_PUBLISHED_AWAITING_LATEST_CHROMIUM_JOB",
+  "progress_before": 35.45,
+  "progress_after": 36.35,
+  "work_effect_pp": 0.9,
+  "scope_effect_pp": 0,
+  "launch_blockers": 6,
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "N1_N2_N3_scientific": [
+    0,
+    0,
+    0
+  ],
+  "cycles": [
+    {
+      "id": "PF-BR8N-N01",
+      "status": "PASS_ORIGINAL_RAW",
+      "evidence": "Original BOE-A-2023-15066 captured through www.boe.es HTTPS: 4,298,580 bytes, SHA256 verified"
+    },
+    {
+      "id": "PF-BR8N-N02",
+      "status": "PASS_BOUNDED_EXTRACTION",
+      "evidence": "Eight Albacete Congreso proclaimed list acronyms recovered from 2023 original, people/parties legal IDs not populated"
+    },
+    {
+      "id": "PF-BR8N-N03",
+      "status": "PASS_CONSERVATIVE_CROSSWALK",
+      "evidence": "8/8 unique exact acronym crosswalk versus prior secondary national 2023 dataset, 4 national no-seat labels; no legal party inference"
+    },
+    {
+      "id": "PF-BR8N-N04",
+      "status": "PARTIAL_R5_IDENTITY",
+      "evidence": "Collision negative test fails closed, authentic RPP roster and individual public-candidate linkage not yet reconciled"
+    },
+    {
+      "id": "PF-BR8N-N05",
+      "status": "PASS_BOUNDED_ATLAS_UI",
+      "evidence": "Local API original BOE checksum, eight source-list labels, 0 people scored; browser displayed source panel in green CI"
+    },
+    {
+      "id": "PF-BR8N-N06",
+      "status": "PASS_CHROMIUM_E2E",
+      "evidence": "Real Chromium navigation to market, atlas, progress in green CI; no uncaught JS exceptions"
+    },
+    {
+      "id": "PF-BR8N-N07",
+      "status": "PASS_LOCAL_HOST_SECURITY_SCOPE",
+      "evidence": "Host external domain denied HTTP 403 in browser suite, no authentication or production security audit claimed"
+    },
+    {
+      "id": "PF-BR8N-N08",
+      "status": "PASS_GOVERNANCE_AND_PROGRESS",
+      "evidence": "V3 scope unchanged; 36.35% (+0.9pp work, 0 scope); six release blockers and VSDS/CT2 unchanged, governance files"
+    }
+  ],
+  "limitations": [
+    "Candidacy != registered party",
+    "No full national party/person roster, members or individual public-office history",
+    "4 no-seat labels refers national total secondary election results, not only Albacete",
+    "No public deployment or multiuser auth",
+    "New CSS semantic progress check in newest Chromium job has not yet been confirmed when initial results written",
+    "No independent sociology experiment done"
+  ]
+}
