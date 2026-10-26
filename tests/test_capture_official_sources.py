@@ -51,10 +51,10 @@ def test_capture_sha256_only_with_correct_institution_domain(monkeypatch,tmp_pat
     monkeypatch.setattr(C,"ROOT",tmp_path)
     url="https://www.congreso.es/example.json"
     reply=C.fetch_target("test",url,"json","www.congreso.es",
-        opener=mock_bytes(b'[{"PUBLIC":"DATO"}]',url))
+        opener=mock_bytes(b'[{"PUBLIC":"DATO_PUBLICO_DEMO"}]',url))
     assert reply["original_binary_captured"] is True
     assert reply["capture_status"]=="RAW_BYTES_CAPTURED"
-    assert reply["bytes"]==19
+    assert reply["bytes"]==len(b'[{"PUBLIC":"DATO_PUBLICO_DEMO"}]')
     assert len(reply["sha256"])==64
     assert (tmp_path/"test.json").read_bytes()==b'[{"PUBLIC":"DATO"}]'
 
@@ -74,3 +74,12 @@ def test_fake_html_content_with_json_extension_is_blocked(monkeypatch,tmp_path):
     assert result["original_binary_captured"] is False
     assert result["error_type"]=="JSONDecodeError"
     assert not list(tmp_path.iterdir())
+
+
+def test_pdf_signatures_with_embedded_fake_pdf_bytes():
+    fake=b"%PDF-1.4\\n"+b" " * 100+b"%%EOF\\n"
+    val=C.introspect(fake,"pdf")
+    assert val["signature_valid"] is True
+    assert val["format"] == "pdf"
+    with pytest.raises(ValueError,match="INVALID_PDF_MAGIC_OR_FOOTER"):
+        C.introspect(b"<html>wrong PDF</html>","pdf")
