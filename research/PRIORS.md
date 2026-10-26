@@ -98,3 +98,21 @@ Los priors PF-P, PF-MG/H/I/J/K precedentes siguen intactos. Se suman PF-M01–PF
 | PF-M06 | Artefacto privado expira en 3 días, SHA/URL/código quedan documentados | Custodia original a largo plazo aún no certificada |
 
 [12 A–J BR12M](BRANCH12M_20261026/LEDGER.json) · [informe y fuentes negativas](BRANCH12M_20261026/REPORT.md) · [V2 actual](../product/progress_snapshot_v2_20261026.json). Se preserva **VSDS 1/3; CT2 multiactor 20/100 y predictiva 24/100; N1/N2/N3 científicos nuevos 0**.
+
+
+## BR8N — fuente original de candidaturas, identidad conservadora y navegador (26/10/2026)
+
+Se incorporan **PF-N01–PF-N06** a la familia acumulativa, sin borrar ni reinterpretar PF-P, PF-MG/H/I/J/K/M. Para cada uno, evidencia favorable, contraevidencia, falsador y alcance completo se conservan en [BR8N/PRIORS_DELTA.md](BRANCH8N_20261026/PRIORS_DELTA.md).
+
+| Prior | Evidencia nueva | Límite determinante |
+|---|---|---|
+| PF-N01 | PDF BOE-A-2023-15066, 4.298.580 bytes, SHA256 `d1c179fc…ef0eda20`, ocho candidaturas al Congreso en Albacete | No son 8 partidos jurídicos certificados |
+| PF-N02 | Cruce exacto 8/8 con resultados 2023; FO, PACMA, PUM+J y Recortes Cero con votos **nacionales** y cero escaños | No mide influencia ni votos específicos de Albacete |
+| PF-N03 | Match ambiguo pasa a estado no resuelto y no se infiere militancia | JEC 78/2026 documenta límites de adscripción dentro de coaliciones |
+| PF-N04 | [CI 40316425686](https://github.com/GalexY3/Metodologia-AB/actions/runs/40316425686) 3/3 jobs verdes; 98 Node, 59 Python; Chromium local | No es piloto público, navegador/dispositivo exhaustivo ni auditoría de seguridad de cuentas |
+| PF-N05 | Diez barras nativas `<progress>` renderizadas con CSS externo bajo CSP restrictivo | No prueba accesibilidad formal completa |
+| PF-N06 | V2 35,450 → **V3 36,350%**, +0,900pp por trabajo y 0 por alcance | Seis gates de lanzamiento y niveles científicos invariantes |
+
+[BR8N 8 A–J](BRANCH8N_20261026/LEDGER.json) · [Informe](BRANCH8N_20261026/REPORT.md) · [Progreso V3](../product/progress_snapshot_v3_20261026.json).
+
+**N1/N2/N3 científicos nuevos 0, VSDS 1/3, CT2 multiactor 20/100, CT2 parlamentaria 24/100.** Los tests nativos y las candidaturas históricas son resultados técnicos/documentales delimitados.
