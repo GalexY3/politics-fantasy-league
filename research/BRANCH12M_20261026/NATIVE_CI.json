@@ -1,19 +1,21 @@
 {
   "campaign": "PF-BR12M",
   "date": "2026-10-26",
-  "most_recent_successful_commit": "c76e4504deeb15abf3c1f836e37135ccf99926e1",
-  "run_id": 40258316221,
-  "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40258316221",
+  "most_recent_successful_commit": "bf04227319377e321a3f95c175a299cef013f9f3",
+  "run_id": 40258776701,
+  "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40258776701",
   "jobs": [
     {
       "name": "source-and-app-checks",
       "conclusion": "success",
-      "details": "Node suites including progress and CLI ingestion, Python pytest integration including local HTTP, plus secondary CSV pinned and JEC replay"
+      "details": "Node suites including progress and CLI ingestion, Python pytest integration including local HTTP, plus secondary CSV pinned and JEC replay",
+      "id": 121366328700
     },
     {
       "name": "original-source-download",
       "conclusion": "success",
-      "details": "4 direct institutional URL attempted with verified TLS; BOE PDF captured; page 2 extracted by newly installed pdftotext, 52x6 reconciled"
+      "details": "4 direct institutional URL attempted with verified TLS; BOE PDF captured; page 2 extracted by newly installed pdftotext, 52x6 reconciled",
+      "id": 121366328548
     }
   ],
   "original_pdf": {
@@ -43,16 +45,26 @@
     "interior_congress_xlsx": "TLS certificate chain not accepted; verification NOT disabled"
   },
   "ephemeral_artifact": {
-    "id": 12623510626,
-    "workflow": 40258316221,
-    "expires_at": "2026-10-29T02:17:08Z",
+    "id": 12623134883,
+    "workflow": 40258776701,
+    "expires_at": "2026-10-29T02:22:51Z",
     "contains_raw_pdf": true,
-    "location": "Private GitHub Actions artifact, NOT in repository current source files",
-    "sha256_artifact_archive": "10546d57ad5e801e956c31be7e62c53363a6b3669634568fcc9ef05a91311fbf"
+    "location": "Private GitHub Actions artifact; not in public game",
+    "sha256_artifact_archive": "NOT_REQUIRED_FOR_RAW_PDF_SHA; see original_pdf.sha256"
   },
   "claims_not_made": [
     "BOE PDF checksum is not independently publisher-signed",
     "original file does not provide verified first-public-at for later CSV snapshots",
     "not an official current party or person legal registry"
-  ]
+  ],
+  "native_tests": {
+    "node_suites": 7,
+    "node_tests": 91,
+    "node_failures": 0,
+    "pytest_total": 50,
+    "pytest_passed": 50,
+    "pytest_failed": 0,
+    "source_and_app_job_conclusion": "success",
+    "original_source_job_conclusion": "success"
+  }
 }
