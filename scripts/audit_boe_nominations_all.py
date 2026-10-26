@@ -131,6 +131,18 @@ def main():
         "list_headings_extracted","distinct_label_acronyms","uncertain_province_sections")}
     print("BOE_NOMINATION_ATLAS="+json.dumps(summary,ensure_ascii=False))
     print("BOE_NOMINATION_ERRORS="+json.dumps(a["issues"][:12],ensure_ascii=False))
+    # Log bounded, ASCII-escaped PUBLIC CANDIDACY LABELS only, never people names.
+    # Chunks enable reproducible import without putting PDF/persons into Git commits.
+    safe={k:a[k] for k in ("source_document","source_date","election","sha256",
+        "original_bytes","province_sections_detected","province_sections_parsed",
+        "list_headings_extracted","distinct_label_acronyms","provinces","issues",
+        "legal_parties_confirmed","people_public_roles_joined",
+        "official_population_denominator_confirmed")}
+    compact=json.dumps(safe,ensure_ascii=True,separators=(",",":"))
+    chunks=[compact[i:i+3600] for i in range(0,len(compact),3600)]
+    for k,part in enumerate(chunks):
+        print(f"BOE_PUBLIC_AGG_CHUNK={k+1}/{len(chunks)}:"+part)
+
     # Genuine incompleteness remains a recorded STOP, not a silently corrected one.
     if a["province_sections_parsed"]<2:
         raise SystemExit("INSUFFICIENT_PROVINCIAL_SECTIONS")
