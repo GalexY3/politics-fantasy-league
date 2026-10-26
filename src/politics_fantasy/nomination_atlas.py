@@ -36,6 +36,9 @@ def status(path:Path|None=None)->dict:
             return {**stopped,"error":"SOURCE_PROVENANCE_OR_COUNTS_CHANGED"}
         found=set()
         out=[]
+        review_set={x.get("province") for x in d["issues"]
+                    if x.get("code")=="CONTAINS_NON_PROCLAMATION_NOTICE_REVIEW"}
+
         for province in items:
             if any(k not in province for k in KEYS):
                 return {**stopped,"error":"PROVINCE_SCHEMA"}
@@ -64,7 +67,8 @@ def status(path:Path|None=None)->dict:
                 rows.append({"id":row["candidacy_id"],"acronym":acr,
                     "semantics":"ELECTORAL_CANDIDACY_LABEL_ONLY"})
             out.append({"province":province["province_label"],"province_id":pid,
-                "n_candidacies":len(rows),"lists":rows})
+                "n_candidacies":len(rows),"lists":rows,
+                "requires_non_proclamation_review":province["province_label"] in review_set})
         if sum(x["n_candidacies"] for x in out)!=263:
             return {**stopped,"error":"TOTAL_MISMATCH"}
         return {**stopped,"ok":True,"source_url":d["source"],
@@ -72,7 +76,10 @@ def status(path:Path|None=None)->dict:
             "year":2023,"coverage":"25 of 52 distinct provincial sections accepted; other 27 unresolved",
             "n_provinces":len(out),"n_candidacies":263,"detected_provincial_sections":52,
             "unresolved_provincial_sections":52-len(out),
-            "issues_count":len(d["issues"]),"provinces":out,
+            "issues_count":len(d["issues"]),
+            "extracted_with_review_notices":sum(x["requires_non_proclamation_review"] for x in out),
+            "extracted_without_known_notices":sum(not x["requires_non_proclamation_review"] for x in out),
+            "provinces":out,
             "warning":"Electoral candidacies ≠ legal parties, affiliations, seats or people. 27 sections unresolved."}
     except (OSError,KeyError,ValueError,TypeError,AttributeError,OverflowError):
         return {**stopped,"error":"INVALID_SOURCE"}
