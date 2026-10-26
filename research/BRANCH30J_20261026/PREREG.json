@@ -1,0 +1,322 @@
+{
+  "campaign": "PF-BR30J",
+  "date": "2026-10-26",
+  "authorized": 30,
+  "branching": "YES",
+  "protocol": "AB_3_2_1_A_TO_J",
+  "objective": "Extend Politics Fantasy beyond legislators to verified legal parties and public non-elected political actors; prioritize new source ingestion and runnable tests",
+  "exposure": "Design informed by previous BR30I and public official source catalogs. This is engineering-oriented pre-run registration, NOT confirmatory blinded research.",
+  "source_authorities": [
+    {
+      "id": "RPP",
+      "url": "https://datos.gob.es/es/aplicaciones/consulta-del-registro-de-partidos-politicos",
+      "state": "DOCUMENTED_ONLY",
+      "format": "search interface/PDF"
+    },
+    {
+      "id": "INTERIOR_ELECTIONS",
+      "url": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales",
+      "state": "DOCUMENTED_ONLY",
+      "format": "XLSX"
+    },
+    {
+      "id": "JEC_2023_CANDIDATES",
+      "url": "https://www.juntaelectoralcentral.es/cs/jec/elecciones/Generales-julio2023",
+      "state": "DOCUMENTED_ONLY",
+      "format": "official web/BOE"
+    },
+    {
+      "id": "CONGRESO_MP",
+      "url": "https://www.congreso.es/es/opendata/diputados",
+      "state": "DOCUMENTED_ONLY",
+      "format": "CSV/JSON/XML"
+    },
+    {
+      "id": "BIZKAIA_MUNICIPAL",
+      "url": "https://datos.gob.es/es/catalogo/l02000048-resultados-de-elecciones-a-juntas-generales-y-municipales",
+      "state": "DOCUMENTED_ONLY",
+      "format": "CSV/JSON"
+    },
+    {
+      "id": "LOCAL_JEC",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-16886",
+      "state": "DOCUMENTED_ONLY",
+      "format": "municipal results 2023"
+    }
+  ],
+  "baseline": "Current 2023 electoral atlas (59 labels), fictional actor universe and 2023 JEC manual transcriptions; no official party/person catalogue captured",
+  "expected_types": "Evidence feasibility STOP where official raw unavailable; CODE+TEST results where locally executed; no invented real-party facts",
+  "grade_rule": "VSDS1/3 CT2 20/100 multiactor and 24/100 legislative fixed until new field validation; N1/N2/N3=0 unless separately confirmed",
+  "cycles": [
+    {
+      "id": "PF-BR30J-S01",
+      "branch": "sources",
+      "question": "Fuente oficial Registro de Partidos vs catálogo de acceso",
+      "endpoint": "documentar endpoint, formato, obtención sin inventar filas",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S02",
+      "branch": "sources",
+      "question": "Cargos y electos del Congreso oficiales",
+      "endpoint": "documentar distribuciones y contrato de campos sin inventar descargas",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S03",
+      "branch": "sources",
+      "question": "Candidaturas JEC y diferentes jurisdicciones",
+      "endpoint": "distinguir proclamación electoral y partido inscrito",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S04",
+      "branch": "sources",
+      "question": "Fuentes municipales/autonómicas distintas del Congreso",
+      "endpoint": "registrar >1 nivel y cobertura declarada sin atribuir datos",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S05",
+      "branch": "sources",
+      "question": "Manifest de capturas originales",
+      "endpoint": "bytes sha256 + tipo/licencia/tiempo y source-id verificables",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S06",
+      "branch": "sources",
+      "question": "Prevención de false provenance",
+      "endpoint": "rechazo de manifests no verificados o falsa categoría oficial",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S07",
+      "branch": "sources",
+      "question": "Licencias y posibilidades de redistribución",
+      "endpoint": "distinguir licencia desconocida de permitida",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-S08",
+      "branch": "sources",
+      "question": "Control de versiones de fuentes",
+      "endpoint": "las revisiones se registran, no sobrescriben histórico",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I09",
+      "branch": "identity",
+      "question": "Identidad de organización con namespace/ID",
+      "endpoint": "IDs externos estables, no nombres ni siglas",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I10",
+      "branch": "identity",
+      "question": "Homonimia y denominaciones históricas",
+      "endpoint": "colisiones no se fusionan automáticamente",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I11",
+      "branch": "identity",
+      "question": "Coalición vs partidos miembros",
+      "endpoint": "vínculos organizacionales no se deducen de etiqueta",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I12",
+      "branch": "identity",
+      "question": "Relación candidatura-persona en fechas",
+      "endpoint": "candidate_of separado de afiliación y cargo",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I13",
+      "branch": "identity",
+      "question": "Roles temporalmente válidos",
+      "endpoint": "intervalos sin sustitución retroactiva",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-I14",
+      "branch": "identity",
+      "question": "Estado de escaño triestado",
+      "endpoint": "UNKNOWN frente a PRESENT/ABSENT documentados",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E15",
+      "branch": "events",
+      "question": "Fuente documental de un evento público",
+      "endpoint": "tipo, fuente y fecha; rechazar no verificable",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E16",
+      "branch": "events",
+      "question": "Primera publicación vs captura",
+      "endpoint": "no visibilidad histórica de datos posteriores",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E17",
+      "branch": "events",
+      "question": "Participación en un evento vs influencia",
+      "endpoint": "no crear score causal del evento",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E18",
+      "branch": "events",
+      "question": "Organización pública sin escaños como emisor",
+      "endpoint": "admitir partidos/agrupaciones/plataformas",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E19",
+      "branch": "events",
+      "question": "Contradicciones y correcciones de eventos",
+      "endpoint": "conservar claims y versiones con procedencia",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E20",
+      "branch": "events",
+      "question": "Deduplicación de un mismo acontecimiento",
+      "endpoint": "no doble conteo por múltiples fuentes",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-E21",
+      "branch": "events",
+      "question": "Control de datos personales sensibles",
+      "endpoint": "excluir personas privadas y membresía inferida",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-M22",
+      "branch": "measurement",
+      "question": "Denominador de cobertura verificable",
+      "endpoint": "no estimar tasa nacional sin total poblacional",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-M23",
+      "branch": "measurement",
+      "question": "Sesgo de fuente vs actividad real",
+      "endpoint": "producir tabla cobertura por tipo y procedencia",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-M24",
+      "branch": "measurement",
+      "question": "No representación como situación documentada",
+      "endpoint": "zero seats no fuerza zero actividad",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-M25",
+      "branch": "measurement",
+      "question": "Modelo temporal y comparador competente",
+      "endpoint": "no entrenar sin labels as-of y split limpio",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-M26",
+      "branch": "measurement",
+      "question": "Auditoría adversarial de inferencias",
+      "endpoint": "casos contradictorios son no identificables",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-P27",
+      "branch": "product",
+      "question": "Importador offline de bundles",
+      "endpoint": "acepta ficheros válidos y bloquea registros no certificados",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-P28",
+      "branch": "product",
+      "question": "Integración API local read-only",
+      "endpoint": "endpoint nuevo con QA HTTP, sin publicar datos privados",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-P29",
+      "branch": "product",
+      "question": "Pruebas reales Python/Node",
+      "endpoint": "ejecutar suite limpia sobre archivos creados y registrar fallos",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    },
+    {
+      "id": "PF-BR30J-P30",
+      "branch": "product",
+      "question": "Ledger y documentación incremental",
+      "endpoint": "A–J completo/30 + priors/no falsos experimentos",
+      "comparison": "Simpler parliamentary-only catalog or unchecked-source naive join vs strict source/time/role instrument",
+      "falsifier": "One counterexample violates the endpoint; preserve failures",
+      "status": "PRE_REGISTERED_NOT_EXECUTED"
+    }
+  ]
+}
