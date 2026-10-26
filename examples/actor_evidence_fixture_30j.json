@@ -1,0 +1,177 @@
+{
+  "dataset_class": "FULLY_FICTIONAL_ENGINEERING_FIXTURE",
+  "description": "Seven entirely invented public political entities/roles and timed events; no real politician or Spanish party represented.",
+  "sources": [
+    {
+      "id": "TEST:ref",
+      "kind": "OFFICIAL",
+      "state": "DOCUMENTED_ONLY",
+      "url": "https://fixture.example/reference",
+      "observed_at": "2026-10-26T00:00:00Z",
+      "rights": "UNKNOWN",
+      "first_public_at": null
+    },
+    {
+      "id": "TEST:early",
+      "kind": "SYNTHETIC",
+      "state": "TEST_FIXTURE",
+      "url": "https://fixture.example/early",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-01-01T00:00:00Z",
+      "rights": "SYNTHETIC"
+    },
+    {
+      "id": "TEST:late",
+      "kind": "SYNTHETIC",
+      "state": "TEST_FIXTURE",
+      "url": "https://fixture.example/late",
+      "observed_at": "2026-10-26T00:00:00Z",
+      "first_public_at": "2026-10-25T00:00:00Z",
+      "rights": "SYNTHETIC"
+    }
+  ],
+  "entities": [
+    {
+      "id": "TEST:party_a",
+      "type": "PARTY",
+      "name": "Horizonte Ficticio",
+      "source_id": "TEST:early"
+    },
+    {
+      "id": "TEST:party_b",
+      "type": "PARTY",
+      "name": "Nubes Ficticias",
+      "source_id": "TEST:early"
+    },
+    {
+      "id": "TEST:coalition",
+      "type": "COALITION",
+      "name": "Coalición de Ejemplo",
+      "source_id": "TEST:early"
+    },
+    {
+      "id": "TEST:list",
+      "type": "CANDIDACY",
+      "name": "Lista Imaginaria",
+      "source_id": "TEST:early"
+    },
+    {
+      "id": "TEST:actor",
+      "type": "PERSON_PUBLIC",
+      "name": "Alma Imaginaria",
+      "source_id": "TEST:early",
+      "public_role_documented": true
+    },
+    {
+      "id": "TEST:civic",
+      "type": "CIVIC_PLATFORM",
+      "name": "Plataforma Pública Ejemplo",
+      "source_id": "TEST:early"
+    },
+    {
+      "id": "TEST:interest",
+      "type": "INTEREST_GROUP",
+      "name": "Foro de Interés Simulado",
+      "source_id": "TEST:early"
+    }
+  ],
+  "roles": [
+    {
+      "id": "TEST:member_a",
+      "type": "COALITION_PARTICIPANT",
+      "subject_id": "TEST:party_a",
+      "object_id": "TEST:coalition",
+      "source_id": "TEST:early",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "TEST:member_b",
+      "type": "COALITION_PARTICIPANT",
+      "subject_id": "TEST:party_b",
+      "object_id": "TEST:coalition",
+      "source_id": "TEST:early",
+      "valid_from": "2026-01-01",
+      "valid_to": null,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "TEST:candidate",
+      "type": "PUBLIC_CANDIDATE",
+      "subject_id": "TEST:actor",
+      "object_id": "TEST:list",
+      "source_id": "TEST:early",
+      "valid_from": "2026-02-01",
+      "valid_to": null,
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-02-01T00:00:00Z"
+    },
+    {
+      "id": "TEST:spokesperson",
+      "type": "PUBLIC_SPOKESPERSON",
+      "subject_id": "TEST:actor",
+      "object_id": "TEST:party_a",
+      "source_id": "TEST:early",
+      "valid_from": "2025-12-01",
+      "valid_to": "2026-06-01",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-02-01T00:00:00Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "TEST:debate",
+      "type": "PUBLIC_DEBATE",
+      "occurred_on": "2026-03-01",
+      "source_id": "TEST:early",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-03-02T00:00:00Z",
+      "external_event_id": "fixture-event-001",
+      "participants": [
+        {
+          "actor_id": "TEST:actor",
+          "role": "SPEAKER"
+        },
+        {
+          "actor_id": "TEST:civic",
+          "role": "ORGANIZER"
+        }
+      ]
+    },
+    {
+      "id": "TEST:debate_correction",
+      "type": "PUBLIC_DEBATE",
+      "occurred_on": "2026-03-01",
+      "source_id": "TEST:late",
+      "observed_at": "2026-10-26T00:00:00Z",
+      "first_public_at": "2026-10-25T00:00:00Z",
+      "amendment_of": "TEST:debate",
+      "external_event_id": "fixture-event-001",
+      "participants": [
+        {
+          "actor_id": "TEST:actor",
+          "role": "SPEAKER"
+        },
+        {
+          "actor_id": "TEST:civic",
+          "role": "ORGANIZER"
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "TEST:statement",
+      "type": "PUBLIC_STATEMENT",
+      "subject_id": "TEST:party_a",
+      "source_id": "TEST:early",
+      "observed_at": "2026-04-01T00:00:00Z",
+      "first_public_at": "2026-03-10T00:00:00Z",
+      "issue": "transporte",
+      "exact_statement": "Proponemos un autobús público de ejemplo."
+    }
+  ]
+}
