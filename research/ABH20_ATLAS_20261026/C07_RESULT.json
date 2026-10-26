@@ -1,0 +1,55 @@
+{
+  "id": "C07",
+  "mode": "AB-H/AB-R",
+  "status": "CLOSED_DOCUMENTARY_CORROBORATION",
+  "question": "¿Existe en documentos primarios del Congreso el nombre que no enlazaba el JSON de votaciones de 2024?",
+  "observed": {
+    "source_name": "Cuesta Rodríguez, María del Socorro",
+    "official_mentions": [
+      {
+        "type": "Diario de Sesiones",
+        "id": "DSCD-15-PL-16",
+        "date": "2024-01-10",
+        "url": "https://www.congreso.es/es/publicaciones-organo?_publicaciones_id_texto=DSCD-15-PL-16.CODI.&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&_publicaciones_template=PUWTZDTT.fmt&p_p_id=publicaciones&p_p_lifecycle=0&p_p_state=normal",
+        "role": "rollcall name"
+      },
+      {
+        "type": "Registro de iniciativa",
+        "id": "181/000815",
+        "date": "2024-11-29",
+        "url": "https://www.congreso.es/es/iniciativas-diputado?_iniciativas_id=181%2F000815&_iniciativas_legislatura=XV&_iniciativas_mode=mostrarDetalle&p_p_id=iniciativas&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "role": "author GP"
+      },
+      {
+        "type": "Mesa del Congreso",
+        "date": "2024-09-24",
+        "url": "https://app.congreso.es/svt/descargarOrdenDia?fecha=24%2F09%2F2024&sesion=1&tipoDocumento=2",
+        "role": "author GP"
+      }
+    ],
+    "two_primary_genres": 2,
+    "disproved": "A missing exact name from one snapshot cannot demonstrate there was no real Deputy named that way",
+    "not_yet_proven": "Permanent unique legal identity, numeric crosswalk, binary original replay and signable first_public_at"
+  },
+  "rivals": {
+    "H1": "SUPPORTED descriptive: the string occurs as deputy/author in separately published institutional sources",
+    "H0": "REFUTED for documentary existence",
+    "Hother": "Single name may have format change or truncated full name; to be examined C08"
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "holdout": "DISCOVERY-EXPOSED_NO_INDEPENDENT_CONFIRMATION",
+    "N1": 0,
+    "N2": 0,
+    "N3": 0
+  },
+  "AB_P": {
+    "new_certified_people": 0,
+    "real_score_allowed": false,
+    "release_gates_passed": 0
+  },
+  "adversarial": "Sources of the same institution and name-based mentions do not prove common codParlamentario across records; earlier dataset exact string failure stands, interpretation as absent person refuted",
+  "next": "C08 examine original official XV profile with codParlamentario=44 and alternate displayed name as potential source-scoped alias"
+}
