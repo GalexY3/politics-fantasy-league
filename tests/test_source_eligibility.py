@@ -32,6 +32,14 @@ class EligibilityTests(unittest.TestCase):
     def test_malformed_input_fails_closed(self):
         for x in (None, [], 12, "source"):
             self.assertEqual(assess_evidence(x)["status"], "QUARANTINED")
+    def test_unhashable_scopes_fail_closed(self):
+        for scope in ([], {}, ["PERSON_EVENT"], {"nested": 1}):
+            r=assess_evidence({**GOOD, "scope": scope})
+            self.assertIn("UNKNOWN_SCOPE", r["reasons"])
+            self.assertFalse(r["release_ready"])
+    def test_absent_or_bad_url_never_releases(self):
+        for url in (None, "file:///tmp/secret", "https://www.congreso.es:444/p"):
+            self.assertFalse(assess_evidence({**GOOD, "official_url": url})["release_ready"])
     def test_overall_policy(self):
         self.assertFalse(policy_status()["release_ready"])
 

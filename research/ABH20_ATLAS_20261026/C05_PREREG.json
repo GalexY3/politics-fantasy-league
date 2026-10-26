@@ -1,0 +1,47 @@
+{
+  "id": "C05",
+  "mode": "AB-H/AB-P",
+  "status": "PREREGISTERED",
+  "A": {
+    "outcome": "GET /api/eligibility-policy in localhost demo",
+    "user": "developers and demo users"
+  },
+  "B": {
+    "H1": "route works with existing Host guard",
+    "H0": "route inadvertently bypasses Host guard",
+    "Hother": "integration only statically inspected"
+  },
+  "C": {
+    "baseline": "existing handler_factory and _is_local_host",
+    "no_client_receipts": true
+  },
+  "D": {
+    "criteria": [
+      "GET only",
+      "403 external Host",
+      "never score real people",
+      "no new POST route"
+    ],
+    "falsifier": "foreign Host 200 or release_ready true"
+  },
+  "E": {
+    "implementation": "one import and route; HTTP unittest without Actions"
+  },
+  "F": {
+    "pending": true
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "complaints": []
+  },
+  "I": {
+    "no_launch_effect": true
+  },
+  "J": {
+    "decision": "select after local runtime"
+  },
+  "CT2_before": 29,
+  "grade_0_3": 0
+}

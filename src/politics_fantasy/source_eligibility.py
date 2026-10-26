@@ -27,7 +27,7 @@ def assess_evidence(record: object) -> dict:
                       "reuse_adjudicated"}:
         reasons.append("UNKNOWN_FIELDS")
     scope = record.get("scope")
-    if scope not in ALLOWED_SCOPES:
+    if not isinstance(scope, str) or scope not in ALLOWED_SCOPES:
         reasons.append("UNKNOWN_SCOPE")
     url = record.get("official_url")
     if not isinstance(url, str):

@@ -1,0 +1,30 @@
+{
+  "id": "C04",
+  "mode": "AB-H/AB-P",
+  "status": "CLOSED_REPAIRED_LOCALLY",
+  "observed": {
+    "initial_bug": "scope dict/list raises TypeError",
+    "fixed": "isinstance(scope,str) before set membership",
+    "local_tests": "12/12 PASS on patched local copy",
+    "new_tests": 2,
+    "CI": "NOT_RUN",
+    "HTTP": "NOT_INTEGRATED"
+  },
+  "AB_P": {
+    "module_test_accepted": true,
+    "integration_not_verified": true,
+    "readiness": false
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "complaint_updates": [
+    {
+      "id": "PFL-ABH-SEC-001",
+      "status": "repaired_locally_not_yet_integration_verified"
+    }
+  ],
+  "next": "C05 integrate GET to loopback server"
+}
