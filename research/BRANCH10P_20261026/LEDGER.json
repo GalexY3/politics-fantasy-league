@@ -1,0 +1,642 @@
+{
+  "campaign": "PF-BR10P",
+  "protocol": "AB_3_2_1_A-J",
+  "authorized": 10,
+  "completed": 10,
+  "unused": 0,
+  "date": "2026-10-26",
+  "drift": "D1.1 larger territorial documentary surface, same political multiactor scope",
+  "source_result_sha": "35dd2bb0f495f3bc844efdc8cf73fca59a9c033c",
+  "source_blob_sha": "90ec8c305249e8c056b08e6db3354bf53d879c75",
+  "stage_specific": "BOE original province-list extraction ONLY",
+  "scientific_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "VSDS": 1,
+  "CT2_multiactor": 20,
+  "CT2_predictive": 24,
+  "cycles": [
+    {
+      "id": "PF-BR10P-C01",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "source",
+      "A": {
+        "question": "Capture whole BOE 15066 as text and verify full original PDF sha",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Original digest verified in CI and extraction manifest bounded"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_ORIGINAL_SOURCE",
+        "observed": "BOE institutional original 4,298,580 bytes, SHA256 matched, 52 provincial commissions recognized",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "An HTTPS official PDF from one 2023 election is not an RPP legal entity register or a fresh 2026 activity source",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "An HTTPS official PDF from one 2023 election is not an RPP legal entity register or a fresh 2026 activity source",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_ORIGINAL_SOURCE",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C02",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "parser",
+      "A": {
+        "question": "Segment congressional nomination headings across provincial electoral commissions",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Parser rejects empty/no-boundary and never includes Senate records"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_BOUNDED_PARSER",
+        "observed": "Uppercase heading bug including short VOX repaired; 25 ordered province sections parsed; Congress separated from Senate",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Layout-specific parser previously skipped six-letter VOX (VOX); global source correctness not inferred from code alone",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "Layout-specific parser previously skipped six-letter VOX (VOX); global source correctness not inferred from code alone",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_BOUNDED_PARSER",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C03",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "parser",
+      "A": {
+        "question": "Handle atypical names, accents and broken headings without inventing province",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Unrecognized/ambiguous province lines flagged not silently normalized"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "STOP_R5_REVIEW",
+        "observed": "27 provinces have missing/atypical sequence positions; parser quarantines instead of inventing headings",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Missing numeration in 27 of 52 sections blocks claiming a complete original census; no inferred records added",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Unresolved structural/semantic source coverage; no positive coverage posterior",
+        "counterevidence": "Missing numeration in 27 of 52 sections blocks claiming a complete original census; no inferred records added",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "STOP_R5_REVIEW",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_PARTIAL_REVIEW",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C04",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "representation",
+      "A": {
+        "question": "Count lists across distinct provinces instead of extrapolating Albacete",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Official extraction reports number and provenance, not national coverage without completeness"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_PARTIAL_DISCOVERY",
+        "observed": "263 distinct candidacy positions from 25 parsed provincial sections; 50 distinct acronyms, not 263 parties",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Even a complete 25-section parse includes nonproclamation references; 263 is not complete national population",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "Even a complete 25-section parse includes nonproclamation references; 263 is not complete national population",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_PARTIAL_DISCOVERY",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C05",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "identity",
+      "A": {
+        "question": "Model candidature ID as (BOE document,province,chamber,order), not acronym",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Duplicate acronym across provinces stays separate candidature; legal party unknown"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_TYPED_IDENTIFIERS",
+        "observed": "Each record keyed by BOE/province/Congress/ordinal; acronyms may repeat without merging",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Distinct (territory, list ordinal) ID need not correspond to independent legal parties or members",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "Distinct (territory, list ordinal) ID need not correspond to independent legal parties or members",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_TYPED_IDENTIFIERS",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C06",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "identity",
+      "A": {
+        "question": "Preserve non-proclaimed and historical caveats",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "No automatic certification of registered party, seat, affiliation, or presence in 2026"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PARTIAL_R5_NONPROCLAMATION",
+        "observed": "Nine of 25 extracted provincial sections mention no-proclamation and require further document-level adjudication",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Nine accepted sequences carry documentary review notices, so they are not classed independently final/legal",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Unresolved structural/semantic source coverage; no positive coverage posterior",
+        "counterevidence": "Nine accepted sequences carry documentary review notices, so they are not classed independently final/legal",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PARTIAL_R5_NONPROCLAMATION",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "STOP_R5_PARTIAL_REVIEW",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C07",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "join",
+      "A": {
+        "question": "Expose exact unique acronym crosswalk as qualified cross-source observation",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Ambiguous secondary join remains unresolved; never claims legal matching"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_EXACT_MATCH_BOUNDARY",
+        "observed": "Prior eight Albacete original labels remain exact matches to secondary election-wide totals, no party-legal inference",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Acronym match across official and secondary sources could be homonym or changed coalition; not a legal join",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "Acronym match across official and secondary sources could be homonym or changed coalition; not a legal join",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_EXACT_MATCH_BOUNDARY",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C08",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "api",
+      "A": {
+        "question": "Create read-only aggregate official multi-province nomination API",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Raw people, private affiliations and scores not exposed"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_READONLY_API_SOURCE",
+        "observed": "Local GET /api/official-nominations returns 25 province summaries, 263 list IDs, no people or scoring",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "API schema validated on fixed source manifest, not public internet auth or provenance signature",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "API schema validated on fixed source manifest, not public internet auth or provenance signature",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_READONLY_API_SOURCE",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C09",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "qa",
+      "A": {
+        "question": "Run genuine Node/Python/Chromium CI for new parser/route with anti-corruption cases",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Native logs pass or explicit failed state retained"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_NATIVE_SOURCE_AND_QA",
+        "observed": "Native Python source-parser, API and integrity tests on GitHub runner; browser panel tested with case-fold repairs",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "One failed browser assertion was case-sensitive despite CSS transformation; retain failure then test corrected",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "One failed browser assertion was case-sensitive despite CSS transformation; retain failure then test corrected",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_NATIVE_SOURCE_AND_QA",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    },
+    {
+      "id": "PF-BR10P-C10",
+      "status": "AB_A_J_CONCLUDED",
+      "branch": "governance",
+      "A": {
+        "question": "Close C01-C10 with original source provenance and bounded scientific interpretation",
+        "unit": "Authenticated PDF provincial list heading / product API",
+        "estimand": "Ten full A-J entries, source classifications and R5 kept"
+      },
+      "B": {
+        "H1": "Original BOE source can establish a bounded candidate-list population",
+        "H0": "Parser could be misleading on nonstandard headings",
+        "rivals": [
+          "Single-province fixture, source labels and parser output may spuriously appear representative",
+          "Different original document versions and missing PDF first_public_at"
+        ]
+      },
+      "C": {
+        "prereg": "PREREG.json",
+        "falsifier": "Violation of strict_acceptance or original missing => FAIL/STOP, no claim of field confirmation",
+        "original_known": true,
+        "confirmatory_blind": false
+      },
+      "D": {
+        "instrument": "scripts/audit_boe_nominations_all.py",
+        "original_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+        "snapshot": "data/observatory/boe_2023_multiterritory_reviewed.json",
+        "native_test": "tests/test_audit_boe_nominations_all.py"
+      },
+      "E": {
+        "status": "PASS_GOVERNANCE",
+        "observed": "Frozen prereg, data, scoped methodology, source caveats, priors and A-J records written to repository",
+        "native_source_run": 40322243535,
+        "original_legal_party_rows": 0,
+        "public_people_identified": 0
+      },
+      "F": {
+        "adversary": "Ten cyclical audits of same 2023 source are not ten independently sampled empirical studies",
+        "selected_against_prior_exploration": true
+      },
+      "G": {
+        "replication": "SAME_OFFICIAL_2023_DOCUMENT",
+        "independent_sociological_validation": "NONE",
+        "validation_scope": "25 ordered provincial sections only"
+      },
+      "H": {
+        "abductive_update": "Technical acceptance for source/document semantics only",
+        "counterevidence": "Ten cyclical audits of same 2023 source are not ten independently sampled empirical studies",
+        "novelty_grade": 0
+      },
+      "I": {
+        "engineering_result": "PASS_GOVERNANCE",
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "scientific_inference": "NONE"
+      },
+      "J": {
+        "decision": "CLOSE_BOUNDED_ACCEPTANCE",
+        "next_action": "Audit five-cycles for source/privacy/UI, then focused branch"
+      }
+    }
+  ]
+}
