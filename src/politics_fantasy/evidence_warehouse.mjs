@@ -74,7 +74,8 @@ export function role(reg,v){
  if(v.object_id)byId(reg.entities,v.object_id,"ROLE_OBJECT_NOT_FOUND");
  check(date(v.valid_from),"ROLE_START");check(v.valid_to===null||v.valid_to===undefined||date(v.valid_to),"ROLE_END");
  check(!v.valid_to||v.valid_to>v.valid_from,"ROLE_INTERVAL");
- checkProvenance(reg,v.source_id,v.observed_at,v.first_public_at);
+ const proof=checkProvenance(reg,v.source_id,v.observed_at,v.first_public_at);
+ if(v.type==="PUBLIC_OFFICE")check(["OFFICIAL","SYNTHETIC"].includes(proof.kind),"OFFICE_ROLE_NEEDS_OFFICIAL_SOURCE");
  if(v.type==="PUBLIC_CANDIDATE")check(v.object_id!==undefined&&v.object_id!==null&&byId(reg.entities,v.object_id).type==="CANDIDACY","CANDIDATE_NEEDS_LIST");
  if(v.type==="COALITION_PARTICIPANT"){
   check(v.object_id&&byId(reg.entities,v.object_id).type==="COALITION","COALITION_OBJECT");
@@ -102,7 +103,9 @@ export function claim(reg,v){
  check(idValid(v.id),"CLAIM_ID");unique(reg.claims,v.id,"DUPLICATE_CLAIM_ID");
  check(["PUBLIC_STATEMENT","CANDIDACY_STATUS","OFFICE_STATUS","OFFICIAL_ELECTORAL_RESULT"].includes(v.type),"CLAIM_TYPE");
  byId(reg.entities,v.subject_id,"CLAIM_SUBJECT");
- checkProvenance(reg,v.source_id,v.observed_at,v.first_public_at);
+ const proof=checkProvenance(reg,v.source_id,v.observed_at,v.first_public_at);
+ if(v.valid_on!==null&&v.valid_on!==undefined)check(date(v.valid_on),"INVALID_CLAIM_VALID_ON");
+ if(v.type==="OFFICE_STATUS")check(date(v.valid_on)&&["OFFICIAL","SYNTHETIC"].includes(proof.kind),"OFFICE_STATUS_NEEDS_OFFICIAL_DATED_EVIDENCE");
  if(v.type==="PUBLIC_STATEMENT")check(typeof v.exact_statement==="string"&&v.exact_statement.length>=2&&v.exact_statement.length<=1000&&typeof v.issue==="string"&&v.issue.length>=2,"CLAIM_QUOTE_AND_ISSUE");
  if(v.type==="OFFICE_STATUS")check(["PRESENT","ABSENT"].includes(v.value),"OFFICE_STATUS_NOT_CONFIRMED");
  const x={id:v.id,type:v.type,subject_id:v.subject_id,source_id:v.source_id,observed_at:v.observed_at,first_public_at:v.first_public_at??null,
