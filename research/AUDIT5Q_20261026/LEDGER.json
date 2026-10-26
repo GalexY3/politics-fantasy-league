@@ -1,0 +1,270 @@
+{
+  "campaign": "PF-AUDIT5Q",
+  "date": "2026-10-26",
+  "authorized": 5,
+  "completed_AJ": 5,
+  "remaining": 0,
+  "method": "AB_3_2_1_A-J_ADVERSARIAL_AUDIT_AND_REPAIR",
+  "prereg_sha": "e7469825e7c3888b0fd9decf114a784ff03435c4",
+  "results_sha": "dd284589f527693d9f989c75be43f75a06c7106f",
+  "external_original_data": "BOE 2023 single election, 25 partial provinces accepted",
+  "native_CI_green_run": 40324283292,
+  "progress_held_constant_pct": 36.35,
+  "scientific_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "cycles": [
+    {
+      "id": "PF-AUDIT5Q-A01",
+      "branch": "SOURCE",
+      "status": "COMPLETE_REPAIR_AJ",
+      "A": {
+        "question": "Review original document extraction against raw PDFs, labels and validity/retention",
+        "unit": "Existing official source, code, API, milestone or CI run"
+      },
+      "B": {
+        "H1": "The existing implementation can be audited and repaired without inventing political people",
+        "H0": "Unobserved vulnerabilities or documentary gaps invalidate claims",
+        "rival": "The PDF from 2023 is not national current legal-party membership or activity"
+      },
+      "C": {
+        "falsifier": "No invented national data or partisan/legal identity joins; preserve parser failures",
+        "preregistered": "PREREG.json",
+        "source_exposed": true
+      },
+      "D": {
+        "artifact": "data/observatory/boe_2023_multiterritory_reviewed.json"
+      },
+      "E": {
+        "adjudication": "PASS_PARTIAL_WITH_R5",
+        "observed": "Original PDF source auditable; 16 sections with no known notice, nine still require nonproclamation review, 27 non-sequential sections quarantined. 263 list labels only from accepted source sections.",
+        "native_CI": 40324283292
+      },
+      "F": {
+        "adversarial_analysis": "The PDF from 2023 is not national current legal-party membership or activity",
+        "residual_R5": "27 quarantined and nine pending"
+      },
+      "G": {
+        "native_runner": "GITHUB_ACTIONS_3_GREEN_JOBS",
+        "external_sociology_replication": false
+      },
+      "H": {
+        "prior_update": "Privacy/source quality instrumentation improved; substantive influence remains untested",
+        "contra_evidence": "The PDF from 2023 is not national current legal-party membership or activity"
+      },
+      "I": {
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "novelty_grade": 0,
+        "progress_percent": 36.35
+      },
+      "J": {
+        "decision": "CLOSE_AUDIT_WITH_REPAIRS",
+        "next_action": "FOCUS 20 on quarantined source completeness and genuine data quality; keep identity/legal R5"
+      }
+    },
+    {
+      "id": "PF-AUDIT5Q-A02",
+      "branch": "SECURITY",
+      "status": "COMPLETE_REPAIR_AJ",
+      "A": {
+        "question": "Adversarial nested payload tests on events/roles/sources and unauthorized scoring attributes",
+        "unit": "Existing official source, code, API, milestone or CI run"
+      },
+      "B": {
+        "H1": "The existing implementation can be audited and repaired without inventing political people",
+        "H0": "Unobserved vulnerabilities or documentary gaps invalidate claims",
+        "rival": "A shallow field validator can accept unwanted sensitive nested keys even if later stripped"
+      },
+      "C": {
+        "falsifier": "Unknown or sensitive nested attributes rejected before accepted into evidence registry",
+        "preregistered": "PREREG.json",
+        "source_exposed": true
+      },
+      "D": {
+        "artifact": "src/politics_fantasy/evidence_warehouse.mjs"
+      },
+      "E": {
+        "adjudication": "PASS_REPAIRED",
+        "observed": "Deep recursively check names of untrusted nested fields and prototype pollution in official-actor engine, with 6 native JS negative tests.",
+        "native_CI": 40324283292
+      },
+      "F": {
+        "adversarial_analysis": "A shallow field validator can accept unwanted sensitive nested keys even if later stripped",
+        "residual_R5": "No person/counterfactual field sample"
+      },
+      "G": {
+        "native_runner": "GITHUB_ACTIONS_3_GREEN_JOBS",
+        "external_sociology_replication": false
+      },
+      "H": {
+        "prior_update": "Privacy/source quality instrumentation improved; substantive influence remains untested",
+        "contra_evidence": "A shallow field validator can accept unwanted sensitive nested keys even if later stripped"
+      },
+      "I": {
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "novelty_grade": 0,
+        "progress_percent": 36.35
+      },
+      "J": {
+        "decision": "CLOSE_AUDIT_WITH_REPAIRS",
+        "next_action": "FOCUS 20 on quarantined source completeness and genuine data quality; keep identity/legal R5"
+      }
+    },
+    {
+      "id": "PF-AUDIT5Q-A03",
+      "branch": "PRODUCT",
+      "status": "COMPLETE_REPAIR_AJ",
+      "A": {
+        "question": "Audit read-only API integrity, browser and CSRF/Host/Origin paths",
+        "unit": "Existing official source, code, API, milestone or CI run"
+      },
+      "B": {
+        "H1": "The existing implementation can be audited and repaired without inventing political people",
+        "H0": "Unobserved vulnerabilities or documentary gaps invalidate claims",
+        "rival": "CSS transformations in Chromium may make literal-case tests fail even for correctly rendered data"
+      },
+      "C": {
+        "falsifier": "No individual or voter information emitted; strict CSP, no public hosting claim",
+        "preregistered": "PREREG.json",
+        "source_exposed": true
+      },
+      "D": {
+        "artifact": "src/politics_fantasy/nomination_atlas.py"
+      },
+      "E": {
+        "adjudication": "PASS_REPAIRED",
+        "observed": "CSP-safe browser UI preserved; test assertion repaired to compare uppercase rendered labels; API now flags 16/9/27, with Host 403 and local source checks.",
+        "native_CI": 40324283292
+      },
+      "F": {
+        "adversarial_analysis": "CSS transformations in Chromium may make literal-case tests fail even for correctly rendered data",
+        "residual_R5": "No person/counterfactual field sample"
+      },
+      "G": {
+        "native_runner": "GITHUB_ACTIONS_3_GREEN_JOBS",
+        "external_sociology_replication": false
+      },
+      "H": {
+        "prior_update": "Privacy/source quality instrumentation improved; substantive influence remains untested",
+        "contra_evidence": "CSS transformations in Chromium may make literal-case tests fail even for correctly rendered data"
+      },
+      "I": {
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "novelty_grade": 0,
+        "progress_percent": 36.35
+      },
+      "J": {
+        "decision": "CLOSE_AUDIT_WITH_REPAIRS",
+        "next_action": "FOCUS 20 on quarantined source completeness and genuine data quality; keep identity/legal R5"
+      }
+    },
+    {
+      "id": "PF-AUDIT5Q-A04",
+      "branch": "MEASUREMENT",
+      "status": "COMPLETE_REPAIR_AJ",
+      "A": {
+        "question": "Audit 36 tracked milestones, V1-V3 source refs, six gates, scores",
+        "unit": "Existing official source, code, API, milestone or CI run"
+      },
+      "B": {
+        "H1": "The existing implementation can be audited and repaired without inventing political people",
+        "H0": "Unobserved vulnerabilities or documentary gaps invalidate claims",
+        "rival": "The weighted progress percentage is a judgment, not time or likelihood of completion"
+      },
+      "C": {
+        "falsifier": "Versioned progress changes only when falsifiable maturity evidence improves, not count of cycles",
+        "preregistered": "PREREG.json",
+        "source_exposed": true
+      },
+      "D": {
+        "artifact": "product/progress_scope_v3_20261026.json"
+      },
+      "E": {
+        "adjudication": "PASS_SCOPE_AUDIT",
+        "observed": "Progress V3 36.35% maintained until genuinely new milestone maturity; six critical release gates remain. Previous V1 and V2 snapshots unmodified.",
+        "native_CI": 40324283292
+      },
+      "F": {
+        "adversarial_analysis": "The weighted progress percentage is a judgment, not time or likelihood of completion",
+        "residual_R5": "RPP and person identities block release"
+      },
+      "G": {
+        "native_runner": "GITHUB_ACTIONS_3_GREEN_JOBS",
+        "external_sociology_replication": false
+      },
+      "H": {
+        "prior_update": "Privacy/source quality instrumentation improved; substantive influence remains untested",
+        "contra_evidence": "The weighted progress percentage is a judgment, not time or likelihood of completion"
+      },
+      "I": {
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "novelty_grade": 0,
+        "progress_percent": 36.35
+      },
+      "J": {
+        "decision": "CLOSE_AUDIT_WITH_REPAIRS",
+        "next_action": "FOCUS 20 on quarantined source completeness and genuine data quality; keep identity/legal R5"
+      }
+    },
+    {
+      "id": "PF-AUDIT5Q-A05",
+      "branch": "REPAIR",
+      "status": "COMPLETE_REPAIR_AJ",
+      "A": {
+        "question": "Re-run native CI after fixes and record unchanged/blocking limitations",
+        "unit": "Existing official source, code, API, milestone or CI run"
+      },
+      "B": {
+        "H1": "The existing implementation can be audited and repaired without inventing political people",
+        "H0": "Unobserved vulnerabilities or documentary gaps invalidate claims",
+        "rival": "Passing tests on source fixtures is not external validity for real political person scoring"
+      },
+      "C": {
+        "falsifier": "Negative tests + original source audit reproducible or mark STOP_R5; audit ledger A-J",
+        "preregistered": "PREREG.json",
+        "source_exposed": true
+      },
+      "D": {
+        "artifact": ".github/workflows/politics-fantasy-evidence.yml"
+      },
+      "E": {
+        "adjudication": "PASS_NATIVE_CI",
+        "observed": "Latest stable GitHub Actions 40324283292 has three successful jobs including Node, Python, Chromium and raw BOE source audits, after preserving earlier failures.",
+        "native_CI": 40324283292
+      },
+      "F": {
+        "adversarial_analysis": "Passing tests on source fixtures is not external validity for real political person scoring",
+        "residual_R5": "No person/counterfactual field sample"
+      },
+      "G": {
+        "native_runner": "GITHUB_ACTIONS_3_GREEN_JOBS",
+        "external_sociology_replication": false
+      },
+      "H": {
+        "prior_update": "Privacy/source quality instrumentation improved; substantive influence remains untested",
+        "contra_evidence": "Passing tests on source fixtures is not external validity for real political person scoring"
+      },
+      "I": {
+        "VSDS": 1,
+        "CT2_multiactor": 20,
+        "CT2_predictive": 24,
+        "novelty_grade": 0,
+        "progress_percent": 36.35
+      },
+      "J": {
+        "decision": "CLOSE_AUDIT_WITH_REPAIRS",
+        "next_action": "FOCUS 20 on quarantined source completeness and genuine data quality; keep identity/legal R5"
+      }
+    }
+  ]
+}
