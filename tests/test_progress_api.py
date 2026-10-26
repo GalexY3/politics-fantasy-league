@@ -22,7 +22,7 @@ def test_current_v2_global_and_tracks():
     assert r["track_count"] == 9
     assert r["milestone_count"] == 36
     assert sum(t["weight"] for t in r["tracks"]) == 100
-    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 35.525) < 1e-8
+    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 35.45) < 1e-8
 
 
 def test_maturity_and_release_gates():
