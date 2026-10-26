@@ -14,7 +14,15 @@ const instant=x=>typeof x==="string"&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?
 const byId=(xs,id,code="MISSING_ID")=>{const found=xs.find(x=>x.id===id);check(found!==undefined,code);return found};
 const unique=(xs,id,code="DUPLICATE_ID")=>check(!xs.some(x=>x.id===id),code);
 const idValid=x=>typeof x==="string"&&/^[A-Z][A-Z0-9_]{1,31}:[a-zA-Z0-9._-]{1,80}$/.test(x);
-const noPrivate=obj=>!Object.keys(obj).some(k=>/private|email|phone|birth|home.address|personal.address|party_member_guess|religion|ethnic|ideolog|influence.score|psychograph|political_profile|voter_profile/i.test(k));
+const unsafeKey=k=>/__proto__|prototype|constructor|private|email|phone|birth|home.address|personal.address|party_member_guess|religion|ethnic|ideolog|influence.score|psychograph|political_profile|voter_profile/i.test(k);
+const noPrivate=(obj,seen=new Set(),depth=0)=>{
+ if(obj===null||typeof obj!=="object")return true;
+ if(depth>12||seen.has(obj))return false;
+ seen.add(obj);
+ const entries=Object.entries(obj);
+ const ok=entries.length<=1000&&entries.every(([key,val])=>!unsafeKey(key)&&noPrivate(val,seen,depth+1));
+ seen.delete(obj);return ok;
+};
 const isHalfOpen=(d,from,to)=>d>=from&&(to===null||d<to);
 export function empty(){return {sources:[],entities:[],roles:[],events:[],claims:[],collisions:[],revisions:[]}}
 export function source(reg,v){
