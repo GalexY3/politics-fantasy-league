@@ -1,0 +1,52 @@
+{
+  "id": "C01",
+  "mode": "AB-H/AB-P",
+  "stage": "discover",
+  "A": {
+    "outcome": "Que un usuario de la demo comprenda la procedencia y por qué no se puntúa un acontecimiento real",
+    "recipient": "usuario de la demo y auditor de fuentes",
+    "success_metric": "El endpoint responde de forma explícita con motivos y límites de fuente, sin habilitar puntuación de personas"
+  },
+  "B": {
+    "observed_baseline": "server.py main sólo expone /api/official-nominations, /api/actors y fixture statuses; verified-rollcalls de PR14 no está fusionado",
+    "alternatives": [
+      "Añadir contrato read-only de elegibilidad y explicar fallos",
+      "Integrar inmediatamente rutas de PR14",
+      "Atribuir puntos sin dataset reconciliado"
+    ]
+  },
+  "C": {
+    "assumptions": "No existe crosswalk personal ni first_public_at; distinción AB-P/AB-R",
+    "risks": [
+      "misleading verification status",
+      "client can spoof source rights",
+      "feature can imply release readiness"
+    ]
+  },
+  "D": {
+    "acceptance": "Una salida estable con source_class y estado/códigos explícitos, test negativo para persona y timestamp ausentes; cero incremento de seis gates"
+  },
+  "E": {
+    "method": "auditoría fuente GitHub main y PR14; sin ejecución Actions",
+    "evidence": "main server.py source, progress v3, AB20B report"
+  },
+  "F": {
+    "planned": "inspect source and freeze C02 specification only after observation"
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "complaint_possible": "No unified public user-facing eligibility explanation"
+  },
+  "I": {
+    "not_science": "No N1/N2/N3; product readiness independent"
+  },
+  "J": {
+    "decision": "choose after C01 baseline observation"
+  },
+  "ct2_before": 29,
+  "grade_0_3": 0,
+  "holdout": "NOT_APPLICABLE_PRODUCT",
+  "status": "PREREGISTERED_BEFORE_SOURCE_COMPARISON"
+}
