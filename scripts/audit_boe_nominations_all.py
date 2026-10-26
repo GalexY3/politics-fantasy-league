@@ -30,7 +30,7 @@ def clean(s:str)->str:
 
 def is_title(s:str)->bool:
     letters=[z for z in s if z.isalpha()]
-    return len(letters)>6 and sum(z.isupper() for z in letters)/len(letters)>.95
+    return len(letters)>=4 and sum(z.isupper() for z in letters)/len(letters)>.95
 
 def province_id(s:str)->str:
     normalized=unicodedata.normalize("NFKD",s.upper())
