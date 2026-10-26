@@ -68,7 +68,7 @@ node --test tests/test_political_universe.mjs
 node scripts/run_jec2023_audit.mjs /ruta/al/202307.csv > reporte_JEC.json
 ```
 
-El archivo 202307.csv esperado debe corresponder al blob Git SHA de procedencia **59a7734f0deba570ea87681236ecd4c9008ebd33**; el flujo CI verifica esa revisión; la utilidad CLI offline actual imprime SHA-256 del archivo pero no compara autónomamente la huella Git de una revisión esperada. Para evaluación prospectiva deberá emplearse un campo materializado con fecha de disponibilidad original comprobable.
+El archivo 202307.csv esperado debe corresponder al blob Git SHA de procedencia **59a7734f0deba570ea87681236ecd4c9008ebd33**; el flujo CI verifica esa revisión y la utilidad CLI offline ahora **rechaza directamente** archivos cuyo blob Git SHA1 no sea `59a7734f0deba570ea87681236ecd4c9008ebd33`; también publica SHA-256 del archivo para auditorías reproducibles. Para evaluación prospectiva deberá emplearse un campo materializado con fecha de disponibilidad original comprobable.
 
 ## D. Contabilidad de los 30 ciclos A–J
 
