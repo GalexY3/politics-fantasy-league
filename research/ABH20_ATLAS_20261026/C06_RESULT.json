@@ -1,0 +1,35 @@
+{
+  "id": "C06",
+  "mode": "AB-H/AB-P",
+  "status": "STOP_R5_EXECUTION_ENVIRONMENT",
+  "observation": {
+    "host_guard": "static server source confirms _is_local_host before route",
+    "real_HTTP_test": "NOT_EXECUTED",
+    "reason": "No full private repo checkout in local container; user budget restricts GitHub Actions",
+    "source_only": "GET route integrated in branch but no runtime verification",
+    "actions_detected_before_budget_fix": 4,
+    "actions_after_fix": 0
+  },
+  "negative": "Cannot certify E2E from written test; do not add gate evidence.",
+  "complaint": {
+    "id": "PFL-ABH-OPS-002",
+    "severity": "major",
+    "type": "BUDGET",
+    "confirmed": true,
+    "description": "New branch from main automatically launched GitHub Actions on four pushes before restrictive trigger patch",
+    "repair": "Workflow trigger limited to main in research branch; already started runs not cancellable with available GitHub connector",
+    "status": "repaired_future_triggers"
+  },
+  "AB_P": {
+    "accepted": false,
+    "blocked_full_runtime": true,
+    "scope_rev": 3,
+    "readiness": false
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "J": "BRANCH C07: exploit newly located primary congressional proceedings evidence for missing 2024 voter, without cross-branch runtime"
+}

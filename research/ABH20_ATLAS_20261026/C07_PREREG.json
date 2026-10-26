@@ -1,0 +1,48 @@
+{
+  "id": "C07",
+  "mode": "AB-H/AB-R",
+  "status": "PREREGISTERED_AFTER_DISCOVERY_BEFORE_COMPARISON",
+  "A": {
+    "estimand": "whether the exact unresolved 2024 ballot name is separately documented as an XV legislator in independent parliamentary genres and with group designation",
+    "unit": "one source-scoped person string",
+    "scope": "Congress XV 2024"
+  },
+  "B": {
+    "H1": "exact name appears in official Diario de Sesiones and indexed initiative as GP author",
+    "H0": "no independent primary mention",
+    "Hother": "official mention but name alone does not prove same immutable ID"
+  },
+  "C": {
+    "sources": [
+      "DSCD-15-PL-16 2024-01-10",
+      "iniciativa 181/000815 2024-11-29",
+      "BOCG-15-D-120 2024-04-10"
+    ],
+    "baselines": "2024 vote uses name absent from 2026 412 roster and historical archive exact-fullname",
+    "selection_bias": "search discovered official name before prereg; exploratory and nonconfirmatory",
+    "falsifier": "primary original lacks name or group/context differs"
+  },
+  "D": {
+    "method": "two different original publication types; verify section date, person mention and source group GP",
+    "budget": "web source inspection only, no GitHub Actions"
+  },
+  "E": {
+    "pending": true
+  },
+  "F": {
+    "uncertainty": "even exact name and public 2024 role do not establish a crosswalk of official profile IDs or prove one individual unambiguously"
+  },
+  "G": {
+    "holdout": "EXPOSED_DESCRIPTIVE"
+  },
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": 0
+  },
+  "I": {
+    "scoring": "not authorised"
+  },
+  "J": {
+    "next": "If supported, distinguish source-record omission vs archive formatting and seek official durable ID; otherwise quarantine"
+  }
+}
