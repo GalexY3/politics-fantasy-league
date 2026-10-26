@@ -2,7 +2,7 @@
   "campaign": "PF-BR30J",
   "date": "2026-10-26",
   "purpose": "Six genuinely distinct official discovery surfaces and one known secondary 2023 snapshot; no fabricated raw party or person records",
-  "count": 7,
+  "count": 8,
   "validated_official_raw_files": 0,
   "registry_rows_ingested": 0,
   "individuals_reconciled": 0,
@@ -99,6 +99,20 @@
       "git_blob_sha1": "59a7734f0deba570ea87681236ecd4c9008ebd33",
       "first_public_at_for_rows": null,
       "uncertainty": "Git revision snapshot is not ministerial source nor contemporary availability"
+    },
+    {
+      "id": "VOTOMUNICIPAL_2023",
+      "authority": "votomunicipal.es (non-government secondary publisher)",
+      "name": "Municipal 2023 candidates/results by municipality",
+      "url": "https://votomunicipal.es/datos-abiertos/",
+      "scope": "May 2023 municipal votes and council seats by candidacy and municipality; separate from 2023 national parliament",
+      "delivery": "2.3 MB municipal JSON, plus general-election municipality CSV/JSON; described by publisher",
+      "metadata_only": true,
+      "download_verified": false,
+      "kind": "SECONDARY",
+      "rights": "CC_BY_4_0_PUBLISHER_DECLARED_NOT_RAW_INSPECTED",
+      "first_public_at_for_rows": null,
+      "uncertainty": "Publisher declares CC BY 4.0 and Ministry origin. Raw bytes not captured and no official source matching; municipality returns and city council seats not general election MP seats."
     }
   ]
 }
