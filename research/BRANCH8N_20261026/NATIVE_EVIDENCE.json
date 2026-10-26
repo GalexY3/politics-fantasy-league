@@ -1,0 +1,74 @@
+{
+  "campaign": "PF-BR8N",
+  "date": "2026-10-26",
+  "verified_fully_green_run": 40315022251,
+  "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40315022251",
+  "repository": "GalexY3/Metodologia-AB",
+  "jobs": [
+    {
+      "name": "original-source-download",
+      "conclusion": "success"
+    },
+    {
+      "name": "source-and-app-checks",
+      "conclusion": "success"
+    },
+    {
+      "name": "browser-e2e",
+      "conclusion": "success"
+    }
+  ],
+  "native_checks": {
+    "node_suites": 8,
+    "node_tests": 95,
+    "python_pytest_pass": 59,
+    "headless_chromium_browser": true,
+    "browser_passes": [
+      "Progress V2 and six blocked launch gates",
+      "Host foreign domain rejected with HTTP 403",
+      "Market navigation",
+      "Atlas navigation",
+      "Official BOE eight Albacete candidacy list panel displayed without inferred party identity",
+      "No uncaught JavaScript page errors"
+    ]
+  },
+  "official_originals": [
+    {
+      "document": "BOE-A-2023-18907",
+      "bytes": 1915000,
+      "sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+      "audit": "52x6=312 official numeric matches"
+    },
+    {
+      "document": "BOE-A-2023-15066",
+      "bytes": 4298580,
+      "sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+      "audit": "Eight proclaimed Albacete Congreso electoral list acronyms; 0 people joined"
+    }
+  ],
+  "crosswalk": {
+    "native_node_suite": "test_audit_candidacy_crosswalk.mjs",
+    "same_2023_election_labels_matched": 8,
+    "ambiguities": 0,
+    "matched_no_seat_electoral_labels": 4,
+    "legal_party_identity_joined": 0,
+    "people_joined": 0,
+    "secondary_national_votes_not_albacete_votes": true
+  },
+  "v3_app_checks": {
+    "scope_revision": 3,
+    "progress": 36.35,
+    "source": "product/progress_snapshot_v3_20261026.json",
+    "evidence_based_on_successful_browser_flow": true,
+    "latest_visual_semantic_progress_component_native_status": "PENDING_ADDITIONAL_BROWSER_RECHECK; original browser smoke was green before replacement of inline progress with native controls"
+  },
+  "primary_R5": [
+    "Registry of registered legal parties not materialized",
+    "No verified person/party legal linkage across original sources",
+    "Other provinces/candidate public roles not ingested"
+  ],
+  "privacy": "No real-person scores, private memberships, or ideology in dataset",
+  "artifact_policy": "Original PDF files and browser screenshot remain temporary private CI artifacts with 3-day retention, only SHA256 + safe aggregates committed",
+  "causal_field_claims": 0,
+  "original_candidacy_scope": "One province, one 2023 Congress election"
+}
