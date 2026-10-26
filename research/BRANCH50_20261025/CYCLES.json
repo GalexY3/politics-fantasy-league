@@ -1,6 +1,6 @@
 {
   "program": "Politics Fantasy League",
-  "as_of": "2026-10-25",
+  "as_of": "2026-10-26",
   "authorization": "50 FREE ADAPTIVE BRANCHING CYCLES USER_AUTHORIZED_20261025",
   "method": "AB 3.2.1 O1-O6",
   "scientific_discoveries": {
@@ -8,11 +8,11 @@
     "N2": 0,
     "N3": 0
   },
-  "started": 38,
-  "completed_production_local": 38,
+  "started": 50,
+  "completed_production_local": 50,
   "valid_empirical_ab": 0,
-  "remaining": 12,
-  "note": "Production QA has no prereg GitHub before original execution. The 8 completed are engineering checks, not 8 confirmatory scientific AB experiments.",
+  "remaining": 0,
+  "note": "8 original C01-C08 + 30 B30 production cycles referenced non-duplicatively as B50 C09-C38 + 12 newly executed secondary-source and product tests C39-C50. No original field validation. Historical partial ledger placeholders reconciled; no double counting.",
   "prior_campaigns": {
     "AB20_pending": 19,
     "F45_authorized_unused": 45,
@@ -469,297 +469,2355 @@
     },
     {
       "id": "PF-B50-09",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-01",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Rechazar elecciones fuera de YES, NO, ABSTAIN, NO_VOTE",
+        "competent_rival": "NO_VOTE explícito no equivale a ausente",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_01_choice_closed_vocabulary",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "NO_VOTE explícito no equivale a ausente",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-10",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-02",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Fallo cerrado ante dos decisiones incompatibles",
+        "competent_rival": "Primera fila ganadora por azar",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_02_same_revision_conflict_fails_closed",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Primera fila ganadora por azar",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-11",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-03",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Exclusión de votos publicados después de corte",
+        "competent_rival": "Usar únicamente occurred_at",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_03_not_yet_published_excluded",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Usar únicamente occurred_at",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-12",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-04",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Exclusión de información integrada después de corte",
+        "competent_rival": "Retrodatar observaciones por fecha declarada",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_04_late_ingestion_cannot_backfill_history",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Retrodatar observaciones por fecha declarada",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-13",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-05",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "No resucitar versiones antiguas ni conocer futuras",
+        "competent_rival": "Última fila en orden de lectura",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_05_last_known_revision_wins_not_last_row",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Última fila en orden de lectura",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-14",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-06",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "contratos_nominales",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Retener group_at_vote por voto, no grupo presente",
+        "competent_rival": "Reasignación retrospectiva",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_06_historic_group_not_current_group",
+        "test_file": "tests/test_rollcall.py",
+        "source_file": "src/politics_fantasy/rollcall.py",
+        "source_sha256": "fe9697d371a064f20d776553a4c921cac73f50900eaea3798b48e789e737a937",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Reasignación retrospectiva",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_NEXT_BRANCH",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-15",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-07",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Ausencia de fila deviene UNKNOWN, nunca NO_VOTE",
+        "competent_rival": "Codificar silencio como ausencia",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_07_missing_row_is_unknown_not_no_vote",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Codificar silencio como ausencia",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-16",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-08",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Tasa solo con censo íntegro, no censos duplicados",
+        "competent_rival": "Dividir por n registrado",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_08_explicit_denominator_validates_exposure",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Dividir por n registrado",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-17",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-09",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Contar cambios de grupo en el evento correcto",
+        "competent_rival": "Agregado por persona o grupo actual",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_09_group_counts_member_event_grain_not_person_aggregate",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Agregado por persona o grupo actual",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-18",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-10",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Mayoría de grupo por cada votación, no global",
+        "competent_rival": "Moda de toda la legislatura",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_10_majority_is_per_vote_not_global_group",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Moda de toda la legislatura",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-19",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-11",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Excluir empates y Mixto del denominador de discrepancia",
+        "competent_rival": "Contar toda diferencia como disidencia",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_11_tied_and_mixto_votes_excluded",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Contar toda diferencia como disidencia",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-20",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-12",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "medicion_sociologica",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "ABSTAIN cuenta como decisión; NO_VOTE no votó",
+        "competent_rival": "Tratar abstención como missing",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_12_abstain_counts_as_choice_not_missing",
+        "test_file": "tests/test_sociometrics.py",
+        "source_file": "src/politics_fantasy/sociometrics.py",
+        "source_sha256": "19d9f09ebd65ec9dc24fab60b80c5d26b1f72e2710ad25202741bb66cec00f9a",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Tratar abstención como missing",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_NEXT_BRANCH",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-21",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-13",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Márgenes sobre solo votos expresos, vacío es unknown",
+        "competent_rival": "Dividir por escaños nominales",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_13_majority_margin_has_tie_and_empty_as_distinct_states",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Dividir por escaños nominales",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-22",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-14",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Entropía normalizada de YES/NO/ABSTAIN",
+        "competent_rival": "Incluir silencios como opción política",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_14_entropy_excludes_no_vote_from_expressed_diversity",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Incluir silencios como opción política",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-23",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-15",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Pesos comunes y censos de estratos completos",
+        "competent_rival": "Media cruda de agenda sesgada",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_15_standardization_forbids_missing_strata_and_normalizes_weights",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Media cruda de agenda sesgada",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-24",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-16",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Detectar inversión agregada sin inferir causalidad",
+        "competent_rival": "Ignorar composición de estratos",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_16_simpson_reversal_flag_not_treated_as_causality",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Ignorar composición de estratos",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-25",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-17",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Acuerdo entre actores solo ante coobservación expresada",
+        "competent_rival": "Asumir no-voto como desacuerdo/acuerdo",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_17_pair_exposure_requires_both_expressed_not_no_vote",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Asumir no-voto como desacuerdo/acuerdo",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-26",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-18",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "estructura_relacional",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Acuerdo esperado empírico por marginales de pares",
+        "competent_rival": "Declarar afinidad por coincidencia bruta",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_18_marginal_chance_baseline_deflates_trivial_agreement",
+        "test_file": "tests/test_structural.py",
+        "source_file": "src/politics_fantasy/structural.py",
+        "source_sha256": "3ca2a5bd464e79c47679649f458fec2d96244d2e226a0e576d1fa4ca68d83bf7",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Declarar afinidad por coincidencia bruta",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_NEXT_BRANCH",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-27",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-19",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Factorial y caso lambda=0 en pérdida propia",
+        "competent_rival": "Ignorar constante y los ceros",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_19_full_poisson_nll_includes_factorial_and_zero_edge",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Ignorar constante y los ceros",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-28",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-20",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "MAE válida solo sobre conteos y tasas finitas",
+        "competent_rival": "Evaluar sin rango de dominio",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_20_mae_requires_nonnegative_finite_counts",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Evaluar sin rango de dominio",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-29",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-21",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "No dividir por pérdida del baseline cero",
+        "competent_rival": "Rival nulo deliberadamente débil",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_21_skill_vs_baseline_no_division_by_zero",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Rival nulo deliberadamente débil",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-30",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-22",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Bin sin soporte no reporta tasa ficticia",
+        "competent_rival": "Interpolar faltantes como acierto",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_22_calibration_never_fills_unobserved_bins",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Interpolar faltantes como acierto",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-31",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-23",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Separación temporal train-gap-test sin solapes",
+        "competent_rival": "Split aleatorio con fuga",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_23_purged_folds_have_nonoverlapping_temporal_windows",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Split aleatorio con fuga",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-32",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-24",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "evaluacion_temporal",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Sesión como cluster, semilla fija",
+        "competent_rival": "Pseudorreplicar votos intrasesión",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_24_cluster_bootstrap_keeps_session_units_and_is_reproducible",
+        "test_file": "tests/test_evaluation.py",
+        "source_file": "src/politics_fantasy/evaluation.py",
+        "source_sha256": "1e447cc947b68bd1495a5853cf1233506cc875119a4d4b4a6b96f00b02d6f737",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Pseudorreplicar votos intrasesión",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_NEXT_BRANCH",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-33",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-25",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Once registros reproducibles con IDs ficticios",
+        "competent_rival": "Datos de políticos inventados presentados como reales",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_25_rollcall_fixture_reproducible_and_fictional",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Datos de políticos inventados presentados como reales",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-34",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-26",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Censo de 3 oportunidades con no-voto y unknown separados",
+        "competent_rival": "Dar cero por omisión de fila",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_26_lab_participation_shows_unknown_and_true_no_vote",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Dar cero por omisión de fila",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-35",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-27",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Comparador de acuerdo observado y esperado con n conjunta",
+        "competent_rival": "Etiquetar covoto como influencia",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_27_lab_comparator_exposes_joint_n_and_marginal_chance",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Etiquetar covoto como influencia",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-36",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-28",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "No subir de 1 por fixture; ciencia AB por separado",
+        "competent_rival": "Equiparar demo con descubrimiento",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_28_vsds_never_awards_field_value_to_synthetics",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Equiparar demo con descubrimiento",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-37",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-29",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "/api/lab retorna demo independiente del estado del fantasy",
+        "competent_rival": "Unificar puntuación real y sintética",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_29_readonly_api_lab_independent_game",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Unificar puntuación real y sintética",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-38",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "COMPLETED_BY_REFERENCED_B30_PRODUCTION_NOT_NEW",
+      "reference": "PF-B30-30",
+      "source_ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
+      "branch": "integracion_producto",
+      "kind": "PRODUCTION_REFERENCE",
+      "A": "Full A-J defined and retained in referenced B30 record",
+      "B": {
+        "claim": "Mostrar advertencia y desconocidos; JS sintaxis válida",
+        "competent_rival": "Ocultar limitación al usuario",
+        "other": "Otros errores de implementación y de semántica no cubiertos por un test"
+      },
+      "C": {
+        "test_protocol": "Test determinista de aceptación y caso negativo",
+        "falsification_rule": "Assertion o suite incompatible con criterio de aceptación",
+        "randomization": "NO para fixtures salvo bootstrap con semilla fija"
+      },
+      "D": {
+        "test": "test_br30_30_frontend_has_explicit_demo_and_unknown_labels",
+        "test_file": "tests/test_lab.py",
+        "source_file": "src/politics_fantasy/lab.py",
+        "source_sha256": "b7978abffb8dd18b6bcd8881447167da110a5c0a8c6add89251b168482f41cbc",
+        "freeze_disclaimer": "Versión de código congelada mediante entrega final, no antes del ensayo"
+      },
+      "E": {
+        "observed": "PASS_LOCAL_SYNTHETIC",
+        "evidence": "research/BRANCH30_20261025/QA_20261025.txt"
+      },
+      "F": {
+        "adversarial_control": "Ocultar limitación al usuario",
+        "limitations": "Fixture diseñada por autores; alcance circunscrito al invariante"
+      },
+      "G": {
+        "external_confirmation": "NOT_PERFORMED",
+        "independence": "Una suite de mismo equipo, no nuevo corpus"
+      },
+      "H": {
+        "prior_update": "La instrumentación permite auditar este riesgo; no evidencia sobre distribución de votos reales.",
+        "prior_type": "ENGINEERING_ONLY"
+      },
+      "I": {
+        "engineering_value": "VSDS-1/3 LOCAL",
+        "AB_scientific_grade": "0/3 NO_REAL_DATA",
+        "CT2_predictive": 24,
+        "external_validity": "UNKNOWN",
+        "ethics": "No inferir virtud, influencia o ideología"
+      },
+      "J": {
+        "decision": "CONTINUE_PRODUCTION",
+        "next_evidence": "Microdatos nominales certificados y pruebas de usuario reales"
+      },
+      "nonduplicative": true
     },
     {
       "id": "PF-B50-39",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for Reject nonverified official source",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "Reject nonverified official source",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-40",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for RFC4180 quoted fields and negative malformed CSV",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "RFC4180 quoted fields and negative malformed CSV",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-41",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for 1977-2019 historical dataset with clearly scoped party codes",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "1977-2019 historical dataset with clearly scoped party codes",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-42",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for 2023 52 province rows, homogeneous paired fields",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "2023 52 province rows, homogeneous paired fields",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-43",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for 2023 electoral labels with votes but no Congressional seat",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "2023 electoral labels with votes but no Congressional seat",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-44",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for Separate recorded seat and nonseat labels",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "Separate recorded seat and nonseat labels",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-45",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "secondary_field_source",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for Pin both Git file SHA IDs without claiming official source",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "Pin both Git file SHA IDs without claiming official source",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-46",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "atlas_game_integration",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for Unknown representation without evidence; no default absence",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "Unknown representation without evidence; no default absence",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": "ERROR",
+        "repair": "Replace invalid ID namespace F:party with schema-valid FIX:party",
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-47",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "atlas_game_integration",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for No cross-source identity merge without temporal compatibility",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "No cross-source identity merge without temporal compatibility",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-48",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "atlas_game_integration",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for Published historical atlas is unscored and labels source pinned",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "Published historical atlas is unscored and labels source pinned",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-49",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "atlas_game_integration",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for UI filters by alphabetic name with source disclaimer",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "UI filters by alphabetic name with source disclaimer",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     },
     {
       "id": "PF-B50-50",
-      "status": "AUTHORIZED_NOT_EXECUTED",
-      "kind": null,
-      "branch": null,
-      "decision": "ADAPTIVE_BRANCHING_PENDING_RESULT_OF_PRIOR_WORK"
+      "status": "A_J_COMPLETED_SECONDARY_OR_SOFTWARE_QA",
+      "branch": "atlas_game_integration",
+      "kind": "ENGINEERING_FIELD_SECONDARY",
+      "A": {
+        "estimand": "Deterministic acceptance for API has read-only atlas route and no real person game scoring",
+        "unit": "Single software/source invariant, not population parameter"
+      },
+      "B": {
+        "alternative": "Existing parliamentary-only model or unsupported source assumption suffices",
+        "rival": "Source metadata might be incomplete, and fixture acceptance is no empirical generalization"
+      },
+      "C": {
+        "test_contract": "research/B50_REMAINING_20261026/CONTRACTS.md",
+        "endpoint": "API has read-only atlas route and no real person game scoring",
+        "design_exposure": "Post-exposure secondary data, not preregistered confirmatory"
+      },
+      "D": {
+        "code": "scripts/electoral_source_audit.mjs + political_universe.mjs + demo Python/JS",
+        "source_refs": [
+          {
+            "name": "anerodata",
+            "sha": "59a7734f0deba570ea87681236ecd4c9008ebd33"
+          },
+          {
+            "name": "rOpenSpain",
+            "sha": "bc899d599e9c22d3215a60c0b02344f5771eeae3"
+          }
+        ]
+      },
+      "E": {
+        "executed": true,
+        "status": "PASS",
+        "first_failure": null,
+        "repair": null,
+        "field_population": "Historical aggregate secondary sources"
+      },
+      "F": {
+        "adversarial": "Data published on GitHub is secondary; stable source hashes do not certify Interior original; UI review is static"
+      },
+      "G": {
+        "external_independent_original_confirmed": false,
+        "node_clean_checkout_tested": false
+      },
+      "H": {
+        "updated_prior": "Functional software test succeeded, no substantive political actor rating",
+        "uncertainty": "Actual Registro de Partidos, candidacy identities, as-of release timestamps not verified"
+      },
+      "I": {
+        "software_validity": "PASS",
+        "field_validity": "NOT_ESTABLISHED",
+        "novelty": "0/3",
+        "CT2_predictive_before": 24,
+        "CT2_predictive_after": 24,
+        "VSDS": 1
+      },
+      "J": {
+        "decision": "COMPLETE_QA; CONTINUE_RESEARCH_WITH_NEW_OFFICIAL_EVIDENCE"
+      }
     }
   ],
   "continuation": {
@@ -768,5 +2826,11 @@
     "release": "v0.4",
     "ledger": "research/BRANCH30_20261025/CYCLES_LEDGER.json",
     "novelty_claims": 0
+  },
+  "completion_breakdown": {
+    "original_local_C01_C08": 8,
+    "referenced_B30_C09_C38": 30,
+    "new_secondary_product_C39_C50": 12,
+    "total": 50
   }
 }
