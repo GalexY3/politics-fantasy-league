@@ -5,8 +5,8 @@
   "closed": 8,
   "remaining": 0,
   "source_audit_run": 40314178979,
-  "integrated_native_run": 40315022251,
-  "integrated_native_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40315022251",
+  "integrated_native_run": 40316425686,
+  "integrated_native_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40316425686",
   "original_documents_now_confirmed": 2,
   "original_candidacies_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
   "original_candidacies_bytes": 4298580,
@@ -16,11 +16,11 @@
   "crosswalk_national_no_seats": 4,
   "verified_registered_parties": 0,
   "verified_people_joined": 0,
-  "JS_tests_native": 95,
+  "JS_tests_native": 98,
   "Python_tests_native": 59,
   "browser_executed": true,
   "browser_initial_status": "SUCCESS",
-  "latest_CSS_progress_recheck": "CODE_PUBLISHED_AWAITING_LATEST_CHROMIUM_JOB",
+  "latest_CSS_progress_recheck": "VERIFIED_NATIVE_CHROMIUM_RUN_40316425686",
   "progress_before": 35.45,
   "progress_after": 36.35,
   "work_effect_pp": 0.9,
@@ -63,12 +63,12 @@
     {
       "id": "PF-BR8N-N06",
       "status": "PASS_CHROMIUM_E2E",
-      "evidence": "Real Chromium navigation to market, atlas, progress in green CI; no uncaught JS exceptions"
+      "evidence": "Real headless Chromium on current V3 application: 10 native progress bars, 36.4% displayed, market/atlas navigation, original BOE candidacy panel, no page JS errors."
     },
     {
       "id": "PF-BR8N-N07",
       "status": "PASS_LOCAL_HOST_SECURITY_SCOPE",
-      "evidence": "Host external domain denied HTTP 403 in browser suite, no authentication or production security audit claimed"
+      "evidence": "Real Chromium and HTTP localhost Host forged domain returned 403, CSP-compatible progress bars; no authentication or production security audit claimed."
     },
     {
       "id": "PF-BR8N-N08",
@@ -81,7 +81,7 @@
     "No full national party/person roster, members or individual public-office history",
     "4 no-seat labels refers national total secondary election results, not only Albacete",
     "No public deployment or multiuser auth",
-    "New CSS semantic progress check in newest Chromium job has not yet been confirmed when initial results written",
     "No independent sociology experiment done"
-  ]
+  ],
+  "v3_browser_10_semantic_bars_csp": "PASS"
 }
