@@ -1,0 +1,35 @@
+{
+  "id": "C02",
+  "mode": "AB-H/AB-P",
+  "status": "CLOSED_LOCAL_ENGINEERING",
+  "observation": {
+    "local_command": "cd /mnt/data/pfl_abh_scratch && python -m unittest -v test_source_eligibility.py",
+    "tests_passed": 10,
+    "tests_total": 10,
+    "candidate_entitlement": "QUARANTINED even if caller claims source digest and rights",
+    "host_spoof": "rejected",
+    "fake_trusted_receipts": "rejected",
+    "person_scoring": false
+  },
+  "adversarial": "Pure isolated module, not yet imported by live local server; caller-controlled claims not independent evidence",
+  "acceptance": {
+    "module_safety_contract": true,
+    "HTTP_integration": false,
+    "release_ready": false
+  },
+  "AB_R": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "AB_P": {
+    "stage": "build",
+    "acceptance_provisional": "local module tests only",
+    "gate_effect": 0
+  },
+  "decision": "C03 integrate read-only GET /api/eligibility-policy and test loopback Host rejection; leave no scoring route",
+  "cost": {
+    "actions": 0,
+    "local_tests": 10
+  }
+}

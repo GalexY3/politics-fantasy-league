@@ -1,0 +1,50 @@
+{
+  "id": "C03",
+  "mode": "AB-H/AB-P",
+  "A": {
+    "outcome": "GET /api/eligibility-policy devuelve razones y requisitos de no elegibilidad; no ingerir documentos ni aceptar attestations de cliente",
+    "recipient": "usuario local de demo"
+  },
+  "B": {
+    "alternatives": [
+      "standalone module only",
+      "integrate GET under existing loopback Host guard",
+      "accept POST writes for evidence (reject)"
+    ]
+  },
+  "C": {
+    "risk": "accidental public endpoint or bypass host",
+    "source": "main server.py local-only"
+  },
+  "D": {
+    "acceptance": [
+      "HTTP 200 JSON on trusted loopback Host",
+      "HTTP 403 on hostile Host",
+      "GET never turns on scores",
+      "No new POST routes",
+      "Current site routes and CSP unmodified"
+    ]
+  },
+  "E": {
+    "implementation": "import policy_status in server.py; one local Host negative test",
+    "budget": "no Actions"
+  },
+  "F": {
+    "pending": true
+  },
+  "G": {
+    "pending": true
+  },
+  "H": {
+    "complaint_ids": []
+  },
+  "I": {
+    "no_launch_gate_change": true
+  },
+  "J": {
+    "next": "select after real local HTTP test"
+  },
+  "CT2_before": 29,
+  "grade_0_3": 0,
+  "status": "PREREGISTERED"
+}
