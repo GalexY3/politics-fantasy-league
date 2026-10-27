@@ -1,0 +1,12 @@
+{
+  "id": "B02",
+  "stage": "B",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "B01 exact committed A19 module/test SHA1 matching, real native 5/5 PASS.",
+  "H1": "The A07 source mention pairer and seven committed tests can be byte-identically staged and run natively; must catch two-of-three positional false joins and reject duplicate/missing/empty names.",
+  "H0": "Byte-copy mismatch or regression indicates prior 7 local mirrored tests were insufficient and needs repair.",
+  "method": "Fetch two current GitHub files, manually stage exact UTF-8, calculate git hash SHA1 including blob header matching live refs; run python unittest discover. Test source mention join 3/3 with source order permutation; never person ID beyond bulletin.",
+  "acceptance": "Both blob SHA match, seven tests PASS; if fail, preserve log and repair module with new test before acceptance.",
+  "cost": "Zero CI."
+}
