@@ -1,0 +1,15 @@
+{
+  "cycle": "C49",
+  "mode": "AB-P",
+  "A": "Is the synthetic forecast's abbreviated Poisson log loss exactly the same as the full evaluation Poisson NLL minus lgamma(y+1) for fixed finite rates and count targets?",
+  "B": [
+    "Two modules agree up to count-only constant",
+    "New forecast rate validation changes valid loss semantics",
+    "Large count numeric error or y=0 zero edge inconsistent"
+  ],
+  "C": "Preregister, native CPython on SHA-verified forecast.py and evaluation.py, factorial identity across 9 integer counts x 5 finite lambdas, plus relative-skill independent controls. Commit versioned synthetic pytest if pass.",
+  "D": {
+    "falsifier": "Any mismatch beyond 1e-10 plus proper relative error; no unvalidated predictive claim",
+    "scope": "Mathematical equivalence only, not actual calibration or political prediction."
+  }
+}
