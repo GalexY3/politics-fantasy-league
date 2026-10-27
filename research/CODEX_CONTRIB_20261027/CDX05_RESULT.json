@@ -1,0 +1,15 @@
+{
+  "id": "CDX05", "mode": "AB-H/AB-R", "status": "PARTIAL_STRICT_POSTHOC_CANDIDATE", "prereg_commit": "fba1624",
+  "A": "Comprobar consistencia interna de recuentos y ausencia en el XML oficial de la sesión 60 XV del Senado.",
+  "B": "El documento y su estructura eran conocidos de RC03/RC04 y de la exploración preparatoria. No es una evaluación ciega ni una fuente independiente.",
+  "C": "Con el vocabulario fijado antes de ejecutar, siete votaciones fueron comparables y sus categorías coincidieron. Tres quedaron indeterminadas por la etiqueta no prerregistrada NO VOTAN.",
+  "D": "Tras inspeccionar el XML se añadió explícitamente, como hipótesis lingüística post hoc, NO VOTAN = no-voto: bajo esa suposición, 10/10 votaciones coinciden por categoría; no se certifica el diccionario institucional.",
+  "E": "Se verificó SHA-256 671436ba27f90aa9c19fc342fc8508f7d1ddf122aa422b64edca5d6b150a6a71. Las listas de ausencias coinciden 10/10 con los totales declarados; 0 duplicados y 0 escaños faltantes dentro de cada votación; no se equipararon ausencias a no-voto.",
+  "F": "Auditoría local reproducible por votación y 5 tests sintéticos de desconocidos, duplicados, discrepancias, missing y separaciones de categorías, sin nombres exportados ni Actions.",
+  "G": "Coherencia interna condicionada dentro de un archivo, no confirmación independiente del hecho, semántica jurídica, identidad o first_public_at. Los 2589 votos no son observaciones independientes de personas.",
+  "H": {"complaint_ids": ["CDX05-XML-DICTIONARY"], "limits": "El pliego SVE no acredita el diccionario exacto XML. Mantener etiqueta adicional como suposición post hoc hasta obtener documentación."},
+  "I": {"strict_result": "7 comparables, 3 indeterminadas", "posthoc_candidate": "10/10 coinciden bajo mapeo no certificado", "CT2_identity_before_after": [29,29], "VSDS": "1/3", "scientific_novelty_0_3": 0, "release_gates": "unchanged"},
+  "J": "Mejorar los contratos que informan una coincidencia parcial de nombres como si fuera total y asegurar fallos tipados; elegir según prioridad y revisar potencial solapamiento con ChatGPT.",
+  "complaints": [{"id":"CDX05-XML-DICTIONARY", "status":"open", "description":"Falta documentación oficial del vocabulario XML para interpretar NO VOTAN; conservar comparación estricta y extensión post hoc separadas."}],
+  "github_actions_minutes": 0
+}
