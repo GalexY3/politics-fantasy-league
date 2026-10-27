@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import json
 import math
+import secrets
 from pathlib import Path
 from .secure_store import store_bytes, append_private_jsonl, preflight_private_storage
 import time
@@ -110,6 +111,7 @@ def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
         digest = hashlib.sha256(content).hexdigest()
         relative_object = store_bytes(root, content, digest)
         record = {
+            "capture_id": secrets.token_hex(16),
             "source_id": source, "url": url, "final_url": final_url,
             "redirect_chain": [url, *(guard.hops if guard is not None else ())],
             "redirect_chain_checked_before_contact": guard is not None,
