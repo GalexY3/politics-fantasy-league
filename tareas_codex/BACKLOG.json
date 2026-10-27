@@ -1,0 +1,104 @@
+{
+  "schema": "pfl.codex.pending_tasks.v1",
+  "created_on": "2026-10-28",
+  "project": "Politics Fantasy League",
+  "repository": "GalexY3/Metodologia-AB",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head_before_task_queue": "8f21411b0c4caf267d77721510d06129fe2eedbe",
+  "execution_status": "NONE_OF_THESE_TASKS_HAS_BEEN_EXECUTED_BY_CODEX",
+  "codex_available_to_user": false,
+  "github_issue_number": 17,
+  "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
+  "scope": {
+    "atlas_lots": 28,
+    "canonical_atlas": "NOT_RUN",
+    "full_repo_python": "NOT_RUN",
+    "full_repo_node": "NOT_RUN",
+    "release_gates_passed": 0,
+    "ct2_identity_ordinal": 29,
+    "progress_contractual_percent": 36.9
+  },
+  "tasks": [
+    {
+      "id": "PFL-CODEX-T001",
+      "title": "Replay canónico Atlas de 28 lotes",
+      "priority": "P0",
+      "file": "T001_ATLAS_CANONICO.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "completion_requires": [
+        "native Python checker exit code",
+        "canonical state SHA",
+        "counts/gates",
+        "HEAD+logs"
+      ]
+    },
+    {
+      "id": "PFL-CODEX-T002",
+      "title": "Suites completas Python y Node",
+      "priority": "P0",
+      "file": "T002_SUITES_COMPLETAS.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "completion_requires": [
+        "full pytest exit+logs",
+        "full Node tests exit+logs",
+        "case/skip/failure ledger"
+      ]
+    },
+    {
+      "id": "PFL-CODEX-T003",
+      "title": "Paridad nativa V3/V4 Python/JavaScript",
+      "priority": "P1",
+      "file": "T003_PARIDAD_V3_V4.md",
+      "status": "PENDIENTE",
+      "depends_on": [
+        "PFL-CODEX-T002"
+      ],
+      "completion_requires": [
+        "source JSON hashes",
+        "native both evaluators",
+        "36.35/36.90 and six blockers",
+        "versioned comparison tests"
+      ]
+    },
+    {
+      "id": "PFL-CODEX-T004",
+      "title": "Auditoría offline ingesta y servidor loopback",
+      "priority": "P1",
+      "file": "T004_SEGURIDAD_LOCAL.md",
+      "status": "PENDIENTE",
+      "depends_on": [
+        "PFL-CODEX-T002"
+      ],
+      "completion_requires": [
+        "isolated local tests",
+        "negative security cases",
+        "no network exposure",
+        "verifiable risk summary"
+      ]
+    },
+    {
+      "id": "PFL-CODEX-T005",
+      "title": "Originales Senado, RPP, Interior y revisión jurídica",
+      "priority": "P1_CONDICIONAL",
+      "file": "T005_ORIGINALES_CONDICIONALES.md",
+      "status": "BLOQUEADA",
+      "depends_on": [
+        "Original institucional auténtico suministrado/accesible legítimamente",
+        "Autorización expresa para manipular dicho original"
+      ],
+      "completion_requires": [
+        "original SHA/source rights",
+        "identity/as-of verification if available",
+        "limitations",
+        "no personal data published"
+      ]
+    }
+  ],
+  "no_automatic_actions": true,
+  "no_main_merge": true,
+  "no_expensive_ci": true,
+  "no_real_person_scoring": true,
+  "last_verified_by": "ChatGPT read-only GitHub tools, plans only; no Codex execution"
+}
