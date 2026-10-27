@@ -1,0 +1,22 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC14",
+  "status": "PREREGISTERED",
+  "mode": "AB-P",
+  "H1": "A read-only ledger reconciliation keyed by capture_id rather than sha256 will correctly flag 2 identical-content captures with 1 review as one unreviewed operation, and reject duplicate/unknown review IDs; legacy lacking IDs remains UNKNOWN_LINKAGE.",
+  "H0": "Simple SHA matching already resolves per-operation reviews; no ambiguity.",
+  "tests": [
+    "2 captures same SHA, distinct IDs; 1 review => 1 unmatched",
+    "orphan review ID from unlisted capture flagged",
+    "duplicate review for same capture flagged",
+    "legacy no-ID rows classified ambiguous not promoted",
+    "no raw source identifiers/URLs returned"
+  ],
+  "acceptance": "No false release; exact local tests; keep ledger read-only",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
