@@ -1,0 +1,32 @@
+{
+  "cycle": "C32",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_RED_GREEN_PATCH_MERGED_IN_C34",
+  "A": "Release gate status cleared if critical milestone IDs absent",
+  "B": "Missing IDs should be blocking not optional; JS originally reports no blockers",
+  "C": "Reconstructed original JS Git SHA, Node regression red-green; C34 incorporated code fix with schema parity",
+  "D": {
+    "original_source_blob": "67ce20c5534f18f8955b88c964c1f04e21ecbdc6",
+    "patched_source_blob": "1ce86c092b9e479d0c1b120744fcb80a722791f8",
+    "commit": "1aa1c2f1fcdc4682d10287ce14f675c9686247ed",
+    "first_github_prereg": "ee65a7043250b0500ad96c24a3dd14456dd36b11",
+    "prereg_local_before_test": true,
+    "github_prereg_after_test_due_write_block": true,
+    "new_repo_regression": "tests/test_progress_contract_failclosed.mjs"
+  },
+  "E": {
+    "before": "1 Node test FAIL, cleared status 0 blockers",
+    "after": "9/9 new Node contract tests PASS including missing six gates",
+    "v4_scope_contractual_pct": 36.9
+  },
+  "F": "No full original JS suite, only new tests and independent V4 arithmetic; no gate promotions.",
+  "G": "Native Node and original Git hashes verified against branch, local and repo patch same blob",
+  "H": "Repair is integrated and fail-closed for missing gate IDs",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C33 broader parser schema parity findings"
+}
