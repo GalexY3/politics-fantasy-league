@@ -26,7 +26,12 @@ def audit_original_senate_session(xml_bytes: bytes) -> dict:
     for vote in session.findall("votacion"):
         raw_day = vote.findtext("fecha_v")
         try:
-            vote_day = datetime.strptime(raw_day, "%d-%b-%Y").date()
+            parts = raw_day.upper().split("-")
+            months = {"ENE":1,"FEB":2,"MAR":3,"ABR":4,"MAY":5,"JUN":6,
+                      "JUL":7,"AGO":8,"SEP":9,"OCT":10,"NOV":11,"DIC":12}
+            if len(parts) != 3 or parts[1] not in months:
+                raise ValueError("UNKNOWN_SENATE_MONTH")
+            vote_day = datetime(int(parts[2]), months[parts[1]], int(parts[0])).date()
         except (TypeError, ValueError) as exc:
             raise ValueError("BAD_VOTE_DAY") from exc
         counts = Counter()
