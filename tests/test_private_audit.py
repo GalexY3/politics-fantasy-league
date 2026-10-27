@@ -185,3 +185,13 @@ def test_duplicate_json_member_in_review_rejected(tmp_path):
     )
     with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
         audit_private_root(tmp_path)
+
+
+def test_nonfinite_json_constants_in_private_ledger_rejected(tmp_path):
+    """Python accepts NaN/Infinity by default; private JSONL must not."""
+    for token in ("NaN", "Infinity", "-Infinity"):
+        (tmp_path / "manifest.jsonl").write_bytes(
+            ('{"bytes":' + token + '}').encode("ascii") + bytes([10])
+        )
+        with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
+            audit_private_root(tmp_path)
