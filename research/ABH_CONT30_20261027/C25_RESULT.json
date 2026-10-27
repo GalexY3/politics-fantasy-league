@@ -1,0 +1,34 @@
+{
+  "cycle": "C25",
+  "mode": "AB-P",
+  "status": "VALID_REPAIRED_REPO_TESTS_24_OF_24_PASS",
+  "prereg_commit": "574da710cfce86ca368a90298a1b4cf848ffbcc1",
+  "A": "Fix all three identified invalid fixtures without changing product code and rerun native checked-in audit tests.",
+  "B": "Fixture-only explanation vs hidden parser bug after fixing modes.",
+  "C": "Added chmod(0o600) to three tests after synthetic file creation, preserved BAD_LEDGER_JSON expectations; reconstructed amended test byte-identical to GitHub and ran native pytest.",
+  "D": {
+    "test_commit": "316d6fc6894bc696990da82596f8d3bcb6ab96e7",
+    "test_blob": "7b9d89f94579e8be84833662df280847ea70d191",
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_private_audit.py",
+    "result": "24 passed in 0.70s",
+    "source_blobs": [
+      "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "4695c8d85924869212d916fa163a8f3548272ebc"
+    ]
+  },
+  "E": {
+    "before": "21 pass, 3 fail due fixture 0644",
+    "after": "24 pass, 0 fail; Git SHA matched corrected file"
+  },
+  "F": "Scoped audit tests only, no other repo tests or Atlas validation. Source functionality unchanged.",
+  "G": "True byte-identical native pytest with original source and amended committed test.",
+  "H": "Repairs test oracle so future JSON parser regressions can be detected; does not promote launch gates.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novel": "0/3"
+  },
+  "J": "C26 run checked-in secure_store.py native tests against exact source to find remaining defects."
+}
