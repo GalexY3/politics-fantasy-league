@@ -164,7 +164,7 @@ def store_bytes(root: Path, data: bytes, digest: str) -> str:
 def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
     if filename not in ("manifest.jsonl", "quarantine_reviews.jsonl"):
         raise ValueError("UNSUPPORTED_PRIVATE_LEDGER")
-    payload = (json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+    payload = (json.dumps(record, ensure_ascii=False, sort_keys=True, allow_nan=False) + "\n").encode("utf-8")
     with _root_fd(root) as folder:
         try:
             fd = os.open(filename, os.O_WRONLY | os.O_APPEND | os.O_CREAT | os.O_NOFOLLOW,
