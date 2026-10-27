@@ -1,0 +1,15 @@
+{
+  "id": "RC04-20261027", "mode": "AB-H/AB-R", "status": "CLOSED_EXPLORATORY_CANDIDATES_ONLY", "prereg_commit": "a655104",
+  "A": "Cotejo descriptivo de nombres declarados en una sesión con registros en la composición disponible, sin adjudicar identidad.",
+  "B": "Los dos originales, esquemas y recuentos eran conocidos y explorados antes del protocolo. Este cruce se especificó antes de ejecutarse, pero no es ciego a los datos ni una validación independiente.",
+  "C": "Se localizaron candidatas nominales, sin comprobar si corresponden a la misma persona ni al periodo efectivo de la sesión.",
+  "D": "Se verificaron hashes RC03; normalización de tildes, mayúsculas, puntuación y espacios; comparación por nombre-apellidos o apellidos-nombre; cada registro candidato cuenta una sola vez. No se exportaron nombres.",
+  "E": "Sesión XV 60: 2589 filas VotoSenador, ninguna sin nombre, 259 cadenas normalizadas distintas. Composición: 2521 registros; se identificaron 311 con legislatura 15.",
+  "F": "De las 259 cadenas, 259 tienen un candidato nominal en los 311 registros de XV; cero no tienen candidato y cero tienen múltiples. Las 2589 filas de voto corresponden a esas cadenas. El mismo reparto se observa en toda la composición disponible.",
+  "G": "El resultado mide coincidencia de cadenas dentro de estas dos capturas, no 259 identidades verificadas. No hay controles etiquetados de homónimos, errores de nombre, falsos positivos/negativos, ni comprobación de la composición en la fecha de la sesión. 2589 votos no son 2589 personas ni pruebas independientes.",
+  "H": {"complaint_ids": [], "limitations": "La combinación y la selección de fuente ya estaban expuestas; la llave única del snapshot no es necesariamente un ID estable. La fecha/actualización de archivo no certifica primera publicación ni disponibilidad as-of."},
+  "I": {"decision": "Candidatos para revisión y búsqueda de contraejemplos, NO crosswalk aceptado", "CT2_identity_before_after": [29, 29], "VSDS": "1/3", "scientific_novelty_0_3": 0, "release_gates": "unchanged"},
+  "J": "STOP_R5 hasta adjudicación externa de una muestra con controles de falsos positivos y negativos y evidencia de pertenencia temporal; no rellenar el resto de ciclos con variantes del mismo join.",
+  "authorization": {"prior_distinct_branch_records": 13, "this_continuation_run": 4, "conservative_max_remaining_if_same_block": 3, "identity_of_authorizations": "UNRESOLVED_USER_DOES_NOT_RECALL"},
+  "profile": "research/ABH_RECON_20261027/RC04_PROFILE.json", "complaint_ids": []
+}
