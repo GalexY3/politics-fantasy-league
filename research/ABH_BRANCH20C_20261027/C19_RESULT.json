@@ -1,0 +1,92 @@
+{
+  "id": "C19",
+  "mode": "AB-R",
+  "status": "CLOSED_OFFICIAL_DATED_FULL_CONDITION_CHANGES_WITH_PUBLICATION_DELAY",
+  "prereg_commit": "7567757c7331e5fce7cc90d55d838390bca6ee24",
+  "original_official_source": "https://www.congreso.es/es/busqueda-de-publicaciones?_publicaciones_id_texto=%28BOCG-15-D-51.CODI.%29&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+  "document": {
+    "publication_family": "BOCG XV Legislatura Serie D General",
+    "number": "51",
+    "issue_day": "2023-12-15",
+    "publisher": "Congreso de los Diputados",
+    "document_pdf": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-51.PDF",
+    "document_signed_day_in_text": "2023-12-12",
+    "section": "PLENO 051/000002 part A/B/C"
+  },
+  "results": {
+    "full_condition_cessations": {
+      "count": 8,
+      "effective_day": "2023-12-06",
+      "names_public": [
+        "José Manuel Albares Bueno",
+        "Pilar Alegría Continente",
+        "Héctor Gómez Hernández",
+        "Fernando Grande-Marlaska Gómez",
+        "Miquel Iceta i Llorens",
+        "Diana Morant Ripoll",
+        "Luis Planas Puchades",
+        "Isabel Rodríguez García"
+      ]
+    },
+    "full_condition_acquisitions": {
+      "count": 8,
+      "effective_day": "2023-12-12",
+      "names_public": [
+        "Víctor Camino Miñana",
+        "Zaida Cantera de Castro",
+        "Cristina López Zamora",
+        "Alberto Mayoral de Lamo",
+        "María Isabel Moreno Fernández",
+        "Esther Rodríguez Suárez",
+        "Víctor Javier Ruiz de Diego",
+        "Alba Soldevilla Novials"
+      ]
+    },
+    "credential_submissions": {
+      "count": 8,
+      "credential_sequence": "358 to 365 inclusive",
+      "submitted_day": "2023-12-12",
+      "these_eight_same_as_full_condition_acquisitions": true
+    }
+  },
+  "date_semantics": {
+    "event_effective_vs_bulletin_days": {
+      "departures_lag_days": 9,
+      "acquisitions_lag_days": 3
+    },
+    "earliest_proxy_for_this_bulletin": "2023-12-15",
+    "first_public_at_exact": null,
+    "earlier_other_official_sources_may_exist": true,
+    "not_backfill_asof_before_bulletin_without_prior_original": true
+  },
+  "new_evidence": "Compared to source snapshot October 2026 and BOE/JEC 2023 elected list, independent official BOCG XV-D-51 supplies person-specific precise date of *full parliamentary condition* acquired/ceased and credentials by official record family, resolving an earlier missing dimension for this fixed 2023 cohort.",
+  "limitation": [
+    "Public search indexed original official HTML text, direct web open cache miss and no source PDF bytes captured/hash in this turn.",
+    "Published bulletin may record events that were publicly known earlier; only this bulletin is not available-by validated before its issue day.",
+    "Eight exits and eight entries are not automatically eight one-to-one cause/successor matches; no personal identity certification across legislatures from this alone.",
+    "No original first_public_at independently attested for BOCG, unlike separate BOE 2023 publisher self-report which does NOT apply to Congreso BOCG."
+  ],
+  "hypotheses": {
+    "H1": "SUPPORTED by official original listed dates",
+    "H0": "REFUTED: original contains effective person-level plena condición events and 8 credentials, not just group snapshot"
+  },
+  "metrics_invariant": {
+    "PFL_v1_rev3_percent": 36.35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "gates": 0
+  },
+  "cost": {
+    "github_actions": 0
+  },
+  "budget": {
+    "spent_through_C19": 19,
+    "remaining": 1
+  },
+  "next": "C20 prereg second source-family BOCG 15-D-390 12/09/2025 independent reproduction of full-condition 3 high events, credential dates and publication lag."
+}
