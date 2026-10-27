@@ -1,0 +1,28 @@
+{
+  "cycle": "C20",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C19",
+  "A": {
+    "question": "Does preflight_private_storage reject preexisting world-readable/writable manifest and review ledgers BEFORE network contact, or only reject after fetching?",
+    "acceptance": "Validate owner/private modes using safely opened fd in preflight; reject hostile mode before opener. Add no-network synthetic tests for manifest and quarantine_reviews. Preserve symlink prohibition."
+  },
+  "B": {
+    "hypotheses": [
+      "Current os.stat checks only kind; mode remains unchecked until append after network",
+      "_check_private_permissions on preflight fd detects unsafe mode before network",
+      "Race with malicious writer still out of scope"
+    ]
+  },
+  "C": "Inspect preflight and import order, add readonly O_NOFOLLOW descriptor check, call _check_private_permissions prior to fetch; tests monkeypatch opener to explode if touched.",
+  "D": {
+    "falsifier": "Unsafe ledger allows opener call before rejection or modifies existing data",
+    "limitations": "Only POSIX trusted local root, not full HTTP ingest or online source rights."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
