@@ -1,0 +1,34 @@
+{
+  "cycle": "IC05",
+  "status": "CLOSED_NEGATIVE_QUARANTINE_LEDGER_SYMLINK_TEST",
+  "prereg": "IC05_PREREG.json",
+  "changes": {
+    "module_sha": "3c2dd5abcfbe765b91c3ed8ff4f91f6504344b69",
+    "test_sha": "d8b5a2c6299ae2e6b25984caff68d78fc2adcc61",
+    "exact_git_match": true
+  },
+  "tests": {
+    "focused_native_pytest": 27,
+    "passed": 27,
+    "subtests": 14,
+    "failed": 0,
+    "full_suite_after_IC05": "Attempted but hit local timeout at 63% with no displayed failure; no full-suite PASS claim for IC05"
+  },
+  "outcome": "quarantine_reviews.jsonl now uses anchored O_NOFOLLOW ledger. Pre-placed symlink to external fixture rejected before outside write; all existing positive/negative local staging preserved.",
+  "known_limits": [
+    "Object may be successfully stored before ledger symlink failure and become orphan but not released",
+    "Windows store remains intentionally unsupported until OS secure open semantics implemented",
+    "No HTTP capture endpoint; user/rights semantics unchanged"
+  ],
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 2,
+    "remaining": 18
+  },
+  "next": "IC06 test and address orphan object or manifest failure semantics and quarantine review durability without claiming transactional DB"
+}
