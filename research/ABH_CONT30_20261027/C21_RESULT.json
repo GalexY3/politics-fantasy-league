@@ -1,0 +1,62 @@
+{
+  "cycle": "C21",
+  "mode": "AB-P",
+  "status": "VALID_EXECUTED_EXACT_MODULE_ISOLATED_10_TESTS",
+  "preregister": "CAMPAIGN.json C21",
+  "A": {
+    "question": "Can exact SHA-verified private GitHub code be natively executed without full private repo checkout?",
+    "unit": "private_audit_cli.py Git blob with stubbed audit_private_root",
+    "estimand": "CLI fail-closed exit decisions, not actual capture integrity"
+  },
+  "B": {
+    "rivals": [
+      "Repository fetch unavailable to local runner",
+      "Exact source recoverable and isolated runtime allows narrow tests",
+      "Fake source modified means result invalid"
+    ]
+  },
+  "C": {
+    "design": "Fetched current GitHub private_audit_cli.py by connector; wrote byte-for-byte local file; checked git hash-object. Ran 10 focused pytest cases with stub injected auditor aggregations.",
+    "falsifier": "Git blob SHA mismatch; any case exit code inconsistent; payload leaks secret on caught ValueError"
+  },
+  "D": {
+    "branch": "research/pfl-codex-contributions-20261027",
+    "github_blob_sha": "923a1c479c3f970e1325beff36699a277bc3773c",
+    "local_git_hash_object": "923a1c479c3f970e1325beff36699a277bc3773c",
+    "code_sha256": "037e8aecbfa1e811875262527fe39b218b76bf131bc6a9d651c4fb5d9051f33c",
+    "local_test_sha256": "5730555ace41c240fc3c6ed7555908322f471c81b5e2fed59eefe4dbda431fac",
+    "cwd": "/mnt/data/pfl_cont30_native",
+    "command": "PYTHONPATH=. python -m pytest -q test_exact_source_cli.py",
+    "tests_passed": 10,
+    "tests_failed": 0,
+    "elapsed": "0.06s",
+    "git_clone_attempt": "git ls-remote error: could not resolve host github.com; no full checkout",
+    "executor_request": "https://github.com/GalexY3/Metodologia-AB/issues/17"
+  },
+  "E": {
+    "result": "PASS_EXACT_MODULE_10_ISOLATED_TESTS",
+    "cases": [
+      "clean",
+      "empty manifest",
+      "missing bytes",
+      "orphan object",
+      "unexpected entry",
+      "unreviewed",
+      "duplicate IDs",
+      "caught ValueError",
+      "bad object SHA",
+      "unknown quarantine state"
+    ]
+  },
+  "F": "private_audit.audit_private_root is intentionally stubbed; full audit, store, native atlas 24 lots, entire suite NOT_RUN. SHA match guarantees only CLI code provenance.",
+  "G": "Native pytest against exact GitHub CLI code; not an independent institutional validation.",
+  "H": "Remove previous blanket statement 'no Python tests executed': ten local exact-source CLI tests now actually run. Do not infer full test health.",
+  "I": {
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "gates": "0/6",
+    "new_science": "0/3"
+  },
+  "J": "BRANCH C22 to GitHub source code comparison for read-side inventory/ledger invariants, try exact-module native tests if byte identity can be established."
+}
