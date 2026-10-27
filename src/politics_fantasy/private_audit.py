@@ -39,6 +39,16 @@ MAX_OBJECT_BYTES = 20 * 1024 * 1024
 OBJECT_RE = re.compile(r"\Aobjects/([0-9a-f]{2})/([0-9a-f]{64})\Z")
 
 
+def _unique_json_members(pairs):
+    """Reject ambiguous JSON object members, including nested objects."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("DUPLICATE_LEDGER_KEY")
+        result[key] = value
+    return result
+
+
 def _ledger(fd: int, filename: str) -> list[dict]:
     if filename not in ("manifest.jsonl", "quarantine_reviews.jsonl"):
         raise ValueError("UNAPPROVED_LEDGER")
@@ -65,7 +75,7 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         if len(lines) > MAX_ROWS:
             raise ValueError("TOO_MANY_LEDGER_ROWS")
         try:
-            values = [json.loads(line) for line in lines]
+            values = [json.loads(line, object_pairs_hook=_unique_json_members) for line in lines]
         except (ValueError, UnicodeError) as exc:
             raise ValueError("BAD_LEDGER_JSON") from exc
         if any(not isinstance(x, dict) for x in values):
