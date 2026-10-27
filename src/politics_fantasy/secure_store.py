@@ -47,7 +47,25 @@ def _root_fd(root: Path, *, create: bool = True):
     if root.is_symlink():
         raise ValueError("SYMLINK_STORAGE_ROOT")
     if create:
-        root.mkdir(parents=True, exist_ok=True, mode=0o700)
+        # The operator owns the parent; do not silently create an unsynced
+        # chain of parent directories under a mutable ancestor.
+        if not root.parent.is_dir():
+            raise ValueError("MISSING_TRUSTED_STORE_PARENT")
+        created = False
+        try:
+            root.mkdir(mode=0o700)
+            created = True
+        except FileExistsError:
+            pass
+        if created:
+            try:
+                parentfd = os.open(root.parent, _directory_flags())
+            except OSError as exc:
+                raise ValueError("UNSAFE_STORAGE_ROOT_PARENT") from exc
+            try:
+                os.fsync(parentfd)
+            finally:
+                os.close(parentfd)
     elif not root.is_dir():
         raise ValueError("MISSING_STORE_ROOT")
     try:
