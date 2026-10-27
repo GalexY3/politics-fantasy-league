@@ -1,0 +1,29 @@
+{
+  "campaign": "PFL-CONT50-20261027",
+  "grant": "User 'De acuerdo, concedidos' in response to 10 new AB-H cycles",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "88150b87ab301d1e0e737b57a22bae81cb926f90",
+  "cycles_granted": 10,
+  "cycles": "C41-C50",
+  "status": "ACTIVE",
+  "rules": "AB 3.2.1 O3-O7 A–J, R1-R5, prereg before each test, count only valid executed cycle, no merge main/costly CI/private originals/scoring real politicians",
+  "Codex": "issue #17 deferred, do not assume execution",
+  "C41": {
+    "mode": "AB-P",
+    "status": "PREREGISTERED",
+    "A": "Does exact GitHub unmodified forecast.py fail C37-C38 tests and does pending user-owned patch apply cleanly with no behavioral regressions?",
+    "B": [
+      "Patch correctly rejects nonfinite priors/counts/exposures",
+      "Patch causes bug or incompatible type",
+      "GitHub baseline has changed; patch must rebase"
+    ],
+    "C": "Use local source file Git blob hash with exact GitHub SHA, run committed-equivalent 12 red-green synthetic pytest, apply pending diff from /mnt/data/PFL_CONT40_forecast_pending.patch; run original regression family; commit source/test only on PASS.",
+    "D": "Falsifier: any failure or SHA mismatch; no real people, no claim full project tests",
+    "E": "PENDING",
+    "F": "PENDING",
+    "G": "PENDING",
+    "H": "PENDING",
+    "I": "PENDING",
+    "J": "PENDING"
+  }
+}
