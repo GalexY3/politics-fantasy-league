@@ -1,0 +1,33 @@
+{
+  "id": "RC07-20261027",
+  "status": "PREREGISTERED_BEFORE_IMPLEMENTATION",
+  "mode": "AB-H / AB-P engineering, scientific novelty not claimed",
+  "dependency": "RC06 found official ESE/000002-01 NOMINATED_AND_ACCEPTED_CANDIDATES issued 10 Sep, ESE/000002-02 DESIGNATED_SENATORS issued 16 Sep, actor labels same but claim type differs; first_public_at exact unknown.",
+  "H1": "An explicit fail-closed provenance guard rejects designation inferred from earlier candidacy/nomination records and rejects all historical as-of scoring if source's original first_public_at is unknown, while permitting exact matched source claim in synthetic fixtures with trusted evidence timestamp <= as_of.",
+  "H0": "Simple equality/availability guard mistakenly accepts wrong event type, accepts future/naive timestamps, or conflates effective/published dates.",
+  "implementation_scope": "New isolated pure Python module accepting trusted server-provided evidence record; not wired into HTTP nor proof that caller-supplied timestamps are trustworthy.",
+  "test_contract": [
+    "T01: actual RC06 ESE/000002-01 candidate claim cannot certify DESIGNATED even when queried after date of bulletin",
+    "T02: unknown first_public_at blocks candidate claim even with old bulletin date",
+    "T03: an independently authenticated synthetic known-published nomination at 2026-09-10T12:00+02:00 may certify nomination at 2026-09-12T00:00+02:00",
+    "T04: such synthetic nomination fails for cutoff 2026-09-09",
+    "T05: actual ESE/000002-02 designation without first_public_at blocks even at 2026-09-17",
+    "T06: synthetic authenticated designation published 2026-09-16T12:00+02:00 fails for cutoff 2026-09-12 even though event happened 10 September",
+    "T07: same synthetic source permits designation at cutoff 2026-09-17",
+    "T08: naive or non-ISO/untrusted cutoff or first-published timestamp rejected",
+    "T09: unsupported claim kind or unverifiable record family is blocked",
+    "T10: wrong authority/record family/missing fields blocked"
+  ],
+  "precommitted_acceptance": "10 expected assertions pass under local unittest by direct execution; negative controls materially distinguish claim types, exact cutoff, untrusted timestamps. Tests use made-up timestamps explicitly marked synthetic.",
+  "no_leakage": "Do not assign 12:00 synthetic example as original first-public timestamp of actual ESE records.",
+  "ABR": "No additional identities adjudicated, no population-accuracy claim.",
+  "ABP": "Local guard behavior only; requires API integration, provenance-attested registry and E2E/security review before use.",
+  "budget": "Last conservatively available cycle if permission blocks overlap (RC01-RC05 and earlier blocks). Zero Github Actions.",
+  "metrics_frozen": {
+    "PFL_v1_pct": 36.35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "gates_passed": 0,
+    "N1_N2_N3": 0
+  }
+}
