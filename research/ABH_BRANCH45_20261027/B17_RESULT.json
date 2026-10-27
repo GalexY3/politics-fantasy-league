@@ -1,0 +1,37 @@
+{
+  "id": "B17",
+  "status": "CLOSED_COMBINED_NATIVE_23_TESTS_AND_14_ORIGINAL_VOTES_PASS",
+  "prereg": "B17_PREREG.json",
+  "tests": {
+    "first_command_pattern": "test_source_original_*_qa.py",
+    "first_runner_covered_only_senate": 13,
+    "corrected_pattern": "test_source_original*.py",
+    "all_native_unittests_passed": 23,
+    "failures": 0,
+    "exact_git_blob_verified_for_both_latest_module_test_pairs": true,
+    "initial_pattern_error_preserved": true
+  },
+  "original_replay": {
+    "Congreso_JSON_vote_files": 4,
+    "congress_nominal_rows": 1400,
+    "congress_minus_one_seats": 67,
+    "Senate_original_XML_files": 1,
+    "senate_events": 10,
+    "senate_nominal_vote_rows": 2589,
+    "senate_absences": 51,
+    "total_original_events_validated": 14,
+    "all_totals_reconciled": true
+  },
+  "scope_limit": "No new evidence on issuer-specific first-publication or stable person IDs; no live HTTP test or CI; private nominal rows never committed.",
+  "milestones_unchanged": {
+    "V4": 36.9,
+    "gates": "0/6",
+    "CT2": 29,
+    "VSDS": "1/3"
+  },
+  "authorization": {
+    "B_spent": 17,
+    "B_remaining": 3
+  },
+  "next": "B18 inspect GitHub workflow for inclusion of these newly tested original source guards; add a non-invasive CI command if missing without launching workflow."
+}
