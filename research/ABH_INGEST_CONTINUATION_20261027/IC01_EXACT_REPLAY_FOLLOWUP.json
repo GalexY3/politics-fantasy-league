@@ -1,0 +1,33 @@
+{
+  "type": "REPRODUCIBILITY_MAINTENANCE_NOT_NEW_AB_CYCLE",
+  "cycle_reference": "IC01",
+  "status": "EXACT_GITHUB_BLOBS_REPLAYED_SUCCESSFULLY",
+  "original_limitation": "Initial local manually staged tests/test_ingest_redirect_security.py differed by 3 characters vs GitHub blob. This was correctly disclosed in IC01_RESULT, atlas complaint and first report.",
+  "diagnosis": "Exactly three local-only lambda signature spellings **kw instead of **k were identified using 250-character block FNV fingerprints on the GitHub-fetched file and the staged test. Semantics of tests were unchanged, but the byte-level fidelity claim was initially unsupported.",
+  "resolution": {
+    "ingest_source_Git_blob_sha": "d4e7d62bdcbec58312336e40dab539b0ed23c3eb",
+    "ingest_test_Git_blob_sha": "9dec4b4cc92d70712ce144f0a73c25a70fce59c0",
+    "test_bytes_exact": 6654,
+    "quarantine_source_sha": "05b6ffb18aa2ee0f4eaec09c494b20f146224e03",
+    "quarantine_test_sha": "00a9b7788795d62321d4de68addbc0029c677702",
+    "congress_validator_sha": "7e9d79fb841a1e07f379b77486c29088bbfc6512",
+    "senate_validator_sha": "83025d93bfeeac8e89574330e54033eb0ae2ac27"
+  },
+  "real_native_execution": {
+    "command": "PYTHONPATH=/mnt/data/pfl_ingest_src python -m unittest discover -s /mnt/data/pfl_ingest_src/tests -p 'test_*.py' -v",
+    "tests": 15,
+    "passed": 15,
+    "errors": 0,
+    "failures": 0,
+    "real_external_network_calls": 0
+  },
+  "integration_unresolved": {
+    "whole_repository_checkout_pytest": false,
+    "live_real_server_ingest_HTTP": false,
+    "original_publication_timestamps": false,
+    "publisher_semantic_dictionary_NO_VOTAN": false,
+    "gates_passed": 0
+  },
+  "judgment": "Former mismatch has been repaired and fully traced. This does not elevate V4 or release gate. Atlas complaint IC01-TEST-BLOB-NONIDENTICAL may now be triaged as repaired.",
+  "provenance": "All source/test byte hashes independently matched via actual local Python `hashlib.sha1(b'blob '+size+b'\\0'+bytes)` against GitHub blob SHA. No original political rows used."
+}
