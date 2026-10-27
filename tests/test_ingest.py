@@ -63,3 +63,13 @@ def test_exact_declared_http_content_length_accepts_fake(tmp_path):
     r=import_url(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
                  min_interval=1,opener=lambda *args,**kw:Exact())
     assert (tmp_path/r['raw_object']).read_bytes()==b'{"synthetic": true}'
+
+def test_unsupported_windows_store_fails_before_source_request(tmp_path):
+    from unittest.mock import patch
+    from politics_fantasy import secure_store
+    with patch.object(secure_store.os, 'name', 'nt'):
+        with pytest.raises(ValueError, match='SECURE_STORE_UNSUPPORTED_PLATFORM'):
+            import_url(url='https://www.congreso.es/test.json', source='congreso',
+                       root=tmp_path, min_interval=1,
+                       opener=lambda *args, **kwargs: (_ for _ in ()).throw(
+                           AssertionError('no network on unsupported OS')))
