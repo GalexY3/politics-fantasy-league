@@ -1,3 +1,9 @@
+# CONT40 C31–C40 cerrado: 10/10, Atlas 0026
+
+[Informe](../research/ABH_CONT40_20261027/REPORT_FINAL.md) y [ledger](../research/ABH_CONT40_20261027/CAMPAIGN_STATUS.json). Se hicieron 91 tests Python y 9 Node sobre módulos SHA-idénticos a la rama, más 12 Python sólo sobre modificación local **no incorporada** de forecast. V4 36,90%, CT2 29, VSDS 1/3 y gates 0/6; Atlas 26 lotes, 159 runs derivados sin check Python canónico. [Codex #17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue pendiente hasta que esté disponible; no se ha ejecutado. Se necesita nuevo permiso para otra campaña.
+
+---
+
 # Continuidad vigente · CONT30 C21–C30 completado 10/10 · Atlas 0025
 
 **Fecha:** 27/10/2026. **Leer primero [CURRENT](../ab_atlas/CURRENT.md), [ledger CONT30](../research/ABH_CONT30_20261027/CAMPAIGN_STATUS.json) e [informe completo C21–C30](../research/ABH_CONT30_20261027/REPORT_FINAL.md)**. Usuario autorizó **10 ciclos adicionales AB-H** y exigió ciclos completos, corrección metodológica y reportes de avance; se han documentado C21–C30 **10/10**, saldo 0. Cualquier nuevo bloque requiere permiso expreso.
