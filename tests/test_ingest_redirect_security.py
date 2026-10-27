@@ -21,9 +21,9 @@ class Response:
     def __exit__(self, *args): return None
     def close(self): return None
     def geturl(self): return self.url
-    def read(self, n):
+    def read(self, n=-1):
         self.read_count += 1
-        return self.content[:n]
+        return self.content if n == -1 else self.content[:n]
 
 
 class OfflineHTTPS(HTTPSHandler):
