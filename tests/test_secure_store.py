@@ -34,7 +34,7 @@ def test_objects_symlink_to_outside_fails_closed(tmp_path):
 def test_hash_shard_symlink_to_outside_fails_closed(tmp_path):
     outside = tmp_path.parent / (tmp_path.name + "_outside")
     outside.mkdir()
-    (tmp_path / "objects").mkdir()
+    (tmp_path / "objects").mkdir(mode=0o700)
     (tmp_path / "objects" / DIGEST[:2]).symlink_to(outside, target_is_directory=True)
     with pytest.raises(ValueError, match="SYMLINK_OR_UNSAFE_STORE_DIRECTORY"):
         store_bytes(tmp_path, PAYLOAD, DIGEST)
@@ -45,7 +45,8 @@ def test_existing_object_symlink_refused_without_modifying_target(tmp_path):
     outside = tmp_path.parent / (tmp_path.name + "_outside_data")
     outside.write_bytes(b"original outside")
     shard = tmp_path / "objects" / DIGEST[:2]
-    shard.mkdir(parents=True)
+    shard.mkdir(parents=True,mode=0o700)
+    (shard.parent).chmod(0o700)
     (shard / DIGEST).symlink_to(outside)
     with pytest.raises(ValueError, match="UNSAFE_EXISTING_OBJECT"):
         store_bytes(tmp_path, PAYLOAD, DIGEST)
@@ -102,3 +103,34 @@ def test_preflight_denies_bad_manifest_before_contact(tmp_path):
     with pytest.raises(ValueError, match="UNSAFE_PRIVATE_LEDGER"):
         preflight_private_storage(tmp_path,"manifest.jsonl")
     assert outside.read_bytes()==b"outside"
+
+def test_world_writable_store_root_rejected(tmp_path):
+    tmp_path.chmod(0o777)
+    with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+        store_bytes(tmp_path, PAYLOAD, DIGEST)
+
+
+def test_group_writable_object_directory_rejected(tmp_path):
+    objects=tmp_path/"objects"
+    objects.mkdir()
+    objects.chmod(0o770)
+    with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+        store_bytes(tmp_path, PAYLOAD, DIGEST)
+
+
+def test_world_readable_preexisting_digest_rejected(tmp_path):
+    obj=tmp_path/"objects"/DIGEST[:2]/DIGEST
+    obj.parent.mkdir(parents=True,mode=0o700)
+    obj.parent.parent.chmod(0o700)
+    obj.write_bytes(PAYLOAD)
+    obj.chmod(0o644)
+    with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+        store_bytes(tmp_path, PAYLOAD, DIGEST)
+
+
+def test_unsafe_existing_manifest_rejected(tmp_path):
+    manifest=tmp_path/"manifest.jsonl"
+    manifest.write_text("private")
+    manifest.chmod(0o666)
+    with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+        append_private_jsonl(tmp_path,"manifest.jsonl",{"fake":1})
