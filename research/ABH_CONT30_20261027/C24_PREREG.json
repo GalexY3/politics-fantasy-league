@@ -1,0 +1,14 @@
+{
+  "cycle": "C24",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C23",
+  "A": "Do exact checked-in private_audit.py tests pass against the three byte-identical GitHub native modules?",
+  "B": [
+    "all pass",
+    "invalid fixture/environment",
+    "genuine code regression"
+  ],
+  "C": "Retrieve original test file, verify Git blob SHA, execute native PYTHONPATH=src pytest, capture stdout and exit.",
+  "D": "No source modifications or release claims; distinguish test failures and invalid environment."
+}
