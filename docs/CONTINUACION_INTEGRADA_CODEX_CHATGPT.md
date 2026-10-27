@@ -1,3 +1,5 @@
+**Tareas pendientes de Codex organizadas desde el 28/10/2026:** [carpeta `tareas_codex/`](../tareas_codex/README.md) e [índice de estados](../tareas_codex/BACKLOG.json). P0: Atlas canónico 28 lotes y suites completas; P1: paridad V3/V4 y seguridad local; originales institucionales: bloqueados hasta disponer de fuente auténtica y permiso. **Ninguna de estas tareas se ha ejecutado**; la incidencia [#17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue abierta. Preparar la cola **no consume ciclos AB ni habilita Codex**.
+
 # Continuidad vigente · CONT60 C51–C60 cerrado 10/10 · Atlas 0028
 
 **28/10/2026.** Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger](../research/ABH_CONT60_20261028/CAMPAIGN_STATUS.json), [informe A–J](../research/ABH_CONT60_20261028/REPORT_FINAL.md) y [derechos de fuentes](DERECHOS_FUENTES_ABH45_20261027.md). El usuario concedió 10 ciclos C51–C60 y todos están ejecutados/documentados **10/10**, saldo 0.
