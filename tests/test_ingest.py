@@ -28,3 +28,38 @@ def test_reject_unapproved_url_before_fetch(tmp_path):
     with pytest.raises(ValueError):
         import_url(url='http://evil.invalid/bad',source='congreso',root=tmp_path,
                    opener=lambda *args,**kw: (_ for _ in ()).throw(AssertionError('network')))
+
+def test_declared_but_short_http_body_fails_before_store(tmp_path):
+    class Truncated(FakeResponse):
+        headers={'Content-Type':'application/json','Content-Length':'100'}
+    with pytest.raises(ValueError,match='TRUNCATED_OR_INCONSISTENT_RESPONSE_LENGTH'):
+        import_url(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
+                   min_interval=1,opener=lambda *args,**kw:Truncated())
+    assert not (tmp_path/'manifest.jsonl').exists()
+    assert not list((tmp_path/'objects').rglob('*'))
+
+
+def test_malformed_http_content_length_rejected_before_read(tmp_path):
+    class Corrupt(FakeResponse):
+        headers={'Content-Length':'-1'}
+        def read(self,n): raise AssertionError('body should not be read')
+    with pytest.raises(ValueError,match='INVALID_CONTENT_LENGTH'):
+        import_url(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
+                   min_interval=1,opener=lambda *args,**kw:Corrupt())
+
+
+def test_oversized_declared_http_body_rejected_before_read(tmp_path):
+    class TooLarge(FakeResponse):
+        headers={'Content-Length':str(20*1024*1024+1)}
+        def read(self,n): raise AssertionError('body should not be read')
+    with pytest.raises(ValueError,match='RESOURCE_EXCEEDS_20_MIB'):
+        import_url(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
+                   min_interval=1,opener=lambda *args,**kw:TooLarge())
+
+
+def test_exact_declared_http_content_length_accepts_fake(tmp_path):
+    class Exact(FakeResponse):
+        headers={'Content-Type':'application/json','Content-Length':str(len(b'{"synthetic": true}'))}
+    r=import_url(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
+                 min_interval=1,opener=lambda *args,**kw:Exact())
+    assert (tmp_path/r['raw_object']).read_bytes()==b'{"synthetic": true}'
