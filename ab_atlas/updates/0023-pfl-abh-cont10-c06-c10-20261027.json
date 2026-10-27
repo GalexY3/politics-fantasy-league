@@ -1,0 +1,95 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0023-PFL-ABH-CONT10-C06-C10-20261027",
+  "parent_batch": "0022-PFL-ABH-CONT10-C05-R5-20261027",
+  "at": "2026-10-27T19:11:30.552Z",
+  "actor": "chatgpt",
+  "reason": "Append remaining five authorized AB-H C06-C10 A-J receipts only; separately record executed microtests and unrun full Python suite. No change to release gates, V4/CT2/VSDS or scientific grades.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C06",
+        "at": "2026-10-27T19:11:30.552Z",
+        "activity": "Atlas 0021/0022 exact GitHub tail structural and campaign receipt control: 63/81/124/44 derived, Python native replay pending",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C06_RESULT.json"
+        ],
+        "scope": "PFL V4=36.90%, no promotion",
+        "method_version": "AB 3.2.1 O7 hybrid",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C07",
+        "at": "2026-10-27T19:11:30.552Z",
+        "activity": "Private aggregate CLI now treats legacy manifest records without declared byte-length as operational uncertainty (0 before vs 2 after synthetic microtest)",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C07_RESULT.json"
+        ],
+        "scope": "PFL V4=36.90%, no promotion",
+        "method_version": "AB 3.2.1 O7 hybrid",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C08",
+        "at": "2026-10-27T19:11:30.552Z",
+        "activity": "Private POSIX JSONL append serializes a full record using advisory flock, 16-write standalone interleaving test",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C08_RESULT.json"
+        ],
+        "scope": "PFL V4=36.90%, no promotion",
+        "method_version": "AB 3.2.1 O7 hybrid",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C09",
+        "at": "2026-10-27T19:11:30.552Z",
+        "activity": "Source plus Linux fsync(2) manual established absence of directory metadata fsync, no hardware data-loss claim",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C09_RESULT.json"
+        ],
+        "scope": "PFL V4=36.90%, no promotion",
+        "method_version": "AB 3.2.1 O7 hybrid",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C10",
+        "at": "2026-10-27T19:11:30.552Z",
+        "activity": "Directory fsync added to newly-created child dirs, final object shard, and JSONL ledger metadata; tests committed, full checkout QA pending",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C10_RESULT.json"
+        ],
+        "scope": "PFL V4=36.90%, no promotion",
+        "method_version": "AB 3.2.1 O7 hybrid",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
