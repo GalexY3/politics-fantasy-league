@@ -1,3 +1,19 @@
+# Atlas vigente · verificación nativa del ZIP 4faf31a · 27/10/2026
+
+**Rama integrada: `research/pfl-codex-contributions-20261027`, sin fusionar a `main`.** El usuario aportó el ZIP completo del árbol versionado del commit `4faf31a30111ef980a43409dbe87de8c7609b29f`; antes del primer commit, GitHub confirmó que esa era exactamente la cabeza de la rama. **Verificación de software POST HOC, no una nueva campaña AB**: conservar los historiales separados **ChatGPT AB-H45 (45), Codex CDX (9), ingesta IC01–IC03 (3)**. [Informe reproducible](../research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_RESULT.md).
+
+- **Pruebas realmente ejecutadas en el árbol ZIP**: Python proyecto **421 passed + 28 subtests**, JavaScript **110/110**, suite propia de Atlas **34/34**. Contraste dirigido de seguridad/redirecciones/cuarentena/HTTP **20 passed + 14 subtests**, incluido en los 421 (no duplicar en total).
+- **HTTP real local:** `GET /api/source-stages` read-only y `GET /api/health` funcionan; `POST /api/ingest`, `/api/source-import`, `/api/capture` y `GET /api/ingest`, `/api/quarantine` devuelven **404**, Host ajeno **403**. La prueba previamente **no ejecutada** `test_ingest_http_boundary.py` ahora **ha pasado** en servidor localhost real. **Eso prueba que aún no existe un endpoint de captura**, no una integración fuente→juego.
+- **Atlas oficial Python:** `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates`: **PASS 19 lotes, 60 nodos, SHA-256 `9389c8cf4b3950c6558019cb769072e23e0f5aacf1b7be8adba88c1a9d11ddf0`**. El lote [0019](updates/0019-pfl-checkout-4faf31a-qa-20261027.json) es un *recibo de verificación post hoc* y triage de limitación IC03, **no se cuenta como IC04**. Téngase en cuenta que el chequeo canónico valida estructura, no semántica política ni editor de datos.
+- **Browser E2E:** descubierto `tests/run_browser_smoke.py` con expectativas obsoletas de V3 (36,4); corregido para **V4 36,9 %** y compilación Python PASS. Prueba visual **NO ACREDITADA**: Playwright sin Chromium empaquetado y Chromium local con error `ERR_BLOCKED_BY_ADMINISTRATOR` al navegar localhost. Hay complaint de entorno en 0019; no eludir política ni afirmar prueba pasada.
+- **Los indicadores no cambian**: V4 **36,90 %**, CT2 identidad **29/100**, VSDS **1/3**, N1/N2/N3 **0/0/0**, **0/6 gates**. `NO VOTAN` se sigue mapeando solo operativamente; significado institucional aún sin documento fuente. Fuentes originales privadas fuera de Git.
+
+**R5:** la clase de fallo «no se había ejecutado Python/Atlas/HTTP» queda resuelta para este snapshot. Próximas dependencias reales: confirmar Chromium UI en entorno permitido/CI, autenticación+egress para cualquier futuro operador de ingesta, primera publicación auténtica, licencias y fuentes de identidad RPP. No gastar más ciclos solo para repetir fixtures.
+
+---
+
+## Estado histórico previo a la verificación del ZIP
+
 # AB Atlas · Politics Fantasy · continuidad integrada IC01–IC03 · 27/10/2026
 
 **ESTADO MÁS RECIENTE:** se han realizado **tres ciclos AB-H de ingesta (IC01–IC03)** sobre la **misma rama integrada** `research/pfl-codex-contributions-20261027`, sin crear nueva rama ni fusionar a `main`. Permanecen completamente **separados** de la campaña ChatGPT AB-H45 cerrada **45/45** y de los **nueve CDX** de Codex. [Informe nuevo](../research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC01_IC03.md) · [tres prerregistros y resultados](../research/ABH_INGEST_CONTINUATION_20261027/).
