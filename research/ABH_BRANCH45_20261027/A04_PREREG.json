@@ -1,0 +1,27 @@
+{
+  "id": "A04",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "A03 confirms BOCG 2025 original PDF visibly distinguishes effective membership, credential, signing and issue dates; no first-public-at exact.",
+  "H1": "A source-scoped event ledger can preserve independent event type, effective day, bulletin issue, and documentary availability. It must not infer personal identity from document row, or one-to-one replacement from equal counts.",
+  "H0": "A single date/status field suffices and no event type mismatch is possible.",
+  "spec": {
+    "families": [
+      "FULL_CONDITION_ACQUIRED",
+      "FULL_CONDITION_CEASED",
+      "CREDENTIAL_SUBMITTED"
+    ],
+    "record_keys": [
+      "issuer",
+      "bulletin_id",
+      "item_key",
+      "event_kind",
+      "event_day",
+      "bulletin_issue_day"
+    ],
+    "as_of": "Reject any use claiming evidence available before bulletin issue day, and always leave exact first_public_at unset (not safely backfilled).",
+    "person_resolution": "Not a person ID service; no scoring, no release, no claim equal counts means successor links."
+  },
+  "acceptance": "Implement pure Python source_event_ledger.py and tests of duplicate unique item and chronological handling; test bounded synthetic fixtures with 2023/2025 official day fields. No API exposing untrusted original data and no release progression.",
+  "source": "official BOCG XV-D-51 2023 & BOCG XV-D-390 2025"
+}

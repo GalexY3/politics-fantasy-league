@@ -1,0 +1,38 @@
+{
+  "id": "A02",
+  "status": "CLOSED_CODE_INTEGRATED_HTTP_TESTS_AUTHORED_NOT_RUN",
+  "pre_registration": "A02_PREREG.json",
+  "source_changes": {
+    "server": "src/politics_fantasy/server.py",
+    "server_blob": "11c2ebef591e820b39e0c8284de13557456682f5",
+    "new_route": "GET /api/source-stages",
+    "test": "tests/test_source_stage_http.py",
+    "test_blob": "cebba06560ddb0db76e68167727ec17dc762409f",
+    "existing_registry": "src/politics_fantasy/source_event_registry.py"
+  },
+  "verification": {
+    "fresh_git_readback": "route + import present, Host enforcement before route",
+    "unit_local_existing_source_registry": "10 PASS, 0 failures on already-mounted C03 local module",
+    "new_HTTP_tests": "Four tests committed and inspected, NOT EXECUTED",
+    "untrusted_query_to_registry": "No query parameter passed in handler branch",
+    "POST_route": "Not added; existing POST reject unknown paths",
+    "github_actions": 0
+  },
+  "caveats": [
+    "Current server single-user localhost only. No independent end-to-end HTTP test or clean checkout run performed in this cycle.",
+    "GET metadata has three official document-stage records but no verified first_public_at and no person scoring.",
+    "Source policy pure modules still do not authenticate original editor content."
+  ],
+  "hypothesis_evaluation": {
+    "H1": "STATIC_CODE_INTEGRATED, runtime acceptance pending",
+    "H0": "No immediate static bypass; no full dynamic falsification run"
+  },
+  "impact": "Previously blocked C04 integration now committed on isolated research branch, zero release gates advanced",
+  "next": "A03 attempt actual Python runner by minimally isolated HTTP staging or checked GitHub Actions workflow, but avoid spending GitHub minutes until new tests collected.",
+  "budget": {
+    "A_consumed": 2,
+    "A_remaining": 18,
+    "R_remaining": 5,
+    "B_remaining": 20
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "B14",
+  "status": "CLOSED_REAL_SPANISH_MONTH_LOCALE_DEFECT_FIXED",
+  "prereg": "B14_PREREG.json",
+  "before": {
+    "month_OCT_passed": true,
+    "ABR_AGO_DIC_rejected_as_BAD_VOTE_DAY": true
+  },
+  "after": {
+    "all_12_spanish_month_abbreviations_correct": true,
+    "parser_localized_independent_of_OS_locale": true,
+    "original_senate_10_votes_replayed": 10,
+    "nominal_rows": 2589,
+    "absences": 51,
+    "native_regression_tests_passed": 9,
+    "failed": 0
+  },
+  "blobs": {
+    "source_original_senate_qa": "a9a4d8fe704d0e5fff9f37b70309c66fc371226e",
+    "tests": "879cced0f6f6e95c63a949d012aa89198702da74",
+    "both_local_git_sha_equal": true
+  },
+  "limitations": [
+    "Source pattern still restricted to observed Senate format; parser does not certify source publisher or first_public_at",
+    "Other chambers may use different labels and must not silently reuse source-specific parser"
+  ],
+  "scientific_new_N123": [
+    0,
+    0,
+    0
+  ],
+  "gates_passed": 0,
+  "authorization": {
+    "B_spent": 14,
+    "B_remaining": 6
+  },
+  "next": "B15 investigate Senate original parser adversarial tampering for negative totals and duplicate source voting rows, then harden only demonstrated defects."
+}

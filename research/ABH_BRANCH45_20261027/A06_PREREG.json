@@ -1,0 +1,11 @@
+{
+  "id": "A06",
+  "mode": "AB-R negative linkage test",
+  "status": "PREREGISTERED_AFTER_PUBLIC_PDF_EXPOSURE",
+  "source": "BOCG-15-D-390 original PDF p3, issuer Congreso, visual observed in A03",
+  "H1": "Positional join between sorted full-condition altas (A) and credential-list presentation (C) produces at least one falsely matched individual, showing that A05 ordinal row keys cannot be used for personal identity.",
+  "H0": "Both document sections list the same 3 people in same order, positional join trivially valid for this sample.",
+  "procedure": "Freeze A and C list order from original PDF, compare position by normalized full names; count matches and mismatches without publishing any individual vote preference; explicitly forbid inferring person identity from row ordinal.",
+  "acceptance": "Report number of exact positional agreements vs mismatches for 3, and an amendment in product source provenance docs/tests warning against join by position. No statistical extrapolation from one three-person document.",
+  "prior_exposure": "The screenshot and original PDF page had been exposed before this prereg; nonblind exploratory failure mode."
+}

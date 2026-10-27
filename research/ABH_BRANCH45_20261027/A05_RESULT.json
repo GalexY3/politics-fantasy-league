@@ -1,0 +1,39 @@
+{
+  "id": "A05",
+  "status": "CLOSED_BOUNDED_REPRESENTATION_AND_COUNTS_PASS",
+  "source": "data/observatory/bocg_membership_events_2023_2025_AGGREGATE.json",
+  "source_sha": "72dba758c8756c0bc06b4ecbcb2f65820be4f1e1",
+  "test": {
+    "checked_fetched_github_rows": 31,
+    "issue_counts": {
+      "BOCG-15-D-51": {
+        "FULL_CONDITION_CEASED": 8,
+        "FULL_CONDITION_ACQUIRED": 8,
+        "CREDENTIAL_SUBMITTED": 8
+      },
+      "BOCG-15-D-390": {
+        "FULL_CONDITION_CEASED": 1,
+        "FULL_CONDITION_ACQUIRED": 3,
+        "CREDENTIAL_SUBMITTED": 3
+      }
+    },
+    "source_issue_lags_days_count": {
+      "3": 20,
+      "9": 8,
+      "10": 2,
+      "42": 1
+    },
+    "duplicate_event_keys": 0,
+    "post_issue_effective_event": 0,
+    "validation": "JavaScript checks on actual committed JSON; local Python module previous A04 tests 10/10 passed on mirrored implementation; not clean checkout E2E"
+  },
+  "interpretation": "Event types and issue-day temporal differences are representable in 31 named-source, de-identified ordinal slots. A single row-key is NOT a person ID, so cannot match credential to condition per individual. 2023 and 2025 original selected bulletin sections are not full legislature.",
+  "limits": "No source bytes copied for BOCG 51/390, no first_public_at; publisher edition date ≠ independent publication receipt. Editorial source entries not re-evaluated as personal identity.",
+  "budget": {
+    "A_spent": 5,
+    "A_remaining": 15,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A06 verify source schema negative control: ordinals cannot form cross-event person crosswalk, design explicit typed link requiring authority and independent evidence, not accidental matching."
+}

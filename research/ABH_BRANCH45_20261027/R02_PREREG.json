@@ -1,0 +1,10 @@
+{
+  "id": "R02",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "R01 accepted V4 36.90 with V3 retained, but local progress_api.py defaults to V3 and existing tests may encode V3. Need safe integration without historical regression.",
+  "H1": "Progress local GET can expose V4 36.9 while retaining V3 snapshot and explicit tests for both; JS model formula and Python formula consistent on 36 fixed milestones.",
+  "H0": "Default switch breaks the existing progress tests or changes release gates; keep V4 as review artifact and defer API default if so.",
+  "method": "Inspect existing Python/HTTP progress tests and static JS client tests for hard-coded revision3, patch only necessary version assertions to V4 while preserving historical V3 source test. Add explicit V4 test and update default reference. Do not run GitHub Actions blindly; prefer bounded Python/JS runtime if available.",
+  "acceptance": "Source-level readback of default, tests and V4 metrics, at least five specific checks; report any runtime unexecuted. Preserve V3 historical tests."
+}

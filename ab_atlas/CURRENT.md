@@ -1,15 +1,36 @@
-# AB Atlas · Politics Fantasy · rama Codex · 27/10/2026
+# AB Atlas · Politics Fantasy · integración ChatGPT + Codex · 27/10/2026
 
-**Estado de esta rama:** nueve ciclos CDX01–CDX09 registrados en [la campaña independiente](../research/CODEX_CONTRIB_20261027/REPORT.md), autorizada expresamente por el usuario sin cupo numérico. La campaña BRANCHING20C heredada está cerrada 20/20; la rama de 45 ciclos de ChatGPT avanza por separado. El trabajo de Codex no se ha integrado en `main` ni en dicha rama.
+**Estado integrado:** la campaña ChatGPT AB-H45 está cerrada **45/45** y los ciclos Codex **CDX01–CDX09** se conservan en la misma rama de integración `research/pfl-codex-contributions-20261027`. No hay fusión a `main`. La autorización previa de trabajo continuado de Codex era abierta; los 45 ciclos de ChatGPT están consumidos y no deben contabilizarse de nuevo como pendientes.
 
-- **Producto:** jornada sintética local con liquidación persistente y nueva jornada, API e interfaz comprobadas en navegador. También se corrigieron reconciliación incompleta, entradas de procedencia, dependencias de desarrollo y exportación local. La suite más reciente: **362 pruebas, 2 subtests y 1 omitida** en Windows; el test omitido requiere crear un enlace simbólico.
-- **Investigación:** XML de Senado, 7/10 comparables bajo el vocabulario preregistrado y 3 indeterminadas; con una hipótesis post hoc no certificada coinciden 10/10. Es consistencia interna de un archivo, no evidencia independiente de identidad ni de `first_public_at`.
-- **Atlas:** lote [`0012-pfl-codex-20261027.json`](updates/0012-pfl-codex-20261027.json), padre `0011-PFL-B20C-BOCG-FINAL-20261027`; comprobación oficial Python **12 lotes, 47 nodos**, SHA-256 `5fdbea922fa403e53a97ef0a9b425049e45ebf934fa12a1f705307b23121a5bc`. El trabajo paralelo puede usar otro sucesor de 0011: reconciliar los padres y las operaciones antes de integrar; no concatenar los lotes sin revisión.
-- **Sin promoción científica:** CT2 identidad **29/100**, VSDS **1/3**, gates **0/6**. Permanece abierta la semántica institucional de «NO VOTAN» y la prueba de enlaces simbólicos; el empaquetado no detecta todo secreto posible.
+- **Atlas:** la cadena de ChatGPT 0012–0015 se mantiene; el antiguo 0012 de Codex se reencadenó como [`0016-PFL-CODEX-20261027`](updates/0016-pfl-codex-20261027.json), con las mismas operaciones y fecha, padre `0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027`. El original y sus padres se conservan en Git. `atlas_delta.py check`: **16 lotes, 58 nodos**, SHA-256 `3168eab0eadab0f2900e2ab0bb0c2aa6f40a4a381e83fca9cf782d84899aeb4d`. Valida estructura, no veracidad de evidencias.
+- **Pruebas integradas en Windows:** **404 pruebas Python y 14 subtests aprobados; 1 omitida** por imposibilidad de crear un enlace simbólico; **110 pruebas JavaScript aprobadas**; smoke Chromium de compra, alineación, simulación, puntuación y siguiente jornada aprobado. El catálogo HTTP de fuentes y la simulación de jornadas conservan sus pruebas. Son resultados locales, no aceptación de despliegue.
+- **Producto e investigación:** V4 contractual **36,90 %** según el cálculo heredado; CT2 identidad **29/100**, VSDS **1/3**, gates **0/6**. El parser del Senado acepta operativamente `NO VOTAN`, pero la semántica del diccionario sigue sin acreditación institucional. Los originales siguen privados; no se ha demostrado una ingesta de originales completa de extremo a extremo.
+- **Próximo trabajo:** estudiar con fixtures el cliente local `ingest.py`, que verifica la redirección final después de abrirla; comprobar cada salto antes de contactar destinos no autorizados y la correspondencia entre fuente y host. No se ha demostrado exposición HTTP ni explotación. Diseñar una prueba integral de ingesta sin incorporar originales privados a Git ni elevar gates por repetir fixtures. Instrucciones listas para el siguiente chat en [CONTINUACION_INTEGRADA_CODEX_CHATGPT.md](../docs/CONTINUACION_INTEGRADA_CODEX_CHATGPT.md).
 
 ---
 
-## Estado histórico previo: BRANCHING20C cerrado 20/20
+## Estado histórico previo: cierre AB-H45, antes de integrar con Codex
+
+# AB Atlas · Politics Fantasy · campaña AB-H45 cerrada · 27/10/2026
+
+**ESTADO VIGENTE (rama de investigación `research/pfl-abh-45-20261027`):** usuario autorizó **20 ciclos AB + 5 de revisión integral + 20 AB**, ejecutados **A01–A20, R01–R05, B01–B20, total 45/45 y 0 autorizaciones restantes**. Los resultados se registran individualmente con prerregistro y resultado en [research/ABH_BRANCH45_20261027/](../research/ABH_BRANCH45_20261027/). No iniciar nueva campaña sin nueva autorización; el proyecto sigue abierto para consultas y revisiones.
+
+- **Producto V4:** madurez contractual **36,90 %**, cambio frente a V3 36,35 % de **+0,55 puntos** por especificar `id.real` y `ev.person` a nivel 1; nueve áreas, 36 hitos, mismos pesos. V3 conservada. [Informe V4](../docs/PROGRESO_Y_ALCANCE_v4.md) · [snapshot V4](../product/progress_snapshot_v4_20261027.json).
+- **Gates y ciencia:** **0/6 gates acreditados**: `data_registry`, `identity`, `events` bloqueados; `authentication`, `e2e`, `deployment` pendientes. CT2 identidad histórica **29/100** ordinal; VSDS **1/3**; N1/N2/N3 nuevos **0/0/0**. No scoring político real, no lanzamiento.
+- **Evidencia nueva de QA original:** dos parsers fuente-específicos de Congreso y Senado han pasado **23 pruebas nativas conjuntas** con archivos byte-verificados contra GitHub, más reproducción de **4 votaciones originales del Congreso (1.400 filas y 67 sentinelas)** y **10 votaciones originales del Senado (2.589 filas y 51 ausencias)**. Se corrigieron rechazo de totales nulos, asientos no canónicos, etiquetas `NO VOTAN`, meses españoles, asientos duplicados y votaciones duplicadas; documentados fallos previos. [B17](../research/ABH_BRANCH45_20261027/B17_RESULT.json).
+- **CI:** la rama incorpora prueba sintética de ambos parsers en [`.github/workflows/politics-fantasy-evidence.yml`](../../../.github/workflows/politics-fantasy-evidence.yml) con patrón correcto `test_source_original*.py`. **No se lanzó Actions ni prueba HTTP completa**; no atribuir aceptación E2E.
+- **RPP e historia de las personas:** aún no hay inscripción jurídica individual RPP verificable, homónimo exacto negativo adjudicado ni captura independiente de `first_public_at` para BOCG. ZIP original privado con once archivos no incorporado a Git.
+- **Atlas:** seed preservado; lotes de investigación **0001–0015**, head `0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027`. Replay JS sobre los 15 JSON reales: **PASS, 230 operaciones, 56 nodos, 76 relaciones, 86 runs, 33 complaints**; no duplicaciones ni referencias de incidencias huérfanas, seis gates sin pasar. **Validador Python canónico `ab_atlas/atlas_delta.py check` NO ejecutado** y HTML no regenerado.
+- **Incidencia de metadatos auditada:** lotes 0012/0013/0014 tenían timestamps de registro futuros redactados por el modelo. Se corrigieron **51 campos** a los tiempos de *primer commit real en GitHub*, sin reinterpretarlos como ejecución científica o primera publicación de fuentes. Los blobs anteriores permanecen en historial Git y la reparación está explícita en [ATLAS_TIMESTAMP_REPAIR.json](../research/ABH_BRANCH45_20261027/ATLAS_TIMESTAMP_REPAIR.json) y lote 0015 (incidencia `repaired`). Es una excepción documentada a la inmutabilidad de bytes de los deltas, **no una nueva prueba científica**.
+- **Fuente de verdad de la campaña:** [ledger final](../research/ABH_BRANCH45_20261027/CAMPAIGN_FINAL_A20_R5_B20.json) y [informe final](../research/ABH_BRANCH45_20261027/REPORT_FINAL_ABH45.md). `main` sigue sin fusionar esta investigación.
+
+## Siguientes dependencias, sin ciclos ya autorizados
+
+Validación del Atlas con Python oficial en checkout limpio; integración y pruebas HTTP reales de fuente de confianza; originales RPP acreditados; fuente temporal histórica con recibo de publicación y ligaduras de identidad adjudicadas; revisión de privacidad/licencias antes de scoring real. No elevar un gate o subporcentaje solo por repetir ensayos sintéticos sobre la misma fuente.
+
+---
+
+## Historial de CURRENT anterior al cierre AB-H45
 
 # AB Atlas · Politics Fantasy · BRANCHING20C cerrado 20/20 · 27/10/2026
 

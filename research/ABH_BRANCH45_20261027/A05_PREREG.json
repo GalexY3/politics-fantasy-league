@@ -1,0 +1,14 @@
+{
+  "id": "A05",
+  "mode": "AB-P / source-grounded QA",
+  "status": "PREREGISTERED",
+  "dependency": "A04 pure event-ledger model and 10 bounded local tests, A03 original 2025 PDF visually checked",
+  "H1": "Both fixed BOCG editions yield 31 provenance-scoped documentary event rows (2023:8+8+8, 2025:1+3+3), and the parser preserves issue-date lag differences without authoring person IDs.",
+  "H0": "The BOCG summaries cannot be represented without duplicate keys, category collapse, or backdating first_public_at.",
+  "procedure": "Create a non-person-identifying `data/observatory/bocg_membership_events_2023_2025_AGGREGATE.json` holding only ordinal source-item keys (NOT source-issued IDs), kind, event_day, issue_day and explicit original reference. Validate with A04 model, independently calculate 31 rows and lags, exclude any names/party/individual score. Flag as source-transcribed, incomplete and not a full roster.",
+  "acceptance": "Exactly 31 typed rows, per-bulletin 24 and 7; return first-public false and scoring false. Reproduce locally using isolated A04 module; no named person attribution or full publisher signing.",
+  "sourceURLs": [
+    "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-51.PDF",
+    "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF"
+  ]
+}

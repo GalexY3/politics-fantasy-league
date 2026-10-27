@@ -1,0 +1,11 @@
+{
+  "id": "B13",
+  "stage": "B",
+  "status": "PREREGISTERED",
+  "mode": "AB-P source parser QA",
+  "prior": "B12 verified original Senado sesion60 XML 10 vote totals/2589 nominal rows/51 absences. A naive singular `NO VOTA` mapping produced 3 local parser false discrepancies; real original uses plural `NO VOTAN`.",
+  "H1": "Pure stdlib Senado XML audit can reproduce official results for all 10 votes and explicitly reject unsupported/ambiguous category labels and malformed totals, never claim person IDs or first_public_at.",
+  "H0": "Correct reconciliation depends on fragile accidental parsing and a normalizer conceals malformed data.",
+  "test": "Create source_original_senate_qa.py from B12 observed tag structure, parse and reconcile per vote and session/day, require recognized categories ['SÍ','NO','ABSTENCIÓN','NO VOTAN'], count absences separately. Add minimum 6 synthetic/failure unit tests, then run exact source on user ZIP XML privately. Publish aggregate only.",
+  "acceptance": "Exact 10 original votes PASS and tests PASS, source Git SHA checked; no HTTP, no scoring."
+}

@@ -1,0 +1,44 @@
+{
+  "id": "R02",
+  "status": "CLOSED_VERSIONED_API_AND_TESTS_COMMITTED_RUNTIME_PENDING",
+  "prereg": "R02_PREREG.json",
+  "commits": [
+    "src/politics_fantasy/progress_api.py default V4",
+    "tests/test_progress_api.py current 36.9 plus historical V3 separate",
+    "tests/test_progress_http.py expects 36.9",
+    "tests/test_progress_revision_v4.mjs three new contracts",
+    "GitHub Actions workflow updated to include V4 and source-stage tests but no run triggered"
+  ],
+  "static_checks": {
+    "progress_api_default": "product/progress_scope_v4_20261027.json",
+    "rev4": 4,
+    "index": 36.9,
+    "archival_V3_preserved": true,
+    "level_histogram": {
+      "0": 8,
+      "1": 9,
+      "2": 2,
+      "3": 15,
+      "4": 2,
+      "5": 0
+    },
+    "Node_tests_added": 3,
+    "existing_Python_progress_tests_modified": true,
+    "real_person_scoring_ready": false,
+    "release_blockers": 6
+  },
+  "execution": {
+    "branch_CI_triggered": false,
+    "clean_checkout_native_test_run": false,
+    "HTTP_runtime_test_run": false
+  },
+  "risk": "A versioned scope being committed and tests authored does not demonstrate live localhost server response; R3/R4 must not promote QA/gates. Scope V4 itself source-read and recomputed independently in JS.",
+  "budget": {
+    "A": 20,
+    "R_spent": 2,
+    "R_remaining": 3,
+    "B_spent": 0,
+    "B_remaining": 20
+  },
+  "next": "R03 global AB-R scientific and source validation methodological audit, focusing N1–N3, bias, event availability and identity sample controls."
+}

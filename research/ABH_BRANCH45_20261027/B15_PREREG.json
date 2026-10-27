@@ -1,0 +1,11 @@
+{
+  "id": "B15",
+  "stage": "B",
+  "status": "PREREGISTERED",
+  "mode": "AB-P original vote tampering",
+  "prior": "B14 repaired Spanish month abbreviations and 10 original Senate votes verify. Senate parser matches category totals but does not inspect duplicates or negative aggregate integer fields.",
+  "H1": "The audited Senate original vote row `escano` identifier within each event is unique when defined, and a duplicated VotoSenador with adjusted official totals must fail closed; corrupted negative totals are explicitly rejected.",
+  "H0": "The source format genuinely contains duplicate escano within vote or sentinel rows, in which case uniqueness is unsafe and no naive key should be imposed.",
+  "method": "On all 10 Senate original votes report count of duplicate/nonpositive escano; inspect source-level 259-vote unique seat counts, then inject one duplicated VotoSenador with matching altered category/presentes totals and one negative aggregate. Use private source only, no names/vote preference exports. Fix only when the original demonstrates safe invariant, preserve unknown other sessions.",
+  "acceptance": "Document mutation outcomes and original invariants; if safe, add strict source-specific checks with native tests/replay; otherwise quarantine rather than global identity assertion."
+}

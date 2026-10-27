@@ -1,0 +1,56 @@
+{
+  "id": "A12",
+  "status": "CLOSED_OFFICIAL_SEARCH_FRONTEND_FOUND_REGISTRY_ENTRY_NOT_ATTESTED",
+  "prereg": "A12_PREREG.json",
+  "official_sources": [
+    {
+      "url": "https://servicio.mir.es/nfrontal/webpartido_politico.html",
+      "kind": "MINISTERIO_DEL_INTERIOR_OFFICIAL_RPP_PUBLIC_SEARCH",
+      "capabilities": "Form search by name, acronym, formation type, registration dates and sorting, export search result to PDF described on official app directory",
+      "source_status": "PUBLIC_QUERY_UI_FOUND_NO_QUERY_RESULTS_ORIGINAL_CAPTURED"
+    },
+    {
+      "url": "https://servicio.mir.es/nfrontal/webpartido_politico/recurso/partido_politicoDetalle.html",
+      "kind": "MINISTERIO_DEL_INTERIOR_RPP_PUBLIC_DETAIL_TEMPLATE",
+      "fields": [
+        "type",
+        "name",
+        "date_registered",
+        "territorial_scope"
+      ],
+      "source_status": "TEMPLATE_ONLY_WITHOUT_SELECTED_RECORD_VALUES"
+    },
+    {
+      "url": "https://sede.interior.gob.es/portal/sede/tramites/detalle-tramite?id=23",
+      "kind": "SIA_992324_official_party_record_certificate",
+      "access": "level3 authenticated",
+      "source_status": "CERTIFICATION_REQUEST_PROCEDURE_ONLY"
+    },
+    {
+      "url": "https://sede.interior.gob.es/portal/sede/tramites/detalle-tramite?id=24",
+      "kind": "SIA_992320_party_registration_procedure",
+      "source_status": "Confirms legal personality via registration (LO 6/2002)"
+    }
+  ],
+  "secondary_self_asserted_example": {
+    "publisher": "Official PSOE party website privacy/legal statement, NOT source-issued Interior record",
+    "source": "https://macc.psoe.es/Pages/RegistrationUser.aspx",
+    "reported_registration_day": "1977-02-17",
+    "reported_folio": "57",
+    "reported_tomo": "I",
+    "purpose": "Search candidate only; explicitly NOT registry-certified original, don't ingest as RPP entity ID."
+  },
+  "result": "Public ministerial RPP search application exists, so absent dataset is an access/integration blocker rather than conceptual nonexistence. A legal-person registration date and scope are known field types. However the search interface could not be submitted and no ministerial issuer-attributed row PDF was captured in these tools; id/legal entity remain unverified.",
+  "H1": "PARTIALLY_SOURCE_AVAILABILITY_CONFIRMED, KEY_ORIGINAL_NOT_RETRIEVED",
+  "H0": "Refuted for public search UI inexistence, not for need authenticated certificate",
+  "progress_impact": "src.registry remains zero / gated in V3. No legal party record source-issued original has been authenticated.",
+  "ABR": "Novel access path; no original entity link",
+  "ABP": "Prepare issuer-scoped schema, don't promote source provenance from party self-report",
+  "budget": {
+    "A_spent": 12,
+    "A_remaining": 8,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A13 investigate RPP public application accessibility with supported tools and ensure no external side effects; if blocked, R5 and pivot to congressional historical time-based event data."
+}

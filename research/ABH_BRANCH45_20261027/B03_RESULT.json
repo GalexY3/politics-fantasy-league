@@ -1,0 +1,35 @@
+{
+  "id": "B03",
+  "status": "CLOSED_NATIVE_EXACT_GITHUB_BLOBS_10_OF_10_PASS",
+  "prereg": "B03_PREREG.json",
+  "staged_exact_Git_blob_sha": [
+    {
+      "module": "src/politics_fantasy/congress_member_events.py",
+      "sha": "4cfcf1eb74f2f2b6a2711bde9593b261f50c6969",
+      "identical": true,
+      "bytes": 3208
+    },
+    {
+      "test": "tests/test_congress_member_events.py",
+      "sha": "799a05b1690382b7125d692dfd1f243292b6fbfd",
+      "identical": true,
+      "bytes": 3463
+    }
+  ],
+  "tests": {
+    "native_python_unittest": 10,
+    "passed": 10,
+    "failed": 0,
+    "command": "PYTHONPATH=/mnt/data/pfl_b45_exact/src python -m unittest discover -s /mnt/data/pfl_b45_exact/tests -p test_congress_member_events.py -v",
+    "github_actions": 0
+  },
+  "scope": "Exact source/test bytes retrieved via connector and authenticated by Git blob SHA, local isolated unittest; not complete repo checkout, HTTP nor issuer original hash.",
+  "result": "BOCG records have source-specific dates, unique event keys, event_kind and no personally scored outcomes; all ten negative checks passed.",
+  "budget": {
+    "A": 20,
+    "R": 5,
+    "B_spent": 3,
+    "B_remaining": 17
+  },
+  "next": "B04 transfer/test signed BOE 2023 conservative time-bound module exact Git SHA with native 10 tests."
+}

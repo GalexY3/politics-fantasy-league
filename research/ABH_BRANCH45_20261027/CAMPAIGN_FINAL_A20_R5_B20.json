@@ -1,0 +1,148 @@
+{
+  "campaign": "PFL_ABH_BRANCH45_20261027",
+  "branch": "research/pfl-abh-45-20261027",
+  "base_branch": "research/pfl-sources-reconcile-20261027",
+  "authorization": "User authorized successive blocks 20+up to5 review+up to20 adaptive, no intermediate requests",
+  "recorded": {
+    "A": {
+      "authorized": 20,
+      "preregistered": 20,
+      "results": 20
+    },
+    "R": {
+      "authorized": 5,
+      "preregistered": 5,
+      "results": 5
+    },
+    "B": {
+      "authorized": 20,
+      "preregistered": 20,
+      "results": 20
+    },
+    "total_authorized": 45,
+    "total_preregistered": 45,
+    "total_results": 45,
+    "remaining": 0
+  },
+  "phase_history": {
+    "A": "A01–A20 evidence, sources, identity and source status; not all confirmatory",
+    "R": "R01–R05 nine-track 36-milestone V4 review and science/legal/QA roadmap",
+    "B": "B01–B20 exact source code tests, real private original replay, adversarial fixes, Atlas and repo closure"
+  },
+  "last_phase_B": [
+    {
+      "id": "B01-B05",
+      "finding": "Previously recorded 43 exact Git blob native tests in five isolated modules, not full HTTP E2E"
+    },
+    {
+      "id": "B06",
+      "finding": "Source Congress QA exact 8 synthetic native tests PASS"
+    },
+    {
+      "id": "B07",
+      "finding": "4 real private Congreso original JSON files replay, 1400 rows and 67 `-1` seats; official aggregate categories PASS"
+    },
+    {
+      "id": "B08",
+      "finding": "Two actual Congress QA flaws fixed: null totals AttributeError; zero-padded seats accepted. Exact blobs, 10 native tests, four source originals PASS"
+    },
+    {
+      "id": "B09",
+      "finding": "Actual GitHub V3/V4 JSON JS weighted audit 36.35→36.90 (+0.55 pp); Python endpoint not natively run"
+    },
+    {
+      "id": "B10",
+      "finding": "All 36 V4 milestone evidence_ref paths resolve as files by GitHub directory index; content quality not guaranteed by path"
+    },
+    {
+      "id": "B11",
+      "finding": "11/11 private ZIP SHA+CRC verified; old capture manifest differs in date and purpose"
+    },
+    {
+      "id": "B12",
+      "finding": "10 original Senado votes: 2589 ballots, 51 absences and day 08 Oct 2025 vs session header 07 Oct, plural NO VOTAN"
+    },
+    {
+      "id": "B13",
+      "finding": "New source-specific Senado parser; 8 native tests and 10 original votes PASS"
+    },
+    {
+      "id": "B14",
+      "finding": "Fixed locale-dependent Spanish month abbreviations ABR/AGO/DIC; all 12 months, 9 native tests, originals PASS"
+    },
+    {
+      "id": "B15",
+      "finding": "Fixed duplicated Senate escano accepted if official totals tampered to match; 11 native tests and 10 originals PASS"
+    },
+    {
+      "id": "B16",
+      "finding": "Fixed whole duplicate Senado source event accepted: enforce unique num_vot/CodVotacion; 13 native tests and 10 originals PASS"
+    },
+    {
+      "id": "B17",
+      "finding": "Combined 23 native tests Congress+Senate and 14 original vote events PASS; first test-glob only caught Senate, corrected"
+    },
+    {
+      "id": "B18",
+      "finding": "Optional CI workflow includes correct synthetic test glob, not run or merged to main"
+    },
+    {
+      "id": "B19",
+      "finding": "Actual 13 historical Atlas batches JS structural replay PASS, 52 nodes/72 edges/66 runs/29 complaints; official Python validator NOT run"
+    },
+    {
+      "id": "B20",
+      "finding": "Ledger 45 results, report, append-only Atlas 0014 and CURRENT source version update; final check pending"
+    }
+  ],
+  "official_metrics": {
+    "v4_progress_pct": 36.9,
+    "v3_progress_pct": 36.35,
+    "subpercentages": {
+      "sources": 45,
+      "identity": 42.5,
+      "events": 35,
+      "science": 27.5,
+      "game": 45,
+      "ui": 32.5,
+      "security": 20,
+      "qa": 45,
+      "launch": 17.5
+    },
+    "CT2_ordinal": 29,
+    "VSDS": "1/3",
+    "scientific_new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed": 0,
+    "release_gates_total": 6
+  },
+  "verification_quality": {
+    "native_tests_congress_senate_latest": 23,
+    "private_original_vote_events_replayed": 14,
+    "private_original_nominal_rows_replayed": 3989,
+    "all_four_congress_votes_pass": true,
+    "all_ten_senate_votations_pass": true,
+    "private_original_files_sha_matched": 11,
+    "git_actions_ran_this_new_campaign": 0,
+    "official_Atlas_python_validator_ran": false,
+    "live_http_full_check_ran": false,
+    "public_party_registry_entry_certified": false,
+    "historical_first_public_at_all_records_certified": false
+  },
+  "research_ethics": {
+    "source_real_nominal_values_committed": false,
+    "scoring_real_politicians_enabled": false,
+    "public_deployment": false,
+    "immutable_historical_V3_preserved": true,
+    "main_branch_modified": false
+  },
+  "next_only_with_new_authorization": [
+    "Run official ab_atlas/atlas_delta.py on clean GitHub checkout and test first-party HTTP integration",
+    "Acquire authenticated party registry row and rights determination",
+    "Verify historical source first-publication bounds for BOCG and build longitudinal person-safe source ledger",
+    "Independently adjudicate exact-name homonym negatives and preregister future person-week holdout"
+  ]
+}

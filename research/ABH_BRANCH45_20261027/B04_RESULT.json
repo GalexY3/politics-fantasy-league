@@ -1,0 +1,36 @@
+{
+  "id": "B04",
+  "status": "CLOSED_NATIVE_EXACT_2023_BOE_TIME_GUARD_10_OF_10_PASS",
+  "prereg": "B04_PREREG.json",
+  "source_blobs": [
+    {
+      "path": "src/politics_fantasy/boe_2023_publication_bound.py",
+      "git_sha": "5dfa241829514195a06c9d23b9a2a816dd9785b0",
+      "byte_equal": true,
+      "bytes": 2681
+    },
+    {
+      "path": "tests/test_boe_2023_publication_bound.py",
+      "git_sha": "f7471fd62514a324325aa2357496d01b774b330d",
+      "byte_equal": true,
+      "bytes": 2104
+    }
+  ],
+  "execution": {
+    "python_unittest": 10,
+    "passed": 10,
+    "failed": 0,
+    "github_actions": 0
+  },
+  "result": "BOE 2023 two pinned issue day+1 conservative documentary cutoffs accepted only under publisher reporting assumption. Invalid/naive/future cutoff rejected; real_person_scoring remains false; first_public_at exact null.",
+  "limits": [
+    "Source original historical web publication per record not signed or directly observed by this code.",
+    "No HTTP integration or certified signer trust-chain.",
+    "Readiness gates remain 0."
+  ],
+  "budget": {
+    "B_spent": 4,
+    "B_remaining": 16
+  },
+  "next": "B05 source-faithful native testing of conflicting DOB module, to ensure editorial lineage separation and prevent false identity splits."
+}

@@ -1,0 +1,69 @@
+{
+  "id": "A10",
+  "status": "CLOSED_BOUNDED_MILESTONE_REVIEW_NO_V4_PROMOTION_YET",
+  "prereg": "A10_PREREG.json",
+  "source": "product/progress_scope_v3_20261026.json",
+  "source_sha": "efad698eb5409ea8842519caeff8a68f5877e17d",
+  "official_v3_global_pct": 36.35,
+  "considered": [
+    {
+      "id": "src.catalog",
+      "current_level": 4,
+      "decision": "HOLD",
+      "reason": "Source catalog already maturity 4; 11 originals and new BOCG added, but no continuous provenance system, licensing audit or release-ready source protocol for level 5."
+    },
+    {
+      "id": "id.real",
+      "current_level": 0,
+      "decision": "CONDITIONAL_LEVEL_1_FOR_V4",
+      "reason": "11 official positive longitudinal histories and same-issue name links documented but no global source-issued stable ID, independently adjudicated homonym negative or clean ingestion."
+    },
+    {
+      "id": "id.temporal",
+      "current_level": 2,
+      "decision": "HOLD",
+      "reason": "New typed source code and dated BOCG records exist but full bitemporal person role pipeline and HTTP/E2E not accepted."
+    },
+    {
+      "id": "ev.person",
+      "current_level": 0,
+      "decision": "CONDITIONAL_LEVEL_1_FOR_V4",
+      "reason": "2023 and 2025 primary BOCG report specific people and effective event dates; population corpus and as-of availability still unverified."
+    },
+    {
+      "id": "qa.endtoend",
+      "current_level": 3,
+      "decision": "HOLD",
+      "reason": "New 4 HTTP tests committed, unexecuted; prior Chromium demo E2E remains benchmark, not new production acceptance."
+    },
+    {
+      "id": "sec.rights",
+      "current_level": 1,
+      "decision": "HOLD",
+      "reason": "BOE and BOCG editorial rights and original source audit not exhaustively cleared."
+    }
+  ],
+  "proposed_sensitivity_not_adopted": {
+    "if_id_real_0_to_1_and_ev_person_0_to_1": {
+      "delta_pp": 0.55,
+      "candidate_global_pct": 36.9
+    },
+    "formula": "12/4*(0.1-0) + 10/4*(0.1-0) = 0.30+0.25=0.55; no scope change",
+    "status": "UNAPPROVED_MILESTONE_PROPOSAL_NOT_VALIDATED_PERCENT"
+  },
+  "proof_gaps": [
+    "Regulations on public source reuse by dataset",
+    "Independently adjudicated identity negative and a true source person crosswalk",
+    "Historical first availability of BOCG records",
+    "E2E route plus source-level provenance server gating"
+  ],
+  "official_index_remains": 36.35,
+  "reason_to_delay": "Review stage after A20 will check against exact maturity criteria of all 36 milestones and only then issue V4 if justified.",
+  "budget": {
+    "A_spent": 10,
+    "A_remaining": 10,
+    "R_not_started": true,
+    "B_not_started": true
+  },
+  "next": "A11 inspect the legal reuse and access terms of Congreso BOCG, BOE and Interior without conflating public accessibility with redistribution rights."
+}

@@ -1,0 +1,11 @@
+{
+  "id": "A16",
+  "mode": "AB-META/AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "A15 RPP workbook acquisition stopped with 502; A02 source-stage GET integrated on branch; policy_status and progress_status are separate.",
+  "question": "Could the current app falsely advertise verified real political people or legal-party readiness despite newly added documentary stages?",
+  "H1": "Existing source eligibility, evidence-readiness, /api/health and progress endpoints consistently fail-closed for personal scoring and 0 verified real people; source-stages quarantine remains explicit.",
+  "H0": "A recent source catalogue entry silently promotes real-person verified counts, authenticated registry or six release gates in read-only status.",
+  "test": "Read current exact GitHub implementations source_eligibility.py, evidence_warehouse_status.py, progress_api.py, source_event_registry.py, server.py and compare response literal contracts and query handling; avoid claiming HTTP execution. If conflicting literal positive claims found, patch and retest. Record separate read-back version SHA.",
+  "acceptance": "Per-route status contract matrix with source location, state and remaining risk; keep scientific metrics independent."
+}

@@ -1,0 +1,67 @@
+{
+  "id": "A03",
+  "status": "PASS_OFFICIAL_PDF_VISUAL_REPLICATION_NONBLIND",
+  "prereg": "A03_PREREG.json",
+  "source": {
+    "url": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF",
+    "page_pdf_zero_index": 2,
+    "printed_page": 3,
+    "issue_day": "2025-09-12",
+    "institution": "Congreso de los Diputados",
+    "provenance": "Original institutional PDF text and page 3 image accessible through web; URL fixed; not locally downloaded or hashed"
+  },
+  "observed": {
+    "effective_full_condition_exits": [
+      {
+        "label": "Francisco Lucas Ayala",
+        "day": "2025-09-02"
+      }
+    ],
+    "full_condition_entries": [
+      {
+        "label": "Pablo Antuñano Colina",
+        "day": "2025-09-09"
+      },
+      {
+        "label": "Irene Jódar Pérez",
+        "day": "2025-09-09"
+      },
+      {
+        "label": "María Elvira Rodríguez Herrer",
+        "day": "2025-09-09"
+      }
+    ],
+    "credentials": [
+      {
+        "no": 403,
+        "date": "2025-08-01",
+        "gap_to_condition_days": 39
+      },
+      {
+        "no": 404,
+        "date": "2025-09-02",
+        "gap_to_condition_days": 7
+      },
+      {
+        "no": 405,
+        "date": "2025-09-09",
+        "gap_to_condition_days": 0
+      }
+    ],
+    "documents_signed_day": "2025-09-09",
+    "first_public_at_exact": null
+  },
+  "results": "The original printed source matches indexed primary HTML for these specific fields, independently of parsing the HTML. No source-issued universal person ID or temporal first-distribution receipt included.",
+  "H1": "SUPPORTED_BOUNDED",
+  "H0": "Not supported for visual comparison",
+  "negative": "PDF full file hash and certificate verification not achieved; previous browser PDF 2023 XV-D-51 provided text but screenshot failed with cache miss. This is not third-party original archive signature.",
+  "metrics_unchanged": true,
+  "next": "A04 implement conservative, source-labelled event extraction/validation with issue-day and effective-day separate and test against fixed 2023/2025 fixtures.",
+  "cost": {
+    "github_actions": 0
+  },
+  "budget": {
+    "A_spent": 3,
+    "A_remaining": 17
+  }
+}

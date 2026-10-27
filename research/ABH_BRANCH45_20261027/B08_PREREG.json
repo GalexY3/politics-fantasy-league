@@ -1,0 +1,10 @@
+{
+  "id": "B08",
+  "status": "PREREGISTERED",
+  "mode": "AB-P / adversarial source robustness",
+  "prior": "B07 passed four original Congress source vote JSONs; code does not validate `totales` is mapping, seat canonical form or fully disallow extra data.",
+  "H1": "Mutation of source original rows/counts/types always causes intentional source-validation ValueError; no unexpected low-level exception or silent acceptance of corrupted original aggregate structure.",
+  "H0": "Some source schema corruptions bypass checks or raise unexpected exceptions, indicating fail-closed error-contract gap.",
+  "method": "From first original JSON in private ZIP, deep-copy in memory and apply 8 predetermined mutation classes: wrong total, duplicated real seat, unsupported vote, seat wrong type, negative nonsentinel, missing totals map, null totals, positive noncanonical leading-zero seat. Report each result; distinguish informative failure from unintended error or inadvertent accept. If genuine defect, implement guarded input schema and add targeted unit tests, verify exact source again. No names/vote exports.",
+  "acceptance": "Eight classes examined with deterministic outcome; newly found defect leads to narrow patch/test; no retrospective user-facing readiness percent changes."
+}

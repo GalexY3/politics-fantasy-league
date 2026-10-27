@@ -1,0 +1,37 @@
+{
+  "id": "B13",
+  "status": "CLOSED_EXACT_GITHUB_SENATE_PARSER_8_NATIVE_PASS_10_ORIGINALS_PASS",
+  "prereg": "B13_PREREG.json",
+  "files": [
+    {
+      "path": "src/politics_fantasy/source_original_senate_qa.py",
+      "git_blob_sha": "8addd118655c2562dd4e89566469607547a8c86f",
+      "bytes_match": true
+    },
+    {
+      "path": "tests/test_source_original_senate_qa.py",
+      "git_blob_sha": "3e6642c1b351dceb1e666a148bd0dd8283791a91",
+      "bytes_match": true
+    }
+  ],
+  "tests": {
+    "native_unittest_passed": 8,
+    "failures": 0,
+    "original_xml_votes_replayed": 10,
+    "original_votes_verified": 10,
+    "original_nominal_rows": 2589,
+    "original_absences": 51,
+    "session_date": "2025-10-07",
+    "all_vote_dates": "2025-10-08"
+  },
+  "parser_label": "Uses exact plural NO VOTAN; singular NO VOTA is explicitly rejected instead of generating false source error.",
+  "scope_limits": [
+    "Per-original tag structure verified; issuer signature and first_public_at not verified",
+    "No person identity certification or scores"
+  ],
+  "authorization": {
+    "B_spent": 13,
+    "B_remaining": 7
+  },
+  "next": "B14 test month abbreviation internationalization on the new parser using Spanish APR/AGO/DIC dates and fix if needed."
+}

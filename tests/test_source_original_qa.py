@@ -37,4 +37,13 @@ class TestSourceControls(unittest.TestCase):
     def test_no_timestamp_copied_from_event_day(self):
         self.assertFalse(senate_event_day('07/10/2025','08-OCT-2025')['publication_timestamp_verified'])
 
+    def test_null_original_totals_rejected_with_validation_error(self):
+        source=fixture([row('1','Sí')],yes=1)
+        source['totales']=None
+        with self.assertRaisesRegex(ValueError,'INVALID_OFFICIAL_TOTALS_SHAPE'):
+            audit_congress_vote(source)
+    def test_noncanonical_assigned_seat_rejected(self):
+        with self.assertRaisesRegex(ValueError,'DUPLICATE_OR_MALFORMED'):
+            audit_congress_vote(fixture([row('001','Sí')],yes=1))
+
 if __name__=='__main__':unittest.main()

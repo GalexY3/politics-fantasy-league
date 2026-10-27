@@ -1,0 +1,39 @@
+{
+  "id": "A08",
+  "status": "CLOSED_THREE_PERSON_SOURCE_TYPED_FIXTURE_PASS",
+  "pre_registration": "A08_PREREG.json",
+  "file": "data/observatory/bocg_2025_public_credential_vs_condition.json",
+  "file_blob_sha": "a9bb34ccd5c73df90626de0a1e59c17c260f83f1",
+  "verification": {
+    "three_public_person_mentions": true,
+    "distinct_credential_numbers": [
+      403,
+      404,
+      405
+    ],
+    "submissions_to_full_condition_day_gaps": [
+      39,
+      7,
+      0
+    ],
+    "cross_section_within_source_names_unique": true,
+    "source_congress_original": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF#page=3",
+    "source_first_public_timestamp_verified": false,
+    "real_person_scoring": false,
+    "official_source_person_id_absent": true,
+    "validation": "Fetch and parse committed file, check calendar-day arithmetic, uniqueness and quarantine flags, no clean Python E2E."
+  },
+  "hypothesis": {
+    "H1": "SUPPORTED_BOUNDED_SOURCE",
+    "H0": "No discrepancy in 3-source sample"
+  },
+  "limits": "Not population-level; names are publicly institutionally reported but cross-document/global ID remains unadjudicated. The dossier cannot be used in training as-of its event days without first-publication receipt.",
+  "metrics_unchanged": true,
+  "budget": {
+    "A_spent": 8,
+    "A_remaining": 12,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A09 attempt to acquire BOCG 2025 publisher original immutable fingerprint or independent archive receipt, since source-level exact first-public is still missing."
+}

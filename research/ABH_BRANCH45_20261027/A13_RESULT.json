@@ -1,0 +1,38 @@
+{
+  "id": "A13",
+  "status": "CLOSED_ORIGINAL_AGGREGATE_RPP_DATASET_DISCOVERED_ENTITY_KEY_STILL_BLOCKED",
+  "prereg": "A13_PREREG.json",
+  "new_official_distributions": [
+    {
+      "year": 2021,
+      "publisher": "Ministerio del Interior",
+      "catalogue": "https://datos.gob.es/es/catalogo/e00003801-partidos-politicos-2021-anuario-estadistico-del-ministerio-del-interior",
+      "original_xlsx": "https://www.interior.gob.es/opencms/pdf/archivos-y-documentacion/documentacion-y-publicaciones/anuarios-y-estadisticas/anuarios-estadisticos-anteriores/anuario-estadistico-de-2021/01_Tablas_apartado_1_1.xlsx",
+      "catalogue_observed_size_kb": 15.41,
+      "kind": "ANNUAL_AGGREGATE_RPP_STATISTICS_NOT_LEGAL_PARTY_ROWS"
+    },
+    {
+      "year": 2020,
+      "publisher": "Ministerio del Interior",
+      "catalogue": "https://datos.gob.es/es/catalogo/e00003801-partidos-politicos-2020-anuario-estadistico-del-ministerio-del-interior",
+      "original_xlsx": "https://www.interior.gob.es/opencms/pdf/archivos-y-documentacion/documentacion-y-publicaciones/anuarios-y-estadisticas/anuarios-estadisticos-anteriores/anuario-estadistico-2020/01_Tablas_apartado_1_1.xlsx",
+      "catalogue_observed_size_kb": 14.83,
+      "kind": "ANNUAL_AGGREGATE_RPP_STATISTICS_NOT_LEGAL_PARTY_ROWS"
+    }
+  ],
+  "provenance": "Official government open data catalog links public XLSX distributions. No bytes or SHA of original Excel downloaded in this session. The data could support aggregate registration trends and denominators but not legal party identity.",
+  "other_access": "Ministerio del Interior's official search form returns 502 on browser direct open, while search indexed HTML exists. Certificate SIA 992324 needs higher access; no issuer-signed per-party row obtained.",
+  "H1": "Supported only as original source class for aggregate register statistics, not party entity",
+  "H0": "For individual RPP original status, still unresolved (no original party entry)",
+  "future": "Acquire XLSX safely and hash, audit only aggregates; separately obtain original RPP party rows via interactive authorized search or certificate.",
+  "R5": "Do not re-attempt blocked same public search UI without a tool that can actually operate its form; pivot to product integration and source temporal validation.",
+  "milestone_impact": "src.registry stays 0; no legal person issuer record or certified party legal ID.",
+  "metrics_unchanged": true,
+  "budget": {
+    "A_spent": 13,
+    "A_remaining": 7,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A14 improve source catalogue and risk model documenting aggregate-vs-entity distinction to prevent false RPP readiness."
+}

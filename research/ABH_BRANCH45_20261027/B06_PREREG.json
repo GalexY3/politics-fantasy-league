@@ -1,0 +1,11 @@
+{
+  "id": "B06",
+  "stage": "B",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "B05 exact Git SHA DOB discrepancy module 11 tests PASS; C12 Congreso source original had -1 seat sentinel and date-of-vote/session bug, QA code only local mirror run.",
+  "H1": "Exact current branch source_original_qa.py and eight committed tests can be reconstructed byte-identically and run natively, reproducing missing seat -1, duplicate assigned seat rejection, four official vote-label counts and Senate vote-day selection.",
+  "H0": "The module or original committed tests mismatch Git hashes or expose a failing branch case requiring correction.",
+  "procedure": "Read two current GitHub blobs, stage verified bytes via Git blob SHA, run unittest 8, no original person votes published and no real score.",
+  "acceptance": "Exact two blob hashes and 8/8 PASS; differentiate fixture validation vs four original vote replays."
+}

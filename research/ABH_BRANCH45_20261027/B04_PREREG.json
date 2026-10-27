@@ -1,0 +1,12 @@
+{
+  "id": "B04",
+  "stage": "B",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "B03 exact committed BOCG ledger passed 10/10; 2023 BOE as-of guard C14 previously only local source staging and has implications for leakage.",
+  "H1": "BOE 2023 documentary day+1 bound module and its 10 tests can run byte-identically against source Git blob on local Python, rejecting earlier cutoffs and unverifiable source types.",
+  "H0": "Native tests fail or byte copy incomplete, so availability policy not accepted.",
+  "test": "Fetch current module and tests, verify both Git blob SHA in scratch runtime, run all 10 tests, note that this is conditional editor-level bound, not exact first-public publication or person eligibility.",
+  "cost": "no CI",
+  "accept": "exact SHA and 10 native PASS or transparent repair."
+}

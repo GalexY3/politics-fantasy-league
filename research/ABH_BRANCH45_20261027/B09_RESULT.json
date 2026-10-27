@@ -1,0 +1,39 @@
+{
+  "id": "B09",
+  "status": "CLOSED_SOURCE_EXACT_JS_PROGRESS_REEVALUATION_PASS_NATIVE_PYTHON_UNVERIFIED",
+  "prereg": "B09_PREREG.json",
+  "source_files_sha": {
+    "v3": "efad698eb5409ea8842519caeff8a68f5877e17d",
+    "v4": "b66b9582fa8630a11892aabbff8871b5069d284d",
+    "python_api": "d07a2762086a63089c82490bff6b4513d3dbb9d7",
+    "tests": "700e6892a1b947d0c574f5bcca1b4c37caf06d90"
+  },
+  "tests": {
+    "exact_GitHub_JSON_36_milestones_in_JS": true,
+    "v3_pct": 36.35,
+    "v4_pct": 36.9,
+    "work_delta_pp": 0.55,
+    "changed_level_ids": [
+      "id.real",
+      "ev.person"
+    ],
+    "tracks": 9,
+    "milestones": 36,
+    "total_weight": 100,
+    "release_requirements_in_python": 6,
+    "python_default_ref_v4": true,
+    "old_v3_test_preserved": true,
+    "JS_checks_passed": 8,
+    "native_Python_test_run": false
+  },
+  "outcome": "V4 weighted numerical model and Python default source contract are consistent with user-facing 36.90%, but native progress_api Python execution was not achieved in current isolation; cannot claim all Python/HTTP tests passed.",
+  "metrics_official": {
+    "pct": 36.9,
+    "gates": "0/6"
+  },
+  "budget": {
+    "B_spent": 9,
+    "B_remaining": 11
+  },
+  "next": "B10 run independent adversarial progress scope mutation/weight property checks with actual V4 JSON, find possible acceptance logic flaws, then patch if needed."
+}

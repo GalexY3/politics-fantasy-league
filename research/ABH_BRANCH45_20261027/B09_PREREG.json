@@ -1,0 +1,11 @@
+{
+  "id": "B09",
+  "stage": "B",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "B08 found and repaired two real source-input QA defects; R01-R02 approved V4 36.90% and switched default progress_api, but native Python tests not run.",
+  "H1": "Exact current branch progress_api.py, V3 and V4 scope JSON, and tests/test_progress_api.py execute natively and demonstrate 36.90% V4, preserved 36.35% V3, 36 fixed milestones and 0/6 gates.",
+  "H0": "One of those contracts fails on native runtime; repair source or scope without inventing percentage increments.",
+  "method": "Fetch current blobs, reconstruct byte-for-byte into local package with Git blob SHA; execute Python unittest and independently recompute both percentages; record any failures and patched source tests separately. Avoid full HTTP assumptions.",
+  "acceptance": "Hash equality for used sources/tests and native test results, 36.35/36.90 correct or honest defect; no gate promotion."
+}

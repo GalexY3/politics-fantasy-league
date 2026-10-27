@@ -1,0 +1,11 @@
+{
+  "id": "B12",
+  "stage": "B",
+  "mode": "AB-R source semantics",
+  "status": "PREREGISTERED",
+  "dependency": "B11 verified 11 original files; Senate XML session 60 had 2025-10-07 session header vs 2025-10-08 ten vote dates from prior C06.",
+  "H1": "All ten original Senate votes have per-vote date 2025-10-08, and official vote aggregate categories reconcile with nominal rows; session header date must not be used as vote/available-at date.",
+  "H0": "Source XML contains ambiguous per-vote days or miscounted categories, requiring quarantine of one or more events.",
+  "procedure": "Parse original XML directly from ZIP with Python stdlib, discover schema tags and calculate by vote, compare explicit totals. Publish only aggregate counts and field-level mapping, not personal names/votes. If exact tags vary, state parse ambiguity.",
+  "acceptance": "Per-ten-event dates + totals verified or precise failure. No first_public_at inferred or new real scoring."
+}

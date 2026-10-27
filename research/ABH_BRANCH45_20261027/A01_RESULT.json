@@ -1,0 +1,36 @@
+{
+  "id": "A01",
+  "status": "CLOSED_STRICT_SOURCE_CONTRACT_REPLAY_PASS",
+  "pre_registration": "A01_PREREG.json",
+  "results": {
+    "root_validator_path": "ab_atlas/atlas_delta.py",
+    "root_schema_validator": "ab_atlas/abmap.py",
+    "branch": "research/pfl-abh-45-20261027",
+    "original_seed": "proyectos/politics-fantasy-league/ab_atlas/seed.json",
+    "applied_patches": 11,
+    "passed": 11,
+    "failed": 0,
+    "graph_counts": {
+      "nodes": 45,
+      "edges": 65,
+      "runs": 41,
+      "complaints": 26,
+      "events": 170
+    },
+    "methods": [
+      "Verified each batch schema, parent chain, operation field allowlists",
+      "Validated after every batch node kind/mode/status, graph references/cycles, complaint index, gate states, acceptance requirements",
+      "Source-ported strict semantics to JS via connected GitHub reads"
+    ]
+  },
+  "limitation": "Actual canonical Python command NOT run: private repo not mounted or cloneable in local runtime, GitHub connector content cannot be auto-mounted. Full canonical output and SHA remain unverified. JS mirror also does not independently verify documentary truth.",
+  "improvement": "Prior status overstated inability to locate canonical engine; it exists at repository root ab_atlas/atlas_delta.py, not PFL ab_atlas/atlas_delta.py.",
+  "classification": "AB-META tool consistency, not scientific N1/N2/N3, no product gate promotion",
+  "next": "A02 attempt to integrate source_event_registry.py as a read-only, loopback-only API route, with contract tests; no real people scores.",
+  "budget": {
+    "stage_A_consumed": 1,
+    "stage_A_remaining": 19,
+    "review_stage_not_started": true,
+    "stage_B_not_started": true
+  }
+}

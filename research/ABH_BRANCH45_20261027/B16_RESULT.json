@@ -1,0 +1,44 @@
+{
+  "id": "B16",
+  "status": "CLOSED_SEVENTH_REAL_SOURCE_EVENT_DUPLICATION_DEFECT_FIXED",
+  "prereg": "B16_PREREG.json",
+  "observed_original": {
+    "votes": 10,
+    "distinct_num_vot": 10,
+    "distinct_CodVotacion": 10
+  },
+  "initial_defect": "Duplicating an entire original <votacion> element was accepted as a new 11th vote, even though both original source event identifiers repeated.",
+  "patched_files": [
+    {
+      "path": "src/politics_fantasy/source_original_senate_qa.py",
+      "git_blob_sha": "83025d93bfeeac8e89574330e54033eb0ae2ac27",
+      "exact_local_match": true
+    },
+    {
+      "path": "tests/test_source_original_senate_qa.py",
+      "git_blob_sha": "565e35e80a43742979de18ed41c5e436ca329886",
+      "exact_local_match": true
+    }
+  ],
+  "tests": {
+    "native_unittest_passed": 13,
+    "failures": 0,
+    "private_original_events_replayed": 10,
+    "rows_replayed": 2589,
+    "absences_replayed": 51,
+    "duplicated_event_rejected": true,
+    "missing_event_identifier_rejected": true
+  },
+  "scope": "Two original event IDs must be unique within same session; none is universal personal identity and no `first_public_at` claim generated.",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "gates": "0/6",
+    "CT2": 29,
+    "VSDS": "1/3"
+  },
+  "budget": {
+    "B_spent": 16,
+    "B_remaining": 4
+  },
+  "next": "B17 run joint source-original standard-library native regression for Congress+Senate with all 14 original vote files and mutated duplicate source events, verifying no cross-family confusion."
+}

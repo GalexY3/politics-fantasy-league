@@ -1,0 +1,23 @@
+{
+  "id": "B18",
+  "status": "CLOSED_OPTIONAL_CI_TEST_COVERAGE_COMMITTED_NO_RUN",
+  "prereg": "B18_PREREG.json",
+  "workflow": ".github/workflows/politics-fantasy-evidence.yml",
+  "workflow_sha": "211b867140a0e1077a3759617006a81e4ae8c8c1",
+  "new_job_step": "Synthetic source-original Senate and Congress guards (no private raw data)",
+  "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_source_original*.py' -v",
+  "coverage": {
+    "expected_native_test_count": 23,
+    "native_execution_prior_B17": 23,
+    "CI_execution_this_cycle": 0,
+    "source_scope": "Both new source-original Senate and Congress guards, only synthetic test fixtures"
+  },
+  "triggers": "Existing workflow_dispatch/main push/PR to main unchanged; research commits [skip ci]; no trigger performed.",
+  "privacy": "No private original ZIP or nominal data added to workflow test step. Existing CI source-download job unchanged and remains an independent future review item.",
+  "metrics_unchanged": true,
+  "authorization": {
+    "B_spent": 18,
+    "B_remaining": 2
+  },
+  "next": "B19 verify Atlas append-only parent chain and source-level consistency; prepare honest stage closure without claiming official Python check."
+}

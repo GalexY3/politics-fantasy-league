@@ -1,0 +1,29 @@
+{
+  "id": "B10",
+  "status": "CLOSED_ALL_36_EVIDENCE_PATHS_EXIST_BUT_CONTENT_NOT_ADJUDICATED",
+  "prereg": "B10_PREREG.json",
+  "method": "Retrieved official current V4 scope and the actual GitHub directory index at seven research subdirectories and docs/src/tests/product. Resolved each of 36 evidence_ref paths against exact filename in owning directory; two promoted paths additionally located in research branch; no inferred local filesystem paths.",
+  "counts": {
+    "milestones": 36,
+    "unique_ref_files": 20,
+    "referenced_files_found": 36,
+    "missing": 0,
+    "reference_path_only": true
+  },
+  "promoted_refs": {
+    "id.real": "research/ABH_BRANCH20C_20261027/C15_RESULT.json",
+    "ev.person": "research/ABH_BRANCH45_20261027/A18_RESULT.json",
+    "both_exist": true
+  },
+  "limitations": [
+    "File existence does not prove scientific/methodological claim or original publisher signature.",
+    "evaluate_scope itself accepts any nonempty evidence_ref and does not check live GitHub path; research governance must review substance/sha as separate gate.",
+    "V4 progress is a versioned subjective evidential maturity review, not a cryptographically certified score."
+  ],
+  "outcome": "No stale paths detected; no changes to V4, no real identity/score gate promoted.",
+  "authorization": {
+    "B_spent": 10,
+    "B_remaining": 10
+  },
+  "next": "B11 inspect source-eligibility and event-provenance claim gate integration tests, then prioritize actual live HTTP."
+}

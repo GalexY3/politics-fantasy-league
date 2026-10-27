@@ -1,5 +1,7 @@
 # Politics Fantasy: contribuciones Codex, 27/10/2026
 
+> Actualización de integración: este informe conserva el estado de la rama Codex antes de reunirse con AB-H45. El lote Codex que entonces era 0012 pasó a ser 0016, hijo del 0015 de ChatGPT; su versión original permanece en Git. El estado integrado y la validación oficial de 16 lotes están en [CURRENT](../../ab_atlas/CURRENT.md).
+
 Esta campaña AB-H responde a la autorización abierta del usuario para contribuir en una rama propia. Parte de `8f75b73b720592f3651e2f65a0a44271b2ec2dbc`, tras BRANCHING20C, y es independiente de la campaña de 45 ciclos que ChatGPT ejecuta en paralelo. No se ha integrado en `main` ni en esa rama. La autorización no establece un cupo numérico; R5 sigue aplicándose cuando no hay evidencia discriminante o beneficio concreto.
 
 | Ciclo | Resultado y alcance |

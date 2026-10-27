@@ -1,0 +1,13 @@
+{
+  "id": "A01",
+  "stage": "A",
+  "status": "PREREGISTERED",
+  "problem": "Historic CURRENT repeatedly says no official Python atlas_delta.py check. Found canonical tool at REPOSITORY ROOT ab_atlas/atlas_delta.py, not inside PFL project. Previous structural JS replay was less strict than canonical event parser.",
+  "question": "Does the existing 0011 batch chain satisfy canonical delta contract including strict per-batch record validation, or does it conceal invalid schema/status/operation details?",
+  "H1": "Full 11 deltas replay with canonical-equivalent semantics and post-batch invariant checks",
+  "H0": "At least one batch fails invariant not evaluated in prior structural replay",
+  "method": "Read root ab_atlas/atlas_delta.py and abmap.py, adapt the exact documented replay checks in a fresh JS clone over fetched seed and 11 JSON batches. Must not claim actual Python engine executed; if failure, report earliest batch/op and repair append-only, not rewrite prior batch casually.",
+  "acceptance": "Evidence includes detected failure or PASS with concrete counts and strictness scope; no new percent or scientific claim",
+  "next_if_fail": "repair canonical via proper compensating delta if possible, preserve edit history",
+  "source": "GitHub connected canonical original on inherited branch"
+}

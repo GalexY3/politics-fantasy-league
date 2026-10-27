@@ -1,0 +1,32 @@
+{
+  "id": "A16",
+  "status": "CLOSED_STATIC_CONTRACT_CHECKS_PASS",
+  "source_files": [
+    "src/politics_fantasy/source_eligibility.py",
+    "src/politics_fantasy/evidence_warehouse_status.py",
+    "src/politics_fantasy/progress_api.py",
+    "src/politics_fantasy/source_event_registry.py",
+    "src/politics_fantasy/server.py"
+  ],
+  "checks": {
+    "eligibility_always_quarantined": true,
+    "warehouse_real_people_verified_zero": true,
+    "progress_real_people_scoring_ready_false": true,
+    "source_catalog_first_public_count_zero": true,
+    "source_stages_host_guard_before_route": true,
+    "no_public_person_scoring_route": true
+  },
+  "test_type": "Static source literal contract check on five freshly fetched GitHub files; not HTTP/E2E runtime.",
+  "status_granularity": "Original RPP field remains absent; source catalogue status is explicitly documentation rather than certification.",
+  "limitations": [
+    "A misconfigured future server could expose sensitive data despite these static checks.",
+    "Source component tests not executed together on clean checkout.",
+    "Zero release gates newly validated."
+  ],
+  "next": "A17 investigate whether documented source-event join date controls can be asserted via approved calendar-date benchmark without any publisher-as-of leap.",
+  "budget": {
+    "A_spent": 16,
+    "A_remaining": 4
+  },
+  "percent_official": 36.35
+}

@@ -1,0 +1,41 @@
+{
+  "id": "A18",
+  "status": "CLOSED_TWO_PRIMARY_CONGRESS_SOURCE_CROSSCHECK",
+  "prereg": "A18_PREREG.json",
+  "subject": "Diego Taibo Monelos",
+  "sources": [
+    {
+      "kind": "2026_PLENARY_DIARY",
+      "url": "https://www.congreso.es/ca/busqueda-de-publicaciones?_publicaciones_id_texto=%28DSCD-15-PL-204.CODI.%29&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+      "record": "Plenary oath 15 September 2026, chair explicitly states member acquires full status by acatamiento in substitution of previous member"
+    },
+    {
+      "kind": "CURRENT_MEMBER_PROFILE",
+      "url": "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=412&idLegislatura=XV&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+      "record": "Profile full condition 2026-09-15; names predecessor Obdulia Taboadela Álvarez; lists commission start day 2026-09-16"
+    },
+    {
+      "kind": "INDIVIDUAL_ACTIVITIES_FILING",
+      "url": "https://www.congreso.es/es/busqueda-de-iniciativas?_iniciativas_id=004%2F000412&_iniciativas_legislatura=XV&_iniciativas_mode=mostrarDetalle&p_p_id=iniciativas&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+      "record": "Statement of activities submitted 2026-09-15 and qualified 2026-09-22"
+    }
+  ],
+  "observations": {
+    "effective_full_condition_day": "2026-09-15",
+    "new_commission_role_day": "2026-09-16",
+    "activities_filed_day": "2026-09-15",
+    "activities_qualified_day": "2026-09-22",
+    "first_public_at_verified": false,
+    "record_family_differences": true
+  },
+  "conclusion": "Three source families maintained by the same institution agree on a concrete event with differing procedural dates. Person continuity XIV/XV appears on profile, but codParlamentario is scoped to XV and must not be assumed globally stable. Publisher independence absent: same Congreso authority; no cross-editor independent first public receipt.",
+  "H1": "SUPPORTED by official member profile date plus plenary diary",
+  "H0": "Not supported for this case",
+  "privacy": "Record only public procedural dates, no personal financial declaration details or private info. No political merit scores.",
+  "budget": {
+    "A_spent": 18,
+    "A_remaining": 2
+  },
+  "metrics_unchanged": true,
+  "next": "A19 source-scoped event taxonomy test: full condition, commission appointment and activity filing must not be collapsed by a single membership `date`."
+}

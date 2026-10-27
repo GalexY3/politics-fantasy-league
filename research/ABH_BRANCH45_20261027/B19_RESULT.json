@@ -1,0 +1,46 @@
+{
+  "id": "B19",
+  "status": "CLOSED_13_GITHUB_ATLAS_DELTAS_STRUCTURAL_REPLAY_PASS",
+  "prereg": "B19_PREREG.json",
+  "method": "Fetched actual 13 JSON batches 0001–0013 plus seed.json from GitHub branch and replayed in JS with operation/parent/record/complaint-index and release gate invariants. Initial one-off JS syntax error was a verifier implementation fault; rerun succeeded with corrected script.",
+  "observed": {
+    "batches": 13,
+    "operations": 197,
+    "nodes": 52,
+    "edges": 72,
+    "runs": 66,
+    "complaints": 29,
+    "head_batch": "0013-PFL-B45-R01-R05-20261027",
+    "release_gates": {
+      "data_registry": "blocked",
+      "identity": "blocked",
+      "events": "blocked",
+      "authentication": "pending",
+      "e2e": "pending",
+      "deployment": "pending"
+    },
+    "all_gate_status_not_passed": true,
+    "graph_source_refs_no_orphans": true,
+    "complaint_links_coherent": true
+  },
+  "limitations": [
+    "The official canonical Python ab_atlas/atlas_delta.py check has NOT been executed on a clone/checkout; this is independent structural JS replay.",
+    "No cryptographic attestation of external institutional sources from this check.",
+    "Stage B01–B20 not yet appended; new patch 0014 will be validated after B20 created."
+  ],
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "CT2": 29,
+    "scientific_N123": [
+      0,
+      0,
+      0
+    ]
+  },
+  "authorization": {
+    "B_spent": 19,
+    "B_remaining": 1
+  },
+  "next": "B20 finalize ledger 20+5+20, register 20 B cycles in append-only Atlas 0014 and update CURRENT/continuity, verify exact GitHub file presence and parent chain."
+}

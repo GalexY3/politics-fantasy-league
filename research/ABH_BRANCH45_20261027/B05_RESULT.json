@@ -1,0 +1,34 @@
+{
+  "id": "B05",
+  "status": "CLOSED_EXACT_SOURCE_MULTILINEAGE_DOB_11_OF_11_PASS",
+  "prereg": "B05_PREREG.json",
+  "blobs": [
+    {
+      "file": "src/politics_fantasy/identity_field_conflicts.py",
+      "blob_sha": "e877a345eaf94459ef41befaa260d1021ff1b596",
+      "match": true,
+      "bytes": 2179
+    },
+    {
+      "file": "tests/test_identity_field_conflicts.py",
+      "blob_sha": "7a49527f9b0a525fad725b0ef34b4c85cbc41040",
+      "match": true,
+      "bytes": 2165
+    }
+  ],
+  "execution": {
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "github_actions": 0,
+    "runner": "native Python unittest on exact blob-verified source files in isolated scratch package"
+  },
+  "source_case": "Official public biography DOB conflict from 2008/2012 Government and Congress/party later; five observations in three issuer lineages. True date remains unresolved.",
+  "outcome": "No automated person merge/split, original first_public unknown, real scoring false.",
+  "metrics_unchanged": true,
+  "budget": {
+    "B_spent": 5,
+    "B_remaining": 15
+  },
+  "next": "B06 run exact SHA original Congreso vote quality/sentinel module + eight tests from earlier C12 instead of treating previous mirrored local pass as a clean test."
+}

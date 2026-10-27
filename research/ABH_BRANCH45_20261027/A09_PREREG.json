@@ -1,0 +1,14 @@
+{
+  "id": "A09",
+  "mode": "AB-R publication provenance search",
+  "status": "PREREGISTERED",
+  "dependency": "A08 source-scoped 3 public credentials correct, but exact first-public distribution still unknown",
+  "question": "Can obtain a second, contemporaneously timestamped archived original for BOCG-15-D-390 rather than inferring availability from signed day or issue day?",
+  "H1": "Official government archive, verifiable CVE registry, or independently timestamped web archive contains the exact 2025-09-12 publication/source PDF, giving bounded availability evidence.",
+  "H0": "Only current 2026 retrieval and issue dates exist in accessible tools; no independent historical observation or original PDF signature chain available.",
+  "plan": "Search official `BOCG-15-D-390` CVE verifier and dated journal index, then independent archived captures e.g. Wayback CDX/official syndicated feed. Treat search-engine crawl timestamps as unreliable. Save source URL/date or negative result and stop; never backdate to signing day 09/09.",
+  "acceptance": "Evidence must provide timestamped archive receipt / reliable independent publication report, or explicitly record not found; no changed readiness or as-of permission from unverified issue day.",
+  "cost": {
+    "github_actions": 0
+  }
+}

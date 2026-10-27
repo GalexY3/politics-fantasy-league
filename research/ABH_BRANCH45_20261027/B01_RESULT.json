@@ -1,0 +1,38 @@
+{
+  "id": "B01",
+  "status": "CLOSED_NATIVE_EXACT_GITHUB_BLOBS_PYTHON_5_OF_5_PASS",
+  "prereg": "B01_PREREG.json",
+  "method": "Fetched two exact GitHub blobs on new research branch, manually staged UTF-8 in /mnt/data/pfl_b45_exact, computed real Git blob SHA1 including header to certify byte equality before execution.",
+  "sources": [
+    {
+      "path": "src/politics_fantasy/parliament_procedure_types.py",
+      "github_blob_sha": "96b6b3ecad8c3fe6604b201e821a04fca391bcd2",
+      "staging_blob_matches": true,
+      "bytes": 1983
+    },
+    {
+      "path": "tests/test_parliament_procedure_types.py",
+      "github_blob_sha": "f4684d9414b779498460f8ebcf1528ca7d23669b",
+      "staging_blob_matches": true,
+      "bytes": 1597
+    }
+  ],
+  "execution": {
+    "command": "PYTHONPATH=/mnt/data/pfl_b45_exact/src python -m unittest discover -s /mnt/data/pfl_b45_exact/tests -p test_parliament_procedure_types.py -v",
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "errors": 0,
+    "github_actions": 0
+  },
+  "scope": "Native isolated Python import/runner using exact current branch modules, NOT clean full repo integration nor HTTP and not original publisher authentication.",
+  "ABP": "A19 procedural source typing is now natively tested (stage limitations narrowed).",
+  "metrics_unchanged": true,
+  "budget": {
+    "A": 20,
+    "R": 5,
+    "B_spent": 1,
+    "B_remaining": 19
+  },
+  "next": "B02 validate exact BOCG within-issue pairing branch source and its 7 committed tests by same Git SHA byte-control protocol, checking documented false positional joins."
+}

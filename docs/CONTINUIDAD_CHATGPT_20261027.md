@@ -1,3 +1,19 @@
+# Continuidad vigente · Politics Fantasy · cierre AB-H45 · 27/10/2026
+
+**Esta cabecera sustituye a los balances parciales del archivo histórico inferior.** Trabajamos en `research/pfl-abh-45-20261027`, sin modificar `main`. Permiso explícito A20+R5+B20 consumido completamente: **45/45 ciclos; cero restantes**. [Informe final](../research/ABH_BRANCH45_20261027/REPORT_FINAL_ABH45.md) · [ledger](../research/ABH_BRANCH45_20261027/CAMPAIGN_FINAL_A20_R5_B20.json).
+
+**V4 vigente: 36,90 % global**, áreas fuentes 45; identidad 42,5; eventos 35; investigación 27,5; motor 45; interfaz 32,5; seguridad 20; QA 45; operación 17,5 (%). Subió 0,55 pp frente a V3 por dos hitos documentales de nivel 1, no por aprobar producto. Gates **0/6**, CT2 **29/100**, VSDS **1/3**, N1/N2/N3 **0**.
+
+**Nueva calidad comprobada:** Congreso cuatro JSON 1.400 votos, Senado diez votos 2.589 registros más 51 ausencias; 23 tests nativos de ambos parsers exactos con hash Git, corregidos múltiples fallos de entrada/duplicados y fecha original. No hay identity ID personal universal o `first_public_at` comprobados, ni se puede activar scoring político real.
+
+**Atlas:** 15 lotes hasta `0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027`, replay JS PASS 56 nodos, 76 aristas, 86 runs, 33 complaints. **El validador Python oficial sigue sin ejecutarse**. Los datos temporales `at` de 0012–0014 fueron corregidos usando tiempos de commit registrados en GitHub y el arreglo consta en [ATLAS_TIMESTAMP_REPAIR.json](../research/ABH_BRANCH45_20261027/ATLAS_TIMESTAMP_REPAIR.json). Los `at` reflejan registro de lote, no instante de la prueba o primera publicación de fuentes.
+
+**Próxima autorización requerida para nuevas campañas AB**, pero se puede consultar, editar, revisar y razonar sobre los resultados actuales sin abrir ciclos. Priorizar checker Python y HTTP E2E, registros RPP originales, permisos de reutilización y dataset de identidad con negativos. No crear más cuotas por defecto.
+
+---
+
+## Archivo histórico anterior (BRANCHING20C)
+
 # Continuidad ChatGPT · Politics Fantasy · cierre BRANCHING20C 20/20 · 27/10/2026
 
 **Esta sección reemplaza como estado vigente los saldos parciales históricos debajo.** Usuario concedió 20 ciclos BRANCHING nuevos: C01–C20 ejecutados y registrados, **saldo cero**. El bloque anterior tenía permiso indeterminado, contabilizado con cautela y cerrado por separado. No iniciar nuevo ciclo sin autorización explícita.
