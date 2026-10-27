@@ -23,6 +23,7 @@ def main(argv=None) -> int:
     malformed = any(key != "VALID_OBJECT" and count for key, count in objects.items())
     uncertain = (result["unreviewed_captures"] or result["legacy_captures_unlinked"]
                  or result["duplicate_manifest_capture_ids"] or result["legacy_size_without_bytes"]
+                 or result["orphan_objects"] or result["unexpected_object_entries"]
                  or any(state not in {"QUARANTINED_SCHEMA_PASSED", "QUARANTINED_SCHEMA_FAILED",
                                       "QUARANTINED_INTEGRITY_FAILED"} and count
                         for state, count in result["quarantine_states"].items()))
