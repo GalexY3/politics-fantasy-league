@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping
+from datetime import datetime
 
 # A recognized hostname is merely a candidate origin, never independent
 # authentication or permission to score people.
@@ -58,8 +59,18 @@ def assess_evidence(record: object) -> dict:
             reasons.append("PERSON_ID_UNRESOLVED")
         if record.get("as_of_documented") is not True:
             reasons.append("TEMPORAL_PROVENANCE_INCOMPLETE")
-        if record.get("first_public_at") is None:
+        publication = record.get("first_public_at")
+        if publication is None:
             reasons.append("FIRST_PUBLIC_AT_UNKNOWN")
+        elif not isinstance(publication, str) or "T" not in publication:
+            reasons.append("FIRST_PUBLIC_AT_INVALID")
+        else:
+            try:
+                parsed_time = datetime.fromisoformat(publication.replace("Z", "+00:00"))
+                if parsed_time.tzinfo is None or parsed_time.utcoffset() is None:
+                    reasons.append("FIRST_PUBLIC_AT_INVALID")
+            except ValueError:
+                reasons.append("FIRST_PUBLIC_AT_INVALID")
     if record.get("reuse_adjudicated") is not True:
         reasons.append("REUSE_RIGHTS_UNADJUDICATED")
     # No caller-controlled field can establish authenticity, legal rights, or a
