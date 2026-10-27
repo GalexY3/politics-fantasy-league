@@ -1,0 +1,139 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0011-PFL-B20C-BOCG-FINAL-20261027",
+  "parent_batch": "0010-PFL-B20C-BOE-DOB-20261027",
+  "at": "2026-10-27T03:27:48.086Z",
+  "actor": "chatgpt",
+  "reason": "Close human-authorized BRANCHING20C 20/20 after 2023 and 2025 original BOCG person-level full-condition and credential-effective-day evidence. Keep pending first_public_at and no N1–N3 or gate promotion.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C19",
+        "activity": "Document 8 dated full-condition cessations, 8 acquisitions and 8 credential presentations from BOCG XV-D-51 15/12/2023",
+        "status": "completed",
+        "at": "2026-10-27T03:27:48.086Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C20",
+        "activity": "Replicate dated full-condition and credential sequences BOCG XV-D-390 12/09/2025, observed 39/7/0 day credential gaps",
+        "status": "completed",
+        "at": "2026-10-27T03:27:48.086Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-BOCG-ASOF-UNVERIFIED",
+        "run_id": "PFL-B20C-C20",
+        "severity": "major",
+        "status": "open",
+        "category": "source_temporal_provenance",
+        "source": "agent",
+        "description": "Full-condition event day and credential filing dates are directly listed in 2023/2025 BOCG, but published day is an issue date and no independent first-public HTTP receipt, signed original PDF hash or BOCG punctuality guarantee acquired. The 2023 BOE publisher report cannot transfer to BOCG.",
+        "at": "2026-10-27T03:27:48.086Z"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+        "title": "BOCG XV-D-51: condición plena individual fechada (8 bajas y 8 altas)",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "BOCG XV-D-51 issue 15/12/2023, PLENO 051/000002: 8 bajas efectivas 06/12/2023, 8 altas condición plena 12/12/2023, 8 credenciales presentadas 12/12/2023. Número de casos iguales no vincula individualmente alta con baja; first_public_at de BOCG desconocido.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+        "title": "BOCG XV-D-390: credencial 39/7/0 días antes de condición plena",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "BOCG XV-D-390 issue 12/09/2025, PLENO 051/000002: 1 baja condición plena efectiva 02/09 y 3 altas efectivas 09/09. Tres credenciales depositadas 01/08, 02/09 y 09/09, anticipación 39/7/0 días sobre condición plena. Necesarios campos temporales tipados separados y prohibición de relleno as-of antes de publicación acreditada.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-BOCG-E19",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-BOCG-E20",
+      "from": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+      "to": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-BOCG-E21",
+      "from": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+      "to": "n_fdb37e730626",
+      "relation": "related_to"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-B20C-AUTH-20261027",
+      "set": {
+        "detail": "BRANCHING20C humanamente concedido e independiente del antiguo bloque: C01–C20 cerrados, autorizado 20/20 consumido, C04 consta como STOP_R5 y no equivale a éxito científico. Se encontraron cotas BOE ordinario 2023, once continuidades positivas, conflicto DOB entre editoriales y fecha individual de condición plena de BOCG 2023/2025. SALDO CERO; iniciar ciclos futuros requiere nueva autorización.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_FINAL_C01_C20.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C20_FINAL.md"
+        ]
+      },
+      "reason": "Cerrar nueva autorización al completarse los ciclos 19 y 20 con fuentes institucionales BOCG discriminantes"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Catálogo ampliado con BOE 2023 firmado e informe editorial 312/312, biografías históricas Congreso/Moncloa/PSOE y BOCG XV-D-51 2023 y XV-D-390 2025 con credenciales/altas/bajas individualizadas. Fecha de firma, evento, credencial y boletín son distintas; as-of original exacto de BOCG queda desconocido.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C20_FINAL.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json"
+        ]
+      },
+      "reason": "Incorporar dos familias de actos individuales históricos verificados a grano día sin promover gates"
+    }
+  ]
+}
