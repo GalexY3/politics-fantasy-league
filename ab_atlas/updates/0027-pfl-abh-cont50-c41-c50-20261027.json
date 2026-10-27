@@ -1,0 +1,180 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0027-PFL-ABH-CONT50-C41-C50-20261027",
+  "parent_batch": "0026-PFL-ABH-CONT40-C31-C40-20261027",
+  "at": "2026-10-27T21:51:33.123Z",
+  "actor": "chatgpt",
+  "reason": "Record ten user-authorized AB-H product/QA cycles C41-C50 with true native bounded tests, explicit C44 instrument deviation, and no science/CT2/release gate uplift. Codex unexecuted.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C41",
+        "activity": "C41: previous local forecast strict numeric patch now merged to branch, red-green original 10 failed/2 pass to 12/12 native pass",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C41_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C42",
+        "activity": "C42: publish SHA-exact previously tested finite co-vote graph regressions, 7 native pass",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C42_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C43",
+        "activity": "C43: six published exact-source native as_of counterfactual tests prevent synthetic future-publication leakage",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C43_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C44",
+        "activity": "C44: independent original V3/V4 source JSON audit 9 checks pass, 36.35 to 36.90, six gates blocked; planned native two-runtime V3/V4 rerun NOT executed",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C44_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C45",
+        "activity": "C45: three original/new checked-in normalized event quality Python tests exact SHA pass",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C45_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C46",
+        "activity": "C46: ten original/finite/counterfactual native graph tests exact SHA pass",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C46_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C47",
+        "activity": "C47: 12 original checked-in source eligibility policy tests pass without lifting actual scoring",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C47_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C48",
+        "activity": "C48: six original checked-in Poisson/calibration/walk-forward/bootstrap tests pass",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C48_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C49",
+        "activity": "C49: 48 native parameterized cases verify Poisson partial/full loss identity, synthetic only",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C49_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT50-C50",
+        "activity": "C50: selected integrated 173 genuine Python tests plus 9 Node tests PASS with 12 exact source files and 18 versioned test files; not full checkout",
+        "at": "2026-10-27T21:51:33.123Z",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT50_20261027/C50_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
