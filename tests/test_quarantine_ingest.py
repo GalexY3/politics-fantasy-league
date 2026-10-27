@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from politics_fantasy import quarantine_ingest as pipeline
+from politics_fantasy import ingest
 
 
 def congress_bytes(*, broken=False):
@@ -44,7 +45,7 @@ class QuarantinePipelineTests(unittest.TestCase):
     def capture(self, root, *, source, kind, content, opener=None):
         url = f"https://www.{source}.es/fake-original"
         responder = opener or (lambda request, timeout: MockResponse(request.full_url,content))
-        with patch.object(pipeline.import_url.__globals__["time"], "sleep", return_value=None):
+        with patch.object(ingest.time, "sleep", return_value=None):
             return pipeline.capture_validate_quarantine(
                 url=url, source=source, document_kind=kind, root=root,
                 opener=responder, min_interval=1,
