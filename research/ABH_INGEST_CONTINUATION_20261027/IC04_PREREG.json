@@ -1,0 +1,31 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "authorization": "20 cycles granted by user 2026-10-27, adaptive; future requests 5-15",
+  "cycle": "IC04",
+  "mode": "AB-P / security",
+  "status": "PREREGISTERED",
+  "prior": "Uncounted posthoc symlink escape reproduced in PRE_CAMPAIGN_SYMLINK_AUDIT_20261027.json",
+  "A_question": "Can storage be confined to root when objects or shard subdirectories are pre-existing symlinks, and when manifest.jsonl is a symlink?",
+  "B_hypotheses": {
+    "H1": "Pathlib mkdir/resolve or naive checks insufficient; introduce directory-fd O_NOFOLLOW POSIX secure object+manifest writes, with clearly scoped portability fallback, and demonstrate no escapes",
+    "H0": "Current code safely confines data against preplaced symlinks or fix breaks normal local ingestion"
+  },
+  "C_tests": [
+    "preplaced objects symlink to outside must not result in outside bytes",
+    "preplaced objects/<hash-prefix> symlink blocked",
+    "manifest.jsonl symlink to outside blocked",
+    "normal object content addressed writes unchanged",
+    "private root and explicit symlink rejection on unsupported platforms"
+  ],
+  "D_procedure": "Implement local secure_store helper and wire ingest.py with same manifest keys, tests entirely fictional temp directories. The POSIX variant uses anchored dir_fd with O_NOFOLLOW for directories, files and append; local root itself must be non-symlink and trusted.",
+  "E_accept": "All new negative tests and existing suite PASS on exact GitHub code; no originals published; no HTTP source API.",
+  "F_limits": "Root ancestor manipulation, Windows race-free confinement, hardware/OS permissions, external egress beyond path control not automatically certified.",
+  "G_r5": "If secure confinement cannot be portable, fail closed and document supported platforms instead of pretending Windows hardening.",
+  "I_invariants": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J_next": "Determine following cycle based on this repair and observed test outcomes."
+}
