@@ -1,74 +1,133 @@
-"""Conservative raw snapshot importer; no assumptions about official JSON schemas.
+"""Conservative single-source raw snapshot importer (local research, not HTTP API).
 
-Never use this to launch mass requests before reviewing each source's reuse policy.
-A fetch is a byte-exact immutable snapshot plus a manifest for later parsing.
+Allowed HTTPS authority and source identity are checked before the initial
+request AND before each urllib redirect. Redirect metadata is not a publisher
+attestation; snapshots always need independent per-source license/as-of review.
 """
 from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import time
 from datetime import datetime, timezone
-from urllib.parse import urlparse
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError, URLError
+from urllib.parse import urlsplit
+from urllib.request import Request, build_opener, HTTPRedirectHandler
 
-ALLOWED_HOSTS = {"www.congreso.es", "www.senado.es", "www.boe.es"}
-MAX_BYTES = 20 * 1024 * 1024  # for a single pilot document; large backfills need an explicit design
+SOURCE_HOSTS = {
+    "congreso": "www.congreso.es",
+    "senado": "www.senado.es",
+    "boe": "www.boe.es",
+}
+ALLOWED_HOSTS = set(SOURCE_HOSTS.values())
+MAX_BYTES = 20 * 1024 * 1024
+MAX_REDIRECTS = 5
+
+
+def _check_official_url(url: str, source: str) -> None:
+    """Strict source↔authority binding; never accept an arbitrary allowed host."""
+    if source not in SOURCE_HOSTS:
+        raise ValueError("UNKNOWN_SOURCE")
+    if not isinstance(url, str) or any(ord(c) < 32 or ord(c) == 127 for c in url):
+        raise ValueError("INVALID_OFFICIAL_URL")
+    try:
+        parsed = urlsplit(url)
+    except ValueError as exc:
+        raise ValueError("INVALID_OFFICIAL_URL") from exc
+    expected = SOURCE_HOSTS[source]
+    # Restrict literal authority rather than DNS string suffixes, userinfo,
+    # unusual ports, scheme-relative, Unicode lookalikes or backslashes.
+    if (parsed.scheme != "https"
+            or parsed.netloc.lower() not in (expected, expected + ":443")
+            or not parsed.hostname == expected
+            or parsed.fragment):
+        raise ValueError("SOURCE_HOST_OR_SCHEME_MISMATCH")
+
+
+class SourceScopedRedirects(HTTPRedirectHandler):
+    """Reject every unsafe Location before urllib can connect to its target."""
+
+    def __init__(self, source: str):
+        super().__init__()
+        if source not in SOURCE_HOSTS:
+            raise ValueError("UNKNOWN_SOURCE")
+        self.source = source
+        self.hops: list[str] = []
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        _check_official_url(newurl, self.source)
+        if len(self.hops) >= MAX_REDIRECTS:
+            raise ValueError("TOO_MANY_REDIRECTS")
+        next_request = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if next_request is not None:
+            self.hops.append(next_request.full_url)
+        return next_request
 
 
 def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
-               timeout: float = 30.0, opener=urlopen) -> dict:
-    parts = urlparse(url)
-    if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS or parts.username:
-        raise ValueError("This pilot only accepts verified HTTPS official-host URLs")
-    if source not in {"congreso", "senado", "boe"}:
-        raise ValueError("Unknown source")
-    if min_interval < 1:
-        raise ValueError("Rate limit below 1s disallowed in pilot")
-    # Caller must validate the source's terms, robots, and download cadence first.
+               timeout: float = 30.0, opener=None) -> dict:
+    _check_official_url(url, source)
+    if (isinstance(min_interval, bool) or not isinstance(min_interval, (int, float))
+            or not math.isfinite(min_interval) or min_interval < 1):
+        raise ValueError("RATE_LIMIT_INVALID")
+    if (isinstance(timeout, bool) or not isinstance(timeout, (int, float))
+            or not math.isfinite(timeout) or timeout <= 0):
+        raise ValueError("TIMEOUT_INVALID")
+    # Production path installs the redirect guard in urllib itself. An injected
+    # opener exists for offline tests only: it cannot attest redirects itself.
+    guard = SourceScopedRedirects(source) if opener is None else None
+    open_resource = build_opener(guard).open if guard is not None else opener
     req = Request(url, headers={"User-Agent": "PoliticsFantasyResearch/0.1 (academic pilot)",
                                 "Accept": "application/json, application/xml, text/xml, text/csv, */*"})
-    with opener(req, timeout=timeout) as response:
-        content = response.read(MAX_BYTES + 1)
-        if len(content) > MAX_BYTES:
-            raise ValueError("Resource exceeds 20 MiB pilot limit; no truncated save")
-        final = urlparse(response.geturl())
-        if final.hostname not in ALLOWED_HOSTS or final.scheme != 'https':
-            raise ValueError("Redirected away from approved official HTTPS host")
+    with open_resource(req, timeout=timeout) as response:
+        final_url = response.geturl()
+        _check_official_url(final_url, source)
+        # Without our redirect guard, we cannot inspect intermediate requests.
+        if guard is None and final_url != req.full_url:
+            raise ValueError("UNVERIFIED_INJECTED_REDIRECT")
+        if guard is not None and guard.hops and final_url != guard.hops[-1]:
+            raise ValueError("REDIRECT_CHAIN_MISMATCH")
         status = int(response.status)
         if status != 200:
-            raise ValueError(f"Bad HTTP status {status}")
+            raise ValueError(f"BAD_HTTP_STATUS_{status}")
+        content = response.read(MAX_BYTES + 1)
+        if len(content) > MAX_BYTES:
+            raise ValueError("RESOURCE_EXCEEDS_20_MIB")
         headers = response.headers
         digest = hashlib.sha256(content).hexdigest()
         body_dir = root / "objects" / digest[:2]
         body_dir.mkdir(parents=True, exist_ok=True)
         dest = body_dir / digest
         if dest.exists() and dest.read_bytes() != content:
-            raise ValueError("SHA collision/corrupted store")
+            raise ValueError("SHA_COLLISION_OR_CORRUPTED_STORE")
         if not dest.exists():
             tmp = body_dir / (digest + ".tmp")
             tmp.write_bytes(content)
             os.replace(tmp, dest)
-        record = {"source_id": source, "url": url, "final_url": response.geturl(),
-                  "fetched_at": datetime.now(timezone.utc).isoformat(),
-                  "sha256": digest, "bytes": len(content), "http_status": status,
-                  "content_type": headers.get("Content-Type"),
-                  "etag": headers.get("ETag"), "last_modified": headers.get("Last-Modified"),
-                  "raw_object": str(dest.relative_to(root)), "ingest_version": "0.1.0",
-                  "license_status": "REQUIRES_PER_SOURCE_REVIEW"}
-        with (root / "manifest.jsonl").open("a", encoding="utf-8") as f:
-            f.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
-    time.sleep(min_interval)  # simple single-process pacing; not a domain-global rate limiter
+        record = {
+            "source_id": source, "url": url, "final_url": final_url,
+            "redirect_chain": [url, *(guard.hops if guard is not None else ())],
+            "redirect_chain_checked_before_contact": guard is not None,
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "sha256": digest, "bytes": len(content), "http_status": status,
+            "content_type": headers.get("Content-Type"),
+            "etag": headers.get("ETag"), "last_modified": headers.get("Last-Modified"),
+            "raw_object": str(dest.relative_to(root)), "ingest_version": "0.2.0",
+            "license_status": "REQUIRES_PER_SOURCE_REVIEW",
+            "first_public_at": None, "release_grade": False,
+        }
+        with (root / "manifest.jsonl").open("a", encoding="utf-8") as manifest:
+            manifest.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+    time.sleep(min_interval)  # single-process pacing, NOT a domain-global throttle
     return record
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Single-document official-source snapshot importer")
     parser.add_argument("--url", required=True)
-    parser.add_argument("--source", required=True, choices=("congreso", "senado", "boe"))
+    parser.add_argument("--source", required=True, choices=tuple(SOURCE_HOSTS))
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--min-interval", type=float, default=3)
     args = parser.parse_args()
