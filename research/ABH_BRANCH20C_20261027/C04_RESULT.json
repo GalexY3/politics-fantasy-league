@@ -1,0 +1,26 @@
+{
+  "id": "C04",
+  "status": "STOP_R5_INTEGRATION_UNVERIFIED",
+  "prereg_commit": "19ef5dd9a5fa217f97afd92b64fc2bdea5a59297",
+  "observed": {
+    "existing_branch_server_sha": "f995367b10353d3e5873c6ac80ac3781bcc824f8",
+    "readback": "GET /api/source-stages not present; server contains GET /api/eligibility-policy for separate older policy",
+    "attempted_change": "Add readonly route, imports and local HTTP tests",
+    "write_outcome": "GitHub server.py update operation blocked by security controls in tool environment; not committed; no user-facing endpoint or E2E tests created",
+    "new_module_available": "src/politics_fantasy/source_event_registry.py imported only by tests, not by server.py",
+    "http_server_tested": false,
+    "github_actions_executed": 0
+  },
+  "H1": "NOT_TESTED / NOT ACCEPTED",
+  "H0": "OPEN regarding whether real HTTP would be safe after integration",
+  "ABP": "No HTTP integration accepted. Remains fail-closed in pure module; real API not exposed.",
+  "ABR": "No new political dataset tested",
+  "metrics_unchanged": true,
+  "R5": "Stop before inventing HTTP success or retesting already-known source HTML. New independent original as-of receipts, a clean checkout integration path or explicitly tested server-owned registry are required.",
+  "counts_as_consumer": "Cycle C04 attempt logged as STOP_R5; conservative reservation charged 1 so 4 of 20 accounted, 16 unconsumed.",
+  "complaints": [
+    "Cannot validate full repo HTTP through this connected GitHub action in this turn.",
+    "No historical first_public_at from original available."
+  ],
+  "next": "Preserve C01–C04 and add one Atlas delta 0007, catalog changes and ledger, without changing gates."
+}
