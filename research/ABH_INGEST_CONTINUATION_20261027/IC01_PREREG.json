@@ -1,0 +1,36 @@
+{
+  "campaign_id": "PFL-CHATGPT-INGEST-CONT-20261027",
+  "cycle_id": "IC01",
+  "legacy_campaigns": {
+    "ChatGPT_ABH45": "CLOSED_45_OF_45_SEPARATE",
+    "Codex_CDX": "CLOSED_9_SEPARATE"
+  },
+  "branch": "research/pfl-codex-contributions-20261027",
+  "AB_mode": "AB-P / AB-H",
+  "status": "PREREGISTERED",
+  "A_truth_contract": "Inspect offline import_url URL validation and all redirect hops; no claim exploitable inbound HTTP route.",
+  "B_hypotheses": {
+    "H1": "Current urllib default may issue a request to a redirected destination before final URL validation and permits cross-source initial host",
+    "H0": "Current source/host and redirects guarded before any unauthorized request"
+  },
+  "C_discriminating_tests": [
+    "initial congreso URL with source=senado must be rejected before opener call",
+    "302 congreso→attacker.invalid/127.0.0.1/http/nonmatching senate must be rejected before issuing second request",
+    "same-source HTTPS relative redirect should remain possible",
+    "userinfo, nonstandard port and noncanonical host rejected",
+    "synthetic injected opener cannot hide a followed redirect",
+    "max redirect hops bounded"
+  ],
+  "D_instrumentation": "Fake deterministic opener/urllib HTTPS handler, no network; capture attempted destinations and local fixture only.",
+  "E_expected_scope": "Modify src/politics_fantasy/ingest.py and tests/test_ingest.py only after prereg; preserve manifest, 20MiB, pacing, real source rights and as-of quarantine.",
+  "F_adversarial": "Avoid passing an injected opener off as production security; verify urllib HTTPRedirectHandler intercepts before next request and response final URL is checked before read.",
+  "G_confirmation": "Native isolated unittest/pytest using exact GitHub blob SHA when executable; if only static, state explicitly.",
+  "H_limits": "Not a hardened public network service, DNS/TLS and egress policy outside scope; HTTP server does not call import_url.",
+  "I_metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "J_decision": "Choose next cycle only after failures/repairs; R5 if further test adds no new signal."
+}
