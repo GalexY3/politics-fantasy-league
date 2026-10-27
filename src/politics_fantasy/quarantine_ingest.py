@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from .ingest import import_url
+from .secure_store import append_private_jsonl
 from .source_original_qa import audit_congress_vote
 from .source_original_senate_qa import audit_original_senate_session
 
@@ -76,6 +77,5 @@ def capture_validate_quarantine(*, url: str, source: str, document_kind: str,
             result["validator_result"] = validated
     except (ValueError, TypeError, KeyError, UnicodeError, OSError) as exc:
         result["error_code"] = type(exc).__name__
-    with (root / "quarantine_reviews.jsonl").open("a", encoding="utf-8") as f:
-        f.write(json.dumps(result, ensure_ascii=False, sort_keys=True) + "\n")
+    append_private_jsonl(root, "quarantine_reviews.jsonl", result)
     return result
