@@ -1,0 +1,26 @@
+{
+  "cycle": "IC22",
+  "status": "CLOSED_ATLAS_PREFLIGHT_WITH_LIMITS",
+  "prereg": "IC22_PREREG.json",
+  "previous_integrated_head": "0019-PFL-CHECKOUT-4FAF31A-QA-20261027",
+  "local_canonical_check": "PASS 19 deltas, 60 nodes on ZIP-based checkout overlaid with a reconstructed equivalent 0019 batch",
+  "qualification": "Locally reconstructed 0019 preserves operation ids/parent/run/complaint semantics but is NOT the byte-identical original GitHub blob; its local SHA256 5571b2c3cb651e613c9ed5321d61802e8ce2071b0b797f11b422431a5b24f690 must NOT be represented as canonical actual 0019 state hash. Official previous exact 19 batch check was recorded in VERIF_ZIP_4FAF31A_RESULT and CURRENT prior to this campaign.",
+  "next_batch": "0020-PFL-INGEST-ABH20-IC04-IC23-20261027",
+  "tests": "Atlas operation syntax, run references and earlier verified seed/parents reviewed; final canonical readback after adding batch belongs IC23.",
+  "metrics": {
+    "v4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "completed": 19,
+    "remaining": 1
+  },
+  "negative_findings": [
+    "Full Python suite times out within this runtime; do not infer PASS",
+    "Windows-native importer intentionally fails closed",
+    "NO VOTAN mapping still lacks separate institutional definition",
+    "HTTP route ingest not connected"
+  ]
+}
