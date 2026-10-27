@@ -1,0 +1,13 @@
+{
+  "id": "C08",
+  "status": "PREREGISTERED_AFTER_XLSX_HEADER_PEEK",
+  "mode": "AB-R independent national election original",
+  "prior": "Interior XLSX SHA 326847 bytes, rows 5600, headers Fecha, Código elección, Tipo elección, Código Provincia, Provincia, Cargos Electos, Candidatura, Siglas Candidatura. No person ID field visible.",
+  "H1": "Same normalized full-name can recur between elections and must not be certified as one longitudinal individual. Within-election same-name collisions across provinces (if any) are strong candidate negative controls needing independent corroboration.",
+  "H0": "Workbook contains immutable person IDs and no same-name repeats across elections, making exact name join safe.",
+  "test": "Import XLSX with artifact_tool, inspect all 5600x8 data rows. Compute counts by election date/year/province, duplicates within single election, collisions across provinces within election, repeated labels across different election codes and raw-name vs normalized-name collision. Publish aggregate counts only. No identity claims just from naming.",
+  "acceptance": "If exact duplicate name within same election across provinces found, quarantine and precommit manual cross-primary adjudication before linking. If absent, report negative with rates not speculative. Do not equate election to taking seat.",
+  "falsifier": "Identity key independently present in XLSX and no exact-name ambiguity across elections.",
+  "licence": "Distribution CC BY 4.0 recorded in catalog, actual reuse/privacy case still pending",
+  "cost": "local, zero Actions"
+}
