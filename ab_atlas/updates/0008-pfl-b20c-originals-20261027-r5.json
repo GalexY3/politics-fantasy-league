@@ -1,0 +1,404 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0008-PFL-B20C-ORIGINALS-20261027-R5",
+  "parent_batch": "0007-PFL-B20C-20261027-R5",
+  "at": "2026-10-27T03:36:00+01:00",
+  "actor": "chatgpt",
+  "reason": "Append eight C05–C12 original-source cycles, 11 exact source hashes, 2023 52-province check, -1 sentinel controls, 8 local regression tests, and R5 with 8/20 reserve. No changes to gates/CT2/VSDS or original source publication.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C05",
+        "activity": "Validate SHA and CRC for all 11 private official originals against handoff manifest",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C06",
+        "activity": "Recompute Senate ten votes and 259 candidate labels; detect session-vote day discrepancy and missing validity windows",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C07",
+        "activity": "Recompute Congress four nominal vote totals and 412 historical snapshot candidate links; audit after-event bajas",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C08",
+        "activity": "Examine 5600 elected people-name labels across 16 Interior national elections and ambiguity",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C09",
+        "activity": "Quantify Congreso asiento -1 repeated sentinel and cross-session seat reassignments",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C10",
+        "activity": "Compare preregistered Albacete and Salamanca elected BOE JEC 2023 lists to Interior original 8 rows",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C11",
+        "activity": "Extend original BOE JEC 2023 vs Interior elected cohort across 52 provinces; inspect four non-exact labels",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C12",
+        "activity": "Implement source_original_qa.py aggregate sentinel/date guard with 8 local tests and four original Congress replays",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "original_files_published": false
+        },
+        "method_version": "AB3.2.1 O7 AB-H",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C6-HISTORIC-IDENTITY-GAP",
+        "run_id": "PFL-B20C-C6",
+        "severity": "major",
+        "status": "open",
+        "category": "research_limitation",
+        "source": "agent",
+        "description": "Senate 259/259 textual candidate matches lack original chamber member mandate intervals or stable vote personal reference; session day differs from actual vote day.",
+        "at": "2026-10-27T03:36:00+01:00"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C9-DUPLICATE-SEAT-SENTINEL",
+        "run_id": "PFL-B20C-C9",
+        "severity": "major",
+        "status": "open",
+        "category": "research_limitation",
+        "source": "agent",
+        "description": "Congress seat value -1 duplicated 11/11/15/30 within votes; cross-date non-sentinel seat numbers also map to different name strings. Never use seat as immutable identity.",
+        "at": "2026-10-27T03:36:00+01:00"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C11-FOUR-TEXT-EXCEPTIONS",
+        "run_id": "PFL-B20C-C11",
+        "severity": "major",
+        "status": "open",
+        "category": "research_limitation",
+        "source": "agent",
+        "description": "BOE/Interior 2023 have 346/350 strict normalized matches; four person-label exceptions require context review and one name abbreviation remains not independently adjudicated by source-issued identity.",
+        "at": "2026-10-27T03:36:00+01:00"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C12-LOCAL-QA-ONLY",
+        "run_id": "PFL-B20C-C12",
+        "severity": "minor",
+        "status": "open",
+        "category": "research_limitation",
+        "source": "agent",
+        "description": "Eight Python tests plus four original source replays completed locally, but GitHub branch clean checkout CI, HTTP source registry and original first_public_at remain unvalidated.",
+        "at": "2026-10-27T03:36:00+01:00"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-ORIGINALS-11-20261027",
+        "title": "11 originales recuperados e íntegros respecto del ZIP privado",
+        "kind": "artifact",
+        "mode": "project",
+        "status": "active",
+        "detail": "11/11 SHA-256, longitudes y CRC coinciden con MANIFIESTO del usuario; no autenticidad independiente del proveedor ni first_public_at histórico; originales no publicados en GitHub.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-SENATE-DAY-20261027",
+        "title": "Sesión 60 del Senado: fecha de voto posterior a fecha de cabecera",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "La sesión XML indica 07/10/2025; las diez votaciones nominales originales están fechadas 08-OCT-2025. 259 strings encuentran una candidata nominal cada una en 311 registros XV; no es identidad ni vigencia adjudicada.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-INTERIOR-REPEATED-20261027",
+        "title": "1.306 nombres completos repetidos en elecciones, sin identidad certificada",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Interior 5600 electos/16 elecciones, 2958 cadenas normalizadas, 1306 reiteradas en dos o más fechas; 103 cruzan provincia y 576 siglas. Cadenas candidatas, no personas longitudinalmente verificadas.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-SEAT-SENTINEL-20261027",
+        "title": "Asiento -1 y reutilización entre sesiones impiden llave de persona",
+        "kind": "blocker",
+        "mode": "project",
+        "status": "blocked",
+        "detail": "Original Congreso tiene 11/11/15/30 asientos -1 repetidos en votaciones, más cambios de asiento por mismo nombre y asiento compartido por distinto nombre entre fechas. Abortar join por asiento.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+        "title": "Electos 2023: 52 provincias, 350 filas, 346 nombres exactos y cuatro excepciones",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "BOE-JEC 18907 original páginas 26–37 vs Interior XLSX: 52/52 provincias con 350 electos; 50 provincias estrictamente idénticas, 346/350 nombres normalizados coinciden; cuatro discrepancias textuales contextualizadas, no ID personal adjudicado. BOE de candidaturas es otro estadio.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-ORIGINAL-QA-20261027",
+        "title": "Control local reutilizable de asiento, totales y fecha de voto",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "source_original_qa.py y 8 pruebas locales PASS; 4 votos originales del Congreso reconciliados. No se ha integrado en HTTP ni acreditado el editor/firma.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_RESULT.json",
+          "src/politics_fantasy/source_original_qa.py",
+          "tests/test_source_original_qa.py"
+        ],
+        "phase": "build",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C05-E1",
+      "from": "n_80498d9bc193",
+      "to": "PFL-B20C-ORIGINALS-11-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C06-E1",
+      "from": "PFL-B20C-ORIGINALS-11-20261027",
+      "to": "PFL-B20C-SENATE-DAY-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C08-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-INTERIOR-REPEATED-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C09-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-SEAT-SENTINEL-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C11-E1",
+      "from": "n_e9357d367f2c",
+      "to": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C12-E1",
+      "from": "PFL-B20C-SEAT-SENTINEL-20261027",
+      "to": "PFL-B20C-ORIGINAL-QA-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-B20C-AUTH-20261027",
+      "set": {
+        "detail": "BRANCHING20C concedido en nuevo bloque independiente; C01–C04 iniciales y C05–C12 con ZIP oficial se registraron, TOTAL 12/20. Restan 8 autorizados sin consumir. STOP_R5: no hechos nuevos discriminantes con 11 capturas para autenticar first_public_at o IDs longitudinales; se conservan las 8 plazas. Nunca elevar CT2/VSDS/gates por hash o fixtures.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_RESUME_C05_C12.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_ORIGINALS_C05_C12.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/PRIORS_DELTA_C05_C12.json"
+        ]
+      },
+      "reason": "Reconciliar nueva auditoría C05–C12 con autorización vigente sin consumir las ocho restantes"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Catálogo 27/10: originales privados 11/11 SHA, Senado fecha de voto 8 vs sesión 7 oct, Congreso 1400 votos con 213 bajas posteriores, Interior 1306 etiquetas recurrentes y BOE-JEC 2023 350 filas 52 distritos con cuatro diferencias textuales; no first_public_at ni prueba identidad poblacional.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_ORIGINALS_C05_C12.md"
+        ]
+      },
+      "reason": "Estado actualizado de fuentes, resultados negativos y limitaciones a partir del ZIP original"
+    }
+  ]
+}
