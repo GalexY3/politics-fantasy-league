@@ -159,3 +159,21 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
             os.fsync(fd)
         finally:
             os.close(fd)
+
+def preflight_private_storage(root: Path, filename: str) -> None:
+    """Before external contact, reject local symlink objects/ledger paths.
+
+    This does not create a transaction: a concurrent malicious writer in the
+    trusted root or root ancestor remains out of threat scope.
+    """
+    if filename not in ("manifest.jsonl", "quarantine_reviews.jsonl"):
+        raise ValueError("UNSUPPORTED_PRIVATE_LEDGER")
+    with _root_fd(root) as folder:
+        with _child_directory(folder, "objects"):
+            pass
+        try:
+            entry = os.stat(filename, dir_fd=folder, follow_symlinks=False)
+        except FileNotFoundError:
+            return
+        if not stat.S_ISREG(entry.st_mode):
+            raise ValueError("UNSAFE_PRIVATE_LEDGER")
