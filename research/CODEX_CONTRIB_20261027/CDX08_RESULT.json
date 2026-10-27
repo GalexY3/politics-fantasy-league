@@ -1,0 +1,14 @@
+{
+  "id": "CDX08", "mode": "AB-H/AB-P", "status": "ACCEPTED_CLEAN_WINDOWS_ENVIRONMENT", "prereg_commit": "0f00c0d",
+  "A": "Hacer reproducibles los extras de pruebas e investigación en un entorno limpio.",
+  "B": "El extra test omitía NumPy y el extra research omitía SciPy, aunque los módulos correspondientes los importan.",
+  "C": "Se añadieron NumPy a test y SciPy a research; tzdata se incluye en ambos extras solo en Windows. Las dependencias base siguen vacías.",
+  "D": "Con test instalado en un venv nuevo, la primera ejecución produjo 354 aprobados y 7 fallos por falta de Europe/Madrid. Tras añadir tzdata en Windows: 361 aprobados y 2 subtests. El extra research se instaló y se verificaron importaciones de NumPy, SciPy, Matplotlib y scripts/ab30_full.py.",
+  "E": "Instalación editable con pip en un venv temporal nuevo y ejecución local de pytest; no se ejecutaron Actions.",
+  "F": "Cambios en pyproject.toml y evidencia de los resultados en este registro.",
+  "G": "Las pruebas se realizaron en este Windows; no se verificaron instalaciones en otras plataformas ni el funcionamiento completo de todos los scripts de investigación. La instalación base por sí sola sigue sin incluir tzdata.",
+  "H": {"complaint_ids": ["CDX02-DEPENDENCIES", "CDX08-WINDOWS-TZDATA"], "limits": "Las versiones concretas dependen de la resolución de pip; no son un lockfile."},
+  "I": {"CT2_identity_before_after": [29,29], "VSDS": "1/3", "release_gates": "unchanged"},
+  "J": "Continuar con defectos reproducibles y auditar el empaquetado local sin promocionar conclusiones científicas.",
+  "complaints": [{"id":"CDX02-DEPENDENCIES", "status":"repaired", "description":"Extras de pruebas e investigación incompletos."}, {"id":"CDX08-WINDOWS-TZDATA", "status":"repaired", "description":"En Windows limpio faltaba la base de zonas IANA para los tests con Europe/Madrid."}], "github_actions_minutes": 0
+}
