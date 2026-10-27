@@ -1,0 +1,33 @@
+{
+  "cycle": "C51",
+  "mode": "AB-R",
+  "status": "CLOSED_INCONCLUSIVE_SOURCE_LITERAL_UNVERIFIED",
+  "A": "Find original Senado technical mapping literal XML state NO VOTAN to presence/absence",
+  "B": {
+    "H1": "Explicit official XML enum mapping to present non-voter",
+    "H2": "Literal may not match portal definition",
+    "H3": "Only general public description and catalog; mapping not established"
+  },
+  "C": "Searched official Senado indexed technical pages and literal, attempted original XV initiative XML link and inspected institutional attendance page and 2026 official catalog-integration announcement",
+  "D": {
+    "senate_attendance": "https://www.senado.es/web/composicionorganizacion/senadores/asistencias/index.html",
+    "senate_catalog": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/catalogodatos/votaciones/index.html?lang=es_ES",
+    "senate_catalog_2026_news": "https://www.senado.es/web/actividadparlamentaria/actualidad/noticias/NoticiasDetalle/index.html?id=2026_02_03_DATOSAABIERTOS&lang=eu_ES",
+    "xml_attempt": "https://www.senado.es/web/ficopendataservlet?legis=15&numEx=000001&tipoEx=600&tipoFich=12",
+    "original_xml_http": "WEB_FETCH_FAILED",
+    "exact_schema_found": false
+  },
+  "E": "Senado confirms since plenary 34 of 4 June 2013 presence without voting, but original XML literal meaning is NOT verified. On 3 February 2026 Senate announced integration of its open-data catalogs in datos.gob.es; this is catalog metadata, not raw vote semantics.",
+  "F": "No institutional XML/XSD or column definitions actually obtained. Do not attribute a Senate vote/absence state to an individual's intent or scoring.",
+  "G": "Official institution pages, but non-equivalence to exact nominal XML; negative result",
+  "H": "R5 stop duplicating generic catalog search. Treat token NO VOTAN as semantic unresolved; next instrument should obtain concrete official session XML+schema or official technical clarification.",
+  "I": {
+    "novelty": "0/3",
+    "CT2_identity": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "DRIFT": "D1 discovery no gate change"
+  },
+  "J": "C52 focus on a different institutional blocker: Registro de Partidos Políticos original authenticity and export, demand actual signed record rather than generic catalog description."
+}
