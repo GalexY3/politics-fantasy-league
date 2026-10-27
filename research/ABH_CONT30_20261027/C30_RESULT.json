@@ -1,0 +1,61 @@
+{
+  "cycle": "C30",
+  "mode": "AB-P",
+  "status": "VALID_PERSISTED_REPO_TESTS_NATIVE_58_PASS_BOUNDED",
+  "prereg_commit": "144382b058b1c90f2dca1fbae7634049b3544cbc",
+  "A": {
+    "question": "Can multi-process/SIGKILL evidence from C27–C29 be made permanent in actual GitHub repo tests and pass along with three prior exact-source test suites?",
+    "unit": "4 repos GitHub test suites on 3 exact GitHub source modules plus new GitHub test"
+  },
+  "B": {
+    "rivals": [
+      "New tests reproduce and all old tests still pass",
+      "Flaky child signals/timeouts",
+      "Tests are source mocks, not production functions"
+    ]
+  },
+  "C": {
+    "plan": "Commit tests/test_private_store_process_boundaries.py with 4 cases, check Git SHA locally and remotely, execute pytest of new file, then combined test suite of 4 GitHub test files."
+  },
+  "D": {
+    "github_test_commit": "b4e4c4691456b644a0e3fa3009cb5c9cc52ae033",
+    "new_test_blob_verified": "2a60cf0f61d3eb2b3f92987678f14064b3370653",
+    "source_blob_verifications": [
+      "4695c8d85924869212d916fa163a8f3548272ebc",
+      "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "923a1c479c3f970e1325beff36699a277bc3773c"
+    ],
+    "amended_prior_test_blob": "7b9d89f94579e8be84833662df280847ea70d191",
+    "checked_in_CLI_test_blob": "20ab836b6cf37b1f5073455e10673acbaead9e13",
+    "checked_in_secure_store_test_blob": "a63143acda49182fe8e83f30a5a46816e65bc42f",
+    "new_test_command": "PYTHONPATH=src python -m pytest -q tests/test_private_store_process_boundaries.py",
+    "combined_command": "PYTHONPATH=src python -m pytest -q tests/test_private_audit_cli.py tests/test_private_audit.py tests/test_secure_store.py tests/test_private_store_process_boundaries.py",
+    "cwd": "/mnt/data/pfl_cont30_native",
+    "environment": "Python 3.13, pytest 9.0.2, POSIX native filesystem, no network"
+  },
+  "E": {
+    "new_tests": {
+      "passed": 4,
+      "failed": 0,
+      "seconds": 4.13
+    },
+    "combined": {
+      "passed": 58,
+      "failed": 0,
+      "seconds": 10.48
+    },
+    "checks": "True subprocess writes and kill with synthetic data; no mock of secure_store, private_audit or CLI, source Git blobs SHA-identical"
+  },
+  "F": "Only selected exact source modules and 4 test files; original program source ingest/server/full product not cloned. No GitHub CI, canonical 24-lot Python Atlas, external original signatures, private original documents or real power-loss testing.",
+  "G": "Independent direct CPython local execution and GitHub byte-identical SHA of all source/test modules in scope.",
+  "H": "Substantially improves confidence on POSIX local privacy infrastructure, not evidence of full application readiness or politician evaluation correctness.",
+  "I": {
+    "novelty": "0/3 scientific discovery",
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "gates_passed": 0,
+    "gates_total": 6
+  },
+  "J": "CLOSE authorized block C21-C30 10/10, record no additional cycles; seek authorization for next tranche focused on native full Atlas replay and untested ingest/server/test families, ideally Codex issue #17."
+}
