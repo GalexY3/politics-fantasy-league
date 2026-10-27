@@ -1,0 +1,11 @@
+{
+  "id": "B18",
+  "stage": "B",
+  "mode": "AB-P CI coverage",
+  "status": "PREREGISTERED",
+  "dependency": "B17 23 native tests on exact committed Congress and Senate source parsers PASS; all 14 original political vote events replay, but original private ZIP cannot be a CI fixture and workflow may omit these new tests.",
+  "H1": "Existing optional GitHub workflow can execute all 23 source guard synthetic tests without sensitive original bytes by including their named test files in the narrow default pytest/unittest command.",
+  "H0": "CI already includes both tests or workflow cannot run them due to import setup, requiring no change/conditional fix.",
+  "test": "Inspect exact `.github/workflows/politics-fantasy-evidence.yml` Python command, check source guard tests inclusion and dependencies. If missing, append one minimal Python `unittest discover` command using existing PYTHONPATH, ensure workflow triggers remain main/PR only and do NOT dispatch/modify main. Read back after commit, verify exact files referenced and no budget spent.",
+  "acceptance": "Workflow source contract covers both modules' 23 test cases; execution still pending until PR/CI. Private original bytes not added."
+}
