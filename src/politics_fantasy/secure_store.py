@@ -181,6 +181,7 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
             try:
                 _write_all(fd, payload)
                 os.fsync(fd)
+                os.fsync(folder)  # Persist ledger directory entry.
             finally:
                 fcntl.flock(fd, fcntl.LOCK_UN)
         finally:
