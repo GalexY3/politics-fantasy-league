@@ -1,4 +1,20 @@
-# AB Atlas · Politics Fantasy · estado de cierre 27/10/2026
+# AB Atlas · Politics Fantasy · nuevo BRANCHING20C · 27/10/2026
+
+**ESTADO VIGENTE (posterior al cierre del permiso antiguo):** el usuario concedió **una nueva autorización BRANCHING 20**, independiente del bloque conservador cerrado RC01–RC07. En esta continuación se registraron **C01–C04: tres resultados acotados y una parada STOP_R5 por integración HTTP no verificada**. Se han contabilizado **4/20**, **quedan 16 autorizados sin consumir**. No hace falta pedir una nueva concesión para esos 16; aplicar R5 y reservarlos hasta disponer de nueva evidencia discriminante.
+
+- **Delta vigente:** `updates/0007-pfl-b20c-20261027-r5.json`, padre `0006-PFL-RC06-RC07-CLOSE-20261027`. El seed sigue inalterado; replay estructural independiente de siete lotes: **PASS, 33 nodos, 51 relaciones, 25 runs, 17 complaints**. **No se ha ejecutado `python ab_atlas/atlas_delta.py check` ni regenerado el HTML**; no afirmar hash definitivo.
+- **AB-R, C01:** fuentes oficiales [Senado XV pleno nº 82, 15/09/2026](https://www.senado.es/web/actividadparlamentaria/sesionesplenarias/pleno/rwdsesionespleno/detalle/index.html?id=83&legis=15&ns=82) y [BOE-A-2025-23055, art.12](https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-23055). El acatamiento de tres senadores es un evento adicional, no prueba por sí solo credencial + declaraciones ni el instante de perfección jurídica; `first_public_at` sigue desconocido.
+- **AB-P, C02:** prueba negativa local: la anterior función de elegibilidad pura acepta un `trusted_registry` falsificado **cuando el llamador lo suministra** (`eligible=True`, `release_grade=False`), sin demostrar ataque HTTP.
+- **AB-P, C03:** [source_event_registry.py](../src/politics_fantasy/source_event_registry.py) introduce un índice fijo de tres referencias con `first_public_at=None`; **10/10 tests locales PASS**. Es índice descriptivo, no origen auténtico, no produce scoring real.
+- **AB-P, C04:** integración propuesta con `server.py` **no realizada**: operación bloqueada y ruta no presente; sin tests HTTP nuevos ni aceptación de seguridad. STOP_R5.
+- **Catálogo:** [CATALOGO_FUENTES.md](../docs/CATALOGO_FUENTES.md), actualizado con BOE/Senado y restricciones de uso, además de conflictos de fechas de publicación, acto y acatamiento.
+- **Ledger y metodología:** [CAMPAIGN_FINAL.json](../research/ABH_BRANCH20C_20261027/CAMPAIGN_FINAL.json), [REPORT.md](../research/ABH_BRANCH20C_20261027/REPORT.md), [PRIORS_DELTA.json](../research/ABH_BRANCH20C_20261027/PRIORS_DELTA.json). Conservan los resultados negativos, la exposición pre-prerregistro y falta de primera publicación.
+- **Indicadores inalterados:** PFL-V1 rev3 **36,35%**, CT2 identidad **29/100**, VSDS **1/3**, N1/N2/N3 nuevos **0/0/0**, gates **0/6**. No puntuar personas reales ni confundir tests locales con evidencia científica.
+- **Para reanudar sin agotar artificialmente las 16 plazas:** obtener originales y/o snapshots con marcas de primera publicación verificables, registrar comprobación de identidad con homónimos completos y un adjudicador independiente, y disponer de entorno revisado donde se pueda integrar/testar la ruta HTTP y ejecutar el Python Atlas check sin consumir Actions por accidente.
+
+---
+
+## Archivo histórico: cierre del bloque anterior (RC01–RC07)
 
 - **Modo:** AB-H; investigación AB-R, producto AB-P, CT2, VSDS y gates conservan criterios independientes.
 - **Fuente de verdad:** `seed.json` inalterado + lotes incrementales `0001`–`0006`, último batch `0006-PFL-RC06-RC07-CLOSE-20261027`, padre `0005-PFL-RC05-IDENTITY-20261027`. Replay estructural desde los seis JSON reales de GitHub mediante código independiente: **PASS, 6 lotes, 30 nodos, 47 relaciones, 21 runs, 15 complaints, 83 operaciones**, sin duplicados, referencias colgantes ni ciclos en `depends_on`/`branches_from`. **El comando oficial Python `ab_atlas/atlas_delta.py check` sigue sin ejecutarse** y falta SHA-256 de estado tras sexto lote; no confundir este control estructural con validación exhaustiva. El visor HTML no ha sido regenerado.
