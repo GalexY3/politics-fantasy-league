@@ -1,0 +1,35 @@
+{
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "CLOSED_MECHANISM_EVIDENCE_NO_HARDWARE_TEST",
+  "preregister_commit": "d5000bbc58768f298a0191f4fab905cb95467cb7",
+  "A": "Check store durability guarantee of directory entries after crash.",
+  "B": "Per-file fsync flushes data+inode; directory entries need fsync(dir) on Linux; host filesystem may incidentally preserve them.",
+  "C": "Inspect exact secure_store.py source and Linux fsync(2) manual.",
+  "D": {
+    "git_blob": "99b8b35ee9f6d2f287b80f8d2713a925d9ce2fc0",
+    "reference": "https://www.man7.org/linux/man-pages/man2/fsync.2.html",
+    "source_fsync_count": 2,
+    "file_fsync_count": 2,
+    "directory_fsync_count": 0,
+    "ops": [
+      "mkdir via _child_directory",
+      "os.link temp to digest",
+      "os.unlink temp",
+      "create ledger with O_CREAT"
+    ],
+    "rights": "No original private data used"
+  },
+  "E": "Confirmed documented mechanism gap: neither creation of object shard/final digest directory entry nor ledger filename has explicit fsync(dir).",
+  "F": "Does not prove any actual data loss, power crash or filesystem failure; evidence is source+OS API contract; write-ahead atomicity is a separate problem.",
+  "G": "Independent Linux man page specifies explicitly that fsync(file) does not necessarily persist directory entry, requires fsync(directory).",
+  "H": "Engineering durability claim limited; object data checksums do not imply crash recovery.",
+  "I": {
+    "discovery": "0/3 scientific novelty; engineering limitation only",
+    "CT2": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "gates": "0/6"
+  },
+  "J": "Continue C10 targeted directory metadata barrier implementation, instrument using synthetic tests. Never claim two-ledger transaction atomicity."
+}
