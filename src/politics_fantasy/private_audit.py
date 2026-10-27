@@ -1,0 +1,116 @@
+"""Read-only local raw/ledger integrity audit; returns aggregate statuses only.
+
+Not an HTTP endpoint, issuer signature, license review or real-person scorer.
+POSIX dirfd anchored; never follows source-authored object paths.
+"""
+from __future__ import annotations
+from collections import Counter
+import hashlib
+import json
+import os
+import re
+from pathlib import Path
+
+from .secure_store import (_root_fd, _child_directory, _check_private_permissions,
+                           _directory_flags)
+
+MAX_LEDGER_BYTES = 8 * 1024 * 1024
+MAX_ROWS = 10000
+MAX_OBJECT_BYTES = 20 * 1024 * 1024
+OBJECT_RE = re.compile(r"\Aobjects/([0-9a-f]{2})/([0-9a-f]{64})\Z")
+
+
+def _ledger(fd: int, filename: str) -> list[dict]:
+    if filename not in ("manifest.jsonl", "quarantine_reviews.jsonl"):
+        raise ValueError("UNAPPROVED_LEDGER")
+    try:
+        obj = os.open(filename, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                      dir_fd=fd)
+    except FileNotFoundError:
+        return []
+    except OSError as exc:
+        raise ValueError("UNSAFE_LEDGER") from exc
+    try:
+        _check_private_permissions(obj, directory=False)
+        data = bytearray()
+        while len(data) <= MAX_LEDGER_BYTES:
+            chunk = os.read(obj, min(65536, MAX_LEDGER_BYTES + 1 - len(data)))
+            if not chunk:
+                break
+            data.extend(chunk)
+        if len(data) > MAX_LEDGER_BYTES:
+            raise ValueError("LEDGER_TOO_LARGE")
+        lines = data.splitlines()
+        if len(lines) > MAX_ROWS:
+            raise ValueError("TOO_MANY_LEDGER_ROWS")
+        try:
+            values = [json.loads(line) for line in lines]
+        except (ValueError, UnicodeError) as exc:
+            raise ValueError("BAD_LEDGER_JSON") from exc
+        if any(not isinstance(x, dict) for x in values):
+            raise ValueError("BAD_LEDGER_RECORD")
+        return values
+    finally:
+        os.close(obj)
+
+
+def _validate_object(objectsfd: int, rel: object, expected: object) -> str:
+    if not isinstance(rel, str) or not isinstance(expected, str):
+        return "BAD_OBJECT_REFERENCE"
+    m = OBJECT_RE.fullmatch(rel)
+    if m is None or m[1] != m[2][:2] or expected != m[2]:
+        return "BAD_OBJECT_REFERENCE"
+    try:
+        with _child_directory(objectsfd, m[1]) as shard:
+            fd = os.open(m[2], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=shard)
+            try:
+                _check_private_permissions(fd, directory=False)
+                digest = hashlib.sha256()
+                total = 0
+                while total <= MAX_OBJECT_BYTES:
+                    block = os.read(fd, min(65536, MAX_OBJECT_BYTES + 1 - total))
+                    if not block:
+                        break
+                    total += len(block)
+                    digest.update(block)
+                if total > MAX_OBJECT_BYTES:
+                    return "OVERSIZED_OBJECT"
+                if digest.hexdigest() != expected:
+                    return "BAD_RAW_SHA"
+                return "VALID_OBJECT"
+            finally:
+                os.close(fd)
+    except (OSError, ValueError):
+        return "MISSING_OR_UNSAFE_OBJECT"
+
+
+def audit_private_root(root: Path) -> dict:
+    """No URLs, raw content or person-level records are returned."""
+    with _root_fd(root) as fd:
+        manifest = _ledger(fd, "manifest.jsonl")
+        reviews = _ledger(fd, "quarantine_reviews.jsonl")
+        outcomes = Counter()
+        with _child_directory(fd, "objects") as objectsfd:
+            for item in manifest:
+                outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"))] += 1
+        review_states = Counter()
+        known = {x.get("sha256") for x in manifest if isinstance(x.get("sha256"), str)}
+        for item in reviews:
+            state = item.get("quarantine_state")
+            if state not in {"QUARANTINED_SCHEMA_PASSED", "QUARANTINED_SCHEMA_FAILED",
+                             "QUARANTINED_INTEGRITY_FAILED"}:
+                review_states["UNKNOWN_REVIEW_STATE"] += 1
+            elif item.get("sha256") not in known:
+                review_states["ORPHAN_REVIEW"] += 1
+            else:
+                review_states[state] += 1
+        return {
+            "manifest_rows": len(manifest), "review_rows": len(reviews),
+            "object_integrity": dict(sorted(outcomes.items())),
+            "quarantine_states": dict(sorted(review_states.items())),
+            "unreviewed_captures": max(0, len(manifest) - len(reviews)),
+            "first_public_at_verified": False, "publisher_signature_verified": False,
+            "real_person_scoring": False, "release_grade": False,
+            "http_ingest_connected": False,
+        }
