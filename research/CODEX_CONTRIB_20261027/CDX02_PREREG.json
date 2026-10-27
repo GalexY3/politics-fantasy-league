@@ -1,0 +1,10 @@
+{
+  "id": "CDX02", "mode": "AB-H/AB-P", "status": "PREREGISTERED", "reason": "Tras CDX01, el replay oficial de Atlas pasa y existe una PR #11 con arreglos funcionales aún ausentes de la base actual.",
+  "A": {"outcome": "Recuperar arreglos de cálculo, validación HTTP y visualización dentro de la rama de contribución sin sobrescribir los avances recientes de investigación."},
+  "B": {"baseline": "PR #11 commit b6b42cb validado previamente; no es ancestro de 8f75b73. La rama paralela de ChatGPT continúa por separado.", "options": ["trasladar cambios de código y pruebas compatibles", "fusionar toda la PR y resolver conflictos globales", "dejar bugs sin arreglar"]},
+  "C": {"risk": "Los cambios más recientes podrían divergir; la disponibilidad del servicio no equivale a validación de datos reales."},
+  "D": {"acceptance": "Pruebas de revisiones antes/después de cutoff, IDs JSON inválidos, barras CSP-safe y regresiones afectadas; conservar la política de no disparar Actions en ramas de investigación.", "failure": "Si hay conflicto o fallo, registrar y reparar sin sobrescribir trabajo ajeno; no declarar integración completa hasta verificar."},
+  "E": {"plan": "Aplicar selectivamente las diferencias de PR #11 sobre la base actual, integrar pruebas y ejecutar localmente; no modificar main ni rama ChatGPT.", "exposure": "Los defectos y sus arreglos se conocen desde la revisión previa; esto es integración de ingeniería, no experimento ciego."},
+  "F": {"pending": true}, "G": {"pending": true}, "H": {"audit": "Inspeccionar especialmente conflicto README/workflow y seguridad de datos; registrar lo no integrado."},
+  "I": {"CT2_identity": 29, "VSDS": "1/3", "release_gates": "no promotion"}, "J": {"next": "Dependerá del resultado de integración y regresiones."}
+}
