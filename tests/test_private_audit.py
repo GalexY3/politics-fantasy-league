@@ -119,3 +119,9 @@ def test_legacy_manifest_capture_unlinked(tmp_path):
     assert a["legacy_captures_unlinked"]==1
     assert a["quarantine_states"]=={"LEGACY_REVIEW_WITHOUT_ID":1}
     assert not a["release_grade"]
+
+def test_nonexistent_root_readonly_audit_does_not_create_it(tmp_path):
+    missing=tmp_path/"never_created"
+    with pytest.raises(ValueError,match="MISSING_STORE_ROOT"):
+        audit_private_root(missing)
+    assert not missing.exists()
