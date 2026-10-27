@@ -1,0 +1,58 @@
+{
+  "id": "C11",
+  "status": "CLOSED_FULL_2023_COHORT_CORROBORATED_WITH_FOUR_TEXTUAL_EXCEPTIONS",
+  "prereg_commit": "ec24d86611d1892ba3aa0955aa9b85d02a3a7370",
+  "sources_sha256": {
+    "JEC_BOE_2023": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+    "INTERIOR_2023_XLSX": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4"
+  },
+  "method": "Parsed 2023 JEC elected-only original PDF pp.26-37, all 52 province headings recognized (3 province name-order aliases), 350 name lines, compared province-wise NFKD normalized exact strings with official Interior XLSX 2023 rows read with artifact_tool. Inspected conflicting original page 33 and Barcelona page 27 (partial; additional page with Barcelona continuation captured via text). Never assumed equal labels imply immutable longitudinal person identity.",
+  "counts": {
+    "provinces_total": 52,
+    "province_headers_detected": 52,
+    "total_JEC_elected_lines": 350,
+    "total_interior_elected_rows": 350,
+    "provinces_exact_multiset_equal_without_repairs": 50,
+    "total_exact_normalized_name_matches_without_repairs": 346,
+    "non_exact_label_pairs_review_required": 4,
+    "provinces_with_nonexact_labels": [
+      "Barcelona",
+      "Madrid"
+    ],
+    "candidate_records_matched_contextually_after_review": 350,
+    "independently_signed_identity_adjudications": 0
+  },
+  "four_exceptions_no_names": [
+    {
+      "province": "Barcelona",
+      "class": "abbreviated_given_name",
+      "summary": "Interior includes M DEL CARMEN; JEC listed CARMEN. A later Congreso roster also lists CARMEN surname label. Plausible same person but no immutable ID crosswalk; classified contextual probable not exact."
+    },
+    {
+      "province": "Madrid",
+      "class": "parenthetical_pseudonym",
+      "summary": "Original JEC has alternative familiar name in parentheses; Interior XLSX omits it. Normalize carefully without dropping meaningful legal names."
+    },
+    {
+      "province": "Madrid",
+      "class": "JEC_parenthetical_successor_note",
+      "summary": "JEC elected-list entry includes a parenthetical note about a renunciation and succession; Interior elected-row name does not include note. This is editorial context, not extra legal name."
+    },
+    {
+      "province": "Madrid",
+      "class": "pdf_text_extraction_line_break",
+      "summary": "pdftotext interleaves/garbles a given name across line and margin; visual PDF page 33 displays full name unambiguously, matching Interior field."
+    }
+  ],
+  "H1": "SUPPORTED in bounded contextual sense: all 350 records have a compatible partner by 2023 province; 346 strict exact after normalizing accents/punctuation, four nonexact explained but not algorithmically identity-certified.",
+  "H0": "No substantive conflicting seat observed within 350 extracted records; not proof no latent publisher errors.",
+  "ABR": "Original independent coverage for elected name roster improved; never population person identity accuracy or historical publication timing.",
+  "ABP": "Use editorial-note and alias-aware quarantine; no forced automatic merge for four exceptions. Keep source-specific title/name and independent review fields.",
+  "C10_preexposed": "Albacete and Salamanca were checked first, remainder expanded under C11 prereg; not blind independent replication.",
+  "first_public_at_individual": false,
+  "legal_reuse_audited": false,
+  "scientific_novelty_new": 0,
+  "metrics_unchanged": true,
+  "R5": "Further name normalization experiments on same 350 would be overfitting; use fixed error-class tests instead.",
+  "next": "C12 implement source-authored minimal fail-closed QA script/regression tests for sentinel and date invariants; stop if no new discriminating original data."
+}
