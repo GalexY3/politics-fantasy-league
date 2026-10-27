@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import re
+import stat
 from pathlib import Path
 
 from .secure_store import (_root_fd, _child_directory, _check_private_permissions,
@@ -91,6 +92,48 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         os.close(obj)
 
 
+
+def _scan_unreferenced_objects(rootfd: int, declared: set[str]) -> dict:
+    """Count unexpected SHA-object names; never export raw names or paths.
+
+    Races with an active writer can yield conservative uncertainty, not a
+    release decision. Refuse unreadable/symlinked shards and oversize trees.
+    """
+    orphan = 0
+    unexpected = 0
+    entries = 0
+    with _existing_dir(rootfd, "objects") as objectsfd:
+        if objectsfd is None:
+            return {"orphan_objects": 0, "unexpected_object_entries": 0}
+        for shard_name in os.listdir(objectsfd):
+            if re.fullmatch(r"[0-9a-f]{2}", shard_name) is None:
+                unexpected += 1
+                continue
+            with _existing_dir(objectsfd, shard_name) as shard:
+                if shard is None:
+                    unexpected += 1
+                    continue
+                for name in os.listdir(shard):
+                    entries += 1
+                    if entries > 20000:
+                        raise ValueError("TOO_MANY_PRIVATE_OBJECT_ENTRIES")
+                    if (re.fullmatch(r"[0-9a-f]{64}", name) is None
+                            or not name.startswith(shard_name)):
+                        unexpected += 1
+                        continue
+                    try:
+                        attr = os.stat(name, dir_fd=shard, follow_symlinks=False)
+                    except OSError:
+                        unexpected += 1
+                        continue
+                    if not stat.S_ISREG(attr.st_mode):
+                        unexpected += 1
+                    elif ("objects/" + shard_name + "/" + name) not in declared:
+                        orphan += 1
+    return {"orphan_objects": orphan, "unexpected_object_entries": unexpected}
+
+
+
 def _validate_object(objectsfd: int | None, rel: object, expected: object, declared_bytes=None) -> str:
     if not isinstance(rel, str) or not isinstance(expected, str):
         return "BAD_OBJECT_REFERENCE"
@@ -141,6 +184,9 @@ def audit_private_root(root: Path) -> dict:
         with _existing_dir(fd, "objects") as objectsfd:
             for item in manifest:
                 outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"), item.get("bytes"))] += 1
+        declared = {item.get("raw_object") for item in manifest
+                    if isinstance(item.get("raw_object"), str)}
+        inventory = _scan_unreferenced_objects(fd, declared)
         review_states = Counter()
         valid_manifest = {}
         manifest_duplicate_ids = set()
@@ -180,6 +226,7 @@ def audit_private_root(root: Path) -> dict:
                 seen_reviews.add(cid)
         return {
             "manifest_rows": len(manifest), "review_rows": len(reviews),
+            **inventory,
             "object_integrity": dict(sorted(outcomes.items())),
             "quarantine_states": dict(sorted(review_states.items())),
             "unreviewed_captures": (len(manifest) - legacy_captures - len(exactly_matched)),
