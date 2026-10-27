@@ -1,3 +1,15 @@
+# Continuidad vigente · CONT10 con pausa R5 tras C05 · 27/10/2026
+
+**Leer [CURRENT](../ab_atlas/CURRENT.md) y [ledger CONT10](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) primero.** Autorizados por el usuario diez ciclos AB-H nuevos en la rama `research/pfl-codex-contributions-20261027`; **C01–C05 completados A–J, cinco autorizados no ejecutados**, pausa **STOP_R5**. No descontar de este cupo los historiales separados AB-H45, CDX01–09 e IC01–IC23; no pedir nueva autorización sobre las cinco plazas ya existentes.
+
+C01 comprobó estructuralmente por JS **20 lotes exactos de GitHub** hasta Atlas 0020 sin errores observados: **63 nodos / 81 aristas / 119 runs / 44 complaints**, pero **no ejecutó Python canónico**. C02 identificó semántica institucional de presencia sin voto en el Senado, **no** el diccionario exacto del literal XML `NO VOTAN`. C03 confirmó CC BY 4.0 salvo excepciones y condiciones en el **subportal de datos abiertos** del Senado, con seis distribuciones de listas de iniciativas; C04 incorporó esa evidencia a la matriz canónica de derechos sin elevar gates. C05 consultó las rutas registrales oficiales RPP, **sin recuperar un original por entidad o certificado firmado**, y activó R5 para no repetir intentos equivalentes.
+
+**Atlas:** `0021` (C01–C04) y `0022` (C05) incorporados append-only, comprobadas cabeceras/parents y cinco runs. Total derivado **22 lotes, 63 nodos, 81 relaciones, 124 runs, 44 complaints**, pendiente todavía del `atlas_delta.py check` canónico y SHA del estado exacto. No se lanzó CI, ni corrió full pytest de esta cabeza, ni se fusionó a `main`. Quedan **V4 36,90 %, CT2 29/100, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, gates 0/6**. Ni la licencia de portal ni la comprobación JS autorizan scoring real.
+
+**Siguiente intervención con nueva evidencia:** Codex/checkout íntegro debe certificar el replay Python de los 22 lotes y ejecutar pytest completo y pruebas de recuperación ante terminación de proceso; para AB-R, obtener un documento oficial RPP individual o un esquema XML del Senado directamente verificable. Las cinco plazas CONT10 permanecen disponibles, pero R5 exige no gastarlas sin nuevos instrumentos o fuentes.
+
+---
+
 # Continuidad vigente · campaña de ingesta IC04–IC23 cerrada · 27/10/2026
 
 **Revisar primero** [AB Atlas CURRENT](../ab_atlas/CURRENT.md) y [el cierre IC04–IC23](../research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC04_IC23_FINAL.md). Se ha consumido el permiso de **20/20 ciclos IC04–IC23**, en `research/pfl-codex-contributions-20261027`. Historiales separados y anteriores: **ChatGPT AB-H45 (45), Codex CDX (9), ChatGPT IC01–IC03 (3)**. No modificar `main` ni tratar estos conjuntos como una sola campaña.
