@@ -1,0 +1,12 @@
+{
+  "id": "C11",
+  "status": "PREREGISTERED_WITH_PRIOR_TWO_PROVINCE_EXPOSURE",
+  "mode": "AB-R full 2023 province primary source sample extension",
+  "prior": "C10 8/8 elected labels matched in Albacete and Salamanca selected before inspecting their JEC list. Remaining JEC PDF pages 26-37 contain all provinces and election names; some bilingual heading mismatches possible.",
+  "H1": "The complete 2023 JEC BOE-A-2023-18907 52-district elected section and official Interior XLSX 2023 350 elected rows are compatible after NFKD full-name normalization for substantially all 52 provinces.",
+  "H0": "One or more substantial substantive discrepancies beyond parser/layout/canonical orthography issues.",
+  "test": "Parse JEC elected-only section between headings Relación de Diputados proclamados electos and Relación de Senadores proclamados electos. Detect 52 province headings with source-recognized names and map only demonstrably equivalent variants; extract 'Don'/'Doña' fields across page breaks; compare sorted normalized name multisets by province to 2023 Interior rows. Quantify exact matches, candidate discrepancy and uncertain parser cases. Manual targeted visual inspect conflicting sections, never silently force match. Don't use BOE nomination PDF as elected list.",
+  "falsifier": "Any mismatch unexplained after checked transcription or total extraction <350 warrants quarantine; no certify equality without independent exact boundary validation.",
+  "acceptance": "High-coverage aggregate reproducible evaluation of full original 2023 elected lists, keeping real person names local. Recognize data source transfer and name label equality not identity across legislatures.",
+  "seeds": "All 52 historical provinces in original XLSX, fixed to full universe not adaptive."
+}
