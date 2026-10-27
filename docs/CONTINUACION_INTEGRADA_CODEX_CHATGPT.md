@@ -1,3 +1,15 @@
+# Continuidad vigente · CONT10 cerrada 10/10 y Atlas 0023 · 27/10/2026
+
+**Consultar primero [CURRENT](../ab_atlas/CURRENT.md), [ledger cerrado](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) e [informe A–J C01–C10](../research/ABH_CONT10_20261027/REPORT_FINAL.md).** El usuario autorizó 10 ciclos nuevos AB-H y después exigió terminar los ya concedidos. **Hechos C01–C10, saldo 0**. A partir de ahora cualquier nueva campaña AB requiere nuevo permiso; distinguir del historial AB-H45, CDX01–09 e IC01–23.
+
+C01–C05: replay estructural JS Atlas 0001–0020, semántica institucional no-equivalente a contrato XML `NO VOTAN`, licencia acotada de Senado, actualización documental, RPP sin original y R5 previo. C06–C10: tail Atlas 0021/0022 verificable, CLI auditor inseguro para manifest sin tamaño corregido (salida 2), bloqueo cooperativo `fcntl.flock` sobre apéndice JSONL ante fragmentación, necesidad Linux de fsync(dirfd), y sincronización de nombres de directorios de objeto/manifest. **No se ha ejecutado pytest full** tras dichos cambios. Las pruebas locales referidas son microtests aislados de código/mecanismo POSIX, no pruebas completas sobre checkout del HEAD; la prereg C07 se asentó después del primer prototipo y se declaró así.
+
+**Atlas 23 lotes, último 0023; conteo derivado 63 nodos, 81 aristas, 129 runs, 44 complaints**. Python `atlas_delta.py check` sobre los 23 originales y hash de estado **sin ejecutar**. Madurez V4 36,90 %, CT2 identidad 29/100, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, 0/6 gates. No puntuación real, originales privados, Actions costosas ni merges a main.
+
+**Tarea inmediata para Codex si sigue el trabajo:** validar bajo checkout completo y código exacto de la rama los 23 deltas de Atlas, pytest completo y tests Node, pruebas específicas de C07/C08/C10, y ensayo adversarial de fallo de proceso limitado a datos sintéticos y sistema desechable. Registrar comandos/salidas y SHA canónico. Nunca prometer durabilidad de corte eléctrico a partir de `os.fsync` sin prueba y protocolo transaccional. Para investigación institucional RPP/Senado, requerir documento original y evitar repetir catálogos.
+
+---
+
 # Continuidad vigente · CONT10 con pausa R5 tras C05 · 27/10/2026
 
 **Leer [CURRENT](../ab_atlas/CURRENT.md) y [ledger CONT10](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) primero.** Autorizados por el usuario diez ciclos AB-H nuevos en la rama `research/pfl-codex-contributions-20261027`; **C01–C05 completados A–J, cinco autorizados no ejecutados**, pausa **STOP_R5**. No descontar de este cupo los historiales separados AB-H45, CDX01–09 e IC01–IC23; no pedir nueva autorización sobre las cinco plazas ya existentes.
