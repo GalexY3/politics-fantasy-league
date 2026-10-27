@@ -1,0 +1,11 @@
+{
+  "id": "B03",
+  "stage": "B",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "B02 exact paired source code 7/7 native PASS; A04 congress_member_events.py 10 tests had only mirrored staging validation, not byte-equivalence checked.",
+  "H1": "Current committed A04 source and 10 tests can be staged exactly with matching Git blob SHA and all tests run natively, confirming source event/issue day and 2023/25 delimitations.",
+  "H0": "Mismatch of bytes or unit failure invalidates prior acceptance and requires repair.",
+  "method": "Fetch two blobs from same research branch, copy exact bytes into isolated Python package, Git blob hash verify, run unittest discover, record output and any discrepancies, no Actions.",
+  "acceptance": "Source and test SHA match and native 10/10 PASS; no claim about original BOCG signed PDF or global person ID."
+}
