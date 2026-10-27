@@ -1,0 +1,145 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0005-PFL-RC05-IDENTITY-20261027",
+  "parent_batch": "0004-PFL-SOURCE-RESCUE-20261027",
+  "at": "2026-10-27T02:26:00+01:00",
+  "actor": "chatgpt",
+  "reason": "RC05 bounded five-pair official case adjudication against CCyL and Senado: three positive, two negative with tenure/first-publication separation; keep gates and CT2 unchanged; R5 conserves at most two cycles pending permission reconciliation.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-RC05-20261027",
+        "activity": "Adjudicar cinco pares documentales de persona/mandato y controles negativos con fuentes oficiales autonómicas y del Senado",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "cost": {
+          "github_actions_minutes": 0,
+          "source_web_only": true
+        },
+        "method_version": "AB 3.2.1 O7 / AB-H exploratory source exposed",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-RC05-PREEXPOSURE-20261027",
+        "run_id": "PFL-RC05-20261027",
+        "status": "open",
+        "severity": "minor",
+        "category": "study_design",
+        "source": "agent",
+        "description": "La selección de 5 pares siguió búsquedas previas a RC05_PREREG: no es confirmación ciega ni medida de error poblacional; falta homónimo de nombre completo."
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-RC05-ASOF-20261027",
+        "run_id": "PFL-RC05-20261027",
+        "status": "open",
+        "severity": "major",
+        "category": "temporal_provenance",
+        "source": "agent",
+        "description": "La fecha de designación, el boletín y el inicio de mandato son distinguibles pero first_public_at exacto sigue sin acreditar; la misma URL del Senado ofrece instantáneas históricas divergentes; backtesting bloqueado."
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-RC05-MICRO-GOLD-20261027",
+        "title": "Muestra institucional RC05: 3 pares coincidentes, 2 negativos",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Cinco pares selectivos: P1 mismo perfil Senado XIII/XIV/XV y renovación; P2 y P3 nombramiento 10-09-2026 en Cortes de Castilla y León contrastado con mandato Senado 11-09-2026; N1 sustitución de personas, N2 colisión de dos apellidos con personas distintas. Prerregistro expuesto, sin homónimo de nombre completo, sin segunda adjudicación humana, sin generalización poblacional.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "5 pares revisados con actos oficiales y dos controles de falso enlace; no equivalencia longitudinal masiva",
+          "evidence": [
+            "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json"
+          ],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-RC05-ASOF-BLOCKER-20261027",
+        "title": "Primera publicación verificable por dato y snapshot histórico",
+        "kind": "blocker",
+        "mode": "research",
+        "status": "blocked",
+        "detail": "RC05 distingue 10-09-2026 acto, 11-09-2026 inicio en Senado y 16-09-2026 boletín, pero los cinco first_public_at son null; URLs de fichas mutables no acreditan disponibilidad a cortes retrospectivos. Bloquea test predictivo temporal y aceptación de eventos individuales.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC05-E01",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-RC05-MICRO-GOLD-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC05-E02",
+      "from": "PFL-RC05-MICRO-GOLD-20261027",
+      "to": "PFL-RC04-CANDIDATOS-SENADO-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC05-E03",
+      "from": "n_fdb37e730626",
+      "to": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC05-E04",
+      "from": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "to": "n_b467123cb4c0",
+      "relation": "blocks"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-RECON-AUTH-20261027",
+      "set": {
+        "detail": "Permiso BRANCHING 20 sigue sin conciliar entre rama 9 y rama 4; RC01-RC04 consumen 4 más y RC05 consume 1 adicional. Si fue un bloque común y no hubo otros consumos, 20-(9+4+4+1)=2 plazas COMO MÁXIMO, no saldo autorizado definitivo. RC05 R5 STOP; no gastar plazas adicionales sin nueva evidencia discriminante."
+      },
+      "reason": "Actualizar reserva conservadora tras ejecución independiente RC05, sin resolver identidad del permiso"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Catálogo de Interior, Congreso, Senado, RPP, BOE, distribuciones secundarias y RC05 microadjudicación. RC05 vincula 5 pares documentales y separa designación, vigencia, boletín y primera publicación desconocida; NO es crosswalk del universo ni prueba as-of.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json"
+        ]
+      },
+      "reason": "Incorporar fuentes oficiales y controles de adjudicación nuevos sin modificar datos originales"
+    }
+  ]
+}
