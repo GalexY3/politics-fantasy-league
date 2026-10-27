@@ -1,0 +1,49 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0019-PFL-CHECKOUT-4FAF31A-QA-20261027",
+  "parent_batch": "0018-PFL-INGEST-IC01-SHA-REPAIR-20261027",
+  "at": "2026-10-27T15:49:29Z",
+  "actor": "chatgpt",
+  "reason": "Post-hoc native verification receipt for user-provided integrated repo ZIP; not a new authorized AB-H cycle. Full local tests close IC03 HTTP-test-unrun part but NOT existence of HTTP ingestion; Chromium policy blocks UI navigation. V4 and gates unchanged.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ZIP-4FAF31A-NATIVE-VERIFY",
+        "activity": "Posthoc verification of exact 4faf31a repository snapshot: Python full project + node + canonical Atlas Python + loopback HTTP; browser smoke V4 static repair only",
+        "status": "completed",
+        "at": "2026-10-27T15:49:29Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_RESULT.md",
+          "tests/test_ingest_http_boundary.py",
+          "tests/run_browser_smoke.py"
+        ],
+        "scope": "PFL-V1 rev4 unchanged; not an AB science cycle",
+        "method_version": "AB3.2.1 O7 AB-META verification",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-CHECKOUT-4FAF31A-CHROMIUM-LOCAL-ADMIN-BLOCK",
+        "run_id": "PFL-ZIP-4FAF31A-NATIVE-VERIFY",
+        "severity": "minor",
+        "status": "open",
+        "source": "agent",
+        "category": "execution_environment",
+        "at": "2026-10-27T15:49:29Z",
+        "description": "Playwright bundled browser absent; system Chromium executable starts via PF_CHROMIUM_EXECUTABLE but browser page.goto localhost fails net::ERR_BLOCKED_BY_ADMINISTRATOR in this sandbox. Browser UI E2E NOT certified. HTTP client loopback tests 20/20 pass; changed browser smoke V3 assertions to V4 36.9 and py_compile pass."
+      }
+    },
+    {
+      "op": "complaint.triage",
+      "id": "PFL-INGEST-IC03-HTTP-INGEST-NOT-CONNECTED",
+      "status": "triaged",
+      "reason": "On uploaded snapshot 4faf31a, Python project pytest 421/421 incl actual ephemeral loopback test_ingest_http_boundary.py with local host controls, GET /api/source-stages and absent ingester route 404. This resolves previously-unrun HTTP negative test; the architectural gap NO HTTP ingestion remains and needs separate authenticated design."
+    }
+  ]
+}
