@@ -274,8 +274,15 @@ def preflight_private_storage(root: Path, filename: str) -> None:
         with _child_directory(folder, "objects"):
             pass
         try:
-            entry = os.stat(filename, dir_fd=folder, follow_symlinks=False)
+            fd = os.open(filename, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=folder)
         except FileNotFoundError:
             return
-        if not stat.S_ISREG(entry.st_mode):
-            raise ValueError("UNSAFE_PRIVATE_LEDGER")
+        except OSError as exc:
+            raise ValueError("UNSAFE_PRIVATE_LEDGER") from exc
+        try:
+            # A regular inode can still be unsafe when group/world accessible.
+            # Refuse it before any external source request is attempted.
+            _check_private_permissions(fd, directory=False)
+        finally:
+            os.close(fd)
