@@ -1,0 +1,28 @@
+{
+  "cycle": "IC17",
+  "status": "CLOSED_CAPTURE_LENGTH_INTEGRITY_CHECK",
+  "prereg": "IC17_PREREG.json",
+  "result": "Auditor before repair considered a truthful SHA sufficient even when manifest 'bytes' claimed a different size; now checks int >=0, nonbool declared length against actual bytes, preserving legacy rows with missing length as explicitly unverified.",
+  "code_sha": "cdae21abe01170c86e36e05f4c7018f77ab5a782",
+  "test_sha": "6352bc34d75db15bd84a0e7223351db4a5ccebfd",
+  "execution": {
+    "focused_native_pytest": 32,
+    "passed": 32
+  },
+  "boundaries": [
+    "A publisher that reports same invented bytes and content still not authenticated",
+    "Missing bytes in old manifest not invented; legacy count exposed",
+    "NO VOTAN institutional semantics and release gates remain unresolved"
+  ],
+  "budget": {
+    "completed": 14,
+    "remaining": 6
+  },
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "next": "IC18 bounded operator CLI with aggregate-only output and failure exit code, offline."
+}
