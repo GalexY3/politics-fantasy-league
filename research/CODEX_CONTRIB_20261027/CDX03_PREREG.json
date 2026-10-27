@@ -1,0 +1,10 @@
+{
+  "id": "CDX03", "mode": "AB-H/AB-P", "status": "PREREGISTERED", "basis": "CDX02 integró correcciones; el usuario pide maximizar contribuciones útiles. La demo conserva una jornada futura NOT_AVAILABLE sin liquidación ni sucesora.",
+  "A": {"outcome": "Un usuario de la demo local puede simular y cerrar una jornada ficticia, consultar resultados estables y preparar la siguiente sin esperar días reales.", "audience": "jugador local de la demo"},
+  "B": {"baseline": "Base SQLite con dos jornadas sembradas, mercado y alineación; next no dispone de eventos y no se regenera.", "alternatives": ["avance sintético explícito con reloj de juego y liquidación", "esperar transcurso real sin evento de demostración", "fabricar puntuaciones sobre personas reales: rechazado"]},
+  "C": {"risks": ["resultados mutables o duplicados", "filtración de eventos futuros", "reloj de juego y bloqueos incoherentes", "pérdida de bases existentes", "interpretar missing como cero"]},
+  "D": {"acceptance": "Core transaccional: alineación, transición, cierre, puntuación congelada, nueva jornada, reinicio e idempotencia; rechazar errores y preservar ausencia. Pruebas de concurrencia y límites temporales, migración de base previa y registros exclusivamente sintéticos.", "negative_controls": ["doble simulación no crea dos jornadas", "fecha de publicación posterior al corte no puntúa", "sin alineación o cobertura no convertir en puntuación cero", "error no deja mutaciones parciales"]},
+  "E": {"plan": "Implementar solo backend del juego y pruebas de integración local; revisión de interfaz y HTTP se decide después. Cualquier reloj adelantado debe ser explícitamente de simulación y coherente entre todas las operaciones.", "environment": "checkout Windows local, Python/SQLite; sin Actions"},
+  "F": {"pending": true}, "G": {"pending": true}, "H": {"audit": "Distinguir simulación del tiempo real, documentación y costes; no afirmar E2E de usuario antes de la ruta/interfaz."},
+  "I": {"CT2_identity": 29, "VSDS": "1/3", "release_gates": "no promotion"}, "J": {"next": "Se decide tras pruebas de core; si pasa, exponer funcionalidad localmente y comprobar UI."}
+}
