@@ -1,3 +1,17 @@
+# AB Atlas · campaña AB-H CONT10 cerrada C01–C10 · 27/10/2026
+
+**Fuente de verdad más reciente:** [ledger CONT10](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) y [informe final](../research/ABH_CONT10_20261027/REPORT_FINAL.md). Usuario autorizó diez ciclos AB-H con branching y pidió expresamente agotar los diez; **C01–C10 registrados y cerrados 10/10**, ninguna plaza autorizada de este bloque sin ejecutar. Los registros anteriores AB-H45, Codex CDX y IC01–IC23 son historiales distintos, no sumables como replicaciones independientes. Solicitar **nueva** autorización para otra campaña.
+
+**Resultados nuevos respecto al cierre C05:** C06 confirma la estructura de tail Atlas 0021–0022 en los blobs GitHub, no `atlas_delta.py` Python. C07 corrige falso OK del CLI para manifest legacy sin `bytes` declarado (prueba aislada 0→2; prereg Git posterior al prototipo por bloqueo de escritura). C08 añade `fcntl.flock` cooperativo durante apéndices JSONL (contraste aislado 16 escritoras parciales: 0 líneas válidas sin lock, 16 con lock). C09 identifica falta de `fsync` de directorios conforme a manual Linux; observación estática, no hardware. C10 incorpora `os.fsync` de los directorios de shard, objeto y ledger; pruebas sintéticas en Git, **sin ejecución de suite completa**. Todo ello es mejora/evidencia de ingeniería de producto, no descubrimiento de comportamiento político.
+
+**Atlas append-only último:** `0023-PFL-ABH-CONT10-C06-C10-20261027` (secuencia 0001–0023). Sobre replay estructural JS 0001–0020 y auditorías de colas 0021–0023, conteos **derivados** 63 nodos, 81 aristas, 129 runs, 44 complaints; **sin certificación aún del validador Python nativo ni hash del estado canónico**. No se ha ejecutado CI costosa, pytest completo o Node suite sobre el nuevo HEAD, ni prueba de corte de alimentación, ni firma institucional nueva. No hay originales nominativos privados en Git.
+
+**Indicadores inalterados:** V4 36,90 %, CT2 identidad 29/100 ordinal, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, gates 0/6. Sin puntuación de políticos reales ni publicación multiusuario.
+
+**Siguiente bloqueo real:** trabajo concreto para Codex en checkout completo actual: validar `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates` (23 lotes, SHA de estado), ejecutar pytest completo y Node, analizar recuperación del objeto+manifest ante terminación de proceso en fixtures sintéticos. RPP individual original, semántica del XML Senado y `first_public_at` siguen sin originales institucionales suficientes. No fusionar a `main` ni lanzar CI costosa sin nueva autorización específica.
+
+---
+
 # AB Atlas · nueva campaña CONT10 pausada tras C01–C05 · 27/10/2026
 
 **Situación más reciente:** el usuario autorizó **10** ciclos AB-H con BRANCHING para Politics Fantasy League sobre `research/pfl-codex-contributions-20261027`. Se han realizado y registrado **cinco ciclos A–J** `C01–C05`; **cinco permanecen autorizados sin ejecutar**. Pausa **STOP_R5**, no cierre/consumo de las cinco restantes ni autorización adicional. Historiales anteriores AB-H45 (45), CDX (9) e IC01–IC23 (23) siguen separados. [Ledger de la nueva campaña](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json).
