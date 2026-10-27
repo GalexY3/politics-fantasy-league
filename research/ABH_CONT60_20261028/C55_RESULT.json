@@ -1,0 +1,34 @@
+{
+  "cycle": "C55",
+  "mode": "AB-R",
+  "status": "CLOSED_POSITIVE_DATASET_LICENSE_METADATA_NARROW",
+  "A": "Check specific reuse terms of Ministry of Interior's elected-official XLSX, not licence inferred from publisher name",
+  "B": {
+    "H1": "Resource-specific CC-BY provenance",
+    "H2": "No exact licence fields despite catalog listing",
+    "H3": "Different datasets with different licence footprints"
+  },
+  "C": "Inspected Ministry `Catálogo de datos` latest 2026 and cross-checked individual `Resultados Electorales` distribution entries in official datos.gob.es record. Compared blank reuse field on Ministry page with explicit licence URIs in detailed catalog. Updated project rights-source matrix accordingly.",
+  "D": {
+    "ministry": "https://sede.interior.gob.es/portal/sede/informacion-general/catalogo-de-datos",
+    "dataset": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales",
+    "dataset_identifier": "MIR:E03112802:ds:RESULTELEC:000001",
+    "distribution_congreso": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso-cargos-electos.xlsx",
+    "distribution_senado": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Senado-cargos-electos.xlsx",
+    "license_uri": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0",
+    "repo_update_commit": "8f40731e8abaa500780d6249c7b3e65ea5598c5b"
+  },
+  "E": "Found dataset-specific CC_BY_4_0 metadata on datos.gob.es for both Congress/Senate elected XLSX and other distributions of `Resultados Electorales`. Prior source-rights matrix said exact licence of specific XLSX unconfirmed because Ministry sede row blank; now corrected narrowly. Dataset metadata lists update 2026-08-21; distinct from `first_public_at` on each record.",
+  "F": "No XLSX downloaded, no hash of original, no publisher signature or rights of third-party embedded material, no date of first publication for historical rows. Separate dataset Paridad has not been licensed by this record. CC BY does not authorize every purpose of individual profiling under GDPR.",
+  "G": "Official Spanish open-data catalog dataset-specific licencing; strong evidence for licence metadata, not original artifact or privacy rights",
+  "H": "AB-R legitimate narrowing of reuse-licence blocker for a named dataset, but no real-person scoring and no release gate pass.",
+  "I": {
+    "novelty": "0/3 scientific",
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "DRIFT": "D1 legal metadata disambiguation"
+  },
+  "J": "C56 source provenance first_public_at vs catalog updated_at: test strict timestamp provenance contract in candidate eligibility model (the catalog date must not be mistaken for first publication)."
+}
