@@ -1,0 +1,29 @@
+{
+  "cycle": "C22",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C21",
+  "A": {
+    "question": "Can private_audit.py and secure_store.py exact GitHub blobs be restored byte-identically and exercised end-to-end with authentic POSIX storage using only synthetic fixtures, with no remote checkout?",
+    "estimand": "Native audit/store/CLI behavior of original Python modules in disposable POSIX storage",
+    "acceptance": "Verify Git blob SHA for restored modules, run pytest on real unmodified source covering valid, orphan, duplicate-JSON, NaN, truncated, symlink, unsafe permissions; record number/failures."
+  },
+  "B": {
+    "rivals": [
+      "Local source differs, test invalid",
+      "Byte-identical modules and tests pass on local POSIX",
+      "Some tests fail, necessitating repair follow-up"
+    ]
+  },
+  "C": "Fetch each current GitHub module, reconstruct in isolated local directory, compare git hash-object, execute synthetic pytest and store stdout. No network, no real political data.",
+  "D": {
+    "falsifier": "Blob SHA mismatch or tests don't run",
+    "prior": "C21 verified only CLI code, stubbed dependency"
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
