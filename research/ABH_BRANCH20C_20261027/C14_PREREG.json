@@ -1,0 +1,27 @@
+{
+  "id": "C14",
+  "status": "PREREGISTERED_BEFORE_IMPLEMENTATION",
+  "mode": "AB-P evidence time-gate; evidence sourced from C13",
+  "question": "Can we implement a non-user-controlled BOE 2023 document eligibility rule that uses verified file digests and next-day issue-date upper bounds, without confusing signature time, first-public-at or true record-level source authentication?",
+  "H1": "Static, server-owned whitelist of the two signed BOE 2023 documents, using next-day bound, rejects cutoffs on/before date of issue, unknown URLs, wrong SHA, naive timestamps, invalid status; never releases real scoring.",
+  "H0": "The policy treats signing timestamps as publication, accepts untrusted arbitrary documents or admits earlier cuts, or suggests first_public_at exact is verified.",
+  "constraints": "The two approved PDFs are originals from user ZIP, sha observed and pdfsig structural signature-valid but current certificate expired; agency report confirms ordinary 2023 before 8h but is publisher self-report, not direct per-file observation. Cutoff day+1 is conservative conditional upper bound, not exact first_public_at.",
+  "tests": [
+    "Before cutoff fails for each document",
+    "At exact following midnight works only for aggregate documentary source use and after checks",
+    "No published timestamp or per-person identity granted",
+    "Wrong sha fails",
+    "Unknown source fails",
+    "Naive cutoff fails",
+    "Second signature and metadata remain scoped to independent fixture/test if actual pdfsig can't be called at runtime",
+    "Mutation of catalog copy cannot change whitelist",
+    "Source as-of policy does not bypass release gates"
+  ],
+  "acceptance": "At least eight standalone unit checks PASS locally; not coupled to current HTTP or person-score product, not a public release gate.",
+  "source_new": "BOE art 11+12 and AEBOE annual 2023 report + two original PDFs dated 2023-06-27 and 2023-09-01",
+  "budget": {
+    "consumed_previous": 13,
+    "remaining_before": 7
+  },
+  "data": "Do not upload original PDFs to GitHub"
+}
