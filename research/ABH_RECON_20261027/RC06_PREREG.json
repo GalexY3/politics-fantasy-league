@@ -1,0 +1,51 @@
+{
+  "id": "RC06-20261027",
+  "method": "AB-H/AB-R, temporal provenance and assertion-type audit",
+  "status": "PREREGISTERED_AFTER_DISCOVERY_WITH_EXPOSURE",
+  "prior": "RC05: 10/09/2026 designation act, Senado mandate 11/09/2026, appointment bulletin published 16/09/2026, first_public_at exact unknown.",
+  "pre_exposure": "Before this prereg, a public search disclosed the CCyL prior candidate acceptance BOCCL 32/12 ESE/000002-01 published 10/09/2026 and signed 03/09/2026. This is a specifically targeted post-discovery test, NOT blind confirmatory evidence.",
+  "question": "Does an earlier official nominative bulletin distinguish candidate nomination from legal senator designation, defeating date-only/as-of join of the RC05 individuals?",
+  "H1": "Prior bulletin records proposal and acceptance of candidacies, not election/designation; official 16/09 publication uniquely reports plenary designation on 10/09.",
+  "H0": "Prior bulletin already certifies selection as senators or a contemporary dated original makes legal designation public by cut 12/09.",
+  "alternatives": [
+    "A transcript from plenary session dated 10/09 may document the vote but original public release time unknown.",
+    "Senate membership effective from 11/09 may be visible now but was not necessarily public by 12/09."
+  ],
+  "frozen_sample": [
+    "BOCCL 32/12 ESE/000002-01",
+    "BOCCL 34/12 ESE/000002-02",
+    "DS(P) 4/12",
+    "Senate individual Maroto, Martín García, Iglesias García"
+  ],
+  "test": {
+    "claims": [
+      "propuesto_y_aceptado",
+      "designado",
+      "mandato_efectivo"
+    ],
+    "cutoffs": [
+      "2026-09-09",
+      "2026-09-12",
+      "2026-09-17"
+    ],
+    "compare": "For each original quote operative verb, date signed, date on official publication, time of legal effect if reported; separate information available from publication-date proxy from first_public_at exact; never infer original publication time from crawl time.",
+    "negative_control": "A dated nomination notice must not confer designated-senator label; designation bulletin published after cut 2026-09-12 must not be used to backtest as-of cut."
+  },
+  "acceptance": "Two distinct official announcement types corroborated, date proxy rules and explicit leakage exclusion; no promotion of first_public_at.",
+  "stop": "R5 if independent timestamp archive absent and same-day exact timing cannot be obtained; no new broad searches on same names.",
+  "budget": {
+    "max_after_rc05": 2,
+    "cost_actions": 0
+  },
+  "metrics_frozen": {
+    "progress": 36.35,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "new_N123": 0,
+    "gates_passed": 0
+  },
+  "sources": [
+    "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml",
+    "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml"
+  ]
+}
