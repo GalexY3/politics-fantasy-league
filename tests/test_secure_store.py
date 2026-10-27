@@ -204,7 +204,7 @@ def test_private_capture_metadata_calls_directory_fsync(tmp_path, monkeypatch):
     before = calls.count("directory")
     append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic": True})
     assert calls.count("directory") > before
-    assert (tmp_path / "manifest.jsonl").read_text().endswith("\\n")
+    assert (tmp_path / "manifest.jsonl").read_text().endswith("\n")
 
 
 def test_new_directory_fsync_failure_does_not_claim_stored_success(tmp_path, monkeypatch):
