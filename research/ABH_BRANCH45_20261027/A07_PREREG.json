@@ -1,0 +1,19 @@
+{
+  "id": "A07",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "A06 demonstrates sorting differences cause 2/3 false joins in BOCG 2025.",
+  "question": "Can a conservative within-same-bulletin full-name multiset join match A/B document sections while refusing ambiguous duplicate/missing names, and without certifying cross-bulletin persons?",
+  "H1": "Unique exact normalized public officeholder names within same issuer+bulletin can pair A full-condition and C credential mentions 3/3 in this fixed source; duplicated name or different bulletin IDs fails closed.",
+  "H0": "Any equal row ordinal can serve or duplicated same-name rows can be matched without uncertainty.",
+  "tests": [
+    "BOCG 390 A and C original order mismatched but unique normalized name joins 3/3",
+    "Case-insensitive accent folding handles unambiguous orthographic variants only",
+    "Same name duplicated in one section triggers AMBIGUOUS_NAME",
+    "Missing entry in either section triggers MISSING_MATCH",
+    "Different issuer or bulletin fails",
+    "Return link only within document, never global person identity or historical first publication"
+  ],
+  "implementation": "Pure local `bocg_within_issue_pairs.py` only. No actual scores; no automatic cross-bulletin alias resolution. Tests must distinguish matching document references from person identity certification.",
+  "source": "BOCG-15-D-390 original printed page 3, issue Sep 2025"
+}
