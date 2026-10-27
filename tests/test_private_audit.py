@@ -153,3 +153,17 @@ def test_manifest_valid_declared_bytes_verified(tmp_path):
     rel=store_bytes(tmp_path,DATA,SHA)
     append_private_jsonl(tmp_path,"manifest.jsonl",{"raw_object":rel,"sha256":SHA,"bytes":len(DATA)})
     assert audit_private_root(tmp_path)["object_integrity"]=={"VALID_OBJECT":1}
+
+
+def test_missing_jsonl_terminating_newline_rejected(tmp_path):
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"fake":1})
+    f=tmp_path/"manifest.jsonl"
+    f.write_bytes(f.read_bytes().rstrip(b"\n"))
+    with pytest.raises(ValueError, match="INCOMPLETE_LEDGER_RECORD"):
+        audit_private_root(tmp_path)
+
+def test_complete_jsonl_with_newline_accepted_as_legacy(tmp_path):
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"fake":1})
+    result=audit_private_root(tmp_path)
+    assert result["manifest_rows"]==1
+    assert result["legacy_captures_unlinked"]==1
