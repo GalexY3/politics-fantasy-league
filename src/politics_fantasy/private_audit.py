@@ -110,7 +110,7 @@ def _validate_object(objectsfd: int | None, rel: object, expected: object) -> st
 
 def audit_private_root(root: Path) -> dict:
     """No URLs, raw content or person-level records are returned."""
-    with _root_fd(root) as fd:
+    with _root_fd(root, create=False) as fd:
         manifest = _ledger(fd, "manifest.jsonl")
         reviews = _ledger(fd, "quarantine_reviews.jsonl")
         outcomes = Counter()
