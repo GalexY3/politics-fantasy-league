@@ -94,6 +94,7 @@ def test_parallel_same_hash_writers_dont_clobber(tmp_path):
     shard = tmp_path / "objects" / DIGEST[:2]
     assert [p.name for p in shard.iterdir()] == [DIGEST]
 
+
 def test_preflight_denies_bad_manifest_before_contact(tmp_path):
     outside=tmp_path.parent / (tmp_path.name+"_outside_preflight")
     outside.write_bytes(b"outside")
