@@ -1,0 +1,35 @@
+{
+  "id": "B02",
+  "status": "CLOSED_EXACT_NATIVE_GITHUB_PAIRING_TESTS_7_OF_7_PASS",
+  "prereg": "B02_PREREG.json",
+  "blob_sha_matches": [
+    {
+      "file": "src/politics_fantasy/bocg_within_issue_pairs.py",
+      "expected": "b90a5ef2a7f807611e0f48e8e364dfba06c9cf1e",
+      "match": true,
+      "bytes": 2093
+    },
+    {
+      "file": "tests/test_bocg_within_issue_pairs.py",
+      "expected": "c83e3297065de9e01bd9323364e77c42f4ecf09c",
+      "match": true,
+      "bytes": 1814
+    }
+  ],
+  "execution": {
+    "command": "PYTHONPATH=/mnt/data/pfl_b45_exact/src python -m unittest discover -s /mnt/data/pfl_b45_exact/tests -p test_bocg_within_issue_pairs.py -v",
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "github_actions": 0
+  },
+  "facts": "Within one printed BOCG-15-D-390, original two sections have three identical public names in different order; pairer yields [[1,1],[3,2],[2,3]], rejects same-source ambiguous duplicate/empty/missing; no global person ID, no score.",
+  "limits": "Exact blob native standalone Python run, not server E2E, historical availability remains unknown.",
+  "budget": {
+    "A": 20,
+    "R": 5,
+    "B_spent": 2,
+    "B_remaining": 18
+  },
+  "next": "B03 run exact committed 2023/25 event-day ledger module plus ten tests with SHA checked."
+}
