@@ -1,0 +1,32 @@
+{
+  "id": "A04",
+  "status": "CLOSED_LOCAL_MODEL_PRELIMINARY_ACCEPTANCE",
+  "pre_registration": "A04_PREREG.json",
+  "code": "src/politics_fantasy/congress_member_events.py",
+  "tests": "tests/test_congress_member_events.py",
+  "evidence": {
+    "source_files_committed": true,
+    "unit_tests_published": 10,
+    "independently_staged_equivalent_python_checks": 10,
+    "staged_checks_passed": 10,
+    "staged_failures": 0,
+    "github_full_repo_test_not_run": true,
+    "official_BOCG_2025_visual": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF",
+    "source_scope": "2023 and 2025 BOCG specific IDs only"
+  },
+  "outcome": "Pure audit rejects malformed/duplicate event records and distinguishes credential submission, full condition acquisition/cessation and issue dates. All return real_person_scoring and release_grade false.",
+  "risks": [
+    "No editor-signed byte hash acquired for 2025 BOCG original; URL/issue-day evidence not authenticated by function.",
+    "Opaque item_key does not prove source-issued stable ID or different persons.",
+    "No HTTP binding and no real historical person scoring.",
+    "Local tests execute mirrored equivalent module rather than actual clean checkout from GitHub."
+  ],
+  "metrics_unchanged": true,
+  "budget": {
+    "A_spent": 4,
+    "A_remaining": 16,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A05 compare available 2025 original BOCG item counts and credential lags with strict event ledger fixtures, validating 2023/2025 without coupling rows to public player scoring."
+}
