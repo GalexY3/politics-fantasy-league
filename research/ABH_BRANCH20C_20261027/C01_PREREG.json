@@ -1,0 +1,23 @@
+{
+  "id": "C01",
+  "name": "Three-stage senator credential/oath legal semantics",
+  "status": "PREREG_AFTER_SOURCE_DISCOVERY",
+  "hypotheses": {
+    "H1": "Senate plenary 15 Sep confirms acatamiento of 3 CCyL designated, distinct from 10 Sep designación and 11 Sep mandate effective; legal full status cannot be derived solely from taking oath if Article 12 requires additional filings.",
+    "H0": "Senate says they already had full condition simply from designation or appointment; legal reference doesn't require 3 simultaneous conditions.",
+    "Halt": "Speech records oath but missing declaration/credential verification, so exact timestamp for full legal condition cannot be certified retrospectively."
+  },
+  "fixed_cases": [
+    "500/000322 Clara María Martín García",
+    "500/000323 Javier Ignacio Maroto Aranzábal",
+    "500/000324 Francisco Javier Iglesias García"
+  ],
+  "pre_exposure": "Senate plenary results and Article 12 BOE seen in search before prereg; exploratory source audit, not blind or independent confirmation",
+  "test": "Compare dated Senate plenary 15/09/2026 record with CCyL designation BOCCL 16/09, Senate profiles start 11/09 and Article 12 amended in Nov 2025; classify candidate, appointed, oath, full legal condition with unsupported flags distinct. Do not invent exact first-public_at.",
+  "accept": "Positive if original chamber and BOE legislative sources explicitly corroborate stage separation; record unknown prerequisites and publication times; no person scoring.",
+  "falsifier": "Full condition legally granted automatically by appointment alone, or no dated 15 Sep acatamiento statement.",
+  "preconditions": "source labels already selected, no population claim",
+  "cost": {
+    "github_actions_minutes": 0
+  }
+}
