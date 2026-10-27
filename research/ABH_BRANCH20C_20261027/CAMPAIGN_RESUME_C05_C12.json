@@ -1,0 +1,92 @@
+{
+  "campaign_id": "PFL_ABH_BRANCH20C_20261027",
+  "status": "STOP_R5_AFTER_C12_SOURCE_AUDIT",
+  "authorization": {
+    "new_grant_from_user": "Concedido",
+    "max_cycles": 20,
+    "previously_recorded_c01_c04": 4,
+    "this_turn_c05_c12": 8,
+    "consumed_total": 12,
+    "remaining": 8,
+    "old_permission": "SEPARATE_AND_CLOSED"
+  },
+  "bundle": {
+    "filename": "Politics-Fantasy-fuentes-para-ChatGPT-20261027.zip",
+    "sha256": "47bbe80b69d8fd3b153a3e7368ac5542b6b03dd42dd65be76b8a97f495575bf4",
+    "source_files": 11,
+    "matches_manifest": 11,
+    "originals_committed_to_git": false,
+    "publisher_independent_verification": false
+  },
+  "cycles": [
+    {
+      "id": "C05",
+      "status": "PASS",
+      "scope": "private ZIP 11/11 SHA and CRC"
+    },
+    {
+      "id": "C06",
+      "status": "BOUNDED_SOURCE_MATCH",
+      "scope": "Senate 259 distinct vote name strings, 259 single candidates in 311 current leg15 records; vote day 2025-10-08 vs session day 2025-10-07; 10 voting totals reconciled. No event-date person roster."
+    },
+    {
+      "id": "C07",
+      "status": "BOUNDED_SOURCE_MATCH",
+      "scope": "Congress 4 votes 1400 rows, 412 term snapshot records, 1400 unique name candidate matches, 213 October-6 later discharged records; no immutable ID nor as-of."
+    },
+    {
+      "id": "C08",
+      "status": "BOUNDED_SOURCE_AMBIGUITY",
+      "scope": "Interior 16*350=5600 elected rows; 2958 normalized name labels; 1306 recur across elections; zero within same election exact dup; no longitudinal identities verified."
+    },
+    {
+      "id": "C09",
+      "status": "NEGATIVE_KEY_CONTROL",
+      "scope": "Congress seat '-1' sentinels 11/11/15/30; nonmissing seats cross-date change, same-day paired 339 stable. Seat is not person ID."
+    },
+    {
+      "id": "C10",
+      "status": "BOUNDED_EXTERNAL_CROSSCHECK",
+      "scope": "BOE JEC 2023 two pre-fixed provinces Albacete Salamanca 4+4 names match Interior originals 8/8."
+    },
+    {
+      "id": "C11",
+      "status": "FULL_2023_PRIMARY_SOURCE_RECONCILIATION",
+      "scope": "52 provinces, 350 BOE JEC elected labels vs 350 Interior elected; 50/52 province lists exact, 346/350 normalized labels exact; four text mismatch exceptions classified as abbreviation, alias, editorial note and PDF extraction artifact. Contextual matching 350, not stable person ID."
+    },
+    {
+      "id": "C12",
+      "status": "LOCAL_ENGINEERING_PASS",
+      "scope": "source_original_qa.py and tests, 8/8 unittest, replay four original Congress votes; no HTTP implementation or CI test."
+    }
+  ],
+  "priors_updated": "PRIORS_DELTA_C05_C12.json",
+  "new_code": [
+    "src/politics_fantasy/source_original_qa.py",
+    "tests/test_source_original_qa.py"
+  ],
+  "metrics_unchanged": {
+    "PFL_v1_rev3_pct": 36.35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "new_scientific_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed": 0
+  },
+  "why_stop": "R5: All accessible 11 originals used for independent aggregate/time negative controls; no historic original first_public_at, no adjudicated cross-legislature ground-truth identities or complete full-name homonym pair; further variants would refit same corpus. Preserve 8 slots.",
+  "needs_for_resume": [
+    "Independently archived source publication receipts with original timestamps and permission, not PDF metadata or event dates",
+    "Independent adjudicator/ground-truth person crosswalk incl real exact full-name homonym controls",
+    "Original institutional contemporaneous member roster",
+    "Verified integrated server-owned attestation boundary and HTTP E2E; Github Actions only after budget check"
+  ],
+  "actions_requested": 0,
+  "method": {
+    "AB_R": "original source audit exploratory, not blind except selected parts of C10",
+    "AB_P": "eight local QA unit tests; no release",
+    "AB_META": "append-only Atlas and complaint preservation"
+  }
+}
