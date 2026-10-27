@@ -135,3 +135,21 @@ def test_duplicate_manifest_ids_count_both_uncertain_occurrences(tmp_path):
     assert a["duplicate_manifest_capture_ids"]==1
     assert a["unreviewed_captures"]==2
     assert a["quarantine_states"]=={"AMBIGUOUS_MANIFEST_CAPTURE_ID":1}
+
+
+def test_manifest_forged_byte_length_not_accepted(tmp_path):
+    rel=store_bytes(tmp_path,DATA,SHA)
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"raw_object":rel,"sha256":SHA,"bytes":999})
+    a=audit_private_root(tmp_path)
+    assert a["object_integrity"]=={"DECLARED_LENGTH_MISMATCH":1}
+
+def test_manifest_invalid_declared_bytes_not_accepted(tmp_path):
+    rel=store_bytes(tmp_path,DATA,SHA)
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"raw_object":rel,"sha256":SHA,"bytes":True})
+    a=audit_private_root(tmp_path)
+    assert a["object_integrity"]=={"INVALID_DECLARED_BYTES":1}
+
+def test_manifest_valid_declared_bytes_verified(tmp_path):
+    rel=store_bytes(tmp_path,DATA,SHA)
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"raw_object":rel,"sha256":SHA,"bytes":len(DATA)})
+    assert audit_private_root(tmp_path)["object_integrity"]=={"VALID_OBJECT":1}
