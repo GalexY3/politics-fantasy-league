@@ -1,3 +1,11 @@
+# AB Atlas · CONT40 C31–C40 cerrado (10/10)
+
+Último lote: `0026-PFL-ABH-CONT40-C31-C40-20261027`; 26 lotes, conteos **derivados** 63 nodos, 81 relaciones, 159 ejecuciones, 44 incidencias, 328 operaciones. Sin validación Python canónica. [Ledger](../research/ABH_CONT40_20261027/CAMPAIGN_STATUS.json) · [Informe](../research/ABH_CONT40_20261027/REPORT_FINAL.md).
+
+Se han ejecutado 91 pruebas Python y 9 Node con código coincidente con blobs GitHub; otras 12 Python solo en parche local **no publicado** de `forecast.py`. **V4 36,90%, CT2 29/100 ordinal, VSDS 1/3, gates 0/6**. Sin puntuación real, sin Actions costosas ni merge a main. Codex [#17](https://github.com/GalexY3/Metodologia-AB/issues/17) pendiente, puede esperar. Para nuevos ciclos se requiere otra autorización.
+
+---
+
 # AB Atlas · CONT30 C21–C30 cerrado 10/10 · 27/10/2026
 
 **Autorización nueva «Sí, concedidos» agotada:** C21–C30 **10 ciclos AB-P A–J verificados**, saldo 0. [Estado de campaña](../research/ABH_CONT30_20261027/CAMPAIGN_STATUS.json) y [informe A–J](../research/ABH_CONT30_20261027/REPORT_FINAL.md). Series CONT10, CONT20, AB-H45, CDX e IC anteriores permanecen independientes. Para seguir otro bloque AB se necesita nueva autorización; no gastar cuotas simulando una suite no ejecutada.
