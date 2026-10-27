@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from collections import Counter
 import math
+import re
 import json
 from pathlib import Path
 
@@ -52,6 +53,8 @@ def evaluate_scope(payload: dict) -> dict:
         if not isinstance(tid, str) or not tid or tid in seen_tracks:
             raise InvalidScope("DUPLICATE_TRACK")
         seen_tracks.add(tid)
+        if not isinstance(track.get("name"), str) or not track["name"]:
+            raise InvalidScope("BAD_TRACK_NAME")
         if type(weight) not in (int, float) or not 0 < weight <= 100:
             raise InvalidScope("BAD_WEIGHT")
         total_weights += weight
@@ -67,13 +70,20 @@ def evaluate_scope(payload: dict) -> dict:
             if not isinstance(mid, str) or not mid or mid in seen_milestones:
                 raise InvalidScope("DUPLICATE_MILESTONE")
             seen_milestones.add(mid)
+            if re.fullmatch(r"[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*", mid) is None:
+                raise InvalidScope("INVALID_MILESTONE_ID")
             if type(lvl) is not int or lvl not in range(len(MATURITY)):
                 raise InvalidScope("INVALID_MATURITY")
             if (type(size) not in (int, float) or not math.isfinite(size)
                     or size <= 0 or size > 10000):
                 raise InvalidScope("BAD_SIZE")
-            if not isinstance(milestone.get("evidence_ref"), str) or not milestone["evidence_ref"]:
-                raise InvalidScope("MISSING_EVIDENCE")
+            if (not isinstance(milestone.get("name"), str) or len(milestone["name"]) < 4
+                    or not isinstance(milestone.get("why"), str) or len(milestone["why"]) < 10
+                    or not isinstance(milestone.get("evidence_ref"), str)
+                    or len(milestone["evidence_ref"]) < 5
+                    or not isinstance(milestone.get("evidence_class"), str)
+                    or not milestone["evidence_class"]):
+                raise InvalidScope("MILESTONE_NEEDS_EVIDENCE")
             earned = MATURITY[lvl]
             value += size * earned
             units += size
