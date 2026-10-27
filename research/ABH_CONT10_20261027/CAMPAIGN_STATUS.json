@@ -1,0 +1,95 @@
+{
+  "campaign_id": "PFL-ABH-CONT10-20261027",
+  "authorized_by": "Usuario: Concedido (respuesta a SOLICITO BRANCHING 10 CICLOS AB-H)",
+  "authorized": 10,
+  "executed_A_J": 5,
+  "valid_limited_documentary_or_engineering": 5,
+  "invalid": 0,
+  "planning_only": 0,
+  "not_executed": 5,
+  "remaining_authorized": 5,
+  "decision": "STOP_R5_PAUSE_NOT_CAMPAIGN_PERMISSION_EXHAUSTED",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "base_head": "b0a09ba73a8705c6d1d34c59b6c5658655b1f760",
+  "cycles": [
+    {
+      "id": "C01",
+      "mode": "AB-P",
+      "status": "CLOSED_PASS_BOUNDED",
+      "evidence": [
+        "C01_JS_STRUCTURAL_EVIDENCE.json",
+        "C01_RESULT.json"
+      ],
+      "validity": "Independent JS structural replay 20 GitHub batches 63 nodes 81 edges 119 runs 44 complaints, native Python canonical checker NOT_RUN"
+    },
+    {
+      "id": "C02",
+      "mode": "AB-R",
+      "status": "CLOSED_INCONCLUSIVE",
+      "evidence": [
+        "C02_RESULT.json"
+      ],
+      "validity": "Official concept of Senate present-not-voting verified, exact XML literal mapping still NOT_VERIFIED"
+    },
+    {
+      "id": "C03",
+      "mode": "AB-R",
+      "status": "CLOSED_DOCUMENTARY_SCOPE",
+      "evidence": [
+        "C03_RESULT.json"
+      ],
+      "validity": "Official CC BY 4.0 general with exemptions for Senate open data and six initiative-list XML distributions, no real-person release grade"
+    },
+    {
+      "id": "C04",
+      "mode": "AB-P",
+      "status": "CLOSED_DOC_ACCEPTED",
+      "evidence": [
+        "C04_RESULT.json",
+        "../../docs/DERECHOS_FUENTES_ABH45_20261027.md"
+      ],
+      "commit": "55fe6d4a6af91d48df72a177b23f4ab51d12c98f",
+      "validity": "Git SHA readback of documentary rights matrix, not legal approval"
+    },
+    {
+      "id": "C05",
+      "mode": "AB-R",
+      "status": "CLOSED_NEGATIVE_R5",
+      "evidence": [
+        "C05_RESULT.json"
+      ],
+      "validity": "Official RPP routes identified but no individual original/signed certificate/hash acquired"
+    }
+  ],
+  "atlas": {
+    "latest_batch": "0022-PFL-ABH-CONT10-C05-R5-20261027",
+    "deltas": 22,
+    "fully_replayed_independent_JS_through": 20,
+    "exact22_batch_chain_headers_readback": true,
+    "canonical_python_22_batches": "NOT_RUN",
+    "expected_bounded_counts": {
+      "nodes": 63,
+      "edges": 81,
+      "runs": 124,
+      "complaints": 44
+    }
+  },
+  "product_indicators": {
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "new_N1": 0,
+    "new_N2": 0,
+    "new_N3": 0,
+    "release_gates_passed": 0,
+    "release_gates_total": 6
+  },
+  "safety": {
+    "original_private_named_sources_uploaded_to_git": false,
+    "real_person_scoring_enabled": false,
+    "main_merged": false,
+    "CI_triggered": false
+  },
+  "R5": "Pause with 5 existing authorized credits because independent original RPP, exact Senate XML semantic contract, full Python checkout/CI and crash-durability test environment are absent; do not repeat source browsing or grant more credits simply to fill quota.",
+  "executor_task": "On research/pfl-codex-contributions-20261027 checkout at exact HEAD after the status commits, run native python ab_atlas/atlas_delta.py check with seed + updates 0001..0022, capture canonical state SHA/counts; run full pytest and Node suite without actions, capture exit codes and failing tests, add process-termination durability negative; report only verified outcomes; do not touch main, publish private originals or claim real-person scoring."
+}
