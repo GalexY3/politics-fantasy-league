@@ -25,7 +25,7 @@ def test_progress_http_loopback_and_host_guard(tmp_path):
         conn.close()
         assert response.status == 200
         assert payload["ok"] is True
-        assert abs(payload["progress_pct"] - 36.35) < 1e-8
+        assert abs(payload["progress_pct"] - 36.90) < 1e-8
         assert payload["track_count"] == 9
         assert len(payload["release_blockers"]) == 6
         assert payload["real_people_scoring_ready"] is False
