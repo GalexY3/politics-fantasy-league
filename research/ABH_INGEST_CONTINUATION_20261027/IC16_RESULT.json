@@ -1,0 +1,24 @@
+{
+  "cycle": "IC16",
+  "status": "CLOSED_NEGATIVE_RECONCILIATION_BUG",
+  "prereg": "IC16_PREREG.json",
+  "negative_before_fix": "Two manifest rows with identical capture_id and one review returned unreviewed_captures=1, despite two ambiguous capture operations; failing pytest observed.",
+  "fix": "Count number of all manifest rows with non-legacy capture_id minus uniquely reconciled capture IDs; duplicated IDs remain uncertain.",
+  "source_blob_sha": "d268f58caa1d3873816e539d775f9b0da6b686fb",
+  "tests": {
+    "focused": "29 passed",
+    "failed": 0
+  },
+  "boundary": "Local capture event token != person identity; no original publications and no gates promoted.",
+  "budget": {
+    "completed": 13,
+    "remaining": 7
+  },
+  "metrics": {
+    "v4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "next": "IC17 verify original manifest declared bytes property against stored raw object when SHA passes."
+}
