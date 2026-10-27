@@ -1,0 +1,32 @@
+{
+  "cycle": "IC18",
+  "status": "CLOSED_OPERATOR_AGGREGATE_CLI",
+  "prereg": "IC18_PREREG.json",
+  "deliverables": {
+    "source": "src/politics_fantasy/private_audit_cli.py",
+    "tests": "tests/test_private_audit_cli.py",
+    "source_git_sha": "4628da7120bee2f1cf5b96f8ed1ebc84b2d81b8d",
+    "tests_git_sha": "1b2b53b359f6ed993dd971db6c9dcae125e311a8"
+  },
+  "native_execution": {
+    "isolated_subprocess_tests": 5,
+    "pass": 5,
+    "files_equal_Github_git_blobs": true
+  },
+  "behavior": "CLI invokes readonly private auditor, emits only aggregate counters; success code zero only for nonempty, coherent, SHA verified and reviewed fake captures; returns 2 on corruption, unreviewed, missing store or unsafe ledger without exposing private paths or original data.",
+  "limitations": [
+    "Even clean local integrity report never certifies publisher, license or first_public_at",
+    "Not connected to HTTP application",
+    "No proof of unattended production safety on Windows; POSIX only"
+  ],
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "completed": 15,
+    "remaining": 5
+  }
+}
