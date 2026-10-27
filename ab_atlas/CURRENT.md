@@ -1,3 +1,13 @@
+# AB Atlas · CONT50 C41–C50 cerrado 10/10 · 27/10/2026
+
+La autorización de diez ciclos AB-H **C41–C50 se agotó íntegra**: [ledger](../research/ABH_CONT50_20261027/CAMPAIGN_STATUS.json) e [informe A–J](../research/ABH_CONT50_20261027/REPORT_FINAL.md). Los diez son AB-P de ingeniería; no hallazgo científico ni permiso de scoring real. **173 tests Python y 9 Node PASS** nativos, sobre 12 fuentes y 18 tests SHA-idénticos a la rama, no suite total. La auditoría del alcance V3/V4 C44 se ejecutó por aritmética JS sobre los JSON originales, **no** como replay nativo de ambas APIs; registrar este límite.
+
+Atlas último: **0027**, lotes **27**, contadores **derivados** 63 nodos, 81 edges, **169 runs**, 44 complaints, 338 ops. **Sin `atlas_delta.py check` Python canónico ni SHA estado.** V4 **36,90%**, CT2 identidad **29/100** ordinal, VSDS **1/3**, N1/N2/N3 nuevos 0/0/0, gates **0/6**, sin promocionar por número de tests. No Actions costosas, main merge, originales privados publicados ni puntuaciones de políticos reales.
+
+Codex [issue #17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue **pendiente**, puede esperar hasta que el usuario disponga de Codex. Cuando esté disponible, su contrato se actualiza a **27 lotes** más pytest y Node completos en checkout. El siguiente bloque AB-H requiere **nueva autorización**; R5 desaconseja repetir controles numéricos marginales en lugar de resolver gates o fuentes originales.
+
+---
+
 # AB Atlas · CONT40 C31–C40 cerrado (10/10)
 
 Último lote: `0026-PFL-ABH-CONT40-C31-C40-20261027`; 26 lotes, conteos **derivados** 63 nodos, 81 relaciones, 159 ejecuciones, 44 incidencias, 328 operaciones. Sin validación Python canónica. [Ledger](../research/ABH_CONT40_20261027/CAMPAIGN_STATUS.json) · [Informe](../research/ABH_CONT40_20261027/REPORT_FINAL.md).
