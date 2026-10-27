@@ -1,3 +1,19 @@
+# AB Atlas · CONT60 C51–C60 cerrado 10/10 · 28/10/2026
+
+**Última autorización:** «De acuerdo, concedidos», diez ciclos AB-H C51–C60. **Ejecutados y documentados A–J: 10/10, saldo 0.** [Ledger](../research/ABH_CONT60_20261028/CAMPAIGN_STATUS.json) · [informe final](../research/ABH_CONT60_20261028/REPORT_FINAL.md). Cuatro ciclos **AB-R** institucionales/jurídicos (dos originales inconclusos, una interpretación jurídica primaria acotada, una licencia específica positiva) y seis **AB-P** (gate documental de privacidad, fecha, identidad servidor, Atlas y pruebas).
+
+**Nuevos datos:** Senado distingue al presente que expresamente no vota desde 04/06/2013, **sin** validar el literal nominal XML `NO VOTAN`. Interior SIA 992324 emite certificados registrales, **ninguno obtenido**. [datos.gob.es «Resultados Electorales»](https://datos.gob.es/es/catalogo/e00003801-resultados-electorales) especifica **CC BY 4.0** para distribuciones de cargos electos Congreso y Senado; [matriz de derechos actualizada](../docs/DERECHOS_FUENTES_ABH45_20261027.md), sin autorizar perfiles de personas. GDPR art 9/AEPD requieren evaluación independiente de finalidad y base legal cuando proceda, y cribado de riesgo/EIPD, **no** equiparar licencia RISP con permiso de puntuar personas.
+
+**Controles nativos verdaderamente ejecutados:** `source_eligibility.py` fuente final SHA `04ddb36...`, dos originales de tests + otros controles de privacidad/tiempos/catálogo, **47/47 casos PASS** seleccionados en Python 3.13.5. Ningún documento original nominativo incorporado. [Manifiesto de evidencia](../research/ABH_CONT60_20261028/C60_evidence_manifest.json).
+
+**Atlas:** append-only `0028-PFL-ABH-CONT60-C51-C60-20261028`, **28 lotes**. Verificación documental directa de *seed + 27 lotes previos*: padres y tipos/coherencia de operaciones, sin errores detectados. Total posterior **derivado** 63 nodos, 81 aristas, **179 ejecuciones**, 44 incidencias y 348 operaciones. **Python `atlas_delta.py check` del estado 28 sigue NOT_RUN, SHA canónico desconocido.**
+
+**Indicadores sin promoción:** V4 **36,90%**, CT2 identidad **29/100 ordinal**, VSDS **1/3**, N1/N2/N3 nuevos **0/0/0**, gates **0/6**. [Gráfica CT2 completa y ampliada](../research/ABH_CONT30_20261027/CT2_IDENTITY_CURRENT.svg). No reales puntuados, no datos privados originales en Git, no merge main ni Actions costosas.
+
+**Codex** [issue #17](https://github.com/GalexY3/Metodologia-AB/issues/17) **no ejecutada**; puede esperar hasta que el usuario disponga de acceso. Su tarea deberá operar sobre checkout HEAD exacto con **28 lotes**, pytest/Node completos y SHA estado. **R5:** futuros esfuerzos priorizar originales oficiales verificables, identidad registral y decisión jurídica de propósito, no rellenar ciclos con tests repetitivos. Se ha solicitado permiso independiente para **20 ciclos nuevos** tras este cierre; no asumir concesión.
+
+---
+
 # AB Atlas · CONT50 C41–C50 cerrado 10/10 · 27/10/2026
 
 La autorización de diez ciclos AB-H **C41–C50 se agotó íntegra**: [ledger](../research/ABH_CONT50_20261027/CAMPAIGN_STATUS.json) e [informe A–J](../research/ABH_CONT50_20261027/REPORT_FINAL.md). Los diez son AB-P de ingeniería; no hallazgo científico ni permiso de scoring real. **173 tests Python y 9 Node PASS** nativos, sobre 12 fuentes y 18 tests SHA-idénticos a la rama, no suite total. La auditoría del alcance V3/V4 C44 se ejecutó por aritmética JS sobre los JSON originales, **no** como replay nativo de ambas APIs; registrar este límite.
