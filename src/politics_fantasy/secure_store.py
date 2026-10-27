@@ -243,8 +243,18 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
             import fcntl
             fcntl.flock(fd, fcntl.LOCK_EX)
             try:
-                _write_all(fd, payload)
-                os.fsync(fd)
+                # A partial multi-syscall append can otherwise poison the next
+                # JSONL line even after the OSError has been handled.
+                previous_end = os.lseek(fd, 0, os.SEEK_END)
+                try:
+                    _write_all(fd, payload)
+                    os.fsync(fd)
+                except OSError:
+                    # Roll back only errors caught by this live process.
+                    # SIGKILL / power loss still require separate recovery.
+                    os.ftruncate(fd, previous_end)
+                    os.fsync(fd)
+                    raise
                 os.fsync(folder)  # Persist ledger directory entry.
             finally:
                 fcntl.flock(fd, fcntl.LOCK_UN)
