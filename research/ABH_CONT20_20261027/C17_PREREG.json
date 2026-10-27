@@ -1,0 +1,28 @@
+{
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C16",
+  "A": {
+    "question": "Can read-only aggregate audit falsely report INCOMPLETE_LEDGER_RECORD while a legitimate concurrent writer holds an exclusive lock between two partial write syscalls?",
+    "acceptance": "Acquire shared flock on each private ledger before reading, release after bytes consumed. Add synthetic adversarial blocking test; still not an atomic two-ledger snapshot."
+  },
+  "B": {
+    "rivals": [
+      "O_APPEND and newline check alone eliminate transient audit inconsistency",
+      "Auditor needs cooperative LOCK_SH to wait for LOCK_EX writer"
+    ],
+    "null": "Advisory non-cooperating writers remain outside guarantee"
+  },
+  "C": "Modify `_ledger` in private_audit.py to take fcntl LOCK_SH, wrap read in try/finally unlock; preserve no-follow and privacy; test controlled separate threads writing fragment first then second.",
+  "D": {
+    "falsifier": "Reader returns corrupt/no-newline before cooperating writer completes or hangs after writer unlock",
+    "limits": "POSIX only, one ledger at a time, no cross-ledger transaction or power-cut proof"
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
