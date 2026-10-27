@@ -167,3 +167,21 @@ def test_complete_jsonl_with_newline_accepted_as_legacy(tmp_path):
     result=audit_private_root(tmp_path)
     assert result["manifest_rows"]==1
     assert result["legacy_captures_unlinked"]==1
+
+
+def test_duplicate_json_member_in_manifest_rejected(tmp_path):
+    """Two fields with the same name cannot silently override capture identity."""
+    (tmp_path / "manifest.jsonl").write_bytes(
+        b'{"capture_id":"111","capture_id":"222","sha256":"fictional"}\\n'.replace(b"\\\\n", b"\\n")
+    )
+    with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
+        audit_private_root(tmp_path)
+
+
+def test_duplicate_json_member_in_review_rejected(tmp_path):
+    append_private_jsonl(tmp_path, "manifest.jsonl", {"fictional": True})
+    (tmp_path / "quarantine_reviews.jsonl").write_bytes(
+        b'{"quarantine_state":"QUARANTINED_SCHEMA_PASSED","quarantine_state":"RELEASE_READY"}\\n'.replace(b"\\\\n", b"\\n")
+    )
+    with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
+        audit_private_root(tmp_path)
