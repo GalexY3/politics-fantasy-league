@@ -1,0 +1,22 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC12",
+  "status": "PREREGISTERED",
+  "mode": "AB-P",
+  "prior": "IC11 operator audit returns aggregates but invokes _child_directory for read path, which performs os.mkdir when shard absent, so alleged read-only audit might mutate storage.",
+  "H1": "An audit of a manifest referencing missing object/shard creates empty shard; replace with strictly existing-only nofollow fd traversal, report MISSING_OR_UNSAFE_OBJECT without mutation.",
+  "H0": "No mutation occurs despite _child_directory's documented mkdir path.",
+  "tests": [
+    "malformed manifest referring to valid hash with absent shard must not create shard on disk",
+    "empty root without objects must remain unchanged after audit",
+    "regular valid fake object remains VALID_OBJECT",
+    "followed symlink root/shard stays denied"
+  ],
+  "acceptance": "A purely read-only operator audit function on POSIX with regression test and no source-content leakage.",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
