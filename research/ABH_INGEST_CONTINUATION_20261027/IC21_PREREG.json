@@ -1,0 +1,11 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC21",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "H1": "After IC15–IC20, full Python and JS regressions still pass, and optional CI can include new secure-store, private-audit, CLI and end-to-end fictional tests without exposing private originals.",
+  "H0": "New hardening breaks existing product endpoints, original-source QA, or test import behavior; report actual failures.",
+  "method": "Run Python pytest on local ZIP checkout overlaid with current branch-relevant code, inspect all project tests, Node test, and CI workflow source; patch CI to include new tests but never auto-run GitHub Actions. Report path SHA/limitations.",
+  "gates": "Do not promote V4/CT2/launch gates from tests alone",
+  "R5": "If isolated environment time limit blocks full suite, record partial and avoid success claim."
+}
