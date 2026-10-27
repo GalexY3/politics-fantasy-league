@@ -157,6 +157,7 @@ def store_bytes(root: Path, data: bytes, digest: str) -> str:
                     _verify_object(folder, digest, data)
                 finally:
                     os.unlink(temp, dir_fd=folder)
+                    os.fsync(folder)  # Persist final digest link and temp unlink.
     return "objects/" + digest[:2] + "/" + digest
 
 
