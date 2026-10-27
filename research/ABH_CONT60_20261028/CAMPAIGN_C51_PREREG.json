@@ -1,0 +1,35 @@
+{
+  "campaign": "PFL-ABH-CONT60-20261028",
+  "user_authorization": "De acuerdo, concedidos (10 new AB-H C51-C60)",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "6c556954bc502fcdc193ef9d8f24d554585a2be7",
+  "authorized": 10,
+  "executed": 0,
+  "invalid": 0,
+  "planning_only": 0,
+  "method": "AB 3.2.1 O3-O7 A-J per real cycle; R1-R5 stop marginal duplication; source-first AB-R separate AB-P; no inflated CT2 or gates; avoid original nominative data committed",
+  "constraints": [
+    "No merge main or costly CI",
+    "No real-person scoring",
+    "Do not assume Codex action or full checkout tests",
+    "Prereg before each contrast; document negative/inconclusive",
+    "Keep source licensing and `first_public_at` separate"
+  ],
+  "C51": {
+    "mode": "AB-R",
+    "A": "Can a precise original Senado XML/session technical guide or nominal vote primary document establish the literal meaning of `NO VOTAN` in vote XML, as distinct from general attendance page?",
+    "B": {
+      "H1": "A Senate original mapping explicitly equates literal to present-but-not-voting",
+      "H2": "Literal may encode absence/intent ambiguously or differ by period",
+      "H3": "Only secondary/general support, source gate unchanged"
+    },
+    "C": "Search official Senate technical descriptions, indexed XSD/XML documents and catalog, inspect literal/exact schemas; report URL/date/type/content and no personal rows; if no primary, stop under R5 not infer semantics.",
+    "D": "Passing evidence requires unambiguous Senado-published original literal-to-vote-state mapping; falsifier XSD enum absent semantics, inaccessible nominal XML; do not conflate attendance descriptions.",
+    "E": "PENDING",
+    "F": "PENDING",
+    "G": "PENDING",
+    "H": "PENDING",
+    "I": "PENDING",
+    "J": "PENDING"
+  }
+}
