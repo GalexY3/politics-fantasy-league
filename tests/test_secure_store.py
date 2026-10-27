@@ -146,3 +146,39 @@ def test_write_failure_does_not_leave_partial_temporary_file(tmp_path, monkeypat
     shard=tmp_path/"objects"/DIGEST[:2]
     assert not list(shard.iterdir())
     assert not (tmp_path/"manifest.jsonl").exists()
+
+
+def test_parallel_private_jsonl_appends_never_interleave_partial_writes(tmp_path, monkeypatch):
+    """One line may require multiple syscalls; lock the entire record on POSIX."""
+    import json
+    import time
+    import politics_fantasy.secure_store as module
+
+    original_write = module._write_all
+
+    def split_write(fd, payload):
+        midway = max(1, len(payload) // 2)
+        original_write(fd, payload[:midway])
+        time.sleep(0.003)  # force a scheduling window between syscalls
+        original_write(fd, payload[midway:])
+
+    monkeypatch.setattr(module, "_write_all", split_write)
+    errors = []
+
+    def worker(i):
+        try:
+            append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic_id": i})
+        except BaseException as exc:
+            errors.append(repr(exc))
+
+    threads = [threading.Thread(target=worker, args=(i,)) for i in range(16)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join(timeout=10)
+    assert all(not thread.is_alive() for thread in threads)
+    assert errors == []
+    lines = (tmp_path / "manifest.jsonl").read_text().splitlines()
+    assert len(lines) == 16
+    values = [json.loads(line)["synthetic_id"] for line in lines]
+    assert sorted(values) == list(range(16))
