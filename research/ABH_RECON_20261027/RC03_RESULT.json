@@ -1,0 +1,15 @@
+{
+  "id": "RC03-20261027", "mode": "AB-H/AB-R", "status": "CLOSED_EXPLORATORY_NOT_BLIND", "prereg_commit": "f5747af",
+  "A": "Recuperación y perfil de dos originales del Senado: composición histórica y votación de una sesión.",
+  "B": "El subagente ya había descargado y examinado los originales antes del preregistro; no hay evaluación ciega ni réplica independiente.",
+  "C": "Se reprodujeron los dos hashes, recuentos y estructuras observados durante la exploración.",
+  "D": "Ambas descargas devolvieron HTTPS 200 y ssl_verify_result=0. Composición: 1236629 bytes SHA256 f5753278d0b6dab8fc43f88f69ec2de35ffc1d0fbb48ddff1e407c877a6b9063. Sesión: 748554 bytes SHA256 671436ba27f90aa9c19fc342fc8508f7d1ddf122aa422b64edca5d6b150a6a71.",
+  "E": "Script Python de lectura XML sin exportar nombres o votos. Perfil completo: RC03_PROFILE.json.",
+  "F": "Composición: 2521 nodos senador, 16 valores de legislatura, 342 valores de ultCredencial y 2521 pares (legislatura, ultCredencial) distintos, sin faltantes en esos campos. Sesión: 10 nodos votación, 2589 VotoSenador y 51 ausencia.",
+  "G": "El par es único en ESTA captura y sirve como candidato técnico de clave del snapshot, no como ID longitudinal certificado. No se ha comprobado que ultCredencial se corresponda con la identidad de cada voto ni con el contrato institucional.",
+  "H": {"complaint": "RC03-COMP-EXPOSURE", "confirmed": true, "status": "documented", "description": "La exploración precedió al protocolo. Repetir el perfil no es corroboración independiente ni prueba de hipótesis ciega.", "limitations": "No convertir fecha de archivo en primera publicación; composición del Senado no es Congreso; grupo no es automáticamente partido."},
+  "I": {"decision": "Catalogar como fuentes primarias candidatas de composición y eventos, con identidad/temporalidad pendientes", "CT2_identity_before_after": [29, 29], "VSDS": "1/3", "scientific_novelty_0_3": 0, "launch_gates": "unchanged"},
+  "J": "Consolidar catálogo y mapa; R5 en vínculos de identidad hasta disponer de un contraste con identificador o adjudicación independiente y procedencia temporal suficiente.",
+  "access": {"capture_utc_date": "2026-10-27", "conditions": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/reutilizacion/index.html", "license_catalog_claim": "CC BY 4.0 salvo excepciones; citar fuente y fecha de última actualización cuando corresponda", "raw_local": "data/raw/senado_20261027/ (gitignored)", "raw_remote_preserved": false},
+  "authorization": {"prior_distinct_branch_records": 13, "this_continuation_run": 3, "conservative_max_remaining_if_same_block": 4, "identity_of_authorizations": "UNRESOLVED"}
+}
