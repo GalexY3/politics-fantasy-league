@@ -1,0 +1,24 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC08",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC04-IC07 fixed symlink and response size risks, but storage root may exist with group/world write/read permissions. Existing object can be writable and altered after manifest.",
+  "H1": "Owner/mode checks on root, shard, objects and files will reject unsafe pre-existing permissions without changing normal 0700/0600 behavior.",
+  "H0": "All pre-existing permissions are already confined and no negative mode case is accepted.",
+  "tests": [
+    "world-writable root rejected",
+    "group/world writable objects directory rejected",
+    "existing digest file world-writable rejected despite valid hash",
+    "normal temp private 0700 root and 0600 file accepted",
+    "unsafe manifest mode rejected or deliberately migrated without silent trust"
+  ],
+  "acceptance": "Native tests + API stability; no chmod of untrusted existing file to hide problem.",
+  "R5": "No claims of Windows permission parity",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
