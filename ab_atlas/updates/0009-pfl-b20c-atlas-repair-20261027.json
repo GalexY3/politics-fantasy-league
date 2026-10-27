@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0009-PFL-B20C-ATLAS-REPAIR-20261027",
+  "parent_batch": "0008-PFL-B20C-ORIGINALS-20261027-R5",
+  "at": "2026-10-27T03:36:00+01:00",
+  "actor": "chatgpt",
+  "reason": "Record concrete preflight Atlas failure and verified repair: new 0008 draft used nonexisting C6/C9 run names for two complaint records. Updated 0008 before acceptance and replay of first 8 patches passes. This is maintenance, zero new AB cycles.",
+  "ops": [
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C12-ATLAS-RUNID-REPAIR",
+        "run_id": "PFL-B20C-C12",
+        "severity": "minor",
+        "status": "open",
+        "category": "traceability_replay",
+        "source": "agent",
+        "description": "Preflight 0008 failed because two complaint.run_id fields pointed to PFL-B20C-C6 and C9 rather than C06 and C09. The 0008 draft was amended to correct these source references and revalidated.",
+        "at": "2026-10-27T03:36:00+01:00"
+      }
+    },
+    {
+      "op": "complaint.triage",
+      "id": "PFL-B20C-C12-ATLAS-RUNID-REPAIR",
+      "status": "repaired",
+      "reason": "GitHub repair commit 58a2a0e357bf736c297ee319454c6c3313624c33, batch 0008 blob sha 817dbc6d82ec77c6ea1333f4baa5ad786c5bdee0; eight-batch replay checks parent chain, edges, nodes and complaint indexes: PASS."
+    }
+  ]
+}
