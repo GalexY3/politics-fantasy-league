@@ -1,3 +1,16 @@
+# AB Atlas · Politics Fantasy · rama Codex · 27/10/2026
+
+**Estado de esta rama:** nueve ciclos CDX01–CDX09 registrados en [la campaña independiente](../research/CODEX_CONTRIB_20261027/REPORT.md), autorizada expresamente por el usuario sin cupo numérico. La campaña BRANCHING20C heredada está cerrada 20/20; la rama de 45 ciclos de ChatGPT avanza por separado. El trabajo de Codex no se ha integrado en `main` ni en dicha rama.
+
+- **Producto:** jornada sintética local con liquidación persistente y nueva jornada, API e interfaz comprobadas en navegador. También se corrigieron reconciliación incompleta, entradas de procedencia, dependencias de desarrollo y exportación local. La suite más reciente: **362 pruebas, 2 subtests y 1 omitida** en Windows; el test omitido requiere crear un enlace simbólico.
+- **Investigación:** XML de Senado, 7/10 comparables bajo el vocabulario preregistrado y 3 indeterminadas; con una hipótesis post hoc no certificada coinciden 10/10. Es consistencia interna de un archivo, no evidencia independiente de identidad ni de `first_public_at`.
+- **Atlas:** lote [`0012-pfl-codex-20261027.json`](updates/0012-pfl-codex-20261027.json), padre `0011-PFL-B20C-BOCG-FINAL-20261027`; comprobación oficial Python **12 lotes, 47 nodos**, SHA-256 `5fdbea922fa403e53a97ef0a9b425049e45ebf934fa12a1f705307b23121a5bc`. El trabajo paralelo puede usar otro sucesor de 0011: reconciliar los padres y las operaciones antes de integrar; no concatenar los lotes sin revisión.
+- **Sin promoción científica:** CT2 identidad **29/100**, VSDS **1/3**, gates **0/6**. Permanece abierta la semántica institucional de «NO VOTAN» y la prueba de enlaces simbólicos; el empaquetado no detecta todo secreto posible.
+
+---
+
+## Estado histórico previo: BRANCHING20C cerrado 20/20
+
 # AB Atlas · Politics Fantasy · BRANCHING20C cerrado 20/20 · 27/10/2026
 
 **ESTADO VIGENTE:** el usuario concedió una nueva autorización BRANCHING de **20 ciclos** separada del bloque histórico reconciliado. Tras investigación autónoma adicional se completaron **C01–C20 (20/20 registrados; 0 plazas disponibles)**. Una ejecución previa C04 quedó STOP_R5 sin prueba HTTP, y no todos los ciclos son experimentos científicos independientes. No se inicia otra campaña AB sin nueva autorización humana; esta restricción no implica que falten otras fuentes accesibles.
