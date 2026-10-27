@@ -1,0 +1,45 @@
+{
+  "cycle": "C06",
+  "instrument": "independent JS over exact GitHub JSON docs",
+  "status": "PASS",
+  "errors": [],
+  "base_batches": 20,
+  "tail_batches": [
+    "0021-PFL-ABH-CONT10-C01-C04-20261027",
+    "0022-PFL-ABH-CONT10-C05-R5-20261027"
+  ],
+  "parent_matched": true,
+  "run_ids": [
+    "PFL-CONT10-C01",
+    "PFL-CONT10-C02",
+    "PFL-CONT10-C03",
+    "PFL-CONT10-C04",
+    "PFL-CONT10-C05"
+  ],
+  "computed_counts": {
+    "nodes": 63,
+    "edges": 81,
+    "runs": 124,
+    "complaints": 44
+  },
+  "gates_changed": false,
+  "read_blobs": [
+    {
+      "item": 0,
+      "blob_sha": "67727d32023df77e7794ce41a0a30de90e3c6074"
+    },
+    {
+      "item": 1,
+      "blob_sha": "f80fbfcf86d59ab072ab6a4db8f94f03cad42ae0"
+    },
+    {
+      "item": 2,
+      "blob_sha": "2f31b7a9ab7fa7c5a5d03e099bcdb1a5fc9ce77d"
+    },
+    {
+      "item": 3,
+      "blob_sha": "17b1e5dbc95c4f93128f1f01a1126a1d46b338a2"
+    }
+  ],
+  "limits": "DOES_NOT_EXECUTE atlas_delta.py Python canonical checker; counts 0021–22 derived from validated ops, not full replay of 22 batch state; no publisher signature verified"
+}
