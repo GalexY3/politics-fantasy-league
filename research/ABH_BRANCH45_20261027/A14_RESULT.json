@@ -1,0 +1,31 @@
+{
+  "id": "A14",
+  "status": "CLOSED_SOURCE_FAMILY_TAXONOMY_NO_RPP_CERTIFICATION",
+  "prereg": "A14_PREREG.json",
+  "artifacts": [
+    "docs/TIPOS_DE_FUENTES_PARTIDOS_20261027.md",
+    "docs/CATALOGO_FUENTES.md"
+  ],
+  "verified": {
+    "source_family_count": 5,
+    "forbidden_cross_family_equivalences_documented": true,
+    "individual_RPP_issuer_signed_entries": 0,
+    "individual_party_id_invented": false,
+    "annual_RPP_spreadsheets_downloaded": false
+  },
+  "judgment": "RPP registration, election candidacy/coalition, parliamentary group, statistical RPP aggregate and person membership are not interchangeable; exact claim scopes must retain publisher, record family, source ref and date. Official 2020/2021 Excel metadata does not constitute verified legal party census.",
+  "V3": "src.registry remains 0, all six release gates unchanged, V3 36.35% unchanged",
+  "source_findings": [
+    "A12_RESULT.json",
+    "A13_RESULT.json"
+  ],
+  "budget": {
+    "A_spent": 14,
+    "A_remaining": 6,
+    "R_spent": 0,
+    "R_remaining": 5,
+    "B_spent": 0,
+    "B_remaining": 20
+  },
+  "next": "A15 inspect registered RPP annual aggregate XLSX original only if it is accessible and adds independent series, else pivot to QA of source provenance and abort missing fetch cleanly."
+}
