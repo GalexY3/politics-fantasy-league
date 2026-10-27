@@ -1,0 +1,29 @@
+{
+  "cycle": "C19",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C18",
+  "A": {
+    "question": "On abrupt process termination before JSONL newline, can private audit detect torn capture ledger and refuse success rather than silently treating it as reviewed?",
+    "estimand": "Negative safety test under SIGKILL on disposable synthetic manifest",
+    "acceptance": "Spawn child writes deliberately incomplete synthetic JSONL record and fsyncs; SIGKILL only child; afterward private audit raises INCOMPLETE_LEDGER_RECORD and CLI code2; no raw identifiers exposed."
+  },
+  "B": {
+    "rivals": [
+      "Filesystem contains no record, so no parser evidence (process stopped before write)",
+      "A persistent but unterminated line is detected and fails closed",
+      "Torn partial line could parse as complete valid JSON if newline ignored (regression C20 addressed newline)"
+    ]
+  },
+  "C": "Execute isolated process-termination fixture in container and commit a POSIX-only test invoking existing read-only audit path. Distinguish actual process-kill test from power outage and full transaction recovery.",
+  "D": {
+    "falsifier": "Process interrupted after flushed fragment but audit reports normal success or creates files during read.",
+    "safety": "Only disposable tmp_path, fake data, local process, no HTTP/private originals or CI."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
