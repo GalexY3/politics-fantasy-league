@@ -1,10 +1,29 @@
 {
   "cycle": "C31",
-  "status": "executed_negative_locally",
   "mode": "AB-P",
-  "baseline_sha": "d07a2762086a63089c82490bff6b4513d3dbb9d7",
-  "observation": "Exact Git blob progress_api.py under CPython 3.13 accepted milestone.size=float('nan'), returned ok=true with progress_pct=nan. JSON strict serialization then fails.",
-  "code_patch_status": "NOT_PUSHED: GitHub update blocked twice by security controls",
-  "canonical_atlas": "NOT_RUN",
-  "release_gate": "NO_CHANGE"
+  "status": "VALID_NATIVE_RED_GREEN_BUGFIX",
+  "A": "NaN in milestone.size bypasses bounds and produces non-finite progress.",
+  "B": "Either progress API rejects NaN or accepts it and makes invalid score",
+  "C": "Native byte-identical Python progress_api source; synthetic scope, baseline pytest 5 pass 1 fail, after patch 6 pass",
+  "D": {
+    "source_before": "d07a2762086a63089c82490bff6b4513d3dbb9d7",
+    "source_after": "c5fd56148a7e10b6bdff77e61573b312ba22d0f4",
+    "code_commit": "9a8efd17988e7a8f01340a80f9c43268475b3a01",
+    "regression_commit": "14690d74189e1c5e09f242d4177ae31e63504f2d",
+    "test": "/mnt/data/pfl_cont40_native/tests/test_progress_nonfinite.py"
+  },
+  "E": {
+    "before": "5 pass 1 failed on NaN",
+    "after": "6 passed"
+  },
+  "F": "V4 source scope full corpus and whole Python suite not rerun; does not imply gates lifted",
+  "G": "Local git hash equals original and corrected GitHub blobs",
+  "H": "Quality assurance of scope progress calculation only",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C32 inspect JS optional chaining release gate missing IDs"
 }
