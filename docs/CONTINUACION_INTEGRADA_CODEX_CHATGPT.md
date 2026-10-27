@@ -1,3 +1,15 @@
+# Continuidad vigente · CONT50 C41–C50 cerrado 10/10 · Atlas 0027
+
+Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger](../research/ABH_CONT50_20261027/CAMPAIGN_STATUS.json) e [informe](../research/ABH_CONT50_20261027/REPORT_FINAL.md). Usuario autorizó exactamente 10 nuevos AB-H, se documentaron y ejecutaron **C41–C50, 10/10 A–J**, saldo 0. **No** comenzar C51 sin nueva concesión.
+
+C41 integró y probó `forecast.py` (10 FAIL/2 PASS originales → 12 PASS); C42 publicó las siete regresiones del grafo; C43 verificó cortes históricos; C44 re-auditó JSON originales V3/V4 con nueve invariantes **sin cumplir el replay previsto por ambos runtimes**; C45–C49 ejecutaron pruebas originales de calidad, grafo, política de admisibilidad, estadística y 48 controles de identidad Poisson. C50 cerró con **173 Python + 9 Node PASS**, **12 módulos fuente y 18 archivos tests** con Git SHA idéntico. Solo subconjunto verificado; ningún pytest global ni Node global ni originales externos. Evidencia local archivada en `PFL_CONT50_native_evidence.zip` en esta conversación.
+
+Atlas append-only **0027**, **27 lotes**; conteos **derivados** 63/81/**169**/44 y **338 operaciones**. El checker Python canónico de Atlas **NOT_RUN**, SHA estado no calculado. Indicadores V4 **36,90%**, CT2 identidad **29/100**, VSDS **1/3**, nuevos N1/N2/N3 0, gates **0/6**. No acciones CI, merges o puntuaciones personales reales.
+
+**Codex #17 [pendiente](https://github.com/GalexY3/Metodologia-AB/issues/17)**: cuando pueda accederse, checkout HEAD exacto, comprobar **27 deltas** del Atlas con salida/exit/SHA, pytest completo y Node. Ni abrir una issue ni registrar esta nota es ejecución. El siguiente trabajo debería priorizar corpus original institucional y bloqueos reales, no repetir variantes de NaN/fixture bajo cuotas.
+
+---
+
 # CONT40 C31–C40 cerrado: 10/10, Atlas 0026
 
 [Informe](../research/ABH_CONT40_20261027/REPORT_FINAL.md) y [ledger](../research/ABH_CONT40_20261027/CAMPAIGN_STATUS.json). Se hicieron 91 tests Python y 9 Node sobre módulos SHA-idénticos a la rama, más 12 Python sólo sobre modificación local **no incorporada** de forecast. V4 36,90%, CT2 29, VSDS 1/3 y gates 0/6; Atlas 26 lotes, 159 runs derivados sin check Python canónico. [Codex #17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue pendiente hasta que esté disponible; no se ha ejecutado. Se necesita nuevo permiso para otra campaña.
