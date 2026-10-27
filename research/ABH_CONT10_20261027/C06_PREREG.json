@@ -1,0 +1,30 @@
+{
+  "cycle": "C06",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C05",
+  "user_direction": "Explicitly finish the five remaining authorized cycles before requesting a new grant",
+  "A": {
+    "question": "¿Los lotes Atlas 0021–0022 preservan contabilidad e integridad sobre el estado reconstruido con 0001–0020, sin que 5 recibos aparezcan como 5 verificaciones empíricas?",
+    "estimand": "Integridad de parentesco, IDs, refs, granularidad de evidencias y gates"
+  },
+  "B": {
+    "rivals": [
+      "Dos deltas válidos y cinco runs nuevos, +0 nodos/aristas/complaints",
+      "IDs repetidos, ref inválida, gate cambiado o confusión de hallazgo AB-R con release grade"
+    ]
+  },
+  "C": {
+    "test": "Leer evidencia C01 y deltas exactos 0021–0022; ejecutar V8 sobre controles de IDs y ref, número y estado de operaciones, ninguna elevación de gates; cotejar ledger de campaña y CURRENT; distinguir SHA blob de estado canónico."
+  },
+  "D": {
+    "instrument": "GitHub original blobs + JS independent asserts",
+    "falsifier": "Cualquiera de los invariantes falla o un resultado se eleva a prueba de publisher."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
