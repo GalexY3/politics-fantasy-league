@@ -1,0 +1,30 @@
+{
+  "cycle": "IC13",
+  "status": "CLOSED_DISTINCT_CAPTURE_EVENT_NONCE",
+  "prereg": "IC13_PREREG.json",
+  "source_shas": {
+    "ingest.py": "913f00079c1eba519b977956e18d61d152a3fe20",
+    "quarantine_ingest.py": "1f2fd213a10a06c395ed67802b319d4d1220d564"
+  },
+  "native_tests": {
+    "focused": 23,
+    "passed": 23
+  },
+  "finding": "Before change, SHA content used as only capture-to-review referent and two identical snapshots indistinguishable. Each capture now gets secrets.token_hex(16) and review propagates capture_id, without linking to person or publisher signature.",
+  "limits": [
+    "Old manifest/review rows have no capture_id and require explicit legacy status rather than fabricated backfill",
+    "Auditor still joins by SHA; next IC14 updates reconciliation semantics",
+    "capture_id is local operation token not official stable person or document ID"
+  ],
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 10,
+    "remaining": 10
+  },
+  "next": "IC14 audit capture_id 1:1 vs orphan/duplicate and legacy unattested."
+}
