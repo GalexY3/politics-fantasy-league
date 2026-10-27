@@ -2,13 +2,13 @@
   "campaign_id": "PFL-ABH-CONT10-20261027",
   "authorized_by": "Usuario: Concedido (respuesta a SOLICITO BRANCHING 10 CICLOS AB-H)",
   "authorized": 10,
-  "executed_A_J": 5,
-  "valid_limited_documentary_or_engineering": 5,
+  "executed_A_J": 10,
+  "valid_limited_documentary_or_engineering": 10,
   "invalid": 0,
   "planning_only": 0,
-  "not_executed": 5,
-  "remaining_authorized": 5,
-  "decision": "STOP_R5_PAUSE_NOT_CAMPAIGN_PERMISSION_EXHAUSTED",
+  "not_executed": 0,
+  "remaining_authorized": 0,
+  "decision": "CLOSED_10_OF_10_GRANTED_NEXT_AUTHORIZATION_REQUIRED",
   "branch": "research/pfl-codex-contributions-20261027",
   "base_head": "b0a09ba73a8705c6d1d34c59b6c5658655b1f760",
   "cycles": [
@@ -59,20 +59,71 @@
         "C05_RESULT.json"
       ],
       "validity": "Official RPP routes identified but no individual original/signed certificate/hash acquired"
+    },
+    {
+      "id": "C06",
+      "mode": "AB-P",
+      "status": "CLOSED_PASS_BOUNDED",
+      "evidence": [
+        "C06_ATLAS_TAIL_AUDIT.json",
+        "C06_RESULT.json"
+      ],
+      "validity": "Exact 0021/0022 GitHub tail operations checked; 63/81/124/44 derived from 0020 state +5 runs, Python canonical replay pending"
+    },
+    {
+      "id": "C07",
+      "mode": "AB-P",
+      "status": "CLOSED_PATCHED_MICROTEST",
+      "evidence": [
+        "C07_RESULT.json"
+      ],
+      "commit": "8d228a90dbf5f476170220a3a12b2a5a366a9901",
+      "validity": "CLI missing byte length now yields 2 instead of 0 in isolated exact-source test. Added synthetic pytest not run in checkout.",
+      "prereg_note": "GitHub prereg was written after initial isolated reproduction and source patch following two blocked writing attempts; not claim prospective hypothesis prereg."
+    },
+    {
+      "id": "C08",
+      "mode": "AB-P",
+      "status": "CLOSED_PATCHED_MICROTEST",
+      "evidence": [
+        "C08_RESULT.json"
+      ],
+      "commit": "301ee015352809fe2cd7a091e5858cb5fb411e9",
+      "validity": "POSIX advisory flock for JSONL; standalone 16 concurrent fragmented record experiment showed old invalid, locked complete. Repo test added but unrun."
+    },
+    {
+      "id": "C09",
+      "mode": "AB-R",
+      "status": "CLOSED_MECHANISM_AUDIT",
+      "evidence": [
+        "C09_RESULT.json"
+      ],
+      "validity": "Linux fsync manual and source code show missing directory-entry fsync; no actual crash test, not novel empirical science."
+    },
+    {
+      "id": "C10",
+      "mode": "AB-P",
+      "status": "CLOSED_SOURCE_QA_NOT_FULL_TEST",
+      "evidence": [
+        "C10_RESULT.json"
+      ],
+      "commit": "89597dc14d325de32c4893be8e2e28d53b01c210",
+      "validity": "Added directory fsync for new shard, object and ledger paths; code SHA and tests verified GitHub, isolated POSIX dir sync verified, no full pytest run"
     }
   ],
   "atlas": {
-    "latest_batch": "0022-PFL-ABH-CONT10-C05-R5-20261027",
-    "deltas": 22,
+    "latest_batch": "0023-PFL-ABH-CONT10-C06-C10-20261027",
+    "deltas": 23,
     "fully_replayed_independent_JS_through": 20,
-    "exact22_batch_chain_headers_readback": true,
-    "canonical_python_22_batches": "NOT_RUN",
+    "exact23_batch_chain_headers_readback": false,
+    "canonical_python_23_batches": "NOT_RUN",
     "expected_bounded_counts": {
       "nodes": 63,
       "edges": 81,
-      "runs": 124,
+      "runs": 129,
       "complaints": 44
-    }
+    },
+    "derivation": "JS structural replay 0001–0020, audited exact 0021–0022 tail (+5 runs), and appended 0023 five run.add. New entire Python canonical replay not executed."
   },
   "product_indicators": {
     "V4_percent": 36.9,
@@ -90,6 +141,6 @@
     "main_merged": false,
     "CI_triggered": false
   },
-  "R5": "Pause with 5 existing authorized credits because independent original RPP, exact Senate XML semantic contract, full Python checkout/CI and crash-durability test environment are absent; do not repeat source browsing or grant more credits simply to fill quota.",
-  "executor_task": "On research/pfl-codex-contributions-20261027 checkout at exact HEAD after the status commits, run native python ab_atlas/atlas_delta.py check with seed + updates 0001..0022, capture canonical state SHA/counts; run full pytest and Node suite without actions, capture exit codes and failing tests, add process-termination durability negative; report only verified outcomes; do not touch main, publish private originals or claim real-person scoring."
+  "R5": "Full ten user-authorized C01–C10 consumed as documented. Caveat C07 late GitHub prereg; non-native tests explicitly limited. Follow-on work needs a new grant and native checkout.",
+  "executor_task": "On the current branch's exact HEAD, run `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates`, record stdout/exit/SHA for all 23 batches; run full pytest and Node suite, especially test_private_audit_cli.py and test_secure_store.py, and investigate power-loss/multi-process crash durability only in disposable synthetic fixtures. Do not run CI expensive, merge main, or publish private originals."
 }
