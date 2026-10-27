@@ -1,3 +1,24 @@
+# AB Atlas · Politics Fantasy · campaña AB-H45 cerrada · 27/10/2026
+
+**ESTADO VIGENTE (rama de investigación `research/pfl-abh-45-20261027`):** usuario autorizó **20 ciclos AB + 5 de revisión integral + 20 AB**, ejecutados **A01–A20, R01–R05, B01–B20, total 45/45 y 0 autorizaciones restantes**. Los resultados se registran individualmente con prerregistro y resultado en [research/ABH_BRANCH45_20261027/](../research/ABH_BRANCH45_20261027/). No iniciar nueva campaña sin nueva autorización; el proyecto sigue abierto para consultas y revisiones.
+
+- **Producto V4:** madurez contractual **36,90 %**, cambio frente a V3 36,35 % de **+0,55 puntos** por especificar `id.real` y `ev.person` a nivel 1; nueve áreas, 36 hitos, mismos pesos. V3 conservada. [Informe V4](../docs/PROGRESO_Y_ALCANCE_v4.md) · [snapshot V4](../product/progress_snapshot_v4_20261027.json).
+- **Gates y ciencia:** **0/6 gates acreditados**: `data_registry`, `identity`, `events` bloqueados; `authentication`, `e2e`, `deployment` pendientes. CT2 identidad histórica **29/100** ordinal; VSDS **1/3**; N1/N2/N3 nuevos **0/0/0**. No scoring político real, no lanzamiento.
+- **Evidencia nueva de QA original:** dos parsers fuente-específicos de Congreso y Senado han pasado **23 pruebas nativas conjuntas** con archivos byte-verificados contra GitHub, más reproducción de **4 votaciones originales del Congreso (1.400 filas y 67 sentinelas)** y **10 votaciones originales del Senado (2.589 filas y 51 ausencias)**. Se corrigieron rechazo de totales nulos, asientos no canónicos, etiquetas `NO VOTAN`, meses españoles, asientos duplicados y votaciones duplicadas; documentados fallos previos. [B17](../research/ABH_BRANCH45_20261027/B17_RESULT.json).
+- **CI:** la rama incorpora prueba sintética de ambos parsers en [`.github/workflows/politics-fantasy-evidence.yml`](../../../.github/workflows/politics-fantasy-evidence.yml) con patrón correcto `test_source_original*.py`. **No se lanzó Actions ni prueba HTTP completa**; no atribuir aceptación E2E.
+- **RPP e historia de las personas:** aún no hay inscripción jurídica individual RPP verificable, homónimo exacto negativo adjudicado ni captura independiente de `first_public_at` para BOCG. ZIP original privado con once archivos no incorporado a Git.
+- **Atlas:** seed preservado; lotes de investigación **0001–0015**, head `0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027`. Replay JS sobre los 15 JSON reales: **PASS, 230 operaciones, 56 nodos, 76 relaciones, 86 runs, 33 complaints**; no duplicaciones ni referencias de incidencias huérfanas, seis gates sin pasar. **Validador Python canónico `ab_atlas/atlas_delta.py check` NO ejecutado** y HTML no regenerado.
+- **Incidencia de metadatos auditada:** lotes 0012/0013/0014 tenían timestamps de registro futuros redactados por el modelo. Se corrigieron **51 campos** a los tiempos de *primer commit real en GitHub*, sin reinterpretarlos como ejecución científica o primera publicación de fuentes. Los blobs anteriores permanecen en historial Git y la reparación está explícita en [ATLAS_TIMESTAMP_REPAIR.json](../research/ABH_BRANCH45_20261027/ATLAS_TIMESTAMP_REPAIR.json) y lote 0015 (incidencia `repaired`). Es una excepción documentada a la inmutabilidad de bytes de los deltas, **no una nueva prueba científica**.
+- **Fuente de verdad de la campaña:** [ledger final](../research/ABH_BRANCH45_20261027/CAMPAIGN_FINAL_A20_R5_B20.json) y [informe final](../research/ABH_BRANCH45_20261027/REPORT_FINAL_ABH45.md). `main` sigue sin fusionar esta investigación.
+
+## Siguientes dependencias, sin ciclos ya autorizados
+
+Validación del Atlas con Python oficial en checkout limpio; integración y pruebas HTTP reales de fuente de confianza; originales RPP acreditados; fuente temporal histórica con recibo de publicación y ligaduras de identidad adjudicadas; revisión de privacidad/licencias antes de scoring real. No elevar un gate o subporcentaje solo por repetir ensayos sintéticos sobre la misma fuente.
+
+---
+
+## Historial de CURRENT anterior al cierre AB-H45
+
 # AB Atlas · Politics Fantasy · BRANCHING20C cerrado 20/20 · 27/10/2026
 
 **ESTADO VIGENTE:** el usuario concedió una nueva autorización BRANCHING de **20 ciclos** separada del bloque histórico reconciliado. Tras investigación autónoma adicional se completaron **C01–C20 (20/20 registrados; 0 plazas disponibles)**. Una ejecución previa C04 quedó STOP_R5 sin prueba HTTP, y no todos los ciclos son experimentos científicos independientes. No se inicia otra campaña AB sin nueva autorización humana; esta restricción no implica que falten otras fuentes accesibles.
