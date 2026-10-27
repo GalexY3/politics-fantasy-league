@@ -1,0 +1,55 @@
+{
+  "cycle": "C05",
+  "mode": "AB-R",
+  "execution_type": "PREREGISTERED_OFFICIAL_SOURCE_AVAILABILITY_PROBE",
+  "preregister_commit": "776a4e5e60c9737b876a45f9ed3fbaa55a7c51cb",
+  "status": "CLOSED_NEGATIVE_STOP_R5_NO_ORIGINAL",
+  "A": "Determinar si existe un registro jurídico RPP individual, original y verificable, accesible desde un canal institucional para desbloquear evidencia de identidad jurídica de partidos.",
+  "B": "El buscador público puede exportar listado PDF; la sede describe certificaciones, pero documentos originales requieren distinto procedimiento. Rival: consulta no accesible desde entorno web, y ni ficha ni certificado obtenido.",
+  "C": "Consulta delimitada de vías oficiales actuales, acceso de la consulta pública y procedimientos de inscripción, información y certificados, con condición de éxito de documento original por entidad.",
+  "D": {
+    "observed": [
+      {
+        "url": "https://sede.interior.gob.es/portal/sede/tramites",
+        "finding": "Procedimientos oficiales de información SIA 992323, certificados SIA 992324, inscripción SIA 992320."
+      },
+      {
+        "url": "https://sede.interior.gob.es/portal/sede/tramites/detalle-tramite?id=23",
+        "finding": "El procedimiento de certificación de datos de partidos existe y se identifica SIA 992324, nivel de acceso 3; no es un documento emitido."
+      },
+      {
+        "url": "https://datos.gob.es/es/aplicaciones/consulta-del-registro-de-partidos-politicos",
+        "finding": "La ficha de aplicación describe filtros de consulta y botón de generación de PDF, publicación histórica 2016 y actualización catalogada 2019."
+      },
+      {
+        "url": "https://sede.mir.gob.es/nfrontal/webpartido_politico.html",
+        "finding": "Enlace de la aplicación indicado por datos.gob.es; intento de acceso al contenido por el buscador terminó en timeout."
+      }
+    ],
+    "limits": "No se consultó bajo credenciales, no se generó PDF ni solicitud de certificado, no se adquirieron bytes registrales ni firma. PDF guía de sede sólo tuvo snippet de búsqueda y no fue abierto/validado."
+  },
+  "E": {
+    "original_registration_obtained": false,
+    "signed_certificate": false,
+    "document_sha256": null,
+    "individually_verified_parties": 0,
+    "new_institutional_channel": "Procedimientos electrónicos SIA identificados, ya catalogados previamente; no prueba primaria nueva",
+    "result": "NO_ORIGINAL_REPRODUCIBLE"
+  },
+  "F": "Página de trámites y aplicación de búsqueda no certifican inscripción de ninguna formación concreta, fecha de eficacia ni identidad jurídica longitudinal. Un timeout del navegador no equivale a bloqueo global del Ministerio.",
+  "G": "No confirmación independiente; no hash de documento original, ni firma, ni consulta autenticada. No sustituir con nombres electorales/boletines de candidaturas.",
+  "H": {
+    "belief_update": "Persiste el bloqueo RPP con un canal de acceso institucional conocido; no hay evidencia adicional que justifique un test repetido sin intervención humana/documentación auténtica.",
+    "next": "Obtener original registrado o certificado por canal oficial con permisos; solo entonces ejecutar adjudicación de entidad concreta."
+  },
+  "I": {
+    "validity": "NEGATIVE_AVAILABILITY",
+    "novelty": "No discovery",
+    "CT2": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "gates": "0/6",
+    "no_personal_data_published": true
+  },
+  "J": "STOP_R5: la información procedimental ya consta en catálogo previo y no apareció el original necesario. No consume automáticamente las otras 5 plazas autorizadas; evitar pseudociclos sobre la misma barrera."
+}
