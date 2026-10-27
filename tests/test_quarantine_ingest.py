@@ -92,6 +92,16 @@ class QuarantinePipelineTests(unittest.TestCase):
                 self.capture(Path(td),source="boe",kind="rpp_party",content=b"{}",
                              opener=lambda *x,**kw:self.fail("network"))
 
+    def test_quarantine_ledger_symlink_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            outside=root.parent / (root.name + "_outside_review")
+            outside.write_bytes(b"DO_NOT_MODIFY")
+            (root / "quarantine_reviews.jsonl").symlink_to(outside)
+            with self.assertRaisesRegex(ValueError,"UNSAFE_PRIVATE_LEDGER"):
+                self.capture(root,source="congreso",kind="congreso_vote",content=congress_bytes())
+            self.assertEqual(outside.read_bytes(),b"DO_NOT_MODIFY")
+
     def test_tampered_snapshot_hash_is_quarantined(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td)
