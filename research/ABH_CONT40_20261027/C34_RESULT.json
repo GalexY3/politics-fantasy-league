@@ -1,0 +1,40 @@
+{
+  "cycle": "C34",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_CROSS_RUNTIME_PARITY_24_NEW_TESTS_PASS",
+  "A": "Align Python and JS scope schema, reject missing critical release milestone IDs and preserve contract V4 score",
+  "B": "Strict union rules can eliminate 7 divergences vs unintended V4 regression",
+  "C": "Preregister then patch Python/JS; Node and pytest on SHA-identical local copies with new committed tests; nine adversarial cases, six gate-absence controls; read exact V4 scope and independently recompute weighted score",
+  "D": {
+    "python_blob": "acde0a32de7b9852d2b6e02cf3fb3ceafc11d08b",
+    "js_blob": "1ce86c092b9e479d0c1b120744fcb80a722791f8",
+    "python_commit": "5634a31f92eb5c70ee3b1228179fd2055f9ccb50",
+    "js_commit": "1aa1c2f1fcdc4682d10287ce14f675c9686247ed",
+    "test_python_blob": "7ce9792bd7d996286a45c5781d2988bec16a9298",
+    "test_js_blob": "81b558cffe0013e7e3e674c08c6ddc72990ce48d",
+    "scope_v4_sha": "b66b9582fa8630a11892aabbff8871b5069d284d",
+    "command_python": "PYTHONPATH=src pytest -q tests/test_progress_nonfinite.py tests/test_progress_contract_failclosed.py",
+    "command_js": "node --test tests/test_progress_contract_failclosed.mjs"
+  },
+  "E": {
+    "python_tests": 15,
+    "node_tests": 9,
+    "differential_cases": 9,
+    "differential_remaining": 0,
+    "v4_independent_weighted": 36.900000000000006,
+    "v4_tracks": 9,
+    "v4_milestones": 36,
+    "release_gates_below4": 6
+  },
+  "F": "Scoped tests; full application suite and original V4 native end-to-end not executed. First local fixture of C34 needed extension of missing evidence_class/why and rerun, disclosed.",
+  "G": "Matching original and patched Git blobs, direct CPython/Node, independent JSON weighted recomputation",
+  "H": "Validates fail-closed cross-runtime scope contract without raising maturity",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "scientific_novelty": "0/3"
+  },
+  "J": "Next branch to synthetic auction mathematical invariants rather than repeated scope inputs (R5)"
+}
