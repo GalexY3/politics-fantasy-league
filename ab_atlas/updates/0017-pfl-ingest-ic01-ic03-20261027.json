@@ -1,0 +1,152 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0017-PFL-INGEST-IC01-IC03-20261027",
+  "parent_batch": "0016-PFL-CODEX-20261027",
+  "at": "2026-10-27T15:31:19+01:00",
+  "actor": "chatgpt",
+  "reason": "Append three independently authorized integration cycles after separate ABH45 and Codex CDX09 campaigns, with prereg, native synthetic negative findings, HTTP boundary limitation and no V4, scientific or release gate promotion.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INGEST-IC01",
+        "activity": "Source scoped redirect precontact security and nine negative tests",
+        "status": "completed",
+        "at": "2026-10-27T15:31:19+01:00",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_RESULT.json"
+        ],
+        "scope": "PFL-V1 revision 4 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INGEST-IC02",
+        "activity": "Local capture, SHA recheck, source-specific validation and quarantine six tests",
+        "status": "completed",
+        "at": "2026-10-27T15:31:19+01:00",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_RESULT.json"
+        ],
+        "scope": "PFL-V1 revision 4 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INGEST-IC03",
+        "activity": "HTTP read-only stage boundary inspected, negative local server test authored not run",
+        "status": "completed",
+        "at": "2026-10-27T15:31:19+01:00",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_RESULT.json"
+        ],
+        "scope": "PFL-V1 revision 4 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-INGEST-IC01-TEST-BLOB-NONIDENTICAL",
+        "run_id": "PFL-INGEST-IC01",
+        "severity": "minor",
+        "status": "open",
+        "category": "reproducibility_limit",
+        "source": "agent",
+        "at": "2026-10-27T15:31:19+01:00",
+        "description": "Nine native redirect cases PASS on an isolated manual copy; executed ingest.py bytes match GitHub blob exactly but staged IC01 test fixture bytes do not match final test file blob. Run repo test natively in clean checkout before asserting exact test version acceptance."
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-INGEST-IC03-HTTP-INGEST-NOT-CONNECTED",
+        "run_id": "PFL-INGEST-IC03",
+        "severity": "major",
+        "status": "open",
+        "category": "integration_gap",
+        "source": "agent",
+        "at": "2026-10-27T15:31:19+01:00",
+        "description": "Pure local capture→schema validation→quarantine 6/6 native synthetic tests PASS. Existing HTTP server only serves read-only source stages and synthetic health; no HTTP capture, validation or quarantine ingestion endpoint. New loopback test authored and included in optional workflow but NOT executed this turn."
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-INGEST-REDIRECT-GUARD-20261027",
+        "title": "Control del host y cada salto de redirección antes de contactar destinos",
+        "kind": "finding",
+        "mode": "project",
+        "status": "answered",
+        "detail": "ingest.py ahora liga Congreso/Senado/BOE al hostname exacto por source, intercepta HTTPRedirectHandler para verificar cada Location antes de abrirla, rechaza cambios de editor y fuentes con credenciales/puertos/HTTP; nueve casos offline nativos PASS con caveat de test SHA, sin exploit HTTP público afirmado.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_RESULT.json",
+          "src/politics_fantasy/ingest.py",
+          "tests/test_ingest_redirect_security.py"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-INGEST-QUARANTINE-20261027",
+        "title": "Captura, auditoría estructural y cuarentena locales sin interfaz de ingesta HTTP",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "quarantine_ingest.py graba objeto SHA y manifiesto, verifica original fuente Congreso/Senado mediante módulos originales, deja incluso formato correcto en QUARANTINED_SCHEMA_PASSED (no release, no persona, no first_public_at). Seis tests de datos ficticios PASS. Endpoint HTTP de captura no existe; nueva prueba loopback no ejecutada. NO VOTAN interpretado operativamente, semántica institucional no acreditada.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_RESULT.json",
+          "src/politics_fantasy/quarantine_ingest.py",
+          "tests/test_quarantine_ingest.py",
+          "tests/test_ingest_http_boundary.py"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-INGEST-EDGE-1",
+      "from": "PFL-INGEST-REDIRECT-GUARD-20261027",
+      "to": "PFL-INGEST-QUARANTINE-20261027",
+      "relation": "supports"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-INGEST-EDGE-2",
+      "from": "PFL-B45-SOURCE-STAGES-HTTP",
+      "to": "PFL-INGEST-QUARANTINE-20261027",
+      "relation": "related_to"
+    }
+  ]
+}
