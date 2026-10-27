@@ -1,0 +1,10 @@
+{
+  "id": "CDX08", "mode": "AB-H/AB-P", "status": "PREREGISTERED", "basis": "CDX02 dejó abierta una incidencia: el extra test no declara NumPy aunque parte de la suite lo importa; el script ab30_full usa SciPy que el extra research tampoco declara.",
+  "A": {"outcome": "Una instalación limpia de los extras declarados permite reproducir la suite y las importaciones de investigación que corresponden a esos extras."},
+  "B": {"baseline": "En pyproject.toml test declara pytest sin NumPy, y research declara NumPy/matplotlib sin SciPy; el entorno anterior tenía dependencias instaladas manualmente.", "options": ["declarar las dependencias de desarrollo existentes", "depender de paquetes globales", "añadir dependencias de investigación al runtime obligatorio: rechazado"]},
+  "C": {"risk": "La instalación limpia depende de la disponibilidad de ruedas o paquetes; el extra no debe implicar que se validen conclusiones científicas."},
+  "D": {"acceptance": "Crear venv aislado nuevo, instalar .[test], ejecutar suite Python completa y registrar resultado; instalar .[research] y verificar importaciones numpy/matplotlib/scipy y script correspondiente. No cambiar dependencias base de la demo."},
+  "E": {"method": "pip local/índice configurado y pytest en Windows; sin modificar configuración global ni gastar Actions.", "exposure": "Las carencias de dependencias se detectaron antes del protocolo; reparación técnica no ciega."},
+  "F": {"pending": true}, "G": {"pending": true}, "H": {"audit": "Registrar fallos, conflictos de versión o limitaciones y evitar atribuir un fallo ambiental a una conclusión científica."},
+  "I": {"CT2_identity": 29, "VSDS": "1/3", "release_gates": "no promotion"}, "J": {"next": "Dependerá de resultados de instalación y regresión completa."}
+}
