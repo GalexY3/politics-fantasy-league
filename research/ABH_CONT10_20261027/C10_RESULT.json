@@ -1,0 +1,41 @@
+{
+  "cycle": "C10",
+  "mode": "AB-P",
+  "status": "CLOSED_SOURCE_READBACK_AND_ISOLATED_POSIX_CHECK_PASS_FULL_PYTEST_UNRUN",
+  "preregister_commit": "0bb7a9dc1743302c943d17134a1e2711dd945051",
+  "A": "Add parent directory fsync barriers in private POSIX objects and private JSONL ledger metadata.",
+  "B": "Without directory fsync file bytes can be committed while associated namespace entries are not guaranteed permanent.",
+  "C": "Change `_child_directory` to fsync parent upon newly creating directory, after permission verification; `store_bytes` sync shard after linking digest/removing temp; `append_private_jsonl` sync parent folder after locked file fsync. Add synthetic positive and negative pytest instrumentation.",
+  "D": {
+    "source_blob_before": "99b8b35ee9f6d2f287b80f8d2713a925d9ce2fc0",
+    "source_blob_after": "9e09ac4f1002314324b229fce47855902f18b0da",
+    "test_blob_after": "02067b428ee301c9684a7b0c2a04d5fc7fc46f48",
+    "commits": [
+      "1fd57dd85a2441f0eeae8f5ed019bb12065d98e9",
+      "9950b8d86a11d1d35554d814365bcb5a009cc3ae",
+      "89597dc14d325de32c4893be8e2e28d53b01c210",
+      "5f40e8b160b19c40ef5f1411a8b9aef1eb7c7e96",
+      "62aea430aed7b13bc9d0e36508df92c4329c9807"
+    ],
+    "manual": "https://www.man7.org/linux/man-pages/man2/fsync.2.html",
+    "execution": "Standalone POSIX directory fsync microcheck in local temp directory; actual repository full Python tests unavailable."
+  },
+  "E": {
+    "github_readback": "PASS (parent/shard/ledger fsync, flock and nofollow preserved)",
+    "isolated_os_fsync_dir": "PASS on local Linux POSIX",
+    "new_test_cases": 2,
+    "tests_executed_in_repo": 0
+  },
+  "F": "Directory sync may return error on unsupported FS, now failure propagates. Root parent creation and cross-ledger transaction atomicity NOT addressed. No actual sudden power-loss experiment or corpus replay. This does not establish crash-proof durability.",
+  "G": "GitHub updated source/read-back SHA; 2 synthetic regressions committed but unexecuted. No CI was dispatched.",
+  "H": "Hardens a specified metadata-persistence mechanism only. Revalidate before using in live capture.",
+  "I": {
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "N1_N2_N3": "0/0/0",
+    "new_scientific_discovery": "NO"
+  },
+  "J": "Finish already-authorized C01-C10 with exact boundaries; prepare closed ledger + Atlas delta 0023; request next grant for independent canonical Python validation and protected original-evidence research."
+}
