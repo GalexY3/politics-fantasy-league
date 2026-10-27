@@ -1,0 +1,22 @@
+{
+  "cycle": "C23",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C22",
+  "A": {
+    "question": "Do checked-in Python tests for private_audit_cli.py pass on a minimal native checkout composed of exact SHA-verified GitHub source+test files, without substituting tests written by advisor?",
+    "acceptance": "Retrieve tests/test_private_audit_cli.py exact GitHub blob, local git hash matches; run pytest on current secure_store/private_audit/CLI exact modules; report all passes/failures and any scope conflicts (test path or umask)."
+  },
+  "B": {
+    "rivals": [
+      "Repo tests pass and reproduce source claims",
+      "Repo tests fail due to standalone reconstruction path/fixture issue",
+      "Genuine regression despite C22 tests pass"
+    ]
+  },
+  "C": "Native local pytest with test file directly copied, preserve exact bytes, run PYTHONPATH appropriately; no code patch until outcome and next prereg.",
+  "D": {
+    "falsifier": "Test blob mismatch, or any failing test uninvestigated",
+    "limits": "Only these exact files, not whole project suite"
+  }
+}
