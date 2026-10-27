@@ -87,4 +87,5 @@ def policy_status() -> dict:
             "message": "Sources and political people are not score-eligible.",
             "requires": ["official original and provenance", "stable person identity",
                          "reproducible as-of date", "source-specific reuse review",
-                         "server-owned trusted review", "all public launch gates"]}
+                         "server-owned trusted review", "lawful purpose and processing basis review",
+                         "privacy risk and EIPD screening", "all public launch gates"]}
