@@ -23,7 +23,17 @@ def audit_original_senate_session(xml_bytes: bytes) -> dict:
     except (TypeError, ValueError) as exc:
         raise ValueError("BAD_SESSION_DAY") from exc
     results = []
+    seen_vote_numbers = set()
+    seen_source_codes = set()
     for vote in session.findall("votacion"):
+        number, code = vote.findtext("num_vot"), vote.findtext("CodVotacion")
+        if (not number or not number.isascii() or not number.isdecimal()
+                or int(number) < 1 or str(int(number)) != number
+                or not code or not code.isascii() or not code.isdecimal()
+                or int(code) < 1 or number in seen_vote_numbers or code in seen_source_codes):
+            raise ValueError("DUPLICATE_OR_BAD_SENATE_VOTE_IDENTIFIER")
+        seen_vote_numbers.add(number)
+        seen_source_codes.add(code)
         raw_day = vote.findtext("fecha_v")
         try:
             parts = raw_day.upper().split("-")
