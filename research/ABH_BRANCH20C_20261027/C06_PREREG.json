@@ -1,0 +1,22 @@
+{
+  "id": "C06",
+  "mode": "AB-R original source temporal matching",
+  "status": "PREREG_AFTER_XML_SCHEMA_EXPOSURE",
+  "prior": "RC04 matched 259 distinct normalized name strings to current Senate composition XV; no independently verified event-date membership. C05 confirmed original XML SHA. A preliminary schema peek revealed composition senators store legislature and ultCredencial but no date field.",
+  "H1": "The observed 259 matches from a vote on 08-10-2025 to composition XV can be replicated from originals, but the composition XML provides no mandate start/end and vote rows offer no source-issued personal reference, preventing temporal/identity certification despite full names matching.",
+  "H0": "Original vote records contain stable source identifiers for all voter rows and historical membership timestamps certifying link at vote day.",
+  "alternatives": "Some vote rows have seat or member group but not personal ID; source fixture may contain mismatches not seen in RC04.",
+  "tests": [
+    "Recompute original SHA and collect XML field names without publishing person names.",
+    "For all ten vote events compute sum categories and official totals, including absences.",
+    "Normalize and join distinct nominal voter strings to legislature 15 original compositions; classify 0/1/>1 candidates and multiple same-name collision.",
+    "Compute whether vote event dates occur before some known external member appointments RC05, without assuming all 311 records served concurrently.",
+    "Verify absence of temporal metadata in composition and personal stable IDs in vote rows."
+  ],
+  "acceptance": "Publish aggregates only, no real names or personal vote choices; retain inability to prove identity/date as negative result. No tests of political merit.",
+  "sources": [
+    "Senado/composicion.xml SHA f5753278...",
+    "Senado/sesion60.xml SHA 671436ba..."
+  ],
+  "cost": "local CPU; zero Github Actions"
+}
