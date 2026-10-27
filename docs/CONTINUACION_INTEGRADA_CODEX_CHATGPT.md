@@ -1,3 +1,15 @@
+# Continuidad vigente · CONT30 C21–C30 completado 10/10 · Atlas 0025
+
+**Fecha:** 27/10/2026. **Leer primero [CURRENT](../ab_atlas/CURRENT.md), [ledger CONT30](../research/ABH_CONT30_20261027/CAMPAIGN_STATUS.json) e [informe completo C21–C30](../research/ABH_CONT30_20261027/REPORT_FINAL.md)**. Usuario autorizó **10 ciclos adicionales AB-H** y exigió ciclos completos, corrección metodológica y reportes de avance; se han documentado C21–C30 **10/10**, saldo 0. Cualquier nuevo bloque requiere permiso expreso.
+
+**Cambio importante en nivel de evidencia:** primer subconjunto **Python nativo ejecutado** sobre tres módulos extraídos del GitHub privado byte-idénticos según hash Git (`secure_store.py`, `private_audit.py`, `private_audit_cli.py`). Cuatro suites versionadas SHA-idénticas, incluida `tests/test_private_store_process_boundaries.py` añadida en C30, arrojaron **58 PASS / 0 FAIL (10.48 s)**. Pruebas de contorno realizadas adicionalmente: 640 registros JSON únicos con 8 procesos ×40 ×2 rondas y `SIGKILL` reales contra funciones del almacén en cuatro situaciones. **C24** reveló tres errores de fixture (0644, rechazo de permisos anterior al parser) y **C25** reparó sólo los tests a 0600; quedó documentado el fallo original. **C29** tuvo un hook inicial inválido y luego corrección de instrumentación; no confundir ensayos inválidos con bug productivo. Los tests demuestran funcionamiento local POSIX en esos casos, **no** recuperación automática tras apagado, transacciones globales ni seguridad frente a procesos hostiles.
+
+**Atlas** último lote `0025`: 25 deltas append-only, 63 nodos, 81 aristas, **149 runs**, 44 complaints, 318 ops derivadas. **El ejecutable Python canónico sobre los 25 originales aún no se ha corrido**. CT2 identidad 29/100 ordinal, V4 36,90 %, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, gates 0/6; sin puntuaciones reales ni datos nominales originales publicados.
+
+**Tarea Codex abierta #17:** https://github.com/GalexY3/Metodologia-AB/issues/17 — ejecutar en checkout íntegro del HEAD de la rama `research/pfl-codex-contributions-20261027` checker Atlas de **25 lotes**, con SHA/exit/output, pytest completo y pruebas JavaScript/Node. **Abrir/actualizar el issue no implica ejecución.** No Actions costosas, no merge a main, no originales privados en Git. Al terminar una campaña futura, actualizar Atlas CURRENT y el ledger antes de solicitar más ciclos.
+
+---
+
 # Continuidad vigente · CONT20 C11–C20 cerrado 10/10 · Atlas 0024 · 27/10/2026
 
 **Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger CONT20](../research/ABH_CONT20_20261027/CAMPAIGN_STATUS.json) e [informe final CONT20](../research/ABH_CONT20_20261027/REPORT_FINAL.md).** Segunda campaña autorizada de diez ciclos **agotada** C11–C20, todos con registro A–J (limitaciones explícitas); otro bloque requiere permiso nuevo.
