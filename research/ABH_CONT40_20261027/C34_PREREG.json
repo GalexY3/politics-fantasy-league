@@ -1,0 +1,17 @@
+{
+  "cycle": "C34",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C33",
+  "A": "Can Python and JS scope evaluators be made fail-closed and agree on all nine C33 test mutations, with six missing critical milestones blocked, without altering valid V4 score?",
+  "B": [
+    "Strict contract parity on two runtimes",
+    "Patch breaks current V4 schema or weighted 36.90% and must be rejected",
+    "Missing gate status still falsely clear"
+  ],
+  "C": "Tighten Python ID/title/why/evidence length/track name and numeric type constraints; tighten JS supported family and maximum size; fix JS missing IDs. Use exact source locally, nine-case differential plus six absence checks; if pass submit minimal code GitHub patches and add regression. No scope snapshot modifications.",
+  "D": {
+    "falsifier": "Any mutation classification disagreement, current V4 becomes invalid, or release status clears absent gates; block or roll back",
+    "measurement": "native Python+Node on original/modified Git blobs and synthetic scopes; independent V4 current snapshot test if available"
+  }
+}
