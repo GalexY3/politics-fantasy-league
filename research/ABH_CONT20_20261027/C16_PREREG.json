@@ -1,0 +1,27 @@
+{
+  "cycle": "C16",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C15",
+  "A": {
+    "question": "If _write_all(fd,payload) writes a prefix then raises OSError in append_private_jsonl, does the next valid append retain an invalid partial JSONL prefix, and can a bounded rollback inside flock restore ledger?",
+    "acceptance": "Under captured Python exceptions, record pre-write size, restore with ftruncate while still locked, fsync, re-raise. Test existing row remains identical, no invalid fragment. Distinguish signal kill/crash non-transactional."
+  },
+  "B": {
+    "rivals": [
+      "O_APPEND makes a partial multi-syscall line atomic (false)",
+      "Truncate to pre-write offset under cooperative lock removes partial suffix for caught exceptions",
+      "Truncate may itself fail; do not claim recoverable then."
+    ]
+  },
+  "C": "Inject deterministic _write_all that writes a prefix, then raises; write rollback only in caught OSError and create a regression with a valid previous line.",
+  "D": {
+    "falsifier": "Previous valid bytes altered, partial remains, or function returns success after failed write. No hardware crash claims."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
