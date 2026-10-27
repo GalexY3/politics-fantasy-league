@@ -1,0 +1,29 @@
+{
+  "cycle": "C10",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C09",
+  "A": {
+    "question": "¿Puede añadirse fsync(dirfd) en puntos de publicación metadata de objetos y ledgers sin debilitar O_NOFOLLOW ni el modo privado?",
+    "acceptance": "Every newly created shard must fsync parent directory; final SHA entry and temp unlink must fsync object shard; ledger file append has fsync(fd) plus fsync(root fd). Add offline regression that observes fsync on directories. Make no crash-atomicity claim."
+  },
+  "B": {
+    "rivals": [
+      "File fsync enough; directory entries not necessarily persisted",
+      "Directory fsync can fail on unsupported FS, must fail closed and leave documented limits"
+    ]
+  },
+  "C": {
+    "experiment": "Incremental patch existing secure_store.py and add test recording directory-fsync calls; verify GitHub blob SHA and do isolated POSIX os.fsync(dirfd) microtest. Preserve old permission checks and lock."
+  },
+  "D": {
+    "method": "POSIX-only local; no external CI or hardware kill; source Python tests committed but full suite unrun",
+    "falsifier": "No directory fd reaches fsync on newly created object+ledger or existing tests removed, or code allows a misleading release_grade."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
