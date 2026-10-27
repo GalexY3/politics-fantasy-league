@@ -1,0 +1,33 @@
+{
+  "cycle": "IC15",
+  "status": "CLOSED_READONLY_AUDIT_MISSING_ROOT_FIX",
+  "prereg": "IC15_PREREG.json",
+  "finding": "Antes, _root_fd(root) creaba el almacén ausente durante una auditoría anunciada de solo lectura. Ahora _root_fd(create=False) rechaza MISSING_STORE_ROOT y no crea ruta.",
+  "files": {
+    "secure_store_sha": "412245194164fd458bbab1a8d274e766c269738a",
+    "private_audit_sha": "0adf972fd7ea81e149e218446f942f5c23cfc9c8",
+    "test_sha": "c63e350f86af2b720bd280543cc55fbfbe0f68b2"
+  },
+  "execution": {
+    "native_pytest": "28 passed",
+    "new_negative_test_passed": true,
+    "secure_store_source_and_private_audit_exact_git_sha": true,
+    "test_file_local_differs_from_github_in_whitespace": true
+  },
+  "limits": [
+    "La verificación no prueba exclusión completa de procesos que cambien ancestros de root",
+    "Auditor no autentica firmas editoriales o disponibilidad histórica",
+    "No hay endpoint HTTP de ingesta ni puntuación política real"
+  ],
+  "budget": {
+    "A_done": 12,
+    "A_remaining": 8
+  },
+  "metrics": {
+    "v4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "next": "IC16 auditor detectará correctamente manifiestos con capture_id duplicado y evitará contador ambiguo negativo."
+}
