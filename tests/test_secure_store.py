@@ -182,3 +182,44 @@ def test_parallel_private_jsonl_appends_never_interleave_partial_writes(tmp_path
     assert len(lines) == 16
     values = [json.loads(line)["synthetic_id"] for line in lines]
     assert sorted(values) == list(range(16))
+
+
+def test_private_capture_metadata_calls_directory_fsync(tmp_path, monkeypatch):
+    """Observable barriers, not a hardware power-loss recovery certification."""
+    import stat
+    import politics_fantasy.secure_store as module
+
+    actual_fsync = os.fsync
+    calls = []
+
+    def record_fsync(fd):
+        calls.append("directory" if stat.S_ISDIR(os.fstat(fd).st_mode) else "file")
+        return actual_fsync(fd)
+
+    monkeypatch.setattr(module.os, "fsync", record_fsync)
+    rel = store_bytes(tmp_path, PAYLOAD, DIGEST)
+    assert (tmp_path / rel).read_bytes() == PAYLOAD
+    # objects/, SHA shard and final object name each require a directory sync.
+    assert calls.count("directory") >= 3
+    before = calls.count("directory")
+    append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic": True})
+    assert calls.count("directory") > before
+    assert (tmp_path / "manifest.jsonl").read_text().endswith("\\n")
+
+
+def test_new_directory_fsync_failure_does_not_claim_stored_success(tmp_path, monkeypatch):
+    """If directory sync is unsupported/fails, do not silently downgrade."""
+    import stat
+    import politics_fantasy.secure_store as module
+
+    actual_fsync = os.fsync
+
+    def fail_dir(fd):
+        if stat.S_ISDIR(os.fstat(fd).st_mode):
+            raise OSError("SYNTHETIC_DIRECTORY_SYNC_FAILURE")
+        return actual_fsync(fd)
+
+    monkeypatch.setattr(module.os, "fsync", fail_dir)
+    with pytest.raises(OSError, match="SYNTHETIC_DIRECTORY_SYNC_FAILURE"):
+        store_bytes(tmp_path, PAYLOAD, DIGEST)
+    assert not (tmp_path / "manifest.jsonl").exists()
