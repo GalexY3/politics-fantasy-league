@@ -1,0 +1,37 @@
+{
+  "cycle": "C12",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_ISOLATED_TEST_PASS_REPO_TESTS_UNRUN",
+  "preregister_commit": "855361c5502571053f3785d9726cdb836298a5dc",
+  "A": "Duplicate JSON member fields in manifest or review silently override provenance.",
+  "B": "Stdlib json.loads last-wins vs strict object_pairs_hook rejecting duplicates.",
+  "C": "Add _unique_json_members hook, reject duplicates nested and top-level; add two synthetic repository tests.",
+  "D": {
+    "module": "src/politics_fantasy/private_audit.py",
+    "module_before": "993711cc9dbf34ad3ca08d6a846c65afe31fd130",
+    "module_after": "8afced5411b9a1dad4af97781722dea7644b5745",
+    "code_commit": "dbf0ef7eafc70be3124a30475f17a66e204b53cb",
+    "test_commits": [
+      "2653848166ff14b80c3024d59e279d91b92274d0",
+      "f3a649ee46e2c6aa9113bb8f02148f52dc4b8b0f"
+    ],
+    "execution": "Python isolated helper checks top, nested and valid cases, but not imported full GitHub repository"
+  },
+  "E": {
+    "before": "json.loads silently kept last repeated key",
+    "after": "strict helper rejects manifest/review/nested duplicates; simple record accepted",
+    "repo_tests_added": 2,
+    "repo_tests_executed": false
+  },
+  "F": "Still supports default stdlib NaN/Infinity numeric JSON unless separately hardened; audit source read uses anchored POSIX fd.",
+  "G": "GitHub code and tests read back; no full pytest nor CI.",
+  "H": "Reduces ambiguity, not authentication or legal rights.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novel": "No"
+  },
+  "J": "C13 check nonstandard JSON numbers in private ledgers and canonical JSON output, with distinct adversarial case."
+}
