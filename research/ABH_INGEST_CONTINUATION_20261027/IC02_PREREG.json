@@ -1,0 +1,31 @@
+{
+  "campaign_id": "PFL-CHATGPT-INGEST-CONT-20261027",
+  "cycle_id": "IC02",
+  "status": "PREREGISTERED",
+  "AB_mode": "AB-P / AB-H",
+  "A_truth_contract": "A staged local capture→byte-check→source-typed schema validation→quarantine demonstration using wholly fictitious data and existing import_url. No HTTP capture endpoint or historical public timestamp certified.",
+  "B_hypotheses": {
+    "H1": "Strict raw snapshot + original validators can produce a deterministic quarantined acceptance or rejection with source reference/hash while always denying release",
+    "H0": "A structurally valid document will be misclassified as public/score-ready, malformed or mismatched input bypasses checks, or untrusted source-kind causes incorrect claims"
+  },
+  "C_design": [
+    "congreso vote fixture with matching 4 totals succeeds structurally and remains QUARANTINED",
+    "same fixture corrupt source totals -> QUARANTINED_VALIDATION_FAILED without exception/leaked content",
+    "Senate vote fixture source-specific XML with NO VOTAN and event day passes structurally but stays quarantined",
+    "sender source-to-kind mismatch rejected before network",
+    "original object hash revalidated after capture, file tamper denied",
+    "no first_public_at, no personal ID or real score, no new public API"
+  ],
+  "D_tools": "Python stdlib + existing source_original_qa and source_original_senate_qa. Local no-network fake opener fixtures, temp root only.",
+  "E_implementation": "src/politics_fantasy/quarantine_ingest.py and tests/test_quarantine_ingest.py; no edits to server.py unless a subsequent IC03 finds genuine HTTP bridging needed.",
+  "F_adversarial": "Proof against implicit promotion: structurally PASS must not mean trusted evidence or public release, and no RPP or licensing attestations are invented.",
+  "G_confirmation": "Run actual Python tests with source read from branch or explicit staged-copy limitations; do not claim live original ingest.",
+  "H_risks": "JSON/XML parser resource risk and rights review remain; staging report local-only; no first-published provenance.",
+  "I_metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "release_gates": "0/6"
+  },
+  "J_R5": "One source-specific integration prototype then distinguish the HTTP boundary and stop if no meaningful new evidence."
+}
