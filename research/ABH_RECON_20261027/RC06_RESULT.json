@@ -1,0 +1,83 @@
+{
+  "id": "RC06-20261027",
+  "status": "CLOSED_DISCRIMINATING_TEMPORAL_CLASSIFICATION",
+  "prereg_sha_commit": "e17709480e3b860eb70e6c9af4f1fe5bbb54b547",
+  "scope": "Fixed three nominative CCyL candidates in two successive official bulletin entries, evidence discovered pre-prereg, exploratory not blinded.",
+  "sources": [
+    {
+      "issuer": "Cortes de Castilla y León",
+      "ref": "ESE/000002-01",
+      "cve": "BOCCL-12-000986",
+      "bulletin_no": "32/12",
+      "signed_day": "2026-09-03",
+      "published_bulletin_day": "2026-09-10",
+      "claim_kind": "NOMINATED_AND_ACCEPTED_CANDIDATES",
+      "verbal_basis": "Han sido propuestos como candidatos ... que han aceptado su nominación; la Presidencia acepta los candidatos propuestos.",
+      "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml"
+    },
+    {
+      "issuer": "Cortes de Castilla y León",
+      "ref": "ESE/000002-02",
+      "cve": "BOCCL-12-001042",
+      "bulletin_no": "34/12",
+      "signed_day": "2026-09-10",
+      "assembly_act_day": "2026-09-10",
+      "published_bulletin_day": "2026-09-16",
+      "claim_kind": "DESIGNATED_SENATORS",
+      "verbal_basis": "El Pleno ... ha designado Senadores representantes ...",
+      "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml"
+    }
+  ],
+  "fixed_names": [
+    "Javier Ignacio Maroto Aranzábal",
+    "Francisco Javier Iglesias García",
+    "Clara María Martín García"
+  ],
+  "cutoffs": [
+    {
+      "as_of": "2026-09-09",
+      "candidate_from_this_bulletin": "NOT_DATED_PUBLISHED_BY_CUTOFF",
+      "designated_from_this_bulletin": "NOT_DATED_PUBLISHED_BY_CUTOFF",
+      "reason": "signature on 2026-09-03 does not make bulletin available by earlier cutoff"
+    },
+    {
+      "as_of": "2026-09-12",
+      "candidate_from_this_bulletin": "DAY_LEVEL_PUBLICATION_PROXY_ONLY; candidate nomination claim permitted for sensitivity analysis",
+      "designated_from_this_bulletin": "BLOCKED; designation bulletin date is 2026-09-16",
+      "reason": "RC06 does not prove exact original first_public_at or that 10 September full-day availability held at all times on that day"
+    },
+    {
+      "as_of": "2026-09-17",
+      "candidate_from_this_bulletin": "DAY_LEVEL_PUBLICATION_PROXY_ONLY",
+      "designated_from_this_bulletin": "DAY_LEVEL_PUBLICATION_PROXY_ONLY",
+      "reason": "both bulletin publication days precede cutoff but full timestamp of distribution is not independently proven"
+    }
+  ],
+  "result": "Official source semantically separates nomination/acceptance (32/12) from plenary designation (34/12). The same three persons/terms link contextually but claims belong to different record families/stages.",
+  "H1": "SUPPORTED_IN_FIXED_CORPUS",
+  "H0": "REFUTED for proposition that ESE/000002-01 itself declares legal designation; 2026-09-12 public availability of designation from other sources NOT excluded",
+  "alternatives": "Plenary session DS(P) dated 10 September may have disclosed outcome to contemporaneous observers; original release timestamp not verified; cannot assert no one knew the designation before 16 September.",
+  "limitations": [
+    "Source indexed extract captured as search text; direct open of exact CCyL URLs got Cache miss in browser, no downloaded immutable source bytes here.",
+    "Bulletin date is official issue date, not evidence of first publication exact instant nor of earliest possible release across sources.",
+    "A 2026-09-17 date-cut analysis only proxy, not publication-time certified historical backtest.",
+    "Selected same three names after discovery; no unobserved controlled sample.",
+    "No original Senate XML or current original online media hash in this environment."
+  ],
+  "ABR": "new discriminating negative control on event-type leakage, not causal prediction validation",
+  "ABP": "recommends fail-closed assertion-type/availability guard, not yet implemented",
+  "CT2_identity_before_after": [
+    29,
+    29
+  ],
+  "VSDS": "1/3",
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "gates_passed": 0,
+  "progress_pct": 36.35,
+  "next": "RC07 implement and locally test assertion-type + first_public_at fail-closed classifier on the two historically anchored event types; do not turn source day into exact availability",
+  "actions_used": 0
+}
