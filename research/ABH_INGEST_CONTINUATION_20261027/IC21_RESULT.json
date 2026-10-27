@@ -1,0 +1,39 @@
+{
+  "cycle": "IC21",
+  "status": "CLOSED_FOCUSED_AND_JS_PASS_FULL_PYTHON_TIMEOUT",
+  "prereg": "IC21_PREREG.json",
+  "evidence": {
+    "focused_tests": 67,
+    "focused_passed": 67,
+    "focused_subtests": 14,
+    "js_tests": 110,
+    "js_passed": 110,
+    "full_python_suite": "TERMINATED_BY_120_SECOND_RUNTIME_TIMEOUT_AT_APPROX_58_PERCENT_WITH_NO_REPORTED_FAILURE",
+    "GitHub_Actions": "NOT_TRIGGERED",
+    "workflow_sha": "aafd5f76bb4e4a0608e9795bc8fefcd1803f4c4c"
+  },
+  "files": [
+    ".github/workflows/politics-fantasy-evidence.yml",
+    "tests/test_private_audit_cli.py",
+    "tests/test_ingest_full_local_e2e.py",
+    "tests/test_secure_store.py",
+    "tests/test_private_audit.py"
+  ],
+  "findings": [
+    "Opt-in CI on main/PR includes secure_store, private audit, operator CLI and offline end-to-end tests, but branch CI was not run.",
+    "Repeated full suite from ZIP-derived local updated source reached 58%, no failures displayed before execution timeout; cannot claim full suite pass for this revision.",
+    "67/67 focused Python plus 14 subtests and 110/110 Node tests PASS."
+  ],
+  "boundary": "Some older local test files have whitespace differences versus remote GitHub blob; Python module files tested matched posted source, no clean Git clone at this current head. CI must verify actual branch.",
+  "budget": {
+    "completed": 18,
+    "remaining": 2
+  },
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "next": "IC22 validate official existing Atlas on snapshot and preflight new delta; IC23 final append-only update and report."
+}
