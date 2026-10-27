@@ -137,11 +137,11 @@ def store_bytes(root: Path, data: bytes, digest: str) -> str:
                 fd = os.open(temp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
                              0o600, dir_fd=folder)
                 try:
-                    _write_all(fd, data)
-                    os.fsync(fd)
-                finally:
-                    os.close(fd)
-                try:
+                    try:
+                        _write_all(fd, data)
+                        os.fsync(fd)
+                    finally:
+                        os.close(fd)
                     try:
                         os.link(temp, digest, src_dir_fd=folder, dst_dir_fd=folder,
                                 follow_symlinks=False)
