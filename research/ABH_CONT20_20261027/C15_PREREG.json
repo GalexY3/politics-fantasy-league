@@ -1,0 +1,28 @@
+{
+  "cycle": "C15",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C14",
+  "A": {
+    "question": "Does first creation of private root itself lack fsync of its containing directory, despite C10 fixing nested children, leaving root name not guaranteed durable after crash?",
+    "acceptance": "Sync an operator-owned/preexisting parent after root creation, fail closed on directory fsync error, record tested precondition and add fake sync recording. Don't create arbitrary missing ancestor trees silently."
+  },
+  "B": {
+    "hypotheses": [
+      "C10 already flushes root parent",
+      "Root creation through mkdir(parents=True) is not covered by _child_directory and requires explicit parent barrier",
+      "Potential file system does not support dir fsync; fail closed"
+    ]
+  },
+  "C": "Review `_root_fd` and kernel fsync docs, instrument first creation versus reopen and add parent fsync; avoid claiming power-loss verification.",
+  "D": {
+    "falsifier": "Explicit root-parent fsync already present, or test shows no parent fsync after new root",
+    "risk": "Parent permission constraints and OS support; POSIX only."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
