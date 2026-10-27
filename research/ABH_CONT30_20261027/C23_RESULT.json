@@ -1,0 +1,35 @@
+{
+  "cycle": "C23",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_CHECKED_IN_TESTS_8_PASS",
+  "prereg_commit": "7ee5bd25827e10af4255e920711ec38ce2513d0d",
+  "A": "Can repo's checked-in private_audit_cli tests run against exact original source locally?",
+  "B": "Original tests may fail due mismatch/reconstruction or reveal regressions",
+  "C": "Retrieved test_private_audit_cli.py and 3 source files via GitHub, restored byte-for-byte, symlink src/politics_fantasy to exact module directory for subprocess imports, ran native pytest.",
+  "D": {
+    "source_git_blobs": [
+      "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "923a1c479c3f970e1325beff36699a277bc3773c",
+      "4695c8d85924869212d916fa163a8f3548272ebc"
+    ],
+    "repo_test_git_blob": "20ab836b6cf37b1f5073455e10673acbaead9e13",
+    "cwd": "/mnt/data/pfl_cont30_native",
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_private_audit_cli.py",
+    "stdout": "8 passed in 5.94s"
+  },
+  "E": {
+    "passed": 8,
+    "failed": 0,
+    "scope": "unchanged repository CLI tests, real module subprocess, POSIX synthetic store"
+  },
+  "F": "Not all repo tests, no source from ingest/server, no canonical Atlas Python or original documents, symlinked local tree rather than git clone.",
+  "G": "Git hashes of all 4 source/test files match private branch, actual CPython subprocess tests.",
+  "H": "Substantially improves reproducible evidence for CLI portion of build; keep strict nonrelease policy.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "gates": "0/6",
+    "novel": "0/3"
+  },
+  "J": "C24 run exact checked-in private_audit.py tests on same exact reconstructed source; handle failures adversarially."
+}
