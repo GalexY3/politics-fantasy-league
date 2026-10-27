@@ -1,0 +1,61 @@
+{
+  "id": "C09",
+  "status": "CLOSED_SENTINEL_REUSE_AND_CROSS_EVENT_SEAT_COLLISION",
+  "prereg_commit": "035b51a874baae02e157bfc33e9bb5a543b6e139",
+  "source": "four original Congress vote JSON in private ZIP; all checksum-matched",
+  "observations": {
+    "seat_minus_one_count_by_original_vote": [
+      11,
+      11,
+      15,
+      30
+    ],
+    "valid_distinct_seat_count_by_vote": [
+      339,
+      339,
+      335,
+      320
+    ],
+    "within_session_2026_07_23": {
+      "valid_seats_shared": 339,
+      "valid_seats_same_name": 339,
+      "valid_seats_different_person_label": 0,
+      "nominal_full_name_labels_shared": 350,
+      "reported_vote_labels_changed": 137,
+      "seat_field_different_for_same_name": 0
+    },
+    "cross_date_2026_07_23_vs_2026_09_10": {
+      "shared_valid_seats": 329,
+      "shared_seat_different_name": 1,
+      "shared_full_names": 349,
+      "same_name_different_seat": 16
+    },
+    "cross_date_2026_07_23_vs_2026_09_30": {
+      "shared_valid_seats": 313,
+      "shared_seat_different_name": 4,
+      "shared_full_names": 348,
+      "same_name_different_seat": 35
+    },
+    "cross_date_2026_09_10_vs_2026_09_30": {
+      "shared_valid_seats": 313,
+      "shared_seat_different_name": 3,
+      "shared_full_names": 349,
+      "same_name_different_seat": 31
+    }
+  },
+  "method": "For all rows extract 'asiento' string and normalized full-name label. Initially naïvely assumed seat unique: local assertion failed because repeated '-1'. Excluded sentinel for seat comparison as posthoc repair, retaining raw anomaly count and no identity inference.",
+  "hypotheses": {
+    "H1": "PARTIALLY SUPPORTED: non-sentinel seat stable for 339/339 same-day rows, but not all 350; across dates seat reuse and switches occur",
+    "H0": "REFUTED as global assertion that seats cannot be linked even within same-day. Correct conservative model treats -1 and cross-session seat numbers non-identity."
+  },
+  "identifiability": "Seat number is an observation attribute and neither source-issued immutable personal ID nor a historical attestation; same seat different full name across dates is *observed* and not proof of different persons without independent adjudication.",
+  "ABR": "Negative technical control newly quantified, not population rate of person identity mistakes.",
+  "ABP": "Quarantine seat '-1' as missing sentinel. Do not use seat alone for person linking; retain session+vote reference and explicit unknown where missing.",
+  "metrics_unchanged": true,
+  "novel_scientific_N123": [
+    0,
+    0,
+    0
+  ],
+  "next": "C10 inspect recovered BOE 2023 official originals: compare 2023 ministerial elected-list universe to published 2023 results without asserting individuals, and check PDF metadata vs publication day."
+}
