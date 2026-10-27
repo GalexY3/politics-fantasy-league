@@ -1,0 +1,16 @@
+{
+  "cycle": "C45",
+  "mode": "AB-P",
+  "A": "Do original checked-in quality tests and new C36 malformed SHA/person IDs regressions pass on SHA-exact normalized quality module while preserving UNKNOWN coverage?",
+  "B": [
+    "Schema validation hardening broke existing duplicate/unknown counters",
+    "Both old and new negative synthetic fixtures pass",
+    "Missing source files invalidate run"
+  ],
+  "C": "Fetch/check original test_quality.py SHA, reconstruct exact test, current source quality.py/events.py SHA, run native pytest old+new. Verify no coverage inference.",
+  "D": {
+    "falsifier": "Any original test failure or blob mismatch",
+    "source_expected": "e3697d1adca19b1fa0e2800183bec7a2a069dac6",
+    "data": "Synthetic JSONL only"
+  }
+}
