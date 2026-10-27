@@ -1,0 +1,34 @@
+{
+  "id": "R05",
+  "status": "CLOSED_FULL_REVIEW_RECAP_AND_NEXT_DECISION",
+  "prereg": "R05_PREREG.json",
+  "report": "research/ABH_BRANCH45_20261027/RECAP_INTEGRAL_R05.md",
+  "review_stages": [
+    "R01: 36 milestone V4 36.90% +0.55pp no scope change",
+    "R02: progress API/tests wired V4, new native execution pending",
+    "R03: AB-R external validity no scientific claim and experiment design",
+    "R04: six product release gates all blocked",
+    "R05: cross-stream data/identity/temporal/legal/engineering/AB methodology recap"
+  ],
+  "metrics": {
+    "PFL_V4": 36.9,
+    "identity_subtrack": 42.5,
+    "events_subtrack": 35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "N123": [
+      0,
+      0,
+      0
+    ],
+    "release_gates": "0/6"
+  },
+  "authorization": {
+    "A_completed": 20,
+    "R_completed": 5,
+    "B_remaining": 20
+  },
+  "next_adaptive_cycle": "B01 attempt native reproducible code validation (e.g. exact blob transfer/JS or Python local runner) to distinguish archived source from only authored tests, without starting expensive GitHub CI.",
+  "no_new_science_claims": true,
+  "no_real_person_scoring": true
+}
