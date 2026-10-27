@@ -1,0 +1,15 @@
+{
+  "cycle": "C58",
+  "mode": "AB-P",
+  "A": "Does append-only Atlas 27-batch chain remain structurally consistent on current exact GitHub update JSON, with no duplicate run IDs, wrong parent or release gate promotion after four AB-H campaigns?",
+  "B": {
+    "H0": "Derived 169 runs from earlier ledger do not match actual batch operations/parent",
+    "H1": "Twenty-seven batch headers, run IDs and evidence paths agree",
+    "H2": "Earlier JS invariant replay only through 23 batches, so full Python state may differ despite headers"
+  },
+  "C": "Read exact GitHub tree for 0001–0027; parse each batch JSON, verify parent_batch chain, operators, unique run IDs, evidence refs and modes; compare prior C11 full replay 23 and append last four; report checks/errors and explicitly no canonical Python check or SHA.",
+  "D": {
+    "falsifier": "Any missing lot, parent mismatch, duplicate run or unexpected gate op => fail, do not repair silently",
+    "scope": "JS read-only source-blob verification, not python state canonical replay."
+  }
+}
