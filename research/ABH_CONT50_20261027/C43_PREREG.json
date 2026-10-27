@@ -1,0 +1,19 @@
+{
+  "cycle": "C43",
+  "mode": "AB-P",
+  "A": {
+    "question": "Does `historical_rate` remain invariant if extra event revisions and future publications become available only AFTER as_of? Any look-ahead changes would invalidate prequential demo."
+  },
+  "B": {
+    "rivals": [
+      "Cutoff enforced using `observable_event_revisions` (no leak)",
+      "Later revisions or scheduled data leak into historical count",
+      "Duplicate same-time revisions produce ambiguity and must fail closed"
+    ]
+  },
+  "C": "Native exact published Git SHA forecast.py/events.py and fake events with late knowledge vs old cutoff. Test counterfactual invariance, later cutoff influence, ambiguous publication collision fail-closed. Reuse only fictitious IDs; report results not political inference.",
+  "D": {
+    "falsifier": "Future-only appended rows change historical_rate at fixed as_of; regression test fails.",
+    "limits": "This verifies temporal filtering code on synthetic events, not first_public_at's institutional correctness."
+  }
+}
