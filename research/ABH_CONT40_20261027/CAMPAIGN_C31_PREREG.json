@@ -1,0 +1,42 @@
+{
+  "campaign": "PFL-ABH-CONT40-20261027",
+  "authorization": "User: 'Sí, concedidos. La tarea para Codex puede esperar mientras haces otras cosas? aun no puedo usar codex'",
+  "granted": 10,
+  "cycles": "C31-C40",
+  "baseline_head": "f149dfc7597df0c9e07c744fe48d285ce59b01c8",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "status": "ACTIVE",
+  "remaining": 10,
+  "scope": "Product runtime and metrics; research only with new verifiable sources. Codex issue #17 deferred, not assumed executed.",
+  "governance": "AB3.2.1 O3-O7; R1-R5; prereg before execution; A-J results; failures/invalid counted honestly; no costly CI/main/scoring/private originals",
+  "C31": {
+    "mode": "AB-P",
+    "status": "PREREGISTERED",
+    "A": {
+      "question": "Does evaluate_scope accept non-finite NaN in `milestone.size`, causing progress_pct to become NaN and invalid JSON response even when other schema checks pass?",
+      "estimand": "Deterministic validation correctness for scope progress and API serializability",
+      "unit": "one synthetic milestone without personal data"
+    },
+    "B": {
+      "preferred": "NaN size bypasses <=0/>10000 checks; propagates NaN",
+      "rivals": [
+        "Validator rejects NaN already",
+        "JSON loader allows NaN but progress_status will reject downstream",
+        "Other fields guard invariants"
+      ]
+    },
+    "C": {
+      "test": "Native Python on exact GitHub blob for progress_api; minimal synthetic valid payload, baseline normal vs NaN and Infinity; patch finite checks for size and track weight if verified; regression tests and git hash readback.",
+      "falsifier": "No NaN accepted or non-finite response; no patch if false"
+    },
+    "D": {
+      "instrument": "Source SHA d07a2762086a63089c82490bff6b4513d3dbb9d7, local exact reconstruction with git hash comparison; run pytest synthetic; no user data"
+    },
+    "E": "PENDING",
+    "F": "PENDING",
+    "G": "PENDING",
+    "H": "PENDING",
+    "I": "PENDING",
+    "J": "PENDING"
+  }
+}
