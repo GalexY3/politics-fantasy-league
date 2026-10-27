@@ -1,0 +1,11 @@
+{
+  "id": "B10",
+  "stage": "B",
+  "mode": "AB-META/AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "B09 recomputed V4 36.90 from exact source scopes, but evaluate_scope verifies only nonempty evidence_ref strings not actual resolved files.",
+  "H1": "Most V4 milestones’ evidence_ref paths resolve to actual repository files on the current research branch; the two newly promoted ones must resolve. Missing references will be disclosed without silently increasing progress, and acceptance for V4 will require a broken-reference caveat or repair.",
+  "H0": "Many references are stale or forged, implying the 36.90 score has unresolved documentary support despite arithmetic correctness.",
+  "procedure": "Extract all 36 milestone evidence_ref paths from exact versioned V4 JSON, normalize repository-relative paths without allowing upward traversal, independently fetch each through GitHub connector on branch, record exists/missing. Do not inspect sensitive original rows. If referents are intentionally absent classes, classify instead of fabricating. No change to V4 maturity until evidence reviewed.",
+  "acceptance": "36 individual resolutions attempted; two promoted refs verified or flagged; concrete count and repair list, no claim native Python test."
+}
