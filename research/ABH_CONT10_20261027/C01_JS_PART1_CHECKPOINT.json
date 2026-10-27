@@ -1,0 +1,2306 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "title": "Politics Fantasy League · Mapa de trabajo",
+      "kind": "project",
+      "mode": "hybrid",
+      "status": "active",
+      "detail": "Juego fantasy local y observatorio político; ciencia, datos de campo y lanzamiento evaluados por separado. Corte documental 26/10/2026.",
+      "sources": [],
+      "created_at": "2026-10-26T19:24:54+00:00",
+      "updated_at": "2026-10-26T19:24:54+00:00",
+      "phase": null,
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_f45cde05dc73",
+      "title": "Juego fantasy jugable",
+      "kind": "goal",
+      "mode": "project",
+      "status": "active",
+      "detail": "Modo producto: entrega verificable, reglas claras, aceptación de usuarios.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_24887f9afdd7",
+      "title": "Investigación y medición política",
+      "kind": "goal",
+      "mode": "research",
+      "status": "active",
+      "detail": "Pregunta científica independiente del éxito de producto.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_80498d9bc193",
+      "title": "Fuentes y evidencias",
+      "kind": "milestone",
+      "mode": "project",
+      "status": "active",
+      "detail": "Captura de hechos verificables y conservación de fuentes originales.",
+      "sources": [
+        "docs/ARQUITECTURA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "specify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_e9357d367f2c",
+      "title": "Atlas electoral histórico 2023",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "validated",
+      "detail": "BOE original y cotejos descritos en el README. Limitados a candidaturas, sin identidades individuales.",
+      "sources": [
+        "README.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "La funcionalidad o corpus funciona dentro de su alcance explícitamente limitado; no habilita producción pública.",
+        "evidence": [
+          "README.md"
+        ],
+        "verified_by": "Revisión documental del repositorio, 26/10/2026",
+        "verified": true,
+        "at": "2026-10-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "n_ca9094a596e4",
+      "title": "Identidad longitudinal de personas",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Bloqueado. Oficial XV código 44 como candidato de alias, pero sin PDF original inspeccionado ni crosswalk multifuente certificado. Ver C07–C09.",
+      "sources": [
+        "docs/UNIVERSO_ACTORES_POLITICOS_20261025.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_fdb37e730626",
+      "title": "Eventos atribuibles y temporales",
+      "kind": "task",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Sin registros longitudinales por persona no es válido puntuar actividad real.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_912a9abb9336",
+      "title": "Demo local de mercado y clubes",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "validated",
+      "detail": "Prototipo ejecutable con figuras inventadas; no es servicio público.",
+      "sources": [
+        "docs/PRODUCTO_LOCAL_v0_2.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "La funcionalidad o corpus funciona dentro de su alcance explícitamente limitado; no habilita producción pública.",
+        "evidence": [
+          "docs/PRODUCTO_LOCAL_v0_2.md"
+        ],
+        "verified_by": "Revisión documental del repositorio, 26/10/2026",
+        "verified": true,
+        "at": "2026-10-26T00:00:00+00:00"
+      }
+    },
+    {
+      "id": "n_55716c49e5d2",
+      "title": "Identidades de usuario y seguridad",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Autenticación/autorización y despliegue seguro pendientes.",
+      "sources": [
+        "docs/PROGRESO_Y_ALCANCE_v3.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_1b097dac0a56",
+      "title": "¿Qué miden los puntos fantasy?",
+      "kind": "question",
+      "mode": "research",
+      "status": "open",
+      "detail": "Los puntos son convenciones del juego, no mérito político ni causalidad.",
+      "sources": [
+        "docs/VALIDACION_ETICA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "specify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_b467123cb4c0",
+      "title": "Predicción de eventos as-of",
+      "kind": "hypothesis",
+      "mode": "research",
+      "status": "proposed",
+      "detail": "Evaluar una predicción temporal de eventos observables frente a baselines fuertes.",
+      "sources": [
+        "docs/ARQUITECTURA.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_e880266349fb",
+      "title": "¿Sesgo por visibilidad y cargo?",
+      "kind": "question",
+      "mode": "research",
+      "status": "open",
+      "detail": "Estudiar el efecto de la exposición institucional sobre puntuaciones.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_faa4236b7431",
+      "title": "Lanzamiento público",
+      "kind": "milestone",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Seis gates pendientes; % de madurez no implica aptitud para lanzamiento.",
+      "sources": [
+        "docs/PROGRESO_Y_ALCANCE_v3.md"
+      ],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "release",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "n_3a9a784cf7c0",
+      "title": "Revisión AB de la trazabilidad",
+      "kind": "method_change",
+      "mode": "meta",
+      "status": "proposed",
+      "detail": "Propuesta universal de registrar mejoras y fricciones por ejecución.",
+      "sources": [],
+      "created_at": "2026-10-26T19:27:13+00:00",
+      "updated_at": "2026-10-26T19:27:13+00:00",
+      "phase": "operate",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified_by": "",
+        "verified": false
+      }
+    },
+    {
+      "id": "PFL-ABH-2024-NAME",
+      "title": "¿Existía el nombre electoral del voto de 2024 en fuentes oficiales?",
+      "kind": "question",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Sí, aparece en DSCD-15-PL-16 y en una iniciativa institucional de 2024. Respuesta documental sobre nombre/rol, no identidad inmutable.",
+      "sources": [
+        "research/ABH20_ATLAS_20261026/C07_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-ABH-2024-ALIAS",
+      "title": "¿Cuesta Rodríguez María del Socorro equivale a ficha XV código 44?",
+      "kind": "question",
+      "mode": "research",
+      "status": "blocked",
+      "detail": "Candidata de alias: ficha código 44 muestra María Cuesta Rodríguez; iniciativa muestra María del Socorro; declaración PDF enlazada no pudo inspeccionarse. STOP_R5, no crosswalk legal ni puntuación.",
+      "sources": [
+        "research/ABH20_ATLAS_20261026/C08_RESULT.json",
+        "research/ABH20_ATLAS_20261026/C09_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-ABH-ELIG-POLICY",
+      "title": "Política explicativa de elegibilidad documental",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Módulo de cuarentena fail-closed, 12 tests unitarios locales, GET añadido; aún falta comprobar HTTP contra app completa. Ninguna persona puntúa.",
+      "sources": [
+        "src/politics_fantasy/source_eligibility.py",
+        "tests/test_source_eligibility.py"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-ABH-HTTP-CHECK",
+      "title": "Prueba HTTP real y auditabilidad del source crosswalk",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Test HTTP del repo completo no ejecutable sin checkout/CI bajo alerta de minutos. Código existe; gate E2E sigue cerrado.",
+      "sources": [
+        "tests/test_source_eligibility_http.py",
+        "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "pfl_abh_br20_cod_scoped",
+      "title": "Códigos de diputado restringidos a legislatura (casos XIV/XV)",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "En dos casos prefijados, codParlamentario cambia entre XIV y XV; esto descarta igualdad numérica como clave personal invariante para esos casos, NO establece tasa poblacional, ni crosswalk universal.",
+      "sources": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C02_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "pfl_abh_br20_registry_original",
+      "title": "Registro oficial de partidos: correspondencia acreditada pendiente",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "El portal institucional documenta trámites de información/certificados, pero no se obtuvo un registro primario verificable para cruzar partidos, candidaturas y grupos.",
+      "sources": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C03_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "pfl_abh_br20_typed_guard",
+      "title": "Guarda tipada de referencias institucionales",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Módulo importado de AB20B con 6 aserciones verificadas localmente en staging; NO integrado en servidor ni prueba de identidad real.",
+      "sources": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C04_RESULT.json"
+      ],
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RECON-AUTH-20261027",
+      "title": "¿A qué autorización corresponden las dos campañas paralelas?",
+      "kind": "question",
+      "mode": "hybrid",
+      "status": "blocked",
+      "detail": "Las ramas AB-H 9 y 4 y la continuación RC01-RC07 (7 ciclos) sumarían 20 si hubieran usado el MISMO permiso humano y no hubiera otros consumos: techo conservador 20/20 AGOTADO, saldo condicional cero. Si son dos autorizaciones distintas, la contabilidad cambiaría; NO se ha conciliado la procedencia. Batch cerrado, STOP_R5, solicitar explícitamente un nuevo BRANCHING antes de consumir otro.",
+      "sources": [
+        "research/ABH_RECON_20261027/RECONCILIACION.md"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "title": "Catálogo central de fuentes y estados",
+      "kind": "task",
+      "mode": "project",
+      "status": "active",
+      "detail": "Fuentes ahora incluyen BOE 2023 PDFs firmados y reporte AEBOE 312/312 ejemplares ordinarios antes de las 08:00, cota diaria condicional; Congreso/Moncloa/PSOE perfiles históricos con 11 continuidades positivas y DOB oficial conflictiva. first_public_at por fila aún desconocido, no censo de homónimos negativos ni scoring real.",
+      "sources": [
+        "docs/CATALOGO_FUENTES.md",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C18.md"
+      ],
+      "phase": "operate",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-FUENTES-OFICIALES-20261027",
+      "title": "Fuentes electas de Interior y nominales del Senado",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Capturas oficiales exploratorias reproducidas. Útiles como fuentes candidatas; no resuelven identidad longitudinal ni first_public_at por fila.",
+      "sources": [
+        "research/ABH_RECON_20261027/RC01_RESULT.json",
+        "research/ABH_RECON_20261027/RC03_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RC04-CANDIDATOS-SENADO-20261027",
+      "title": "Candidatos nominales en sesión 60 del Senado",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "259 cadenas de la sesión tienen una sola coincidencia nominal en la composición XV de este snapshot. Son candidatas, no identidades ni pertenencia temporal verificadas; faltan controles adjudicados.",
+      "sources": [
+        "research/ABH_RECON_20261027/RC04_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RESCATE-FUENTES-20261027",
+      "title": "Capturas oficiales preservadas y traspaso a ChatGPT",
+      "kind": "artifact",
+      "mode": "project",
+      "status": "answered",
+      "detail": "Conservación local de tres artefactos de Actions y paquete de 11 fuentes seleccionadas; comprobar hashes y límites en el recibo. No es una nueva validación científica.",
+      "sources": [
+        "research/ABH_RECON_20261027/RESCATE_FUENTES_20261027.json",
+        "docs/CONTINUIDAD_CHATGPT_20261027.md"
+      ],
+      "phase": "operate",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RC05-MICRO-GOLD-20261027",
+      "title": "Muestra institucional RC05: 3 pares coincidentes, 2 negativos",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Cinco pares selectivos: P1 mismo perfil Senado XIII/XIV/XV y renovación; P2 y P3 nombramiento 10-09-2026 en Cortes de Castilla y León contrastado con mandato Senado 11-09-2026; N1 sustitución de personas, N2 colisión de dos apellidos con personas distintas. Prerregistro expuesto, sin homónimo de nombre completo, sin segunda adjudicación humana, sin generalización poblacional.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "5 pares revisados con actos oficiales y dos controles de falso enlace; no equivalencia longitudinal masiva",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json"
+        ],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "title": "Primera publicación verificable por dato y snapshot histórico",
+      "kind": "blocker",
+      "mode": "research",
+      "status": "blocked",
+      "detail": "RC05 distingue 10-09-2026 acto, 11-09-2026 inicio en Senado y 16-09-2026 boletín, pero los cinco first_public_at son null; URLs de fichas mutables no acreditan disponibilidad a cortes retrospectivos. Bloquea test predictivo temporal y aceptación de eventos individuales.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "title": "Nominación aceptada ≠ designación plenaria: control de filtración temporal",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "BOCCL 32/12 ESE/000002-01 se firma 03-09-2026 y publica 10-09-2026 como aceptación de candidaturas; BOCCL 34/12 ESE/000002-02 tiene acto de designación de 10-09-2026 y publicación 16-09-2026. No usar boletín posterior para afirmar que se conocía la designación a 12-09; eso NO demuestra que ningún otro medio comunicase el acto antes del 16. first_public_at exact sigue ausente.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+      "title": "Guarda aislada de tipo de afirmación y publicación comprobada",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Módulo puro local con diez pruebas verificadas; exige as_of timezone aware, namespace de fuente y correspondencia claim-family, y first_public_at exact desde trusted_registry de confianza. No verifica la procedencia del registry; horarios positivos en tests son sintéticos. No integrado al servidor, no habilita backtest ni personas reales.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json",
+        "src/politics_fantasy/provenance_claim_gate.py",
+        "tests/test_rc07_provenance_claim_gate.py"
+      ],
+      "phase": "build",
+      "acceptance": {
+        "criteria": "Pruebas locales unitarias 10/10; futura aceptación requiere registry server-owned auditado y tests HTTP/E2E",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json"
+        ],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-STAGES-20261027",
+      "title": "Actos tipados: nominación, designación, credencial, acatamiento y condición plena",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Fuentes independientes: CCyL aceptó candidatos BOCCL 10/09, designó por Pleno 10/09 (BOCCL 16/09); Senado registra comienzo de mandato 11/09 y acatamiento en Pleno 15/09; BOE-A-2025-23055 art.12 exige credencial + declaraciones + acatamiento para perfección de condición. No consta acreditación conjunta de los tres requisitos de individuos, ni first_public_at original.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_RESULT.json",
+        "https://www.senado.es/web/actividadparlamentaria/sesionesplenarias/pleno/rwdsesionespleno/detalle/index.html?id=83&legis=15&ns=82",
+        "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-23055"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-SOURCE-REGISTRY-20261027",
+      "title": "Índice local fijo de tres clases de fuente, sin recibos de publicación",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "source_event_registry.py ofrece tres metadatos de actos documentados y deny si no first_public_at; 10 controles unitarios PASS local. No es sistema de atestación, no se ha conectado a servidor, no está validado en E2E.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json",
+        "src/politics_fantasy/source_event_registry.py",
+        "tests/test_source_event_registry.py"
+      ],
+      "phase": "build",
+      "acceptance": {
+        "criteria": "Aceptación local de semántica con 10 tests, pendiente integración y autenticación del registro",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json"
+        ],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-AUTH-20261027",
+      "title": "BRANCHING20C concedido: 4 registros cerrados, 16 reservados",
+      "kind": "milestone",
+      "mode": "project",
+      "status": "active",
+      "detail": "Nueva autorización humana BRANCHING20C de 20 independiente del bloque legado. Ejecutados C01–C18: TOTAL 18/20; quedan 2 ciclos autorizados. C13–C18 incorporan evidencia editorial nueva de BOE 2023, 11 correspondencias personales positivas y un conflicto DOB entre emisores oficiales. Aplicar R5 para no consumir plazas por repetir muestras sin independencia; no requiere otra concesión.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_RESUME_C13_C18.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C18.md",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/PRIORS_DELTA_C13_C18.json"
+      ],
+      "phase": "discover",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-ORIGINALS-11-20261027",
+      "title": "11 originales recuperados e íntegros respecto del ZIP privado",
+      "kind": "artifact",
+      "mode": "project",
+      "status": "active",
+      "detail": "11/11 SHA-256, longitudes y CRC coinciden con MANIFIESTO del usuario; no autenticidad independiente del proveedor ni first_public_at histórico; originales no publicados en GitHub.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-SENATE-DAY-20261027",
+      "title": "Sesión 60 del Senado: fecha de voto posterior a fecha de cabecera",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "La sesión XML indica 07/10/2025; las diez votaciones nominales originales están fechadas 08-OCT-2025. 259 strings encuentran una candidata nominal cada una en 311 registros XV; no es identidad ni vigencia adjudicada.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-INTERIOR-REPEATED-20261027",
+      "title": "1.306 nombres completos repetidos en elecciones, sin identidad certificada",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Interior 5600 electos/16 elecciones, 2958 cadenas normalizadas, 1306 reiteradas en dos o más fechas; 103 cruzan provincia y 576 siglas. Cadenas candidatas, no personas longitudinalmente verificadas.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-SEAT-SENTINEL-20261027",
+      "title": "Asiento -1 y reutilización entre sesiones impiden llave de persona",
+      "kind": "blocker",
+      "mode": "project",
+      "status": "blocked",
+      "detail": "Original Congreso tiene 11/11/15/30 asientos -1 repetidos en votaciones, más cambios de asiento por mismo nombre y asiento compartido por distinto nombre entre fechas. Abortar join por asiento.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_RESULT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+      "title": "Electos 2023: 52 provincias, 350 filas, 346 nombres exactos y cuatro excepciones",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "BOE-JEC 18907 original páginas 26–37 vs Interior XLSX: 52/52 provincias con 350 electos; 50 provincias estrictamente idénticas, 346/350 nombres normalizados coinciden; cuatro discrepancias textuales contextualizadas, no ID personal adjudicado. BOE de candidaturas es otro estadio.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_RESULT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-ORIGINAL-QA-20261027",
+      "title": "Control local reutilizable de asiento, totales y fecha de voto",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "source_original_qa.py y 8 pruebas locales PASS; 4 votos originales del Congreso reconciliados. No se ha integrado en HTTP ni acreditado el editor/firma.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_RESULT.json",
+        "src/politics_fantasy/source_original_qa.py",
+        "tests/test_source_original_qa.py"
+      ],
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+      "title": "BOE ordinario 2023: cota retrospectiva de disponibilidad al día siguiente",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Art 11 RD181/2008 exige acceso el día del ejemplar salvo fallo técnico; informe AEBOE 2023 declaró 312/312 BOE ordinarios publicados antes de las 08:00. Dos PDF 2023 originales con firmas AEBOE criptográficamente íntegras. Cota condicional desde 00:00 día siguiente de edición; no equivalencia con first_public_at exacta, ni sello histórico observado en CDN ni otros emisores.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_RESULT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+      "title": "11 continuidades personales oficiales entre elecciones separadas 20–41 años",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "Interior original 5600 electos; tres de tres labels con span >=35 años y ocho de ocho de muestra fija 20–34 años y cambio de provincia están respaldados como una persona por biografías Congress/Moncloa. Solo controles positivos seleccionados; sin homónimo exacto negativo ni tasa poblacional.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_RESULT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-DOB-SOURCE-CONFLICT",
+      "title": "Contraejemplo institucional: DOB discordante de una misma persona",
+      "kind": "finding",
+      "mode": "research",
+      "status": "answered",
+      "detail": "La Moncloa 2008/2012: Cristina Narbona Ruiz DOB 1951-07-21; Congreso XV y PSOE 2017/2024 DOB 1951-07-29. Oficinas y trayectorias ligan misma persona. No auto dividir por DOB; conservar ambas aserciones y sus procedencias, sin elegir valor legal por mayoría.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_RESULT.json"
+      ],
+      "phase": "verify",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    },
+    {
+      "id": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+      "title": "Prototipos de cota BOE 2023 y conflicto DOB por fuente",
+      "kind": "deliverable",
+      "mode": "project",
+      "status": "active",
+      "detail": "Dos módulos puros Python: boe_2023_publication_bound.py, 10/10 tests, e identity_field_conflicts.py, 11/11 tests. No HTTP, no verificaciones de recibos externos, no puntuación política real, no gates.",
+      "sources": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_RESULT.json",
+        "src/politics_fantasy/identity_field_conflicts.py"
+      ],
+      "phase": "build",
+      "acceptance": {
+        "criteria": "",
+        "evidence": [],
+        "verified": false,
+        "verified_by": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_62c84e9d209d",
+      "from": "root",
+      "to": "n_f45cde05dc73",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_df8071b97b3b",
+      "from": "root",
+      "to": "n_24887f9afdd7",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_ae678e2bed87",
+      "from": "n_f45cde05dc73",
+      "to": "n_80498d9bc193",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_c560ec7102fa",
+      "from": "n_80498d9bc193",
+      "to": "n_e9357d367f2c",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_864b535a935f",
+      "from": "n_80498d9bc193",
+      "to": "n_ca9094a596e4",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_d69b1df896c9",
+      "from": "n_80498d9bc193",
+      "to": "n_fdb37e730626",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_b518980a54ee",
+      "from": "n_ca9094a596e4",
+      "to": "n_fdb37e730626",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_a620aebebbc2",
+      "from": "n_f45cde05dc73",
+      "to": "n_912a9abb9336",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_c24c65a9be6d",
+      "from": "n_f45cde05dc73",
+      "to": "n_55716c49e5d2",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_68167a1d3dcb",
+      "from": "n_55716c49e5d2",
+      "to": "n_912a9abb9336",
+      "relation": "related_to"
+    },
+    {
+      "id": "e_33d0a0e38d32",
+      "from": "n_24887f9afdd7",
+      "to": "n_1b097dac0a56",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_a143fd2a3789",
+      "from": "n_24887f9afdd7",
+      "to": "n_b467123cb4c0",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_8b1459600d87",
+      "from": "n_1b097dac0a56",
+      "to": "n_e880266349fb",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_202ad67cf0a0",
+      "from": "n_fdb37e730626",
+      "to": "n_b467123cb4c0",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_bdb50dd809f8",
+      "from": "n_b467123cb4c0",
+      "to": "n_f45cde05dc73",
+      "relation": "related_to"
+    },
+    {
+      "id": "e_1b1e6bf9db9e",
+      "from": "n_f45cde05dc73",
+      "to": "n_faa4236b7431",
+      "relation": "branches_from"
+    },
+    {
+      "id": "e_9b0265f82585",
+      "from": "n_ca9094a596e4",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_b56d95c8daa5",
+      "from": "n_55716c49e5d2",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "id": "e_83bff118fc67",
+      "from": "root",
+      "to": "n_3a9a784cf7c0",
+      "relation": "branches_from"
+    },
+    {
+      "id": "dep_fantasy_identity",
+      "from": "n_faa4236b7431",
+      "to": "n_ca9094a596e4",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_fantasy_security",
+      "from": "n_faa4236b7431",
+      "to": "n_55716c49e5d2",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_fantasy_events",
+      "from": "n_faa4236b7431",
+      "to": "n_fdb37e730626",
+      "relation": "depends_on"
+    },
+    {
+      "id": "dep_predict_events",
+      "from": "n_b467123cb4c0",
+      "to": "n_fdb37e730626",
+      "relation": "depends_on"
+    },
+    {
+      "id": "PFL-ABH-E1",
+      "from": "n_24887f9afdd7",
+      "to": "PFL-ABH-2024-NAME",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-ABH-E2",
+      "from": "PFL-ABH-2024-NAME",
+      "to": "PFL-ABH-2024-ALIAS",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-ABH-E3",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-ABH-2024-ALIAS",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-ABH-E4",
+      "from": "n_80498d9bc193",
+      "to": "PFL-ABH-ELIG-POLICY",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-ABH-E5",
+      "from": "PFL-ABH-ELIG-POLICY",
+      "to": "PFL-ABH-HTTP-CHECK",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-ABH-E6",
+      "from": "PFL-ABH-HTTP-CHECK",
+      "to": "n_faa4236b7431",
+      "relation": "blocks"
+    },
+    {
+      "id": "pfl_abh_br20_e01",
+      "from": "n_24887f9afdd7",
+      "to": "pfl_abh_br20_cod_scoped",
+      "relation": "branches_from"
+    },
+    {
+      "id": "pfl_abh_br20_e02",
+      "from": "pfl_abh_br20_cod_scoped",
+      "to": "n_ca9094a596e4",
+      "relation": "supports"
+    },
+    {
+      "id": "pfl_abh_br20_e03",
+      "from": "n_80498d9bc193",
+      "to": "pfl_abh_br20_registry_original",
+      "relation": "branches_from"
+    },
+    {
+      "id": "pfl_abh_br20_e04",
+      "from": "pfl_abh_br20_registry_original",
+      "to": "n_ca9094a596e4",
+      "relation": "blocks"
+    },
+    {
+      "id": "pfl_abh_br20_e05",
+      "from": "n_ca9094a596e4",
+      "to": "pfl_abh_br20_typed_guard",
+      "relation": "branches_from"
+    },
+    {
+      "id": "pfl_abh_br20_e06",
+      "from": "pfl_abh_br20_typed_guard",
+      "to": "n_faa4236b7431",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RECON-AUTH-EDGE-20261027",
+      "from": "root",
+      "to": "PFL-RECON-AUTH-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-FUENTES-CATALOGO-EDGE-20261027",
+      "from": "n_80498d9bc193",
+      "to": "PFL-FUENTES-CATALOGO-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-FUENTES-OFICIALES-EDGE-20261027",
+      "from": "PFL-FUENTES-CATALOGO-20261027",
+      "to": "PFL-FUENTES-OFICIALES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RC04-SENADO-EDGE-20261027",
+      "from": "PFL-FUENTES-OFICIALES-20261027",
+      "to": "PFL-RC04-CANDIDATOS-SENADO-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-RESCATE-FUENTES-EDGE-20261027",
+      "from": "PFL-FUENTES-CATALOGO-20261027",
+      "to": "PFL-RESCATE-FUENTES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RC05-E01",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-RC05-MICRO-GOLD-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-RC05-E02",
+      "from": "PFL-RC05-MICRO-GOLD-20261027",
+      "to": "PFL-RC04-CANDIDATOS-SENADO-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RC05-E03",
+      "from": "n_fdb37e730626",
+      "to": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-RC05-E04",
+      "from": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "to": "n_b467123cb4c0",
+      "relation": "blocks"
+    },
+    {
+      "id": "PFL-RC06-E01",
+      "from": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "to": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RC06-E02",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "n_b467123cb4c0",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-RC07-E01",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-STAGES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-E2",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "PFL-B20C-STAGES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-E3",
+      "from": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+      "to": "PFL-B20C-SOURCE-REGISTRY-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-E4",
+      "from": "root",
+      "to": "PFL-B20C-AUTH-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-B20C-C05-E1",
+      "from": "n_80498d9bc193",
+      "to": "PFL-B20C-ORIGINALS-11-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "id": "PFL-B20C-C06-E1",
+      "from": "PFL-B20C-ORIGINALS-11-20261027",
+      "to": "PFL-B20C-SENATE-DAY-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C08-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-INTERIOR-REPEATED-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C09-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-SEAT-SENTINEL-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C11-E1",
+      "from": "n_e9357d367f2c",
+      "to": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C12-E1",
+      "from": "PFL-B20C-SEAT-SENTINEL-20261027",
+      "to": "PFL-B20C-ORIGINAL-QA-20261027",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C13-E1",
+      "from": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+      "to": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C15-E1",
+      "from": "PFL-B20C-INTERIOR-REPEATED-20261027",
+      "to": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C17-E1",
+      "from": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+      "to": "PFL-B20C-DOB-SOURCE-CONFLICT",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C18-E1",
+      "from": "PFL-B20C-DOB-SOURCE-CONFLICT",
+      "to": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+      "relation": "related_to"
+    },
+    {
+      "id": "PFL-B20C-C14-E2",
+      "from": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+      "to": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+      "relation": "related_to"
+    }
+  ],
+  "runs": [
+    {
+      "id": "PFL-ABH26-R01",
+      "activity": "AB-H ciclo C01 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C01_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": [
+        "PFL-ABH-COMP-003"
+      ]
+    },
+    {
+      "id": "PFL-ABH26-R02",
+      "activity": "AB-H ciclo C02 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C02_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 4
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": [
+        "PFL-ABH-COMP-002"
+      ]
+    },
+    {
+      "id": "PFL-ABH26-R03",
+      "activity": "AB-H ciclo C03 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C03_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": [
+        "PFL-ABH-COMP-001"
+      ]
+    },
+    {
+      "id": "PFL-ABH26-R04",
+      "activity": "AB-H ciclo C04 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C04_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-ABH26-R05",
+      "activity": "AB-H ciclo C05 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C05_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-ABH26-R06",
+      "activity": "AB-H ciclo C06 — evidencia y decisión secuencial",
+      "status": "stopped",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-ABH26-R07",
+      "activity": "AB-H ciclo C07 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C07_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-ABH26-R08",
+      "activity": "AB-H ciclo C08 — evidencia y decisión secuencial",
+      "status": "completed",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C08_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-ABH26-R09",
+      "activity": "AB-H ciclo C09 — evidencia y decisión secuencial",
+      "status": "stopped",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C09_RESULT.json"
+      ],
+      "cost": {
+        "GitHub_Actions_explicit": 0,
+        "GitHub_Actions_unintended_preguard": 0
+      },
+      "scope": "PFL-V1 rev3",
+      "method_version": "AB 3.2.1 + O7/Atlas 0.3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL_ABH_BR20_C01",
+      "activity": "C01 official all-legislature JSON source-access audit",
+      "at": "2026-10-26T22:43:07.497Z",
+      "status": "completed",
+      "evidence": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C01_PREREG.json",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C01_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "git_commits_skip_ci": true
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL_ABH_BR20_COMPLAINT_C01"
+      ]
+    },
+    {
+      "id": "PFL_ABH_BR20_C02",
+      "activity": "C02 official XIV/XV term-scoped member IDs documentary audit",
+      "at": "2026-10-26T22:43:07.497Z",
+      "status": "completed",
+      "evidence": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C02_PREREG.json",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C02_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "git_commits_skip_ci": true
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL_ABH_BR20_C03",
+      "activity": "C03 official RPP registry identity source feasibility check",
+      "at": "2026-10-26T22:43:07.497Z",
+      "status": "completed",
+      "evidence": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C03_PREREG.json",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C03_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "git_commits_skip_ci": true
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL_ABH_BR20_COMPLAINT_C03"
+      ]
+    },
+    {
+      "id": "PFL_ABH_BR20_C04",
+      "activity": "C04 AB-P source namespace safety local acceptance",
+      "at": "2026-10-26T22:43:07.497Z",
+      "status": "completed",
+      "evidence": [
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C04_PREREG.json",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/research/ABH_BR20_20261026/C04_RESULT.json",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/src/politics_fantasy/typed_refs.py",
+        "https://github.com/GalexY3/Metodologia-AB/blob/17d7c7730225fce1f43f16c307076e9896dbf1b9/proyectos/politics-fantasy-league/tests/test_abh_branch20_typed_refs.py"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "git_commits_skip_ci": true
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL_ABH_BR20_COMPLAINT_C04"
+      ]
+    },
+    {
+      "id": "PFL-RC01-20261027",
+      "activity": "Reproducción exploratoria del XLSX oficial de cargos electos",
+      "status": "completed",
+      "evidence": [
+        "research/ABH_RECON_20261027/RC01_PREREG.json",
+        "research/ABH_RECON_20261027/RC01_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC01-COMP-20261027"
+      ]
+    },
+    {
+      "id": "PFL-RC02-20261027",
+      "activity": "Aceptación acotada del endpoint local y replay Atlas",
+      "status": "completed",
+      "evidence": [
+        "research/ABH_RECON_20261027/RC02_PREREG.json",
+        "research/ABH_RECON_20261027/RC02_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC02-COMP-20261027",
+        "PFL-RECON-ATLAS-SEVERITY-20261027",
+        "PFL-ATLAS-UTF8-20261027"
+      ]
+    },
+    {
+      "id": "PFL-RC03-20261027",
+      "activity": "Reproducción exploratoria de XML oficiales del Senado",
+      "status": "completed",
+      "evidence": [
+        "research/ABH_RECON_20261027/RC03_PREREG.json",
+        "research/ABH_RECON_20261027/RC03_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC03-COMP-20261027"
+      ]
+    },
+    {
+      "id": "PFL-RC04-20261027",
+      "activity": "Cotejo exploratorio agregado de nombres del Senado",
+      "status": "completed",
+      "evidence": [
+        "research/ABH_RECON_20261027/RC04_PREREG.json",
+        "research/ABH_RECON_20261027/RC04_RESULT.json",
+        "research/ABH_RECON_20261027/RC04_QA.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-RESCATE-FUENTES-RUN-20261027",
+      "activity": "Conservar y verificar capturas previas; preparar paquete local para ChatGPT",
+      "status": "completed",
+      "evidence": [
+        "research/ABH_RECON_20261027/RESCATE_FUENTES_20261027.json",
+        "docs/CONTINUIDAD_CHATGPT_20261027.md"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "AB_cycles": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-RC05-20261027",
+      "activity": "Adjudicar cinco pares documentales de persona/mandato y controles negativos con fuentes oficiales autonómicas y del Senado",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_ADJUDICATION.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC05_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "source_web_only": true
+      },
+      "method_version": "AB 3.2.1 O7 / AB-H exploratory source exposed",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC05-PREEXPOSURE-20261027",
+        "PFL-RC05-ASOF-20261027"
+      ]
+    },
+    {
+      "id": "PFL-RC06-20261027",
+      "activity": "Compare official BOCCL prior candidate acceptance ESE/000002-01 with post-plenary designation ESE/000002-02, and discriminate date/event/assertion type",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_RESULT.json",
+        "docs/CATALOGO_FUENTES.md"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H / AB-R exploratory source-exposed",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC06-SOURCE-EXPOSURE-20261027"
+      ]
+    },
+    {
+      "id": "PFL-RC07-20261027",
+      "activity": "Precommitted ten pure Python tests for fail-closed type/as-of source-provenance guard; local acceptance only",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json",
+        "src/politics_fantasy/provenance_claim_gate.py",
+        "tests/test_rc07_provenance_claim_gate.py"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB 3.2.1 O7 AB-H / AB-P local-only",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-RC07-TRUST-BOUNDARY-20261027"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C01",
+      "activity": "Audit separate nomination, designation, mandate start, Senate oath and complete legal status against Senate plenary and BOE Article 12",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_RESULT.json"
+      ],
+      "at": "2026-10-27T02:31:30.356Z",
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1 O7",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C02",
+      "activity": "Demonstrate RC07 pure helper accepts forged caller-owned trusted_registry; show not live HTTP exploit",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C02_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C02_RESULT.json"
+      ],
+      "at": "2026-10-27T02:31:30.356Z",
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1 O7",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C02-FORGED-REGISTRY"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C03",
+      "activity": "Implement frozen 3-record stage registry with unknown first_public_at; 10 local acceptance tests",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json"
+      ],
+      "at": "2026-10-27T02:31:30.356Z",
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1 O7",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C04",
+      "activity": "Attempt readonly server route; GitHub server file write blocked and HTTP E2E cannot be certified",
+      "status": "stopped",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C04_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C04_RESULT.json"
+      ],
+      "at": "2026-10-27T02:31:30.356Z",
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1 O7",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C04-HTTP-UNVERIFIED"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C05",
+      "activity": "Validate SHA and CRC for all 11 private official originals against handoff manifest",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C05_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C06",
+      "activity": "Recompute Senate ten votes and 259 candidate labels; detect session-vote day discrepancy and missing validity windows",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C06_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C06-HISTORIC-IDENTITY-GAP"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C07",
+      "activity": "Recompute Congress four nominal vote totals and 412 historical snapshot candidate links; audit after-event bajas",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C07_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C08",
+      "activity": "Examine 5600 elected people-name labels across 16 Interior national elections and ambiguity",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C08_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C09",
+      "activity": "Quantify Congreso asiento -1 repeated sentinel and cross-session seat reassignments",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C09_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C09-DUPLICATE-SEAT-SENTINEL"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C10",
+      "activity": "Compare preregistered Albacete and Salamanca elected BOE JEC 2023 lists to Interior original 8 rows",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C10_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C11",
+      "activity": "Extend original BOE JEC 2023 vs Interior elected cohort across 52 provinces; inspect four non-exact labels",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C11_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C11-FOUR-TEXT-EXCEPTIONS"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C12",
+      "activity": "Implement source_original_qa.py aggregate sentinel/date guard with 8 local tests and four original Congress replays",
+      "status": "completed",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C12_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0,
+        "original_files_published": false
+      },
+      "method_version": "AB3.2.1 O7 AB-H",
+      "scope": "PFL-V1 rev3",
+      "complaint_ids": [
+        "PFL-B20C-C12-LOCAL-QA-ONLY",
+        "PFL-B20C-C12-ATLAS-RUNID-REPAIR"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C13",
+      "activity": "Verify two signed 2023 BOE originals, RD 181/2008 day accessibility and AEBOE 2023 312/312 on-time ordinary publications",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-R",
+      "complaint_ids": [
+        "PFL-B20C-BOE-SIGNATURE-TRUST-20261027"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C14",
+      "activity": "Implement 2023 BOE 2-document conservative next-day availability policy with 10 local tests, no person scoring",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-P",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C15",
+      "activity": "Use national Interior 5600-row election original to adjudicate all 3 full-name recurrent labels spanning ≥35 years against official institutional biographies",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-R",
+      "complaint_ids": []
+    },
+    {
+      "id": "PFL-B20C-C16",
+      "activity": "Review fixed first 8 among 17 recurring full names spanning 20–34 years with constituency moves against official biographies",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-R",
+      "complaint_ids": [
+        "PFL-B20C-NO-EXACT-HOMONYM-NEGATIVE-20261027"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C17",
+      "activity": "Reconcile official Moncloa 2008/2012 vs Congreso/PSOE biographies with conflicting DOB days for same public officeholder",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-R",
+      "complaint_ids": [
+        "PFL-B20C-C17-CONTRADICTORY-DOB-20261027"
+      ]
+    },
+    {
+      "id": "PFL-B20C-C18",
+      "activity": "Implement source-wise multiple birth assertions and editorial lineage awareness; 11 local tests, no auto person identity resolution",
+      "status": "completed",
+      "at": "2026-10-27T03:21:15.094Z",
+      "evidence": [
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_PREREG.json",
+        "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_RESULT.json"
+      ],
+      "cost": {
+        "github_actions_minutes": 0
+      },
+      "method_version": "AB3.2.1/O7/AB-H",
+      "scope": "PFL-V1 rev3",
+      "workstream": "AB-P",
+      "complaint_ids": []
+    }
+  ],
+  "complaints": [
+    {
+      "id": "PFL-ABH-COMP-001",
+      "run_id": "PFL-ABH26-R03",
+      "category": "security",
+      "severity": "major",
+      "source": "agent/local-test",
+      "description": "Unhashable JSON scope raised TypeError before validation. Corrected in C04 and 12 local tests; full HTTP still unverified.",
+      "status": "triaged",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C03_RESULT.json",
+        "research/ABH20_ATLAS_20261026/C04_RESULT.json"
+      ],
+      "suspected_cause": "set membership before isinstance",
+      "verified_cause": "scope list/dict unhashable",
+      "resolution": "local guard repaired; integration test pending"
+    },
+    {
+      "id": "PFL-ABH-COMP-002",
+      "run_id": "PFL-ABH26-R02",
+      "category": "cost",
+      "severity": "major",
+      "source": "agent/GitHub",
+      "description": "Four Actions workflows auto-triggered on new main-derived research branch before workflow trigger was restricted. Two were already in progress; account budget warning exists.",
+      "status": "triaged",
+      "evidence": [
+        "research/ABH20_ATLAS_20261026/C06_RESULT.json"
+      ],
+      "suspected_cause": "main workflow broad push path filters",
+      "verified_cause": "push event triggered in research branch",
+      "resolution": "on.push restricted to main; no new runs observed after patch"
+    },
+    {
+      "id": "PFL-ABH-COMP-003",
+      "run_id": "PFL-ABH26-R01",
+      "category": "ux",
+      "severity": "minor",
+      "source": "agent/review",
+      "description": "Existing product status is not a user-readable explanation of eligibility reasons",
+      "status": "open",
+      "suspected_cause": "status API lacks focused explanatory route",
+      "resolution": "new explanatory endpoint written, HTTP test not executed"
+    },
+    {
+      "id": "PFL_ABH_BR20_COMPLAINT_C01",
+      "run_id": "PFL_ABH_BR20_C01",
+      "description": "Official Congress all-legislatures JSON link was present but payload retrieval returned cache miss; no access is not proof of absence.",
+      "severity": "minor",
+      "category": "evidence_access",
+      "source": "agent",
+      "status": "open",
+      "at": "2026-10-26T22:43:07.497Z"
+    },
+    {
+      "id": "PFL_ABH_BR20_COMPLAINT_C03",
+      "run_id": "PFL_ABH_BR20_C03",
+      "description": "Official Spanish party registry procedural descriptions available; no authoritative registry record extracted or temporal ID certified.",
+      "severity": "major",
+      "category": "evidence_access",
+      "source": "agent",
+      "status": "open",
+      "at": "2026-10-26T22:43:07.497Z"
+    },
+    {
+      "id": "PFL_ABH_BR20_COMPLAINT_C04",
+      "run_id": "PFL_ABH_BR20_C04",
+      "description": "Safety guard locally unit-tested in staging but remains unwired to live HTTP services; exact branch CI and full Atlas Python check not executed.",
+      "severity": "major",
+      "category": "evidence_access",
+      "source": "agent",
+      "status": "open",
+      "at": "2026-10-26T22:43:07.497Z"
+    },
+    {
+      "id": "PFL-RC01-COMP-20261027",
+      "run_id": "PFL-RC01-20261027",
+      "description": "La inspección exploratoria del XLSX precedió al preregistro; no atribuir carácter ciego o confirmatorio.",
+      "severity": "minor",
+      "category": "methodology",
+      "status": "open"
+    },
+    {
+      "id": "PFL-RC02-COMP-20261027",
+      "run_id": "PFL-RC02-20261027",
+      "description": "El replay de un solo linaje no detecta por sí mismo otra rama de campañas paralelas.",
+      "severity": "minor",
+      "category": "governance",
+      "status": "open"
+    },
+    {
+      "id": "PFL-RC03-COMP-20261027",
+      "run_id": "PFL-RC03-20261027",
+      "description": "La inspección exploratoria de los XML del Senado precedió al preregistro; no atribuir carácter ciego o confirmatorio.",
+      "severity": "minor",
+      "category": "methodology",
+      "status": "open"
+    },
+    {
+      "id": "PFL-RECON-ATLAS-SEVERITY-20261027",
+      "run_id": "PFL-RC02-20261027",
+      "description": "El primer intento del nuevo delta falló: severity moderate no pertenece al vocabulario de Atlas. Se corrigió a minor antes del replay.",
+      "severity": "minor",
+      "category": "technical",
+      "status": "repaired",
+      "verified_cause": "SEVERITIES admite info/minor/major/critical.",
+      "resolution": "Valores corregidos y replay posterior requerido."
+    },
+    {
+      "id": "PFL-ATLAS-UTF8-20261027",
+      "run_id": "PFL-RC02-20261027",
+      "description": "Una prueba ampliada de Atlas falló en Windows al leer HTML UTF-8 con la codificación predeterminada cp1252.",
+      "severity": "minor",
+      "category": "technical",
+      "status": "repaired",
+      "verified_cause": "Lectura de archivo sin encoding explícito en tests/test_abmap.py.",
+      "resolution": "Lecturas y fixture declaran UTF-8; 34 pruebas Atlas pasan posteriormente.",
+      "evidence": [
+        "ab_atlas/tests/test_abmap.py"
+      ]
+    },
+    {
+      "id": "PFL-RC05-PREEXPOSURE-20261027",
+      "run_id": "PFL-RC05-20261027",
+      "status": "open",
+      "severity": "minor",
+      "category": "study_design",
+      "source": "agent",
+      "description": "La selección de 5 pares siguió búsquedas previas a RC05_PREREG: no es confirmación ciega ni medida de error poblacional; falta homónimo de nombre completo."
+    },
+    {
+      "id": "PFL-RC05-ASOF-20261027",
+      "run_id": "PFL-RC05-20261027",
+      "status": "open",
+      "severity": "major",
+      "category": "temporal_provenance",
+      "source": "agent",
+      "description": "La fecha de designación, el boletín y el inicio de mandato son distinguibles pero first_public_at exacto sigue sin acreditar; la misma URL del Senado ofrece instantáneas históricas divergentes; backtesting bloqueado."
+    },
+    {
+      "id": "PFL-RC06-SOURCE-EXPOSURE-20261027",
+      "run_id": "PFL-RC06-20261027",
+      "status": "open",
+      "severity": "minor",
+      "category": "evidence_provenance",
+      "source": "agent",
+      "description": "Candidate bulletin discovered before prereg. Official indexed HTML extract available, direct source-open cache miss in this browser; no immutable retrieved bytes, published-day not first_public_at exact; cannot guarantee 12 Sept was first outcome disclosure."
+    },
+    {
+      "id": "PFL-RC07-TRUST-BOUNDARY-20261027",
+      "run_id": "PFL-RC07-20261027",
+      "status": "open",
+      "severity": "major",
+      "category": "engineering_security",
+      "source": "agent",
+      "description": "Local pure guard has 10 unit tests, but accepts externally passed trusted_registry; only server-owned independently attested registry can prevent forged first_public_at. Not integrated into HTTP or clean checkout CI/E2E."
+    },
+    {
+      "id": "PFL-B20C-C02-FORGED-REGISTRY",
+      "run_id": "PFL-B20C-C02",
+      "severity": "major",
+      "status": "open",
+      "category": "trust_boundary",
+      "source": "agent",
+      "description": "Legacy RC07 pure helper trusts caller-supplied registry with forged first_public_at (can return eligible true). No live HTTP exploit proven; does not alone release or score persons.",
+      "at": "2026-10-27T02:31:30.356Z"
+    },
+    {
+      "id": "PFL-B20C-C04-HTTP-UNVERIFIED",
+      "run_id": "PFL-B20C-C04",
+      "severity": "major",
+      "status": "open",
+      "category": "engineering_integration",
+      "source": "agent",
+      "description": "Server source-stage route not deployed, protected GitHub update not completed, and no HTTP E2E tests performed. Local pure facade is not a live trust boundary.",
+      "at": "2026-10-27T02:31:30.356Z"
+    },
+    {
+      "id": "PFL-B20C-C06-HISTORIC-IDENTITY-GAP",
+      "run_id": "PFL-B20C-C06",
+      "severity": "major",
+      "status": "open",
+      "category": "research_limitation",
+      "source": "agent",
+      "description": "Senate 259/259 textual candidate matches lack original chamber member mandate intervals or stable vote personal reference; session day differs from actual vote day.",
+      "at": "2026-10-27T03:36:00+01:00"
+    },
+    {
+      "id": "PFL-B20C-C09-DUPLICATE-SEAT-SENTINEL",
+      "run_id": "PFL-B20C-C09",
+      "severity": "major",
+      "status": "open",
+      "category": "research_limitation",
+      "source": "agent",
+      "description": "Congress seat value -1 duplicated 11/11/15/30 within votes; cross-date non-sentinel seat numbers also map to different name strings. Never use seat as immutable identity.",
+      "at": "2026-10-27T03:36:00+01:00"
+    },
+    {
+      "id": "PFL-B20C-C11-FOUR-TEXT-EXCEPTIONS",
+      "run_id": "PFL-B20C-C11",
+      "severity": "major",
+      "status": "open",
+      "category": "research_limitation",
+      "source": "agent",
+      "description": "BOE/Interior 2023 have 346/350 strict normalized matches; four person-label exceptions require context review and one name abbreviation remains not independently adjudicated by source-issued identity.",
+      "at": "2026-10-27T03:36:00+01:00"
+    },
+    {
+      "id": "PFL-B20C-C12-LOCAL-QA-ONLY",
+      "run_id": "PFL-B20C-C12",
+      "severity": "minor",
+      "status": "open",
+      "category": "research_limitation",
+      "source": "agent",
+      "description": "Eight Python tests plus four original source replays completed locally, but GitHub branch clean checkout CI, HTTP source registry and original first_public_at remain unvalidated.",
+      "at": "2026-10-27T03:36:00+01:00"
+    },
+    {
+      "id": "PFL-B20C-C12-ATLAS-RUNID-REPAIR",
+      "run_id": "PFL-B20C-C12",
+      "severity": "minor",
+      "status": "repaired",
+      "category": "traceability_replay",
+      "source": "agent",
+      "description": "Preflight 0008 failed because two complaint.run_id fields pointed to PFL-B20C-C6 and C9 rather than C06 and C09. The 0008 draft was amended to correct these source references and revalidated.",
+      "at": "2026-10-27T03:36:00+01:00"
+    },
+    {
+      "id": "PFL-B20C-BOE-SIGNATURE-TRUST-20261027",
+      "run_id": "PFL-B20C-C13",
+      "severity": "major",
+      "status": "open",
+      "category": "evidence_provenance",
+      "source": "agent",
+      "description": "Original BOE PDF signatures integrity report Valid, but current cert is expired and SHA1 used; no verified historical PKI timestamp or independent signed first public HTTP observation; publisher-wide 2023 ordinary 312/312 before 08h self-report only.",
+      "at": "2026-10-27T03:21:15.094Z"
+    },
+    {
+      "id": "PFL-B20C-NO-EXACT-HOMONYM-NEGATIVE-20261027",
+      "run_id": "PFL-B20C-C16",
+      "severity": "major",
+      "status": "open",
+      "category": "evidence_provenance",
+      "source": "agent",
+      "description": "Eleven positive source-linked long-span personal histories, but no adjudicated case of two distinct people sharing an exact full name; cannot estimate false-match rate or validate name-only linkage population-wide.",
+      "at": "2026-10-27T03:21:15.094Z"
+    },
+    {
+      "id": "PFL-B20C-C17-CONTRADICTORY-DOB-20261027",
+      "run_id": "PFL-B20C-C17",
+      "severity": "major",
+      "status": "open",
+      "category": "evidence_provenance",
+      "source": "agent",
+      "description": "Cristina Narbona Ruiz Moncloa sources claim DOB 1951-07-21, Congreso and PSOE sources claim 1951-07-29. Same institutionally documented public person; canonical date unresolved; hard DOB-equality disambiguation risks false split.",
+      "at": "2026-10-27T03:21:15.094Z"
+    }
+  ],
+  "project_contract": {
+    "scope_version": "PFL-V1-20261026-r3",
+    "outcome": "Juego fantasy político verificable, con mercado, jornadas y puntuación transparente, evitando confundir hechos, estimaciones y reglas normativas.",
+    "audience": "Jugadores del prototipo, analistas y evaluadores de datos políticos",
+    "out_of_scope": [
+      "Perfilado ideológico de ciudadanos",
+      "Predicción política basada en personas sin identidad real certificada",
+      "Publicación segura multiusuario sin controles"
+    ],
+    "release_gates": [
+      {
+        "id": "data_registry",
+        "label": "Fuente original suficiente del Registro de Partidos y candidaturas",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "identity",
+        "label": "Identidad individual multifuente con vigencia temporal",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "events",
+        "label": "Eventos verificables por persona y fecha",
+        "status": "blocked",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "authentication",
+        "label": "Autenticación y autorización multiusuario",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "e2e",
+        "label": "E2E completo más allá del smoke local",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      },
+      {
+        "id": "deployment",
+        "label": "Despliegue público seguro",
+        "status": "pending",
+        "critical": true,
+        "evidence": []
+      }
+    ],
+    "scope_history": [
+      {
+        "version": "PFL-V1-20261026-r3",
+        "at": "2026-10-26T00:00:00+00:00",
+        "reason": "Snapshot documental de revisión 3, no medición en vivo"
+      }
+    ]
+  },
+  "method": {
+    "version": "AB 3.2.1 + O7 pilot",
+    "mutable": true
+  },
+  "mode": "hybrid",
+  "prev_batch": "0010-PFL-B20C-BOE-DOB-20261027",
+  "files": [
+    {
+      "file": "0001-PFL-ABH20-20261026.json",
+      "sha": "fbafa54cbd4ee9f01c838bff9d6ad6dca753fd1a",
+      "batch_id": "0001-PFL-ABH20-20261026",
+      "ops": 23
+    },
+    {
+      "file": "0002-pfl-recon-20261027.json",
+      "sha": "9dd8cd74d6125621e3c1cdcaae6abf8ffe0a2c33",
+      "batch_id": "0002-PFL-RECON-20261027",
+      "ops": 30
+    },
+    {
+      "file": "0003-pfl-rc04-20261027.json",
+      "sha": "7343afc23291b600fa1e02f0feafb08382f79b5e",
+      "batch_id": "0003-PFL-RC04-20261027",
+      "ops": 4
+    },
+    {
+      "file": "0004-pfl-source-rescue-20261027.json",
+      "sha": "015ff81345bdf02f9c67e6a5851f8e190d4462da",
+      "batch_id": "0004-PFL-SOURCE-RESCUE-20261027",
+      "ops": 4
+    },
+    {
+      "file": "0005-pfl-rc05-identity-20261027.json",
+      "sha": "21326c42b5584dd58ab1d8cd2aed4d71e1aa3341",
+      "batch_id": "0005-PFL-RC05-IDENTITY-20261027",
+      "ops": 11
+    },
+    {
+      "file": "0006-pfl-rc06-rc07-close-20261027.json",
+      "sha": "e6351f4af496d948f56ef6d6453c4299dfeba599",
+      "batch_id": "0006-PFL-RC06-RC07-CLOSE-20261027",
+      "ops": 11
+    },
+    {
+      "file": "0007-pfl-b20c-20261027-r5.json",
+      "sha": "03d8128b730ad74b54d2167b3cc6c543fb5c1a5a",
+      "batch_id": "0007-PFL-B20C-20261027-R5",
+      "ops": 14
+    },
+    {
+      "file": "0008-pfl-b20c-originals-20261027-r5.json",
+      "sha": "817dbc6d82ec77c6ea1333f4baa5ad786c5bdee0",
+      "batch_id": "0008-PFL-B20C-ORIGINALS-20261027-R5",
+      "ops": 26
+    },
+    {
+      "file": "0009-pfl-b20c-atlas-repair-20261027.json",
+      "sha": "2c30dd96e3ef4552afd7c88f001a18d2fe1afbd8",
+      "batch_id": "0009-PFL-B20C-ATLAS-REPAIR-20261027",
+      "ops": 2
+    },
+    {
+      "file": "0010-pfl-b20c-boe-dob-20261027.json",
+      "sha": "00bce386720954f79a3d2302bc8fe574b9bf4af9",
+      "batch_id": "0010-PFL-B20C-BOE-DOB-20261027",
+      "ops": 20
+    }
+  ],
+  "gates_baseline": [
+    {
+      "id": "data_registry",
+      "status": "blocked"
+    },
+    {
+      "id": "identity",
+      "status": "blocked"
+    },
+    {
+      "id": "events",
+      "status": "blocked"
+    },
+    {
+      "id": "authentication",
+      "status": "pending"
+    },
+    {
+      "id": "e2e",
+      "status": "pending"
+    },
+    {
+      "id": "deployment",
+      "status": "pending"
+    }
+  ],
+  "stage": "JS_REFERENCE_AUDIT_INTERMEDIATE_NOT_NATIVE_PYTHON",
+  "errors": [],
+  "opstats": {
+    "node.add": 29,
+    "node.set": 12,
+    "edge.add": 39,
+    "run.add": 39,
+    "complaint.add": 25,
+    "complaint.triage": 1
+  }
+}
