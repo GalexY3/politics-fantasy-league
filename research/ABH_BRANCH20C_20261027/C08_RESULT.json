@@ -1,0 +1,54 @@
+{
+  "id": "C08",
+  "status": "CLOSED_ORIGINAL_16_ELECTION_AMBIGUITY",
+  "prereg_commit": "8e587f141cda50df55cf21fdaf22736085c9cce9",
+  "source_sha256": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+  "tool": "artifact_tool SpreadsheetFile.import_xlsx",
+  "header": [
+    "Fecha",
+    "Código elección",
+    "Tipo elección",
+    "Código Provincia",
+    "Provincia",
+    "Cargos Electos",
+    "Candidatura",
+    "Siglas Candidatura"
+  ],
+  "findings": {
+    "rows": 5600,
+    "election_dates": 16,
+    "rows_per_election": 350,
+    "province_codes": 52,
+    "distinct_normalized_full_names": 2958,
+    "unique_election_code_values": 1,
+    "repeat_names_across_two_or_more_election_dates": 1306,
+    "repeat_names_crossing_provinces_across_elections": 103,
+    "repeat_names_crossing_candidacy_acronyms_across_elections": 576,
+    "within_one_election_duplicate_normalized_full_name": 0,
+    "within_one_election_cross_province_same_full_name": 0,
+    "normalized_name_groups_with_multiple_original_spellings": 231
+  },
+  "year_range": "1977-2023",
+  "method": "Dates parsed from spreadsheet serials with 1899-12-30 epoch. Unicode NFKD capitalization/accents/punctuation normalization. Grouped by full normalized label, election date and province; not person identity.",
+  "hypotheses": {
+    "H1": "SUPPORTED with cross-date repeat candidate labels; no immutable person ID in eight headers.",
+    "H0": "REFUTED: repeated name labels occur across election dates."
+  },
+  "ABR": "Candidate linkage ambiguity empirically measured on entire original elected-row source, no false-positive identity rate established.",
+  "limits": [
+    "Every election has 350 source rows by construction; rows mean elected listings, not all actual legislators later seated.",
+    "Same full label across dates does not prove same person; changed province/acronym does not alone prove different person.",
+    "No same-election exact full-name collision found; homonym exact negative control still requires independent source.",
+    "Count of candidates by name depends on normalization choices.",
+    "Last-public timestamp and independent identity attribution unknown."
+  ],
+  "novel_N123": [
+    0,
+    0,
+    0
+  ],
+  "CT2": 29,
+  "VSDS": "1/3",
+  "gates": 0,
+  "next": "C09 within-day name-seat pair controls across Congress votes using original official nominal rows."
+}
