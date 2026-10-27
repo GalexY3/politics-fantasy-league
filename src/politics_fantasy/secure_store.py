@@ -168,8 +168,16 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
             raise ValueError("UNSAFE_PRIVATE_LEDGER") from exc
         try:
             _check_private_permissions(fd, directory=False)
-            _write_all(fd, payload)
-            os.fsync(fd)
+            # O_APPEND reserves the offset for one syscall, not an entire JSONL
+            # record when _write_all must retry a partial write. Cooperating
+            # POSIX processes serialize the complete record under this lock.
+            import fcntl
+            fcntl.flock(fd, fcntl.LOCK_EX)
+            try:
+                _write_all(fd, payload)
+                os.fsync(fd)
+            finally:
+                fcntl.flock(fd, fcntl.LOCK_UN)
         finally:
             os.close(fd)
 
