@@ -13,6 +13,7 @@ from politics_fantasy import ingest
 
 class Response:
     status = 200
+    code = 200
     headers = {"Content-Type": "application/json"}
     def __init__(self, url, content=b'{"fake":true}'):
         self.url, self.content = url, content
