@@ -1,0 +1,33 @@
+{
+  "id": "B12",
+  "status": "CLOSED_10_OF_10_ORIGINAL_SENATE_VOTES_DATE_AND_TOTALS_PASS_AFTER_PARSER_LABEL_REPAIR",
+  "prereg": "B12_PREREG.json",
+  "source_zip_file": "Senado/sesion60.xml",
+  "sha256": "671436ba27f90aa9c19fc342fc8508f7d1ddf122aa422b64edca5d6b150a6a71",
+  "session_header_day": "2025-10-07",
+  "vote_event_days": [
+    "2025-10-08"
+  ],
+  "nominal_rows_total": 2589,
+  "absences_total": 51,
+  "events": 10,
+  "official_counts_reconciled": 10,
+  "first_naive_parse_failures": 3,
+  "first_naive_parse_error": "Expected NO VOTA but actual Senate original label is plural NO VOTAN. No source discrepancy: after fixing token mapping all 10/10 match. Preserve this parser correction.",
+  "not_checked": {
+    "per_source_first_public_at": true,
+    "universal_person_ID": true,
+    "source_signing_certificate": true
+  },
+  "source_rows_not_published": true,
+  "scientific_N123": [
+    0,
+    0,
+    0
+  ],
+  "authorization": {
+    "B_spent": 12,
+    "B_remaining": 8
+  },
+  "next": "B13 create reusable Senate original aggregate QA with strict category map and five failure tests, avoiding singular/plural regression."
+}
