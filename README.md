@@ -1,5 +1,7 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+**Cola de trabajo pendiente para Codex:** [tareas_codex/README.md](tareas_codex/README.md) y [BACKLOG.json](tareas_codex/BACKLOG.json). Las tareas están **pendientes o bloqueadas**, no ejecutadas; [issue #17](https://github.com/GalexY3/Metodologia-AB/issues/17). No requieren acceso a Codex para consultarse.
+
 ## Reanudación y fuentes — 27/10/2026
 
 [Catálogo central de fuentes, acceso y límites](docs/CATALOGO_FUENTES.md) · [Estado del mapa y autorizaciones](ab_atlas/CURRENT.md) · [Continuación AB-H y reconciliación de ramas](research/ABH_RECON_20261027/REPORT.md) · [Guía para continuar en ChatGPT](docs/CONTINUIDAD_CHATGPT_20261027.md). Estas novedades están en la rama de investigación; el historial de campañas que sigue se conserva con sus fechas y alcances originales.
