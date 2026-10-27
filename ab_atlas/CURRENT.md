@@ -1,3 +1,24 @@
+# AB Atlas · Politics Fantasy · Originales C05–C12 · 27/10/2026
+
+**ESTADO VIGENTE:** el usuario entregó ZIP privado con 11 archivos originales. Se ejecutaron ocho ciclos nuevos C05–C12 dentro de la concesión BRANCHING20C. Con los cuatro previos, **12/20 registrados, 8 autorizados sin consumir**. **STOP_R5** por falta de nueva evidencia independiente de primera publicación histórica y del enlace personal longitudinal; no solicitar otra concesión. Los originales no se publican en Git.
+
+- **Integridad:** ZIP SHA-256 `47bbe80b69d8fd3b153a3e7368ac5542b6b03dd42dd65be76b8a97f495575bf4`, **11/11 SHA, longitudes y CRC PASS**. Autenticidad editorial y `first_public_at` independientes NO comprobados.
+- **AB-R, C06:** dos XML Senado: diez votos fecha **08/10/2025**, sesión rotulada **07/10/2025**; 259 cadenas nominales con un candidato textual entre 311 registros XV, pero sin intervalos de mandato/ID personal. 2.589 votos individuales y 51 ausencias, totales coherentes.
+- **AB-R, C07:** Congreso cuatro JSON, **1.400 votos**, coincidencia nominal 1/1 en 412 registros union de activos/bajas, que son snapshot posterior. **213 bajas del 06/10/2026**, después de todos los votos examinados, no usar `activo` actual para reconstruir censo histórico.
+- **AB-R, C08:** XLSX Interior **5.600 filas / 16 elecciones / 52 provincias**, **2.958 nombres normalizados**, **1.306** repetidos entre elecciones; no son identidades longitudinalmente certificadas.
+- **AB-R, C09:** `asiento=-1` se repite 11, 11, 15 y 30 veces dentro de cuatro votaciones del Congreso; asientos no negativos tienen cambios de nombre entre sesiones. No usar como clave personal.
+- **AB-R, C10–C11:** originales BOE-JEC 2023 frente a XLSX Interior: **52 provincias y 350 electos en ambas fuentes**; **50/52 provincias coinciden estrictamente**, **346/350 cadenas de nombre coinciden directamente**. Cuatro diferencias textuales documentadas (abreviatura, alias, nota editorial, extracción PDF); 350 correspondencias plausibles contextualmente, NO 350 IDs certificados. Los PDF de candidatura y proclamación de electos representan estadios diferentes y PDF metadata ≠ primera publicación.
+- **AB-P, C12:** [`source_original_qa.py`](../src/politics_fantasy/source_original_qa.py) con [8 pruebas locales](../tests/test_source_original_qa.py) PASS, reejecución sobre los 4 votos originales consistente. Código puro, NO integrado en el servidor ni evaluado con un checkout limpio/Actions.
+- **Atlas:** seed intacto + deltas **0001–0009**; lote de evidencia `0008-PFL-B20C-ORIGINALS-20261027-R5` y lote de reparación `0009-PFL-B20C-ATLAS-REPAIR-20261027`. Replay estructural de los nueve JSON originales en GitHub **PASS: 39 nodos, 57 relaciones, 33 runs, 22 complaints, 125 operaciones**. Se detectaron y repararon dos `run_id` de complaints al validar 0008, conservando la incidencia `repaired`. **El motor oficial Python `atlas_delta.py check` sigue sin ejecutarse**, sin SHA-256 nuevo del grafo ni regeneración HTML.
+- **Indicadores sin promoción:** PFL-V1 rev.3 **36,35%** convencional, CT2 identidad **29/100** ordinal, VSDS **1/3**, N1/N2/N3 científicos nuevos **0/0/0**, gates de lanzamiento **0/6**. Ningún jugador real habilitado ni `first_public_at` certificado. Se mantuvo la separación AB-R/AB-P.
+- **Trazabilidad:** [ledger C05–C12](../research/ABH_BRANCH20C_20261027/CAMPAIGN_RESUME_C05_C12.json) · [informe técnico completo](../research/ABH_BRANCH20C_20261027/REPORT_ORIGINALS_C05_C12.md) · [priors actualizados](../research/ABH_BRANCH20C_20261027/PRIORS_DELTA_C05_C12.json) · [catálogo de fuentes](../docs/CATALOGO_FUENTES.md).
+- **Coste:** ninguna ejecución GitHub Actions solicitada; commits `[skip ci]`. No fusionar automáticamente `main`.
+- **Siguiente contraste, solo si hay evidencia nueva:** fuentes institucionales versionadas con `first_public_at`, archivos de personas con mandatos fechados y adjudicación independiente de homónimos exactos; pruebas HTTP de fuente de confianza del servidor y validación Python de Atlas. **Conservar las ocho plazas** hasta entonces.
+
+---
+
+## Estado anterior a la auditoría de originales (archivo histórico)
+
 # AB Atlas · Politics Fantasy · nuevo BRANCHING20C · 27/10/2026
 
 **ESTADO VIGENTE (posterior al cierre del permiso antiguo):** el usuario concedió **una nueva autorización BRANCHING 20**, independiente del bloque conservador cerrado RC01–RC07. En esta continuación se registraron **C01–C04: tres resultados acotados y una parada STOP_R5 por integración HTTP no verificada**. Se han contabilizado **4/20**, **quedan 16 autorizados sin consumir**. No hace falta pedir una nueva concesión para esos 16; aplicar R5 y reservarlos hasta disponer de nueva evidencia discriminante.
