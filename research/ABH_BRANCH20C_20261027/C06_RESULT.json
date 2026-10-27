@@ -1,0 +1,69 @@
+{
+  "id": "C06",
+  "status": "CLOSED_REPRODUCED_MATCH_BUT_TEMPORALLY_UNADJUDICATED",
+  "prereg_commit": "bc10666534db4d8f639c819c55950c321a485119",
+  "sources_sha256": {
+    "senate_composition": "f5753278d0b6dab8fc43f88f69ec2de35ffc1d0fbb48ddff1e407c877a6b9063",
+    "senate_session60": "671436ba27f90aa9c19fc342fc8508f7d1ddf122aa422b64edca5d6b150a6a71"
+  },
+  "counts": {
+    "full_composition_nodes": 2521,
+    "legislature15_nodes": 311,
+    "vote_events": 10,
+    "unique_normalized_voter_names": 259,
+    "nominal_vote_rows": 2589,
+    "absentee_records": 51,
+    "candidate_match_exactly_one": 259,
+    "candidate_match_none": 0,
+    "candidate_match_multiple": 0,
+    "leg15_members_without_nominal_vote_in_this_session": 52,
+    "present_plus_absent_each_vote": 264,
+    "official_category_totals_consistent_each_vote": true,
+    "duplicate_name_in_same_vote": 0
+  },
+  "new_temporal_finding": {
+    "session_declared_date": "2025-10-07",
+    "voting_event_date_each": "2025-10-08",
+    "different_days": true
+  },
+  "original_schemas": {
+    "composition": [
+      "nombre",
+      "apellidos",
+      "legislatura",
+      "ultCredencial",
+      "procedTipo",
+      "procedLiteral",
+      "procedLugar",
+      "grupoCod",
+      "grupoSiglas",
+      "grupoNombre"
+    ],
+    "voter": [
+      "escano",
+      "grupo",
+      "nombre",
+      "voto"
+    ],
+    "composition_has_validity_intervals": false,
+    "nominal_votes_have_stable_member_id": false
+  },
+  "hypotheses": {
+    "H1": "SUPPORTED",
+    "H0": "REFUTED as to available identifiers and timestamps"
+  },
+  "ABR": "Text matches reproduced from original bytes; historical person equivalence and eligibility remain unknown.",
+  "ABP": "No eligibility from name-only join. Avoid session-day date misalignment.",
+  "limits": [
+    "Composition snapshot is cross-time legislature collection, not event-date roster.",
+    "Does not test independent adjudication or full-name homonyms.",
+    "Original XML bytes remain private; outputs aggregate."
+  ],
+  "metrics_unchanged": true,
+  "novel_scientific_N123": [
+    0,
+    0,
+    0
+  ],
+  "next": "C07 audit Congress four original nominal votes vs active/low rosters at October 2026, including temporal status and total checks."
+}
