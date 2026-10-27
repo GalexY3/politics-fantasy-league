@@ -1,0 +1,11 @@
+{
+  "id": "B01",
+  "stage": "B",
+  "mode": "AB-P/AB-META",
+  "status": "PREREGISTERED",
+  "dependency": "R05 recommended real runtime test, R02 V4 now changed default, A19 type validator and five authored tests not executed. Local private checkout unavailable.",
+  "H1": "An exact byte-copy of the committed A19 Python module and tests can be recreated in local runtime, verified by Git blob SHA against fetched GitHub blob, and its five unittest cases executed. This is credible runtime validation of that component without public CI.",
+  "H0": "Source can't be recreated exactly or test failures show problems, so only static validation remains and source must be repaired before acceptance.",
+  "method": "Fetch two GitHub blobs from new research branch, transfer exact text into local scratch Python via verified byte-for-byte Git blob hashing, run unittest with module path and tests, record Python version and counts. Do not claim integration HTTP or full clean checkout.",
+  "accept": "Matching SHA for each staged file and 5/5 native tests PASS; otherwise document failure and next repair. Zero Actions."
+}
