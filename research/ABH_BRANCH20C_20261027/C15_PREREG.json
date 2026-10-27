@@ -1,0 +1,23 @@
+{
+  "id": "C15",
+  "status": "PREREGISTERED_BEFORE_NEW_LONG_SPAN_QUERY",
+  "mode": "AB-R exact-full-name homonym adversarial candidate discovery",
+  "source": "Original 5,600 Interior elected Congress entries for elections 1977-2023, SHA cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+  "question": "Can an exact full-name match recurring across widely separated elections be independently shown to represent different people rather than the same politician, using date of birth and original official person profiles?",
+  "H1": "Among labels recurring at least 35 calendar years, at least one apparent name-only longitudinal link can be contradicted by independent official biographies/person profiles proving distinct identities.",
+  "H0": "All selected labels may plausibly refer to same individuals or source lacks enough independent evidence to adjudicate a negative.",
+  "design": {
+    "full_original_corpus": true,
+    "selection": "Normalize NFKD accents, punctuation and case; include each label present in ≥2 election dates and max(year)-min(year) ≥35; order by temporal span descending then normalized label ascending; investigate no more than first 5 distinct labels to prevent selection chasing.",
+    "confirm_positive": "Official source profile for each historical person that explicitly validates term chronology and birth data with unmistakable same-person source reference or biography.",
+    "confirm_negative": "Direct independent official institution profile birth dates or source records that demonstrate two distinct persons sharing exact normalized full name, with no reliance solely on shift of party/province; impossible age chronology may count only if date of birth grounded.",
+    "uncertain": "Any insufficiency or mere distant years is unresolved; no guaranteed negative claim.",
+    "public_reporting": "No raw full-name panel in GitHub until official disambiguation; store candidate span and IDs where public official profile supports, no private signatures."
+  },
+  "source_exposure": "Earlier C08 aggregate counts known (1,306 recurrent names), but no long-span selected names examined in this turn before prereg",
+  "limits": "A negative example does not estimate false link population rate.",
+  "cost": {
+    "actions": 0
+  },
+  "metrics_unchanged": true
+}
