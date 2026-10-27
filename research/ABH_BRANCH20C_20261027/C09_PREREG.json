@@ -1,0 +1,17 @@
+{
+  "id": "C09",
+  "status": "PREREGISTERED",
+  "mode": "AB-R bounded within-session identity candidate controls",
+  "prior": "Four Congress nominal original votes with seat field 'asiento', name, group, vote. C07 showed 350 unique labels per event; two on 2026-07-23 same parliamentary session. Seat is not automatically immutable person ID.",
+  "H1": "Within the two independent July 23 votes, a pair of seat and full name should be internally consistent (350/350), permitting a day/session-bound reference but not longitudinal identity across September dates; any seat reused with different name or vice versa is an explicit negative control.",
+  "H0": "Seat and name unstable even within same day or source rows duplicate seats, prohibiting even bounded join.",
+  "test": [
+    "Compare seat->normalized full name mapping for two separate nominal July vote originals; record exact matches, collisions and mismatch count.",
+    "Contrast across 23 July, 10 Sep and 30 Sep: count seats newly assigned to different names or individuals changing seat; never equate seat to immutable personal identifier.",
+    "Compare group labels for same name between pairs only as reported observations, not affiliation timeline.",
+    "Collect aggregates and row-source SHA, no personal names/vote labels exported."
+  ],
+  "acceptance": "Quantify same-day seat continuity, distinct session stability and contradictions. No individual ID or historical eligibility claims.",
+  "stop": "If even same day pairing ambiguous, do not use as ground truth",
+  "cost": "local zero Actions"
+}
