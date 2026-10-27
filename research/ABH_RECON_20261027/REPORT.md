@@ -51,3 +51,34 @@ Diseñar una muestra pequeña con fuentes originales recuperables y un control d
 **Contabilidad:** bajo la hipótesis conservadora de un único bloque de 20 y ausencia de otros consumos, `9 + 4 + 4 + RC05(1) = 18` registros; **quedan como máximo 2**, no un saldo definitivamente conciliado. Se cierra **RC05 por R5**: homónimos de nombre completo, disponibilidad as-of original y validación longitudinal de todo el corpus siguen fuera de alcance. No gastar esos dos ciclos solo en nuevas variantes de búsqueda de nombres. No modificar 36,35 %, CT2 identidad 29/100, VSDS 1/3, hallazgos N1/N2/N3 0/0/0 ni gates 0/6.
 
 **Siguientes pasos condicionados:** obtener prueba de `first_public_at` por versión, un caso real de homonimia exacta adjudicado por fuente independiente, revisar las condiciones de reutilización del BOCCL y del Senado y, si se autoriza la CI, ejecutar replay oficial `atlas_delta.py check` y contraste contra XML originales RC03. No inferir que RC05 confiere seguridad de uso con personas reales en el producto.
+
+## Cierre del batch RC06–RC07 (27/10/2026) — cuota conservadora agotada
+
+**Los dos últimos ciclos se han ejecutado en una sola tanda, sin nueva solicitud intermedia.** Con los registros de ambas ramas anteriores (9+4) y RC01–RC07 (7), la hipótesis de **una sola autorización BRANCHING20** arroja 20/20 y **saldo prudente máximo 0**. Esto NO ha resuelto la procedencia del permiso humano: si hubo autorizaciones independientes, los saldos podrían ser distintos. Se prohíbe iniciar otro ciclo por esta reserva sin nueva autorización explícita. [Ledger de cierre](BATCH_FINAL_RC01_RC07.json).
+
+### RC06 — noticia de nominación frente a designación (AB-R)
+
+[Prerregistro post-exposición](RC06_PREREG.json) · [resultado](RC06_RESULT.json).
+Dos documentos originales publicados por las Cortes de Castilla y León distinguen actos:
+- **BOCCL 32/12, 10-09-2026**, expediente **ESE/000002-01**, CVE **BOCCL-12-000986**, firmado **03-09-2026**: aceptación de **candidaturas propuestas** de Javier Ignacio Maroto Aranzábal, Francisco Javier Iglesias García y Clara María Martín García.
+- **BOCCL 34/12, 16-09-2026**, expediente **ESE/000002-02**, CVE **BOCCL-12-001042**, fechado **10-09-2026**: resolución de designación efectuada por el Pleno el **10-09-2026**.
+
+**El error detectable:** utilizar la primera referencia como si confirmase senadores ya designados, o utilizar el texto del segundo boletín del 16 de septiembre como fuente documental que ya estaba públicamente disponible el 12 de septiembre. La distinción entre tipo de afirmación, fecha de firma, hecho político y fecha del boletín es discriminante. Sin embargo, no se puede demostrar que ningún medio o acta comunicase la designación antes del día 16; **la primera publicación exacta de cada dato permanece no verificada**. `first_public_at` sigue `null`.
+
+**Procedencia:** las fuentes fueron descubiertas por búsqueda antes del prerregistro RC06, y la herramienta web devolvió contenido indexado pero la reapertura de sus URLs completas dio `Cache miss`; no se obtuvieron originales nuevos ni hash. Resultado **exploratorio documental**, NO prueba confirmatoria de disponibilidad as-of.
+
+### RC07 — prototipo de guardia de as-of y tipo de afirmación (AB-P)
+
+[Prerregistro](RC07_PREREG.json) · [resultado](RC07_RESULT.json) · [módulo](../../src/politics_fantasy/provenance_claim_gate.py) · [pruebas](../../tests/test_rc07_provenance_claim_gate.py).
+
+Se desarrolló un módulo puro que **rechaza por defecto** (i) una afirmación de designación respaldada solo por expediente de candidatura, (ii) fuentes que no tengan `first_public_at` exacto verificado en un `trusted_registry`, (iii) marcas temporales sin zona horaria, (iv) observaciones aún futuras al corte, y (v) autoridad, familia y referencias inconsistentes.
+
+**10/10 pruebas locales PASS**, ejecutadas con `python -m unittest` sobre copia local de los módulos y tests. Las marcas `2026-09-10T12:00:00+02:00` y `2026-09-16T12:00:00+02:00` son **datos de prueba sintéticos**, nunca una afirmación sobre horas reales de los boletines. El control no verifica que el registro confiable provenga de una entidad independiente: el servidor deberá poseer y autenticar esa fuente. **No está integrado en HTTP, no hay E2E de un despliegue, ni auditoría adversarial**, por lo que no se supera ningún gate.
+
+### Atlas, métricas y metodología
+
+El archivo incremental [0006](../../ab_atlas/updates/0006-pfl-rc06-rc07-close-20261027.json) añade dos runs, dos complaints, un hallazgo AB-R, un prototipo AB-P, sus relaciones y el cierre prudente del permiso, sin reescribir seed o lotes anteriores. La reproducción estructural independiente sobre **6 lotes** desde el seed de GitHub pasó: **30 nodos, 47 relaciones, 21 runs, 15 complaints, 83 operaciones**. No se ha ejecutado `python ab_atlas/atlas_delta.py check` en un checkout completo; no se debe afirmar que el motor oficial haya aprobado el lote ni inventar un nuevo hash de estado. El HTML sigue siendo una foto vieja.
+
+**Separaciones inalteradas:** producto PFL-V1 rev.3 **36,35 %** (índice heredado), CT2 identidad **29/100** ordinal, VSDS **1/3**, N1/N2/N3 científicos nuevos **0/0/0**, gates críticos acreditados **0/6**. Cerrar dos ciclos y aprobar 10 tests sintéticos no constituye nueva evidencia científica ni autorización de scoring personal.
+
+**R5 y necesidad para continuar:** el lote condicional está agotado; el siguiente contraste sustantivo requiere archivos originales/verificables para `first_public_at` y homónimos exactos con adjudicación humana independiente. Una línea AB-P útil sería cerrar límites del registro de procedencia confiable, integrar con servidor, correr una suite HTTP/E2E y validar Atlas Python en un checkout con los originales sin activar Actions sin revisar cuota. Se admite detener un futuro bloque antes del máximo por R5. **Para abrir otro bloque se necesita autorización expresa.**
