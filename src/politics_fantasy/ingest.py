@@ -9,8 +9,8 @@ import argparse
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
+from .secure_store import store_bytes, append_private_jsonl
 import time
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
@@ -97,15 +97,7 @@ def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
             raise ValueError("RESOURCE_EXCEEDS_20_MIB")
         headers = response.headers
         digest = hashlib.sha256(content).hexdigest()
-        body_dir = root / "objects" / digest[:2]
-        body_dir.mkdir(parents=True, exist_ok=True)
-        dest = body_dir / digest
-        if dest.exists() and dest.read_bytes() != content:
-            raise ValueError("SHA_COLLISION_OR_CORRUPTED_STORE")
-        if not dest.exists():
-            tmp = body_dir / (digest + ".tmp")
-            tmp.write_bytes(content)
-            os.replace(tmp, dest)
+        relative_object = store_bytes(root, content, digest)
         record = {
             "source_id": source, "url": url, "final_url": final_url,
             "redirect_chain": [url, *(guard.hops if guard is not None else ())],
@@ -114,12 +106,11 @@ def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
             "sha256": digest, "bytes": len(content), "http_status": status,
             "content_type": headers.get("Content-Type"),
             "etag": headers.get("ETag"), "last_modified": headers.get("Last-Modified"),
-            "raw_object": str(dest.relative_to(root)), "ingest_version": "0.2.0",
+            "raw_object": relative_object, "ingest_version": "0.3.0",
             "license_status": "REQUIRES_PER_SOURCE_REVIEW",
             "first_public_at": None, "release_grade": False,
         }
-        with (root / "manifest.jsonl").open("a", encoding="utf-8") as manifest:
-            manifest.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+        append_private_jsonl(root, "manifest.jsonl", record)
     time.sleep(min_interval)  # single-process pacing, NOT a domain-global throttle
     return record
 
