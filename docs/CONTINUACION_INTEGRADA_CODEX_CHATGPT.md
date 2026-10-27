@@ -1,3 +1,21 @@
+# Estado posterior a IC01–IC03 — 27/10/2026
+
+**Usar siempre la rama integrada `research/pfl-codex-contributions-20261027` y consultar [AB Atlas CURRENT](../ab_atlas/CURRENT.md).** Esta sección es la continuidad vigente; el texto inferior documenta el estado anterior a esta intervención.
+
+La campaña de 45 ciclos ChatGPT **45/45 cerrada**, la secuencia Codex **CDX01–CDX09** y los nuevos **IC01–IC03** son **tres conjuntos distintos**. No consumir/combinar cuotas históricas ni inventar ciclos. [Informe IC](../research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC01_IC03.md).
+
+**Implementado:** `ingest.py` valida fuente y hostname oficial exactos y **cada salto de redirección antes de conectar**, límite cinco, preserva SHA/manifiesto. `quarantine_ingest.py` realiza flujo real **local y ficticio** captura→verificación SHA→validador fuente Congreso/Senado→estado de cuarentena, y nunca promueve a publicación o scoring. Tests **IC01 9/9, IC02 6/6** nativos localmente. Hubo arreglos de fixture conservados en historial y el archivo de prueba IC01 ejecutado por copia no coincidía en SHA con GitHub; repetirlo fielmente en el checkout.
+
+**No conectado:** el servidor ofrece `GET /api/source-stages` read-only, `GET /api/health` demo, pero **no contiene un HTTP POST que capture fuentes ni un GET de cuarentena**. Se ha escrito `test_ingest_http_boundary.py` y añadido a CI opcional; **no ejecutado** sobre servidor integral. Sin original publisher→HTTP→identidad→puntos real.
+
+**Atlas:** hasta lote `0017-PFL-INGEST-IC01-IC03-20261027`, replay independiente JS 17 lotes PASS (60 nodos, 78 edges, 98 runs, 40 complaints). El validador Python oficial solo está acreditado hasta lote 0016; no reutilizar su SHA anterior como si describiera 0017. **NO VOTAN** permanece mapeo operativo sin documentación oficial de significado. V4 **36,90%**, CT2 **29/100**, VSDS **1/3**, gates **0/6** invariantes. Los originales privados continúan fuera de Git.
+
+**Próximo paso con valor:** ejecutar `pytest` en checkout íntegro, validar el endpoint HTTP negativo y la integridad del Atlas Python, valorar diseño de un **operador de ingesta autenticado** con política de egress y licencias solo tras esa aceptación. R5: no crear un endpoint vulnerable o seguir generando fixtures sin nueva observación.
+
+---
+
+## Nota histórica anterior a IC01–IC03
+
 # Continuación coordinada de Politics Fantasy
 
 Trabaja desde la rama **`research/pfl-codex-contributions-20261027`**, que integra el cierre de ChatGPT `1f2dd59` y los nueve ciclos CDX01–CDX09 de Codex. Lee primero `AGENTS.md`, `ab_atlas/CURRENT.md` y los resultados de la pieza que vayas a modificar. Conserva ambos historiales y no fusiones a `main` por tu cuenta.
