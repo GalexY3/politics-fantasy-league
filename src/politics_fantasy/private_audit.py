@@ -75,7 +75,9 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         if len(lines) > MAX_ROWS:
             raise ValueError("TOO_MANY_LEDGER_ROWS")
         try:
-            values = [json.loads(line, object_pairs_hook=_unique_json_members) for line in lines]
+            values = [json.loads(line, object_pairs_hook=_unique_json_members,
+                                 parse_constant=lambda _: (_ for _ in ()).throw(ValueError("NONFINITE_JSON_CONSTANT")))
+                      for line in lines]
         except (ValueError, UnicodeError) as exc:
             raise ValueError("BAD_LEDGER_JSON") from exc
         if any(not isinstance(x, dict) for x in values):
