@@ -1,0 +1,42 @@
+{
+  "id": "C12",
+  "status": "CLOSED_LOCAL_REGRESSION_ACCEPTANCE",
+  "prereg_commit": "41b8b65ddb6f2d21f8e3a84919274d186a5cbee1",
+  "code": "src/politics_fantasy/source_original_qa.py",
+  "tests": "tests/test_source_original_qa.py",
+  "execution": {
+    "local_python_3_unittest": 8,
+    "passed": 8,
+    "failed": 0,
+    "source_replayed_real_congress_votes": 4,
+    "nominal_rows_per_vote": 350,
+    "seat_minus_one_by_vote": [
+      11,
+      11,
+      15,
+      30
+    ],
+    "distinct_non_sentinel_seats_by_vote": [
+      339,
+      339,
+      335,
+      320
+    ],
+    "official_category_totals_exact_each": true,
+    "senate_session_header_day": "2025-10-07",
+    "senate_vote_day": "2025-10-08",
+    "downloaded_originals_published_to_git": false,
+    "github_actions_runs": 0
+  },
+  "acceptance_scope": "Pure original-data QA and eight synthetic regressions only. Not HTTP integrated and not independent identity/first_public attestation.",
+  "risk": "Source name/seat and term scope are still inadequate as durable person ID. `source_original_qa` permits repeated '-' sentinel but never certifies identity. Future new source formats may require adapted label mapping.",
+  "scientific_N123": [
+    0,
+    0,
+    0
+  ],
+  "gates_passed": 0,
+  "metrics_unchanged": true,
+  "R5": "Original set now exhaustively inspected at meaningful grains (Senate, Congress, Interior, JEC BOE); eight further quota slots should be reserved until a new independent identity/first-public source becomes verifiable.",
+  "next": "Close C05-C12, update priors, catalog and append one Atlas batch; no need new grant."
+}
