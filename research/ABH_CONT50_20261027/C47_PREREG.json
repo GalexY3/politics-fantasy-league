@@ -1,0 +1,15 @@
+{
+  "cycle": "C47",
+  "mode": "AB-P",
+  "A": "Does source eligibility policy remain fail-closed under fabricated receipts, hostname confusion, malformed scope and complete asserted flags, in original checked-in tests?",
+  "B": [
+    "All 12 tests succeed and scoring remains permanently false",
+    "A fake official host/flag changes release status",
+    "Source/test SHA mismatch invalidates native exercise"
+  ],
+  "C": "Restore exact Github `source_eligibility.py` and `tests/test_source_eligibility.py`, verify byte Git hashes, run complete repo-native pytest, plus synthetic robustness cases if needed.",
+  "D": {
+    "falsifier": "Any test fails or can result in release_ready true from client record",
+    "limitation": "Eligibility is policy-only, not independent authentication or source rights."
+  }
+}
