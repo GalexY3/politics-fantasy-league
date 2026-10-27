@@ -4,6 +4,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime
 from itertools import combinations
+from math import isfinite
 from .events import as_utc
 
 ALLOWED={'YES','NO','ABSTAIN'}
@@ -25,7 +26,9 @@ def covote_edges(votes: list[VoteRecord], *, as_of: datetime, min_joint: int = 3
     a high edge score never proves personal collaboration or influence.
     """
     as_of=as_utc(as_of)
-    if min_joint < 1 or alpha <= 0 or beta <= 0:
+    if (type(min_joint) is not int or min_joint < 1
+            or type(alpha) not in (int, float) or not isfinite(alpha) or alpha <= 0
+            or type(beta) not in (int, float) or not isfinite(beta) or beta <= 0):
         raise ValueError('Invalid regularization')
     by_vote=defaultdict(dict)
     for vote in votes:
