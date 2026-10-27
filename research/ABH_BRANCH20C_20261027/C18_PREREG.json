@@ -1,0 +1,26 @@
+{
+  "id": "C18",
+  "status": "PREREGISTERED_BEFORE_CODE",
+  "mode": "AB-P implementing source assertions with conflicting DOB and no automatic merge/split",
+  "dependency": "C17 21 vs 29 Jul 1951 DOB on institutionally same person. Moncloa 2008 and 2012 may share biography content, PSOE 2017 and 2024 may share lineage, Congress separate.",
+  "H1": "A deterministic source assertion review can retain two DOB values, all provenance, collapse duplicated per-lineage same-value claims as nonindependent, and flag review, without treating DOB mismatch as `DIFFERENT_PERSON` or single DOB agreement as `SAME_PERSON`.",
+  "H0": "Simple DOB equality logic is safe and no conflict handling needed.",
+  "implementation": "Standalone `identity_field_conflicts.py` pure stdlib, input source assertions from server/trusted corpus (not authentication service). Output conflict and family counts, dates, warnings. No person identity decision, no score.",
+  "precommitted_tests": [
+    "C17 actual 5 doc assertions -> 2 date values, conflict true, no auto decision",
+    "Moncloa two same-day claims same source lineage not counted as independent",
+    "PSOE 2017 & 2024 treated same potential lineage",
+    "Same DOB from one source -> no conflict but still unadjudicated",
+    "Malformed ISO date rejects/quarantines",
+    "Invalid source family or duplicate reference fails closed",
+    "Order invariance",
+    "Conflicting claim does not fill first_public_at",
+    "No real person scoring and no release grade"
+  ],
+  "limits": "These are synthetic and one real official documentary case; no population estimate or second independent reviewer.",
+  "budget": {
+    "spent_before": 17,
+    "remaining": 3
+  },
+  "metrics_frozen": true
+}
