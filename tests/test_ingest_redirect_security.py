@@ -14,6 +14,7 @@ from politics_fantasy import ingest
 class Response:
     status = 200
     code = 200
+    msg = "OK"
     headers = {"Content-Type": "application/json"}
     def __init__(self, url, content=b'{"fake":true}'):
         self.url, self.content = url, content
@@ -22,6 +23,7 @@ class Response:
     def __exit__(self, *args): return None
     def close(self): return None
     def geturl(self): return self.url
+    def info(self): return self.headers
     def read(self, n=-1):
         self.read_count += 1
         return self.content if n == -1 else self.content[:n]
