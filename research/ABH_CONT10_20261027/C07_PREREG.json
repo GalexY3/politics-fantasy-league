@@ -1,0 +1,16 @@
+{
+  "cycle": "C07",
+  "mode": "AB-P",
+  "status": "HYPOTHESIS_PRETESTED_REPO_REGRESSION_PREDECLARED",
+  "disclosure": "Initial two GitHub create attempts were blocked. An isolated reproduction and one-line source patch occurred before this GitHub prereg; record that timing; do not claim blind prospective scientific discovery.",
+  "A": "CLI currently returns 0 on otherwise valid capture with legacy_size_without_bytes>0.",
+  "B": "Correct operational indicator should fail closed 2; alternate is documented legacy accepted as clean but SHA alone misses length comparison.",
+  "C": "Add deterministic synthetic pytest covering missing bytes+valid SHA and review, then inspect current source SHA and run isolated exact-source subprocess check.",
+  "D": "CLI source Git blob 4628da7... replaced by 2b2ac2a...; no Actions triggered, full suite not run.",
+  "E": "PENDING_REPO_TEST",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
