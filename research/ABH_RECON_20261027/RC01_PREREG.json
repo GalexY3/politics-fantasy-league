@@ -1,0 +1,15 @@
+{
+  "id": "RC01-20261027",
+  "mode": "AB-H/AB-R",
+  "purpose": "Comprobar si el fichero oficial de cargos electos aporta un punto de partida para el catálogo y la identidad electoral histórica.",
+  "exposure_before_preregistration": "Un subagente consultó el catálogo, descargó y examinó el XLSX antes de este preregistro. Observó 5600 registros, 16 elecciones y SHA256 cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4. Este contraste es exploratorio y de reproducibilidad; no es ciego, confirmatorio ni holdout.",
+  "A": {"question": "¿Puede recuperarse el original oficial y describirse su grano, periodo y capacidades de identificación para orientar una integración?", "unit": "fila de cargos electos por elección y circunscripción"},
+  "B": {"baseline": "Historial previo de URLs bloqueadas y fuentes parciales; la evidencia nueva de disponibilidad procede de una exploración ya expuesta.", "alternatives": ["XLSX oficial de Interior", "fuentes de Congreso por legislatura", "no producir cruce con nombres aislados"]},
+  "C": {"H1": "La recuperación TLS y el análisis reproducen el contenido y revelan cobertura electoral útil.", "H0": "El archivo no puede recuperarse, no es XLSX o su contenido difiere materialmente.", "H_other": "Aunque sea útil, su unidad, ausencia de IDs y condiciones no permiten aceptar equivalencias personales por sí solas."},
+  "D": {"criteria": "Guardar código, URL, fecha, HTTPS, hash, bytes, cabeceras seleccionadas, encabezados y recuentos reproducibles; no publicar nombres en el resumen.", "falsifiers": ["fallo HTTPS", "hash distinto al explorado", "formato o grano incompatible", "cuentas no reproducidas"]},
+  "E": {"execution": "Descarga institucional mediante curl con certificados activados y lectura local openpyxl; salida agregada; ningún GitHub Action.", "limitations": "El hash acredita bytes, no autorización individual, fecha de publicación por fila, identidad histórica ni continuidad de mandato."},
+  "F": {"planned": true}, "G": {"pending": true}, "H": {"audit": "Revisar diferencias, cobertura, duplicidad de nombres y condición de licencia; registrar incidencia si procede."},
+  "I": {"success": "source discovery / documented product dependency only", "no_increase": "CT2, VSDS, novelty and release gates"},
+  "J": {"next": "Seleccionar tras observar el resultado; R5 si no existe contraste nuevo."},
+  "authorization": {"distinct_previous_records": 13, "conservative_available_before": 7, "authorization_identity": "UNRESOLVED_SAME_OR_SEPARATE_BLOCKS", "charge_if_executed": 1}
+}
