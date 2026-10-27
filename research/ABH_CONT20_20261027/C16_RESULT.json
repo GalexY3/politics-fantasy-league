@@ -1,0 +1,25 @@
+{
+  "cycle": "C16",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_LOCAL_POSIX_MICROTEST_PASS_REPO_TEST_PENDING",
+  "preregister_commit": "a2407c90d87eeb2e1830767f494c8e25237b1377",
+  "A": "Caught partial write failure poisons future JSONL line",
+  "B": "O_APPEND does not make multi-write append all-or-nothing; truncate at previous EOF under existing cooperative lock",
+  "C": "Record previous EOF under LOCK_EX; ftruncate/fdatasync on caught OSError, then rethrow; add regression preserving prior line and accepting subsequent line.",
+  "D": {
+    "source_commit": "2e445ee8abc9401295ba2042457392ee41c38761",
+    "test_commit": "dbc18841f4129bad325443d364c470cddd31b2d4",
+    "microtest": "Standalone POSIX os.open O_APPEND + flock + injected partial write + ftruncate; prior and next JSON rows parsed clean"
+  },
+  "E": "Isolated failure mechanism passed. Code/tests committed. Repository pytest not run.",
+  "F": "Does not roll back SIGKILL/power loss and assumes cooperating flock writers. ftruncate/fsync may also fail.",
+  "G": "Manual code review and standalone OS mechanism check, no full native checkout execution.",
+  "H": "Closes handled exception path, not whole crash durability problem.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C17 coordinate audit readers with writer's advisory file lock to avoid transient partial records."
+}
