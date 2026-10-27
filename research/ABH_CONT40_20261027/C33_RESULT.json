@@ -1,0 +1,38 @@
+{
+  "cycle": "C33",
+  "mode": "AB-P",
+  "status": "VALID_EXECUTED_DIFFERENTIAL_NEGATIVE",
+  "A": "Compare Python progress_api and JS progress_model schema acceptance for nine synthetic scope mutations",
+  "B": "Equivalent acceptance vs divergent acceptance and gate semantics",
+  "C": "Run exact Git blob original JS via Node v22.16 and Python v3.13 corrected C31, fixed nine cases, compare outcomes",
+  "D": {
+    "originalJS_SHA": "67ce20c5534f18f8955b88c964c1f04e21ecbdc6",
+    "python_SHA_after_C31": "c5fd56148a7e10b6bdff77e61573b312ba22d0f4",
+    "cases": 9,
+    "local_prereg": "/mnt/data/pfl_cont40_native/js/C33_PREREG.json",
+    "local_evidence": "/mnt/data/pfl_cont40_native/js/C33_results.json"
+  },
+  "E": {
+    "divergent_acceptance": 7,
+    "cases": [
+      "family_v2",
+      "bad_milestone_id",
+      "name_number",
+      "why_number",
+      "short_evidence",
+      "size_10001",
+      "no_track_name"
+    ],
+    "additional_semantic_difference": "Both accept valid minimal scope; JS incorrectly declares all six release gates clear, Python returns six blockers (C32)"
+  },
+  "F": "Differential cases share validator contract; not seven independently executed AB cycles. JS baseline C32 patch still not merged.",
+  "G": "Direct Node and Python native execution with exact source original JS hash",
+  "H": "Need coherent validation policy and parity tests, without changing versioned V4 weighted score",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C34 targeted normative alignment via minimal validateScope/evaluate_scope tests, distinct from C33 diagnosis"
+}
