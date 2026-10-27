@@ -1,0 +1,14 @@
+{
+  "id": "A02",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "A01 11 Atlas batches structural canonical mirror PASS; now focus on prior C04 route not integrated.",
+  "hypotheses": {
+    "H1": "A read-only GET route on existing loopback server can safely expose only a quarantined source-stage catalog with zero verified first-publication timestamps, preserving Host rejection and no source injection through query.",
+    "H0": "Route integration fails or unintentionally accepts caller-provided source evidence/activates person scoring."
+  },
+  "implementation_scope": "Add import public_stage_catalog and route '/api/source-stages' to existing server.py, no API parameters passed to registry, behind current _is_local_host(). Add HTTP tests that GET with forged first_public_at remains same, Host outside loopback rejected, POST route 404. Do not wire eligibility of people.",
+  "acceptance": "Commit only if actual server source read-back shows route, includes privacy flags; local HTTP tests only count if real HTTP run, not synthetic code inspection. If source write blocked, record exact failure and preserve R5.",
+  "forbidden": "No public deployment, no real scoring, no user-supplied trusted_registry; no claim root Atlas engine Python ran.",
+  "prior_issue": "Earlier C04 GitHub update_file was blocked and not present in branch; this new isolated research branch may permit it."
+}
