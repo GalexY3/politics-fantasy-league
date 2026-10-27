@@ -1,0 +1,104 @@
+{
+  "campaign_id": "PFL_ABH_BRANCH20C_20261027",
+  "status": "CLOSED_AUTHORIZED_20_OF_20",
+  "permission": {
+    "human_explicit_grant": "Concedido",
+    "grant_distinct_from_prior": true,
+    "authorized_cycles": 20,
+    "completed_or_stop_records": 20,
+    "remaining": 0,
+    "prior_unsolved_legacy_permission_identity": "Separate prior reconciliation and closure remains historical"
+  },
+  "segments": [
+    {
+      "cycle_range": "C01–C04",
+      "count": 4,
+      "description": "Legal state stages, spoofed registry functional trust, immutable local source index and one STOP_R5 on HTTP integration"
+    },
+    {
+      "cycle_range": "C05–C12",
+      "count": 8,
+      "description": "11 original ZIP integrity, Senate/Congress/Interior primary source and BOE-JEC 52 provinces, source_original_qa eight local tests"
+    },
+    {
+      "cycle_range": "C13–C18",
+      "count": 6,
+      "description": "BOE 2023 publisher report conditional available-by, two signed originals, 11 positively linked historical elected careers, verified DOB contradiction and 21 unit tests"
+    },
+    {
+      "cycle_range": "C19–C20",
+      "count": 2,
+      "description": "BOCG XV-D-51 2023 and XV-D-390 2025 original person-level full-condition altas/bajas and credential presentation dated sequences"
+    }
+  ],
+  "key_source_facts": {
+    "boe_2023": {
+      "editor_report_ordinary_issues_before_8am": "312/312",
+      "caveat": "Publisher self-report with legal availability requirement, not observed file-level first_public_at",
+      "signed_originals_private": 2,
+      "conditional_next_day_cutoffs": [
+        "2023-06-28T00:00:00+02:00",
+        "2023-09-02T00:00:00+02:00"
+      ]
+    },
+    "congress_BOCG": {
+      "issue_2023_12_15": {
+        "full_condition_exits": 8,
+        "effective": "2023-12-06",
+        "full_condition_entries": 8,
+        "effective_entry": "2023-12-12",
+        "credentials": 8
+      },
+      "issue_2025_09_12": {
+        "full_condition_exits": 1,
+        "effective": "2025-09-02",
+        "full_condition_entries": 3,
+        "effective_entry": "2025-09-09",
+        "credential_to_condition_gap_days": [
+          39,
+          7,
+          0
+        ]
+      }
+    },
+    "identity": {
+      "eleven_cross_election_official_positive_links": 11,
+      "verified_exact_fullname_homonym_different_person_negatives": 0,
+      "official_conflicting_birth_claim_same_person": {
+        "subject": "Cristina Narbona Ruiz",
+        "Moncloa": "1951-07-21",
+        "Congreso_PSOE": "1951-07-29",
+        "true_date": "UNRESOLVED"
+      }
+    }
+  },
+  "evidence_preservation": {
+    "source_catalog": "docs/CATALOGO_FUENTES.md",
+    "report_old": "research/ABH_BRANCH20C_20261027/REPORT_ORIGINALS_C05_C12.md",
+    "report_new": "research/ABH_BRANCH20C_20261027/REPORT_C13_C20.md",
+    "atlas_current": "ab_atlas/CURRENT.md",
+    "private_originals_11_uploaded_to_git": false,
+    "HTTP_integrated": false,
+    "official_Atlas_python_check": false,
+    "source_substantive_original_BOCCG_signed_PDF_sha_verified": false
+  },
+  "method": "AB3.2.1/O7 AB-H, exploratory after some source exposure; no source outside its own grain promoted to population reliability. New source types do not automatically validate theory or public release.",
+  "metrics_unchanged": {
+    "PFL_V1_rev3_percent": 36.35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3_scientific_new": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed": 0,
+    "release_gates_total": 6
+  },
+  "cost": {
+    "github_actions_manually_launched": 0,
+    "commits_skip_ci": true
+  },
+  "decision": "No remaining cycles. Future cycles require a separate explicit human BRANCHING authorization. No background work promised.",
+  "next_sources_to_research_if_new_grant": "Extend dated BOCG official member condition history systematically and crosslink with cached Congress nominal votes, independently validate first-public BOCG metadata, locate genuine exact-fullname homonym negatives, integrate source trust to HTTP + Atlas Python."
+}
