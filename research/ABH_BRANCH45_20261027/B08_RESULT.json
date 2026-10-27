@@ -1,0 +1,81 @@
+{
+  "id": "B08",
+  "status": "CLOSED_2_ACTUAL_QA_DEFECTS_FIXED",
+  "prereg": "B08_PREREG.json",
+  "mutations": [
+    {
+      "name": "wrong_total",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "duplicate_real_seat",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "unsupported_vote",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "seat_integer",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "negative_non_sentinel",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "missing_totals_map",
+      "initial": "ValueError as intended"
+    },
+    {
+      "name": "null_totals",
+      "initial": "UNHANDLED AttributeError",
+      "after": "REJECTED ValueError INVALID_OFFICIAL_TOTALS_SHAPE"
+    },
+    {
+      "name": "leading_zero_seat",
+      "initial": "INCORRECT ACCEPT",
+      "after": "REJECTED ValueError DUPLICATE_OR_MALFORMED_NON_SENTINEL_SEAT"
+    }
+  ],
+  "changes": [
+    {
+      "file": "src/politics_fantasy/source_original_qa.py",
+      "blob_sha": "7e9d79fb841a1e07f379b77486c29088bbfc6512"
+    },
+    {
+      "file": "tests/test_source_original_qa.py",
+      "blob_sha": "baa2318717d1d6bebdb7f7665f333a9b6f31ab49"
+    }
+  ],
+  "verification": {
+    "exact_git_blob_sha_for_both": true,
+    "native_unittest_passed": 10,
+    "failed": 0,
+    "original_congress_votes_replayed": 4,
+    "original_congress_votes_passed": 4,
+    "originals_nominal_rows": 1400,
+    "seat_minus_one_by_original": [
+      11,
+      11,
+      15,
+      30
+    ],
+    "corrected_mutations_rejected": 2
+  },
+  "scope": "Parser fail-closed robustness; no new original political identity certification or population data. Seats must be canonical positive decimal strings or sentinel -1.",
+  "privacy": "Original names and choices remain private, only aggregate evidence committed",
+  "authorization": {
+    "A": 20,
+    "R": 5,
+    "B_spent": 8,
+    "B_remaining": 12
+  },
+  "metrics_unchanged": {
+    "pct": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": 0
+  },
+  "next": "B09 native V4 scope/API quantitative tests; validate new 36.90% default versus preserved V3 using actual branch source."
+}
