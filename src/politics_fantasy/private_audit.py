@@ -73,7 +73,7 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         os.close(obj)
 
 
-def _validate_object(objectsfd: int | None, rel: object, expected: object) -> str:
+def _validate_object(objectsfd: int | None, rel: object, expected: object, declared_bytes=None) -> str:
     if not isinstance(rel, str) or not isinstance(expected, str):
         return "BAD_OBJECT_REFERENCE"
     m = OBJECT_RE.fullmatch(rel)
@@ -101,6 +101,12 @@ def _validate_object(objectsfd: int | None, rel: object, expected: object) -> st
                     return "OVERSIZED_OBJECT"
                 if digest.hexdigest() != expected:
                     return "BAD_RAW_SHA"
+                if declared_bytes is not None:
+                    if (isinstance(declared_bytes, bool) or not isinstance(declared_bytes, int)
+                            or declared_bytes < 0):
+                        return "INVALID_DECLARED_BYTES"
+                    if total != declared_bytes:
+                        return "DECLARED_LENGTH_MISMATCH"
                 return "VALID_OBJECT"
             finally:
                 os.close(fd)
@@ -116,7 +122,7 @@ def audit_private_root(root: Path) -> dict:
         outcomes = Counter()
         with _existing_dir(fd, "objects") as objectsfd:
             for item in manifest:
-                outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"))] += 1
+                outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"), item.get("bytes"))] += 1
         review_states = Counter()
         valid_manifest = {}
         manifest_duplicate_ids = set()
@@ -161,6 +167,7 @@ def audit_private_root(root: Path) -> dict:
             "unreviewed_captures": (len(manifest) - legacy_captures - len(exactly_matched)),
             "legacy_captures_unlinked": legacy_captures,
             "duplicate_manifest_capture_ids": len(manifest_duplicate_ids),
+            "legacy_size_without_bytes": sum(1 for item in manifest if "bytes" not in item),
             "first_public_at_verified": False, "publisher_signature_verified": False,
             "real_person_scoring": False, "release_grade": False,
             "http_ingest_connected": False,
