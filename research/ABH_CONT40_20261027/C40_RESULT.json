@@ -1,0 +1,34 @@
+{
+  "cycle": "C40",
+  "mode": "AB-P",
+  "status": "VALID_EXECUTED_MIXED_NATIVE_QA_WITH_UNMERGED_FORECAST_ISOLATED",
+  "A": "Can changed quality, scope, market, network, forecast coexist with verified private POSIX modules in one native test tree?",
+  "B": "Source mismatch or integration failures vs all targeted tests passing",
+  "C": "Combine 58 previous original private tests, 33 newly written Python tests, 12 locally patched forecast tests, 9 Node tests. Verify all local Git hashes against source head, separate unpublished patch results.",
+  "D": {
+    "cwd": "/mnt/data/pfl_cont40_native",
+    "command": "PYTHONPATH=src python -m pytest -q selected 11 files; node --test tests/test_progress_contract_failclosed.mjs",
+    "full_local_log": "/mnt/data/pfl_cont40_native/C40_integrated_pytest.txt",
+    "github_matching_subset_log": "/mnt/data/pfl_cont40_native/C40_verified_branch_subset.txt",
+    "node_log": "/mnt/data/pfl_cont40_native/C40_verified_node.txt"
+  },
+  "E": {
+    "all_local_python": 103,
+    "python_matching_published_source": 91,
+    "python_unmerged_forecast": 12,
+    "node_published_source": 9,
+    "failures": 0,
+    "seconds": 11.8,
+    "verified_branch_subset_seconds": 11.28
+  },
+  "F": "This is NOT full project or whole Atlas replay. Forecast source is patched only locally. New network pytest not on GitHub. Some locally authored tests are not committed.",
+  "G": "SHA matching for eight currently published source modules, original 58 repo tests and progress contract files; branch subset rerun 91+9",
+  "H": "Valid targeted QA, not product launch readiness. Preserve unmerged evidence separately.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "Close C31-C40 after recording pending forecast patch and remaining blocked test uploads; next campaign can use Codex when available."
+}
