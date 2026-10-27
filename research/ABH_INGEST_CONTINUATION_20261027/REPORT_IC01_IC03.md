@@ -44,3 +44,9 @@ La corrección aborda el riesgo de solicitudes a destinos no autorizados **dentr
 **R5:** se cierran tres ciclos con evidencias discriminantes; no se crea un endpoint HTTP de importación prematuramente ni se consumen ciclos adicionales para repetir fixtures. Para un siguiente paso útil hace falta (a) una ejecución íntegra de la nueva suite HTTP en checkout de la rama, (b) diseño autenticado/seguro del operador de ingesta real con rights check y egress gate independiente o (c) un documento institucional que permita resolver la semántica `NO VOTAN`. Esos hitos no se simulan para elevar puntuaciones.
 
 **Marcadores invariantes:** V4 **36,90 %**, CT2 identidad **29/100**, VSDS **1/3**, N1/N2/N3 **0/0/0**, gates **0/6**. Historiales AB-H45 y CDX quedan intactos y se citan como precedentes, sin sumarlos a los tres IC.
+
+## Mantenimiento posterior de reproducibilidad (no es IC04)
+
+Se ha resuelto la discrepancia de SHA señalada en IC01: una copia del fixture local contenía **tres nombres de parámetro `**kw` frente a `**k`** en lambdas de prueba. Tras igualar exactamente el fichero de GitHub, `test_ingest_redirect_security.py` mide **6.654 bytes y blob SHA `9dec4b4cc92d70712ce144f0a73c25a70fce59c0`**. `ingest.py`, `quarantine_ingest.py`, los dos validadores oficiales del repositorio y los dos tests nuevos coinciden asimismo con sus blobs. La **suite nativa conjunta 15/15 volvió a pasar**, sin peticiones a Internet.
+
+[Seguimiento íntegro y hashes](IC01_EXACT_REPLAY_FOLLOWUP.json). Atlas registra esta reparación sin reescribir el lote 0017, mediante el lote **0018** y `complaint.triage(status=repaired)`. El test HTTP que necesita cargar el servidor entero sigue sin ejecutarse en este turno; el resultado no modifica V4, CT2 ni gates.
