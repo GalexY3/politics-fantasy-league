@@ -1,0 +1,27 @@
+{
+  "id": "C19",
+  "mode": "AB-R official effective membership event source",
+  "status": "PREREGISTERED_AFTER_BOCG_DISCOVERY",
+  "source_exposure": "Public web search found BOCG 15-D-51, 15/12/2023 text with 8 bajas effective 06/12 and 8 altas effective 12/12. Initial observation BEFORE prereg: exploratory, not blind.",
+  "H1": "Official 15/12/2023 BOCG supports dated full-parliamentary-condition event changes (plus credential dates), unlike October 2026 snapshot labels or 2023 Interior elected cohort; the event day can predate issue publication by 3-9 days. Exactly 8 public ministerial departures and 8 replacement full-condition acquisitions are listed.",
+  "H0": "It lists only current group snapshot lacking person-level effective dates, or people are merely nomination candidates.",
+  "tests": [
+    "Read original official BOCG 15-D-51 full text, focus PLENO 051/000002 parts A/B/C and original date of bulletin. Count full-condition bajas/altas per dated set, no person vote choices.",
+    "Compare full-condition effective days and credential filing days against issue date; make distinct event_type for FULL_CONDITION_ACQUIRED vs CREDENTIAL_SUBMITTED vs FULL_CONDITION_TERMINATED.",
+    "Use 2023 JEC original list only to note replacement entries need not appear in original elected proclamation, not claim all eight came from JEC elected file.",
+    "Assess whether BOCG current HTML issue day establishes at least a publication-day proxy but not exact first_public_at or evidence in advance of day.",
+    "Record original source URL fixed, extraction counts and evidence, no publisher-signed PDF bytes acquired."
+  ],
+  "accept": "8+8 with effective dates grounded if source confirms; correct temporal negative for retrospective cutoff 2023-12-10 where publication dated 2023-12-15; no automatic as-of exposure backdated.",
+  "sources": [
+    "https://www.congreso.es/es/busqueda-de-publicaciones?_publicaciones_id_texto=%28BOCG-15-D-51.CODI.%29&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal"
+  ],
+  "cost": {
+    "github_actions": 0
+  },
+  "budget": {
+    "consumed_before": 18,
+    "remaining": 2
+  },
+  "metrics_frozen": true
+}
