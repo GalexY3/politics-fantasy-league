@@ -1,0 +1,69 @@
+{
+  "campaign_id": "PFL-ABH-RECON-20261027-READY-FOR-NEW-AUTH",
+  "status": "CLOSED_CONSERVATIVE_CEILING_20_OF_20_STOP_R5",
+  "mode": "AB-H",
+  "method": "AB 3.2.1 O7",
+  "branch": "research/pfl-sources-reconcile-20261027",
+  "authorizations": {
+    "source_of_uncertainty": "Two independent historical branches both described using a new BRANCHING 20 grant; exact human authorization identity unproven",
+    "prior_branch_a_nine": 9,
+    "prior_branch_b_four": 4,
+    "current_continuation_RC01_RC07": 7,
+    "sum_under_single_grant_hypothesis": 20,
+    "max_remaining_under_same_grant_no_other_usage": 0,
+    "actual_authorization_balance": "UNRECONCILED",
+    "further_AB_cycles_allowed_without_new_authorization": false
+  },
+  "new_this_turn": [
+    {
+      "id": "RC06",
+      "type": "AB-R exploratory source audit",
+      "evidence": "ESE/000002-01 candidate acceptance BOCCL 32/12 10 Sep vs ESE/000002-02 plenary designation BOCCL 34/12 16 Sep; act day 10 Sep distinct",
+      "result": "DISCRIMINATING_ASSERTION_TYPE_AND_DAY_LEVEL_AVAILABILITY; exact first-public unavailable"
+    },
+    {
+      "id": "RC07",
+      "type": "AB-P local technical",
+      "evidence": "provenance_claim_gate.py + test_rc07_provenance_claim_gate.py",
+      "result": "10/10 LOCAL PASS; no true server-owned registry trust boundary proved; no HTTP/E2E; synthetic publication hours only"
+    }
+  ],
+  "sources": {
+    "catalog": "docs/CATALOGO_FUENTES.md",
+    "first_public_at_proven_for_individual_records": false,
+    "legal_rights_all_checked": false,
+    "original_source_bytes_this_turn": false
+  },
+  "atlas": {
+    "delta": "ab_atlas/updates/0006-pfl-rc06-rc07-close-20261027.json",
+    "six_batch_v8_replay": "PASS",
+    "nodes": 30,
+    "edges": 47,
+    "runs": 21,
+    "complaints": 15,
+    "python_atlas_delta_check": "NOT_EXECUTED",
+    "state_digest": "NOT_CALCULATED_THIS_TURN"
+  },
+  "metrics_unchanged": {
+    "PFL_V1_rev3_pct": 36.35,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "novel_sci_findings": [
+      0,
+      0,
+      0
+    ],
+    "gates_passed": 0,
+    "gates_total": 6
+  },
+  "cost": {
+    "github_actions_triggered_manually": 0,
+    "git_commit_ci_skip": true
+  },
+  "R5": {
+    "decision": "STOP",
+    "reason": "Exact first-public evidence and original as-of snapshots unavailable; new tests on repeated documents are not independent validation; additional pure modules without trusted registry/full-app integration insufficient. Conservative maximum quota exhausted."
+  },
+  "new_authorization_request": "SOLICITO BRANCHING 20 CICLOS",
+  "execution_condition": "Only on new source evidence and necessary code integration with clean checkout; R5 can stop before 20."
+}
