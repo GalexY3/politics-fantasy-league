@@ -1,0 +1,78 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0021-PFL-ABH-CONT10-C01-C04-20261027",
+  "parent_batch": "0020-PFL-INGEST-ABH20-IC04-IC23-20261027",
+  "at": "2026-10-27T18:45:07.918Z",
+  "actor": "chatgpt",
+  "reason": "Append four actually recorded AB-H CONT10 cycles following human 10-cycle authorization; leave six remaining. These are structural/documentary/product-documentation outcomes, not native full-suite or scientific confirmation. No gate/CT2/VSDS/V4 promotion.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C01",
+        "activity": "Independent JS structural replay of exact published Atlas 0001–0020: 20 batches / 63 nodes / 81 edges / 119 runs / 44 complaints; Python native checker not run",
+        "status": "completed",
+        "at": "2026-10-27T18:45:07.918Z",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C01_RESULT.json"
+        ],
+        "scope": "PFL V4 36.90 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C02",
+        "activity": "Official Senate documentation review: conceptual presence without vote verified; NO VOTAN literal XML mapping remains unverified",
+        "status": "completed",
+        "at": "2026-10-27T18:45:07.918Z",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C02_RESULT.json"
+        ],
+        "scope": "PFL V4 36.90 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C03",
+        "activity": "Senate open-data CC BY 4.0 reuse scope and distribution-specific catalog assessment, personal rights not adjudicated",
+        "status": "completed",
+        "at": "2026-10-27T18:45:07.918Z",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C03_RESULT.json"
+        ],
+        "scope": "PFL V4 36.90 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT10-C04",
+        "activity": "Versioned source licensing matrix adds scoped Senate evidence with GitHub blob readback; no release readiness or scientific uplift",
+        "status": "completed",
+        "at": "2026-10-27T18:45:07.918Z",
+        "evidence": [
+          "research/ABH_CONT10_20261027/C04_RESULT.json"
+        ],
+        "scope": "PFL V4 36.90 unchanged",
+        "method_version": "AB3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
