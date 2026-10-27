@@ -1,0 +1,19 @@
+{
+  "cycle": "C44",
+  "mode": "AB-P",
+  "A": {
+    "question": "Do the exact original V3/V4 scope JSON files still produce 36.35%/36.90% under both latest Python and Node validators, after hardening, with six release blockers and unchanged 36 milestone scope?"
+  },
+  "B": {
+    "rivals": [
+      "Full real frozen JSON scope source passes both runtimes",
+      "Schema tightening silently rejects valid V4 source or moves score",
+      "Local reconstructed semantic proxy can falsely appear valid; demand byte-identical Git blob"
+    ]
+  },
+  "C": "Fetch original versioned JSON from GitHub, transport to local offline runtime preserving byte-for-byte Git SHA. Execute `tests/test_progress_api.py` and `test_progress_revision_v4.mjs` unchanged plus cross-validation, with native CLI outputs; compare 36.35/36.90, six gates.",
+  "D": {
+    "falsifier": "Source Git hash mismatch, missing full snapshot, Python or Node rejects scope/changes score",
+    "scope": "Contract maturity, no empirical verification, no release promotion"
+  }
+}
