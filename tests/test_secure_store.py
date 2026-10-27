@@ -223,3 +223,11 @@ def test_new_directory_fsync_failure_does_not_claim_stored_success(tmp_path, mon
     with pytest.raises(OSError, match="SYNTHETIC_DIRECTORY_SYNC_FAILURE"):
         store_bytes(tmp_path, PAYLOAD, DIGEST)
     assert not (tmp_path / "manifest.jsonl").exists()
+
+
+def test_private_append_rejects_nonfinite_numbers_before_file_creation(tmp_path):
+    import math
+    for number in (float("nan"), float("inf"), -float("inf")):
+        with pytest.raises(ValueError):
+            append_private_jsonl(tmp_path, "manifest.jsonl", {"bytes": number})
+        assert not (tmp_path / "manifest.jsonl").exists()
