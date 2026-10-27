@@ -1,0 +1,34 @@
+{
+  "cycle": "IC09",
+  "status": "CLOSED_WINDOWS_PLATFORM_BOUNDARY_AND_DOC",
+  "prereg": "IC09_PREREG.json",
+  "deliverables": [
+    "docs/INGESTA_SEGURA_POSIX_Y_WINDOWS.md",
+    "tests/test_ingest.py"
+  ],
+  "native_tests": {
+    "focused_pytest": 21,
+    "passed": 21,
+    "subtests": 0,
+    "simulated_windows_rejected_before_fake_network": true,
+    "actual_Windows_runtime_tested": false
+  },
+  "finding": "Secure importer intentionally cannot run on native Windows; fail-closed before source contact, while game demo remains Windows-compatible and does not depend on secure_store.",
+  "limits": [
+    "A Windows secure handle backend not implemented or tested",
+    "WSL2 guidance is conditional on locally authorized installed Linux and POSIX filesystem",
+    "Test file stage whitespace not exact hash-matched to local run; semantic case inspected"
+  ],
+  "R5": "Do not attempt fake Win32 nofollow support from Linux. Defer to actual Windows environment before asserting cross-platform storage.",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 6,
+    "remaining": 14
+  },
+  "next": "IC10 adversarial interrupted private SHA temp write cleanup and no orphaned partial bytes"
+}
