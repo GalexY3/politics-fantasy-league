@@ -1,0 +1,32 @@
+{
+  "id": "A15",
+  "status": "CLOSED_R5_ORIGINAL_XLSX_NOT_CAPTURED",
+  "prereg": "A15_PREREG.json",
+  "url": "https://www.interior.gob.es/opencms/pdf/archivos-y-documentacion/documentacion-y-publicaciones/anuarios-y-estadisticas/anuarios-estadisticos-anteriores/anuario-estadistico-de-2021/01_Tablas_apartado_1_1.xlsx",
+  "catalogue": "https://sede.interior.gob.es/portal/sede/informacion-general/catalogo-de-datos",
+  "verification": {
+    "catalogue_publisher": "Ministerio del Interior",
+    "asset_format": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "asset_title": "Registro de Partidos Políticos 2021",
+    "download_attempt": "container.download returned download failed",
+    "web_direct_open": "HTTP 502 Bad Gateway",
+    "xlsx_bytes_captured": false,
+    "sha256_original": null,
+    "workbook_parsed": false,
+    "counts_from_source_not_claimed": true
+  },
+  "H1": "NOT_OBSERVED",
+  "H0": "SOURCE_BYTES_INACCESSIBLE_IN_CURRENT_TOOLS",
+  "R5": "Do not invent Excel headers, count or hash; no more repeated fetch calls on same URL. One contextual source listing is not proof of original party entry.",
+  "impact": {
+    "src_registry_level": "0 unchanged",
+    "product_percent": "36.35 unchanged"
+  },
+  "budget": {
+    "A_spent": 15,
+    "A_remaining": 5,
+    "R_not_started": true,
+    "B_not_started": true
+  },
+  "next": "A16 audit readiness endpoint and source-status claims against newly committed source-stage route to prevent false promotion of RPP and person data."
+}
