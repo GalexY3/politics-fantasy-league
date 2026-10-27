@@ -1,0 +1,25 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC06",
+  "status": "PREREGISTERED",
+  "mode": "AB-P",
+  "prior": "IC05 fixed review ledger symlink write but discovered that import_url can contact publisher and leave orphan SHA objects when manifest/review ledger not writable.",
+  "hypotheses": {
+    "H1": "Preflight of local root, objects and named ledger can reject symlink/unsupported/dangerous existing files before invoking HTTPS opener, thus limiting unnecessary remote traffic and orphan objects.",
+    "H0": "Unsafe storage preflight cannot prevent publisher fetch or requires pretending transactionality."
+  },
+  "tests": [
+    "manifest symlink rejects before injected opener call and outside unchanged",
+    "quarantine review ledger symlink rejects before importer call and SHA object isn't written",
+    "successful capture remains unchanged",
+    "root symlink prevents remote fetch"
+  ],
+  "acceptance": "New preflight code and actual negative tests; no claim atomic DB transaction or Windows race safety.",
+  "R5": "Stop if test variants add no new failure mechanism",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
