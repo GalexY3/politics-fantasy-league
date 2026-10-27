@@ -1,0 +1,30 @@
+{
+  "cycle_id": "IC03",
+  "status": "PREREGISTERED",
+  "AB_mode": "AB-H / AB-P local HTTP boundary",
+  "A_truth_contract": "Identify which existing server routes truly expose source metadata vs capture, validation or quarantine without opening a public ingestion surface.",
+  "B_rivals": {
+    "H1": "GET /api/source-stages and /api/health are actually mounted read-only local endpoints, while no import/capture/quarantine HTTP endpoints exist",
+    "H0": "A hidden server POST route or project function exposes a real source-ingestion pipeline, or public-stage HTTP GET reflects local raw quarantine objects."
+  },
+  "C_tests": [
+    "real loopback HTTP GET /api/source-stages 200 and no first-public timestamps, no real scoring",
+    "GET /api/health SYNTHETIC_DEMO 200",
+    "POST /api/ingest, /api/source-import, /api/capture with fake URL JSON all 404 and no source fetch",
+    "GET /api/quarantine and /api/ingest all 404",
+    "Host external 403 prior to route handling",
+    "compare source_event_registry public_stage_catalog to local quarantine manifest, not linked"
+  ],
+  "D_instrument": "New repo pytest/unittest `test_ingest_http_boundary.py`, uses real handler_factory and only ephemeral loopback; if isolated test substitutes unrelated imports it will be disclosed; no actual external network",
+  "E_execution": "Try native loopback on faithful staged server module and fixtures; do not attribute unchanged prior Codex tests to this cycle.",
+  "F_adversarial": "Observe route source code and compare absence of `capture_validate_quarantine` import; negative 404 alone is not a deploy security audit.",
+  "G_verification": "No person scores, no production readiness, no original private data; test suite report and source SHA.",
+  "H_limits": "Not an E2E original publisher->server->game test. Integration of an ingestion route needs separate authentication, CSRF, rights and approved source operator design.",
+  "I_metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J_R5": "Stop after separating actual HTTP from local staged pipeline; no new route merely to increase completion percent."
+}
