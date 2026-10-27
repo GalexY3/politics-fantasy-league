@@ -1,0 +1,154 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0006-PFL-RC06-RC07-CLOSE-20261027",
+  "parent_batch": "0005-PFL-RC05-IDENTITY-20261027",
+  "at": "2026-10-27T02:26:00+01:00",
+  "actor": "chatgpt",
+  "reason": "Two final conditional BRANCHING cycles RC06 and RC07: official pre-designation vs designation dated assertions, and ten local pure Python provenance-as-of guards. If earlier branches share one permission, 20/20 records exhausted; authorization provenance unresolved. AB-R/AB-P and release gates remain separated.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-RC06-20261027",
+        "activity": "Compare official BOCCL prior candidate acceptance ESE/000002-01 with post-plenary designation ESE/000002-02, and discriminate date/event/assertion type",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB 3.2.1 O7 AB-H / AB-R exploratory source-exposed",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-RC07-20261027",
+        "activity": "Precommitted ten pure Python tests for fail-closed type/as-of source-provenance guard; local acceptance only",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json",
+          "src/politics_fantasy/provenance_claim_gate.py",
+          "tests/test_rc07_provenance_claim_gate.py"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB 3.2.1 O7 AB-H / AB-P local-only",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-RC06-SOURCE-EXPOSURE-20261027",
+        "run_id": "PFL-RC06-20261027",
+        "status": "open",
+        "severity": "minor",
+        "category": "evidence_provenance",
+        "source": "agent",
+        "description": "Candidate bulletin discovered before prereg. Official indexed HTML extract available, direct source-open cache miss in this browser; no immutable retrieved bytes, published-day not first_public_at exact; cannot guarantee 12 Sept was first outcome disclosure."
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-RC07-TRUST-BOUNDARY-20261027",
+        "run_id": "PFL-RC07-20261027",
+        "status": "open",
+        "severity": "major",
+        "category": "engineering_security",
+        "source": "agent",
+        "description": "Local pure guard has 10 unit tests, but accepts externally passed trusted_registry; only server-owned independently attested registry can prevent forged first_public_at. Not integrated into HTTP or clean checkout CI/E2E."
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+        "title": "Nominación aceptada ≠ designación plenaria: control de filtración temporal",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "BOCCL 32/12 ESE/000002-01 se firma 03-09-2026 y publica 10-09-2026 como aceptación de candidaturas; BOCCL 34/12 ESE/000002-02 tiene acto de designación de 10-09-2026 y publicación 16-09-2026. No usar boletín posterior para afirmar que se conocía la designación a 12-09; eso NO demuestra que ningún otro medio comunicase el acto antes del 16. first_public_at exact sigue ausente.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+        "title": "Guarda aislada de tipo de afirmación y publicación comprobada",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "Módulo puro local con diez pruebas verificadas; exige as_of timezone aware, namespace de fuente y correspondencia claim-family, y first_public_at exact desde trusted_registry de confianza. No verifica la procedencia del registry; horarios positivos en tests son sintéticos. No integrado al servidor, no habilita backtest ni personas reales.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json",
+          "src/politics_fantasy/provenance_claim_gate.py",
+          "tests/test_rc07_provenance_claim_gate.py"
+        ],
+        "phase": "build",
+        "acceptance": {
+          "criteria": "Pruebas locales unitarias 10/10; futura aceptación requiere registry server-owned auditado y tests HTTP/E2E",
+          "evidence": [
+            "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json"
+          ],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC06-E01",
+      "from": "PFL-RC05-ASOF-BLOCKER-20261027",
+      "to": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC06-E02",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "n_b467123cb4c0",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-RC07-E01",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-RECON-AUTH-20261027",
+      "set": {
+        "detail": "Las ramas AB-H 9 y 4 y la continuación RC01-RC07 (7 ciclos) sumarían 20 si hubieran usado el MISMO permiso humano y no hubiera otros consumos: techo conservador 20/20 AGOTADO, saldo condicional cero. Si son dos autorizaciones distintas, la contabilidad cambiaría; NO se ha conciliado la procedencia. Batch cerrado, STOP_R5, solicitar explícitamente un nuevo BRANCHING antes de consumir otro."
+      },
+      "reason": "Cierre de los dos ciclos restantes de la reserva conservadora, sin equiparar autorización desconocida a certeza."
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Catálogo de fuentes ampliado con RC06 BOCCL ESE/000002-01 de candidaturas aceptadas (10-09-2026) y ESE/000002-02 de designación (16-09-2026) más control AB-P RC07; diferenciar hechos, estados jurídicos, publicación oficial y first_public_at exact pendiente.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC06_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json"
+        ]
+      },
+      "reason": "Conservar clasificación documental temporal y alcance real del nuevo control de procedencia."
+    }
+  ]
+}
