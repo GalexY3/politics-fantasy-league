@@ -8,7 +8,9 @@ CONGRESS_LABELS={'Sí':'afavor','No':'enContra','Abstención':'abstenciones','No
 def audit_congress_vote(original:dict)->dict:
     if not isinstance(original,dict) or not isinstance(original.get('votaciones'),list):
         raise ValueError('INVALID_OFFICIAL_VOTE_SHAPE')
-    rows=original['votaciones'];totals=original.get('totales',{})
+    rows=original['votaciones'];totals=original.get('totales')
+    if not isinstance(totals,dict):
+        raise ValueError('INVALID_OFFICIAL_TOTALS_SHAPE')
     count=Counter();non_sentinel=set();sentinel=0
     for row in rows:
         if not isinstance(row,dict) or row.get('voto') not in CONGRESS_LABELS:
@@ -18,7 +20,7 @@ def audit_congress_vote(original:dict)->dict:
         seat=row['asiento']
         if seat=='-1':sentinel+=1
         else:
-            if not seat.isdigit() or seat in non_sentinel:
+            if not seat.isascii() or not seat.isdigit() or int(seat)<1 or str(int(seat))!=seat or seat in non_sentinel:
                 raise ValueError('DUPLICATE_OR_MALFORMED_NON_SENTINEL_SEAT')
             non_sentinel.add(seat)
         count[CONGRESS_LABELS[row['voto']]]+=1
