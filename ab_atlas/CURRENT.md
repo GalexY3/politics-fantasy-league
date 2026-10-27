@@ -1,3 +1,21 @@
+# AB Atlas · nueva campaña CONT10 pausada tras C01–C05 · 27/10/2026
+
+**Situación más reciente:** el usuario autorizó **10** ciclos AB-H con BRANCHING para Politics Fantasy League sobre `research/pfl-codex-contributions-20261027`. Se han realizado y registrado **cinco ciclos A–J** `C01–C05`; **cinco permanecen autorizados sin ejecutar**. Pausa **STOP_R5**, no cierre/consumo de las cinco restantes ni autorización adicional. Historiales anteriores AB-H45 (45), CDX (9) e IC01–IC23 (23) siguen separados. [Ledger de la nueva campaña](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json).
+
+- **C01 AB-P:** replay estructural JS sobre el `seed.json` y los **20 lotes originales hasta 0020**, obtenidos por GitHub y registrados por SHA de blob: **PASS limitado**, 63 nodos, 81 relaciones, 119 runs, 44 complaints, 288 operaciones, seis gates sin promoción. **No es la ejecución de `python ab_atlas/atlas_delta.py check`, no se obtuvo SHA del estado canónico Python**. El nuevo lote `0021` añade cuatro runs y `0022` otro; sus cabeceras/parentesco y operaciones se releían sin errores. **El estado completo de 22 lotes no está recertificado por Python ni por replay JS global**.
+- **C02 AB-R:** la web oficial del Senado distingue desde 04/06/2013 a senadores presentes que expresamente no votan. No se localizó el contrato XML primario que documente la equivalencia exacta del literal técnico `NO VOTAN`; la ruta XML requerida no pudo inspeccionarse. **Semántica técnica sigue abierta**.
+- **C03 AB-R:** condiciones oficiales del subportal de datos abiertos del Senado: **CC BY 4.0 salvo excepciones**, con atribución, respeto al contenido, fecha de actualización cuando conste y no aval institucional. Datos.gob.es enumera seis distribuciones XML de **listas de votaciones por iniciativa** X–XV, `tipoFich=9`. No habilita automáticamente procesamiento o puntuación personal, ni certifica licencias de cualquier recurso nominal.
+- **C04 AB-P:** se actualizó la [matriz de derechos](../docs/DERECHOS_FUENTES_ABH45_20261027.md) de modo acotado, conservando los bloqueos de privacidad y datos personales; el archivo resultante fue releído y verificado por SHA Git.
+- **C05 AB-R, STOP_R5:** los procedimientos RPP de Interior (información **SIA 992323**, certificado **992324**, inscripción **992320**) y el catálogo de consulta están documentados, pero el acceso a la aplicación pública no permitió obtener original registral firmado ni ficha individual SHA-verificada. Los procedimientos ya constaban en el catálogo: **no repetir el mismo bloqueo** sin una fuente auténtica o intervención autorizada.
+
+**Atlas:** lotes append-only **0001–0022**, último `0022-PFL-ABH-CONT10-C05-R5-20261027`. El cambio respecto al estado JS verificado de 0020 es exclusivamente +5 runs, de donde se infieren **63 nodos, 81 aristas, 124 runs y 44 complaints**, todavía **sin recertificación de estado canónico completo**. El visor HTML es snapshot anterior y no se actualiza automáticamente.
+
+**Indicadores sin promoción:** V4 contractual **36,90 %**, CT2 identidad **29/100** ordinal, VSDS **1/3**, N1/N2/N3 nuevos **0/0/0**, **0/6 gates**. Sin scoring político real, sin despliegue, sin originales nominativos privados en Git, **0 minutos Actions solicitados**.
+
+**Próximo instrumento necesario antes de reanudar ciclos:** checkout byte-idéntico de la rama actual y ejecución nativa de `python ab_atlas/atlas_delta.py check` sobre los 22 lotes, además de pytest completo, tests de durabilidad al interrumpir el proceso y auditoría de bytes/recibos. Para AB-R, obtener una fuente original RPP o el esquema XML oficial del Senado con procedencia y derechos. Conservar las cinco plazas restantes; R5 prevalece sobre completar una cuota.
+
+---
+
 # AB Atlas · cierre de los 20 ciclos IC04–IC23 · 27/10/2026
 
 **Estado más reciente en la rama integrada `research/pfl-codex-contributions-20261027`.** Se han registrado **IC04–IC23 (20/20 ciclos, permiso agotado)** con sus prerregistros y resultados; sucesión anterior **IC01–IC03 (3)**, campaña ChatGPT **AB-H45 (45)** y Codex **CDX (9)** permanecen **separadas**. No se abrió rama ni se fusionó `main`. [Informe final de estos 20 ciclos](../research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC04_IC23_FINAL.md).
