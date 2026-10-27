@@ -1,0 +1,21 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC22",
+  "status": "PREREGISTERED",
+  "mode": "AB-META",
+  "H1": "Canonical Atlas Python evaluator can replay currently committed seed + 0019 and prospective new delta without orphan run/complaint or new release gates. Incremental ledger can include separate IC04–IC23 without altering closed ABH45/CDX/IC01–03.",
+  "H0": "Concurrent Atlas updates, schema mismatches or missing complaint identifiers make append unsafe; stop or repair with new batch.",
+  "tests": [
+    "Read currently latest Atlas files and 0019 existing head",
+    "Run Python atlas_delta.py check on local version and inspect ops schema",
+    "Preregister 0020 append run references and structured complaints for timeouts/Windows/NO VOTAN",
+    "Do not prematurely append absent IC23 result or fake counters"
+  ],
+  "acceptance": "Independent canonical structural pass on prior 19, no merge main, explicit provenance boundaries.",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
