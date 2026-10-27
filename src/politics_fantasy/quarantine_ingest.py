@@ -5,12 +5,11 @@ signature, historical first-public timestamp, rights or personal identity can be
 verified by parsing bytes. Never add real original documents to Git.
 """
 from __future__ import annotations
-from hashlib import sha256
 import json
 from pathlib import Path
 
 from .ingest import import_url
-from .secure_store import append_private_jsonl, preflight_private_storage
+from .secure_store import append_private_jsonl, preflight_private_storage, read_private_object
 from .source_original_qa import audit_congress_vote
 from .source_original_senate_qa import audit_original_senate_session
 
@@ -37,12 +36,6 @@ def capture_validate_quarantine(*, url: str, source: str, document_kind: str,
     preflight_private_storage(root, "quarantine_reviews.jsonl")
     snapshot = import_url(url=url, source=source, root=root, opener=opener,
                           min_interval=min_interval)
-    raw = (root / snapshot["raw_object"]).resolve()
-    try:
-        raw.relative_to(root.resolve())
-    except ValueError as exc:
-        raise ValueError("RAW_OBJECT_OUTSIDE_QUARANTINE") from exc
-
     result = {
         "capture_id": snapshot["capture_id"],
         "source_id": source,
@@ -64,20 +57,24 @@ def capture_validate_quarantine(*, url: str, source: str, document_kind: str,
         "http_ingest_endpoint_connected": False,
     }
     try:
-        raw_bytes = raw.read_bytes()
-        if sha256(raw_bytes).hexdigest() != snapshot["sha256"]:
-            result["quarantine_state"] = "QUARANTINED_INTEGRITY_FAILED"
-            result["error_code"] = "RAW_SHA_MISMATCH"
-        else:
+        raw_bytes = read_private_object(root, snapshot["raw_object"], snapshot["sha256"])
+    except (ValueError, TypeError, OSError) as exc:
+        result["quarantine_state"] = "QUARANTINED_INTEGRITY_FAILED"
+        # No source-authored paths or exception details are exported.
+        result["error_code"] = (
+            "RAW_SHA_MISMATCH" if str(exc) == "RAW_SHA_MISMATCH"
+            else "RAW_OBJECT_INTEGRITY_OR_ACCESS_FAILED"
+        )
+    else:
+        try:
             if document_kind == "congreso_vote":
                 validated = audit_congress_vote(json.loads(raw_bytes.decode("utf-8")))
             else:
                 validated = audit_original_senate_session(raw_bytes)
             result["schema_checked"] = True
             result["quarantine_state"] = "QUARANTINED_SCHEMA_PASSED"
-            # Source validators only return aggregate counters + safe flags.
             result["validator_result"] = validated
-    except (ValueError, TypeError, KeyError, UnicodeError, OSError) as exc:
-        result["error_code"] = type(exc).__name__
+        except (ValueError, TypeError, KeyError, UnicodeError, OSError) as exc:
+            result["error_code"] = type(exc).__name__
     append_private_jsonl(root, "quarantine_reviews.jsonl", result)
     return result
