@@ -1,0 +1,49 @@
+{
+  "cycle": "C22",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_EXACT_3_MODULES_27_PASS_WITH_3_INITIAL_TEST_FIXTURE_ERRORS_REPAIRED",
+  "prereg_commit": "d5e093dc54d7c20fe5b84d5a06377f96acbea003",
+  "A": "Do exact SHA-verified source modules support genuine offline local POSIX audit/store/CLI tests?",
+  "B": "Direct runtime integration vs source-only/mock passes",
+  "C": "Retrieved source exact blobs secure_store, private_audit, private_audit_cli; compared git blob SHA; ran 27 isolated native pytest conditions with real POSIX store and synthetic files.",
+  "D": {
+    "git_blob_matches": {
+      "secure_store": "4695c8d85924869212d916fa163a8f3548272ebc",
+      "private_audit": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "private_audit_cli": "923a1c479c3f970e1325beff36699a277bc3773c"
+    },
+    "cwd": "/mnt/data/pfl_cont30_native",
+    "command": "PYTHONPATH=. python -m pytest -q test_exact_source_cli.py test_exact_source_audit_store.py",
+    "test_sha256": "6f78953df0ca6e6953027bc9a324654ed517f3628e715e304dd858ac83cd348e",
+    "python_version": "3.13",
+    "fixture_data": "pure synthetic",
+    "outputs": [
+      "C22_exact_three_modules_pytest.txt",
+      "C22_exact_three_modules_pytest_repaired.txt"
+    ]
+  },
+  "E": {
+    "initial": {
+      "passed": 24,
+      "failed": 3,
+      "reason": "Synthetic manually created JSONL modes were default 0644, triggering correct private mode protection before expected parser error"
+    },
+    "repair": "chmod 0600 for three test fixtures only; no source change",
+    "rerun": {
+      "passed": 27,
+      "failed": 0,
+      "seconds": 0.18
+    }
+  },
+  "F": "Local 27 tests are authored here; official repository test files and full repo modules not yet imported/run; no Atlas native check. Initial invalid fixture tests retained and not counted as product regression.",
+  "G": "Three Git SHA-identical modules, true CPython/pytest and OS file descriptors, not mocks for store/audit; exact private production source verified at this HEAD.",
+  "H": "Raises evidence quality relative to earlier synthetic mechanism snippets, but neither actual source acquisition nor issuer provenance.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novel": "0/3"
+  },
+  "J": "C23 retrieve exact tests authored in GitHub and run them against exact three source modules, compare failures."
+}
