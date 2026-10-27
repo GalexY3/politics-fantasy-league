@@ -1,3 +1,5 @@
+**Cola pendiente para Codex (28/10/2026):** [tareas_codex/](../tareas_codex/README.md) y [BACKLOG.json](../tareas_codex/BACKLOG.json) separan T001–T004 ejecutables de T005 bloqueada por originales; ninguna tarea ha sido ejecutada ni cuenta como ciclo AB. [Incidencia #17](https://github.com/GalexY3/Metodologia-AB/issues/17).
+
 # AB Atlas · CONT60 C51–C60 cerrado 10/10 · 28/10/2026
 
 **Última autorización:** «De acuerdo, concedidos», diez ciclos AB-H C51–C60. **Ejecutados y documentados A–J: 10/10, saldo 0.** [Ledger](../research/ABH_CONT60_20261028/CAMPAIGN_STATUS.json) · [informe final](../research/ABH_CONT60_20261028/REPORT_FINAL.md). Cuatro ciclos **AB-R** institucionales/jurídicos (dos originales inconclusos, una interpretación jurídica primaria acotada, una licencia específica positiva) y seis **AB-P** (gate documental de privacidad, fecha, identidad servidor, Atlas y pruebas).
