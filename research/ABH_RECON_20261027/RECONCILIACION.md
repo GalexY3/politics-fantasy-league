@@ -36,3 +36,23 @@ Se ejecutaron **tres ciclos nuevos RC01–RC03**, identificados de forma distint
 El lote `0002-pfl-recon-20261027.json` añade operaciones nuevas que trasladan los cuatro runs, tres complaints y nodos de la rama de cuatro ciclos, con enlaces fijados a su commit original; conserva también los tres nuevos runs. Eso no convierte los dos `0001` en un mismo linaje ni mueve el código de esa otra rama a esta. Un primer replay rechazó la severidad `moderate`; se reparó a `minor`, se conservó la incidencia y el replay estricto posterior pasó.
 
 Tras RC04, y al indicar el investigador que no recuerda si las autorizaciones son la misma, se mantiene el criterio conservador: `20 - 9 - 4 - 4 = 3` como máximo si existe un único bloque y no hay otras ejecuciones. El lote `0003-pfl-rc04-20261027.json` recoge este cambio y el contraste RC04; no reescribe el lote anterior.
+
+## Addendum RC05–RC07 y cierre prudente de la reserva (27/10/2026)
+
+Esta actualización NO elimina la incertidumbre histórica sobre si los dos linajes de 9 y 4 ciclos procedían de una o dos autorizaciones humanas. Mantiene explícita la hipótesis conservadora usada desde RC01:
+
+| Origen de los registros | Consumo contado hipotéticamente sobre una única autorización |
+|---|---:|
+| Primera rama AB-H (C01–C09) | 9 |
+| Rama paralela ABH_BR20 (C01–C04; IDs de alcance distintos) | 4 |
+| Continuación RC01–RC04 | 4 |
+| RC05, cinco pares documentales seleccionados | 1 |
+| RC06, distinción documental candidatura/designación | 1 |
+| RC07, diez pruebas locales de elegibilidad temporal | 1 |
+| **Suma hipotética** | **20** |
+
+**Resultado condicional:** `20 - (9 + 4 + 4 + 1 + 1 + 1) = 0` plazas bajo **un solo permiso** y suponiendo que no existan consumos adicionales. Si fueron permisos independientes, el saldo cambia. En ningún caso autoriza otra ejecución sin un mandato humano claro: el techo prudente está agotado. La cuenta de ciclos no acredita independencia científica de sus contenidos y las pruebas con datos sintéticos no se convierten en evidencia empírica.
+
+RC06 y RC07, sus prerregistros y resultados están en [REPORT.md](REPORT.md); el delta Atlas se añade como lote `0006`, `parent_batch=0005-PFL-RC05-IDENTITY-20261027`. El mapa y el catálogo registran ambos con resultados positivos limitados y complaints nuevas. No se ha alterado `main`, no se ha fusionado el código de ramas históricas ni se ha demostrado una fuente personal longitudinal exhaustiva o marca de primera publicación por dato.
+
+Se cerró el máximo de esta tanda y se aplicó STOP_R5 al pasar a nuevas preguntas sin fuentes originales: futuras autorizaciones BRANCHING son techos adaptativos, no obligación de ejecutar exactamente su cuota. [Cierre machine-readable](BATCH_FINAL_RC01_RC07.json).
