@@ -1,0 +1,54 @@
+{
+  "cycle": "C03",
+  "mode": "AB-R",
+  "execution_type": "PREREGISTERED_PRIMARY_SOURCE_DOCUMENT_REVIEW",
+  "prereg_commit": "9ed2fb5d0f31805c9e4fba55f3e719cad4dfbc03",
+  "status": "CLOSED_POSITIVE_SCOPE_BOUND_FINDING",
+  "A": "Ámbito de los derechos y condiciones documentados por el propio Senado y por datos.gob.es para reutilizar datos parlamentarios, separado de privacidad y lanzamiento fantasy.",
+  "B": [
+    "El Senado licencia de modo general los contenidos del portal Open Data salvo indicación contraria",
+    "La mera ficha de un dataset bastaría para habilitar cualquier uso nominal o publicación",
+    "La licencia documental no sustituye protección de datos ni validación de aplicación"
+  ],
+  "C": "Leer fuente editorial de condiciones de uso y fichas de seis distribuciones; confrontar lo que conceden frente al caso de uso del juego.",
+  "D": {
+    "sources": [
+      {
+        "url": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/reutilizacion/index.html",
+        "publication_last_updated": "2024-09-18",
+        "finding": "Contenidos del espacio de datos abiertos bajo CC BY 4.0 salvo que conste otra cosa; cita y fecha cuando conste, mantener sentido y metadatos, no insinuar respaldo del Senado.",
+        "exact_scope": "Contenido de subportal de datos abiertos del Senado y documentos sometidos a esas condiciones, no cualquier recurso de cualquier editor."
+      },
+      {
+        "url": "https://datos.gob.es/es/catalogo/i00000061-lista-de-votaciones-por-iniciativas-desde-la-x-legislatura",
+        "finding": "Seis distribuciones XML en las legislaturas X-XV, editor Senado, cada una con enlace CC BY 4.0 a licencia europea; recurso tipo lista por iniciativa (tipoFich=9).",
+        "last_dataset_catalog_update": "2025-12-04"
+      },
+      {
+        "url": "https://www.senado.es/web/relacionesciudadanos/atencionciudadano/protecciondatos/index.html",
+        "finding": "El Senado mantiene política separada de protección de datos personales y finalidades específicas, última actualización 2026-01-14."
+      }
+    ]
+  },
+  "E": {
+    "verified": "Condiciones generales CC BY 4.0 salvo excepciones para el espacio de datos abiertos del Senado; condiciones explícitas de atribución, no desnaturalización y no aval institucional. Licencia del dataset tipoFich=9 documentada en datos.gob.es.",
+    "negative": "No se ha verificado mediante esta ficha el régimen jurídico de cada XML nominal de sesión descargado fuera del subportal, de cada tercero o la licitud del caso de uso fantasy con tratamiento de personas.",
+    "no_personal_data_downloaded": true
+  },
+  "F": "Fichas de datasets y condiciones generales no equivalen a licencia indiscriminada ni base RGPD para perfiles personales. No se certifican derechos de terceros ni adecuación del scoring. No confundir fecha de actualización de ficha 2025-12-04 con first_public_at de cada voto.",
+  "G": "No dictamen jurídico independiente, ni revisión por dataset + finalidad + versión actual desde editor; no autenticación individual.",
+  "H": {
+    "update": "Documentación institucional reduce incertidumbre sobre régimen general del subportal, pero no acredita el gate de licencias del proyecto.",
+    "new_question": "Incorporar matriz por conjunto con alcance y falsadores a los documentos del proyecto; evitar repetir la búsqueda legal cuando ya hay fuente concreta."
+  },
+  "I": {
+    "scientific_grade": "0/3 novelty",
+    "product_scope": "V4 36.90% unmodified",
+    "CT2": "29/100",
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "rights_gate": "PENDING",
+    "importance": "Hallazgo documental útil, no autorización de publicación comercial/individual."
+  },
+  "J": "CONTINUE_BRANCH C04 as AB-P documentation/acceptance of license matrix with rights and per-resource scope; NO scoring or change to gates"
+}
