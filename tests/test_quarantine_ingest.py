@@ -101,6 +101,8 @@ class QuarantinePipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"UNSAFE_PRIVATE_LEDGER"):
                 self.capture(root,source="congreso",kind="congreso_vote",content=congress_bytes())
             self.assertEqual(outside.read_bytes(),b"DO_NOT_MODIFY")
+            self.assertFalse((root/"manifest.jsonl").exists())
+            self.assertFalse((root/"objects"/"93").exists())
 
     def test_tampered_snapshot_hash_is_quarantined(self):
         with tempfile.TemporaryDirectory() as td:
