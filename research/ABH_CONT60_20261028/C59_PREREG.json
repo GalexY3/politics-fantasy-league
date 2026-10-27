@@ -1,0 +1,15 @@
+{
+  "cycle": "C59",
+  "mode": "AB-P",
+  "A": "Do C54 and C56 privacy/first_public date changes preserve all checked-in original source-eligibility and immutable event-stage tests, while new negatives remain red-green valid?",
+  "B": {
+    "H1": "No original test regression, all person scoring remains blocked",
+    "H2": "New explicit reasons/date parser accidentally changes old expected semantics",
+    "H3": "Only ad hoc tests pass, original suite broken"
+  },
+  "C": "Native restore original checked-in `test_source_eligibility.py` and `test_source_event_registry.py` byte-identical by Git SHA plus exact current 3 modules, run 12+10 old and C54/C56/C57 new cases; capture stdout/count and hashes, no real people.",
+  "D": {
+    "falsifier": "Any original test fails or Git SHA mismatch -> report failure; do not claim full project test suite",
+    "scope": "Only local fake/structural data, no actual institutional original source."
+  }
+}
