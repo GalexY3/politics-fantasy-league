@@ -65,8 +65,10 @@ def _root_fd(root: Path, *, create: bool = True):
 def _child_directory(parent: int, name: str):
     if not name or name in (".", "..") or "/" in name or "\\" in name:
         raise ValueError("BAD_STORE_DIRECTORY")
+    created = False
     try:
         os.mkdir(name, 0o700, dir_fd=parent)
+        created = True
     except FileExistsError:
         pass
     try:
@@ -75,6 +77,8 @@ def _child_directory(parent: int, name: str):
         raise ValueError("SYMLINK_OR_UNSAFE_STORE_DIRECTORY") from exc
     try:
         _check_private_permissions(fd, directory=True)
+        if created:
+            os.fsync(parent)  # Persist child directory entry.
         yield fd
     finally:
         os.close(fd)
