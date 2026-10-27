@@ -1,0 +1,22 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC13",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC12 read-only audit fixed, but manifest and quarantine review join by SHA only, so repeated captures of identical bytes are not distinguishable.",
+  "H1": "Introduce unpredictable local capture_id per successful snapshot and propagate to quarantine review; two equal-SHA captures have different IDs, no personal identity or source-publication claims.",
+  "H0": "Capture SHA already uniquely identifies an operation, so per-capture ID provides no difference.",
+  "tests": [
+    "capture identical bytes twice => same SHA, distinct capture_id",
+    "quarantine review echoes source capture_id",
+    "all old fixtures remain compatible; legacy manifest rows without ID explicitly not trusted as matched in future auditor",
+    "no release_grade and no HTTP changes"
+  ],
+  "acceptance": "Actual local tests and no legacy migration falsely asserted.",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
