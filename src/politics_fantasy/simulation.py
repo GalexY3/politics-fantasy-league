@@ -4,6 +4,7 @@ Agents are intentionally naive and no effect from this generator is empirical.
 """
 from __future__ import annotations
 import random
+import math
 from statistics import mean
 from dataclasses import dataclass
 
@@ -21,7 +22,7 @@ class MarketSummary:
 
 
 def gini(values: list[float]) -> float:
-    if any(v < 0 for v in values):
+    if any(not math.isfinite(v) or v < 0 for v in values):
         raise ValueError("Nonnegative values required")
     if not values or sum(values) == 0:
         return 0.0
@@ -34,7 +35,9 @@ def simulate_auction(seed: int = 47, clubs: int = 10, assets: int = 100,
                      rounds: int = 12, volatility: float = 0.10,
                      popularity_weight: float = 0.5) -> MarketSummary:
     """No political outcomes are generated; bids depend on invented perceived value."""
-    if clubs < 2 or assets < 10 or rounds < 1 or not 0 <= popularity_weight <= 1:
+    if (clubs < 2 or assets < 10 or rounds < 1
+            or not math.isfinite(volatility) or not 0 <= volatility <= 1
+            or not math.isfinite(popularity_weight) or not 0 <= popularity_weight <= 1):
         raise ValueError("Invalid simulation parameters")
     rng = random.Random(seed)
     intrinsic = [rng.uniform(2, 10) for _ in range(assets)]
