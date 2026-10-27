@@ -158,7 +158,7 @@ def audit_private_root(root: Path) -> dict:
             "manifest_rows": len(manifest), "review_rows": len(reviews),
             "object_integrity": dict(sorted(outcomes.items())),
             "quarantine_states": dict(sorted(review_states.items())),
-            "unreviewed_captures": (len(valid_manifest) - len(exactly_matched)),
+            "unreviewed_captures": (len(manifest) - legacy_captures - len(exactly_matched)),
             "legacy_captures_unlinked": legacy_captures,
             "duplicate_manifest_capture_ids": len(manifest_duplicate_ids),
             "first_public_at_verified": False, "publisher_signature_verified": False,
