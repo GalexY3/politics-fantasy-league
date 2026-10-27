@@ -1,3 +1,17 @@
+# AB Atlas · CONT30 C21–C30 cerrado 10/10 · 27/10/2026
+
+**Autorización nueva «Sí, concedidos» agotada:** C21–C30 **10 ciclos AB-P A–J verificados**, saldo 0. [Estado de campaña](../research/ABH_CONT30_20261027/CAMPAIGN_STATUS.json) y [informe A–J](../research/ABH_CONT30_20261027/REPORT_FINAL.md). Series CONT10, CONT20, AB-H45, CDX e IC anteriores permanecen independientes. Para seguir otro bloque AB se necesita nueva autorización; no gastar cuotas simulando una suite no ejecutada.
+
+**Nueva evidencia verdaderamente ejecutada:** se reconstituyeron tres módulos Python exactos en bytes según `git hash-object` de GitHub: `secure_store.py` (`4695c8d...`), `private_audit.py` (`18c2aea...`) y `private_audit_cli.py` (`923a1c4...`). Pytest real de tres suites originales más cuatro pruebas nuevas versionadas en `tests/test_private_store_process_boundaries.py`: **58/58 PASS en 10.48 s**, Linux Python 3.13. C24 expuso tres tests originales con modos privados incorrectos (21 PASS/3 FAIL); C25 sólo corrigió sus fixtures a `0600` y comprobó **24/24 PASS**, sin tocar código de producto. C27 consiguió 640/640 líneas únicas en 2×8 procesos independientes; C28–C29 ejecutaron SIGKILL contra código real en cuatro escenarios sintéticos, auditor y CLI **fail-closed**. C29 registró además un hook inicial inválido, sustituido antes de la repetición válida. Estos son controles de fiabilidad del almacén privado, **no** acreditaciones de autenticidad de datos políticos.
+
+**Atlas:** último lote append-only `0025-PFL-ABH-CONT30-C21-C30-20261027`, diez `run.add`; **25 deltas**, contadores **derivados** 63 nodos, 81 relaciones, 149 runs, 44 complaints, 318 operaciones. No se ejecutó `python ab_atlas/atlas_delta.py check` canónico del estado 25 ni se calculó su SHA, tampoco pytest del resto de módulos, Node, firma de originales, prueba de energía eléctrica ni transacción completa. [Tarea abierta a Codex #17](https://github.com/GalexY3/Metodologia-AB/issues/17), **solicitada, no ejecutada**.
+
+**Indicadores sin promoción:** V4 contractual 36,90 %, CT2 identidad 29/100 ordinal, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, gates 0/6; CT2 no es una probabilidad. No se han publicado originales privados, activado scoring de políticos reales, ejecutado Actions costosas ni fusionado a `main`. [Gráfico CT2 0–100 y vista 20–40](../research/ABH_CONT30_20261027/CT2_IDENTITY_CURRENT.svg).
+
+**Bloqueo para siguiente campaña:** Codex/checkout fiel de **HEAD actual**, ejecución canónica del Atlas 25 con hash y stdout/exit, pytest integral y Node, luego correcciones basadas en fallos reales; priorizar fuentes oficiales originales RPP o semántica literal Senado sólo con documento primario y nueva evidencia. No confundir un registro de issue con trabajo realizado.
+
+---
+
 # AB Atlas · campaña CONT20 cerrada C11–C20 · 27/10/2026
 
 **Situación vigente:** el usuario autorizó diez ciclos AB-H nuevos después de CONT10. **Se han ejecutado y documentado C11–C20: 10/10, saldo 0.** [Ledger cerrado](../research/ABH_CONT20_20261027/CAMPAIGN_STATUS.json) · [informe A–J](../research/ABH_CONT20_20261027/REPORT_FINAL.md). Son principalmente mejoras e instrumentaciones **AB-P** de la ingesta privada, no nuevos hallazgos científicos originales. C01–C10, IC01–IC23, AB-H45 y CDX son series separadas. Se requiere nueva autorización para otra campaña.
