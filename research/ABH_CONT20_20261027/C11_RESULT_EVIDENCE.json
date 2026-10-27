@@ -1,0 +1,70 @@
+{
+  "cycle": "C11",
+  "mode": "AB-P",
+  "result": "PASS_LIMITED_JS",
+  "git_branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "6c658c0228f002d7c5ff2347acafd9a342dd083a",
+  "base_20_readback": "eaa57f9914a4279c533900a13ff8a84a2793fe8d",
+  "tail": [
+    {
+      "filename": "0021-pfl-abh-cont10-c01-c04-20261027.json",
+      "blob_sha": "2f31b7a9ab7fa7c5a5d03e099bcdb1a5fc9ce77d",
+      "id": "0021-PFL-ABH-CONT10-C01-C04-20261027",
+      "ops": 4
+    },
+    {
+      "filename": "0022-pfl-abh-cont10-c05-r5-20261027.json",
+      "blob_sha": "17b1e5dbc95c4f93128f1f01a1126a1d46b338a2",
+      "id": "0022-PFL-ABH-CONT10-C05-R5-20261027",
+      "ops": 1
+    },
+    {
+      "filename": "0023-pfl-abh-cont10-c06-c10-20261027.json",
+      "blob_sha": "143dfc24b44b63a2ae3874f50e9eab044e5e9ab3",
+      "id": "0023-PFL-ABH-CONT10-C06-C10-20261027",
+      "ops": 5
+    }
+  ],
+  "counts": {
+    "batches": 23,
+    "nodes": 63,
+    "edges": 81,
+    "runs": 129,
+    "complaints": 44,
+    "ops_all": 298,
+    "gate_status": [
+      {
+        "id": "data_registry",
+        "status": "blocked"
+      },
+      {
+        "id": "identity",
+        "status": "blocked"
+      },
+      {
+        "id": "events",
+        "status": "blocked"
+      },
+      {
+        "id": "authentication",
+        "status": "pending"
+      },
+      {
+        "id": "e2e",
+        "status": "pending"
+      },
+      {
+        "id": "deployment",
+        "status": "pending"
+      }
+    ]
+  },
+  "errors": [],
+  "source": "Exact GitHub seed and batches 0001–0023 via intermediate evidence, checked schema enums, parentage, ID uniqueness, run complaints, gate statuses and cycles in JS",
+  "limits": [
+    "Not Python atlas_delta.py check",
+    "Intermediate replay omits Python state timestamps/events; no canonical state SHA",
+    "No original politician data verified",
+    "No full repository pytest run"
+  ]
+}
