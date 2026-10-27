@@ -1,0 +1,60 @@
+{
+  "id": "IC01",
+  "stage": "A-J_AB_H",
+  "mode": "AB-P",
+  "status": "CLOSED_BOUNDED_NATIVE_REDIRECT_TEST_PASS",
+  "source_branch": "research/pfl-codex-contributions-20261027",
+  "initial_failure": "Initial urllib redirect fake response missing fp.read() default, fp.code/msg/info; 7/9 then 8/9 failures were test-fixture protocol errors, not established importer bypass; fixed iteratively retaining Git history.",
+  "findings": [
+    {
+      "kind": "VULNERABILITY_CLASS_SOURCE_CODE",
+      "fact": "Original urllib.request.urlopen automatically followed redirects before original ingest.py checked final URL. Therefore off-source redirected target can be contacted prior to rejection. No public HTTP exploit demonstrated."
+    },
+    {
+      "kind": "SOURCE_HOST_MISMATCH",
+      "fact": "Original ALLOWED_HOSTS set permitted congreso URL with source='senado' and vice versa; current function now requires exact authority per claimed source before requesting."
+    }
+  ],
+  "modifications": [
+    {
+      "file": "src/politics_fantasy/ingest.py",
+      "blob_sha": "d4e7d62bdcbec58312336e40dab539b0ed23c3eb",
+      "effect": "SourceScopedRedirects validates every Location before urllib next request; max five hops; exact source-to-host, no credentials/nonstandard ports/downgrade; final URL checked before reading bytes, content limit/sha preserved."
+    },
+    {
+      "file": "tests/test_ingest_redirect_security.py",
+      "blob_sha": "9dec4b4cc92d70712ce144f0a73c25a70fce59c0",
+      "effect": "9 real urllib redirect-handler tests with offline transport. Local staged copy of this file not byte-identical to branch test blob, though code path and reported cases match; do not claim exact fixture SHA."
+    }
+  ],
+  "execution": {
+    "python_version": "3.11+",
+    "native_unittest_runs": [
+      "7/9 fail due fake response fp.read signature",
+      "8/9 fail due fake response fp.code / msg / info",
+      "9/9 PASS after fixture completion"
+    ],
+    "no_external_requests": true,
+    "real_live_HTTP_ingest_run": false,
+    "readiness": "experimental local import only",
+    "source_sha_exact_local_verified": true,
+    "test_sha_exact_local_verified": false
+  },
+  "negatives": {
+    "cross_official_publisher_redirect_blocked_before_contact": true,
+    "evil_redirect_blocked": true,
+    "https_to_http_rejected": true,
+    "loopback_and_host_suffix_rejected": true,
+    "too_many_redirects_rejected": true,
+    "source_claim_mismatch_rejected": true,
+    "injected_opener_opaque_redirect_rejected_before_body_read": true,
+    "same_source_https_redirect_accepted": true
+  },
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "next": "IC02 prototype controlled offline capture→source-typed validation→quarantine without claiming HTTP ingestion."
+}
