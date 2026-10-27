@@ -44,11 +44,11 @@ def main():
         check_server()
         with urlopen(BASE+"/api/progress",timeout=4) as h:
             obj=json.load(h)
-            assert obj["revision"]==3 and obj["progress_display_pct"]==36.4
+            assert obj["revision"]==4 and obj["progress_display_pct"]==36.9
             assert len(obj["release_blockers"])==6
         with urlopen(BASE+"/api/state",timeout=4) as h:
             votes=json.load(h)["observatory"]["votes"][:12]
-        results["passes"].append("HTTP local progress V2 and six blocked launch gates")
+        results["passes"].append("HTTP local progress V4 and six blocked launch gates")
         with urlopen(BASE+"/api/official-nominations",timeout=6) as h:
             nominations=json.load(h)
         assert nominations["ok"] is True,nominations
@@ -64,7 +64,7 @@ def main():
             assert err.code==403
         results["passes"].append("HTTP hostile Host blocked 403")
         with sync_playwright() as play:
-            browser=play.chromium.launch(headless=True)
+            browser=play.chromium.launch(headless=True, executable_path=os.environ.get("PF_CHROMIUM_EXECUTABLE"))
             page=browser.new_page(viewport={"width":1380,"height":860},device_scale_factor=1)
             errors=[]
             csp_errors=[]
@@ -81,14 +81,14 @@ def main():
             page.locator("[data-tab='progress']").click()
             page.locator("#content").get_by_text("Progreso del proyecto",exact=False).first.wait_for(timeout=20000)
             content=page.locator("#content").inner_text()
-            assert "36,4" in content,repr(content[:400])
+            assert "36,9" in content,repr(content[:400])
             assert "Fuentes y datos" in content
             assert "Privacidad, seguridad y licencias" in content
             assert page.locator("progress.scope-progress").count()==10
-            assert float(page.locator("progress.scope-progress").first.get_attribute("value"))==36.35
+            assert float(page.locator("progress.scope-progress").first.get_attribute("value"))==36.9
             results["passes"].append("Native progress bars visible with external CSS and strict CSP")
             assert "NO está listo" in content
-            results["passes"].append("Chromium progress V2 nine sublines and no-publication warning")
+            results["passes"].append("Chromium progress V4 nine sublines and no-publication warning")
             page.locator("[data-tab='market']").click()
             market=page.locator("#content").inner_text()
             assert "Mercado" in market or "mercado" in market,market[:250]
@@ -132,7 +132,7 @@ def main():
             assert not csp_errors,repr(csp_errors[:5])
             assert not page.evaluate("window.cspViolations"),repr(page.evaluate("window.cspViolations"))
             results["passes"].append("No CSP violations or CSP console errors across overview, progress, market, observatory and atlas")
-            page.screenshot(path=str(ART/"browser_progress_v2.png"),full_page=True)
+            page.screenshot(path=str(ART/"browser_progress_v4.png"),full_page=True)
             browser.close()
         results["status"]="PASS"
     finally:
