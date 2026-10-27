@@ -1,0 +1,37 @@
+{
+  "id": "B15",
+  "status": "CLOSED_ADVERSARIAL_DUPLICATE_SENATE_SEAT_FIXED",
+  "prereg": "B15_PREREG.json",
+  "prior_failure": "A duplicate VotoSenador row plus adjusted official affirmative and present totals was accepted by B14 parser, despite the same 'escano' occurring twice within one original event.",
+  "source_invariants": {
+    "original_votes": 10,
+    "duplicate_real_seat_in_each": 0,
+    "nonpositive_seat_in_each": 0
+  },
+  "patches": [
+    {
+      "file": "src/politics_fantasy/source_original_senate_qa.py",
+      "sha": "c98fdd26af5462e08844be2255aa5e1efd638a18"
+    },
+    {
+      "file": "tests/test_source_original_senate_qa.py",
+      "sha": "7db5ef1f3e37140d3150f9efab095b38e89f8bd4"
+    }
+  ],
+  "verification": {
+    "exact_Git_blobs_match_locally": true,
+    "native_unit_tests_passed": 11,
+    "failed": 0,
+    "all_10_original_Senate_votes_still_pass": true,
+    "nominal_rows": 2589,
+    "absences": 51,
+    "modified_duplicate_rejected": true,
+    "missing_seat_rejected": true
+  },
+  "boundary": "Source-specific within-vote seat uniqueness is not lifetime or cross-legislature identity, and does not certify first_public_at.",
+  "authorization": {
+    "B_spent": 15,
+    "B_remaining": 5
+  },
+  "next": "B16 test duplicate vote identifier and source-session semantic integrity; reinforce if original unique."
+}
