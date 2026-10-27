@@ -1,0 +1,14 @@
+{
+  "id": "CDX07", "mode": "AB-H/AB-P", "status": "ACCEPTED_LOCAL_CONTRACT", "prereg_commit": "c171b95",
+  "A": "Reducir falsos rechazos de dominios de origen ya capturados y denegar entradas de tipo inválido sin excepciones.",
+  "B": "Defectos observados antes del protocolo; ambos módulos son locales y no constituyen autenticación ni rutas HTTP expuestas para validar credenciales.",
+  "C": "Los hosts exactos www.senado.es y descargas.interior.gob.es se reconocen como orígenes candidatos; sigue cuarentena obligatoria. Claims o familias no string se rechazan explícitamente.",
+  "D": "43 tests y 2 subtests pasan en Python local, con controles de subdominio engañoso, usuario en URL, HTTP, puerto 444 y claim/familia lista, dict o null.",
+  "E": "Se mantuvieron tests de source_eligibility, source_event_registry y provenance_claim_gate; sin tráfico ni Actions.",
+  "F": "Cambios y pruebas reproducibles versionados en rama propia.",
+  "G": "Conocer un host no verifica bytes, emisor, identidad, licencia o disponibilidad histórica; el resultado continúa QUARANTINED y no habilita puntuación real.",
+  "H": {"complaint_ids": ["CDX07-TYPES"], "limits": "El registro de confianza debe mantenerse independiente y controlado por el servidor; no se demuestra una explotación pública."},
+  "I": {"CT2_identity_before_after": [29,29], "VSDS": "1/3", "release_gates": "unchanged"},
+  "J": "Revisar el estado integrado y resolver dependencias/tests para reproducibilidad local; aplicar R5 a más análisis científicos repetitivos sin nueva evidencia.",
+  "complaints": [{"id":"CDX07-TYPES", "status":"repaired", "description":"Tipos no hashables lanzaban TypeError en la validación pura; ahora se deniegan antes de consultar conjuntos."}], "github_actions_minutes": 0
+}

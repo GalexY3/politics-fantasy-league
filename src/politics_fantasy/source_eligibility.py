@@ -8,7 +8,9 @@ from __future__ import annotations
 import re
 from collections.abc import Mapping
 
-HTTPS_OFFICIAL = ("www.congreso.es", "www.boe.es")
+# A recognized hostname is merely a candidate origin, never independent
+# authentication or permission to score people.
+HTTPS_OFFICIAL = ("www.congreso.es", "www.boe.es", "www.senado.es", "descargas.interior.gob.es")
 HEX_SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 ALLOWED_SCOPES = {"AGGREGATE", "CANDIDACY_LABEL", "PERSON_EVENT"}
 

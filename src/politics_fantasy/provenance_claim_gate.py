@@ -44,9 +44,9 @@ def evaluate_claim_as_of(*, authority: str, record_family: str,
         return deny('INVALID_AS_OF')
     if not isinstance(authority, str) or authority != AUTHORITY:
         return deny('UNSUPPORTED_AUTHORITY')
-    if desired_claim not in AUTHORIZED_CLAIMS:
+    if not isinstance(desired_claim, str) or desired_claim not in AUTHORIZED_CLAIMS:
         return deny('UNSUPPORTED_CLAIM')
-    if record_family not in set(AUTHORIZED_CLAIMS.values()):
+    if not isinstance(record_family, str) or record_family not in set(AUTHORIZED_CLAIMS.values()):
         return deny('UNSUPPORTED_RECORD_FAMILY')
     if record_family != AUTHORIZED_CLAIMS[desired_claim]:
         return deny('ASSERTION_TYPE_MISMATCH')
