@@ -125,3 +125,13 @@ def test_nonexistent_root_readonly_audit_does_not_create_it(tmp_path):
     with pytest.raises(ValueError,match="MISSING_STORE_ROOT"):
         audit_private_root(missing)
     assert not missing.exists()
+
+
+def test_duplicate_manifest_ids_count_both_uncertain_occurrences(tmp_path):
+    rel=make_fixture(tmp_path)
+    append_private_jsonl(tmp_path,"manifest.jsonl",{"capture_id":CAPTURE_ID,"sha256":SHA,"raw_object":rel})
+    append_private_jsonl(tmp_path,"quarantine_reviews.jsonl",{"capture_id":CAPTURE_ID,"sha256":SHA,"quarantine_state":"QUARANTINED_SCHEMA_PASSED"})
+    a=audit_private_root(tmp_path)
+    assert a["duplicate_manifest_capture_ids"]==1
+    assert a["unreviewed_captures"]==2
+    assert a["quarantine_states"]=={"AMBIGUOUS_MANIFEST_CAPTURE_ID":1}
