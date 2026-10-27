@@ -7,6 +7,7 @@ from __future__ import annotations
 from collections import Counter
 from datetime import datetime
 import json
+import re
 from pathlib import Path
 from .events import as_utc
 
@@ -40,7 +41,13 @@ def audit_jsonl(path: Path, *, max_unique_ids: int = 5_000_000) -> dict:
                 counters['missing_required'] += 1
                 for key in missing: counters[f'missing_{key}'] += 1
                 continue
-            if not isinstance(row['person_ids'], list) or len(row['raw_sha256']) != 64:
+            people = row['person_ids']
+            digest = row['raw_sha256']
+            if (not isinstance(people, list)
+                    or any(not isinstance(person, str) or not person for person in people)
+                    or len(set(people)) != len(people)
+                    or not isinstance(digest, str)
+                    or re.fullmatch(r'[0-9a-f]{64}', digest) is None):
                 counters['bad_identity_or_hash'] += 1
                 continue
             try:
