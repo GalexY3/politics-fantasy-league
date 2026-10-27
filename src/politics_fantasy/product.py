@@ -6,7 +6,9 @@ All demo entities and events are explicitly fictional. Launch on loopback only.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
+import math
 import re
 import sqlite3
 import uuid
@@ -67,6 +69,17 @@ CREATE TABLE IF NOT EXISTS trade(
   credits_delta INTEGER NOT NULL, occurred_at TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS idx_demo_event_time ON demo_event(occurred_at, first_public_at);
 CREATE INDEX IF NOT EXISTS idx_lineup_round ON lineup(round_id,club_id);
+CREATE TABLE IF NOT EXISTS demo_clock(
+  id INTEGER PRIMARY KEY CHECK(id=1), offset_seconds INTEGER NOT NULL CHECK(offset_seconds>=0));
+INSERT OR IGNORE INTO demo_clock VALUES(1,0);
+CREATE TABLE IF NOT EXISTS round_settlement(
+  round_id TEXT PRIMARY KEY REFERENCES fantasy_round(id),
+  next_round_id TEXT NOT NULL UNIQUE REFERENCES fantasy_round(id),
+  settled_at TEXT NOT NULL, rule_version TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS round_settlement_score(
+  round_id TEXT NOT NULL REFERENCES round_settlement(round_id),
+  club_id TEXT NOT NULL REFERENCES club(id), score REAL,
+  PRIMARY KEY(round_id,club_id));
 """
 
 
@@ -94,6 +107,12 @@ def utc_now() -> datetime:
 
 def stamp(dt: datetime) -> str:
     return as_utc(dt).isoformat(timespec='seconds')
+
+
+def _game_now(db: sqlite3.Connection, when: datetime | None = None) -> datetime:
+    """Simulation time is explicit and persisted; tests may supply wall time."""
+    offset = db.execute('SELECT offset_seconds FROM demo_clock WHERE id=1').fetchone()
+    return as_utc(when or utc_now()) + timedelta(seconds=offset[0] if offset else 0)
 
 
 def seed_demo(path: Path, *, now: datetime | None = None) -> None:
@@ -164,10 +183,10 @@ def add_club(path: Path, name: str) -> dict:
 def transfer(path: Path, *, club_id: str, figure_id: str, action: str, when: datetime | None = None) -> dict:
     if action not in ('buy','sell'):
         raise GameError('INVALID_ACTION','Acción no reconocida')
-    now = as_utc(when or utc_now())
     with connect(path) as db:
         db.execute('BEGIN IMMEDIATE')
         try:
+            now = _game_now(db, when)
             club = _get(db,'club',club_id)
             figure = _get(db,'figure',figure_id)
             if club is None or figure is None:
@@ -209,13 +228,13 @@ def transfer(path: Path, *, club_id: str, figure_id: str, action: str, when: dat
 
 def set_lineup(path: Path, *, club_id: str, round_id: str, figures: list[str],
                when: datetime | None = None) -> dict:
-    now = as_utc(when or utc_now())
     if (not isinstance(figures, list) or len(figures) != LINEUP_SIZE
             or not all(isinstance(f,str) for f in figures) or len(set(figures)) != LINEUP_SIZE):
         raise GameError('BAD_LINEUP',f'El once reducido exige {LINEUP_SIZE} figuras distintas.')
     with connect(path) as db:
         db.execute('BEGIN IMMEDIATE')
         try:
+            now = _game_now(db, when)
             if not _get(db,'club',club_id):
                 raise GameError('UNKNOWN_CLUB','Club inexistente.',404)
             rnd = _get(db,'fantasy_round',round_id)
@@ -235,21 +254,92 @@ def set_lineup(path: Path, *, club_id: str, round_id: str, figures: list[str],
             raise
 
 
-def _round_score(db: sqlite3.Connection, rnd: sqlite3.Row, figures: list[str]) -> float | None:
-    if rnd['coverage_state'] != 'SYNTHETIC_COMPLETE' or utc_now() < as_utc(rnd['ends_at']):
+def _round_score(db: sqlite3.Connection, rnd: sqlite3.Row, figures: list[str], *, now: datetime) -> float | None:
+    if rnd['coverage_state'] != 'SYNTHETIC_COMPLETE' or now < as_utc(rnd['ends_at']):
         return None
     events=[]
     for e in db.execute('SELECT * FROM demo_event'):
+        # A local database may be edited outside the demo. Never score a
+        # non-fictional source or silently treat contaminated coverage as zero.
+        if (as_utc(rnd['starts_at']) <= as_utc(e['occurred_at']) < as_utc(rnd['ends_at'])
+                and not e['source_url'].startswith('synthetic://')):
+            return None
         events.append(PoliticalEvent(e['event_id'],e['kind'],as_utc(e['occurred_at']),as_utc(e['first_public_at']),
                                      (e['figure_id'],),e['source_url'],e['raw_sha256'],e['source_version'],
                                      {'evidence':'SYNTHETIC_ONLY'}))
     end=as_utc(rnd['ends_at'])
+    cutoff = min(now, end + timedelta(days=1))
     return sum(person_week_points(events, person_id=f, start=as_utc(rnd['starts_at']),end=end,
-                                  knowledge_cutoff=end+timedelta(days=1), rule=DEMO_RULE) for f in figures)
+                                  knowledge_cutoff=cutoff, rule=DEMO_RULE) for f in figures)
 
 
-def state(path: Path, *, pilot_csv: Path | None = None) -> dict:
+def simulate_round(path: Path, *, round_id: str, when: datetime | None = None) -> dict:
+    """Explicitly simulate one fictional round; atomically freeze and open the next.
+
+    `when` is an optional wall clock for tests. The stored offset advances only
+    the demo clock, never the system clock or any real-world political source.
+    """
     with connect(path) as db:
+        db.execute('BEGIN IMMEDIATE')
+        try:
+            rnd = _get(db, 'fantasy_round', round_id)
+            if rnd is None:
+                raise GameError('UNKNOWN_ROUND', 'Jornada inexistente.', 404)
+            previous = db.execute('SELECT * FROM round_settlement WHERE round_id=?', (round_id,)).fetchone()
+            if previous:
+                db.execute('COMMIT')
+                return {'round_id': round_id, 'next_round_id': previous['next_round_id'],
+                        'settled_at': previous['settled_at'], 'already_settled': True}
+            latest = db.execute('SELECT id FROM fantasy_round ORDER BY starts_at DESC, id DESC LIMIT 1').fetchone()
+            if latest is None or latest['id'] != round_id or rnd['coverage_state'] != 'NOT_AVAILABLE':
+                raise GameError('ROUND_NOT_SIMULATABLE', 'Solo se puede simular la jornada pendiente actual.', 409)
+            start, end, lock = map(as_utc, (rnd['starts_at'], rnd['ends_at'], rnd['lock_at']))
+            if end - start < timedelta(hours=1) or lock > start:
+                raise GameError('INVALID_ROUND_DATES', 'Fechas de jornada inválidas.', 409)
+            for event in db.execute('SELECT occurred_at,source_url FROM demo_event'):
+                if start <= as_utc(event['occurred_at']) < end and not event['source_url'].startswith('synthetic://'):
+                    raise GameError('NON_SYNTHETIC_EVENT', 'La jornada contiene una fuente no ficticia.', 409)
+            wall = as_utc(when or utc_now())
+            current = _game_now(db, wall)
+            cutoff = max(current, end + timedelta(seconds=1))
+            offset = max(0, math.ceil((cutoff - wall).total_seconds()))
+            cutoff = wall + timedelta(seconds=offset)
+            db.execute('UPDATE demo_clock SET offset_seconds=? WHERE id=1', (offset,))
+            for index, figure in enumerate(db.execute('SELECT id FROM figure ORDER BY id').fetchall()):
+                identifier = f'SIM:{round_id}:{figure["id"]}'
+                kind = ('speech_recorded', 'question_registered', 'initiative_registered')[index % 3]
+                occurred = end - timedelta(minutes=30)
+                digest = hashlib.sha256(identifier.encode('utf-8')).hexdigest()
+                db.execute('INSERT INTO demo_event VALUES(?,?,?,?,?,?,?,?)',
+                           (identifier, figure['id'], kind, stamp(occurred), stamp(occurred), digest,
+                            'synthetic://simulated-round', 'synthetic-round-1'))
+            db.execute("UPDATE fantasy_round SET coverage_state='SYNTHETIC_COMPLETE' WHERE id=?", (round_id,))
+            next_id = 'round-' + uuid.uuid4().hex
+            next_start = cutoff + timedelta(days=2)
+            db.execute('INSERT INTO fantasy_round VALUES(?,?,?,?,?,?)',
+                       (next_id, 'Jornada de demostración siguiente', stamp(next_start),
+                        stamp(next_start + timedelta(days=7)), stamp(next_start - timedelta(hours=1)), 'NOT_AVAILABLE'))
+            db.execute('INSERT INTO round_settlement VALUES(?,?,?,?)',
+                       (round_id, next_id, stamp(cutoff), DEMO_RULE.version))
+            updated = _get(db, 'fantasy_round', round_id)
+            for club in db.execute('SELECT id FROM club').fetchall():
+                figures = [row[0] for row in db.execute(
+                    'SELECT figure_id FROM lineup WHERE round_id=? AND club_id=? ORDER BY figure_id',
+                    (round_id, club['id']))]
+                score = _round_score(db, updated, figures, now=cutoff) if len(figures) == LINEUP_SIZE else None
+                db.execute('INSERT INTO round_settlement_score VALUES(?,?,?)', (round_id, club['id'], score))
+            db.execute('COMMIT')
+            return {'round_id': round_id, 'next_round_id': next_id, 'settled_at': stamp(cutoff),
+                    'already_settled': False}
+        except Exception:
+            db.execute('ROLLBACK')
+            raise
+
+
+def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = None) -> dict:
+    with connect(path) as db:
+        now = _game_now(db, when)
+        clock_offset = db.execute('SELECT offset_seconds FROM demo_clock WHERE id=1').fetchone()
         figures=[dict(x) for x in db.execute('SELECT f.*,o.club_id AS owner_id FROM figure f LEFT JOIN ownership o ON o.figure_id=f.id ORDER BY f.id')]
         clubs=[dict(c) for c in db.execute('SELECT * FROM club ORDER BY name')]
         rounds=[]
@@ -260,8 +350,12 @@ def state(path: Path, *, pilot_csv: Path | None = None) -> dict:
             for club in clubs:
                 selection=[x[0] for x in db.execute('SELECT figure_id FROM lineup WHERE club_id=? AND round_id=? ORDER BY figure_id',(club['id'],r['id']))]
                 rr['lineups'][club['id']]=selection
-                rr['scores'][club['id']]=_round_score(db,r,selection) if len(selection)==LINEUP_SIZE else None
-            rr['is_locked']=utc_now() >= as_utc(r['lock_at'])
+                frozen = db.execute('SELECT score FROM round_settlement_score WHERE round_id=? AND club_id=?',
+                                    (r['id'], club['id'])).fetchone()
+                settled = db.execute('SELECT 1 FROM round_settlement WHERE round_id=?', (r['id'],)).fetchone()
+                rr['scores'][club['id']] = (frozen['score'] if frozen else None) if settled else (
+                    _round_score(db,r,selection,now=now) if len(selection)==LINEUP_SIZE else None)
+            rr['is_locked']=now >= as_utc(r['lock_at'])
             rounds.append(rr)
         trades=[dict(x) for x in db.execute('SELECT * FROM trade ORDER BY id DESC LIMIT 40')]
     observatory={'status':'SOURCE_NOT_LOADED','votes':[], 'provenance':None}
@@ -279,5 +373,7 @@ def state(path: Path, *, pilot_csv: Path | None = None) -> dict:
             'mode':DATA_PROVENANCE, 'authentication':'NONE_LOCAL_LOOPBACK_ONLY',
             'scoring_rule':DEMO_RULE.version,'roster_limit':MAX_OWNED,'lineup_size':LINEUP_SIZE,
             'figures':figures,'clubs':clubs,'rounds':rounds,'trades':trades,
+            'demo_clock': {'now':stamp(now), 'offset_seconds':clock_offset[0] if clock_offset else 0,
+                           'simulated':bool(clock_offset and clock_offset[0])},
             'observatory':observatory,
             'research_status':'NO_REAL_INDIVIDUAL_PLAYER_SCORING_OR_PREDICTIONS'}

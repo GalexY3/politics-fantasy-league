@@ -1,0 +1,15 @@
+{
+  "id": "CDX03", "mode": "AB-H/AB-P", "status": "ACCEPTED_BACKEND_ONLY", "prereg_commit": "ce62190",
+  "A": "Cerrar una jornada sintética y preparar la siguiente sin modificar el reloj del sistema.",
+  "B": "La demo previa tenía una jornada próxima sin fuente de eventos y no avanzaba automáticamente.",
+  "C": "Se implementó avance explícito del reloj de juego, con offset persistido y sin cambiar el reloj del sistema; no hay interfaz ni HTTP para esta operación en este ciclo.",
+  "D": "46 tests locales (seis nuevos de jornadas y regresiones de product/core) pasan; cubren doble ejecución concurrente, reinicio, rollback, migración, no-alineación, contaminación no sintética y eventos que no son aún públicos.",
+  "E": "SQLite BEGIN IMMEDIATE cierra y crea siguiente jornada de forma atómica; eventos ficticios deterministas; resultados y versión de regla congelados. Club sin alineación completa conserva puntuación desconocida.",
+  "F": "Tests con wall clock inyectado en Windows, Python 3.12, SQLite; código y tests versionados; sin GitHub Actions.",
+  "G": "Núcleo verificable mediante Python. No es aceptación de navegación, autenticación, fiabilidad multiusuario ni predicción con personas reales.",
+  "H": {"complaint_ids": ["CDX03-TIME-LEAK"], "limits": "Una base existente se migra aditivamente al iniciar con seed_demo; periodos antiguos no liquidados continúan con las reglas preexistentes."},
+  "I": {"product_acceptance": "backend local sintético y pruebas", "CT2_identity_before_after": [29,29], "VSDS": "1/3", "release_gates": "unchanged"},
+  "J": "Habilitar la operación en el servidor loopback y en la interfaz con etiqueta visible y verificar recorrido real de navegador.",
+  "complaints": [{"id":"CDX03-TIME-LEAK", "status":"repaired", "description":"El cálculo previo podía incluir eventos publicados después del instante actual al usar fin+1 día como cutoff; ahora limita el cutoff al reloj actual y conserva regresión."}],
+  "github_actions_minutes": 0
+}
