@@ -93,10 +93,20 @@ def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
         status = int(response.status)
         if status != 200:
             raise ValueError(f"BAD_HTTP_STATUS_{status}")
+        headers = response.headers
+        declared_length = headers.get("Content-Length")
+        if declared_length is not None:
+            if (not isinstance(declared_length, str) or not declared_length.isascii()
+                    or not declared_length.isdecimal()
+                    or str(int(declared_length)) != declared_length):
+                raise ValueError("INVALID_CONTENT_LENGTH")
+            if int(declared_length) > MAX_BYTES:
+                raise ValueError("RESOURCE_EXCEEDS_20_MIB")
         content = response.read(MAX_BYTES + 1)
         if len(content) > MAX_BYTES:
             raise ValueError("RESOURCE_EXCEEDS_20_MIB")
-        headers = response.headers
+        if declared_length is not None and len(content) != int(declared_length):
+            raise ValueError("TRUNCATED_OR_INCONSISTENT_RESPONSE_LENGTH")
         digest = hashlib.sha256(content).hexdigest()
         relative_object = store_bytes(root, content, digest)
         record = {
