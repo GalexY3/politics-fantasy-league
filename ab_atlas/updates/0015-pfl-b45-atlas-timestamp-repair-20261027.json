@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027",
+  "parent_batch": "0014-PFL-B45-B01-B20-20261027",
+  "at": "2026-10-27T14:21:01+01:00",
+  "actor": "chatgpt",
+  "reason": "Maintenance only: log and resolve model-authored future registration timestamp defects in earlier A/R/B delta metadata. GitHub original commit timestamps independently verified; no AB cycle or scientific/gate promotion.",
+  "ops": [
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B45-B20-ATLAS-PLACEHOLDER-TIMES",
+        "run_id": "PFL-B45-B20",
+        "severity": "major",
+        "status": "open",
+        "category": "provenance_metadata",
+        "source": "agent",
+        "at": "2026-10-27T14:21:01+01:00",
+        "description": "Atlas 0012,0013,0014 `at` and run event times were model-authored future placeholders inconsistent with actual GitHub first registration commit timestamps (0012:05:08:15,0013:05:19:31,0014:14:17:32 Madrid). Three delta files corrected in Git; old and corrected values preserved in Git history and timestamp repair dossier."
+      }
+    },
+    {
+      "op": "complaint.triage",
+      "id": "PFL-B45-B20-ATLAS-PLACEHOLDER-TIMES",
+      "status": "repaired",
+      "reason": "Verified GitHub commit metadata and corrected 51 metadata fields in 0012–0014. Detailed repair report: research/ABH_BRANCH45_20261027/ATLAS_TIMESTAMP_REPAIR.json. This is a recorded exception to byte-level append-only invariance, not an alteration of scientific or release outcomes."
+    }
+  ]
+}
