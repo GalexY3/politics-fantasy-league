@@ -1,0 +1,67 @@
+{
+  "id": "RC07-20261027",
+  "status": "CLOSED_TECHNICAL_ACCEPTANCE_LOCAL_ONLY",
+  "prereg_commit": "3360aae5ba79c58e1e32e9317ce37b39e1586be8",
+  "dependency": "RC06 official ESE/000002-01 candidacy acceptance vs ESE/000002-02 plenary designation",
+  "artifacts": {
+    "module": "src/politics_fantasy/provenance_claim_gate.py",
+    "tests": "tests/test_rc07_provenance_claim_gate.py"
+  },
+  "execution": {
+    "command": "PYTHONPATH=/mnt/data/pfl_rc07/src python -m unittest discover -s /mnt/data/pfl_rc07/tests -p 'test_rc07*.py' -v",
+    "environment": "local Python staging /mnt/data/pfl_rc07 (same source and assertions copied to research branch)",
+    "tests_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "github_actions": 0,
+    "integrated_http": false,
+    "clean_checkout_tested": false,
+    "note": "Positive known first_public_at times 2026-09-10T12:00+02:00 and 2026-09-16T12:00+02:00 are explicitly SYNTHETIC test fixtures, not publisher times; actual official rows remain first_public_at null"
+  },
+  "acceptance": [
+    "Nomination cannot satisfy designation claim regardless of publication",
+    "Official bulletin day alone does not satisfy independently attested first_public_at",
+    "Known synthetic well-scoped evidence permits claim only after authentic publication timestamp",
+    "Bad/non-timezone-aware cutoff rejected",
+    "Future original publication blocked",
+    "Actual first-public unknown fails closed",
+    "Bad authority, wrong family, missing evidence and absent registry blocked"
+  ],
+  "threat_model": {
+    "source_registry_trust": "MODULE CANNOT PROVE caller actually supplied server-owned independently verified registry. If attacker supplies forged trusted_registry data, positive decisions are spoofable.",
+    "validated_signature": false,
+    "independent_timestamp_proof": false,
+    "provider_content_authentication": false,
+    "live_app_integrated": false,
+    "real_person_scoring": false
+  },
+  "H1": "SUPPORTED for ten constrained synthetic/negative engineering assertions",
+  "H0": "NOT OBSERVED within those ten cases; no adversarial external E2E conducted",
+  "ABR": "No scientific novelty, no new adjudicated cases, no temporal source-authentication",
+  "ABP": "Reusable isolated guard published to branch; accepted only locally for fixture-based behavior",
+  "product_pct_before_after": [
+    36.35,
+    36.35
+  ],
+  "CT2_identity_before_after": [
+    29,
+    29
+  ],
+  "VSDS": "1/3",
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates_passed": 0,
+  "R5": {
+    "stop": true,
+    "reason": "Further work requires provider-original first publication receipts, real adversarial source registry boundary, and end-to-end integration; no additional same-source exploratory rounds justified",
+    "ceiling_before_this_turn": 2,
+    "RC06": 1,
+    "RC07": 1,
+    "ceiling_remaining_if_single_permission": 0,
+    "permission_identity_still_unreconciled": true
+  },
+  "next": "Close AB-H branch batch and reserve explicit new human authorization. Future code/system runs must not claim source validation from ten unit tests."
+}
