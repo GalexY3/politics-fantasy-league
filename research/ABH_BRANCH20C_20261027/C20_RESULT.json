@@ -1,0 +1,98 @@
+{
+  "id": "C20",
+  "status": "CLOSED_INDEPENDENT_2025_FULL_CONDITION_REPLICATION_AND_CREDENTIAL_LAG",
+  "prereg_commit": "a5f423cb6c8ec7b1e81aa7f0e991efcf226ccd96",
+  "official_original": "https://www.congreso.es/en/busqueda-de-publicaciones?_publicaciones_id_texto=BOCG-15-D-390.CODI.&_publicaciones_legislatura=XV&_publicaciones_mode=mostrarTextoIntegro&p_p_id=publicaciones&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+  "document": {
+    "source_authority": "Congreso de los Diputados",
+    "family": "BOCG XV D General",
+    "number": "390",
+    "bulletin_issue_day": "2025-09-12",
+    "record_section": "PLENO 051/000002",
+    "source_signed_day": "2025-09-09"
+  },
+  "full_condition_events": {
+    "cease": {
+      "count": 1,
+      "effective_day": "2025-09-02",
+      "individual": "Francisco Lucas Ayala"
+    },
+    "acquire": {
+      "count": 3,
+      "effective_day": "2025-09-09",
+      "individuals": [
+        "Pablo Antuñano Colina",
+        "Irene Jódar Pérez",
+        "María Elvira Rodríguez Herrer"
+      ]
+    }
+  },
+  "credentials": {
+    "count": 3,
+    "official_sequence": [
+      403,
+      404,
+      405
+    ],
+    "date_by_named_member": [
+      {
+        "name": "Pablo Antuñano Colina",
+        "credential_number": 403,
+        "presented_day": "2025-08-01",
+        "full_condition_acquired_day": "2025-09-09",
+        "gap_days": 39
+      },
+      {
+        "name": "María Elvira Rodríguez Herrer",
+        "credential_number": 404,
+        "presented_day": "2025-09-02",
+        "full_condition_acquired_day": "2025-09-09",
+        "gap_days": 7
+      },
+      {
+        "name": "Irene Jódar Pérez",
+        "credential_number": 405,
+        "presented_day": "2025-09-09",
+        "full_condition_acquired_day": "2025-09-09",
+        "gap_days": 0
+      }
+    ]
+  },
+  "timing": {
+    "official_issue_vs_full_condition_gains_days": 3,
+    "official_issue_vs_cessation_days": 10,
+    "first_public_at_exact": null,
+    "never_infer_receipt_timestamp_from_act": true
+  },
+  "interpretation": "The second independent original BOCG edition dated 2025 reconfirms that distinct source event families have own dates and links credential to future full-condition acquisition, sometimes separated 39 calendar days. 1 cessation and 3 acquisitions must NOT be construed as a 1:3 individual replacement relation. BOCG issue day may lag the actual event date.",
+  "hypotheses": {
+    "H1": "SUPPORTED in this fixed additional issue and three named members",
+    "H0": "REFUTED for claim no dated full-condition or credential fields"
+  },
+  "limitations": [
+    "Indexed primary HTML content; a separate downloaded signed original with SHA was not acquired. Some same issue lists staff applicant and masked ID fields irrelevant to membership; must not ingest them.",
+    "2023 BOE publisher 312/312 timing attestation is NOT valid for Congreso BOCG issued 2025.",
+    "No source timestamp as-of exact and no cross-legislature immutable personal ID certified.",
+    "C19 first 2023 edition and C20 2025 edition are selected archival examples, not entire legislatures."
+  ],
+  "AB_R": "Adds a discriminating official external historical membership period reference at event granularity for three further people, not a new N1-N3 hypothesis test.",
+  "ABP": "Maintain source-scoped issue date, credential filed day, full-condition acquired/ceased day, and unknown first-public_at. No real person scoring.",
+  "metrics_invariant": {
+    "PFL_V1_rev3_pct": 36.35,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "gates_passed": 0
+  },
+  "budget": {
+    "new_concession_cycles_consumed": 20,
+    "remaining": 0,
+    "grant_id": "BRANCH20C"
+  },
+  "github_actions": 0,
+  "R5": "Finish authorized batch after substantive 2023+2025 person-status official records; no additional cycles permitted without new consent."
+}
