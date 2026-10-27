@@ -5,7 +5,7 @@ from pathlib import Path
 import threading
 import pytest
 
-from politics_fantasy.secure_store import store_bytes, append_private_jsonl
+from politics_fantasy.secure_store import store_bytes, append_private_jsonl, preflight_private_storage
 
 PAYLOAD = b'{"synthetic": "politics fantasy"}'
 DIGEST = hashlib.sha256(PAYLOAD).hexdigest()
@@ -93,3 +93,11 @@ def test_parallel_same_hash_writers_dont_clobber(tmp_path):
     assert len(set(results)) == 1
     shard = tmp_path / "objects" / DIGEST[:2]
     assert [p.name for p in shard.iterdir()] == [DIGEST]
+
+def test_preflight_denies_bad_manifest_before_contact(tmp_path):
+    outside=tmp_path.parent / (tmp_path.name+"_outside_preflight")
+    outside.write_bytes(b"outside")
+    (tmp_path/"manifest.jsonl").symlink_to(outside)
+    with pytest.raises(ValueError, match="UNSAFE_PRIVATE_LEDGER"):
+        preflight_private_storage(tmp_path,"manifest.jsonl")
+    assert outside.read_bytes()==b"outside"
