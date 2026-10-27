@@ -1,0 +1,313 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0010-PFL-B20C-BOE-DOB-20261027",
+  "parent_batch": "0009-PFL-B20C-ATLAS-REPAIR-20261027",
+  "at": "2026-10-27T03:21:15.094Z",
+  "actor": "chatgpt",
+  "reason": "Append six new research/product cycles C13–C18 on signed BOE 2023 availability day bound and historical full-name links with a conflicting official DOB; 18/20 spent, two reserved, N123/CT2/VSDS and release gates unchanged.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C13",
+        "activity": "Verify two signed 2023 BOE originals, RD 181/2008 day accessibility and AEBOE 2023 312/312 on-time ordinary publications",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-R"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C14",
+        "activity": "Implement 2023 BOE 2-document conservative next-day availability policy with 10 local tests, no person scoring",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-P"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C15",
+        "activity": "Use national Interior 5600-row election original to adjudicate all 3 full-name recurrent labels spanning ≥35 years against official institutional biographies",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-R"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C16",
+        "activity": "Review fixed first 8 among 17 recurring full names spanning 20–34 years with constituency moves against official biographies",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-R"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C17",
+        "activity": "Reconcile official Moncloa 2008/2012 vs Congreso/PSOE biographies with conflicting DOB days for same public officeholder",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-R"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C18",
+        "activity": "Implement source-wise multiple birth assertions and editorial lineage awareness; 11 local tests, no auto person identity resolution",
+        "status": "completed",
+        "at": "2026-10-27T03:21:15.094Z",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_RESULT.json"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1/O7/AB-H",
+        "scope": "PFL-V1 rev3",
+        "workstream": "AB-P"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-BOE-SIGNATURE-TRUST-20261027",
+        "run_id": "PFL-B20C-C13",
+        "severity": "major",
+        "status": "open",
+        "category": "evidence_provenance",
+        "source": "agent",
+        "description": "Original BOE PDF signatures integrity report Valid, but current cert is expired and SHA1 used; no verified historical PKI timestamp or independent signed first public HTTP observation; publisher-wide 2023 ordinary 312/312 before 08h self-report only.",
+        "at": "2026-10-27T03:21:15.094Z"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-NO-EXACT-HOMONYM-NEGATIVE-20261027",
+        "run_id": "PFL-B20C-C16",
+        "severity": "major",
+        "status": "open",
+        "category": "evidence_provenance",
+        "source": "agent",
+        "description": "Eleven positive source-linked long-span personal histories, but no adjudicated case of two distinct people sharing an exact full name; cannot estimate false-match rate or validate name-only linkage population-wide.",
+        "at": "2026-10-27T03:21:15.094Z"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C17-CONTRADICTORY-DOB-20261027",
+        "run_id": "PFL-B20C-C17",
+        "severity": "major",
+        "status": "open",
+        "category": "evidence_provenance",
+        "source": "agent",
+        "description": "Cristina Narbona Ruiz Moncloa sources claim DOB 1951-07-21, Congreso and PSOE sources claim 1951-07-29. Same institutionally documented public person; canonical date unresolved; hard DOB-equality disambiguation risks false split.",
+        "at": "2026-10-27T03:21:15.094Z"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+        "title": "BOE ordinario 2023: cota retrospectiva de disponibilidad al día siguiente",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Art 11 RD181/2008 exige acceso el día del ejemplar salvo fallo técnico; informe AEBOE 2023 declaró 312/312 BOE ordinarios publicados antes de las 08:00. Dos PDF 2023 originales con firmas AEBOE criptográficamente íntegras. Cota condicional desde 00:00 día siguiente de edición; no equivalencia con first_public_at exacta, ni sello histórico observado en CDN ni otros emisores.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C13_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json",
+          "docs/CATALOGO_FUENTES.md"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+        "title": "11 continuidades personales oficiales entre elecciones separadas 20–41 años",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Interior original 5600 electos; tres de tres labels con span >=35 años y ocho de ocho de muestra fija 20–34 años y cambio de provincia están respaldados como una persona por biografías Congress/Moncloa. Solo controles positivos seleccionados; sin homónimo exacto negativo ni tasa poblacional.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C15_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C16_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-DOB-SOURCE-CONFLICT",
+        "title": "Contraejemplo institucional: DOB discordante de una misma persona",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "La Moncloa 2008/2012: Cristina Narbona Ruiz DOB 1951-07-21; Congreso XV y PSOE 2017/2024 DOB 1951-07-29. Oficinas y trayectorias ligan misma persona. No auto dividir por DOB; conservar ambas aserciones y sus procedencias, sin elegir valor legal por mayoría.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C17_RESULT.json"
+        ],
+        "phase": "verify",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+        "title": "Prototipos de cota BOE 2023 y conflicto DOB por fuente",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "Dos módulos puros Python: boe_2023_publication_bound.py, 10/10 tests, e identity_field_conflicts.py, 11/11 tests. No HTTP, no verificaciones de recibos externos, no puntuación política real, no gates.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C14_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C18_RESULT.json",
+          "src/politics_fantasy/identity_field_conflicts.py"
+        ],
+        "phase": "build",
+        "acceptance": {
+          "criteria": "",
+          "evidence": [],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C13-E1",
+      "from": "PFL-B20C-2023-JEC-COVERAGE-20261027",
+      "to": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C15-E1",
+      "from": "PFL-B20C-INTERIOR-REPEATED-20261027",
+      "to": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C17-E1",
+      "from": "PFL-B20C-ELECTORAL-LONGSPAN-11",
+      "to": "PFL-B20C-DOB-SOURCE-CONFLICT",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C18-E1",
+      "from": "PFL-B20C-DOB-SOURCE-CONFLICT",
+      "to": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-C14-E2",
+      "from": "PFL-B20C-BOE-2023-TEMPORAL-BOUND",
+      "to": "PFL-B20C-ATTRIBUTED-TIME-AND-DOB-QA",
+      "relation": "related_to"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-B20C-AUTH-20261027",
+      "set": {
+        "detail": "Nueva autorización humana BRANCHING20C de 20 independiente del bloque legado. Ejecutados C01–C18: TOTAL 18/20; quedan 2 ciclos autorizados. C13–C18 incorporan evidencia editorial nueva de BOE 2023, 11 correspondencias personales positivas y un conflicto DOB entre emisores oficiales. Aplicar R5 para no consumir plazas por repetir muestras sin independencia; no requiere otra concesión.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_RESUME_C13_C18.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C18.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/PRIORS_DELTA_C13_C18.json"
+        ]
+      },
+      "reason": "Actualizar saldo tras 6 ciclos auténticos de investigación externa C13–C18, sin promover métricas no validadas"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Fuentes ahora incluyen BOE 2023 PDFs firmados y reporte AEBOE 312/312 ejemplares ordinarios antes de las 08:00, cota diaria condicional; Congreso/Moncloa/PSOE perfiles históricos con 11 continuidades positivas y DOB oficial conflictiva. first_public_at por fila aún desconocido, no censo de homónimos negativos ni scoring real.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C18.md"
+        ]
+      },
+      "reason": "Conservar fuentes adicionales y error biográfico oficial sin alterar gobernanza AB-R o AB-P"
+    }
+  ]
+}
