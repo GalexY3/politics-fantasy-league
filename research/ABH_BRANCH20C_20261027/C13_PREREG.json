@@ -1,0 +1,45 @@
+{
+  "id": "C13",
+  "campaign": "ABH_BRANCH20C_20261027",
+  "mode": "AB-H/AB-R documentary & temporal provenance",
+  "status": "PREREGISTERED_POST_EXPOSURE",
+  "budget_before": {
+    "consumed": 12,
+    "remaining": 8
+  },
+  "question": "Can signed BOE PDFs and the agency's original 2023 publication compliance records establish a conservative latest-known-publication bound without inventing exact first_public_at?",
+  "pre_exposure": "Before this preregistration public web search located RD181/2008 art11 and 2023 AEBOE annual report; the original JEC PDF had already been inspected by pdfsig with signature valid and date 2023-08-31. This is explorative, not blind, and these observations must be explicitly separated from focused later checks.",
+  "hypotheses": {
+    "H1": "2023 BOE JEC signed original can pass structural signature validation and agency's 2023 annual report covers its issue as among 312 ordinary issues published before 08:00 on their publication day; this permits source-scoped upper-bound (latest available by) no later than end of issue day, but exact first publication moment remains unknown.",
+    "H0": "PDF has no valid signed range or agency report does not certify on-time 2023 BOE ordinary issues, so publication bound must remain unverified."
+  },
+  "tests": [
+    "Reverify and record SHA, pdfsig signature holder, signed ranges and expiration status for two uploaded BOE signed original PDFs without exporting PDFs or private names.",
+    "Confirm 2023 BOE publisher's annual self-reported ordinary daily-publication compliance; include external caveat of potential exceptions or extraordinary issues.",
+    "Verify direct official dates and issue metadata of both BOE 2023 PDFs against 2023 annual report coverage; compare signing time vs issue-date semantics.",
+    "Define three separate metadata fields: `signed_at_claimed`, `published_issue_day`, `available_by_conservative` and `first_public_at_exact = null`. Guard against allowing use before issue day or treating signature moment as publication.",
+    "Assign to BOE 2023 only; Senate/CCyL/Congress not covered by this evidence. No real-person scoring."
+  ],
+  "acceptance": "If 2023 ordinary issue, agency signing valid structurally, annual report confirms no late ordinary numbers, a day-level legal/procedural upper bound can be recorded with evidence tier not per-document observed CDN timestamp. Otherwise unknown.",
+  "other_sources": [
+    "https://www.boe.es/buscar/act.php?id=BOE-A-2008-2389",
+    "https://www.boe.es/organismo/documentos/informe_actividad_aeboe_2023.pdf",
+    "https://www.boe.es/boe/dias/2023/09/01/pdfs/BOE-A-2023-18907.pdf",
+    "https://www.boe.es/boe/dias/2023/06/27/pdfs/BOE-A-2023-15066.pdf"
+  ],
+  "metrics_frozen": {
+    "PFL_index": 36.35,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "new_science_N123": [
+      0,
+      0,
+      0
+    ],
+    "critical_gates_passed": 0
+  },
+  "cost": {
+    "github_actions": 0
+  },
+  "privacy": "All original source PDFs remain local/private; only aggregate/signature fields and digest stored."
+}
