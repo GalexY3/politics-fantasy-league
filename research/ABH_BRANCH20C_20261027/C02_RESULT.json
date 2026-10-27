@@ -1,0 +1,47 @@
+{
+  "id": "C02",
+  "status": "CLOSED_CONFIRMED_PURE_API_TRUST_BOUNDARY",
+  "prereg_commit": "a4d6c62f310f085ef3991bc39e101f49c8f7e301",
+  "tested_file": "src/politics_fantasy/provenance_claim_gate.py",
+  "local_staging": "/mnt/data/pfl_rc07",
+  "test_command": "PYTHONPATH=/mnt/data/pfl_rc07/src python ...",
+  "inputs": {
+    "authority": "Cortes de Castilla y Leon",
+    "record_family": "BOCCL_PLENARY_DESIGNATION",
+    "evidence_ref": "ESE/000002-02",
+    "desired_claim": "DESIGNATED_SENATORS",
+    "as_of": "2026-09-20T12:00:00+02:00",
+    "spoofed_unverified_first_public_at": "2026-09-01T00:00:00+02:00"
+  },
+  "observations": [
+    {
+      "case": "no registry",
+      "eligible": false,
+      "reason": "NO_ATTESTED_ENTRY"
+    },
+    {
+      "case": "forged registry supplied by evaluator's caller",
+      "eligible": true,
+      "release_grade": false,
+      "reason": "ELIGIBLE_ONLY_IF_REGISTRY_TRUSTED_AND_TIMESTAMP_INDEPENDENTLY_VERIFIED"
+    }
+  ],
+  "baseline_tests": {
+    "existing_10": "PASS",
+    "new_attack_assertions": 1,
+    "passed": 1
+  },
+  "interpretation": "Pure RC07 function is structurally conditional on registry authenticity and a caller can forge it. This is a demonstrated functional trust dependency, NOT a demonstrated exploitable vulnerability in current demo server, which does not expose this function publicly.",
+  "H1": "SUPPORTED",
+  "H0": "REFUTED for pure API",
+  "Halt": "true: live HTTP exploit not established",
+  "ABP": "make server-boundary query path unable to take registry from caller; refuse live claims until independently attested receipts registered",
+  "ABR": "no novel science",
+  "metrics_unchanged": true,
+  "novelty": 0,
+  "source_docs": [
+    "src/politics_fantasy/provenance_claim_gate.py",
+    "https://github.com/GalexY3/Metodologia-AB/blob/research/pfl-sources-reconcile-20261027/proyectos/politics-fantasy-league/research/ABH_RECON_20261027/RC07_RESULT.json"
+  ],
+  "next": "C03 prereg server-owned read-only registry with zero positive source receipts + stage classifier + forged query controls"
+}
