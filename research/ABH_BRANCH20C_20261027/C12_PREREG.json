@@ -1,0 +1,17 @@
+{
+  "id": "C12",
+  "status": "PREREGISTERED",
+  "mode": "AB-P data quality guard built from AB-R evidence",
+  "dependency": "C06 official Senate same session 07 Oct vs vote 08 Oct; C07 all four Congress totals match; C09 '-1' appears as duplicate seat in 11,11,15,30 records; C11 elected BOE title qualifiers cannot be silently stripped as identity proof.",
+  "H1": "A small deterministic audit module can reproduce per-vote totals and explicitly classify -1 seat as missing, while rejecting duplicate non-sentinel seats and normalizing only known vote categories. A separate date-selection guard should treat vote-level date as more precise than session header date.",
+  "H0": "Such guard cannot reproduce original observed vote totals, or mistakenly treats -1 as valid person seat.",
+  "test_plan": [
+    "Implement pure standard-library `source_original_qa.py` with no original nominal data.",
+    "Unit tests synthetic for 1) -1 sentinel multiple allowed but no personal ID 2) duplicated real seats rejected 3) label counts exact 4) inflated totals rejected 5) Senate event date differs from header and event-day used 6) unknown category rejected.",
+    "Run guard over 4 original Congress JSON files to reproduce 350 each and 11/11/15/30 sentinel counts; no raw values output.",
+    "Do not conflate seat, person identity, or legal score."
+  ],
+  "acceptance": ">=6 controlled unit tests and all four original vote guard summaries match prior C07/C09 independently; pure module unintegrated in HTTP is only local acceptance.",
+  "cost": "local CPU, zero CI",
+  "epistemology": "engineering results distinct from AB-R/CT2 and discovery"
+}
