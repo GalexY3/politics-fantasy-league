@@ -1,3 +1,22 @@
+# Continuidad ChatGPT · Politics Fantasy · cierre BRANCHING20C 20/20 · 27/10/2026
+
+**Esta sección reemplaza como estado vigente los saldos parciales históricos debajo.** Usuario concedió 20 ciclos BRANCHING nuevos: C01–C20 ejecutados y registrados, **saldo cero**. El bloque anterior tenía permiso indeterminado, contabilizado con cautela y cerrado por separado. No iniciar nuevo ciclo sin autorización explícita.
+
+**Novedades reales:**
+- BOE ordinario 2023: [RD181/2008 art11](https://www.boe.es/buscar/act.php?id=BOE-A-2008-2389), [informe AEBOE 2023 312/312 números antes de 08:00](https://www.boe.es/organismo/documentos/informe_actividad_aeboe_2023.pdf). Dos PDF originales del ZIP verifican integridad de firma criptográfica, certificado actual caducado: cota documental **condicional** día siguiente a edición, no `first_public_at` exacto.
+- Identidad longitudinal: 11 muestras positivas de carreras de 20–41 años soportadas por biografías oficiales, cero homónimos exactos negativos adjudicados. DOB conflictiva para misma figura pública entre Gobierno 21/07/1951 y Congreso/PSOE 29/07/1951; preservar aserciones, no separar personas por DOB discordante.
+- BOCG XV-D-51 15/12/2023 con 8 bajas y 8 altas de condición plena fechadas en 06/12 y 12/12, junto a 8 credenciales; BOCG XV-D-390 12/09/2025 con 1 baja 02/09, 3 altas 09/09 y credenciales presentadas **39/7/0 días antes** del alta plena. BOCG `first_public_at` y original PDF firmado pendientes: no transferir el informe temporal de BOE 2023 a BOCG.
+- Dos módulos Python nuevos [`boe_2023_publication_bound.py`](../src/politics_fantasy/boe_2023_publication_bound.py) 10 tests locales y [`identity_field_conflicts.py`](../src/politics_fantasy/identity_field_conflicts.py) 11 tests locales. No están conectados al servidor.
+- AB Atlas [CURRENT](../ab_atlas/CURRENT.md) + 11 lotes JSON append-only: replay estructural independiente PASS (45 nodos, 65 enlaces, 41 runs, 26 complaints); validador Python oficial NO ejecutado. HTML no regenerado.
+
+**Fuente principal de continuidad:** [ledger de cierre](../research/ABH_BRANCH20C_20261027/CAMPAIGN_FINAL_C01_C20.json), [reporte detallado final](../research/ABH_BRANCH20C_20261027/REPORT_C13_C20_FINAL.md), [catálogo](CATALOGO_FUENTES.md), [priors últimos](../research/ABH_BRANCH20C_20261027/PRIORS_DELTA_C19_C20.json). ZIP original privado SHA256 `47bbe80b69d8fd3b153a3e7368ac5542b6b03dd42dd65be76b8a97f495575bf4`, **NO subido a GitHub**. No confundir disponibilidad de archivos de este turno con futura accesibilidad a ellos.
+
+**Gates e indicadores:** 0/6 acreditados; CT2 29/100, VSDS 1/3, índice contractual PFL-V1 rev.3 36,35%, novedades científicas N1/N2/N3 0/0/0. Evitar prometer scoring de personas reales o disponibilidad histórica certificada para todas las fuentes.
+
+---
+
+## Archivo histórico de notas de continuidad anteriores
+
 # Continuidad · Politics Fantasy · 27/10/2026 tras ZIP original entregado
 
 **Nuevo estado:** el usuario entregó a ChatGPT el ZIP privado `Politics-Fantasy-fuentes-para-ChatGPT-20261027.zip` (SHA-256 `47bbe80b69d8fd3b153a3e7368ac5542b6b03dd42dd65be76b8a97f495575bf4`). Los **11 originales** pasaron SHA y CRC y se usaron en C05–C12 (ver [informe](../research/ABH_BRANCH20C_20261027/REPORT_ORIGINALS_C05_C12.md)). **No están en GitHub**; un agente en otra sesión necesitará acceso a este archivo adjunto de la conversación o una nueva entrega de los mismos bytes. No fingir acceso a `C:\Github\...`.
