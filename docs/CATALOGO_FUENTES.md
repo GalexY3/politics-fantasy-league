@@ -1,6 +1,6 @@
 # Catálogo de fuentes de Politics Fantasy
 
-**Actualizado: 27-10-2026.** Inventario de descubrimientos y comprobaciones del proyecto. Sirve para encontrar de nuevo una fuente, valorar para qué puede utilizarse y evitar repetir búsquedas ya realizadas. Las comprobaciones indican fecha, entorno y alcance; no convierten una instantánea histórica en un recurso necesariamente disponible o actualizado hoy.
+**Actualizado: 27-10-2026.** Inventario de descubrimientos y comprobaciones del proyecto. Sirve para encontrar de nuevo una fuente, valorar para qué puede utilizarse y evitar repetir búsquedas ya realizadas. Las comprobaciones indican fecha, entorno y alcance; no convierten una instantánea histórica en un recurso necesariamente disponible o actualizado hoy. Tres artefactos temporales del Congreso/BOE se recuperaron y verificaron localmente antes de caducar: [recibo de rescate](../research/ABH_RECON_20261027/RESCATE_FUENTES_20261027.json). Los originales siguen excluidos de Git.
 
 ## Cómo leer y mantener este registro
 

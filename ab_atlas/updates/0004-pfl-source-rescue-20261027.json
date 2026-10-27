@@ -1,0 +1,14 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0004-PFL-SOURCE-RESCUE-20261027",
+  "parent_batch": "0003-PFL-RC04-20261027",
+  "at": "2026-10-27T01:18:04+00:00",
+  "actor": "codex",
+  "reason": "Registrar conservación local de artefactos próximos a caducar y preparación de traspaso a ChatGPT; no se ejecutan ciclos nuevos.",
+  "ops": [
+    {"op": "node.set", "id": "PFL-FUENTES-CATALOGO-20261027", "reason": "Actualización documentada tras recuperar los artefactos del Congreso y BOE.", "set": {"detail": "Catálogo con inventarios históricos y fuentes oficiales. Artefactos temporales del Congreso/BOE recuperados y verificados localmente, junto a Interior y Senado; originales excluidos de Git y paquete local de traspaso disponible."}},
+    {"op": "node.add", "node": {"id": "PFL-RESCATE-FUENTES-20261027", "title": "Capturas oficiales preservadas y traspaso a ChatGPT", "kind": "artifact", "mode": "project", "status": "answered", "detail": "Conservación local de tres artefactos de Actions y paquete de 11 fuentes seleccionadas; comprobar hashes y límites en el recibo. No es una nueva validación científica.", "sources": ["research/ABH_RECON_20261027/RESCATE_FUENTES_20261027.json", "docs/CONTINUIDAD_CHATGPT_20261027.md"], "phase": "operate"}},
+    {"op": "edge.add", "id": "PFL-RESCATE-FUENTES-EDGE-20261027", "from": "PFL-FUENTES-CATALOGO-20261027", "to": "PFL-RESCATE-FUENTES-20261027", "relation": "related_to"},
+    {"op": "run.add", "run": {"id": "PFL-RESCATE-FUENTES-RUN-20261027", "activity": "Conservar y verificar capturas previas; preparar paquete local para ChatGPT", "status": "completed", "evidence": ["research/ABH_RECON_20261027/RESCATE_FUENTES_20261027.json", "docs/CONTINUIDAD_CHATGPT_20261027.md"], "cost": {"github_actions_minutes": 0, "AB_cycles": 0}, "method_version": "AB 3.2.1 O7 AB-H", "scope": "PFL-V1 rev3", "complaint_ids": []}}
+  ]
+}
