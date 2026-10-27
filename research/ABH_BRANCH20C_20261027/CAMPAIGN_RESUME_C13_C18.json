@@ -1,0 +1,95 @@
+{
+  "campaign": "PFL_ABH_BRANCH20C_20261027",
+  "new_user_grant": "Concedido",
+  "grant_independent_from_legacy": true,
+  "authorization_total": 20,
+  "cycles_already_counted_prior_to_this_turn": 12,
+  "new_cycles": [
+    {
+      "id": "C13",
+      "mode": "AB-R",
+      "status": "CLOSED_BOUNDED",
+      "prereg": "C13_PREREG.json",
+      "result": "C13_RESULT.json",
+      "finding": "BOE original signed PDFs SHA and pdfsig integrity valid; publisher's 2023 annual report confirms 312 ordinary BOE editions published before 08:00, Article 11 RD181 same-day access. Next-day documentary conservative availability bound; first_public_at exact remains null."
+    },
+    {
+      "id": "C14",
+      "mode": "AB-P",
+      "status": "LOCAL_PASS",
+      "prereg": "C14_PREREG.json",
+      "result": "C14_RESULT.json",
+      "finding": "Static two-document conservative documentary as-of guard, 10/10 Python local unit tests; no real person scoring or live HTTP."
+    },
+    {
+      "id": "C15",
+      "mode": "AB-R",
+      "status": "THREE_OFFICIAL_POSITIVE_ID_LINKS",
+      "prereg": "C15_PREREG.json",
+      "result": "C15_RESULT.json",
+      "finding": "All three >=35y normalized election name labels source-linked between terms by official Congress/Moncloa biographies; 0 certified homonym negatives."
+    },
+    {
+      "id": "C16",
+      "mode": "AB-R",
+      "status": "EIGHT_MORE_OFFICIAL_POSITIVE_ID_LINKS",
+      "prereg": "C16_PREREG.json",
+      "result": "C16_RESULT.json",
+      "finding": "Eight fixed cross-province 20–34yr name labels correspond to one person each by official historical career documentation. One contradictory DOB across official publishers found."
+    },
+    {
+      "id": "C17",
+      "mode": "AB-R",
+      "status": "OFFICIAL_FIELD_CONFLICT",
+      "prereg": "C17_PREREG.json",
+      "result": "C17_RESULT.json",
+      "finding": "Cristina Narbona Ruiz official Moncloa DOB 1951-07-21 vs Congress/PSOE 1951-07-29 despite same public person and office trajectory; DOB hard-equality invalid as sole identity rule; correct date unresolved."
+    },
+    {
+      "id": "C18",
+      "mode": "AB-P",
+      "status": "LOCAL_PASS",
+      "prereg": "C18_PREREG.json",
+      "result": "C18_RESULT.json",
+      "finding": "Provenance-preserving multi-valued DOB assertions with publisher lineage handling, 11/11 local Python tests; no canonical DOB, no automatic person merge/split."
+    }
+  ],
+  "accounting": {
+    "consumed_total": 18,
+    "remaining_authorized": 2,
+    "R5": "PAUSE_STUDY_REPEATS; keep new discovery routes available; no obligation fill",
+    "new_permission_needed": false
+  },
+  "originals_uploaded_to_github": false,
+  "github_actions_requested": 0,
+  "no_person_scoring": true,
+  "metrics_invariant": {
+    "PFL_V1_rev3_contractual_percent": 36.35,
+    "CT2_ordinal": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "critical_release_gates_accredited": 0
+  },
+  "scientific_scope": "AB-R source validity and editorial-error counterexample; N123 retained zero absent preregistered discriminating scientific test of a theory. No population rate, causal claim or blind adjudication.",
+  "time_rule": {
+    "BOE_2023_ordinary": "Conservative date boundary at 00:00 Europe/Madrid day after issue date, under publisher self-report and legal access guarantee",
+    "first_public_at_exact": null,
+    "not_apply_to": [
+      "Senado XML",
+      "Congreso open-data JSON",
+      "Cortes Castilla León boletines",
+      "BOE extra issues",
+      "post-2023 ordinary issues not researched"
+    ]
+  },
+  "identity_rule": {
+    "positive_links": 11,
+    "confirmed_exact_full_name_homonym_negative": 0,
+    "birthdate_conflict": "One official field value disagreement on unequivocally same historical person, requiring source-bound multivalued claims"
+  },
+  "next": "Seek publisher-time independent snapshots for Senate/Congress/CCyL; independent exact-full-name homonym negative with adjudicated distinct public persons; full Atlas Python check and HTTP integration in controlled repo. Stop spending cycles on repetitive old names."
+}
