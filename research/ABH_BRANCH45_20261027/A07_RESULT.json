@@ -1,0 +1,45 @@
+{
+  "id": "A07",
+  "status": "CLOSED_BOUNDED_SOURCE_SCOPED_REORDERING_CONTROLS",
+  "pre_registration": "A07_PREREG.json",
+  "code": "src/politics_fantasy/bocg_within_issue_pairs.py",
+  "tests": "tests/test_bocg_within_issue_pairs.py",
+  "original_page": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF (printed p3)",
+  "observations": {
+    "A_and_C_same_three_public_labels": true,
+    "A_order_vs_C_order_different": true,
+    "correct_by_unique_normalized_name": 3,
+    "incorrect_by_ordinal": 2,
+    "paired_source_mention_ordinals_condition_to_credential": [
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "duplicate_and_missing_names_rejected": true,
+    "source_label_not_person_id": true
+  },
+  "test": {
+    "unit_tests_authored": 7,
+    "locally_staged_mirrored_tests_passed": 7,
+    "full_repo_or_actions_run": false,
+    "bounded_false_case": "empty list initially could return successful zero-case, fixed with `EMPTY_SOURCE_MENTIONS` before closure",
+    "original_raw_PDF_hashed": false
+  },
+  "limits": "Duplicate/ambiguous names cannot be auto-linked; normalization of names not verified against all historical spellings, and within-source mention pair does not certify stable person identity across bulletins.",
+  "ABR": "exploratory source-specific falsification of positional join",
+  "ABP": "bounded Python prototype, no personal scoring or public gate",
+  "budget": {
+    "stage_A_consumed": 7,
+    "stage_A_remaining": 13
+  },
+  "next": "A08 static attempt to compose the within-issue pairing with credential-to-condition delays for three members, ensuring no false historical first-public timestamp or source trust elevation."
+}
