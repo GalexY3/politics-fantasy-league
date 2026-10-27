@@ -1,0 +1,198 @@
+{
+  "schema": "pfl.identity.adjudication.micro.v1",
+  "campaign": "ABH_RECON_20261027",
+  "id": "RC05-20261027",
+  "case_count": 5,
+  "classes": {
+    "same_person": 3,
+    "different_person": 2,
+    "unresolved": 0
+  },
+  "case_sampling": "purposive-exploratory, pre-exposed before prereg; not random, representative or blind",
+  "sources_authoritative": "Senado de España / Cortes de Castilla y León; some cases only Senado independently published pages",
+  "safeguards": {
+    "match_rule": "do not use names, surname, precinct, political group, numeric ids or same role on their own as proof of same person",
+    "accepted_positive": "institutionally crosslinked record across term or independent appointment + official Senate individual credential with full name/authority/date concordance",
+    "accepted_negative": "named holder and replacement in two distinct individual official records, or simultaneous distinct full given names and source IDs in official records",
+    "homonym_full_name_covered": false,
+    "observability": "first_public_at is null until source publication-time evidence is obtained; official publication date is a date, not a timestamp",
+    "time": "all dates in calendar-day grain; no UTC publication instant or guaranteed backtest cutoff",
+    "counts": "3 positive / 2 negative as curated case labels; not a population error rate",
+    "source_snapshots": "same Senate profile URL can render differing historical caches, preserve date claims and inconsistent revisions"
+  },
+  "cases": [
+    {
+      "id": "P1",
+      "label": "SAME_PERSON",
+      "class": "PROVIDER_CROSSLEGISLATURE_LINK_WITH_REAPPOINTMENT",
+      "comparison": "Maroto 18865 XIV vs XV",
+      "left": {
+        "institution": "Senado",
+        "legislature": "XIV",
+        "profile_ref": "18865",
+        "credential": "500/000185",
+        "full_name": "JAVIER IGNACIO MAROTO ARANZÁBAL",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=18865&legis=14",
+        "designation_day": "2022-05-11",
+        "end_day": "2023-08-16"
+      },
+      "right": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "18865",
+        "full_name": "JAVIER IGNACIO MAROTO ARANZÁBAL",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=18865&legis=15",
+        "renewal_declared_day": "2026-09-10",
+        "renewal_senate_start_day": "2026-09-11",
+        "prior_appointment_cease_day": "2026-09-10",
+        "known_credentials": [
+          "500/000004",
+          "500/000323"
+        ]
+      },
+      "external": {
+        "authority": "Cortes de Castilla y León",
+        "designation_event_day": "2026-09-10",
+        "bulletin_publication_day": "2026-09-16",
+        "document_ref": "ESE/000002-02",
+        "document_url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml",
+        "session_url": "https://www.ccyl.es/Publicaciones/TextoEntradaDiario?Legislatura=12&NumeroPublicacion=4&SeriePublicacion=DS%28P%29"
+      },
+      "evidence_strength": "HIGH_FOR_IDENTIFICATION_BUT_CONTEXTUAL_NOT_MACHINE_PROVED",
+      "first_public_at": null,
+      "notes": [
+        "Provider XV biography explicitly crosslinks XIII/XIV as same member; no need to infer from same ID alone.",
+        "September 2026 same-person reappointment includes distinct mandate intervals; do not flatten multiple mandates.",
+        "Conflicting mutable profile snapshots expose 11/05/2022 versus 11/09/2026 as headline Fecha: never treat web snapshot as fixed as-of archive."
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "SAME_PERSON",
+      "class": "CROSS_INSTITUTIONAL_APPOINTMENT_ADJUDICATION",
+      "comparison": "Clara María Martín García CCyL designated vs Senado XV",
+      "left": {
+        "institution": "Cortes de Castilla y León",
+        "full_name": "CLARA MARÍA MARTÍN GARCÍA",
+        "designation_event_day": "2026-09-10",
+        "bulletin_publication_day": "2026-09-16",
+        "document_ref": "ESE/000002-02",
+        "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml"
+      },
+      "right": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "20042",
+        "credential": "500/000322",
+        "full_name": "CLARA MARÍA MARTÍN GARCÍA",
+        "appointing_authority": "Cortes de Castilla y León",
+        "term_start_day": "2026-09-11",
+        "term_end_day": "2026-10-05",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=20042&legis=15"
+      },
+      "first_public_at": null,
+      "evidence_strength": "HIGH_BOUNDED_TWO_OFFICIAL_AUTHORITIES"
+    },
+    {
+      "id": "P3",
+      "label": "SAME_PERSON",
+      "class": "CROSS_INSTITUTIONAL_APPOINTMENT_ADJUDICATION",
+      "comparison": "Francisco Javier Iglesias García CCyL designated vs Senado XV",
+      "left": {
+        "institution": "Cortes de Castilla y León",
+        "full_name": "FRANCISCO JAVIER IGLESIAS GARCÍA",
+        "designation_event_day": "2026-09-10",
+        "bulletin_publication_day": "2026-09-16",
+        "document_ref": "ESE/000002-02",
+        "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml"
+      },
+      "right": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "12884",
+        "credential": "500/000324",
+        "full_name": "FRANCISCO JAVIER IGLESIAS GARCÍA",
+        "appointing_authority": "Cortes de Castilla y León",
+        "term_start_day": "2026-09-11",
+        "term_end_day": "2026-10-05",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=12884&legis=15"
+      },
+      "first_public_at": null,
+      "evidence_strength": "HIGH_BOUNDED_TWO_OFFICIAL_AUTHORITIES"
+    },
+    {
+      "id": "N1",
+      "label": "DIFFERENT_PERSON",
+      "class": "SUCCESSION_IS_NOT_IDENTITY",
+      "comparison": "Lucía Yeves Leal -> Carmen María Díaz Ruiz",
+      "left": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "19847",
+        "credential": "500/000184",
+        "full_name": "LUCÍA YEVES LEAL",
+        "term_end_day": "2026-07-31",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=19847&legis=15"
+      },
+      "right": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "20041",
+        "credential": "500/000321",
+        "full_name": "CARMEN MARÍA DÍAZ RUIZ",
+        "term_start_day": "2026-08-01",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=20041&legis=15"
+      },
+      "independent_record_url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/modificacionescomposicion/index.html",
+      "first_public_at": null,
+      "evidence_strength": "HIGH_BOUNDED_WITHIN_ONE_AUTHORITY",
+      "notes": [
+        "explicitly 'sustituido por' and 'sustituye a' on respective profiles, same Malaga seat does not imply same individual"
+      ]
+    },
+    {
+      "id": "N2",
+      "label": "DIFFERENT_PERSON",
+      "class": "SHARED_SURNAMES_SIMULTANEOUS_DISTINCT_PROFILES",
+      "comparison": "Juan Pablo Martín Martín vs Paloma Martín Martín",
+      "left": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "18101",
+        "full_name": "JUAN PABLO MARTÍN MARTÍN",
+        "constituency": "Ávila",
+        "credential": "500/000165",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=18101&legis=15"
+      },
+      "right": {
+        "institution": "Senado",
+        "legislature": "XV",
+        "profile_ref": "19954",
+        "full_name": "PALOMA MARTÍN MARTÍN",
+        "constituency": "Madrid",
+        "credential": "500/000259",
+        "url": "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=19954&legis=15"
+      },
+      "simultaneous_role_check": {
+        "official_committee_url": "https://www.senado.es/web/actividadparlamentaria/sesionescomision/detallecomisiones/composicion/index.html?boton_obtener_listado=OBTENER+LISTADO&calendario_inicio=&esMixta=N&id=S011028&legis=15&order=C",
+        "juan_pablo_role_since": "2023-12-05",
+        "paloma_role_since": "2026-04-29"
+      },
+      "first_public_at": null,
+      "evidence_strength": "HIGH_BOUNDED_WITHIN_ONE_AUTHORITY",
+      "notes": [
+        "Surname truncation would cause false match; this does not test exact-full-name homonyms."
+      ]
+    }
+  ],
+  "generalization": {
+    "population_validation": false,
+    "adjudicator_independence": "not blinded second human adjudicator; P2/P3 cross-institutional documentary corroboration not independent methodological labeling",
+    "historical_first_publication": "unknown exact for all 5",
+    "senate_xml_verification": "no local raw XML available in ChatGPT runtime; current case labels use live/indexed official HTML documents, not hashes of XML RC03"
+  },
+  "ci": {
+    "github_actions": 0,
+    "code_executed": false
+  }
+}
