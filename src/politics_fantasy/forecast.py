@@ -2,7 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
-from math import log, exp
+from math import log, exp, isfinite
 from typing import Iterable
 from .events import PoliticalEvent, as_utc, observable_event_revisions
 
@@ -29,7 +29,9 @@ def historical_rate(
     event count. A prediction requires a separate future exposure forecast.
     """
     as_of, start = as_utc(as_of), as_utc(start)
-    if start >= as_of or exposure < 0 or prior_events <= 0 or prior_exposure <= 0:
+    if (start >= as_of or type(exposure) is not int or exposure < 0
+            or not isfinite(prior_events) or prior_events <= 0
+            or not isfinite(prior_exposure) or prior_exposure <= 0):
         raise ValueError("Invalid history cutoff or nonpositive prior")
     history = [e for e in observable_event_revisions(list(events), as_of=as_of) if
                person_id in e.person_ids and start <= as_utc(e.occurred_at) < as_of and
@@ -41,7 +43,7 @@ def historical_rate(
 
 def poisson_log_loss(y: int, lam: float) -> float:
     """Poisson negative log likelihood up to a y-only constant; for model comparison."""
-    if y < 0 or lam <= 0:
+    if type(y) is not int or y < 0 or not isfinite(lam) or lam <= 0:
         raise ValueError("Invalid y or lambda")
     return lam - y * log(lam)
 
