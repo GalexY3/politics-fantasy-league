@@ -1,0 +1,27 @@
+{
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C12",
+  "A": {
+    "question": "Can private JSONL accepts nonstandard non-finite NaN/Infinity constants, making cross-platform replay and integrity inconsistent despite valid JSONL newline?"
+  },
+  "B": {
+    "hypotheses": [
+      "json.loads accepts NaN/Infinity by default, audit can mistake such records as trustworthy JSON",
+      "JSON strict parser already rejects them",
+      "Reject on read and on write without exposing contents, preserve aggregate error controls"
+    ]
+  },
+  "C": "Probe Python stdlib acceptance of NaN/Infinity in fictional JSON, add parse_constant fail closure to `_ledger` and json.dumps allow_nan=False to writer, with synthetic tests. Distinguish no signed-source validity.",
+  "D": {
+    "falsifier": "Parser already rejects or newly modified path still accepts nonfinite tokens",
+    "scope": "Private synthetic JSONL only, not source original JSON (separate schema)."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
