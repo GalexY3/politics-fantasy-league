@@ -1,0 +1,31 @@
+{
+  "cycle": "C53",
+  "mode": "AB-R",
+  "status": "CLOSED_PRIMARY_LEGAL_CONSTRAINT_IDENTIFIED_NO_PRODUCT_LICENSE",
+  "A": "Is publisher's open licence sufficient to score/profile identifiable politicians or infer political views?",
+  "B": {
+    "H1": "Public-license automatically creates legal basis",
+    "H2": "Art 6 legal basis and Art 9 special category condition require independent assessment",
+    "H3": "Only secondary inference, no authoritative confirmation"
+  },
+  "C": "Examined GDPR primary official Eur-Lex Art 9, AEPD primary regulator FAQs art 6/9, DPIA high-risk obligations, AEPD automated decision boundaries. Compared to Senate CC BY permission matrix. No persons scored.",
+  "D": {
+    "gdpr": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex%3A32016R0679",
+    "aepd_special": "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0215-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-las-categorias-especiales-de-datos",
+    "aepd_eipd": "https://www.aepd.es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/realizacion-de-evaluaciones-de",
+    "aepd_eipd_contents": "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/10-evaluacion-de-impacto/FAQ-0229-que-debe-incluir-una-evaluacion-de-impacto-de-proteccion-de-datos"
+  },
+  "E": "GDPR Art 9 covers personal data revealing political opinions, independent of publisher licence; AEPD explains special-category condition and risk-based EIPD. This does not definitively classify all factual voting histories as special-category or every game ranking as Art22 decisions; context and effects matter. Independent lawful basis, purpose, data minimization, fairness, notice, rights, EIPD screening needed BEFORE individual profiling/scoring release.",
+  "F": "No legal sign-off or DPIA performed, no final Article 9 exception established, no proof a particular format violates GDPR. Publishing historic official votes and assigning individual inferred ideology/competence are materially different purposes.",
+  "G": "Primary EU legal and Spanish regulator evidence; legal application to hypothetical game remains case-specific",
+  "H": "Release rights and privacy gate remains blocked; formal privacy/design review and documented scope-of-processing assessment required before real persons",
+  "I": {
+    "N1_N2_N3": "0/0/0",
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "DRIFT": "D1 new legal gate articulation"
+  },
+  "J": "C54 build explicit, verifiable fail-closed privacy decision contract in app/source-eligibility module with synthetic tests; no new authorization until test passes"
+}
