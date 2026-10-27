@@ -1,0 +1,30 @@
+{
+  "cycle": "C08",
+  "mode": "AB-P",
+  "status": "PREREGISTERED_BEFORE_CODE_CHANGE",
+  "parent": "C07",
+  "A": {
+    "question": "¿La ausencia de bloqueo por fichero en append_private_jsonl permite intercalar fragmentos si os.write entrega una escritura parcial y hay capturas concurrentes?",
+    "target": "serialización de una línea JSONL entre procesos cooperantes en POSIX",
+    "acceptance": "Añadir flock exclusivo durante _write_all + fsync; prueba determinista de concurrencia sintética con escrita fraccionada, preservando rechazo de symlinks y filesystem modes."
+  },
+  "B": {
+    "rivals": [
+      "O_APPEND basta en todos los casos para escritura compuesta (no garantizado si _write_all emite varias syscall)",
+      "File lock prevents cooperative writers from interleaving even when one line requires two os.write"
+    ]
+  },
+  "C": {
+    "plan": "Add POSIX fcntl.flock exclusive only inside append_private_jsonl after permission checks, while retaining O_NOFOLLOW/O_APPEND/fsync; add concurrent 12-writer synthetics test splitting _write_all in 2 chunks. Run isolated POSIX snippet locally and record bounds."
+  },
+  "D": {
+    "falsifier": "After lock, any of 12 JSONL lines missing/corrupted/duplicated or path symlink safety weakened.",
+    "limits": "flock advisory only, trusted POSIX callers required; cannot make ledger append crash-atomic or guarantee unrelated writers, do not claim production durability."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
