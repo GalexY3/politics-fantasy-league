@@ -1,0 +1,59 @@
+{
+  "id": "B07",
+  "status": "CLOSED_FOUR_PRIVATE_OFFICIAL_ORIGINALS_REPLAY_PASS",
+  "prereg": "B07_PREREG.json",
+  "original_zip": "Politics-Fantasy-fuentes-para-ChatGPT-20261027.zip",
+  "method": "Stream original JSON bytes privately from user ZIP in local Python; import exact-B06 verified Congress vote QA; compare each row and official category/presentes totals.",
+  "votes": [
+    {
+      "file": "sesion193_votacion001.json",
+      "sha256": "d83a10d39bad98a4f69c1e1b374700be949505aa40cb574ec0577b44d68c12d9",
+      "rows": 350,
+      "sentinel_minus_one": 11,
+      "non_sentinel": 339
+    },
+    {
+      "file": "sesion193_votacion002.json",
+      "sha256": "e4609110932f34421fd08ac16dbddd5dcc23e4d113fe0a241700dab1956936b8",
+      "rows": 350,
+      "sentinel_minus_one": 11,
+      "non_sentinel": 339
+    },
+    {
+      "file": "sesion196_votacion001.json",
+      "sha256": "ef14a0d604c8f0638c8966a241446864f56882fac742219bf2d42f7a4e129c7a",
+      "rows": 350,
+      "sentinel_minus_one": 15,
+      "non_sentinel": 335
+    },
+    {
+      "file": "sesion202_votacion001.json",
+      "sha256": "548615f61b7fd4a1e87547666d0758ca2531034be559fd41c75e27c07aad7687",
+      "rows": 350,
+      "sentinel_minus_one": 30,
+      "non_sentinel": 320
+    }
+  ],
+  "result": {
+    "originals_replayed": 4,
+    "passed": 4,
+    "failed": 0,
+    "rows_total": 1400,
+    "sentinels_total": 67,
+    "all_counts_match_official_true": true,
+    "person_identification_verified": false,
+    "first_public_at_verified": false
+  },
+  "files_published_on_github": false,
+  "metrics_unchanged": {
+    "pct": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "authorization": {
+    "B_spent": 7,
+    "B_remaining": 13
+  },
+  "next": "B08 mutate a bounded set of original category totals, sentinel and seat fields in memory and document fail-closed plus an uncovered malformed input class if any."
+}
