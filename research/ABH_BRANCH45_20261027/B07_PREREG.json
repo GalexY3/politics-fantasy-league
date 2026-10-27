@@ -1,0 +1,12 @@
+{
+  "id": "B07",
+  "stage": "B",
+  "mode": "AB-R / AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "B06 exact SHA Python source_original_qa tests 8/8 PASS; private ZIP recovered from user upload now directly accessible in runtime.",
+  "H1": "All four exact original Congress vote JSONs replay through same verified source guard and reproduce expected 350 each, official vote totals and repeated seat=-1 counts 11/11/15/30.",
+  "H0": "At least one original violates guard and requires source-scoped repair, not an invented acceptance.",
+  "procedure": "Use private ZIP with original SHA manifest and exact B06 source bytes; stream JSON in memory, run guard across four expected files; output only aggregate row counts, sentinel count and source SHA, no names or vote preferences. Compare historical C09 totals and stop if discrepancy.",
+  "acceptance": "4/4 original vote totals and rows pass, four sentinel values match expected; explicit original source hash and no Git personal data.",
+  "no_actions": true
+}
