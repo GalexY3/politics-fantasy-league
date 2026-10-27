@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 from .ingest import import_url
-from .secure_store import append_private_jsonl
+from .secure_store import append_private_jsonl, preflight_private_storage
 from .source_original_qa import audit_congress_vote
 from .source_original_senate_qa import audit_original_senate_session
 
@@ -34,6 +34,7 @@ def capture_validate_quarantine(*, url: str, source: str, document_kind: str,
     if DOCUMENT_KINDS[document_kind] != source:
         raise ValueError("SOURCE_DOCUMENT_KIND_MISMATCH")
     root = Path(root)
+    preflight_private_storage(root, "quarantine_reviews.jsonl")
     snapshot = import_url(url=url, source=source, root=root, opener=opener,
                           min_interval=min_interval)
     raw = (root / snapshot["raw_object"]).resolve()
