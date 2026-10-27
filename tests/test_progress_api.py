@@ -80,3 +80,11 @@ def test_historical_v3_kept_immutable():
     assert r["revision"] == 3
     assert abs(r["progress_pct"] - 36.35) < 1e-8
     assert len(r["release_blockers"]) == 6
+
+
+def test_nonfinite_milestone_size_is_rejected_before_progress_emission():
+    """NaN is not less/greater than limits and must fail before score math."""
+    s = baseline()
+    s["tracks"][0]["milestones"][0]["size"] = float("nan")
+    with pytest.raises(InvalidScope, match="BAD_SIZE"):
+        evaluate_scope(s)
