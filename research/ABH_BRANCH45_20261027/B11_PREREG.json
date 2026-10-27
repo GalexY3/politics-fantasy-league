@@ -1,0 +1,11 @@
+{
+  "id": "B11",
+  "stage": "B",
+  "mode": "AB-R/AB-META provenance integrity",
+  "status": "PREREGISTERED",
+  "dependency": "B10 confirmed V4 evidence paths exist; ZIP contains MANIFIESTO, an earlier capture manifest and probe manifest that may have incompatible provenance versions.",
+  "H1": "All 11 listed originals match current ZIP handoff manifest SHA and sizes; earlier capture/probe manifests are historical snapshots of other acquisition attempts, not provenance for all 11 current raw bytes.",
+  "H0": "Mismatched original hashes or overclaimed editor authenticity appear in current archive.",
+  "test": "Read all 11 ZIP original bytes, verify manifest claims SHA-256, lengths, CRC and catch filenames absent/extra; compare manifest created_utc and prior capture_manifest.as_of_utc and counts. Do not mix sources when asserting acquisition completeness or historical first publication.",
+  "acceptance": "Auditable aggregate checksum results with no raw people in Github; explicitly report provenance version conflict or mismatch and scope risk."
+}
