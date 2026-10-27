@@ -24,6 +24,16 @@ def _require_anchored_store() -> None:
         raise ValueError("SECURE_STORE_UNSUPPORTED_PLATFORM")
 
 
+def _check_private_permissions(fd: int, directory: bool) -> None:
+    attrs = os.fstat(fd)
+    if attrs.st_uid != os.geteuid() or attrs.st_mode & 0o077:
+        raise ValueError("UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS")
+    if directory and not stat.S_ISDIR(attrs.st_mode):
+        raise ValueError("UNSAFE_STORE_DIRECTORY_KIND")
+    if not directory and not stat.S_ISREG(attrs.st_mode):
+        raise ValueError("NONREGULAR_PRIVATE_FILE")
+
+
 def _directory_flags() -> int:
     return os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
 
@@ -42,6 +52,7 @@ def _root_fd(root: Path):
     except OSError as exc:
         raise ValueError("UNSAFE_STORAGE_ROOT") from exc
     try:
+        _check_private_permissions(fd, directory=True)
         yield fd
     finally:
         os.close(fd)
@@ -60,6 +71,7 @@ def _child_directory(parent: int, name: str):
     except OSError as exc:
         raise ValueError("SYMLINK_OR_UNSAFE_STORE_DIRECTORY") from exc
     try:
+        _check_private_permissions(fd, directory=True)
         yield fd
     finally:
         os.close(fd)
@@ -91,8 +103,7 @@ def _verify_object(folder: int, name: str, data: bytes) -> None:
     except OSError as exc:
         raise ValueError("UNSAFE_EXISTING_OBJECT") from exc
     try:
-        if not stat.S_ISREG(os.fstat(fd).st_mode):
-            raise ValueError("NONREGULAR_STORED_OBJECT")
+        _check_private_permissions(fd, directory=False)
         if _read_stored(fd, len(data)) != data:
             raise ValueError("SHA_COLLISION_OR_CORRUPTED_STORE")
     finally:
@@ -153,8 +164,7 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
         except OSError as exc:
             raise ValueError("UNSAFE_PRIVATE_LEDGER") from exc
         try:
-            if not stat.S_ISREG(os.fstat(fd).st_mode):
-                raise ValueError("NONREGULAR_PRIVATE_LEDGER")
+            _check_private_permissions(fd, directory=False)
             _write_all(fd, payload)
             os.fsync(fd)
         finally:
