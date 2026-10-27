@@ -1,0 +1,11 @@
+{
+  "id": "C05",
+  "mode": "AB-H / data provenance",
+  "status": "PREREGISTERED_AFTER_ZIP_LISTING_BEFORE_HASH_COMPARE",
+  "question": "Are all 11 source files byte-for-byte identical to SHA-256 and lengths in provided package manifest, with correct item counts and no unlisted raw source files?",
+  "H1": "11/11 hash and byte-size match and no duplicate names; all listed originals available for reproducible downstream research.",
+  "H0": "Some hash mismatch, absent entries or non-original files.",
+  "test": "Individually SHA256 and size each source in uploaded ZIP, compare manifest; ZIP CRC; compare package hash to prior rescue receipt 47bbe...; do not publish any original names/votes or entire ZIP.",
+  "limitations": "Matching user-supplied manifest proves intact transfer relative to that manifest, not independent publisher authenticity, publication times or legal permissions.",
+  "acceptance": "Exact 11/11 + ZIP hash match, store only manifest hashes, anonymous counts and code; if mismatch quarantine."
+}
