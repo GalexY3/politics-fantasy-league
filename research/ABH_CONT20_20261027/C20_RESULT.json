@@ -1,0 +1,35 @@
+{
+  "cycle": "C20",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_ISOLATED_POSIX_PERMISSION_CHECK_FULL_SUITE_NOT_RUN",
+  "preregister_commit": "c3a8c13100a93a8272843d6686041510f6163616",
+  "A": "Preflight only checked a ledger inode kind, not owner and private permissions, allowing network request before later append rejection",
+  "B": "os.stat regular-file kind alone vs opening fd with O_NOFOLLOW and _check_private_permissions before contact",
+  "C": "Preflight now opens ledger via anchored read-only fd, checks inode type, owner, and mode, closes it before request. Added tests with 0o666 manifest/review and opener configured to fail on any network contact.",
+  "D": {
+    "code_commit": "18a7ceeff1e03e91e1b8e40380e3398e9db910f0",
+    "test_commits": [
+      "effb71f3e5236f22eb1b0a1cdcef6635b83b875b",
+      "6d8ffd8bf30969714378bf8db1640b24b3ce867d"
+    ],
+    "source_blob_after": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "isolated_os_check": "Opened synthetic mode 0666 JSONL with O_NOFOLLOW; os.fstat owner/mode predicate rejected before opener was involved."
+  },
+  "E": {
+    "source_updated": true,
+    "test_cases_added": 2,
+    "local_POSIX_perm_detected": true,
+    "full_repo_pytest_executed": false
+  },
+  "F": "Preflight and later append are not an atomic transaction if trusted root has hostile concurrent writer; no external publication, rights, identity or original content validated.",
+  "G": "Exact GitHub code/test SHA read-back and native isolated POSIX permission check; not complete native module test.",
+  "H": "Closes a real pre-network validation gap, release grade unchanged.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "scientific_grade": "0/3"
+  },
+  "J": "Close second ten-cycle authorized block C11-C20 with Atlas 0024 and state ledger. Next task for Codex is true full checkout canonical Atlas and pytest; do not claim unrun suite passed."
+}
