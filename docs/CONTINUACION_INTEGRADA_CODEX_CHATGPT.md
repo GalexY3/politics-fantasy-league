@@ -1,3 +1,17 @@
+# Confirmación del checkout 4faf31a y nuevos resultados nativos · 27/10/2026
+
+El usuario facilitó un ZIP que contiene la rama integrada al **commit exacto `4faf31a`**. Se extrajo localmente en ChatGPT, se comparó el commit con la rama de GitHub (**identical** al comenzar), y se ejecutaron sin Codex **421 tests Python + 28 subtests, 110 JS y 34 tests de AB Atlas**, todos PASS. La validación **oficial** `ab_atlas/atlas_delta.py check` ya cubre **19 lotes / 60 nodos / SHA256 `9389c8cf4b3950c6558019cb769072e23e0f5aacf1b7be8adba88c1a9d11ddf0`** (incluye el lote posterior 0019 de recibo, no una campaña AB adicional).
+
+La prueba que antes estaba escrita pero sin ejecutar —`test_ingest_http_boundary.py`— **se ha ejecutado y ha pasado en servidor localhost real**. El conjunto dirigido HTTP/ingesta registra **20 PASS + 14 subtests**, dentro de los 421, con `403` para Host externo y `404` para rutas de captura que todavía no existen. **No** confundir ausencia de esas rutas con haber implementado la ingesta HTTP externa.
+
+Se corrigió `tests/run_browser_smoke.py` que aún esperaba V3 36,4; ahora exige V4 36,9 y se ha comprobado su compilación. El smoke visual Chromium **NO está validado**: falta browser Playwright empaquetado y el Chromium de sistema devolvió `ERR_BLOCKED_BY_ADMINISTRATOR` sobre localhost en el entorno. Corresponde probarlo en CI/escritorio autorizado, sin intentar saltar esas restricciones. [Recibo de verificación, comandos y límites](../research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_RESULT.md).
+
+Se preservan los historiales distintos **AB-H45, CDX01–09 e IC01–IC03**. La nueva verificación es POST HOC, no IC04. Todos los originales privados permanecen fuera de Git, el mapeo institucional de `NO VOTAN` sigue pendiente y los indicadores **V4 36,90 %, CT2 29/100, VSDS 1/3, gates 0/6** no se promueven. La rama integrada continúa aislada de `main`. [AB Atlas CURRENT](../ab_atlas/CURRENT.md).
+
+---
+
+## Estado anterior a la revalidación del ZIP
+
 # Estado posterior a IC01–IC03 — 27/10/2026
 
 **Usar siempre la rama integrada `research/pfl-codex-contributions-20261027` y consultar [AB Atlas CURRENT](../ab_atlas/CURRENT.md).** Esta sección es la continuidad vigente; el texto inferior documenta el estado anterior a esta intervención.
