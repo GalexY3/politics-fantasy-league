@@ -120,5 +120,41 @@ class QuarantinePipelineTests(unittest.TestCase):
             self.assertFalse(result["release_grade"])
 
 
+    def test_raw_object_symlink_swapped_after_capture_is_integrity_quarantine(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            outside = root.parent / (root.name + "_fictional_external")
+            outside.write_bytes(b"PRIVATE_SYNTHETIC_OUTSIDE")
+            original = pipeline.import_url
+            def swap_after_capture(**kwargs):
+                record = original(**kwargs)
+                captured = root / record["raw_object"]
+                captured.unlink()
+                captured.symlink_to(outside)
+                return record
+            try:
+                with patch.object(pipeline, "import_url", side_effect=swap_after_capture):
+                    result = self.capture(root, source="congreso",
+                                          kind="congreso_vote", content=congress_bytes())
+                self.assertEqual(result["quarantine_state"], "QUARANTINED_INTEGRITY_FAILED")
+                self.assertEqual(result["error_code"], "RAW_OBJECT_INTEGRITY_OR_ACCESS_FAILED")
+                self.assertFalse(result["schema_checked"])
+                self.assertEqual(outside.read_bytes(), b"PRIVATE_SYNTHETIC_OUTSIDE")
+                self.assertNotIn("PRIVATE_SYNTHETIC_OUTSIDE", json.dumps(result))
+            finally:
+                outside.unlink(missing_ok=True)
+
+    def test_private_reader_missing_root_never_creates_directories(self):
+        from politics_fantasy.secure_store import read_private_object
+        with tempfile.TemporaryDirectory() as td:
+            missing = Path(td) / "nonexistent"
+            fake_sha = "0" * 64
+            with self.assertRaises(ValueError):
+                read_private_object(missing,
+                                    "objects/00/" + fake_sha, fake_sha)
+            self.assertFalse(missing.exists())
+
+
+
 if __name__=="__main__":
     unittest.main()
