@@ -6,35 +6,50 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 ROOT=Path(__file__).resolve().parent.parent
 IGNORE_DIR={'.pytest_cache','__pycache__','.git','.venv','htmlcov','demo'}
-IGNORE_FILE={'.coverage','MANIFEST_SHA256.json'}
+IGNORE_FILE={'.coverage','MANIFEST_SHA256.json','.DS_Store'}
+LOCAL_DATA_DIRS={'raw','bronze','silver','gold','local_field','demo'}
 
-def all_files():
-    return sorted((p for p in ROOT.rglob('*')
-                   if p.is_file() and p.name not in IGNORE_FILE and not any(x in IGNORE_DIR for x in p.relative_to(ROOT).parts)
-                   and p.suffix not in {'.pyc','.pyo'}),key=lambda p:str(p.relative_to(ROOT)))
+def all_files(target=None):
+    target = target.resolve() if target is not None else None
+    def include(p):
+        parts = p.relative_to(ROOT).parts
+        lower = tuple(part.lower() for part in parts)
+        name = p.name.lower()
+        if p.is_symlink() or any(parent.is_symlink() for parent in p.parents if parent != ROOT):
+            return False
+        if not p.is_file() or (target is not None and p.resolve() == target):
+            return False
+        if any(part in IGNORE_DIR or part.endswith('.egg-info') for part in lower):
+            return False
+        if len(lower) >= 2 and lower[0] == 'data' and lower[1] in LOCAL_DATA_DIRS:
+            return False
+        return (name not in {item.lower() for item in IGNORE_FILE}
+                and name != '.env' and not name.startswith('.env.')
+                and p.suffix.lower() not in {'.pyc','.pyo','.key','.pem'})
+    return sorted((p for p in ROOT.rglob('*') if include(p)),key=lambda p:str(p.relative_to(ROOT)))
 
 def pack(target:Path):
     records={}
-    paths=all_files()
+    paths=all_files(target)
     for p in paths:
         rel=p.relative_to(ROOT).as_posix()
         records[rel]={'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size}
-    manifest={'release':'PFL_V0_4_BRANCH30_VSDS','date':'2026-10-25',
-              'methodology':'AB 3.2.1', 'verified_tests':87,
+    manifest={'release':'LOCAL_EXPORT','date':datetime.now(timezone.utc).date().isoformat(),
+              'methodology':'AB 3.2.1', 'verified_tests':None,
               'evidence_state':'LOCAL_SYNTHETIC_PRODUCT_NO_VALIDATED_REAL_POLITICAL_SCORING',
-              'github_published':True,'github_hosting':'TEMPORARY_IN_Metodologia-AB','files':records}
-    manifest_path=ROOT/'MANIFEST_SHA256.json'
-    manifest_path.write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+              'files':records}
     target.parent.mkdir(parents=True,exist_ok=True)
     with ZipFile(target,'w',compression=ZIP_DEFLATED,compresslevel=8) as z:
         for p in paths:
             z.write(p,arcname=f'politics_fantasy_league/{p.relative_to(ROOT).as_posix()}')
-        z.write(manifest_path,arcname='politics_fantasy_league/MANIFEST_SHA256.json')
+        z.writestr('politics_fantasy_league/MANIFEST_SHA256.json',
+                   json.dumps(manifest,indent=2,ensure_ascii=False)+'\n')
     with ZipFile(target) as z:
         corrupt=z.testzip()
         if corrupt:raise RuntimeError('ZIP corrupt: '+corrupt)

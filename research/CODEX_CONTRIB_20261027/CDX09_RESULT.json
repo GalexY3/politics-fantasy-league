@@ -1,0 +1,14 @@
+{
+  "id": "CDX09", "mode": "AB-H/AB-P", "status": "ACCEPTED_WITH_PLATFORM_LIMIT", "prereg_commit": "0c25798",
+  "A": "Evitar que el empaquetador incluya datos locales o secretos de rutas conocidas y deje afirmaciones de una release histórica como si se aplicasen a cualquier exportación.",
+  "B": "La lectura inicial mostró exclusiones incompletas y metadatos fijos. La prueba inicial con un ZIP previo dentro del árbol falló con Content digest mismatch al intentar incluir el propio destino.",
+  "C": "Se excluyen carpetas locales especificadas en .gitignore, .env y variantes, claves y certificados, metadatos egg-info, enlaces simbólicos y el archivo de destino. El manifiesto se escribe dentro del ZIP sin sobrescribir el manifiesto previo del árbol; omite afirmaciones de publicación y usa verified_tests null.",
+  "D": "La suite completa en Windows dio 362 aprobados, 1 omitido y 2 subtests aprobados. El test del paquete comprueba contenido permitido, exclusiones, hashes, destino anterior y preservación del manifiesto anterior. Se omitió el test de enlace simbólico porque Windows no permitió crearlo en esta cuenta.",
+  "E": "Pruebas locales con archivos ficticios en directorios temporales; ningún dato real se empaquetó ni se publicó ningún ZIP.",
+  "F": "Código y prueba versionados en la rama propia.",
+  "G": "La exclusión por nombre no detecta un secreto contenido en un archivo de apariencia normal. La exclusión de enlaces simbólicos está implementada pero no quedó probada en este Windows; tampoco se verificaron otras plataformas.",
+  "H": {"complaint_ids": ["CDX09-PACKAGING", "CDX09-SYMLINK-TEST"], "limits": "No es una auditoría completa de secretos; no sustituye una revisión del contenido antes de distribuir."},
+  "I": {"CT2_identity_before_after": [29,29], "VSDS": "1/3", "release_gates": "unchanged"},
+  "J": "Integrar estos ciclos en el Atlas y realizar una revisión final de pruebas y estado de la rama.",
+  "complaints": [{"id":"CDX09-PACKAGING", "status":"repaired", "description":"Los filtros y metadatos anteriores podían incluir material local y atribuir una verificación histórica al paquete actual."}, {"id":"CDX09-SYMLINK-TEST", "status":"open", "description":"No fue posible crear un enlace simbólico en la cuenta Windows para verificar esa rama del filtro."}], "github_actions_minutes": 0
+}
