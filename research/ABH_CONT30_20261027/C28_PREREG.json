@@ -1,0 +1,23 @@
+{
+  "cycle": "C28",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C27",
+  "A": {
+    "question": "Does an actual SIGKILL of a process inside the exact secure_store.append_private_jsonl implementation leave a parseable/incomplete row and will exact private_audit and CLI fail closed?",
+    "estimand": "Positive detection of unsafe incomplete journal after crash, not recovery",
+    "acceptance": "2 strictly synthetic cases: previously empty and one valid prior line. Child patches only write adapter to emit real partial os.write then blocks, parent SIGKILL. Check -9, no terminating newline, native audit ValueError INCOMPLETE_LEDGER_RECORD and CLI exit2."
+  },
+  "B": {
+    "rivals": [
+      "Caught OSError rollback handles SIGKILL (it cannot)",
+      "SIGKILL leaves detectable unterminated bytes",
+      "SIGKILL before bytes flush leaves no detectable row (invalid case)"
+    ]
+  },
+  "C": "Run true subprocess native exact source using stdout signal to prove half-write occurred, SIGKILL just child, read ledger and run original auditor+CLI.",
+  "D": {
+    "falsifier": "Any audit returns exit0 or full row accepted; source blob identity must match GitHub.",
+    "limit": "Power loss not simulated, no real originals."
+  }
+}
