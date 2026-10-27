@@ -1,0 +1,11 @@
+{
+  "id": "A19",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "A18 independently source-scoped official DSCD/profile/filing lists full condition 2026-09-15, role in commission 09-16, declaration submitted 09-15, qualified 09-22.",
+  "H1": "A typed procedural ledger can represent full status, membership in committee, original submission, qualification as distinct families/valid dates and refuse a single generic `person_status_date` field.",
+  "H0": "Model must collapse these events due to shared person and legislative term.",
+  "implementation": "Minimal `parliament_procedure_types.py` pure standard library with immutable allowed family+kind pairs, no source info accepted without issuer/legislature; test schemas and deterministic event sequencing. No DOC to real person ID inference or score.",
+  "acceptance": "Five independent failure-mode unit tests authored and syntactically inspected, full runtime only when available; include fixed source example with four dates and no first_public_at.",
+  "source": "Congress XV official DSCD 204, member profile, initiative 004/000412."
+}
