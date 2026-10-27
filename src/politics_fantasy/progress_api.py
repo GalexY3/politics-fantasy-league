@@ -7,6 +7,7 @@ individual political assessments.
 from __future__ import annotations
 
 from collections import Counter
+import math
 import json
 from pathlib import Path
 
@@ -68,7 +69,8 @@ def evaluate_scope(payload: dict) -> dict:
             seen_milestones.add(mid)
             if type(lvl) is not int or lvl not in range(len(MATURITY)):
                 raise InvalidScope("INVALID_MATURITY")
-            if type(size) not in (int, float) or size <= 0 or size > 10000:
+            if (type(size) not in (int, float) or not math.isfinite(size)
+                    or size <= 0 or size > 10000):
                 raise InvalidScope("BAD_SIZE")
             if not isinstance(milestone.get("evidence_ref"), str) or not milestone["evidence_ref"]:
                 raise InvalidScope("MISSING_EVIDENCE")
