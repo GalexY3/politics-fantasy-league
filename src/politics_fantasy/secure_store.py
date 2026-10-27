@@ -39,14 +39,17 @@ def _directory_flags() -> int:
 
 
 @contextmanager
-def _root_fd(root: Path):
+def _root_fd(root: Path, *, create: bool = True):
     _require_anchored_store()
     root = Path(root)
     # Root's parent is controlled by the local operator. An untrusted writer
     # to its ancestors is outside this local tool's OS boundary.
     if root.is_symlink():
         raise ValueError("SYMLINK_STORAGE_ROOT")
-    root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    if create:
+        root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    elif not root.is_dir():
+        raise ValueError("MISSING_STORE_ROOT")
     try:
         fd = os.open(root, _directory_flags())
     except OSError as exc:
