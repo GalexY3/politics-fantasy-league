@@ -1,0 +1,15 @@
+{
+  "cycle": "C56",
+  "mode": "AB-P",
+  "A": "Does caller-supplied first_public_at in source_eligibility accept malformed or timezone-naive timestamps, falsely eliminating FIRST_PUBLIC_AT_UNKNOWN even though provenance is still untrusted?",
+  "B": {
+    "H0": "Date is already validated",
+    "H1": "Only non-None checked; malformed string/boolean accepted",
+    "H2": "Strict aware ISO format reduces schema ambiguity but cannot authenticate timestamp"
+  },
+  "C": "Exact SHA local native Python against current module after C54. Test synthetic malformed date/number/naive and valid offset-aware; prereg, red-green first, patch add an explicit invalid-timestamp reason while always quarantined; commit source/test and confirm Git hash.",
+  "D": {
+    "falsifier": "Cannot reproduce bad input or valid date wrongly rejected; no inferred publisher first-published date. Catalog updatedAt must remain independent.",
+    "source_before": "efb6a6d596c86b78f1cb139f7fe7cde97839784e"
+  }
+}
