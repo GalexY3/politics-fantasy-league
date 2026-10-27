@@ -1,0 +1,18 @@
+{
+  "id": "C10",
+  "mode": "AB-R cross-institutional 2023 official original corroboration",
+  "status": "PREREGISTERED_AFTER_PDF_FIRST_PAGE_EXPOSURE",
+  "question": "Does JEC's official elected-members PDF independently corroborate Interior's 23 July 2023 provincial elected lists for two fixed provinces, while BOE candidacy proclamation belongs to another legal stage?",
+  "sample_fixed": [
+    "Albacete",
+    "Salamanca"
+  ],
+  "H1": "All elected full-name entries in JEC national election summary for these two provinces match exactly Interior XLSX elected names for 2023 when normalized, while candidacy proclamation earlier is not an election result.",
+  "H0": "At least one province has an unmatched person, suggesting substantive source mismatch or text extraction ambiguity.",
+  "Halt": "PDF extraction structural boundaries are difficult; do not declare name equality without visual page review and full section boundaries.",
+  "plan": "Locate 2023 original JEC BOE-A-2023-18907 elected list section by text, extract two fixed province segments, compare to XLSX rows for same 2023 date/province. Visual render page of excerpts. Independently inspect only BOE-A-2023-15066 first pages to distinguish candidates vs elected. Do not analyze vote choice or infer person ID.",
+  "accept": "Report per-province count & normalization equality or quarantine if extraction uncertain; preserve source ZIP SHA and issue chronology. All actual names stay in private runtime.",
+  "time_rule": "2023-06-27 candidate proclamation, 2023-07-23 election date, 2023-09-01 JEC publication; publisher publication timestamp still not independently archived.",
+  "source_preexposed": "Only first pages and headings seen before prereg, not selected province elected name lists in JEC PDF.",
+  "cost": "local PDF extraction/render without Actions"
+}
