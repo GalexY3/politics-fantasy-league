@@ -44,6 +44,7 @@ def capture_validate_quarantine(*, url: str, source: str, document_kind: str,
         raise ValueError("RAW_OBJECT_OUTSIDE_QUARANTINE") from exc
 
     result = {
+        "capture_id": snapshot["capture_id"],
         "source_id": source,
         "document_kind": document_kind,
         "sha256": snapshot["sha256"],
