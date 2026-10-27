@@ -23,6 +23,8 @@ def pair_within_bocg(*, issuer, bulletin_id, condition_names, credential_names):
         raise ValueError("UNSUPPORTED_SOURCE_SCOPE")
     if not isinstance(condition_names, list) or not isinstance(credential_names, list):
         raise ValueError("INVALID_SOURCE_LISTS")
+    if not condition_names or not credential_names:
+        return _deny("EMPTY_SOURCE_MENTIONS")
     ca = [_key(x) for x in condition_names]
     cb = [_key(x) for x in credential_names]
     if len(ca) != len(set(ca)) or len(cb) != len(set(cb)):
