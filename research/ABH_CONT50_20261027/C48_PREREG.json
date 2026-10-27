@@ -1,0 +1,12 @@
+{
+  "cycle": "C48",
+  "mode": "AB-P",
+  "A": "Run original deterministic evaluation diagnostics: Poisson NLL, count MAE, calibration bins, purged folds, session bootstrap",
+  "B": [
+    "Exact source and six checked-in tests pass",
+    "Unexpected regression or unsupported source version",
+    "Results from synthetic data are not predictive accuracy"
+  ],
+  "C": "Copy byte exact evaluation.py and tests/test_evaluation.py from Github, verify git hash, execute pytest and preserve logs.",
+  "D": "Falsifier test failure or Git SHA mismatch, no source-original political data."
+}
