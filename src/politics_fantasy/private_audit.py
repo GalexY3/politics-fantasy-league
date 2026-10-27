@@ -5,6 +5,7 @@ POSIX dirfd anchored; never follows source-authored object paths.
 """
 from __future__ import annotations
 from collections import Counter
+from contextlib import contextmanager
 import hashlib
 import json
 import os
@@ -13,6 +14,24 @@ from pathlib import Path
 
 from .secure_store import (_root_fd, _child_directory, _check_private_permissions,
                            _directory_flags)
+
+@contextmanager
+def _existing_dir(parentfd: int, name: str):
+    if not name or name in (".", "..") or "/" in name or "\\" in name:
+        raise ValueError("UNSAFE_AUDIT_DIRECTORY")
+    try:
+        fd = os.open(name, _directory_flags(), dir_fd=parentfd)
+    except FileNotFoundError:
+        yield None
+        return
+    except OSError as exc:
+        raise ValueError("UNSAFE_AUDIT_DIRECTORY") from exc
+    try:
+        _check_private_permissions(fd, directory=True)
+        yield fd
+    finally:
+        os.close(fd)
+
 
 MAX_LEDGER_BYTES = 8 * 1024 * 1024
 MAX_ROWS = 10000
@@ -54,14 +73,18 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         os.close(obj)
 
 
-def _validate_object(objectsfd: int, rel: object, expected: object) -> str:
+def _validate_object(objectsfd: int | None, rel: object, expected: object) -> str:
     if not isinstance(rel, str) or not isinstance(expected, str):
         return "BAD_OBJECT_REFERENCE"
     m = OBJECT_RE.fullmatch(rel)
     if m is None or m[1] != m[2][:2] or expected != m[2]:
         return "BAD_OBJECT_REFERENCE"
+    if objectsfd is None:
+        return "MISSING_OR_UNSAFE_OBJECT"
     try:
-        with _child_directory(objectsfd, m[1]) as shard:
+        with _existing_dir(objectsfd, m[1]) as shard:
+            if shard is None:
+                return "MISSING_OR_UNSAFE_OBJECT"
             fd = os.open(m[2], os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
                          dir_fd=shard)
             try:
@@ -91,7 +114,7 @@ def audit_private_root(root: Path) -> dict:
         manifest = _ledger(fd, "manifest.jsonl")
         reviews = _ledger(fd, "quarantine_reviews.jsonl")
         outcomes = Counter()
-        with _child_directory(fd, "objects") as objectsfd:
+        with _existing_dir(fd, "objects") as objectsfd:
             for item in manifest:
                 outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"))] += 1
         review_states = Counter()
