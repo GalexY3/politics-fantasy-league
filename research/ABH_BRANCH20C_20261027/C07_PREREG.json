@@ -1,0 +1,20 @@
+{
+  "id": "C07",
+  "mode": "AB-R Congress source reconciliation",
+  "status": "PREREGISTERED_AFTER_FILE_SCHEMA_PEEK",
+  "prior": "Original active/discharged diputados JSON from Oct 26 2026, four 2026 nominal votes from three sessions, separate keys voter: asiento,diputado,grupo,voto. Filename date not necessarily original publication time.",
+  "hypotheses": {
+    "H1": "Original four votes each have 350 nominal rows whose category counts reconcile official totals, while snapshots active/discharged include more than 350 term records and cannot be used as contemporaneous roster without effective interval and full-condition adjudication.",
+    "H0": "Vote records include immutable cross-term deputy IDs and are one-to-one with exactly current 350 active rows."
+  },
+  "tests": [
+    "Verify per-vote nominal counts, four categories, duplicate normalized names, per-date group changes without using as identity proof",
+    "Inspect fields of active vs discharged including FECHAALTA,FECHABAJA,FECHACONDICIONPLENA, count missing/invalid/mismatched chronology",
+    "Join vote label vs 2026 active+discharged by exact normalized names; zero/one/multiple candidates; ensure no raw person output",
+    "Compare per-day votes 23/7/2026 to detect individual rows changed votes and groups; record count only",
+    "Do not infer provenance as-of from 2026-10-26 export or public full-condition timing"
+  ],
+  "falsifier": "Nonmatching aggregate vote totals or user-independent stable ID in schema would refute H1 subclaim",
+  "acceptance": "Aggregates with source hashes and bounded missingness, no invented identity adjudication",
+  "cost": "local only, zero Actions"
+}
