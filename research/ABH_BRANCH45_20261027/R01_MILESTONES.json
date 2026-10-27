@@ -1,0 +1,372 @@
+{
+  "stage": "R01",
+  "source_scope": "product/progress_scope_v3_20261026.json",
+  "old_percent": 36.35,
+  "new_percent": 36.900000000000006,
+  "weight_sum": 100,
+  "milestones_count": 36,
+  "change_reason": "Only documentary level1, no scope, no gate or person scoring permission",
+  "milestones": [
+    {
+      "id": "src.catalog",
+      "track": "sources",
+      "weight": 18,
+      "level_v3": 4,
+      "level_v4": 4,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH12M_20261026/OFFICIAL_CAPTURE.json",
+      "why": "Original BOE JEC 2023 PDF obtained from institutional HTTPS, hashed raw (SHA256) and its 52×6 official numeric table re-extracted and matched automatically. Other original registers and licenses still missing."
+    },
+    {
+      "id": "src.election",
+      "track": "sources",
+      "weight": 18,
+      "level_v3": 4,
+      "level_v4": 4,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30I_20261026/RESULTS_JEC_2023_FULL.json",
+      "why": "312 celdas agregadas BOE/JEC transcritas a mano coinciden; no archivo oficial binario autenticado"
+    },
+    {
+      "id": "src.registry",
+      "track": "sources",
+      "weight": 18,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+      "why": "Ningún corpus RPP original verificado"
+    },
+    {
+      "id": "src.local",
+      "track": "sources",
+      "weight": 18,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/RTVE_MUNICIPAL_2023_SECONDARY_SAMPLE.json",
+      "why": "Solo fuentes identificadas y extracto secundario parcial; originales no importados"
+    },
+    {
+      "id": "id.schema",
+      "track": "identity",
+      "weight": 12,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/evidence_warehouse.mjs",
+      "why": "Pruebas locales de tipos y claves"
+    },
+    {
+      "id": "id.ambiguities",
+      "track": "identity",
+      "weight": 12,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+      "why": "Contratos sintéticos comprobados en V8"
+    },
+    {
+      "id": "id.real",
+      "track": "identity",
+      "weight": 12,
+      "level_v3": 0,
+      "level_v4": 1,
+      "decision": "ACCEPT_LEVEL1_WITH_GUARDRAILS",
+      "evidence_ref": "research/ABH_BRANCH20C_20261027/C15_RESULT.json",
+      "why": "Level1 specified via 11 documented official cross-election positive continuities (C15,C16) and 2026 plenary/profile same-person same-legislature records (A18); no stable pan-institution person ID, independent false-link control or full ingest. This supports specification only, NOT validated multi-source identity."
+    },
+    {
+      "id": "id.temporal",
+      "track": "identity",
+      "weight": 12,
+      "level_v3": 2,
+      "level_v4": 2,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/evidence_warehouse.mjs",
+      "why": "Instrumentación temporal implementada; faltan cargos y fuentes reales fechadas"
+    },
+    {
+      "id": "ev.schema",
+      "track": "events",
+      "weight": 10,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "tests/test_evidence_warehouse.mjs",
+      "why": "Validado sobre ejemplos ficticios"
+    },
+    {
+      "id": "ev.time",
+      "track": "events",
+      "weight": 10,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+      "why": "Test de duplicados y corte as-of sobre ejemplos"
+    },
+    {
+      "id": "ev.extra",
+      "track": "events",
+      "weight": 10,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/PREREG.json",
+      "why": "Solo taxonomía y fuentes previstas, sin corpus reconciliado"
+    },
+    {
+      "id": "ev.person",
+      "track": "events",
+      "weight": 10,
+      "level_v3": 0,
+      "level_v4": 1,
+      "decision": "ACCEPT_LEVEL1_WITH_GUARDRAILS",
+      "evidence_ref": "research/ABH_BRANCH45_20261027/A18_RESULT.json",
+      "why": "Level1 specified with official BOCG 2023/2025 dated individual full-condition records (C19,C20), DSCD 2026 (A18) and typed source-only A04-A08 fixtures. No systematic temporal ingestion, independent first_public_at or verified end-to-end per-person event workflow. Specification only."
+    },
+    {
+      "id": "sci.protocol",
+      "track": "science",
+      "weight": 14,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PLAN_TFM.md",
+      "why": "Plan TFM con contraste y rivales documentados"
+    },
+    {
+      "id": "sci.baseline",
+      "track": "science",
+      "weight": 14,
+      "level_v3": 2,
+      "level_v4": 2,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/forecast.py",
+      "why": "Código y tests históricos en demo; no benchmark de campo"
+    },
+    {
+      "id": "sci.field",
+      "track": "science",
+      "weight": 14,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "research/AB20_REALES_20261024/FINAL_R5_20261026.json",
+      "why": "No existe as-of original, cohorte ni evaluación fuera de muestra validada"
+    },
+    {
+      "id": "sci.fairness",
+      "track": "science",
+      "weight": 14,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "docs/VSDS_PROYECTO.md",
+      "why": "Criterios diseñados; no cuantificados sobre universo representativo"
+    },
+    {
+      "id": "game.core",
+      "track": "game",
+      "weight": 16,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+      "why": "Motor SQLite demo con prueba histórica 49 PASS"
+    },
+    {
+      "id": "game.market",
+      "track": "game",
+      "weight": 16,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "product/QA_RUN_20261024.txt",
+      "why": "Operaciones transaccionales de demo y pruebas previas"
+    },
+    {
+      "id": "game.rule",
+      "track": "game",
+      "weight": 16,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/scoring.py",
+      "why": "Regla sintética testeada; sin evaluación de personas reales"
+    },
+    {
+      "id": "game.real",
+      "track": "game",
+      "weight": 16,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "docs/ARQUITECTURA.md",
+      "why": "Bloqueada por fuente nominal, cobertura y equidad"
+    },
+    {
+      "id": "ui.pages",
+      "track": "ui",
+      "weight": 10,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH8N_20261026/NATIVE_EVIDENCE.json",
+      "why": "Headless Chromium opens localhost demo and navigates progress V2, market, atlas; eight original BOE candidacy labels displayed; JS runtime error-free. Accessibility/user studies not done."
+    },
+    {
+      "id": "ui.atlas",
+      "track": "ui",
+      "weight": 10,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30I_20261026/RESULTS_C01_C30_POST_MERGE.json",
+      "why": "Integrados en código, parser JS y contratos V8; no E2E"
+    },
+    {
+      "id": "ui.access",
+      "track": "ui",
+      "weight": 10,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+      "why": "Diseño responsive declarado, sin auditoría accesibilidad formal ni estudio de usuarios"
+    },
+    {
+      "id": "ui.flow",
+      "track": "ui",
+      "weight": 10,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+      "why": "Sin prueba validada de usuarios y fuentes reales"
+    },
+    {
+      "id": "sec.loopback",
+      "track": "security",
+      "weight": 8,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/server.py",
+      "why": "Bind loopback, Host/Origin, límite de payload documentados"
+    },
+    {
+      "id": "sec.auth",
+      "track": "security",
+      "weight": 8,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+      "why": "Inexistente; no publicar servidor a internet"
+    },
+    {
+      "id": "sec.rights",
+      "track": "security",
+      "weight": 8,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "docs/FUENTES_Y_LICENCIAS.md",
+      "why": "Requisitos y gates diseñados, faltan licencias por recurso y auditoría legal"
+    },
+    {
+      "id": "sec.ops",
+      "track": "security",
+      "weight": 8,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "docs/OPERACIONES_v0_3.md",
+      "why": "Plan de operaciones, no operación demostrada"
+    },
+    {
+      "id": "qa.py",
+      "track": "qa",
+      "weight": 8,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "product/QA_RUN_20261024.txt",
+      "why": "Registro de 49 pruebas anteriores y 88% cobertura en módulos del momento"
+    },
+    {
+      "id": "qa.js",
+      "track": "qa",
+      "weight": 8,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/RESULTS_FINAL.json",
+      "why": "30 checks V8 y tests Node publicados"
+    },
+    {
+      "id": "qa.endtoend",
+      "track": "qa",
+      "weight": 8,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH8N_20261026/NATIVE_EVIDENCE.json",
+      "why": "Native Node/Python tests plus true Chromium browser smoke of public read-only local UI, market and atlas and hostile Host 403. No production login, user study, or public multiuser deployment."
+    },
+    {
+      "id": "qa.independent",
+      "track": "qa",
+      "weight": 8,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "research/BRANCH30J_20261026/REPORT.md",
+      "why": "No disponible"
+    },
+    {
+      "id": "launch.docs",
+      "track": "launch",
+      "weight": 4,
+      "level_v3": 3,
+      "level_v4": 3,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PRODUCTO_LOCAL_v0_2.md",
+      "why": "Instalación demo documentada; revisión de paquete posterior necesaria"
+    },
+    {
+      "id": "launch.rules",
+      "track": "launch",
+      "weight": 4,
+      "level_v3": 1,
+      "level_v4": 1,
+      "decision": "HOLD",
+      "evidence_ref": "docs/ARQUITECTURA.md",
+      "why": "Mecánicas de demostración, sin operación con personas usuarias reales"
+    },
+    {
+      "id": "launch.hosted",
+      "track": "launch",
+      "weight": 4,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "src/politics_fantasy/server.py",
+      "why": "Inexistente y deliberadamente deshabilitado"
+    },
+    {
+      "id": "launch.pilot",
+      "track": "launch",
+      "weight": 4,
+      "level_v3": 0,
+      "level_v4": 0,
+      "decision": "HOLD",
+      "evidence_ref": "docs/PLAN_TFM.md",
+      "why": "Sin estudio de usuarios"
+    }
+  ],
+  "review_status": "EVIDENCE_ADJUDICATED_REVIEW_STAGE"
+}
