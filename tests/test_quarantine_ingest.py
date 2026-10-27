@@ -61,6 +61,7 @@ class QuarantinePipelineTests(unittest.TestCase):
             self.assertFalse(result["release_grade"])
             self.assertIsNone(result["first_public_at"])
             self.assertFalse(result["http_ingest_endpoint_connected"])
+            self.assertEqual(len(result["capture_id"]),32)
             self.assertEqual(len((root/"manifest.jsonl").read_text().splitlines()),1)
             self.assertEqual(len((root/"quarantine_reviews.jsonl").read_text().splitlines()),1)
 
