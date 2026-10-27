@@ -1,0 +1,31 @@
+{
+  "cycle": "C04",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C03",
+  "trigger": "Primary official Senate license terms and government dataset-distribution scope were verified in C03; existing project license matrix lacks a Senate-specific row.",
+  "A": {
+    "outcome": "Actualizar documentación de derechos del proyecto con referencia primaria Senado, condiciones, fuente por dataset y límites personales, sin gate ni score político.",
+    "acceptance": "Solo la fila del Senado con URL general, fecha de actualización, CC BY 4.0 salvo excepciones, atribución/no desnaturalización/no respaldo, six XML distributions tipoFich=9, cierre explícito 'no scoring real'."
+  },
+  "B": {
+    "alternatives": [
+      "Dejar evidencia solo en investigación (más fragmentación)",
+      "Actualizar el documento canónico de derechos (menor fragmentación con enlace)",
+      "Inferir permisos más amplios sin fuente, alternativa rechazada"
+    ]
+  },
+  "C": {
+    "test": "Releer el documento previo; aplicar parche mínimo de tabla sin alterar fuentes existentes; comprobar por lectura GitHub que versión nueva conserva antecedentes y bloqueos y que scope 36 hitos + gates permanece igual."
+  },
+  "D": {
+    "instrument": "GitHub file SHA optimistic update; revisión textual diferencial por lector separado; no tests Python/CI ni inferencia jurídica autónoma",
+    "falsifier": "Se omite una condición oficial, se extrapola a documentos ajenos, o se presenta como legalidad del scoring político"
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
