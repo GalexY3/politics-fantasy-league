@@ -1,0 +1,20 @@
+{
+  "id": "C02",
+  "mode": "AB-P security boundary red-team local",
+  "status": "PREREGISTERED",
+  "dependency": "RC07 pure function requires caller-passed `trusted_registry` and explicitly warns registry must originate from server; no E2E prior.",
+  "hypotheses": {
+    "H1": "A caller able to supply forged registry mapping can make RC07 report eligible=True for wholly fabricated first_public_at (even though release_grade remains false).",
+    "H0": "RC07 rejects all such forged mappings even when structure and ISO timestamps pass.",
+    "Halt": "Existing function can only be exploited if untrusted API binds registry input; no currently verified live HTTP exploit."
+  },
+  "tests": [
+    "import exact existing module from local RC07 staged copy, not modified before test",
+    "actual ESE designation record first_public unknown should reject from empty registry",
+    "pass crafted fake registry with first_public_at backdated and claim type matching, assert eligible=True exposes trust dependency",
+    "record version of python and passed expected result"
+  ],
+  "accept": "Identify interface trust vulnerability as pure-functional and constrain scope: no claim of internet-facing exploit, no release gate changed.",
+  "cost": "local Python no Github Actions",
+  "R5": "new result must distinguish structure from authentication"
+}
