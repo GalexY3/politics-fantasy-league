@@ -1,0 +1,24 @@
+{
+  "cycle": "C27",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C26",
+  "A": {
+    "question": "Does actual POSIX flock protect JSONL record integrity across multiple independently spawned Python processes, rather than only threads, for a shared private root?",
+    "unit": "unique synthetic capture rows across 8 processes ×40, with partial writes forced in code-adjacent offline harness"
+  },
+  "B": {
+    "hypotheses": [
+      "cooperating processes serialize records",
+      "thread tests pass but multiprocess race corrupts lines",
+      "file system or process startup disallows shared root, invalid experiment"
+    ]
+  },
+  "C": {
+    "design": "Use subprocess native process workers import exact SHA-verified secure_store.py, each writes deterministic 40 synthetic records and same SHA object; verify 320 unique parsed records, zero exceptions, object bytes/SHA, private mode and no .tmp leftover. Repeat >=2 independent rounds if time permits."
+  },
+  "D": {
+    "falsifier": "Duplicate/missing IDs, any malformed JSON, orphan temp file, SHA mismatch, process exit nonzero; full source must match GitHub.",
+    "limits": "Cooperating processes only, no power loss, no external hostile writer."
+  }
+}
