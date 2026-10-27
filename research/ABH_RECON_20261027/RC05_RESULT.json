@@ -1,0 +1,78 @@
+{
+  "id": "RC05-20261027",
+  "mode": "AB-H/AB-R",
+  "status": "CLOSED_EXPLORATORY_MICRO_ADJUDICATION_STOP_R5",
+  "prereg_commit": "eb35d6cb4dde5a6d1f5a6b9780e5ece766001d68",
+  "adjudication": "RC05_ADJUDICATION.json",
+  "cases": 5,
+  "accepted_with_limits": {
+    "same_person": 3,
+    "different_person": 2,
+    "unresolved_in_fixed_case_sample": 0
+  },
+  "independent_primary_corroboration": "CCyL institutional appointment 2026-09-10 vs Senado Senator fiches beginning 2026-09-11, separately issued authorities for P1/P2/P3; official Senate distinct records/explicit succession for negatives",
+  "controls": [
+    "P1 provider-linked XIV/XV same person; separate mandate and within-XV 2026 reappointment vs false continuity",
+    "N1 same seat / succession different people with different source IDs and terms, 2026-07-31 vs 2026-08-01",
+    "N2 exact two-surname collision distinct full given names and distinct source IDs/constituencies; named simultaneously in Senate committee"
+  ],
+  "source_timing": {
+    "ccyl_event_day": "2026-09-10",
+    "ccyl_bulletin_publication_day": "2026-09-16",
+    "senado_designated_start_day": "2026-09-11",
+    "first_public_at_per_individual": null,
+    "historical_as_of_prediction_eligible": false
+  },
+  "snapshot_conflict": "Same canonical Senado id1=18865&legis=15 indexed as an older page snapshot with Fecha 11/05/2022 and a newer September 2026 reappointment 11/09/2026; stable URL is not stable snapshot/version; not necessarily provider contradiction.",
+  "evidence_exposure": "Important: source names and part of relevant evidence explored before RC05 prereg; no blind or statistically confirmatory claim.",
+  "limitations": [
+    "No fully identical-name homonym in curated sample, only two shared surnames.",
+    "Same-senate negatives are official but not cross-authority human adjudication.",
+    "Web-exposed pages are dynamic; no archived original bytes or immutable snapshot hashes in this session.",
+    "Not cross-validating rows of RC03 raw XML, which live only in user's local machine.",
+    "Sample chosen adaptively and does not estimate full-dataset false-match rate.",
+    "One author adjudicated; independent second reviewer not obtained.",
+    "first_public_at unknown for all observations, so event dates cannot be used as leak-free backtest features."
+  ],
+  "methodological_impact": {
+    "ABR": "5 small auditable case labels, not population identification coverage",
+    "ABP": "no integration, no real person scoring",
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "VSDS_before_after": "1/3",
+    "novel_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed_before_after": 0,
+    "product_percentage_before_after": 36.35
+  },
+  "R5": {
+    "decision": "STOP",
+    "reason": "Five bounded cases adjudicated, but exact homonym rate, complete source-reconciled crosswalk and original first-publication timestamps still missing; additional search of the same HTML names would be pseudoreplication, not discriminating independent evidence.",
+    "cycles_this_turn_consumed": 1,
+    "conservative_max_remaining_if_same_permission": 2,
+    "actual_permission_balance": "UNRECONCILED",
+    "do_not_spend_rest_automatically": true
+  },
+  "cost": {
+    "actions_launched": 0,
+    "github_ci_skip": true
+  },
+  "qa": {
+    "json_case_consistency_checks": 7,
+    "pass": 7,
+    "full_Atlas_replay": "pending until delta written"
+  },
+  "complaints": [
+    "Exposure before preregistration and same-URL mutable snapshots.",
+    "Full-name homonyms and first-public timestamps remain untested."
+  ],
+  "public_sources": [
+    "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml",
+    "https://www.ccyl.es/Publicaciones/TextoEntradaDiario?Legislatura=12&NumeroPublicacion=4&SeriePublicacion=DS%28P%29",
+    "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/modificacionescomposicion/index.html",
+    "https://www.senado.es/web/actividadparlamentaria/sesionescomision/detallecomisiones/composicion/index.html?boton_obtener_listado=OBTENER+LISTADO&calendario_inicio=&esMixta=N&id=S011028&legis=15&order=C"
+  ]
+}
