@@ -1,0 +1,36 @@
+{
+  "kind": "AB_P_MAINTENANCE_CHECKOUT_VERIFICATION",
+  "id": "VERIF-ZIP-4FAF31A",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_commit": "4faf31a30111ef980a43409dbe87de8c7609b29f",
+  "baseline_comparison": "GitHub compare 4faf31a...branch identical before new file",
+  "prior_verifications_are_posthoc_not_preregistered": true,
+  "prior_test_evidence": {
+    "python_pytest": "421 passed 28 subtests passed 15.15s",
+    "node_js": "110 passed",
+    "atlas_unit": "34 passed",
+    "atlas_cli": "OK 18 lotes 60 nodos SHA256 532ff19bc2073dca8e906fe9be12ee76642ef00caf37ab07c7fde73609c07f78",
+    "http_focus": "20 passed 14 subtests",
+    "external_HTTPS_tested": false
+  },
+  "new_forward_plan": {
+    "question": "Does the original Chromium smoke verify the V4 snapshot, or contain a stale V3 assertion?",
+    "H1": "The current smoke test is stale: expects revision3/36.4 and will need a limited V4 expectation update to test the current API and UI.",
+    "H0": "Browser UI/HTTP still legitimately returns V3 and V4 snapshot is not wired; do not patch the test if so.",
+    "test": "First inspect current progress_api/default and browser smoke; update only stale expected revision/index/bar values and labels; run real Chromium against loopback demo with no external source capture. No real person scoring.",
+    "negative_controls": [
+      "Host foreign.invalid must still 403",
+      "No JS page errors/CSP violations",
+      "NO release blockers passed, despite V4"
+    ],
+    "confirmation": "Any browser failure after V4 expectation update must be logged, not marked PASS; distinguish browser runtime install failures from app bugs.",
+    "scope": "Same integrated branch, no original private data in Git, no main merge."
+  },
+  "invariants": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "no_new_campaign_quota_claim": true
+}
