@@ -1,0 +1,15 @@
+{
+  "cycle": "C39",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Does synthetic descriptive co-vote graph allow NaN/Infinity smoothing priors or noninteger minimum joint votes, returning NaN edge weights or silently no edges?",
+  "B": [
+    "Strict numeric validation already exists",
+    "Only alpha <=0 beta<=0 min_joint<1 leaves NaN/Inf/type slip through"
+  ],
+  "C": "Native byte-identical network.py/events.py with 3 synthetic votes, test alpha NaN, beta Inf, joint NaN/float, then fail-closed checks and regression.",
+  "D": {
+    "module_source_sha": "9840b93a5d51f6568c7c8053abf7ce20aa89915a",
+    "scope": "Descriptive graph on fictional IDs only, not real ideology/party influence"
+  }
+}
