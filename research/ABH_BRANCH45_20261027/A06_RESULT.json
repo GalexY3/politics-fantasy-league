@@ -1,0 +1,39 @@
+{
+  "id": "A06",
+  "status": "CLOSED_SOURCE_ORIGINAL_POSITIONAL_JOIN_FALSIFIED",
+  "pre_registration": "A06_PREREG.json",
+  "source": {
+    "document": "BOCG-15-D-390",
+    "printed_page": 3,
+    "url": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF",
+    "sections": [
+      "A - Altas plena condición",
+      "C - Orden presentación credenciales"
+    ]
+  },
+  "checks": {
+    "same_name_multiset_in_sections": true,
+    "both_count": 3,
+    "correct_matches_if_join_on_row_position": 1,
+    "wrong_matches_if_join_on_row_position": 2,
+    "naive_positional_accuracy_in_this_fixed_case": "1/3",
+    "method": "Two original institutional lists sorted by two DIFFERENT criteria, alphabetical family name and credential order; exact normalized public surname strings compared."
+  },
+  "risk": "A05 ordinal keys are ONLY local opaque row indices. Never join section A to C or across historical bulletins by ordinal, seat or list rank; two of three record linkages would be false in this original 2025 case.",
+  "H1": "SUPPORTED in this original fixed source example",
+  "H0": "REFUTED",
+  "limitations": [
+    "The count 2/3 is a counterexample, NOT an estimate of general false-link rate.",
+    "Complete first-publication timestamp absent; source original signed binary hash not available.",
+    "Source person career cross-legislature identity not established from this pair alone."
+  ],
+  "ABR": "new negative control for record-link methodology",
+  "ABP": "no changes to personal eligibility, scorer or gates",
+  "budget": {
+    "A_spent": 6,
+    "A_remaining": 14,
+    "R_spent": 0,
+    "B_spent": 0
+  },
+  "next": "A07 build explicit safe name-and-source-scoped pairing with event type and contradictory controls, keeping case local to BOCG source context."
+}
