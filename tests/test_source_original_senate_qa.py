@@ -37,6 +37,12 @@ class SenateOriginalTests(unittest.TestCase):
         self.assertFalse(r["first_public_at_verified"])
         self.assertFalse(r["historical_person_ID_certified"])
         self.assertFalse(r["real_person_scoring"])
+    def test_all_twelve_spanish_month_abbreviations(self):
+        abbreviations=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
+        for index,abbr in enumerate(abbreviations,1):
+            with self.subTest(month=abbr):
+                result=audit(fixture(vote_day=f"08-{abbr}-2025"))
+                self.assertEqual(result["vote_days"],[f"2025-{index:02d}-08"])
     def test_missing_vote_denied(self):
         with self.assertRaisesRegex(ValueError,"MISSING_VOTES"):
             audit(b"<main><sesion><fecha_sesion>07/10/2025</fecha_sesion></sesion></main>")
