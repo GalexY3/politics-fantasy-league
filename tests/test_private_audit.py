@@ -174,6 +174,7 @@ def test_duplicate_json_member_in_manifest_rejected(tmp_path):
     (tmp_path / "manifest.jsonl").write_bytes(
         b'{"capture_id":"111","capture_id":"222","sha256":"fictional"}' + bytes([10])
     )
+    (tmp_path / "manifest.jsonl").chmod(0o600)
     with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
         audit_private_root(tmp_path)
 
@@ -183,6 +184,7 @@ def test_duplicate_json_member_in_review_rejected(tmp_path):
     (tmp_path / "quarantine_reviews.jsonl").write_bytes(
         b'{"quarantine_state":"QUARANTINED_SCHEMA_PASSED","quarantine_state":"RELEASE_READY"}' + bytes([10])
     )
+    (tmp_path / "quarantine_reviews.jsonl").chmod(0o600)
     with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
         audit_private_root(tmp_path)
 
@@ -193,6 +195,7 @@ def test_nonfinite_json_constants_in_private_ledger_rejected(tmp_path):
         (tmp_path / "manifest.jsonl").write_bytes(
             ('{"bytes":' + token + '}').encode("ascii") + bytes([10])
         )
+        (tmp_path / "manifest.jsonl").chmod(0o600)
         with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
             audit_private_root(tmp_path)
 
