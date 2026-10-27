@@ -1,0 +1,42 @@
+{
+  "id": "C03",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "question": "Can server-owned immutable zero-attestation stage registry prevent external forged evidence from producing eligibility, while describing separate historical claim kinds?",
+  "H1": "A fixed immutable registry with no first_public_at attestation returns deny for all real claims; wrong kinds deny even earlier. No public constructor accepting external registry exposed.",
+  "H0": "Caller can insert trusted_registry or fake first_public_at and elicit eligible=True from the server policy wrapper.",
+  "alternatives": "Pure wrapper correct but unintegrated HTTP remains potential gap; do not claim live protection until C04.",
+  "contract": {
+    "actual_records": [
+      {
+        "ref": "ESE/000002-01",
+        "claim": "NOMINATED_AND_ACCEPTED_CANDIDATES",
+        "bulletin_day": "2026-09-10"
+      },
+      {
+        "ref": "ESE/000002-02",
+        "claim": "DESIGNATED_SENATORS",
+        "act_day": "2026-09-10",
+        "bulletin_day": "2026-09-16"
+      },
+      {
+        "ref": "SENADO-XV-P82-20260915",
+        "claim": "OATH_CONSTITUTION_FULFILLED",
+        "event_day": "2026-09-15"
+      }
+    ],
+    "full_legal_condition": "never assert FULL_SENATOR_STATUS because credential and declarations not independently verified (BOE 2025 Art12).",
+    "first_public_at": "None for every real event"
+  },
+  "test_cases": [
+    "event stage metadata frozen",
+    "correct claim with unknown first_public at denied",
+    "wrong claim/family denied",
+    "injected receipt/first_public keyword not accepted by wrapper signature",
+    "live score always false"
+  ],
+  "implementation": "New small source_event_registry.py using mapping proxies and no JSON payload from HTTP; event kind metadata only, availability status from RC07 pure function, oath unsupported by RC07 and so denied.",
+  "acceptance": "unit tests pass using exact new file; no mutable caller-controlled trust registry.",
+  "cost": "local tests, no Actions",
+  "provenance": "source selection exposed from C01; no scientific novelty"
+}
