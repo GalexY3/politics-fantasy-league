@@ -1,0 +1,47 @@
+{
+  "cycle": "C29",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_POST_CORRECTED_INSTRUMENT_TWO_SIGKILL_CASES_FAIL_CLOSED",
+  "prereg_commit": "4b4f8679d803759856498cb37729fff053586d65",
+  "A": "Does abrupt termination during SHA object installation, before/after hardlink, produce aggregate orphan/unknown files and CLI error rather than success?",
+  "B": "Store temp left unobserved vs inventory detects each object-shard state.",
+  "C": "Run subprocess with exact source, pause during partial `_write_all` (prelink) or second `_verify_object` call after link, SIGKILL, native audit+CLI. Corrected an initially invalid instrumentation of os.link, which broke Python os.supports_dir_fd identity before first store call.",
+  "D": {
+    "source_blobs": {
+      "store": "4695c8d85924869212d916fa163a8f3548272ebc",
+      "audit": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "cli": "923a1c479c3f970e1325beff36699a277bc3773c"
+    },
+    "command": "PYTHONPATH=. python C29_sigkill_object_publication.py",
+    "test_script_sha256": "b2d0a8147de7c2f1e14157f8a8a229491c378aaecee899b04f4f99234f0e9b00",
+    "local_result": "/mnt/data/pfl_cont30_native/C29_sigkill_object_output.json"
+  },
+  "E": {
+    "invalid_initial_instrument": "Monkeypatch of module os.link changed global function identity and caused SECURE_STORE_UNSUPPORTED_PLATFORM before tested phase; invalid setup, documented and replaced by hook of _verify_object second invocation.",
+    "rerun": {
+      "before_link": {
+        "child_exit": -9,
+        "unexpected_object_entries": 1,
+        "orphan_objects": 0,
+        "cli_exit": 2
+      },
+      "after_link": {
+        "child_exit": -9,
+        "unexpected_object_entries": 1,
+        "orphan_objects": 1,
+        "cli_exit": 2
+      }
+    },
+    "no_release_grade": true
+  },
+  "F": "Inventory marks leftover transient files but does not repair them; no electricity outage, cross-ledger transaction or hostile writer test.",
+  "G": "Exact GitHub source and real subprocess kill, native audit/CLI check against disk bytes.",
+  "H": "Supports truthful residual-file detection under two specific interruption points, not crash recovery.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C30 turn targeted process-boundary cases into reproducible checked-in pytest and run without CI, then close grants."
+}
