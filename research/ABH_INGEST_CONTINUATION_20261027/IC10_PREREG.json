@@ -1,0 +1,22 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC10",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC09 platform constraint documented; inspection of secure_store.py shows temp unlink only in try that starts after _write_all completes.",
+  "H1": "Injected OSError during writing leaves a randomly named .tmp file in private hash shard. Move cleanup to encompass entire write/flush/link sequence.",
+  "H0": "Current nested finally already cleans failed initial writes and no partial temp remains.",
+  "tests": [
+    "monkeypatch _write_all to raise before completion; shard contains zero partial temp files",
+    "after failure canonical SHA object absent and manifest absent",
+    "normal fake source capture still pass",
+    "concurrent successful writers no tmp residue"
+  ],
+  "acceptance": "Source-exact test with captured negative before fix and pass afterward. Does not guarantee system crash/power-loss cleanup.",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
