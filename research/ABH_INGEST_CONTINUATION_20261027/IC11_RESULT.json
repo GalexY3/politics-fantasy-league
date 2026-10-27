@@ -1,0 +1,33 @@
+{
+  "cycle": "IC11",
+  "status": "CLOSED_READONLY_PRIVATE_AUDIT_FICTIONAL_PASS_WITH_SCOPE_GAP",
+  "prereg": "IC11_PREREG.json",
+  "deliverables": {
+    "src/politics_fantasy/private_audit.py": "04b3553e6dc229362f1e4519b4d541af02094f8b",
+    "tests/test_private_audit.py": "6de9614bb330d76cc0938c118653e717984eb7ad"
+  },
+  "tests": {
+    "focused_native": 35,
+    "passed": 35,
+    "source_test_sha_match": true
+  },
+  "results": [
+    "valid fake digest+quarantine => aggregate VALID_OBJECT, QUARANTINED_SCHEMA_PASSED, no URLs or contents",
+    "modified object yields BAD_RAW_SHA",
+    "malicious ../ path fails canonical object grammar and does not escape root",
+    "symlinked ledger rejects before reading outside",
+    "no review/unknown review never enables release"
+  ],
+  "new_caveat": "The audit was designed as read-only but uses _child_directory which creates missing objects/shard folders; check this mutation in next cycle IC12. Existing linkage is by SHA alone, which is not a unique capture event ID.",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 8,
+    "remaining": 12
+  },
+  "next": "IC12 negative control: audit must not create directories when target object missing."
+}
