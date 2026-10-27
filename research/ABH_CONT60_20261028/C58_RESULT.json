@@ -1,0 +1,56 @@
+{
+  "cycle": "C58",
+  "mode": "AB-P",
+  "status": "VALID_EXACT_GITHUB_27_LOT_SOURCE_PARENT_AND_ARITHMETIC_AUDIT",
+  "A": "Verify complete append-only 27 batch chain against original GitHub source and seed arithmetic, avoid repeating derived untested claims",
+  "B": {
+    "H0": "Parent links, data ops or derived ledger counts inconsistent",
+    "H1": "Every batch source header points to preceding batch, totals match seed and ops",
+    "H2": "Source chain consistency need not imply Python canonical state invariants"
+  },
+  "C": "Preregister; read GitHub tree 27 exact batch blob IDs, fetch 27 batch JSON groups 1-9,10-14,15-18,19-23,24-27; verify each parent_batch link and op type totals; source seed.json counts (14 nodes/23 edges); aggregate 5 group receipts; no changes to Atlas.",
+  "D": {
+    "seed_sha": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+    "group_evidence": [
+      "C58_G01_EVIDENCE.json",
+      "C58_G02A_EVIDENCE.json",
+      "C58_G02B_EVIDENCE.json",
+      "C58_G03A_EVIDENCE.json",
+      "C58_G03B_EVIDENCE.json"
+    ],
+    "latest_prior_batch": "0027-PFL-ABH-CONT50-C41-C50-20261027",
+    "op_types": {
+      "node.add": 49,
+      "node.set": 14,
+      "edge.add": 58,
+      "run.add": 169,
+      "complaint.add": 44,
+      "complaint.triage": 4
+    }
+  },
+  "E": {
+    "source_batches": 27,
+    "source_batch_missing": 0,
+    "group_parent_errors": 0,
+    "operations": 338,
+    "derived_state": {
+      "nodes": 63,
+      "edges": 81,
+      "runs": 169,
+      "complaints": 44
+    },
+    "consistent_with_previous_derived": true
+  },
+  "F": "Not complete semantic replay: does not execute official `ab_atlas/atlas_delta.py check`, validate all schema enum/graph invariants or calculate canonical SHA; group headers+counts do not prove no cross-group run ID duplicates. Tools refused one 9-file batch; split into 5/4 then continued without changing evidence.",
+  "G": "Exact GitHub seed and 27 delta file blobs with SHA references, direct JSON JS arithmetic, no native Python checkout",
+  "H": "Prior Atlas counters now source-corroborated for 27 lots, but release gates and source identity still unvalidated and unchanged.",
+  "I": {
+    "DRIFT": "D1",
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "new_N1_N2_N3": "0/0/0"
+  },
+  "J": "C59 regression original privacy/identity gate suites after C54/C56 to ensure no bypass or break, then C60 closure and ledger."
+}
