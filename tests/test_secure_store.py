@@ -259,3 +259,24 @@ def test_missing_private_root_ancestor_rejected_without_creating_tree(tmp_path):
     with pytest.raises(ValueError, match="MISSING_TRUSTED_STORE_PARENT"):
         store_bytes(nested, PAYLOAD, DIGEST)
     assert not (tmp_path / "missing_parent").exists()
+
+
+def test_caught_partial_jsonl_append_rolls_back_to_previous_complete_record(tmp_path, monkeypatch):
+    """Caught I/O errors do not poison later rows; does not simulate SIGKILL."""
+    import politics_fantasy.secure_store as module
+    append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic_id": 1})
+    ledger = tmp_path / "manifest.jsonl"
+    original = ledger.read_bytes()
+
+    def half_then_fail(fd, payload):
+        os.write(fd, payload[:max(1, len(payload) // 2)])
+        raise OSError("SYNTHETIC_PARTIAL_WRITE")
+
+    with monkeypatch.context() as patcher:
+        patcher.setattr(module, "_write_all", half_then_fail)
+        with pytest.raises(OSError, match="SYNTHETIC_PARTIAL_WRITE"):
+            append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic_id": 2})
+    assert ledger.read_bytes() == original
+    append_private_jsonl(tmp_path, "manifest.jsonl", {"synthetic_id": 3})
+    import json
+    assert [json.loads(x)["synthetic_id"] for x in ledger.read_text().splitlines()] == [1, 3]
