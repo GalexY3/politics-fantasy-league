@@ -1,0 +1,11 @@
+{
+  "id": "CDX01", "mode": "AB-H/AB-P", "purpose": "Contribuir desde una rama independiente comprobando el estado oficial de Atlas antes de incorporar trabajo nuevo.",
+  "A": {"outcome": "El investigador y los agentes pueden saber si los once lotes previos se reproducen con el motor Python original en un checkout completo."},
+  "B": {"baseline": "CURRENT de 8f75b73 documenta comprobación estructural JS pero no ejecución de atlas_delta.py check; una rama paralela A01 trata la misma cuestión desde otro entorno.", "alternatives": ["ejecutar CLI oficial local sin modificar lotes", "confiar en revisión JS", "sobrescribir o quitar lotes si fallan: rechazado"]},
+  "C": {"H1": "El replay oficial acepta seed y once lotes y produce hash de estado", "H0": "Rechaza datos por error de esquema, parent o referencias", "Hother": "Runtime no disponible: registrar bloqueo"},
+  "D": {"acceptance": "Registrar código de salida, mensaje, número de lotes y nodos, hash si existe; conservar cualquier fallo e inspeccionar causa antes de reparación."},
+  "E": {"method": "python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates; sin Actions", "input_base": "8f75b73"},
+  "F": {"pending": true}, "G": {"pending": true}, "H": {"audit": "Replay estructural no valida fuentes ni resultados; no atribuir resultado a una rama que pudiera haber avanzado simultáneamente."},
+  "I": {"gates": "unchanged", "CT2_identity": 29, "VSDS": "1/3"},
+  "J": {"next": "Seleccionar el siguiente trabajo tras observar resultado, con prioridad a integrar correcciones comprobadas o desbloquear producto."}
+}
