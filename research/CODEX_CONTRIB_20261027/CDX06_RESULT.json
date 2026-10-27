@@ -1,0 +1,14 @@
+{
+  "id": "CDX06", "mode": "AB-H/AB-P", "status": "ACCEPTED_FIXTURE_ONLY", "prereg_commit": "fb75e53",
+  "A": "Impedir presentar una unión parcial como comparación individual completa.",
+  "B": "Defecto conocido antes de preregistrar: conjuntos de códigos resueltos podían coincidir con nombres aún sin resolver, incluidos dos conjuntos vacíos.",
+  "C": "El comparador parcial se conserva; el estado indica INCOMPLETE_UNMATCHED si falta algún nombre y añade cobertura con numerador y denominador. Las discrepancias de conjuntos y totales se mantienen visibles por separado.",
+  "D": "17 tests ficticios pasan, incluidos cobertura completa, incompleta, cero resueltos, mismatch simultáneo y ausencia de filas; no se exportan nombres.",
+  "E": "Se comprobaron referencias del código: no se encontraron consumidores adicionales del campo de estado en src/tests/scripts.",
+  "F": "Python local, fixtures, sin Actions ni nuevas capturas.",
+  "G": "La igualdad de códigos no certifica identidad histórica ni elimina ambigüedad temporal; el cambio es una reparación de etiquetado de software.",
+  "H": {"complaint_ids": ["CDX06-PARTIAL-MATCH"], "limits": "El campo individual_match_status tiene nuevos valores; consumidores externos no presentes en este checkout podrían requerir adaptación."},
+  "I": {"CT2_identity_before_after": [29,29], "VSDS": "1/3", "scientific_novelty_0_3": 0, "release_gates": "unchanged"},
+  "J": "Revisar contratos de elegibilidad y rechazo de tipos malformados en las funciones de procedencia existentes.",
+  "complaints": [{"id":"CDX06-PARTIAL-MATCH", "status":"repaired", "description":"La igualdad de subconjuntos podía parecer coincidencia completa pese a nombres sin resolver."}], "github_actions_minutes": 0
+}

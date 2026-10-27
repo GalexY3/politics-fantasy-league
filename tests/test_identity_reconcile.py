@@ -23,7 +23,31 @@ class ReconciliationTests(unittest.TestCase):
         x=reconcile_vote(official(),derivative(),ROSTER)
         self.assertEqual(x["unmatched_names_by_option"]["S"],1)
         self.assertTrue(x["secondary_codes_equal_resolved_official"])
+        self.assertEqual(x["individual_match_status"],"INCOMPLETE_UNMATCHED")
+        self.assertEqual(x["roster_resolution_coverage"],{"resolved":2,"nominal_rows":3,"unmatched":1})
         self.assertNotIn("Apellido",json.dumps(x))
+    def test_empty_resolved_sets_are_not_a_complete_identity_match(self):
+        rows=[{"diputado":"Desconocido, Uno","voto":"Sí"}]
+        total={"afavor":1,"enContra":0,"abstenciones":0,"noVotan":0}
+        sec={"si":1,"no":0,"abstencion":0,"noVota":0}
+        x=reconcile_vote(official(rows,total),derivative({},sec),ROSTER)
+        self.assertTrue(x["secondary_codes_equal_resolved_official"])
+        self.assertEqual(x["individual_match_status"],"INCOMPLETE_UNMATCHED")
+        self.assertEqual(x["roster_resolution_coverage"]["resolved"],0)
+    def test_complete_matching_codes_require_full_coverage(self):
+        rows=ROWS[:2]
+        total={"afavor":1,"enContra":1,"abstenciones":0,"noVotan":0}
+        sec={"si":1,"no":1,"abstencion":0,"noVota":0}
+        x=reconcile_vote(official(rows,total),derivative(total=sec),ROSTER)
+        self.assertEqual(x["individual_match_status"],"SAME_CODE_SETS")
+        self.assertEqual(x["roster_resolution_coverage"]["unmatched"],0)
+    def test_incomplete_and_mismatch_retains_both_signals(self):
+        x=reconcile_vote(official(),derivative({"S":"2","N":"1"}),ROSTER)
+        self.assertEqual(x["individual_match_status"],"INCOMPLETE_UNMATCHED")
+        self.assertFalse(x["secondary_codes_equal_resolved_official"])
+    def test_complete_names_but_inconsistent_nominal_totals_are_not_full_match(self):
+        x=reconcile_vote(official(ROWS[:2]),derivative(),ROSTER)
+        self.assertEqual(x["individual_match_status"],"NOMINAL_TOTAL_MISMATCH")
     def test_exact_upstream_name_rule(self):
         self.assertEqual(roster_mapping(ROSTER)["Apellido Uno, Ana"],"1")
     def test_code_swap_detected(self):
@@ -50,6 +74,7 @@ class ReconciliationTests(unittest.TestCase):
         x=reconcile_vote(official([]),derivative(),ROSTER)
         self.assertEqual(x["status"],"NO_ORIGINAL_NOMINAL_ROWS")
         self.assertIsNone(x["unmatched_names_by_option"])
+        self.assertIsNone(x["roster_resolution_coverage"])
     def test_original_nominal_count_disagreement(self):
         x=reconcile_vote(official(ROWS[:2]),derivative(),ROSTER)
         self.assertFalse(x["official_nominal_counts_match_official_totals"])

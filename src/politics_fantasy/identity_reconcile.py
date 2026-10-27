@@ -71,7 +71,8 @@ def reconcile_vote(official_bytes:bytes, derivative:dict, roster_bytes:bytes)->d
     rows=d.get("votaciones")
     if rows is None or rows==[]:
         return {**common,"status":"NO_ORIGINAL_NOMINAL_ROWS",
-                "unmatched_names_by_option":None,"individual_match_status":"NOT_IDENTIFIABLE"}
+                "unmatched_names_by_option":None,"roster_resolution_coverage":None,
+                "individual_match_status":"NOT_IDENTIFIABLE"}
     if not isinstance(rows,list):raise ValueError("Original vote rows must be list")
     used_names=set(); used_codes=set()
     counts=Counter(); missing=Counter(); resolved={k:set() for k in OFFICIAL}
@@ -89,11 +90,25 @@ def reconcile_vote(official_bytes:bytes, derivative:dict, roster_bytes:bytes)->d
             if code in used_codes:raise ValueError("Duplicate resolved code")
             used_codes.add(code);resolved[cat].add(code)
     equal=all(resolved[k]==observed[k] for k in OFFICIAL)
+    nominal_totals_match=all(counts[k]==totals[k] for k in OFFICIAL)
+    missing_total=sum(missing.values())
+    if missing_total:
+        individual_status="INCOMPLETE_UNMATCHED"
+    elif not equal:
+        individual_status="CODE_SET_MISMATCH"
+    elif not nominal_totals_match:
+        individual_status="NOMINAL_TOTAL_MISMATCH"
+    elif sec_totals!=totals:
+        individual_status="AGGREGATE_TOTAL_MISMATCH"
+    else:
+        individual_status="SAME_CODE_SETS"
     return {**common,"status":"STRUCTURAL_RECONCILIATION",
-            "official_nominal_counts_match_official_totals":all(counts[k]==totals[k] for k in OFFICIAL),
+            "official_nominal_counts_match_official_totals":nominal_totals_match,
             "official_nominal_count_by_option":{k:counts[k] for k in OFFICIAL},
             "roster_resolved_count_by_option":{k:len(resolved[k]) for k in OFFICIAL},
             "unmatched_names_by_option":{k:missing[k] for k in OFFICIAL},
+            "roster_resolution_coverage":{"resolved":len(used_codes),"nominal_rows":len(rows),
+                                           "unmatched":missing_total},
             "secondary_codes_equal_resolved_official":equal,
-            "individual_match_status":"SAME_CODE_SETS" if equal else "CODE_SET_MISMATCH",
+            "individual_match_status":individual_status,
             "limitations":["No historical roster proof","One vote only","No first-publication timestamp"]}
