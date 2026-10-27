@@ -1,0 +1,16 @@
+{
+  "cycle": "C37",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Does synthetic forecast.poisson_log_loss admit NaN, infinity or noninteger observed events, returning invalid or misleading predictive loss despite evaluation.poisson_nll rejecting those inputs?",
+  "B": [
+    "Forecast already validates type/finite",
+    "Forecast uses only y<0,lam<=0 and silently accepts nonfinite floats/nonint counts"
+  ],
+  "C": "Compare exact-source forecast.poisson_log_loss against evaluation.poisson_nll on synthetic edge cases, run native Python red-green test, add strict count/rate checks if observed; keep prior/current demo semantics.",
+  "D": {
+    "source_forecast_sha": "5aaa18dfe260149740a3ffc962ab5ecb6c46b2db",
+    "source_eval_sha": "985846a93b8665bab15fd0db7144c3e4e458c5c3",
+    "independent": "same-fold information availability not measured, only numeric API safety"
+  }
+}
