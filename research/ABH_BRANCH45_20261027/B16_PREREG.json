@@ -1,0 +1,11 @@
+{
+  "id": "B16",
+  "stage": "B",
+  "status": "PREREGISTERED",
+  "mode": "AB-P adversarial original vote event integrity",
+  "dependency": "B15 fixed exact seat uniqueness in a single Senado voting event and all 10 original events pass; parser doesn't yet enforce source-issued num_vot/CodVotacion per session uniqueness.",
+  "H1": "All 10 original Senado votaciones have unique source-issued `num_vot` and `CodVotacion`; duplication of a whole accepted vote event must be rejected, even if aggregates reconcile and no seat repeats within separate vote nodes.",
+  "H0": "Official source legitimately duplicates num_vot/CodVotacion or source lacks an unambiguous event reference, prohibiting this invariant.",
+  "procedure": "Inspect 10 original vote IDs and code IDs, insert duplicate of an entire XML vote in memory and observe parser behavior. If original IDs unique, patch parser to validate each vote's identifiers and reject missing/duplicate values; add tests and rerun official file. Preserve document-scoped key semantics, never call `CodVotacion` person ID.",
+  "acceptance": "One independent original schema control and exact blob native tests + original 10/10 replay if patch supported."
+}
