@@ -10,25 +10,25 @@ from politics_fantasy.progress_api import progress_status, evaluate_scope, Inval
 
 
 def baseline():
-    return json.loads(DEFAULT_SCOPE.read_text(encoding="utf8"))
+    return json.loads((DEFAULT_SCOPE.parent / "progress_scope_v3_20261026.json").read_text(encoding="utf8"))
 
 
-def test_current_v3_global_and_tracks():
+def test_current_v4_global_and_tracks():
     r = progress_status()
     assert r["ok"] is True
-    assert abs(r["progress_pct"] - 36.35) < 1e-8
-    assert r["progress_display_pct"] == 36.4
-    assert r["revision"] == 3
+    assert abs(r["progress_pct"] - 36.90) < 1e-8
+    assert r["progress_display_pct"] == 36.9
+    assert r["revision"] == 4
     assert r["track_count"] == 9
     assert r["milestone_count"] == 36
     assert sum(t["weight"] for t in r["tracks"]) == 100
-    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 36.35) < 1e-8
+    assert abs(sum(t["contribution_pp"] for t in r["tracks"]) - 36.90) < 1e-8
 
 
 def test_maturity_and_release_gates():
     r = progress_status()
     assert r["level_histogram"] == {
-        "0": 10, "1": 7, "2": 2, "3": 15, "4": 2, "5": 0
+        "0": 8, "1": 9, "2": 2, "3": 15, "4": 2, "5": 0
     }
     assert len(r["release_blockers"]) == 6
     assert r["global_status"] == "NOT_PUBLIC_RELEASE_READY"
@@ -73,3 +73,10 @@ def test_unknown_scope_returns_error(tmp_path: Path):
 
 def test_missing_file_fails_closed(tmp_path: Path):
     assert progress_status(tmp_path / "missing.json")["error"] == "SCOPE_UNAVAILABLE"
+
+
+def test_historical_v3_kept_immutable():
+    r = evaluate_scope(baseline())
+    assert r["revision"] == 3
+    assert abs(r["progress_pct"] - 36.35) < 1e-8
+    assert len(r["release_blockers"]) == 6
