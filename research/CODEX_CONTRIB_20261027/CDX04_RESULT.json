@@ -1,0 +1,15 @@
+{
+  "id": "CDX04", "mode": "AB-H/AB-P", "status": "ACCEPTED_LOCAL_BROWSER_FLOW", "prereg_commit": "f8839a7",
+  "A": "Hacer jugable en navegador el ciclo sintético construido en CDX03.",
+  "B": "El núcleo de jornadas era accesible solo como función Python; la interfaz también restauraba automáticamente los titulares al vaciar el borrador.",
+  "C": "Se añadió POST local para simular una jornada esperada, se muestra el reloj de juego y se seleccionan las jornadas pendientes y cerradas sin IDs fijos; el borrador vacío ya no se restaura.",
+  "D": "11 pruebas de jornada/backend y HTTP pasan; rechazan Host/Origin externo, IDs inválidos y verifican idempotencia. Sintaxis JS pasa.",
+  "E": "Chromium headless real en loopback: compra F04, guarda alineación, vacía borrador, simula y cierra, observa 5,5 puntos sintéticos y guarda alineación para la siguiente jornada. Sin excepciones JS ni violaciones CSP.",
+  "F": "Entorno local Windows, test HTTP y navegador real; no se solicitó Actions. Los datos y eventos del juego son ficticios.",
+  "G": "Recorrido navegable en este entorno; no acredita aceptación por usuarios, disponibilidad pública, seguridad multiusuario ni scoring de personas reales.",
+  "H": {"complaint_ids": ["CDX04-DRAFT-RESET"], "limits": "La acción adelanta solo el reloj de la demo y se explica en la interfaz; no modifica el reloj del sistema."},
+  "I": {"product_acceptance": "smoke E2E local ficticio", "CT2_identity_before_after": [29,29], "VSDS": "1/3", "release_gates": "unchanged"},
+  "J": "Auditar consistencia de eventos oficiales con un contraste no redundante; no convertir coherencia interna en confirmación externa.",
+  "complaints": [{"id":"CDX04-DRAFT-RESET", "status":"repaired", "description":"Un borrador de alineación vaciado se repoblaba con la selección guardada; null distingue la inicialización de un borrador vacío."}],
+  "github_actions_minutes": 0
+}

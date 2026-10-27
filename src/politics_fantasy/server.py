@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from .product import GameError, add_club, seed_demo, set_lineup, state, transfer
+from .product import GameError, add_club, seed_demo, set_lineup, simulate_round, state, transfer
 from .lab import local_lab_report
 from .field_api import local_field_status
 from .actor_api import local_actor_universe_status
@@ -86,7 +86,7 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
         def do_POST(self):
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
-            if urlsplit(self.path).path not in ('/api/clubs','/api/buy','/api/sell','/api/lineup'):
+            if urlsplit(self.path).path not in ('/api/clubs','/api/buy','/api/sell','/api/lineup','/api/simulate-round'):
                 return self.reply(404,{'error':'NOT_FOUND'})
             origin=self.headers.get('Origin')
             if origin and origin not in (f'http://{self.headers.get("Host", "")}',f'http://127.0.0.1:{self.server.server_port}',f'http://localhost:{self.server.server_port}'):
@@ -106,6 +106,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 elif route in ('/api/buy','/api/sell'):
                     result=transfer(db_path,club_id=body.get('club_id'),figure_id=body.get('figure_id'),
                                     action=route.removeprefix('/api/'))
+                elif route == '/api/simulate-round':
+                    result=simulate_round(db_path,round_id=body.get('round_id'))
                 else:
                     result=set_lineup(db_path,club_id=body.get('club_id'),round_id=body.get('round_id'),
                                       figures=body.get('figures'))
