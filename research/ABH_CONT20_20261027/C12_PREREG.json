@@ -1,0 +1,29 @@
+{
+  "cycle": "C12",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C11",
+  "A": {
+    "question": "Does private_audit._ledger accept JSONL records with duplicate keys that can make review/manifest provenance ambiguous?",
+    "estimand": "Fail-closed parsing per JSONL record, non-release-grade",
+    "acceptance": "Reject duplicate keys in manifest/review with controlled ValueError BAD_LEDGER_JSON; preserve existing read-only behavior and CLI scrub; add synthetic test."
+  },
+  "B": {
+    "rivals": [
+      "Python json.loads silently keeps last duplicate key",
+      "An existing check catches duplicate JSON members",
+      "Strict object_pairs_hook safely rejects ambiguous members without exposing contents"
+    ]
+  },
+  "C": "Test stdlib json.loads on synthetic JSON with repeated capture_id. Amend _ledger to parse via rejecting object_pairs_hook. Add pytest for manifest duplicate key and review duplicate key, and locally run stand-alone exact parsing helper.",
+  "D": {
+    "source": "src/politics_fantasy/private_audit.py and tests/test_private_audit.py",
+    "falsifier": "Malformed JSON passes audit or CLI emits raw private record. Don't conflate duplicate member keys with duplicate rows or IDs."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
