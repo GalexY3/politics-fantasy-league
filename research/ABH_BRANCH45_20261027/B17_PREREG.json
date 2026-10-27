@@ -1,0 +1,11 @@
+{
+  "id": "B17",
+  "stage": "B",
+  "mode": "AB-P regression integration",
+  "status": "PREREGISTERED",
+  "dependency": "B08 validated modified original Congress QA 10/10, B16 modified Senado QA 13/13, originals 4 JSON and one XML with ten events. Need validate them together on exact current committed source bytes, not rely on previous isolated test runs.",
+  "H1": "A single native Python suite runs both latest exact source and tests (10+13=23), then all 4 original Congress votes and all 10 Senate events, without differences or source-family label contamination.",
+  "H0": "A cross-module import, hidden test dependency or source mismatch makes the combined suite fail; diagnose and patch in this cycle only if scoped.",
+  "test": "Run `unittest discover` with file pattern test_source_original_*_qa.py on SHA-confirmed local source plus private original ZIP replay for both chambers; record exact passed and source bytes hashes. No nominal details logged or committed.",
+  "acceptance": "23 tests and 14 event originals PASS, or first reproducible failure with explicit output. No public deployment, no publisher first-public or person ID inference."
+}
