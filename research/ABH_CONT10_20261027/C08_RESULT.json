@@ -1,0 +1,39 @@
+{
+  "cycle": "C08",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_SYNTHETIC_MICROTEST_PASS_FULL_SUITE_UNRUN",
+  "preregister_commit": "d1d166c889d57e73330b3e9f16e859736f4b614b",
+  "A": "Partial os.write can interleave JSONL records under concurrent appenders",
+  "B": "O_APPEND only reserves offset per syscall, flock can serialize cooperating writers",
+  "C": "Advisory flock LOCK_EX around _write_all+fsync; 16-thread delayed split-write negative test",
+  "D": {
+    "implementation_commit": "301ee015352809fe2cd7a091e5858cbf5fb411e9",
+    "regression_commit": "ca352fdf0fb1d907705bbb90039fe8ca79c82a9a",
+    "old_source_blob": "412245194164fd458bbab1a8d274e766c269738a",
+    "new_source_blob": "99b8b35ee9f6d2f287b80f8d2713a925d9ce2fc0",
+    "microtest": "Local standalone POSIX tempfile and os.write test, not full imported repo secure_store."
+  },
+  "E": {
+    "without_lock": {
+      "json_lines": 0,
+      "total_lines": 16
+    },
+    "with_flock": {
+      "json_lines": 16,
+      "total_lines": 16,
+      "distinct_records": 16
+    },
+    "outcome": "COOPERATIVE_LOCK_SERIALIZES_FRAGMENTS_IN_SYNTHETIC_TEST"
+  },
+  "F": "Advisory locks only coordinate cooperating writers. Python repo test appended but unrun; no crash atomicity, cross-filesystem guarantee or OS-level threat proof.",
+  "G": "Isolated experiment in separate 16-thread setup reproduced before/after contrast.",
+  "H": "Mitigates a mechanism for ledger interleaving, not publisher data integrity.",
+  "I": {
+    "productV4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "scientific_discovery": "NO"
+  },
+  "J": "Branch C09: fsync data bytes alone may not make directory entries persist across power crash."
+}
