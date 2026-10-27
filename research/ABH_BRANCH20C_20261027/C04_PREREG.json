@@ -1,0 +1,13 @@
+{
+  "id": "C04",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "dependency": "C03 immutable read-only index 3 records, 10/10 local. Existing localhost server /api/source-stages absent.",
+  "question": "Can add a no-user-authenticity, read-only localhost route that surfaces quarantined official document stages without accepting caller provenance/first-public times or enabling scoring?",
+  "H1": "GET /api/source-stages uses only internal public_stage_catalog; arbitrary query parameters cannot modify catalog; POST stays unrecognized; local-host check precedes response.",
+  "H0": "User query parameters such as first_public_at or trusted_registry change eligibility or mark source validated, or POST can mutate it.",
+  "plan": "Import public_stage_catalog from source_event_registry into existing server.py, serve static GET /api/source-stages behind existing _is_local_host(). No route for POST. Test exact new route and Host rejection on local ThreadingHTTPServer with imported Python package or stubs; run code directly.",
+  "accept": "At least three HTTP tests (localhost status unchanged with forged query, bad host blocked, POST not allowed) plus existing 10 source-stage tests PASS. Full project E2E not claimed.",
+  "cost": "local Python only, GitHub commits skip CI",
+  "guardrails": "Return only document metadata; no names, no personal scoring, no claims of independently verified timestamps or rights."
+}
