@@ -141,6 +141,8 @@ def seed_demo(path: Path, *, now: datetime | None = None) -> None:
 def _get(db: sqlite3.Connection, table: str, key: str):
     if table not in {'club','figure','fantasy_round'}:
         raise ValueError('Invalid table')
+    if not isinstance(key, str) or not key:
+        raise GameError('INVALID_ID','El identificador debe ser una cadena no vacía.')
     return db.execute(f'SELECT * FROM {table} WHERE id=?', (key,)).fetchone()
 
 
@@ -208,7 +210,8 @@ def transfer(path: Path, *, club_id: str, figure_id: str, action: str, when: dat
 def set_lineup(path: Path, *, club_id: str, round_id: str, figures: list[str],
                when: datetime | None = None) -> dict:
     now = as_utc(when or utc_now())
-    if not isinstance(figures, list) or len(figures) != LINEUP_SIZE or len(set(figures)) != LINEUP_SIZE or not all(isinstance(f,str) for f in figures):
+    if (not isinstance(figures, list) or len(figures) != LINEUP_SIZE
+            or not all(isinstance(f,str) for f in figures) or len(set(figures)) != LINEUP_SIZE):
         raise GameError('BAD_LINEUP',f'El once reducido exige {LINEUP_SIZE} figuras distintas.')
     with connect(path) as db:
         db.execute('BEGIN IMMEDIATE')

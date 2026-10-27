@@ -11,8 +11,8 @@ T=datetime(2026,10,25,tzinfo=timezone.utc)
 
 def receipt(tmp):
  i=tmp/'i.csv';a=tmp/'a.csv'
- i.write_text('votacion_id,fecha,diputado_id,diputado,grupo,voto\ns202-v020,2026-09-30,001,NotPublicName,G1,Sí\n')
- a.write_text('id,fecha,si,no,abstencion,no_vota\ns202-v020,2026-09-30,1,0,0,0\n')
+ i.write_text('votacion_id,fecha,diputado_id,diputado,grupo,voto\ns202-v020,2026-09-30,001,NotPublicName,G1,Sí\n', encoding="utf-8")
+ a.write_text('id,fecha,si,no,abstencion,no_vota\ns202-v020,2026-09-30,1,0,0,0\n', encoding="utf-8")
  r=make_field_report(individual=i,aggregate=a,acquired_at=T)
  out=tmp/'out.json';write_report_once(r,out)
  return out
@@ -27,8 +27,8 @@ def test_b30b_26_valid_report_digest_check_and_sanitized_counts(tmp_path):
  assert x['reconciliation_complete']
 
 def test_b30b_27_tampering_report_returns_rejected(tmp_path):
- file=receipt(tmp_path);r=json.loads(file.read_text());r['coverage']['individual']['n_rows']=999
- file.write_text(json.dumps(r));x=local_field_status(file)
+ file=receipt(tmp_path);r=json.loads(file.read_text(encoding="utf-8"));r['coverage']['individual']['n_rows']=999
+ file.write_text(json.dumps(r), encoding="utf-8");x=local_field_status(file)
  assert x['mode']=='FIELD_REPORT_REJECTED' and not x['certified']
 
 def test_b30b_28_client_never_receives_personal_rows(tmp_path):
@@ -38,7 +38,7 @@ def test_b30b_28_client_never_receives_personal_rows(tmp_path):
 
 def test_b30b_29_frontend_visible_limits_and_offline_documentation():
  root=Path(__file__).resolve().parents[1]/'src/politics_fantasy/web'
- js=(root/'app.js').read_text()
+ js=(root/'app.js').read_text(encoding="utf-8")
  assert '/api/field' in js and 'fieldPanel()' in js
  assert 'SIN CSV NOMINALES IMPORTADOS' in js and 'Esto NO certifica autenticidad' in js
  assert 'No se atribuyen puntos' not in js or 'Sin puntos para personas reales' in js

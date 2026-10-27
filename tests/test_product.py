@@ -78,6 +78,9 @@ def test_lineup_rejects_duplicates(db):
     check_error('BAD_LINEUP',set_lineup,db,club_id='demo',round_id='next',figures=['F01','F01','F02'])
     check_error('BAD_LINEUP',set_lineup,db,club_id='demo',round_id='next',figures=['F01','F02'])
 
+def test_lineup_rejects_nested_json_values(db):
+    check_error('BAD_LINEUP',set_lineup,db,club_id='demo',round_id='next',figures=['F01','F02',{}])
+
 def test_lineup_rejects_non_owned(db):
     check_error('NOT_OWNED',set_lineup,db,club_id='demo',round_id='next',figures=['F01','F02','F04'])
 
@@ -152,6 +155,27 @@ def test_http_api_buy_and_state(http_server):
         assert json.load(resp)['result']['credits']==20
     with urllib.request.urlopen(http_server+'/api/state') as resp:
         assert any(f['id']=='F04' and f['owner_id']=='demo' for f in json.load(resp)['figures'])
+
+
+@pytest.mark.parametrize('route,body', [
+    ('buy', {'club_id': [], 'figure_id': 'F04'}),
+    ('buy', {'club_id': 'demo', 'figure_id': {}}),
+    ('sell', {'club_id': {}, 'figure_id': 'F01'}),
+    ('lineup', {'club_id': [], 'round_id': 'next', 'figures': ['F01','F02','F03']}),
+    ('lineup', {'club_id': 'demo', 'round_id': {}, 'figures': ['F01','F02','F03']}),
+])
+def test_http_invalid_identifiers_return_json_without_mutating_state(http_server, route, body):
+    with urllib.request.urlopen(http_server+'/api/state') as resp:
+        before = json.load(resp)
+    req=urllib.request.Request(http_server+'/api/'+route,data=json.dumps(body).encode('utf-8'),
+                               headers={'Content-Type':'application/json'},method='POST')
+    with pytest.raises(urllib.error.HTTPError) as err:
+        urllib.request.urlopen(req)
+    assert err.value.code == 400
+    assert json.load(err.value)['error'] == 'INVALID_ID'
+    with urllib.request.urlopen(http_server+'/api/state') as resp:
+        after = json.load(resp)
+    assert after == before
 
 def test_http_rejects_bad_media_and_cross_origin(http_server):
     req=urllib.request.Request(http_server+'/api/buy',data=b'{}',headers={'Content-Type':'text/plain'},method='POST')

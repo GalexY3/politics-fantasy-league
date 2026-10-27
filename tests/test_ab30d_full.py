@@ -13,11 +13,11 @@ def _load(name):
 def test_registered_30_distinct_estimands_with_disjoint_seeds():
     experiment=_load('ab30d_full')
     assert experiment.check_invariants()==30
-    prereg=json.loads((DR/'PREREG.json').read_text())
+    prereg=json.loads((DR/'PREREG.json').read_text(encoding="utf-8"))
     assert len({(x['A']['claim'],x['A']['estimand']) for x in prereg['cases']})==30
 
 def test_results_record_all_A_through_J_without_field_claims():
-    d=json.loads((DR/'RESULTS_AUDITED.json').read_text())
+    d=json.loads((DR/'RESULTS_AUDITED.json').read_text(encoding="utf-8"))
     assert d['n_cycles_A_to_J_completed_computational']==30
     assert d['n_empirical_field_cycles']==0
     assert d['n_independent_external_replications']==0
@@ -28,7 +28,7 @@ def test_results_record_all_A_through_J_without_field_claims():
     assert all(x['E']['run_stress_holdout']['n']==80 for x in d['cycles'])
 
 def test_adversarial_audit_rejects_leakage_and_mismatched_units():
-    d=json.loads((DR/'RESULTS_AUDITED.json').read_text())
+    d=json.loads((DR/'RESULTS_AUDITED.json').read_text(encoding="utf-8"))
     by={c['id']:c for c in d['cycles']}
     for cid in ['T13','T17','M05','R19','R22','F29']:
         assert by[cid]['J']['scientific_verdict'].startswith('INVALID')
@@ -52,6 +52,6 @@ def test_known_negative_controls_and_ablations():
 
 def test_audit_source_hash_unchanged():
     import hashlib
-    p=json.loads((DR/'RESULTS_AUDITED.json').read_text())
+    p=json.loads((DR/'RESULTS_AUDITED.json').read_text(encoding="utf-8"))
     assert p['source_raw_result_sha256']==hashlib.sha256((DR/'RESULTS.json').read_bytes()).hexdigest()
     assert p['source_prereg_sha256']==hashlib.sha256((DR/'PREREG.json').read_bytes()).hexdigest()

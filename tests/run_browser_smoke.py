@@ -46,6 +46,8 @@ def main():
             obj=json.load(h)
             assert obj["revision"]==3 and obj["progress_display_pct"]==36.4
             assert len(obj["release_blockers"])==6
+        with urlopen(BASE+"/api/state",timeout=4) as h:
+            votes=json.load(h)["observatory"]["votes"][:12]
         results["passes"].append("HTTP local progress V2 and six blocked launch gates")
         with urlopen(BASE+"/api/official-nominations",timeout=6) as h:
             nominations=json.load(h)
@@ -65,7 +67,16 @@ def main():
             browser=play.chromium.launch(headless=True)
             page=browser.new_page(viewport={"width":1380,"height":860},device_scale_factor=1)
             errors=[]
+            csp_errors=[]
             page.on("pageerror",lambda error:errors.append(str(error)))
+            page.on("console",lambda message:csp_errors.append(message.text)
+                    if message.type=="error" and any(term in message.text.lower()
+                        for term in ("security policy","content-security-policy","refused to apply")) else None)
+            page.add_init_script("""window.cspViolations=[];
+                document.addEventListener('securitypolicyviolation',event=>{
+                    window.cspViolations.push({directive:event.effectiveDirective,
+                        blockedURI:event.blockedURI});
+                });""")
             page.goto(BASE,wait_until="domcontentloaded",timeout=18000)
             page.locator("[data-tab='progress']").click()
             page.locator("#content").get_by_text("Progreso del proyecto",exact=False).first.wait_for(timeout=20000)
@@ -82,6 +93,29 @@ def main():
             market=page.locator("#content").inner_text()
             assert "Mercado" in market or "mercado" in market,market[:250]
             results["passes"].append("Chromium navigation to fictional transfer market")
+            page.locator("[data-tab='observatory']").click()
+            bars=page.locator("svg.vote-stack")
+            assert len(votes)==12 and bars.count()==len(votes)
+            geometry=bars.evaluate_all("""bars=>bars.map(bar=>({
+                width:bar.getBoundingClientRect().width,
+                height:bar.getBoundingClientRect().height,
+                label:bar.getAttribute('aria-label'),
+                segments:Array.from(bar.querySelectorAll('rect'),rect=>({
+                    width:rect.getBoundingClientRect().width,
+                    fill:getComputedStyle(rect).fill
+                }))
+            }))""")
+            for actual,vote in zip(geometry,votes):
+                assert actual["width"]>0 and actual["height"]>0,actual
+                assert len(actual["segments"])==3 and f'Total {vote["total"]}' in actual["label"],actual
+                for segment,kind,color in zip(actual["segments"],("yes","no","abstain"),
+                        ("rgb(148, 219, 178)","rgb(229, 154, 131)","rgb(230, 191, 128)")):
+                    expected=actual["width"]*vote[kind]/vote["total"]
+                    assert abs(segment["width"]-expected)<1,(actual,vote,expected)
+                    assert segment["fill"]==color,segment
+            assert page.locator("#content [style]").count()==0
+            results["passes"].append("Observatory SVG vote bars have visible proportional segments and accessible totals under strict CSP")
+            page.screenshot(path=str(ART/"browser_observatory.png"),full_page=True)
             page.locator("[data-tab='atlas']").click()
             atlas=page.locator("#content").inner_text()
             assert "Atlas" in atlas or "atlas" in atlas,atlas[:250]
@@ -95,6 +129,9 @@ def main():
             results["passes"].append("Chromium navigation to historical electoral atlas")
             assert not errors,repr(errors[:5])
             results["passes"].append("No uncaught JavaScript page errors")
+            assert not csp_errors,repr(csp_errors[:5])
+            assert not page.evaluate("window.cspViolations"),repr(page.evaluate("window.cspViolations"))
+            results["passes"].append("No CSP violations or CSP console errors across overview, progress, market, observatory and atlas")
             page.screenshot(path=str(ART/"browser_progress_v2.png"),full_page=True)
             browser.close()
         results["status"]="PASS"

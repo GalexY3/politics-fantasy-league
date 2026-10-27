@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Mapping
-from .events import PoliticalEvent, as_utc, unique_events
+from .events import PoliticalEvent, as_utc, observable_event_revisions
 
 
 @dataclass(frozen=True)
@@ -29,10 +29,8 @@ def person_week_points(
     if end <= start or knowledge_cutoff < end:
         raise ValueError("Round must close before score is finalized")
     counts: dict[str, int] = {}
-    for event in unique_events(events):
+    for event in observable_event_revisions(events, as_of=knowledge_cutoff):
         if person_id not in event.person_ids or not (start <= as_utc(event.occurred_at) < end):
-            continue
-        if not event.observable_at(knowledge_cutoff):
             continue
         if event.kind not in rule.weights:
             continue  # explicit unknown, not an implicit negative score

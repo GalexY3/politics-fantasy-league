@@ -76,3 +76,45 @@ def test_counterfactual_change_in_hidden_future_does_not_change_forecast():
     kwargs=dict(person_id='P1',start=dt(1),as_of=dt(6),exposure=8)
     assert historical_rate(published+invisible,**kwargs)==historical_rate(
         published+alternative,**kwargs)
+
+
+def test_public_revisions_count_one_event_and_preserve_historical_cutoff():
+    original = event('revised', 3)
+    revised = event('revised', 7, kind='initiative_registered', ver='v2')
+    xs = [revised, original, original]
+    score_args = dict(person_id='P1', start=dt(1), end=dt(5))
+    assert person_week_points(xs, knowledge_cutoff=dt(6), **score_args) == 2.0
+    assert person_week_points(xs, knowledge_cutoff=dt(8), **score_args) == 3.0
+    for cutoff in (dt(6), dt(8)):
+        prediction = historical_rate(xs, person_id='P1', start=dt(1), as_of=cutoff, exposure=8)
+        assert prediction.observed_history == 1
+        assert prediction.event_rate == pytest.approx(0.2)
+    # The archive-level deduplicator must still preserve both source revisions.
+    assert len(unique_events(xs)) == 2
+
+
+@pytest.mark.parametrize('revised', [
+    event('revised', 7, who=('P2',), ver='v2'),
+    event('revised', 7, occ=6, ver='v2'),
+])
+def test_revision_resolved_before_person_and_event_time_filters(revised):
+    xs = [event('revised', 3), revised]
+    assert person_week_points(xs, person_id='P1', start=dt(1), end=dt(5),
+                              knowledge_cutoff=dt(8)) == 0.0
+    # A corrected occurrence outside the requested history must not resurrect v1.
+    prediction = historical_rate(xs, person_id='P1', start=dt(1), as_of=dt(8), exposure=8)
+    assert prediction.observed_history == (1 if revised.person_ids == ('P1',) else 0)
+
+
+def test_revision_outside_history_does_not_resurrect_original():
+    xs = [event('revised', 3, occ=2), event('revised', 7, occ=1, ver='v2')]
+    prediction = historical_rate(xs, person_id='P1', start=dt(2), as_of=dt(8), exposure=8)
+    assert prediction.observed_history == 0
+
+
+def test_ambiguous_public_revisions_fail_instead_of_double_counting():
+    xs = [event('revised', 3), event('revised', 3, ver='v2')]
+    with pytest.raises(ValueError, match='Ambiguous public revisions'):
+        person_week_points(xs, person_id='P1', start=dt(1), end=dt(5), knowledge_cutoff=dt(8))
+    with pytest.raises(ValueError, match='Ambiguous public revisions'):
+        historical_rate(xs, person_id='P1', start=dt(1), as_of=dt(8), exposure=8)

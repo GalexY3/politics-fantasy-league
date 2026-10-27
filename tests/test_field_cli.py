@@ -9,7 +9,7 @@ I='votacion_id,fecha,temas,diputado_id,diputado,grupo,voto\ns202-v020,2026-09-30
 A='id,fecha,si,no,abstencion,no_vota\ns202-v020,2026-09-30,1,0,0,0\n'
 
 def mk(tmp):
- i=tmp/'i.csv';a=tmp/'a.csv';i.write_text(I);a.write_text(A);return i,a
+ i=tmp/'i.csv';a=tmp/'a.csv';i.write_text(I, encoding="utf-8");a.write_text(A, encoding="utf-8");return i,a
 
 def test_b30b_19_report_produced_with_field_provenance(tmp_path):
  i,a=mk(tmp_path);r=make_field_report(individual=i,aggregate=a,acquired_at=T)
@@ -24,7 +24,7 @@ def test_b30b_21_write_once_not_silent_overwrite(tmp_path):
  i,a=mk(tmp_path);r=make_field_report(individual=i,aggregate=a,acquired_at=T)
  p=tmp_path/'out/report.json';write_report_once(r,p)
  with pytest.raises(FileExistsError):write_report_once(r,p)
- assert json.loads(p.read_text())==r
+ assert json.loads(p.read_text(encoding="utf-8"))==r
 
 def test_b30b_22_report_has_no_deputy_identifiers_or_names(tmp_path):
  i,a=mk(tmp_path);r=make_field_report(individual=i,aggregate=a,acquired_at=T)

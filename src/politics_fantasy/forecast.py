@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from math import log, exp
 from typing import Iterable
-from .events import PoliticalEvent, as_utc, unique_events
+from .events import PoliticalEvent, as_utc, observable_event_revisions
 
 
 @dataclass(frozen=True)
@@ -31,9 +31,9 @@ def historical_rate(
     as_of, start = as_utc(as_of), as_utc(start)
     if start >= as_of or exposure < 0 or prior_events <= 0 or prior_exposure <= 0:
         raise ValueError("Invalid history cutoff or nonpositive prior")
-    history = [e for e in unique_events(list(events)) if
+    history = [e for e in observable_event_revisions(list(events), as_of=as_of) if
                person_id in e.person_ids and start <= as_utc(e.occurred_at) < as_of and
-               e.observable_at(as_of) and not e.kind.startswith("scheduled_")]
+               not e.kind.startswith("scheduled_")]
     n = len(history)
     rate = (n + prior_events) / (exposure + prior_exposure)
     return Prediction(person_id, as_of, rate, rate, n, exposure)

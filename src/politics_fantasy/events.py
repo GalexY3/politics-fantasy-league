@@ -50,3 +50,26 @@ def unique_events(events: list[PoliticalEvent]) -> list[PoliticalEvent]:
             raise ValueError(f"Conflicting source revision for event: {key}")
         found[key] = e
     return list(found.values())
+
+
+def observable_event_revisions(events: list[PoliticalEvent], *, as_of: datetime) -> list[PoliticalEvent]:
+    """Resolve each event to its latest public revision at the knowledge cutoff.
+
+    A revision's ``first_public_at`` must describe when that revision became
+    public. Equally recent revisions are ambiguous and must be reconciled by
+    the caller; version labels do not provide a chronological order. Keep
+    ``unique_events`` separate so archives can retain all source revisions.
+    """
+    cutoff = as_utc(as_of)
+    revisions: dict[str, list[PoliticalEvent]] = {}
+    for event in unique_events(events):
+        if event.observable_at(cutoff):
+            revisions.setdefault(event.event_id, []).append(event)
+    resolved = []
+    for event_id, candidates in revisions.items():
+        latest_publication = max(as_utc(event.first_public_at) for event in candidates)
+        latest = [event for event in candidates if as_utc(event.first_public_at) == latest_publication]
+        if len(latest) != 1:
+            raise ValueError(f"Ambiguous public revisions for event: {event_id}")
+        resolved.append(latest[0])
+    return resolved

@@ -7,7 +7,7 @@ HI='votacion_id,fecha,temas,diputado_id,grupo,voto\n'
 HA='id,fecha,si,no,abstencion,no_vota\n'
 
 def sources(tmp, individuals='s202-v020,2026-09-30,instituciones,001,GR1,Sí\n',aggregates='s202-v020,2026-09-30,1,0,0,0\n'):
- p=tmp/'a.csv';p.write_text(HI+individuals);q=tmp/'b.csv';q.write_text(HA+aggregates)
+ p=tmp/'a.csv';p.write_text(HI+individuals, encoding="utf-8");q=tmp/'b.csv';q.write_text(HA+aggregates, encoding="utf-8")
  return read_snapshot(p,kind='individual',acquired_at=T),read_snapshot(q,kind='aggregate',acquired_at=T)
 
 def test_b30b_13_asof_respects_local_acquisition_not_old_event_date(tmp_path):

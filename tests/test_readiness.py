@@ -10,7 +10,7 @@ I='votacion_id,fecha,diputado_id,diputado,grupo,voto\ns202-v01,2026-09-30,001,Pr
 A='id,fecha,si,no,abstencion,no_vota\ns202-v01,2026-09-30,1,1,0,0\n'
 G='votacion_id,fecha,grupo,si,no,abstencion,no_vota\ns202-v01,2026-09-30,A,1,0,0,0\ns202-v01,2026-09-30,B,0,1,0,0\n'
 def inputs(tmp_path):
- for name,body in [('i.csv',I),('a.csv',A),('g.csv',G)]: (tmp_path/name).write_text(body)
+ for name,body in [('i.csv',I),('a.csv',A),('g.csv',G)]: (tmp_path/name).write_text(body, encoding="utf-8")
  return tmp_path/'i.csv',tmp_path/'a.csv',tmp_path/'g.csv'
 
 def test_br30c_25_consistency_is_not_scientific_ready(tmp_path):
@@ -22,7 +22,7 @@ def test_br30c_25_consistency_is_not_scientific_ready(tmp_path):
 
 def test_br30c_26_group_change_not_defection(tmp_path):
  i,a,g=inputs(tmp_path)
- i.write_text(I+'s203-v01,2026-10-01,001,Private Name,B,Sí\n')
+ i.write_text(I+'s203-v01,2026-10-01,001,Private Name,B,Sí\n', encoding="utf-8")
  z=observed_label_transitions(read_snapshot(i,kind='individual',acquired_at=T))
  assert z['deputy_ids_with_different_reported_group_over_time']==1
  assert z['historical_roster_certified'] is False and 'NOT_CAUSAL' in z['interpretation']
@@ -49,6 +49,6 @@ def test_br30c_30_three_source_cli_end_to_end(tmp_path):
  assert main(['--individual',str(i),'--aggregate',str(a),'--group',str(g),
               '--acquired-at',T.isoformat(),'--out',str(output)])==0
  import json
- z=json.loads(output.read_text())
+ z=json.loads(output.read_text(encoding="utf-8"))
  assert z['group_audit']['aggregate_consistent'] and 'source_snapshots' in z
  assert research_readiness(z)['VSDS_upper_bound_without_new_field_validation']==1

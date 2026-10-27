@@ -5,8 +5,9 @@ import {mkdtempSync,writeFileSync,rmSync,readFileSync} from "node:fs";
 import {tmpdir} from "node:os";
 import {join} from "node:path";
 import {createHash} from "node:crypto";
-const script=new URL("../scripts/ingest_political_evidence.mjs",import.meta.url).pathname;
-const fixture=new URL("../examples/actor_evidence_fixture_30j.json",import.meta.url).pathname;
+import {fileURLToPath} from "node:url";
+const script=fileURLToPath(new URL("../scripts/ingest_political_evidence.mjs",import.meta.url));
+const fixture=fileURLToPath(new URL("../examples/actor_evidence_fixture_30j.json",import.meta.url));
 const node=(...args)=>spawnSync(process.execPath,[script,...args],{encoding:"utf8",timeout:10000});
 test("real CLI processes fictional actor bundle without exposing personal names",()=>{
  const run=node(fixture,"--as-of","2026-05-01T00:00:00Z");
