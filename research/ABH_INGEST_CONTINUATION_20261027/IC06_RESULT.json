@@ -1,0 +1,36 @@
+{
+  "cycle": "IC06",
+  "status": "CLOSED_PRECONTACT_STORE_GUARD_PASS",
+  "prereg": "IC06_PREREG.json",
+  "modules_sha": {
+    "secure_store.py": "1efe2978785c38067d0b25e9e62004fcf994eb90",
+    "ingest.py": "43f1c36fdf852b475ab106d8bff6345840b27bf3",
+    "quarantine_ingest.py": "763a1ec00feb8c09abfd81c0e4a94dd74c9b4d59",
+    "test_secure_store.py": "ab70e38ea6904cb7612c25c32dbaa75dafca11e1",
+    "test_quarantine_ingest.py": "44a4524ee8094bbc484182fb508600c498fe579b"
+  },
+  "new_controls": "preflight_private_storage rejects symlink root/objects and manifest/review ledger before contacting remote opener, using POSIX dirfd nofollow and existing-file regular tests.",
+  "native_execution": {
+    "focused_pytest": 28,
+    "passed": 28,
+    "subtests": 14,
+    "external_requests": 0
+  },
+  "limits": [
+    "Explicit Windows fail-closed remains; no unverified Windows fallback",
+    "Concurrent root ancestor change not covered by private-root threat model",
+    "Preflight avoids normal unsafe-ledger requests, not full DB transactionality",
+    "No publisher or rights verification"
+  ],
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 3,
+    "remaining": 17
+  },
+  "next": "IC07 detect short/misdeclared HTTP Content-Length before writing raw SHA object."
+}
