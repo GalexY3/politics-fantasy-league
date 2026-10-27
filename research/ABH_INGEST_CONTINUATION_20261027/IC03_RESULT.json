@@ -1,0 +1,77 @@
+{
+  "cycle_id": "IC03",
+  "mode": "AB-P/AB-META",
+  "status": "CLOSED_STATIC_HTTP_BOUNDARY_AND_AUTHORED_LOOPBACK_TEST_R5",
+  "pre_registration": "IC03_PREREG.json",
+  "evidence": {
+    "server_source_sha": "f5cce90c632295d3828c85ecf3b2ec5dd82ca395",
+    "http_test_sha": "927a2bef33acf9daf355570a735cbccae1e0f434",
+    "workflow_sha": "1e1281f86f1bd632f52226471ee71afdd36592ec",
+    "integrated_branch": "research/pfl-codex-contributions-20261027"
+  },
+  "http_route_statuses": [
+    {
+      "route": "GET /api/source-stages",
+      "wired_into_server": true,
+      "kind": "READ_ONLY_SERVER_OWNED_DOCUMENT_INDEX",
+      "prior_native_integration_tests": "Codex 404 Python suite included prior source staging, not this new IC03 test",
+      "currently_credentialed_for_originals": false
+    },
+    {
+      "route": "GET /api/health",
+      "wired_into_server": true,
+      "kind": "SYNTHETIC_DEMO_ONLY"
+    },
+    {
+      "route": "POST /api/ingest",
+      "wired_into_server": false,
+      "expected_from_inspected_router": 404
+    },
+    {
+      "route": "POST /api/source-import",
+      "wired_into_server": false,
+      "expected_from_inspected_router": 404
+    },
+    {
+      "route": "POST /api/capture",
+      "wired_into_server": false,
+      "expected_from_inspected_router": 404
+    },
+    {
+      "route": "GET /api/quarantine",
+      "wired_into_server": false,
+      "expected_from_inspected_router": 404
+    }
+  ],
+  "executed": {
+    "static_real_GitHub_source_readback_checks": "PASS (5 files, route whitelist plus new modules)",
+    "real_live_http_new_test": "NOT_EXECUTED_THIS_CYCLE",
+    "HTTP_original_to_capture_to_game_E2E": false,
+    "local_pure_capture_to_validator_to_quarantine": "IC02 6/6 native cases PASS",
+    "CI_workflow_tests": "4 importer/pipeline/HTTP test files added to optional Python job, NOT DISPATCHED"
+  },
+  "finding": "Local capture does not feed server-owned source-event_registry or public player calculation. It is false to call this an integrated real-source HTTP ingestion endpoint. Any future HTTP capture API requires authentication/session privileges, SSRF egress policy, CSRF/abuse limits, original licensing, timestamp attestation and a separate security review.",
+  "negatives": [
+    "Host rejected in existing server _is_local_host check before routes",
+    "No POST source fetch or GET quarantine route exists in do_GET/do_POST",
+    "No user-injected first_public_at accepted by server-owned source catalogue",
+    "NO VOTAN remains only source-specific operational parser spelling, independent institutional dictionary still missing"
+  ],
+  "R5": "Do not add decorative HTTP endpoint or repeat self-generated fixtures. Stop this integration campaign after three discriminating cycles until real isolated server checkout CI or institutional original/rights evidence is available.",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "N123": [
+      0,
+      0,
+      0
+    ],
+    "release_gates": "0/6"
+  },
+  "legacy_campaigns_separate": {
+    "chatgpt_ABH45": 45,
+    "codex_CDX": 9,
+    "new_IC_cycles": 3
+  }
+}
