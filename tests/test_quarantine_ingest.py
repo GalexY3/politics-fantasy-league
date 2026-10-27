@@ -156,5 +156,19 @@ class QuarantinePipelineTests(unittest.TestCase):
 
 
 
+    def test_unsafe_existing_quarantine_review_mode_refused_before_network(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            reviews = root / "quarantine_reviews.jsonl"
+            reviews.write_bytes(b'{"fake":true}' + bytes([10]))
+            reviews.chmod(0o666)
+            with self.assertRaisesRegex(ValueError,
+                                        "UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+                self.capture(root, source="congreso", kind="congreso_vote",
+                             content=congress_bytes(),
+                             opener=lambda *a, **kw: self.fail("NETWORK_WAS_CONTACTED"))
+            self.assertFalse((root / "manifest.jsonl").exists())
+
+
 if __name__=="__main__":
     unittest.main()
