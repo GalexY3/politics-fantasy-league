@@ -1,3 +1,17 @@
+# Continuidad vigente · CONT60 C51–C60 cerrado 10/10 · Atlas 0028
+
+**28/10/2026.** Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger](../research/ABH_CONT60_20261028/CAMPAIGN_STATUS.json), [informe A–J](../research/ABH_CONT60_20261028/REPORT_FINAL.md) y [derechos de fuentes](DERECHOS_FUENTES_ABH45_20261027.md). El usuario concedió 10 ciclos C51–C60 y todos están ejecutados/documentados **10/10**, saldo 0.
+
+**AB-R (4):** C51 no consiguió XML/schema nominal de NO VOTAN; C52 no obtuvo certificado RPP individual, pero precisó vía SIA 992324; C53 separó la licencia pública de base jurídica y riesgos de perfilado; C55 encontró **licencia CC BY 4.0 específicamente documentada** en datos.gob.es para «Resultados Electorales» del Interior, incluidos XLSX cargos electos Senado/Congreso, aunque sede Interior muestre casilla vacía. Licencia no acredita identidad, first_public_at ni derecho a puntuar personas.
+
+**AB-P (6):** C54 añadió razones explícitas de falta de revisión legal y EIPD; C56 validó solo sintaxis/huso de first_public_at; C57 comprobó registro de tres expedientes y bloqueo; C58 revisó 27 lotes previos y sus padres/operaciones con originales GitHub (no Python canónico); C59 **46/46** pruebas nativas originales/sintéticas; C60 corrigió resumen público y cerró con **47/47** pruebas nativas. Los 22 tests originales utilizados coinciden en SHA con GitHub, y las pruebas adicionales son sintéticas.
+
+**Atlas** lote 0028-PFL-ABH-CONT60-C51-C60-20261028, **28 lotes**, estado **derivado** 63 nodos / 81 aristas / **179 runs** / 44 complaints / 348 ops; validador Python canónico y hash final **NOT_RUN**. V4 **36,90%**, CT2 **29/100 ordinal**, VSDS **1/3**, N1/N2/N3 nuevos 0, gates **0/6**; ni main merge, ni puntuaciones reales, ni CI costosa.
+
+**Codex** [incidencia #17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue pendiente y no se ha ejecutado: cuando el usuario tenga acceso, checkout exacto, checker Python Atlas de **28 lotes**, full pytest y Node con salidas. R5 recomienda no repetir catálogos/test numéricos; atender XML nominal + semántica, certificados registrales verificables y análisis jurídico de propósito/privacidad. No iniciar nueva campaña sin permiso independiente.
+
+---
+
 # Continuidad vigente · CONT50 C41–C50 cerrado 10/10 · Atlas 0027
 
 Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger](../research/ABH_CONT50_20261027/CAMPAIGN_STATUS.json) e [informe](../research/ABH_CONT50_20261027/REPORT_FINAL.md). Usuario autorizó exactamente 10 nuevos AB-H, se documentaron y ejecutaron **C41–C50, 10/10 A–J**, saldo 0. **No** comenzar C51 sin nueva concesión.
