@@ -1,0 +1,70 @@
+{
+  "campaign": "PFL_ABH_BRANCH20C_20261027",
+  "parent_ledger": "PRIORS_DELTA.json",
+  "recovered_file_bundle_sha256": "47bbe80b69d8fd3b153a3e7368ac5542b6b03dd42dd65be76b8a97f495575bf4",
+  "instruction": "All priors hypotheses are scoped to source granularity and local verification; no numeric prior invented or newly validated N1–N3.",
+  "entries": [
+    {
+      "id": "P-B20C-05",
+      "hypothesis": "Locally rescued originals can reproduce past derived counts without new network or Actions",
+      "status": "SUPPORTED_HANDOFF",
+      "for": "11/11 file hashes, lengths and ZIP CRC; PDF source hash independently reproduced vs manifest.",
+      "against": "No file mismatch observed.",
+      "uncertainty": "No publisher signature or first-publication proof. Manifest and hashes from same archival chain."
+    },
+    {
+      "id": "P-B20C-06",
+      "hypothesis": "A Senate session header date can safely date every vote in its XML",
+      "status": "REFUTED_IN_ONE_SESSION",
+      "for": "Session 60 header 07/10/2025",
+      "against": "All ten original vote dates 08-OCT-2025",
+      "scope": "one Senate session, ten votes",
+      "update": "Use per-vote date and do not map 259 name-only matches to date-valid person records."
+    },
+    {
+      "id": "P-B20C-07",
+      "hypothesis": "Oct 26 Congress active roster is full historical voter eligibility set",
+      "status": "REFUTED_IN_FOUR_VOTES",
+      "for": "37% of term snapshot active labels in October (137 of 412)",
+      "against": "All four July/Sept nominal votes 350 rows vs 137 current active and 275 discharged; 213 term records date discharge 06/10/2026",
+      "uncertainty": "Snapshot term-end does not yield precise original publication time or stable person IDs.",
+      "update": "Historical validity intervals and parliamentary term scope separate from current status."
+    },
+    {
+      "id": "P-B20C-08",
+      "hypothesis": "Normalized full names alone form unique longitudinal person IDs across national elections",
+      "status": "NOT_ESTABLISHED_AND_STRUCTURALLY_RISKY",
+      "for": "No duplicate normalized full name within each of sixteen separate 350-seat elections",
+      "against": "1306 labels repeat across dates; 103 change province and 576 candidacy acronyms; true same-person ground truth still absent",
+      "uncertainty": "These repeats may represent real re-election, career moves, party switches or homonyms; cannot estimate error rate.",
+      "update": "Name-only links are candidates, not certified; use independent dossiers and alternatives."
+    },
+    {
+      "id": "P-B20C-09",
+      "hypothesis": "Congress 'asiento' is injective person key for one nominal voting event and stable across event dates",
+      "status": "REFUTED_IN_4_EVENTS",
+      "for": "339/339 assigned seat pairs stable between same-session July votes",
+      "against": "'-1' repeated 11,11,15,30 per event; among paired dates up to four identical non-sentinel seats map to different names and dozens of same-name labels have changed seats.",
+      "uncertainty": "Inferred seat reassignment does not certify individual person identity, only label/seat observations.",
+      "update": "'-1' missing sentinel; never key on seat alone."
+    },
+    {
+      "id": "P-B20C-10",
+      "hypothesis": "Official 2023 national elected list and Interior election report agree province by province",
+      "status": "SUPPORTED_WITH_FOUR_TEXT_EXCEPTION_QA",
+      "for": "BOE-JEC 350 names over 52 provinces vs Interior 350; 50/52 exact, 346/350 strict name matches; four textual exceptions contextually explainable, all province counts align.",
+      "against": "Abbreviation, alias, narrative annotation, layout extraction create 4 nonexact strings.",
+      "uncertainty": "Contextual matching by surname, province and visual source is not independently adjudicated personal identity; BOE/Interior may share upstream electoral proclamations.",
+      "update": "Separate exact source label match from context-confirmed editorial equivalence."
+    },
+    {
+      "id": "P-B20C-11",
+      "hypothesis": "Local source QA can guard catastrophic sentinel/aggregate issues without raw nominal publishing",
+      "status": "SUPPORTED_ENGINEERING_LOCALLY",
+      "for": "8/8 regression tests and 4/4 original Congress vote replay via independent QA code",
+      "against": "No failing tests in bounded suite.",
+      "uncertainty": "No verified HTTP integration or CI clean checkout. Pure code correctness is not provider-authentic source validation.",
+      "update": "Keep fail-closed guards, record source SHA and quarantined exceptions."
+    }
+  ]
+}
