@@ -1,0 +1,54 @@
+{
+  "campaign": "PFL_ABH_CONT30",
+  "grant": "User explicitly said 'Sí, concedidos. Asegúrate de estar haciendo los ciclos completos y de forma correcta, y reportar avance' to preceding request for 10 new AB-H cycles",
+  "granted": 10,
+  "cycles": "C21-C30",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "365d2e4de34ade06289f2f7ff8d5bdac6b0ff446",
+  "method": "AB 3.2.1 O3-O7 full A-J prospective evidence, R1-R5, abort invalid, no quota-filling; count valid vs planning/invalid",
+  "prior_campaign": {
+    "CONT20": "C11-C20 10/10 closed",
+    "atlas": "0024-PFL-ABH-CONT20-C11-C20-20261027"
+  },
+  "primary_goal": "Reproducible native tests and risk-ranked fail-closed audit pipeline; no invented test execution.",
+  "constraints": [
+    "Only research branch; no main merge",
+    "No expensive Actions",
+    "No private originals or personal scores",
+    "CI/native tests are unverified until actual runtime execution",
+    "CT2/V4/VSDS/gates remain unless independently justified"
+  ],
+  "counters": {
+    "executed_valid": 0,
+    "invalid": 0,
+    "planning": 0,
+    "remaining": 10
+  },
+  "C21": {
+    "mode": "AB-P",
+    "status": "PREREGISTERED",
+    "A": {
+      "question": "Can native exact-source Python tests be executed without GitHub checkout/network, and how far can verified source blobs be reconstructed locally?",
+      "estimand": "Number of GitHub source files whose exact blob SHA and native tests are verifiable; not proxy code"
+    },
+    "B": {
+      "hypotheses": [
+        "Native clean checkout available without credentials",
+        "No private checkout; using GitHub connector to read files then byte-verify a local reconstruction may permit narrow direct native tests",
+        "Only static audit possible"
+      ]
+    },
+    "C": {
+      "design": "Probe environment access to remote, local source inventory; compare exact GitHub blob SHA for any local reconstruction and only then run native tests on unchanged source; otherwise fail/plan no test assertions"
+    },
+    "D": {
+      "falsifier": "Reconstructed file Git SHA differs, fake fixture substitutes true source, or native tests not run but labelled pass"
+    },
+    "E": "PENDING",
+    "F": "PENDING",
+    "G": "PENDING",
+    "H": "PENDING",
+    "I": "PENDING",
+    "J": "PENDING"
+  }
+}
