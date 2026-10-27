@@ -1,0 +1,22 @@
+{
+  "cycle": "C29",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C28",
+  "A": {
+    "question": "Will exact source private object-store audit identify orphan temporary name/digest when SIGKILL occurs before or immediately after linking the SHA object but before manifest append?",
+    "acceptance": "Two disposable synthetic subprocess SIGKILL interventions: incomplete temp prelink, and linked digest plus leftover temp postlink. Auditor aggregates unexpected/orphan object counts and private CLI returns2 without exposing names."
+  },
+  "B": {
+    "hypotheses": [
+      "Auditor misses orphan files after interrupted store",
+      "Auditor reports unexpected temp and unindexed digest, CLI refuses",
+      "No files survive timing, intervention invalid"
+    ]
+  },
+  "C": "Patch child process _write_all or os.link only to pause at predefined intermediate state; SIGKILL; run genuine private_audit_root and CLI. Verify no manifest, no raw content output.",
+  "D": {
+    "falsifier": "CLI exit0 or object inventory reports no anomalies when actual stored files exist.",
+    "limitations": "Only process kill with synthetic files, not real disk power-loss."
+  }
+}
