@@ -1,0 +1,14 @@
+{
+  "cycle": "C26",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C25",
+  "A": "Run all checked-in tests/test_secure_store.py with exact GitHub source and test file under native CPython POSIX",
+  "B": [
+    "all pass",
+    "fixture/precondition invalid",
+    "actual source regression"
+  ],
+  "C": "Transfer original test file unmodified, verify Git hash, run native pytest and preserve failures before fixes.",
+  "D": "One file family only, no actual power loss or full project CI; do not mark complete if source/test SHA differs."
+}
