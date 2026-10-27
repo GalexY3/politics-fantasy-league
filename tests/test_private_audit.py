@@ -1,0 +1,64 @@
+"""Operator audit tests use fictional bytes only and no network."""
+import hashlib
+import json
+from pathlib import Path
+import pytest
+
+from politics_fantasy.secure_store import store_bytes, append_private_jsonl
+from politics_fantasy.private_audit import audit_private_root
+
+DATA=b'{"fake":"politics"}'
+SHA=hashlib.sha256(DATA).hexdigest()
+
+
+def make_fixture(root):
+    rel=store_bytes(root,DATA,SHA)
+    append_private_jsonl(root,"manifest.jsonl",{"raw_object":rel,"sha256":SHA,"source_id":"congreso"})
+    return rel
+
+
+def test_audit_valid_captured_fictional_object_and_quarantine(tmp_path):
+    make_fixture(tmp_path)
+    append_private_jsonl(tmp_path,"quarantine_reviews.jsonl",{
+        "sha256":SHA,"quarantine_state":"QUARANTINED_SCHEMA_PASSED"})
+    a=audit_private_root(tmp_path)
+    assert a["object_integrity"]=={"VALID_OBJECT":1}
+    assert a["quarantine_states"]=={"QUARANTINED_SCHEMA_PASSED":1}
+    assert a["unreviewed_captures"]==0
+    assert not a["real_person_scoring"]
+    assert "congreso" not in json.dumps(a)
+
+
+def test_audit_detects_modified_raw_sha_without_export(tmp_path):
+    rel=make_fixture(tmp_path)
+    (tmp_path/rel).write_bytes(b'{"attacker":true}')
+    assert audit_private_root(tmp_path)["object_integrity"]=={"BAD_RAW_SHA":1}
+
+
+def test_audit_bad_path_does_not_follow_external(tmp_path):
+    append_private_jsonl(tmp_path,"manifest.jsonl",{
+        "raw_object":"../../private_secret","sha256":SHA})
+    assert audit_private_root(tmp_path)["object_integrity"]=={"BAD_OBJECT_REFERENCE":1}
+
+
+def test_audit_missing_review_is_not_approval(tmp_path):
+    make_fixture(tmp_path)
+    a=audit_private_root(tmp_path)
+    assert a["unreviewed_captures"]==1
+    assert a["release_grade"] is False
+
+
+def test_audit_rejects_ledger_symlink(tmp_path):
+    outside=tmp_path.parent/(tmp_path.name+"_outside")
+    outside.write_bytes(b'private')
+    (tmp_path/"manifest.jsonl").symlink_to(outside)
+    with pytest.raises(ValueError,match="UNSAFE_LEDGER"):
+        audit_private_root(tmp_path)
+    assert outside.read_bytes()==b'private'
+
+
+def test_audit_unknown_review_is_not_adjudication(tmp_path):
+    make_fixture(tmp_path)
+    append_private_jsonl(tmp_path,"quarantine_reviews.jsonl",{
+        "sha256":SHA,"quarantine_state":"RELEASE_READY"})
+    assert audit_private_root(tmp_path)["quarantine_states"]=={"UNKNOWN_REVIEW_STATE":1}
