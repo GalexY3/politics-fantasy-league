@@ -1,0 +1,45 @@
+{
+  "id": "C07",
+  "status": "CLOSED_ORIGINAL_CROSSCHECK_WITH_TEMPORAL_MISALIGNMENT_RISK",
+  "prereg_commit": "f67ab79c6a928e89c171c42d20ca6f83f8c5df83",
+  "source": "Six original Congress JSON files in private ZIP, hash-match manifest.",
+  "summary": {
+    "activos": 137,
+    "bajas": 275,
+    "total_snapshot_records": 412,
+    "distinct_normalized_roster_name_strings": 412,
+    "duplicate_roster_name_strings": 0,
+    "roster_bajas_2026_10_06": 213,
+    "missing_fechaalta": 0,
+    "missing_fechacondicionplena": 0,
+    "bad_date": 0,
+    "four_nominal_votes": 4,
+    "vote_rows_per_event": 350,
+    "all_nominal_rows": 1400,
+    "all_aggregate_category_counts_exact": true,
+    "vote_name_matches_one_roster_label": 1400,
+    "vote_name_matches_none": 0,
+    "vote_name_matches_multiple": 0,
+    "full_condition_date_later_than_vote_for_unique_roster_candidates": 0,
+    "termination_date_before_vote_for_unique_roster_candidates": 0
+  },
+  "vote_dates": [
+    "2026-07-23",
+    "2026-07-23",
+    "2026-09-10",
+    "2026-09-30"
+  ],
+  "same_day_2026_07_23": {
+    "nominal_names_common": 350,
+    "different_reported_vote_label": 137,
+    "interpretation": "Different two amendment votes, not identity/party conversion or necessarily temporal error"
+  },
+  "semantic_warning": "The original 'activos' vs 'bajas' are snapshots created after all four votes; 213 of the 275 baja records show 2026-10-06, postdating all captured votes. A naive current_active_only join would miss historical voters and generate survivorship bias even if labels match combined full-term records.",
+  "H1": "SUPPORTED: each 350 vote list reconciles, full-term union 412 differs from concurrent Chamber membership; name labels cannot validate identities or as-of provenance",
+  "H0": "NOT SUPPORTED: no immutable person id field in vote/roster schemas, active rows only 137",
+  "ABR": "Four vote record source consistency tested, not independent real-person identity adjudication.",
+  "ABP": "Never use postdated baja/current group to label prior votes; names used only candidate keys.",
+  "metrics_unchanged": true,
+  "scientific_discoveries_new": 0,
+  "next": "C08 analyze official Interior elections full names by election/province to find within-election exact duplicate labels and quantify cross-election candidate continuity ambiguity."
+}
