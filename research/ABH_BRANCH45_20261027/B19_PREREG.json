@@ -1,0 +1,11 @@
+{
+  "id": "B19",
+  "stage": "B",
+  "mode": "AB-META append-only Atlas audit",
+  "status": "PREREGISTERED",
+  "dependency": "B18 new 23 test source guard CI step is committed (not run), campaign stages 20 A + 5 R + 18 B logged. Existing Atlas updates through 0013; no official Python `atlas_delta.py check` on actual repo.",
+  "H1": "The real Atlas seed and all update JSON 0001–0013 form a contiguous append-only parent chain, preserve unique source nodes/edges/runs, no orphan complaint links, and do not mark release gates passed; 0014 can later register B-stage outcomes without rewriting seed.",
+  "H0": "A broken chain, duplicate edge/run, or misplaced complaint indicates previously claimed graph pass was incomplete; repair as a separate append-only delta with evidence.",
+  "test": "Fetch actual 13 delta blobs and seed from current research branch via GitHub connector; validate batch parents, supported operations, node/edge/runs and complaint semantics, complaint triage add history, and gate invariants. This is independent JS structural replay, NOT official Python validator. Record exact counts and first error if fail.",
+  "acceptance": "Pass/fail with graph counts and source SHA; if pass prepare 0014 after B20, do not invent Python CLI run."
+}
