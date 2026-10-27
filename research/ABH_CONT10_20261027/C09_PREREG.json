@@ -1,0 +1,31 @@
+{
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "parent": "C08",
+  "A": {
+    "question": "¿El store asegura durabilidad tras fallo eléctrico cuando fsync(fd) sincroniza bytes pero la creación de entradas de directorio (objects/shard/digest/manifest) no sincroniza padres?",
+    "unit": "secuencia de llamadas de metadata POSIX",
+    "estimand": "Existencia de barrera fsync de directorio antes de declarar persistencia completa"
+  },
+  "B": {
+    "hypotheses": [
+      "H1: fsync del fichero suficiente para crear durablemente su entrada de directorio",
+      "H2: POSIX/Linux requiere fsync del directorio, no presente en ruta",
+      "H3: filesystem particular hace durable sin fsync pero no está garantizado portablemente"
+    ]
+  },
+  "C": {
+    "plan": "Extraer fuente secure_store.py exacta y manual de fsync(2), contar llamadas a fsync sobre FDs de fichero vs directorio y secuencias link/unlink/mkdir; distinguir teoría de crash test real; no matar procesos en GitHub ni simular hardware."
+  },
+  "D": {
+    "falsifier": "Código actual contiene fsync de los directorios padres en todas las rutas de creación, o fuente POSIX documenta que fsync(file) asegura directorio sin necesidad adicional.",
+    "limit": "Static audit cannot demonstrate data loss on real disks or establish full transaction atomicity."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
