@@ -1,0 +1,28 @@
+{
+  "id": "A19",
+  "status": "CLOSED_SOURCE_CODE_ACCEPTED_RUNTIME_PENDING",
+  "prereg": "A19_PREREG.json",
+  "modules": [
+    "src/politics_fantasy/parliament_procedure_types.py",
+    "tests/test_parliament_procedure_types.py"
+  ],
+  "verification": {
+    "type_families": true,
+    "non_score": true,
+    "date_parse": true,
+    "test_names": 5,
+    "real_python_run": false
+  },
+  "source": "Congress DSCD 2026-09-15, member XV profile 2026-09-15 and commission 2026-09-16, declaration filed 2026-09-15 and qualified 2026-09-22",
+  "claim": "Four types persist separately, source-family mismatch and duplicate/date controls authored but NOT executed in this cycle.",
+  "limitations": [
+    "No actual full CI or local unit run for this new file.",
+    "The model stores source-key assertions not independently certified personal IDs, and no first_public_at.",
+    "Nothing permits public person score or launch gate promotion."
+  ],
+  "budget": {
+    "A_spent": 19,
+    "A_remaining": 1
+  },
+  "next": "A20 inspect branch diffs and stage A completeness, reconcile actual committed tests, counts, evidence and blockers; append stage A Atlas delta and stage handoff before R1-R5 review."
+}
