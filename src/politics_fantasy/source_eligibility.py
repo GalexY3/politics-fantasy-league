@@ -50,6 +50,10 @@ def assess_evidence(record: object) -> dict:
     if record.get("sha_replayed") is not True:
         reasons.append("ORIGINAL_NOT_REPLAYED")
     if scope == "PERSON_EVENT":
+        # Neither publisher licence nor caller claims attest a lawful purpose.
+        reasons.append("PURPOSE_AND_LEGAL_BASIS_REVIEW_NOT_ATTESTED")
+        # This requires risk screening; do not assume an EIPD is mandatory in every case.
+        reasons.append("EIPD_SCREENING_NOT_ATTESTED")
         if record.get("stable_person_id") is not True:
             reasons.append("PERSON_ID_UNRESOLVED")
         if record.get("as_of_documented") is not True:
