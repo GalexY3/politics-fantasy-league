@@ -86,3 +86,15 @@ def test_equal_payload_same_sha_distinct_capture_identifiers(tmp_path, monkeypat
     assert len(r1['capture_id'])==len(r2['capture_id'])==32
     records=[__import__('json').loads(x) for x in (tmp_path/'manifest.jsonl').read_text().splitlines()]
     assert [r['capture_id'] for r in records]==[r1['capture_id'],r2['capture_id']]
+
+
+def test_untrusted_existing_manifest_mode_refused_before_opener(tmp_path):
+    manifest = tmp_path / "manifest.jsonl"
+    manifest.write_bytes(b'{"synthetic":true}' + bytes([10]))
+    manifest.chmod(0o666)
+    with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
+        import_url(url="https://www.congreso.es/test.json", source="congreso",
+                   root=tmp_path, min_interval=1,
+                   opener=lambda *args, **kw: (_ for _ in ()).throw(
+                       AssertionError("NETWORK_NOT_ALLOWED_WITH_UNSAFE_MANIFEST")))
+    assert manifest.read_bytes() == b'{"synthetic":true}' + bytes([10])
