@@ -1,0 +1,75 @@
+{
+  "id": "RC05-20261027",
+  "authorization": {
+    "ceiling_new": 3,
+    "consumed_this_turn_if_executed": 1,
+    "prior_union_max_remaining": 3,
+    "permission_identity": "UNRECONCILED",
+    "budget_rule": "do not spend on name-only repeats"
+  },
+  "mode": "AB-H / AB-R case adjudication; AB-P gates unchanged",
+  "status": "PREREGISTERED_WITH_SOURCE_EXPOSURE",
+  "pre_exposure": "Before preregistration, public search disclosed Maroto XIV/XV fiche with same id1; September 2026 Senate high/low changes, CCyL parliamentary appointment notice, and names of three appointees. This is not blinded sampling nor a preregistered confirmation of an unobserved hypothesis.",
+  "question": "For a small fixed identity and tenure sample, can linked official senator fichas plus an independently publishing autonomous parliament certify same-person appointments and reject false identity joins caused by replacement or surname collision?",
+  "design": {
+    "positive_pairs": [
+      {
+        "id": "P1",
+        "left": "Javier Ignacio Maroto Aranzábal, XIV",
+        "right": "Javier Ignacio Maroto Aranzábal, XV",
+        "expected": "same person, distinct term/credential and 2026 10/09 cessation 11/09 appointment"
+      },
+      {
+        "id": "P2",
+        "left": "Clara María Martín García, designated CCyL 10/09/2026",
+        "right": "Senado XV fiche",
+        "expected": "same appointment case if date appointing organ and full name align"
+      },
+      {
+        "id": "P3",
+        "left": "Francisco Javier Iglesias García, designated CCyL 10/09/2026",
+        "right": "Senado XV fiche",
+        "expected": "same appointment case if date appointing organ and full name align"
+      }
+    ],
+    "negative_pairs": [
+      {
+        "id": "N1",
+        "left": "Lucía Yeves Leal, old holder",
+        "right": "Carmen María Díaz Ruiz, replacement Aug 2026",
+        "expected": "different people despite succession into same institutional slot"
+      },
+      {
+        "id": "N2",
+        "left": "Juan Pablo Martín Martín, XV senator",
+        "right": "Paloma Martín Martín, XV senator",
+        "expected": "different people despite same surnames"
+      }
+    ]
+  },
+  "primary_sources": [
+    "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml",
+    "https://www.ccyl.es/Publicaciones/TextoEntradaDiario?Legislatura=12&NumeroPublicacion=4&SeriePublicacion=DS%28P%29",
+    "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/modificacionescomposicion/index.html",
+    "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=18865&legis=14",
+    "https://www.senado.es/web/composicionorganizacion/senadores/composicionsenado/fichasenador/index.html?id1=18865&legis=15"
+  ],
+  "acceptance": {
+    "positive": "linked person record with full-name match, appointing authority and dated action in CCyL+Senate OR explicit provider-maintained past-legislature navigation for P1; status REVIEW if independent evidence not directly available",
+    "negative": "explicit substitution statement, or separate provider IDs and full given-name disambiguation; status REVIEW if no direct profiles",
+    "time": "record act_event_date, Senate_effective_at/start/end, and document_publication_date independently; keep first_public_at=NULL unless independent publication timestamp archive verifies it.",
+    "error_controls": "name-only no acceptance; same seat replacement must be negative; surname-only must be negative; reconcile apparent 2026 reappointment break and previous tenure; no group or person inference solely from votes",
+    "sample_limit": "5 pairs, no expansion after results unless separately authorized new cycle; do not attribute population error-rate to sample"
+  },
+  "falsification": "If profiles do not explicitly crosslink same id or appointing organization/dates conflict, mark unresolved; if Senate replacement unclear, negative unresolved.",
+  "holdout": "none; source exposure before preregistration",
+  "use": "exploratory hand-adjudicated gold MICRO sample for identity joins only, not scores/backtest/release",
+  "metrics": {
+    "ct2": 29,
+    "vsds": "1/3",
+    "gates_passed": 0
+  },
+  "cost": {
+    "github_actions": 0
+  }
+}
