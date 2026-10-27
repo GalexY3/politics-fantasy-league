@@ -1,0 +1,21 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC15",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC12 prevented read-only audit creating objects/shard directories, but _root_fd still creates a nonexistent root by default.",
+  "H1": "Passing missing root to audit_private_root currently creates it; audit should fail MISSING_STORE_ROOT and create zero entries. Retain create-on-write for ingest.",
+  "H0": "Root creation is unavoidable for readonly audit or current guard already rejects.",
+  "tests": [
+    "nonexistent audit root remains nonexistent and returns explicit error",
+    "valid audit root behavior unaffected",
+    "ingest path may still create private root as write operation"
+  ],
+  "acceptance": "Negative observed then fixed with context parameter, tests exact source; no Windows claim.",
+  "invariants": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
