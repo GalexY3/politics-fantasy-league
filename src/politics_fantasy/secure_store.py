@@ -161,6 +161,52 @@ def store_bytes(root: Path, data: bytes, digest: str) -> str:
     return "objects/" + digest[:2] + "/" + digest
 
 
+
+def read_private_object(root: Path, relative_object: str, expected_sha: str) -> bytes:
+    """Reopen a captured object through private POSIX descriptors without mkdir.
+
+    The returned bytes are for the local schema checker only, not a
+    publisher attestation or any public release.
+    """
+    if (not isinstance(expected_sha, str) or len(expected_sha) != 64
+            or any(char not in "0123456789abcdef" for char in expected_sha)
+            or relative_object != "objects/" + expected_sha[:2] + "/" + expected_sha):
+        raise ValueError("BAD_PRIVATE_OBJECT_REFERENCE")
+    with _root_fd(root, create=False) as rootfd:
+        try:
+            objects = os.open("objects", _directory_flags(), dir_fd=rootfd)
+        except OSError as exc:
+            raise ValueError("UNSAFE_PRIVATE_OBJECT_DIRECTORY") from exc
+        try:
+            _check_private_permissions(objects, directory=True)
+            try:
+                shard = os.open(expected_sha[:2], _directory_flags(), dir_fd=objects)
+            except OSError as exc:
+                raise ValueError("UNSAFE_PRIVATE_OBJECT_SHARD") from exc
+            try:
+                _check_private_permissions(shard, directory=True)
+                try:
+                    fd = os.open(expected_sha,
+                                 os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                                 dir_fd=shard)
+                except OSError as exc:
+                    raise ValueError("UNSAFE_PRIVATE_OBJECT_FILE") from exc
+                try:
+                    _check_private_permissions(fd, directory=False)
+                    content = _read_stored(fd, 20 * 1024 * 1024)
+                finally:
+                    os.close(fd)
+                if len(content) > 20 * 1024 * 1024:
+                    raise ValueError("PRIVATE_OBJECT_TOO_LARGE")
+                if hashlib.sha256(content).hexdigest() != expected_sha:
+                    raise ValueError("RAW_SHA_MISMATCH")
+                return content
+            finally:
+                os.close(shard)
+        finally:
+            os.close(objects)
+
+
 def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
     if filename not in ("manifest.jsonl", "quarantine_reviews.jsonl"):
         raise ValueError("UNSUPPORTED_PRIVATE_LEDGER")
