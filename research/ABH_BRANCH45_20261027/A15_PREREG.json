@@ -1,0 +1,11 @@
+{
+  "id": "A15",
+  "mode": "AB-R documentary acquisition",
+  "status": "PREREGISTERED",
+  "dependency": "A13 found official 2020/2021 RPP statistical XLSX distributions, A14 scoped aggregates distinct from legal party rows.",
+  "H1": "At least one annual XLSX can be retrieved from official Interior HTTPS and checked with SHA and sheet headers to confirm aggregate grain instead of presumed entity rows.",
+  "H0": "Original bytes unavailable or format unexpected, so no year/denominator counts should be claimed.",
+  "method": "Fetch official 2021 XLSX, compute SHA256 locally, inspect workbook by artifact_tool (no unlicensed redistribution); only report aggregate columns and totals if source year matches. If HTTPS or file parsing blocked, record and leave RPP entity gate unchanged.",
+  "acceptance": "Original XLSX SHA + sheet structure + types or honest STOP_R5, no guessed counts. No change to legal entity source readiness",
+  "source": "https://www.interior.gob.es/opencms/pdf/archivos-y-documentacion/documentacion-y-publicaciones/anuarios-y-estadisticas/anuarios-estadisticos-anteriores/anuario-estadistico-de-2021/01_Tablas_apartado_1_1.xlsx"
+}
