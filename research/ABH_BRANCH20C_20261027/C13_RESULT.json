@@ -1,0 +1,76 @@
+{
+  "id": "C13",
+  "status": "CLOSED_NEW_SOURCE_CLASS_DAY_LEVEL_PUBLICATION_UPPER_BOUND",
+  "prereg_commit": "3b3c363a99dda15600b9d2defaa6dc452e4c8069",
+  "exposure": "RD181/2008 and AEBOE 2023 annual report found before prereg; 2023 JEC PDF pdfsig inspected before prereg; exploratory source-driven, not blind",
+  "sources": [
+    {
+      "authority": "BOE official printed edition",
+      "document": "BOE-A-2023-15066",
+      "issue": "152",
+      "issue_day": "2023-06-27",
+      "original_file_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+      "signer": "CN=DIARIOS OFICIALES, O=AGENCIA ESTATAL BOLETIN OFICIAL DEL ESTADO, C=ES",
+      "claimed_signature_utc": "2023-06-26T18:25:33Z",
+      "pdfsig_integrity": "Signature is Valid",
+      "certificate_at_current_verification": "Certificate has Expired",
+      "signature_hash_algorithm": "SHA1",
+      "file_bytes": 4298580,
+      "official_instrument": "electoral candidacies",
+      "publication_policy_latest_by": "2023-06-28T00:00:00+02:00"
+    },
+    {
+      "authority": "BOE official printed edition",
+      "document": "BOE-A-2023-18907",
+      "issue": "209",
+      "issue_day": "2023-09-01",
+      "original_file_sha256": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+      "signer": "CN=DIARIOS OFICIALES, O=AGENCIA ESTATAL BOLETIN OFICIAL DEL ESTADO, C=ES",
+      "claimed_signature_utc": "2023-08-31T17:04:45Z",
+      "pdfsig_integrity": "Signature is Valid",
+      "certificate_at_current_verification": "Certificate has Expired",
+      "signature_hash_algorithm": "SHA1",
+      "file_bytes": 1915000,
+      "official_instrument": "elected results and totals, 2023",
+      "publication_policy_latest_by": "2023-09-02T00:00:00+02:00"
+    }
+  ],
+  "agency_evidence": [
+    {
+      "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2008-2389",
+      "article": "11.2",
+      "claim": "Electronic official issue must be accessible at official daily issue date barring extraordinary technical circumstances; issue authenticity via advanced electronic signature article 12."
+    },
+    {
+      "source": "https://www.boe.es/organismo/documentos/informe_actividad_aeboe_2023.pdf",
+      "pages": "22 (PDF zero-based page 21), 57 (PDF zero-based page 56)",
+      "claim": "Agency annual report self-reports all 312 ordinary 2023 BOE numbers published before 08:00 their issue day; zero minutes delay on indicator. One extraordinary December 29 2023 documented, irrelevant to the two selected ordinary issues."
+    }
+  ],
+  "hypotheses": {
+    "H1": "SUPPORTED for source-scoped conservative publication upper bound in 2023 ordinary official BOE issues under publisher reported compliance and legal presumption",
+    "H0": "NOT SUPPORTED for 2023 ordinary issue category and PDFsig content-integrity checks"
+  },
+  "interpretation": {
+    "first_public_at_exact": null,
+    "observed_by_third_party_at_issue_time": false,
+    "conservative_available_by_rule": "At midnight beginning day after issue date in Europe/Madrid (not claiming that instant was first public, or proof there was no alternative earlier communication)",
+    "earlier_signature_time_is_not_publication_time": true,
+    "signing_timestamp_claim_is_not_TSA_verified": true,
+    "certificate_currently_expired": true,
+    "certificate_historical_trust_chain_not_full_validated": true,
+    "scope": "only signed original BOE ordinary issue in 2023 corroborated by agency's annual compliance report; *not* generic legislature voting or CCyL/Senate source",
+    "use_in_backtests": "daily-cut conservative information-availability sensitivity proxy only, with explicit confidence/tier, no real person scoring or automatic eligibility; caution exceptional outages and publisher self-report."
+  },
+  "AB_R": "A previously missing observation-time path found for signed 2023 BOE ordinary editions. It is a bounded upper bound, not exact observation timestamp.",
+  "AB_P": "Eligible for a future safe date-bound policy but not live user/source attestation. Keep CT2, VSDS, N1-N3 and gates unchanged.",
+  "budget": {
+    "new_grant_consumed_through_C13": 13,
+    "remaining": 7,
+    "counts_as_scientific_discovery": false
+  },
+  "cost": {
+    "github_actions": 0
+  },
+  "original_documents_published_on_github": false
+}
