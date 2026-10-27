@@ -1,0 +1,15 @@
+{
+  "cycle": "C60",
+  "mode": "AB-P",
+  "A": "Does public `/api/eligibility-policy` summary `requires` omit lawful purpose/basis and EIPD screening even though detailed candidate gate now blocks them after C54, potentially misleading future operators?",
+  "B": {
+    "H0": "public summary already lists both privacy reviews",
+    "H1": "public summary omits both; add explicit requirements without changing readiness",
+    "H2": "new summary accidentally suggests reviews are completed or scoring enabled"
+  },
+  "C": "Use genuine exact-source `policy_status()` native Python to check two descriptions before patch, amend display requirements; rerun selected original and new tests to ensure always false release. Save hashes and publish GitHub source + synthetic test. Then close exactly 10 A–J campaign cycles.",
+  "D": {
+    "falsifier": "Summary already includes both or test fails; do not modify release_ready flags",
+    "scope": "Presentation of pending blockers only; not a completed DPIA or authorization to score real persons."
+  }
+}
