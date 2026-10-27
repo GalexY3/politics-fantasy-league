@@ -1,0 +1,30 @@
+{
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_ISOLATED_STD_LIB_PROOF_FULL_TESTS_UNRUN",
+  "preregister_commit": "a278320a7a34e5797864f11306029337b80fda99",
+  "A": "Python json emits and parses NaN/Infinity by default",
+  "B": "Default acceptance vs strict parse_constant and allow_nan=False",
+  "C": "Local native Python isolated stdlib comparison, then code and tests in GitHub",
+  "D": {
+    "code_commits": [
+      "68d94dcfebaea5e0432c713b58a0fd29169e61fb",
+      "b9e23d8fd965157455ca4b77eed272364d3be148"
+    ],
+    "test_commits": [
+      "a9978e12ad9209dceb2cda95d3806b52ac2747b9",
+      "86b039a257d77188bbfa2bd95c79e2ba29d89a16"
+    ]
+  },
+  "E": "NaN, Infinity and -Infinity blocked in isolated test; ordinary integer accepted",
+  "F": "Full repository tests unexecuted; no external original parser assertion",
+  "G": "Source and synthetic tests committed",
+  "H": "Private ledger strictness improves without publisher attestation",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "Branch to anchored raw data reading for the local quarantine pipeline"
+}
