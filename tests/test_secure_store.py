@@ -231,3 +231,31 @@ def test_private_append_rejects_nonfinite_numbers_before_file_creation(tmp_path)
         with pytest.raises(ValueError):
             append_private_jsonl(tmp_path, "manifest.jsonl", {"bytes": number})
         assert not (tmp_path / "manifest.jsonl").exists()
+
+
+def test_first_created_root_syncs_existing_parent_directory(tmp_path, monkeypatch):
+    """A new root needs metadata sync of its pre-existing operator parent."""
+    import stat
+    import politics_fantasy.secure_store as module
+    original = os.fsync
+    synced_parent = []
+    parent_ino = tmp_path.stat().st_ino
+
+    def tracing_fsync(fd):
+        attr = os.fstat(fd)
+        if stat.S_ISDIR(attr.st_mode) and attr.st_ino == parent_ino:
+            synced_parent.append(True)
+        return original(fd)
+
+    monkeypatch.setattr(module.os, "fsync", tracing_fsync)
+    fresh = tmp_path / "new_private_capture"
+    rel = store_bytes(fresh, PAYLOAD, DIGEST)
+    assert (fresh / rel).read_bytes() == PAYLOAD
+    assert synced_parent
+
+
+def test_missing_private_root_ancestor_rejected_without_creating_tree(tmp_path):
+    nested = tmp_path / "missing_parent" / "new_root"
+    with pytest.raises(ValueError, match="MISSING_TRUSTED_STORE_PARENT"):
+        store_bytes(nested, PAYLOAD, DIGEST)
+    assert not (tmp_path / "missing_parent").exists()
