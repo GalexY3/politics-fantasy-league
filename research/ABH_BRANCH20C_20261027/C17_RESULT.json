@@ -1,0 +1,77 @@
+{
+  "id": "C17",
+  "status": "CLOSED_INSTITUTIONAL_BIRTH_FIELD_CONFLICT_CONFIRMED",
+  "prereg_commit": "e63bac3a727c64416fc338b2edd21366d36450ef",
+  "subject": "Cristina Narbona Ruiz",
+  "subject_scope": "Public elected politician, as named in both original records; no private identifier used.",
+  "biographical_identity": "Explicit same public offices and crosslegislature career (Almería/Madrid deputy, minister of environment, ambassador to OECD); this is a single person with conflicting public DOB statements, not a confirmed homonym.",
+  "assertions": [
+    {
+      "dob": "1951-07-21",
+      "source_authority": "Gobierno de España · Presidencia del Gobierno / La Moncloa",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/referencias/paginas/2008/refc20080430.aspx",
+      "issue_day": "2008-04-30",
+      "source_scope": "Official governmental minister/ambassador appointment biography"
+    },
+    {
+      "dob": "1951-07-21",
+      "source_authority": "La Moncloa",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/referencias/documents/2012/refc20121228.pdf",
+      "issue_day": "2012-12-28",
+      "source_scope": "Reused governmental bio; NOT independent corroboration of original birth claim"
+    },
+    {
+      "dob": "1951-07-29",
+      "source_authority": "Congreso de los Diputados",
+      "url": "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=271&idLegislatura=XV",
+      "source_scope": "Official Congress XV profile; current publication snapshot first_public_at unknown"
+    },
+    {
+      "dob": "1951-07-29",
+      "source_authority": "PSOE, directly published member biography",
+      "url": "https://www.psoe.es/media-content/2017/06/BIOGRAFIAS.-CEF-39-CONGRESO-OK.pdf",
+      "issue_month": "2017-06",
+      "source_scope": "Direct institutional party biography, same entity with listed office tenure"
+    },
+    {
+      "dob": "1951-07-29",
+      "source_authority": "PSOE, directly published member biography",
+      "url": "https://www.psoe.es/media-content/2024/12/011224-BIOGRAF%C3%8DAS-41-CONGRESO-1.pdf",
+      "issue_month": "2024-12",
+      "source_scope": "Party biography potentially derived from 2017 previous version, NOT independent repeated measurement"
+    }
+  ],
+  "distinct_birth_values": 2,
+  "difference_days": 8,
+  "adjudication": {
+    "single_human_identity": "SUPPORTED_BY_OFFICE_AND_TERM_CROSSREFERENCES",
+    "canonical_birth_date": "UNRESOLVED_NO_CIVIL_REGISTRY",
+    "publication_histories": "Sources may copy biography content within same publisher lineage; counts do not prove independent birth-certification.",
+    "no_split_person_for_birth_date_mismatch": true
+  },
+  "methodological_falsification": "Hard equality of exact DOB would incorrectly separate institutionally documented same person in this case; allow typed conflicting DOB assertions, retain provenance, and require other identity signals plus independent adjudication. Don't silently use majority vote for true DOB.",
+  "H1": "SUPPORTED, multiple official/public directly issued sources disagree",
+  "H0": "NOT SUPPORTED: same office / trajectory documents no two different people, mismatch is field disagreement",
+  "source_discovery": "Search after prereg C17 expanded to party 2017 and 2024 and Moncloa 2012; 21 vs 29 known before prereg (recorded exposure).",
+  "uncertainty": "Unable to resolve which birth day is legally authoritative absent civil registry original and user privacy/legal constraints; cannot estimate field error rate across politicians.",
+  "ABR": "New concrete falsifying counterexample to DOB-equality identity hard filter; N1-3 unchanged",
+  "ABP": "Need source-bound multivalued date-of-birth conflict schema and explicit review, not auto merge/split on DOB",
+  "metrics": {
+    "CT2_before_after": [
+      29,
+      29
+    ],
+    "VSDS": "1/3",
+    "N123": [
+      0,
+      0,
+      0
+    ],
+    "gates": 0,
+    "progress": 36.35
+  },
+  "budget": {
+    "consumed_through_C17": 17,
+    "remaining": 3
+  }
+}
