@@ -1,0 +1,30 @@
+{
+  "cycle": "C18",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C17",
+  "A": {
+    "question": "Can private_audit_cli return 0 with one fully reviewed manifest while a second raw object remains unreferenced after an earlier manifest write failure?",
+    "acceptance": "Aggregate-only read-only auditor counts unreferenced digest-name files and transient/unexpected private object entries, avoiding raw paths/content; CLI returns 2 if orphan/unsafe entries exist; add synthetic tests for orphan and clean capture."
+  },
+  "B": {
+    "hypotheses": [
+      "No orphan detection currently; manifest-backed checks can be clean when an unindexed object remains",
+      "A bounded dirfd listing can detect orphan object names without viewing original content",
+      "Scanning can race active writes; any uncertainty must fail closed without a release claim"
+    ]
+  },
+  "C": {
+    "plan": "Inspect object hierarchy; use fdesc-only listing of objects and two-character shards with validated names, compare against valid declared manifest SHA paths, bounded count; never follow links or mutate. Add test with two fake objects and manifest only for one; CLI exit2."
+  },
+  "D": {
+    "falsifier": "CLI returns 0 with orphan, newly created missing directories during read, raw path leaks to CLI output.",
+    "scope": "Only local POSIX store, no release right and no user personal data"
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
