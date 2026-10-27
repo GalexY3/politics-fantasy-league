@@ -1,0 +1,52 @@
+{
+  "campaign": "ABH_BRANCH20C_20261027",
+  "governance": "AB3.2.1 O7: priors accumulate, trace provenance, update with evidence. None are population validated.",
+  "entries": [
+    {
+      "id": "P-B20C-01",
+      "hypothesis": "Una misma persona/credencial puede recorrer fases de nominación, designación, inicio de mandato y acatamiento, y la perfección jurídica de la condición exige tres requisitos.",
+      "status": "SUPPORTED_BOUNDED_OFFICIAL_SOURCES",
+      "scope": "Three specifically identified September 2026 Senate credentials; Article 12 applies since 15 Nov 2025.",
+      "evidence_for": [
+        "CCyL ESE/000002-01",
+        "CCyL ESE/000002-02",
+        "Senado XV sesión 82 15/09/2026",
+        "BOE-A-2025-23055 art 12"
+      ],
+      "against": "No observed contradiction in selected documents",
+      "uncertainty": "Declarations/credential fulfillment times and original first publication unknown; no proof that person had full senator condition exactly on oath date",
+      "prior_prob": "NOT_NUMERICALLY_ELICITED",
+      "update": "More specific legal state model; do not treat oath as sufficient."
+    },
+    {
+      "id": "P-B20C-02",
+      "hypothesis": "RC07 pure-provenance helper is safe even when arbitrary untrusted caller supplies its trusted_registry.",
+      "status": "REFUTED_FOR_PURE_FUNCTION",
+      "scope": "Locally loaded RC07 pure API, not verified HTTP route",
+      "evidence_for": [],
+      "against": "Forged mapping first_public_at=2000/2026-09-01 led eligible=True, release_grade=False.",
+      "uncertainty": "No demonstrated remote HTTP exploit; existing /api/eligibility-policy is a separate fail-closed endpoint",
+      "update": "Require trusted registry owned by server; pure helper is insufficient source authentication"
+    },
+    {
+      "id": "P-B20C-03",
+      "hypothesis": "Immutable internal source index with zero positive attestation can safely permit historical claims.",
+      "status": "REFUTED_WITHIN_UNIT_TESTS",
+      "scope": "3 static records, 10 local tests",
+      "evidence_for": "No historical claims eligible as all first_public_at are None.",
+      "against": "All statuses still quarantined; no independent timestamps",
+      "uncertainty": "Unintegrated in main server and no E2E; rights and original bytes unverified",
+      "update": "Retain read-only index as traceability only, no claim of predictive source readiness"
+    },
+    {
+      "id": "P-B20C-04",
+      "hypothesis": "Local source registry integration is already accepted in live server.",
+      "status": "NOT_SUPPORTED",
+      "scope": "Current research branch server.py",
+      "evidence_for": [],
+      "against": "Source-stage GET route absent on readback; update operation blocked, no HTTP tests.",
+      "uncertainty": "A subsequent clean branch integration could change this.",
+      "update": "Leave AB-P gate blocked until actual route + reviewed source authenticating registry + HTTP tests."
+    }
+  ]
+}
