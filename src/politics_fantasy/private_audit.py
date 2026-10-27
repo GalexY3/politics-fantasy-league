@@ -61,6 +61,10 @@ def _ledger(fd: int, filename: str) -> list[dict]:
         raise ValueError("UNSAFE_LEDGER") from exc
     try:
         _check_private_permissions(obj, directory=False)
+        # Cooperating writers hold LOCK_EX through all partial writes and fsync.
+        # Wait for one complete ledger file, not an atomic pair of ledgers.
+        import fcntl
+        fcntl.flock(obj, fcntl.LOCK_SH)
         data = bytearray()
         while len(data) <= MAX_LEDGER_BYTES:
             chunk = os.read(obj, min(65536, MAX_LEDGER_BYTES + 1 - len(data)))
