@@ -1,0 +1,37 @@
+{
+  "cycle": "C27",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_MULTIPROCESS_EXACT_SOURCE_2X320_PASS",
+  "prereg_commit": "7edafcd9dd033fa9619f4154ae0e42e26d06f5bf",
+  "A": "Cross-process advisory flock should serialize whole JSONL records under forced split os.write while sharing SHA object store.",
+  "B": "Thread-only effects vs true 8 independent Python processes racing.",
+  "C": "Spawn 8 subprocesses ×40 rows, patch _write_all in each to split into 2 writes with randomized 0-2ms gap, store same SHA object, repeat two rounds with seeds 701 and 702.",
+  "D": {
+    "source_blob": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "native_command": "PYTHONPATH=. python C27_multiprocess_stress.py",
+    "script_sha256": "eb62d6afd981a9f1b49b528a2932f69dd3cfebd737867c05d1a6dcccba2aed9a",
+    "output": "/mnt/data/pfl_cont30_native/C27_multiprocess_stress_result.json"
+  },
+  "E": {
+    "rounds": 2,
+    "processes_per_round": 8,
+    "rows_per_process": 40,
+    "expected_total": 640,
+    "actual_total": 640,
+    "unique_records": 640,
+    "process_errors": 0,
+    "invalid_json": 0,
+    "object_sha_verified": true,
+    "temp_files": 0
+  },
+  "F": "No uncooperative writers, no power crash or transient audit inventory consistency. Only 2 runs with synthetic data.",
+  "G": "Actual OS subprocess concurrency and two seeds, not exclusively Python threads, exact GitHub source SHA matched.",
+  "H": "Supports cross-process cooperative serialization for this platform; no scientific novelty or release right.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C28 kill a process at a real source _write_all partial append and verify audit fail closed."
+}
