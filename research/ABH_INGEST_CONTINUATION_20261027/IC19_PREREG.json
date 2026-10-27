@@ -1,0 +1,21 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC19",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "H1": "Capture→synthetic source schema validation→quarantine→aggregate CLI can be executed from one actual offline scenario; both valid and invalid source documents stay unreleased and resulting reports are consistent with manifest rows.",
+  "H0": "Separate modules pass individually but cannot integrate coherently; manifest/review mismatch or CLI marks invalid accepted as release.",
+  "tests": [
+    "Complete fictionally valid Congress source document through all four modules including CLI: schema_pass quarantine and no scoring, status 0",
+    "Corrupt Congress total stays quarantined with schema_failed state and CLI reports local integrity as valid snapshot, never release",
+    "Two same-SHA capture operations with one review return exit 2 unreviewed",
+    "Original bytes not from private ZIP; network fake opener only"
+  ],
+  "acceptance": "Native scenario with private temp; exact module hashes checked and no external traffic.",
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
