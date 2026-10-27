@@ -160,6 +160,7 @@ def append_private_jsonl(root: Path, filename: str, record: dict) -> None:
         finally:
             os.close(fd)
 
+
 def preflight_private_storage(root: Path, filename: str) -> None:
     """Before external contact, reject local symlink objects/ledger paths.
 
