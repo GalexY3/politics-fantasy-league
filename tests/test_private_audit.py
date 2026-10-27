@@ -247,3 +247,41 @@ def test_audit_waits_for_cooperative_writer_to_finish_private_jsonl(tmp_path, mo
     assert not errors
     assert result["manifest_rows"] == 1
     assert result["legacy_captures_unlinked"] == 1
+
+
+@pytest.mark.skipif(__import__("os").name != "posix", reason="POSIX SIGKILL fixture")
+def test_sigkill_after_parseable_unterminated_manifest_line_is_rejected(tmp_path):
+    """A terminated process can leave parseable JSON but no final commit newline."""
+    import os
+    import signal
+    import subprocess
+    import sys
+
+    ledger = tmp_path / "manifest.jsonl"
+    program = (
+        "import os,sys,signal\n"
+        "fd=os.open(sys.argv[1],os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600)\n"
+        "os.write(fd,b'{\"synthetic\":true}')\n"
+        "os.fsync(fd)\n"
+        "print('READY',flush=True)\n"
+        "signal.pause()\n"
+    )
+    child = subprocess.Popen(
+        [sys.executable, "-c", program, str(ledger)],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+    )
+    try:
+        assert child.stdout.readline().strip() == "READY"
+        child.send_signal(signal.SIGKILL)
+        child.wait(timeout=5)
+    finally:
+        if child.poll() is None:
+            child.kill()
+            child.wait(timeout=5)
+        child.stdout.close()
+        child.stderr.close()
+    data = ledger.read_bytes()
+    assert data and not data.endswith(bytes([10]))
+    assert __import__("json").loads(data) == {"synthetic": True}
+    with pytest.raises(ValueError, match="INCOMPLETE_LEDGER_RECORD"):
+        audit_private_root(tmp_path)
