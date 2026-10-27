@@ -1,0 +1,21 @@
+{
+  "cycle": "C25",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C24",
+  "A": {
+    "question": "Do three failed checked-in audit tests pass if synthetic JSONL fixture files use security-required chmod(0600) while leaving production unchanged?",
+    "acceptance": "Patch only 3 test fixtures; assert mode 0600; record amended Git test blob; native rerun passes all 24. Preserve negative output before change."
+  },
+  "B": {
+    "rivals": [
+      "Failures solely fixture modes, 24/24 pass",
+      "After chmod parser rejects with another wrong error: real bug",
+      "Patch broadens privileges or changes product code: invalid repair"
+    ]
+  },
+  "C": "Add chmod 0600 immediately after write_bytes in three tests, not replace expected BAD_LEDGER_JSON; mirror exact edited GitHub test locally with matching hash and run native pytest.",
+  "D": {
+    "falsifier": "Any of 3 failures persists or blob mismatch, do not claim repaired."
+  }
+}
