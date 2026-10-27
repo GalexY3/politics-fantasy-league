@@ -1,0 +1,16 @@
+{
+  "id": "RC01-20261027", "mode": "AB-H/AB-R", "status": "CLOSED_EXPLORATORY_NOT_BLIND",
+  "prereg_commit": "c400317", "profile": "research/ABH_RECON_20261027/RC01_PROFILE.json",
+  "A": "Capacidad de fuente institucional para una cohorte electoral histórica de representantes electos.",
+  "B": "La fuente se había explorado antes del preregistro. Este resultado es una reproducción del acceso y del perfil, no una muestra independiente.",
+  "C": "Se reprodujeron los bytes y el perfil previamente observado; no se demuestra identidad personal persistente.",
+  "D": "HTTPS 200 con verificación TLS activa (ssl_verify_result=0), 326847 bytes y SHA256 cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4; coincide con captura exploratoria previa.",
+  "E": "Descarga institucional y análisis read-only de XLSX con openpyxl 3.1.5; una hoja, encabezado fila 4 y ocho campos.",
+  "F": "5600 filas, 16 fechas electorales de 1977 a 2023, 350 filas por fecha, ningún campo nuclear ausente entre fecha/código elección/código provincia/nombre.",
+  "G": "3217 cadenas de nombre exactas y 1287 repetidas son propiedades textuales del fichero, no números de personas ni pruebas de equivalencia. Sin ID personal estable en los ocho campos; fecha es elección, no período de mandato o primera publicación.",
+  "H": {"complaint": "RC01-COMP-EXPOSURE", "description": "La exploración se produjo antes de congelar el contraste; no afirmar preregistro ciego ni réplica independiente.", "confirmed": true, "status": "documented", "additional_limits": "Electos en elecciones, no censo de candidatos ni reconstrucción de bajas, ni verificación del emisor por hash aislado. Cabecera Last-Modified es de archivo, no publicación individual."},
+  "I": {"decision": "Utilizable para descubrimiento y definición de cobertura, con control de identidad y fechas pendientes", "CT2_identity_before_after": [29, 29], "VSDS": "1/3", "scientific_novelty_0_3": 0, "launch_gates": "unchanged"},
+  "J": "El entorno de checkout local permite probar realmente la ruta de elegibilidad y validar Atlas: registrar nuevo ciclo AB-P distinto de la inspección de fuente.",
+  "access": {"capture_utc": "2026-10-27T01:00:29Z", "catalog": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales", "distribution_license": "CC BY 4.0 as catalog metadata; attribution and downstream reuse conditions to audit", "raw_local": "data/raw/interior_20261027/elecciones-congreso-cargos-electos.xlsx (gitignored, not in remote)", "raw_remote_preserved": false, "source_changed_from_prior_blocked_environment": true},
+  "authorization": {"prior_distinct_branch_records": 13, "this_run": 1, "conservative_max_remaining_if_same_block": 6, "identity_of_authorizations": "UNRESOLVED"}
+}
