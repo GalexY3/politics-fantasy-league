@@ -1,0 +1,45 @@
+{
+  "campaign_id": "PFL-ABH-CONT10-20261027",
+  "authorized_by": "Usuario en conversación actual: 'Concedido' tras solicitud expresa de 10 nuevos ciclos AB-H con BRANCHING",
+  "authorization_limit": 10,
+  "cycles_started": 0,
+  "cycles_completed": 0,
+  "cycles_invalid": 0,
+  "cycles_planning_only": 0,
+  "remaining": 10,
+  "branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "b0a09ba73a8705c6d1d34c59b6c5658655b1f760",
+  "scope": "reproducibilidad Atlas; seguridad; evidencia oficial temporal/identidad/NO VOTAN; AB-P y AB-R separados",
+  "limitations": "No forzar cuota. No originales nominativos privados, real-person scoring, main merge, ni CI costosa. R5. Cada ciclo A–J con prereg y resultado; no confundir replay JS con validación Python ni pruebas previstas con realizadas.",
+  "cycle_1_prereg": {
+    "id": "C01",
+    "mode": "AB-P",
+    "status": "PREREGISTERED",
+    "A": {
+      "question": "¿La cadena seed+0020 de la rama actual es estructuralmente reproducible a partir de sus 20 blobs originales y sin promover gates?",
+      "unit": "20 archivos JSON más seed y grafo reconstruido",
+      "estimand": "integridad estructural de la cadena publicada",
+      "not_claimed": "Autenticidad de fuentes, validez semántica, validación Python nativa o progreso científico"
+    },
+    "B": {
+      "preferred": "Cadena íntegra estructuralmente",
+      "null": "Error de parentesco/duplicidad/referencia estructural",
+      "other": "Chequeo local histórico sobre 0019 reconstruido no demuestra identidad exacta actual"
+    },
+    "C": {
+      "plan": "Leer seed y 20 lotes exactos desde GitHub, inspeccionar esquema, parent_batch, unicidad de IDs, referencias cruzadas de edges/runs/complaints y gates; reconstrucción independiente acumulativa en JS sin modificar repo",
+      "falsifier": "Una operación inválida, ID duplicado, dependencia ausente, complaint a run inexistente o gate promovido"
+    },
+    "D": {
+      "source_ref": "research/pfl-codex-contributions-20261027 @ b0a09ba73a87",
+      "instrument": "JavaScript V8 en herramienta de lectura GitHub; no Python, sin ejecución en máquina del usuario",
+      "comparison": "Informe CURRENT previo 63 nodos/81 edges/119 runs/44 complaints; verificador Python canónico pendiente"
+    },
+    "E": "PENDING",
+    "F": "PENDING",
+    "G": "PENDING",
+    "H": "PENDING",
+    "I": "PENDING",
+    "J": "PENDING"
+  }
+}
