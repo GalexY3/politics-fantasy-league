@@ -1,0 +1,36 @@
+{
+  "id": "A09",
+  "status": "CLOSED_R5_HISTORICAL_FIRST_PUBLIC_AT_NOT_VERIFIED",
+  "prereg": "A09_PREREG.json",
+  "searches": [
+    "Official BOCG-15-D-390 source and its named CVE",
+    "Official Congreso bulletin issue and initiative index for a dated 2025 BOCG reference",
+    "Independent internet archive historical capture"
+  ],
+  "evidence_found": [
+    {
+      "source": "https://www.congreso.es/public_oficiales/L15/CONG/BOCG/D/BOCG-15-D-390.PDF",
+      "kind": "institutional primary document with issue day 2025-09-12 and document signing day 2025-09-09",
+      "first_public_at_exact": null
+    },
+    {
+      "source": "https://www.congreso.es/es/busqueda-de-iniciativas?_iniciativas_id=162%2F000572&_iniciativas_legislatura=XV&_iniciativas_mode=mostrarDetalle&p_p_id=iniciativas&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+      "kind": "Separate parliamentary initiative reports publication workflow 09/09 to 12/09, NOT the 051/000002 membership record and not a release timestamp for it",
+      "first_public_at_exact": null
+    }
+  ],
+  "unresolved": [
+    "No signed independent web archive receipt for the BOCG original was retrievable",
+    "Wayback CDX access failed from search/browser, not evidence archive never exists",
+    "No independent per-document publisher publication-time SLA comparable to 2023 AEBOE report found"
+  ],
+  "outcome": "Do not promote issue day or editorial signed day to a certified original first_public_at, and do not reuse an unrelated initiative publication workflow as membership publication evidence.",
+  "H1": "NOT_OBSERVED",
+  "H0": "Available tools insufficient for direct historical publication-time verification",
+  "R5": "Stop further repeated searches of same BOCG issue absent new archive/time-stamped source. Unresolved field remains null.",
+  "budget": {
+    "A_spent": 9,
+    "A_remaining": 11
+  },
+  "next": "A10 audit current evidence readiness and progress V3 hit criteria: decide whether new source work should promote individual milestone or remain as quarantine under V3."
+}
