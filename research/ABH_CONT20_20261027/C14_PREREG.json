@@ -1,0 +1,30 @@
+{
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "parent": "C13",
+  "A": {
+    "question": "Does the quarantine validator read the stored raw object via a mutable path rather than an anchored no-follow fd?",
+    "acceptance": "Read using POSIX dirfd and O_NOFOLLOW, hash-check before schema parser; unsafe reads remain integrity quarantine, never release; new synthetic tests."
+  },
+  "B": {
+    "rivals": [
+      "Path.resolve followed by Path.read_bytes is sufficient against path swaps",
+      "Descriptor-anchored read closes path-swap gap at audit moment",
+      "Attacker with writable trusted root remains outside scope"
+    ]
+  },
+  "C": {
+    "plan": "Add read-only anchored object reader with exact SHA and relative path checking, 20 MiB max and no path-created side effects. Replace raw path read in quarantine_ingest and add fake symlink/tamper tests."
+  },
+  "D": {
+    "falsifier": "Reader follows symlinks, unsafe bytes reach schema parser, creates missing paths or returns raw bytes in audit result.",
+    "boundaries": "POSIX only, no real data, no HTTP, no claim crash atomicity."
+  },
+  "E": "PENDING",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING"
+}
