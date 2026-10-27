@@ -118,21 +118,49 @@ def audit_private_root(root: Path) -> dict:
             for item in manifest:
                 outcomes[_validate_object(objectsfd, item.get("raw_object"), item.get("sha256"))] += 1
         review_states = Counter()
-        known = {x.get("sha256") for x in manifest if isinstance(x.get("sha256"), str)}
-        for item in reviews:
-            state = item.get("quarantine_state")
-            if state not in {"QUARANTINED_SCHEMA_PASSED", "QUARANTINED_SCHEMA_FAILED",
-                             "QUARANTINED_INTEGRITY_FAILED"}:
-                review_states["UNKNOWN_REVIEW_STATE"] += 1
-            elif item.get("sha256") not in known:
-                review_states["ORPHAN_REVIEW"] += 1
+        valid_manifest = {}
+        manifest_duplicate_ids = set()
+        legacy_captures = 0
+        for item in manifest:
+            cid = item.get("capture_id")
+            if not isinstance(cid, str) or not re.fullmatch(r"[0-9a-f]{32}", cid):
+                legacy_captures += 1
+            elif cid in valid_manifest:
+                manifest_duplicate_ids.add(cid)
             else:
-                review_states[state] += 1
+                valid_manifest[cid] = item.get("sha256")
+        seen_reviews = set()
+        exactly_matched = set()
+        for item in reviews:
+            cid = item.get("capture_id")
+            if not isinstance(cid, str) or not re.fullmatch(r"[0-9a-f]{32}", cid):
+                review_states["LEGACY_REVIEW_WITHOUT_ID"] += 1
+            elif cid in manifest_duplicate_ids:
+                review_states["AMBIGUOUS_MANIFEST_CAPTURE_ID"] += 1
+            elif cid in seen_reviews:
+                review_states["DUPLICATE_REVIEW"] += 1
+                exactly_matched.discard(cid)
+            elif cid not in valid_manifest:
+                review_states["ORPHAN_REVIEW"] += 1
+            elif valid_manifest[cid] != item.get("sha256"):
+                review_states["REVIEW_SHA_MISMATCH"] += 1
+            else:
+                state = item.get("quarantine_state")
+                if state not in {"QUARANTINED_SCHEMA_PASSED", "QUARANTINED_SCHEMA_FAILED",
+                                 "QUARANTINED_INTEGRITY_FAILED"}:
+                    review_states["UNKNOWN_REVIEW_STATE"] += 1
+                else:
+                    review_states[state] += 1
+                    exactly_matched.add(cid)
+            if isinstance(cid, str):
+                seen_reviews.add(cid)
         return {
             "manifest_rows": len(manifest), "review_rows": len(reviews),
             "object_integrity": dict(sorted(outcomes.items())),
             "quarantine_states": dict(sorted(review_states.items())),
-            "unreviewed_captures": max(0, len(manifest) - len(reviews)),
+            "unreviewed_captures": (len(valid_manifest) - len(exactly_matched)),
+            "legacy_captures_unlinked": legacy_captures,
+            "duplicate_manifest_capture_ids": len(manifest_duplicate_ids),
             "first_public_at_verified": False, "publisher_signature_verified": False,
             "real_person_scoring": False, "release_grade": False,
             "http_ingest_connected": False,
