@@ -5,13 +5,14 @@
 const LEVELS=Object.freeze([0,0.1,0.4,0.6,0.85,1]);
 const finite=v=>typeof v==="number"&&Number.isFinite(v);
 export function validateScope(scope){
- if(!scope||typeof scope!=="object"||!/^PFL-V\d+-\d{8}$/.test(scope.scope_id||"")
+ if(!scope||typeof scope!=="object"||scope.scope_id!=="PFL-V1-20261026"
   ||!Number.isInteger(scope.revision)||scope.revision<1)throw Error("BAD_SCOPE_VERSION");
  if(!Array.isArray(scope.tracks)||!scope.tracks.length)throw Error("NO_TRACKS");
  const tracks=new Set(),milestones=new Set();let w=0;
  for(const t of scope.tracks){
   if(typeof t.id!=="string"||!t.id||tracks.has(t.id))throw Error("DUPLICATE_OR_INVALID_TRACK");
   tracks.add(t.id);
+  if(typeof t.name!=="string"||!t.name)throw Error("BAD_TRACK_NAME");
   if(!finite(t.weight)||t.weight<=0)throw Error("BAD_WEIGHT");
   w+=t.weight;
   if(!Array.isArray(t.milestones)||t.milestones.length===0)throw Error("NO_MILESTONES");
@@ -19,9 +20,10 @@ export function validateScope(scope){
    if(typeof m.id!=="string"||!/^[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*$/.test(m.id)||milestones.has(m.id))throw Error("DUPLICATE_OR_INVALID_MILESTONE");
    milestones.add(m.id);
    if(!Number.isInteger(m.level)||m.level<0||m.level>5)throw Error("BAD_MATURITY");
-   if(!finite(m.size)||m.size<=0)throw Error("BAD_MILESTONE_SIZE");
+   if(!finite(m.size)||m.size<=0||m.size>10000)throw Error("BAD_MILESTONE_SIZE");
    if(typeof m.name!=="string"||m.name.length<4||typeof m.why!=="string"||m.why.length<10
-    ||typeof m.evidence_ref!=="string"||m.evidence_ref.length<5)throw Error("MILESTONE_NEEDS_EVIDENCE");
+    ||typeof m.evidence_ref!=="string"||m.evidence_ref.length<5
+    ||typeof m.evidence_class!=="string"||!m.evidence_class)throw Error("MILESTONE_NEEDS_EVIDENCE");
   }
  }
  if(Math.abs(w-100)>1e-8)throw Error("TRACK_WEIGHTS_MUST_TOTAL_100");
@@ -44,7 +46,7 @@ export function evaluate(scope){
  const globalPct=tracks.reduce((a,t)=>a+t.contribution_pp,0);
  const levels=Object.fromEntries(LEVELS.map((_,i)=>[i,all.filter(m=>m.maturity===i).length]));
  const byId=new Map(all.map(x=>[x.id,x]));
- const cannot=(id,min,reason)=>byId.get(id)?.maturity<min?reason:null;
+ const cannot=(id,min,reason)=>!byId.has(id)||byId.get(id).maturity<min?reason:null;
  const releaseBlockers=[
  cannot("src.registry",4,"Registro de partidos/candidaturas sin originales auditados"),
  cannot("id.real",4,"Identidades públicas reales sin reconciliar"),
