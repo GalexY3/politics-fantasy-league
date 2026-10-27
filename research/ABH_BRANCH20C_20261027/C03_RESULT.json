@@ -1,0 +1,47 @@
+{
+  "id": "C03",
+  "status": "CLOSED_LOCAL_UNIT_ACCEPTANCE_NOT_SOURCE_CERTIFICATION",
+  "prereg_commit": "807b3f8d2b0030c3557a41104f05554d376a5fe5",
+  "implementation": [
+    "src/politics_fantasy/source_event_registry.py",
+    "tests/test_source_event_registry.py"
+  ],
+  "observed": {
+    "local_python_cmd": "PYTHONPATH=/mnt/data/pfl_branch20c/src python -m unittest discover -s /mnt/data/pfl_branch20c/tests -p test_source_event_registry.py -q",
+    "passed": 10,
+    "failed": 0,
+    "records": 3,
+    "first_public_at_verified": 0,
+    "real_person_scoring": false,
+    "release_ready": false,
+    "github_actions": 0
+  },
+  "controls": [
+    "candidate designation type mismatch",
+    "actual real first_public_at absent",
+    "oath does not certify full rights",
+    "malformed or unknown reference fails closed",
+    "call with forged trusted_registry raises TypeError",
+    "copy of catalog altered externally cannot modify immutable internal records"
+  ],
+  "H1": "SUPPORTED only for local exact source code",
+  "H0": "REFUTED for evaluated pure server wrapper signature, not for all ways a future HTTP route might be wired",
+  "limits": [
+    "Not wired to HTTP; not an E2E trust boundary",
+    "No independent archived publication timestamp or digitally signed original",
+    "No person validation beyond documented records",
+    "Even internal source index could be modified by future developer code; no publisher attestation mechanism"
+  ],
+  "ABP": "read-only local stage index available, no scoring allowed",
+  "ABR": "no new empirical validation",
+  "CT2": 29,
+  "VSDS": "1/3",
+  "N123": [
+    0,
+    0,
+    0
+  ],
+  "gates": 0,
+  "progress": 36.35,
+  "next": "C04 HTTP integration with ignored query spoof fields, only localhost, GET read-only, test handler."
+}
