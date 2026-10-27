@@ -95,3 +95,35 @@ def test_legacy_missing_declared_size_cli_fails_closed(tmp_path):
     assert 'private-url' not in process.stdout
     assert CID not in process.stdout
     assert SHA not in process.stdout
+
+
+def test_orphan_raw_digest_without_manifest_reference_forces_cli_nonzero(tmp_path):
+    fixture(tmp_path)
+    append_private_jsonl(tmp_path, "quarantine_reviews.jsonl", {
+        "capture_id": CID, "sha256": SHA,
+        "quarantine_state": "QUARANTINED_SCHEMA_PASSED",
+    })
+    orphan_data = b'{"fictional":"unreferenced"}'
+    orphan_sha = hashlib.sha256(orphan_data).hexdigest()
+    store_bytes(tmp_path, orphan_data, orphan_sha)
+    process, report = run_cli(tmp_path)
+    assert process.returncode == 2
+    assert report["orphan_objects"] == 1
+    assert report["unexpected_object_entries"] == 0
+    assert report["release_grade"] is False
+    assert orphan_sha not in process.stdout
+    assert CID not in process.stdout
+
+
+def test_unexpected_shard_object_entry_causes_cli_nonzero(tmp_path):
+    rel = fixture(tmp_path)
+    append_private_jsonl(tmp_path, "quarantine_reviews.jsonl", {
+        "capture_id": CID, "sha256": SHA,
+        "quarantine_state": "QUARANTINED_SCHEMA_PASSED",
+    })
+    (tmp_path / rel).parent.joinpath("UNEXPECTED_PRIVATE_TMP").write_bytes(b"fictional")
+    process, report = run_cli(tmp_path)
+    assert process.returncode == 2
+    assert report["unexpected_object_entries"] == 1
+    assert report["release_grade"] is False
+    assert "UNEXPECTED_PRIVATE_TMP" not in process.stdout
