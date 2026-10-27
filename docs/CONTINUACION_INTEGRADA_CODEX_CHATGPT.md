@@ -1,3 +1,21 @@
+# Continuidad vigente · campaña de ingesta IC04–IC23 cerrada · 27/10/2026
+
+**Revisar primero** [AB Atlas CURRENT](../ab_atlas/CURRENT.md) y [el cierre IC04–IC23](../research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC04_IC23_FINAL.md). Se ha consumido el permiso de **20/20 ciclos IC04–IC23**, en `research/pfl-codex-contributions-20261027`. Historiales separados y anteriores: **ChatGPT AB-H45 (45), Codex CDX (9), ChatGPT IC01–IC03 (3)**. No modificar `main` ni tratar estos conjuntos como una sola campaña.
+
+**Implementado y probado localmente:** almacenamiento privado POSIX resistente a enlaces simbólicos, validación de longitud de HTTP, limpieza de escritura parcial, permisos privados y preflight; identidad técnica **`capture_id` por captura**, no por persona; auditoría de SHA, longitud y revisiones contra manifiesto con manejo de duplicaciones, legados, huérfanos y JSONL incompleto. La consola `python -m politics_fantasy.private_audit_cli --root <root_posix_privado>` solo imprime agregados, y exit 0 significa integridad/revisión local operativa, **no autorización para publicar ni puntuar políticos**. Tres tests E2E ficticios locales han pasado.
+
+**Evidencia QA:** IC21 ejecutó **67 tests Python focalizados + 14 subtests, 110 JS**, todos PASS. La suite completa de Python llegó a alrededor del 58 % y agotó el límite de ejecución, sin fallo visible; por ello **no está certificada como PASS**. El workflow opcional incluye nuevos tests, pero **GitHub Actions no se ha disparado**. El importador seguro es **solo POSIX/Linux**; Windows nativo rechaza de manera explícita; la demo de juego en Windows no cambia. No hay ingesta real mediante `POST /api/ingest`, que todavía no existe.
+
+**Atlas:** lote 0020 añadido después de 0019, con 20 runs y tres incidencias pendientes. La lectura de ambos deltas reales y controles estructurales del lote nuevo pasó. El validador Python canónico del **estado exacto GitHub con 20 lotes sigue pendiente** (la última comprobación local de 19 usó 0019 reconstruido, no sus bytes exactos). No atribuirle un SHA canónico nuevo no calculado. Los originales nominativos nunca se subieron a GitHub.
+
+**Sin cambios de puntuaciones científicas ni producto:** V4 **36,90 %**, CT2 **29/100**, VSDS **1/3**, N1/N2/N3 nuevos **0**, gates **0/6**. `NO VOTAN` continúa pendiente de evidencia semántica institucional, `first_public_at` y licencias de originales tampoco acreditadas.
+
+**Próximos resultados discriminantes, sujetos a nueva autorización de 5–15 ciclos:** rerun en checkout fresco de CI completo y Atlas Python sobre bytes actuales, prueba de recuperación ante terminación de proceso, revisión de derechos/publicación original y eventual diseño seguro de operador de captura autenticado. Aplicar R5, no consumir cuotas artificialmente.
+
+---
+
+## Historial anterior a la campaña IC04–IC23
+
 # Confirmación del checkout 4faf31a y nuevos resultados nativos · 27/10/2026
 
 El usuario facilitó un ZIP que contiene la rama integrada al **commit exacto `4faf31a`**. Se extrajo localmente en ChatGPT, se comparó el commit con la rama de GitHub (**identical** al comenzar), y se ejecutaron sin Codex **421 tests Python + 28 subtests, 110 JS y 34 tests de AB Atlas**, todos PASS. La validación **oficial** `ab_atlas/atlas_delta.py check` ya cubre **19 lotes / 60 nodos / SHA256 `9389c8cf4b3950c6558019cb769072e23e0f5aacf1b7be8adba88c1a9d11ddf0`** (incluye el lote posterior 0019 de recibo, no una campaña AB adicional).
