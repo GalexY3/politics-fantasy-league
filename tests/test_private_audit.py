@@ -195,3 +195,55 @@ def test_nonfinite_json_constants_in_private_ledger_rejected(tmp_path):
         )
         with pytest.raises(ValueError, match="BAD_LEDGER_JSON"):
             audit_private_root(tmp_path)
+
+
+def test_audit_waits_for_cooperative_writer_to_finish_private_jsonl(tmp_path, monkeypatch):
+    """Shared read lock sees whole row, not a temporary partial prefix."""
+    import os
+    import threading
+    import politics_fantasy.secure_store as store
+
+    first_half = threading.Event()
+    continue_writer = threading.Event()
+    read_done = threading.Event()
+    errors = []
+    result = {}
+
+    def fragmented_write(fd, payload):
+        split = max(1, len(payload) // 2)
+        os.write(fd, payload[:split])
+        first_half.set()
+        if not continue_writer.wait(timeout=5):
+            raise RuntimeError("SYNTHETIC_WRITER_TIMEOUT")
+        os.write(fd, payload[split:])
+
+    monkeypatch.setattr(store, "_write_all", fragmented_write)
+    def writer():
+        try:
+            store.append_private_jsonl(tmp_path, "manifest.jsonl",
+                                       {"synthetic": True})
+        except BaseException as exc:
+            errors.append(str(exc))
+    def reader():
+        try:
+            result.update(audit_private_root(tmp_path))
+        except BaseException as exc:
+            errors.append(str(exc))
+        finally:
+            read_done.set()
+
+    wt = threading.Thread(target=writer)
+    rt = threading.Thread(target=reader)
+    wt.start()
+    try:
+        assert first_half.wait(timeout=5)
+        rt.start()
+        assert not read_done.wait(timeout=0.04)
+    finally:
+        continue_writer.set()
+    wt.join(timeout=5)
+    rt.join(timeout=5)
+    assert not wt.is_alive() and not rt.is_alive()
+    assert not errors
+    assert result["manifest_rows"] == 1
+    assert result["legacy_captures_unlinked"] == 1
