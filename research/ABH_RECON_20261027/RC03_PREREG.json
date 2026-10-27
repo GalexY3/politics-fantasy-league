@@ -1,0 +1,13 @@
+{
+  "id": "RC03-20261027", "mode": "AB-H/AB-R", "status": "PREREGISTERED_AFTER_EXPLORATION",
+  "exposure_before_preregistration": "Un subagente descargó y examinó ambos XML antes de este protocolo y observó 2521 registros de composición, unicidad del par legislatura/ultCredencial y 2589 votos de la sesión. Este trabajo repite descriptivamente sus hallazgos; no es ciego, confirmatorio ni réplica independiente.",
+  "A": {"question": "¿Proporciona el Senado originales recuperables de composición y eventos y qué clave y grano sugieren para una futura reconciliación?", "unit": "registro de composición del XML y voto de senador en una votación."},
+  "B": {"baseline": "Faltaban fuentes nominales nacionales reproducibles en este entorno; no existía una identidad longitudinal certificada.", "alternatives": ["usar par legislatura/credencial solo como clave técnica candidata en la captura", "tratar credencial como ID global", "no inferir identidad por nombre"]},
+  "C": {"H1": "Los XML se descargan, parsean y reproducen recuentos y unicidad previamente observados.", "H0": "Falla acceso, cambia el hash o la estructura no reproduce el resultado.", "H_other": "Unicidad en un snapshot no acredita persistencia institucional ni identidad entre legislaturas."},
+  "D": {"criteria": "Registrar URL, TLS, bytes, SHA-256, raíz, recuentos, faltantes/duplicados de los campos candidatos y datos agregados de votaciones; sin exportar nombres o votos individuales."},
+  "E": {"execution": "Dos GET institucionales con certificados activos; análisis XML local estándar, sin Actions; mantener originales locales ignorados por Git.", "limits": "Última modificación del archivo no identifica primera publicación por fila; cobertura y significados de categorías pendientes de documentación."},
+  "F": {"pending": true}, "G": {"pending": true}, "H": {"audit": "Describir exposición previa y distinguir identificación de escaño/credencial, rol, nombre, grupo y persona."},
+  "I": {"CT2_identity": 29, "VSDS": "1/3", "novelty": 0, "release_gates": "no promotion"},
+  "J": {"next": "Elegir según datos; R5 ante ausencia de contraste relevante."},
+  "authorization": {"prior_distinct_branch_records": 13, "prior_continuation_runs": 2, "conservative_max_remaining_before_if_same_block": 5, "identity_of_authorizations": "UNRESOLVED"}
+}
