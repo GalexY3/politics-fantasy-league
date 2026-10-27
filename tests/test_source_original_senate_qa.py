@@ -8,7 +8,7 @@ def fixture(label="NO VOTAN", totals=None, vote_day="08-OCT-2025"):
     if totals: t.update(totals)
     texts = "".join(f"<{key}>{value}</{key}>" for key,value in t.items())
     return (f"<main><sesion><fecha_sesion>07/10/2025</fecha_sesion>"
-            f"<votacion><fecha_v>{vote_day}</fecha_v>{texts}"
+            f"<votacion><num_vot>1</num_vot><CodVotacion>10850</CodVotacion><fecha_v>{vote_day}</fecha_v>{texts}"
             f"<resultado><VotoSenador><escano>7</escano><voto>{label}</voto></VotoSenador></resultado>"
             f"<ausentes/></votacion></sesion></main>").encode()
 
@@ -54,6 +54,18 @@ class SenateOriginalTests(unittest.TestCase):
         xml=ET.fromstring(fixture())
         xml.find(".//escano").text=None
         with self.assertRaisesRegex(ValueError,"DUPLICATE_OR_BAD_SENATE_SEAT"):
+            audit(ET.tostring(xml))
+    def test_duplicate_original_vote_event_id_denied(self):
+        xml=ET.fromstring(fixture())
+        parent=xml.find("sesion")
+        vote=parent.find("votacion")
+        parent.append(ET.fromstring(ET.tostring(vote)))
+        with self.assertRaisesRegex(ValueError,"DUPLICATE_OR_BAD_SENATE_VOTE_IDENTIFIER"):
+            audit(ET.tostring(xml))
+    def test_missing_official_source_vote_id_denied(self):
+        xml=ET.fromstring(fixture())
+        xml.find(".//CodVotacion").text=None
+        with self.assertRaisesRegex(ValueError,"DUPLICATE_OR_BAD_SENATE_VOTE_IDENTIFIER"):
             audit(ET.tostring(xml))
     def test_missing_vote_denied(self):
         with self.assertRaisesRegex(ValueError,"MISSING_VOTES"):
