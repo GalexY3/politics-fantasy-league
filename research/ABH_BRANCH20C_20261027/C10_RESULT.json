@@ -1,0 +1,45 @@
+{
+  "id": "C10",
+  "status": "CLOSED_TWO_PROVINCE_INDEPENDENT_ORIGINAL_CORROBORATION",
+  "prereg_commit": "de6df0e9937d7a1ebc3805ca7f1cb4b0694e3a47",
+  "files_original_hash": {
+    "BOE_JEC_2023": "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a",
+    "Interior_XLSX": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+    "BOE_nominated_lists": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20"
+  },
+  "sample_provinces": [
+    {
+      "province": "Albacete",
+      "jec_elected_names": 4,
+      "interior_elected_rows": 4,
+      "normalized_exact_multiset_equal": true,
+      "source_pdf_page": 26
+    },
+    {
+      "province": "Salamanca",
+      "jec_elected_names": 4,
+      "interior_elected_rows": 4,
+      "normalized_exact_multiset_equal": true,
+      "source_pdf_page": 35
+    }
+  ],
+  "candidate_proclamation_published": "2023-06-27",
+  "election_day": "2023-07-23",
+  "JEC_elected_summary_published": "2023-09-01",
+  "different_legal_stages": true,
+  "method": "pdftotext -layout selected JEC original PDF province sections and visual render of pages 26 and 35; original Interior XLSX 2023 rows via artifact_tool; NFKD normalized exact multiset matching.",
+  "conclusion": "8/8 corresponding provincial elected-list labels match in two fixed samples across two independently issued primary sources, but not a double-blind identity certification or proof of all 350 electors.",
+  "limitations": [
+    "BOE PDF creation date 2023-08-31 predates issue date 2023-09-01; file metadata not first public publication time.",
+    "PDF elected rows vs Interior rows: same names in original sources but no permanent cross-legislature person identity.",
+    "June candidate proclamation includes non-elects and reserves; do not treat it as elected cohort.",
+    "Original 11 source bytes kept private; rights of redistribution not adjudicated."
+  ],
+  "novelty_N123": [
+    0,
+    0,
+    0
+  ],
+  "metrics_unchanged": true,
+  "next": "C11 prereg full 52-province original 2023 elected-list equality and systematic extraction difficulties."
+}
