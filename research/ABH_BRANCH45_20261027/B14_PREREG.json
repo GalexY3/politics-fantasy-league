@@ -1,0 +1,11 @@
+{
+  "id": "B14",
+  "stage": "B",
+  "mode": "AB-P/adversarial",
+  "status": "PREREGISTERED",
+  "dependency": "B13 new Senate XML source guard 8 native tests and 10 original vote rows PASS. Its date parse uses Python `%b` which may depend on locale and assume English OCT rather than Spanish ABR/AGO/DIC.",
+  "H1": "Spanish month abbreviation 08-ABR-2025, 08-AGO-2025, 08-DIC-2025 will be correctly recognized and ISO canonical days produced independent of English machine locale.",
+  "H0": "Current parser rejects Spanish-only month abbreviations (ValueError BAD_VOTE_DAY), requiring source-scoped parser fix before broader Senate ingestion.",
+  "test": "Execute one synthetic valid Senate vote for each of four months OCT, ABR, AGO, DIC against byte-verified B13 source; if breaks, implement explicit Spanish 12-month mapping and test all, replay original October session 10/10, never invent public timestamp.",
+  "acceptance": "All 12 months parsed under stdlib without host locale, original 10 votes still PASS and new regression tests committed."
+}
