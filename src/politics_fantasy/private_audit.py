@@ -59,6 +59,8 @@ def _ledger(fd: int, filename: str) -> list[dict]:
             data.extend(chunk)
         if len(data) > MAX_LEDGER_BYTES:
             raise ValueError("LEDGER_TOO_LARGE")
+        if data and not data.endswith(b"\n"):
+            raise ValueError("INCOMPLETE_LEDGER_RECORD")
         lines = data.splitlines()
         if len(lines) > MAX_ROWS:
             raise ValueError("TOO_MANY_LEDGER_ROWS")
