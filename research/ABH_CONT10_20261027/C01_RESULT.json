@@ -1,0 +1,40 @@
+{
+  "cycle": "C01",
+  "mode": "AB-P",
+  "execution_type": "DOCUMENTED_SOURCE_STRUCTURAL_AUDIT",
+  "status": "VALID_LIMITED_STRUCTURAL",
+  "prereg": "CAMPAIGN_C01_PREREG.json",
+  "evidence": "C01_JS_STRUCTURAL_EVIDENCE.json",
+  "A": "Integridad referencial y secuencia de 20 lotes GitHub completos contra seed original, sin inferencia de autenticidad editorial ni validación Python.",
+  "B": "Rival H0: 0019 reconstruido es distinto del original y puede ocultar diferencias en validación. H1: los blobs actuales encadenan y conservan invariantes estructurales.",
+  "C": "Replay estructural independiente y cotejo contra conteos CURRENT y 6 gates; falsador: refs/parents/IDs inválidos o cambio de gates.",
+  "D": "Conector GitHub ref de rama, seed y 20 archivos de updates; checksum Git blob en recibo, auditor JS propio. No ejecución de atlas_delta.py canónico.",
+  "E": {
+    "result": "PASS JS estrutural, 20/20 lotes",
+    "counts": {
+      "nodes": 63,
+      "edges": 81,
+      "runs": 119,
+      "complaints": 44,
+      "operations": 288
+    },
+    "errors": 0,
+    "gate_changes": 0
+  },
+  "F": "Auditor propio JS verifica invariantes de claves, referencias y contabilidad; no replica todas las reglas de abmap.validate, ni calcula SHA de estado canónico. Por tanto no certifica Python ni CI.",
+  "G": "NO_INDEPENDENT_EXTERNAL_REPLICATION; próxima validación en Python nativo checkout exacto sigue pendiente.",
+  "H": {
+    "belief_update": "Sostén provisionalmente la hipótesis limitada de integridad estructural de Atlas en blobs actuales; no actualizar autenticidad ni validación nativa.",
+    "anomaly": "Permanecen problemas de prueba completa y original 0019 local no byte-idéntico en corrida previa",
+    "next": "Investigación documental institucional sobre semántica exacta NO VOTAN, nueva clase de evidencia posible con fuente oficial"
+  },
+  "I": {
+    "internal_validity": "Auditor JS limitado; 0 incidencias estructurales detectadas",
+    "reproducibility": "20 Git blobs SHA preservados en recibo; no runner Python",
+    "external_validity": "No aplica",
+    "novelty": "0/3 descubrimiento",
+    "product_gate": "0/6 unchanged",
+    "metrics": "V4 36.90%, CT2 29/100, VSDS 1/3, N1/N2/N3 0"
+  },
+  "J": "CONTINUE_BRANCH_C02 to independent semantic/documentary blocker, while canonical Python checker remains open"
+}
