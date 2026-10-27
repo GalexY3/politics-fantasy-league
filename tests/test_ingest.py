@@ -73,3 +73,16 @@ def test_unsupported_windows_store_fails_before_source_request(tmp_path):
                        root=tmp_path, min_interval=1,
                        opener=lambda *args, **kwargs: (_ for _ in ()).throw(
                            AssertionError('no network on unsupported OS')))
+
+def test_equal_payload_same_sha_distinct_capture_identifiers(tmp_path, monkeypatch):
+    from politics_fantasy import ingest
+    monkeypatch.setattr(ingest.time,"sleep",lambda *_:None)
+    args=dict(url='https://www.congreso.es/test.json',source='congreso',root=tmp_path,
+              min_interval=1,opener=lambda *args, **kw:FakeResponse())
+    r1=import_url(**args)
+    r2=import_url(**args)
+    assert r1['sha256']==r2['sha256']
+    assert r1['capture_id']!=r2['capture_id']
+    assert len(r1['capture_id'])==len(r2['capture_id'])==32
+    records=[__import__('json').loads(x) for x in (tmp_path/'manifest.jsonl').read_text().splitlines()]
+    assert [r['capture_id'] for r in records]==[r1['capture_id'],r2['capture_id']]
