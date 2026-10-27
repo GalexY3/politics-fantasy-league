@@ -1,0 +1,23 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC07",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC06 protected store paths before contact, but ingress hashes whatever one read() returns even when response's Content-Length declares more bytes.",
+  "H1": "Fake 200 with declared length 100 and body 3 currently creates valid SHA and manifest; strict declared length validation will reject before storage. Malformed/oversized lengths denied before read.",
+  "H0": "urllib already rejects every incomplete or malformed Content-Length in this importer so no defect.",
+  "tests": [
+    "declared Content-Length >MAX_BYTES => deny before response.read",
+    "noncanonical negative or nonsense Content-Length rejected",
+    "declared 8, body 2 => no object and no manifest",
+    "exact byte-length declared accepted",
+    "missing Content-Length permitted only as unverified length, with no first-public claim"
+  ],
+  "acceptance": "Source-sha exact tests and focused suite; no actual publisher responses or HTTP scoring.",
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
