@@ -1,0 +1,28 @@
+{
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "CLOSED_SOURCE_PATCHED_REGRESSIONS_COMMITTED_NATIVE_SUITE_UNRUN",
+  "preregister_commit": "6033f2cd19322b72ce3cd6bfc4f6f9c8603b1479",
+  "A": "Postcapture raw review used Path.resolve()+read_bytes rather than dirfd/no-follow",
+  "B": "Mutable path can be swapped after resolution; descriptor-anchored read enforces no-follow",
+  "C": "Add read_private_object with strict SHA object location, private owner/mode, O_NOFOLLOW, upper limit 20MiB, no mkdir. Switch pipeline; classify access/integrity failures. Add synthetic symlink and absent-root tests.",
+  "D": {
+    "code_commits": [
+      "84dfd2f44e89eace669801611152b929912b9ad2",
+      "cfb39748b619e57e02e03410e11baf62e4777df1"
+    ],
+    "test_commit": "c69ead3284881d067b37027c72300735685fe4c5",
+    "isolated_test": "Native POSIX os.open O_NOFOLLOW rejected symlink target (errno40), external fake bytes unchanged. Does not import latest complete modules."
+  },
+  "E": "Code and test changes verified through GitHub. Standalone O_NOFOLLOW test PASS; repository regression suite NOT_RUN.",
+  "F": "Threat model excludes malicious writer in trusted parent. Reader hash verification is not publisher authentication; no release grade.",
+  "G": "Tests in source committed and original module used as source, not complete native checkout pytest.",
+  "H": "Smaller postcapture TOCTOU exposure, no claim of live source trust.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "J": "C15 test persistence of newly-created store root relative to its preexisting trusted parent, which C10 did not cover."
+}
