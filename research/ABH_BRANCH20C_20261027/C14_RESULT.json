@@ -1,0 +1,62 @@
+{
+  "id": "C14",
+  "status": "CLOSED_LOCAL_POLICY_ACCEPTANCE_NOT_RELEASE",
+  "prereg_commit": "21a0fa622782ec98fb68860b6cb536124ce6c4a8",
+  "files": [
+    "src/politics_fantasy/boe_2023_publication_bound.py",
+    "tests/test_boe_2023_publication_bound.py"
+  ],
+  "test": {
+    "command": "PYTHONPATH=/mnt/data/pfl_b20c_new/src python -m unittest discover -s /mnt/data/pfl_b20c_new/tests -p 'test_boe*.py' -v",
+    "local_python_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "clean_repo_checkout": false,
+    "http_integrated": false,
+    "github_actions": 0
+  },
+  "scoped_evidence_policy": {
+    "documents": [
+      "BOE-A-2023-15066",
+      "BOE-A-2023-18907"
+    ],
+    "signed_PDF_sha256": [
+      "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+      "f2146cfbf00d2b6eb6f8dd0dcdebc1e10298019589b2254e244e0ebc513d2f8a"
+    ],
+    "source_of_bound": "RD181/2008 Article 11, 2023 BOE annual compliance report 312/312 ordinary editions published before 08:00; assuming edition classification and publisher's self-report, day+1 at midnight Madrid is conservative availability proxy",
+    "cutoffs": [
+      "2023-06-28T00:00:00+02:00",
+      "2023-09-02T00:00:00+02:00"
+    ],
+    "first_public_at_exact": null,
+    "source_content_digitally_signed": true,
+    "long_term_signature_chain_verified": false,
+    "source_has_external_historical_CDN_capture": false
+  },
+  "security": [
+    "No user-selected arbitrary source imported into internal two-document registry",
+    "Caller can select known document id and as_of; result is documentary availability under assumption only",
+    "Real-person scoring and release_grade always false",
+    "Unknown document, naive timestamps and before-bound requests rejected"
+  ],
+  "limitations": [
+    "Not a live API, not validator of external request to ingest arbitrary original PDF",
+    "Publisher annual report and legal guarantee don't prove precise individual CDN upload time",
+    "Document is evidence of 2023 source facts, not an independent cross-legislature person ID",
+    "Pdfsig current certificate status expired, SHA1 signature algorithm; full historical PKI audit missing"
+  ],
+  "metrics_unchanged": {
+    "PFL_index": 36.35,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "new_N123": 0,
+    "release_gates": 0
+  },
+  "budget": {
+    "spent_through_C14": 14,
+    "remaining": 6
+  },
+  "ABP": "Non-release source-scoped conservative time guard",
+  "ABR": "No separate scientific discovery beyond C13."
+}
