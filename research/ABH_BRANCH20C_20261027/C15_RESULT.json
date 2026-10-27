@@ -1,0 +1,107 @@
+{
+  "id": "C15",
+  "status": "CLOSED_3_LONGSPAN_POSITIVE_LINKS_NO_EXACT_HOMONYM_NEGATIVE",
+  "prereg_commit": "85c7153cec87d16f4196f64ea56d15e97b1e5d3d",
+  "method": "Artifact_tool imported entire original Interior XLSX 5600 rows. NFKD normalized full names; span threshold >=35 years; 3 labels satisfy. Fixed all 3 ranked by span, so no post-hoc sample choice. Institutional official cross-legislature biography sources checked after prereg.",
+  "population": {
+    "Interior_rows": 5600,
+    "long_span_recurrent_name_labels_at_least_35_years": 3,
+    "fixed_sample_examined": 3,
+    "independent_documentary_same_person_positive": 3,
+    "independently_adjudicated_different_person_negative": 0,
+    "full_name_homonym_negative_identified": 0
+  },
+  "cases": [
+    {
+      "id": "P1",
+      "name": "Luis Planas Puchades",
+      "span_years": 41,
+      "Interior_election_years": [
+        1982,
+        1986,
+        2019,
+        2023
+      ],
+      "official_birth": "1952-11-20",
+      "official_documentary_link": "Official Congress XV biography explicitly records deputy 1982-1987 and XV, and Moncloa biography connects 1982-1987 with 2019-present",
+      "sources": [
+        "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_codParlamentario=56&_diputadomodule_idLegislatura=XV&_diputadomodule_mostrarFicha=true&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "https://www.lamoncloa.gob.es/gobierno/paginas/biografias-xv-legislatura/ministro-luis-planas.aspx"
+      ],
+      "label": "SAME_PERSON_BOUNDED_OFFICIAL_CROSS_HISTORY"
+    },
+    {
+      "id": "P2",
+      "name": "José Manuel García-Margallo Marfil",
+      "span_years": 39,
+      "Interior_election_years": [
+        1977,
+        1989,
+        1993,
+        2015,
+        2016
+      ],
+      "official_birth": "1944-08-13",
+      "official_documentary_link": "Congress Constituyente and XI/XII fichas give same exact birth date and list legislatures Constituyente I III IV V XI XII. Source-local codParlamentario differs 261 vs 44 vs 180, so code alone is not persistent across terms.",
+      "sources": [
+        "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=261&idLegislatura=0&mostrarAgenda=false&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=44&idLegislatura=XI&mostrarAgenda=false&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "https://www.congreso.es/es/busqueda-de-diputados?codParlamentario=180&idLegislatura=XII&mostrarFicha=true"
+      ],
+      "label": "SAME_PERSON_BOUNDED_OFFICIAL_CROSS_HISTORY"
+    },
+    {
+      "id": "P3",
+      "name": "Ignacio Gil Lázaro",
+      "span_years": 37,
+      "Interior_election_years": [
+        1986,
+        1993,
+        1996,
+        2000,
+        2004,
+        2008,
+        2011,
+        2019,
+        2023
+      ],
+      "official_birth": "1957-09-23",
+      "official_documentary_link": "Congress V VII XV fichas specify same full birth date and list past legislatures II III V VI VII VIII IX X XIII XIV XV, despite PP to Vox reported across dates. Representative local codes V188 VII250 XV117.",
+      "sources": [
+        "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=188&idLegislatura=V&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "https://www.congreso.es/es/busqueda-de-diputados?_diputadomodule_mostrarFicha=true&codParlamentario=250&idLegislatura=VII&mostrarAgenda=false&p_p_id=diputadomodule&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+        "https://www.congreso.es/es/busqueda-de-diputados?codParlamentario=117&idLegislatura=XV&mostrarFicha=true"
+      ],
+      "label": "SAME_PERSON_BOUNDED_OFFICIAL_CROSS_HISTORY"
+    }
+  ],
+  "hypothesis_evaluation": {
+    "H1": "NOT_OBSERVED IN FIXED >=35Y sample: no independently certified exact full-name homonym representing different people; do not assert none in overall universe.",
+    "H0": "3/3 selected long-span names independently supported as positive cross-era person continuities (with birth corroboration)."
+  },
+  "limits": [
+    "Samples are older long-serving well-documented politicians by construction, do not estimate false-positive rate or generalize exact name matching to less-documented persons.",
+    "Although date of birth and self-listed terms strongly identify, no government-issued globally immutable person ID is present in Interior spreadsheet.",
+    "No historical first_public_at independently checked for all members of personal bios; not as-of safe for prediction of each term.",
+    "The spelling García-Margallo y Marfil vs García-Margallo Marfil is treated as documented standard convention, not exact canonical string equality without correction."
+  ],
+  "metrics": {
+    "CT2_before_after": [
+      29,
+      29
+    ],
+    "VSDS": "1/3",
+    "new_N123": [
+      0,
+      0,
+      0
+    ],
+    "gates_passed": 0,
+    "product_index": 36.35
+  },
+  "budget": {
+    "spent_through_C15": 15,
+    "remaining": 5
+  },
+  "privacy": "Only publicly official professional elected politician profiles cited; no private source rows uploaded."
+}
