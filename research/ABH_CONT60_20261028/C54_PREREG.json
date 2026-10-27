@@ -1,0 +1,15 @@
+{
+  "cycle": "C54",
+  "mode": "AB-P",
+  "A": "Does untrusted PERSON_EVENT eligibility currently explicitly surface lack of independent purpose/legal-basis/EIPD screening, and can a fail-closed explanation add those reasons without accepting caller flags or changing release eligibility?",
+  "B": {
+    "H0": "Existing generic CLAIMS_NOT_INDEPENDENTLY_ATTESTED suffices; new diagnostic adds no differentiation",
+    "H1": "Purpose and risk review prerequisites absent, add explicit non-client-attestable explanatory reasons",
+    "H2": "Modification accidentally authorizes real-person scoring or makes synthetic aggregate policy error"
+  },
+  "C": "Read exact GitHub source and tests; prereg new response reasons for PERSON_EVENT only, assert always quarantined even if caller adds spoofed certifications, run true existing original tests plus synthetic tests on hash-verified module; don't infer EIPD legally mandatory without screening.",
+  "D": {
+    "falsifier": "Any caller record obtains release_ready true or test suite regression, source hash mismatch; no real persons",
+    "source_sha": "04856f49f339a5a3875f9b117723e82dd3e69495"
+  }
+}
