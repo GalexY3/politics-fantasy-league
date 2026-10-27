@@ -1,5 +1,9 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+## Reanudación y fuentes — 27/10/2026
+
+[Catálogo central de fuentes, acceso y límites](docs/CATALOGO_FUENTES.md) · [Estado del mapa y autorizaciones](ab_atlas/CURRENT.md) · [Continuación AB-H y reconciliación de ramas](research/ABH_RECON_20261027/REPORT.md). Estas novedades están en la rama de investigación; el historial de campañas que sigue se conserva con sus fechas y alcances originales.
+
 ## BR8N — candidaturas originales y navegador real (26/10/2026)
 
 **8/8 ciclos AB con BRANCHING completados:** siete pruebas o integraciones técnicas/documentales aceptadas y un **PARTIAL_R5** porque aún falta identidad real de personas y partidos. [Ledger A–J](research/BRANCH8N_20261026/LEDGER.json) · [Informe](research/BRANCH8N_20261026/REPORT.md) · [Priors](research/PRIORS.md).

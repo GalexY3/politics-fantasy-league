@@ -14,18 +14,18 @@ class TestMap(unittest.TestCase):
    self.assertEqual(cli('complaint','--file',f,'--run-id','R01','--severity','major','--category','evidence','--description','Faltan filas').returncode,0)
    self.assertEqual(cli('validate','--file',f).returncode,0)
    self.assertEqual(cli('build','--file',f,'--output',out).returncode,0)
-   d=json.loads(f.read_text());self.assertEqual(len(d['nodes']),2);self.assertEqual(d['nodes'][1]['status'],'answered')
-   self.assertEqual(len(d['complaints']),1);self.assertEqual(d['runs'][0]['complaint_ids'],[d['complaints'][0]['id']]);self.assertIn('Proyecto piloto',out.read_text())
+   d=json.loads(f.read_text(encoding='utf-8'));self.assertEqual(len(d['nodes']),2);self.assertEqual(d['nodes'][1]['status'],'answered')
+   self.assertEqual(len(d['complaints']),1);self.assertEqual(d['runs'][0]['complaint_ids'],[d['complaints'][0]['id']]);self.assertIn('Proyecto piloto',out.read_text(encoding='utf-8'))
  def test_scan_does_not_infer_facts(self):
   with tempfile.TemporaryDirectory() as td:
-   td=pathlib.Path(td);f=td/'state.json';r=td/'data';r.mkdir();(r/'result.md').write_text('Superé el benchmark')
+   td=pathlib.Path(td);f=td/'state.json';r=td/'data';r.mkdir();(r/'result.md').write_text('Superé el benchmark',encoding='utf-8')
    cli('init','--name','Test','--no-scaffold','--file',f)
    self.assertEqual(cli('scan','--file',f,'--root',r).returncode,0)
-   d=json.loads(f.read_text());self.assertEqual(d['nodes'][1]['kind'],'artifact');self.assertEqual(d['nodes'][1]['status'],'unreviewed')
+   d=json.loads(f.read_text(encoding='utf-8'));self.assertEqual(d['nodes'][1]['kind'],'artifact');self.assertEqual(d['nodes'][1]['status'],'unreviewed')
  def test_broken_link_rejected(self):
   with tempfile.TemporaryDirectory() as td:
    f=pathlib.Path(td)/'s.json';cli('init','--name','Test','--no-scaffold','--file',f)
    a=cli('link','--file',f,'--source','root','--target','unknown','--relation','tests')
    self.assertNotEqual(a.returncode,0)
-   self.assertEqual(len(json.loads(f.read_text())['edges']),0)
+   self.assertEqual(len(json.loads(f.read_text(encoding='utf-8'))['edges']),0)
 if __name__=='__main__':unittest.main()
