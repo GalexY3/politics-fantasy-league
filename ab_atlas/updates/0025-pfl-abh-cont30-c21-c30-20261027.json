@@ -1,0 +1,180 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0025-PFL-ABH-CONT30-C21-C30-20261027",
+  "parent_batch": "0024-PFL-ABH-CONT20-C11-C20-20261027",
+  "at": "2026-10-27T20:16:18.072Z",
+  "actor": "chatgpt",
+  "reason": "Append 10 actually executed A-J engineering reproduction cycles with exact GitHub source and native tests, negative/invalid fixture instrumentation preserved. No product launch or novelty uplift.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C21",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C21: first byte-identical GitHub private_audit_cli.py native pytest with stubbed audit dependency, 10/10 PASS; whole suite unverified",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C21_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C22",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C22: exact three source Git blobs native POSIX store/audit/CLI targeted tests, 27 PASS after correcting three invalid synthetic fixture modes; no source change",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C22_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C23",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C23: checked-in GitHub test_private_audit_cli.py exact blob, native 8/8 PASS",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C23_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C24",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C24: native checked-in test_private_audit.py 21 PASS and 3 FAIL from invalid 0644 JSONL fixtures; negative reported",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C24_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C25",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C25: three fixture-only chmod 0600 repairs committed, exact GitHub amended test blob, native 24/24 PASS",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C25_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C26",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C26: checked-in secure_store.py tests exact SHA source, native 22/22 PASS",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C26_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C27",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C27: 8 independent POSIX writer processes each 40 rows over two rounds, 640/640 distinct JSONL records, 0 errors",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C27_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C28",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C28: genuine SIGKILL during exact code append in two synthetic states, torn JSONL native audit raises and CLI returns 2",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C28_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C29",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C29: genuine SIGKILL before/after raw object hardlink, orphan/temp inventory fail-closed. Initial test hook invalid and repaired",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C29_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT30-C30",
+        "at": "2026-10-27T20:16:18.072Z",
+        "activity": "C30: add four reproducible GitHub POSIX subprocess tests and run, 4/4 PASS; combined four checked-in suites 58/58 native PASS",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_CONT30_20261027/C30_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "PFL V4 36.90%, identity CT2 29/100, gates 0/6 unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
