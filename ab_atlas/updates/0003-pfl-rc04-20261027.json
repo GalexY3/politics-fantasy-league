@@ -1,0 +1,14 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0003-PFL-RC04-20261027",
+  "parent_batch": "0002-PFL-RECON-20261027",
+  "at": "2026-10-27T01:06:34+00:00",
+  "actor": "codex",
+  "reason": "Añadir el cuarto contraste secuencial y actualizar la reserva prudente tras la respuesta del investigador.",
+  "ops": [
+    {"op": "node.set", "id": "PFL-RECON-AUTH-20261027", "reason": "RC04 consumido; el investigador no recuerda si los bloques eran el mismo permiso.", "set": {"detail": "Dos ramas registran 9 y 4 ciclos; identidad del permiso sin resolver. Con 4 ciclos nuevos, si era un único bloque y no hay otros consumos quedan hasta 3. El investigador no recuerda si los permisos eran comunes."}},
+    {"op": "node.add", "node": {"id": "PFL-RC04-CANDIDATOS-SENADO-20261027", "title": "Candidatos nominales en sesión 60 del Senado", "kind": "finding", "mode": "research", "status": "answered", "detail": "259 cadenas de la sesión tienen una sola coincidencia nominal en la composición XV de este snapshot. Son candidatas, no identidades ni pertenencia temporal verificadas; faltan controles adjudicados.", "sources": ["research/ABH_RECON_20261027/RC04_RESULT.json"], "phase": "verify"}},
+    {"op": "edge.add", "id": "PFL-RC04-SENADO-EDGE-20261027", "from": "PFL-FUENTES-OFICIALES-20261027", "to": "PFL-RC04-CANDIDATOS-SENADO-20261027", "relation": "branches_from"},
+    {"op": "run.add", "run": {"id": "PFL-RC04-20261027", "activity": "Cotejo exploratorio agregado de nombres del Senado", "status": "completed", "evidence": ["research/ABH_RECON_20261027/RC04_PREREG.json", "research/ABH_RECON_20261027/RC04_RESULT.json", "research/ABH_RECON_20261027/RC04_QA.json"], "cost": {"github_actions_minutes": 0}, "method_version": "AB 3.2.1 O7 AB-H", "scope": "PFL-V1 rev3", "complaint_ids": []}}
+  ]
+}
