@@ -1,3 +1,15 @@
+# Continuidad vigente · CONT20 C11–C20 cerrado 10/10 · Atlas 0024 · 27/10/2026
+
+**Leer [CURRENT](../ab_atlas/CURRENT.md), [ledger CONT20](../research/ABH_CONT20_20261027/CAMPAIGN_STATUS.json) e [informe final CONT20](../research/ABH_CONT20_20261027/REPORT_FINAL.md).** Segunda campaña autorizada de diez ciclos **agotada** C11–C20, todos con registro A–J (limitaciones explícitas); otro bloque requiere permiso nuevo.
+
+C11 auditó mediante JS **los 23 deltas originales GitHub** previos, 63 nodos/81 edges/129 runs/44 complaints, sin Python canónico. C12–C13 refuerzan estrictamente JSONL. C14 lectura anclada de RAW, C15 fsync creación root, C16 rollback en excepción capturada, C17 lector compartido flock, C18 inventario de huérfanos, C19 subprocess SIGKILL real **sólo con datos ficticios** y fail-closed si falta newline, C20 inspección privada de ledgers **antes de solicitud a origen**. Nuevos tests Python añadidos a Git, **no ejecutados en checkout integral**.
+
+**Atlas nuevo 0024:** diez `run.add` en lote `0024-PFL-ABH-CONT20-C11-C20-20261027`; conteos **derivados** 63/81/139/44, total 24 lotes, no SHA estado Python. CT2 29/100, VSDS 1/3, V4 36,90 %, 0/6 launch gates, N1/N2/N3 nuevos 0. Ningún CI costoso, main merge o puntuación real.
+
+**Próxima tarea concreta para Codex (solo cuando haya permisos/entorno):** checkout exacto de la rama; `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates` para 24 lotes, stdout/stderr/exit/hashes; pytest completo y Node, especialmente fallos/portabilidad de C12–C20. No elevar madurez hasta que existan salidas verificables y fuentes originales adjudicadas.
+
+---
+
 # Continuidad vigente · CONT10 cerrada 10/10 y Atlas 0023 · 27/10/2026
 
 **Consultar primero [CURRENT](../ab_atlas/CURRENT.md), [ledger cerrado](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) e [informe A–J C01–C10](../research/ABH_CONT10_20261027/REPORT_FINAL.md).** El usuario autorizó 10 ciclos nuevos AB-H y después exigió terminar los ya concedidos. **Hechos C01–C10, saldo 0**. A partir de ahora cualquier nueva campaña AB requiere nuevo permiso; distinguir del historial AB-H45, CDX01–09 e IC01–23.
