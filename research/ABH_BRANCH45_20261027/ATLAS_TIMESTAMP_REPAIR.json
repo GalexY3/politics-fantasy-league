@@ -1,0 +1,37 @@
+{
+  "kind": "AB_ATLAS_METADATA_REPAIR_GITHUB_COMMIT_TIME",
+  "status": "REPAIRED_IN_GIT_HISTORY_SOURCE_AUDIT_PRESERVED",
+  "scope": "Atlas batches 0012–0014 only; no substantive findings, percentages, gates or parent IDs changed",
+  "problem": "Authored `at` values 19:00/20:00/16:00 Europe/Madrid were placeholders and later than GitHub original commits, which could misrepresent registration chronology; they were not actual execution timestamps.",
+  "repairs": [
+    {
+      "file": "ab_atlas/updates/0012-pfl-b45-a01-a20-20261027.json",
+      "old": "2026-10-27T19:00:00+01:00",
+      "new": "2026-10-27T05:08:15+01:00",
+      "original_commit_sha": "fb738839f9ebd165298687454b495db87bbaf04a",
+      "source_actual_original_commit_utc": "2026-10-27T04:08:15Z",
+      "repair_commit": "60567b9f5d47d4c55f1c0617a8b27afe719e3a4f",
+      "fields_corrected": 21
+    },
+    {
+      "file": "ab_atlas/updates/0013-pfl-b45-r01-r05-20261027.json",
+      "old": "2026-10-27T20:00:00+01:00",
+      "new": "2026-10-27T05:19:31+01:00",
+      "original_commit_sha": "f81f5395b1dbf68f16920a9c5ef825e9b3b87270",
+      "source_actual_original_commit_utc": "2026-10-27T04:19:31Z",
+      "repair_commit": "7271fa7b44dbe1596b40adefefe94ed66c6237bc",
+      "fields_corrected": 6
+    },
+    {
+      "file": "ab_atlas/updates/0014-pfl-b45-b01-b20-20261027.json",
+      "old": "2026-10-27T16:00:00+01:00",
+      "new": "2026-10-27T14:17:32+01:00",
+      "original_commit_sha": "26dbfcd0184aa4443f97202910e2541b9014b32d",
+      "source_actual_original_commit_utc": "2026-10-27T13:17:32Z",
+      "repair_commit": "6a361007295763fa0534f47cf266910e6dee3484",
+      "fields_corrected": 24
+    }
+  ],
+  "interpretation": "This is an explicit in-place correction of delta JSON metadata, NOT purely immutable append-only editing of bytes; Git commit history preserves old contents. A maintenance batch 0015 records the breach and fix. All corrected timestamps represent *initial GitHub registration commit time*, not the instant each individual research experiment was executed or a publisher's first_public_at.",
+  "governance": "Future Atlas batches must use actual tool/commit registration timestamps; never insert guessed future wall-clock times; preserve audit trail for corrections. Release gates remain untouched."
+}
