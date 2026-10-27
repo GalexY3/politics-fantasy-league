@@ -1,0 +1,30 @@
+{
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "CLOSED_PATCHED_ISOLATED_POSIX_TEST_PASS_REPO_TEST_UNRUN",
+  "preregister_commit": "67c0fa3c3865f1bfbb0f558d2d35ecdc17f0b622",
+  "A": "Concurrent cooperating writer's multi-call JSONL append could appear temporarily incomplete to read-only auditor",
+  "B": "Read without lock vs read under shared advisory LOCK_SH",
+  "C": "Hold shared flock while reading, until descriptor closed; add deterministic threaded delayed writer regression.",
+  "D": {
+    "code_commit": "e242c772d8ef94f53b3c239add428de815e7f56b",
+    "test_commit": "afd76bda2710c4c0c1940f7b6e3b4a1d63215fc8",
+    "microtest": "Standalone POSIX file writer LOCK_EX writes split JSON; reader LOCK_SH stalls; after release reads complete row"
+  },
+  "E": {
+    "read_completed_during_partial_writer": false,
+    "after_release": "complete JSONL row",
+    "outcome": "ISOLATED_PASS; repo test code committed, not run"
+  },
+  "F": "File locks only coordinate cooperating processes; not a transactional snapshot of manifest and review together, nor coverage of power loss.",
+  "G": "Controlled native POSIX flock mechanism check; actual full repo tests not run.",
+  "H": "Eliminates common transient false-positive incomplete audit for cooperating append, not attestation.",
+  "I": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novel": "No"
+  },
+  "J": "C18 audit unreferenced raw objects not visible from manifest; check integrity completeness under prior failed append."
+}
