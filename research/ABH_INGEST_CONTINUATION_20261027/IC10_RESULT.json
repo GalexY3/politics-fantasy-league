@@ -1,0 +1,33 @@
+{
+  "cycle": "IC10",
+  "status": "CLOSED_PARTIAL_TEMP_WRITE_LEAK_REPAIRED",
+  "prereg": "IC10_PREREG.json",
+  "negative_before_fix": "Injected partial write then OSError left a private .tmp file inside digest shard, no canonical digest yet; actual red pytest negative failed as expected.",
+  "fix": {
+    "module_sha": "e45535ffe5642550fadf44bb228d49cf00bb6905",
+    "test_sha": "3094bfd7f43c1e1cd3b5fc530fcda56242ff010a",
+    "nested_cleanup": "unlink random temp is now in finally covering _write_all/fsync/link/verification"
+  },
+  "native_tests": {
+    "focused": 38,
+    "passed": 38,
+    "subtests": 14,
+    "network_requests": 0
+  },
+  "limits": [
+    "Power-off/process kill cannot execute Python finally; stale dot-tmp crash cleanup still needs separate recovery protocol",
+    "No transactional guarantee between raw object and append manifest",
+    "Windows importer unsupported"
+  ],
+  "metrics_unchanged": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "budget": {
+    "spent": 7,
+    "remaining": 13
+  },
+  "next": "IC11 build local read-only quarantined capture audit CLI, no public HTTP or personal rows."
+}
