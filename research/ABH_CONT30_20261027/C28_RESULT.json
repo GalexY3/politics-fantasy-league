@@ -1,0 +1,51 @@
+{
+  "cycle": "C28",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_SIGKILL_EXACT_SOURCE_TWO_CASES_FAIL_CLOSED",
+  "prereg_commit": "d2763831ae5e959a37baffcce7429b404d728de0",
+  "A": "Do real SIGKILL interruptions within genuine secure_store append leave audit/CLI in safe nonzero state?",
+  "B": "Handled OSError rollback might falsely suggest crash atomicity; actual forced termination at partial write should leave dirty suffix.",
+  "C": "Two child processes patch only write adapter in exact module to write+fsync half row, print HALFWAY, pause, then parent SIGKILL; audit and CLI genuine source on existing bytes.",
+  "D": {
+    "source_blobs": {
+      "secure_store": "4695c8d85924869212d916fa163a8f3548272ebc",
+      "audit": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "cli": "923a1c479c3f970e1325beff36699a277bc3773c"
+    },
+    "command": "PYTHONPATH=. python C28_sigkill_in_source_append.py",
+    "script_sha256": "36e4f050dcf489f3f72df819db222b471009ae929bfe29a6d8b3f814256679bd",
+    "local_result": "/mnt/data/pfl_cont30_native/C28_sigkill_native_output.json"
+  },
+  "E": {
+    "cases": 2,
+    "child_exit_codes": [
+      -9,
+      -9
+    ],
+    "prefix_preserved": [
+      true,
+      true
+    ],
+    "partial_bytes": [
+      21,
+      24
+    ],
+    "audit_error": "INCOMPLETE_LEDGER_RECORD",
+    "cli_exit_codes": [
+      2,
+      2
+    ],
+    "no_raw_leak": true
+  },
+  "F": "No recovery, files remain dirty; only SIGKILL after explicit fsync, not power-loss or atomic multi-ledger transaction.",
+  "G": "Real POSIX subprocess termination against exact source functions and actual native audit/CLI, not proxy parser.",
+  "H": "Correct fail-closed recognition within targeted scenario; identifies recovery/design as future work.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "scientific_discovery": "0/3"
+  },
+  "J": "C29 target SIGKILL before and after content-addressed object hard-link, audit orphan/temp inventory."
+}
