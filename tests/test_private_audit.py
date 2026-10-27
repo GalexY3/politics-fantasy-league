@@ -62,3 +62,16 @@ def test_audit_unknown_review_is_not_adjudication(tmp_path):
     append_private_jsonl(tmp_path,"quarantine_reviews.jsonl",{
         "sha256":SHA,"quarantine_state":"RELEASE_READY"})
     assert audit_private_root(tmp_path)["quarantine_states"]=={"UNKNOWN_REVIEW_STATE":1}
+
+def test_missing_object_audit_does_not_create_shard(tmp_path):
+    append_private_jsonl(tmp_path,'manifest.jsonl',{
+        'raw_object': f'objects/{SHA[:2]}/{SHA}', 'sha256':SHA})
+    a=audit_private_root(tmp_path)
+    assert a['object_integrity']=={'MISSING_OR_UNSAFE_OBJECT':1}
+    assert not (tmp_path/'objects'/SHA[:2]).exists()
+
+
+def test_empty_store_audit_does_not_create_objects(tmp_path):
+    a=audit_private_root(tmp_path)
+    assert a['manifest_rows']==0
+    assert not (tmp_path/'objects').exists()
