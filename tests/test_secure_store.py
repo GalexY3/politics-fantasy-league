@@ -134,3 +134,15 @@ def test_unsafe_existing_manifest_rejected(tmp_path):
     manifest.chmod(0o666)
     with pytest.raises(ValueError, match="UNSAFE_STORE_OWNERSHIP_OR_PERMISSIONS"):
         append_private_jsonl(tmp_path,"manifest.jsonl",{"fake":1})
+
+def test_write_failure_does_not_leave_partial_temporary_file(tmp_path, monkeypatch):
+    import politics_fantasy.secure_store as module
+    def failure(fd, data):
+        os.write(fd, b"PARTIAL_PRIVATE_FAKE")
+        raise OSError("SYNTHETIC_DISK_FAILURE")
+    monkeypatch.setattr(module, "_write_all", failure)
+    with pytest.raises(OSError, match="SYNTHETIC_DISK_FAILURE"):
+        store_bytes(tmp_path, PAYLOAD, DIGEST)
+    shard=tmp_path/"objects"/DIGEST[:2]
+    assert not list(shard.iterdir())
+    assert not (tmp_path/"manifest.jsonl").exists()
