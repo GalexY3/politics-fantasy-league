@@ -35,7 +35,12 @@ def audit_original_senate_session(xml_bytes: bytes) -> dict:
         except (TypeError, ValueError) as exc:
             raise ValueError("BAD_VOTE_DAY") from exc
         counts = Counter()
+        seen_source_seats = set()
         for person in vote.findall("./resultado/VotoSenador"):
+            seat = person.findtext("escano")
+            if not isinstance(seat,str) or not seat.isascii() or not seat.isdecimal() or not seat or int(seat)<1 or str(int(seat))!=seat or seat in seen_source_seats:
+                raise ValueError("DUPLICATE_OR_BAD_SENATE_SEAT_IN_VOTE")
+            seen_source_seats.add(seat)
             label = person.findtext("voto")
             if label not in VOTE_TO_TOTAL:
                 raise ValueError("UNKNOWN_OFFICIAL_SENATE_LABEL")
