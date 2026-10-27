@@ -1,0 +1,194 @@
+{
+  "group": "1-9",
+  "files": [
+    {
+      "number": 1,
+      "filename": "0001-PFL-ABH20-20261026.json",
+      "blob_sha": "fbafa54cbd4ee9f01c838bff9d6ad6dca753fd1a",
+      "batch": "0001-PFL-ABH20-20261026",
+      "parent": "",
+      "n_ops": 23,
+      "op_counts": {
+        "node.add": 4,
+        "node.set": 1,
+        "edge.add": 6,
+        "run.add": 9,
+        "complaint.add": 3
+      },
+      "run_ids": [
+        "PFL-ABH26-R01",
+        "PFL-ABH26-R02",
+        "PFL-ABH26-R03",
+        "PFL-ABH26-R04",
+        "PFL-ABH26-R05",
+        "PFL-ABH26-R06",
+        "PFL-ABH26-R07",
+        "PFL-ABH26-R08",
+        "PFL-ABH26-R09"
+      ]
+    },
+    {
+      "number": 2,
+      "filename": "0002-pfl-recon-20261027.json",
+      "blob_sha": "9dd8cd74d6125621e3c1cdcaae6abf8ffe0a2c33",
+      "batch": "0002-PFL-RECON-20261027",
+      "parent": "0001-PFL-ABH20-20261026",
+      "n_ops": 30,
+      "op_counts": {
+        "run.add": 7,
+        "complaint.add": 8,
+        "node.add": 6,
+        "edge.add": 9
+      },
+      "run_ids": [
+        "PFL_ABH_BR20_C01",
+        "PFL_ABH_BR20_C02",
+        "PFL_ABH_BR20_C03",
+        "PFL_ABH_BR20_C04",
+        "PFL-RC01-20261027",
+        "PFL-RC02-20261027",
+        "PFL-RC03-20261027"
+      ]
+    },
+    {
+      "number": 3,
+      "filename": "0003-pfl-rc04-20261027.json",
+      "blob_sha": "7343afc23291b600fa1e02f0feafb08382f79b5e",
+      "batch": "0003-PFL-RC04-20261027",
+      "parent": "0002-PFL-RECON-20261027",
+      "n_ops": 4,
+      "op_counts": {
+        "node.set": 1,
+        "node.add": 1,
+        "edge.add": 1,
+        "run.add": 1
+      },
+      "run_ids": [
+        "PFL-RC04-20261027"
+      ]
+    },
+    {
+      "number": 4,
+      "filename": "0004-pfl-source-rescue-20261027.json",
+      "blob_sha": "015ff81345bdf02f9c67e6a5851f8e190d4462da",
+      "batch": "0004-PFL-SOURCE-RESCUE-20261027",
+      "parent": "0003-PFL-RC04-20261027",
+      "n_ops": 4,
+      "op_counts": {
+        "node.set": 1,
+        "node.add": 1,
+        "edge.add": 1,
+        "run.add": 1
+      },
+      "run_ids": [
+        "PFL-RESCATE-FUENTES-RUN-20261027"
+      ]
+    },
+    {
+      "number": 5,
+      "filename": "0005-pfl-rc05-identity-20261027.json",
+      "blob_sha": "21326c42b5584dd58ab1d8cd2aed4d71e1aa3341",
+      "batch": "0005-PFL-RC05-IDENTITY-20261027",
+      "parent": "0004-PFL-SOURCE-RESCUE-20261027",
+      "n_ops": 11,
+      "op_counts": {
+        "run.add": 1,
+        "complaint.add": 2,
+        "node.add": 2,
+        "edge.add": 4,
+        "node.set": 2
+      },
+      "run_ids": [
+        "PFL-RC05-20261027"
+      ]
+    },
+    {
+      "number": 6,
+      "filename": "0006-pfl-rc06-rc07-close-20261027.json",
+      "blob_sha": "e6351f4af496d948f56ef6d6453c4299dfeba599",
+      "batch": "0006-PFL-RC06-RC07-CLOSE-20261027",
+      "parent": "0005-PFL-RC05-IDENTITY-20261027",
+      "n_ops": 11,
+      "op_counts": {
+        "run.add": 2,
+        "complaint.add": 2,
+        "node.add": 2,
+        "edge.add": 3,
+        "node.set": 2
+      },
+      "run_ids": [
+        "PFL-RC06-20261027",
+        "PFL-RC07-20261027"
+      ]
+    },
+    {
+      "number": 7,
+      "filename": "0007-pfl-b20c-20261027-r5.json",
+      "blob_sha": "03d8128b730ad74b54d2167b3cc6c543fb5c1a5a",
+      "batch": "0007-PFL-B20C-20261027-R5",
+      "parent": "0006-PFL-RC06-RC07-CLOSE-20261027",
+      "n_ops": 14,
+      "op_counts": {
+        "run.add": 4,
+        "complaint.add": 2,
+        "node.add": 3,
+        "edge.add": 4,
+        "node.set": 1
+      },
+      "run_ids": [
+        "PFL-B20C-C01",
+        "PFL-B20C-C02",
+        "PFL-B20C-C03",
+        "PFL-B20C-C04"
+      ]
+    },
+    {
+      "number": 8,
+      "filename": "0008-pfl-b20c-originals-20261027-r5.json",
+      "blob_sha": "817dbc6d82ec77c6ea1333f4baa5ad786c5bdee0",
+      "batch": "0008-PFL-B20C-ORIGINALS-20261027-R5",
+      "parent": "0007-PFL-B20C-20261027-R5",
+      "n_ops": 26,
+      "op_counts": {
+        "run.add": 8,
+        "complaint.add": 4,
+        "node.add": 6,
+        "edge.add": 6,
+        "node.set": 2
+      },
+      "run_ids": [
+        "PFL-B20C-C05",
+        "PFL-B20C-C06",
+        "PFL-B20C-C07",
+        "PFL-B20C-C08",
+        "PFL-B20C-C09",
+        "PFL-B20C-C10",
+        "PFL-B20C-C11",
+        "PFL-B20C-C12"
+      ]
+    },
+    {
+      "number": 9,
+      "filename": "0009-pfl-b20c-atlas-repair-20261027.json",
+      "blob_sha": "2c30dd96e3ef4552afd7c88f001a18d2fe1afbd8",
+      "batch": "0009-PFL-B20C-ATLAS-REPAIR-20261027",
+      "parent": "0008-PFL-B20C-ORIGINALS-20261027-R5",
+      "n_ops": 2,
+      "op_counts": {
+        "complaint.add": 1,
+        "complaint.triage": 1
+      },
+      "run_ids": []
+    }
+  ],
+  "last_batch": "0009-PFL-B20C-ATLAS-REPAIR-20261027",
+  "op_counts": {
+    "node.add": 25,
+    "node.set": 10,
+    "edge.add": 34,
+    "run.add": 33,
+    "complaint.add": 22,
+    "complaint.triage": 1
+  },
+  "errors": []
+}
