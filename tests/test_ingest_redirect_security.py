@@ -19,6 +19,7 @@ class Response:
         self.read_count = 0
     def __enter__(self): return self
     def __exit__(self, *args): return None
+    def close(self): return None
     def geturl(self): return self.url
     def read(self, n):
         self.read_count += 1
