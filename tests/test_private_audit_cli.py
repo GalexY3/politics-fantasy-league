@@ -74,3 +74,24 @@ def test_symlinked_ledger_generic_error_no_outside_read(tmp_path):
     assert report['audit_error']=='PRIVATE_AUDIT_UNAVAILABLE'
     assert b'not for CLI'==outside.read_bytes()
     assert 'not for CLI' not in process.stdout
+
+
+def test_legacy_missing_declared_size_cli_fails_closed(tmp_path):
+    """A matching SHA cannot stand in for a missing captured byte length."""
+    rel = store_bytes(tmp_path, DATA, SHA)
+    append_private_jsonl(tmp_path, 'manifest.jsonl', {
+        'capture_id': CID, 'sha256': SHA, 'raw_object': rel,
+        'url': 'private-url',  # Deliberately no 'bytes' field.
+    })
+    append_private_jsonl(tmp_path, 'quarantine_reviews.jsonl', {
+        'capture_id': CID, 'sha256': SHA,
+        'quarantine_state': 'QUARANTINED_SCHEMA_PASSED',
+    })
+    process, report = run_cli(tmp_path)
+    assert report['object_integrity'] == {'VALID_OBJECT': 1}
+    assert report['legacy_size_without_bytes'] == 1
+    assert process.returncode == 2
+    assert report['release_grade'] is False
+    assert 'private-url' not in process.stdout
+    assert CID not in process.stdout
+    assert SHA not in process.stdout
