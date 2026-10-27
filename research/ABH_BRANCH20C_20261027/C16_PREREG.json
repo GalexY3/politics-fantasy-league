@@ -1,0 +1,14 @@
+{
+  "id": "C16",
+  "status": "PREREG_AFTER_C15_LONGSPAN_POSITIVE_RESULTS",
+  "mode": "AB-R additional exact homonym adversarial search",
+  "prior": "C15 3 long-span >=35-year repeated full names were all positive same-person links officially cross-documented, so ultra-long span alone is not discriminating.",
+  "H1": "Among repeated full names spanning 20-34 years and changing province, one fixed candidate can be distinguished as a true exact full-name homonym by official historical birth dates or incompatible individual profiles.",
+  "H0": "Those candidates may be long political careers moving constituencies; nothing certifies a negative match in selected sample.",
+  "selection": "From full 5,600-row Interior original, select normalized name labels with at least two election dates and span >=20 and <35; require at least two province codes; order descending by year span, ascending by label; inspect first up to eight, no post-hoc name chasing. No official source link accepted solely from party or province.",
+  "confirm_negative": "Two independent official Parliament/BOE biographies with exact normalized full name and incompatible DOB or explicit distinct institutional persons, both tied to the candidate election and province period.",
+  "confirm_positive": "Same DOB and source-maintained parliamentary historical bio explicitly listing both terms.",
+  "other": "Unresolved when no DOB/history evidence; rate is not population estimate.",
+  "cost": "No Github Actions. Private Interior rows remain local.",
+  "limitations": "Candidate selection after previous C15 findings, still exploratory not blind; acceptance limited to the fixed small sample."
+}
