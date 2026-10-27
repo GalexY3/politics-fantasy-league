@@ -1,0 +1,208 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0007-PFL-B20C-20261027-R5",
+  "parent_batch": "0006-PFL-RC06-RC07-CLOSE-20261027",
+  "at": "2026-10-27T02:31:30.356Z",
+  "actor": "chatgpt",
+  "reason": "User granted new BRANCHING20; 3 bounded completed cycles, 1 STOP_R5 integration attempt. Legal stage separation and local immutable registry; no source authentication or HTTP integration accepted. 16 cycles conserved. Priors updated.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C01",
+        "activity": "Audit separate nomination, designation, mandate start, Senate oath and complete legal status against Senate plenary and BOE Article 12",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_RESULT.json"
+        ],
+        "at": "2026-10-27T02:31:30.356Z",
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C02",
+        "activity": "Demonstrate RC07 pure helper accepts forged caller-owned trusted_registry; show not live HTTP exploit",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C02_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C02_RESULT.json"
+        ],
+        "at": "2026-10-27T02:31:30.356Z",
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C03",
+        "activity": "Implement frozen 3-record stage registry with unknown first_public_at; 10 local acceptance tests",
+        "status": "completed",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json"
+        ],
+        "at": "2026-10-27T02:31:30.356Z",
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-B20C-C04",
+        "activity": "Attempt readonly server route; GitHub server file write blocked and HTTP E2E cannot be certified",
+        "status": "stopped",
+        "evidence": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C04_PREREG.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C04_RESULT.json"
+        ],
+        "at": "2026-10-27T02:31:30.356Z",
+        "cost": {
+          "github_actions_minutes": 0
+        },
+        "method_version": "AB3.2.1 O7",
+        "scope": "PFL-V1 rev3"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C02-FORGED-REGISTRY",
+        "run_id": "PFL-B20C-C02",
+        "severity": "major",
+        "status": "open",
+        "category": "trust_boundary",
+        "source": "agent",
+        "description": "Legacy RC07 pure helper trusts caller-supplied registry with forged first_public_at (can return eligible true). No live HTTP exploit proven; does not alone release or score persons.",
+        "at": "2026-10-27T02:31:30.356Z"
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-B20C-C04-HTTP-UNVERIFIED",
+        "run_id": "PFL-B20C-C04",
+        "severity": "major",
+        "status": "open",
+        "category": "engineering_integration",
+        "source": "agent",
+        "description": "Server source-stage route not deployed, protected GitHub update not completed, and no HTTP E2E tests performed. Local pure facade is not a live trust boundary.",
+        "at": "2026-10-27T02:31:30.356Z"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-STAGES-20261027",
+        "title": "Actos tipados: nominación, designación, credencial, acatamiento y condición plena",
+        "kind": "finding",
+        "mode": "research",
+        "status": "answered",
+        "detail": "Fuentes independientes: CCyL aceptó candidatos BOCCL 10/09, designó por Pleno 10/09 (BOCCL 16/09); Senado registra comienzo de mandato 11/09 y acatamiento en Pleno 15/09; BOE-A-2025-23055 art.12 exige credencial + declaraciones + acatamiento para perfección de condición. No consta acreditación conjunta de los tres requisitos de individuos, ni first_public_at original.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_RESULT.json",
+          "https://www.senado.es/web/actividadparlamentaria/sesionesplenarias/pleno/rwdsesionespleno/detalle/index.html?id=83&legis=15&ns=82",
+          "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-23055"
+        ],
+        "phase": "verify"
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-SOURCE-REGISTRY-20261027",
+        "title": "Índice local fijo de tres clases de fuente, sin recibos de publicación",
+        "kind": "deliverable",
+        "mode": "project",
+        "status": "active",
+        "detail": "source_event_registry.py ofrece tres metadatos de actos documentados y deny si no first_public_at; 10 controles unitarios PASS local. No es sistema de atestación, no se ha conectado a servidor, no está validado en E2E.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json",
+          "src/politics_fantasy/source_event_registry.py",
+          "tests/test_source_event_registry.py"
+        ],
+        "phase": "build",
+        "acceptance": {
+          "criteria": "Aceptación local de semántica con 10 tests, pendiente integración y autenticación del registro",
+          "evidence": [
+            "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C03_RESULT.json"
+          ],
+          "verified": false,
+          "verified_by": ""
+        }
+      }
+    },
+    {
+      "op": "node.add",
+      "node": {
+        "id": "PFL-B20C-AUTH-20261027",
+        "title": "BRANCHING20C concedido: 4 registros cerrados, 16 reservados",
+        "kind": "milestone",
+        "mode": "project",
+        "status": "active",
+        "detail": "Autorización humana nueva (Concedido) tras cierre conservador anterior. C01–C03 completados con evidencia/técnica delimitada; C04 STOP_R5 con integración fallida. Presupuesto: 4/20 registrados, quedan 16; autorización existente, no requiere nueva concesión para reanudar con evidencia discriminante. No ejecutar variantes redundantes.",
+        "sources": [
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C04_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/PRIORS_DELTA.json"
+        ],
+        "phase": "discover"
+      }
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-E1",
+      "from": "n_ca9094a596e4",
+      "to": "PFL-B20C-STAGES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-E2",
+      "from": "PFL-RC06-NOMINATION-NOT-DESIGNATION-20261027",
+      "to": "PFL-B20C-STAGES-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-E3",
+      "from": "PFL-RC07-ASOF-CLAIM-GUARD-20261027",
+      "to": "PFL-B20C-SOURCE-REGISTRY-20261027",
+      "relation": "related_to"
+    },
+    {
+      "op": "edge.add",
+      "id": "PFL-B20C-E4",
+      "from": "root",
+      "to": "PFL-B20C-AUTH-20261027",
+      "relation": "branches_from"
+    },
+    {
+      "op": "node.set",
+      "id": "PFL-FUENTES-CATALOGO-20261027",
+      "set": {
+        "detail": "Catálogo ampliado con Senado XV sesión 82 de acatamiento 15-09-2026 y BOE-A-2025-23055 Art12, más clasificación de fuentes y costes de confianza BRANCHING20C. No first_public_at original ni licencia completa acreditada.",
+        "sources": [
+          "docs/CATALOGO_FUENTES.md",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C01_RESULT.json",
+          "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C02_RESULT.json"
+        ]
+      },
+      "reason": "Nuevo contraste legal y documental, sin cambiar gates ni datos reales"
+    }
+  ]
+}
