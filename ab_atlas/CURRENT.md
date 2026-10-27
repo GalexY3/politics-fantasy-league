@@ -1,3 +1,17 @@
+# AB Atlas · campaña CONT20 cerrada C11–C20 · 27/10/2026
+
+**Situación vigente:** el usuario autorizó diez ciclos AB-H nuevos después de CONT10. **Se han ejecutado y documentado C11–C20: 10/10, saldo 0.** [Ledger cerrado](../research/ABH_CONT20_20261027/CAMPAIGN_STATUS.json) · [informe A–J](../research/ABH_CONT20_20261027/REPORT_FINAL.md). Son principalmente mejoras e instrumentaciones **AB-P** de la ingesta privada, no nuevos hallazgos científicos originales. C01–C10, IC01–IC23, AB-H45 y CDX son series separadas. Se requiere nueva autorización para otra campaña.
+
+**Evidencia nueva:** C11 replay JS de los **23 lotes exactos anteriores**, sin errores detectados de cadena/referencias/ciclos/gates en las comprobaciones realizadas. C12–C13 parser JSONL estricto (claves repetidas, NaN/Infinity). C14 lectura de original capturado mediante descriptor POSIX `O_NOFOLLOW` y SHA, no ruta resoluble. C15 `fsync` del padre al crear root. C16 rollback de append parcial ante `OSError` capturado dentro de `LOCK_EX`. C17 auditor `LOCK_SH` sobre ledger. C18 inventario read-only de objetos SHA huérfanos y entradas inesperadas, con CLI no satisfactorio. C19 experimento **SIGKILL real** sobre hijo sintético dejó JSON válido sin salto de línea: condición de auditoría fail-closed, **no** fallo eléctrico real. C20 valida owner y permisos privados en preflight, antes de abrir conexión a la fuente. Código y tests de regresión publicados, todavía **sin `pytest` del checkout completo**.
+
+**Atlas:** última delta `0024-PFL-ABH-CONT20-C11-C20-20261027`, 24 lotes, con 10 `run.add` nuevos; conteos **derivados** desde JS+delta 0024: **63 nodos, 81 relaciones, 139 runs, 44 complaints, 308 ops**. **Python `atlas_delta.py check` 24 lotes y SHA canónico aún NOT_RUN.** Controles de Gates sin promoción.
+
+**Métricas invariables:** V4 **36,90 %**, CT2 identidad **29/100** ordinal, VSDS **1/3**, N1/N2/N3 nuevos **0/0/0**, gates **0/6**. Sin datos privados en Git ni puntuación de políticos reales, sin merge a main ni Actions costosas.
+
+**Siguiente necesidad:** Codex/checkout completo exacto de la rama para correr el verificador canónico Atlas de **24** lotes, pytest integral y Node, con informes de comandos, exit codes, errores y pruebas adversariales C12–C20. El acceso GitHub de solo lectura/escritura textual no demuestra ejecución del checkout. Investigación sobre RPP, licencias por recurso y `NO VOTAN` permanece condicionada a originales institucionales nuevos. No repetir catálogos.
+
+---
+
 # AB Atlas · campaña AB-H CONT10 cerrada C01–C10 · 27/10/2026
 
 **Fuente de verdad más reciente:** [ledger CONT10](../research/ABH_CONT10_20261027/CAMPAIGN_STATUS.json) y [informe final](../research/ABH_CONT10_20261027/REPORT_FINAL.md). Usuario autorizó diez ciclos AB-H con branching y pidió expresamente agotar los diez; **C01–C10 registrados y cerrados 10/10**, ninguna plaza autorizada de este bloque sin ejecutar. Los registros anteriores AB-H45, Codex CDX y IC01–IC23 son historiales distintos, no sumables como replicaciones independientes. Solicitar **nueva** autorización para otra campaña.
