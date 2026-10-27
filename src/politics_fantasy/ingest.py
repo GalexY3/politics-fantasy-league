@@ -10,7 +10,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
-from .secure_store import store_bytes, append_private_jsonl
+from .secure_store import store_bytes, append_private_jsonl, preflight_private_storage
 import time
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
@@ -75,6 +75,7 @@ def import_url(*, url: str, source: str, root: Path, min_interval: float = 3.0,
     if (isinstance(timeout, bool) or not isinstance(timeout, (int, float))
             or not math.isfinite(timeout) or timeout <= 0):
         raise ValueError("TIMEOUT_INVALID")
+    preflight_private_storage(root, "manifest.jsonl")
     # Production path installs the redirect guard in urllib itself. An injected
     # opener exists for offline tests only: it cannot attest redirects itself.
     guard = SourceScopedRedirects(source) if opener is None else None
