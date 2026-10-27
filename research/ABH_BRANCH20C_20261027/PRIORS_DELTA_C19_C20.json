@@ -1,0 +1,48 @@
+{
+  "campaign": "PFL_ABH_BRANCH20C_20261027",
+  "parent": "PRIORS_DELTA_C13_C18.json",
+  "entries": [
+    {
+      "id": "P-B20C-19",
+      "hypothesis": "Current Congress elected lists and first filed credentials suffice to infer day of full parliamentary condition for any member",
+      "status": "REFUTED_BY_PRIMARY_DISTINCTION",
+      "scope": "BOCG XV-D-51 15/12/2023, PLENO 051/000002",
+      "prior_numeric": "NOT_ELICITED",
+      "evidence_for": "Nomination/credential and parliamentary condition dates sometimes coincide",
+      "evidence_against": "8 exits effective 06/12/2023, 8 gains effective 12/12, 8 credentials 12/12; issue dated 15/12. These are distinct types and dates.",
+      "update": "Separate FULL_CONDITION_ACQUIRED/CEASED from CREDENTIAL_SUBMITTED and source bulletin date; do not infer 1:1 replacement merely from 8+8 counts.",
+      "uncertainty": "No independent first_public_at for BOCG nor PDF-original signature SHA."
+    },
+    {
+      "id": "P-B20C-20",
+      "hypothesis": "Presenting a credential always coincides with parliamentary full-condition acquisition",
+      "status": "FALSIFIED_FIXED_2025_CASES",
+      "scope": "BOCG XV-D-390 dated 12/09/2025, PLENO 051/000002",
+      "prior_numeric": "NOT_ELICITED",
+      "evidence_for": "One of three has same-day credential and full condition.",
+      "evidence_against": "All three full condition dates 09/09/2025 but credentials 01/08, 02/09 and 09/09: gaps 39,7,0 days. Separate termination dated 02/09 and issue 12/09.",
+      "update": "Do not equate first credential with condition; use publisher's explicit effective-day field and separately record issue-day and unknown first-public.",
+      "uncertainty": "Indexed official HTML, direct-open cache miss; no signed original PDF hash. Fixed sample cannot estimate population rate."
+    }
+  ],
+  "impact": {
+    "source_results": [
+      "C19_RESULT.json",
+      "C20_RESULT.json"
+    ],
+    "temporal": "BOCG gives actual full-condition events at calendar-day granularity, subject to later bulletin publication caveat.",
+    "identity": "Individual names source-linked within legislature; no universal person ID.",
+    "metrics_invariant": {
+      "index": 36.35,
+      "CT2": 29,
+      "VSDS": "1/3",
+      "N123": [
+        0,
+        0,
+        0
+      ],
+      "gates": 0
+    }
+  },
+  "method_boundary": "Official documentary counterexamples not causal or population scientific confirmation."
+}
