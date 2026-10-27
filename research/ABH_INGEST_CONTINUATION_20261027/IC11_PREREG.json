@@ -1,0 +1,24 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC11",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "prior": "IC04–IC10 addressed source path, permission, length and interruption issues; no operator tool audits a private manifest/quarantine ledger for missing/tampered objects.",
+  "H1": "A local read-only auditor can inspect private manifest and quarantine rows with path confinement/sha checks and return only aggregate findings, not nominal JSON or URLs.",
+  "H0": "Any inspection reintroduces symlink/path traversal reads or leaks original body/person identifiers.",
+  "tests": [
+    "valid fake capture -> one record, one quarantined review, one verified SHA",
+    "tampered object -> corruption without leaking bytes",
+    "fake ../ path in manifest rejected before opening outside",
+    "symlink ledger refused via nofollow",
+    "missing review flagged rather than scored approved"
+  ],
+  "spec": "Add read-only audit module with max row/byte bounds, canonical objects/xx/SHA path grammar and strict SHA; no public HTTP or identity/score. Not a publisher trust check.",
+  "R5": "Audit offline one corpus, do not inflate product maturity or license status.",
+  "invariants": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "gates": "0/6"
+  }
+}
