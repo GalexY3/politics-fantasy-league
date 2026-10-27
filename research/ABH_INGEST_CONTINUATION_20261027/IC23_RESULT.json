@@ -1,0 +1,52 @@
+{
+  "campaign": "PFL-INGEST-ABH20-20261027",
+  "cycle": "IC23",
+  "status": "CLOSED_FINAL_RECORD",
+  "prereg": "IC23_PREREG.json",
+  "authorization": {
+    "authorized": 20,
+    "range": "IC04–IC23",
+    "completed": 20,
+    "remaining": 0,
+    "historical_ABH45": 45,
+    "historical_CodexCDX": 9,
+    "historical_IC01_IC03": 3,
+    "history_not_merged": true
+  },
+  "outputs": [
+    "research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC04_IC23_FINAL.md",
+    "ab_atlas/updates/0020-pfl-ingest-abh20-ic04-ic23-20261027.json",
+    "ab_atlas/CURRENT.md"
+  ],
+  "technical_results": {
+    "targeted_python": "67 PASS + 14 subtests",
+    "javascript": "110 PASS",
+    "full_python": "TIMED_OUT_AT_APPROX_58_PERCENT; NO PASS CLAIM",
+    "native_atlas_baseline": "19 delta operations structurally checked with non-byte-identical reconstructed local 0019; previous exact prior 0019 check already recorded",
+    "tests_new_CLI": 5,
+    "offline_fictional_E2E": 3,
+    "raw_originals_uploaded": false
+  },
+  "release_boundaries": {
+    "public_HTTP_ingest": false,
+    "real_person_scoring": false,
+    "source_first_public_at_certified": false,
+    "Senado_NO_VOTAN_institutional_semantics_verified": false,
+    "Windows_native_secure_ingest_supported": false,
+    "full_Python_suite_green": false,
+    "GitHubActions_this_campaign": false
+  },
+  "metrics": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "N123": [
+      0,
+      0,
+      0
+    ],
+    "gates": "0/6"
+  },
+  "R5": "Do not repeat fixtures to fill quota; further development should verify clean CI, issue provenance and authenticated import design before launching production integration.",
+  "last_record_caveat": "0020 and CURRENT appended as subsequent sibling commits after this IC23 result; verify those separately."
+}
