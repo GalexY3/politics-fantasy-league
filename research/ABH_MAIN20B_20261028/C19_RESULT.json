@@ -1,0 +1,70 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C19",
+  "mode": "AB-META",
+  "status": "VALID_BOUNDED_FULL_73_PATCH_DOCUMENTARY_AUDIT",
+  "A": "All 73 historical current Atlas JSON patches are sequential documentary chain with matching operation totals?",
+  "B": "H1 supported on checked schema and adjacent parent refs; 73/73 parse, no parent breaks",
+  "C": {
+    "prereg": "C19_PREREG.json",
+    "scope": "Six independent chunks 0001-0012,0013-0024,0025-0036,0037-0048,0049-0060,0061-0073"
+  },
+  "D": {
+    "tools": "Authenticated GitHub exact 73 JSON reads plus recursive tree & seed",
+    "seed_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+    "seed": {
+      "nodes": 14,
+      "edges": 23,
+      "runs": 0,
+      "complaints": 0
+    }
+  },
+  "E": {
+    "batch_count": 73,
+    "all_json_readable": true,
+    "internal_parent_chain_errors": 0,
+    "cross_chunk_parent_links": "5/5 exact",
+    "schema_errors": 0,
+    "duplicate_ids_within_chunks": 0,
+    "operations": {
+      "node_add": 49,
+      "node_set": 14,
+      "edge_add": 58,
+      "run_add": 239,
+      "complaint_add": 48,
+      "complaint_triage": 6,
+      "all": 414
+    },
+    "derived": {
+      "nodes": 63,
+      "edges": 81,
+      "runs": 239,
+      "complaints": 48,
+      "ops": 414
+    },
+    "last_batch": "0073-PFL-ABH-MAIN20B-C18-RELEASE-GATES-20261028"
+  },
+  "F": "Did not check every cross-chunk run/complaint ID collision or every node.set/edge reference; cannot certify native Atlas delta operation semantics or provenance of source data. Parent chain time need not be increasing.",
+  "G": {
+    "native_python_atlas_delta_check": "NOT_RUN",
+    "canonical_state_sha256": "UNKNOWN",
+    "T009": "PENDING"
+  },
+  "H": {
+    "CT2_identity_ordinal": 29,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": {
+    "gates": 0,
+    "science_grade_0_3": 0,
+    "quality": "Documentary 73-lot parent chain and arithmetic consistency"
+  },
+  "J": {
+    "decision": "ACCEPT bounded documentary audit, do not call canonical replay, no repair if no failure; C20 independent budget closure must account new lot 0074"
+  }
+}
