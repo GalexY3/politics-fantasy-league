@@ -1,0 +1,63 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "type": "AB-R",
+  "unit": "Australian 2025 federal House electoral division (n150)",
+  "source_tier": "Third-party GitHub mirror exact AEC-named June 16 2025 generated CSV header, primary catalogue verifies named files, no authenticated AEC download or first_public_at",
+  "metrics": "AEC2025_METRICS.json",
+  "panel": "AEC2025_DIVISION_PANEL.csv",
+  "baseline": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_prior": "McGinn & Maruyama Economic Record 2025 already documented causal effect candidates→informal in earlier periods; AEC 2025 review independently documented contemporary relation but case-selected on high informality. Our analysis confirms association, NOT novel science or replicated causal design.",
+  "restrictions": "No individual/party scoring, not actually a prospective frozen evaluation, ChatRelay off, no main merge.",
+  "cycle": "C02",
+  "status": "VALID_BOUNDED_STRONG_REPLICATIVE_ASSOCIATION_NOT_NOVEL",
+  "A": "Does candidate count announced before election associate with percent informal ballots cast at 2025 election across divisions?",
+  "B": {
+    "H1": "Spearman >0.20",
+    "H0": "Near zero/negative",
+    "Halt": "Only two preexposed districts drive pattern"
+  },
+  "C": {
+    "prereg_commit": "ae8f39661e3e12c094ade221a5716ac3e1c27c39",
+    "execution": "Computed Pearson, average-tie-rank Spearman, linear OLS, nomination-ranked quartiles n37–38, sensitivity dropping Riverina and Calwell whose 13-candidate high-informal results already quoted by AEC summary before registration; no individual claims."
+  },
+  "D": {
+    "metrics": "AEC2025_METRICS.json",
+    "prior": "https://doi.org/10.1111/1475-4932.12877",
+    "official_source": "https://results.aec.gov.au/31496/Website/HouseDownloadsMenu-31496-Csv.htm"
+  },
+  "E": {
+    "n": 150,
+    "pearson": 0.5763872015150482,
+    "spearman": 0.6906766590097019,
+    "linear_slope_informal_pp_per_nomination": 1.0017648843638316,
+    "linear_R2": 0.3322222060703488,
+    "quartile_mean_informal_pct": [
+      3.755945945945946,
+      4.535526315789474,
+      6.228918918918918,
+      7.763421052631578
+    ],
+    "without_Riverina_Calwell_n": 148,
+    "spearman_without": 0.6798432529352152
+  },
+  "F": "Positive association supports predeclared directional hypothesis and survives two known outliers. Since McGinn & Maruyama and 2025 AEC research already report association, not a new mechanism; cannot infer that ballot choice causes mistakes or measure individual confusion directly.",
+  "G": "2025 time period outside older causal paper, but no independent causal design or new original authenticated source to replicate article's estimate",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "Only district counts, no actor outcome scoring",
+  "J": "Control state, geography and pre-election enrolment as competent rivals."
+}
