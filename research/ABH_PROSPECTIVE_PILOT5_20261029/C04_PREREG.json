@@ -1,0 +1,26 @@
+{
+  "status": "PRECOMMITTED_BEFORE_COMPONENT_EXECUTION",
+  "study_status": "NOT_AUTHORIZED_FOR_HUMAN_DEPLOYMENT",
+  "population": "Adults age 18+ only, voluntary, synthetic and nonparty scenarios, no political ideology or voting preference requested",
+  "outcomes": "Behavioral selections and factual comprehension about scoring conventions on fictitious civic processes; no participant outcome collected",
+  "control": "Exactly identical questions/fictional opportunities; only explanation of denominator / leaderboard differs",
+  "risk": "Disallow names/contact details/free text, political person fields, persistent identifiers, silent remote telemetry",
+  "causality": "No human causal effect asserted without randomized consented data",
+  "score": "No scoring political actors",
+  "cycle": "C04",
+  "mode": "AB-P consent-gated offline dry-run intake",
+  "A": "Can offline study intake reject data until authorization and separate ethical consent from response datasets?",
+  "B": [
+    "fail-closed intake no unauthorized collection",
+    "current exposure too eager",
+    "restrictions exclude usable anonymous data"
+  ],
+  "C": "Provide single-run validation with explicit external approval flag plus consent=true, arm and answers; no name/email/location/IP; reject political preferences; outputs anonymous response and separate consent receipt; >=14 adversarial assertions; do not store or send",
+  "D": "No HTTP/network, no personal IDs. Study approval not granted, so production cannot be called.",
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}
