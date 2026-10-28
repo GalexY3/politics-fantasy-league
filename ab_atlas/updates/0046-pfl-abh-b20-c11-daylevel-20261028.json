@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0046-PFL-ABH-BRANCH20-C11-DAYLEVEL-20261028",
+  "parent_batch": "0045-PFL-ABH-BRANCH20-C10-TYPEDREFS-20261028",
+  "at": "2026-10-28T12:45:39.262Z",
+  "actor": "chatgpt",
+  "reason": "Prereg C11 exact historical source_time.py 5 native day-boundary checks; unlike main first_public_at requirement, historical prior-day safe-for-day-study has null timestamp; avoid weaker gate import. New science 0.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C11-DAYLEVEL-NONPORT",
+        "activity": "Historical day-level BOE 2023 one-document visibility guard tested exactly 5 cases. Reject as direct replacement for strictly attested first_public_at gate.",
+        "status": "completed",
+        "at": "2026-10-28T12:45:39.262Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C11_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C11_RESULT.json"
+        ],
+        "scope": "AB-R provenance boundary no port or gates uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
