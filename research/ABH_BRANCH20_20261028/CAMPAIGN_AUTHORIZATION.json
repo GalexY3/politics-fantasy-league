@@ -1,0 +1,48 @@
+{
+  "schema": "ab.campaign.authorization.v1",
+  "id": "PFL-ABH-BRANCH20-20261028",
+  "authorization": "User said 'Concedidos' immediately after explicit request for 20 additional AB-H branching cycles",
+  "authorization_date": "2026-10-28",
+  "mode": "AB-H",
+  "strategy": "ADAPTIVE_BRANCHING_A_J",
+  "granted": 20,
+  "valid": 0,
+  "invalid": 0,
+  "planning": 0,
+  "used": 0,
+  "remaining": 20,
+  "status": "OPEN_NOT_YET_EXECUTED",
+  "parent_branch": "research/pfl-codex-contributions-20261027",
+  "parent_head": "72a2ae2deeb9eaa719b598943c1e8d18360ed6ea",
+  "working_branch": "research/pfl-abh-branch20-20261028",
+  "independent_from": [
+    "ABH_CONT80_20261028 (20/20 consumed)",
+    "CHATRELAY_59e1f051_20261028 (2/5 valid, 3 unspent)"
+  ],
+  "method": "AB 3.2.1; R1-R5, O1-O7, AB-H separation, AB Atlas append-only",
+  "baselines": {
+    "atlas_lots": 35,
+    "atlas_checker_35": "NOT_RUN",
+    "python_full_linux": "NOT_RUN",
+    "selected_linux": "89 PASS +14 subtests (reported)",
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "discovery_new": "0/0/0",
+    "release_gates_passed": 0
+  },
+  "blocking": [
+    "T008 full Linux POSIX pytest and current 35-lot canonical Atlas checker (requires full checkout)",
+    "T005 institutional originals and legal review / identity / source publication time"
+  ],
+  "rules": [
+    "Every valid cycle requires A-J and an observed discriminating source or execution; prereg/plans never count",
+    "R5: cease or branch if no new discriminating class",
+    "Prereg before new execution, source URL and hashes when available, negative results preserved",
+    "Do not merge main; no costly CI; no real-person scoring; no private nominal originals in GitHub",
+    "Separate AB-P technical evidence from AB-R scientific evidence; no progress or CT2 uplift from commits or repeated tests"
+  ],
+  "next_cycle": "C01: attempt to obtain an actual XV Senate public nominal-vote XML to establish wire-format evidence absent in historical CR02. Do not claim semantic equivalence without same-version institutional legend/schema.",
+  "prepared_by": "ChatGPT in authenticated GitHub session",
+  "note": "Permission is a ceiling, not a target. No tests, GitHub Actions, or sources executed at registration."
+}
