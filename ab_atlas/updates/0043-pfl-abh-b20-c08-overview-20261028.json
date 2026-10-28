@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0043-PFL-ABH-BRANCH20-C08-OVERVIEW-20261028",
+  "parent_batch": "0042-PFL-ABH-BRANCH20-C07-GROUP-MAJORITY-20261028",
+  "at": "2026-10-28T12:39:49.945Z",
+  "actor": "chatgpt",
+  "reason": "C08 prereg documented hardcoded 3/5 production progress on overview despite no matching gates; patched exact GitHub UI to explicit not-verified and progress link, 6 static checks; browser/Node suite not executed.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C08-OVERVIEW-READINESS",
+        "activity": "Remove ungrounded three-of-five production stages in local demo overview; add explicit release disclaimer and progress link; static code checks only.",
+        "status": "completed",
+        "at": "2026-10-28T12:39:49.945Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C08_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C08_RESULT.json",
+          "tests/test_overview_readiness_copy.mjs"
+        ],
+        "scope": "UI claim honesty AB-P; no gates/progress uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
