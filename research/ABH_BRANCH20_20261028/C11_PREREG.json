@@ -1,0 +1,39 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C11",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:44:49.861Z",
+  "topic": "Recover distinct temporal public-source boundary from old sequential-32 branch if evidence and test are independent",
+  "preexposure": "Main recursive tree lacks src/politics_fantasy/source_time.py, while research/pfl-sequential-32-20261026 has it. Contents not yet read.",
+  "A": "Does old source_time implementation express a time-of-knowledge constraint not already implemented safely in main, and can its original tests attest it?",
+  "B": {
+    "H1": "Different observation/occurrence/first public time guard useful for as-of research",
+    "H0": "Duplicate or non-portable code; reject selective port",
+    "alt": "Schema permits inferred first publication and must not be integrated"
+  },
+  "C": {
+    "criteria": [
+      "No substitution of event/issue/update timestamps for first_public_at",
+      "Unknown first public time remains unknown",
+      "Original synthetic tests run on exact Git blob where module dependency permits",
+      "No nominal originals or scoring"
+    ],
+    "STOP": "Reject absent distinct assertion or if source relies on unavailable external originals"
+  },
+  "D": {
+    "source_branch": "research/pfl-sequential-32-20261026",
+    "paths": [
+      "src/politics_fantasy/source_time.py",
+      "tests/test_source_time.py if present, otherwise derive prereg negative tests only"
+    ],
+    "main": "main"
+  },
+  "E": "PENDING",
+  "F": "Historical branch code not a source of empirical attestation",
+  "G": "Native isolated unit check, full suite pending T008",
+  "H": "No CT2/gates uplift",
+  "I": "Research as-of integrity only",
+  "J": "Decide port or archive with clear limits."
+}
