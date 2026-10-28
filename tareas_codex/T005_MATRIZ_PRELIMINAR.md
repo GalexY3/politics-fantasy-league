@@ -1,0 +1,15 @@
+# T005 · Matriz preliminar para revisión profesional
+
+Esta matriz responde al apartado D de T005 y **no desbloquea la tarea**, no es una EIPD ni un dictamen jurídico. Describe preguntas sobre tratamientos posibles; no autoriza capturar ni puntuar personas reales. La demo sintética no acredita el diseño de un servicio real.
+
+| Operación propuesta | Datos y finalidad que deben concretarse | Riesgos y preguntas para revisión | Estado |
+| --- | --- | --- | --- |
+| Captura y cuarentena de originales parlamentarios | Qué documento, nombres/votos incluidos, fuente, finalidad, responsable y acceso | ¿Es necesario copiar datos nominativos? ¿Qué base jurídica y plazos corresponderían? ¿Cómo se gestionan borrado, procedencia y derechos? | Sin tratamiento real autorizado por esta matriz; almacén privado no operativo en Windows. |
+| Conciliación de identidades y mandatos | Identificadores, eventos, vigencias, versiones y evidencia independiente | ¿Cómo evitar homónimos y relaciones erróneas? ¿Qué datos mínimos son necesarios y cómo se rectifican? | Identidad histórica no acreditada. |
+| Creación de estadísticas o puntuaciones vinculadas a cargos públicos | Métricas, destinatarios, visibilidad, finalidad y posibilidad de inferir opiniones | ¿El tratamiento revela opiniones políticas u otros datos de categoría especial? ¿Existe base jurídica y, si procede, excepción aplicable? ¿Cómo se previenen atribuciones engañosas y efectos injustos? | No habilitado; requiere revisión especializada y decisión explícita. |
+| Registro de usuarios y actividad del juego | Identificadores de cuenta, equipos, registros técnicos y conservación | ¿Se pueden limitar los datos y evitar inferencias sobre ideología o intención de voto? ¿Cómo se atienden acceso, rectificación y supresión? | La demo local carece de autenticación multiusuario. |
+| Publicación o redistribución | Categorías publicadas, licencias concretas, destinatarios y riesgos residuales | ¿La licencia cubre cada recurso y sus terceros? ¿Puede difundirse información personal? ¿Qué medidas de acceso y retirada corresponden? | Sin aprobación jurídica ni gate de lanzamiento. |
+
+El [RGPD, artículos 6, 9 y 35](https://eur-lex.europa.eu/eli/reg/2016/679/oj/spa), establece condiciones para el tratamiento, reglas específicas para categorías especiales y la evaluación de impacto cuando sea probable un alto riesgo. La [AEPD explica cuándo considerar una EIPD](https://www.aepd.es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/realizacion-de-evaluaciones-de); aplicar esas reglas a este proyecto requiere concretar el tratamiento y una evaluación profesional. Una licencia de reutilización de la fuente no equivale por sí sola a una base jurídica para perfilar personas.
+
+Para avanzar T005 A–C hace falta evidencia institucional nueva y discriminante conforme a [la ficha original](T005_ORIGINALES_CONDICIONALES.md), y los permisos específicos que correspondan. No se han incorporado documentos nominativos ni se han elevado gates.

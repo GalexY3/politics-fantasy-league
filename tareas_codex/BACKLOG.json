@@ -5,15 +5,15 @@
   "repository": "GalexY3/Metodologia-AB",
   "branch": "research/pfl-codex-contributions-20261027",
   "baseline_head_before_task_queue": "8f21411b0c4caf267d77721510d06129fe2eedbe",
-  "execution_status": "NONE_OF_THESE_TASKS_HAS_BEEN_EXECUTED_BY_CODEX",
-  "codex_available_to_user": false,
+  "execution_status": "EXECUTED_WITH_PLATFORM_LIMITS_AND_ONE_BLOCKED",
+  "codex_available_to_user": true,
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 29,
-    "canonical_atlas": "NOT_RUN",
-    "full_repo_python": "NOT_RUN",
-    "full_repo_node": "NOT_RUN",
+    "canonical_atlas": "PASS_29_LOTS_SHA256_c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c",
+    "full_repo_python": "WINDOWS_EXIT_1_57_FAILED_558_PASSED_28_SKIPPED_24_SUBTESTS",
+    "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
     "progress_contractual_percent": 36.9
@@ -24,34 +24,36 @@
       "title": "Replay canónico Atlas de 29 lotes",
       "priority": "P0",
       "file": "T001_ATLAS_CANONICO.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_VERIFICADA",
       "depends_on": [],
       "completion_requires": [
         "native Python checker exit code",
         "canonical state SHA",
         "counts/gates",
         "HEAD+logs"
-      ]
+      ],
+      "result_file": "T001_RESULTADO.md"
     },
     {
       "id": "PFL-CODEX-T002",
       "title": "Suites completas Python y Node",
       "priority": "P0",
       "file": "T002_SUITES_COMPLETAS.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_CON_FALLOS",
       "depends_on": [],
       "completion_requires": [
         "full pytest exit+logs",
         "full Node tests exit+logs",
         "case/skip/failure ledger"
-      ]
+      ],
+      "result_file": "T002_RESULTADO.md"
     },
     {
       "id": "PFL-CODEX-T003",
       "title": "Paridad nativa V3/V4 Python/JavaScript",
       "priority": "P1",
       "file": "T003_PARIDAD_V3_V4.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_VERIFICADA",
       "depends_on": [
         "PFL-CODEX-T002"
       ],
@@ -60,14 +62,15 @@
         "native both evaluators",
         "36.35/36.90 and six blockers",
         "versioned comparison tests"
-      ]
+      ],
+      "result_file": "T003_RESULTADO.md"
     },
     {
       "id": "PFL-CODEX-T004",
       "title": "Auditoría offline ingesta y servidor loopback",
       "priority": "P1",
       "file": "T004_SEGURIDAD_LOCAL.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_CON_FALLOS",
       "depends_on": [
         "PFL-CODEX-T002"
       ],
@@ -76,7 +79,8 @@
         "negative security cases",
         "no network exposure",
         "verifiable risk summary"
-      ]
+      ],
+      "result_file": "T004_RESULTADO.md"
     },
     {
       "id": "PFL-CODEX-T005",
@@ -100,7 +104,7 @@
       "title": "Test HTTP integral y migración de identificadores BOCCL por legislatura",
       "priority": "P1",
       "file": "T006_CVE_CROSS_LEGISLATURE.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_VERIFICADA",
       "depends_on": [
         "PFL-CODEX-T002"
       ],
@@ -109,12 +113,14 @@
         "exhaustive runnable references search",
         "CVE source keys no alias acceptance",
         "HEAD+logs and limits"
-      ]
+      ],
+      "result_file": "T006_RESULTADO.md"
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "ChatGPT GitHub branch readback, tasks still not executed by Codex, 2026-10-28"
+  "last_verified_by": "Codex, pruebas locales 2026-10-28; resultados y limitaciones en T001-T004 y T006",
+  "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd"
 }
