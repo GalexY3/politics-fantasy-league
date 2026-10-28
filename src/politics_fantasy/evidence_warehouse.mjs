@@ -140,10 +140,21 @@ export function officeStatus(reg,id,on,cutoff=null){
  return list[0].value;
 }
 export function eventDuplicates(reg){
+ // A local external reference may be reused by different publishers/feeds.
+ // Source-id scope avoids asserting that unrelated institutions describe one event.
+ // It can miss a true collision between different files of the same publisher:
+ // this is a *candidate* detector, not a universal deduplicator.
  const byKey=new Map();
- for(const e of reg.events){const key=e.external_event_id;
-  if(!key)continue;const arr=byKey.get(key)??[];arr.push(e.id);byKey.set(key,arr)}
- return [...byKey].filter(([,xs])=>xs.length>1).map(([key,ids])=>({external_event_id:key,event_ids:ids,needs_review:true}))
+ for(const e of reg.events){
+  if(!e.external_event_id)continue;
+  const key=JSON.stringify([e.source_id??null,e.external_event_id]);
+  const rows=byKey.get(key)??[];
+  rows.push(e.id);byKey.set(key,rows);
+ }
+ return [...byKey].filter(([,xs])=>xs.length>1).map(([key,ids])=>{
+  const [source_id,external_event_id]=JSON.parse(key);
+  return {source_id,external_event_id,event_ids:ids,needs_review:true};
+ });
 }
 export function coverage(reg){
  const tally=(xs,key)=>Object.fromEntries([...new Set(xs.map(x=>x[key]))].sort().map(k=>[k,xs.filter(x=>x[key]===k).length]));
