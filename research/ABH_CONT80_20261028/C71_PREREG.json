@@ -1,0 +1,12 @@
+{
+  "cycle": "C71",
+  "mode": "AB-P",
+  "A": "Can server-owned stage records expose exact official source URLs for two verified BOCCL CVEs, making provenance inspectable, without adding personal names, trusting caller metadata, or certifying first_public_at?",
+  "B": {
+    "H1": "Additional source_url improves independently inspectable traceability and preserves denial",
+    "H0": "Unsafe URL, wrong CVE, inadvertent promotion of release flags or loss of original tests",
+    "H2": "URLs indexed but direct fetch cannot validate file contents, only documentary pointers"
+  },
+  "C": "Preregister; patch only two CVE records in source_event_registry.py with exact institutional HTTPS URLs. Native exact SHA module baseline and new regression test on URL/CVE, 28 original/updated unit tests. Publish source+test, compare Git blob hashes, no HTTP suite claim.",
+  "D": "Fail on mismatched URL/CVE, wrong hostname/scheme, first_public_at no longer null, or any person becomes eligible. No original bytes/CSV signed receipt claimed."
+}
