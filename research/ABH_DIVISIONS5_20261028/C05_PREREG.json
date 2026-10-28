@@ -1,0 +1,25 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "D": {
+    "real_aggregate_fixture": "C02_UK_DISTINCT_DIVISIONS_COLLISION.json and C04_UK_LORDS_SAME_BILL_AGGREGATES.json",
+    "preexposed": "Yes; all aggregate figures were seen before code design. Synthetic contracts not prospective model tests.",
+    "original_API_missing": true
+  },
+  "A": "Can the source-backed schema protect UK/Spanish fantasy research from stable-ID collisions, incompatible chamber categories, invalid ballot denominators, attendance imputation, inferred first-public time, and duplicate motions?",
+  "B": {
+    "H1": "Pure robust validator accepts previously observed chamber-specific aggregate records and rejects six domain invalidities",
+    "H0": "Naive tally/one-bill metric accepts bad records or legitimate cases fail"
+  },
+  "C": "Implement research-only JavaScript pure source audit function for structured known counts, with explicit source_status, no person-level rows, chamber-sensitive response labels; fixed synthetic negative tests (count collision not identity, wrong chamber categories, boolean counts, bad sum, missing source, physical attendance inference, early timestamp), post-code V8 execution and immutable exact source in GitHub; don't claim full Node/Python integration.",
+  "E": "PENDING",
+  "F": "Schema validation is not authentication of original data, licences, publisher publication first-time or sociological inference",
+  "G": "Complete project clean tests delegated to Codex",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No user-personal or political-actor ranking",
+  "J": "Publish source + tests only after actual code execution; no CT2 increase for QA"
+}
