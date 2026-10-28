@@ -1,0 +1,32 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C11",
+  "mode": "AB-P",
+  "status": "VALID_EVENT_DEEP_SNAPSHOT_FIX",
+  "A": "Event metadata deep freeze for archival revision equality",
+  "B": "H1 nested alias stops changing constructed event and duplicate semantics preserved",
+  "C": {
+    "prereg": "C11_PREREG.json",
+    "negative": "C08 demonstrated mutable nested metadata"
+  },
+  "D": {
+    "before": "35fbfa6e4e952e22450a184f53672f9ef670d039",
+    "after": "a12802ac551b1f63f46dbf7dbceb6d093822d125",
+    "source_commit": "7443555436705b79b32eec883c7ea963da8e2524",
+    "new_tests_commit": "1548a63cb3f40cb1650c00e2a00987d5f5f47b89",
+    "runtime": "Python local reconstructed recursive freeze (not full exact main import)"
+  },
+  "E": {
+    "local_assertions": "6/6 PASS",
+    "postcommit_source_verified": true,
+    "deep_json_mapping_proxy": true,
+    "tests_added": "tests/test_event_metadata_immutability.py",
+    "full_repo_pytest": "NOT_RUN"
+  },
+  "F": "MappingProxyType alters metadata type and possible downstream JSON serialization; imported consumer compatibility requires T009. No independent publisher attestation.",
+  "G": "GitHub source SHA verified; no full checkout",
+  "H": "CT2 unchanged",
+  "I": "Archive integrity",
+  "J": "ACCEPT_SOURCE_PATCH, keep T009 pending"
+}
