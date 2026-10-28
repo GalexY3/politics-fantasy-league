@@ -1,0 +1,40 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "branch": "research/pfl-abh5-aec-choice-20261028",
+  "base": "research/pfl-abh5-petition-cohort-20261028",
+  "base_sha": "31161fee11030cd7a03217dfaa766065b8133dea",
+  "type": "AB-R",
+  "unit": "Australian federal House of Representatives electoral division, 2025; n expected 150, all divisions not selected by outcome",
+  "publisher": "Australian Electoral Commission",
+  "original_public": "https://results.aec.gov.au/31496/Website/HouseDownloadsMenu-31496-Csv.htm",
+  "mirror": "https://github.com/rNLKJA/public-services-open-source-data/tree/main/original/datasets/au-federal-election-results/raw",
+  "source_files": [
+    "HouseNominationsByDivisionDownload-31496.csv",
+    "GeneralEnrolmentByDivisionDownload-31496.csv",
+    "HouseInformalByDivisionDownload-31496.csv",
+    "HouseTurnoutByDivisionDownload-31496.csv"
+  ],
+  "prior": "McGinn & Maruyama (2025), Economic Record 101(334) 275–300, identified causal ballot candidate-count effect in older 2004–2016 settings using redistribution; AEC 2025 participation summary mentions Riverina & Calwell both 13 candidates and informality 11.2% and 10.6%; known prior exposure, NOT NOVEL discovery claim.",
+  "R1": "Proxy outcome proportion of informal (invalid) ballots among votes cast, not voter intentions or candidate evaluation. Distinguish deliberate blank from accidental errors, no individual effects.",
+  "R2": "Strong baseline: state and AEC pre-election demographic classification, plus log close-of-rolls enrolment, compare candidate count incremental fit. Do not use 2025 turnout/informal swing as pre-election prediction input.",
+  "R3": "All 150 divisions fixed before downloading tabular outcomes, but two 13-candidate high-informal examples preexposed via AEC summary. Exploratory independent time-window 2025, NOT temporally blind. No confirmatory p-values.",
+  "R4": "Remove two pre-exposed divisions, check long-ballot threshold >6 and state/demographic effects; leave-state-out external geographic validation",
+  "R5": "Only one new independent temporal 2025 AEC dataset; do not repeat D'Hondt or UK650. If source mirror only, no original byte authenticity claim. No new N1 without new mechanism.",
+  "I": "No individual or party/candidate rating, purely counts of nominations and ballots",
+  "H": {
+    "CT2_before": 29
+  },
+  "E": "PENDING",
+  "cycle": "C03",
+  "A": "How much of nominations–informality association remains after strong state and AEC demographic-area controls and pre-election enrolment size?",
+  "B": {
+    "H1": "Positive candidate slope persists under controls",
+    "H0": "Slope goes to 0/reverses after state+class controls"
+  },
+  "C": "OLS with HC3 robust SE outcome informality percentage ~ candidate count + log(close of rolls enrolment) + AEC demographic category + state FE; compare to state/class/enrolment model without candidate count, marginal R2 and 95% descriptive interval. Use proper avoid collinear categories, no causal estimation.",
+  "D": "All 150 census+nominations+outcome rows",
+  "F": "State and demographic not equivalent to education/language; published 2025 AEC notes English proficiency, no independent ACS; not causal.",
+  "G": "Independent prior from peer-reviewed older study, not this regression's replication",
+  "J": "Under R5 report weaker effect and go to within-paper threshold."
+}
