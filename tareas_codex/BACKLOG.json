@@ -239,7 +239,7 @@
       "title": "Corregir Atlas duplicado/truncado y codificación HTTP del test T009; revalidar Linux sobre rama nueva",
       "priority": "P0",
       "file": "T010_REPARAR_ATLAS_HTTP_POST_T009.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_EN_RAMA_PENDIENTE_REVISION",
       "depends_on": [],
       "authorization": "QA_REMEDIATION_ONLY__NOT_AB_CYCLE",
       "baseline": "T009_COMPLICADA_CON_FALLOS_checkout_8a761cf",
@@ -250,7 +250,9 @@
         "Ejecutar tests de fechas del Atlas y comprobar nativamente todos los lotes sin reescribir históricos, registrar SHA canónico",
         "Ejecutar Python completo, tests Atlas y Node completo sobre HEAD de rama correctiva Linux, conservar primera corrida, stdout/stderr/exit/hashes",
         "Crear T010_RESULTADO.md y PR desde rama fix/pfl-t010-atlas-http-20261028 sin fusionar automáticamente ni lanzar CI costosa"
-      ]
+      ],
+      "result_file": "T010_RESULTADO.md",
+      "verified_code_commit": "63e71a3ecbe08bb13ad286c19bb203a414ff0a6e"
     }
   ],
   "no_automatic_actions": true,
@@ -288,5 +290,5 @@
     "status": "COMPLETADA_VERIFICADA_ONLY_old_checkout"
   },
   "T009_current_main_status": "COMPLETADA_CON_FALLOS_CHECKOUT_8a761cf",
-  "T010_status": "PENDIENTE_EXECUTOR"
+  "T010_status": "COMPLETADA_EN_RAMA_PENDIENTE_REVISION"
 }
