@@ -6,8 +6,8 @@
   "kind": "DOCUMENTARY_ACCESS_TEST",
   "prereg": "C01_PREREG.json",
   "prereg_commit": "caed04ae7db2d6b57155c1fd50baafd6ef99f1fa",
-  "status": "COMPLETED_DOCUMENTARY_INCONCLUSIVE_ACCESS",
-  "counts_as_valid_documentary_cycle": true,
+  "status": "INVALID_PREMATURE_RESULT",
+  "counts_as_valid_documentary_cycle": false,
   "not_an_experiment_or_confirmation": true,
   "A_question": "Does an actual Senate XV public nominal XML directly attest the literal NO VOTAN, and does an aligned official codebook explain its semantics?",
   "B_rivals": {
@@ -75,7 +75,7 @@
     "legal_privacy": "No real-person scoring or publication of nominal original",
     "grade": "0/3"
   },
-  "J_decide": "STOP_R5 for repeated unauthenticated lookups of this same linked Senate endpoint. A new distinct documented original XML/XSD or a different evidence bottleneck is required for any follow-up cycle.",
+  "J_decide": "INVALID; STOP_R5 repeating already studied Senate lookup; no discovery or promotion",
   "progress": {
     "baseline_atlas_lots": 35,
     "CT2_identity_ordinal": 29,
@@ -88,5 +88,7 @@
     "No evidence that NO VOTAN occurs or does not occur within XML.",
     "Not a code execution, suite run, production change or independent confirmation.",
     "Web error labels are tool outcomes, not verified origin server status."
-  ]
+  ],
+  "invalid_reason": "File was committed before the tool calls it purported to report; placeholder outcome presented as observed. Tool reference IDs within this original file were not backed by actual calls when created. See C01_ERRATA.md and C01_POST_ERRATA_OBSERVATION.json.",
+  "evidence_status": "ORIGINAL_RESULT_INVALIDATED; POST_ERRATA_OBSERVATIONS_VERIFIED_BUT_NO_RETROACTIVE_VALIDITY"
 }
