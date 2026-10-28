@@ -1,0 +1,227 @@
+{
+  "campaign_id": "59e1f051-b3c6-4d6a-9ba5-670017942347",
+  "cycle": "CR01",
+  "status": "CLOSED_DOCUMENTARY_VERIFICATION_WITH_LIMITS",
+  "mode": "AB-P",
+  "cycle_type": "DOCUMENTARY_AB",
+  "prereg_path": "research/CHATRELAY_59e1f051_20261028/C01_PREREG.json",
+  "prereg_commit": "3b510f746755b46c3a48de8cf18afe1eeca10e26",
+  "baseline_remote_sha": "58a18d1e1b80298c3a23d85f3f3436a5105488e1",
+  "tested_artifacts": {
+    "base": "research/ABH_INGEST_CONTINUATION_20261027/",
+    "pairs": 40,
+    "expected_cycle_ids": [
+      "IC04",
+      "IC05",
+      "IC06",
+      "IC07",
+      "IC08",
+      "IC09",
+      "IC10",
+      "IC11",
+      "IC12",
+      "IC13",
+      "IC14",
+      "IC15",
+      "IC16",
+      "IC17",
+      "IC18",
+      "IC19",
+      "IC20",
+      "IC21",
+      "IC22",
+      "IC23"
+    ],
+    "all_prereg_json_parse": true,
+    "all_result_json_parse": true,
+    "each_id_matches": true,
+    "atlas_batch": "ab_atlas/updates/0020-pfl-ingest-abh20-ic04-ic23-20261027.json",
+    "atlas_batch_blob_sha": "31d35d38aa8ac11e16094677e2ce9eb787650149",
+    "atlas_ops": 29,
+    "atlas_run_add": 20,
+    "expected_runs_present": 20,
+    "missing_run_ids": [],
+    "unexpected_run_ids": [],
+    "complaints_recorded": [
+      "PFL-INGEST-ABH20-IC09-WINDOWS-UNSUPPORTED",
+      "PFL-INGEST-ABH20-IC21-PYTEST-TIMEOUT",
+      "PFL-INGEST-ABH20-IC22-REPLAY-NONIDENTICAL"
+    ],
+    "matrix": [
+      {
+        "id": "IC04",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_POSIX_SECURE_STORAGE_PASS"
+      },
+      {
+        "id": "IC05",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_NEGATIVE_QUARANTINE_LEDGER_SYMLINK_TEST"
+      },
+      {
+        "id": "IC06",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_PRECONTACT_STORE_GUARD_PASS"
+      },
+      {
+        "id": "IC07",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_HTTP_LENGTH_GUARD_PASS"
+      },
+      {
+        "id": "IC08",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_PRIVATE_STORAGE_PERMISSION_GUARDS"
+      },
+      {
+        "id": "IC09",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_WINDOWS_PLATFORM_BOUNDARY_AND_DOC"
+      },
+      {
+        "id": "IC10",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_PARTIAL_TEMP_WRITE_LEAK_REPAIRED"
+      },
+      {
+        "id": "IC11",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_READONLY_PRIVATE_AUDIT_FICTIONAL_PASS_WITH_SCOPE_GAP"
+      },
+      {
+        "id": "IC12",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_READONLY_AUDIT_NO_DIRECTORY_CREATION"
+      },
+      {
+        "id": "IC13",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_DISTINCT_CAPTURE_EVENT_NONCE"
+      },
+      {
+        "id": "IC14",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_OPERATION_LEVEL_QUARANTINE_LINKAGE_PASS"
+      },
+      {
+        "id": "IC15",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_READONLY_AUDIT_MISSING_ROOT_FIX"
+      },
+      {
+        "id": "IC16",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_NEGATIVE_RECONCILIATION_BUG"
+      },
+      {
+        "id": "IC17",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_CAPTURE_LENGTH_INTEGRITY_CHECK"
+      },
+      {
+        "id": "IC18",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_OPERATOR_AGGREGATE_CLI"
+      },
+      {
+        "id": "IC19",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_LOCAL_END_TO_END_TESTED"
+      },
+      {
+        "id": "IC20",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_INCOMPLETE_JSONL_NEGATIVE"
+      },
+      {
+        "id": "IC21",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_FOCUSED_AND_JS_PASS_FULL_PYTHON_TIMEOUT"
+      },
+      {
+        "id": "IC22",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_ATLAS_PREFLIGHT_WITH_LIMITS"
+      },
+      {
+        "id": "IC23",
+        "prereg_present": true,
+        "result_present": true,
+        "status": "CLOSED_FINAL_RECORD"
+      }
+    ]
+  },
+  "AB_A": "Pregunta: reconciliar documentalmente IC04–IC23/Atlas 0020 frente al relato anterior de ausencia IC04–IC15 y una cola que considera IC20 pendiente.",
+  "AB_B": "H1 trazabilidad documental existe; H0 existen pares o runs ausentes; H_otros pares presentes sin demostrar ensayo preregistrado, semántica pública ni ejecución en checkout actual.",
+  "AB_C": "Prueba discriminante: 40 lecturas de archivos SHA-fijados por conector GitHub en cuatro lotes, parseo JSON, contraste cycle=id y conjunto exacto de veinte run.add en delta 0020.",
+  "AB_D": "Se ejecutó verificación documental real usando GitHub fetch_file de los archivos en SHA 58a18d1; no se ejecutó checkout, Python, CI, ni tests de los módulos históricos.",
+  "AB_E": "20/20 prerregistros y 20/20 resultados existen y contienen cycle correspondiente; Atlas 0020 incluye precisamente veinte run.add sin pérdidas o excedentes en la secuencia IC04–IC23; 3 incidencias negativas persisten.",
+  "AB_F": "Existencia JSON y status CLOSED no demuestran orden temporal preregistro-ejecución ni la completitud sustantiva de A-J. Muchas fichas contienen hipótesis/tests sin diez claves explícitas; no se auditaron árboles antiguos ni hashes temporales de cada prueba. Los tests referidos en las fichas no fueron reejecutados.",
+  "AB_G": "Confirmación independiente científica NO disponible; T007_RESULTADO.md documenta ejecución de Codex en Windows sobre 31 deltas y 55 tests focales, verificados aquí como documento versionado pero logs originales locales no leídos. El checker canónico del futuro lote 0032 queda pendiente.",
+  "AB_H": "El supuesto vacío IC04–IC15 queda contradicho por sus pares versionados y run.add, IC20 también figura CLOSED; no reescribir historia. H_otros sigue viva respecto a preregistración efectiva, auditoría completa de A-J, original institucional y pruebas POSIX.",
+  "AB_I": {
+    "grade": "0/3",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "CT2_identity_before": 29,
+    "CT2_identity_after": 29,
+    "V4_percent": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "DRIFT": 0,
+    "selection_exposure": "Partial files and Atlas 0020 previously inspected before prereg; no prospective discovery claimed",
+    "public_originals_uploaded": false,
+    "raw_person_scoring": false
+  },
+  "AB_J": "STOP_R5 para nueva contabilidad de IC04–IC23. Preferir Codex para validar exclusivamente el nuevo 0032 y ejecutar en POSIX regresiones privadas que Windows deja fuera. No activar CI costosa; no fusionar main.",
+  "not_counted_as_new_cycles": [
+    "IC04",
+    "IC05",
+    "IC06",
+    "IC07",
+    "IC08",
+    "IC09",
+    "IC10",
+    "IC11",
+    "IC12",
+    "IC13",
+    "IC14",
+    "IC15",
+    "IC16",
+    "IC17",
+    "IC18",
+    "IC19",
+    "IC20",
+    "IC21",
+    "IC22",
+    "IC23"
+  ],
+  "canonical_31_last_reported_SHA256": "ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca",
+  "limitations": [
+    "Evidencia directa de presencia y correspondencia de archivos del GitHub privado, no atestación criptográfica de fecha de preregistro ni ejecución original",
+    "Semántica institucional exacta de XML NO VOTAN sigue sin acreditar; auditoría post hoc distingue presencia de no voto de literal XML",
+    "T007 previo al lote nuevo 0032; SHA de 31 lotes no es SHA de 32",
+    "No se comprobó la integridad completa de A-J en los veinte registros históricos; varios formatos heterogéneos",
+    "No hay evidencia que modifique seis gates o readiness"
+  ]
+}
