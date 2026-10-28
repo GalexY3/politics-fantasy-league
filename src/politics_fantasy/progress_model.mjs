@@ -96,6 +96,10 @@ export function revise(scope,patch){
  * Not unique decomposition: work-first order is declared.
  */
 export function compare(oldScope,newScope){
+ // Report a lineage mismatch before validating the individual scopes. Both
+ // scopes still undergo full validation when their identifiers agree.
+ if(typeof oldScope?.scope_id==="string" && typeof newScope?.scope_id==="string"
+  && oldScope.scope_id!==newScope.scope_id)throw Error("SCOPE_LINEAGE_MISMATCH");
  const old=evaluate(oldScope),now=evaluate(newScope);
  if(oldScope.scope_id!==newScope.scope_id||newScope.revision<=oldScope.revision)throw Error("SCOPE_LINEAGE_MISMATCH");
  const projected=copy(oldScope),newLevels=new Map(newScope.tracks.flatMap(t=>t.milestones).map(m=>[m.id,m.level]));
