@@ -1,3 +1,13 @@
+# Continuidad vigente · C61–C72 12/20 STOP_R5 · Atlas 0031
+
+[Informe completo con adenda](../research/ABH_CONT80_20261028/REPORT_FINAL.md), [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) y [CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó 20 ciclos; 12 realmente realizados con A–J, ocho sin usar. C69: siete tests JSON, no HTTP original; C70: fuentes institucionales aceptaciones/designación distintas; C71: enlace a ambos originales BOCCL desde registro CVE, 32 tests Python nativos PASS, sin certificar disponibilidad exacta ni estatus; C72: inspección de informes GitHub de ejecuciones de Codex antiguas.
+
+**Codex no se ejecutó desde este chat.** La rama sí contiene informes externos T001/T002/T003/T004/T006, sobre checkout base `6e359a8`: Atlas canónico de **29 lotes** exit0/SHA, HTTP fuente 43 tests PASS, Python completa Windows 57 FAIL/558 PASS/28 SKIP, Node 125 PASS; [ver informes](../tareas_codex/README.md). Distinguir los informes de la reproducción independiente de sus logs (no disponibles). Para el HEAD actual [T007](../tareas_codex/T007_REVALIDACION_ATLAS30_HTTP.md) queda **PENDIENTE**: Atlas **31 lotes**, checker Python/SHA nuevos, pruebas HTTP de `source_url` y POSIX.
+
+Estado actual Atlas derivado 63 nodos, 81 relaciones, **191 runs**, 44 quejas, **360 operaciones**. Indicadores V4 36,90%, CT2 29, VSDS 1/3, gates 0/6. Sin scoring real, sin main merge ni CI costosa. STOP_R5 hasta prueba independiente.
+
+---
+
 # Continuidad vigente · CONT80 C61–C71 · 11/20 STOP_R5 · Atlas 0030
 
 [Informe adenda C69–C71](../research/ABH_CONT80_20261028/REPORT_FINAL.md), [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json), [CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó máximo **20 ciclos**; se ejecutaron **C61–C71 A–J 11/20**, nueve sin usar bajo R5.
