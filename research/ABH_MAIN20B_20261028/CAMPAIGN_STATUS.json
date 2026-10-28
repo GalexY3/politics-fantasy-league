@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 6,
+    "valid": 7,
     "invalid": 0,
     "planning": 0,
-    "used": 6,
-    "remaining": 14
+    "used": 7,
+    "remaining": 13
   },
-  "state": "ACTIVE_6_VALID_14_REMAINING_R5_NO_REPEATED_QA_META",
+  "state": "ACTIVE_7_VALID_13_REMAINING_R5_STOP_REPETITIVE_INSTRUMENT",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -118,20 +118,31 @@
       "summary": "GitHub pre/post T008 historical evidence reconciliation 13 files modified/added, 0 source/test or existing Atlas mutations, 0 removals; copied original report SHA exact",
       "scientific_grade_0_3": 0,
       "CT2_identity": 29
+    },
+    {
+      "cycle": "C07",
+      "type": "AB-P",
+      "status": "VALID_ALPINE_TIMEZONE_OPTIONAL_EXTRA_REPAIR",
+      "prereg": "C07_PREREG.json",
+      "result": "C07_RESULT.json",
+      "atlas": "0062",
+      "summary": "Historical T008 ZoneInfoNotFoundError in minimal Alpine; native Python PYTHONTZPATH='' resolved Europe/Madrid from tzdata wheel, pyproject test/research extras now unconditional tzdata; clean install/T009 NOT_RUN",
+      "scientific_grade_0_3": 0,
+      "CT2_identity": 29
     }
   ],
   "atlas_current": {
-    "lots_documentary": 61,
+    "lots_documentary": 62,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 227,
+    "runs_documentary": 228,
     "complaints_documentary": 48,
-    "operations_documentary": 402,
-    "canonical_python_checker": "NOT_RUN_FOR_61_PATCHES",
+    "operations_documentary": 403,
+    "canonical_python_checker": "NOT_RUN_FOR_62_PATCHES",
     "canonical_sha256": null
   },
-  "next": "14 authorizations unused; choose new testable independent source or product security/temporal mechanism; do not count T008 repetition. If no discriminating instrument STOP_R5, retain permission.",
-  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS61",
+  "next": "13 cycles remain; STOP_R5 repeating historical QA or synthetic variants, prioritize T009 executor with full current main or new official original bytes/independent empirical identification. New code cycles need distinct pre-registered falsifier.",
+  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS62",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
     "tested_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
