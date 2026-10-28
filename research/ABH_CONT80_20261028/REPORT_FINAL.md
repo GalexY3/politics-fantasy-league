@@ -1,3 +1,7 @@
+**CIERRE DEFINITIVO (28/10/2026): CONT80 20/20 ciclos AB-H C61–C80 ejecutados, 0 restantes.** Los encabezados antiguos 8/20, 11/20, 12/20 y 16/20 son estados intermedios históricos. [Informe de C77–C80 con 89 pruebas originales Linux POSIX y límites](C77_C80_POSIX_FINAL.md), [ledger actualizado](CAMPAIGN_STATUS.json). Atlas 0035 con 35 lotes y 201 runs documentales; checker canónico de 35 lotes NO_RUN. La suite completa T008 permanece PENDIENTE y gates 0/6.
+
+---
+
 **Estado actualizado C73-C76 (28/10/2026):** 16/20 ciclos A-J ejecutados, cuatro no consumidos STOP_R5. [Informe independiente de los cuatro ciclos y 31 tests originales Linux POSIX](C73_C76_POSIX_REPORT.md). Atlas `0034`, 34 lotes, 197 runs, 366 operaciones derivados. Check Python canónico de 34 lotes NO ejecutado. Las adendas anteriores son históricas.
 
 ---
