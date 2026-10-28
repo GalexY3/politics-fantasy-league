@@ -10,9 +10,9 @@
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
-    "atlas_lots": 62,
-    "canonical_atlas": "HISTORICAL_ATLAS35_CHECKOUT_9d0ef84_PASS_SHA256_bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81;CURRENT_MAIN_62_LOTS_CANONICAL_NOT_RUN",
-    "full_repo_python": "T008_HISTORICAL_COMPLETE_LINUX_ALPINE_QEMU_CHECKOUT_b0344d1_651_PASS_28_SUBTESTS_0_FAIL_0_SKIP;CURRENT_MAIN_62_LOTS_FULL_PYTEST_NOT_RUN",
+    "atlas_lots": 75,
+    "canonical_atlas": "HISTORICAL_ATLAS35_CHECKOUT_9d0ef84_PASS_SHA256_bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81;CURRENT_MAIN_75_LOTS_CANONICAL_NOT_RUN",
+    "full_repo_python": "T008_HISTORICAL_COMPLETE_LINUX_ALPINE_QEMU_CHECKOUT_b0344d1_651_PASS_28_SUBTESTS_0_FAIL_0_SKIP;CURRENT_MAIN_75_LOTS_FULL_PYTEST_NOT_RUN",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
@@ -182,7 +182,7 @@
     },
     {
       "id": "PFL-CODEX-T009",
-      "title": "Revalidar main actual Linux completo y checker canónico de Atlas 62 lotes",
+      "title": "Revalidar main actual HEAD: Linux full pytest y checker canónico Atlas 75 lotes",
       "priority": "P0",
       "file": "T009_MAIN_LINUX_ATLAS60.md",
       "status": "PENDIENTE",
@@ -190,10 +190,11 @@
       "completion_requires": [
         "checkout completo HEAD actual main sin modificaciones",
         "primera corrida Python completa con logs stdout/stderr/exit y SHA",
-        "checker original ab_atlas/atlas_delta.py sobre todos los 62 deltas y SHA canónico (o número actualizado al ejecutarlo)",
+        "checker original ab_atlas/atlas_delta.py sobre todos los 75 deltas y SHA canónico (o número actualizado al ejecutarlo)",
         "todos los nuevos test files posteriores a b0344d1 incluidos: guard timestamp, strict dissent, cluster bootstrap, source parsers, scoring rules, others",
         "node test de overview y suite JS si procede",
-        "clasificación ambiental vs bugs, no CI costosa, ni nuevas autorizaciones automáticas"
+        "clasificación ambiental vs bugs, no CI costosa, ni nuevas autorizaciones automáticas",
+        "Incluir regresiones creadas MAIN20B C08-C17: eventos metadata/IDs, fuentes CSV físicas, informe grupos, semilla parcial, scope de rondas, HTTP JSON duplicado y CSV manual corrupto; registrar resultados tal cual sin corregir tests tras primera corrida."
       ],
       "baseline_verified": {
         "t008_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
@@ -202,10 +203,11 @@
         "atlas35_checkout": "9d0ef8433f92749b3f3364f31139b07320f1ec16",
         "atlas35_sha": "bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81"
       },
-      "current_main_atlas_lots": 62,
+      "current_main_atlas_lots": 75,
       "notes": [
         "Previous T008 is completed only at old checkout; T009 not executed. No automated Actions.",
-        "MAIN20B C07: pyproject optional test/research extras include tzdata on Linux; first verify clean pip install and PYTHONTZPATH='' fallback, then 62 lot replay. No executed clean install."
+        "MAIN20B C07: pyproject optional test/research extras include tzdata on Linux; first verify clean pip install and PYTHONTZPATH='' fallback, then 62 lot replay. No executed clean install.",
+        "MAIN20B campaign closed 20/20 valid A-J with 13 cycles C08-C20 this continuation; many tests were focused/reconstructed only and complete current repo suite NOT_RUN. Atlas75 canonical and SHA unknown."
       ]
     }
   ],
@@ -213,18 +215,18 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "2026-10-28: T008 historic Alpine QEMU b0344d1 651 pass+28 subtests, Atlas35 at 9d0ef84. MAIN20B C06 verified SHA preserving reconciliation, C07 tzdata wheel fallback and extras. 62 Atlas documentary lots now, main full pytest and 62-lot native checker NOT_RUN. MAIN20B 7 valid 0 invalid 13 left.",
+  "last_verified_by": "GitHub 2026-10-28 MAIN20B final 20 valid 0 invalid 0 remaining; Atlas 75 documentary lots, 63 nodes, 81 edges, 241 runs, 48 complaints, 416 ops; native checker75 and full Linux pytest current HEAD NOT_RUN; T008 historic Linux b0344d1 651 PASS +28 subtests and Atlas35 separate PASS.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
   "active_campaign": {
     "id": "PFL-ABH-MAIN20B-20261028",
     "authorized": 20,
-    "valid": 7,
+    "valid": 20,
     "invalid": 0,
     "planning": 0,
-    "remaining": 13,
-    "status": "ACTIVE_R5_POST_T008_QA_RECONCILIATION_AND_TZDATA",
+    "remaining": 0,
+    "status": "CLOSED_20_VALID_0_INVALID_0_REMAINING",
     "not_part_of_codex_execution": true
   },
   "previous_campaign": {
@@ -243,5 +245,5 @@
     "report_sha": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
     "status": "COMPLETADA_VERIFICADA_ONLY_old_checkout"
   },
-  "T009_current_main_status": "PENDING_62_LOTS"
+  "T009_current_main_status": "PENDING_75_LOTS"
 }
