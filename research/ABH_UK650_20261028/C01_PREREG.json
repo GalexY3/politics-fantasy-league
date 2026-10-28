@@ -1,0 +1,26 @@
+{
+  "campaign": "PFL-ABH-UK650-20261028",
+  "pre_reg_before_source_bytes": true,
+  "study": "UK House of Commons 2024 election official constituency-level results",
+  "source": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_original": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+  "source_candidates": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-candidate.csv",
+  "unit": "UK constituency; up to 650, 4 nations and English regions",
+  "prespecified_exclusions": "Only missing electorate/turnout or no winner-runner candidate votes for computation; report exclusions and special Speaker/NI observations; don't discard by result",
+  "classification": "All cycles exploratory until independently replicated; contemporaneous margins and vote shares are post-election, cannot be used in genuine pre-election prediction.",
+  "cycle": "C01",
+  "type": "AB-R",
+  "D": 1,
+  "A": "Can the official Commons Library original CSV be retrieved as genuine bytes, hashed, parsed, and reconciled across 650 constituencies with published headline turnout and seat counts?",
+  "B": {
+    "H1": "650 unique constituencies and numeric turnout/majority fields; independent candidate CSV permits vote-sum spot checks",
+    "H0": "Missing/duplicate or nonnumeric source; block and pivot, never guess rows"
+  },
+  "C": "Download exact official URL(s), SHA256 original bytes; examine schema, grain, duplicates, missingness and aggregate consistency; record revisions and source timestamp conservatively; never replace bad values silently.",
+  "E": "PENDING",
+  "F": "Library compilation is from local authority official declarations but version revised; original publication time unknown",
+  "G": "One institutional source, candidate data same publisher; not an independent issuer replicate.",
+  "H": "CT2 stays 29 unless PFL identity hypothesis actually tested",
+  "I": "Do not store individual candidate names in user-facing report",
+  "J": "If accessible analyze the fixed 650 source; if not, blocked capture to Codex and pivot."
+}
