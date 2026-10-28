@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 5,
+    "valid": 6,
     "invalid": 0,
     "planning": 0,
-    "used": 5,
-    "remaining": 15
+    "used": 6,
+    "remaining": 14
   },
-  "state": "ACTIVE_5_VALID_15_REMAINING_R5_NEW_SOURCE_DEPENDENCY",
+  "state": "ACTIVE_6_VALID_14_REMAINING_R5_NO_REPEATED_QA_META",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -107,20 +107,31 @@
       "findings": "Session-weighted 5 vs record-weighted 10/101 under 100:1 synthetic sizes; separate full-session block bootstrap, 9 isolated checks PASS",
       "grade_0_3": 0,
       "CT2_identity": 29
+    },
+    {
+      "cycle": "C06",
+      "type": "AB-META",
+      "status": "VALID_PREREG_POST_RECONCILIATION_TREE_AUDIT",
+      "prereg": "C06_PREREG.json",
+      "result": "C06_RESULT.json",
+      "atlas": "0061",
+      "summary": "GitHub pre/post T008 historical evidence reconciliation 13 files modified/added, 0 source/test or existing Atlas mutations, 0 removals; copied original report SHA exact",
+      "scientific_grade_0_3": 0,
+      "CT2_identity": 29
     }
   ],
   "atlas_current": {
-    "lots_documentary": 60,
+    "lots_documentary": 61,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 226,
+    "runs_documentary": 227,
     "complaints_documentary": 48,
-    "operations_documentary": 401,
-    "canonical_python_checker": "NOT_RUN_FOR_60_PATCHES__HISTORICAL_35_PASS_SEPARATELY",
+    "operations_documentary": 402,
+    "canonical_python_checker": "NOT_RUN_FOR_61_PATCHES",
     "canonical_sha256": null
   },
-  "next": "C06 must be separately preregistered prior to experiment; historical T008 reconciliation done as provenance maintenance, not a cycle. T009 current HEAD requires executor; R5 avoid consuming grant on repeated selected suites.",
-  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS60",
+  "next": "14 authorizations unused; choose new testable independent source or product security/temporal mechanism; do not count T008 repetition. If no discriminating instrument STOP_R5, retain permission.",
+  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS61",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
     "tested_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
