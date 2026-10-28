@@ -1,0 +1,43 @@
+{
+  "schema": "pfl.holdout5.local_replay.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "scope": "Three preselected 2023 historical election aggregates, not full repository checkout",
+  "source_repo_file": "research/ABH_HOLDOUT5_20261028/replay_2023_holdout.py",
+  "source_git_blob_sha": "3eff56d742fd43956af88f0860c5c5f4b12457aa",
+  "native_local_copy": "/mnt/data/pfl_holdout5/compare3.py",
+  "copy_git_blob_sha": "3eff56d742fd43956af88f0860c5c5f4b12457aa",
+  "byte_equivalent": true,
+  "command": "python /mnt/data/pfl_holdout5/compare3.py",
+  "runtime": "local Python 3 stdlib fractions.Fraction and collections.Counter",
+  "executed": true,
+  "execution_output": {
+    "Navarra": {
+      "legal_seats": 50,
+      "removed_threshold_transfers": 0,
+      "hamilton_transfers": 1
+    },
+    "Asturias": {
+      "legal_seats": 45,
+      "district_count": 3,
+      "removed_threshold_transfers": 0,
+      "hamilton_transfers": 4,
+      "hamilton_district_transfers": [
+        2,
+        1,
+        1
+      ]
+    },
+    "Rioja": {
+      "legal_seats": 33,
+      "removed_threshold_transfers": 1,
+      "hamilton_transfers": 1
+    }
+  },
+  "limitations": [
+    "Script embeds manually transcribed official source aggregates and is independent of private original bytes, but does not authenticate publication source or first-public time",
+    "No Python/Node/Atlas full suite on this or parent HEAD, no external Codex executed",
+    "No original binary sources, no third party's independent cross-check of all rows",
+    "No prospective political prediction or actual counterfactual election"
+  ],
+  "first_red_green_tests": "none, AB-R historical comparator not implementation QA cycle"
+}
