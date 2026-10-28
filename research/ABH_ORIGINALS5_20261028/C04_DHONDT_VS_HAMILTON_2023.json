@@ -1,0 +1,108 @@
+{
+  "schema": "pfl.dhondt.fourparty.original.bounded.v1",
+  "publisher": "JEC / BOE",
+  "document": "BOE-A-2023-18907",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+  "source_portion": "Congress Cuadro II only, selected districts with all seats occupied by named PP PSOE VOX SUMAR",
+  "source_format": "Official publisher HTML read, manually transcribed, raw XML/PDF bytes not obtained",
+  "algorithm": "D'Hondt: rank all votes_divisor d=1..M per list and assign top M, tie-break votes then name (no ties observed). Comparison: Hamilton largest remainders computed over four named parties only; party universe may be incomplete.",
+  "districts": [
+    {
+      "id": "Guadalajara",
+      "magnitude": 3,
+      "source_line": 116,
+      "votes": {
+        "PP": 51195,
+        "PSOE": 46479,
+        "Vox": 27126,
+        "Sumar": 12907
+      },
+      "observed": {
+        "PP": 1,
+        "PSOE": 1,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "dHondt": {
+        "PP": 1,
+        "PSOE": 1,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "hamilton": {
+        "PP": 1,
+        "PSOE": 1,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "last_quotient": 27126,
+      "next_quotient": 25597.5
+    },
+    {
+      "id": "Cantabria",
+      "magnitude": 5,
+      "source_line": 107,
+      "votes": {
+        "PP": 147326,
+        "PSOE": 116596,
+        "Vox": 49243,
+        "Sumar": 29713
+      },
+      "observed": {
+        "PP": 2,
+        "PSOE": 2,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "dHondt": {
+        "PP": 2,
+        "PSOE": 2,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "hamilton": {
+        "PP": 2,
+        "PSOE": 2,
+        "Vox": 1,
+        "Sumar": 0
+      },
+      "last_quotient": 49243,
+      "next_quotient": 49108.666666666664
+    },
+    {
+      "id": "Alicante/Alacant",
+      "magnitude": 12,
+      "source_line": 95,
+      "votes": {
+        "PP": 330293,
+        "PSOE": 287737,
+        "Vox": 146133,
+        "Sumar": 115787
+      },
+      "observed": {
+        "PP": 5,
+        "PSOE": 4,
+        "Vox": 2,
+        "Sumar": 1
+      },
+      "dHondt": {
+        "PP": 5,
+        "PSOE": 4,
+        "Vox": 2,
+        "Sumar": 1
+      },
+      "hamilton": {
+        "PP": 4,
+        "PSOE": 4,
+        "Vox": 2,
+        "Sumar": 2
+      },
+      "last_quotient": 66058.6,
+      "next_quotient": 57893.5
+    }
+  ],
+  "total_district_seats": 20,
+  "dHondt_absolute_seat_errors": 0,
+  "hamilton_seat_transfers_required": 1,
+  "selection_warning": "Districts selected based on 2023 BOE known four-party coverage and observed allocations. This is an in-sample mathematical replay, NOT predictive accuracy, external replicate or novel scientific result."
+}
