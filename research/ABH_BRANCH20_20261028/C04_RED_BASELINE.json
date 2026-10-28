@@ -1,0 +1,29 @@
+{
+  "schema": "ab.execution.red.v1",
+  "cycle": "C04",
+  "pre_registered": true,
+  "source_git_blob": "8c6588431d395ccfa9d0776230bf0f6a6eff5bfb",
+  "dependency_events_git_blob": "35fbfa6e4e952e22450a184f53672f9ef670d039",
+  "native_execution": "CPython 3.13.5 Linux pytest 9.0.2, exact source and dependency blobs recovered; no network or checkout",
+  "target": "Rule shallow freeze, cap/weight positivity finiteness, matching kind sets",
+  "red": {
+    "pass": 2,
+    "fail": 6,
+    "total": 8,
+    "exit_code": 1,
+    "stdout_sha256": "5bc0f323fdc79a0299c309241bbdea35fe8f79d06e7dc5e0c7883996be4c336b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "observed": [
+    "negative cap constructed without ValueError",
+    "positive infinite weight constructed without ValueError",
+    "mismatched key sets constructed without ValueError",
+    "bool cap passed integer expectations",
+    "caller mutation altered score 2.0 to 0.0",
+    "direct mutation of frozen dataclass mapping succeeded"
+  ],
+  "limits": [
+    "All synthetic events, no real scoring",
+    "Full suite not run, no upstream original"
+  ]
+}
