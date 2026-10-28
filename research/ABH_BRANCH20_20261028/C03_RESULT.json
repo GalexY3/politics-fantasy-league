@@ -1,0 +1,113 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "id": "PFL-B20-C03",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C03",
+  "mode": "AB-H",
+  "status": "VALID_A_J_COMPLETED",
+  "scope": "Data validity of one secondary source majority sign classifier; no original person data or new scientific result",
+  "A": {
+    "question": "Do overlapping nominal code sets create spurious STRICT_REVERSAL classifications?",
+    "estimand": "synthetic false-strict-reversal output against independent disjointness invariant",
+    "not_claimed": "real prevalence of bad source rows"
+  },
+  "B": {
+    "baseline": "Original git blob 1f215aecaea661050d95d93108acc75f489fa52a counted split tokens with no exclusivity check",
+    "rivals": [
+      "No duplicates accepted; input validation already covered",
+      "Duplicates accepted but never cause strict reversal",
+      "Duplicates can cause STRICT_REVERSAL despite incoherence"
+    ]
+  },
+  "C": {
+    "preregistered": "C03_PREREG.json",
+    "falsifiers": [
+      "S:a b;N:a b c d;totales si9/no3 -> STRICT_REVERSAL wrongly",
+      "intra-option repeated identifier",
+      "unsupported key Y",
+      "nonstring code group",
+      "invalid total bool/float/negative"
+    ],
+    "positive_controls": [
+      "disjoint strict reversal",
+      "disjoint tie",
+      "absent nominal groups"
+    ]
+  },
+  "D": {
+    "acquired_exact_git_files": [
+      {
+        "file": "src/politics_fantasy/majority_sign.py",
+        "git_blob_before": "1f215aecaea661050d95d93108acc75f489fa52a"
+      },
+      {
+        "file": "tests/test_majority_sign_audit.py",
+        "git_blob_before": "f638d3b2280c611420e9616160fc8c274e3db289"
+      }
+    ],
+    "runtime": "CPython 3.13.5 on Linux, pytest 9.0.2",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_majority_sign_audit.py tests/test_majority_sign_failclosed.py",
+    "provenance": "Exact historical Git blob verified with git hash-object locally; only these files were reconstructed, not full checkout."
+  },
+  "E": {
+    "original_baseline": "5/5 PASS in unchanged original suite, 0.05 s",
+    "red": "7 FAIL / 2 PASS, exit 1, 0.09s",
+    "red_stdout_sha256": "287dd72460347cf13a7d84006351e5dd3fdd2c69b83d21d63221f4212785cba4",
+    "green": "14 PASS / 0 FAIL, exit 0, 0.06s",
+    "green_stdout_sha256": "5a61e4ee64f45a5805babffca8a5919e844227a781cea12f4f08477742675d17",
+    "green_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "changes": [
+      {
+        "path": "src/politics_fantasy/majority_sign.py",
+        "git_blob_after": "aedb4e6009114afb18d99ce71ca3de936d688f03",
+        "commit": "96989d002a12456d45ebf5ba43ea8478972ee5ff"
+      },
+      {
+        "path": "tests/test_majority_sign_audit.py",
+        "git_blob_after": "db2a8d55b5b0c99dffe59ab5274e21bab7707da2",
+        "commit": "ceafeb22a710a79ec7d3ebd428173528ffe95422"
+      },
+      {
+        "path": "tests/test_majority_sign_failclosed.py",
+        "git_blob_after": "db6bf0b38ec3e94ed2ca6f8edabb40700e80125d",
+        "commit": "01d2176d575da5b073e1de423610044569552a31"
+      }
+    ]
+  },
+  "F": {
+    "adversarial": "Legacy test fixtures overlapped person codes across S/N; corrected synthetic fixtures to disjoint codes rather than relaxing integrity guard. New code categorizes invalid records without aborting aggregate compute; duplicated codes, unknown categories, nonstring groups, noninteger or negative yes/no totals are counted separately.",
+    "risks": [
+      "No actual upstream JSONL sample examined under this campaign",
+      "Existing historical aggregate counts may change if non-disjoint data present",
+      "Global pytest and Node not executed",
+      "No publisher provenance verification"
+    ]
+  },
+  "G": {
+    "independent_check": "GitHub connector fetched post-commit blobs, matching all three local git hash-object values. Only targeted Linux tests; not external data replication.",
+    "kind": "synthetic_negative_controls"
+  },
+  "H": {
+    "updated_belief": "H1 proven for original pure Python function on synthetic overlapping codes; targeted minimal guard fixes the counterexample. No evidence of upstream prevalence or parliamentary outcomes.",
+    "novel_N1": 0,
+    "novel_N2": 0,
+    "novel_N3": 0
+  },
+  "I": {
+    "product": "Defensive analytical classification improvement",
+    "research": "No independent empirical truth; technical artifact only",
+    "validity": "Strong local unit-level control and hashes; limited scope",
+    "privacy": "Only synthetic codes",
+    "metric_changes": "V4 36.90, CT2 29 ordinal, VSDS 1/3, gates 0/6 unchanged"
+  },
+  "J": {
+    "decision": "ACCEPT_TARGETED_REPAIR; keep T008 global POSIX suite pending; don't manufacture additional cycles from code commits",
+    "follow_up": "On full checkout check changed majority_sign fixture against all consuming modules and new invalid counts; no additional AB cycle assigned to T008 merely by execution"
+  },
+  "no_claims": [
+    "Not a complete Linux project test",
+    "Not a true political-vote data finding",
+    "Not a source authentication",
+    "Not real-person scoring"
+  ]
+}
