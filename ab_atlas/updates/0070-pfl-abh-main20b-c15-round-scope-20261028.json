@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0070-PFL-ABH-MAIN20B-C15-ROUND-SCOPE-20261028",
+  "parent_batch": "0069-PFL-ABH-MAIN20B-C14-PERSONIDS-20261028",
+  "at": "2026-10-28T14:37:49.408Z",
+  "actor": "chatgpt",
+  "reason": "C15 prereg unrelated future malformed demo event poisoned past round scoring; targeted 3 red/green checks; patch restricts event construction to in-period rows, preserves strict non-fictional deny.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C15-ROUND-SCOPE",
+        "activity": "Round-scoped synthetic event parsing avoids malformed unrelated rows poisoning a valid past score; retained in-range non-synthetic denial.",
+        "status": "completed",
+        "at": "2026-10-28T14:37:49.408Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C15_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C15_RESULT.json",
+          "tests/test_round_scoring_interval_scope.py"
+        ],
+        "scope": "AB-P local fictional game only, no scoring real people",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
