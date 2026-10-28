@@ -68,7 +68,10 @@ def purged_walk_forward(weeks: list[str], *, min_train: int, gap: int, horizon: 
 
 def session_bootstrap_ci(session_values: dict[str,list[float]], *, replicates: int=400,
                          seed: int=29, level: float=.95) -> dict:
-    """Cluster resample full sessions, not nominal votes as independent units."""
+    """Equal-weight mean of session means; each session is one resampling unit.
+
+    NOT the pooled mean over all observed votes when session sizes differ.
+    """
     if not session_values or replicates<20 or not 0<level<1:
         raise ValueError('Invalid cluster bootstrap design')
     sessions=sorted(session_values)
@@ -90,4 +93,54 @@ def session_bootstrap_ci(session_values: dict[str,list[float]], *, replicates: i
     li=max(0,min(replicates-1,int(a*replicates)))
     hi=max(0,min(replicates-1,int((1-a)*replicates)))
     return {'mean':mean,'lower':draws[li],'upper':draws[hi], 'clusters':len(sessions),
+            'status':'CLUSTER_BOOTSTRAP_SYNTHETIC_NOT_EXTERNAL'}
+
+def record_weighted_cluster_bootstrap_ci(
+    session_values: dict[str,list[float]], *, replicates: int=400,
+    seed: int=29, level: float=.95
+) -> dict:
+    """Bootstrap the pooled *record* mean by resampling whole sessions.
+
+    Each session's entire observed block is selected or omitted together.
+    For unequal cluster sizes this estimand differs from session_bootstrap_ci,
+    which gives every session mean the same point-estimate weight.
+    No causal effect or real-source authenticity is implied.
+    """
+    if (not session_values or type(replicates) is not int or replicates<20
+            or type(seed) is not int or not 0<level<1):
+        raise ValueError('Invalid record-weighted cluster bootstrap design')
+    keys=sorted(session_values)
+    if len(keys)<2:
+        raise ValueError('At least two independent sessions required')
+    blocks=[]
+    for key in keys:
+        vals=session_values[key]
+        if not vals or any(not isfinite(v) for v in vals):
+            raise ValueError('Invalid session values')
+        total=sum(vals)
+        if not isfinite(total):
+            raise ValueError('Nonfinite session total')
+        blocks.append((total,len(vals)))
+    total=sum(t for t,n in blocks)
+    denominator=sum(n for t,n in blocks)
+    mean=total/denominator
+    if not isfinite(mean):
+        raise ValueError('Nonfinite pooled mean')
+    rng=Random(seed)
+    draws=[]
+    for _ in range(replicates):
+        sampled=[blocks[rng.randrange(len(blocks))] for _ in blocks]
+        numerator=sum(t for t,n in sampled)
+        size=sum(n for t,n in sampled)
+        value=numerator/size
+        if not isfinite(value):
+            raise ValueError('Nonfinite bootstrap draw')
+        draws.append(value)
+    draws.sort()
+    a=(1-level)/2
+    li=max(0,min(replicates-1,int(a*replicates)))
+    hi=max(0,min(replicates-1,int((1-a)*replicates)))
+    return {'mean':mean,'lower':draws[li],'upper':draws[hi],
+            'clusters':len(blocks),'observed_records':denominator,
+            'estimand':'RECORD_WEIGHTED_MEAN_WITH_SESSION_BLOCK_RESAMPLING',
             'status':'CLUSTER_BOOTSTRAP_SYNTHETIC_NOT_EXTERNAL'}
