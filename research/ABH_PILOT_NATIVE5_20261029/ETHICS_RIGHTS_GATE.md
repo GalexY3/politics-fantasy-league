@@ -7,7 +7,7 @@
 - [AEPD: forma del consentimiento](https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0211-segun-el-rgpd-como-debe-solicitarse-el-consentimiento-de-los-interesados-para-tratar-sus-datos-personales): inequívoco, acción afirmativa, libre, informado y revocable; exige poder demostrarlo. No sirven casillas premarcadas ni inacción.
 - [AEPD: bases de licitud](https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0214-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-datos): identificar y documentar base jurídica pertinente para cada tratamiento. **No asumir** que publicar una encuesta de respuestas ficticias exime de protección de datos.
 - [AEPD: datos anónimos](https://www.aepd.es/preguntas-frecuentes/0-conceptos-basicos/FAQ-0005-sobre-los-datos-anonimizados): anonimización efectiva exige que no sea razonablemente posible reidentificar; la mera omisión de nombres o emails no es suficiente.
-- [Manual/protocolo PFL ya aprobado como esquema técnico, NO como estudio humano](STUDY_PROTOCOL_PLACEHOLDER): remitirse al protocolo real de la campaña antecesora `../ABH_PROSPECTIVE_PILOT5_20261029/STUDY_PROTOCOL_DRAFT.md`. Sigue en **BORRADOR NO APROBADO**.
+- [Protocolo PFL de la campaña antecesora, BORRADOR NO APROBADO](../ABH_PROSPECTIVE_PILOT5_20261029/STUDY_PROTOCOL_DRAFT.md): contiene el esquema técnico y los límites del proyecto. Sigue en **BORRADOR NO APROBADO**.
 
 ## Puertas requeridas antes de un estudio real
 
