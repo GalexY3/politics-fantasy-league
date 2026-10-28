@@ -1,0 +1,82 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0034-PFL-ABH-CONT80-C73-C76-POSIX-20261028",
+  "parent_batch": "0033-PFL-CHATRELAY-59E1F051-CR02-SENADO-20261028",
+  "at": "2026-10-28T01:44:53.734Z",
+  "actor": "chatgpt",
+  "reason": "Append four true preregistered AB-P native Linux POSIX tests C73-C76 after separate concurrent documentary CR01/CR02 Atlas 0032/0033. 16 of grant's 20 executed, four unused. No full-suite or release claim.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C73",
+        "activity": "C73 native exact Git SHA checked-in ingest suite Linux POSIX: 9 passed in 2.11s, false external HTTP; Windows unsupported-store distinction",
+        "status": "completed",
+        "at": "2026-10-28T01:44:53.734Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C73_RESULT.json",
+          "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C74",
+        "activity": "C74 native original redirected-source guard suite: 9 passed and 14 subtests in 0.19s; HTTP handler original not rerun",
+        "status": "completed",
+        "at": "2026-10-28T01:44:53.734Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C74_RESULT.json",
+          "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C75",
+        "activity": "C75 native original offline quarantine ingest: 10 passed in 0.12s, SHA tamper and symlink checks, still no person scoring",
+        "status": "completed",
+        "at": "2026-10-28T01:44:53.734Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C75_RESULT.json",
+          "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C76",
+        "activity": "C76 exact-source original capture to private audit CLI E2E: 3 passed, combined four original source suites 31 passed 14 subtests in 2.30s, no patch",
+        "status": "completed",
+        "at": "2026-10-28T01:44:53.734Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C76_RESULT.json",
+          "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
