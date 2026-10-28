@@ -1,4 +1,4 @@
-# T001 · Replay Python canónico de los 29 lotes AB Atlas
+# T001 · Replay Python canónico de los 30 lotes AB Atlas
 
 **Prioridad P0 · Estado PENDIENTE · Encargo para Codex, no ejecutado.** [Volver al índice](README.md).
 
@@ -18,7 +18,7 @@ python --version
 git ls-files 'proyectos/politics-fantasy-league/ab_atlas/updates/*.json'
 ```
 
-Comprobar que hay exactamente **29** lotes `0001…0029` antes de ejecutar (si hubiera nuevos, detenerse y actualizar la tarea y su base; **no** alterar evidencias anteriores para acomodar resultados).
+Comprobar que hay exactamente **30** lotes `0001…0030` antes de ejecutar (si hubiera nuevos, detenerse y actualizar la tarea y su base; **no** alterar evidencias anteriores para acomodar resultados).
 
 ```bash
 python ab_atlas/atlas_delta.py check \
@@ -32,7 +32,7 @@ Este comando está **confirmado en el script raíz** `ab_atlas/atlas_delta.py`: 
 
 - 28 deltas detectados en orden, `exit code 0` y stdout original conservado **sin manipular**.
 - Registrar **SHA canónico informado por el checker**, HEAD Git, versión Python, cwd, comando exacto y stderr (incluso si está vacío).
-- Comparar el recuento de operaciones documental de CONT60 —63 nodos, 81 relaciones, 187 runs, 44 complaints, 356 operaciones— contra el replay. El comando `check` solo informa lotes/nodos/SHA: extraer las otras cifras del estado reconstruido, sin darlas por certificadas de antemano.
+- Comparar el recuento de operaciones documental de CONT60 —63 nodos, 81 relaciones, 190 runs, 44 complaints, 359 operaciones— contra el replay. El comando `check` solo informa lotes/nodos/SHA: extraer las otras cifras del estado reconstruido, sin darlas por certificadas de antemano.
 - Revisar `project_contract.release_gates`: **ningún gate se marca passed por este trabajo**. Cualquier diferencia es una incidencia, no una mejora automática.
 - Si falla: conservar código de salida, primer lote/invariante que falla, motivo verificable y reproducción mínima; proponer reparación de lote *nueva* y append-only **sin reescribir históricos**, previa revisión metodológica.
 
