@@ -61,4 +61,6 @@ Para descubrir un mecanismo de sociología del juego aplicable a PFL hace falta 
 
 **Pendiente de Codex / PC:** ejecutar Node en los dos nuevos módulos, suites focalizadas e integrales en checkout limpio y auditoría de seguridad de consumidores; registrar receipt y SHA exactos. T011 y T016–T024 anteriores siguen pendientes de sus verificaciones; **no se afirma su ejecución**.
 
+**Nueva tarea [Codex T025](../../tareas_codex/T025_MECHANISM_SYNTHETIC_NATIVE_QA_20261029.md), PENDIENTE:** reproducción nativa de los 36 asertos C03/C05, los tres experimentos congelados y auditoría adversarial de serialización y código, con receipt; su ficha no acredita ejecución y no consume ciclos.
+
 **SOLICITO BRANCHING 5 CICLOS AB-H ADICIONALES**, con autorización nueva independiente, dirigidos a instrumentar un ensayo prospectivo ético (producto AB-P + investigación AB-R posterior si existen respuestas reales) y a evitar más variantes sintéticas sin discriminación; no comenzar sin concesión explícita.
