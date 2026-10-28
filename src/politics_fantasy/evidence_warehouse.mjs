@@ -181,7 +181,8 @@ export function auditBundle(reg){
  const ids=new Set(reg.sources.map(x=>x.id));const eids=new Set(reg.entities.map(x=>x.id));
  const broken=[...reg.entities.filter(x=>!ids.has(x.source_id)).map(x=>"ENTITY:"+x.id),
  ...reg.roles.filter(x=>!ids.has(x.source_id)||!eids.has(x.subject_id)).map(x=>"ROLE:"+x.id),
- ...reg.events.filter(x=>!ids.has(x.source_id)||x.participants.some(p=>!eids.has(p.actor_id))).map(x=>"EVENT:"+x.id)];
+ ...reg.events.filter(x=>!ids.has(x.source_id)||x.participants.some(p=>!eids.has(p.actor_id))).map(x=>"EVENT:"+x.id),
+ ...reg.claims.filter(x=>!ids.has(x.source_id)||!eids.has(x.subject_id)).map(x=>"CLAIM:"+x.id)];
  return {ok:broken.length===0,broken,coverage:coverage(reg),gate:evidenceGate(reg),event_collisions:eventDuplicates(reg)}
 }
 export const CAPABILITIES={types:TYPES,eventTypes:TYPES_EVENT,roles:ROLES};
