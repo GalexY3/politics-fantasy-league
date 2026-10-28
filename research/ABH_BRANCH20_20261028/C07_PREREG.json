@@ -1,0 +1,67 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C07",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:35:04.811Z",
+  "title": "Operationalization audit: plurality vs absolute majority in group-vote snapshots",
+  "A": "Does groupvotes.majority treat an option with <50% of recorded group row choices as 'majority'? What two conservative operationalizations should be distinguished?",
+  "B": {
+    "H1": "majority actually computes max(YES,NO,ABSTAIN), i.e. plurality and may label 4 YES of 9 expressed as YES",
+    "H0": "majority computes strict >1/2 majority",
+    "alternate": "Group members who did not vote change the denominator and different operational definitions can disagree"
+  },
+  "C": {
+    "synthetic_fixture": [
+      {
+        "yes": 4,
+        "no": 3,
+        "abstain": 2,
+        "no_vote": 0,
+        "modal": "YES",
+        "strict_expressed": "NO_ABSOLUTE_MAJORITY",
+        "strict_members": "NO_ABSOLUTE_MAJORITY"
+      },
+      {
+        "yes": 6,
+        "no": 3,
+        "abstain": 0,
+        "no_vote": 9,
+        "modal": "YES",
+        "strict_expressed": "YES",
+        "strict_members": "NO_ABSOLUTE_MAJORITY"
+      },
+      {
+        "yes": 1,
+        "no": 1,
+        "abstain": 0,
+        "no_vote": 0,
+        "modal": "TIE",
+        "strict_expressed": "TIE"
+      },
+      {
+        "yes": 0,
+        "no": 0,
+        "abstain": 0,
+        "no_vote": 9,
+        "modal": "NO_EXPRESSED_CHOICE",
+        "strict_expressed": "NO_EXPRESSED_CHOICE"
+      }
+    ],
+    "pass_condition": "A function named 'majority' must explicitly document its modal legacy semantics; a new strict_majority distinguished by denominator is added only if observational H1 holds; frozen fixture untouched and regression included"
+  },
+  "D": {
+    "existing_source": "src/politics_fantasy/groupvotes.py",
+    "source_sha_before": "3a77c4d92246f6a9ebb28693454add501db4c4f8",
+    "existing_test_sha": "abf5cd8eeb793424690bb28b5e6b6d1f71b67829",
+    "instrument": "Native Python focused logic test with extracted source fragment from exact GitHub file; no complete checkout, tests added for full suite",
+    "no_sources_real": true
+  },
+  "E": "PENDING",
+  "F": "Avoid conflating plurality, majority of expressed and absolute majority of group members. Nonvote observed missingness interpretation not resolved by this function.",
+  "G": "Test strict examples on synthetic rows and compare against old outputs; full Python project tests T008 pending.",
+  "H": "Methodological clarity, not an empirical hypothesis about actual party discipline",
+  "I": "No discovery, VSDS/CT2 or gates increase from synthetics",
+  "J": "Implement only if distinct misclassification observed; otherwise STOP_R5."
+}
