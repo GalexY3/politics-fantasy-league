@@ -1,0 +1,64 @@
+{
+  "schema": "pfl.releasepath5.guard_tests.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "tested_git_blob": "9ca109437f5ea77e5683c3303aa9684bfcc08f64",
+  "manifest_blob": "bbebafefb9e26e945f29c68913b828978869324c",
+  "scope_blob": "b66b9582fa8630a11892aabbff8871b5069d284d",
+  "achievements_blob": "81354bbb1954d37dc65522277fae02b89f009f45",
+  "test_environment": "Code Mode JavaScript V8 eval of exact fetched release_guard.cjs code using Function(module, require), no Node checkout/full suite",
+  "initial_red_run": {
+    "tests": 9,
+    "pass": 8,
+    "failed": 1,
+    "description": "Date regex was overescaped, so even an injected trusted verification callback with complete synthetic fields did not permit ready. Patched to numeric `[0-9]` date regex. The first failure preserved in report."
+  },
+  "after_fix": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "name": "baseline_0_of_6_with_5_achievements",
+      "pass": true
+    },
+    {
+      "name": "fake_100_V4_and_90_achievements_do_not_clear_real_gates",
+      "pass": true
+    },
+    {
+      "name": "self_declared_evidence_requires_external_verifier",
+      "pass": true
+    },
+    {
+      "name": "external_verifier_negative_remains_blocked",
+      "pass": true
+    },
+    {
+      "name": "scope_revision_mutation_blocked",
+      "pass": true
+    },
+    {
+      "name": "missing_gate_blocks",
+      "pass": true
+    },
+    {
+      "name": "duplicate_gate_throws",
+      "pass": true
+    },
+    {
+      "name": "missing_milestone_blocks",
+      "pass": true
+    },
+    {
+      "name": "trusted_callback_illustrates_unimplemented_trust_boundary",
+      "pass": true
+    }
+  ],
+  "baseline": {
+    "ready": false,
+    "passed": 0,
+    "achievements_unlocked": 5
+  },
+  "disclaimer": "External verifier function is a caller-supplied trust boundary, NOT implemented. `()=>true` simulation establishes only logic, not actual source authentication; CLI with no verifier can never approve public release. Full native Node and Python checkout QA NOT run."
+}
