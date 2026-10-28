@@ -1,0 +1,12 @@
+{
+  "cycle": "C76",
+  "mode": "AB-P",
+  "A": "Does original local end-to-end capture→schema-quarantine→independent read-only audit CLI run on Linux POSIX with byte-identical GitHub modules, including unreviewed duplicate SHA capture exit2?",
+  "B": {
+    "H1": "Three original tests PASS, audit reports correct ledger/orphan counts",
+    "H0": "Ingest + private auditor interoperation fails after platform preflight, exposing independent logic bug",
+    "H2": "Mismatch to Git original code means no valid result"
+  },
+  "C": "Preregister; copy original GitHub private_audit.py, private_audit_cli.py and original `tests/test_ingest_full_local_e2e.py` into C75 sandbox; validate Git blob hashes; run native Python, inspect stdout, no external network; preserve failure before patch if any.",
+  "D": "Any original E2E error or source hash mismatch prevents PASS; no claim of full project suite, publisher signature, first_public_at or real scoring."
+}
