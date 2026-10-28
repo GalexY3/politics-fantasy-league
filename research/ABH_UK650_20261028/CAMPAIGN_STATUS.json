@@ -1,0 +1,139 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-UK650-20261028",
+  "branch": "research/pfl-abh5-ukconstituency-20261028",
+  "base_branch": "research/pfl-abh5-eu-participation-20261028",
+  "base_sha": "925ac442a94a6b9497a798b3b6b46afd45739869",
+  "user_authorized": 5,
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "AB_R": 5,
+    "AB_P": 0,
+    "used": 5,
+    "remaining": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "e7d00fcd6e2eda873daf56f59f72de93aa219d3b",
+      "result": "C01_RESULT.json",
+      "result_commit": "e5d24af77eb7f46239be278a76318417f43764b7",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "status": "VALID_BOUNDED_THIRD_PARTY_MIRROR_FULL_650_RECONCILIATION"
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "b6b3acae718f44dd9c3cacb7a16569cf15090d3a",
+      "result": "C02_RESULT.json",
+      "result_commit": "aaa56d287e9ad251773d91073c4756c5e02963fc",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "status": "VALID_BOUNDED_COMPETITION_TURNOUT_NEGATIVE_ASSOCIATION"
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "1c8d5dbecdb4e13ac920ffc396f356e464cf45d3",
+      "result": "C03_RESULT.json",
+      "result_commit": "a8506f57670d30e08fbaad403edb3c6fdfd02478",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "status": "VALID_BOUNDED_ENP_WEAK_BIVARIATE_NEGATIVE_PARTIAL"
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "c7881a2777c060e937f47979bce3169a67cfc0a3",
+      "result": "C04_RESULT.json",
+      "result_commit": "e0328a5f8e015b5855ba6e0897d9fbb28023d3d2",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "status": "VALID_BOUNDED_GEOGRAPHIC_ATTENUATION_HETEROGENEITY"
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "e0eeb678882ad20e0b56b3fd34ff8b4509fc0a8b",
+      "result": "C05_RESULT.json",
+      "result_commit": "f0a5067e3ff21d6149db7b87c974fc787f9ab210",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "status": "VALID_BOUNDED_GEOGRAPHIC_CV_NO_USEFUL_ENP_GAIN"
+    }
+  ],
+  "evidence": {
+    "scope": "2024 UK general election 650 constituency 4,515 candidate votes",
+    "source_tier": "Third-party GitHub copies of Commons Library named CSV, direct original publisher inaccessible",
+    "original_issuer": "House of Commons Library",
+    "original_issuer_URL": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+    "mirror_source_repo": "emagar/caso-pc-oto2024",
+    "mirror_constituency_blob": "835aae9eb124e215b7f159b2db90fcc9b66416d8",
+    "mirror_candidate_blob": "dd4c81aee7ace632c1ffc75bd5518363a458f94c",
+    "secondary_mirror_blob": "0fccff58e1df830fc9cc4ac8a36aee8ce04d5caf",
+    "original_official_binary_downloads": 0,
+    "original_official_sha256_verified": 0,
+    "source_rows_reconciled": 650,
+    "source_group_counts": 4,
+    "revision_conflict": "11 electorate, 1 valid, 4 rejected fields different across mirrors",
+    "analysis_execution": "V8 code executed on fetched mirror files and 650 derived country rows. C02-C05 metrics committed.",
+    "native_script_replay_status": "Python reproduction script committed for Codex T021; NOT executed in clean checkout.",
+    "full_repo_suite_executed": false
+  },
+  "scientific": {
+    "V4_pct": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "achievements": "2/90",
+    "gates": "0/6",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "no_true_prospective_validation": true,
+    "ecological_cross_sectional_only": true,
+    "margin_and_enp_post_election": true,
+    "independent_replication": false
+  },
+  "key_results": {
+    "margin_turnout_spearman": -0.2761649722611997,
+    "margin_turnout_pearson": -0.28657016168247695,
+    "turnout_competitive_vs_safe_quartile_diff_pp": 4.775827787503204,
+    "OLS_margin_slope_attenuation_after_region_pct": 32.91102668314211,
+    "ENP_vs_turnout_spearman": 0.0705687532806177,
+    "regional_holdout_margin_MAE": 5.44614126817255,
+    "regional_holdout_margin_ENP_MAE": 5.440703202266375,
+    "alternate_source_mirror_margin_spearman": -0.2789732738557233
+  },
+  "prohibitions": {
+    "ChatRelay": "NOT_USED",
+    "merge_main": false,
+    "CI_costly": false,
+    "person_or_party_score": false
+  },
+  "backlog": [
+    "T011",
+    "T016",
+    "T017",
+    "T018",
+    "T019",
+    "T020",
+    "tareas_codex/T021_UK650_ORIGINALES_Y_RÉPLICA_20261028.md"
+  ],
+  "R5": "Original direct source blocked, did not count failed access as separate scientific cycle; pivoted to an already-published third party MIRROR with explicit Tier-2 provenance, full 650 x 4,515 integrity checks, and distinctly informative five empirical tests. Stop without further repeated 2024 UK reanalysis until original authenticated or an independently selected future election.",
+  "next": "No cycles remain. New user authorization necessary; T021 is executor task prepared, not executed."
+}
