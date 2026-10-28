@@ -185,7 +185,7 @@
       "title": "Revalidar main actual HEAD: Linux full pytest y checker canónico Atlas 75 lotes",
       "priority": "P0",
       "file": "T009_MAIN_LINUX_ATLAS60.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_CON_FALLOS",
       "depends_on": [],
       "completion_requires": [
         "checkout completo HEAD actual main sin modificaciones",
@@ -207,7 +207,49 @@
       "notes": [
         "Previous T008 is completed only at old checkout; T009 not executed. No automated Actions.",
         "MAIN20B C07: pyproject optional test/research extras include tzdata on Linux; first verify clean pip install and PYTHONTZPATH='' fallback, then 62 lot replay. No executed clean install.",
-        "MAIN20B campaign closed 20/20 valid A-J with 13 cycles C08-C20 this continuation; many tests were focused/reconstructed only and complete current repo suite NOT_RUN. Atlas75 canonical and SHA unknown."
+        "MAIN20B campaign closed 20/20 valid A-J with 13 cycles C08-C20 this continuation; many tests were focused/reconstructed only and complete current repo suite NOT_RUN. Atlas75 canonical and SHA unknown.",
+        "Original T009_RESULTADO.md was supplied by the user and preserved exactly (Git blob fab47ada...). T009 completed with failures at checkout 8a761cf; no later full suite claimed.",
+        "Atlas source was corrupted by C01 editing (three duplicated sets of definitions; SyntaxError line24), requiring new controlled T010; HTTP positive 'Club Único' likely failed due Latin-1 encoding in test helper, not confirmed by rerun."
+      ],
+      "report_file": "T009_RESULTADO.md",
+      "report_sha": "fab47ada673b6c3867fedcc5327cfeaada07c7b1",
+      "tested_checkout": "8a761cf3081b7d09dae6cacb9f58fa58192863e4",
+      "reported_results": {
+        "python": {
+          "passed": 757,
+          "failed": 1,
+          "subtests_passed": 28,
+          "skipped": 0
+        },
+        "node": {
+          "passed": 127,
+          "failed": 0
+        },
+        "atlas": {
+          "status": "SYNTAX_ERROR_LINE_24",
+          "checker_exit": 1,
+          "sha256": null,
+          "dates_test_collection_error_exit": 2
+        }
+      },
+      "evidence_logs": "LOCAL_USER_COMPUTER_NOT_IN_GITHUB"
+    },
+    {
+      "id": "PFL-CODEX-T010",
+      "title": "Corregir Atlas duplicado/truncado y codificación HTTP del test T009; revalidar Linux sobre rama nueva",
+      "priority": "P0",
+      "file": "T010_REPARAR_ATLAS_HTTP_POST_T009.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "authorization": "QA_REMEDIATION_ONLY__NOT_AB_CYCLE",
+      "baseline": "T009_COMPLICADA_CON_FALLOS_checkout_8a761cf",
+      "completion_requires": [
+        "Conservar report T009 original (Git blob fab47ada) y logs locales originales si son accesibles",
+        "Restaurar un único atlas_delta.py desde blob histórico b47fc8... e integrar validador ISO-aware compatible; un único batch_check/cli",
+        "Corregir helper del test HTTP para enviar bytes UTF-8; conservar 400 para JSON duplicado y 200 con 'Club Único'",
+        "Ejecutar tests de fechas del Atlas y comprobar nativamente todos los lotes sin reescribir históricos, registrar SHA canónico",
+        "Ejecutar Python completo, tests Atlas y Node completo sobre HEAD de rama correctiva Linux, conservar primera corrida, stdout/stderr/exit/hashes",
+        "Crear T010_RESULTADO.md y PR desde rama fix/pfl-t010-atlas-http-20261028 sin fusionar automáticamente ni lanzar CI costosa"
       ]
     }
   ],
@@ -215,7 +257,7 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "GitHub 2026-10-28 MAIN20B final 20 valid 0 invalid 0 remaining; Atlas 75 documentary lots, 63 nodes, 81 edges, 241 runs, 48 complaints, 416 ops; native checker75 and full Linux pytest current HEAD NOT_RUN; T008 historic Linux b0344d1 651 PASS +28 subtests and Atlas35 separate PASS.",
+  "last_verified_by": "2026-10-28 GitHub verified T009 original user-uploaded exact report, 757 Python pass 1 fail 28 subtests, Node127 pass, Atlas SyntaxError line24 no SHA; source file at 8a761cf corrupted with triplicate functions; current main full validation remains FAIL/UNKNOWN; T010 P0 executor QA repair, MAIN20B closed 20/20.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
@@ -245,5 +287,6 @@
     "report_sha": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
     "status": "COMPLETADA_VERIFICADA_ONLY_old_checkout"
   },
-  "T009_current_main_status": "PENDING_75_LOTS"
+  "T009_current_main_status": "COMPLETADA_CON_FALLOS_CHECKOUT_8a761cf",
+  "T010_status": "PENDIENTE_EXECUTOR"
 }
