@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "official_home": "https://votes.parliament.uk/",
+    "official_pages": [
+      "https://votes.parliament.uk/votes/lords/division/3729",
+      "https://votes.parliament.uk/votes/lords/division/3730",
+      "https://votes.parliament.uk/votes/lords/division/3731"
+    ],
+    "preexposure": "The October 26 totals and Lords source URLs surfaced before prereg; confirmatory language not permitted, retrospective fixed 3-divisions audit"
+  },
+  "A": "Does within-bill response variation replicate in a second independent chamber (UK Lords) while requiring a different voting ontology and teller treatment?",
+  "B": {
+    "H1": "Three Lords divisions 26 Oct 2026 on same bill have >15pp range in recorded Content share, so bill-level aggregate is unsafe across both chambers",
+    "H0": "All three identical shares and a common vote vector suffices",
+    "Halt": "Different amendment semantics and membership base prevent causal or cross-house equivalence"
+  },
+  "C": "Fix October 26 2026 Lords Cyber Security and Resilience Bill division numbers 1-3, and source-listed Contents/Not Contents counts, check each vote total and Content percentage; compare range threshold 15pp vs Commons range from prior C03. Document explicit Content/Not Content semantics, and teller embedded in list vs separate role. Do not compare individual MPs and Lords or infer intention.",
+  "E": "PENDING",
+  "F": "Look for teller also displayed under ordinary member roll call; prevent double counting and House-wide denominator assumptions",
+  "G": "Different chamber extends external institutional validity of *measurement issue*, not scientific model replication",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No peers/MP ratings",
+  "J": "If >15pp, retain chamber-aware stage unit rule and explicit source-specific vote categories; no N1."
+}
