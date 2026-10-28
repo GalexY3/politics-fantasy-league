@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "A": "NominalVote revision number versus first_public_at ordering",
+  "B": {
+    "H1": "Numeric revision can override a later published lower revision",
+    "H0": "Inconsistent order rejected"
+  },
+  "C": {
+    "synthetic": "r1 first published day4, r2 first published day3; cutoff day5",
+    "control": "ordinary increasing timestamps",
+    "stop": "No real issuer chronology proof; no production repair without separate evidence"
+  },
+  "D": {
+    "source": "src/politics_fantasy/rollcall.py @ c866d4933061cb11c515c0e45f7421f5fdae9eee",
+    "method": "isolated Python synthetic execution"
+  },
+  "E": "PENDING",
+  "F": "Revision numbers cannot prove publication time",
+  "G": "T009 pending",
+  "H": "No CT2/gates uplift",
+  "I": "Temporal identifiability",
+  "J": "Record result and STOP if chronology premise unavailable"
+}
