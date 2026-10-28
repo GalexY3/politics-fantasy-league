@@ -1,0 +1,32 @@
+{
+  "schema": "ab.authorization.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "granted": 5,
+  "used": 0,
+  "remaining": 5,
+  "source_branch": "research/pfl-abh5-regional-audit-20261028",
+  "source_sha": "a3795f19c7347014724fc43f966dcd7f86cde19b",
+  "branch": "research/pfl-abh5-holdout-20261028",
+  "permission": "User explicitly granted 5 A-J bounded cycles, no intermediate questions",
+  "prohibitions": [
+    "No ChatRelay",
+    "No merge to main",
+    "No fabricated access/results/cycles",
+    "No private original nominal data in Git",
+    "No political-actor scoring or future election prediction"
+  ],
+  "baseline": {
+    "CT2_identity": 29,
+    "V4_pct": 36.9,
+    "VSDS": "1/3",
+    "unlocked_achievements": 2,
+    "achievement_catalogue": 90,
+    "gates": "0/6",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "stop_rule": "If source does not allow original or reliable aggregate inspection, fail or count only executed bounded negative; pivot to different evidence. Prereg before accessing outcomes. No compulsive quota filling."
+}
