@@ -1,0 +1,20 @@
+{
+  "schema": "pfl.ushouse5.native_test.v1",
+  "year": "2026",
+  "cycle": "C05",
+  "command": "cd /mnt/data/pfl_ushouse5 && python -m unittest -v test_research_only_house_groups.py",
+  "executed": true,
+  "runtime": "Python 3.13.5 local container",
+  "pass": 15,
+  "fail": 0,
+  "remote_and_executed_file_git_blob_identical": true,
+  "git_blobs": {
+    "source": "a8ff1dae5b4449a728d7e535bc86ab1947295eec",
+    "test": "04071e17eec565b9e03ade141266c98e327967cc"
+  },
+  "research_only": true,
+  "original_clerk_XML_bytes": 0,
+  "full_repo_suite_executed": false,
+  "design": "Accept valid 2025/2026 aggregate, reject cross-party/overall mismatch, missing Independent, boolean, negative, invalid canonical source, impossible Gregorian date, absent procedure, tied party majority, pre-vote realized vote margin or party tally leakage",
+  "limitations": "Tests are self-constructed known fixtures, not independent external verification. Legal source URL alone doesn't authenticate downloaded bytes. No actual future vote predictive test."
+}
