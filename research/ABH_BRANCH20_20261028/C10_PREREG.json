@@ -1,0 +1,36 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C10",
+  "mode": "AB-H",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:42:31.231Z",
+  "topic": "Selective rescue of exclusive historical typed_refs feature without bulk merge / Atlas contamination",
+  "preexposure": "GitHub branch compare established research/pfl-abh-branch20-20261026 had 14 exclusive commits and includes src/politics_fantasy/typed_refs.py plus tests/test_abh_branch20_typed_refs.py, absent from main tree. Exact file contents not yet read in this cycle.",
+  "A": "Is the historical typed-reference function a substantive additional machine-checkable identity/provenance guard not in current main, and can it be ported unchanged without overwriting unrelated files?",
+  "B": {
+    "H1": "Distinct source-reference family validation works with disjoint synthetics and no automatic cross-family equivalence",
+    "H0": "Feature duplicates current main code or relies on incompatible histories, so shouldn't port",
+    "Hother": "Tests from old branch fail current API; keep in archive without transfer"
+  },
+  "C": {
+    "checks": [
+      "Inspect exact source and historical tests then compare to current trust gate",
+      "Run relevant original synthetic unit tests natively if isolated module importable, preserving code bytes",
+      "Audit absence of real person names, network, and hard-coded release promotions",
+      "Only selective copy of two original files if tests pass and no conflicts; preserve original Git SHA and test results"
+    ],
+    "stop": "Reject if alters main global compatibility or conceptual overlap without distinct value"
+  },
+  "D": {
+    "source_ref": "research/pfl-abh-branch20-20261026",
+    "target": "main",
+    "method": "Authenticated GitHub fetch + isolated Python test; no merge old Atlas / branch"
+  },
+  "E": "PENDING",
+  "F": "Exact old SHA isn't enough; test against modern source semantics, don't certify original person identity",
+  "G": "Selected tests only, no full suite",
+  "H": "No VSDS or gates uplift",
+  "I": "Product identity data contract only",
+  "J": "Accept selective port or documented rejection with reasons."
+}
