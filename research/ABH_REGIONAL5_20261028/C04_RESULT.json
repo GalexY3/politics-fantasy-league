@@ -1,0 +1,53 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_JEC_NATIONAL_SEAT_RECONSTRUCTION_WITH_LOSER_BOUND",
+  "A": "2024 European Spain JEC national election vs false provincial seat allocation",
+  "B": {
+    "H1": "61 seats national, province rows contain votes only, D'Hondt national winner rows reproduce exactly",
+    "H0": "Any province may allocate independent portion of 61",
+    "H_alt": "One of omitted losers might exceed threshold and invalidate winner-only replay"
+  },
+  "C": {
+    "prereg_commit": "7c0e88da57a28ad90ae62ebd26335ba634a6eae4",
+    "method": "Read original JEC BOE Cuadros I/II/III, transcribed nine national winners and greatest nonwinner; exact Python Fraction 61 D'Hondt quotient calculation and check max excluded nonwinner votes; verify two ballot sum identities.",
+    "local_script": "/mnt/data/pfl_regional5/europe_replay.py; not remote full checkout"
+  },
+  "D": {
+    "source": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13092",
+    "lines": "Cuadro I L122; II L184/L244; III L306",
+    "fixture": "C04_EUROPE_2024_STATEWIDE_REPLAY.json"
+  },
+  "E": {
+    "nine_winners": true,
+    "national_seats": 61,
+    "replayed_seats": 61,
+    "exact_mismatch": 0,
+    "last_selected_quotient": 264547.25,
+    "next_selected_if_extra_seat_quotient": 260722.9130434783,
+    "largest_nonwinner_total": 135691,
+    "candidacy_votes": 17402783,
+    "winning_list_votes_sum": 16763239,
+    "nonwinning_votes_by_difference": 639544,
+    "voters_validation_residual": 0,
+    "valid_votes_validation_residual": 0
+  },
+  "F": "Cross-electoral system: 2024 EU election is nationwide 61-seat constituency, not 61 provinces. Galicia 2024 requires four provincial districts. Maximum loser below last winning quotient protects reconstructing seats from winner-only lists in this specific system, unlike Cantabria 2019 omitted PRC. Distinction is a source-coverage test, not predictive ability.",
+  "G": "In-sample legal formula, no independent issuer replica and originally read HTML not raw machine file. Actual full list of nonwinners not transcribed individually, only max observed from Cuadro III.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "awards": 0
+  },
+  "I": "No individual personal data or rankings",
+  "J": "Keep national vs subnational vote and seat units separate; require verified candidate universe and max excluded ballot to certify winner-only shortcut; proceed C05 cross-source guard tests."
+}
