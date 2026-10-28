@@ -1,0 +1,33 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C20",
+  "mode": "AB-META",
+  "status": "PREREGISTERED_BEFORE_FINAL_LEDGER_AUDIT",
+  "at": "2026-10-28T14:48:05.468Z",
+  "A": "Do all 19 prior valid cycles have distinct prereg and complete A–J results with GitHub evidence, no invalid promotion, budget 20 exactly, and no full T009 claim?",
+  "B": {
+    "H1": "19 prereg+result pairs present and coherent, 19 valid/0 invalid/1 remaining before C20; +C20 =>20 valid 0 remaining",
+    "H0": "Any missing/misnumbered dossier, budget mismatch, or unsupported T009 completion"
+  },
+  "C": {
+    "checks": [
+      "Read C01–C19 pre/results JSON via GitHub main, verify cycle IDs and result E/J existence",
+      "Sample Git commit chronology of prereg before results C08,C11,C14,C17,C19",
+      "Cross-check Atlas first/last, C19 full 73 audit, appended 0074, no invented canonical SHA",
+      "C20 result and Atlas0075 append one run only, expected documentary 63 nodes 81 edges 241 runs 48 complaints 416 ops",
+      "T008 historical b0344d1 success vs T009 current 75 check NOT_RUN"
+    ],
+    "stop": "If record missing or uncertain, do not silently promote incomplete cycle"
+  },
+  "D": {
+    "sources": "GitHub source refs main, all prior 38 JSON files, Git commit chronology samples",
+    "no_CI": true
+  },
+  "E": "NOT_RUN",
+  "F": "A-J files do not prove independence of reported selected native tests; data rights and original sources remain unverified",
+  "G": "Full checkout native T009 remains pending",
+  "H": "No CT2/novelty/gates uplift",
+  "I": "Research governance/accountability",
+  "J": "Close budget only on documented checks"
+}
