@@ -1,0 +1,93 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C03",
+  "mode": "AB-H",
+  "topic": "Secondary-vote majority-sign classification—overlapping nominal code false reversals",
+  "status": "PREREGISTERED_BEFORE_NEW_EXECUTION",
+  "repository": "GalexY3/Metodologia-AB",
+  "working_ref": "main",
+  "observed_start_head": "c4d25cae6cbf729f5cc6f2d5b4bd82cdfad4fa05",
+  "baseline_source": "src/politics_fantasy/majority_sign.py",
+  "baseline_blob": "1f215aecaea661050d95d93108acc75f489fa52a",
+  "baseline_test": "tests/test_majority_sign_audit.py",
+  "baseline_test_blob": "f638d3b2280c611420e9616160fc8c274e3db289",
+  "A_question": "Can non-disjoint secondary nominal codes induce a STRICT_REVERSAL classification even though each named code appears on two opposing options? Correct behavior should fail closed or explicitly mark malformed rather than report reversal.",
+  "B_competitors": {
+    "H1": "Existing compare_ballot simply counts whitespace tokens per option; duplicates across S/N allow synthetic spurious strict reversal",
+    "H0": "Existing code prevents overlapping codes, so no spurious reversal",
+    "alternative": "The source itself does not promise code disjointness, so tests can only strengthen an invariant—not authenticate the original vote."
+  },
+  "C_discriminant": {
+    "fixtures": [
+      {
+        "id": "collision",
+        "totales": {
+          "si": 9,
+          "no": 3
+        },
+        "votos": {
+          "S": "a b",
+          "N": "a b c d"
+        },
+        "expected_current": "STRICT_REVERSAL",
+        "desired": "INVALID_DUPLICATE_NOMINAL_CODE"
+      },
+      {
+        "id": "valid_strict",
+        "totales": {
+          "si": 9,
+          "no": 3
+        },
+        "votos": {
+          "S": "a b",
+          "N": "c d e"
+        },
+        "expected": "STRICT_REVERSAL"
+      },
+      {
+        "id": "valid_tie",
+        "totales": {
+          "si": 9,
+          "no": 3
+        },
+        "votos": {
+          "S": "a b",
+          "N": "c d"
+        },
+        "expected": "TIE_INVOLVED"
+      },
+      {
+        "id": "no_nominal",
+        "totales": {
+          "si": 9,
+          "no": 3
+        },
+        "votos": {
+          "S": "",
+          "N": ""
+        },
+        "expected": "NO_NOMINAL"
+      }
+    ],
+    "other_negative_controls": [
+      "Duplicated code within one option must also be rejected",
+      "Malformed totals should be rejected without classifying reversal",
+      "Unknown nominal option should not be silently counted into n_any"
+    ]
+  },
+  "D_execution_contract": [
+    "Reconstruct exact source bytes from connector and verify Git blob SHA in Linux sandbox (no external network)",
+    "Execute original tests with pytest when available; preserve first red failing case",
+    "If H1 observed, implement minimal fail-closed input guard and add regression tests",
+    "Re-run full local targeted test file; do not claim global suite",
+    "Hash new sources and independently compare to GitHub after commit"
+  ],
+  "E": "PENDING",
+  "F": "Examine whether duplicate code uses alternate labels, whitespace, booleans, missing/extra groups; ensure no unverified official inference",
+  "G": "Local code-level replication with original source matching Git blob and targeted tests only",
+  "H": "No scientific discovery/N1-3 uplift from synthetic fixtures",
+  "I": "product/method data hygiene, not issuer semantics or real vote certification",
+  "J": "STOP_R5 if inputs already validated; otherwise repair targeted false classifications, freeze tests",
+  "safety": "Synthetic codes only; never publish names or personal votes, no CI, no Codex, no real scoring"
+}
