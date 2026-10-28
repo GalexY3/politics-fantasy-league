@@ -1,0 +1,47 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C19",
+  "mode": "AB-META",
+  "status": "PREREGISTERED_BEFORE_TEST",
+  "at": "2026-10-28T13:00:18.325Z",
+  "topic": "Atlas delta timestamp schema accepts garbage and creates unparseable event time",
+  "baseline": {
+    "source": "ab_atlas/atlas_delta.py",
+    "git_blob": "b47fc8e58b722b5b92830e91514cca253074bb90",
+    "function": "batch_check",
+    "observed_code": "requires nonempty at string, no ISO datetime parse"
+  },
+  "A": {
+    "question": "Does native-schema function accept 'NOT_A_TIME' or naive timestamp for batch.at even though the Atlas records run/event times for audit?",
+    "estimand": "Number of synthetically malformed timestamps accepted at batch-check boundary"
+  },
+  "B": {
+    "H1": "Both non-date and naive datetime accepted as nonempty strings",
+    "H0": "check rejects invalid/unaware datetime before mutating Atlas",
+    "Hother": "an external downstream canonical replay could reject even if batch_check alone accepts"
+  },
+  "C": {
+    "positive": [
+      "2026-10-28T11:10:00Z",
+      "2026-10-28T12:10:00+01:00"
+    ],
+    "negative": [
+      "not-a-timestamp",
+      "2026-10-28T12:10:00",
+      "2026-02-31T00:00:00Z",
+      "2026-10-28"
+    ],
+    "test_design": "Execute byte-for-byte batch_check excerpt with same PATCH_SCHEMA/ID_RE/require in isolated Python. Test boundary only, not full replay. Keep all 53 archival deltas immutable. If H1, document specific repair to Codex after current 55-lot canonical validation; do not edit global method blindly."
+  },
+  "D": {
+    "instrument": "CPython 3.13 exact function body copied from GitHub source; all test batches synthetic in-memory; no originals",
+    "full_repo": "UNAVAILABLE"
+  },
+  "E": "NOT_RUN",
+  "F": "Separate partial parser from full replay semantics, no claim that all historical dates are valid or invalid",
+  "G": "Actual current full 53-lot checker remains pending",
+  "H": "No gates or CT2 uplift",
+  "I": "Methodology instrumentation integrity only",
+  "J": "STOP if negative test documented and no mechanism to validate full production safely."
+}
