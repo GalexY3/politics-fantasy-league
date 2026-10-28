@@ -1,0 +1,151 @@
+{
+  "cycle": "C02",
+  "type": "AB-R_SYNTHETIC",
+  "prereg_commit": "56957b5ab74b24edaa9519ec21328091d9a86105",
+  "engine_commit": "95ddc4cc3ba333cef45b473b6b38f8a72ca82483",
+  "A": "Toy synthetic rewards for covering 4 easy +16 hard actions vs selectively covering 4 easy; no real behavior",
+  "B": [
+    "raw favors all",
+    "rate rewards cherry pick",
+    "Beta shrinkage rescues",
+    "fixed denominator works"
+  ],
+  "C": "Exact expected values analytic under 0.85/0.4 and 500 paired Monte Carlo worlds per seed; four reward rules incl strong shrinkage and fixed scheduled denominator",
+  "D": "Code freeze, two seeds, side-by-side identical draws",
+  "E": [
+    {
+      "seed": 22001,
+      "reps": 500,
+      "expected": {
+        "raw_count": {
+          "all": 9.8,
+          "only_easy": 3.4,
+          "cherry_minus_all": -6.4
+        },
+        "observed_rate": {
+          "all": 0.49000000000000005,
+          "only_easy": 0.85,
+          "cherry_minus_all": 0.35999999999999993
+        },
+        "beta22": {
+          "all": 0.4916666666666667,
+          "only_easy": 0.675,
+          "cherry_minus_all": 0.18333333333333335
+        },
+        "scheduled_rate": {
+          "all": 0.49000000000000005,
+          "only_easy": 0.16999999999999998,
+          "cherry_minus_all": -0.32000000000000006
+        }
+      },
+      "empirical": {
+        "raw_count": {
+          "all": 9.818,
+          "only_easy": 3.42,
+          "var_all": 4.140876000000012,
+          "var_only_easy": 0.4715999999999996,
+          "paired_difference": -6.398
+        },
+        "observed_rate": {
+          "all": 0.4909000000000004,
+          "only_easy": 0.855,
+          "var_all": 0.01035219,
+          "var_only_easy": 0.029474999999999973,
+          "paired_difference": 0.3640999999999996
+        },
+        "beta22": {
+          "all": 0.4924166666666663,
+          "only_easy": 0.6775,
+          "var_all": 0.007189020833333323,
+          "var_only_easy": 0.007368749999999993,
+          "paired_difference": 0.1850833333333337
+        },
+        "scheduled_rate": {
+          "all": 0.4909000000000004,
+          "only_easy": 0.171000000000001,
+          "var_all": 0.01035219,
+          "var_only_easy": 0.001178999999999998,
+          "paired_difference": -0.3198999999999994
+        }
+      },
+      "optimal_policy": {
+        "raw_count": "all",
+        "observed_rate": "only_easy",
+        "beta22": "only_easy",
+        "scheduled_rate": "all"
+      }
+    },
+    {
+      "seed": 23999,
+      "reps": 500,
+      "expected": {
+        "raw_count": {
+          "all": 9.8,
+          "only_easy": 3.4,
+          "cherry_minus_all": -6.4
+        },
+        "observed_rate": {
+          "all": 0.49000000000000005,
+          "only_easy": 0.85,
+          "cherry_minus_all": 0.35999999999999993
+        },
+        "beta22": {
+          "all": 0.4916666666666667,
+          "only_easy": 0.675,
+          "cherry_minus_all": 0.18333333333333335
+        },
+        "scheduled_rate": {
+          "all": 0.49000000000000005,
+          "only_easy": 0.16999999999999998,
+          "cherry_minus_all": -0.32000000000000006
+        }
+      },
+      "empirical": {
+        "raw_count": {
+          "all": 9.962,
+          "only_easy": 3.47,
+          "var_all": 4.408555999999997,
+          "var_only_easy": 0.4891000000000011,
+          "paired_difference": -6.491999999999999
+        },
+        "observed_rate": {
+          "all": 0.49810000000000004,
+          "only_easy": 0.8675,
+          "var_all": 0.011021389999999968,
+          "var_only_easy": 0.030568750000000068,
+          "paired_difference": 0.3694
+        },
+        "beta22": {
+          "all": 0.49841666666666695,
+          "only_easy": 0.68375,
+          "var_all": 0.007653743055555572,
+          "var_only_easy": 0.007642187500000017,
+          "paired_difference": 0.18533333333333302
+        },
+        "scheduled_rate": {
+          "all": 0.49810000000000004,
+          "only_easy": 0.17350000000000101,
+          "var_all": 0.011021389999999968,
+          "var_only_easy": 0.0012227499999999994,
+          "paired_difference": -0.324599999999999
+        }
+      },
+      "optimal_policy": {
+        "raw_count": "all",
+        "observed_rate": "only_easy",
+        "beta22": "only_easy",
+        "scheduled_rate": "all"
+      }
+    }
+  ],
+  "F": "Outcome is a mathematical consequence of reward choice, not evidence of strategic action by humans; fixed scheduled denominator may penalize legitimate unavailability and is not a fair-person metric",
+  "G": "No independent player outcomes or causal empirical validation",
+  "H": "Avoid recommending raw rate as inherently fair; condition on agent choice and missingness; prior Goodhart and scoring rules",
+  "I": {
+    "grade": "0/3",
+    "causality": "conditional formal mechanism only",
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "J": "BRANCH_C03_GUARDED_FICTIONAL_SCORE_INTERFACE"
+}
