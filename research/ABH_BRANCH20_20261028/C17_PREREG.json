@@ -1,0 +1,31 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:55:07.359Z",
+  "topic": "Ambiguous duplicate JSON object member in freshly restored historical member-source projection",
+  "preexposure": "C15 ported original congress_members.py with json.loads(raw.decode('utf-8-sig')), which defaults to last-wins duplicate object member behavior. No duplicate-key test in old 11 tests. Not yet executed synthetic duplicate fixture.",
+  "A": "Can conflicting duplicate NOMBRE fields in a single official-like JSON row be silently collapsed instead of quarantined?",
+  "B": {
+    "H1": "json.loads last-wins, projection emits second duplicate value; provenance ambiguities fail-open",
+    "H0": "Projection fails closed on duplicate JSON members"
+  },
+  "C": {
+    "first_red": "Use only synthetic duplicate required-field keys and nested duplicated metadata; retain original 11 tests",
+    "acceptance": "Reject duplicate object member at any nesting by deterministic object_pairs_hook; keep whitelisted output and original 11 tests green",
+    "rollback": "No weakening of source URL/first_public_at; no real source input"
+  },
+  "D": {
+    "original_main_module_blob": "d815b680d9d7d1affdb96b7a9f77047ea15942d2",
+    "source_test": "tests/test_congress_members.py",
+    "runtime": "Python 3.13.5 Linux exact original module already reconstructed under C15"
+  },
+  "E": "NOT_RUN",
+  "F": "Duplicate member is a hypothetical adversarial fixture, no evidence actual issuer produced one",
+  "G": "Targeted tests only",
+  "H": "No scientific/gate progress",
+  "I": "Source parse determinism and data quality",
+  "J": "If red patch minimal then verify original 11 and new tests. If already rejected STOP."
+}
