@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C07",
+  "type": "AB-P",
+  "status": "PREREGISTERED_BEFORE_ENVIRONMENT_NEGATIVE_CONTROL",
+  "date": "2026-10-28",
+  "question": "Can the T008 missing-Europe/Madrid failure on minimal Alpine be prevented by declaring the IANA tzdata fallback explicitly in optional test/research dependencies instead of assuming system tzdata?",
+  "B": {
+    "H1": "PYTHONTZPATH empty with Python tzdata package installed resolves Europe/Madrid through wheel fallback; adding test/research extra on all platforms prevents missing-zone error for users of those extras",
+    "H0": "Python tzdata wheel cannot supply ZoneInfo when system TZPATH disabled, so packaging repair inadequate",
+    "alternative": "tzdata installed only via OS, so optional pip dependency unnecessary or insufficient"
+  },
+  "C": {
+    "precommit_checks": [
+      "Run Python `PYTHONTZPATH='' python -c ...` on Linux with tzdata package available to prove actual fallback",
+      "Parse declared optional-dependency metadata using tomllib and confirm currently Windows-only",
+      "Make minimal dependency marker change, preserve base install dependencies empty, keep optional extras only",
+      "Check future `.[test]` and `.[research]` each contain unconditional tzdata; full pip installation and Alpine QEMU T009 NOT_RUN"
+    ],
+    "negative": "Simulate missing OS zone database with `PYTHONTZPATH` empty, avoid network or downloading wheels",
+    "success": "ZoneInfo('Europe/Madrid') resolves via installed Python tzdata package and manifest extras provide it without Windows-only marker"
+  },
+  "D": {
+    "source": "pyproject.toml blob 5b6c6e9341ba069ce2569b427739886ebebdc7d3",
+    "historical_T008": "T008_RESULTADO.md two environment failures before tzdata installed; final 651 pass under Alpine QEMU",
+    "runtime": "Linux Python 3.13.5 local available with tzdata package, native zoneinfo subprocess, no full repo checkout"
+  },
+  "E": "NOT_RUN",
+  "F": "Manifest constraint will not prove fresh pip dependency resolution or full pytest, future T009 needed; changing extras does not repair loopback or original data",
+  "G": "Direct runtime fallback negative control plus metadata static check",
+  "H": "CT2 identity 29, gates0 unchanged",
+  "I": "QA portability not scientific result",
+  "J": "Accept only if fallback and manifest pass, otherwise documented failure; R5 avoid repeated OS matrix."
+}
