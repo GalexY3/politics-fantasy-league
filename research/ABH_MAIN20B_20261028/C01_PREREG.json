@@ -1,0 +1,51 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C01",
+  "mode": "AB-META",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "at": "2026-10-28T13:13:48.558Z",
+  "drift": "D1.0 from C19 schema observation to backward-compatible instrumentation repair; same scientific program; no new empirical population",
+  "A": {
+    "question": "Can the historical 55 Atlas delta batch timestamps be accepted by an ISO-8601 timezone-aware date validator while four known malformed synthetic strings are rejected?",
+    "unit": "one Atlas delta batch metadata timestamp",
+    "population": "55 currently committed immutable delta batch files",
+    "outcome": "stricter preflight accepts all valid existing batches and rejects malformed or timezone-naive at strings; no change to canonical assembled state intended",
+    "proxy": "GitHub exact file timestamps and Python datetime.fromisoformat can support compatibility, but not full replay."
+  },
+  "B": {
+    "H1": "All 55 historical at strings parse as aware ISO-8601 instants, so a strict check is backward compatible",
+    "H0": "At least one genuine historical at is malformed/naive and strict validation would block chain",
+    "H_other": "timestamps parse but chronology/order invalid, requiring separate validity claim"
+  },
+  "C": {
+    "predefined_validators": [
+      "non-empty string exact ISO8601 date + time + explicit UTC Z or offset ±HH:MM",
+      "real calendar day and timezone-aware datetime",
+      "no whitespace, date-only, local naive or impossible date"
+    ],
+    "malformed_controls": [
+      "not-a-timestamp",
+      "2026-10-28T12:10:00",
+      "2026-02-31T00:00:00Z",
+      "2026-10-28"
+    ],
+    "positive_controls": [
+      "2026-10-28T12:10:00Z",
+      "2026-10-28T12:10:00+01:00"
+    ],
+    "success": "55/55 historical batch.at accepted; 4/4 invalid rejected; 2/2 valid accepted; targeted original-function regression passes",
+    "stop": "If historical invalid timestamp exists, do not silently rewrite or promote it; record negative and defer."
+  },
+  "D": {
+    "source": "GitHub authenticated read from main ab_atlas/updates/*.json, compare each by file path and count 55",
+    "checker": "ab_atlas/atlas_delta.py @ git blob b47fc8e58b722b5b92830e91514cca253074bb90",
+    "runtime": "Python 3.13 for targeted standalone parser test, when source retrieved, no full repo checkout"
+  },
+  "E": "PENDING",
+  "F": "Full canonical replay and source authenticity still NOT_RUN. Timestamp syntactic validity does not demonstrate chronology or first_public_at",
+  "G": "Independent JS read inventory and Python focused parser negative controls",
+  "H": "No novel discovery or release uplift",
+  "I": "Methodological source-chain integrity only",
+  "J": "REPAIR only if all existing patches pass. New strict preflight must not claim T008 done."
+}
