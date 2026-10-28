@@ -1,0 +1,31 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C18",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "After C08–C17 patches, do current project entrypoints still fail closed against scoring named real political persons and forged source attestations?",
+  "B": {
+    "H1": "Current routes state only synthetic; source eligibility always false and official source stages no first_public_at; none of C08–C17 changed that",
+    "H0": "A current route returns real_person_scoring true or lets request-supplied attestations activate real scoring"
+  },
+  "C": {
+    "checks": [
+      "Read exact GitHub source files for server/source_eligibility/source_event_registry/readiness/product/progress_api",
+      "Inspect source route methods for real-person scoring dispatch",
+      "Check false guard invariants with synthetic all-true receipt and unknown refs",
+      "No real nominal inputs or live deployment"
+    ],
+    "falsifier": "one non-synthetic scoring path or verified status invented"
+  },
+  "D": {
+    "source": "main authenticated SHA file reads",
+    "runtime": "Limited source comparison + isolated Python/JS case controls; not HTTP deployment"
+  },
+  "E": "PENDING",
+  "F": "Static invariants cannot certify absent dynamic bugs or legal compliance",
+  "G": "T009 full app tests pending",
+  "H": "No gates promote without certified original",
+  "I": "Product safety gating",
+  "J": "Record supported negative, or stop if unverified"
+}
