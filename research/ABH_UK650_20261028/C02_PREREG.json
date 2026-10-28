@@ -1,0 +1,27 @@
+{
+  "campaign": "PFL-ABH-UK650-20261028",
+  "pre_reg_before_source_bytes": true,
+  "study": "UK House of Commons 2024 election official constituency-level results",
+  "source": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_original": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+  "source_candidates": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-candidate.csv",
+  "unit": "UK constituency; up to 650, 4 nations and English regions",
+  "prespecified_exclusions": "Only missing electorate/turnout or no winner-runner candidate votes for computation; report exclusions and special Speaker/NI observations; don't discard by result",
+  "classification": "All cycles exploratory until independently replicated; contemporaneous margins and vote shares are post-election, cannot be used in genuine pre-election prediction.",
+  "cycle": "C02",
+  "type": "AB-R",
+  "D": 1.5,
+  "A": "Is constituency turnout higher in electorally competitive seats, using the realized winner–runner-up margin as descriptive competition indicator, or is the association negligible/reversed?",
+  "B": {
+    "H1": "Turnout decreases as final margin percent increases: Spearman rho < -0.1",
+    "H0": "rho between -0.1 and +0.1",
+    "Halt": "Positive/curvilinear pattern due strong safe-seat mobilization or social geography."
+  },
+  "C": "Pre-specify winner–runner-up margin (votes/electorate or share of valid vote, choose valid vote denominator if derivable), turnout percentage, Pearson, Spearman, turnout difference in equal-sized quartiles and a quadratic check; report zero and positive results.",
+  "E": "PENDING",
+  "F": "Margin is measured after election and endogenous to turnout; cross-sectional descriptive not anticipatory or causal.",
+  "G": "One election, need external election/time for generalizability.",
+  "H": "No CT2 promotion.",
+  "I": "Only district totals",
+  "J": "Persist all results even reversed direction."
+}
