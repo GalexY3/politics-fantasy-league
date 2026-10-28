@@ -1,0 +1,97 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C03",
+  "type": "EXPERIMENTAL_AB_R_LEGAL_DOCUMENTARY",
+  "status": "VALID_AJ_RIGHTS_NOTICE_FOUND_PERSON_SCORE_BLOCKED",
+  "at": "2026-10-28T13:22:34.179Z",
+  "drift_score": "D2.5",
+  "A": {
+    "question": "Are official reuse rights of Congreso data and separate legal basis for purpose-specific person ranking demonstrably equivalent?",
+    "estimand": "Documented general reuse conditions vs a concrete case-specific legal basis for identifiable personal fantasy-score treatment"
+  },
+  "B": {
+    "H1": "General notice and data-access rules establish a definitive person-level ranking license",
+    "H0": "General reuse conditions exist, but not a definitive user-specific GDPR basis or safety clearance for scoring",
+    "other": "Particular datasets may have additional use-specific exclusions or conditions"
+  },
+  "C": {
+    "prereg": "C03_PREREG.json",
+    "falsifier": "Exact legal wording authorizes use case and suffices with a documented independent processing basis",
+    "negative_controls": [
+      "Do not infer consent from public availability",
+      "Do not conflate website reuse notice with personal-data lawful basis",
+      "Do not infer real scoring from machine-readable JSON XML availability"
+    ]
+  },
+  "D": {
+    "retrieved_sources": [
+      {
+        "title": "Aviso legal Congreso",
+        "url": "https://www.congreso.es/eu/cem/aviso-legal",
+        "evidence": "Reutilization subject to preserving meaning, content, citation, update and lawful use"
+      },
+      {
+        "title": "Congreso diputados open data",
+        "url": "https://www.congreso.es/es/opendata/diputados",
+        "evidence": "Public CSV/JSON/XML catalogs"
+      },
+      {
+        "title": "Ley 37/2007 consolidated BOE",
+        "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-19814",
+        "evidence": "Article 3(4) personal data and Article 8 reuse conditions in applicable scope"
+      },
+      {
+        "title": "AEPD legal bases",
+        "url": "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0214-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-datos",
+        "evidence": "Lawful basis must be documented for processing"
+      },
+      {
+        "title": "AEPD search engines/original publisher purposes",
+        "url": "https://www.aepd.es/areas-de-actuacion/internet-y-redes-sociales/derecho-al-olvido",
+        "evidence": "Original vs secondary processing may have distinct legal justifications"
+      }
+    ],
+    "method": "Official first-party web source indexed text, no processing of real nominal files, not legal opinion",
+    "memo": "docs/RIGHTS_AND_PERSON_SCORING_GATE_20261028.md"
+  },
+  "E": {
+    "general_website_reuse_notice_found": true,
+    "site_usage_conditions_observed": [
+      "do not alter content",
+      "do not distort meaning",
+      "cite the source",
+      "mention last update",
+      "use lawfully and diligently"
+    ],
+    "legal_concept_for_commercial_reuse_mentioned": true,
+    "explicit_use_case_clearance_for_named_fantasy_scores_found": false,
+    "lawful_basis_specific_to_PFL_identified": false,
+    "personal_data_processed_in_cycle": false
+  },
+  "F": {
+    "adversarial": "The general site text may allow some reuse, but does not authenticate a legal basis for any particular processing of identifiable people. It would be wrong to assert either universal prohibition or automatic commercial profiling permission. Ley 37/2007 scope and special circumstances of parliamentary institutions need qualified legal review; consolidated BOE text is not an official binding opinion."
+  },
+  "G": {
+    "independent_legal_DPO_approval": "NOT_OBTAINED",
+    "dataset_license_adjudication": "NOT_COMPLETED"
+  },
+  "H": {
+    "update": "General reusable conditions established documentary; purpose-specific identifiable ranking remains unresolved.",
+    "scientific_grade_0_3": 0,
+    "N1_new": 0,
+    "CT2_identity_before": 29,
+    "CT2_identity_after": 29
+  },
+  "I": {
+    "product": "Actionable rights gate matrix and acceptance evidence checklist",
+    "science": "No empirical political novelty or strong identity research validation",
+    "V4_contractual_percent": 36.9,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "J": {
+    "decision": "ACCEPT_SOURCE_REUSE_NOTICE_EVIDENCE, KEEP_NAMED_SCORE_BLOCKED, STOP_R5 repeating same legal notices until legal counsel or purpose-specific dataset rights arrive",
+    "cycles_remaining_after": 17
+  }
+}
