@@ -1,3 +1,5 @@
+> **Actualización tras CONT80 C77–C80 (28/10/2026):** Se han ejecutado nativamente **ocho** suites originales con siete módulos SHA-idénticos a Git: **89 PASS +14 subtests PASS, sin fallos ni omisiones**. Los resultados y SHA de logs están en [informe final](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md) y [manifiesto](../research/ABH_CONT80_20261028/C77_C80_EVIDENCE_MANIFEST.json). Esto **NO equivale a ejecutar la suite Python completa** ni cierra T008. Además el Atlas ha llegado a **35 lotes**; T007 solo certificó 31, por lo que la nueva validación canónica queda pendiente. El presupuesto AB-H CONT80 se ha agotado **20/20**; cualquier ciclo nuevo requiere autorización del usuario.
+
 # T008 · Suite Python completa en Linux/POSIX: cerrar fallos de T002/T004
 
 **Estado: PENDIENTE.** Requiere checkout íntegro de la rama de investigación **en sistema POSIX real** (Linux recomendado) y ejecución por Codex u operador autorizado. No equivale a una ejecución ni a un ciclo AB.
