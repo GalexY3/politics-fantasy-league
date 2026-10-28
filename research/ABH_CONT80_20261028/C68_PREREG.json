@@ -1,0 +1,12 @@
+{
+  "cycle": "C68",
+  "mode": "AB-P",
+  "A": "Does the server or browser still generate/expect short ESE aliases after the C67 CVE migration, creating a broken customer-visible source stage?",
+  "B": [
+    "All consumers use server catalog dynamically",
+    "Hardcoded short ESE refs in UI or tests silently denied",
+    "No full integration available, limit to grounded files and no claim full suite"
+  ],
+  "C": "Inspect actual server.py/web app and selected tests from GitHub; search for affected ref literals; run synthetic local contract test on exact source for response format/eligibility, patch only if concrete mismatch found.",
+  "D": "If no downstream code tested or only incomplete GitHub search, say explicitly rather than claim complete compatibility."
+}
