@@ -1,0 +1,121 @@
+{
+  "cycle": "C05",
+  "mode": "AB-P",
+  "prereg_commit": "601c30f87cbca4a3c7f4eaab253ce8aeb31225cf",
+  "source_commit": "b226f9d56ee5d4a9c89b87c173dbd934edc2296d",
+  "A": "Synthetic-only canonical historical snapshot replay and rule evidence conflict detection",
+  "B": [
+    "C03 standalone scoreboard enough",
+    "explicit same-id conflict guard required",
+    "strict reject harms legitimate fixture operations"
+  ],
+  "C": "At least 10 independent adversarial source-level tests and safe null on incomplete",
+  "D": "Pure JS source frozen prior to V8 QA, non-cryptographic canonical payload",
+  "E": {
+    "tests": [
+      {
+        "name": "basic manifest",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "canonical deterministic",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "idempotent replay",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "immutable",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "unknown no score",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "empty verified",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject person key",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject political party",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject real round",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject missing evidence",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject fake zero when unknown",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject invalid denominator",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject fake score",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject silent changed rule version",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject silent changed evidence",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject cross round replay",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject unsupported status",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject bad previous",
+        "pass": true,
+        "error": null
+      }
+    ],
+    "passed": 18,
+    "failed": 0,
+    "runtime": "V8 connector isolate"
+  },
+  "F": "Checksum/signature not implemented; canonical payload not trusted cryptographic authentication. App-level DB transaction and key ownership not checked. Replayed same round with different metadata is intentionally rejected and needs controlled explicit revision API not provided.",
+  "G": "No native runtime/server/live user or political data",
+  "H": "Preserve versioned source and prohibit silent historical mutation; no product gate uplift",
+  "I": {
+    "grade": "0/3 scientific",
+    "VSDS": "1/3 unchanged",
+    "CT2": 29,
+    "exposure": "synthetic fixtures only"
+  },
+  "J": "ACCEPT_BOUNDED_ABP_CLOSE_AFTER_AUDIT"
+}
