@@ -1,0 +1,110 @@
+{
+  "schema": "pfl.uk650.version_discrepancy.v1",
+  "files": [
+    {
+      "repo": "emagar/caso-pc-oto2024",
+      "git_blob": "835aae9eb124e215b7f159b2db90fcc9b66416d8"
+    },
+    {
+      "repo": "ralphascott/UKGE24_wpc_census_summaries",
+      "git_blob": "0fccff58e1df830fc9cc4ac8a36aee8ce04d5caf"
+    }
+  ],
+  "same_constituencies": 650,
+  "source_verification": "two independent GitHub repo copies of Commons Library named file; official CSV inaccessible, neither copy proves current official data",
+  "comparison": {
+    "Electorate": {
+      "changed": 11,
+      "total_B_minus_A": -38717,
+      "max_abs_change": 13046,
+      "example": [
+        {
+          "id": "E14001089",
+          "area": "Bexleyheath and Crayford",
+          "change_B_minus_A": -12938
+        },
+        {
+          "id": "E14001104",
+          "area": "Blackpool North and Fleetwood",
+          "change_B_minus_A": -110
+        },
+        {
+          "id": "E14001177",
+          "area": "Colne Valley",
+          "change_B_minus_A": 45
+        },
+        {
+          "id": "E14001241",
+          "area": "Frome and East Somerset",
+          "change_B_minus_A": -1215
+        },
+        {
+          "id": "E14001247",
+          "area": "Glastonbury and Somerton",
+          "change_B_minus_A": -286
+        },
+        {
+          "id": "E14001414",
+          "area": "Old Bexley and Sidcup",
+          "change_B_minus_A": -13046
+        },
+        {
+          "id": "E14001454",
+          "area": "Ruislip, Northwood and Pinner",
+          "change_B_minus_A": -1779
+        },
+        {
+          "id": "E14001475",
+          "area": "Skipton and Ripon",
+          "change_B_minus_A": 13
+        }
+      ]
+    },
+    "Valid votes": {
+      "changed": 1,
+      "total_B_minus_A": 10,
+      "max_abs_change": 10,
+      "example": [
+        {
+          "id": "E14001232",
+          "area": "Exmouth and Exeter East",
+          "change_B_minus_A": 10
+        }
+      ]
+    },
+    "Invalid votes": {
+      "changed": 4,
+      "total_B_minus_A": -190,
+      "max_abs_change": 73,
+      "example": [
+        {
+          "id": "E14001186",
+          "area": "Croydon East",
+          "change_B_minus_A": -46
+        },
+        {
+          "id": "E14001305",
+          "area": "Islington North",
+          "change_B_minus_A": -73
+        },
+        {
+          "id": "E14001306",
+          "area": "Islington South and Finsbury",
+          "change_B_minus_A": -36
+        },
+        {
+          "id": "E14001458",
+          "area": "Rutland and Stamford",
+          "change_B_minus_A": -35
+        }
+      ]
+    }
+  },
+  "published_2026_summary": {
+    "electorate": 48224212,
+    "valid": 28809340,
+    "invalid": 116253,
+    "source": "https://stateintegrity.org.uk/elections/general-2024 (third-party mirror of Commons Library; not original official raw)"
+  },
+  "caution": "The two candidate/constituency files from emagar match 650/650. Ralph's constituency-only second mirror is not paired with version-aligned candidate file; never join silently. Difference is version/source conflict, not statistically sampled variability."
+}
