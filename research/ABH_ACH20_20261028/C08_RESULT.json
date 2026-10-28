@@ -1,0 +1,61 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C08",
+  "type": "AB-R",
+  "status": "VALID_SOURCE_BACKED_AGGREGATE_COUNTEREXAMPLE",
+  "A": "Test equality between expediente and vote grain on official 23 Jul session 193 sample",
+  "B": "H1 observed: distinct votes and denominators under same expediente",
+  "C": "4 official HTML tallies manually transcribed with explicit vote labels; deterministic JS count sums and group compare",
+  "D": {
+    "source": "https://www.congreso.es/es/opendata/votaciones",
+    "evidence": "C08_CONGRESO_AGGREGATE_SAMPLE.json"
+  },
+  "E": {
+    "observations": 4,
+    "expedientes": 2,
+    "per_expediente": [
+      {
+        "expediente": "130/000049",
+        "distinct_votes": 2,
+        "totals": [
+          348,
+          344
+        ],
+        "total_difference": 4,
+        "vote_yes": [
+          175,
+          344
+        ]
+      },
+      {
+        "expediente": "130/000050",
+        "distinct_votes": 2,
+        "totals": [
+          348,
+          347
+        ],
+        "total_difference": 1,
+        "vote_yes": [
+          167,
+          347
+        ]
+      }
+    ],
+    "all_tallies_nonnegative": true,
+    "all_totals_exact_sum": true
+  },
+  "F": "A 1:1 expediente-voto mapping is falsified by this small directly observable sample; strong implication for schema/SQL joins",
+  "G": "No byte-exact source capture, date first published or person-level records; context is snapshot web catalog potentially overwritten",
+  "H": {
+    "CT2_identity": 29,
+    "V4": 36.9,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No interpretation of party/personal behavior, no underlying universe availability",
+  "J": "C09 negative control for accidental source event double counting in current schema or semantics; use vote ID (expediente, session, vote ordinal) not expedition alone"
+}
