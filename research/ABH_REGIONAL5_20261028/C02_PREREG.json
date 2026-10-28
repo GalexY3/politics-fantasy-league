@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "D": {
+    "primary": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+    "evidence": "turn133886view2 lines 23–112 and 115–295",
+    "method_exposed": "Selected after C01 discrepancy; descriptive backtest not blind",
+    "law_to_verify": "Galicia constituency legal threshold on valid votes; if uncertain report version without threshold and do not fake"
+  },
+  "A": "Does a proper provincial unit D'Hondt reconstruction of Galicia 2024 reproduce all 75 legislature seats and differ from an invalid one-region 75-seat calculation?",
+  "B": {
+    "H1": "Four provincial D'Hondt full-party calculations match all 75 observed seat labels; naive Galicia-wide 75 D'Hondt differs due district structure",
+    "H0": "Same final assignments when Galicia votes pooled as one province",
+    "H_alt": "Incomplete party inputs or legal threshold rule invalidate mechanical replication"
+  },
+  "C": "Use DOG 2024 4 province candidacy rows and named elected roster counts, no individuals retained. For each province compute exact D'Hondt with full named party lists and a 5% constituency valid-vote threshold where legally applicable; compare official seat counts, aggregated 75; compute naive region-wide D'Hondt using full listed party sum and document counterfactual error. Check party votes equal province candidacy and national totals except flagged +100 in DOG global.",
+  "E": "PENDING",
+  "F": "One Galicia region is not the lawful electoral district; national party percentages do not identify province seats; invalid HQ source totals flagged",
+  "G": "No out-of-sample, source other than 2024 DOG, no external replication",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No person names copied to fixtures or scoring",
+  "J": "Report exact error vs legal district baseline; if mismatch do not tweak parameters to fit."
+}
