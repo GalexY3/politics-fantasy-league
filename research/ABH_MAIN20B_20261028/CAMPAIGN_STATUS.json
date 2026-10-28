@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 0,
+    "valid": 1,
     "invalid": 0,
     "planning": 0,
-    "used": 0,
-    "remaining": 20
+    "used": 1,
+    "remaining": 19
   },
-  "state": "AUTHORIZED_ACTIVE_NO_CYCLES_EXECUTED",
+  "state": "ACTIVE_1_VALID_19_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -41,7 +41,7 @@
     "operations_documentary": 396,
     "canonical_python_checker": "NOT_RUN"
   },
-  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_55",
+  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_56",
   "constraints": [
     "Preregister A–J and freeze hypotheses before each execution",
     "Count only actual completed A–J or mark invalid/planning explicitly",
@@ -49,5 +49,30 @@
     "No expensive CI / published nominal originals / real person scoring",
     "Main is canonical; no new branch without demonstrated need",
     "No false claim of native full project suite or canonical Atlas checker"
-  ]
+  ],
+  "executed": [
+    {
+      "cycle": "C01",
+      "type": "AB-META",
+      "status": "VALID_BOUNDED_TIMESTAMP_GUARD_REPAIR",
+      "prereg": "C01_PREREG.json",
+      "result": "C01_RESULT.json",
+      "atlas": "0056",
+      "source_changed": "ab_atlas/atlas_delta.py",
+      "validation": "55 legacy timestamps parsed, 4 malformed controls rejected, 2 valid accepted, full Python suite NOT_RUN",
+      "grade_0_3": 0,
+      "CT2_identity": 29
+    }
+  ],
+  "atlas_current": {
+    "lots_documentary": 56,
+    "nodes_documentary": 63,
+    "edges_documentary": 81,
+    "runs_documentary": 222,
+    "complaints_documentary": 48,
+    "operations_documentary": 397,
+    "canonical_python_checker": "NOT_RUN",
+    "canonical_sha256": null
+  },
+  "next": "D2-ish change from Atlas instrumentation to direct primary-source aggregate availability and format evidence. Pre-register before reading any external 2026 vote source."
 }
