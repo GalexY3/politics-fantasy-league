@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0050-PFL-ABH-BRANCH20-C15-MEMBER-PROJECTION-20261028",
+  "parent_batch": "0049-PFL-ABH-BRANCH20-C14-RELEASE-20261028",
+  "at": "2026-10-28T12:52:28.255Z",
+  "actor": "chatgpt",
+  "reason": "C15 original Congress member projection and test selectively restored from old branch, hashes exact and 11 Python original tests pass. Only synthetic fixture, no actual person source or scoring.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C15-MEMBER-PROJECTION",
+        "activity": "Isolated historical institutional projection whitelist: no biography, no legal RPP status, no scoring; 11 original tests pass SHA exact",
+        "status": "completed",
+        "at": "2026-10-28T12:52:28.255Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C15_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C15_RESULT.json",
+          "tests/test_congress_members.py"
+        ],
+        "scope": "AB-R descriptive research contract no release",
+        "method_version": "AB 3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
