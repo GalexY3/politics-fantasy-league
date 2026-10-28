@@ -1,0 +1,12 @@
+{
+  "cycle": "C78",
+  "mode": "AB-P",
+  "A": "Do original POSIX multi-process secure-store tests of locking, cross-process writes, SIGKILL and partial ledger detection pass on Linux with exact current Git SHA?",
+  "B": {
+    "H1": "All checked-in process-boundary tests pass; platform boundary explains Windows limitations",
+    "H0": "Concurrence or killed-writer negative reveals actual atomicity defect",
+    "H2": "Tests skip or source mismatched, no positive claim"
+  },
+  "C": "Preregister. Copy complete test_private_store_process_boundaries.py exactly from GitHub SHA 2a60cf0f..., run Linux pytest with already verified secure_store.py, preserve stdout, stderr, SIGKILL outcomes; no original people/data.",
+  "D": "A failed process or timeout counts as failing; skipped is not passed; don't infer power-loss immunity from SIGKILL test."
+}
