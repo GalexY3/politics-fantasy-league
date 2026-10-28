@@ -1,0 +1,133 @@
+{
+  "schema": "ab.result.v1",
+  "campaign_id": "59e1f051-b3c6-4d6a-9ba5-670017942347",
+  "turn_id": "3d3cf75d-41ad-4139-81b0-b647a92c9d51",
+  "cycle": "CR02",
+  "mode": "AB-R",
+  "kind": "DOCUMENTARY_AB",
+  "status": "COMPLETED_NEGATIVE_ON_LITERAL_WITH_NEW_PRIMARY_CONSTRAINT",
+  "prereg": "CR02_PREREG.json",
+  "prereg_commit": "0874604432257f349ce0b97297ee5d8c98140d81",
+  "baseline_remote_head": "18f78a74b0a4a28f480a98173e1dd5613df31fae",
+  "A_question": "Can an institutional technical manual or aligned original establish equivalence of nominal XML literal NO VOTAN and senator present-but-explicitly-not-voting in 2025 XV legislature?",
+  "B_rivals": {
+    "H1": "literal mapping evidenced in institutional first-party schema",
+    "H0": "mapping not evidenced in bounded inquiry",
+    "H_other": "institutions distinguish participation states while public XML may differ from internal SVE interface"
+  },
+  "C_discriminant": "Five preregistered targeted searches for XML literal/schema and at most three primary-source opens; require direct literal+semantics+format/version evidence. Textual ambiguity is not accepted as evidence of identity.",
+  "D_instrument": {
+    "queries_executed": 5,
+    "primary_source_opens": 3,
+    "find_terms_on_primary_pdf": [
+      "NO VOTAN",
+      "XML",
+      "voto ninguno",
+      "confidencial"
+    ],
+    "pdf_screenshot_requested_pages_zero_index": [
+      2,
+      23,
+      24,
+      27
+    ],
+    "pdf_screenshot_outcome": "ALL_TIMEOUT: visual verification of those PDF pages unavailable; extracted page-annotated source text was available",
+    "native_code_tests": 0,
+    "originals_private_retrieved": 0
+  },
+  "E_observations": [
+    {
+      "type": "PRIMARY_OFFICIAL_TENDER",
+      "title": "Pliego de prescripciones técnicas, renovación del sistema de conferencias y votación del Senado",
+      "url": "https://www.senado.es/web/documentoContratosMayoresServlet?lb_num=ES_I00000061_2021_163800905928181067889555682331",
+      "observed": "The Senate procurement PDF discusses internal electronic voting system (SVE) and Gelabert exchanging XML. The file-layout specifications are described as a confidential document available to bidders under conditions, PDF physical page 3 (extracted P2 lines 82–87). This is evidence of restricted detailed internal exchange formats in this tender, not proof that the separate publicly distributed XML schema is confidential.",
+      "refs": [
+        "PDF p.3, lines 82–87",
+        "PDF p.27–28, lines 918–948"
+      ]
+    },
+    {
+      "type": "PRIMARY_OFFICIAL_TENDER",
+      "url": "https://www.senado.es/web/documentoContratosMayoresServlet?lb_num=ES_I00000061_2021_163800905928181067889555682331",
+      "observed": "At physical page 25 (extracted P24 lines 821–827), the SVE seat map distinguishes Sí/No/Abstención/Presencia via distinct colors; page 24 states a temporarily absent President gets no recorded vote, page 25 (extracted P24 lines 813 and 821-827). The document does not specify how these categories serialize in the public 2025 nominal XML.",
+      "refs": [
+        "PDF p.24–25, lines 803–827"
+      ]
+    },
+    {
+      "type": "PRIMARY_OFFICIAL_OPEN_DATA",
+      "url": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/catalogodatos/votaciones/index.html?lang=es_ES",
+      "observed": "Senate displays initiative-level XML download links in XV legislature; webpage inspected contains no machine-field value dictionary establishing NO VOTAN exact semantics. No linked XML downloaded in this bounded cycle.",
+      "refs": [
+        "open data page lines 61–69"
+      ]
+    },
+    {
+      "type": "PRIMARY_OFFICIAL_DICTIONARY",
+      "url": "https://www.senado.es/web/diccionarioterminosparlamentarios/index.html?lang=es",
+      "observed": "General parliamentary dictionary defines abstention but not the exact XML token-to-presence mapping; therefore not independent confirmation of H1.",
+      "refs": [
+        "official dictionary, revision date listed 21/01/2026"
+      ]
+    },
+    {
+      "type": "PRIMARY_PUBLIC_CATALOG_METADATA",
+      "url": "https://datos.gob.es/es/catalogo/i00000061-lista-de-votaciones-por-iniciativas-desde-la-x-legislatura",
+      "observed": "Catalogue identifies Senate XML vote-by-initiative datasets, X–XV, and access URL for XV, but does not in the retrieved description define exact NO VOTAN token.",
+      "refs": [
+        "source search record"
+      ]
+    }
+  ],
+  "F_adversarial": {
+    "alternative": "Tender internal SVE/Gelabert exchanged XML versus publicly published XML are different interfaces; one cannot transfer token definitions without a documented transformation.",
+    "technical_warning": "Presence shown on seat map could include multiple operational conditions, not a proof of expressed non-vote for each nominal row.",
+    "scope": "Search absence does not prove absence of a definition elsewhere. Text extract is not validated through requested visual screenshots (timeouts). Neither source alone proves 2025 version."
+  },
+  "G_confirmation": {
+    "state": "NOT_ACHIEVED",
+    "next_required": "Obtain publicly releasable Senate XV XML field dictionary/XSD with explicit token enumerations, and cross-check a named session XML against contemporaneous official attendance/vote record. Do not request or redistribute tender-confidential materials."
+  },
+  "H_update": {
+    "H1": "NOT_SUPPORTED",
+    "H0": "SUPPORTED_ONLY_FOR_BOUNDED_SEARCH_NOT_PROVEN_GLOBALLY",
+    "H_other": "REMAINS_PLAUSIBLE",
+    "prior_change": "Adds primary evidence of distinct operational categories and gated historical internal exchange-spec documents; does not change prior caution",
+    "no_votan_literal_status": "UNKNOWN",
+    "first_public_at": "UNKNOWN"
+  },
+  "I_dictamen": {
+    "documentary_validity": "LIMITED_PRIMARY_EVIDENCE",
+    "identification": "NO_DIRECT_LITERAL_MAPPING",
+    "replication": "NOT_AVAILABLE",
+    "novelty_grade": "0/3",
+    "N1_campaign": 0,
+    "N2_campaign": 0,
+    "N3_campaign": 0,
+    "CT2_identity_before": 29,
+    "CT2_identity_after": 29,
+    "VSDS": "1/3",
+    "V4_progress_percent": 36.9,
+    "release_gates_passed": 0,
+    "DRIFT": 0,
+    "privacy": "No nominative individual files stored",
+    "selection_exposure": "General prior institutional distinction known, new procurement source emerged after CR02 prereg; not a randomized/independent scientific replication"
+  },
+  "J_decision": {
+    "outcome": "STOP_R5 on repeating general Senate definitions; keep conservative UNKNOWN code. New independent original documentation is a future hinge, not permission to score individuals.",
+    "next_step": "Need operator / official public data dictionary or schema, or novel independent technical capture; engineering checker of Atlas 33 lot would need local executor."
+  },
+  "read_receipt": {
+    "web_result_refs": [
+      "turn859447search29",
+      "turn690226view0",
+      "turn647253view0",
+      "turn647253view1",
+      "turn647253view2",
+      "turn647253view3",
+      "turn690226view1",
+      "turn690226view2"
+    ],
+    "limits": "Citations are grounded in URLs and line/page snippets retained in this result; web refs are session-local and are not durable standalone."
+  }
+}
