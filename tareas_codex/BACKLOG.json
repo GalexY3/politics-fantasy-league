@@ -10,9 +10,9 @@
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
-    "atlas_lots": 31,
-    "canonical_atlas": "PASS_31_LOTS_BASE_af090f5_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca",
-    "full_repo_python": "WINDOWS_EXIT_1_57_FAILED_558_PASSED_28_SKIPPED_24_SUBTESTS",
+    "atlas_lots": 35,
+    "canonical_atlas": "PASS_31_LOTS_HISTORICAL_T007_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca__CURRENT_35_NOT_RUN",
+    "full_repo_python": "WINDOWS_57_FAILED_558_PASSED_28_SKIPPED; LINUX_EIGHT_SELECTED_SUITES_89_PASSED_14_SUBTESTS; FULL_LINUX_NOT_RUN",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
@@ -133,7 +133,7 @@
     },
     {
       "id": "PFL-CODEX-T008",
-      "title": "Ejecutar suite Python íntegra en Linux POSIX, clasificar errores Windows T002/T004",
+      "title": "Suite Python completa Linux POSIX y checker canónico Atlas 35 lotes, pendientes",
       "priority": "P0",
       "file": "T008_SUITE_COMPLETA_POSIX.md",
       "status": "PENDIENTE",
@@ -144,13 +144,20 @@
         "classify PASS FAIL SKIP vs Windows",
         "no CI/main merge",
         "record HEAD and filesystem"
-      ]
+      ],
+      "observed_selected_linux_suite": {
+        "tests_passed": 89,
+        "subtests_passed": 14,
+        "test_files": 8,
+        "status": "NARROW_SELECTED_SUITES_NOT_COMPLETE",
+        "evidence": "research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md"
+      }
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "Source-backed user continuation C73-C76 Linux 31 original tests pass, source exact; complete Linux checkout T008 pending.",
+  "last_verified_by": "ChatGPT native Linux exact Git sources 89/89 original tests across 8 suites 14 subtests, GitHub C80 evidence; full Linux T008 and Atlas 35 checker NOT_RUN",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd"
 }
