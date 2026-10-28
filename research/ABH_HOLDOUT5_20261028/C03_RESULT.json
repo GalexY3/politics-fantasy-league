@@ -1,0 +1,54 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PRESELECTED_RIOJA_FINAL_VS_EARLY_SOURCE",
+  "A": "La Rioja 2023 third preselected issuer full 33-seat replay with original and early result vintage",
+  "B": {
+    "H1": "Full official 10-party aggregate reconcilable and legally reproducible",
+    "H0": "No reliable complete source",
+    "H_alt": "Public early version equals later final all values"
+  },
+  "C": {
+    "prereg_commit": "b753c45a72581c1013b62234906f1c61ac2aa73f",
+    "selection": "La Rioja May 2023 preselected before browsing results",
+    "method": "Read final 20 June 2023 BOR/JEC 60-page report page1 original text + official Parliament HTML and BOE 3/1991 legal 5% threshold. Screenshot attempted and cache miss. Cross-check RTVE early source, compute Python fractions.Fraction legal D'Hondt on all 10 parties. Original bytes unavailable."
+  },
+  "D": {
+    "JEC": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Escrutinio%20General.pdf",
+    "parliament": "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales",
+    "law": "https://www.boe.es/buscar/act.php?id=BOE-A-1991-7743",
+    "early": "https://resultados-elecciones.rtve.es/autonomicas/2023/la-rioja/",
+    "data": "C03_RIOJA_FINAL_VERSION_COMPARISON.json"
+  },
+  "E": {
+    "final_voters": 170779,
+    "early_voters": 169803,
+    "delta_voters": 976,
+    "final_candidate_votes": 165559,
+    "early_candidate_votes": 164574,
+    "delta_candidate_votes": 985,
+    "final_valid": 167919,
+    "seat_allocation_replay": 33,
+    "party_count": 10,
+    "near_threshold_margin_votes_for_last_eligible": 147.05,
+    "original_hash": null
+  },
+  "F": "This confirms meaningful source-version differences even when seat outcome stable. 5% cutoff must be computed on FINAL valid votes; small margin could be outcome-sensitive in hypothetical scenarios but no actual observed seat transition. Do not count RTvE early as definitive original.",
+  "G": "Three independent regional issuers now compared in separate historical cases but each seat replay in-sample; missing raw archives and first-public times prevents prospective model evaluation",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "awards": 0
+  },
+  "I": "Party-level official counts only, no personal political preferences or actor scores",
+  "J": "Carry time-versioned ingestion metadata/negative into fourth cross-case test, avoid new posthoc source selection."
+}
