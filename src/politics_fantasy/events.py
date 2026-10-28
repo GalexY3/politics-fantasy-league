@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any
+from types import MappingProxyType
+from collections.abc import Mapping
 
 
 def as_utc(value: str | datetime) -> datetime:
@@ -10,6 +12,19 @@ def as_utc(value: str | datetime) -> datetime:
     if dt.tzinfo is None or dt.utcoffset() is None:
         raise ValueError("All clocks must be timezone-aware")
     return dt.astimezone(timezone.utc)
+
+
+def _immutable_metadata(value):
+    """Recursively snapshot JSON-like metadata, including nested collections."""
+    if isinstance(value, dict):
+        if any(not isinstance(key, str) for key in value):
+            raise ValueError('Metadata keys must be strings')
+        return MappingProxyType({key: _immutable_metadata(x) for key, x in value.items()})
+    if isinstance(value, (list, tuple)):
+        return tuple(_immutable_metadata(x) for x in value)
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    raise ValueError('Unsupported metadata value')
 
 
 @dataclass(frozen=True)
@@ -22,9 +37,12 @@ class PoliticalEvent:
     source_url: str
     raw_sha256: str
     source_version: str
-    metadata: dict[str, Any]
+    metadata: Mapping[str, Any]
 
     def __post_init__(self):
+        if not isinstance(self.metadata, dict):
+            raise ValueError('Event metadata must be a JSON object')
+        object.__setattr__(self, 'metadata', _immutable_metadata(self.metadata))
         if not self.event_id or not self.kind or not self.source_url or not self.source_version:
             raise ValueError("Missing event identity/provenance")
         if len(self.raw_sha256) != 64 or any(c not in '0123456789abcdef' for c in self.raw_sha256):
