@@ -1,0 +1,31 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:48:07.289Z",
+  "topic": "Legacy pinned-byte verifier host/port trust vs modern origin validation",
+  "preexposure": "Inspected historical source_guard.py (931 bytes) from ab20b: uses urlsplit and 'or addr.port' (truthy) rather than explicit allowlist of ports. Distinct from current strict ingest _check_official_url.",
+  "A": "Would old verifier accept an explicitly invalid port :0 with a caller-provided matching digest as recognized Congress URL, violating exact official-origin policy?",
+  "B": {
+    "H1": "Legacy accepts :0, modern ingest source-only authority binding rejects it",
+    "H0": "Legacy rejects :0 and is equivalent to modern guard"
+  },
+  "C": {
+    "falsifier": "Run exact Git original source with synthetic payload + expected SHA at https://www.congreso.es:0/es/example, compare ordinary :443 URL. No actual network.",
+    "possible_next": "If bypass shown, reject old port; optionally create a minimal regression for modern code but don't merge weak helper"
+  },
+  "D": {
+    "old_branch": "research/pfl-ab20b-historical-identity-20261026",
+    "source_blob": "ccf812cf126b52fb3385efcde212473162eda2f0",
+    "original_test": "tests/test_source_guard.py",
+    "native": "Python Linux offline with exact Git source and original tests"
+  },
+  "E": "PENDING",
+  "F": "Matching a digest supplied by the caller does not prove authentic issuer nor legal right; this is an origin-shape classification only",
+  "G": "Synthetic input, no official source or network",
+  "H": "No real-world identity/science uplift",
+  "I": "Prevent weakening main security during branch consolidation",
+  "J": "Port only if no bypass or after independently tested repair; otherwise leave archived and report."
+}
