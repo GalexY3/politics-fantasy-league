@@ -4,13 +4,14 @@ NO_VOTE is only the explicit category in the source; no unobserved deputy is add
 """
 from __future__ import annotations
 from collections import defaultdict
-from .groupvotes import GroupSnapshot, GroupRow, majority
+from .groupvotes import GroupSnapshot, GroupRow, majority, strict_majority
 
 
 def group_vote_measure(row:GroupRow)->dict:
     expressed=row.yes+row.no+row.abstain
     counted=expressed+row.no_vote
     leader=majority(row)
+    strict=strict_majority(row)
     modal=max(row.yes,row.no,row.abstain)
     return {'vote_id':row.vote_id,'day':row.day.isoformat(),'group':row.group,
             'known_counted':counted,'expressed':expressed,
@@ -18,8 +19,10 @@ def group_vote_measure(row:GroupRow)->dict:
             'no_vote_rate_among_recorded':row.no_vote/counted if counted else None,
             'modal_share_expressed':modal/expressed if expressed else None,
             'nonmodal_choices':expressed-modal if expressed else None,
-            'majority':leader,
-            'dissent_from_group_majority':None if leader in ('TIE','NO_EXPRESSED_CHOICE') else expressed-modal,
+            'majority':leader,  # Legacy modal option, retained for compatibility.
+            'majority_kind':'MODAL_EXPRESSED_NOT_STRICT',
+            'strict_majority':strict,
+            'dissent_from_group_majority':None if strict in ('TIE','NO_EXPRESSED_CHOICE','NO_ABSOLUTE_MAJORITY') else expressed-modal,
             'denominator':'RECORDED_GROUP_COUNTS_NOT_CERTIFIED_ELIGIBILITY',
             'interpretation':'DISPERSION_NOT_PARTY_DISCIPLINE'}
 
