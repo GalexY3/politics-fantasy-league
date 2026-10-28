@@ -1,44 +1,32 @@
-**Estado vigente 28/10/2026 — CONT80 terminado 20/20:** [T008 suite íntegra Linux/POSIX](T008_SUITE_COMPLETA_POSIX.md) **PENDIENTE**. Los ciclos C73–C80 ejecutaron ocho tests-suite originales con módulos SHA idénticos a Git: **89 PASS + 14 subtests PASS** en Linux (solo ingesta, almacén y auditoría; no la suite global). [Informe](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md). **Atlas 35 lotes** con checker canónico pendiente, T007 solo comprobó 31. T005 originales institucionales bloqueada. La autorización de 20 ciclos está agotada.
+# Cola de tareas Codex — Politics Fantasy League
 
-**Última actualización de tareas (28/10/2026):** [T008 — ejecutar el pytest completo en Linux/POSIX](T008_SUITE_COMPLETA_POSIX.md) está **PENDIENTE**. C73-C76 comprobaron realmente 31 tests +14 subtests de ingesta sobre fuentes Git SHA exactas, **no** la suite global. [Informe](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md). Atlas hasta `0034` / 34 lotes; checker canónico para ese nuevo estado no ejecutado. T005 sigue bloqueada.
+**Estado 28/10/2026: EN ESPERA.** El usuario no tiene disponible Codex en este momento. Conservar el backlog y no fingir ejecución ni programar reintentos automáticos. El trabajo de investigación AB-H puede continuar por otras vías; los 18 intentos restantes de la campaña BRANCH20 no son presupuesto de Codex y no se consumen al redactar tareas.
 
-# Cola de tareas pendientes para Codex — Politics Fantasy League
+**Rama de referencia prevista:** `main`, tras la consolidación autorizada por el usuario el 28/10/2026. Antes de cualquier ejecución, Codex debe verificar HEAD, permisos y estado real del repositorio. No crear más ramas de trabajo por inercia. Las ramas antiguas divergentes quedan bajo auditoría; no hacer merges masivos.
 
-**Estado actualizado por Codex el 28/10/2026:** se ejecutaron T001–T004, T006 y T007. T002 y T004 conservan fallos y pruebas no completadas en Windows; T005 sigue bloqueada. Los informes y logs identifican resultados reales y límites. La ejecución de esta cola no equivale por sí sola a ciclos AB A–J. El histórico `research/CODEX_CONTRIB_20261027/` corresponde a otra etapa.
+## Tarea principal pendiente
 
-## Contexto y punto de partida
+**[T008 — Suite Python integral en Linux/POSIX y replay Atlas de 37 lotes](T008_SUITE_COMPLETA_POSIX.md)** — `PENDIENTE`, prioridad P0. Esta ficha forma parte del [índice estructurado](BACKLOG.json). Una [entrega ejecutable concreta](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md) conserva los comandos y las condiciones de aceptación de esta etapa.
 
-- Repositorio privado: `GalexY3/Metodologia-AB`.
-- Rama de trabajo existente: `research/pfl-codex-contributions-20261027`. **No trabajar sobre `main`**.
-- HEAD observado *antes de crear la carpeta*: `8f21411b0c4caf267d77721510d06129fe2eedbe`. **Al empezar**, Codex debe leer y registrar de nuevo el HEAD real, no presumir que este SHA sigue siendo el último.
-- Autoridad: [AGENTS.md](../../../AGENTS.md), protocolo AB 3.2.1 O3–O7, [CURRENT](../ab_atlas/CURRENT.md) y [continuidad](../docs/CONTINUACION_INTEGRADA_CODEX_CHATGPT.md).
-- Atlas: [T001](T001_RESULTADO.md) verificó 29 lotes sobre `6e359a8`; [T007](T007_RESULTADO.md) verificó 31 lotes sobre `af090f5`, con 63 nodos / 81 relaciones / 191 runs / 44 incidencias / 360 operaciones. Comprobar el HEAD de nuevo porque ChatGPT trabaja en paralelo.
-- Producto: V4 36,90 % contractual, CT2 identidad 29/100 ordinal, VSDS 1/3, gates de lanzamiento **0/6**. Nada de scoring político real.
-- [Incidencia GitHub #17](https://github.com/GalexY3/Metodologia-AB/issues/17): índice público dentro del repo privado; **no es evidencia de ejecución**.
+T002 registró **57 FAIL, 558 PASS, 28 SKIP** en la ejecución integral histórica Windows. En CONT80, C73–C80 documentaron **89 pruebas originales PASS + 14 subtests** de **ocho suites seleccionadas** en Linux/POSIX; no son la ejecución integral. El checker Python de T007 verificó **31 lotes**; la cadena llega a **37 lotes** después de 0036 (C01 inválido) y 0037 (C02 negativo). El **replay canónico de 37 lotes no está ejecutado**.
 
-## Orden propuesto
+T008 deberá documentar HEAD real, Python/pytest, sistema de archivos, primera corrida de `PYTHONPATH=src python -m pytest -q -rs` sin alterar tests, exit code, PASS/FAIL/SKIP, logs y SHA; desde raíz repo, `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates`. Solo con ambas ejecuciones satisfactorias y pruebas registradas podrá indicarse `COMPLETADA_VERIFICADA`; de lo contrario `COMPLETADA_CON_FALLOS` o `BLOQUEADA` según proceda. Correr T008 por sí solo **no es un ciclo AB A–J**.
 
-| Prioridad | Expediente | Dependencia | Estado |
-|---|---|---|---|
-| P0 | [T001 — Replay canónico de Atlas](T001_RESULTADO.md) | Checkout íntegro y Python local | COMPLETADA_VERIFICADA |
-| P0 | [T002 — Suites completas Python y Node](T002_RESULTADO.md) | Checkout íntegro | COMPLETADA_CON_FALLOS |
-| P1 | [T003 — Paridad nativa V3/V4](T003_RESULTADO.md) | T002 o entorno local equivalente | COMPLETADA_VERIFICADA |
-| P1 | [T004 — Seguridad del servidor local e ingesta](T004_RESULTADO.md) | T002 para baseline | COMPLETADA_CON_FALLOS |
-| Bloqueada | [T005 — Originales institucionales y certificados](T005_ORIGINALES_CONDICIONALES.md) | Documento legítimo y permiso específico | BLOQUEADA; [matriz preliminar](T005_MATRIZ_PRELIMINAR.md) disponible |
-| P1 | [T006 — Verificar migración XI/XII de códigos BOCCL y HTTP](T006_RESULTADO.md) | T002; checkout íntegro y tests HTTP | COMPLETADA_VERIFICADA |
-| P0 | [T007 — Revalidar Atlas y HTTP](T007_RESULTADO.md) | Checkout `af090f5` | COMPLETADA_VERIFICADA |
+## Expedientes históricos
 
-[Índice de estado legible por herramientas](BACKLOG.json). Cada tarea tiene objetivo, comandos o procedimiento reproducible, criterios de aceptación y límites.
+| Ficha | Estado registrado | Alcance |
+|---|---|---|
+| [T001](T001_RESULTADO.md) | COMPLETADA_VERIFICADA | Replay Atlas histórico 29 lotes |
+| [T002](T002_RESULTADO.md) | COMPLETADA_CON_FALLOS | Suite Windows y Node; fallos persistentes |
+| [T003](T003_RESULTADO.md) | COMPLETADA_VERIFICADA | Paridad V3/V4 en la revisión ensayada |
+| [T004](T004_RESULTADO.md) | COMPLETADA_CON_FALLOS | Seguridad local Windows y limitaciones POSIX |
+| [T005](T005_ORIGINALES_CONDICIONALES.md) | BLOQUEADA | Original auténtico, derechos, identificadores y revisión jurídica |
+| [T006](T006_RESULTADO.md) | COMPLETADA_VERIFICADA | HTTP y claves BOCCL XI/XII en snapshot histórico |
+| [T007](T007_RESULTADO.md) | COMPLETADA_VERIFICADA | Atlas 31 y HTTP en HEAD histórico |
+| [T008](T008_SUITE_COMPLETA_POSIX.md) | PENDIENTE | Suite completa Linux y Atlas 37 en HEAD actual |
 
-## Reglas para Codex
+## Condiciones de ejecución
 
-1. Antes de tocar código: comprobar HEAD, leer `AGENTS.md` y `CURRENT.md`, inspeccionar modificaciones locales (`git status --short`) y registrar herramientas/versiones.
-2. Ejecutar **solo** la tarea seleccionada, con pruebas y evidencia de comandos reales: directorio de trabajo, stdout/stderr, exit code, hashes, archivos afectados y límites. Un comando planificado no se contabiliza como prueba.
-3. Si hay fallos: conservar el resultado negativo, reparar únicamente un defecto reproducido, reejecutar controles y documentar. Cada ciclo AB requiere A–J y prerregistro cuando corresponda; **la cola no concede nuevos ciclos automáticamente**.
-4. No activar GitHub Actions de alto coste, no fusionar a `main`, no subir originales nominales, tokens ni credenciales, no desactivar TLS, no exponer el servidor a Internet y no puntuar personas reales.
-5. No convertir un PDF listado, metadato de licencia o fecha de actualización de catálogo en original firmado, certificación de identidad o `first_public_at`.
-6. Guardar entregables en la **rama de investigación**, con ruta y commit verificable; en esta carpeta actualizar el estado de cada tarea solamente **después** de observar el resultado. La ejecución de Codex requerirá la acción explícita del usuario cuando tenga acceso.
+Leer [AGENTS.md](../../../AGENTS.md), `ab_atlas/CURRENT.md` y el [informe de consolidación](../docs/BRANCH_CONSOLIDATION_20261028.md) antes de trabajar. Reexaminar siempre el commit HEAD, pues esta cola no garantiza que una referencia histórica siga actual. No inventar comandos, salidas ni SHA. No modificar pruebas para forzar aprobación. Reservar evidencias en rutas de proyecto o externas privadas sin subir originales nominales ni credenciales. No activar CI costosa, no fusionar otras ramas automáticamente, no publicar scoring de personas reales y no alterar `main` sin una autorización de escritura específica coherente con el trabajo pedido. Los seis gates permanecen **0/6**.
 
-**Convención de estados:** `PENDIENTE`, `EN_EJECUCION`, `BLOQUEADA`, `COMPLETADA_VERIFICADA`, `COMPLETADA_CON_FALLOS`. No marcar nada como completado por el mero hecho de redactar estas fichas.
-
-**Revalidación posterior a C71 y C72:** [T007 — Atlas de 31 lotes y HTTP con enlaces BOCCL](T007_RESULTADO.md). T001 y T006 constan ejecutadas en checkout anterior de 29 lotes; no extienden automáticamente su validación a commits posteriores.
+El usuario puede reactivar T008 cuando Codex esté disponible. No existe una ejecución en curso ni una obligación de lanzarla durante el trabajo AB-H.
