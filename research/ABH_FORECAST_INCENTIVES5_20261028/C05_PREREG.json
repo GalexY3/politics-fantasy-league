@@ -1,0 +1,49 @@
+{
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "FROZEN_BEFORE_US_HOUSE_2025_200_299_SOURCE_INSPECTION",
+  "A": {
+    "question": "Are 100 contiguous official US House rollcalls equivalent to 100 distinct underlying agenda issues for naive PFL scoring opportunity measurement?",
+    "unit": "2025 U.S. House Clerk rollcall numbers 200 through 299 (inclusive) × textual official Issue label",
+    "population": "This contiguous roll-number segment, not a random national/year sample",
+    "outcomes": [
+      "share of rollcalls whose official Issue label repeats in the same segment",
+      "distinct Issue labels",
+      "top issue rollcall volume",
+      "procedure-question share"
+    ],
+    "estimand": "100 rollcalls vs number of distinct legislative issues, no moral or personal score",
+    "interference": "rollcalls on same bill are mechanically dependent"
+  },
+  "B": {
+    "h1": "More than 15% of rollcalls share an Issue label with at least one other rollcall",
+    "h2": "Multiple votes on one bill are different substantive decisions so issue-capping discards legitimate events",
+    "h0": "little issue repetition in this segment"
+  },
+  "C": {
+    "source": "Official Office of Clerk House roll call index 2025 from roll calls 200–299 link",
+    "n_min": 95,
+    "QA": "full contiguous numbers and dates, no missing, issues named uniformly; no inferred first-public timestamps; cite first-party page",
+    "analysis": [
+      "group exact Issue strings, classify missing Issue separately",
+      "top-five issue shares",
+      "count explicit procedural question strings"
+    ],
+    "comparators": [
+      "baseline one-point-per-rollcall",
+      "one-point-per-distinct-exact-issue only as sensitivity, not a normative score"
+    ],
+    "falsifier": "repeated-label fraction <=0.15 or missing/truncated index",
+    "novelty": "Known legislative procedure; exploratory instrument diagnostic, not original causal finding"
+  },
+  "D": {
+    "rights": "Official House Clerk information, no person-level votes, no political profiles",
+    "instrumentation": "retrieve webpage and transcribe issue labels with full rollcall 200–299 QA; if unable to obtain all, STOP_LOCAL / NOT_EXECUTED"
+  },
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}
