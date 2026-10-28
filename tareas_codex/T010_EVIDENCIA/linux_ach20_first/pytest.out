@@ -1,0 +1,77 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 28%]
+........................................................................ [ 37%]
+.......................................................... [ 44%]
+........................................................................ [ 54%]
+........................................................................ [ 63%]
+................F..F.................................................. [ 72%]
+........................................................................ [ 82%]
+.................................................................................................................................... [ 99%]
+......                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_http_invalid_identifiers_return_json_without_mutating_state[buy-body1] __
+
+http_server = 'http://127.0.0.1:37721', route = 'buy'
+body = {'club_id': 'demo', 'figure_id': {}}
+
+    @pytest.mark.parametrize('route,body', [
+        ('buy', {'club_id': [], 'figure_id': 'F04'}),
+        ('buy', {'club_id': 'demo', 'figure_id': {}}),
+        ('sell', {'club_id': {}, 'figure_id': 'F01'}),
+        ('lineup', {'club_id': [], 'round_id': 'next', 'figures': ['F01','F02','F03']}),
+        ('lineup', {'club_id': 'demo', 'round_id': {}, 'figures': ['F01','F02','F03']}),
+    ])
+    def test_http_invalid_identifiers_return_json_without_mutating_state(http_server, route, body):
+        with urllib.request.urlopen(http_server+'/api/state') as resp:
+            before = json.load(resp)
+        req=urllib.request.Request(http_server+'/api/'+route,data=json.dumps(body).encode('utf-8'),
+                                   headers={'Content-Type':'application/json'},method='POST')
+        with pytest.raises(urllib.error.HTTPError) as err:
+            urllib.request.urlopen(req)
+        assert err.value.code == 400
+        assert json.load(err.value)['error'] == 'INVALID_ID'
+        with urllib.request.urlopen(http_server+'/api/state') as resp:
+            after = json.load(resp)
+>       assert after == before
+E       AssertionError: assert {'app': 'Poli...: False}, ...} == {'app': 'Poli...: False}, ...}
+E         
+E         Omitting 13 identical items, use -vv to show
+E         Differing items:
+E         {'demo_clock': {'now': '2026-10-28T17:51:37+00:00', 'offset_seconds': 0, 'simulated': False}} != {'demo_clock': {'now': '2026-10-28T17:51:36+00:00', 'offset_seconds': 0, 'simulated': False}}
+E         Use -v to get more diff
+
+tests/test_product.py:178: AssertionError
+_ test_http_invalid_identifiers_return_json_without_mutating_state[lineup-body4] _
+
+http_server = 'http://127.0.0.1:46305', route = 'lineup'
+body = {'club_id': 'demo', 'figures': ['F01', 'F02', 'F03'], 'round_id': {}}
+
+    @pytest.mark.parametrize('route,body', [
+        ('buy', {'club_id': [], 'figure_id': 'F04'}),
+        ('buy', {'club_id': 'demo', 'figure_id': {}}),
+        ('sell', {'club_id': {}, 'figure_id': 'F01'}),
+        ('lineup', {'club_id': [], 'round_id': 'next', 'figures': ['F01','F02','F03']}),
+        ('lineup', {'club_id': 'demo', 'round_id': {}, 'figures': ['F01','F02','F03']}),
+    ])
+    def test_http_invalid_identifiers_return_json_without_mutating_state(http_server, route, body):
+        with urllib.request.urlopen(http_server+'/api/state') as resp:
+            before = json.load(resp)
+        req=urllib.request.Request(http_server+'/api/'+route,data=json.dumps(body).encode('utf-8'),
+                                   headers={'Content-Type':'application/json'},method='POST')
+        with pytest.raises(urllib.error.HTTPError) as err:
+            urllib.request.urlopen(req)
+        assert err.value.code == 400
+        assert json.load(err.value)['error'] == 'INVALID_ID'
+        with urllib.request.urlopen(http_server+'/api/state') as resp:
+            after = json.load(resp)
+>       assert after == before
+E       AssertionError: assert {'app': 'Poli...: False}, ...} == {'app': 'Poli...: False}, ...}
+E         
+E         Omitting 13 identical items, use -vv to show
+E         Differing items:
+E         {'demo_clock': {'now': '2026-10-28T17:51:40+00:00', 'offset_seconds': 0, 'simulated': False}} != {'demo_clock': {'now': '2026-10-28T17:51:39+00:00', 'offset_seconds': 0, 'simulated': False}}
+E         Use -v to get more diff
+
+tests/test_product.py:178: AssertionError
+2 failed, 768 passed, 28 subtests passed in 87.89s (0:01:27)
