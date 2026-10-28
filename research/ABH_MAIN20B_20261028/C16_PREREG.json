@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C16",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Can local HTTP JSON POST accept contradictory repeated keys (including nested) and silently apply the last instead of a well-defined command?",
+  "B": {
+    "H1": "json.loads default last-wins on duplicate request keys",
+    "H0": "Current endpoint rejects duplicate input at parse boundary"
+  },
+  "C": {
+    "red": "{\"name\":\"Primer club\",\"name\":\"Segundo club\"} silently resolves second name",
+    "negative": "nested duplicate key rejected at all depths",
+    "positive": "ordinary unique-key JSON accepted",
+    "repair": "object_pairs_hook reject ambiguous JSON before state-changing dispatch"
+  },
+  "D": {
+    "source": "server.py Git blob f5cce90c632295d3828c85ecf3b2ec5dd82ca395",
+    "runtime": "Python json loads focused; HTTP integration test committed for T009"
+  },
+  "E": "PENDING",
+  "F": "Loopback server is single user without authentication; this protects command determinism, not remote attack claim",
+  "G": "T009",
+  "H": "no real person scoring/gates",
+  "I": "API input semantics",
+  "J": "Patch if reproduced; STOP_R5 duplicate-key classes after C16"
+}
