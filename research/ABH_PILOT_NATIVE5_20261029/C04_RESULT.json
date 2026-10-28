@@ -1,0 +1,62 @@
+{
+  "cycle": "C04",
+  "mode": "AB-P",
+  "prereg_commit": "e7aecca5533580b30a0ab2f1409c77dbaf7451a6",
+  "A": "Local-only static server HTTP hardening; actively deny all data collection and key access",
+  "B": [
+    "deny-by-default host sufficient for local preview",
+    "unexpected GET/HEAD paths or POST allow data leakage",
+    "mock review key exposed by static route"
+  ],
+  "C": {
+    "native_tests": "Node v22.16.0 HTTP Fetch against actual server bound 127.0.0.1:8787",
+    "routes": [
+      "GET /",
+      "GET /index.html",
+      "GET /app.mjs",
+      "GET /style.css",
+      "GET /materials.mjs",
+      "HEAD /",
+      "GET /fictional_transfer_key.mjs -> 404",
+      "GET /../src/politics_fantasy/fictional_transfer_key.mjs -> 404",
+      "GET encoded traversal ->404",
+      "GET /?q=case ->404",
+      "GET /analytics ->404",
+      "POST / ->405",
+      "PUT / ->405",
+      "DELETE / ->405",
+      "GET /app.mjs?q=1 ->404"
+    ],
+    "requirements": [
+      "CSP connect-src none",
+      "no Access-Control-Allow-Origin wildcard",
+      "no cookie",
+      "nosniff",
+      "client no key"
+    ]
+  },
+  "D": {
+    "server_git_blob": "b66ca94ec3ec5b038116f4e53ddb122617f2c5d2",
+    "smoke_test_git_blob": "a1fc27d8703fa9875b199cb7811aee3a67ee1f44",
+    "native_check": "Git blobs match local tested code",
+    "method": "Stored node pilot_local/smoke_http.mjs launches local HTTP server in-process with native fetch; no external network requests"
+  },
+  "E": {
+    "passed": 15,
+    "total": 15,
+    "failed": 0,
+    "all_negative_denials_passed": true,
+    "browser_accessibility_e2e": "NOT_VERIFIED",
+    "full_checkout_tests": "NOT_RUN"
+  },
+  "F": "Localhost can be accessed by other local processes; no TLS but loopback only. GET/HEAD no data ingress; no HTTP-based logging/identity data storage; no guarantee browser extensions or OS do not observe selections. CSP is not a substitute for usability or data-protection impact assessment. No formal remote security review.",
+  "G": "Only local Node environment, not a production server or independent audit",
+  "H": "Run offline demonstrator without public route/collection; never activate HTTP API for responses absent ethics and secure infrastructure",
+  "I": {
+    "grade": "0/3 scientific",
+    "CT2_prospective": 25,
+    "VSDS": "1/3",
+    "release_gates_passed": 0
+  },
+  "J": "ACCEPT_BOUNDED_SERVER_SMOKE; continue C05 O7 and ethics gate, no live recruitment"
+}
