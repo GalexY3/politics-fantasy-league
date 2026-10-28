@@ -1,8 +1,10 @@
+> **Actualización de consolidación de ramas (28/10/2026).** La fuente de referencia para la ejecución futura será `main` cuando se complete la integración autorizada. La rama de campaña `research/pfl-abh-branch20-20261028` se conserva como origen auditable. Atlas ahora **37 lotes**, incluidos 0036 (C01 inválido) y 0037 (C02 documental inconcluso), no los 35 de la fase CONT80; el checker Python de **37** está **NOT_RUN**. Ver [handoff actual](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md) y [índice Codex](README.md). **Codex no está disponible actualmente para el usuario.** No hay prueba global Linux ejecutada ni evidencia de aprobación. No iniciar GitHub Actions costosas ni merges adicionales. El presente permiso para consolidar `main` fue concedido específicamente por el usuario; no autoriza fusiones futuras sin evaluación.
+
 > **Actualización tras CONT80 C77–C80 (28/10/2026):** Se han ejecutado nativamente **ocho** suites originales con siete módulos SHA-idénticos a Git: **89 PASS +14 subtests PASS, sin fallos ni omisiones**. Los resultados y SHA de logs están en [informe final](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md) y [manifiesto](../research/ABH_CONT80_20261028/C77_C80_EVIDENCE_MANIFEST.json). Esto **NO equivale a ejecutar la suite Python completa** ni cierra T008. Además el Atlas ha llegado a **35 lotes**; T007 solo certificó 31, por lo que la nueva validación canónica queda pendiente. El presupuesto AB-H CONT80 se ha agotado **20/20**; cualquier ciclo nuevo requiere autorización del usuario.
 
 # T008 · Suite Python completa en Linux/POSIX: cerrar fallos de T002/T004
 
-**Estado: PENDIENTE.** Requiere checkout íntegro de la rama de investigación **en sistema POSIX real** (Linux recomendado) y ejecución por Codex u operador autorizado. No equivale a una ejecución ni a un ciclo AB.
+**Estado: PENDIENTE.** Requiere checkout íntegro de la rama `main` consolidada **en sistema POSIX real** (Linux recomendado) y ejecución por Codex u operador autorizado. No equivale a una ejecución ni a un ciclo AB.
 
 ## Por qué
 
@@ -17,7 +19,7 @@
 3. Separar los fallos por clase, con conteos basados en stack traces reales: diferencias POSIX/Windows, sincronización y bloqueos, permisos/symlinks, import/dependencias, integridad de JSONL/SHA, redirecciones/HTTP, tests/flaky, otro defecto real. No extrapolar los 31 positivos para afirmar que desaparecen los 57 anteriores.
 4. Repetir focalmente en Linux, si la suite lo permite, `test_secure_store.py`, `test_private_store_process_boundaries.py`, `test_private_audit.py`, `test_private_audit_cli.py`, `test_ingest.py`, `test_quarantine_ingest.py`, `test_ingest_full_local_e2e.py`, `test_ingest_redirect_security.py`. Para `SIGKILL`, diferencia entre error interrumpido y pérdida real de energía; no declarar tolerancia a power-loss no probada.
 5. Si hay un fallo reproducible: abrir/prerregistrar contraste A–J autorizado antes de modificar código; guardar primero la regresión roja, parche mínimo, prueba verde y suite completa. No alterar tests solo para que pasen.
-6. **No usar originales nominativos** ni contactos de red con Senado/Congreso; usar fixtures sintéticos en temporales. No Actions costosas, no despliegue, no merge a main, no habilitar scoring real.
+6. **No usar originales nominativos** ni contactos de red con Senado/Congreso; usar fixtures sintéticos en temporales. No Actions costosas, no despliegue, no merges no autorizados ni más ramas innecesarias, no habilitar scoring real.
 
 ## Criterios de aceptación
 
