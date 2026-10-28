@@ -1,0 +1,135 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign": "PFL-ABH-PROSPECTIVE-PILOT5-20261029",
+  "parent": {
+    "pr": 34,
+    "head": "be5c142751175adf6a392d7e41e3a0dbbe368d1a",
+    "branch": "research/pfl-abh5-incentive-mechanisms-20261029"
+  },
+  "branch": "research/pfl-abh5-prospective-pilot-20261029",
+  "pr": "DRAFT_NOT_YET_OPENED",
+  "cycles": {
+    "granted": 5,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "AB_R": 1,
+    "AB_P": 4,
+    "remaining": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R_DOCUMENTARY",
+      "prereg_commit": "d070f808240020b073a0e80d36aaf875c6192c65",
+      "result_commit": "0d324c63a6205814592b78312543d2f71ca0079c",
+      "status": "VALID_DOCUMENTARY_NONCONFIRMATORY",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "grade": "0/3",
+      "N1": false,
+      "real_participants": 0,
+      "real_outcome": false,
+      "external_replication": false
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-P",
+      "prereg_commit": "b643c4555999bcf5e687d16934a29a06d14c775a",
+      "result_commit": "a5b8abf21bb049cadba7b870176c997bff9f75f1",
+      "status": "VALID_LOCAL_17_OF_17_V8",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "grade": "0/3",
+      "N1": false,
+      "real_participants": 0,
+      "real_outcome": false,
+      "external_replication": false
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-P",
+      "prereg_commit": "1e26990367cf2d67344209925cf06c204332c524",
+      "result_commit": "b757825d74e43152ec6829d5f461ec42a085b971",
+      "status": "VALID_LOCAL_20_OF_20_V8",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "grade": "0/3",
+      "N1": false,
+      "real_participants": 0,
+      "real_outcome": false,
+      "external_replication": false
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-P",
+      "prereg_commit": "1ada50f87f1bcaf71b61804ed84cd4ffe31619a7",
+      "result_commit": "4d658bf8f60ea93ee89f03bf272f7483ddb10459",
+      "status": "VALID_FIXTURE_22_OF_22_V8",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "grade": "0/3",
+      "N1": false,
+      "real_participants": 0,
+      "real_outcome": false,
+      "external_replication": false
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-P",
+      "prereg_commit": "00fdadd477684603c79d730ec8049bfbb7831a52",
+      "result_commit": "bfd0fc298e64c6629c25195d1fb56fb8fdd6f3f4",
+      "status": "VALID_FIXTURE_25_OF_25_V8",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "grade": "0/3",
+      "N1": false,
+      "real_participants": 0,
+      "real_outcome": false,
+      "external_replication": false
+    }
+  ],
+  "tests": {
+    "C02": "17/17 V8",
+    "C03": "20/20 V8",
+    "C04": "22/22 V8, dry-run only",
+    "C05": "25/25 V8, fabricated records",
+    "total": 84,
+    "native_node": "NOT_RUN",
+    "full_suite": "NOT_RUN",
+    "browser": "NOT_RUN"
+  },
+  "human_trial": {
+    "recruited": 0,
+    "consented": 0,
+    "analyzed": 0,
+    "ethics_approval": "NOT_OBTAINED",
+    "DPO_review": "NOT_OBTAINED",
+    "study_prereg_final": "DRAFT_NEEDS_SAMPLE_SIZE_POWER_ANALYSIS_AND_APPROVAL",
+    "outcome_data": "NONE",
+    "effects_claimed": false
+  },
+  "scientific": {
+    "CT2_identity_parent": 29,
+    "CT2_synthetic_parent": 20,
+    "CT2_prospective_child": 25,
+    "CT2_child_confidence": "low",
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "achievements": "2/90",
+    "release_gates": "0/6",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "original_scientific_result": false
+  },
+  "prohibitions": {
+    "used_ChatRelay": false,
+    "main_merged": false,
+    "CI_expensive": false,
+    "real_person_political_score": false
+  },
+  "R5": "STOP_LOCAL after offline study kit; cannot turn dry-run into human trial without ethical/consent approval, secure randomization & data management, actual consented participation. Further merely synthetic code variants have diminishing discrimination."
+}
