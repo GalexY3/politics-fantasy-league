@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "R1": "Unit: EU member country, n<=27. Turnout percent of eligible voters, women percentage of MEPs in constitutive EP 2024. No individual-level inference.",
+  "R2": "Statistical baseline Pearson and Spearman; rank/level, 2019 gender baseline and compulsory-voting sensitivity. No simplistic null-only comparator.",
+  "R3": "Pre-exposed 2024 turnout and 2019 gender tables; 2024 gender outcome was not read at prereg time; four post-hoc sensitivity operations, exploratory family, no confirmatory p-values or novelty.",
+  "R4": "Ablate compulsory-voting legal regime, geography/confounding where possible and large-country weight, and 2019 level.",
+  "R5": "Never repeat blocked binary fetch as scientific cycle; stop if full country gender not available; register missing data.",
+  "source": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "originals": "https://results.elections.europa.eu/en/tools/download-datasheets/",
+    "legal": "https://www.eeas.europa.eu/sites/default/files/documents/2023/European%20elections%202024%20-%20national%20rules.pdf"
+  },
+  "CT2_before": 29,
+  "grade_0_3": "PENDING",
+  "data_original_binary_status": "EP download page has signature links, but no actual raw files retrieved or signatures checked",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": 1.1,
+  "A": "Is apparent turnout–women representation association sensitive to legally compulsory voting in the 2024 EP election?",
+  "B": {
+    "H1": "Removing compulsory-vote countries attenuates or reverses Pearson/Spearman association",
+    "H0": "Association essentially stable (<0.1 rho change)",
+    "H_other": "Country size, MEP seat allocation, quota laws and country history dominate"
+  },
+  "C": "Compute same correlations excluding BE,BG,LU,CY,EL (classification fixed from EU Parliament 2024 preparatory documentation), plus alternate excluding only BE,BG,LU,EL because later EP factsheet omits CY. Report compulsory vs voluntary turnout summary/dispersion and high-leverage countries, without assuming compliance/enforcement same.",
+  "E": "PENDING",
+  "F": "No randomized law; Cyprus classification temporal/version conflict and EU 2024 preparatory law vs later factsheet both retained",
+  "G": "External official legal source independent from numeric EP election results but causal interpretation still blocked",
+  "H": "No CT2 lift",
+  "I": "No country moral rankings",
+  "J": "Report law-definition sensitivity irrespective of direction"
+}
