@@ -1,0 +1,67 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "source_type": "UK Parliament first-party official JSON endpoint observed through web text rendering; original bytes not downloaded or SHA256 authenticated",
+  "n": 12,
+  "unit": "petition-level event history",
+  "bias": "Top 12 CLOSED petitions by signature totals, not random or representative. Individual people may sign multiple petitions.",
+  "data": "PETITIONS12_EVENT_PANEL.json",
+  "metrics": "EVENT_METRICS.json",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "no_personal_political_ratings": true,
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_WEAK_TIMING_ASSOCIATION_AND_METADATA_DISCREPANCY",
+  "A": "Does faster opening→10k crossing correspond to shorter response lag, and how sensitive are timelines to metadata fields and revisions?",
+  "B": {
+    "H1": "negative monotonic Spearman",
+    "H0": "near-zero or positive",
+    "Halt": "Popular-sample selection plus distinct department/issue processes confound"
+  },
+  "C": {
+    "prereg_commit": "edd7267b6c07aa1aef2005ea7cd2bdbdd203ead3",
+    "execution": "Compute opening→10k UTC days and 10k→response days Spearman rank and Pearson; leave first preexposed petition out; compare response technical timestamp day vs government_response.responded_on; inspect updated_at vs closed_at for all 12; detect anomalous four dates without overwriting source."
+  },
+  "D": {
+    "data": "PETITIONS12_EVENT_PANEL.json",
+    "timing": "EVENT_METRICS.json",
+    "sensitivity": "TEMPORAL_SENSITIVITY.json"
+  },
+  "E": {
+    "n": 12,
+    "spearman_open_to10k_vs_response_delay": 0.1958041958041958,
+    "pearson": -0.1669247241380564,
+    "spearman_without_first": 0.14545454545454545,
+    "metadata_vs_public_response_calendar_date_discrepancies": 4,
+    "discrepant_ids": [
+      727309,
+      705383,
+      730605,
+      746363
+    ],
+    "severe_id": 730605,
+    "severe_difference_calendar_days": 128,
+    "updated_after_closure": 12,
+    "technical_response_median_days": 16.457,
+    "published_response_date_median_days": 18.77372685185185
+  },
+  "F": "H1 negative monotone association not observed. One response record shows metadata 2025-07-30 but published response date 2025-12-05 (~128 days later), do not assume cause, correction or identity of institutional action. Other three differences are previous calendar day, potentially time or editorial label. All 12 updated after closure; must not treat last updated as date of citizen action.",
+  "G": "Post-selection correlation, n12; same official API and published timestamps not externally authenticated, no causal or time-series evolution of signatures.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No inference about participants",
+  "J": "Record provenance contract requiring response_updated/first_public versions; use Hansard for independent debate date check."
+}
