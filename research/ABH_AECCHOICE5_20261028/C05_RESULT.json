@@ -1,0 +1,62 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "type": "AB-R",
+  "unit": "Australian 2025 federal House electoral division (n150)",
+  "source_tier": "Third-party GitHub mirror exact AEC-named June 16 2025 generated CSV header, primary catalogue verifies named files, no authenticated AEC download or first_public_at",
+  "metrics": "AEC2025_METRICS.json",
+  "panel": "AEC2025_DIVISION_PANEL.csv",
+  "baseline": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_prior": "McGinn & Maruyama Economic Record 2025 already documented causal effect candidates→informal in earlier periods; AEC 2025 review independently documented contemporary relation but case-selected on high informality. Our analysis confirms association, NOT novel science or replicated causal design.",
+  "restrictions": "No individual/party scoring, not actually a prospective frozen evaluation, ChatRelay off, no main merge.",
+  "cycle": "C05",
+  "status": "VALID_BOUNDED_STATE_HELDOUT_MAE_GAIN_0_416_NOT_PROSPECTIVE",
+  "A": "Does pre-election nomination count improve out-of-state 2025 descriptive prediction of informal percentage over pre-election close-roll enrolment and AEC geography class?",
+  "B": {
+    "H1": "MAE gain ≥0.25 percentage points",
+    "H0": "Less gain or worsening"
+  },
+  "C": {
+    "prereg_commit": "5b4c25c03265e77f2729c25716298fbd9b926b67",
+    "execution": "Executed deterministic leave-one-state-out over 8 complete Australian state/territory groups, 150 division rows. Predictors baseline training mean, OLS log(close-of-rolls) + AEC demographic one-hot (train-only categories), and same plus nomination count. No state fixed effect for an unseen state, no post-vote turnout, no post-vote informal swing and no outcome as input. Aggregated held-out MAE and RMSE weighted by division."
+  },
+  "D": {
+    "metrics": "AEC2025_METRICS.json",
+    "panel": "AEC2025_DIVISION_PANEL.csv"
+  },
+  "E": {
+    "n": 150,
+    "states": 8,
+    "MAE_pp": {
+      "train_mean": 2.484571164502258,
+      "demographic_and_enrolment": 2.3957966323935422,
+      "add_nominations": 1.9800878516750648
+    },
+    "RMSE_pp": {
+      "train_mean": 3.2572509054553476,
+      "demographic_and_enrolment": 3.2041854741264646,
+      "add_nominations": 2.8129842696056073
+    },
+    "gain_MAE_pp": 0.4157087807184774,
+    "criterion_0_25_supported": true
+  },
+  "F": "Declared H1 supported for this internal geographical CV and 2025 public outcomes. While feature definitions available before poll, the source files generated after election and analysis run posthoc; NOT live forecast at dated cutoff. Only eight state clusters and geographic/demographic changes limit generalization.",
+  "G": "Source same institution one 2025 election; article by McGinn & Maruyama 2025 is prior causal literature but not a replication of their identification design",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "Only electoral division-level measurement, no profiling",
+  "J": "Stop line per R5 until genuinely new future outcome (or original authentic historical 2022–2025 change); maintain T024 Codex for original bytes and full suite."
+}
