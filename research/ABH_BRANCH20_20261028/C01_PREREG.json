@@ -1,0 +1,45 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C01",
+  "mode": "AB-R",
+  "branch": "research/pfl-abh-branch20-20261028",
+  "baseline_head": "72a2ae2deeb9eaa719b598943c1e8d18360ed6ea",
+  "prior_exposure": [
+    "Historical CR02 inspected official Senate procurement documentation, catalog and dictionary but did NOT retrieve actual nominal XV XML",
+    "CR02 preserved NO VOTAN=UNKNOWN; no legitimate inference from internal SVE XML to public nominal XML",
+    "2025 official Senate vote-sample history shows date discrepancy 7/8 October in other materials; not adjudicated here"
+  ],
+  "A_question": "Can the Senate's official public XML for an identified XV legislature initiative actually be retrieved and inspected to establish whether the literal 'NO VOTAN' occurs in a nominal vote record? Separately, is a same-format official schema/legend available to establish its semantics?",
+  "B_rivals": {
+    "H1": "One official XV nominal XML file directly contains the exact literal NO VOTAN in a defined nominal vote field; meaning remains unconfirmed without a schema.",
+    "H0": "In the specifically retrieved XV XML file(s), the exact literal is absent or the material is not nominal.",
+    "Hother": "The phrase is a display label, transformation, or another file revision and cannot be tied to public XV XML without aligned schema."
+  },
+  "C_design": {
+    "bounded_access": "At most five targeted web searches and four official primary-source page/file opens, then at most two direct linked XV XML fetches. Prefer direct official downloads over repeats of general Senate dictionary or technical tender.",
+    "primary_endpoint": "Exact occurrence of literal NO VOTAN in raw official XV initiative-linked nominal XML, with canonical URL, HTTP/retrieval result, date/format and SHA256 if original bytes available.",
+    "secondary_endpoint": "Official version-aligned XSD/dictionary explicitly connects the exact token to presence/abstention/vote state.",
+    "decision_rules": [
+      "XML literal observed in primary raw bytes -> exact occurrence documented; this alone does NOT establish meaning",
+      "Schema absent or no direct XML retrievable -> semantic mapping remains UNKNOWN",
+      "No URL/bytes -> NOT_VERIFIED; do not claim absence of token in entire XV corpus"
+    ],
+    "negative_control": "Do not treat a tender's SVE internal XML, a dictionary for parliamentary terms, page display, or an unverified snippet as nominal public XML semantics."
+  },
+  "D_instruments": {
+    "sources": [
+      "https://www.senado.es/web/relacionesciudadanos/datosabiertos/catalogodatos/votaciones/index.html?lang=es_ES"
+    ],
+    "tools": "Official site/web search and direct primary document reads, optional local SHA256 if original bytes can actually be acquired; no user credentials",
+    "prereg_before_source_examination": true
+  },
+  "E_execution": "PENDING",
+  "F_adversarial": "Reserved for source/format, version mismatch, name ambiguity and date leakage audit after actual observation",
+  "G_confirmation": "Independent format-aligned schema or official explanatory response required for meaning; absence of that source yields INCONCLUSIVE",
+  "H_update": "Record prior/posterior qualitative only, no numeric Bayesian claim",
+  "I_dictamen": "Separate data-format identification, semantic validity, temporal availability, scientific importance, privacy, and generalizability",
+  "J_decide": "CONTINUE/PIVOT/STOP_R5/REPAIR after evidence; do not start C02 automatically unless source result motivates distinct discriminant.",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "counts_as_valid_cycle": false
+}
