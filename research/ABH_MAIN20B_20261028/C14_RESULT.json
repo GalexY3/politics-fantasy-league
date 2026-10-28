@@ -1,0 +1,32 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "VALID_EVENT_PERSON_ID_SNAPSHOT_FIX",
+  "A": "Frozen event list aliases permit post-creation person attribution change",
+  "B": "Original accepts mutable list; changed list changes event.person_ids; fix constructs validated tuple",
+  "C": {
+    "prereg": "C14_PREREG.json",
+    "negative": "['F1'] -> append F2 changes event",
+    "positive": "tuple preserving, duplicate/nonstring invalid"
+  },
+  "D": {
+    "before": "a12802ac551b1f63f46dbf7dbceb6d093822d125",
+    "after": "64a8d937e182e30ffdbcd02159d5005f9254cded",
+    "commit": "f46c371cf73eeb8d1b9c7a05253e487d0b04dfe7",
+    "test": "tests/test_event_person_ids_snapshot.py",
+    "test_commit": "dd6458f704933038ecb0e66c90cec8eedf6ec292",
+    "runtime": "CPython isolated original alias and proposed constructor predicate, not full module"
+  },
+  "E": {
+    "before": "list alias changed person_ids after event creation",
+    "after": "tuple immutable and validated; 7/7 local focused checks PASS; source GitHub verified",
+    "full_pytest": "NOT_RUN"
+  },
+  "F": "No real person events ingested. Mapping metadata and person IDs now copy, but source provenance still requires attestation.",
+  "G": "T009 pending",
+  "H": "No CT2 or gates uplift",
+  "I": "Prevent synthetic scoring attribution drift",
+  "J": "ACCEPT patch with tests"
+}
