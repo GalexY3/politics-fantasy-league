@@ -1,0 +1,58 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C05",
+  "type": "EXPERIMENTAL_AB_R",
+  "status": "PREREGISTERED_BEFORE_SYNTHETIC_COMPARISON",
+  "at": "2026-10-28T13:28:51.428Z",
+  "drift": "D1.5 from individual strict majority estimand to clustered aggregation estimand in sociological evaluation",
+  "A": {
+    "question": "Does session_bootstrap_ci estimate the mean of sessions or the mean of recorded observations when session sizes differ, and can a separate block bootstrap target the latter without treating individual rows as independent?",
+    "population": "Synthetic clusters of parliamentary sessions with unequal observed rollcall sample sizes",
+    "estimands": {
+      "session_equal": "Average of session-specific means, each session one unit",
+      "record_equal": "Sum of observed values divided by count of observed records, each row one unit; uncertainty clustered by session"
+    },
+    "primary_comparison": "100 zeros in session A; one ten in B: session equal mean=5, record equal mean=10/101"
+  },
+  "B": {
+    "H1": "Existing session_bootstrap_ci is session-equal; calling it an observation mean would introduce weighting bias under unequal cluster sizes",
+    "H0": "Existing outputs are already observation-weighted in both point estimate and resamples",
+    "alternative": "Both estimands scientifically legitimate when explicitly specified; difference is not code failure absent contract"
+  },
+  "C": {
+    "fixtures": [
+      {
+        "s1": "100 values of 0",
+        "s2": "one value of 10",
+        "expected_equal_sessions": 5,
+        "expected_equal_records": 0.09900990099009901
+      },
+      {
+        "s1": "two zeros",
+        "s2": "two tens",
+        "expected_equal_sessions": 5,
+        "expected_equal_records": 5
+      }
+    ],
+    "controls": [
+      "Maintain full-session block resampling for uncertainty, no per-vote i.i.d bootstrap",
+      "Same RNG seed gives identical output",
+      "Less than two clusters and nonfinite input rejected",
+      "Existing function and test semantics unchanged"
+    ],
+    "criterion": "Add separately named record-weighted session bootstrap and tests only after preserving first baseline",
+    "no_empirical_inference": true
+  },
+  "D": {
+    "source": "src/politics_fantasy/evaluation.py, Git blob 985846a93b8665bab15fd0db7144c3e4e458c5c3",
+    "original_test": "tests/test_evaluation.py, blob 0adacd4efd7428474a2842a1dc0fbb447a9b611c",
+    "execution": "Selected Python 3.13.5 independent synthetic calculation; full project pytest pending T008"
+  },
+  "E": "PENDING",
+  "F": "Unbalanced cluster weight is a target-population/estimand choice, not automatically a methodological mistake; sampling requires identifying real sessions and unequal coverage",
+  "G": "No human data or external calibration",
+  "H": "CT2 unchanged, no novelty",
+  "I": "Scientific validity through explicit weighting estimands, not claim discovery",
+  "J": "Implement separate estimator and stop if baseline already covers record-weighted."
+}
