@@ -3,11 +3,11 @@
   "campaign_id": "PFL-ABH-BRANCH20-20261028",
   "as_of": "2026-10-28",
   "grant": 20,
-  "valid": 15,
+  "valid": 16,
   "invalid": 1,
   "planning": 0,
-  "attempts": 16,
-  "remaining": 4,
+  "attempts": 17,
+  "remaining": 3,
   "status": "ACTIVE_STOP_R5_FOR_REPETITIVE_GUARDS_NEXT_DISTINCT_DISCRIMINANT_REQUIRED",
   "branch": "main",
   "base_branch": "research/pfl-codex-contributions-20261027",
@@ -178,6 +178,16 @@
       "historical_ci_run": 40344682502,
       "current_main_integration": "NOT_DONE",
       "scientific_grade": "0/3"
+    },
+    {
+      "id": "C17",
+      "type": "AB-P",
+      "status": "VALID_TWO_RED_FOURTEEN_GREEN_JSON_DUPLICATE_GUARD",
+      "prereg": "C17_PREREG.json",
+      "result": "C17_RESULT.json",
+      "atlas": "0052",
+      "targeted": "14/14",
+      "scientific_grade": "0/3"
     }
   ],
   "progress": {
@@ -190,12 +200,12 @@
     "gates_passed": 0
   },
   "atlas": {
-    "lots": 51,
+    "lots": 52,
     "derived_nodes": 63,
     "derived_edges": 81,
-    "derived_runs": 217,
+    "derived_runs": 218,
     "derived_complaints": 47,
-    "derived_operations": 391,
+    "derived_operations": 392,
     "canonical_python_checker": "NOT_RUN"
   },
   "tests": {
@@ -208,7 +218,7 @@
     "CHATRELAY 2_VALID_OF_5 and 3 unspent"
   ],
   "environment_blocker": "No full private repository checkout in container, git ls-remote failed Could not resolve host github.com. GitHub connector supports reading/writing files but does not execute native global pytest.",
-  "next_action": "Four remain: post-port independent parsing trust boundary in new historical metadata module, with red tests and minimal repair if exposed",
+  "next_action": "Three remaining: independent cross-module focused integration tests C18 then different evidence line C19 and final C20 audit if justified. T008 still pending.",
   "permissions": [
     "No public real-person scoring",
     "No originals nominales in Git",
