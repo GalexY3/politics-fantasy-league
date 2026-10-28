@@ -26,3 +26,10 @@
 **`main` será la rama de referencia para la siguiente actividad AB y para Codex**, sin crear ramas nuevas por defecto. Mantener ramas históricas como archivo hasta una revisión de equivalencia y valor; no borrarlas ni forzar referencias Git. Cualquier actualización de `main` debe conservar los límites científicos y operativos: CT2 identidad 29/100 ordinal, progreso V4 36,90 % contractual, VSDS 1/3, hallazgos nuevos N1/N2/N3 0/0/0, gates 0/6. T008 se conserva pendiente en `tareas_codex/`, con checker de Atlas 37 y suite completa Linux no ejecutada. No GitHub Actions costosas, no datos nominales privados ni scoring real.
 
 **Integración técnica propuesta y autorizada:** movimiento de ref `main` por fast-forward, `force=false`, comprobación de HEAD esperado, sin generar una PR de cientos de cambios que lance CI automática. El resultado efectivo del movimiento se verificará en GitHub por separado. Esta nota describe la auditoría y el plan; no inventa un merge realizado.
+
+## Resultado verificado del fast-forward — 28/10/2026
+
+**COMPLETADO:** GitHub devolvió `success: true` al mover `refs/heads/main` sin forzar, con expectativa de SHA anterior `f430a085fa1606c4fc7919a768b7b77976da5699` y destino `5d766d6466325698e14d865d12a919abed0f3c13`. Inmediatamente después, se leyó de nuevo la rama remota y se confirmó **`main` HEAD = `5d766d6466325698e14d865d12a919abed0f3c13`**; la comparación con `research/pfl-abh-branch20-20261028` devolvió `identical`, `ahead=0`, `behind=0`. La cola `tareas_codex/BACKLOG.json` se abrió desde `main`: `T008=PENDIENTE`, `atlas_lots=37`, `codex_available_to_user=false`; `ab_atlas/CURRENT.md` también leído en `main`.
+
+**Importante:** Esta verificación fue de refs, contenidos y documentación en GitHub, NO ejecución de tests, check del Atlas ni revisión del contenido de todos los commits. Conservar los 18 branches divergentes como candidatos de revisión. No existe ninguna tarea de Codex en ejecución; la cola está estacionada. Los commits de mantenimiento posteriores a este movimiento pueden hacer que `main` avance más allá del SHA indicado.
+
