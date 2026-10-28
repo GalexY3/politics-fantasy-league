@@ -1,0 +1,36 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C16",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:53:06.407Z",
+  "topic": "Legacy pinned two-record aggregate historical event manifest without individual scoring",
+  "preexposure": "Old ab-adaptive32 branch has congress_vote_evidence.py, and a matching aggregate observatory JSON not in current main; first ~2KB read during selection shows strict root keys, pinned option counts, rights NOT_INDEPENDENTLY_ADJUDICATED and first_public_at null.",
+  "A": "Can we recover a bounded historical aggregate artifact with strictly reproducible source metadata and original tests while keeping source rights and first_public_at unresolved?",
+  "B": {
+    "H1": "Old source and synthetic tests are valid and aggregate payload includes no nominal names; safe as read-only research sample",
+    "H0": "Data or tests reveal personal identifiers, rights overclaims, missing cryptographic anchoring or mismatch; avoid transfer"
+  },
+  "C": {
+    "acceptance": [
+      "Verify old code/test/data original blob SHA",
+      "Run unit tests against exact old module and aggregate fixture if possible",
+      "Ensure no individual row, no scoring/release, first_public_at null and rights not adjudicated",
+      "Port only metadata if clear; no nominal originals or auto endpoint"
+    ],
+    "stop": "No port when original data cannot be inspected or source rights category unverified"
+  },
+  "D": {
+    "branch": "research/pfl-ab-adaptive32-20261026",
+    "module": "src/politics_fantasy/congress_vote_evidence.py",
+    "test": "tests/test_congress_vote_evidence.py",
+    "data": "data/observatory/congress_20260723_vote_aggregate_verified.json"
+  },
+  "E": "PENDING",
+  "F": "Same source JSON and display values are not independent scientific replication or legally cleared profiling",
+  "G": "Full release and actual rights review not performed",
+  "H": "No new N1/CT2/VSDS/gates",
+  "I": "Historical source metadata availability and safe use",
+  "J": "Decide port/no port based on source inspection and tests; conserve negative."
+}
