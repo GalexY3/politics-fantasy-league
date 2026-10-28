@@ -24,18 +24,31 @@ let registry=clone(BASE),activeId=null,scope='',search='',statusFilter='all';
 function toast(t){const x=$('message');x.textContent=t;x.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>x.style.display='none',4500)}
 function validate(x){
  if(x?.schema!=='pfl.achievements.v1'||!Array.isArray(x.tracks)||!Array.isArray(x.achievements)||!Array.isArray(x.change_log))throw Error('Esquema de logros inválido');
- const tids=new Set(x.tracks.map(t=>t.id));if(tids.size!==x.tracks.length)throw Error('Secciones duplicadas');
- const ids=new Set();for(const a of x.achievements){
+ const expected=BASE.tracks;
+ if(x.tracks.length!==expected.length||expected.some(e=>!x.tracks.some(t=>t.id===e.id&&t.weight===e.weight)))throw Error('Las nueve ramas V4 y sus pesos deben conservarse');
+ if(x.v4_baseline?.progress_contractual_percent!==BASE.v4_baseline.progress_contractual_percent||x.v4_baseline?.critical_release_gates_passed!==BASE.v4_baseline.critical_release_gates_passed)throw Error('No alterar progreso V4 ni gates mediante logros');
+ if(!Number.isSafeInteger(x.version)||x.version<1||x.change_log.length!==x.version)throw Error('Versión de registro sin historial completo');
+ for(let i=0;i<x.change_log.length;i++){
+   const ev=x.change_log[i];
+   if(!ev||ev.seq!==i+1||ev.registry_version!==i+1||typeof ev.type!=='string'||!ev.type||typeof ev.reason!=='string'||!ev.reason.trim())throw Error('Secuencia de auditoría interrumpida');
+ }
+ const origin=x.change_log[0];
+ if(origin.type!=='registry.created'||!Array.isArray(origin.affected_ids)||origin.affected_ids.length!==90)throw Error('Origen de logros no acreditado');
+ const ids=new Set();
+ for(const a of x.achievements){
   if(typeof a.id!=='string'||!/^PFL-[A-Z0-9-]{3,80}$/.test(a.id)||ids.has(a.id))throw Error('ID duplicado o inválido');
-  ids.add(a.id);if(!tids.has(a.track_id))throw Error('Sección desconocida');
+  ids.add(a.id);if(!expected.some(t=>t.id===a.track_id))throw Error('Sección desconocida');
   if(!['locked','unlocked','retired'].includes(a.status)||!a.title?.trim()||!a.criteria?.trim())throw Error('Estado o criterio incompleto');
-  if(a.status==='unlocked'&&(!a.verified_by?.trim()||!Array.isArray(a.evidence)||!a.evidence.length||!a.verified_at))throw Error('Logro no verificable '+a.id);
+  if(a.status==='unlocked'){
+    if(!a.verified_by?.trim()||!Array.isArray(a.evidence)||!a.evidence.length||!a.verified_at)throw Error('Logro no verificable '+a.id);
+    const events=x.change_log.filter(e=>e.achievement_id===a.id);
+    if(events.at(-1)?.type!=='achievement.unlocked')throw Error('Logro desbloqueado sin evento auditado '+a.id);
+  }
  }
  for(const a of x.achievements){
   if((a.prerequisites||[]).some(k=>!ids.has(k)||k===a.id))throw Error('Dependencia inválida '+a.id);
   if(a.status==='unlocked'&&(a.prerequisites||[]).some(k=>x.achievements.find(z=>z.id===k)?.status!=='unlocked'))throw Error('Desbloqueo sin requisitos anteriores');
  }
- if(!Number.isSafeInteger(x.version)||x.version<1)throw Error('Versión inválida');
  return true;
 }
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(registry))}catch(_){}}
