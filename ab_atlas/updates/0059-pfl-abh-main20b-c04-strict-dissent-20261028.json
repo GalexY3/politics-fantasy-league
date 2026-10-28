@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0059-PFL-ABH-MAIN20B-C04-STRICT-DISSENT-20261028",
+  "parent_batch": "0058-PFL-ABH-MAIN20B-C03-RIGHTS-20261028",
+  "at": "2026-10-28T13:27:46.433Z",
+  "actor": "chatgpt",
+  "reason": "New20 C04 AB-R prereg synthetic group choice 4/9 plurality was mislabeled as dissent from majority downstream; preserving legacy modal API, added strict majority dissent and used in synthetic lab; 11 isolated Python checks PASS, full suite NOT_RUN.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C04-STRICT-MAJORITY-DISSENT",
+        "activity": "Sociological estimand upgrade: distinguish modal nonconformity from votes against strict >50% group majority, 4/3/2 counterexample and 11 targeted checks",
+        "status": "completed",
+        "at": "2026-10-28T13:27:46.433Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C04_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C04_RESULT.json",
+          "tests/test_strict_group_dissent.py"
+        ],
+        "scope": "Synthetic lab only; neither party discipline nor identity/cause, 0 release gates",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
