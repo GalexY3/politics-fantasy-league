@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "D": {
+    "source1": "C01_GALICIA_SOURCE_RECONCILIATION.json",
+    "source2": "C02_GALICIA_FULL_PROVINCIAL_REPLAY.json",
+    "source3": "C04_EUROPE_2024_STATEWIDE_REPLAY.json",
+    "first_pub": "Unknown beyond publication date, never infer exact first_public_at",
+    "coverage": "Only two election cases known before prereg, not heldout source evaluation"
+  },
+  "A": "Can an exact reproducible source-grain and ballot-identity contract reject 2024 Galicia's DOG official 100-ballot contradiction and invalid EU provincial seat allocations without rejecting verified coherent province or Europe national tallies?",
+  "B": {
+    "H1": "Small safe validator passes coherent four-province Gala 2024 and 2024 EU 61-seat national, rejects unbalanced DOG national original, tampered nulos, duplicate province, national-vs-provincial seat scope and incomplete necessary fields",
+    "H0": "Any inconsistent or wrong-scope fixture passes, or correct baseline fails"
+  },
+  "C": "Implement Python stdlib pure research-only validator and actual unittest tests on values from official DOG Galicia and BOE EU fixtures, with a controlled red failing baseline before implementing module, then green; use country/region code and elected seat territorial_scope to forbid false aggregation. Hash submitted code and tests, record tests actually run; do NOT run full repo or claim external originality.",
+  "E": "PENDING",
+  "F": "Inputs are copies of source figures; passing tests cannot authenticate publisher, legal reuse or actual future XLSX; false positivies/negatives bound to explicitly accepted schema",
+  "G": "No clean Linux suite or original binary; exact harness must be transparently isolated.",
+  "H": {
+    "CT2_before": 29,
+    "V4": 36.9
+  },
+  "I": "No candidate names",
+  "J": "If tests green, publish module and tests in branch; if red unresolved, classify blocked and no claimed pass."
+}
