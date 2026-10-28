@@ -1,0 +1,29 @@
+Obtaining file:///tmp/repo/proyectos/politics-fantasy-league
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting tzdata
+  Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting pytest-subtests
+  Downloading pytest_subtests-0.15.0-py3-none-any.whl.metadata (6.0 kB)
+Requirement already satisfied: pytest>=7 in /usr/lib/python3.14/site-packages (from politics-fantasy-lab==0.7.0) (9.0.3)
+Requirement already satisfied: numpy>=1.24 in /usr/lib/python3.14/site-packages (from politics-fantasy-lab==0.7.0) (2.4.6)
+Collecting attrs>=19.2.0 (from pytest-subtests)
+  Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Requirement already satisfied: iniconfig>=1.0.1 in /usr/lib/python3.14/site-packages (from pytest>=7->politics-fantasy-lab==0.7.0) (2.3.0)
+Requirement already satisfied: packaging>=22 in /usr/lib/python3.14/site-packages (from pytest>=7->politics-fantasy-lab==0.7.0) (26.2)
+Requirement already satisfied: pluggy<2,>=1.5 in /usr/lib/python3.14/site-packages (from pytest>=7->politics-fantasy-lab==0.7.0) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in /usr/lib/python3.14/site-packages (from pytest>=7->politics-fantasy-lab==0.7.0) (2.20.0)
+Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+Downloading pytest_subtests-0.15.0-py3-none-any.whl (9.2 kB)
+Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Building wheels for collected packages: politics-fantasy-lab
+  Building editable for politics-fantasy-lab (pyproject.toml): started
+  Building editable for politics-fantasy-lab (pyproject.toml): finished with status 'done'
+  Created wheel for politics-fantasy-lab: filename=politics_fantasy_lab-0.7.0-0.editable-py3-none-any.whl size=1856 sha256=4d0d77c9c5d2a124fb86b9c7493118b7ba719d6e039c1d2c96900d8841e43d44
+  Stored in directory: /tmp/pip-ephem-wheel-cache-lmeqy266/wheels/f4/9e/0b/7fb11fbdf7846e1106b1941f02da95415fae82f939933f5611
+Successfully built politics-fantasy-lab
+Installing collected packages: tzdata, politics-fantasy-lab, attrs, pytest-subtests
+
+Successfully installed attrs-26.1.0 politics-fantasy-lab-0.7.0 pytest-subtests-0.15.0 tzdata-2026.6

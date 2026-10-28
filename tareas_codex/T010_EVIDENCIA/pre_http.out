@@ -1,0 +1,35 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_______________ test_ambiguous_duplicate_club_creation_rejected _______________
+
+tmp_path = WindowsPath('C:/Users/potot/AppData/Local/Temp/pytest-of-potot/pytest-0/test_ambiguous_duplicate_club_0')
+
+    def test_ambiguous_duplicate_club_creation_rejected(tmp_path):
+        path=tmp_path/'demo.sqlite'
+        seed_demo(path)
+        srv=ThreadingHTTPServer(('127.0.0.1',0),handler_factory(path,None,None))
+        thread=threading.Thread(target=srv.serve_forever,daemon=True)
+        thread.start()
+        try:
+            def send(payload):
+                conn=http.client.HTTPConnection('127.0.0.1',srv.server_port,timeout=4)
+                conn.request('POST','/api/clubs',body=payload,
+                             headers={'Host':f'127.0.0.1:{srv.server_port}',
+                                      'Content-Type':'application/json'})
+                res=conn.getresponse()
+                code=res.status
+                body=json.loads(res.read())
+                conn.close()
+                return code,body
+            status,bad=send('{"name":"Club Primero","name":"Club Segundo"}')
+            assert status==400 and bad['error']=='BAD_REQUEST'
+            status,bad=send('{"name":"Club A","nested":{"x":1,"x":2}}')
+            assert status==400
+            status,ok=send('{"name":"Club Único"}')
+>           assert status==200 and ok['ok'] is True
+E           assert (400 == 200)
+
+tests\test_http_duplicate_json_keys.py:31: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_http_duplicate_json_keys.py::test_ambiguous_duplicate_club_creation_rejected
+1 failed in 1.20s

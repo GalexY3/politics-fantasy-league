@@ -12,10 +12,13 @@ def test_ambiguous_duplicate_club_creation_rejected(tmp_path):
     srv=ThreadingHTTPServer(('127.0.0.1',0),handler_factory(path,None,None))
     thread=threading.Thread(target=srv.serve_forever,daemon=True)
     thread.start()
+    transmitted = []
     try:
         def send(payload):
             conn=http.client.HTTPConnection('127.0.0.1',srv.server_port,timeout=4)
-            conn.request('POST','/api/clubs',body=payload,
+            body_bytes = payload.encode('utf-8')
+            transmitted.append(body_bytes)
+            conn.request('POST','/api/clubs',body=body_bytes,
                          headers={'Host':f'127.0.0.1:{srv.server_port}',
                                   'Content-Type':'application/json'})
             res=conn.getresponse()
@@ -26,9 +29,10 @@ def test_ambiguous_duplicate_club_creation_rejected(tmp_path):
         status,bad=send('{"name":"Club Primero","name":"Club Segundo"}')
         assert status==400 and bad['error']=='BAD_REQUEST'
         status,bad=send('{"name":"Club A","nested":{"x":1,"x":2}}')
-        assert status==400
+        assert status==400 and bad['error']=='BAD_REQUEST'
         status,ok=send('{"name":"Club Único"}')
         assert status==200 and ok['ok'] is True
+        assert b'Club \xc3\x9anico' in transmitted[-1]
     finally:
         srv.shutdown()
         srv.server_close()

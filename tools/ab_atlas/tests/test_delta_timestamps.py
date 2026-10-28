@@ -29,6 +29,8 @@ class BatchTimestampTests(unittest.TestCase):
             "2026-10-28",
             "",
             "2026-10-28T12:10:00+99:99",
+            "2026-10-28T12:10:00+01:99",
+            None,
         ):
             with self.subTest(at=at), self.assertRaisesRegex(ValueError, "Timestamp ISO-8601"):
                 delta.batch_check(self.sample(at))
