@@ -1,0 +1,110 @@
+{
+  "schema": "ab.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C02",
+  "prereg_file": "C02_PREREG.json",
+  "prereg_commit": "7bea38aaacb2a6fb7426e12d4f4402350ac9068e",
+  "mode": "AB-R",
+  "kind": "BOUNDED_DOCUMENTARY_SOURCE_ACCESS",
+  "status": "COMPLETED_INCONCLUSIVE_NEW_ARCHIVE_INDEX",
+  "counts_as_valid_documentary_cycle": true,
+  "counts_as_scientific_experiment": false,
+  "A_question": "Can independent official issue/archival HTML or PDF verify the CCYL candidate-acceptance vs plenary-designation stages, replacing inaccessible individual XML?",
+  "B_hypotheses": {
+    "H1": "Full original PDF/HTML retrievable and matching both CVEs",
+    "H0": "No new original acquired within bounded attempts",
+    "Hother": "Only official index is available, not complete original; source date cannot prove first-public instant"
+  },
+  "C_prereg_limits": {
+    "searches_max": 5,
+    "official_opens_max": 4,
+    "pdf_screenshots_max": 2
+  },
+  "D_actual_execution": {
+    "searches": 5,
+    "official_opens": 4,
+    "pdf_screenshots": 0,
+    "official_complete_pdf_downloads": 0,
+    "official_complete_html_originals_directly_read": 0,
+    "github_repo_test_executions": 0,
+    "real_person_scoring": false
+  },
+  "E_observations": [
+    {
+      "type": "OFFICIAL_SEARCH_INDEX_FULL_TEXT",
+      "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml",
+      "cve": "BOCCL-12-000986",
+      "issue": "BOCCL 32/12",
+      "issue_date": "2026-09-10",
+      "indexed_claim": "Acceptance of nominated candidate list; text dated 2026-09-03",
+      "direct_open": "CACHE_MISS: reader tool",
+      "raw_original_acquired": false
+    },
+    {
+      "type": "OFFICIAL_SEARCH_INDEX_FULL_TEXT",
+      "url": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml",
+      "cve": "BOCCL-12-001042",
+      "issue": "BOCCL 34/12",
+      "issue_date": "2026-09-16",
+      "indexed_claim": "Plenary designation on 2026-09-10",
+      "direct_open": "CACHE_MISS: reader tool",
+      "raw_original_acquired": false
+    },
+    {
+      "type": "NEW_OFFICIAL_ISSUE_ARCHIVE_INDEX",
+      "url": "https://sirdoc.ccyl.es/poccyl/Boletin.asp?Leg=12",
+      "indexed_claim": "Official searchable archive separately lists BOCCL 32/12 dated 10 September and 34/12 dated 16 September 2026 with PDF labels and pagination",
+      "direct_open": "NOT_OPENED: within protocol limited to 4 primary opens; search-index observation only",
+      "raw_original_acquired": false
+    },
+    {
+      "type": "NEW_OFFICIAL_ISSUE_SUMMARY_INDEX",
+      "url": "https://www.ccyl.es/Publicaciones/EntradasPublicacion?Legislatura=12&NumeroPublicacion=34&SeriePublicacion=BOCCL",
+      "indexed_claim": "Lists ESE/12/000002-2 and CVE BOCCL-12-001042 at p 2922, consistent with 16 September issue",
+      "direct_open": "CACHE_MISS: reader tool",
+      "raw_original_acquired": false
+    },
+    {
+      "type": "OFFICIAL_ARCHIVE_INDEX",
+      "url": "https://sirdoc.ccyl.es/POCCYL/Ultimas.asp",
+      "indexed_claim": "Archive lists BOCCL 34/12 of 16 Sept (pp 2913–2926) and PDF label",
+      "direct_open": "400 Unicode decoding error reported by retrieval layer; do not attribute to origin",
+      "raw_original_acquired": false
+    }
+  ],
+  "F_adversarial": {
+    "issues": "An index/search result can be indexed from legitimate institutional pages but does not establish raw file accessibility or complete original. Publication issue day != first_public_at; 2022 ESE short ref collision means scoped CVE mandatory. Tool CACHE_MISS/Unicode error are retriever failures, not publisher refusal.",
+    "prior_art_exposure": "C67/C70/C71 already identified two CVEs and their roles from indexed sources; current archival listing improves navigation, not a new discovery about Senate status."
+  },
+  "G_confirmation": "INCONCLUSIVE: no actual PDF/HTML original payload or independent publisher timestamps captured. No historical availability / identity certification.",
+  "H_update": {
+    "belief": "Separate stages corroborated at official indexed/archive level; direct source bytes still unknown",
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "release_gates_passed": 0,
+    "new_N1": 0,
+    "new_N2": 0,
+    "new_N3": 0
+  },
+  "I_assessment": {
+    "methodological_validity": "Bounded preregistered documentary attempt completed after prereg; valid negative/access-limit result, not scientific validation",
+    "original_authentication": "No original bytes or digest",
+    "temporality": "Issue dates indexed, exact first publication UNKNOWN",
+    "utility": "A distinct official archive route identified for external browser/operator",
+    "privacy": "No nominal data saved or scored",
+    "novelty": "No scientific novelty. Original-stage claim previously known."
+  },
+  "J_decide": "STOP_R5: no further repeat web searching for these CVEs without an actual independently retrievable official issue PDF or source. Next useful distinct evidence: full checkout Linux/POSIX for T008, or new authentic original with legal permission.",
+  "classification": "VALID_DOCUMENTARY_AJ_NEGATIVE_NOT_INDEPENDENT_EMPIRICAL_CONFIRMATION",
+  "links": [
+    "https://sirdoc.ccyl.es/poccyl/Boletin.asp?Leg=12",
+    "https://www.ccyl.es/Publicaciones/EntradasPublicacion?Legislatura=12&NumeroPublicacion=34&SeriePublicacion=BOCCL"
+  ],
+  "limitations": [
+    "Search engine indexed text is not a verified local copy or SHA of publisher's original",
+    "Four actual direct opens returned caching/decoding errors",
+    "No PDF page inspected or XML downloaded",
+    "No first_public_at, no individual identity certification, no gate uplift"
+  ]
+}
