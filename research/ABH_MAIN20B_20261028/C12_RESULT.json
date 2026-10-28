@@ -1,0 +1,35 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C12",
+  "mode": "AB-R",
+  "status": "VALID_DOWNSTREAM_GROUP_REPORT_MAJORITY_SEMANTICS",
+  "A": "Group summary nonmodal opposition must not be mislabeled as opposition to genuine majority",
+  "B": "H1 demonstrated in 4/3/2: legacy dissent_from_group_majority 5 without strict >50%",
+  "C": {
+    "prereg": "C12_PREREG.json",
+    "positive": [
+      "6/3/0 strict YES, nonmajority3"
+    ],
+    "negative": [
+      "4/3/2 strict undefined, modal nonmodal5",
+      "1/1/0 tie undefined"
+    ]
+  },
+  "D": {
+    "original_source": "eb6bdaf34e621b294d44811a817ecceb19ac2732",
+    "updated_blob": "973bea8583e41eeb64398006f892872af2f9c473",
+    "code_commit": "dcf50541b5499677d023fde15a36151b1e0a5518",
+    "test_commit": "043ea2da06f89641ed0362ce62fff6e5a1655259",
+    "local": "Python reconstructed threshold examples; committed pytest not executed"
+  },
+  "E": {
+    "counterexample": "4 YES 3 NO 2 ABSTAIN: modal YES, nonmodal5, no strict majority",
+    "after": "Retain legacy majority modal with majority_kind; new strict_majority and dissent null where no majority; code verified by GitHub SHA"
+  },
+  "F": "Conceptual check partly repeats C04, but independently fixes a distinct groupmetrics report surface not altered in C04. No causal party discipline inference.",
+  "G": "T009 pending",
+  "H": "No novelty or CT2 uplift",
+  "I": "Prevents ambiguous sociological report field while preserving compatibility",
+  "J": "ACCEPT patch; STOP_R5 further modal/strict variants"
+}
