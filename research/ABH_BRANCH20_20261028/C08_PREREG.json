@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C08",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "date": "2026-10-28",
+  "topic": "Overview hard-coded five-stage progress claims without source contract",
+  "preexposure": "Observed overview uses a 5-span progress bar hard-coded i<3, labelled 'Prototipo de producción 5 etapas'; separate audited V4 36.9% and gates 0/6. Existing design may confuse users.",
+  "A": "Does overview render an invented 3-of-5 readiness visual not derived from any project milestone or gates?",
+  "B": {
+    "H1": "Hardcoded three active spans can be interpreted as progress despite gates 0/6 and no underlying milestones",
+    "H0": "Stages are sourced from verified five concrete gates",
+    "alternative": "3-of-5 merely decorative but still ambiguously labelled production progress"
+  },
+  "C": {
+    "primary": "Verify literal source and lack of any binding to progress/report, then remove pseudo-percent if not grounded, replacing with explicit separation of local demo vs verified readiness. No scoring or release claim.",
+    "negative": "A deliberate static source test must reject 5-stage hardcoded bars yet retain the explicit not-ready, synthetic-only caveats."
+  },
+  "D": {
+    "source": "GitHub main src/politics_fantasy/web/app.js exact SHA 9019492cf79e2c2d47bff1bdd01cda437f53af0e",
+    "tool": "GitHub source compare; focused source assertion test in Node, no browser or global suite"
+  },
+  "E": "PENDING",
+  "F": "Do not conflate ordinal CT2 for predictive research and identity CT2 (different subscale). Avoid changing existing 24/100 forecast without provenance.",
+  "G": "Focused static UI assertions, full rendered browser not available here",
+  "H": "No V4/CT2/gate changes",
+  "I": "User-facing measurement honesty, not scientific discovery",
+  "J": "Accept removal if misleading interpretation verified; record browser smoke still pending."
+}
