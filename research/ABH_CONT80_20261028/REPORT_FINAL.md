@@ -1,3 +1,7 @@
+**Estado actualizado C73-C76 (28/10/2026):** 16/20 ciclos A-J ejecutados, cuatro no consumidos STOP_R5. [Informe independiente de los cuatro ciclos y 31 tests originales Linux POSIX](C73_C76_POSIX_REPORT.md). Atlas `0034`, 34 lotes, 197 runs, 366 operaciones derivados. Check Python canónico de 34 lotes NO ejecutado. Las adendas anteriores son históricas.
+
+---
+
 # Adenda C72 · reconciliación de resultados de Codex en la rama
 
 **Estado más reciente CONT80: 12/20 ciclos A–J ejecutados C61–C72, ocho sin utilizar (STOP_R5).** La adenda anterior (C69–C71, 11/20) y el cierre histórico C61–C68 (8/20) son hitos previos, no el balance actual. [Ledger](CAMPAIGN_STATUS.json) y [Atlas 0031](../../ab_atlas/updates/0031-pfl-abh-cont80-c72-20261028.json).
