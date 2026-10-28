@@ -1,0 +1,43 @@
+{
+  "cycle": "C61",
+  "mode": "AB-R",
+  "status": "VALID_DOCUMENTARY_CONFLICT_RECONCILIATION_NO_NEW_CAPTURE",
+  "A": {
+    "question": "Did C55 incorrectly imply Ministry's Congress elected-official XLSX had never been captured, and what does previous evidence establish?"
+  },
+  "B": {
+    "H1": "A prior SHA and aggregate profile exists",
+    "H2": "Only open-data catalog metadata exists",
+    "H3": "Metadata without trustworthy receipt still no verified original capture"
+  },
+  "C": "Read current source catalogue, 2026-10-27 exact RC01_PROFILE.json and audit script, compared C55 result. Created explicit errata, preserving historical wording.",
+  "D": {
+    "catalogue": "docs/CATALOGO_FUENTES.md",
+    "prior_profile_sha": "d5307a83f62ca3ccb12f59e6dfec8fd26f8c8157",
+    "profile_source_sha256": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+    "script_blob": "c828bd69783a1b993a6f1090318002a3b80e5e2c",
+    "errata": "C61_ERRATA_ORIGINAL_INTERIOR.md"
+  },
+  "E": {
+    "prior_capture_date": "2026-10-27",
+    "bytes": 326847,
+    "rows": 5600,
+    "election_dates": 16,
+    "sheet_count": 1,
+    "prior_exploratory": true,
+    "download_during_C61": false,
+    "original_file_available_this_container": false
+  },
+  "F": "C61 checked only archived profile and code; no fresh binary hash verification or publisher signature. Distinct-name reuse across elections is not certified longitudinal identity.",
+  "G": "Repository-internal cross-source consistency, independently read hashes, no external capture",
+  "H": "Close false gap, focus next on actual identity rights and source timestamps rather than re-profiling the same XLSX.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novelty": "0/3",
+    "DRIFT": "D1"
+  },
+  "J": "C62 investigate whether a Senate publicly downloadable original XML/XSD can be fetched with authentic provenance, else STOP unresolved."
+}
