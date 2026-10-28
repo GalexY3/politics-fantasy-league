@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 13,
+    "valid": 15,
     "invalid": 0,
     "planning": 0,
-    "used": 13,
-    "remaining": 7
+    "used": 15,
+    "remaining": 5
   },
-  "state": "ACTIVE_13_VALID_7_REMAINING",
+  "state": "ACTIVE_15_VALID_5_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -185,19 +185,37 @@
       "result": "C13_RESULT.json",
       "atlas": "0068",
       "science_grade": 0
+    },
+    {
+      "cycle": "C14",
+      "type": "AB-P",
+      "status": "VALID_EVENT_PERSON_ID_SNAPSHOT_FIX",
+      "prereg": "C14_PREREG.json",
+      "result": "C14_RESULT.json",
+      "atlas": "0069",
+      "science_grade": 0
+    },
+    {
+      "cycle": "C15",
+      "type": "AB-P",
+      "status": "VALID_ROUND_SCORING_INTERVAL_FILTER",
+      "prereg": "C15_PREREG.json",
+      "result": "C15_RESULT.json",
+      "atlas": "0070",
+      "science_grade": 0
     }
   ],
   "atlas_current": {
-    "lots_documentary": 68,
+    "lots_documentary": 70,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 234,
+    "runs_documentary": 236,
     "complaints_documentary": 48,
-    "operations_documentary": 409,
-    "canonical_python_checker": "NOT_RUN_FOR_68_PATCHES",
+    "operations_documentary": 411,
+    "canonical_python_checker": "NOT_RUN_FOR_70_PATCHES",
     "canonical_sha256": null
   },
-  "next": "Seven left: distinct evidence and code boundary controls, R5 forbids repeating prior sample classes. T009 full test priority.",
+  "next": "C16 HTTP JSON request duplicate key ambiguity; C17 and C18 source/product independent issues, C19 audit, C20 closure only with actual evidence; T009 pending.",
   "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS62",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
