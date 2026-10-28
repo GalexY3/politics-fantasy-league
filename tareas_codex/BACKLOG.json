@@ -11,8 +11,8 @@
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 60,
-    "canonical_atlas": "HISTORICAL_T007_31_LOTS_PASS_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca__CURRENT_60_NOT_RUN",
-    "full_repo_python": "HISTORICAL_WINDOWS_T002:57_FAIL_558_PASS_28_SKIP;HISTORICAL_SELECTED_LINUX_CONT80:89_PASS_14_SUBTESTS;BRANCH20_SELECTED_TARGETED_SUITES_ONLY;CURRENT_MAIN_FULL_LINUX_NOT_RUN;MAIN20B_C01_C05_FOCUSED_ONLY_NOT_FULL",
+    "canonical_atlas": "HISTORICAL_ATLAS35_CHECKOUT_9d0ef84_PASS_SHA256_bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81;CURRENT_MAIN_60_LOTS_CANONICAL_NOT_RUN",
+    "full_repo_python": "T008_HISTORICAL_COMPLETE_LINUX_ALPINE_QEMU_CHECKOUT_b0344d1_651_PASS_28_SUBTESTS_0_FAIL_0_SKIP;CURRENT_MAIN_60_LOTS_FULL_PYTEST_NOT_RUN",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
@@ -133,10 +133,10 @@
     },
     {
       "id": "PFL-CODEX-T008",
-      "title": "Suite íntegra Linux/POSIX en main y checker canónico Atlas 60 lotes (T008 P0)",
+      "title": "Suite Python completa Linux Alpine QEMU verificada exclusivamente en checkout histórico b0344d1",
       "priority": "P0",
       "file": "T008_SUITE_COMPLETA_POSIX.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_VERIFICADA",
       "depends_on": [],
       "completion_requires": [
         "full checkout actual Linux",
@@ -145,13 +145,7 @@
         "no CI/main merge",
         "record HEAD and filesystem",
         "full Linux pytest from updated main exact HEAD with stdout/stderr/exit and PASS/FAIL/SKIP",
-        "native Python Atlas delta check for 60 patches with canonical SHA256",
-        "run original + new targeted tests C03/C04, C07-C18 including imported historical helpers and `tests/test_overview_readiness_copy.mjs` only if Node explicitly required",
-        "audit C19 open complaint `PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT` and report timestamp schema policy without rewriting old patches",
-        "report no more than evidence: original full suite and native 60-checker remain NOT_RUN",
-        "Include new `ab_atlas/tests/test_delta_timestamps.py` and assess historic 0015->0016 1534s timestamp regression without rewriting old patch",
-        "Include new Python tests `tests/test_strict_group_dissent.py` and `tests/test_cluster_bootstrap_estimands.py`, plus all earlier suites",
-        "Validate C01 strict date preflight on original 60-patch replay; C19 complaint remains OPEN until real full checker and regression suite evidence"
+        "run original + new targeted tests C03/C04, C07-C18 including imported historical helpers and `tests/test_overview_readiness_copy.mjs` only if Node explicitly required"
       ],
       "observed_selected_linux_suite": {
         "tests_passed": 89,
@@ -166,7 +160,51 @@
         "See ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md as current command contract; treat branch references there as historical if main was consolidated",
         "Incorporate C03 majority_sign.py / test_majority_sign_failclosed.py and C04 scoring.py / test_scoring_rule_contract.py, compare targeted red-to-green reproductions with complete suite; do not infer broader compatibility from focused passes.",
         "Campaign BRANCH20 closed 2026-10-28 with 19 valid A-J and 1 invalid C01; executing T008 does not consume an AB cycle.",
-        "MAIN20B C01–C05 documented only selected controls; full Linux and canonical checker remain NOT_RUN. Never infer release gates from source/rights notices."
+        "MAIN20B C01–C05 documented only selected controls; full Linux and canonical checker remain NOT_RUN. Never infer release gates from source/rights notices.",
+        "2026-10-28: User supplied original Codex report in commit 0c940f0; exact original report and stdout Git blobs copied to main. Historical 651 pass+28 subtests verified from original report and stdout. Do not claim main 60 tested."
+      ],
+      "result_file": "T008_RESULTADO.md",
+      "final_stdout": "T008_POSIX_FINAL_STDOUT.txt",
+      "final_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
+      "report_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
+      "report_git_blob": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
+      "reported_result": {
+        "passed": 651,
+        "subtests_passed": 28,
+        "failed": 0,
+        "skipped": 0,
+        "exit": 0,
+        "runner": "Linux Alpine 3.24.3 QEMU temporary guest, Python 3.14.10 pytest 9.0.3",
+        "initial_failed_runs": 2,
+        "scope": "ONLY_COMMIT_b0344d1"
+      },
+      "checkpoint_note": "T008 historical complete; its earlier completion_requires applied to b0344d1 not main. Main follow-up T009 is separate. See T008_RECONCILIACION_MAIN_20261028.md."
+    },
+    {
+      "id": "PFL-CODEX-T009",
+      "title": "Revalidar main actual: Linux/POSIX full pytest + checker canónico Atlas 60",
+      "priority": "P0",
+      "file": "T009_MAIN_LINUX_ATLAS60.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "completion_requires": [
+        "checkout completo HEAD actual main sin modificaciones",
+        "primera corrida Python completa con logs stdout/stderr/exit y SHA",
+        "checker original ab_atlas/atlas_delta.py sobre todos los 60 deltas y SHA canónico (o número actualizado al ejecutarlo)",
+        "todos los nuevos test files posteriores a b0344d1 incluidos: guard timestamp, strict dissent, cluster bootstrap, source parsers, scoring rules, others",
+        "node test de overview y suite JS si procede",
+        "clasificación ambiental vs bugs, no CI costosa, ni nuevas autorizaciones automáticas"
+      ],
+      "baseline_verified": {
+        "t008_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
+        "pytest_pass": 651,
+        "subtest_pass": 28,
+        "atlas35_checkout": "9d0ef8433f92749b3f3364f31139b07320f1ec16",
+        "atlas35_sha": "bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81"
+      },
+      "current_main_atlas_lots": 60,
+      "notes": [
+        "Previous T008 is completed only at old checkout; T009 not executed. No automated Actions."
       ]
     }
   ],
@@ -174,7 +212,7 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "ChatGPT 2026-10-28 GitHub read and focused Python; Atlas60 documentary 226 runs 48 complaints 401 ops, native check NOT_RUN. MAIN20B active 5 valid 0 invalid 15 remaining.",
+  "last_verified_by": "GitHub 2026-10-28: original Codex T008 651 passed+28 subtests at b0344d1 copied SHA-exact, historic Atlas 35 PASS at 9d0ef84; current main 60-lot Python full suite and canonical checker NOT_RUN; MAIN20B 5 valid 15 left.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
@@ -196,5 +234,13 @@
     "remaining": 0,
     "status": "CLOSED",
     "not_part_of_codex_execution": true
-  }
+  },
+  "T008_historical_verified": {
+    "checkout": "b0344d1a1549e66274a347333239b81fc7575100",
+    "report_file": "T008_RESULTADO.md",
+    "stdout_file": "T008_POSIX_FINAL_STDOUT.txt",
+    "report_sha": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
+    "status": "COMPLETADA_VERIFICADA_ONLY_old_checkout"
+  },
+  "T009_current_main_status": "PENDIENTE"
 }
