@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "DRIFT_D": 2.1,
+  "A": "Among fixed US House 119th Congress 2025 roll calls 178–183, is low net voting margin a sufficient proxy for higher party cohesion, or does party-vote dissent differ by procedural vote type?",
+  "population": "All 6 consecutive roll call numbers 178..183 first session 2025 (no selection based on outcomes)",
+  "unit": "Division × party aggregate counts; not individuals or moral/political traits",
+  "estimands": [
+    "two party yea shares per division",
+    "within-party dissent rate  min(yea,no)/(yea+no) each party",
+    "cross-party party-majority opposition indicator; only when both have recorded votes"
+  ],
+  "B": {
+    "H1": "Procedural motion category explains meaningful variation in party alignments not captured by net Aye−No margin alone",
+    "H0": "No heterogeneity by recorded procedural category or no eligible records",
+    "Halt": "Sample too small, source HTML missing/no exact XML bytes, party composition shifts; no causal effect identification"
+  },
+  "C": "Freeze six consecutive 2025 roll numbers 178–183, extract from official US Clerk HTML party-level Yea/Nay/Present/Not voting and vote type/question before any further vote-result searches, preserve exact URLs, compute tallies and minority fractions. Roll 180 was accessed before prereg, designate preexposed and report sensitivity excluding it; no p-value confirmatory with n≤6.",
+  "D": {
+    "first_prereg": "Before 2025 outcomes 178,179,181,182,183; 180 pre-exposed",
+    "official_url_template": "https://clerk.house.gov/Votes/2025<rollno>",
+    "raw_xml_template": "https://clerk.house.gov/evs/2025/roll<rollno>.xml",
+    "raw_exposure": "roll180.xml web open 400 OK and container.download failed; zero XML original bytes, use HTML and do not claim native"
+  },
+  "E": "PENDING",
+  "F": "Two-party system and procedural outcome selected by agenda; association is not causal effect nor forecast",
+  "G": "Independent governmental issuer from UK source, not independent scientific model replication",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "Only party aggregates, no person names/profiles",
+  "J": "If parseable, register all six even negative and uncompetitive, do not cherry-pick; move to genuine independent 2026 session."
+}
