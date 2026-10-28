@@ -1,0 +1,31 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0061-PFL-ABH-MAIN20B-C06-T008-PROVENANCE-20261028",
+  "parent_batch": "0060-PFL-ABH-MAIN20B-C05-BOOTSTRAP-20261028",
+  "at": "2026-10-28T13:49:52.366Z",
+  "actor": "chatgpt",
+  "reason": "C06 prereg post-reconciliation SHA tree check: old original Codex T008 651 pass+28 subtests on b0344d1 and 35-lot Atlas check on 9d0ef84 safely imported into main as exact evidence only. Between pre-import main 894e1b7a and post-prereg head bab2dde, 7 existing docs modified, 6 new evidence/prereg files, no sources/tests/60 deltas overwritten. Current T009 full Linux suite and 60-lot canonical check pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C06-T008-PROVENANCE-CONTROL",
+        "activity": "AB-META post-prereg authenticated Git full-tree regression to verify provenance-only T008 historical reconciliation, 60 unchanged Atlas deltas and source/tests SHA stable; T009 pending.",
+        "status": "completed",
+        "at": "2026-10-28T13:49:52.366Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C06_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C06_RESULT.json",
+          "tareas_codex/T008_RECONCILIACION_MAIN_20261028.md",
+          "tareas_codex/T008_RESULTADO.md",
+          "tareas_codex/T009_MAIN_LINUX_ATLAS60.md"
+        ],
+        "scope": "Provenance of historical QA; no rerun of Linux or Atlas60, no scientific novelty or gate uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
