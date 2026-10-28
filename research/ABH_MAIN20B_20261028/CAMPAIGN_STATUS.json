@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 19,
+    "valid": 20,
     "invalid": 0,
     "planning": 0,
-    "used": 19,
-    "remaining": 1
+    "used": 20,
+    "remaining": 0
   },
-  "state": "ACTIVE_19_VALID_1_REMAINING",
+  "state": "CLOSED_20_VALID_0_INVALID_0_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -239,20 +239,30 @@
       "result": "C19_RESULT.json",
       "atlas": "0074",
       "science_grade": 0
+    },
+    {
+      "cycle": "C20",
+      "type": "AB-META",
+      "status": "VALID_FINAL_BUDGET_AND_RECORD_AUDIT",
+      "prereg": "C20_PREREG.json",
+      "result": "C20_RESULT.json",
+      "atlas": "0075",
+      "scope": "38 prior A-J files and five Git prereg-before-result chronology checks",
+      "science_grade": 0
     }
   ],
   "atlas_current": {
-    "lots_documentary": 74,
+    "lots_documentary": 75,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 240,
+    "runs_documentary": 241,
     "complaints_documentary": 48,
-    "operations_documentary": 415,
-    "canonical_python_checker": "NOT_RUN_FOR_74_PATCHES",
+    "operations_documentary": 416,
+    "canonical_python_checker": "NOT_RUN_FOR_75_PATCHES",
     "canonical_sha256": null
   },
-  "next": "C20 final prereg source-ledger audit and closure; T009 full Linux and Atlas final 75 pending.",
-  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS62",
+  "next": "All authorization exhausted. Execute T009 on exact current HEAD in Linux with all new tests and native Atlas75; don't claim science or release. New AB cycles require new explicit grant and meaningful independent evidence.",
+  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS75",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
     "tested_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
@@ -262,5 +272,18 @@
     "atlas35_sha256_reported": "bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81",
     "reconciled_main_doc": "tareas_codex/T008_RECONCILIACION_MAIN_20261028.md",
     "is_AB_cycle": false
+  },
+  "campaign_close": {
+    "date": "2026-10-28",
+    "authorization_granted": 20,
+    "valid": 20,
+    "invalid": 0,
+    "planning": 0,
+    "remaining": 0,
+    "last_batch": "0075-PFL-ABH-MAIN20B-C20-CLOSURE-20261028",
+    "report": "research/ABH_MAIN20B_20261028/FINAL_REPORT.md",
+    "C08_repair": "Initially blocked in C08; independently implemented in C11",
+    "current_main_full_pytest": "NOT_RUN",
+    "Atlas_canonical": "NOT_RUN"
   }
 }
