@@ -1,0 +1,11 @@
+{
+  "cycle": "C64",
+  "mode": "AB-P",
+  "A": "Can we persist a machine-readable *source-version receipt* for previously captured Interior elected XLSX, preserving dataset metadata, observed capture, and unknown first_public_at as separate typed fields, without any personal rows?",
+  "B": [
+    "Exact earlier file receipt and catalog metadata can be combined without provenance inflation",
+    "A reused catalog update gets wrongly inferred to be first_public_at"
+  ],
+  "C": "Create a versioned JSON manifest referencing original RC01 SHA/length/source and official catalogue, with explicit nulls; validate offline against matching archived RC01 metadata and absence of person fields; no new download.",
+  "D": "Fail if source_sha/size disagree, if first_public_at non-null, if publication verified is true, or if any personal row copied."
+}
