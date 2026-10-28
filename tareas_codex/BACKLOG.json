@@ -130,12 +130,27 @@
         "selected Python regressions and complete logs"
       ],
       "result_file": "T007_RESULTADO.md"
+    },
+    {
+      "id": "PFL-CODEX-T008",
+      "title": "Ejecutar suite Python íntegra en Linux POSIX, clasificar errores Windows T002/T004",
+      "priority": "P0",
+      "file": "T008_SUITE_COMPLETA_POSIX.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "completion_requires": [
+        "full checkout actual Linux",
+        "unmodified full pytest stdout stderr exit",
+        "classify PASS FAIL SKIP vs Windows",
+        "no CI/main merge",
+        "record HEAD and filesystem"
+      ]
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "Codex T007 en base af090f5; replay Python 31 lotes y HTTP loopback; pruebas POSIX de T002/T004 y T005 pendientes.",
+  "last_verified_by": "Source-backed user continuation C73-C76 Linux 31 original tests pass, source exact; complete Linux checkout T008 pending.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd"
 }
