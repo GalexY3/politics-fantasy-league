@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "A": "¿La página de los 90 logros realmente ejecuta el JS de renderizado en un entorno DOM mínimo y produce nueve tarjetas sin errores?",
+  "B": {
+    "H1": "El JS es ejecutable y muestra 9 secciones y 90 logros en estado inicial",
+    "H0": "Análisis estático C01 no detectó un error runtime"
+  },
+  "C": "Extraer el script original, ejecutar literal con DOM simulado, capturar excepciones y total de tarjetas. Control negativo: omitir elemento de DOM requerido",
+  "D": "JS original desde SHA GitHub y registro original; mock DOM instrumentado, no browser real",
+  "E": "PENDING",
+  "F": "No certificar navegador real ni auto-unlock",
+  "G": "T010 independiente",
+  "H": "V4 intacto",
+  "I": "0 logros acreditados",
+  "J": "Corregir una sola causa si existe, sin recrear el diseño"
+}
