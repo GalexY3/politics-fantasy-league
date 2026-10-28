@@ -1,0 +1,42 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C02",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_RED_GREEN_DELIMITER_REPAIR",
+  "prereg_commit": "68dd8162d157d0c4c9b28128e999ade459069ebb",
+  "source_blob_before": "c9a4f22a8efd5f97fe74fc9b371896a1e8b9d358",
+  "source_blob_after": "7114e54004cd226186632d2ac1051fca71f57409",
+  "red_test_commit": "dcbee4338c0aee6183eea3e2b1ab19128f1393a8",
+  "green_code_commit": "8325e9da5070c3744f8faa3b14c70d352fc6a91d",
+  "A": "Identity and expediente-scope strings are not injective when any raw component contains |",
+  "B": "H1 reproduced: two distinct rows generated exactly same identity key, and scopes could conflate",
+  "C": "Original exact GitHub code reconstructed locally, verified git hash-object; Node native test suite five checks; production fix rejects pipe in any component, preserving canonical safe keys",
+  "D": {
+    "node": "v22.16.0",
+    "source_hash_verified": true,
+    "no_private_data": true
+  },
+  "E": {
+    "prepatch": "3 PASS / 2 FAIL on 5 tests",
+    "postpatch": "5 PASS / 0 FAIL on 5 tests",
+    "invariant": "Safe canonical key C|XV|193|2026-07-23|1 unchanged; original vote duplicates still fail-closed",
+    "source_remote_matches_local": true
+  },
+  "F": "Targeted test only, no entire Node suite or current checkout Linux; reject pipe instead of introducing breaking escaped serialization",
+  "G": "Independent original parliamentary IDs and field prevalence NOT VERIFIED",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "gates": 0
+  },
+  "I": "AB-P correctness fix; no empirical/cause claims",
+  "J": "CONTINUE C03 independent calendar-day validation under fixed identity keys"
+}
