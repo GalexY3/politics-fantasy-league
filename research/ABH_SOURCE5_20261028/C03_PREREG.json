@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "authorization": "5 cycles total (1 already executed, 4 remaining)",
+  "branch": "research/pfl-abh5-source-validation-20261028",
+  "pre_implementation": true,
+  "rights": "No real-person scoring, no original nominal data in Git, no CI, no merging.",
+  "CT2_before": 29,
+  "V4_before": 36.9,
+  "N1_before": 0,
+  "ChatRelay": "SUSPENDED",
+  "cycle": "C03",
+  "type": "AB-P",
+  "D": 0.3,
+  "A": "Can a real institutional original be distinguished automatically from a web listing, fake XLSX, non-HTTPS URL and a zero-byte source?",
+  "B": {
+    "H1": "Bytes-backed SHA-256 and minimal OOXML structure contract rejects all fake/missing originals",
+    "H0": "A metadata-only record or counterfeit bytes pass validation"
+  },
+  "C": "Native Node pure research-only module with red/green tests of missing bytes, HTML masquerading as XLSX, forged hash, ZIP magic and minimal workbook OOXML, positive tiny synthetic ZIP fixture; no claim for actual source retrieval",
+  "D_data": "Synthetic original bytes only; code from exact branch",
+  "E": "PENDING",
+  "F": "Adversarial malformed archive and safe URL controls",
+  "G": "Full Linux suite and real Interior originals deferred to Codex T011",
+  "H": "No CT2 increase for software guard",
+  "I": "No original governmental data captured",
+  "J": "Keep only if native tests PASS; otherwise fail closed."
+}
