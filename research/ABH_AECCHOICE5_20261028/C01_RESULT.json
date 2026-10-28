@@ -1,0 +1,61 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "type": "AB-R",
+  "unit": "Australian 2025 federal House electoral division (n150)",
+  "source_tier": "Third-party GitHub mirror exact AEC-named June 16 2025 generated CSV header, primary catalogue verifies named files, no authenticated AEC download or first_public_at",
+  "metrics": "AEC2025_METRICS.json",
+  "panel": "AEC2025_DIVISION_PANEL.csv",
+  "baseline": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_prior": "McGinn & Maruyama Economic Record 2025 already documented causal effect candidates→informal in earlier periods; AEC 2025 review independently documented contemporary relation but case-selected on high informality. Our analysis confirms association, NOT novel science or replicated causal design.",
+  "restrictions": "No individual/party scoring, not actually a prospective frozen evaluation, ChatRelay off, no main merge.",
+  "cycle": "C01",
+  "status": "VALID_BOUNDED_FOUR_AEC_MIRROR_CSV_150_DIVISION_JOIN",
+  "A": "Can 150 electoral divisions be reconciled across nomination, close-of-rolls census, informal votes and turnout without using unknown originals?",
+  "B": {
+    "H1": "150 unique and exact totals",
+    "H0": "Mismatch and incomplete cohort"
+  },
+  "C": {
+    "prereg_commit": "6e656e017e25965f4e0ad3f81758b8fa4f741112",
+    "execution": "Fetched four exact raw AEC-named CSV files in public GitHub mirror rNLKJA/public-services-open-source-data; parsed separately event metadata first row and header second; joined DivisionID; validated state/division/enrolment, informal rate via informal/total and turnout via turnout/final enrolment with <=0.012 pp tolerance; actual JS V8 execution. Official AEC catalogue shows all four links but direct original download blocked."
+  },
+  "D": {
+    "source_audit": "C01_SOURCE_AUDIT.json",
+    "panel": "AEC2025_DIVISION_PANEL.csv",
+    "official_catalogue": "https://results.aec.gov.au/31496/Website/HouseDownloadsMenu-31496-Csv.htm"
+  },
+  "E": {
+    "n": 150,
+    "states": 8,
+    "demographic_categories": 4,
+    "missing_join": 0,
+    "duplicate_keys": 0,
+    "invalid_denominators": 0,
+    "metadata_mismatch": 0,
+    "national_informal_ballots": 919512,
+    "national_total_ballots": 16409748,
+    "national_informal_rate": 5.603449851880724,
+    "AEC_official_published_rate": 5.6,
+    "exact_first_party_csv_bytes": 0
+  },
+  "F": "AEC first party website publishes raw files, but the bytes only came through another repo and cannot be called authenticated 2025 original; stamped CSV generated June 16 2025, nomination count and close-of-rolls census conceptually pre-poll not independently captured before May 3. Direct public publisher report confirms aggregated 919,512 and 5.60.",
+  "G": "No independent source issuer for the 150 row panel; AEC report also same issuer.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No candidate person data carried into derived CSV",
+  "J": "Proceed as exploratory Tier 2 source with precise provenance; queue original download Codex."
+}
