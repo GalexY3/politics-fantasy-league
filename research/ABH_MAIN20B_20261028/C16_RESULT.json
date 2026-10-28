@@ -1,0 +1,35 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C16",
+  "mode": "AB-P",
+  "status": "VALID_LOCAL_HTTP_JSON_DUPLICATE_FAIL_CLOSED",
+  "A": "Local POST duplicates JSON field names silently resolved by json.loads last-wins",
+  "B": "H1 confirmed with synthetic names Club A and Club B",
+  "C": {
+    "prereg": "C16_PREREG.json",
+    "controls": [
+      "top-level duplicate",
+      "nested duplicate",
+      "unique keys positive"
+    ]
+  },
+  "D": {
+    "before": "f5cce90c632295d3828c85ecf3b2ec5dd82ca395",
+    "after": "22063324bb429b759fca5ecdb3daf77a221838b3",
+    "source_commit": "0eea17a7be7f1a3df5a6a7f819b12be2a9ee3b44",
+    "test_commit": "6534e8539c11456eeadd269001faec78ba142dfe",
+    "runtime": "Python json.loads exact core parser with object_pairs_hook; complete HTTP test not executed"
+  },
+  "E": {
+    "before": "Duplicate name last wins",
+    "after": "ValueError DUPLICATE_JSON_FIELD intercepted as 400 BAD_REQUEST before dispatch",
+    "isolated_checks": "3/3 PASS",
+    "full_HTTP": "NOT_RUN"
+  },
+  "F": "Loopback demo single-user. This is deterministic request interpretation, not an externally reachable vulnerability claim; source URL and rights still separate.",
+  "G": "T009 pending",
+  "H": "No CT2/gates uplift",
+  "I": "HTTP mutator contract integrity",
+  "J": "ACCEPT patch, STOP duplicate JSON-key variants"
+}
