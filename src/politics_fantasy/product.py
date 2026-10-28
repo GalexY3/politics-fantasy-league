@@ -121,8 +121,17 @@ def seed_demo(path: Path, *, now: datetime | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with connect(path) as db:
         db.executescript(SCHEMA)
-        if db.execute("SELECT COUNT(*) FROM figure").fetchone()[0]:
+        # A nonempty figure table alone does not prove the demo seeded fully.
+        # Fail closed on partial/corrupted fixtures; never silently reset user state.
+        counts = {table: db.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+                  for table in ("figure", "club", "fantasy_round", "demo_event")}
+        if counts["figure"]:
+            if (counts["figure"] != len(NAMES) or counts["club"] < 1
+                    or counts["fantasy_round"] < 2 or counts["demo_event"] < 8):
+                raise GameError("PARTIAL_SEED", "Demo local incompleta; revisar antes de iniciar.", 409)
             return
+        if any(counts.values()):
+            raise GameError("PARTIAL_SEED", "Demo local incompleta; revisar antes de iniciar.", 409)
         db.execute("BEGIN IMMEDIATE")
         try:
             db.executemany("INSERT INTO figure VALUES(?,?,?,?,?,'SYNTHETIC')", NAMES)
