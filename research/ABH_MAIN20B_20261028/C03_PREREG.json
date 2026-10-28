@@ -1,0 +1,41 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C03",
+  "type": "EXPERIMENTAL_AB_R_LEGAL_SOURCE_AUDIT",
+  "status": "PREREGISTERED_BEFORE_NEW_LEGAL_SEARCH",
+  "at": "2026-10-28T13:20:54.687Z",
+  "drift": "D2.5 from machine-readable official aggregates to lawful purpose-specific reuse and privacy release gate",
+  "A": {
+    "question": "Does an identifiable official Congreso open-data license explicitly establish a reusable legal basis for republishing/processing identifiable deputy voting records into a commercial or gamified person-score service, rather than merely permitting access?",
+    "population": "Public official webpages and applicable Spanish/EU reuse and data-protection guidance",
+    "estimand": "Documentary gap between official source-access rights and separate person-profiling lawfulness",
+    "outcome": "An explicit, attributable rights statement covering specified reuse and conditions, or absence of such proof; no legal opinion or automatic license inferred"
+  },
+  "B": {
+    "H1": "Congress explicitly grants open license for machine data and use case covers personal automated rankings including necessary privacy notices/rights",
+    "H0": "Official access/reuse status does NOT by itself establish lawful scoring/profiling: need separate lawful basis, transparency, minimization and rights assessment",
+    "Hother": "Site gives bounded license for non-personal reuse only, and legal text requires case-specific analysis"
+  },
+  "C": {
+    "primary": "Find first-party Congreso notice/license and original regulatory text/AEPD guidance; quote exact scope and whether profiling or derivative commercial scores are addressed",
+    "negative_controls": [
+      "Open data label alone is not an Art 6 GDPR lawful basis",
+      "Public person identity on a page is not affirmative consent for every reuse",
+      "Presence of law 37/2007 alone doesn't prove identifiable-score entitlement"
+    ],
+    "budget": "Up to 4 official/source searches and 5 direct reads; stop if authoritative texts unavailable",
+    "falsifier": "Official use-specific explicit permit (including privacy compliance) exists with enough precision to support the given fantasy workflow; else rights gate stays blocked"
+  },
+  "D": {
+    "sources": "Prefer congreso.es, boe.es, aepd.es, EUR-Lex official legal text",
+    "network": "web-only, no actual processing of person-level records",
+    "no_original_upload": true
+  },
+  "E": "NOT_RUN",
+  "F": "Non-lawyer source audit is not binding legal determination; distinguish legal permission, terms and GDPR lawful basis",
+  "G": "Independent legal or DPO review required before release",
+  "H": "No CT2 identity or scientific grade changes",
+  "I": "Compliance gating for product; public data access not identity scoring permission",
+  "J": "Keep rights gate 0/6 unless verified explicit purpose-specific evidence exists."
+}
