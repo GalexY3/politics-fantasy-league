@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C10",
+  "type": "AB-P",
+  "A": "Implement a collision-safe vote identity and typed source index for official multiple ballots per expediente",
+  "B": {
+    "H1": "A composite institution/legislature/session/vote identifier preserves four official C08 distinct rows; expediente-only lookup collides",
+    "H0": "Composite has no advantage over expediente-only key in the sample"
+  },
+  "C": "Implement small standalone JS producer, validate originals at source aggregated level, reject duplicate composite identity and invalid arithmetic; run positive/negative controls",
+  "D": "Official C08 sample source-backed; no individual rows, timestamp, no production ingest claimed",
+  "E": "PENDING",
+  "F": "No real-person research grade",
+  "G": "Ensure no assumptions about Senate equivalence",
+  "H": "V4 unchanged",
+  "I": "No new achievements promised",
+  "J": "Keep helper or fail closed depending on controls"
+}
