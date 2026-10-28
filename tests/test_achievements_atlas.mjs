@@ -14,7 +14,7 @@ const atlas=readFileSync(join(parent,'AB_Atlas_Politics_Fantasy.html'),'utf8');
 
 test('versioned registry has exactly nine V4 weighted branches and 90 independently named achievements',()=>{
   assert.equal(registry.schema,'pfl.achievements.v1');
-  assert.equal(registry.version,1);
+  assert.ok(registry.version>=1);
   assert.equal(registry.tracks.length,9);
   assert.equal(registry.tracks.reduce((n,t)=>n+t.weight,0),100);
   assert.equal(registry.achievements.length,90);
@@ -26,9 +26,9 @@ test('versioned registry has exactly nine V4 weighted branches and 90 independen
     for(const a of group){
       assert.ok(a.title.length>=8,a.id);
       assert.ok(a.criteria.length>=45,a.id);
-      assert.equal(a.status,'locked');
-      assert.deepEqual(a.evidence,[]);
-      assert.equal(a.verified_by,null);
+      assert.ok(['locked','unlocked','retired'].includes(a.status));
+      if(a.status==='unlocked'){assert.ok(a.evidence.length);assert.ok(a.verified_by);assert.ok(a.verified_at);}
+      else {assert.deepEqual(a.evidence,[]);assert.equal(a.verified_by,null);}
       for(const dep of a.prerequisites)assert.ok(ids.has(dep));
     }
   }
@@ -43,11 +43,14 @@ test('V4 contract preserved and achievement progress never replaces existing met
   assert.match(registry.policy.scoring,/separate from contractual V4/);
 });
 
-test('initial change log and zero automatic achievements',()=>{
-  assert.equal(registry.change_log.length,1);
+test('audit chain and no automatically conferred achievements',()=>{
+  assert.equal(registry.change_log.length,registry.version);
   assert.equal(registry.change_log[0].type,'registry.created');
   assert.equal(registry.change_log[0].affected_ids.length,90);
-  assert.equal(registry.achievements.filter(a=>a.status==='unlocked').length,0);
+  for(const [i,e] of registry.change_log.entries()){assert.equal(e.seq,i+1);assert.equal(e.registry_version,i+1);}
+  for(const a of registry.achievements.filter(a=>a.status==='unlocked')){
+    assert.equal(registry.change_log.filter(e=>e.achievement_id===a.id).at(-1)?.type,'achievement.unlocked');
+  }
 });
 
 test('Atlas contains a reachable achievements tab and same-folder iframe',()=>{
