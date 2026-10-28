@@ -1,0 +1,39 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C18",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_CT2_BRANCH_COPY_CLARIFICATION",
+  "A": "24/100 prediction CT2 in old overview could be confused with current 29/100 identity CT2",
+  "B": "Reviewed docs show distinct branches and timestamps; not interchangeable",
+  "C": "Compare existing overview source and dated VSDS against MAIN20B identity tracker; replace one textual message but not numerical values; five static string tests",
+  "D": {
+    "source": "src/politics_fantasy/web/app.js",
+    "before_statement": "CT2 para investigación predictiva: 24/100 (ordinal; no es probabilidad).",
+    "after_blob": "67151ed569a94e26dd763936456ee2b3a38f5e84",
+    "reference": [
+      "docs/VSDS_PROYECTO.md",
+      "research/ABH_MAIN20B_20261028/FINAL_REPORT.md"
+    ],
+    "test": "tests/test_ct2_branch_labels.mjs"
+  },
+  "E": {
+    "string_checks": 5,
+    "passed": 5,
+    "changed_value": false,
+    "values": [
+      "predictive 24/100 as of 2026-10-25",
+      "identity 29/100 as of 2026-10-28"
+    ],
+    "node_regression": "CREATED_NOT_RUN"
+  },
+  "F": "Reduced ambiguity but no proof that old predictive CT2 still currently calibrated",
+  "G": "Full browser and full Node tests pending",
+  "H": {
+    "CT2_identity_unchanged": 29,
+    "V4_unchanged": 36.9,
+    "awards_unchanged": 2
+  },
+  "I": "No metric recalibration",
+  "J": "Independent ledger audit before closing campaign"
+}
