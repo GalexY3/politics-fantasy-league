@@ -47,6 +47,15 @@ def _date(value: object) -> str | None:
         raise SourceContractError("INVALID_DATE") from exc
 
 
+def _unique_json_pairs(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise SourceContractError("DUPLICATE_JSON_MEMBER")
+        result[key] = value
+    return result
+
+
 def project(raw: bytes, *, url: str = SOURCE_URL, max_rows: int = 5) -> dict:
     if not _official_url(url):
         raise SourceContractError("NOT_EXACT_OFFICIAL_HOST_OR_PATH")
@@ -55,7 +64,9 @@ def project(raw: bytes, *, url: str = SOURCE_URL, max_rows: int = 5) -> dict:
     if not isinstance(max_rows, int) or isinstance(max_rows, bool) or not 1 <= max_rows <= 1000:
         raise SourceContractError("INVALID_BOUNDED_SAMPLE")
     try:
-        rows = json.loads(raw.decode("utf-8-sig"))
+        rows = json.loads(raw.decode("utf-8-sig"), object_pairs_hook=_unique_json_pairs)
+    except SourceContractError:
+        raise
     except (UnicodeError, ValueError) as exc:
         raise SourceContractError("BAD_JSON") from exc
     if not isinstance(rows, list) or not rows or len(rows) > 10000:
