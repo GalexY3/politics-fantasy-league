@@ -1,0 +1,65 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_THREE_CASE_SOURCE_VINTAGE_NEGATIVE",
+  "A": "Do RTVE snapshots labelled 98-100% scrutinized reproduce the official institutionally reported final electorate/turnout in three fixed 2023 cases?",
+  "B": {
+    "H1": "All 3 differ in voter totals, even a 100% displayed snapshot",
+    "H0": "All 3 match exactly",
+    "H_other": "Mixed electorate/reporting scope and time windows explain differences rather than tabulation errors"
+  },
+  "C": {
+    "prereg_commit": "a88458e3e2dad28537ef2c117e28af0692662d07",
+    "selection": "Fixed previously selected 2023 Navarra/Asturias/Rioja cohort from C01-C03. Result source variants known before prerereg, exploratory post-discovery study, not prospective blinded.",
+    "execution": "Read official Parliament institutional final report and RTVE historical snapshots, Python deterministic integer and pp arithmetic; no scraping CSV and no new individuals."
+  },
+  "D": {
+    "sources": [
+      "https://parlamentodenavarra.es/en/node/167978",
+      "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+      "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales",
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/comunidad-foral-de-navarra/",
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/principado-de-asturias/",
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/la-rioja/"
+    ],
+    "data": "C05_2023_THREE_JURISDICTION_VINTAGE.json"
+  },
+  "E": {
+    "jurisdictions": 3,
+    "source_voter_gaps": {
+      "Navarra": 8955,
+      "Asturias": 15809,
+      "Rioja": 976
+    },
+    "turnout_rate_diff_official_minus_RTVE_pp": {
+      "Navarra": -3.31,
+      "Asturias": -7.51,
+      "Rioja": -4.69
+    },
+    "RTVE_scrutinized_pct": {
+      "Navarra": 98.14,
+      "Asturias": 98.4,
+      "Rioja": 100
+    },
+    "source_counts_identical_n": 0,
+    "original_binary_bytes": 0
+  },
+  "F": "Counterexample to treating 100% newsroom count as authoritative JEC final: 976 voters differ in La Rioja despite RTVE 100%. Opposite signs (more counted voters, lower reported participation percent) indicate denominator/version scope mismatch, not a causal participation decrease.",
+  "G": "Neither source has independently verified as-of UTC, CERA scope, denominator details, and this was a pre-exposed follow-up, not independent sociological mechanism validation; do not describe as errors by issuer without archived process logs.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "awards": 0
+  },
+  "I": "No person or party score, no vote preference inference",
+  "J": "Treat as source-version selection gate for PFL: never merge absolute counts and turnout rates from different captured scopes; record Codex original acquisition pending; close campaign."
+}
