@@ -1,0 +1,32 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C15",
+  "mode": "AB-P",
+  "status": "VALID_ROUND_SCORING_INTERVAL_FILTER",
+  "A": "Can malformed unrelated event poison prior synthetic round score despite being outside scoring interval?",
+  "B": "Original constructed all events, yes; new code filters interval before constructing PoliticalEvent",
+  "C": {
+    "prereg": "C15_PREREG.json",
+    "negative": "unrelated future malformed hash",
+    "positive": "relevant non-synthetic source must still return None"
+  },
+  "D": {
+    "before": "53178066bbd248db32dd2f67f5414370bec65bd3",
+    "after": "1fea7738b924cdd70ab73df130cf60e4a22ce0fc",
+    "source_commit": "421d6809e78a305686c7b95cf0587878c2c51c73",
+    "test_commit": "e03c02a158b9c8862dd0f6f678fbe435ed4917b6",
+    "runner": "Python 3-case isolated original algorithm extraction and new selection logic"
+  },
+  "E": {
+    "focused_checks": "3/3 red/green PASS",
+    "main_source_updated": true,
+    "committed_test": "tests/test_round_scoring_interval_scope.py",
+    "full_integration": "NOT_RUN"
+  },
+  "F": "Other code paths such as simulation prechecks may still parse unrelated timestamp fields; not all database corruption made harmless. No real source ingested.",
+  "G": "T009 pending",
+  "H": "0 science/CT2/gates uplift",
+  "I": "Fictional round isolation and availability",
+  "J": "ACCEPT bounded interval filter; stop synthetic corruptions unless new class"
+}
