@@ -1,0 +1,85 @@
+{
+  "scope": "Prospective PFL factorial game-study branch (unapproved; no participants)",
+  "inherits": "Existing PFL priors PF-P07, PF-P12, prior AB-H INCENTIVE_MECHANISMS5; no historical overwrites",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1007/s11129-026-09311-3",
+      "kind": "experimental educational gamification 2026",
+      "relevance": "contests and leaderboards studied; general novelty refuted"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.lindif.2024.102565",
+      "kind": "comparative team leaderboard classroom 2024",
+      "relevance": "competitor heterogeneity and negative responses plausible"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/s40692-025-00366-x",
+      "kind": "gamification randomized educational study 2025",
+      "relevance": "points/badges/challenges learning mechanisms known"
+    },
+    {
+      "url": "https://www.ipr.northwestern.edu/our-work/working-papers/2025/wp-25-27.html",
+      "kind": "civic dialogue gamified pilot 2025",
+      "relevance": "political/civic games also studied"
+    },
+    {
+      "url": "https://www.psychologicalscience.org/publications/psychological_science/preregistration",
+      "kind": "preregistration guidance",
+      "relevance": "protocol locked prior to data"
+    },
+    {
+      "url": "https://www.uab.cat/en/research-ethics/informed-consent",
+      "kind": "institutional informed consent guidance",
+      "relevance": "even anonymous survey explicit and documented consent"
+    }
+  ],
+  "status": "TARGETED_NOT_SYSTEMATIC",
+  "new_priors": [
+    {
+      "id": "PF-PP01",
+      "claim": "Denominator information may improve comprehension transfer in PFL synthetic civic task",
+      "update": "HYPOTHESIS_DEFINED_NOT_TESTED",
+      "falsifier": "randomized ethical study difference ~0 after equal-duration controls",
+      "prior_art": "gamification education and feedback studied"
+    },
+    {
+      "id": "PF-PP02",
+      "claim": "Leaderboard can alter event-selection heuristics and interact with transparency",
+      "update": "HYPOTHESIS_DEFINED_NOT_TESTED",
+      "falsifier": "no leaderboard or interaction effects in participants",
+      "prior_art": "team-based leaderboard studies"
+    },
+    {
+      "id": "PF-PP03",
+      "claim": "Block randomized four-arm schedule can be internally consistent offline",
+      "update": "LOCAL_TECHNICAL_PASS",
+      "evidence": "C02 17/17 V8",
+      "limitation": "predictable PRNG; requires allocation concealment for human trial"
+    },
+    {
+      "id": "PF-PP04",
+      "claim": "Four transfer items measure civic comprehension reliably",
+      "update": "NOT_VALIDATED_HUMANS",
+      "evidence": "C03 20/20 formal QA and blind key",
+      "limitation": "no cognitive interviews or psychometrics"
+    },
+    {
+      "id": "PF-PP05",
+      "claim": "Dry-run intake establishes ethically approved human participation",
+      "update": "REJECTED",
+      "evidence": "C04 22/22 V8 tests synthetic-only; approval object mock",
+      "limitation": "real ethics not obtained"
+    },
+    {
+      "id": "PF-PP06",
+      "claim": "Dry-run cell-mean contrasts estimate causal ITT for real humans",
+      "update": "REJECTED",
+      "evidence": "C05 25/25 V8 synthetic; missing data flagged and no causal inference",
+      "limitation": "no real sample, approval, or outcomes"
+    }
+  ],
+  "N1_new": 0,
+  "CT2_parent_identity": 29,
+  "CT2_synthetic_parent": 20,
+  "CT2_prospective": 25
+}
