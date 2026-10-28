@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C10",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Does field_ingest source_line represent actual physical CSV location for quoted multiline fields?",
+  "B": {
+    "H1": "enumerate(reader,2) reports logical row ordinal as physical source line",
+    "H0": "source_line reflects physical CSV line"
+  },
+  "C": {
+    "fixture": "header physical1; row1 quoted topic spans physical2-3; row2 physical4",
+    "expected": "second row source_line=4, not 3; duplicate error must show same correct location",
+    "success": "Use reader.line_num as physical ending line or explicitly document separate logical vs physical semantics"
+  },
+  "D": {
+    "file": "field_ingest.py blob 8c9fd91ca211de1bfcbb4d02325ea4a95822650b",
+    "source": "Python stdlib csv.DictReader exact method",
+    "original_tests": "test_field_ingest.py"
+  },
+  "E": "PENDING",
+  "F": "Physical end line is different from row start for multiline cells; document choice",
+  "G": "T009 pending",
+  "H": "no CT2/gates uplift",
+  "I": "Source provenance traceability",
+  "J": "Repair or documented negative; no original data"
+}
