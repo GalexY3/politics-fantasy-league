@@ -1,0 +1,29 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C08",
+  "type": "AB-P",
+  "status": "VALID_NEGATIVE_TEST_REMEDIATION_BLOCKED",
+  "A": "Frozen PoliticalEvent has mutable nested metadata; original source shares alias",
+  "B": "Counterexample mutation changes stored event; proposed recursive freeze eliminates alias",
+  "C": {
+    "prereg": "C08_PREREG.json",
+    "outcomes": "Original mutation reproduced. Local proposed guard 5/5 controls pass. GitHub main code edit refused by tool; do NOT claim applied fix."
+  },
+  "D": {
+    "source_blob": "35fbfa6e4e952e22450a184f53672f9ef670d039",
+    "native": "CPython local reconstruction based on read source, original Git blob mismatch; no exact-source execution",
+    "not_executed": "Full project suite"
+  },
+  "E": {
+    "red": "Original metadata nested code changed from 1 to 100 after caller mutation",
+    "proposed_green": "5/5 checks on local reconstruction",
+    "main_source_modified": false,
+    "github_write": "DENIED"
+  },
+  "F": "Do not transfer local result to production claim or certify source freeze; original alias remains.",
+  "G": "No full checkout or native exact source",
+  "H": "No CT2 or gates uplift",
+  "I": "Negative product archive-integrity finding only",
+  "J": "Record defect as remediation for executor, do not count a source patch; STOP on repeated denial."
+}
