@@ -1,0 +1,68 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C07",
+  "mode": "AB-R",
+  "status": "VALID_AJ_METHOD_OPERATIONALIZATION",
+  "at": "2026-10-28T12:36:42.917Z",
+  "A": {
+    "question": "Can a modal position be miscalled 'majority' in group vote summary?",
+    "estimand": "difference between argmax modal expressed option, >50% of expressed and >50% of all recorded statuses"
+  },
+  "B": {
+    "H1": "legacy returns modal YES at 4/9",
+    "H0": "legacy enforces >50% strict threshold"
+  },
+  "C": {
+    "preregistered": "C07_PREREG.json",
+    "discriminant": "Synthetic 4 YES,3 NO,2 ABSTAIN and 6 YES,3 NO,9 NO_VOTE; compare three definitions"
+  },
+  "D": {
+    "source_git_blob_before": "3a77c4d92246f6a9ebb28693454add501db4c4f8",
+    "source_git_blob_after": "f85b5562a866eeb56af24843ff59ea8ff81a42f8",
+    "test_git_blob": "404bdc18252984ada79ae371cc7ad84565e6f7e8",
+    "instrument": "Native Python 3.13.5 executed exact extracted legacy function + new function over simple GroupRow stand-in with 4 baseline cases and 11 new assertions; not full module",
+    "code_test_added": "tests/test_group_majority_semantics.py",
+    "native_full_test": "NOT_RUN"
+  },
+  "E": {
+    "original_modal": [
+      {
+        "row": "yes4,no3,abst2,noVote0",
+        "legacy": "YES",
+        "strict_expressed": "NO_ABSOLUTE_MAJORITY"
+      },
+      {
+        "row": "yes6,no3,abst0,noVote9",
+        "legacy": "YES",
+        "strict_expressed": "YES",
+        "strict_recorded": "NO_ABSOLUTE_MAJORITY"
+      }
+    ],
+    "old_baseline_outputs_matched": 4,
+    "new_assertions_passed": 11,
+    "git_changes": [
+      "src/politics_fantasy/groupvotes.py",
+      "tests/test_group_majority_semantics.py"
+    ]
+  },
+  "F": {
+    "adversarial": "Existing function now explicitly documents historical 'modal expressed' meaning, left unchanged for legacy callers; new strict_majority requires explicit recorded denominator and does not infer unobserved eligible group membership or institutional abstention meaning."
+  },
+  "G": {
+    "validation": "Core functions executed in isolation with stand-in row; full source module unit tests on full repo NOT_RUN; issue not empirically calibrated"
+  },
+  "H": {
+    "update": "Distinguish three distinct measurements of group position, not validated political preference; no new N1 or social empirical effect."
+  },
+  "I": {
+    "scientific_grade": "0/3",
+    "VSDS": "1/3",
+    "CT2_identity": 29,
+    "V4_percent": 36.9,
+    "gates_passed": 0
+  },
+  "J": {
+    "decision": "ACCEPT explicit semantics with backward compatibility; STOP_R5 repeating threshold tests; future evidence requires official identified group census and time-aligned vote original."
+  }
+}
