@@ -1,0 +1,40 @@
+{
+  "cycle": "C73",
+  "mode": "AB-P",
+  "A": "Do the nine original ingester tests that depended on POSIX secure store pass on Linux against exact repository source while Windows suite had store-platform preflight failures?",
+  "B": {
+    "H1": "Linux POSIX implementation and original tests all pass",
+    "H0": "Functional or permission bug persists on Linux",
+    "H2": "Copied source/test mismatch invalidates claims"
+  },
+  "C": "GitHub fetched three exact source/test originals; manually reproduced byte-identical files in clean Linux Python 3.13.5 sandbox; verified `git hash-object` for all three; executed native original checked-in pytest against fake response fixture. No real HTTP source contacted.",
+  "D": {
+    "source_blobs": {
+      "src/politics_fantasy/secure_store.py": "4695c8d85924869212d916fa163a8f3548272ebc",
+      "src/politics_fantasy/ingest.py": "913f00079c1eba519b977956e18d61d152a3fe20",
+      "tests/test_ingest.py": "5ed121cebbcca41a44fcf0580e7a5fd9ea9d559d"
+    },
+    "cwd": "/mnt/data/pfl_cont80/c73",
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_ingest.py",
+    "log": "C73_pytest.txt"
+  },
+  "E": {
+    "exit_code": 0,
+    "passed": 9,
+    "failed": 0,
+    "seconds": 2.11,
+    "code_changed": false
+  },
+  "F": "This does not replicate whole T002/T004 Linux suite, and earlier Windows `SECURE_STORE_UNSUPPORTED_PLATFORM` is expected by design rather than a Linux fix. No publisher original, HTTP network or SIGKILL full system here.",
+  "G": "Native Linux POSIX original source+original tests byte-matched current Git blobs; stdout preserved in local artifact",
+  "H": "Confirms nine otherwise platform-constrained original ingester cases function on POSIX, narrows but does not discharge original Windows failures.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "N1_N2_N3": "0/0/0",
+    "DRIFT": "D1 testing"
+  },
+  "J": "C74 test original redirect and size-boundary suites on the same exact-source Linux runtime, seek non-platform failure if any."
+}
