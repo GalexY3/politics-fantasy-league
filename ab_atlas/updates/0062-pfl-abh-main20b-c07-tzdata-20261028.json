@@ -1,0 +1,30 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0062-PFL-ABH-MAIN20B-C07-TZDATA-20261028",
+  "parent_batch": "0061-PFL-ABH-MAIN20B-C06-T008-PROVENANCE-20261028",
+  "at": "2026-10-28T13:52:39.713Z",
+  "actor": "chatgpt",
+  "reason": "MAIN20B C07 AB-P prereg native Python zoneinfo resolving Europe/Madrid with PYTHONTZPATH empty via pip tzdata 2026.2, Linux fallback proven. pyproject optional test/research now requires tzdata all platforms (previously Windows-only). Historic T008 environment missing tzdata, no new clean Alpine QEMU or full suite replay.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C07-TZDATA-FALLBACK-EXTRA",
+        "activity": "Portable timezone dependency in Python test and research extras, native PYTHONTZPATH-empty Linux control; no changes to base deps, no main full suite claim.",
+        "status": "completed",
+        "at": "2026-10-28T13:52:39.713Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C07_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C07_RESULT.json",
+          "pyproject.toml",
+          "tareas_codex/T008_RESULTADO.md"
+        ],
+        "scope": "AB-P environment portability, not scientific claim or release promotion",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
