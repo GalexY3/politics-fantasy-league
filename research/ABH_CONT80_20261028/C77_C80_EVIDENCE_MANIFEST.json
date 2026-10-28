@@ -1,0 +1,75 @@
+{
+  "campaign": "PFL CONT80 C77-C80",
+  "date": "2026-10-28",
+  "environment": {
+    "os": "Linux POSIX",
+    "python": "3.13.5",
+    "network_in_fixture": "none",
+    "suite_scope": "eight original checked-in test files, not full repository"
+  },
+  "source_blobs": {
+    "secure_store.py": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "ingest.py": "913f00079c1eba519b977956e18d61d152a3fe20",
+    "quarantine_ingest.py": "8bf3699c4764366b2c2750eadf9303d6ffa470f5",
+    "source_original_qa.py": "7e9d79fb841a1e07f379b77486c29088bbfc6512",
+    "source_original_senate_qa.py": "83025d93bfeeac8e89574330e54033eb0ae2ac27",
+    "private_audit.py": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+    "private_audit_cli.py": "923a1c479c3f970e1325beff36699a277bc3773c"
+  },
+  "original_test_blobs": {
+    "test_ingest.py": "5ed121cebbcca41a44fcf0580e7a5fd9ea9d559d",
+    "test_ingest_redirect_security.py": "9dec4b4cc92d70712ce144f0a73c25a70fce59c0",
+    "test_quarantine_ingest.py": "69d3a1f206997a84999598c1b38a6e1664fd3479",
+    "test_ingest_full_local_e2e.py": "dfc34dc9d88e636162c7834ac962f9be50369860",
+    "test_secure_store.py": "a63143acda49182fe8e83f30a5a46816e65bc42f",
+    "test_private_store_process_boundaries.py": "2a60cf0f61d3eb2b3f92987678f14064b3370653",
+    "test_private_audit.py": "7b9d89f94579e8be84833662df280847ea70d191",
+    "test_private_audit_cli.py": "20ab836b6cf37b1f5073455e10673acbaead9e13"
+  },
+  "native": {
+    "C77": {
+      "passed": 22,
+      "failed": 0,
+      "log": "C77_pytest.txt",
+      "sha256": "1128abf63c6244ab0ef430ca776cbfb69c8f97a4629111d141ee6869d07d0282"
+    },
+    "C78": {
+      "passed": 4,
+      "failed": 0,
+      "log": "C78_pytest.txt",
+      "sha256": "685a8002bef961a58f48e8646a8564e22918b190f26139fdb97060d997778d1a"
+    },
+    "C79": {
+      "passed": 24,
+      "failed": 0,
+      "log": "C79_pytest.txt",
+      "sha256": "bb80ba732dcc4b8e57190304309e413e83b992399da300afdec76aa2b78e1aec"
+    },
+    "C80": {
+      "passed": 8,
+      "failed": 0,
+      "log": "C80_pytest.txt",
+      "sha256": "eb0a02d158189545df55d285358a66da8428619547b74a1a9a0b359a09a5a069"
+    },
+    "integrated": {
+      "passed": 89,
+      "failed": 0,
+      "skipped": 0,
+      "subtests_passed": 14,
+      "seconds": 15.2,
+      "exit_code": 0,
+      "log": "C80_integrated_8_suites.log",
+      "sha256": "75b76f36d5a79a0432d975a7e50fc43878709c5558ff0224b15a5de993f1510b"
+    }
+  },
+  "local_archive": "/mnt/data/PFL_CONT80_C77_C80_POSIX_evidence.zip",
+  "archive_sha256": "cde6e8355134b770f0c97a36ea99bdca37af9367540cc9dda4851066bd9c0181",
+  "not_claimed": [
+    "full T008 whole repo Python suite ran",
+    "all earlier Windows 57 failures resolved",
+    "real power loss tested",
+    "authenticity of publisher XML",
+    "legal right to score people",
+    "release gates cleared"
+  ]
+}
