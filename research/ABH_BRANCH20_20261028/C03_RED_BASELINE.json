@@ -1,0 +1,34 @@
+{
+  "schema": "ab.execution.red.v1",
+  "cycle": "C03",
+  "pre_registered": true,
+  "source_git_blob": "1f215aecaea661050d95d93108acc75f489fa52a",
+  "original_test_git_blob": "f638d3b2280c611420e9616160fc8c274e3db289",
+  "runtime": {
+    "python": "3.13.5",
+    "pytest": "9.0.2",
+    "os": "Linux/POSIX container",
+    "network": "not required"
+  },
+  "exact_recovery": {
+    "source_git_blob_verified": true,
+    "original_test_git_blob_verified": true
+  },
+  "original_suite": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0
+  },
+  "adversarial_suite_before_patch": {
+    "pass": 2,
+    "fail": 7,
+    "total": 9,
+    "pytest_exit": 1,
+    "stdout_sha256": "287dd72460347cf13a7d84006351e5dd3fdd2c69b83d21d63221f4212785cba4",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "observed_false_claim": "Synthetic overlapping S/N codes a,b classified STRICT_REVERSAL despite contradicting nominal exclusivity",
+  "secondary_caveat": "No evidence that real secondary data contain such overlaps; exclusively synthetic falsifier",
+  "post_patch_status": "NOT_RUN_AT_THIS_MANIFEST_TIME",
+  "global_suite": "NOT_RUN"
+}
