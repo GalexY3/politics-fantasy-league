@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C18",
+  "mode": "AB-H",
+  "status": "VALID_CROSS_MODULE_SYNTHETIC_INTEGRATION",
+  "at": "2026-10-28T12:58:13.189Z",
+  "A": {
+    "question": "Do three archival helper modules coexist under common package without unsafe source/identity semantics?"
+  },
+  "B": {
+    "H1": "All original and adversarial tests remain green with modules installed together",
+    "H0": "imports/dependencies/metadata collide causing a change in outcomes"
+  },
+  "C": {
+    "prereg": "C18_PREREG.json",
+    "expected": "6+14+11+3 original/adversarial cases plus one independent cross-contract integration invariant"
+  },
+  "D": {
+    "source_blobs": [
+      "1ed3832869a355aa91876739bf3a092ae65f90e9",
+      "5bccc391b0d42ebb9bed8f981bedf901494e47b8",
+      "a457857c20e2fc0e4f1bbc4647c75324fd4adf4c"
+    ],
+    "native": "Python 3.13.5 Linux pytest -q tests across reconstructed main modules in one package namespace",
+    "test_file": "tests/test_archival_contract_interop.py",
+    "new_test_commit": "4011771bf031882cd2307c167f284d17478a829a"
+  },
+  "E": {
+    "native_test_pass": 35,
+    "fail": 0,
+    "exit_code": 0,
+    "stdout_sha256": "097b916e8f20fb51a0e1d127fcd2d8843d5846b403997f946cb777920d787fbc",
+    "bundle": "6 typedrefs + 14 dates + 11 member original + 3 duplicate + 1 interop",
+    "module_hashes_match_git": true
+  },
+  "F": {
+    "limits": "Reconstructed selected modules only, no complete repository checkout; original C17 local three-case test semantics correspond but source file differs from newly committed test file. The new cross-module test as committed was not executed byte-for-byte on main, only equivalent local sample. No official raw data."
+  },
+  "G": {
+    "external_confirm": "NOT_RUN",
+    "full_python_T008": "NOT_RUN"
+  },
+  "H": {
+    "N1_new": 0,
+    "CT2_identity": 29,
+    "V4_percent": 36.9
+  },
+  "I": {
+    "value": "Integration regression for selectively recovered historical modules under one Python namespace",
+    "scientific_grade": "0/3"
+  },
+  "J": {
+    "decision": "ACCEPT selected source-level integration result; no impact on launch, preserve T008 full suite to validate all other package interactions."
+  }
+}
