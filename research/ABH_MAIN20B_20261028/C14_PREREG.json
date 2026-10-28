@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Can a caller-provided list of person_ids mutate PoliticalEvent membership after construction, changing scoring inputs even after metadata C11 freeze?",
+  "B": {
+    "H1": "Frozen dataclass accepts list and shares list alias, allowing append",
+    "H0": "Person IDs already defensively copied to immutable tuple"
+  },
+  "C": {
+    "negative": "person_ids=['F1'], append 'F2' after construction; event membership must remain ('F1',)",
+    "positive": "Tuple IDs supported; duplicate/nonstring IDs denied",
+    "repair": "Normalize tuple of nonempty strings at event construction; no real persons"
+  },
+  "D": {
+    "source": "events.py blob a12802ac551b1f63f46dbf7dbceb6d093822d125",
+    "method": "CPython focused constructed dataclass and negative control, tests committed"
+  },
+  "E": "PENDING",
+  "F": "In-memory alias issue on synthetic source, not a claimed real-world attack",
+  "G": "T009 pending",
+  "H": "No scientific progress",
+  "I": "Fictional event identity immutability",
+  "J": "Repair if shown; STOP mutation family after C14"
+}
