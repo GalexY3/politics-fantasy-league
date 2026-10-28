@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0065-PFL-ABH-MAIN20B-C10-CSV-LINES-20261028",
+  "parent_batch": "0064-PFL-ABH-MAIN20B-C09-REVISION-20261028",
+  "at": "2026-10-28T14:25:05.060Z",
+  "actor": "chatgpt",
+  "reason": "C10 prereg CSV quoted multiline source_line mismatch: DictReader enumerate yields row2 logical3 vs physical4; patched physical ending line and wrote tests, no full pytest.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C10-CSV-LINES",
+        "activity": "Correct physical ending line provenance of multiline third-party CSV import; stdlib red control and post-patch SHA confirmed; full pytest pending.",
+        "status": "completed",
+        "at": "2026-10-28T14:25:05.060Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C10_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C10_RESULT.json",
+          "tests/test_field_physical_lines.py"
+        ],
+        "scope": "AB-P source parser audit, no individual scoring",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
