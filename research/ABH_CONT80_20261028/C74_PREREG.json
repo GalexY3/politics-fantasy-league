@@ -1,0 +1,12 @@
+{
+  "cycle": "C74",
+  "mode": "AB-P",
+  "A": "Do original request length, trust-boundary, and redirect rejection tests pass on exact-source Linux POSIX where Windows T002/T004 failed preflight before custom fake HTTP handlers?",
+  "B": {
+    "H1": "Original suites pass Linux without source modification",
+    "H0": "Redirection or response guard bug persists on Linux after passing preflight",
+    "H2": "Missing dependency or mismatched blob means no conclusion"
+  },
+  "C": "Preregister; fetch byte-identical GitHub original tests/test_ingest_http_boundary.py and tests/test_ingest_redirect_security.py; run together against C73 byte-identical secure_store.py and ingest.py with no external network. Keep logs/exit and all SHA hashes.",
+  "D": "Any original test fail, mutated source, or network request blocks positive outcome; do not extrapolate to entire security suite."
+}
