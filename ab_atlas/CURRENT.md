@@ -1,3 +1,15 @@
+# CONT80 C61–C80 CERRADO 20/20 · Atlas 0035 · 28/10/2026
+
+**Presupuesto de 20 ciclos AB-H completamente utilizado: C61–C80, 20 A–J documentados, 0 restantes.** [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [informe final POSIX](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md) · [manifiesto de pruebas](../research/ABH_CONT80_20261028/C77_C80_EVIDENCE_MANIFEST.json).
+
+**C77–C80:** 22 PASS de almacén seguro, 4 PASS de procesos + SIGKILL, 24 PASS de auditoría, 8 PASS de CLI privada. Al integrar las ocho suites originales C73–C80 en Linux/POSIX (Python 3.13.5), **89 PASS y 14 subtests PASS, 0 fallos/omisiones, exit 0**, sobre siete módulos y ocho tests cuyos hashes Git coinciden exactamente. Sin cambios en producción, red ni datos reales. **NO** equivale a ejecutar la suite completa T008; [sigue pendiente](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md). Los fallos Windows globales no se dan por eliminados automáticamente.
+
+**Atlas** lote [0035](updates/0035-pfl-abh-cont80-c77-c80-posix-20261028.json) con cuatro `run.add` y padre 0034: **35 lotes, 63 nodos, 81 aristas, 201 runs, 44 incidencias y 370 operaciones** (conteos **derivados**). El checker Python canónico del estado **35 NO se ha ejecutado**; T007 solo cubría 31. V4 contractual **36,90%**; CT2 identidad **29/100 ordinal**, VSDS **1/3**, N1/N2/N3 científicos nuevos **0/0/0** y gates **0/6**. No scoring de personas, no `main` merge, no CI costosa.
+
+**Regla de continuación:** no quedan ciclos AB autorizados. Para trabajo AB-H adicional pedir permiso explícito y priorizar un resultado original externo o un fallo reproducido por T008, no repetir pruebas ya superadas.
+
+---
+
 # Actualización C73-C76: POSIX nativo, Atlas 0034 (28/10/2026)
 
 **Campaña CONT80: 16/20 ciclos AB-H A-J efectivamente ejecutados; cuatro plazas sin consumir (STOP_R5).** [Informe C73-C76](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md), [resultados y hashes](../research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json). Se han ejecutado **31/31 tests originales Linux POSIX** con 14 subtests sobre siete fuentes y cuatro tests byte-idénticos Git, sin modificar producción. **No se ejecutó la suite Python global.**
