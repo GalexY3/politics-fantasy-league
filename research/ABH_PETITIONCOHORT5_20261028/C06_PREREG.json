@@ -1,0 +1,29 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "cycle": "C06",
+  "type": "AB-R",
+  "counting_note": "C04 was preregistered but has only 2 >=100k records, less than its prereg minimum n=3; classify as NOT_EXECUTED_NON_IDENTIFIABLE, count 0. C06 is the fifth actual candidate cycle (C01,C02,C03,C05,C06), not sixth counted.",
+  "prereg_before_external_check": true,
+  "D": {
+    "source_first_party": "https://petition.parliament.uk/petitions/700138.json",
+    "archive_file": "https://github.com/Jonty/uk_petitions_data/blob/master/petitions/2024-_Labour_government/700138.json",
+    "prior_700143_source": "https://petition.parliament.uk/petitions/700143.json",
+    "preexposed_700143": "yes: prior PETITIONS5 official 3084713, archive 3084712; not new scientific result",
+    "source_Hansard": "Read exact transcript URL from 700138 archive after this prereg, compare first-party date"
+  },
+  "A": "Do original UK Parliament page and independent Hansard archival records corroborate administrative events of ID 700138 in the accession-selected cohort, and are archived 700143 counts version stable?",
+  "B": {
+    "H1": "Petition 700138 official and Hansard 10 Feb 2025 records corroborate 100k debate metadata; known 700143 archived count differs by one from an earlier first-party snapshot",
+    "H0": "No corroborating page or disagreement in date; archive provenance cannot be confirmed"
+  },
+  "C": "Fixed two IDs from the cohort above 100k (700138 newly observed via archive, 700143 previously seen, one potential publication correction). For 700138 open original petition .json and Hansard transcript URL extracted from original archive file; verify date and topic without political stance rating. For 700143 compare first-party earlier displayed signature count with archive count, label as already pre-exposed source discrepancy (NOT prospective). No inference on 100k population because n2 and selection/censorship.",
+  "E": "PENDING",
+  "F": "No raw official primary JSON bytes, no first_public_at, Hansard and petitions same UK Parliament umbrella",
+  "G": "Single independent document service; no causal threshold or representative sample",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No political-person or party evaluation",
+  "J": "Stop if transcript unavailable or mismatch; record bounded documentary result only."
+}
