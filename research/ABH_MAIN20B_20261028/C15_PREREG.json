@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C15",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Can an unrelated demo_event outside a round's interval abort current round scoring because _round_score parses every event in the database?",
+  "B": {
+    "H1": "Even future unrelated malformed event invokes PoliticalEvent and breaks scoring",
+    "H0": "Only interval-related events are decoded/scored"
+  },
+  "C": {
+    "negative": "two events, one relevant valid and one unrelated with malformed SHA; score of relevant interval should not instantiate irrelevant event",
+    "positive": "non-synthetic source inside interval still returns None to prevent real data scoring",
+    "preserve": "event provenance checks for in-interval rows remain"
+  },
+  "D": {
+    "source": "product.py SHA 53178066bbd248db32dd2f67f5414370bec65bd3",
+    "method": "source-replay focused control; committed regression tests T009"
+  },
+  "E": "PENDING",
+  "F": "DB contamination outside relevant interval may be intentionally rejected globally, but current code documents in-interval policy; do not weaken relevant refusal",
+  "G": "full demo regression pending",
+  "H": "no CT2 / gates",
+  "I": "Deterministic synthetic settlement availability",
+  "J": "scope filtering only if proven"
+}
