@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0067-PFL-ABH-MAIN20B-C12-GROUP-REPORT-20261028",
+  "parent_batch": "0066-PFL-ABH-MAIN20B-C11-EVENT-IMMUTABILITY-20261028",
+  "at": "2026-10-28T14:30:51.516Z",
+  "actor": "chatgpt",
+  "reason": "C12 groupmetrics separate downstream group report previously labelled 4/9 modal nonmodal opposition as dissent_from_group_majority=5; strict_majority now controls disputed field, modal retained, tests committed, full project suite pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C12-GROUP-REPORT-STRICT",
+        "activity": "Group report data contract distinguishes modal dispersion from opposition to >50% expressed group majority, handles undefined strict majority.",
+        "status": "completed",
+        "at": "2026-10-28T14:30:51.516Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C12_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C12_RESULT.json",
+          "tests/test_group_report_strict_majority.py"
+        ],
+        "scope": "AB-R synthetic measurement report, no new politician discipline claim",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
