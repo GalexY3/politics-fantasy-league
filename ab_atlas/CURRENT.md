@@ -1,3 +1,15 @@
+# AB Atlas · ChatRelay CR02 AB-R · 33 lotes · 28/10/2026
+
+**Campaña `59e1f051-b3c6-4d6a-9ba5-670017942347`: 2/5 ciclos AB A–J realmente cerrados (CR01 AB-P y CR02 AB-R); 0 inválidos, 0 de planificación, 3 pendientes de este bloque.** CR02 fue [prerregistrado](../research/CHATRELAY_59e1f051_20261028/CR02_PREREG.json) antes de buscar su nueva fuente y tiene [resultado negativo acotado](../research/CHATRELAY_59e1f051_20261028/CR02_RESULT.json) y [lote append-only 0033](updates/0033-pfl-chatrelay-59e1f051-cr02-senado-20261028.json). Los IC04–IC23 históricos no se vuelven a contar.
+
+**AB-R: `NO VOTAN` NO ACREDITADO como literal técnico.** Se localizó un [pliego técnico oficial del Senado](https://www.senado.es/web/documentoContratosMayoresServlet?lb_num=ES_I00000061_2021_163800905928181067889555682331) que distingue visualmente `sí/no/abstención/presencia` en el sistema de votación electrónica (página física 25); describe intercambio interno de XML SVE–Gelabert (páginas 27–28) e indica que los modelos detallados de ficheros internos se facilitaron como documento confidencial a licitadores (página física 3). No demuestra equivalencia exacta del literal `NO VOTAN` en el XML nominal abierto de 2025; sistema interno y exportación pública pueden diferir. Consultas institucionales directas y búsqueda acotada no hallaron el diccionario requerido; cuatro intentos de captura visual PDF dieron timeout aunque hubo extracción textual indexada. Mantener `UNKNOWN`, no puntuar personas ni interpretar el no voto como sanción o conducta estratégica.
+
+**Atlas último 0033:** 33 lotes, conteos **derivados** 63 nodos, 81 aristas, 193 runs, 44 complaints y 362 operaciones; falta ejecutar validador Python canónico sobre 33 lotes, por lo que SHA de estado nuevo es **UNKNOWN**. Los informes [T007](../tareas_codex/T007_RESULTADO.md) certifican solo 31 lotes, no 32 ni 33. El reporte de C73 del linaje CONT80 documenta 9 pruebas POSIX seleccionadas en Linux a nivel de archivo, sin equivalencia con suite T002/T004 completa; consultar su resultado específico antes de solicitar repetirlo. V4 contractual 36,90%; CT2 identidad 29/100 ordinal; VSDS 1/3; N1/N2/N3 nuevos 0/0/0; gates 0/6.
+
+**R5:** no continuar con la misma definición genérica del Senado; próximo contraste documental solo con diccionario oficial/acta más XML correspondiente, o prueba POSIX discriminante nueva. Ningún original privado, merge main, puntuación real ni CI costosa habilitados.
+
+---
+
 # AB Atlas · ChatRelay CR01 auditada · 32 lotes · 28/10/2026
 
 **Campaña independiente `59e1f051-b3c6-4d6a-9ba5-670017942347`: 1 ciclo documental AB-P A–J ejecutado (CR01), 0 inválidos y 0 de planificación; de los 5 de esta petición quedan 4.** [Prerregistro previo a la matriz exhaustiva](../research/CHATRELAY_59e1f051_20261028/C01_PREREG.json) · [resultado y matriz IC04–IC23](../research/CHATRELAY_59e1f051_20261028/CR01_RESULT.json) · [lote 0032](updates/0032-pfl-chatrelay-59e1f051-cr01-20261028.json). El hecho de que Atlas 0020 ya incluía runs se había visto antes del prerregistro y figura como exposición post hoc, no como descubrimiento prospectivo.
