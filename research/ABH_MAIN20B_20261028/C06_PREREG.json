@@ -1,0 +1,39 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C06",
+  "type": "AB-META",
+  "status": "PREREGISTERED_BEFORE_POST_RECONCILIATION_DIFF_AUDIT",
+  "date": "2026-10-28",
+  "question": "Did selectively importing historical Codex T008 evidence into main preserve every pre-existing source, test, original Atlas patch and active campaign allocation?",
+  "baseline_head": "894e1b7a48c83bd84cc4c38cfb7e7699bf077ac1",
+  "observed_pre_audit_head": "d3fd0bdf22321aa51c68c5427216ff132c85c5bf",
+  "A": "Compare complete Git trees before and after reconciliation; any change in production src/, tests/, ab_atlas/updates/, methodology code is an unacceptable overwrite.",
+  "B": {
+    "H1": "All changed files are only copied T008 artifacts and designated docs/ledger/backlog; no existing source/test/Atlas blob modified",
+    "H0": "One or more production/test/Atlas blobs changed unintentionally or a previously existing document lost historical text"
+  },
+  "C": {
+    "new_audit": "Compute exact compare files and full-tree SHA map pre/post on GitHub now; whitelist only T008 reports/stdout, T009 new, reconciliation memo, README/CURRENT/BACKLOG/T008 contract and campaign status/interim report. Cross-read current status 5 valid, 15 remaining and 60 patch lot tree. Verify copied original blobs match branch 0c940f0",
+    "controls": [
+      "No src or tests change",
+      "No ab_atlas/updates change",
+      "No deletion of pre-existing files",
+      "No lowering campaign budget or relabelling earlier 5 results",
+      "README etc updated by prefix preserving historical text"
+    ],
+    "success": "All checks pass; document exactly; no source science/gates increment",
+    "failure": "Record specific unexpected path before any repair"
+  },
+  "D": {
+    "instrument": "GitHub connector tree comparisons, commit SHA, 60 Atlas immutable file SHA map",
+    "no_python_global_suite": true,
+    "no_new_CI": true
+  },
+  "E": "PENDING",
+  "F": "Post-reconciliation source integrity != T009 complete execution nor legal basis",
+  "G": "Actual repo tree is independent of narrative report",
+  "H": "No CT2 or scientific grades promotion",
+  "I": "AB-META safety of branch consolidation",
+  "J": "Count only if post-pre-registration compare and decision recorded; otherwise planning, not valid."
+}
