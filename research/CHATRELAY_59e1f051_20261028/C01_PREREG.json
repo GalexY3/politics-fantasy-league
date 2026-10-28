@@ -1,0 +1,48 @@
+{
+  "campaign_id": "59e1f051-b3c6-4d6a-9ba5-670017942347",
+  "turn_id": "d842e054-7a0c-4c14-a917-f42777b5a835",
+  "cycle": "CR01",
+  "mode": "AB-P",
+  "type": "DOCUMENTARY_AB",
+  "status": "PREREGISTERED_BEFORE_EXHAUSTIVE_MATRIX_AUDIT",
+  "baseline_head": "58a18d1e1b80298c3a23d85f3f3436a5105488e1",
+  "selection_exposure": "POST_HOC_EXPOSURE: before preregistering, inspected Atlas batch 0020 (which claims 20 IC runs), CURRENT subsection, IC04, IC15, IC19, IC20 and IC23 results; cannot present discovery of Atlas entries as prospective. This cycle audits the remaining matrix and cross-checks against current status without claiming independent empirical confirmation.",
+  "A": {
+    "question": "Do all 20 historical IC04-IC23 have individually retrievable prereg and result artifacts consistent with an Atlas 0020 run record, and do present PFL claims preserve NO VOTAN and old-baseline restrictions?"
+  },
+  "B": {
+    "H1": "Historical IC04–IC23 are present in GitHub and structurally represented by Atlas 0020, with limitations correctly demarcated.",
+    "H0": "One or more pairs or run ids are absent/mismatched, so Atlas overstates traceability.",
+    "H_other": "All pairs exist but their content is not substantively complete or external execution remains unverified."
+  },
+  "C": {
+    "discriminant": "Fetch each of 20 prereg/result pairs from the same HEAD or SHA-pinned baseline. Parse JSON, check cycle identifiers and unique Atlas run ids. Compare NO VOTAN audit and T007 report, surface any incorrect pending state. All failures retained, not repaired silently."
+  },
+  "D": {
+    "instrument": "GitHub connector SHA-pinned file retrieval; in-process JavaScript JSON checks; preserve exact path and missing records. No checkout or native Python claimed."
+  },
+  "E": {
+    "acceptance": "Record 20 pair presence, parse status, run references, mismatches, and any post-hoc limitations; results cannot promote scientific grades, gates or source authenticity."
+  },
+  "F": {
+    "adversarial": "A JSON file existing is not proof it was preregistered before running; a run.add existing is not proof the experiment happened. Compare selected historical statements and note provenance of externally reported tests."
+  },
+  "G": {
+    "external_independence": "Not available in this static audit; not a scientific confirmation nor clean-clone replay."
+  },
+  "H": {
+    "update": "Retain negative outcomes and separate provenance/registered-document completeness from empirical claims."
+  },
+  "I": {
+    "D": 0,
+    "CT2_before": 29,
+    "CT2_after_expected": 29,
+    "grade": "0/3",
+    "N1_new": 0,
+    "gates_before": "0/6",
+    "scope_percent": 36.9
+  },
+  "J": {
+    "rule": "If all structural references exist, close documentary QA and STOP_R5 for repeated bookkeeping; if missing, specify exact repair and request guarded local work. Do not merge main, publish personal originals or run CI."
+  }
+}
