@@ -1,3 +1,5 @@
+> **Nota de actualización del expediente (28/10/2026):** llegó evidencia original de Codex T008, que efectivamente pasó **651 tests + 28 subtests** bajo Alpine/QEMU en `b0344d1`. También hubo checker nativo de **35 lotes** en `9d0ef84`. Ambas pruebas son históricas y se preservan como tales; **el full pytest y Atlas de 60 lotes de `main` siguen sin ejecutar**, ahora agrupados en [T009](../../tareas_codex/T009_MAIN_LINUX_ATLAS60.md). La conciliación no es otro ciclo AB; el balance MAIN20B sigue en 5 válidos y 15 autorizaciones disponibles. [Informe de procedencia](../../tareas_codex/T008_RECONCILIACION_MAIN_20261028.md).
+
 # Campaña AB-H MAIN20B · avance C01–C05 · 28/10/2026
 
 **Autorización del usuario:** 20 ciclos branching, sin obligación de gastar cuota; campaña independiente de BRANCH20 (cerrada 19 válidos, 1 inválido). **Ejecutados en esta etapa: 5 válidos, 0 inválidos, 0 planificación, 15 pendientes de utilización.** Se usa `main`, sin crear ramas. La prioridad R5 prevalece sobre repetir pruebas sintéticas o búsquedas sin nuevos instrumentos.
