@@ -1,0 +1,92 @@
+{
+  "schema": "ab.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C01",
+  "mode": "AB-R",
+  "kind": "DOCUMENTARY_ACCESS_TEST",
+  "prereg": "C01_PREREG.json",
+  "prereg_commit": "caed04ae7db2d6b57155c1fd50baafd6ef99f1fa",
+  "status": "COMPLETED_DOCUMENTARY_INCONCLUSIVE_ACCESS",
+  "counts_as_valid_documentary_cycle": true,
+  "not_an_experiment_or_confirmation": true,
+  "A_question": "Does an actual Senate XV public nominal XML directly attest the literal NO VOTAN, and does an aligned official codebook explain its semantics?",
+  "B_rivals": {
+    "H1": "literal present in an actual downloadable nominal XML",
+    "H0": "absent in sampled actual XML",
+    "Hother": "web display vs exported code or missing linked schema differ; unknown"
+  },
+  "C_preregistered_bounds": {
+    "targeted_queries_max": 5,
+    "primary_opens_max": 4,
+    "xml_fetch_max": 2
+  },
+  "D_executed": {
+    "targeted_searches": 3,
+    "official_catalog_page_opens": 1,
+    "official_direct_xml_attempts": 2,
+    "original_xml_bytes_acquired": 0,
+    "codebook_acquired": 0,
+    "native_code_tests": 0,
+    "official_person_names_saved": 0
+  },
+  "E_observations": [
+    {
+      "kind": "OFFICIAL_CATALOG_HTML",
+      "url": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/catalogodatos/votaciones/index.html?lang=es_ES",
+      "claim": "The official public site lists initiative-linked XV Legislature xml links for 600/000001 and 600/000002. These links point to a dynamic ficopendataservlet, not to a version-aligned XML semantic dictionary.",
+      "link_ids_from_catalogue": [
+        43,
+        45
+      ],
+      "search_ref": "turn970211view0 lines 70-77"
+    },
+    {
+      "kind": "DIRECT_LINK_ATTEMPT_NOT_BYTES",
+      "url": "https://www.senado.es/web/ficopendataservlet?legis=15&numEx=000001&tipoEx=600&tipoFich=12",
+      "observation": "Web retrieval returned an internal fetch error with the message 'OK'. This is a retrieval-layer message, not verified Senate HTTP status; no raw XML accessible.",
+      "source_ref": "turn722780view0 / turn164517view0"
+    },
+    {
+      "kind": "DIRECT_LINK_ATTEMPT_NOT_BYTES",
+      "url": "https://www.senado.es/web/ficopendataservlet?legis=15&numEx=000002&tipoEx=600&tipoFich=12",
+      "observation": "Web retrieval reported 'Cache miss'; no XML payload obtained. Do not infer origin status.",
+      "source_ref": "turn376614view0"
+    }
+  ],
+  "F_adversarial": {
+    "test_vs_claim": "The catalog's 'xml' link does not prove that the XML is nominal or contains the literal; extraction failures from the web tool do not establish absence in the Senate corpus.",
+    "version_caveat": "The technical procurement SVE/Gelabert system and public XV nominal XML must not be assumed to serialize identically.",
+    "temporal_caveat": "No first_public_at or historical publication moment demonstrated."
+  },
+  "G_confirmation": "NOT_RUN: no raw original XML/XSD or authoritative same-version dictionary. H1 and H0 remain unresolved.",
+  "H_update": {
+    "format": "Direct XV XML endpoints now documented with exact initiative-scoped URLs, but original bytes and literal remain UNKNOWN",
+    "literal_NO_VOTAN": "UNKNOWN",
+    "semantics": "UNKNOWN",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0
+  },
+  "I_dictamen": {
+    "internal_validity": "Capped documented access attempt; retriever failure not an institutional negative",
+    "source_authenticity": "Official senate.es host/citation for list and links, but no original XML bytes or SHA",
+    "novelty": "No scientific discovery or standalone new identity mapping",
+    "generalizability": "None beyond URLs attempted",
+    "legal_privacy": "No real-person scoring or publication of nominal original",
+    "grade": "0/3"
+  },
+  "J_decide": "STOP_R5 for repeated unauthenticated lookups of this same linked Senate endpoint. A new distinct documented original XML/XSD or a different evidence bottleneck is required for any follow-up cycle.",
+  "progress": {
+    "baseline_atlas_lots": 35,
+    "CT2_identity_ordinal": 29,
+    "V4_percent": 36.9,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "limits": [
+    "One bounded successful lookup of direct link metadata, not successful retrieval of XML.",
+    "No evidence that NO VOTAN occurs or does not occur within XML.",
+    "Not a code execution, suite run, production change or independent confirmation.",
+    "Web error labels are tool outcomes, not verified origin server status."
+  ]
+}
