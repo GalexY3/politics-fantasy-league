@@ -20,3 +20,11 @@ test('C02 distinct observations in one expediente remain distinct',()=>{
  const x=indexVotes([row(),row({observation_seq:2})]);
  assert.equal(x.count,2); assert.equal(x.multiVoteExpedientes.length,1);
 });
+test('C03 reject impossible and non-Gregorian calendar days',()=>{
+ for (const day of ['2026-02-31','2025-02-29','2026-13-10','2024-04-31','1900-02-29','0000-01-01'])
+   assert.throws(()=>canonicalVoteKey(row({session_date:day})),/INVALID_SESSION_DATE|DATE_NOT_ISO/);
+});
+test('C03 allow real leap day without timezone reinterpretation',()=>{
+ assert.equal(canonicalVoteKey(row({session_date:'2024-02-29'})),'C|XV|193|2024-02-29|1');
+ assert.equal(canonicalVoteKey(row({session_date:'2000-02-29'})),'C|XV|193|2000-02-29|1');
+});
