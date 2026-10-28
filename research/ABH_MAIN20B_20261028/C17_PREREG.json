@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Does malformed local manually transcribed vote aggregate CSV cause /api/state to fail instead of returning safe research status while fictional state stays usable?",
+  "B": {
+    "H1": "state blindly indexes row_id and int yes/no/abstain; one corrupt local row raises KeyError/ValueError",
+    "H0": "manual pilot parser already isolates malformed data and returns a non-validating status"
+  },
+  "C": {
+    "negative": "manual file with header missing row_id or 'yes=garbage' -> no vote, status MANUAL_AGGREGATE_INVALID",
+    "positive": "well-formed manual pilot stays EXPLORATORY_MANUAL_AGGREGATE_NOT_VALIDATED; no real scoring",
+    "bounded": "Max 1 MiB and 200 rows of manual pilot, fail closed and avoid partial source display"
+  },
+  "D": {
+    "source": "product.py at current Git SHA, manual state() pilot branch",
+    "test": "synthetic local tmp CSV; full HTTP T009 pending"
+  },
+  "E": "PENDING",
+  "F": "No legal/source authenticity claim or any fetch of official data",
+  "G": "full T009 pending",
+  "H": "no CT2/gates",
+  "I": "Local observatory availability and integrity",
+  "J": "Repair on red, no partial manual totals"
+}
