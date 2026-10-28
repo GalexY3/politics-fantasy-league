@@ -1,0 +1,110 @@
+{
+  "schema": "pfl.incentive.priors.v1",
+  "scope": "Synthetic-only incentive mechanics BRANCHING, not novel political behavior",
+  "inherits": "proyectos/politics-fantasy-league/research/PRIORS.md; earlier priors not overwritten",
+  "literature": [
+    {
+      "title": "Incentive-Compatible Forecasting Competitions",
+      "year": 2018,
+      "url": "https://doi.org/10.1609/aaai.v32i1.11471",
+      "implication": "Proper scoring competition and truthful reports differ under winner-takes-all; not new PFL claim"
+    },
+    {
+      "title": "Incentive-Compatible Forecasting Competitions, Management Science",
+      "year": 2023,
+      "url": "https://doi.org/10.1287/mnsc.2022.4410",
+      "implication": "Tournament rules strategic effects known; no novelty by relabeling"
+    },
+    {
+      "title": "Empirical Bayes Ranking Methods",
+      "year": 1989,
+      "url": "https://doi.org/10.3102/10769986014001029",
+      "implication": "Posterior shrinkage small samples is long established"
+    },
+    {
+      "title": "Goodhart’s Law and the Gaming of UK Public Spending Numbers",
+      "year": 2021,
+      "url": "https://doi.org/10.1080/15309576.2020.1749092",
+      "implication": "Gaming of official indicators documented outside fantasy context"
+    },
+    {
+      "title": "Dynamic Tournament Design",
+      "year": 2021,
+      "url": "https://doi.org/10.1086/711762",
+      "implication": "Leaderboard influence is established research question"
+    }
+  ],
+  "evidence_sources": [
+    {
+      "type": "self-generated deterministic synthetic experiment",
+      "commits": [
+        "cfaa58a11a62a19a0472655eb24e8da255d62dea",
+        "95ddc4cc3ba333cef45b473b6b38f8a72ca82483",
+        "37f77293a96d784060d922215687ed17b4dec172"
+      ],
+      "meaning": "Not field dataset or independent social replication"
+    },
+    {
+      "type": "self-generated bounded product code and V8 tests",
+      "commits": [
+        "3c8a8f210cc1475dc9f2f4d54ed341c65ac3b220",
+        "b226f9d56ee5d4a9c89b87c173dbd934edc2296d"
+      ],
+      "meaning": "No deployment, real people, or security certification"
+    }
+  ],
+  "priors": [
+    {
+      "id": "PF-IM01",
+      "claim": "Observed per-opportunity rate and shrinkage are identical under unequal opportunity",
+      "update": "REJECTED_WITHIN_TOY_MODEL",
+      "evidence": "C01 rate MAE 0.166 vs shrinkage 0.100; alpha/beta mechanism and true p range preselected",
+      "falsator": "Alternative skill distributions or priors can reverse comparison",
+      "grade": "0/3",
+      "duplicate_of": "Empirical Bayes known"
+    },
+    {
+      "id": "PF-IM02",
+      "claim": "Opportunity-rate normalization unconditionally improves incentive compatibility",
+      "update": "REJECTED_WITHIN_TOY_MODEL",
+      "evidence": "C02 select-four reward +0.36 observed rate; +0.183 beta posterior versus all; scheduled denominator -0.32",
+      "falsator": "Actual human choices and unavoidable missed opportunities can change incentive behavior",
+      "grade": "0/3",
+      "duplicate_of": "Goodhart/tournament manipulation general theory"
+    },
+    {
+      "id": "PF-IM03",
+      "claim": "Strict synthetic-only coverage gate can refuse unknown score without mistaking zero",
+      "update": "PASS_LOCAL_ENGINEERING_ONLY",
+      "evidence": "C03 18/18 V8 QA after harness repair",
+      "falsator": "native and integration tests, bypass by other score routes",
+      "grade": "0/3"
+    },
+    {
+      "id": "PF-IM04",
+      "claim": "Outcome-dependent missingness of successful events biases naive observed rate downward in toy mechanism",
+      "update": "SUPPORTED_CONDITIONAL_ON_ASSUMED_MNAR",
+      "evidence": "C04 MNAR mean bias −0.114 vs MCAR −0.00056",
+      "falsator": "Real censoring mechanism absent/ different, or audit frame complete",
+      "grade": "0/3"
+    },
+    {
+      "id": "PF-IM05",
+      "claim": "Fail-closed manifest is cryptographic provenance",
+      "update": "REJECTED",
+      "evidence": "C05 18/18 consistency tests; canonical payload string has no crypto signature or publisher authentication",
+      "falsator": "Need signed source and storage independent of attacker",
+      "grade": "0/3"
+    },
+    {
+      "id": "PF-IM06",
+      "claim": "Five cycles demonstrate unique PFL social mechanism",
+      "update": "REJECTED",
+      "evidence": "No human experiment, no independent real PFL outcomes, no original contribution identified",
+      "grade": "0/3"
+    }
+  ],
+  "CT2_parent_identity": 29,
+  "CT2_child_mechanisms": 20,
+  "unique_new_N1": 0
+}
