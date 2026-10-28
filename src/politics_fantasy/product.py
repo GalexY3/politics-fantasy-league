@@ -267,11 +267,15 @@ def _round_score(db: sqlite3.Connection, rnd: sqlite3.Row, figures: list[str], *
     if rnd['coverage_state'] != 'SYNTHETIC_COMPLETE' or now < as_utc(rnd['ends_at']):
         return None
     events=[]
+    start=as_utc(rnd['starts_at'])
+    end=as_utc(rnd['ends_at'])
     for e in db.execute('SELECT * FROM demo_event'):
-        # A local database may be edited outside the demo. Never score a
-        # non-fictional source or silently treat contaminated coverage as zero.
-        if (as_utc(rnd['starts_at']) <= as_utc(e['occurred_at']) < as_utc(rnd['ends_at'])
-                and not e['source_url'].startswith('synthetic://')):
+        occurred=as_utc(e['occurred_at'])
+        # Reject relevant non-fictional records, but never parse an unrelated
+        # future/past event into this round's score or let it block settlement.
+        if not start <= occurred < end:
+            continue
+        if not e['source_url'].startswith('synthetic://'):
             return None
         events.append(PoliticalEvent(e['event_id'],e['kind'],as_utc(e['occurred_at']),as_utc(e['first_public_at']),
                                      (e['figure_id'],),e['source_url'],e['raw_sha256'],e['source_version'],
