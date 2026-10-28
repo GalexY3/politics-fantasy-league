@@ -1,0 +1,70 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C06",
+  "type": "AB-META",
+  "status": "VALID_PREREG_POST_RECONCILIATION_TREE_AUDIT",
+  "at": "2026-10-28T13:49:28.022Z",
+  "A": {
+    "question": "Did moving Codex T008 historical evidence from its divergent branch into main overwrite any current source/test/Atlas file or alter AB budget?",
+    "baseline": "Git main 894e1b7a48c83bd84cc4c38cfb7e7699bf077ac1",
+    "tested_head": "bab2ddea23263863d81d4c3c18ae822c1182e06c"
+  },
+  "B": {
+    "H1": "Only approved QA evidence and status docs changed",
+    "H0": "Unexpected production/test/Atlas mutation or missing old evidence"
+  },
+  "C": {
+    "prereg": "C06_PREREG.json",
+    "falsifier": "Any source/test/Atlas modified Git blob, removed file, or invalid budget"
+  },
+  "D": {
+    "method": "Two recursive Git SHA trees + GitHub comparison performed after C06 prereg; immutable Atlas patch inventory; original report blob comparison with 0c940f0",
+    "comparison": {
+      "ahead_by": 13,
+      "behind_by": 0,
+      "changed_files": 13
+    }
+  },
+  "E": {
+    "modified_docs_count": 7,
+    "new_evidence_or_prereg_count": 6,
+    "deleted_files_count": 0,
+    "modified_existing_src_or_tests_or_atlas_code_or_updates": 0,
+    "atlas_lots_before": 60,
+    "atlas_lots_after": 60,
+    "original_report_blob": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
+    "original_report_blob_preserved": true,
+    "campaign_before": {
+      "valid": 5,
+      "invalid": 0,
+      "remaining": 15
+    },
+    "current_main_old_T008": {
+      "test_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
+      "historical_651_pass": true
+    },
+    "current_main_T009": "NOT_RUN"
+  },
+  "F": {
+    "adversarial": "This is a real post-prereg Git tree checksum nonregression audit, not repeat execution of historical T008. Git source equality rules out overwrites in this diff, not hidden runtime regressions. Four divergent commits from old branch were not merged. No 60-lot canonical Python checker run."
+  },
+  "G": {
+    "verification": "GitHub direct SHA trees and original file blob; no CI"
+  },
+  "H": {
+    "N1_new": 0,
+    "CT2_identity_ordinal": 29,
+    "V4_contractual_percent": 36.9
+  },
+  "I": {
+    "quality": "Safe reconciliation of disconnected QA evidence without branch merge",
+    "scientific_grade_0_3": 0,
+    "gates": 0
+  },
+  "J": {
+    "decision": "ACCEPT proof-preserving integration; T008 historical VERIFIED at b0344d1, T009 current main PENDING; keep other 14 cycles for genuinely distinct evidence and apply R5 to documentation-only repeats.",
+    "cycle_consumed": 1,
+    "cycles_remaining_after": 14
+  }
+}
