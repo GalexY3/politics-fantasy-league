@@ -52,6 +52,10 @@ class PoliticalEvent:
             # separate SCHEDULED kind, not be mislabelled observed events.
             if not self.kind.startswith("scheduled_"):
                 raise ValueError("Observed event cannot be public before it occurred")
+        if (not isinstance(self.person_ids, (tuple, list))
+                or not all(isinstance(x, str) and bool(x.strip()) for x in self.person_ids)):
+            raise ValueError("Invalid person IDs")
+        object.__setattr__(self, "person_ids", tuple(self.person_ids))
         if len(set(self.person_ids)) != len(self.person_ids):
             raise ValueError("Duplicate person in event; represent roles separately")
 
