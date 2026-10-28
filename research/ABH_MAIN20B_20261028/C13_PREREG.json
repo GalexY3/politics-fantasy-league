@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Does seed_demo silently treat a partially initialized SQLite fixture as a healthy synthetic demo whenever one figure exists?",
+  "B": {
+    "H1": "Any nonempty figure table short circuits, hiding missing club/round/event tables",
+    "H0": "Fixture validates minimum coherent seed state before return"
+  },
+  "C": {
+    "fixture": "SQLite schema existing; only one figure inserted; no club, fantasy_round or demo_event",
+    "expected": "Fail-closed PARTIAL_SEED rather than silent success",
+    "positive": "full seed with figure club round and events returns idempotently"
+  },
+  "D": {
+    "source": "product.py SHA 7c901986320ed1baed34ebf86f3aa5421912bb9f",
+    "instrument": "focused SQLite logical fixture and code comparison; full product tests T009"
+  },
+  "E": "PENDING",
+  "F": "Manual partial DB corruption is not proven to occur from normal transactions; do not claim crash recovery bug",
+  "G": "No parallel SQLite contention tests",
+  "H": "No CT2/gates",
+  "I": "Demo initialization data integrity",
+  "J": "Repair or document negative, no real data"
+}
