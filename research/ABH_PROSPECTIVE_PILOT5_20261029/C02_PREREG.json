@@ -1,0 +1,26 @@
+{
+  "status": "PRECOMMITTED_BEFORE_COMPONENT_EXECUTION",
+  "study_status": "NOT_AUTHORIZED_FOR_HUMAN_DEPLOYMENT",
+  "population": "Adults age 18+ only, voluntary, synthetic and nonparty scenarios, no political ideology or voting preference requested",
+  "outcomes": "Behavioral selections and factual comprehension about scoring conventions on fictitious civic processes; no participant outcome collected",
+  "control": "Exactly identical questions/fictional opportunities; only explanation of denominator / leaderboard differs",
+  "risk": "Disallow names/contact details/free text, political person fields, persistent identifiers, silent remote telemetry",
+  "causality": "No human causal effect asserted without randomized consented data",
+  "score": "No scoring political actors",
+  "cycle": "C02",
+  "mode": "AB-P randomized assignment engine",
+  "A": "Can an offline no-identity assignment algorithm balance four pre-fixed experimental display conditions without behavioral data, and reproduce assignments by seed?",
+  "B": [
+    "random allocation exactly balanced",
+    "naive modulo PRNG biased",
+    "no reproducibility"
+  ],
+  "C": "Pure deterministic seed schedule and block randomization into 4 arms; 4n participants, balanced within blocks of 4; reject invalid n/seed; at least 12 adversarial tests; no recruitment",
+  "D": "Commit immutable source before acceptance execution; no web APIs; no real IDs",
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}
