@@ -1,0 +1,46 @@
+{
+  "schema": "pfl.ushouse.baseline.retrospective.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "prereg": "C03_PREREG.json",
+  "outcome": "shared_yes_majority of Republican and Democratic recorded voters, chamber roll unit",
+  "source_training": "C01_2025_OFFICIAL_AGGREGATES.json",
+  "source_test": "C02_2026_OFFICIAL_AGGREGATES.json",
+  "exposure": "2026 labels already inspected before C03 prereg: this is NOT genuinely blinded out-of-sample",
+  "frozen_rules": {
+    "A": "2025 majority class: opposed, always predict false",
+    "B": "2025 2/3 suspension sample shared=true, all other 2025 votes opposed=false. Predict shared iff 2026 source question is 2/3 suspension. This is a procedural heuristic with only ONE training suspension.",
+    "aux": "Always shared=true (nontrained alternative)"
+  },
+  "training": {
+    "rows": 6,
+    "shared": 1,
+    "opposed": 5,
+    "suspension_rows": 1,
+    "non_suspension_rows": 5
+  },
+  "comparison": {
+    "holdout_2026_rows": 6,
+    "shared_actual": 5,
+    "opposed_actual": 1,
+    "A_accuracy": 0.16666666666666666,
+    "B_accuracy": 1,
+    "always_shared_accuracy": 0.8333333333333334,
+    "A_Brier": 0.8333333333333334,
+    "B_Brier": 0,
+    "always_shared_Brier": 0.16666666666666666
+  },
+  "sensitivity_excluding_preexposed_roll180": {
+    "training_n": 5,
+    "holdout_n": 5,
+    "A_correct": 1,
+    "B_correct": 5,
+    "always_shared_correct": 4
+  },
+  "limits": [
+    "Not prospective because eval labels seen before prereg",
+    "2026 roll178–182 same May20 sitting and five suspensions: clustered, severe selection",
+    "2025 source June 24–26 selected based on contiguous numeric roll, not common policy domain",
+    "Procedure is an agenda/label pre-roll but might not be known at earlier game deadlines; benchmark only after published agenda and pre-vote not demonstrated",
+    "No scientific predictive validation or person-level outcome forecast"
+  ]
+}
