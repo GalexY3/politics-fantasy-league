@@ -1,0 +1,8 @@
+{
+  "cycle": "C67",
+  "mode": "AB-P",
+  "A": "Does `source_event_registry` silently interpret the legislature-ambiguous short ESE reference as a XII record, and can canonical legislature-qualified IDs plus a separate raw reference eliminate confusion while leaving zero eligibility?",
+  "B": "Original lookup accepts ambiguous label and depends solely on guessed XII context vs canonical ref rejects raw alias",
+  "C": "Native baseline exact Git source; add two new canonical CVE-qualified keys to registry for XII record, preserve raw short ref as descriptive label only, reject bare `ESE/...` with explicit `AMBIGUOUS_LEGISLATURE_REFERENCE`; run old/new tests, report expected changed reasons; never elevate release.",
+  "D": "Fail if unqualified reference resolves, any internal nominal source certified or caller mutation causes eligibility. Do not rewrite historical sources or assume `first_public_at`."
+}
