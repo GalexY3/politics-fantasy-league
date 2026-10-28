@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C20",
+  "type": "AB-META",
+  "status": "PREREGISTERED",
+  "A": "Auditar estado final de 19 ciclos ejecutados, confirmación del registro de 90 logros, Atlas no ampliado y QA T010 sin ejecución; cerrar campaña solo tras corroboración.",
+  "B": {
+    "H1": "Existen los 38 archivos de C01–C19 y el registro v3 tiene exactamente 90 logros, dos adjudicados y el progreso contractual intacto; el checker canónico sigue pendiente.",
+    "H0": "Faltan resultados o el registro, Atlas, métricas o estado T010 discrepan y obligan a no certificar cierre 20/20."
+  },
+  "C": "Leer árbol recursivo de main (pares C01–C19, lotes Atlas, ficheros de referencia), el último par A-J C19, registro de logros y BACKLOG.json. Cotejar por separado el checker y los porcentajes. Dejar evidencia inspeccionable.",
+  "D": {
+    "repository": "GalexY3/Metodologia-AB",
+    "expected_preclosure_completed": 19,
+    "expected_achievements": 90,
+    "expected_unlocked": 2,
+    "expected_atlas_documentary_lots": 75,
+    "expected_T010": "PENDIENTE",
+    "source": "GitHub read-only; no checker Atlas y no full Linux runner"
+  },
+  "E": "PENDING",
+  "F": "La evidencia documental y el cierre de campaña no equivalen a un software listo para producción ni descubren hallazgos sociológicos.",
+  "G": "Si hay ruptura de trazabilidad o evidencia contradictoria, conservar el resultado negativo y no inventar certificación.",
+  "H": "Mantener V4 36,90 %, CT2 identidad 29/100, VSDS 1/3, N1/N2/N3 0, gates 0/6; 2 logros simbólicos, no 100 %.",
+  "I": "No modificar fuentes originales privados, launch gates, lotes Atlas ni perfilado político.",
+  "J": "Cerrar 20/20 únicamente si se ejecuta la auditoría y dejar un informe final con límites y siguientes pasos T010."
+}
