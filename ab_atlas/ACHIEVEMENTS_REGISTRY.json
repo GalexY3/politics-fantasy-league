@@ -1,7 +1,7 @@
 {
   "schema": "pfl.achievements.v1",
   "registry_id": "PFL-ACHIEVEMENTS-20261028",
-  "version": 3,
+  "version": 6,
   "created_at": "2026-10-28",
   "project": "Politics Fantasy League",
   "v4_baseline": {
@@ -437,10 +437,14 @@
       "title": "Qué ocurrió",
       "criteria": "Publicar ontología operativa de eventos, roles, unidades y exclusiones sin causalidad implícita.",
       "rarity": "bronce",
-      "status": "locked",
-      "evidence": [],
-      "verified_by": null,
-      "verified_at": null,
+      "status": "unlocked",
+      "evidence": [
+        "docs/ARQUITECTURA.md",
+        "src/politics_fantasy/events.py",
+        "src/politics_fantasy/evidence_warehouse.mjs"
+      ],
+      "verified_by": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "verified_at": "2026-10-28",
       "created_at": "2026-10-28",
       "updated_at": "2026-10-28",
       "prerequisites": [],
@@ -615,10 +619,13 @@
       "title": "La pregunta precisa",
       "criteria": "Fijar estimando social relevante, rivales falsables, unidades y desenlace operativo.",
       "rarity": "bronce",
-      "status": "locked",
-      "evidence": [],
-      "verified_by": null,
-      "verified_at": null,
+      "status": "unlocked",
+      "evidence": [
+        "docs/PLAN_TFM.md",
+        "docs/VALIDACION_ETICA.md"
+      ],
+      "verified_by": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "verified_at": "2026-10-28",
       "created_at": "2026-10-28",
       "updated_at": "2026-10-28",
       "prerequisites": [],
@@ -1173,10 +1180,14 @@
       "title": "Amenazas a la vista",
       "criteria": "Modelo STRIDE o equivalente con abuso, reputación y superficies de datos.",
       "rarity": "bronce",
-      "status": "locked",
-      "evidence": [],
-      "verified_by": null,
-      "verified_at": null,
+      "status": "unlocked",
+      "evidence": [
+        "docs/THREAT_MODEL_STRIDE_PUBLIC_RELEASE_20261028.md",
+        "src/politics_fantasy/server.py",
+        "docs/RIGHTS_AND_PERSON_SCORING_GATE_20261028.md"
+      ],
+      "verified_by": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "verified_at": "2026-10-28",
       "created_at": "2026-10-28",
       "updated_at": "2026-10-28",
       "prerequisites": [
@@ -1803,7 +1814,34 @@
       "achievement_id": "PFL-SECURITY-01",
       "reason": "server.py binds 127.0.0.1 and rejects nonlocal Host/Origin; earlier native browser/HTTP check returned 403 for hostile Host. This certifies local-demo perimeter only, not multiuser/auth or public deployment.",
       "registry_version": 3
+    },
+    {
+      "seq": 4,
+      "date": "2026-10-28",
+      "actor": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-SCIENCE-01",
+      "reason": "PLAN_TFM.md defines person-week predictive estimand, outcome, baseline, rival falsifiers H0-H4, a chronological evaluation contract; the goal criterion is a documented question, NOT a field validation.",
+      "registry_version": 4
+    },
+    {
+      "seq": 5,
+      "date": "2026-10-28",
+      "actor": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-EVENTS-01",
+      "reason": "ARQUITECTURA.md explicitly defines person/mandate/initiative/event/typed participation and effective/public times plus exclusions on inferred promotion/cause; events.py and evidence_warehouse.mjs operationalize type and bitemporal provenance. Ontology published, not field event corpus.",
+      "registry_version": 5
+    },
+    {
+      "seq": 6,
+      "date": "2026-10-28",
+      "actor": "ChatGPT-repo-documentary-criterion-review-20261028",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-SECURITY-02",
+      "reason": "New THREAT_MODEL_STRIDE_PUBLIC_RELEASE_20261028.md enumerates all six STRIDE classes, concrete trust boundaries, attacks on local server/source/person scoring, reputation and moderation abuse, severity, residual gaps, and negative acceptance tests. DOCUMENTED ONLY, not penetration-tested or approved for release.",
+      "registry_version": 6
     }
   ],
-  "updated_at": "2026-10-28T17:50:00+01:00"
+  "updated_at": "2026-10-28"
 }
