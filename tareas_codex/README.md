@@ -1,34 +1,22 @@
-> **ESTADO VIGENTE TRAS BRANCH20 C04 (28/10/2026).** Codex no está disponible para el usuario. **T008 PENDIENTE**: checkout completo de `main`, suite Python integral Linux/POSIX y checker canónico de **39 lotes** (0038 y 0039 añaden C03 y C04). Las reparaciones focalizadas C03 (`majority_sign.py`, **14 PASS**) y C04 (`scoring.py`, **8 PASS**) NO certifican compatibilidad global. Preservar los primeros resultados rojos C03/C04 y sus hashes, y ejecutar sus pruebas en la suite global. Campaña activa: 3 válidos, 1 inválido, 16 autorizaciones restantes; no consumirlos automáticamente al ejecutar T008.
+# Cola de Codex · Politics Fantasy League
 
-# Cola de tareas Codex — Politics Fantasy League
+**Estado vigente, 28/10/2026: Codex no disponible temporalmente.** Ninguna tarea está ejecutándose en segundo plano. Usar exclusivamente `main` como referencia al retomar. La campaña [AB-H BRANCH20](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) está **CERRADA: 19 ciclos válidos + C01 inválido, cero pendientes**. El [estado Atlas](../ab_atlas/CURRENT.md) alcanza **55 lotes documentales** y el **replay canónico de 55 está PENDIENTE**, al igual que la suite global Python Linux/POSIX.
 
-**Estado 28/10/2026: EN ESPERA.** El usuario no tiene disponible Codex en este momento. Conservar el backlog y no fingir ejecución ni programar reintentos automáticos. El trabajo de investigación AB-H puede continuar por otras vías; los 18 intentos restantes de la campaña BRANCH20 no son presupuesto de Codex y no se consumen al redactar tareas.
+La tarea prioritaria P0 es **[T008 · suite Python íntegra POSIX + Atlas55](T008_SUITE_COMPLETA_POSIX.md)**. Sus criterios, comandos, baselines y precauciones están centralizados en esa ficha. El índice de estados consumible por herramientas es [BACKLOG.json](BACKLOG.json), que se comprobará al iniciar la ejecución, sin asumir HEAD antiguo.
 
-**Rama de referencia prevista:** `main`, tras la consolidación autorizada por el usuario el 28/10/2026. Antes de cualquier ejecución, Codex debe verificar HEAD, permisos y estado real del repositorio. No crear más ramas de trabajo por inercia. Las ramas antiguas divergentes quedan bajo auditoría; no hacer merges masivos.
-
-## Tarea principal pendiente
-
-**[T008 — Suite Python integral en Linux/POSIX y replay Atlas de 39 lotes](T008_SUITE_COMPLETA_POSIX.md)** — `PENDIENTE`, prioridad P0. Esta ficha forma parte del [índice estructurado](BACKLOG.json). Una [entrega ejecutable concreta](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md) conserva los comandos y las condiciones de aceptación de esta etapa.
-
-T002 registró **57 FAIL, 558 PASS, 28 SKIP** en la ejecución integral histórica Windows. En CONT80, C73–C80 documentaron **89 pruebas originales PASS + 14 subtests** de **ocho suites seleccionadas** en Linux/POSIX; no son la ejecución integral. El checker Python de T007 verificó **31 lotes**; la cadena llega a **39 lotes** después de 0036 (C01 inválido) y 0037 (C02 negativo). El **replay canónico de 37 lotes no está ejecutado**.
-
-T008 deberá documentar HEAD real, Python/pytest, sistema de archivos, primera corrida de `PYTHONPATH=src python -m pytest -q -rs` sin alterar tests, exit code, PASS/FAIL/SKIP, logs y SHA; desde raíz repo, `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates`. Solo con ambas ejecuciones satisfactorias y pruebas registradas podrá indicarse `COMPLETADA_VERIFICADA`; de lo contrario `COMPLETADA_CON_FALLOS` o `BLOQUEADA` según proceda. Correr T008 por sí solo **no es un ciclo AB A–J**.
-
-## Expedientes históricos
-
-| Ficha | Estado registrado | Alcance |
+| Expediente | Estado histórico actual | Qué falta |
 |---|---|---|
-| [T001](T001_RESULTADO.md) | COMPLETADA_VERIFICADA | Replay Atlas histórico 29 lotes |
-| [T002](T002_RESULTADO.md) | COMPLETADA_CON_FALLOS | Suite Windows y Node; fallos persistentes |
-| [T003](T003_RESULTADO.md) | COMPLETADA_VERIFICADA | Paridad V3/V4 en la revisión ensayada |
-| [T004](T004_RESULTADO.md) | COMPLETADA_CON_FALLOS | Seguridad local Windows y limitaciones POSIX |
-| [T005](T005_ORIGINALES_CONDICIONALES.md) | BLOQUEADA | Original auténtico, derechos, identificadores y revisión jurídica |
-| [T006](T006_RESULTADO.md) | COMPLETADA_VERIFICADA | HTTP y claves BOCCL XI/XII en snapshot histórico |
-| [T007](T007_RESULTADO.md) | COMPLETADA_VERIFICADA | Atlas 31 y HTTP en HEAD histórico |
-| [T008](T008_SUITE_COMPLETA_POSIX.md) | PENDIENTE | Suite completa Linux y Atlas 39 en HEAD actual |
+| [T001](T001_RESULTADO.md) | COMPLETADA_VERIFICADA | Revalidación solo al ampliar Atlas |
+| [T002](T002_RESULTADO.md) | COMPLETADA_CON_FALLOS | Python Windows 57 FAIL, 558 PASS, 28 SKIP: comparar con POSIX completo |
+| [T003](T003_RESULTADO.md) | COMPLETADA_VERIFICADA | Paridad V3/V4 en snapshot anterior |
+| [T004](T004_RESULTADO.md) | COMPLETADA_CON_FALLOS | Distinguir plataforma y defectos POSIX en suite global |
+| [T005](T005_ORIGINALES_CONDICIONALES.md) | BLOQUEADA | Nuevos originales institucionales legítimos, derechos y autorización específica |
+| [T006](T006_RESULTADO.md) | COMPLETADA_VERIFICADA | Contratos HTTP/CVE de snapshot anterior |
+| [T007](T007_RESULTADO.md) | COMPLETADA_VERIFICADA | Checker 31 lotes histórico, no 55 |
+| [T008](T008_SUITE_COMPLETA_POSIX.md) | PENDIENTE | Checkout `main`, full Python Linux, checker Python Atlas55, regresiones recientes y logs |
 
-## Condiciones de ejecución
+T008 debe incluir las regresiones añadidas durante BRANCH20: comparador secundario de votaciones C03, reglas de scoring ficticio C04, pluralidad/mayoría C07, portada C08, exposición futura C09, módulos recuperados C10/C12/C15 y duplicados JSON C17, interoperabilidad C18. **No** contar las 35 pruebas focalizadas C18 ni las 89 históricas CONT80 como suite global.
 
-Leer [AGENTS.md](../../../AGENTS.md), `ab_atlas/CURRENT.md` y el [informe de consolidación](../docs/BRANCH_CONSOLIDATION_20261028.md) antes de trabajar. Reexaminar siempre el commit HEAD, pues esta cola no garantiza que una referencia histórica siga actual. No inventar comandos, salidas ni SHA. No modificar pruebas para forzar aprobación. Reservar evidencias en rutas de proyecto o externas privadas sin subir originales nominales ni credenciales. No activar CI costosa, no fusionar otras ramas automáticamente, no publicar scoring de personas reales y no alterar `main` sin una autorización de escritura específica coherente con el trabajo pedido. Los seis gates permanecen **0/6**.
+**Incidencia C19 abierta:** el preflight de lotes Atlas no exige una fecha `at` válida y con zona; no declarar solucionada por obtener un código de salida positivo en otra versión. [Evidencia](../research/ABH_BRANCH20_20261028/C19_RESULT.json).
 
-El usuario puede reactivar T008 cuando Codex esté disponible. No existe una ejecución en curso ni una obligación de lanzarla durante el trabajo AB-H.
+Antes de operar: leer [AGENTS.md](../../../AGENTS.md), [CURRENT](../ab_atlas/CURRENT.md), [cierre BRANCH20](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) y [T008](T008_SUITE_COMPLETA_POSIX.md). Comprobar `git status`, rama y HEAD. La ejecución de una ficha no es por sí sola un ciclo AB A–J. Sin CI costosa, puntuación real, originales privados nominales, publicación multiusuario ni fusiones masivas. Se necesita autorización nueva del usuario para más ciclos AB.
