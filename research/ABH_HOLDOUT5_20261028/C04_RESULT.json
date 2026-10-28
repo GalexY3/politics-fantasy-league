@@ -1,0 +1,59 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_FIXED_COHORT_RULE_ABLATION",
+  "A": "Are statutory thresholds binding and does Hamilton differ in the fixed Navarra/Asturias/Rioja 2023 cohort?",
+  "B": {
+    "H1": "At least one threshold binding and non-identical Hamilton baseline",
+    "H0": "No change in any cohort election",
+    "H_alt": "Thresholds can be nonbinding even though mandatory"
+  },
+  "C": {
+    "prereg_commit": "665ec0c4a11bff880819deccabccd52245f35f9b",
+    "execution": "Python 3 local fractions.Fraction over pre-existing original-issuer aggregate source rows, exact 128-seat fixed cohort, no new case after result. Evaluated D'Hondt legal (3%/3%/5%), D'Hondt without threshold and Hamilton at eligible legal party set by EACH constituency."
+  },
+  "D": {
+    "sources": [
+      "https://parlamentodenavarra.es/en/node/167978",
+      "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+      "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales"
+    ],
+    "fixture": "C04_THRESHOLD_AND_HAMILTON_FIXED_COHORT.json"
+  },
+  "E": {
+    "jurisdictions": 3,
+    "actual_constituencies": 5,
+    "legal_seats": 128,
+    "threshold_abolished_transfers": {
+      "Navarra": 0,
+      "Asturias": 0,
+      "Rioja": 1
+    },
+    "hamilton_transfers": {
+      "Navarra": 1,
+      "Asturias": 4,
+      "Rioja": 1
+    },
+    "sum_hamilton_seat_transfers": 6,
+    "Rioja_no_threshold_effect": "La Rioja PR+E gains one and PODEMOS-IU loses one from legal observed, solely counterfactual"
+  },
+  "F": "Observed cross-jurisdiction legal threshold is active in only Rioja of five examined 2023 districts; NOT general probability. Hamilton differs from statutory D'Hondt in all three examples; neither is an empirical learned rival and no political actor evaluated.",
+  "G": "Fixed three source discoveries were themselves explored before C04 prereg; in-sample and nonrandom source selection, no prospective forecast and no external model replication; original binary unavailable.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "awards": 0
+  },
+  "I": "Counterfactual seat distributions are mechanical only; avoid merits/prediction and political scoring",
+  "J": "Save cross-case threshold sensitivity as evidence for domain rules; proceed to C05 reproducibility checker, without claiming novelty."
+}
