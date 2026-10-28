@@ -1,0 +1,103 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C06",
+  "mode": "AB-P",
+  "status": "VALID_DIFFERENTIAL_ARCHAEOLOGY",
+  "at": "2026-10-28T12:33:23.689Z",
+  "A": {
+    "question": "What, if anything, from old draft PR #11 is unincorporated in current main?",
+    "estimand": "Exact code/test blob equivalence and retained functional guard markers"
+  },
+  "B": {
+    "H1": "Critical PR #11 fixes already present; merging would duplicate or overwrite modern files",
+    "H0": "critical missing fix found",
+    "alternate": "CI matrix differs and may be too costly under user constraints"
+  },
+  "C": {
+    "prereg": "C06_PREREG.json",
+    "discriminants": [
+      "Git blob equality for source/tests",
+      "SVG with no inline style; Windows fileURLToPath; numpy deps; workflow matrix"
+    ]
+  },
+  "D": {
+    "GitHub_pr": 11,
+    "head": "fix/pfl-quick-review-20261026",
+    "base": "main",
+    "examined": 8,
+    "read_method": "Fetch exact path from both refs; record SHAs and guarded markers",
+    "code_execution": "NONE",
+    "CI_actions": "NONE"
+  },
+  "E": {
+    "files": [
+      {
+        "path": "src/politics_fantasy/events.py",
+        "same_git_blob": true,
+        "sha": "35fbfa6e4e952e22450a184f53672f9ef670d039"
+      },
+      {
+        "path": "tests/test_core.py",
+        "same_git_blob": true,
+        "sha": "3b3428280371338f45c7d9c67ac3dfd7ef220197"
+      },
+      {
+        "path": "tests/test_product.py",
+        "same_git_blob": true,
+        "sha": "6adfe4c1f3be38c73981b938b96c319333b0bf23"
+      },
+      {
+        "path": "tests/test_ui_vote_bars.mjs",
+        "same_git_blob": true,
+        "sha": "863ed732e055773ef95ccc132ec260c03631691e"
+      },
+      {
+        "path": "tests/test_evidence_ingest_cli.mjs",
+        "same_git_blob": true,
+        "sha": "87aef9e6120b55d1a1dea5c4812b624811888357",
+        "fileURLToPath": true
+      },
+      {
+        "path": "src/politics_fantasy/web/app.js",
+        "same_git_blob": false,
+        "main_has_svg_vote_stack": true,
+        "main_source_without_inline_style": true
+      },
+      {
+        "path": "pyproject.toml",
+        "same_git_blob": false,
+        "main_has_numpy": true,
+        "main_has_pytest": true
+      },
+      {
+        "path": ".github/workflows/politics-fantasy-evidence.yml",
+        "same_git_blob": false,
+        "main_has_matrix": false,
+        "main_has_selected_python_tests": true
+      }
+    ],
+    "identical_blobs": 5,
+    "changed_but_critical_markers_retained": 3,
+    "critical_regression_missing_demonstrated": false
+  },
+  "F": {
+    "adversarial": "Exact blob equality is stronger than textual matching for five files, but static marker presence cannot certify rendering at runtime, and no full Windows/Linux test was run. Original PR #11 introduces CI matrix; different current workflow must not be overwritten without evaluating cost and coverage. PR historical report has a known lineup-deselect usability issue; present UI keeps [] as truthy and only initializes when picks===null, so that old behavior is not established on this current file."
+  },
+  "G": {
+    "independent_run": "NONE",
+    "status": "DOCUMENTARY_CODE_EQUIVALENCE_ONLY"
+  },
+  "H": {
+    "update": "No evidence of a critical absent patch among eight sampled paths; cannot declare all PR#11 work superseded.",
+    "novel_N1": 0
+  },
+  "I": {
+    "scientific": "0/3",
+    "impact": "Avoid unsafe bulk merge and redundant diffs; protect main while retaining drafts",
+    "gates": "0/6"
+  },
+  "J": {
+    "decision": "DO_NOT_MERGE_PR_11_WHOLESALE; keep draft as provenance; only cherry-pick a previously demonstrated unique defect after new prereg and tests. Review remaining historical PRs similarly only if distinct discriminating risk arises."
+  }
+}
