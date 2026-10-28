@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_TWO_BOE_DOC_SOURCE_SCOPE",
+  "A": "Auditable bounded compare of 2023 proclamation candidates and JEC outcome in same constituency",
+  "B": {
+    "H1": "Same election & constituency but party/role differences demand explicit normalisation",
+    "H0": "Unqualified 1:1 candidate-to-elected link supported",
+    "Halt": "Any candidate count or seats may be mismatched due to document grain"
+  },
+  "C": {
+    "prereg_commit": "32fc24203d61351677945e7b85edbf5cb148155c",
+    "method": "Manual delimitation in official HTML of Junta Guadalajara, Congreso versus Senado; count 10 three-position main lists (exclude substitutes); compare Cuadro II Guadalajara elected seats; verify sum 3."
+  },
+  "D": {
+    "candidacies": "https://www.boe.es/buscar/doc.php?id=BOE-A-2023-15066",
+    "web_lines_candidates": "8404-8536",
+    "outcomes": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "web_lines_outcome": "84-116",
+    "data": "C02_BOE_GUADALAJARA_SOURCE_AUDIT.json"
+  },
+  "E": {
+    "district": "Guadalajara",
+    "non_substitute_list_options": 10,
+    "main_list_positions_each": 3,
+    "nominal_slots": 30,
+    "disputed_count": 0,
+    "elected_seats": 3,
+    "seat_allocation": {
+      "PP": 1,
+      "PSOE": 1,
+      "VOX": 1
+    },
+    "candidate_gender_verified": false,
+    "person_join_verified": false,
+    "original_hash_verified": false
+  },
+  "F": "Supported: two chronologically different state documents with distinct units and a bounded district-party reconciliation. Unsupported: 30 distinct people, chance of being elected, person-level gender gap, historical first_public_at. BOE candidate publication 2023 predates 2024 parity changes, so cannot evaluate new law.",
+  "G": "Manual parsing of a single district, no second independent electoral issuer and no original PDF bytes; a one-district read is not 2023 national coverage.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "awards": 0
+  },
+  "I": "No naming or scoring individual candidates in saved aggregate; no implied stable party IDs",
+  "J": "Record feasible district-party audit but prohibit candidate-to-elected person probability or sex inference. Continue legal comparator."
+}
