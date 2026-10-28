@@ -1,0 +1,88 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "D": {
+    "source_2019": "https://www.boe.es/buscar/doc.php?id=BOE-A-2019-8070",
+    "source_2023": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "source_lines": "2019 160; 2023 116",
+    "source_bytes_hashed": false
+  },
+  "status": "VALID_BOUNDED_GUADALAJARA_MATCHED_ELECTIONS",
+  "A": "Do identical three-seat district boundaries imply stable party seat-holder composition from April 2019 to July 2023?",
+  "B": {
+    "H1": "Observed allocation shifts Cs 1→0 and Vox 0→1, with rank leader PSOE→PP",
+    "H0": "Same winners/leader across years"
+  },
+  "C": {
+    "pre_commit": "5b21b35f33079ae3fd66d33ce558d803ce7a76ba",
+    "method": "Read official BOE Cuadro II two separate elections, record named party votes and seats in Guadalajara. Exact diff common labels PP/PSOE/Vox, party labels case-specific.",
+    "calculation_runtime": "V8 JavaScript in functions.exec, exact integer differences"
+  },
+  "E": {
+    "seats_each": 3,
+    "year2019": {
+      "PSOE": {
+        "votes": 42521,
+        "seats": 1
+      },
+      "PP": {
+        "votes": 28618,
+        "seats": 1
+      },
+      "Cs": {
+        "votes": 26817,
+        "seats": 1
+      },
+      "Vox": {
+        "votes": 23501,
+        "seats": 0
+      },
+      "UnidasPodemos": {
+        "votes": 17524,
+        "seats": 0
+      }
+    },
+    "year2023": {
+      "PP": {
+        "votes": 51195,
+        "seats": 1
+      },
+      "PSOE": {
+        "votes": 46479,
+        "seats": 1
+      },
+      "Vox": {
+        "votes": 27126,
+        "seats": 1
+      },
+      "Sumar": {
+        "votes": 12907,
+        "seats": 0
+      }
+    },
+    "common_party_vote_deltas": {
+      "PP": 22577,
+      "PSOE": 3958,
+      "Vox": 3625
+    },
+    "party_leader_2019": "PSOE",
+    "party_leader_2023": "PP"
+  },
+  "F": "A district seat label can change without district-seat magnitude change, but not proof of individual continuity or causality. 2019 Cs not assumed exactly 0 in 2023 solely from 2023 named winners subset; Sumar not identified as same actor as Unidas Podemos.",
+  "G": "Two separate elections 4 years apart, campaigns and coalition changes; no turnout comparability and no pre-specified probability sample.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "Only aggregate party votes; no profile scoring or nomination counts.",
+  "J": "Accept bounded panel by district and party label with explicit party identifier changes; extend to Cantabria."
+}
