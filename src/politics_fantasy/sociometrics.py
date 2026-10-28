@@ -50,7 +50,7 @@ def group_choice_counts(votes: Iterable[NominalVote]) -> dict[str,dict[str,int]]
 
 
 def majority_by_group_vote(votes: Iterable[NominalVote]) -> dict[tuple[str,str],str | None]:
-    """One per-session vote/group majority; tie or 0 expressed votes returns None."""
+    """Legacy modal (plurality) option, NOT strict majority; ties/no rows -> None."""
     tally=defaultdict(Counter)
     seen=set()
     for v in votes:
@@ -90,3 +90,49 @@ def dissent_report(votes: Iterable[NominalVote], *, exclude_groups: frozenset[st
         x['dissent']+=int(v.choice!=winner)
     return {k:{**v,'rate':v['dissent']/v['eligible_expressed'] if v['eligible_expressed'] else None,
                'status':'DESCRIPTIVE_SYNTHETIC_NOT_MOTIVATION'} for k,v in sorted(result.items())}
+
+def strict_majority_by_group_vote(votes: Iterable[NominalVote]) -> dict[tuple[str,str],str | None]:
+    """Unique expressed option with >50% of YES/NO/ABSTAIN for one vote/group.
+
+    If no such option exists, return None: a plurality is not a strict
+    majority. Membership denominators and eligibility are NOT inferred.
+    """
+    rows=list(votes)
+    modal=majority_by_group_vote(rows)  # preserves duplicate-row rejection
+    counts=defaultdict(Counter)
+    for v in rows:
+        if v.choice in EXPRESSED:
+            counts[(v.vote_id,v.group_at_vote)][v.choice]+=1
+    result={}
+    for key,winner in modal.items():
+        n=sum(counts[key].values())
+        result[key]=winner if winner is not None and 2*counts[key][winner]>n else None
+    return result
+
+
+def strict_majority_dissent_report(
+    votes: Iterable[NominalVote], *,
+    exclude_groups: frozenset[str]=frozenset({'Mixto'})
+) -> dict[str,dict]:
+    """Non-majority votes only where a genuine >50% expressed option exists.
+
+    Individual choices are descriptive. They do not identify motives,
+    ideological divergence, party discipline, or group membership validity.
+    """
+    rows=list(votes)
+    winners=strict_majority_by_group_vote(rows)
+    output=defaultdict(lambda:{'eligible_expressed':0,'dissent':0,'excluded':0})
+    for v in rows:
+        row=output[v.person_id]
+        winner=winners[(v.vote_id,v.group_at_vote)]
+        if v.choice not in EXPRESSED or v.group_at_vote in exclude_groups or winner is None:
+            row['excluded']+=1
+            continue
+        row['eligible_expressed']+=1
+        row['dissent']+=int(v.choice!=winner)
+    return {
+        person:{**v,'rate':v['dissent']/v['eligible_expressed'] if v['eligible_expressed'] else None,
+                'criterion':'STRICT_GT_HALF_OF_EXPRESSED_GROUP_ROWS',
+                'status':'SYNTHETIC_DESCRIPTIVE_NOT_CAUSAL_DISCIPLINE'}
+        for person,v in sorted(output.items())
+    }
