@@ -282,10 +282,22 @@
     "weeks": 40,
     "weekly_dispersion": 6.237820512820513,
     "top_quartile_fraction": 0.6666666666666666,
-    "preregistered_thresholds_met": true
+    "preregistered_thresholds_met": true,
+    "comparison_2025": {
+      "data_status": "prior 2025 data exposed in C02; comparison exploratory",
+      "period": "2025-01-01 to 2025-09-30",
+      "raw_rows": 238,
+      "unique_in_window": 234,
+      "weeks": 40,
+      "zero_weeks": 14,
+      "dispersion": 5.961965811965815,
+      "top_n": 10,
+      "top_share": 0.6239316239316239,
+      "month_source": "mySociety pinned 2025-01..09"
+    }
   },
-  "F": "Check duplicate IDs, dates across month files, no named individuals, seasonality/active days explain non-independence; no prospective calibration or actual fantasy rewards",
-  "G": "New chronological later interval but same aggregator/issuer and selection after 2025; temporal sensitivity only, NOT independent external confirmation or true prospective holdout",
+  "F": "Source and month duplication audited; same-season 2025 comparison executed (see C03_YEAR_COMPARISON.json). 2025 was previously exposed; same-issuer temporal sensitivity, NOT independent prospective holdout. Non-vote days inferred only from record availability, not authenticated sitting calendar.",
+  "G": "Same source emitter, later calendar 2026 vs already exposed 2025 Jan-Sep; not independent external replication.",
   "H": "Maintain prior that fantasy opportunity depends on legislative calendar; no claim of new mechanism",
   "I": {
     "validity": "bounded descriptive archive",
