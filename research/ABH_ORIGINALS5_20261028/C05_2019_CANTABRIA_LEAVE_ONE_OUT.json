@@ -1,0 +1,118 @@
+{
+  "schema": "pfl.cantabria.2019.party.coverage.ablation.v1",
+  "source": "https://www.boe.es/buscar/doc.php?id=BOE-A-2019-8070",
+  "original_source_format": "official HTML read, manually transcribed",
+  "reference_lines": [
+    "Cuadro II 151",
+    "Cuadro II continuación 328"
+  ],
+  "sample_scope": "One April 2019 Cantabria Congress district; six vote-bearing named options from BOE Cuadro II, 5 seats",
+  "inputs": {
+    "PSOE": 90534,
+    "PP": 77902,
+    "Cs": 54361,
+    "PRC": 52266,
+    "Vox": 40139,
+    "Unidas Podemos": 36784
+  },
+  "observed_seats": {
+    "PSOE": 2,
+    "PP": 1,
+    "Cs": 1,
+    "PRC": 1,
+    "Vox": 0,
+    "Unidas Podemos": 0
+  },
+  "algorithm": "Exact rational quotients using Python Fraction, rank top 5 for all d in 1..5; ties by raw votes then label (no relevant ties)",
+  "runtimes": [
+    "V8 earlier exploratory calculation for full/PRC ablation (prior to C05 pivot prereg)",
+    "Python fractions.Fraction after pivot prereg for full plus six leave-one-party-out cases"
+  ],
+  "full": {
+    "allocations": {
+      "PSOE": 2,
+      "PP": 1,
+      "Cs": 1,
+      "PRC": 1,
+      "Vox": 0,
+      "Unidas Podemos": 0
+    },
+    "top_quotients": [
+      90534,
+      77902,
+      54361,
+      52266,
+      45267
+    ],
+    "first_unselected": {
+      "party": "Vox",
+      "votes": 40139
+    }
+  },
+  "drop_PRc": {
+    "allocations": {
+      "PSOE": 2,
+      "PP": 1,
+      "Cs": 1,
+      "Vox": 1,
+      "Unidas Podemos": 0
+    },
+    "top_quotients": [
+      90534,
+      77902,
+      54361,
+      45267,
+      40139
+    ],
+    "first_unselected": {
+      "party": "PP",
+      "quotient": 38951
+    },
+    "incorrectly_awarded": {
+      "party": "Vox",
+      "seats": 1
+    }
+  },
+  "leave_one_out": {
+    "PSOE": {
+      "PP": 2,
+      "Cs": 1,
+      "PRC": 1,
+      "Vox": 1
+    },
+    "PP": {
+      "PSOE": 2,
+      "Cs": 1,
+      "PRC": 1,
+      "Vox": 1
+    },
+    "Cs": {
+      "PSOE": 2,
+      "PP": 1,
+      "PRC": 1,
+      "Vox": 1
+    },
+    "PRC": {
+      "PSOE": 2,
+      "PP": 1,
+      "Cs": 1,
+      "Vox": 1
+    },
+    "Vox": {
+      "PSOE": 2,
+      "PP": 1,
+      "Cs": 1,
+      "PRC": 1
+    },
+    "Unidas Podemos": {
+      "PSOE": 2,
+      "PP": 1,
+      "Cs": 1,
+      "PRC": 1
+    }
+  },
+  "omissions_that_change_allocation": 4,
+  "omissions_without_effect": 2,
+  "original_raw_hash": null,
+  "selection_warning": "H1 effect of PRC exclusion already observed during C04 pre-pivot exploratory calculation, so the ablation is not a new preregistered discovery. All six omission variants and exact rational verification were subsequently run; no estimator of prediction performance."
+}
