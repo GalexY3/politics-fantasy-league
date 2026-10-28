@@ -1,0 +1,12 @@
+{
+  "cycle": "C80",
+  "mode": "AB-P",
+  "A": "Does the original private audit CLI in checked-in tests reject uncertainty with nonzero exit, redact private URLs/objects/person-like data and pass genuine POSIX integration without code changes?",
+  "B": {
+    "H1": "All original CLI tests pass with exact current Git SHA on Linux",
+    "H0": "Private details leak or error state permits exit0 in original suite",
+    "H2": "Missing or altered tests/source invalidate result"
+  },
+  "C": "Prereq C77-C79 completed. Fetch versioned `tests/test_private_audit_cli.py` original sha 20ab836b6cf37b1f5073455e10673acbaead9e13, write byte-identical on Linux with original private_audit_cli, private_audit and secure_store and run native pytest -q -rs; no network or private originals.",
+  "D": "Any mismatch/failure remains red and cannot be silently patched. CLI tests are NOT the full pytest, and no scientific or release credit follows."
+}
