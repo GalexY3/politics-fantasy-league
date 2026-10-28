@@ -1,3 +1,15 @@
+# AB Atlas · CONT80 C61–C72 · STOP_R5 12/20 · 28/10/2026
+
+**Permiso máximo 20 ciclos, 12 A–J completados y ocho sin utilizar.** [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [informe/adenda](../research/ABH_CONT80_20261028/REPORT_FINAL.md). Últimos C69: 7 tests JSON, **sin HTTP nativo**; C70: dos fuentes oficiales BOCCL de etapas distintas (cuerpo directo no recuperado, tiempo exacto desconocido); C71: dos URL de publicaciones enlazadas por CVE con **32/32 pytest seleccionados PASS**; C72: revisión de informes existentes en GitHub que documentan ejecución externa de Codex en checkout antiguo `6e359a8`.
+
+**Ejecución externa reportada, no realizada por este asistente:** [T001](../tareas_codex/T001_RESULTADO.md) Atlas canónico **29 lotes** exit 0, SHA `c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c`; [T006](../tareas_codex/T006_RESULTADO.md) HTTP loopback y referencias CVE focalizadas **43 PASS**, ambos **antes** de C71. [T002](../tareas_codex/T002_RESULTADO.md) suite global Windows Python **57 FAIL / 558 PASS / 28 SKIP**, Node **125 PASS**. Los logs Windows originales no son accesibles desde esta conversación; se verificó la existencia de los informes GitHub, no se reejecutaron esas pruebas.
+
+**Atlas ACTUAL 0031:** 31 lotes, 63 nodos, 81 edges, **191 runs**, 44 complaints, **360 operaciones** (conteos derivados). **Checker canónico Python del HEAD actual NOT_RUN, SHA actual UNKNOWN**. [Codex T007](../tareas_codex/T007_REVALIDACION_ATLAS30_HTTP.md) PENDIENTE para HEAD actual, 31 lotes, nuevas `source_url` y tests HTTP; ejecutar casos POSIX pendientes con entorno adecuado.
+
+V4 **36,90 %** contractual, CT2 **29/100 ordinal**, VSDS **1/3**, N1/N2/N3 nuevos 0/0/0, gates **0/6**, sin puntuaciones de personas, originales nominales en Git, CI costosa ni merge a main. R5: no inventar las ocho plazas sin instrumento nuevo.
+
+---
+
 # AB Atlas · CONT80 C61–C71 actualizado · STOP_R5 (11/20) · 28/10/2026
 
 El usuario reanudó los doce ciclos restantes: se han ejecutado/documentado **tres A–J adicionales C69–C71**, total **11/20**, **nueve sin utilizar**; se detiene otra vez por R5 hasta obtener un instrumento u original distinto. [Ledger actual](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [adenda del informe](../research/ABH_CONT80_20261028/REPORT_FINAL.md).
