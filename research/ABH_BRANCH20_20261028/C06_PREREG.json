@@ -1,0 +1,36 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C06",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:32:42.276Z",
+  "title": "Differential archaeology of outstanding PR #11—verify that critical 2026 regressions were preserved in main",
+  "A": "Does PR #11 contain unrecovered changes to observable event revisions, strict CSP vote bars, malformed HTTP IDs, Windows file URLs, or packaging, despite main being updated with an alternative lineage?",
+  "B": {
+    "H1": "main already contains critical functional repairs by separate commits, so merging PR #11 is unsafe/unnecessary",
+    "H0": "At least one critical behavior remains unprotected and requires selected cherry-pick or new test",
+    "alternate": "Original PR introduced an expensive CI matrix and cannot merge wholesale under no-cost CI constraint"
+  },
+  "C": {
+    "comparisons": [
+      "revisions dedup before person/occurred filters",
+      "strict CSP voteStack SVG no inline styles and aria",
+      "invalid HTTP IDs fail closed",
+      "Windows fileURLToPath",
+      "wheel data resources and expensive workflow changes"
+    ],
+    "required": "Cross-read PR#11 description and exact file trees at PR head and main; demonstrate by code and test references, not only titles",
+    "stop": "If same behavior already exists, negative/skip-merge; if distinct uncovered bug, register remediation with evidence before patch"
+  },
+  "D": {
+    "source": "GitHub PR #11, GitHub main exact blobs; no Actions",
+    "max_source_files": 15
+  },
+  "E": "NOT_RUN",
+  "F": "Different Git commit ancestry does not itself prove missing functionality",
+  "G": "Pure static code artifact audit, not regression execution",
+  "H": "No CT2 or science uplift",
+  "I": "Affects branch governance only",
+  "J": "Keep draft PR open as archive, no mass merge; produce explicit decision."
+}
