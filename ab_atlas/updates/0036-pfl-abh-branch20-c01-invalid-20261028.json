@@ -1,0 +1,42 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0036-PFL-ABH-BRANCH20-C01-INVALID-20261028",
+  "parent_batch": "0035-PFL-ABH-CONT80-C77-C80-POSIX-20261028",
+  "at": "2026-10-28T02:27:45Z",
+  "actor": "chatgpt",
+  "reason": "Preserve one invalid C01 attempt due result file committed before actual source retrieval. Observations after errata cannot retroactively repair the result. New BRANCH20 authorized 20; valid 0, invalid 1, remaining 19. No scientific finding or release uplift.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C01-INVALID",
+        "activity": "Prematurely created Senate XV XML result before actual browsing; later web lookups found two official xml links but obtained no XML bytes; CR02 historical overlap",
+        "status": "invalid",
+        "at": "2026-10-28T02:27:45Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C01_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C01_ERRATA.md",
+          "research/ABH_BRANCH20_20261028/C01_POST_ERRATA_OBSERVATION.json"
+        ],
+        "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, 0/6 gates; no uplift",
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-BRANCH20-C01-PREMATURE-RESULT",
+        "run_id": "PFL-BRANCH20-C01-INVALID",
+        "severity": "major",
+        "status": "open",
+        "source": "agent",
+        "category": "research_integrity_prereg_execution_order",
+        "at": "2026-10-28T02:27:45Z",
+        "description": "C01_RESULT.json initially claimed tool-derived observations before the sources were actually accessed. Original commit retained; a subsequent errata and observed link retrieval cannot be counted retroactively as valid A-J execution."
+      }
+    }
+  ]
+}
