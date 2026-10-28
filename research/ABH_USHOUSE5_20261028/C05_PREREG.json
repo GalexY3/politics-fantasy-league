@@ -1,0 +1,29 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "D": {
+    "official_examples": [
+      "C01_2025_OFFICIAL_AGGREGATES.json",
+      "C02_2026_OFFICIAL_AGGREGATES.json"
+    ],
+    "provenance": "Official US Clerk HTML manually transcribed, original XML bytes missing",
+    "preexposed": "All examples were read before validator implementation, tests are checks not independent science"
+  },
+  "A": "Can a source-backed research module automatically reject aggregate-source contradictions, contamination of pre-vote model inputs with post-vote outcomes, inconsistent party scopes, and scientifically invalid dates while preserving valid 2025 and 2026 group comparisons?",
+  "B": {
+    "H1": "One exact-code Python unit instrument accepts official 2025/2026 examples, rejects tampered sum, invalid date, invalid count type, cross-year source identity, and pre-vote feature leakage",
+    "H0": "Bad records pass or good records fail",
+    "Halt": "A schema validator alone cannot authenticate HTML/XML source or prove valid forecasts; synthetic tests do not generalize"
+  },
+  "C": "Implement standalone research-only Python source guard and a native unittest suite with at least 10 discriminating cases; no person records, party aggregation only. Execute exact files locally, compare Git blob SHA to remote GitHub. Include one strict reject feature projection for post-vote totals and group counts. Full repo suite stays Codex pending; no reward N1 for QA.",
+  "E": "PENDING",
+  "F": "Conservation does not establish authenticity, XML source, absence, causality or prospective predictive validity",
+  "G": "No independent technical replication or clean project suite",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No member names, party groups only",
+  "J": "If native PASS with exact file hashes commit code and test to branch, else preserve invalid with failure; Codex task for XML plus full QA."
+}
