@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0071-PFL-ABH-MAIN20B-C16-HTTP-JSON-20261028",
+  "parent_batch": "0070-PFL-ABH-MAIN20B-C15-ROUND-SCOPE-20261028",
+  "at": "2026-10-28T14:39:43.097Z",
+  "actor": "chatgpt",
+  "reason": "C16 prereg local HTTP POST accepted repeated JSON keys last-wins, including nested; added object_pairs_hook fail-close, 3 native isolated parser checks, HTTP regression created not executed.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C16-HTTP-JSON-DUPLICATES",
+        "activity": "Reject duplicate JSON keys at local mutating HTTP boundary before club/lineup dispatch; selected parser tests not full server tests.",
+        "status": "completed",
+        "at": "2026-10-28T14:39:43.097Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C16_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C16_RESULT.json",
+          "tests/test_http_duplicate_json_keys.py"
+        ],
+        "scope": "AB-P single machine fictional server integrity, no user authentication certification",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
