@@ -1,0 +1,72 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "as_of": "2026-10-28",
+  "grant": 20,
+  "valid": 1,
+  "invalid": 1,
+  "planning": 0,
+  "attempts": 2,
+  "remaining": 18,
+  "status": "STOP_R5_PENDING_NEW_INSTRUMENT",
+  "branch": "research/pfl-abh-branch20-20261028",
+  "base_branch": "research/pfl-codex-contributions-20261027",
+  "parent_head": "72a2ae2deeb9eaa719b598943c1e8d18360ed6ea",
+  "cycles": [
+    {
+      "id": "C01",
+      "type": "AB-R",
+      "status": "INVALID_PREMATURE_RESULT",
+      "prereg": "C01_PREREG.json",
+      "result": "C01_RESULT.json",
+      "errata": "C01_ERRATA.md",
+      "atlas": "0036",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "C02",
+      "type": "AB-R",
+      "status": "VALID_DOCUMENTARY_INCONCLUSIVE",
+      "prereg": "C02_PREREG.json",
+      "result": "C02_RESULT.json",
+      "atlas": "0037",
+      "scientific_grade": "0/3"
+    }
+  ],
+  "progress": {
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "gates_passed": 0
+  },
+  "atlas": {
+    "lots": 37,
+    "derived_nodes": 63,
+    "derived_edges": 81,
+    "derived_runs": 203,
+    "derived_complaints": 45,
+    "derived_operations": 373,
+    "canonical_python_checker": "NOT_RUN"
+  },
+  "tests": {
+    "full_repo_linux": "NOT_RUN",
+    "historical_selected_linux": "89 PASS+14 subtests, 8 suites in CONT80 (not rerun)",
+    "windows_historical": "57 FAIL, 558 PASS, 28 SKIP from T002 report"
+  },
+  "independent_campaigns": [
+    "CONT80 CLOSED_20_OF_20",
+    "CHATRELAY 2_VALID_OF_5 and 3 unspent"
+  ],
+  "environment_blocker": "No full private repository checkout in container, git ls-remote failed Could not resolve host github.com. GitHub connector supports reading/writing files but does not execute native global pytest.",
+  "next_action": "Executor with full Linux checkout must run T008 current 37-lot branch and 35-lot historical comparison only if needed; full pytest and canonical Atlas check. Preserve logs and fail, no new AB cycles by merely executing backlog task.",
+  "permissions": [
+    "No public real-person scoring",
+    "No originals nominales in Git",
+    "No CI costosa",
+    "No merge main"
+  ],
+  "note": "Counts are from documented delta ops, not Python canonical replay. Invalid C01 counts against max 20 attempts as conservative budget, 18 remaining."
+}
