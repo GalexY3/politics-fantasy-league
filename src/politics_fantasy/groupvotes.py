@@ -76,11 +76,38 @@ def read_group_snapshot(path: Path, *, acquired_at:datetime, max_rows:int=100_00
 
 
 def majority(r:GroupRow)->str:
+    """Historical compatibility: *modal* expressed option, not >50% majority.
+
+    Do not interpret this as an absolute majority or full group membership.
+    Prefer strict_majority(..., denominator=...) for explicit denominators.
+    """
     expressed={'YES':r.yes,'NO':r.no,'ABSTAIN':r.abstain}
     peak=max(expressed.values())
     if not peak:return 'NO_EXPRESSED_CHOICE'
     leaders=[k for k,v in expressed.items() if v==peak]
     return leaders[0] if len(leaders)==1 else 'TIE'
+
+
+def strict_majority(r:GroupRow, *, denominator:str='EXPRESSED_ONLY')->str:
+    """More than half of explicitly recorded options; not membership proof.
+
+    EXPRESSED_ONLY includes YES, NO, ABSTAIN. ALL_RECORDED_STATUSES also
+    includes explicit NO_VOTE. Neither denominator establishes how many
+    group members were eligible, present or absent at the vote.
+    """
+    if denominator not in ('EXPRESSED_ONLY', 'ALL_RECORDED_STATUSES'):
+        raise ValueError('UNKNOWN_GROUP_DENOMINATOR')
+    expressed={'YES':r.yes,'NO':r.no,'ABSTAIN':r.abstain}
+    if not any(expressed.values()):
+        return 'NO_EXPRESSED_CHOICE'
+    total=sum(expressed.values())
+    if denominator=='ALL_RECORDED_STATUSES':
+        total+=r.no_vote
+    peak=max(expressed.values())
+    leaders=[kind for kind,value in expressed.items() if value==peak]
+    if len(leaders)!=1:
+        return 'TIE'
+    return leaders[0] if peak*2>total else 'NO_ABSOLUTE_MAJORITY'
 
 
 def reconcile_groups(groups:GroupSnapshot, aggregates:Parsed, individuals:Parsed|None=None)->dict:
