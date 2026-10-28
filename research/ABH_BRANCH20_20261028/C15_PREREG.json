@@ -1,0 +1,38 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C15",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:51:06.078Z",
+  "topic": "Historical Congress member record projection from archival branch, privacy and as-of boundary",
+  "preexposure": "Earlier exploratory selection read the header of congress_members.py and the start of test_congress_members.py. The source module is absent from current main.",
+  "A": "Does historical source projection strictly whitelist source record fields and deny real-time membership/identity scoring?",
+  "B": {
+    "H1": "Synthetic original tests demonstrate limited fields, no status inference, no scoring and fail-closed host checking",
+    "H0": "Source leaks unexpected fields, certifies current status or does not run"
+  },
+  "C": {
+    "checks": [
+      "Run exact historical synthetic tests with original blob and record failures",
+      "Check extra biography/telephone metadata never serialized",
+      "First-public-time and continuous membership always unknown",
+      "No real source or names uploaded"
+    ],
+    "decision": "Only selectively port if original tests and safety checks succeed; never merge full divergent branch."
+  },
+  "D": {
+    "branch": "research/pfl-sequential-32-20261026",
+    "paths": [
+      "src/politics_fantasy/congress_members.py",
+      "tests/test_congress_members.py"
+    ],
+    "runtime": "Linux Python, exact Git blob reconstructions"
+  },
+  "E": "NOT_RUN",
+  "F": "Not independent real-source verification",
+  "G": "Full pytest pending T008",
+  "H": "No CT2 or gate uplift",
+  "I": "Source-scoped read-only artifact only",
+  "J": "ACCEPT or REJECT after actual controls."
+}
