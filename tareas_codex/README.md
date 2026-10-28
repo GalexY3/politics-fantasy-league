@@ -1,3 +1,5 @@
+**Última actualización de tareas (28/10/2026):** [T008 — ejecutar el pytest completo en Linux/POSIX](T008_SUITE_COMPLETA_POSIX.md) está **PENDIENTE**. C73-C76 comprobaron realmente 31 tests +14 subtests de ingesta sobre fuentes Git SHA exactas, **no** la suite global. [Informe](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md). Atlas hasta `0034` / 34 lotes; checker canónico para ese nuevo estado no ejecutado. T005 sigue bloqueada.
+
 # Cola de tareas pendientes para Codex — Politics Fantasy League
 
 **Estado actualizado por Codex el 28/10/2026:** se ejecutaron T001–T004, T006 y T007. T002 y T004 conservan fallos y pruebas no completadas en Windows; T005 sigue bloqueada. Los informes y logs identifican resultados reales y límites. La ejecución de esta cola no equivale por sí sola a ciclos AB A–J. El histórico `research/CODEX_CONTRIB_20261027/` corresponde a otra etapa.
