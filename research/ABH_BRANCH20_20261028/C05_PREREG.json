@@ -1,0 +1,44 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C05",
+  "mode": "AB-META",
+  "project": "PFL",
+  "title": "Independent inspection of 39 Atlas delta batches and budget/traceability invariants",
+  "created_at": "2026-10-28T12:29:17.813Z",
+  "parent_head": "a75e90a60f023c5604fa633dc1d7f70250bc5208",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "A": "Are all 39 Atlas JSON patches readable, sequential and consistent with unique run/complaint IDs, complaint run references, severity/state enums and declared ledger counts? Could C01 invalid be wrongly counted as valid?",
+  "B": {
+    "H1": "39-parent chain and 379 ops valid; 205 runs / 47 complaints; invalid C01 identified and no accidental missing references",
+    "H0": "Gap, duplicate or broken complaint reference, invalid severity/state or derived count mismatch",
+    "Hother": "Documentation counters consistent but native canonical replay still unknown without complete checker"
+  },
+  "C": {
+    "primary": "Apply independent structure and reference checks to exact 39 GitHub blobs plus seed, including parent_batch, run.add/complaint.add, complaint.triage, status and source file refs",
+    "negative_controls": [
+      "complaint without run",
+      "duplicate run ID",
+      "unknown parent batch",
+      "invalid C01 valid-count promotion"
+    ],
+    "max_reads": 42,
+    "success": "All checks pass or specific failure recorded; no upgrading canonical checker status",
+    "constraint": "Not a substitute for executing original Python atlas_delta.py check"
+  },
+  "D": {
+    "sources": [
+      "ab_atlas/seed.json",
+      "ab_atlas/updates/0001–0039*",
+      "ab_atlas/abmap.py",
+      "ab_atlas/atlas_delta.py"
+    ],
+    "instrument": "GitHub exact file-read + deterministic JS independent verifier over read data; no CI network downloads or private nominal data"
+  },
+  "E": "PENDING",
+  "F": "Check op-level cross references and status normalization, not only delta count",
+  "G": "Native Python checker requires original filesystem; leave NOT_RUN",
+  "H": "No scientific or release progress promotion",
+  "I": "Quality of documentary chain only",
+  "J": "If fail record specific issue/repair prereg separately; if pass document limits and STOP_R5 for rereads."
+}
