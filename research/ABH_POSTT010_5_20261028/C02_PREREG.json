@@ -1,0 +1,32 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C02",
+  "type": "AB-P",
+  "D": "Node.js test of exact GitHub blob, hash recorded; patch production source and regression tests after red run",
+  "parent": "C01",
+  "trigger": "T010 explicitly reports experimental vote-key collisions outside PR scope",
+  "exposure": "Collision already known from prior report; prereg is before newly executed red/green regression and patch, NOT before discovery",
+  "A": {
+    "question": "Can two distinct vote identities or two different expediente groups collapse when user-provided key components include the separator pipe?",
+    "estimand": "Distinct typed records mapped to unique composite vote and expediente-scope keys"
+  },
+  "B": {
+    "H1": "Old pipe-join is non-injective over strings containing pipes",
+    "H0": "No collisions on tested adversarial pairs",
+    "H_other": "Scope-level collision independent of identity-level collision"
+  },
+  "C": {
+    "red_control": "synthetic rows with shifted pipe delimiter across institution/legislature/session_id or expediente; prove collisions in original code",
+    "green_control": "reject any raw identity component containing '|' while preserving exact legacy keys for safe inputs; same-vote duplicates still rejected",
+    "falsifier": "Collision persists or valid old fixture changes"
+  },
+  "E": "PENDING",
+  "F": "Check scope and identity keys; label reject-not-escape as deliberate compatibility decision",
+  "G": "No genuine parliamentary IDs inferred",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "AB-P only, no field claim",
+  "J": "REPAIR on failure"
+}
