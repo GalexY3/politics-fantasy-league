@@ -46,7 +46,7 @@ def group_cv(group_column):
                          for name,pred in preds.items()})
 
 s = df.sort_values('margin')
-quart = np.array_split(np.arange(len(s)),4)  # boundaries differ by at most one row
+quart = [np.arange(int(i*len(s)//4), int((i+1)*len(s)//4)) for i in range(4)]  # exact preregistered V8 quartile boundaries
 outputs = {
     'n':len(df),
     'quality':dict(candidate_sum_matches=int((df.valid==df.candidate_sum).sum()),
