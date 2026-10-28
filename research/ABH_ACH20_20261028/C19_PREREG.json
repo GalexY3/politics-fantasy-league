@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C19",
+  "type": "AB-META",
+  "A": "Audit all C01-C18 A-J file pairs and count validity/limitations before closure; distinguish actual executed tests from documentary or isolated checks",
+  "B": {
+    "H1": "Every claimed valid cycle has GitHub prereg and A-J result with nonempty E, no N1/N2/N3 promotions",
+    "H0": "Missing, fabricated or conflicting artifacts must downgrade campaign count"
+  },
+  "C": "Fetch each C01-C18 prereg/results in GitHub; check exact fields and path; audit Atlas lot count unchanged, T010 pending and achievement initial vs earned counts",
+  "D": "GitHub live data, no local runner and no canonical Atlas replay",
+  "E": "PENDING",
+  "F": "A–J presence is documentary integrity not scientific validation",
+  "G": "No accidental elevation or false PASS of T010",
+  "H": "V4 36.9, CT2 identity 29, VSDS1/3",
+  "I": "No new prizes by administrative audit",
+  "J": "C20 closes only after C19 audit, or flags incomplete"
+}
