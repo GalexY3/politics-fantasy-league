@@ -1,0 +1,33 @@
+{
+  "cycle": "C63",
+  "mode": "AB-R",
+  "A": "Determine distinct time fields in Ministry electoral dataset, avoid abusing dataset last update as first availability",
+  "B": "All times independently published per original XLSX vs only catalog+distribution fields",
+  "C": "Compared official datos.gob.es result record, structured XML search index, distribution named Congreso cargos electos and Congreso general, original RC01 profile.",
+  "D": {
+    "dataset": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales",
+    "dataset_xml": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales.xml",
+    "dataset_id": "MIR:E03112802:ds:RESULTELEC:000001",
+    "rc01": "research/ABH_RECON_20261027/RC01_PROFILE.json"
+  },
+  "E": {
+    "dataset_last_updated": "2026-08-21",
+    "dataset_coverage_end": "2026-03-11",
+    "congreso_general_distribution_modified": "2024-01-01T00:00:00+01:00",
+    "congreso_elected_first_published_at": null,
+    "rc01_captured_at": "2026-10-27 (local explored)",
+    "publication_claim": "DO_NOT_INFER"
+  },
+  "F": "Official metadata current index cannot prove when 326847-byte XLSX version first appeared; the 2024-01-01 timestamp belongs to a DIFFERENT distribution. No new XLSX bytes obtained or SHA verified today.",
+  "G": "Official dataset-specific catalog metadata and prior local original profile separated",
+  "H": "Timestamp provenance is a true unresolved product blocker; record typed facts and allow null rather than copied catalog `updated_at`.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novelty": "0/3",
+    "DRIFT": "D1"
+  },
+  "J": "C64 implement machine-readable source-version provenance record and validation with null first_public_at; explicitly no rights/identity promotion."
+}
