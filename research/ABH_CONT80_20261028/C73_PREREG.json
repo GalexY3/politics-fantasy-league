@@ -1,0 +1,21 @@
+{
+  "cycle": "C73",
+  "mode": "AB-P",
+  "authorization": "Continuation within eight remaining C61-C80 cycles",
+  "A": "Do checked-in ingest tests that failed on Windows because of SECURE_STORE_UNSUPPORTED_PLATFORM pass on real Linux POSIX using byte-identical GitHub source, without contacting websites?",
+  "B": {
+    "H1": "All nine original ingest cases PASS with actual secure_store and fake HTTP responses",
+    "H2": "At least one native logic/permission bug persists independent of Windows",
+    "H3": "Source copy mismatch or missing module invalidates test"
+  },
+  "C": "Preregister; copy exact sha-checked secure_store.py, ingest.py and original tests/test_ingest.py into Linux sandbox; run PYTHONPATH=src pytest -q tests/test_ingest.py, record true output and SHA matches. No production patch unless real red reproduced and new prereg.",
+  "D": {
+    "falsifier": "Any original test failure or source hash mismatch; compare actual Windows original report and keep difference scoped to these cases",
+    "no_network": true,
+    "sourceSHAs": {
+      "secure_store": "4695c8d85924869212d916fa163a8f3548272ebc",
+      "ingest": "913f00079c1eba519b977956e18d61d152a3fe20",
+      "original_tests": "5ed121cebbcca41a44fcf0580e7a5fd9ea9d559d"
+    }
+  }
+}
