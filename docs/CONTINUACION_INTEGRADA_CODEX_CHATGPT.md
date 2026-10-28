@@ -1,3 +1,13 @@
+# CONT80 C73-C76: Linux POSIX verificado, cuatro ciclos restantes
+
+[Informe C73-C76](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md) · [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [Atlas CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó máximo 20 ciclos: **16 ejecutados C61-C76, 4 no utilizados, STOP_R5**.
+
+Linux/Python 3.13.5, fuentes y tests originales SHA idénticos al Git: **31 tests más 14 subtests PASS**, `test_ingest.py`, `test_ingest_redirect_security.py`, `test_quarantine_ingest.py`, `test_ingest_full_local_e2e.py`. Solo subárbol de ingesta y auditoría, no suite íntegra. [T008](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md) pendiente para el pytest global y clasificación de fallos Windows T002/T004.
+
+Atlas `0034` (tras dos lotes concurrentes de otras campañas 0032/0033), total **34 lotes, 63 nodos, 81 aristas, 197 runs, 44 incidencias, 366 operaciones** derivados. **Sin checksum/checker Python de 34 lotes.** V4 36,90%, CT2 ordinal 29, VSDS 1/3, gates 0/6. No atribuir ejecución de T008 a Codex.
+
+---
+
 # Continuidad vigente · C61–C72 12/20 STOP_R5 · Atlas 0031
 
 [Informe completo con adenda](../research/ABH_CONT80_20261028/REPORT_FINAL.md), [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) y [CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó 20 ciclos; 12 realmente realizados con A–J, ocho sin usar. C69: siete tests JSON, no HTTP original; C70: fuentes institucionales aceptaciones/designación distintas; C71: enlace a ambos originales BOCCL desde registro CVE, 32 tests Python nativos PASS, sin certificar disponibilidad exacta ni estatus; C72: inspección de informes GitHub de ejecuciones de Codex antiguas.
