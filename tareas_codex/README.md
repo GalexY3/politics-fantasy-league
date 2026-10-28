@@ -8,7 +8,7 @@
 - Rama de trabajo existente: `research/pfl-codex-contributions-20261027`. **No trabajar sobre `main`**.
 - HEAD observado *antes de crear la carpeta*: `8f21411b0c4caf267d77721510d06129fe2eedbe`. **Al empezar**, Codex debe leer y registrar de nuevo el HEAD real, no presumir que este SHA sigue siendo el último.
 - Autoridad: [AGENTS.md](../../../AGENTS.md), protocolo AB 3.2.1 O3–O7, [CURRENT](../ab_atlas/CURRENT.md) y [continuidad](../docs/CONTINUACION_INTEGRADA_CODEX_CHATGPT.md).
-- Atlas en la base de esta ejecución `6e359a8`: **30 lotes**; replay canónico Python ejecutado con 63 nodos / 81 relaciones / 190 runs / 44 incidencias / 359 operaciones. Ver [resultado T001](T001_RESULTADO.md); comprobar el HEAD de nuevo porque ChatGPT trabaja en paralelo.
+- Atlas en la base de esta ejecución `6e359a8`: **31 lotes**; replay canónico Python ejecutado con 63 nodos / 81 relaciones / 191 runs / 44 incidencias / 360 operaciones. Ver [resultado T001](T001_RESULTADO.md); comprobar el HEAD de nuevo porque ChatGPT trabaja en paralelo.
 - Producto: V4 36,90 % contractual, CT2 identidad 29/100 ordinal, VSDS 1/3, gates de lanzamiento **0/6**. Nada de scoring político real.
 - [Incidencia GitHub #17](https://github.com/GalexY3/Metodologia-AB/issues/17): índice público dentro del repo privado; **no es evidencia de ejecución**.
 
@@ -35,3 +35,5 @@
 6. Guardar entregables en la **rama de investigación**, con ruta y commit verificable; en esta carpeta actualizar el estado de cada tarea solamente **después** de observar el resultado. La ejecución de Codex requerirá la acción explícita del usuario cuando tenga acceso.
 
 **Convención de estados:** `PENDIENTE`, `EN_EJECUCION`, `BLOQUEADA`, `COMPLETADA_VERIFICADA`, `COMPLETADA_CON_FALLOS`. No marcar nada como completado por el mero hecho de redactar estas fichas.
+
+**Revalidación posterior a C71 y C72:** [T007 — Atlas actual de 31 lotes y HTTP con enlaces BOCCL](T007_REVALIDACION_ATLAS30_HTTP.md). T001 y T006 constan ejecutadas en checkout anterior de 29 lotes; no extienden automáticamente su validación al HEAD actual.
