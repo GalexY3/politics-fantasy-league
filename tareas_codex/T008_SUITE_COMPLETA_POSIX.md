@@ -1,12 +1,14 @@
-# T008 · Ejecución integral POSIX y replay canónico Atlas 55 (PENDIENTE)
+> **ACTUALIZACIÓN VIGENTE MAIN20B · 28/10/2026.** Atlas **60 lotes**; T008 **PENDIENTE**, checker Python canónico y suite integral Linux `NOT_RUN`. Añadir `ab_atlas/tests/test_delta_timestamps.py`, `tests/test_strict_group_dissent.py`, `tests/test_cluster_bootstrap_estimands.py` a la primera corrida. La incidencia C19 sobre formato del timestamp fue mitigada en preflight en C01 pero NO certificada por checker global; hay además un retroceso de 1534 segundos entre `0015` y `0016` que no debe reescribirse silenciosamente. MAIN20B: 5 válidos, 15 autorizaciones sin consumir; ejecutar T008 no los consume. [Informe C01–C05](../research/ABH_MAIN20B_20261028/C01_C05_INTERIM.md).
 
-**Estado vigente: PENDIENTE / APLAZADA, 28/10/2026.** El usuario no tiene Codex disponible por ahora. **No se ha ejecutado** la suite Python integral actual de `main` ni el checker canónico Atlas de 55 lotes. La campaña BRANCH20 ya está **cerrada 19 válidos + C01 inválido, cero ciclos disponibles**. [Informe final](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) · [CURRENT](../ab_atlas/CURRENT.md) · [backlog](BACKLOG.json).
+# T008 · Ejecución integral POSIX y replay canónico Atlas 60 (PENDIENTE)
+
+**Estado vigente: PENDIENTE / APLAZADA, 28/10/2026.** El usuario no tiene Codex disponible por ahora. **No se ha ejecutado** la suite Python integral actual de `main` ni el checker canónico Atlas de 60 lotes. La campaña BRANCH20 ya está **cerrada 19 válidos + C01 inválido, cero ciclos disponibles**. [Informe final](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) · [CURRENT](../ab_atlas/CURRENT.md) · [backlog](BACKLOG.json).
 
 ## Objetivo y baseline
 
 El ejecutor comprobará en un **checkout privado íntegro Linux/POSIX** la compatibilidad global de todos los cambios de `main` y el estado canónico del Atlas. Las pruebas anteriores son **históricas y de otro alcance**: T002 documentó en Windows 57 FAIL, 558 PASS, 28 SKIP; CONT80 ocho suites Linux seleccionadas 89 PASS y 14 subtests; BRANCH20 obtuvo regresiones focalizadas de C03–C18 (incluida integración selectiva C18 35 PASS). Ninguno certifica la suite integral actual.
 
-**Atlas al cierre:** 55 lotes (0036–0055 de BRANCH20 incluidos), recuentos documentales: 63 nodos, 81 aristas, 221 runs, 48 incidencias, 396 operaciones. **SHA canónico no disponible**, check original NO ejecutado. T007 solo verificó 31 lotes históricos.
+**Atlas al cierre:** 60 lotes (0036–0055 de BRANCH20 incluidos), recuentos documentales: 63 nodos, 81 aristas, 221 runs, 48 incidencias, 396 operaciones. **SHA canónico no disponible**, check original NO ejecutado. T007 solo verificó 31 lotes históricos.
 
 ## Primera corrida, sin tocar código ni tests
 
@@ -38,7 +40,7 @@ Python: `test_majority_sign_audit.py`, `test_majority_sign_failclosed.py`, `test
 
 Node: `node --test tests/test_overview_readiness_copy.mjs` y regresiones del observatorio UI; no declarar test de navegador ejecutado si solo se pasó Node estático.
 
-**Incidencia abierta C19:** `PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT`: la función `batch_check` admite un `at` sintético no fechado. Antes de imponer formato ISO con zona, auditar retrospectivamente 55 lotes; **no reescribir** deltas históricos inmutables ni inferir que un `check` exitoso ya comprueba cronología de publicación.
+**Incidencia abierta C19:** `PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT`: la función `batch_check` admite un `at` sintético no fechado. Antes de imponer formato ISO con zona, auditar retrospectivamente 60 lotes; **no reescribir** deltas históricos inmutables ni inferir que un `check` exitoso ya comprueba cronología de publicación.
 
 ## Resultado y aceptación
 
