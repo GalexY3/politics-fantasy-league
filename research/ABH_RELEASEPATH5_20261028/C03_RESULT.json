@@ -1,0 +1,48 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "source_branch": "research/pfl-abh5-aec-choice-20261028",
+  "source_head": "c98b93587e97dab34a93dfec7bba1df3be8b6b45",
+  "method": "AB 3.2.1 R1-R5 O3-O7",
+  "type": "AB-P",
+  "n_assisted": 0,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "V4_before": 36.9,
+  "V4_after": 36.9,
+  "release_gates_before": 0,
+  "release_gates_after": 0,
+  "scientific_claim": "No new N1, N2 or N3 scientific finding. Product auditing may unlock criteria-bound symbolic achievements only.",
+  "limitation": "Read/review and V8 structural tests; neither full clean native checkout nor external DPO/security audit is claimed.",
+  "cycle": "C03",
+  "D": 1,
+  "A": "Which symbolic achievements are actually earned by inspected artifacts, and can their append-only ledger preserve dependencies without inflating V4?",
+  "B": {
+    "H1": "At least SCIENCE-01/EVENTS-01 and SECURITY-02 documentation criteria satisfied, release remains 0",
+    "H0": "No inspectable criteria and no valid unlock"
+  },
+  "C": "Fetched live registry v3 (2 unlocked) and criteria. Inspected PLAN_TFM (estimand, rivals, unit, outcome), architecture+typed events (event/participation roles and no causal conflation), newly authored STRIDE; checked prerequisite SECURITY-01 unlocked, then mutated registry append-only v3→v6 with three evidence-backed verifier/date entries and verified unique 90 IDs, audit seq and unlocked dependencies in JS.",
+  "E": {
+    "registry_version_before": 3,
+    "after": 5,
+    "achievements_before": 2,
+    "unlocked": [
+      "PFL-SCIENCE-01",
+      "PFL-EVENTS-01",
+      "PFL-SECURITY-02"
+    ],
+    "V4_unchanged": 36.9,
+    "gates_unchanged": 0,
+    "unlocked_count_validated": true
+  },
+  "F": "Only documentary bronze achievements, independent browser/native validator not executed. No level promotions or release gates. This is not scientific novelty or professional penetration test.",
+  "G": "Compared registry criterion text and exact repo docs, not merely count or round count.",
+  "H": "CT2 remains 29",
+  "I": "No personal political scoring",
+  "J": "T025 must run native registry validator; visual HTML file snapshot may require refresh.",
+  "evidence": [
+    "ab_atlas/ACHIEVEMENTS_REGISTRY.json",
+    "C03_ACHIEVEMENT_ADJUDICATION.json"
+  ],
+  "status": "VALID_BOUNDED_THREE_EVIDENCED_SYMBOLIC_UNLOCKS"
+}
