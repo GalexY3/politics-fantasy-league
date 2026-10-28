@@ -3,6 +3,16 @@
 const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, progress:null, picks:null, message:'' };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// Escape alone does not make an untrusted URL safe to navigate.
+function boeSourceLink(value){
+ try {
+  const url=new URL(value);
+  if(url.protocol==='https:' && ['boe.es','www.boe.es'].includes(url.hostname)
+     && !url.username && !url.password && !url.port)
+   return `<a href='${esc(url.href)}' target='_blank' rel='noopener noreferrer'>BOE-A-2023-15066</a>`;
+ } catch (_) { /* Invalid or missing URLs are rendered as text. */ }
+ return 'BOE-A-2023-15066 (enlace no disponible)';
+}
 const count = n => new Intl.NumberFormat('es-ES').format(n);
 const day = iso => new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(iso));
 const money = n => `${count(n)} CR`;
@@ -68,7 +78,7 @@ const g=f.group_audit;const gh=imported&&g?`<div class="metrics">${stat('Filas p
 function officialNominationAtlas(){const a=ui.nominations||{};
 if(!a.ok)return `<section class='card'><h2>Más circunscripciones · BOE original</h2><p class='warning'>No se dispone de un documento verificado: ${esc(a.error||'sin fuente')}. No se crean datos sustitutos.</p></section>`;
 const lines=(a.provinces||[]).map(p=>`<details class='card'><summary><strong>${esc(p.province)}</strong> · ${count(p.n_candidacies)} candidaturas${p.requires_non_proclamation_review?' · revisión documental pendiente':''}</summary><p class='help'>Identificadores electorales de 2023, no del Registro de Partidos.</p><p class='help'>${p.lists.map(x=>esc(x.acronym)).join(' · ')}</p></details>`).join('');
-return `<section class='card'><div class='section-title'><h2>Fuente original · otras circunscripciones</h2><span>BOE 2023 · parcial</span></div><div class='metrics'>${stat('Secciones extraídas',count(a.n_provinces),'de '+count(a.detected_provincial_sections)+' detectadas')}${stat('Listas electorales',count(a.n_candidacies),'No partidos legales')}${stat('Secciones pendientes',count(a.unresolved_provincial_sections),'Numeración incompleta')}${stat('Avisos adicionales',count(a.extracted_with_review_notices),'Candidaturas no proclamadas')}</div><p class='warning'>Cobertura incompleta y estrictamente histórica. No se atribuyen escaños, militancia ni influencia. Las provincias pendientes no se completan por suposición.</p><p class='help'><a href='${esc(a.source_url)}' target='_blank' rel='noopener noreferrer'>BOE-A-2023-15066</a>; huella SHA-256 ${esc(a.original_sha256)}.</p>${lines}</section>`;
+return `<section class='card'><div class='section-title'><h2>Fuente original · otras circunscripciones</h2><span>BOE 2023 · parcial</span></div><div class='metrics'>${stat('Secciones extraídas',count(a.n_provinces),'de '+count(a.detected_provincial_sections)+' detectadas')}${stat('Listas electorales',count(a.n_candidacies),'No partidos legales')}${stat('Secciones pendientes',count(a.unresolved_provincial_sections),'Numeración incompleta')}${stat('Avisos adicionales',count(a.extracted_with_review_notices),'Candidaturas no proclamadas')}</div><p class='warning'>Cobertura incompleta y estrictamente histórica. No se atribuyen escaños, militancia ni influencia. Las provincias pendientes no se completan por suposición.</p><p class='help'>${boeSourceLink(a.source_url)}; huella SHA-256 ${esc(a.original_sha256)}.</p>${lines}</section>`;
 }
 function officialListPanel(){const c=ui.candidacies||{};
 if(!c.ok)return `<section class='card'><h2>Candidaturas BOE · original</h2><p class='warning'>Sin fuente válida disponible: ${esc(c.error||'sin información')}</p></section>`;
@@ -76,7 +86,7 @@ return `<section class='card'><div class='section-title'><h2>Candidaturas procla
 <div class='metrics'>${stat('Listas proclamadas',count(c.proclaimed_candidacy_lists),'Solo Albacete')}${stat('Partidos legales comprobados',count(c.verified_legal_parties),'No procede inferirlos')}${stat('Personas evaluadas',count(c.people_joined),'Ninguna')}</div>
 <p class='help'>Siglas publicadas: ${(c.lists||[]).map(x=>esc(x.acronym)).join(' · ')}.</p>
 <p class='warning'>Una lista electoral no equivale necesariamente a un partido inscrito. Proclamación no demuestra militancia, escaño posterior o influencia.</p>
-<p class='footnote'>Fuente <a href='${esc(c.source_url)}' target='_blank' rel='noopener noreferrer'>BOE-A-2023-15066</a>; SHA-256 original ${esc(c.source_sha256)}. Extracción institucional de una circunscripción, no un registro nacional de personas.</p></section>`;}
+<p class='footnote'>Fuente ${boeSourceLink(c.source_url)}; SHA-256 original ${esc(c.source_sha256)}. Extracción institucional de una circunscripción, no un registro nacional de personas.</p></section>`;}
 function atlas(){const a=ui.atlas||{};if(!a.ok)return heading('DATOS REALES · HISTÓRICOS','Atlas electoral',a.error||'Catálogo histórico no disponible.');
 const rows=(a.labels||[]).slice().sort((x,y)=>x.name.localeCompare(y.name,'es'));
 
