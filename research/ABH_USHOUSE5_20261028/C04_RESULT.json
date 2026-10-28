@@ -1,0 +1,50 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_POSTHOC_CASEMIX_COMPOSITION_NULL",
+  "A": "Does the crude 2026 5/6 vs 2025 1/6 major-party consensus difference remain in each procedural vote stratum?",
+  "B": {
+    "H1": "Fully case-mix explained",
+    "H0": "Difference within procedure strata"
+  },
+  "C": {
+    "prereg_commit": "bdf8cdeb64b7796db05e2dad4e22a9f80a3b32be",
+    "method": "Arithmetic tabulation by 2/3 suspension vs other on twelve pre-selected official House votes; direct standardization to pooled 50:50 and 2025/2026 procedure weights, no inferential p-value; observed after source exposure hence post hoc."
+  },
+  "D": {
+    "sources": [
+      "C01_2025_OFFICIAL_AGGREGATES.json",
+      "C02_2026_OFFICIAL_AGGREGATES.json"
+    ],
+    "data": "C04_STRATIFIED_CASE_MIX.json"
+  },
+  "E": {
+    "crude_shared_2025": 0.16666666666666666,
+    "crude_shared_2026": 0.8333333333333334,
+    "crude_diff_pp": 66.6666666667,
+    "within_suspension_shared_2025": 1,
+    "within_suspension_shared_2026": 1,
+    "within_other_shared_2025": 0,
+    "within_other_shared_2026": 0,
+    "pooled_mix_adjusted_diff_pp": 0,
+    "independent_sitting_dates_2025": 3,
+    "independent_sitting_dates_2026": 1
+  },
+  "F": "The 66.7 pp headline is entirely a mix shift of types in this deliberately fixed set; NOT proven causal mediation or stable zero year effect beyond those rolls. Procedure levels 2025 1 versus 2026 5 reflect agenda; severe pseudo-replication.",
+  "G": "Small sample n=12 votes but 2026 one day; no generalizable inference or source original bytes; exact data preexposed before pre-reg",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "newN": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No individual-level claims, group means only",
+  "J": "Implement source-to-estimand validator to block mixing postvote margin into pre-vote predictor and verify independent category; close after native local tests and ledger."
+}
