@@ -1,0 +1,24 @@
+{
+  "cycle": "C77",
+  "type": "AB-P",
+  "status": "PREREG_BEFORE_NATIVE_TEST",
+  "question": "Does the complete checked-in secure_store original test file pass on Linux/POSIX with byte-exact current GitHub secure_store.py, including symlink, ownership, permissions and partial append negatives?",
+  "hypotheses": {
+    "H1": "Original POSIX tests pass; Windows limitation was explicit unsupported platform",
+    "H0": "A reproducible POSIX-specific integrity/perms failure persists",
+    "H2": "Unavailable/changed Git blob or platform absence invalidates test"
+  },
+  "method": "Retrieve exact GitHub tests/test_secure_store.py and secure_store.py via connector, reproduce files preserving bytes, verify git hash-object equals branch blobs, run native pytest with isolated temp paths and no network; capture full output. No test/source rewrites to manufacture green.",
+  "falsifier": "Any non-skipped failing original test or git SHA mismatch; do not equate test subset with full T008 or real publisher attestations",
+  "baseline": {
+    "head": "ed3649568713498b91aee4b3255f71c3bdf56afe",
+    "secure_store_blob": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "original_test_blob": "a63143acda49182fe8e83f30a5a46816e65bc42f"
+  },
+  "restrictions": [
+    "No GitHub Actions",
+    "No original nominal data",
+    "No merge main",
+    "No authorizing scores or release"
+  ]
+}
