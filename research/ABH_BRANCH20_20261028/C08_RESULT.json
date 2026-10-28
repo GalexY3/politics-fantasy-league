@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C08",
+  "mode": "AB-P",
+  "status": "VALID_UI_PROVENANCE_COPY_REPAIR",
+  "at": "2026-10-28T12:39:49.945Z",
+  "A": {
+    "question": "Does overview imply 3/5 production stages passed without any audited stage mapping?"
+  },
+  "B": {
+    "H1": "Static 3/5 progress bar is disconnected from actual V4 and gates",
+    "H0": "Stages are sourced from model data"
+  },
+  "C": {
+    "prereg": "C08_PREREG.json",
+    "negative": "Stage bar length:5 i<3, no model link; six postchange source assertions"
+  },
+  "D": {
+    "source_blob_before": "9019492cf79e2c2d47bff1bdd01cda437f53af0e",
+    "source_blob_after": "ccdb4e7381edd5397c6a80aa4ae870b8b4fd8eaf",
+    "test": "tests/test_overview_readiness_copy.mjs",
+    "execution": "Six deterministic string/structure assertions on exact fetched post-change JS source via connector; no browser or Node test runner full checkout"
+  },
+  "E": {
+    "baseline": "Hardcoded 3/5 active spans and label Prototipo de producción 5 etapas",
+    "after": "Removed false three-of-five signal; explicit NO VERIFICADA and navigable Progreso tab",
+    "post_change_static_checks": 6,
+    "passed": 6
+  },
+  "F": {
+    "limits": [
+      "Static text/source inspection cannot demonstrate actual rendered accessibility in browser",
+      "Current screen may still contain other stale CT2 references not resolved by this specific contrast",
+      "Stored new Node test not yet executed with Node on full repository"
+    ],
+    "adversarial": "Avoid interpreting 3/5 decorative bar as V4, CT2 or six release gates"
+  },
+  "G": {
+    "independent_runtime": "NOT_RUN"
+  },
+  "H": {
+    "progress_V4": 36.9,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "gates": 0,
+    "N1_new": 0
+  },
+  "I": {
+    "product": "Improves information integrity in game UI",
+    "scientific": "0/3"
+  },
+  "J": {
+    "decision": "Accept copy fix and new regression test, no false readiness improvements. R5: do not iterate further without actual browser evidence."
+  }
+}
