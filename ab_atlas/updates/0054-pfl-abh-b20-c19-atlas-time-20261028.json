@@ -1,0 +1,41 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0054-PFL-ABH-BRANCH20-C19-ATLAS-TIME-20261028",
+  "parent_batch": "0053-PFL-ABH-BRANCH20-C18-INTEROP-20261028",
+  "at": "2026-10-28T13:00:54.889Z",
+  "actor": "chatgpt",
+  "reason": "Preregistered C19 Python exact Atlas batch_check excerpt accepts 4 invalid synthetic timestamps and 2 valid ones; native full checker not run; preserve negative as open instrumentation complaint.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C19-ATLAS-TIMESTAMP",
+        "activity": "AB-META original Atlas batch_check preflight accepts 'not-a-timestamp', naive timestamp and impossible calendar date; four invalid inputs accepted in isolated Python.",
+        "status": "completed",
+        "at": "2026-10-28T13:00:54.889Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C19_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C19_RESULT.json"
+        ],
+        "scope": "Instrumentation negative, no CT2/gates change; full canonical replay NOT_RUN",
+        "method_version": "AB 3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT",
+        "run_id": "PFL-BRANCH20-C19-ATLAS-TIMESTAMP",
+        "severity": "major",
+        "status": "open",
+        "source": "agent",
+        "category": "atlas_timestamp_schema",
+        "at": "2026-10-28T13:00:54.889Z",
+        "description": "Atlas batch_check only requires a nonempty at string. Isolated exact-source function accepts non-date 'not-a-timestamp', naive and impossible calendar date. Must audit legacy timestamps and canonical checker before strengthening validation; avoid editing immutable patches."
+      }
+    }
+  ]
+}
