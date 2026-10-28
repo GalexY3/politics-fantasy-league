@@ -1,0 +1,235 @@
+{
+  "schema": "pfl.releasepath5.scope.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "source": "product/progress_scope_v4_20261027.json",
+  "scope_rev": 4,
+  "formula": "sum(track.weight * sum(milestone.size * maturity_value[milestone.level]) / sum(milestone.size)) / sum(track.weight) * 100",
+  "computed_progress_pct": 36.9,
+  "reported_previous_pct": 36.9,
+  "exact_match": true,
+  "tracks": [
+    {
+      "id": "sources",
+      "weight": 18,
+      "progress_pct": 45,
+      "contribution_pp": 8.1
+    },
+    {
+      "id": "identity",
+      "weight": 12,
+      "progress_pct": 42.5,
+      "contribution_pp": 5.1
+    },
+    {
+      "id": "events",
+      "weight": 10,
+      "progress_pct": 35,
+      "contribution_pp": 3.5
+    },
+    {
+      "id": "science",
+      "weight": 14,
+      "progress_pct": 27.5,
+      "contribution_pp": 3.85
+    },
+    {
+      "id": "game",
+      "weight": 16,
+      "progress_pct": 45,
+      "contribution_pp": 7.2
+    },
+    {
+      "id": "ui",
+      "weight": 10,
+      "progress_pct": 32.5,
+      "contribution_pp": 3.25
+    },
+    {
+      "id": "security",
+      "weight": 8,
+      "progress_pct": 20,
+      "contribution_pp": 1.6
+    },
+    {
+      "id": "qa",
+      "weight": 8,
+      "progress_pct": 45,
+      "contribution_pp": 3.6
+    },
+    {
+      "id": "launch",
+      "weight": 4,
+      "progress_pct": 17.5,
+      "contribution_pp": 0.7
+    }
+  ],
+  "levels": {
+    "0": 8,
+    "1": 9,
+    "2": 2,
+    "3": 15,
+    "4": 2,
+    "5": 0
+  },
+  "total_milestones": 36,
+  "level0": [
+    {
+      "id": "src.registry",
+      "level": 0,
+      "track": "sources",
+      "weight": 18,
+      "per_level0_to1_gain_pp": 0.45,
+      "if_level_to5_gain_pp": 4.5,
+      "name": "Registro completo de partidos y candidaturas proclamadas originales"
+    },
+    {
+      "id": "sci.field",
+      "level": 0,
+      "track": "science",
+      "weight": 14,
+      "per_level0_to1_gain_pp": 0.35,
+      "if_level_to5_gain_pp": 3.5,
+      "name": "Evaluación prospectiva y replicación externa"
+    },
+    {
+      "id": "game.real",
+      "level": 0,
+      "track": "game",
+      "weight": 16,
+      "per_level0_to1_gain_pp": 0.4,
+      "if_level_to5_gain_pp": 4,
+      "name": "Liga real segura con eventos atribuibles"
+    },
+    {
+      "id": "ui.flow",
+      "level": 0,
+      "track": "ui",
+      "weight": 10,
+      "per_level0_to1_gain_pp": 0.25,
+      "if_level_to5_gain_pp": 2.5,
+      "name": "Flujo completo con datos actuales y confianza"
+    },
+    {
+      "id": "sec.auth",
+      "level": 0,
+      "track": "security",
+      "weight": 8,
+      "per_level0_to1_gain_pp": 0.2,
+      "if_level_to5_gain_pp": 2,
+      "name": "Autenticación y autorización multiusuario"
+    },
+    {
+      "id": "qa.independent",
+      "level": 0,
+      "track": "qa",
+      "weight": 8,
+      "per_level0_to1_gain_pp": 0.2,
+      "if_level_to5_gain_pp": 2,
+      "name": "Reproducción independiente de fuentes y producto"
+    },
+    {
+      "id": "launch.hosted",
+      "level": 0,
+      "track": "launch",
+      "weight": 4,
+      "per_level0_to1_gain_pp": 0.1,
+      "if_level_to5_gain_pp": 1,
+      "name": "Despliegue público autenticado"
+    },
+    {
+      "id": "launch.pilot",
+      "level": 0,
+      "track": "launch",
+      "weight": 4,
+      "per_level0_to1_gain_pp": 0.1,
+      "if_level_to5_gain_pp": 1,
+      "name": "Piloto, retención y medición con usuarios"
+    }
+  ],
+  "level1": [
+    {
+      "id": "src.local",
+      "level": 1,
+      "track": "sources",
+      "weight": 18,
+      "per_level0_to1_gain_pp": 0.45,
+      "if_level_to5_gain_pp": 4.05,
+      "name": "Cobertura oficial original autonómica y municipal"
+    },
+    {
+      "id": "id.real",
+      "level": 1,
+      "track": "identity",
+      "weight": 12,
+      "per_level0_to1_gain_pp": 0.3,
+      "if_level_to5_gain_pp": 2.7,
+      "name": "Identificación jurídica auténtica multifuente"
+    },
+    {
+      "id": "ev.extra",
+      "level": 1,
+      "track": "events",
+      "weight": 10,
+      "per_level0_to1_gain_pp": 0.25,
+      "if_level_to5_gain_pp": 2.25,
+      "name": "Corpus real de eventos extraparlamentarios"
+    },
+    {
+      "id": "ev.person",
+      "level": 1,
+      "track": "events",
+      "weight": 10,
+      "per_level0_to1_gain_pp": 0.25,
+      "if_level_to5_gain_pp": 2.25,
+      "name": "Eventos de persona vinculados a institución y fecha"
+    },
+    {
+      "id": "sci.fairness",
+      "level": 1,
+      "track": "science",
+      "weight": 14,
+      "per_level0_to1_gain_pp": 0.35,
+      "if_level_to5_gain_pp": 3.15,
+      "name": "Sesgos, exposición y cobertura por rol"
+    },
+    {
+      "id": "ui.access",
+      "level": 1,
+      "track": "ui",
+      "weight": 10,
+      "per_level0_to1_gain_pp": 0.25,
+      "if_level_to5_gain_pp": 2.25,
+      "name": "Accesibilidad, móvil y pruebas con usuarios"
+    },
+    {
+      "id": "sec.rights",
+      "level": 1,
+      "track": "security",
+      "weight": 8,
+      "per_level0_to1_gain_pp": 0.2,
+      "if_level_to5_gain_pp": 1.8,
+      "name": "Derechos, privacidad y fuente acreditada"
+    },
+    {
+      "id": "sec.ops",
+      "level": 1,
+      "track": "security",
+      "weight": 8,
+      "per_level0_to1_gain_pp": 0.2,
+      "if_level_to5_gain_pp": 1.8,
+      "name": "Amenazas, backups, incidentes y abuso"
+    },
+    {
+      "id": "launch.rules",
+      "level": 1,
+      "track": "launch",
+      "weight": 4,
+      "per_level0_to1_gain_pp": 0.1,
+      "if_level_to5_gain_pp": 0.9,
+      "name": "Temporadas, onboarding y reglas operativas"
+    }
+  ],
+  "potential_total_remaining_pp": 63.1,
+  "hypothetical_level0_to1_all_pp": 2.05,
+  "non_evidence_note": "Scenarios are not earned maturity and cannot be included in progress score."
+}
