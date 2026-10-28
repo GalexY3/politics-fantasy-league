@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0041-PFL-ABH-BRANCH20-C06-PR11-20261028",
+  "parent_batch": "0040-PFL-ABH-BRANCH20-C05-ATLAS-AUDIT-20261028",
+  "at": "2026-10-28T12:33:23.689Z",
+  "actor": "chatgpt",
+  "reason": "C06 prereg code archaeology compared 8 historical PR11 main files; 5 exact Git blobs retained, other three retain markers, no mass merge or CI. Static inspection, no runtime certification.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C06-PR11-EQUIVALENCE",
+        "activity": "PR #11 critical fixes documentary SHA comparison with main; 5 exact blobs of 8 and remaining implementations differ without proven missing fixes; avoid mass merge.",
+        "status": "completed",
+        "at": "2026-10-28T12:33:23.689Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C06_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C06_RESULT.json"
+        ],
+        "scope": "PFL branch governance AB-P; no CT2 or release score changes",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
