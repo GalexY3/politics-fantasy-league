@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C16",
+  "type": "AB-P",
+  "A": "Does evidence warehouse accept source URLs with embedded credentials while labeling them official, risking confusing provenance links?",
+  "B": {
+    "H1": "Regex accepts https://user:password@host/path URLs as valid source",
+    "H0": "It rejects URLs with credentials"
+  },
+  "C": "Execute actual source() on synthetic official source using credential-bearing URL vs proper https; repair URL authority parsing without requiring issuer allowlist, which is a separate attestation task",
+  "D": "GitHub ESM exact source via Function V8, source credentials synthetic, no network",
+  "E": "PENDING",
+  "F": "Still cannot authenticate claimed official hostname or legal rights",
+  "G": "Avoid breaking existing fixture.invalid synthetic tests",
+  "H": "V4 unchanged",
+  "I": "No unlocked achievements",
+  "J": "Guard source link syntax, preserve quarantine of official claim"
+}
