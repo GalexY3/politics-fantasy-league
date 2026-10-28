@@ -1,0 +1,64 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-UK650-20261028",
+  "source": "House of Commons Library 2024 constituency + candidate named CSVs, read from emagar/caso-pc-oto2024 GitHub third-party copies",
+  "source_official_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_constituency_mirror_blob": "835aae9eb124e215b7f159b2db90fcc9b66416d8",
+  "source_candidate_mirror_blob": "dd4c81aee7ace632c1ffc75bd5518363a458f94c",
+  "original_official_bytes": 0,
+  "original_official_hash_verified": false,
+  "source_version_conflicts": "C01_VERSION_SENSITIVITY.json",
+  "in_sample_historical": true,
+  "scientific_level_0_3": 0,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "V4_pct": 36.9,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "individual_person_scores": false,
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_THIRD_PARTY_MIRROR_FULL_650_RECONCILIATION",
+  "A": "Retrieve 2024 UK official constituency and candidate CSV originals, confirm schema/counts and certify original bytes when accessible.",
+  "B": {
+    "H1": "650 unique and candidate-vote sums verified, official files if download succeeds",
+    "H0": "No usable dataset, abort inference"
+  },
+  "C": {
+    "prereg_commit": "e7d00fcd6e2eda873daf56f59f72de93aa219d3b",
+    "execution": "Official source downloadable links verified via UK Commons Library; web.click returned unsupported text/csv, container.download failed, HTTPS from runtime DNS error. Switched to two GitHub copies of Commons Library named files in one public repo, fetched via Github connector; parsed CSV quote-aware V8 and crossjoined 650 unique ONS ID to 4515 candidates; counted complete vote-sum and majority consistency. Compared another GitHub constituency-only mirror and found version conflicts, no original authentication."
+  },
+  "D": {
+    "primary": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+    "mirror_constituency": "https://github.com/emagar/caso-pc-oto2024/blob/master/data/uk/HoC-GE2024-results-by-constituency.csv",
+    "mirror_candidate": "https://github.com/emagar/caso-pc-oto2024/blob/master/data/uk/HoC-GE2024-results-by-candidate.csv",
+    "quality": "C01_DATA_QUALITY.json",
+    "mirror_versions": "C01_VERSION_SENSITIVITY.json",
+    "derived": "UK650_DERIVED_AGGREGATES.csv"
+  },
+  "E": {
+    "constituencies": 650,
+    "distinct_ons_ids": 650,
+    "candidates": 4515,
+    "candidate_votes_and_valid_sum_matches": 650,
+    "majority_matches_first_two_candidates": 650,
+    "invalid_numeric_rows": 0,
+    "main_mirror_weighted_turnout_pct": 59.951438864130296,
+    "other_mirror_electorate_changed_rows": 11,
+    "other_mirror_valid_changed_rows": 1,
+    "other_mirror_rejected_changed_rows": 4,
+    "official_source_binary_captured": false
+  },
+  "F": "This is a proper MIRRORED dataset, not first-party original authenticated by downloads. Candidate names were read in source but are not included in derived data. Mirror version can be stale. Published 2026 summary electorate 48,224,212 while main mirror electorate 48,247,224, additional sign that version/source differ.",
+  "G": "Two versions third-party mirrors of same publisher do not constitute independent originating authorities or original SHA verification; Codex task needed.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "Derived file stores constituency aggregates only",
+  "J": "Continue bounded exploratory studies labelled MIRROR; do not claim official validated current results, original raw bytes or genuine prospective outcomes."
+}
