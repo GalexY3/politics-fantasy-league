@@ -1,3 +1,17 @@
+# AB Atlas · CONT80 C61–C68 · STOP_R5 (8/20) · 28/10/2026
+
+**Autorización máxima:** 20 ciclos AB-H C61–C80. **Realmente ejecutados A–J: ocho (C61–C68)**; **doce no utilizados**. Se detiene por R5 ante ausencia de un nuevo original o prueba de integración discriminante, no se inventan C69–C80. [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [informe final](../research/ABH_CONT80_20261028/REPORT_FINAL.md).
+
+**Nuevo original discriminante:** misma referencia documental abreviada `ESE/000002-01` en BOCCL **XI 2022** (CVE `BOCCL-11-000084`) y BOCCL **XII 2026** (CVE `BOCCL-12-000986`). **No es ID global**. C67 migró el registro local a claves `CCYL:BOCCL-12-...`, rechaza aliases ambiguos y deja `first_public_at` desconocido. Hubo cinco fallos esperados de tests anteriores por cambio de contrato; tras migrar correctamente fixtures y añadir controles negativos, **28/28 tests unitarios Python PASS**. C68 revisó de forma limitada servidor y UI; **suite HTTP completa NO_RUN**, pendiente en [Codex T006](../tareas_codex/T006_CVE_CROSS_LEGISLATURE.md).
+
+**Otros contrastes:** XLSX Interior Congreso tenía ya captura histórica RC01 y SHA, no fue descargado de nuevo; Senado `NO VOTAN` aún sin XSD nominal; catálogo Interior no acredita primera publicación; Paridad Electoral es otro conjunto y LO 2/2024 introduce un régimen para convocatorias posteriores, sin permiso de perfilado. [Recibo de versión Interior con publicación desconocida](../data/observatory/interior_congreso_source_version_receipt_20261028.json).
+
+**Atlas:** nuevo lote append-only `0029-PFL-ABH-CONT80-C61-C68-20261028` con **8** `run.add`; **29 lotes, 63 nodos, 81 aristas, 187 runs, 44 complaints y 356 operaciones**, **todos contadores derivados**, no validación Python canónica ni SHA estado. V4 contractual **36,90 %**, CT2 identidad **29/100 ordinal**, VSDS **1/3**, N1/N2/N3 nuevos 0/0/0, **gates 0/6**. No publicar originales nominativos, no puntuar personas ni activar CI costosa o fusionar a main.
+
+**Codex** [tareas pendientes](../tareas_codex/README.md) y [issue #17](https://github.com/GalexY3/Metodologia-AB/issues/17) **no ejecutados**: T001 Python Atlas 29 lotes, T002 suites completas, T006 HTTP/lookup. Las doce plazas AB restantes **no** autorizan afirmar ciclos nuevos sin ejecución; no pedir nuevos permisos mientras el objetivo siga bloqueado.
+
+---
+
 **Cola pendiente para Codex (28/10/2026):** [tareas_codex/](../tareas_codex/README.md) y [BACKLOG.json](../tareas_codex/BACKLOG.json) separan T001–T004 ejecutables de T005 bloqueada por originales; ninguna tarea ha sido ejecutada ni cuenta como ciclo AB. [Incidencia #17](https://github.com/GalexY3/Metodologia-AB/issues/17).
 
 # AB Atlas · CONT60 C51–C60 cerrado 10/10 · 28/10/2026
