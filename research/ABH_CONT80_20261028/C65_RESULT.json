@@ -1,0 +1,35 @@
+{
+  "cycle": "C65",
+  "mode": "AB-R",
+  "A": "Determine whether Interior Paridad Electoral is separate dataset and parity law regime changed in 2024, so longitudinal comparisons require effective-election-call regime.",
+  "B": "Constant 40% since 2007 vs strict alternation for elections called after LO2/2024 vs mixed candidate data.",
+  "C": "Reviewed original official Interior gender-electoral explanatory page, official BOE LOREG consolidated art 44 bis and effective/transitional notes, and separate metadata of Paridad Electoral catalogue XML. No nominal records copied.",
+  "D": {
+    "ministry_equality": "https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/igualdad/igualdad-y-procesos-electorales/index.html",
+    "boe": "https://www.boe.es/eli/es/lo/1985/06/19/5/con",
+    "parity_dataset": "https://datos.gob.es/es/catalogo/e00003801-paridad-electoral-candidatos-as-y-cargos-electos.xml",
+    "parity_dataset_id": "MIR:MIR:E03112802:ds:PARIDADELEC:000001",
+    "amended_law": "BOE-A-2024-15936"
+  },
+  "E": {
+    "old_regime": "3/2007 balanced presence minimum 40%, not necessarily zip alternation",
+    "new_regime": "LO2/2024 alternation women/men in covered candidate lists",
+    "effective": "2024-08-22 per BOE consolidated LOREG",
+    "transition": "Elections called after entry into force, not simply all rows with election year >=2024",
+    "parity_dataset_separate_from_results": true,
+    "dataset_time_coverage": "2008 to 2024",
+    "reuse_terms_specific_parity_verified": false
+  },
+  "F": "Did not download parity XLSX or identify electoral convocation dates; cannot label a historical row's legal regime solely from a year. Legal conditions may vary by election and list type; not all Senate nominations are candidate lists. Separate dataset's licence cannot be copied from Results Electorales.",
+  "G": "Official ministry and BOE primary texts, distinct data catalog ID",
+  "H": "Introduce legal-regime variable keyed to official election convocation date before parity comparisons; leave unknown until confirmed and do not use individual gender/sex to score persons.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novelty": "0/3",
+    "DRIFT": "D2 cross-law methodological scope"
+  },
+  "J": "C66 build negative test proving 2024 legal regime must not be inferred from electoral record year alone; no personal data."
+}
