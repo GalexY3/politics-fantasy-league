@@ -11,7 +11,7 @@ from .events import PoliticalEvent, as_utc, observable_event_revisions
 class Prediction:
     person_id: str
     prediction_as_of: datetime
-    expected_events: float
+    expected_events: float  # Legacy one-opportunity standardized value; NOT a future-horizon count.
     event_rate: float
     observed_history: int
     eligible_exposure: int
@@ -39,6 +39,27 @@ def historical_rate(
     n = len(history)
     rate = (n + prior_events) / (exposure + prior_exposure)
     return Prediction(person_id, as_of, rate, rate, n, exposure)
+
+
+
+def expected_events_for_future_exposure(
+    prediction: Prediction, *, future_exposure: int
+) -> float:
+    """Count forecast conditional on a *separately justified* future opportunity count.
+
+    historical_rate().event_rate is the expected count per historical eligible
+    opportunity. Neither observed events nor past exposure determine how many
+    future opportunities will occur; do not silently assume this exposure.
+    This helper is a deterministic projection, NOT calibrated for real politics.
+    """
+    if (not isinstance(prediction, Prediction) or type(future_exposure) is not int
+            or future_exposure < 0 or not isfinite(prediction.event_rate)
+            or prediction.event_rate < 0):
+        raise ValueError('INVALID_FORECAST_EXPOSURE_OR_RATE')
+    count = prediction.event_rate * future_exposure
+    if not isfinite(count):
+        raise ValueError('NONFINITE_FORECAST_COUNT')
+    return float(count)
 
 
 def poisson_log_loss(y: int, lam: float) -> float:
