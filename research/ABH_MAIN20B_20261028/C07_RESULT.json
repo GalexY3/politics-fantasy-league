@@ -1,0 +1,70 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C07",
+  "type": "AB-P",
+  "status": "VALID_ALPINE_TIMEZONE_OPTIONAL_EXTRA_REPAIR",
+  "at": "2026-10-28T13:52:19.289Z",
+  "A": {
+    "question": "Could packaging optional test/research extras avoid T008's missing Europe/Madrid failure on a minimal Alpine without OS tzdata?"
+  },
+  "B": {
+    "H1": "Python tzdata wheel is usable by zoneinfo without a system IANA path; packaging extra can supply it on non-Windows too",
+    "H0": "tzdata wheel isn't usable without system zoneinfo"
+  },
+  "C": {
+    "prereg": "C07_PREREG.json",
+    "falsifiers": [
+      "PYTHONTZPATH empty + Python tzdata installed fails to resolve Europe/Madrid",
+      "test/research extra still Windows-only after change",
+      "base dependencies change unnecessarily"
+    ],
+    "scope": "One environment portability counterexample from historical Codex T008"
+  },
+  "D": {
+    "historical_T008": "T008_RESULTADO.md: first run loopback and Europe/Madrid missing, second run 7 failures all ZoneInfoNotFoundError, final 651 pass after tzdata installation",
+    "source_git_blob_before": "5b6c6e9341ba069ce2569b427739886ebebdc7d3",
+    "source_git_blob_after": "f57c12450ecec85953ded959b1f769828b583c8a",
+    "source_commit": "f8699a899a4952ec13870456af96ba0dfd261436",
+    "native_execution": "Python 3.13.5 Linux, PYTHONTZPATH='' to disable OS zoneinfo, Python tzdata installed 2026.2, ZoneInfo('Europe/Madrid')"
+  },
+  "E": {
+    "native_without_OS_tzpath": {
+      "effective_TZPATH": [],
+      "tzdata_wheel": "2026.2",
+      "zone": "Europe/Madrid",
+      "resolved": true
+    },
+    "manifest_change": "test/research extras now include tzdata>=2024.1 unconditionally; base package dependencies remain []",
+    "GitHub_post_commit_validation": {
+      "tzdata_occurrences": 2,
+      "Windows_only_markers": 0,
+      "no_base_dependency_change": true
+    },
+    "fresh_package_install_test": "NOT_RUN",
+    "full_repo_test": "NOT_RUN"
+  },
+  "F": {
+    "limits": "The local Python tzdata package was already installed; this is a runtime fallback control plus metadata verification, NOT a clean pip install nor reproduction under QEMU guest. T008 loopback misconfiguration was separate and remains a setup requirement. tzdata compatibility with Python >=3.10 relies on package metadata and future resolution. Project default dependencies are intentionally unchanged."
+  },
+  "G": {
+    "independent_alpine_QEMU_replay": "NOT_RUN",
+    "main_T009": "PENDING"
+  },
+  "H": {
+    "novel_science_N1_new": 0,
+    "CT2_identity_ordinal": 29,
+    "V4_contractual_percent": 36.9,
+    "VSDS": "1/3"
+  },
+  "I": {
+    "value": "Reduce environment-dependent failures of tests and research on stripped Linux; distinct from real politics and source validation",
+    "gates_passed": 0,
+    "science_grade_0_3": 0
+  },
+  "J": {
+    "decision": "ACCEPT minimal optional-dependency repair with bounded direct native control; require future clean install in T009, STOP_R5 on further timezone packaging permutations.",
+    "cycle_consumed": 1,
+    "cycles_remaining_after": 13
+  }
+}
