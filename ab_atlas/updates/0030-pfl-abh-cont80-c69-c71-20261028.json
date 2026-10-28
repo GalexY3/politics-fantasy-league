@@ -1,0 +1,61 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0030-PFL-ABH-CONT80-C69-C71-20261028",
+  "parent_batch": "0029-PFL-ABH-CONT80-C61-C68-20261028",
+  "at": "2026-10-28T01:06:20.894Z",
+  "actor": "chatgpt",
+  "reason": "Append exactly 3 real AB-H A-J results C69-C71 under 20-cycle grant; preregistered full HTTP unavailable and explicitly marked so; STOP_R5 with 9 unspent slots",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C69",
+        "activity": "C69 bounded native JSON catalogue serialization: 7 passed, no original HTTP handler execution; old ESE aliases denied",
+        "status": "completed",
+        "at": "2026-10-28T01:06:20.894Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C69_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, launch gates 0/6, no scoring",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C70",
+        "activity": "C70 indexed official BOCCL 2026 CVE-000986 candidates accepted and CVE-001042 plenary designation; direct page fetch cache miss, publication time not attested",
+        "status": "completed",
+        "at": "2026-10-28T01:06:20.894Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C70_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H AB-R",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, launch gates 0/6, no scoring",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C71",
+        "activity": "C71 exact GitHub source URL references for both BOCCL stage records, native 32/32 PASS after correcting one faulty test expectation; no release permission",
+        "status": "completed",
+        "at": "2026-10-28T01:06:20.894Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C71_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, launch gates 0/6, no scoring",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
