@@ -1,0 +1,39 @@
+{
+  "campaign": "CONT80 C73–C76",
+  "datetime": "2026-10-28",
+  "runner": "Native Linux POSIX Python 3.13.5 pytest 9.0.2, no Codex, no external HTTP sources",
+  "source_ref": "research/pfl-codex-contributions-20261027",
+  "original_sources_SHA": {
+    "secure_store.py": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "ingest.py": "913f00079c1eba519b977956e18d61d152a3fe20",
+    "quarantine_ingest.py": "8bf3699c4764366b2c2750eadf9303d6ffa470f5",
+    "source_original_qa.py": "7e9d79fb841a1e07f379b77486c29088bbfc6512",
+    "source_original_senate_qa.py": "83025d93bfeeac8e89574330e54033eb0ae2ac27",
+    "private_audit.py": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+    "private_audit_cli.py": "923a1c479c3f970e1325beff36699a277bc3773c"
+  },
+  "original_test_blobs": {
+    "test_ingest.py": "5ed121cebbcca41a44fcf0580e7a5fd9ea9d559d",
+    "test_ingest_redirect_security.py": "9dec4b4cc92d70712ce144f0a73c25a70fce59c0",
+    "test_quarantine_ingest.py": "69d3a1f206997a84999598c1b38a6e1664fd3479",
+    "test_ingest_full_local_e2e.py": "dfc34dc9d88e636162c7834ac962f9be50369860"
+  },
+  "native_result": "31 passed, 14 subtests passed in 2.30s, exit 0",
+  "native_cmd": "PYTHONPATH=src python -m pytest -q tests/test_ingest.py tests/test_ingest_redirect_security.py tests/test_quarantine_ingest.py tests/test_ingest_full_local_e2e.py",
+  "local_archive": "/mnt/data/PFL_CONT80_C73_C76_POSIX_evidence.zip",
+  "files_sha256": {
+    "C73_pytest.txt": "c30e9a9631a7d34fc5bb28913dcf5f827523e2bc9f8cf189003df3622d69b77b",
+    "C74_pytest.txt": "bcbacb894acb861fdca2f61d268a4f92097cd8e99411fb1ab8849734935749e7",
+    "C75_pytest.txt": "27eb5ae8749462bee4fc1349efc0be2576d5b5585c8e974541e7128c15164326",
+    "C76_pytest.txt": "db7f09414dbfd608dbdbc9dc30246e56e6598dc0e7fbf509c46c3bdd43c83e32",
+    "C76_combined_4_original_suites.txt": "73d5b272b354efc8498c83c03373681fb1e22c34ebed5b41a4f6f3ebc87c250c",
+    "C76_sha_manifest.txt": "63460f27c2d711e23d2c7bddf288970b91e42e941d79c4f91e64b05e6dc5a754"
+  },
+  "not_claimed": [
+    "Whole Python suite passed",
+    "Every Windows failure is only unsupported POSIX",
+    "Production-grade safety",
+    "Real publisher raw capture",
+    "Data processing or person-score authorization"
+  ]
+}
