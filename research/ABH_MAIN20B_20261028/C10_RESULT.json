@@ -1,0 +1,35 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C10",
+  "mode": "AB-P",
+  "status": "VALID_CSV_PHYSICAL_LINE_FIX",
+  "A": "File source_line must locate a CSV record in physical file, including multiline quoted fields",
+  "B": {
+    "H1": "enumerate(reader,2) uses logical ordinal not physical line",
+    "H0": "works for multiline"
+  },
+  "C": {
+    "prereg": "C10_PREREG.json",
+    "fixture": "quoted newline, second row physically at line4",
+    "expected": "physical record end lines 3 and4"
+  },
+  "D": {
+    "source_blob_before": "8c9fd91ca211de1bfcbb4d02325ea4a95822650b",
+    "source_blob_after": "6abee0e9a098ea83aaae7fe700577bcec0ba86f6",
+    "modified_commit": "e4923de23d0153c121a4d3cf024f24f817a10850",
+    "test_commit": "dd5e3a4159977fee22053ec1cc35b335a64a2a09",
+    "runtime": "Python stdlib csv.DictReader exact logical and physical line read; new pytest file committed but NOT_RUN on project checkout"
+  },
+  "E": {
+    "before": "rows had source_line [2,3] but physical end lines [3,4]",
+    "after": "code now uses reader.line_num; source file GitHub post-write verified",
+    "focused_csv_stdlib_controls": 1,
+    "full_pytest": "NOT_RUN"
+  },
+  "F": "Physical ending line is not row starting line; document as end position. CSV may still contain source-line semantics in reports; dependent full tests pending.",
+  "G": "T009 pending",
+  "H": "0 novelty or CT2/gates uplift",
+  "I": "Traceability of third-party CSV parser only",
+  "J": "ACCEPT_CODE_FIX with regression file; no original nominal input"
+}
