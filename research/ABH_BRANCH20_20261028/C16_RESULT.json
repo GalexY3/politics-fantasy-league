@@ -1,0 +1,71 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C16",
+  "mode": "AB-R",
+  "status": "VALID_HISTORICAL_AGGREGATE_PROVENANCE_NEGATIVE_PORT",
+  "at": "2026-10-28T12:54:32.680Z",
+  "A": {
+    "question": "Can source-pinned old aggregate manifest be safely restored as-is on current main and its original tests remain meaningful?"
+  },
+  "B": {
+    "H1": "Original source replays are documented and same metadata can be safely restored without runtime mismatch",
+    "H0": "Current server absent historical endpoint, and rights are not independently adjudicated; copying old code/tests/data cannot certify current integration"
+  },
+  "C": {
+    "prereg": "C16_PREREG.json",
+    "checks": [
+      "exact old file metadata; no names or per-person score fields",
+      "historical CI C10 original replay state",
+      "current main route existence",
+      "source-rights / first public time"
+    ]
+  },
+  "D": {
+    "old_branch": "research/pfl-ab-adaptive32-20261026",
+    "metadata_blobs": {
+      "code": "f9fffa711f5e1c68f5c6afe6ef47902881d1c838",
+      "test": "25e3112cfd86bb4c5e914f14ea04592a5880b1c4",
+      "aggregate": "05c5816b139f08c54ae11d7c881b389fbea9c27d"
+    },
+    "historical_workflow_run": 40344682502,
+    "run_event": "push",
+    "run_conclusion": "success",
+    "job_id": 121648339940,
+    "log_line": "C10_ORIGINAL_REPLAY=[{\"vote\":1,\"matched\":true,\"rows\":350},{\"vote\":2,\"matched\":true,\"rows\":350}]",
+    "main_server_blob": "f5cce90c632295d3828c85ecf3b2ec5dd82ca395"
+  },
+  "E": {
+    "old_data_records": 2,
+    "keys_per_record_only_aggregate": true,
+    "rights": "NOT_INDEPENDENTLY_ADJUDICATED",
+    "first_public_at": null,
+    "scoring_allowed": false,
+    "original_replay_success_count": 2,
+    "original_source_rows_each": 350,
+    "current_server_has_legacy_route": false,
+    "current_server_imports_legacy_module": false,
+    "native_tests_this_cycle": "NOT_RUN",
+    "new_Actions": "NONE"
+  },
+  "F": {
+    "adversarial": "Historical CI log is stronger than a marketing claim but refers to old commit b5237922f075aeff9a0c3c9520333ecab453118f and one specific workflow run. It does not certify today's publisher bytes, current source license, present identity, or a current server API. Copying historical tests with obsolete endpoint would import false-green expectations."
+  },
+  "G": {
+    "independent_publisher_now": "NOT_RUN",
+    "original_bytes_current": "NOT_AVAILABLE",
+    "rights": "OPEN"
+  },
+  "H": {
+    "N1_new": 0,
+    "V4_percent": 36.9,
+    "CT2_identity": 29
+  },
+  "I": {
+    "scientific": "No new independent research result",
+    "product": "Retains institutional provenance via archival evidence, no module port"
+  },
+  "J": {
+    "decision": "STOP_R5_NO_BULK_PORT; retain old verified aggregate dataset and CI proof in archive. Future selective integration requires separate source-rights and explicit endpoint protocol; do not score real persons."
+  }
+}
