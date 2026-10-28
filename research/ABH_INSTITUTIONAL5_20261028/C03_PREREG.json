@@ -1,0 +1,25 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": {
+    "source_discovery_known": "BOE law title known generally, verify exact statute and effective dates via web rather than assume",
+    "comparator": "2023 candidate and outcome BOE from C02 predates 2024 statute"
+  },
+  "A": "Does the Spanish 2024 law of balanced representation impose an equivalent parity rule on candidate lists, mayoral selection and current 2025 seat shares?",
+  "B": {
+    "H1": "Legal scope/transition excludes automatic inference that observed 2025 mayor percentages are causal effects of candidate-list parity",
+    "H0": "Law uniformly governs same offices with immediately equivalent enforcement and calendar",
+    "Halt": "Different elections and transitional windows require controls"
+  },
+  "C": "Retrieve original BOE LO 2/2024 and LOREG text via official BOE, inspect articles/dispositions on election candidate list ordering and deadlines, compare with 2025 official ODS categories; explicitly distinguish rule requirements from observed compliance and causal impact",
+  "E": "PENDING",
+  "F": "Check any 2007 LO 3/2007 baseline already mandated 40/60, so 2024 may not be 'treatment from nothing'",
+  "G": "No causal design or legal opinion based solely on text",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No individual profiling",
+  "J": "Use analysis to define invalid vs valid causal claim and necessary municipal electoral controls"
+}
