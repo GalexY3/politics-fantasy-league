@@ -1,0 +1,34 @@
+{
+  "cycle": "C66",
+  "mode": "AB-R",
+  "A": "Test whether ESE/000002-01 occurs in both CCyL XI 2022 and XII 2026 originals.",
+  "B": "Globally unique versus legislature-local reusable short ID.",
+  "C": "Compared official BOCCL XI PDF 9 May 2022 page 746 and XII HTML 10 September 2026; screenshot requested for 2022 PDF but retrieval failed, institutional text layer available.",
+  "D": {
+    "source2022": "https://sirdoc.ccyl.es/SIRDOC/PDF/PUBLOFI/BO/CCL/11L/BOCCL1100013A.pdf",
+    "source2026": "https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml",
+    "cve2022": "BOCCL-11-000084",
+    "cve2026": "BOCCL-12-000986"
+  },
+  "E": {
+    "same_short_reference": "ESE/000002-01",
+    "legislatures": [
+      11,
+      12
+    ],
+    "distinct_document_CVEs": true,
+    "confirmed_risk": "source registry contains only short ref, no legislature qualification"
+  },
+  "F": "No original byte digest today; no personal names copied; source-reference collision not certified person identity.",
+  "G": "Primary institutional published bulletin records, page text and HTML.",
+  "H": "Need namespace institution/legislature/CVE and fail closed for unqualified shorthand; no release promotion.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "DRIFT": "D2",
+    "new_science": "0/3"
+  },
+  "J": "C67 repair the source-stage registry and regression tests, preserving zero trusted first-publication records."
+}
