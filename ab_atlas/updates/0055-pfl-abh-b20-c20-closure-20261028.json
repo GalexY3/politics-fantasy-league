@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0055-PFL-ABH-BRANCH20-C20-CLOSURE-20261028",
+  "parent_batch": "0054-PFL-ABH-BRANCH20-C19-ATLAS-TIME-20261028",
+  "at": "2026-10-28T13:03:28.998Z",
+  "actor": "chatgpt",
+  "reason": "C20 prereg independent documentary audit: 38 prereg/result files C01-C19 parsed, 5 commit-order samples, 19 tail Atlas deltas reference/parent checked, preserve C01 invalid and close 20-attempt budget with 19 valid/1 invalid/0 left. No native 55-lot replay.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C20-CAMPAIGN-CLOSE",
+        "activity": "C20 final independent records audit, 38 prereg/result documents, 5 commit chronology samples and 19 Atlas tail patches; C01 invalid, 19 valid, 0 remaining; no new empirical claims.",
+        "status": "completed",
+        "at": "2026-10-28T13:03:28.998Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C20_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C20_RESULT.json"
+        ],
+        "scope": "AB-META documentary closure, full pytest and canonical checker NOT_RUN",
+        "method_version": "AB 3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
