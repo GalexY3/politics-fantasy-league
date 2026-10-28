@@ -1,0 +1,117 @@
+{
+  "cycle": "C04",
+  "mode": "AB-P",
+  "prereg_commit": "1ada50f87f1bcaf71b61804ed84cd4ffe31619a7",
+  "source_commit": "e61b722edbf15ff983d441db601f0744ceca4b2a",
+  "A": "Guard dryrun intake, consent, adulthood and no personal/partisan fields; offline fixture only",
+  "B": [
+    "permissive intake",
+    "strict validation makes missing data explicit",
+    "uncertified approval flag can be spoofed"
+  ],
+  "C": "Strict synthetic dry-run, consent separate, approval token, complete/partial case differentiation, >=14 QA",
+  "D": "Freeze source before tests, no network or storage, V8 pure function",
+  "E": {
+    "tests": [
+      {
+        "name": "valid mock",
+        "pass": true
+      },
+      {
+        "name": "both artifacts frozen",
+        "pass": true
+      },
+      {
+        "name": "response snapshot frozen",
+        "pass": true
+      },
+      {
+        "name": "receipt separate",
+        "pass": true
+      },
+      {
+        "name": "fixture-only output",
+        "pass": true
+      },
+      {
+        "name": "accept partial",
+        "pass": true
+      },
+      {
+        "name": "requires review",
+        "pass": true
+      },
+      {
+        "name": "requires long ref",
+        "pass": true
+      },
+      {
+        "name": "reject missing consent",
+        "pass": true
+      },
+      {
+        "name": "reject missing adult",
+        "pass": true
+      },
+      {
+        "name": "reject real fixture",
+        "pass": true
+      },
+      {
+        "name": "reject name",
+        "pass": true
+      },
+      {
+        "name": "reject email",
+        "pass": true
+      },
+      {
+        "name": "reject political opinion",
+        "pass": true
+      },
+      {
+        "name": "reject IP",
+        "pass": true
+      },
+      {
+        "name": "reject extra timestamp",
+        "pass": true
+      },
+      {
+        "name": "reject unknown arm",
+        "pass": true
+      },
+      {
+        "name": "reject incomplete disguised",
+        "pass": true
+      },
+      {
+        "name": "reject unknown answer",
+        "pass": true
+      },
+      {
+        "name": "reject missing response field",
+        "pass": true
+      },
+      {
+        "name": "reject missing required",
+        "pass": true
+      },
+      {
+        "name": "review mock no data persistence",
+        "pass": true
+      }
+    ],
+    "pass": 22,
+    "fail": 0
+  },
+  "F": "Mock approval object is easily forged. Nothing authenticates review, age or actual consent; therefore NOT APPROVED for real participants despite test success. Fake completed responses only.",
+  "G": "Independent ethics / DPO and functional user trial not performed",
+  "H": "Consent and legal basis cannot be certified in code by a boolean; formal human review and secure deployment prerequisite.",
+  "I": {
+    "grade": "0/3",
+    "CT2_prospective": 25,
+    "ethics": "No live data authorized/collected"
+  },
+  "J": "ACCEPT_DRYRUN_ONLY_C04"
+}
