@@ -1,0 +1,31 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:49:23.973Z",
+  "topic": "Historical release gate caller-forged trusted receipts vs actual server-held attestation boundary",
+  "preexposure": "Legacy release_gate.py from ab20b contains decide_release(evidence, trusted_receipts=None), and comments receipts must originate server-owned; code accepts external Mapping arguments. Before test, true implementation can be read as potentially satisfying itself with caller-provided receipts.",
+  "A": "Can a caller forge all six approval fields and the matching trusted_receipts argument to get release_allowed=True, person_scoring_allowed=True, even without independent server-side validation?",
+  "B": {
+    "H1": "With both caller-controlled maps same refs, legacy pure function returns True; unsafe if exposed as API",
+    "H0": "Function internally checks independent attested source and always denies caller-controlled synthetic map"
+  },
+  "C": {
+    "falsifier": "Construct two synthetic 6-gate maps with arbitrary refs; compare without trusted_receipts (should deny) and with matching forged receipts; if false positive, DO NOT PORT into main"
+  },
+  "D": {
+    "source": "research/pfl-ab20b-historical-identity-20261026/src/politics_fantasy/release_gate.py",
+    "blob": "723c77a7cae2009d997ea81391a073f71bb42f87",
+    "original_test": "tests/test_release_gate.py",
+    "network": "none",
+    "personal_data": "none"
+  },
+  "E": "PENDING",
+  "F": "Direct programmatic call not necessarily reachable by HTTP; do not assert deployed exploit or real ability to score persons",
+  "G": "Native exact Git module/tests isolated Python",
+  "H": "No release gate progress",
+  "I": "Trust attestation security and branch consolidation",
+  "J": "Reject old module if caller forgery succeeds; preserve original code in archive."
+}
