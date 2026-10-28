@@ -1,0 +1,51 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_OFFICIAL_LAW_EXPOSURE_NEGATIVE_CONTROL",
+  "A": "Legal treatment exposure and exclusions vs overclaim parity causality",
+  "B": {
+    "H1": "List regulation is thresholded and only later-called elections, so 2025 occupancy does not automatically identify law effect",
+    "H0": "Uniform immediately-treated municipality and office",
+    "Halt": "Pre-2007 parity already applied 40/60, requiring treatment incremental distinction"
+  },
+  "C": {
+    "prereg_commit": "e084d55467c9aa304649ddffedfc1973bf36e1f0",
+    "method": "Read 2024 BOE original, 2007 BOE baseline, 2025 JEC instruction; triangulate electoral office, population-band, effectivity date and cohort exposure without analyzing personal names"
+  },
+  "D": {
+    "primary": "https://www.boe.es/buscar/doc.php?id=BOE-A-2024-15936",
+    "prior": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115&lang=es&p=20220907&tn=1",
+    "interpretive": "https://boe.es/buscar/act.php?id=BOE-A-2025-22665",
+    "artifact": "C03_LEGAL_TREATMENT_EXPOSURE.json"
+  },
+  "E": {
+    "law_published": "2024-08-02",
+    "effective": "2024-08-22",
+    "applicability": "Elections called after law entry into force",
+    "municipal_bands": [
+      "<=3000 article44bis not required",
+      ">3000 to 5000 sex 40/60 required, list alternation excepted",
+      ">5000 article44bis alternate lists"
+    ],
+    "existing_2007_rule": "40/60 and by groups of five established",
+    "design_risk": "2023 BOE candidates pre-treatment; 2025 aggregate office shares not a tested post-reform municipal election"
+  },
+  "F": "Population threshold creates a candidate staggered/exposure mechanism, not an evaluated regression discontinuity; cannot infer mayoral effect from INE 2025. Needs precise election calls and municipality population snapshot.",
+  "G": "No outcomes linked to treated vs controls, potential manipulation at thresholds, autonomous rules, campaign changes, parity compliance and systematic samples not measured.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "V4": 36.9,
+    "achievements": 0
+  },
+  "I": "Legal scope description not legal advice, not counterfactual causal estimate",
+  "J": "Use candidate list law as exposure-only variable with no lookahead; seek real post-2024 election with original candidate rolls before causal testing."
+}
