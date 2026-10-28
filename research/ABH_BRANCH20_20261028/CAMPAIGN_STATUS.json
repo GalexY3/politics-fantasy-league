@@ -3,11 +3,11 @@
   "campaign_id": "PFL-ABH-BRANCH20-20261028",
   "as_of": "2026-10-28",
   "grant": 20,
-  "valid": 4,
+  "valid": 5,
   "invalid": 1,
   "planning": 0,
-  "attempts": 5,
-  "remaining": 15,
+  "attempts": 6,
+  "remaining": 14,
   "status": "ACTIVE_STOP_R5_FOR_REPETITIVE_GUARDS_NEXT_DISTINCT_DISCRIMINANT_REQUIRED",
   "branch": "research/pfl-abh-branch20-20261028",
   "base_branch": "research/pfl-codex-contributions-20261027",
@@ -65,6 +65,16 @@
       "atlas": "0040",
       "scientific_grade": "0/3",
       "native_checker": "NOT_RUN"
+    },
+    {
+      "id": "C06",
+      "type": "AB-P",
+      "status": "VALID_PR11_DIFFERENTIAL_AUDIT",
+      "prereg": "C06_PREREG.json",
+      "result": "C06_RESULT.json",
+      "atlas": "0041",
+      "no_bulk_merge": true,
+      "scientific_grade": "0/3"
     }
   ],
   "progress": {
@@ -77,12 +87,12 @@
     "gates_passed": 0
   },
   "atlas": {
-    "lots": 40,
+    "lots": 41,
     "derived_nodes": 63,
     "derived_edges": 81,
-    "derived_runs": 206,
+    "derived_runs": 207,
     "derived_complaints": 47,
-    "derived_operations": 380,
+    "derived_operations": 381,
     "canonical_python_checker": "NOT_RUN"
   },
   "tests": {
@@ -95,7 +105,7 @@
     "CHATRELAY 2_VALID_OF_5 and 3 unspent"
   ],
   "environment_blocker": "No full private repository checkout in container, git ls-remote failed Could not resolve host github.com. GitHub connector supports reading/writing files but does not execute native global pytest.",
-  "next_action": "PR #11 historical bug and changed UI compatibility: independent existing source comparison, replay existing original tests where feasible; T008 remains queued",
+  "next_action": "C07 new social measurement: distinguish modal vote from strict group majority; prioritize semantic estimand over generic synthetic guards",
   "permissions": [
     "No public real-person scoring",
     "No originals nominales in Git",
