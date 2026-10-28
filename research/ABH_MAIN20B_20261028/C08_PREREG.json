@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C08",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Can mutation of PoliticalEvent.metadata or source nested dictionary after frozen dataclass construction change event equality and revision de-duplication outcomes?",
+  "B": {
+    "H1": "Frozen dataclass currently shares mutable nested metadata, allowing post-creation changes",
+    "H0": "Deep immutable defensive snapshot already present"
+  },
+  "C": {
+    "negative": "Event metadata={'a':{'value':1}}; mutate original and e.metadata nested, verify after construction cannot change; preserve source equality on identical dicts and revision conflict detection",
+    "pass": "Deep immutable snapshot of JSON-like metadata and distinct duplicate equal semantics; unit tests on isolated exact module",
+    "fail": "No mutation or incompatible existing metadata encodings found"
+  },
+  "D": {
+    "source_sha": "35fbfa6e4e952e22450a184f53672f9ef670d039",
+    "tests": "tests/test_core.py",
+    "runtime": "CPython isolated events.py and focused tests; no full repo suite"
+  },
+  "E": "NOT_RUN",
+  "F": "Metadata immutable only in constructed event; doesn't authenticate original issuer",
+  "G": "T009 integration pending",
+  "H": "CT2 and gates unchanged",
+  "I": "Archive reproducibility/security contract",
+  "J": "Repair if mutation shown; no real-person output"
+}
