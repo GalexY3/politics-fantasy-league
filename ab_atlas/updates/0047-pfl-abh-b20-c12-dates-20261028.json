@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0047-PFL-ABH-BRANCH20-C12-CONGRESS-DATES-20261028",
+  "parent_batch": "0046-PFL-ABH-BRANCH20-C11-DAYLEVEL-20261028",
+  "at": "2026-10-28T12:47:19.355Z",
+  "actor": "chatgpt",
+  "reason": "C12 strict event date normalizer and exact original tests recovered by SHA from archival branch; 14 Python tests PASS, no first publication inference.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C12-EVENT-DATES",
+        "activity": "Port isolated historical Congreso local vote date normalizer and original 14 negative/positive pytest fixtures, source/test hashes exact. Not availability time.",
+        "status": "completed",
+        "at": "2026-10-28T12:47:19.355Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C12_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C12_RESULT.json",
+          "tests/test_congress_vote_dates.py"
+        ],
+        "scope": "AB-P event parser, no real scoring/gate promotion",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
