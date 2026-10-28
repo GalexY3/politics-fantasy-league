@@ -1,0 +1,63 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "V4": 36.9,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "grade_0_3": 0,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "unit": "country",
+  "source_fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+  "original_EP_signed_CSV_bytes": 0,
+  "prospective_model_validation": false,
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_LEGAL_CLASSIFICATION_SENSITIVITY",
+  "A": "Does 2024 obligatory voting confound or drive turnout vs women MEP representation association?",
+  "B": {
+    "H1": "Remove compulsory countries alters Spearman rho materially",
+    "H0": "Rho stable within 0.1",
+    "H_other": "Temporal legal definition of Cyprus differs across official documents; law enforcement is not measured"
+  },
+  "C": {
+    "prereg_commit": "5c61c18ba9cb6b51dcd4d169835cb8abf711687a",
+    "execution": "Used official EU 2024 prep 5 BE BG LU CY EL, alternatively EP current factsheet 4 BE BG LU EL; computed Pearson and Spearman on remaining 22/23. Compared mean turnout by legal roster, no causal intervention."
+  },
+  "D": {
+    "prep": "https://www.eeas.europa.eu/sites/default/files/documents/2023/European%20elections%202024%20-%20national%20rules.pdf",
+    "later": "https://www.europarl.europa.eu/factsheets/en/sheet/21/the-european-parliamentelectoral-procedures",
+    "fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+    "metrics": "EU27_METRICS.json"
+  },
+  "E": {
+    "all27_spearman": 0.059893082383310654,
+    "prep5_exclusion": {
+      "n": 22,
+      "pearson": -0.003581249522653629,
+      "spearman": 0.0683809231278553,
+      "mandatory_mean_turnout": 61.036,
+      "others_mean_turnout": 46.01818181818181
+    },
+    "later4_exclusion": {
+      "n": 23,
+      "pearson": -0.1193792736382045,
+      "spearman": -0.037577266206213544,
+      "mandatory_mean_turnout": 61.58,
+      "others_mean_turnout": 46.576521739130435
+    }
+  },
+  "F": "None of the two legal classifications yields strong monotonic turnout–women correlation. Compulsory voting is associated descriptively with higher turnout in this country sample, but enforcement/selections not comparable; no claim of a causal compulsory-vote effect.",
+  "G": "2024 prep says five incl Cyprus, later EP factsheet says four excluding Cyprus; do not silently reconcile or invent effective amendment dates.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "I": "Do not morally rate countries or infer an individual's voting obligation.",
+  "J": "Accept robust negative on relationship and preserve legal definition uncertainty; proceed 2019–24 within-country comparison."
+}
