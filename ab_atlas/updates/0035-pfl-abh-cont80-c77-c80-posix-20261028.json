@@ -1,0 +1,78 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0035-PFL-ABH-CONT80-C77-C80-POSIX-20261028",
+  "parent_batch": "0034-PFL-ABH-CONT80-C73-C76-POSIX-20261028",
+  "at": "2026-10-28T01:58:58.511Z",
+  "actor": "chatgpt",
+  "reason": "Four real preregistered AB-P C77-C80 cycles close previously granted maximum 20/20. Native exact-source Linux POSIX tests, eight original checked-in suites jointly 89 PASS, 14 subtests. Full repo T008 remains pending; no scientific/release change.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C77",
+        "activity": "C77 exact Git original secure_store.py 22/22 POSIX tests passed: no symlink escapes, permissions, fsync, cooperating thread locks and partial append handling",
+        "status": "completed",
+        "at": "2026-10-28T01:58:58.511Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C77_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C78",
+        "activity": "C78 exact Git original multiprocess tests 4/4 passed: four processes 48 unique JSONL records and SIGKILL mid-ledger/object flags uncertainty",
+        "status": "completed",
+        "at": "2026-10-28T01:58:58.511Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C78_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C79",
+        "activity": "C79 original private_audit.py 24/24 tests passed including forged/duplicate/incomplete JSONL, orphan review, object length, reader-writer lock and SIGKILL",
+        "status": "completed",
+        "at": "2026-10-28T01:58:58.511Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C79_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-CONT80-C80",
+        "activity": "C80 original private_audit_cli.py 8/8 tests passed, aggregate exit2 and privacy; integrated previous eight original suites 89 PASS +14 subtests, exit0, no patches",
+        "status": "completed",
+        "at": "2026-10-28T01:58:58.511Z",
+        "evidence": [
+          "research/ABH_CONT80_20261028/C80_RESULT.json"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
