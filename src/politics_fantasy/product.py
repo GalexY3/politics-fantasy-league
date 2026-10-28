@@ -373,15 +373,28 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
         trades=[dict(x) for x in db.execute('SELECT * FROM trade ORDER BY id DESC LIMIT 40')]
     observatory={'status':'SOURCE_NOT_LOADED','votes':[], 'provenance':None}
     if pilot_csv and pilot_csv.is_file():
-        with pilot_csv.open(encoding='utf-8',newline='') as handle:
-            rows=list(csv.DictReader(handle))
-        votes=[]
-        for row in rows:
-            votes.append({'id':row['row_id'],'yes':int(row['yes']),'no':int(row['no']),
-                          'abstain':int(row['abstain']),'date':row['event_date'],
-                          'total':int(row['yes'])+int(row['no'])+int(row['abstain'])})
-        observatory={'status':'EXPLORATORY_MANUAL_AGGREGATE_NOT_VALIDATED', 'votes':votes,
-                     'provenance':'Congreso, sesión plenaria 193 (2026-07-23); transcripción manual de recuentos; SIN DETALLE NOMINAL'}
+        # This is a manually transcribed aggregate, never a validated original.
+        # Malformed local files must not crash the synthetic game endpoint.
+        try:
+            if pilot_csv.stat().st_size > 1_000_000:
+                raise ValueError('Manual pilot file too large')
+            with pilot_csv.open(encoding='utf-8',newline='') as handle:
+                rows=list(csv.DictReader(handle))
+            if not 0 < len(rows) <= 200:
+                raise ValueError('Manual pilot row budget or empty file')
+            votes=[]
+            for row in rows:
+                values=[int(row[name]) for name in ('yes','no','abstain')]
+                if (any(v < 0 for v in values) or sum(values)>350
+                        or not row['row_id'] or not row['event_date']):
+                    raise ValueError('Invalid manual aggregate row')
+                votes.append({'id':row['row_id'],'yes':values[0],'no':values[1],
+                              'abstain':values[2],'date':row['event_date'],
+                              'total':sum(values)})
+            observatory={'status':'EXPLORATORY_MANUAL_AGGREGATE_NOT_VALIDATED', 'votes':votes,
+                         'provenance':'Congreso, sesión plenaria 193 (2026-07-23); transcripción manual de recuentos; SIN DETALLE NOMINAL'}
+        except (OSError, UnicodeError, ValueError, TypeError, KeyError, csv.Error):
+            observatory={'status':'MANUAL_AGGREGATE_INVALID','votes':[], 'provenance':None}
     return {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
             'mode':DATA_PROVENANCE, 'authentication':'NONE_LOCAL_LOOPBACK_ONLY',
             'scoring_rule':DEMO_RULE.version,'roster_limit':MAX_OWNED,'lineup_size':LINEUP_SIZE,
