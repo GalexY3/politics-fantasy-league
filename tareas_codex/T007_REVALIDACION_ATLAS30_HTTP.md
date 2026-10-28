@@ -1,3 +1,5 @@
+> **Estado actual: COMPLETADA_VERIFICADA para su alcance (28/10/2026).** El texto de prerregistro y sus instrucciones siguientes son históricos. [Resultado efectivo T007](T007_RESULTADO.md): replay Python de 31 lotes y 55 pruebas HTTP/fuentes aprobadas sobre `af090f598fdae0cc62ff12f556840140a1cc0235`. Las suites POSIX y originales externos permanecen pendientes; no se han reejecutado desde este chat.
+
 # T007 · Revalidar el HEAD posterior a C71 (Atlas 31 y HTTP)
 
 **Estado PENDIENTE.** Distinta de T001/T006: aquellas **sí** tienen informes de ejecución en Windows sobre el HEAD base `6e359a89e74f06927e51ca4dc8a9ea1714e37acd`. No reutilizar sus resultados como si hubieran validado el commit actual.
