@@ -1,0 +1,116 @@
+{
+  "schema": "pfl.rioja.2023.general_vs_provisional.v1",
+  "case_selected_before_outcome_lookup": true,
+  "official": {
+    "publisher": "Junta Electoral de La Rioja",
+    "original": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Escrutinio%20General.pdf",
+    "official_HTML_repub": "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales",
+    "publication": "BOR no.125 2023-06-20",
+    "pdf_screenshot_attempted": true,
+    "screenshot_result": "web cache miss",
+    "original_bytes_downloaded": false,
+    "sha256": null,
+    "electorate": 251919,
+    "voters": 170779,
+    "null": 2860,
+    "blank": 2360,
+    "valid": 167919,
+    "candidacy": 165559
+  },
+  "early_public": {
+    "publisher": "RTVE display based on early results",
+    "url": "https://resultados-elecciones.rtve.es/autonomicas/2023/la-rioja/",
+    "voters": 169803,
+    "null": 2859,
+    "blank": 2370,
+    "valid": 166944,
+    "candidacy": 164574,
+    "notice": "Version and data cut not identified as formal legal final; do not infer timestamp of first publicity"
+  },
+  "law": {
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1991-7743",
+    "arts": "18-20 single district, 33 seats, D'Hondt >=5% valid votes"
+  },
+  "party_rows": [
+    {
+      "id": "PP",
+      "final_votes": 76205,
+      "display_votes": 75859,
+      "seats": 17
+    },
+    {
+      "id": "PSOE",
+      "final_votes": 53562,
+      "display_votes": 53295,
+      "seats": 12
+    },
+    {
+      "id": "VOX",
+      "final_votes": 12773,
+      "display_votes": 12634,
+      "seats": 2
+    },
+    {
+      "id": "PODEMOS-IU",
+      "final_votes": 8543,
+      "display_votes": 8457,
+      "seats": 2
+    },
+    {
+      "id": "PR+E",
+      "final_votes": 6016,
+      "display_votes": 5975,
+      "seats": 0
+    },
+    {
+      "id": "PLRi",
+      "final_votes": 4349,
+      "display_votes": 4325,
+      "seats": 0
+    },
+    {
+      "id": "Cs",
+      "final_votes": 1473,
+      "display_votes": 1448,
+      "seats": 0
+    },
+    {
+      "id": "PACMA",
+      "final_votes": 1065,
+      "display_votes": 1028,
+      "seats": 0
+    },
+    {
+      "id": "VINEA",
+      "final_votes": 954,
+      "display_votes": 950,
+      "seats": 0
+    },
+    {
+      "id": "E_BLANCO",
+      "final_votes": 619,
+      "display_votes": 603,
+      "seats": 0
+    }
+  ],
+  "computed": {
+    "voters_increment": 976,
+    "candidacy_vote_increment": 985,
+    "blank_delta": -10,
+    "null_delta": 1,
+    "party_vote_final_sum": 165559,
+    "legal_5pct_threshold_votes": 8395.95,
+    "smallest_eligible_list_votes": 8543,
+    "margin_above_threshold": 147.05,
+    "observed_and_replayed_seats": 33,
+    "last_winning_quotient": "8543/2",
+    "first_unawarded_quotient": "12773/3",
+    "seat_difference_between_reported_and_EC_final": 0
+  },
+  "limits": [
+    "Early source and final official results are not contemporaneous; no causal effect inferred",
+    "PDF visual screenshot failed; official Parliament HTML corroborates same final totals",
+    "Binary original PDF and full 60-page municipality table not downloaded; no exact SHA/original byte count",
+    "Narrow margin 147.05 above 5% threshold is descriptive not electoral forecast"
+  ]
+}
