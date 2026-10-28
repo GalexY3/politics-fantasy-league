@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "R1": "Unit: EU member country, n<=27. Turnout percent of eligible voters, women percentage of MEPs in constitutive EP 2024. No individual-level inference.",
+  "R2": "Statistical baseline Pearson and Spearman; rank/level, 2019 gender baseline and compulsory-voting sensitivity. No simplistic null-only comparator.",
+  "R3": "Pre-exposed 2024 turnout and 2019 gender tables; 2024 gender outcome was not read at prereg time; four post-hoc sensitivity operations, exploratory family, no confirmatory p-values or novelty.",
+  "R4": "Ablate compulsory-voting legal regime, geography/confounding where possible and large-country weight, and 2019 level.",
+  "R5": "Never repeat blocked binary fetch as scientific cycle; stop if full country gender not available; register missing data.",
+  "source": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "originals": "https://results.elections.europa.eu/en/tools/download-datasheets/",
+    "legal": "https://www.eeas.europa.eu/sites/default/files/documents/2023/European%20elections%202024%20-%20national%20rules.pdf"
+  },
+  "CT2_before": 29,
+  "grade_0_3": "PENDING",
+  "data_original_binary_status": "EP download page has signature links, but no actual raw files retrieved or signatures checked",
+  "cycle": "C05",
+  "type": "AB-R",
+  "D": 1.2,
+  "A": "Does 2024 turnout add meaningful LOOCV predictive value for 2024 female MEP share versus competent simple prior 2019 female MEP share, with units all countries and clear leakage limitations?",
+  "B": {
+    "H1": "Simple 2019 women share linear predictor yields lower LOOCV MAE than 2024 turnout-only and constant mean",
+    "H0": "2024 turnout adds better predictive value to historical female baseline",
+    "H_other": "Country-specific list quotas and seat reallocation dominate, so all weak"
+  },
+  "C": "Use fixed country n=27, implement deterministic leave-one-country-out OLS with intercept: M0 training mean, M1 2019 women %, M2 2024 turnout %, M3 both, evaluate MAE/RMSE on held-out COUNTRY, relative to M0; 2024 turnout is contemporaneous, so this is not future forecasting, and original outcome known for most analyses. Block p-values and benchmark release.",
+  "E": "PENDING",
+  "F": "Same country outcomes, post-election turnout may be unavailable before event; not genuine preregistered holdout/time",
+  "G": "Crossvalidation is internal, not independent replication",
+  "H": "No N1 from classical baseline; update CT2 only when independent scientific identity line established",
+  "I": "No individual scores or country ranking",
+  "J": "Report full results even if everything fails and do not claim prospective accuracy"
+}
