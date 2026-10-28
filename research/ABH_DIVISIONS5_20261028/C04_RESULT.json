@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_CROSS_CHAMBER_METHOD_REPLICATION_POSTEXPOSURE",
+  "A": "Does a second chamber's same-bill voting exhibit procedural variation >15 percentage points?",
+  "B": {
+    "H1": "Within-bill content share range exceeds 15pp",
+    "H0": "Not substantially different"
+  },
+  "C": {
+    "prereg_commit": "d345bb2f6e1d722c50fe2eb898033702f5fa75c6",
+    "execution": "Official 26-Oct-2026 Lords index three divisions and original official HTML text of 3729/3730/3731; JS compute valid Content/(Content+Not Content), range; inspect teller role and category. Source values pre-exposed before prereg."
+  },
+  "D": {
+    "official_home": "https://votes.parliament.uk/",
+    "detail_urls": [
+      "https://votes.parliament.uk/votes/lords/division/3729",
+      "https://votes.parliament.uk/votes/lords/division/3730",
+      "https://votes.parliament.uk/votes/lords/division/3731"
+    ],
+    "fixture": "C04_UK_LORDS_SAME_BILL_AGGREGATES.json"
+  },
+  "E": {
+    "votes": 3,
+    "recorded_counts": [
+      260,
+      357,
+      349
+    ],
+    "content_share_pct": [
+      36.5385,
+      56.5826,
+      55.5874
+    ],
+    "range_pp": 20.0441,
+    "threshold_15pp_rejected_H0": true,
+    "original_JSON_bytes": 0
+  },
+  "F": "Commons and Lords use distinct Aye/No vs Content/Not Content semantics and different procedural questions. Variation cannot be labelled individual opinion change; speakers and tellers have special categories; recorded totals do not identify all sitting members.",
+  "G": "Two chambers of same publisher UK Parliament, so distinct institution/chamber but not independent issuer from official site; single bill each, postexposed, no original API or external scientific model replication.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "I": "No political member or party evaluation",
+  "J": "Keep chamber-specific record schema and stage labels; complete with machine-checkable test of conservation and role ambiguity."
+}
