@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "authorization": "5 cycles total (1 already executed, 4 remaining)",
+  "branch": "research/pfl-abh5-source-validation-20261028",
+  "pre_implementation": true,
+  "rights": "No real-person scoring, no original nominal data in Git, no CI, no merging.",
+  "CT2_before": 29,
+  "V4_before": 36.9,
+  "N1_before": 0,
+  "ChatRelay": "SUSPENDED",
+  "cycle": "C04",
+  "type": "AB-P",
+  "D": 0.3,
+  "A": "Does the pipeline incorrectly treat capture time, event time or catalog last-updated as independently verified first_public_at?",
+  "B": {
+    "H1": "As-of eligibility remains unknown unless independently attested exact publication timestamp available",
+    "H0": "Capture time or event date leaks into as-of eligibility"
+  },
+  "C": "Implement research-only temporal eligibility helper with strict UTC ISO, explicit verified publication evidence, fail-closed UNKNOWN vs NOT_YET_PUBLIC/ELIGIBLE, adversarial unverified and invalid dates; red/green native test",
+  "D_data": "Synthetic timestamps only; no source first-public proof",
+  "E": "PENDING",
+  "F": "Controls for future knowledge and date parsing normalization",
+  "G": "Temporal facts require issuer evidence, cannot verify from catalog",
+  "H": "CT2 unchanged unless discriminant scientific evidence",
+  "I": "No claim of temporally available parliamentary votes",
+  "J": "Require reproducible test; do not change production pipeline."
+}
