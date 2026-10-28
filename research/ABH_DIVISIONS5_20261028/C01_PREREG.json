@@ -1,0 +1,29 @@
+{
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "schema": "ab.prereg.v1",
+  "cycle": "C01",
+  "type": "AB-R",
+  "D": {
+    "docs": "https://commonsvotes-api.parliament.uk/swagger/ui/index",
+    "official_page": "https://votes.parliament.uk/votes/commons",
+    "preexposure": "Already surfaced recent titles before prereg, source discovery exploratory but records/JSON not yet accessed"
+  },
+  "A": "Can UK Commons Votes official API expose authentic structured October 20–27 2026 division records in a way that Spanish nominal source block has not?",
+  "B": {
+    "H1": "Official JSON bytes retrievable with SHA256 and explicit division metadata",
+    "H0": "Only official HTML/index visible and API bytes unavailable",
+    "Halt": "Some publication times/party details may lack source attribution"
+  },
+  "C": {
+    "design": "Fix time window 2026-10-20 to 2026-10-27 before reading division IDs/results. Test documented official API JSON endpoint; record raw HTTP/access state, SHA if actual bytes, parse and validate division count & metadata, no member-level identity stored in Git.",
+    "negative": "Reject unparseable pages, guessed IDs, claims that event datetime equals first publication."
+  },
+  "E": "PENDING",
+  "F": "Teller-vs-recorded-vote difference and publication timing, missing recorded vote not absent",
+  "G": "Independent foreign issuer, not externally validated PFL model",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "Aggregate only, no individual scoring",
+  "J": "On blocked raw access document and pivot R5 instead of repeating."
+}
