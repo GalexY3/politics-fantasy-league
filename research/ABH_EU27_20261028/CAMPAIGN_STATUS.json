@@ -1,0 +1,139 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-EU27-20261028",
+  "branch": "research/pfl-abh5-eu-participation-20261028",
+  "base_branch": "research/pfl-abh5-us-house-20261028",
+  "base_sha": "f99b54bbcd1a0c72a54563a3924798f1ff4d825e",
+  "granted": 5,
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "AB_R": 5,
+    "AB_P": 0,
+    "used": 5,
+    "remaining": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "pre_reg": "C01_PREREG.json",
+      "pre_reg_commit": "44f6326eb87c3782fa922a208c3f5ffc2c84a883",
+      "result": "C01_RESULT.json",
+      "result_commit": "1003525a3c9cdf921d765ce7ec8e7d6157e1219e",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_OFFICIAL_HTML_27_COUNTRY_PANEL_NO_SIGNED_BYTES"
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "pre_reg": "C02_PREREG.json",
+      "pre_reg_commit": "05acd03cd2b5aa206a1b44e5c766dff65b58768b",
+      "result": "C02_RESULT.json",
+      "result_commit": "3b9c08cb9cdfaafee24b7386b038165b771b11fc",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_NEAR_ZERO_CROSS_SECTION_ASSOCIATION"
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "pre_reg": "C03_PREREG.json",
+      "pre_reg_commit": "5c61c18ba9cb6b51dcd4d169835cb8abf711687a",
+      "result": "C03_RESULT.json",
+      "result_commit": "e62be4a0073c96135c65b55fd37a710c6629a928",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_LEGAL_CLASSIFICATION_SENSITIVITY"
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "pre_reg": "C04_PREREG.json",
+      "pre_reg_commit": "5cfc111c99a102f631b53b861cad05cdde5ad287",
+      "result": "C04_RESULT.json",
+      "result_commit": "e33181cad2fe3f247ca0ebb72e1f2ab71572b6a4",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_WEAK_CHANGE_ON_CHANGE_ASSOCIATION"
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "pre_reg": "C05_PREREG.json",
+      "pre_reg_commit": "974b49ffdf0b07823dd0747121637ef9e4002029",
+      "result": "C05_RESULT.json",
+      "result_commit": "cce7c30887780cfe739e65e89c768991371a13da",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_LOOCV_STRONG_BASELINE_BEATS_TURNOUT"
+    }
+  ],
+  "data": {
+    "scope": "EU27 European Parliament published 2019/2024 turnout and women MEP constitutive session",
+    "country_rows": 27,
+    "years": 2,
+    "source_kind": "official rendered indexed HTML (not raw original signed CSV)",
+    "raw_EP_data_bytes_captured": 0,
+    "signatures_verified": 0,
+    "publisher_site_502_and_container_dns_failures": true,
+    "source_html_fixture_sha_Git": "ad33f639c2e7d51584ffd9012a715d1fea3798f0"
+  },
+  "execution": {
+    "exact_analytic_script_blob_verified": "c092caee24fd2e1b66c7e80205d027904c24fcc8",
+    "executed_local_script_true": true,
+    "python_data_libraries": [
+      "pandas",
+      "numpy",
+      "scipy",
+      "scikit-learn"
+    ],
+    "full_repo_suite_executed": false,
+    "original_signed_csv_verification": false
+  },
+  "science": {
+    "ct2_identity": 29,
+    "V4_percent": 36.9,
+    "VSDS": "1/3",
+    "achievements": "2/90",
+    "gates": "0/6",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "external_replication": false,
+    "prospective_heldout_model": false,
+    "analysis_family": "EXPLORATORY 5 related tests; no multiplicity-calibrated p-values",
+    "low_spearman_2024": 0.059893082383310654,
+    "changes_spearman": 0.19111586240066708
+  },
+  "uncertainties": [
+    "source is official HTML/index tables; signatures linked but not downloaded and validated",
+    "2019 female share rounded whole integer",
+    "EP 2024 current legal status of Cyprus differs from historical EPRS five-country classification",
+    "cross-sectional ecological outcome cannot identify individual voting behaviour or causal effects",
+    "LOOCV is internal validation only and turnout 2024 contemporaneous"
+  ],
+  "backlog": [
+    "T011",
+    "T016",
+    "T017",
+    "T018",
+    "T019",
+    "tareas_codex/T020_EP_ORIGINALES_FIRMADOS_20261028.md"
+  ],
+  "safety": {
+    "ChatRelay": "not used",
+    "main_merge": false,
+    "expensive_CI": false,
+    "person_level_scores": false
+  },
+  "next": "Campaign closed 5/5, no remaining authorization. T020 needs Codex/PC for signed CSV/signature and independent origin; no more cross-sectional re-analyses until truly new data."
+}
