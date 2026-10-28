@@ -3,11 +3,11 @@
   "campaign_id": "PFL-ABH-BRANCH20-20261028",
   "as_of": "2026-10-28",
   "grant": 20,
-  "valid": 11,
+  "valid": 12,
   "invalid": 1,
   "planning": 0,
-  "attempts": 12,
-  "remaining": 8,
+  "attempts": 13,
+  "remaining": 7,
   "status": "ACTIVE_STOP_R5_FOR_REPETITIVE_GUARDS_NEXT_DISTINCT_DISCRIMINANT_REQUIRED",
   "branch": "main",
   "base_branch": "research/pfl-codex-contributions-20261027",
@@ -137,6 +137,16 @@
       "atlas": "0047",
       "native_original_tests": "14/14 PASS exact old source/test blobs",
       "scientific_grade": "0/3"
+    },
+    {
+      "id": "C13",
+      "type": "AB-P",
+      "status": "VALID_ADVERSARIAL_LEGACY_SOURCE_GUARD_PORT0_NONPORT",
+      "prereg": "C13_PREREG.json",
+      "result": "C13_RESULT.json",
+      "atlas": "0048",
+      "native_original_tests": "4/4 PASS plus port-zero accepted",
+      "scientific_grade": "0/3"
     }
   ],
   "progress": {
@@ -149,12 +159,12 @@
     "gates_passed": 0
   },
   "atlas": {
-    "lots": 47,
+    "lots": 48,
     "derived_nodes": 63,
     "derived_edges": 81,
-    "derived_runs": 213,
+    "derived_runs": 214,
     "derived_complaints": 47,
-    "derived_operations": 387,
+    "derived_operations": 388,
     "canonical_python_checker": "NOT_RUN"
   },
   "tests": {
@@ -167,7 +177,7 @@
     "CHATRELAY 2_VALID_OF_5 and 3 unspent"
   ],
   "environment_blocker": "No full private repository checkout in container, git ls-remote failed Could not resolve host github.com. GitHub connector supports reading/writing files but does not execute native global pytest.",
-  "next_action": "8 authorizations remain; prioritize old branch source-pinned evidence and source guard discriminants; no bulk merges or CI",
+  "next_action": "7 remain: separate release-gate trust boundary in old archival code, keep user-provided receipts untrusted",
   "permissions": [
     "No public real-person scoring",
     "No originals nominales in Git",
