@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0068-PFL-ABH-MAIN20B-C13-PARTIAL-SEED-20261028",
+  "parent_batch": "0067-PFL-ABH-MAIN20B-C12-GROUP-REPORT-20261028",
+  "at": "2026-10-28T14:33:01.222Z",
+  "actor": "chatgpt",
+  "reason": "C13 prereg partial demo database formerly returned early when any figure existed; new counts fail-close incomplete fixture, four SQLite focused predicate checks and regression tests; full T009 pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C13-SQLITE-PARTIAL-SEED",
+        "activity": "Protect fictional game fixture against silent partial initialization without auto wiping data; targeted checks, not full product suite.",
+        "status": "completed",
+        "at": "2026-10-28T14:33:01.222Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C13_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C13_RESULT.json",
+          "tests/test_partial_seed_guard.py"
+        ],
+        "scope": "AB-P local synthetic game data integrity, no real scoring",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
