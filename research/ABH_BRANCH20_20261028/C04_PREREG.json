@@ -1,0 +1,49 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C04",
+  "mode": "AB-P",
+  "status": "PREREGISTERED_BEFORE_NEW_EXECUTION",
+  "question": "Does Rule(frozen=True) actually freeze weights/caps and reject invalid negative/nonfinite or mismatched rule contracts before they alter synthetic score results?",
+  "baseline": {
+    "file": "src/politics_fantasy/scoring.py",
+    "git_blob": "8c6588431d395ccfa9d0776230bf0f6a6eff5bfb",
+    "events_file": "src/politics_fantasy/events.py",
+    "events_blob": "35fbfa6e4e952e22450a184f53672f9ef670d039",
+    "known_code": "Rule frozen dataclass with Mapping fields and no __post_init__, person_week_points multiplies caps and weights without validating"
+  },
+  "A": {
+    "estimand": "score stability and nonnegative finite output on valid synthetic events, subject to a frozen-rule intervention"
+  },
+  "B": {
+    "H1": "Constructing Rule with cap -1 or weight +inf succeeds and produces negative/infinite scores; changing dictionary after creation changes scores",
+    "H0": "Rule construction already validates and immutably copies contract",
+    "alternative": "Bad rules only crash without producing false scores, a less severe but still fail-open validation issue"
+  },
+  "C": {
+    "synthetic_controls": [
+      "negative cap accepted? versus expected ValueError at construction",
+      "nonfinite weight inf accepted? versus expected ValueError",
+      "mismatched weight/cap keys accepted? versus expected ValueError",
+      "bool cap accepted?",
+      "mutation of original caller dict after Rule initialization changes stored rule?",
+      "attempt to assign Rule.weights[...] mutates?",
+      "valid positive or zero caps preserve existing scoring calculation",
+      "DEMO_RULE unchanged and valid"
+    ],
+    "primary_endpoint": "Invalid Rule cannot be instantiated and valid Rule weighted/cap mappings become immutable snapshots",
+    "stop": "STOP_R5 if H0 holds; otherwise patch minimal post-init with targeted tests and exact Git hashes"
+  },
+  "D": {
+    "environment": "CPython 3.13.5 Linux, pytest 9.0.2",
+    "network": "none",
+    "source": "Recover scoring.py/events.py and exact SHA blobs, run first red negative controls; commit only after target green tests",
+    "exclusions": "Full repo pytest requires T008, no real-person scoring, no CI"
+  },
+  "E": "PENDING",
+  "F": "Check dataclass frozen shallow semantics, nonfinite/booleans and zero cap legitimate disabling; avoid claims about data source distribution",
+  "G": "Selected original source hashes and synthetic pytest only",
+  "H": "No increase V4 CT2 VSDS or N discovery",
+  "I": "Game demo rule integrity; not political science evidence",
+  "J": "Accept targeted patch only if H1, keep T008 pending"
+}
