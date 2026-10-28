@@ -40,7 +40,7 @@ function assess(manifest, scope, registry, verifyEvidence=()=>false) {
     const e=row?.attestation;
     if(!e || e.verifier_role!==spec.role || !SHA.test(String(e.commit_sha||"")) ||
        typeof e.evidence_ref!=="string" || !e.evidence_ref.trim() ||
-       typeof e.reviewed_at!=="string" || !/^\\d{4}-\\d{2}-\\d{2}/.test(e.reviewed_at)){
+       typeof e.reviewed_at!=="string" || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(e.reviewed_at)){
       failed.push("MISSING_ATTESTATION_FIELDS");
     } else {
       // An in-repo claim alone is NOT sufficient. External verifier must
