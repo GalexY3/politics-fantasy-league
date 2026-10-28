@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0044-PFL-ABH-BRANCH20-C09-FORECAST-20261028",
+  "parent_batch": "0043-PFL-ABH-BRANCH20-C08-OVERVIEW-20261028",
+  "at": "2026-10-28T12:41:50.828Z",
+  "actor": "chatgpt",
+  "reason": "C09 prereg forecast expected count vs rate resolved by explicit future exposure projector, 7 isolated controls; full suite and predictive external validation NOT_RUN.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C09-FUTURE-EXPOSURE",
+        "activity": "AB-R forecast metric scope: rate is not future count without specified opportunities; distinct helper, tests and no political prediction claims",
+        "status": "completed",
+        "at": "2026-10-28T12:41:50.828Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C09_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C09_RESULT.json",
+          "tests/test_forecast_future_exposure.py"
+        ],
+        "scope": "AB-R model estimand semantics; no progress and no science finding",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
