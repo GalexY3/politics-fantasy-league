@@ -1,0 +1,68 @@
+{
+  "schema": "pfl.basque.provisional.2020_2024_comparison.v1",
+  "publisher": "Gobierno Vasco Departamento de Seguridad",
+  "source_type": "PROVISIONAL electoral report as explicitly labelled, published April 2024, not May 9 definitive",
+  "source_url": "https://www.euskadi.eus/contenidos/informacion/w_in_24_pv_resultados/es_def/adjuntos/informe-elecciones-parlamento-vasco_2024.pdf",
+  "source_pdf_pages": "3 (2024 figures), 5 (2020-2024 comparison), zero-based",
+  "pdf_visual_screenshot_status": "web screenshot attempted on pages 3 and 5, both returned cache miss; text extraction available but visual evidence not independently inspected",
+  "final_announcement": "https://www.euskadi.eus/gobierno-vasco/-/noticia/2024/publicados-resultados-definitivos-elecciones-al-parlamento-vasco-del-21-abril/",
+  "definitive_announcement_date": "2024-05-09",
+  "archive": "https://www.euskadi.eus/gobierno-vasco/-/informacion/descargas-de-ficheros-de-resultados-de-elecciones/",
+  "raw_csv_archive_url": "https://www.euskadi.eus/contenidos/informacion/w_em_descargas/es_def/adjuntos/csv/Cas-csv.zip",
+  "raw_csv_original_bytes": 0,
+  "periods": {
+    "year2020": {
+      "census": 1794316,
+      "voters": 911089,
+      "valid": 904342,
+      "candidacy": 895802,
+      "abstention_pct": 49.22
+    },
+    "year2024_provisional": {
+      "census": 1712301,
+      "voters": 1070467,
+      "valid": 1062632,
+      "candidacy": 1052170,
+      "abstention_pct": 37.48
+    }
+  },
+  "parties": [
+    {
+      "label": "EAJ-PNV",
+      "votes2020": 349960,
+      "votes2024_provisional": 370554,
+      "share2020_pct": 39.07,
+      "share2024_pct": 35.22,
+      "seats2020": 31,
+      "seats2024_provisional": 27,
+      "delta_votes": 20594,
+      "delta_share_pp": -3.85,
+      "delta_seats": -4
+    },
+    {
+      "label": "EH Bildu",
+      "votes2020": 249580,
+      "votes2024_provisional": 341735,
+      "share2020_pct": 27.86,
+      "share2024_pct": 32.48,
+      "seats2020": 21,
+      "seats2024_provisional": 27,
+      "delta_votes": 92155,
+      "delta_share_pp": 4.62,
+      "delta_seats": 6
+    }
+  ],
+  "total_voters_delta": 159378,
+  "turnout_rate_2020_pct": 50.78,
+  "turnout_rate_2024_pct": 62.52,
+  "turnout_rate_delta_pp": 11.74,
+  "unverified_finality": "May9 final source announces definitive but raw P24 archive unavailable, so no certified 2024 final vote counts in this analysis",
+  "method": "Raw party votes and % of candidacy votes are different estimands; changing denominator can make signs differ.",
+  "limits": [
+    "Provisional figures could be revised by CERA",
+    "No inferential sampling: whole original government report categories, selected two parties",
+    "Coalition labels or candidates may not correspond identically across cycles, including other PP+Cs vs PP",
+    "PDF not visually inspected because screenshot cache miss",
+    "No original bytes/hash; ZIP download denied"
+  ]
+}
