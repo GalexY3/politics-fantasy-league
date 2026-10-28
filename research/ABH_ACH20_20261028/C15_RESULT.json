@@ -1,0 +1,34 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C15",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_NETWORK_IDENTIFIER_FAIL_CLOSED",
+  "A": "Empty event id creates false joint co-vote edge between two fictional people whose events are not identified",
+  "B": "Observed original behavior pools blank event IDs, repaired guard rejects",
+  "C": "Exact matching Python logic reconstructed standalone; 4 controls; updated network.py and added pytest tests",
+  "D": {
+    "source": "src/politics_fantasy/network.py",
+    "git_after": "6a6a4de1a9c5b1791bc115193d0dbee48425b1d3",
+    "regression": "tests/test_network_identifier_guard.py"
+  },
+  "E": {
+    "red": "blank event id pooled persons into pair, joint=1 agreements=1",
+    "green": "reject blank event/person ID, distinct vote event IDs not paired, same valid event paired",
+    "standalone_checks_passed": 4,
+    "repo_pytest": "NOT_RUN"
+  },
+  "F": "Negative identity control, NOT political network result or real-party inference",
+  "G": "No full Linux CI, source first-public verification, or network calibration",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No causal claim",
+  "J": "Stop same network-key class R5, pivot empirical constraints."
+}
