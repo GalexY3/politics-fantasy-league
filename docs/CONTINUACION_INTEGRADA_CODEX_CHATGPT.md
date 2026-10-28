@@ -1,3 +1,9 @@
+# CONT80 · 8/20 ciclos realizados · STOP_R5 · Atlas 0029
+
+[Informe C61-C68](../research/ABH_CONT80_20261028/REPORT_FINAL.md) y [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json). El presupuesto fue 20; ocho ciclos completos A-J realizados y 12 sin utilizar. Hallazgo: abreviatura ESE/000002-01 repetida en BOCCL XI 2022 y XII 2026, con CVE distintos. Registro de fuentes corregido y 28 pruebas unitarias Python satisfactorias; falta suite HTTP y pytest integral. [Codex T006](../tareas_codex/T006_CVE_CROSS_LEGISLATURE.md) pendiente, así como Atlas canónico de 29 lotes. Totales documentales 63 nodos, 81 aristas, 187 runs, 44 incidencias, 356 ops; sin check Python ni SHA. V4 36,90%, CT2 29, VSDS 1/3, gates 0/6. Sin Codex ejecutado, no main merge ni CI costosa.
+
+---
+
 **Tareas pendientes de Codex organizadas desde el 28/10/2026:** [carpeta `tareas_codex/`](../tareas_codex/README.md) e [índice de estados](../tareas_codex/BACKLOG.json). P0: Atlas canónico 28 lotes y suites completas; P1: paridad V3/V4 y seguridad local; originales institucionales: bloqueados hasta disponer de fuente auténtica y permiso. **Ninguna de estas tareas se ha ejecutado**; la incidencia [#17](https://github.com/GalexY3/Metodologia-AB/issues/17) sigue abierta. Preparar la cola **no consume ciclos AB ni habilita Codex**.
 
 # Continuidad vigente · CONT60 C51–C60 cerrado 10/10 · Atlas 0028
