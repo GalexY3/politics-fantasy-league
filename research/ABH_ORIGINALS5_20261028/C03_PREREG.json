@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "branch": "research/pfl-abh5-originals-20261028",
+  "method": "A-J complete; R1-R5; preexecute; bounded source evidence; no real-person scoring",
+  "baseline": {
+    "CT2": 29,
+    "V4": 36.9,
+    "achievements": "2/90",
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "initial_evidence": "Official BOE original HTML 2019 and 2023 found; XML download unavailable; exploratory source selection, NOT blind.",
+  "cycle": "C03",
+  "type": "AB-R",
+  "A": "Does party-vote change map monotonically into seat change in Cantabria 2019 April vs 2023 July under constant five seats?",
+  "B": {
+    "H1": "Party vote changes and seat allocation differ; direct votes-to-seats proportionality is invalid",
+    "H0": "Same proportional conversion from votes to seats across elections"
+  },
+  "C": "Extract the two BOE Cuadro II Cantabria rows with PSOE PP Vox and historic Cs, compute per-party changes with explicit noncomparable electoral alliance warnings; normalise only by party votes and district seats, not national totals.",
+  "D": "BOE-A-2019-8070 Cuadro II line151; BOE-A-2023-18907 Cuadro II line107",
+  "E": "PENDING",
+  "F": "Do not infer turnout or percentage of all valid votes from partial party rows",
+  "G": "Single observed district, no inference on representation fairness",
+  "H": "CT2 stable pending external model",
+  "I": "No individual scoring",
+  "J": "Create bounded real district comparator",
+  "D_score": 0.4
+}
