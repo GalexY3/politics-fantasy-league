@@ -1,0 +1,48 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C02",
+  "mode": "AB-R",
+  "kind": "NEW_FORMAT_PRIMARY_OFFICIAL_SOURCE_CHECK",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "A_question": "Can a distinct official public BOCCL PDF/issue or archival HTML, independent of the previously inaccessible TextoEntradaBOCCL XML endpoint, directly attest two different 2026 stages (accepted candidacies vs plenary designation) under source-specific CVE, including issue dates? Can it establish earliest verified access only as an upper bound, not an exact first_public_at?",
+  "B_rivals": {
+    "H1": "Official issue PDF/archival page can be retrieved with the matching BOCCL-12-000986 and BOCCL-12-001042 CVEs and distinct documented stages",
+    "H0": "No original issue PDF/HTML is retrieved under bounded alternatives; existing indexed snippets insufficient",
+    "Hother": "Document is a secondary reproduction, wrong legislature, or later consolidated record; its date/receipt cannot certify first publication time"
+  },
+  "known_before_execution": {
+    "existing_source_event_registry": [
+      "CCYL:BOCCL-12-000986 BOCCL1200032 from 10 Sep 2026 for candidate acceptance",
+      "CCYL:BOCCL-12-001042 BOCCL1200034 from 16 Sep 2026 for designation"
+    ],
+    "historical_C70": "Indexed official pages found; direct TextoEntradaBOCCL source returned CACHE_MISS. Do not repeat same dynamic URL.",
+    "historical_C67": "ESE/000002-01 ambiguous across legislatures, use scoped CVE only."
+  },
+  "C_discriminant": "Try a different canonical source family, official BOCCL PDF/issue landing page, for each of the two CVEs. Require original official accessible document plus exact CVE/title/content stage; indexed snippet alone cannot qualify. Check publication issue date separately from direct first-public timestamp.",
+  "D_protocol": {
+    "max_targeted_searches": 5,
+    "max_primary_page_opens": 4,
+    "max_pdf_screenshots": 2,
+    "hosts": [
+      "ccyl.es",
+      "bocyl.jcyl.es"
+    ],
+    "no_copy_person_names": true,
+    "no_nominal_original_uploaded": true,
+    "first_public_at_default": null
+  },
+  "E_results": "NOT_RUN",
+  "F_adversarial": "Check issue mismatch, duplicate abbreviated ESE identifier, dynamic cache artefact, post hoc recall",
+  "G_confirmation": "Official PDF/archival original plus independent cross-reference required for staged semantics; first_public_at exact not established by an issue date",
+  "H_update": "No confidence uplift unless new original, no grant of identity or person-level points",
+  "I_domains": [
+    "source provenance",
+    "legal/reuse",
+    "temporal identification",
+    "technical access",
+    "novelty"
+  ],
+  "J_decide": "CONTINUE only if new distinct source acquired; otherwise STOP_R5",
+  "counts_as_valid": false
+}
