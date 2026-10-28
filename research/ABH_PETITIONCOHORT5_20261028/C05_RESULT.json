@@ -1,0 +1,52 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_RECONSTRUCTIVE_BASELINE_66",
+  "A": "Does a more flexible signature model outperform the published legal response cutoff on already-completed archived petitions?",
+  "B": {
+    "H1": "Administrative threshold plus state is as good as or better than a fitted log-signatures regression",
+    "H0": "Fitted continuous log signature model adds reliable signal"
+  },
+  "C": {
+    "prereg_commit": "ac85af9775e2aefc8126879ecb467f757bf6ac9",
+    "amendment": "d9c28da48ee1ee2fa946a425488cf6e01c8aed56",
+    "execution": "Executed leave-one-petition-ID-out binary Brier calculations on all 66 archived records in JS: training average response prevalence, deterministic 10k legal threshold using same realized final signature count, and penalized log-signature logistic fit to 65 training records (1800 gradient steps, fixed penalties 0.02/0.03, step .2). Checked two classes 13/53, n66. Verified creation/opening and response threshold time order; four date fields not corrected. No external trained forecast."
+  },
+  "D": {
+    "metrics": "COHORT180_METRICS.json",
+    "benchmark": "C05_BASELINE_RESULTS.json",
+    "archive": "Jonty/uk_petitions_data",
+    "source_tier": "third-party GitHub archived JSON, not publisher-authenticated bytes"
+  },
+  "E": {
+    "n": 66,
+    "positive": 13,
+    "negative": 53,
+    "Brier_LOO_constant": 0.16307692307692304,
+    "Brier_LOO_threshold": 0,
+    "Brier_LOO_logit": 0.05512063719950961,
+    "misclassifications_threshold": 0,
+    "misclassifications_logit_binary": 0,
+    "date_mismatch_response_fields": [
+      700189,
+      700262
+    ],
+    "chronological_negative_lags": 0
+  },
+  "F": "A 0 Brier from a deterministic known legal rule on FINAL signatures is tautological in this sample, not model intelligence, causal proof or future forecast. Logit 0.055 Brier is worse than rule though it has no 0.5 errors. Neither feature is guaranteed available at early game cutoff. Missing 114 archive records and 20 rejected petition statuses can be informative selection.",
+  "G": "No future holdout, third-party archived copies, and common policy rule already public; confirms baseline sufficiency only under complete retrospective final counts",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "newN": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No political endorsements or scoring",
+  "J": "R5 record null marginal value of model complexity; seek time-correct data before real forecast."
+}
