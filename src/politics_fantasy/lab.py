@@ -7,7 +7,7 @@ import hashlib
 import json
 from datetime import datetime,timezone
 from .rollcall import NominalVote,rollcall_as_of
-from .sociometrics import participation,dissent_report
+from .sociometrics import participation,strict_majority_dissent_report
 from .structural import pair_agreement,expressed_diversity
 
 T=datetime(2026,1,1,tzinfo=timezone.utc)
@@ -51,12 +51,13 @@ def local_lab_report() -> dict:
                          'explicit_no_vote':x.no_vote,'unknown':x.unknown,
                          'participation':x.rate,'status':x.status})
     pair=pair_agreement(votes,left='SYN-P01',right='SYN-P02')
-    dissent=dissent_report(votes,exclude_groups=frozenset({'Mixto','SYN-HETEROGENEOUS'}))
+    dissent=strict_majority_dissent_report(votes,exclude_groups=frozenset({'Mixto','SYN-HETEROGENEOUS'}))
     diversity=expressed_diversity([v.choice for v in votes])
     grade=project_value_grade(artifact_valid=True)
     data={'mode':'SYNTHETIC_NOT_SPANISH_PARLIAMENT','source_status':'FICTIONAL_NO_SOURCE_CLAIM',
           'real_politician_scoring':False,'records':len(votes),'opportunities':len(census),
           'participation':coverage,'pair_comparison':pair,'expressed_diversity':diversity,
+          'dissent_criterion':'STRICT_GT_HALF_OF_EXPRESSED_GROUP_ROWS',
           'dissent':{k:{'numerator':v['dissent'],'denominator':v['eligible_expressed'],'rate':v['rate']}
                     for k,v in dissent.items()},
           'value_grade':grade,'warn':'Fixture SINTÉTICA: No es comportamiento político real ni ideología o influencia; el no-voto no se infiere de ausencias.'}
