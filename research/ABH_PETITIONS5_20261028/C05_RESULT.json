@@ -1,0 +1,60 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "source_type": "UK Parliament first-party official JSON endpoint observed through web text rendering; original bytes not downloaded or SHA256 authenticated",
+  "n": 12,
+  "unit": "petition-level event history",
+  "bias": "Top 12 CLOSED petitions by signature totals, not random or representative. Individual people may sign multiple petitions.",
+  "data": "PETITIONS12_EVENT_PANEL.json",
+  "metrics": "EVENT_METRICS.json",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "no_personal_political_ratings": true,
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_FIVE_HANSARD_DOCUMENT_CROSSCHECKS",
+  "A": "Do first five completed debate dates in the 12-petition sample match independently opened UK Hansard records?",
+  "B": {
+    "H1": "All first five exact dates and transcripts available",
+    "H0": "One or more mismatches/missing transcript"
+  },
+  "C": {
+    "prereg_commit": "95916835c6affcf6f7cb05617e2441e17e4d5186",
+    "execution": "For first five petition IDs by fixed list rank (700143,730194,727309,737105,722903), clicked official petition HTML transcript link; web opened five distinct Hansard debates, verified path URL date matches scheduled_debate_date and page has substantive transcript text; no speech analysis or party rating."
+  },
+  "D": {
+    "source_index": "https://petition.parliament.uk/petitions?state=closed",
+    "hansard": "C05_HANSARD_CROSSCHECK.json",
+    "sources": [
+      "https://hansard.parliament.uk/commons/2025-01-06/debates/7132F58B-DE05-4912-8BFC-67F310B55911/GeneralElection",
+      "https://hansard.parliament.uk/Commons/2025-12-08/debates/9E01F17C-557A-4D02-8A93-B573721B8B20/a",
+      "https://hansard.parliament.uk/Commons/2026-01-12/debates/49F4AFFB-2D48-44D4-AE24-1DC5262CD9C7/a",
+      "https://hansard.parliament.uk/commons/2026-07-13/debates/EE7AC3BB-248E-4EFB-AE42-5765DECC8B95/IllegalImmigrantsOffshoreDetentionAndDeportation",
+      "https://hansard.parliament.uk/commons/2025-12-15/debates/DA0F7CFE-CCED-4864-BCCF-160E0AF56F92/OnlineSafetyAct2023Repeal"
+    ]
+  },
+  "E": {
+    "samples": 5,
+    "hansard_open_success": 5,
+    "calendar_day_matches": 5,
+    "remaining_seven_not_independently_checked": 7
+  },
+  "F": "Separate parliamentary record service confirms five debated days but does not establish an autonomous causal effect of petition counts, public approval, policy implementation or governmental support. One Hansard session may cover multiple related petitions, avoid multiplicity of unique debates.",
+  "G": "Two services under same UK Parliament umbrella, source corroboration not independent political science publisher; no raw SHA bytes, Hansard text unmodified by assistant.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No political speaker ranking or quote reuse",
+  "J": "Close R5 at 12 top-signed sample, no further threshold generalization until representative cohort and verified original raw."
+}
