@@ -4,7 +4,7 @@
 
 En la revisión C66 se encontraron **dos documentos originales con la misma referencia corta** `ESE/000002-01`: BOCCL XI, CVE `BOCCL-11-000084`, del 09/05/2022; y BOCCL XII, CVE `BOCCL-12-000986`, del 10/09/2026. No son un mismo original. **No** deducir identidad longitudinal por código ESE.
 
-C67 sustituyó las claves del registro local por `CCYL:BOCCL-12-000986` y `CCYL:BOCCL-12-001042`, con el identificador corto solo como campo descriptivo. Las antiguas claves `ESE/000002-01` y `ESE/000002-02` se rechazan con `AMBIGUOUS_UNQUALIFIED_ESE_REF`. `first_public_at` sigue en `None`; release/real-person scoring **siempre falso**. C67 verificó **28/28 tests Python nativos** en fuente exacta; C68 inspeccionó servidor/UI y **no** ejecutó HTTP nativo.
+C67 sustituyó las claves del registro local por `CCYL:BOCCL-12-000986` y `CCYL:BOCCL-12-001042`, con el identificador corto solo como campo descriptivo. Las antiguas claves `ESE/000002-01` y `ESE/000002-02` se rechazan con `AMBIGUOUS_UNQUALIFIED_ESE_REF`. `first_public_at` sigue en `None`; release/real-person scoring **siempre falso**. C67 verificó **28/28 tests Python nativos**; C69 verificó **7/7 tests del contrato JSON**, C71 **32/32 tests unitarios seleccionados** tras añadir enlaces originales a ambos documentos CVE en fuente exacta; C68 inspeccionó servidor/UI. La tentativa C69 de reconstruir `server.py` en otro contenedor falló por transporte; **no** se ejecutó el servidor HTTP real. C71 publicó dos enlaces `source_url` en el catálogo; hay que verificar su salida mediante la ruta HTTP verdadera.
 
 ## Tarea ejecutable en checkout completo
 
