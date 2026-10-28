@@ -1,0 +1,32 @@
+{
+  "schema": "pfl.petitioncohort5.benchmark.v1",
+  "cohort": "180 frozen admin IDs, 66 public GitHub archive copies, 13 response observed",
+  "n": 66,
+  "positive": 13,
+  "negative": 53,
+  "selection": "Public archivable subset only; outcome response and final signature counts from retrospective archive (leakage for any early-date forecast)",
+  "target": "Observed published government_response_at in archive",
+  "features": {
+    "M0": "Mean response prevalence from 65 training petitions, leave-one-ID-out",
+    "M1": "Legal threshold eligibility as deterministic signature_count>=10000 (full retrospective count) and no model fitting",
+    "M2": "Ridge regularized logistic regression on log(1+final signatures), leave-one-ID-out, 1800 GD updates on standardized training feature"
+  },
+  "brier": {
+    "M0_training_mean": 0.16307692307692304,
+    "M1_threshold_rule": 0,
+    "M2_log_signatures_logistic": 0.05512063719950961
+  },
+  "log_loss": {
+    "M0": 0.5119675194098843,
+    "M2": 0.21100280131508867
+  },
+  "reference_rule_scope": "The 10,000 threshold is a known administrative rule. Perfect apparent match is not a scientific discovery or prospective forecast.",
+  "misclassifications": {
+    "threshold": [],
+    "logistic05": []
+  },
+  "predictions_aggregate_only": {
+    "total_n": 66
+  },
+  "specification": "univariate logistic, intercept and slope ridge penalties 0.02 and 0.03, iterations 1800, step 0.2, no person or political score"
+}
