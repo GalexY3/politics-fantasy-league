@@ -1,0 +1,43 @@
+{
+  "schema": "pfl.reuse.vs.personal_data.v1",
+  "as_of": "2026-10-28",
+  "source_refs": [
+    "https://www.senado.es/web/relacionesciudadanos/datosabiertos/reutilizacion/index.html",
+    "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32016R0679",
+    "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0214-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-datos",
+    "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0215-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-las-categorias-especiales-de-datos"
+  ],
+  "rules": [
+    {
+      "product": "Agregado de conteos institucionales sin datos personales identificables",
+      "copyright": "Comprobar condiciones por documento, atribución y actualizaciones",
+      "gdpr": "Análisis de si el resultado permite reidentificación; no afirmar anonimización por defecto",
+      "release": "PENDING_SOURCE_ORIGINAL_AND_ANONYMITY_REVIEW"
+    },
+    {
+      "product": "Ficha pública nominal de cargo/participación",
+      "copyright": "Licencia del original no acredita exactitud de persona ni fecha de publicación",
+      "gdpr": "Establecer Art5 finalidad/minimización y Art6 base en función del propósito",
+      "release": "PENDING_PURPOSE_AND_LEGAL_BASIS"
+    },
+    {
+      "product": "Inferencia de ideología u opiniones de una persona",
+      "copyright": "CC-BY no es autorización para construir perfil sensible",
+      "gdpr": "Evaluar categoría especial de Art9 y excepción específica si procede además de Art6; no presuponerla",
+      "release": "BLOCKED_RISK_AND_NO_APPROVAL"
+    },
+    {
+      "product": "Fantasy ficticio local sin cuenta externa",
+      "copyright": "Datos de fixture propios no requieren licencia institucional",
+      "gdpr": "El prototipo local de personajes ficticios evita perfiles reales, pero una cuenta de usuario futuro genera obligaciones",
+      "release": "LOCAL_DEMO_ONLY"
+    },
+    {
+      "product": "Rankings públicos de personas reales",
+      "copyright": "Reutilizar datos fuente es jurídicamente distinto del uso de derivados",
+      "gdpr": "Exige criterio jurídico documentado sobre finalidad, base aplicable, proporcionalidad, categorías especiales si se infieren y garantías",
+      "release": "BLOCKED_NOT_ADJUDICATED"
+    }
+  ],
+  "scientific_claim": "No dictamen jurídico, no adjudicación de bases Art6 ni excepciones Art9, no escala de reputación individual"
+}
