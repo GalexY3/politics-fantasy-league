@@ -1,9 +1,9 @@
 {
   "campaign": "CONT80",
   "granted": 20,
-  "executed": 12,
-  "unused": 8,
-  "status": "STOP_R5_AFTER_C72",
+  "executed": 16,
+  "unused": 4,
+  "status": "STOP_R5_AFTER_C76",
   "cycles": [
     "C61",
     "C62",
@@ -16,27 +16,47 @@
     "C69",
     "C70",
     "C71",
-    "C72"
+    "C72",
+    "C73",
+    "C74",
+    "C75",
+    "C76"
   ],
-  "atlas_latest": "0031",
+  "atlas_latest": "0034",
   "canonical_python": "NOT_RUN",
   "tests_C67": "28 passed, 5 prior contract-migration failures",
-  "codex": "COMMITTED_REPORTS_OF_EXTERNAL_EXECUTION_T001_T002_T003_T004_T006_ON_BASELINE_6e359a8; THIS ASSISTANT DID NOT EXECUTE CODEX; CURRENT_T007_PENDING",
+  "codex": "GitHub reports T001/T007 executed old 31-lot baseline; T002/T004 Windows failures 57/56, T008 new complete Linux POSIX suite PENDING, T005 blocked. Assistant independently ran limited 31 tests locally, did not execute Codex.",
   "gates": "0/6",
   "CT2": 29,
   "V4": 36.9,
-  "atlas_lots": 31,
+  "atlas_lots": 34,
   "derived_counts": {
     "nodes": 63,
     "edges": 81,
-    "runs": 191,
+    "runs": 197,
     "complaints": 44,
-    "operations": 360
+    "operations": 366
   },
   "limited_HTTP": "C69 native selected seven JSON-boundary tests PASS; original server.py handler/checked-in HTTP test NOT_RUN due missing checkout/source-transfer failure",
   "c70": "Primary indexed institutional BOCCL sources mapped accepted nomination CVE BOCCL-12-000986 and later plenary designation CVE BOCCL-12-001042; direct open CACHE_MISS and first_public_at unknown",
   "c71": "Two official BOCCL URLs added in source_event_registry.py, 32/32 native selected tests PASS, matched Git source and test SHAs; first attempt 1 wrong-test-expectation failure disclosed",
-  "stop_reason": "R5 after twelve bounded A-J cycles; remaining eight are unspent. Need genuine current checkout with POSIX for remaining platform tests or new original institutional evidence.",
+  "stop_reason": "STOP_R5 after 16 complete AB A-J; four authorized places not consumed, remaining advancement requires full project Linux POSIX checkout T008 or verified institutional originals. Not all Windows failure classes resolved.",
   "evidence_archive": "/mnt/data/PFL_CONT80_C69_C71_evidencia.zip",
-  "c72": "Read five GitHub committed Codex reports: native Windows 29-lot canonical SHA and older HTTP tests recorded; Python full 57 fail/558 pass/28 skip due mainly POSIX limitations, Node 125 pass. Current 31-lot state and C71 source_url HTTP not verified; pending T007."
+  "c72": "Read five GitHub committed Codex reports: native Windows 29-lot canonical SHA and older HTTP tests recorded; Python full 57 fail/558 pass/28 skip due mainly POSIX limitations, Node 125 pass. Current 31-lot state and C71 source_url HTTP not verified; pending T007.",
+  "native_linux_posix_C73_C76": {
+    "four_original_checked_in_test_files": true,
+    "seven_source_modules_exact_sha": true,
+    "tests_passed": 31,
+    "subtests_passed": 14,
+    "failed": 0,
+    "time_seconds": 2.3,
+    "source_files_modified_in_github": 0,
+    "real_institution_requests": 0,
+    "full_pytest": "NOT_RUN",
+    "archive": "/mnt/data/PFL_CONT80_C73_C76_POSIX_evidence.zip"
+  },
+  "concurrent_atlas_bundles_not_in_this_grant": [
+    "0032 PFL ChatRelay CR01 documentary",
+    "0033 PFL ChatRelay CR02 Senate"
+  ]
 }
