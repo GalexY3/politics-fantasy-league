@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0069-PFL-ABH-MAIN20B-C14-PERSONIDS-20261028",
+  "parent_batch": "0068-PFL-ABH-MAIN20B-C13-PARTIAL-SEED-20261028",
+  "at": "2026-10-28T14:35:30.951Z",
+  "actor": "chatgpt",
+  "reason": "C14 new person_ids list-alias negative despite event frozen: after construction list append alters synthetic membership. Added validated tuple snapshot, 7 isolated constructor checks, full pytest pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C14-IMMUTABLE-PERSONIDS",
+        "activity": "Freeze source person identifier tuple to prevent caller mutation changing scoring membership after event snapshot; selected Python controls, not full suite.",
+        "status": "completed",
+        "at": "2026-10-28T14:35:30.951Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C14_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C14_RESULT.json",
+          "tests/test_event_person_ids_snapshot.py"
+        ],
+        "scope": "AB-P synthetic identity archive integrity",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
