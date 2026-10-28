@@ -1,3 +1,5 @@
+> **Conciliación confirmada (28/10/2026):** T008 **COMPLETADA_VERIFICADA en `b0344d1`** (Alpine QEMU Linux: 651 Python PASS + 28 subtests PASS sin fallos ni omisiones). [Informe histórico](T008_RESULTADO.md) · [salida original](T008_POSIX_FINAL_STDOUT.txt) · [reconciliación contra main](T008_RECONCILIACION_MAIN_20261028.md). Atlas **35 lotes** comprobado en `9d0ef84`. La suite integral y Atlas **60 lotes** del `main` posterior siguen sin comprobar: tarea **[T009](T009_MAIN_LINUX_ATLAS60.md) PENDIENTE**. No sobrescribir archivos fuente posteriores ni importar ramas históricas en bloque. La campaña MAIN20B conserva 15 autorizaciones.
+
 > **REFERENCIA ACTUAL MAIN20B · 28/10/2026:** usar `main`, `T008` sigue `PENDIENTE`; [Atlas **60 lotes**](../ab_atlas/CURRENT.md), full Python POSIX y checker nativo `NOT_RUN`. MAIN20B tiene **5 válidos y 15 autorizados disponibles**; BRANCH20 anterior está cerrado por separado. El contrato vigente está en [T008](T008_SUITE_COMPLETA_POSIX.md). Incorporar pruebas de fechas Atlas C01, mayoría estricta C04 y bootstrap por registros C05; mantener sin activar scoring real ni CI costosa.
 
 # Cola de Codex · Politics Fantasy League
