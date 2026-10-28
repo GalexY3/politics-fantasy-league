@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C12",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:46:28.483Z",
+  "topic": "Historical Congress vote date normalizer retained as isolated document-local component",
+  "preexposure": "Old research/pfl-ab-adaptive32-20261026 has congress_vote_dates.py, a 587-byte strict DD/MM/YYYY source field normalizer, missing from main. File header and function inspected during candidate selection; original tests not inspected.",
+  "A": "Can the old module strictly normalize observed date strings without wrongly treating them as timestamps of first publication?",
+  "B": {
+    "H1": "Original tests pass and code only returns event date with no first_public_at inference",
+    "H0": "Accepts invalid calendar dates, years or ambiguous arbitrary date-time encoding"
+  },
+  "C": {
+    "specific": [
+      "Single-digit and two-digit D/M/YYYY exact canonical ISO output",
+      "31 February and year<1977 or >2100 rejected",
+      "Date-time timestamps and wrong locale rejected",
+      "No conversion to first publication timestamp; source module and test SHA exact"
+    ]
+  },
+  "D": {
+    "source_branch": "research/pfl-ab-adaptive32-20261026",
+    "module": "src/politics_fantasy/congress_vote_dates.py",
+    "test": "tests/test_congress_vote_dates.py",
+    "method": "Run original focused tests on exact reconstructed modules in Linux, selective copy only if compatibility and no private source data"
+  },
+  "E": "PENDING",
+  "F": "Normalized event date does not establish temporal source availability",
+  "G": "No comprehensive suite",
+  "H": "Zero CT2 and gate promotion",
+  "I": "Reusable parser for source-local dates",
+  "J": "Port exact source and tests or retain archive with negative report."
+}
