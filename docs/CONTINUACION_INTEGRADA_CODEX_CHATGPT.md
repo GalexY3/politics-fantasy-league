@@ -1,3 +1,13 @@
+# CONT80 cerrado — C61–C80 20/20 (28/10/2026)
+
+La autorización máxima de 20 ciclos se agotó tras ejecutar C77–C80 A–J. [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json), [informe final](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md) y [CURRENT](../ab_atlas/CURRENT.md). **No quedan ciclos sin gastar**; no atribuir nuevos a esta campaña.
+
+Cuatro suites originales nuevas con hashes Git exactos: 22 PASS almacén, 4 PASS entre procesos/SIGKILL, 24 PASS auditoría, 8 PASS CLI. La ejecución conjunta con las cuatro suites C73–C76: **89/89 PASS, 14 subtests**, Linux POSIX 3.13.5, 15,20 s, **sin modificación de producción**, solo datos ficticios. No sustituye el pytest completo. [Codex T008](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md) sigue pendiente con checkout íntegro.
+
+**Atlas 0035:** 35 lotes, 63 nodos, 81 aristas, 201 runs, 44 incidencias, 370 ops (derivados). Checker canónico nuevo **NOT_RUN**; T007 abarcó 31. V4 36,90%, CT2 29/100, VSDS 1/3, gates 0/6, N1/2/3 0/0/0. T005 institucional sigue bloqueada. No scoring real, original nominativo, fusión main ni CI costosa.
+
+---
+
 # CONT80 C73-C76: Linux POSIX verificado, cuatro ciclos restantes
 
 [Informe C73-C76](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md) · [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [Atlas CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó máximo 20 ciclos: **16 ejecutados C61-C76, 4 no utilizados, STOP_R5**.
