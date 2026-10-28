@@ -1,0 +1,50 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C12",
+  "mode": "AB-P",
+  "status": "VALID_SELECTIVE_DATE_NORMALIZER_PORT",
+  "at": "2026-10-28T12:47:19.355Z",
+  "A": {
+    "question": "Can old documented event-day normalizer be safely recovered into main without implying availability time?"
+  },
+  "B": {
+    "H1": "Strict date parser/source and all original tests pass as pure module",
+    "H0": "Ambiguous/invalid dates pass or old version unportable"
+  },
+  "C": {
+    "prereg": "C12_PREREG.json",
+    "acceptance": "Git SHA identical old→local→main plus strict invalid ISO/day rejection"
+  },
+  "D": {
+    "old_branch": "research/pfl-ab-adaptive32-20261026",
+    "native": "Python 3.13.5 Linux pytest, exact source original and original test retrieved from GitHub",
+    "source_blob": "5bccc391b0d42ebb9bed8f981bedf901494e47b8",
+    "test_blob": "54af04a163b63b3443c8d192b4c3fafe45a08b77"
+  },
+  "E": {
+    "original_tests_passed": 14,
+    "original_tests_failed": 0,
+    "git_hash_equal": true,
+    "main_source_commit": "de95978702a727d37d89c378cd1c275552394bc6",
+    "main_test_commit": "b5f01693f45d337d4e56e082e174352c8708adee"
+  },
+  "F": {
+    "limits": "No HTML or XML publisher content accessed. Normalized vote event date is NOT proof of publication timestamp; suite global T008 remains NOT_RUN."
+  },
+  "G": {
+    "confirmation": "Original 14 tests native run plus exact old/current Git blobs, not external scientific evidence"
+  },
+  "H": {
+    "N1_new": 0,
+    "V4_percent": 36.9,
+    "CT2_identity": 29
+  },
+  "I": {
+    "grade": "0/3",
+    "value": "Reproducible date parsing tool retained from an archival branch without merging its unrelated code/data"
+  },
+  "J": {
+    "decision": "SELECTIVE_PORT_OK, no branch merge, no rights/scoring/first_public_at claims, no metric uplift."
+  }
+}
