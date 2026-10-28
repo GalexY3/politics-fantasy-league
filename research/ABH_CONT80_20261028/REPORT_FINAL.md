@@ -1,3 +1,21 @@
+# Adenda a CONT80 · C69–C71 (28/10/2026)
+
+La campaña originalmente detenida en C68 se reanudó por petición expresa del usuario **«okei, continua con eso»**, dentro de la misma autorización máxima de 20 ciclos. **Resultado actualizado: 11/20 ciclos A–J realizados (C61–C71), nueve sin consumir.** La sección inferior de este informe describe el cierre histórico 8/20 anterior a la reanudación; **no** es el estado más reciente. [Ledger actualizado](CAMPAIGN_STATUS.json) · [Atlas 0030](../../ab_atlas/updates/0030-pfl-abh-cont80-c69-c71-20261028.json).
+
+| Ciclo | Modo | Contraste realizado y límite |
+|---|---|---|
+| **C69** | AB-P | Se prerregistró probar el manejador HTTP original `/api/source-stages`. El entorno no tenía checkout privado y falló la transferencia del `server.py` auténtico; **la suite HTTP real NO se ejecutó**. Como evidencia acotada, se ejecutaron **7/7 pytest nativos** sobre serialización JSON y rechazos de alias, con `source_event_registry.py` y `provenance_claim_gate.py` SHA-idénticos al Git. Se publicó [test de contrato JSON](../../tests/test_source_stage_wire_contract.py) con SHA local/Git coincidente `8dfd9da9cec59067564e7f64e5fab2900e0c0a8c`. Esto **no valida HTTP real**. |
+| **C70** | AB-R | Comprobados en el índice de publicaciones originales oficiales los dos documentos `BOCCL-12-000986` ([aceptación de candidaturas, BOCCL 32/12 del 10/09/2026](https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml)) y `BOCCL-12-001042` ([designación por el Pleno, BOCCL 34/12 del 16/09/2026](https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml)). Son **etapas distintas**; sus actos se fechan 03/09 y 10/09. La apertura directa dio `CACHE_MISS`, no hay cuerpo de bytes ni hash original certificado, y `first_public_at` sigue desconocido. |
+| **C71** | AB-P | Publicados los dos enlaces oficiales exactos en `source_event_registry.py`, solo como `source_url` del registro CVE existente. Fuente SHA `a1c8f9c61dbac5ec51a5ad17964e0ad473ad683b`, test nuevo `27357510b254d5061c4968d1fc15a2a91a50b7db`, ambos idénticos a la ejecución local. Primera corrida **31 PASS/1 FAIL** por error de expectativa del propio test (URL con separadores invertidos); corregida la aserción, **32/32 PASS**. Ni fechas de primera publicación ni estatus completos certificados; `release_ready=false`. |
+
+**Atlas**: `0030-PFL-ABH-CONT80-C69-C71-20261028` incorpora tres `run.add`. Total **derivado**: **30 lotes**, 63 nodos, 81 aristas, **190 ejecuciones**, 44 incidencias y **359 operaciones**. La validación Python canónica y su SHA siguen **NOT_RUN**. V4 **36,90 %**, CT2 identidad **29/100 ordinal**, VSDS **1/3**, hallazgos científicos nuevos 0/0/0, gates **0/6**.
+
+**Prueba integral bloqueada:** [Codex T006](../../tareas_codex/T006_CVE_CROSS_LEGISLATURE.md) debe ejecutar exactamente el `server.py` y su `test_source_stage_http.py` del checkout completo, no sustituirlos por el test de C69. Codex aún no ha ejecutado nada. Evidencias locales en `PFL_CONT80_C69_C71_evidencia.zip` de esta conversación.
+
+**STOP_R5 vigente tras C71:** 11 ciclos realmente ejecutados, nueve sin consumir; no continuar con variantes equivalentes del mismo XML, CVE o alias salvo que aparezca una fuente original nueva, una prueba de integración real u otra hipótesis con poder discriminante.
+
+---
+
 # Politics Fantasy League · AB-H C61–C68 · STOP_R5
 
 **28/10/2026. Autorización: máximo 20 ciclos C61–C80. Ejecutados 8 ciclos completos A–J; 12 plazas no utilizadas.** Esta campaña se detiene por R5: después de resolver una colisión real de referencias institucionales, no hay un original adicional ni un instrumento independiente que justifique fabricar doce variaciones. **No se declara C69–C80 ejecutado.** [Estado](CAMPAIGN_STATUS.json) · [prerregistro](CAMPAIGN_PREREG.json) · [Atlas 0029](../../ab_atlas/updates/0029-pfl-abh-cont80-c61-c68-20261028.json).
