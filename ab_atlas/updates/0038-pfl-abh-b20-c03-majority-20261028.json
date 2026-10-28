@@ -1,0 +1,49 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0038-PFL-ABH-BRANCH20-C03-MAJORITY-20261028",
+  "parent_batch": "0037-PFL-ABH-BRANCH20-C02-BOCCL-20261028",
+  "at": "2026-10-28T03:41:00Z",
+  "actor": "chatgpt",
+  "reason": "Valid preregistered AB-H C03: exact historical Git module + five baseline tests; synthetic disjointness violation yielded seven red tests then 14 green after fail-closed classification and corrected legacy fixture. No global suite, independent official evidence or gate uplift.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C03-OVERLAPPING-CODES",
+        "activity": "Source-identified synthetic cross-option and intra-option code overlap can falsely be classified as STRICT_REVERSAL; invalidity classification implemented, 7-red 14-green, Git blobs exact; targeted only",
+        "status": "completed",
+        "at": "2026-10-28T03:41:00Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C03_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C03_RED_BASELINE.json",
+          "research/ABH_BRANCH20_20261028/C03_RESULT.json",
+          "tests/test_majority_sign_failclosed.py"
+        ],
+        "method_version": "AB 3.2.1 O7 AB-H",
+        "scope": "synthetic secondary-vote QA, V4/CT2/VSDS/gates unchanged",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-BRANCH20-C03-SECONDARY-CODES-OVERLAP",
+        "run_id": "PFL-BRANCH20-C03-OVERLAPPING-CODES",
+        "severity": "major",
+        "status": "open",
+        "source": "agent",
+        "category": "analytical_false_positive_secondary_nominal",
+        "at": "2026-10-28T03:41:00Z",
+        "description": "Original majority_sign.py accepted a synthetic person code in both S and N, producing STRICT_REVERSAL although secondary nominal codes were not exclusive. Baseline Git verified; fix classifies malformed rows and corrects overlapping legacy fixtures. No claim real source contains these anomalies."
+      }
+    },
+    {
+      "op": "complaint.triage",
+      "id": "PFL-BRANCH20-C03-SECONDARY-CODES-OVERLAP",
+      "status": "repaired",
+      "reason": "Git commits 96989d002a12456d45ebf5ba43ea8478972ee5ff, ceafeb22a710a79ec7d3ebd428173528ffe95422, 01d2176d575da5b073e1de423610044569552a31; 14/14 targeted tests green, source/test blobs verified; FULL SUITE STILL PENDING."
+    }
+  ]
+}
