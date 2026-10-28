@@ -1,0 +1,38 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_REAL_JS_DOM_SIMULATION_PASS",
+  "A": "Execute actual achievement Hall script and see if it can render the entire registry",
+  "B": "H1 passes under minimal mocked DOM, H0 not supported for basic render",
+  "C": "Dynamic Function compile+execute HTML script extracted from GitHub blob, minimal mocked DOM file protocol, actual registry; negative control remove baseline element",
+  "D": {
+    "html_git_blob": "172dfd6c5208f566c21d0ed26a725ac4a2d57da4",
+    "registry_blob": "1e7e17dfe423a4ea40fda38ba53a5704bf5ec8e6"
+  },
+  "E": {
+    "initial_harness_attempt": "INVALID harness syntax error Unexpected token =>, corrected harness before any code modification, not counted as separate cycle",
+    "positive": {
+      "rendered_achievements": 90,
+      "rendered_branches": 9,
+      "shown_total": 90,
+      "shown_completion": "0 %",
+      "registry_exact": 90
+    },
+    "negative": {
+      "missing_baseline_element": "TypeError reading textContent, observed expected failure"
+    },
+    "runtime": "Original JS dynamically compiled and executed in V8, DOM was fake, not Chromium or user behavior"
+  },
+  "F": "Higher confidence JS runtime of initial list, but no actual layout/accessibility evidence",
+  "G": "Mock excludes CSS, security permissions, interaction, browser lifecycle",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "unlock": 0,
+    "grades": 0
+  },
+  "I": "No automatic attainment, no deployment",
+  "J": "Inspect adversarial JSON import and audit invariants before declaring dynamic changes safe."
+}
