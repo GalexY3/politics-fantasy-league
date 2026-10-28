@@ -1,0 +1,87 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C01",
+  "mode": "AB-META",
+  "status": "VALID_BOUNDED_TIMESTAMP_GUARD_REPAIR",
+  "at": "2026-10-28T13:18:09.281Z",
+  "A": {
+    "estimand": "Share of 55 immutable Atlas batch.at strings compatible with aware ISO-8601 calendar validation and false acceptance of four negative inputs",
+    "population": "55 actual immutable Atlas deltas, not political populations"
+  },
+  "B": {
+    "H1": "All 55 are timezone-aware ISO dates; old preflight admits malformed or naive timestamps",
+    "H0": "At least one valid historic delta would be rejected by ISO-aware guard",
+    "Hother": "Existing batches can be syntactically valid yet not chronological"
+  },
+  "C": {
+    "prereg": "C01_PREREG.json",
+    "negative_controls": [
+      "not-a-timestamp",
+      "2026-10-28T12:10:00",
+      "2026-02-31T00:00:00Z",
+      "2026-10-28"
+    ],
+    "positive_controls": [
+      "2026-10-28T12:10:00Z",
+      "2026-10-28T12:10:00+01:00"
+    ],
+    "falsifier": "One of 55 historical batch.at timestamps fails new format"
+  },
+  "D": {
+    "repository": "GalexY3/Metodologia-AB",
+    "ref": "main",
+    "files_retrieved": 55,
+    "api": "GitHub connector authenticated per file, actual JSON parsed",
+    "baseline_blob": "b47fc8e58b722b5b92830e91514cca253074bb90",
+    "source_blob_after": "8af1c74784c5f60892a038c026990619d1c95a85",
+    "test_blob": "1863b6a6c63881ea1ce6e386b0ef7f2f691d17df",
+    "instrument": "Python 3.13.5 stdlib datetime and regex applied to 55 extracted timestamp strings, no full original atlas replay",
+    "local_log_sha256": "33a7c30e99ac039cbd4d2ace935f4553f1b7e9f101494af79d3e4f11af0375c7"
+  },
+  "E": {
+    "historical_aware_iso_accepted": 55,
+    "historical_aware_iso_rejected": 0,
+    "synthetic_negative_rejected": 4,
+    "synthetic_positive_accepted": 2,
+    "chronological_regressions": [
+      {
+        "from_batch": "0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027",
+        "to_batch": "0016-PFL-CODEX-20261027",
+        "earlier": "2026-10-27T14:21:01+01:00",
+        "later": "2026-10-27T12:55:27+00:00",
+        "regression_seconds": 1534
+      }
+    ],
+    "patch_commit": "45a9e140cfa62b6264f8bfff6863386cd3fda317",
+    "test_commit": "4be14337f9c1351dbf61dc585e948c12f4af3871"
+  },
+  "F": {
+    "adversarial": "All 55 strings obtained from authenticated GitHub documents were independently replayed as date strings, but this does NOT show successful canonical Python Atlas state reconstruction. Timestamp `at` is not the institutional first_public_at and parent_batch is sequence of record changes. One backwards clock transition means ordering deltas is not equivalent to strictly increasing recorded time. Newly committed tests have NOT been run within a full original repo Python import.",
+    "risk": "Global parser enhancement may affect other Atlas users; backward compatibility checked for PFL's current 55 archived deltas only."
+  },
+  "G": {
+    "independent_check": "GitHub post-update read confirms validator and tests; local Python focused parsed 55 timestamp strings; full pytest NOT_RUN; native canonical Atlas check NOT_RUN",
+    "external_replication": "NONE"
+  },
+  "H": {
+    "belief": "Strengthened syntactic contract compatible with all 55 observed PFL deltas. Historical time order cannot be inferred from this alone.",
+    "novelty_level": 0,
+    "scientific_N1_new": 0,
+    "CT2_identity_before": 29,
+    "CT2_identity_after": 29
+  },
+  "I": {
+    "method": "Targeted instrumentation repair; no real political science inference",
+    "product": "No score engine or deployment changes",
+    "V4_contractual_percent": 36.9,
+    "VSDS": "1/3",
+    "release_gates_passed": 0
+  },
+  "J": {
+    "decision": "ACCEPT_BOUNDED_REPAIR; keep original 55-batch canonical replay and full Python suite as T008 pending; keep prior C19 complaint open until full checker verifies compatibility; next cycle must address a different evidence bottleneck",
+    "drift_score": "D1.0",
+    "cycles_used": 1,
+    "cycles_remaining": 19
+  }
+}
