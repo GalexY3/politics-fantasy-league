@@ -41,7 +41,7 @@
     "operations_documentary": 396,
     "canonical_python_checker": "NOT_RUN"
   },
-  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_60",
+  "T008": "COMPLETADA_VERIFICADA_HISTORICAL_CHECKOUT_b0344d1_LINUX_ALPINE_651_PASS_28_SUBTEST_PASS_0_FAIL_0_SKIP",
   "constraints": [
     "Preregister A–J and freeze hypotheses before each execution",
     "Count only actual completed A–J or mark invalid/planning explicitly",
@@ -116,8 +116,19 @@
     "runs_documentary": 226,
     "complaints_documentary": 48,
     "operations_documentary": 401,
-    "canonical_python_checker": "NOT_RUN",
+    "canonical_python_checker": "NOT_RUN_FOR_60_PATCHES__HISTORICAL_35_PASS_SEPARATELY",
     "canonical_sha256": null
   },
-  "next": "R5 for repeating synthetic source/majority/bootstrap variants. Priority: fresh machine-readable original source bytes, independent validated temporal identity or complete Linux checkout. 15 cycles authorized remain; do not request another grant before real use."
+  "next": "C06 must be separately preregistered prior to experiment; historical T008 reconciliation done as provenance maintenance, not a cycle. T009 current HEAD requires executor; R5 avoid consuming grant on repeated selected suites.",
+  "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS60",
+  "T008_provenance": {
+    "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
+    "tested_checkout": "b0344d1a1549e66274a347333239b81fc7575100",
+    "report_blob": "64cc8fb8cf0c1b38bdb29677f55403bdc8996915",
+    "stdout_blob": "3e1ed4989bf53755ea60b0df50aa661c305a9640",
+    "atlas35_checked_in": "9d0ef8433f92749b3f3364f31139b07320f1ec16",
+    "atlas35_sha256_reported": "bff6978684b0d6d4cdfcd8211656750430b956f6ebb92c0faeff042e13758d81",
+    "reconciled_main_doc": "tareas_codex/T008_RECONCILIACION_MAIN_20261028.md",
+    "is_AB_cycle": false
+  }
 }
