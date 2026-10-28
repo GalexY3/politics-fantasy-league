@@ -45,6 +45,11 @@ class SourceStagesHttpTests(unittest.TestCase):
         status, payload = self.request("GET", "/api/source-stages")
         self.assertEqual(status, 200)
         self.assertEqual(len(payload["records"]), 3)
+        self.assertEqual(
+            {record["evidence_ref"] for record in payload["records"]},
+            {"CCYL:BOCCL-12-000986", "CCYL:BOCCL-12-001042", "SENADO-XV-P82-20260915"},
+        )
+        self.assertTrue(all(not record["evidence_ref"].startswith("ESE/") for record in payload["records"]))
         self.assertEqual(payload["original_publication_timestamps_verified"], 0)
         self.assertFalse(payload["real_person_scoring"])
         self.assertFalse(payload["release_ready"])

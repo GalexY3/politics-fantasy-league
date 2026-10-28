@@ -38,5 +38,7 @@ def test_nonstring_claim_and_family_fail_closed(value):
     assert result['reason']=='UNSUPPORTED_CLAIM' and not result['eligible']
     result=evaluate_claim_as_of(**{**base,'record_family':value})
     assert result['reason']=='UNSUPPORTED_RECORD_FAMILY' and not result['eligible']
-    result=evaluate_server_claim(evidence_ref='ESE/000002-01',desired_claim=value,as_of=base['as_of'])
+    # Exercise malformed claims against an actual server-owned key. Ambiguous
+    # short references are rejected earlier and have their own regression test.
+    result=evaluate_server_claim(evidence_ref='CCYL:BOCCL-12-000986',desired_claim=value,as_of=base['as_of'])
     assert result['reason']=='UNSUPPORTED_CLAIM' and not result['eligible']
