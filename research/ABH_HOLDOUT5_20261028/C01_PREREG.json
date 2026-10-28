@@ -1,0 +1,37 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "drift_D": 0.7,
+  "prepared_before_outcome_search": true,
+  "A": "Can a 2023 Navarra regional single-constituency 50-seat result be reconstructed from a new official election issuer and full-party counts without hand-selecting based on reproduction success?",
+  "B": {
+    "H1": "Full official party vote table and seat allocation sufficient to execute legally specified d'Hondt (3% threshold) and audit all 50 seats",
+    "H0": "Data source incomplete or mismatched and does not support exact reconstruction",
+    "H_other": "Only partial party lists published, preventing winner certification without loser bound"
+  },
+  "C": "Preselect Navarra Parlament 2023 election and full 50 seats based on governance unit difference (one region, not Galicia / EU prior cases); search Navarra Government/BON official reports and extract all list counts and legal rule; execute deterministic exact-rational allocation only if denominators verified; record residuals without tuning.",
+  "D": {
+    "selection_before_outcomes": "Navarra 2023 fixed before sources accessed in this cycle",
+    "originals": "Government of Navarra electoral official and BON, search pending",
+    "exclude_preexposed": [
+      "Guadalajara 2019/23",
+      "Cantabria 2019/23",
+      "Alicante 2023",
+      "Galicia 2024",
+      "Euskadi 2024",
+      "EU 2024"
+    ],
+    "provenance": "Prefer authentic original downloadable data, SHA256 and exact bytes; if inaccessible HTML table with explicit limitation."
+  },
+  "E": "PENDING",
+  "F": "5% and 3% rules may differ; verify law, denominator for threshold, lists/coalitions and empty votes; missing list cannot equal zero",
+  "G": "Prospective case selection relative to source result but one election is not model generalization",
+  "H": {
+    "CT2_before": 29,
+    "grade_0_3": "PENDING"
+  },
+  "I": "No personal rating",
+  "J": "If no complete government source, halt source assumptions and pivot without inventing data"
+}
