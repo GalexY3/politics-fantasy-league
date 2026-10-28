@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C10",
+  "mode": "AB-H",
+  "status": "VALID_SELECTIVE_HISTORICAL_PORT",
+  "at": "2026-10-28T12:43:40.086Z",
+  "A": {
+    "question": "Is old exclusive typed namespace module safe and useful for consolidation without merging other old branch history?"
+  },
+  "B": {
+    "H1": "Pure scoped reference contract with no personal crosswalk or scoring, original tests pass",
+    "H0": "Old code unsafe/unportable or tests fail"
+  },
+  "C": {
+    "prereg": "C10_PREREG.json",
+    "falsifiers": [
+      "Hash mismatch between recovered files and Git originals",
+      "Any failed original 6 unittest cases",
+      "Automatic person certification or scoring flag enabled"
+    ]
+  },
+  "D": {
+    "historical_branch": "research/pfl-abh-branch20-20261026",
+    "source_blob": "1ed3832869a355aa91876739bf3a092ae65f90e9",
+    "test_blob": "c21a6ca5a53b4996fc4dfceb946b0e000700677a",
+    "runtime": "Python 3.13.5 Linux, exact copied source and original test, git hash-object verified",
+    "cmd": "PYTHONPATH=/tmp/pfl_c10 python -m unittest discover -s /tmp/pfl_c10/tests -v"
+  },
+  "E": {
+    "tests_original_pass": 6,
+    "tests_original_fail": 0,
+    "git_blob_sha_exact": true,
+    "main_source_created": "2e81d53fc550f5945c6580c28069d13fff350de4",
+    "main_test_created": "e91cef331e2a1b1b21633289f36352cfab0288f4",
+    "main_blobs_match_original": true
+  },
+  "F": {
+    "adversarial": "This helper is not integrated into server identity gate. It is namespace equality, not human identity equality. No per-person crosswalk, source attestation or time-of-publication verification. No project full pytest."
+  },
+  "G": {
+    "confirmation": "Exact local and remote code/test blob equality, same 6 focused cases; no independent dataset."
+  },
+  "H": {
+    "N1_new": 0,
+    "CT2_identity": 29,
+    "V4_percent": 36.9
+  },
+  "I": {
+    "product": "Port distinct safe research helper and original regression test, recover selective past contribution.",
+    "science": "No independent empirical validity"
+  },
+  "J": {
+    "decision": "ACCEPT selected two files into main, retain historical branch and divergent Atlas as archive. No whole branch merge, no gates uplift; T008 full suite pending."
+  }
+}
