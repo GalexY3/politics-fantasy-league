@@ -1,0 +1,74 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "59e1f051-b3c6-4d6a-9ba5-670017942347",
+  "turn_id": "3d3cf75d-41ad-4139-81b0-b647a92c9d51",
+  "cycle": "CR02",
+  "mode": "AB-R",
+  "type": "DOCUMENTARY_AB",
+  "status": "PREREGISTERED",
+  "baseline_repo": "GalexY3/Metodologia-AB",
+  "baseline_branch": "research/pfl-codex-contributions-20261027",
+  "baseline_head": "18f78a74b0a4a28f480a98173e1dd5613df31fae",
+  "prior_exposure": "Read existing post-hoc NO VOTAN audit; institutional distinction present-not-voting known but exact XML literal equivalence unresolved. Do not treat source found before this prereg as independent prospective discovery.",
+  "A": {
+    "question": "Can an official Senate technical schema/manual or two contemporaneous linked institutional originals independently establish that the literal XML `NO VOTAN` in the 2025 nominal votes means 'senador presente que expresamente no vota', rather than absence/abstention/uncoded category?",
+    "unit": "A specific XML field value in Senate vote document for XV legislature",
+    "outcome": "Existence of unambiguous official literal-to-semantics mapping",
+    "proxy": "general Senate attendance description",
+    "publication_time": "unknown"
+  },
+  "B": {
+    "H1": "A first-party machine format specification explicitly maps literal NO VOTAN to presence-but-not-voting or an equivalent unambiguous technical category.",
+    "H0": "No such first-party definition located in bounded search; meaning stays UNKNOWN.",
+    "H_other": "General official page describes non-voting while technical XML field aggregates multiple statuses or differs across versions."
+  },
+  "C": {
+    "query_plan": [
+      "site:senado.es \"NO VOTAN\" \"XML\" votación",
+      "site:senado.es \"NO VOTAN\" \"presente\" votaciones",
+      "site:senado.es xml votaciones nominales esquema no votan",
+      "Senado España documentación XML votaciones no votan esquema",
+      "site:senado.es \"VOTACIONES\" \"no votan\" XML"
+    ],
+    "sources_priority": [
+      "Official Senado XV data dictionary or XSD/OpenData developer docs",
+      "Official Senate session nominal vote & attendance aligned for one documented plenary"
+    ],
+    "positive_accept": "Literal exact-match plus referenced field/version and official definition, directly viewed in source; capture URL and bounded quote in result.",
+    "negative_accept": "Document search outcomes and lack of accessible schema/nominal mapping; do not claim absence proves nonexistence.",
+    "falsifier": "Primary documentation or session contradicting assumed equivalence.",
+    "stop": "At most 5 bounded targeted queries plus 3 primary-source visits; do not expand to repeated near-duplicate queries without material leads."
+  },
+  "D": {
+    "method": "web search and direct read of primary institution sources; if accessible documents are PDF, inspect a page screenshot; record retrieval limits and date; no program execution or private originals."
+  },
+  "E": {
+    "execution": "Only actual web results count; no independent test if no source mapping.",
+    "report": "Link source URLs, what observed, outcome and negative sources."
+  },
+  "F": {
+    "adversarial": "Search-result snippets and generic explanatory webpage cannot establish XML schema. Name of category may appear in report but not coded literal. Misclassification may cause unfair individual scoring; remain fail-closed."
+  },
+  "G": {
+    "external_repetition": "Not assumed. A single Senate website is not independent replication. Original XML + official schema would be technical cross-check, not causal validation."
+  },
+  "H": {
+    "update": "If no source or ambiguous source, NO_VOTAN semantic mapping remains UNKNOWN; introduce no scoring claim."
+  },
+  "I": {
+    "D_score": 0,
+    "CT2_identity_before": 29,
+    "CT2_expected": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0
+  },
+  "J": {
+    "decision_rule": "Document evidence or STOP_R5 on semantic claim; no duplicate audit or broaden scope to political behavior without separate authorization.",
+    "no_original_personal_data": true,
+    "no_ci": true,
+    "no_main_merge": true
+  }
+}
