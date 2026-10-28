@@ -1,3 +1,13 @@
+# Continuidad vigente · CONT80 C61–C71 · 11/20 STOP_R5 · Atlas 0030
+
+[Informe adenda C69–C71](../research/ABH_CONT80_20261028/REPORT_FINAL.md), [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json), [CURRENT](../ab_atlas/CURRENT.md). El usuario autorizó máximo **20 ciclos**; se ejecutaron **C61–C71 A–J 11/20**, nueve sin usar bajo R5.
+
+C69 recuperó el contrato JSON con 7 tests native PASS pero **no** pudo ejecutar el manejador HTTP original por falta de checkout; no confundirlo con la suite HTTP. C70 confirmó en textos oficiales indexados las diferentes etapas `BOCCL-12-000986` (candidaturas) y `BOCCL-12-001042` (designación), apertura directa de HTML fallida. C71 incorporó enlaces de los originales institucionales al registro fuente y **32 tests unitarios PASS**; `first_public_at` sigue no verificado y los gates siguen bloqueados.
+
+**Atlas** 0030 / **30 lotes**, conteos derivados 63/81/**190**/44 y **359 operaciones**; checker Python y SHA **NOT_RUN**. V4 36,90%, CT2 29 ordinal, VSDS 1/3, gates 0/6. [Codex T001](../tareas_codex/T001_ATLAS_CANONICO.md), [T002](../tareas_codex/T002_SUITES_COMPLETAS.md) y [T006 HTTP](../tareas_codex/T006_CVE_CROSS_LEGISLATURE.md) siguen **pendientes**. No se ejecutó Codex, ni scoring real, ni CI costosa.
+
+---
+
 # CONT80 · 8/20 ciclos realizados · STOP_R5 · Atlas 0029
 
 [Informe C61-C68](../research/ABH_CONT80_20261028/REPORT_FINAL.md) y [ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json). El presupuesto fue 20; ocho ciclos completos A-J realizados y 12 sin utilizar. Hallazgo: abreviatura ESE/000002-01 repetida en BOCCL XI 2022 y XII 2026, con CVE distintos. Registro de fuentes corregido y 28 pruebas unitarias Python satisfactorias; falta suite HTTP y pytest integral. [Codex T006](../tareas_codex/T006_CVE_CROSS_LEGISLATURE.md) pendiente, así como Atlas canónico de 29 lotes. Totales documentales 63 nodos, 81 aristas, 187 runs, 44 incidencias, 356 ops; sin check Python ni SHA. V4 36,90%, CT2 29, VSDS 1/3, gates 0/6. Sin Codex ejecutado, no main merge ni CI costosa.
