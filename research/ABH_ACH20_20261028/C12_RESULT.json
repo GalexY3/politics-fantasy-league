@@ -1,0 +1,31 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C12",
+  "type": "AB-P",
+  "status": "VALID_NEGATIVE_AND_REPAIR_CROSS_SOURCE_DUPLICATE",
+  "A": "External IDs not globally unique across independent source feeds",
+  "B": "H1 supported on original JS behavior",
+  "C": "Run exact original implementation in V8 against same/different source minimal events, patch research helper then retest three cases",
+  "D": {
+    "source": "src/politics_fantasy/evidence_warehouse.mjs",
+    "git_after": "9bbf45845ae32a8445fa7a6d6d6d6a485f5942ca",
+    "node_regression": "tests/test_source_event_duplicates_scope.mjs"
+  },
+  "E": {
+    "red": "Different independent sources with same external_event_id falsely reported one duplicate",
+    "green": "Different sources no collision; same source same external id remains flagged; null external id ignored",
+    "green_cases": 3,
+    "pass": 3,
+    "node_tests": "CREATED_NOT_RUN"
+  },
+  "F": "Source namespace is a conservative proxy; same issuer split among files might yield false negatives and needs canonical external issuer identity",
+  "G": "No original source ingested or real dedup certified, T010 full suite pending",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "achievements_unlocked": 2
+  },
+  "I": "Does not prove equivalence across institutions",
+  "J": "C13 inspect provenance / access safety rather than repeat same duplicate tests."
+}
