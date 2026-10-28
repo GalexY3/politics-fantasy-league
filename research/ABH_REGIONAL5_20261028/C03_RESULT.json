@@ -1,0 +1,55 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_INDEPENDENT_ISSUER_PROVISIONAL_TURNOUT_SIGN_CONTRAST",
+  "A": "Can fall in EAJ-PNV share and seats coexist with rise in absolute votes during increasing Basque turnout?",
+  "B": {
+    "H1": "Yes: more PNV raw votes while share and seats decline",
+    "H0": "All indicators decline",
+    "H_alt": "Provisional 2024 may differ from final and party definitions may shift"
+  },
+  "C": {
+    "prereg_commit": "c7ee15c02516661a9a93247e5e2c3c9bc6add351",
+    "method": "Read Gobierno Vasco labelled provisional 2024 PDF page 5 alongside its 2020 comparative numbers, arithmetic checked locally using Python. Official May9 final announcement consulted to prevent claiming provisional as final. Attempted PDF screenshots but web cache miss; ZIP 2024 unsupported and not captured."
+  },
+  "D": {
+    "government_report": "https://www.euskadi.eus/contenidos/informacion/w_in_24_pv_resultados/es_def/adjuntos/informe-elecciones-parlamento-vasco_2024.pdf",
+    "final_status": "https://www.euskadi.eus/gobierno-vasco/-/noticia/2024/publicados-resultados-definitivos-elecciones-al-parlamento-vasco-del-21-abril/",
+    "archive": "https://www.euskadi.eus/gobierno-vasco/-/informacion/descargas-de-ficheros-de-resultados-de-elecciones/",
+    "fixture": "C03_BASQUE_PROVISIONAL_TURNOUT_CONTRAST.json"
+  },
+  "E": {
+    "PNV": {
+      "votes_delta": 20594,
+      "share_pp_delta": -3.85,
+      "seats_delta": -4
+    },
+    "EH_Bildu": {
+      "votes_delta": 92155,
+      "share_pp_delta": 4.62,
+      "seats_delta": 6
+    },
+    "total_voters_delta": 159378,
+    "turnout_pp_delta": 11.74,
+    "csv_original_bytes": 0,
+    "final_2024_numbers_verified": false
+  },
+  "F": "A shrinking vote share is not synonymous with declining absolute supporters amid turnout growth; ecological dynamics not inferred from individual-level transitions. Basque provisional vs May9 final releases cannot be swapped silently.",
+  "G": "No final P24 binary, screenshot unavailable, 2020 and 2024 same publisher and compiled report, not external independent replication of any scientific model. CERA may revise counts.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0
+  },
+  "I": "Descriptive region-level only; do not assert any individual changed vote",
+  "J": "Store result as explicitly PROVISIONAL and request P24 final ZIP hash/columns by Codex. Continue to independent European national-district test."
+}
