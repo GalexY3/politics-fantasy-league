@@ -1,3 +1,13 @@
+# Actualización C73-C76: POSIX nativo, Atlas 0034 (28/10/2026)
+
+**Campaña CONT80: 16/20 ciclos AB-H A-J efectivamente ejecutados; cuatro plazas sin consumir (STOP_R5).** [Informe C73-C76](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md), [resultados y hashes](../research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json). Se han ejecutado **31/31 tests originales Linux POSIX** con 14 subtests sobre siete fuentes y cuatro tests byte-idénticos Git, sin modificar producción. **No se ejecutó la suite Python global.**
+
+La cadena de otras campañas incorporó los lotes **0032 y 0033**; el lote `0034` contiene solo cuatro `run.add` C73-C76. Contadores **derivados** tras `0034`: 34 lotes, 63 nodos, 81 aristas, 197 runs, 44 incidencias, 366 operaciones. **Validador canónico Python de 34 lotes NO ejecutado**, T007 solo cubrió 31 lotes antiguos. [T008](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md) está pendiente para ejecutar la suite completa en Linux.
+
+V4 36,90% contractual, CT2 identidad 29/100 ordinal, VSDS 1/3, N1/N2/N3 nuevos 0/0/0, gates 0/6. Sin scoring real, CI costosa o merge main.
+
+---
+
 # AB Atlas · ChatRelay CR02 AB-R · 33 lotes · 28/10/2026
 
 **Campaña `59e1f051-b3c6-4d6a-9ba5-670017942347`: 2/5 ciclos AB A–J realmente cerrados (CR01 AB-P y CR02 AB-R); 0 inválidos, 0 de planificación, 3 pendientes de este bloque.** CR02 fue [prerregistrado](../research/CHATRELAY_59e1f051_20261028/CR02_PREREG.json) antes de buscar su nueva fuente y tiene [resultado negativo acotado](../research/CHATRELAY_59e1f051_20261028/CR02_RESULT.json) y [lote append-only 0033](updates/0033-pfl-chatrelay-59e1f051-cr02-senado-20261028.json). Los IC04–IC23 históricos no se vuelven a contar.
