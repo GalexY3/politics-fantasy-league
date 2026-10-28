@@ -1,0 +1,111 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "id": "PFL-B20-C04",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C04",
+  "mode": "AB-P",
+  "status": "VALID_A_J_COMPLETED",
+  "scope": "Synthetic Rule contract integrity, not real-person or empirical voting scoring",
+  "A": {
+    "question": "Can frozen Rule weights and per-kind caps be mutated or be nonfinite/negative, causing synthetic score instability?",
+    "estimand": "valid-rule input contract enforced at creation, stability of same rule object under caller mutation"
+  },
+  "B": {
+    "hypotheses": [
+      "Shallow @dataclass(frozen=True) leaves nested mappings mutable and arbitrary weights/caps accepted",
+      "Rule effectively immutable with valid fields",
+      "Rules invalid only raise on scoring instead of at construction"
+    ],
+    "code_baseline": "8c6588431d395ccfa9d0776230bf0f6a6eff5bfb"
+  },
+  "C": {
+    "pre_registration": "C04_PREREG.json",
+    "negative_controls": [
+      "negative cap -1",
+      "infinite weight",
+      "mismatched mapping keys",
+      "bool cap",
+      "caller-owned dictionary mutation",
+      "in-place Rule weights mutation"
+    ],
+    "positive_controls": [
+      "unchanged DEMO_RULE yields 2.0 for one synthetic event",
+      "zero cap is valid and disables counted kind"
+    ]
+  },
+  "D": {
+    "source_blobs_original": [
+      {
+        "path": "src/politics_fantasy/scoring.py",
+        "git": "8c6588431d395ccfa9d0776230bf0f6a6eff5bfb"
+      },
+      {
+        "path": "src/politics_fantasy/events.py",
+        "git": "35fbfa6e4e952e22450a184f53672f9ef670d039"
+      }
+    ],
+    "runtime": "Linux CPython 3.13.5 pytest 9.0.2",
+    "network": "not used",
+    "raw_personal_data": false,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. python -m pytest -q -p no:cacheprovider tests/test_scoring_rule_contract.py",
+    "scope": "Two exact Git source modules reproduced, not full checkout"
+  },
+  "E": {
+    "red": {
+      "passed": 2,
+      "failed": 6,
+      "exit": 1,
+      "stdout_sha256": "5bc0f323fdc79a0299c309241bbdea35fe8f79d06e7dc5e0c7883996be4c336b"
+    },
+    "green": {
+      "passed": 8,
+      "failed": 0,
+      "exit": 0,
+      "stdout_sha256": "118be220783ac4f7678bdd4b18613c6e5bae02e13467b430d2038e1bca386655"
+    },
+    "modified_files": [
+      {
+        "path": "src/politics_fantasy/scoring.py",
+        "git_blob_after": "cb315ceec8e8038584485ef5e1b693ee4aecac55",
+        "commit": "c4db5e57e67e7dd775fb0b4bb273d046ab894c6b"
+      },
+      {
+        "path": "tests/test_scoring_rule_contract.py",
+        "git_blob_after": "43aa07f5a6b6f6645512e6bb499f58c96e129839",
+        "commit": "e7c18e04fc0f56b2e5d4a407e86c808dc3b7d3c0"
+      }
+    ],
+    "mitigation": "Rule.__post_init__ validates version/mappings/kind/key agreement and nonnegative finite numeric weights plus nonnegative integer caps; copies to read-only mappingproxy preventing post-construction mutation."
+  },
+  "F": {
+    "risks": [
+      "Negative scores might be intentional in future redesigned game rules; existing synthetic contract disallows them until versioned design change",
+      "The change forbids a completely empty Rule map; check any unseen custom caller during full T008",
+      "The 8 focused tests do not certify full project compatibility",
+      "No claims about the validity of actual political scores or observed-person properties",
+      "Not source-independent scientific replication"
+    ]
+  },
+  "G": {
+    "verification": "Both original modules exact Git blob at start; patched scoring blob and new test blob match GitHub after commit",
+    "status": "TECHNICAL_SELECTED_ONLY"
+  },
+  "H": {
+    "update": "H1 observed in first native red run; fixed targeted invariants in green run; no novelty science N1/N2/N3 increment"
+  },
+  "I": {
+    "ab_p": "Targeted technical integrity gain for illustrative synthetic scoring",
+    "ab_r": "No independent political research validation",
+    "metrics": {
+      "progress_V4_percent": 36.9,
+      "CT2_identity_ordinal": 29,
+      "VSDS": "1/3",
+      "release_gates_passed": 0
+    },
+    "validation_scope": "8 synthetic pytest tests"
+  },
+  "J": {
+    "decision": "ACCEPT_TARGETED_GUARD; further independent issues require new prereg and different discriminant; T008 still pending",
+    "future": "When executor available, run full Linux Python suite and canonical Atlas checker on main. Do not equate green targeted tests with project release readiness."
+  }
+}
