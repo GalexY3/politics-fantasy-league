@@ -1,0 +1,64 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PRESELECTED_2026_TEMPORAL_CONTRAST",
+  "A": "Does 2026 next session retain the 2025 six-roll group-majority pattern?",
+  "B": {
+    "H1": "Structure differs because motions/procedures vary",
+    "H0": "Six corresponding roll indices structurally similar",
+    "Halt": "Numbers are not same questions or randomly sampled, agenda confounding"
+  },
+  "C": {
+    "pre_commit": "90f342375c4f9f446711a336b85374e6e6b5759a",
+    "method": "Fetched official 2026 House Clerk roll 178–183 HTML with party-wise totals; 2026 roll180 pre-exposed from feasibility, other 5 fetched after prereg. Compared group-majority direction and verified sum Republican/Democrat/Independent to official total; no XML originals."
+  },
+  "D": {
+    "url": "https://clerk.house.gov/Votes/2026{roll}",
+    "rolls": [
+      178,
+      179,
+      180,
+      181,
+      182,
+      183
+    ],
+    "sources": [
+      "turn809173view0",
+      "turn809173view1",
+      "turn882934view1",
+      "turn544332view0",
+      "turn544332view1",
+      "turn544332view2"
+    ],
+    "data": "C02_2026_OFFICIAL_AGGREGATES.json"
+  },
+  "E": {
+    "shared_party_majority_2025": 1,
+    "shared_party_majority_2026": 5,
+    "opposed_party_majority_2025": 5,
+    "opposed_party_majority_2026": 1,
+    "one_2026_independent_in_each_division": true,
+    "matched_party_tally_residual_n": 0,
+    "excluding_preexposed_180_shared_2025": 1,
+    "excluding_preexposed_180_shared_2026": 4,
+    "total_2026": 6,
+    "raw_xml_bytes": 0
+  },
+  "F": "Different session six numerical rolls are not matched topics; 2026 178–182 all 2/3 suspension bills on one sitting, 183 recommit; 2025 mostly non-suspension. Year effect interpretation would be wholly confounded by procedure/day and roll-number comparability.",
+  "G": "Temporal later session and independent party rows from same official issuer; no prospective forecast because hypotheses not trained and roll numbering arbitrary, all observations historical",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "newN": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "Aggregate groups only, no individual ranking",
+  "J": "Pre-register explicit procedural baseline prediction and compare with simple 2025 majority-class transport before calculating, maintain causal/prospective limits."
+}
