@@ -1,0 +1,32 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "VALID_PARTIAL_SQLITE_DEMO_SEED_GUARD",
+  "A": "Existing nonempty figure table wasn't sufficient to certify completed synthetic seed",
+  "B": "H1 observed in source, partial DB escaped former early return",
+  "C": {
+    "prereg": "C13_PREREG.json",
+    "positive": "coherent synthetic fixture idempotent",
+    "negative": "one figure with missing club/round/events -> PARTIAL_SEED"
+  },
+  "D": {
+    "before": "7c901986320ed1baed34ebf86f3aa5421912bb9f",
+    "after": "53178066bbd248db32dd2f67f5414370bec65bd3",
+    "code_commit": "bd781ce14367c0b0735d3eec16f2e30e2e1a58a2",
+    "test_commit": "62d12cbba350a6f33aad6e2f59ba84f347ba51bc",
+    "runtime": "4 isolated SQLite predicate checks, original full product module not run"
+  },
+  "E": {
+    "focused_checks": "4/4 PASS",
+    "code_patch": "Min 10 figures, 1 club, 2 rounds, 8 events or fail closed, including non-figure partial tables",
+    "new_regression": "tests/test_partial_seed_guard.py",
+    "full_suite": "NOT_RUN"
+  },
+  "F": "A manually corrupted database is a hypothetical state, not evidence normal transactions leave partial seeds. Limits may block intentional external customization; this is demo-only.",
+  "G": "T009 pending",
+  "H": "No release/science progress",
+  "I": "Local fake-game recovery integrity",
+  "J": "ACCEPT fail closed without clobber of user state"
+}
