@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0064-PFL-ABH-MAIN20B-C09-REVISION-20261028",
+  "parent_batch": "0063-PFL-ABH-MAIN20B-C08-EVENT-METADATA-20261028",
+  "at": "2026-10-28T14:22:45.979Z",
+  "actor": "chatgpt",
+  "reason": "C09 prereg source revision number versus first public time: deliberately inconsistent chronology causes numeric revision2 selected although revision1 published later. Four isolated controls; no real issuer claims or code patch.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C09-REVISION-CLOCK",
+        "activity": "Synthetic revision/publication chronology contradiction, 4 selected Python logic checks; no production change without source issuer contract",
+        "status": "completed",
+        "at": "2026-10-28T14:22:45.979Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C09_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C09_RESULT.json"
+        ],
+        "scope": "AB-R documentary design negative; no science/launch uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
