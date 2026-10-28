@@ -1,0 +1,88 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C20",
+  "mode": "AB-META",
+  "status": "VALID_FINAL_BUDGET_AND_RECORD_AUDIT",
+  "A": "Do all 20 granted slots map to actual A–J outcomes and preserve chronological prereg, no use of T008/T009 as falsely new test runs?",
+  "B": "H1 complete records and strict budget; native current tests remain pending",
+  "C": {
+    "prereg": "C20_PREREG.json",
+    "previous_cycles": "C01–C19 pairs, 38 JSON files",
+    "chronology_sample": [
+      "C08",
+      "C11",
+      "C14",
+      "C17",
+      "C19"
+    ]
+  },
+  "D": {
+    "GitHub": "Exact 38 prior JSON reads in four groups and 10 Git commit path history calls",
+    "C19": "73-lot audit + batch0074 appended",
+    "runtime": "No full Python QEMU or native Atlas checker performed in this cycle"
+  },
+  "E": {
+    "previous_files_found": 38,
+    "records_corrupt": 0,
+    "wrong_cycle_ids": 0,
+    "previous_result_missing_A_E_J": 0,
+    "prereg_before_result_in_sample": "5/5 Git commit timestamps",
+    "before_close": {
+      "valid": 19,
+      "invalid": 0,
+      "planning": 0,
+      "remaining": 1,
+      "lots": 74,
+      "runs": 240,
+      "complaints": 48,
+      "ops": 415
+    },
+    "after_close": {
+      "valid": 20,
+      "invalid": 0,
+      "planning": 0,
+      "remaining": 0,
+      "lots": 75,
+      "runs": 241,
+      "complaints": 48,
+      "ops": 416
+    },
+    "new_scientific_findings": [
+      0,
+      0,
+      0
+    ]
+  },
+  "F": {
+    "limits": [
+      "Not all 20 Git commit chronologies checked, five sampled",
+      "A-J reports alone do not independently prove every selected native test executed on exact Git source; many checks are isolated reconstructions and newly committed pytest files have NOT been executed globally",
+      "C08 negative source repair was initially blocked, later C11 patched it: do not count C08 as completed fix",
+      "C02 original XML/JSON unavailable; C03 purpose-specific data reuse rights unresolved",
+      "C19 structural 73/73 audit is not Python Atlas canonical replay of 75",
+      "T008 historical successful only on b0344d1, T009 current code and 75 deltas NOT_RUN"
+    ]
+  },
+  "G": {
+    "full_main_linux_pytest": "NOT_RUN",
+    "canonical_atlas_state_sha256": "UNKNOWN",
+    "legally_adjudicated_real_scoring": false
+  },
+  "H": {
+    "CT2_identity_ordinal": 29,
+    "V4_contractual_percent": 36.9,
+    "VSDS": "1/3",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0
+  },
+  "I": {
+    "gates_passed": 0,
+    "technical": "Source-level and synthetic-only changes; integration risk remains",
+    "science": "No independent empirical discovery"
+  },
+  "J": {
+    "decision": "CLOSE_CAMPAIGN 20 VALID/0 INVALID/0 REMAINING under current authorization; R5 no artificial extra cycles; T009 P0 external full Linux + native Atlas75; no deployments/real scoring/new CI or branch merge; future cycles require explicit separate grant"
+  }
+}
