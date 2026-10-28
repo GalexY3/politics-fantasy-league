@@ -1,0 +1,30 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C13",
+  "type": "AB-P",
+  "status": "VALID_NEGATIVE_AND_REPAIR_ORPHAN_CLAIMS_AUDIT",
+  "A": "Can source warehouse audit falsely mark a broken claim reference ok?",
+  "B": "H1 supported on original source",
+  "C": "Dynamic execute original ESM stripped export names, inject one dangling claim and control empty, repair auditBundle to include claims, rerun",
+  "D": {
+    "source": "src/politics_fantasy/evidence_warehouse.mjs",
+    "before_blob": "9bbf45845ae32a8445fa7a6d6d6a485f5942ca",
+    "after_blob": "1bffc48beb6c2d3caf4432b2413b8eeb9137938a",
+    "test": "tests/test_claim_referential_audit.mjs"
+  },
+  "E": {
+    "red": "Orphan claim subject and source id ignored, auditBundle.ok true",
+    "green": "Broken claim returns auditBundle.ok false with CLAIM:CLAIM:1; empty warehouse still referentially ok but gate false",
+    "executed_js_proofs": 2,
+    "node_regressions": "CREATED_NOT_RUN"
+  },
+  "F": "Referential audit repair only, not source authenticity",
+  "G": "No full Node suite on checkout",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29
+  },
+  "I": "Not independent human source evidence",
+  "J": "Stop repeats of same referential audit and pivot independent forecasting validity."
+}
