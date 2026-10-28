@@ -1,0 +1,102 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C05",
+  "mode": "AB-META",
+  "status": "VALID_BOUNDED_DOCUMENTARY_REPLAY_ONLY",
+  "executed_at": "2026-10-28T12:30:55.264Z",
+  "A": {
+    "question": "39 GitHub Atlas deltas form a documented valid chain and reproduce ledger counts?",
+    "estimand": "documentary referential/operation consistency; NOT canonical replay"
+  },
+  "B": {
+    "H1": "All contiguous, no duplicate run/complaint ids; 205 runs and 47 issues",
+    "H0": "at least one broken patch parent/duplicate/reference or counts not matching"
+  },
+  "C": {
+    "preregistered": "C05_PREREG.json",
+    "falsifier": "One broken batch parent, duplicate run/complaint, missing run for complaint, or unexpected count"
+  },
+  "D": {
+    "source": "GitHub private repo main, 39 file reads and one seed read via authenticated connector; no CI",
+    "groups": [
+      "0001-0013",
+      "0014-0026",
+      "0027-0039"
+    ],
+    "seed_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+    "instrument": "Deterministic independent JavaScript inspection of 39 patch bodies and referenced IDs",
+    "not_performed": "Original Python ab_atlas/atlas_delta.py check / abmap strict validation"
+  },
+  "E": {
+    "patch_count": 39,
+    "seed": {
+      "nodes": 14,
+      "edges": 23,
+      "runs": 0,
+      "complaints": 0
+    },
+    "group_counts": [
+      {
+        "group": "0001-0013",
+        "ops": 197,
+        "run_adds": 66,
+        "complaint_adds": 29,
+        "node_adds": 38,
+        "edge_adds": 49
+      },
+      {
+        "group": "0014-0026",
+        "ops": 131,
+        "run_adds": 93,
+        "complaint_adds": 15,
+        "node_adds": 11,
+        "edge_adds": 9
+      },
+      {
+        "group": "0027-0039",
+        "ops": 51,
+        "run_adds": 46,
+        "complaint_adds": 3,
+        "node_adds": 0,
+        "edge_adds": 0
+      }
+    ],
+    "derived": {
+      "nodes": 63,
+      "edges": 81,
+      "runs": 205,
+      "complaints": 47,
+      "operations": 379
+    },
+    "parent_chain": "39/39 contiguous to 0039",
+    "missing_run_refs_in_complaints": 0,
+    "unresolved_complaint_triage_refs": 0,
+    "duplicate_runs_in_examined_groups": 0,
+    "duplicate_complaints_in_examined_groups": 0,
+    "atlass_checker_original": "NOT_RUN"
+  },
+  "F": {
+    "adversarial": "Grouping constraints independently checked. No guarantee that arbitrary node.set targets, edge endpoints, status legal values or other abmap.strict invariants pass because these were not executed. List of GitHub patch blob identifiers held by repository.",
+    "limitation": "Not full native Python checker; non-comprehensive validation by design."
+  },
+  "G": {
+    "confirmation": "No independent native filesystem replay; must remain NOT_RUN on 40 patches after result logged."
+  },
+  "H": {
+    "update": "Documentary counts consistent, no reason to assert canonical SHA or uplift CT2",
+    "new_N1": 0,
+    "new_N2": 0,
+    "new_N3": 0
+  },
+  "I": {
+    "quality": "Moderate provenance of patch-chain document integrity; technical only",
+    "scientific": "0/3",
+    "product": "no changes to readiness",
+    "gates": "0/6"
+  },
+  "J": {
+    "decision": "CLOSE bounded index check; STOP_R5 to rereading same 39 patches without native checker or changed patches",
+    "future": "T008 canonical Python check on next available executor; no new cycle simply for rerunning existing check without independent relevance."
+  }
+}
