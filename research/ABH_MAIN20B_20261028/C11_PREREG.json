@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C11",
+  "mode": "AB-P",
+  "status": "PREREGISTERED",
+  "A": "Can the independently demonstrated C08 nested event metadata alias be repaired while preserving observable_event_revisions equality and synthetic scoring compatibility?",
+  "B": {
+    "H1": "Recursive immutable snapshot prevents mutation and keeps duplicate revision equality",
+    "H0": "Deep freeze breaks legitimate mapping semantics or leaves mutable alias"
+  },
+  "C": {
+    "red": "C08 source alias changing nested code from 1 to100 after construction",
+    "positive": "construct 2 identical events from distinct nested dicts; dedup one; difference same revision raises; list deeply frozen tuple",
+    "control": "full current core pytest remains T009"
+  },
+  "D": {
+    "source": "src/politics_fantasy/events.py SHA 35fbfa6e4e952e22450a184f53672f9ef670d039",
+    "runtime": "Python focused fixture on same implementation, no original nominal data"
+  },
+  "E": "NOT_RUN",
+  "F": "Immutability not publisher authenticity",
+  "G": "Existing core regression plus new suite T009",
+  "H": "No metric uplift",
+  "I": "Archive source version integrity",
+  "J": "Integrate if positive, else keep C08 issue open"
+}
