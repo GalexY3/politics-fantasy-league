@@ -1,3 +1,17 @@
+# BRANCH20 AB-H · NUEVA RAMA · 28/10/2026
+
+**Rama activa para la campaña nueva:** `research/pfl-abh-branch20-20261028`. Autorización expresa del usuario: **máximo 20 ciclos AB-H BRANCHING**, independiente de CONT80 (agotada 20/20) y ChatRelay (2/5 válidos, 3 pendientes separados).
+
+**Saldo actual:** **1 ciclo documental A–J válido (C02, negativo/inconcluso); 1 inválido (C01, resultado registrado prematuramente, errata publicada); 0 planificación; 18 intentos/ciclos no consumidos**, por criterio conservador de presupuesto. [Estado con desglose](../research/ABH_BRANCH20_20261028/CAMPAIGN_STATUS.json) · [Errata C01](../research/ABH_BRANCH20_20261028/C01_ERRATA.md) · [Resultado C02](../research/ABH_BRANCH20_20261028/C02_RESULT.json) · [tarea T008 para Codex](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md).
+
+**Atlas:** 0037 es el último lote, con padre 0036 y 0035 histórico. Conteos documentales derivados **37 lotes, 63 nodos, 81 aristas, 203 runs, 45 incidencias y 373 operaciones**. **Checker canónico Python 37 lotes NO ejecutado**; T007 solo validó 31. No modificar retrospectivamente el lote 0035.
+
+**Prioridad:** T008 suite Python integral Linux y checker 37 lotes en checkout privado íntegro; esta sesión no puede clonar GitHub desde el contenedor (`git ls-remote`: DNS `Could not resolve host: github.com`). Las consultas documentales nuevas C02 encontraron índices oficiales BOCCL 32/12 y 34/12 y textos indexados, pero no adquirieron originales PDF/XML: primera publicación, identidad y base legal siguen no acreditadas. **STOP_R5** para repetir el mismo acceso a fuentes sin instrumento distinto.
+
+**Sin promoción:** V4 36,90 % contractual; CT2 identidad 29/100 ordinal; VSDS 1/3; N1/N2/N3 nuevos 0/0/0; seis gates críticos 0/6. No puntuaciones de personas reales, originales nominales en GitHub, fusión a main ni CI costosa. La ejecución de T008 por Codex no cuenta por sí sola como un ciclo AB-H.
+
+---
+
 # CONT80 C61–C80 CERRADO 20/20 · Atlas 0035 · 28/10/2026
 
 **Presupuesto de 20 ciclos AB-H completamente utilizado: C61–C80, 20 A–J documentados, 0 restantes.** [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [informe final POSIX](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md) · [manifiesto de pruebas](../research/ABH_CONT80_20261028/C77_C80_EVIDENCE_MANIFEST.json).
