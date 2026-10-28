@@ -1,3 +1,23 @@
+# Adenda C72 · reconciliación de resultados de Codex en la rama
+
+**Estado más reciente CONT80: 12/20 ciclos A–J ejecutados C61–C72, ocho sin utilizar (STOP_R5).** La adenda anterior (C69–C71, 11/20) y el cierre histórico C61–C68 (8/20) son hitos previos, no el balance actual. [Ledger](CAMPAIGN_STATUS.json) y [Atlas 0031](../../ab_atlas/updates/0031-pfl-abh-cont80-c72-20261028.json).
+
+Se encontraron cinco **informes versionados de ejecución externa** en [`tareas_codex/`](../../tareas_codex/README.md), realizados según sus textos en un checkout Windows del HEAD **`6e359a89e74f06927e51ca4dc8a9ea1714e37acd`**, previo a C69–C71. **Esta conversación no invocó Codex** y no puede leer los logs originales almacenados en rutas temporales Windows; se han leído y contrastado **los informes GitHub**, no reproducido sus comandos.
+
+- [T001](../../tareas_codex/T001_RESULTADO.md) reporta Python Atlas `check` **exit 0, 29 lotes**, SHA canónico `c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c`. **Este SHA no certifica los nuevos lotes 0030 y 0031**.
+- [T002](../../tareas_codex/T002_RESULTADO.md) reporta **pytest Windows exit 1: 57 fallos, 558 PASSED, 28 SKIPPED, 24 subtests**, asociados mayoritariamente a almacén POSIX en Windows; **Node exit 0: 125 PASS**. No ocultar fallos ni atribuirlos todos automáticamente a plataforma.
+- [T003](../../tareas_codex/T003_RESULTADO.md) reporta paridad nativa Python/Node **21 + 36 pruebas PASS** para V3 **36,35%** y V4 **36,90%**, seis gates bloqueados. Corrige la limitación de paridad nativa que seguía pendiente en C44 **para ese baseline**.
+- [T004](../../tareas_codex/T004_RESULTADO.md) reporta controles de host/origen/redirect **18 PASS**, pero seguridad/almacén general **56 FAIL, 53 PASS, 27 SKIP** en Windows; no declara aptitud para Internet.
+- [T006](../../tareas_codex/T006_RESULTADO.md) reporta **43 Python PASS** tras migrar fixtures y prueba real HTTP loopback `GET /api/source-stages` **200** en el código **anterior a la incorporación de `source_url` en C71**. Esto no convierte los siete tests JSON de C69 en tests del servidor real.
+  
+Se creó [**T007 — revalidar código y Atlas actuales**](../../tareas_codex/T007_REVALIDACION_ATLAS30_HTTP.md), **PENDIENTE**, con checker Python de **31 lotes**, hash canónico nuevo, tests HTTP sobre nuevos enlaces BOCCL y, en POSIX, casos privados que Windows no pudo resolver.
+
+**Atlas actual:** 31 lotes, 63 nodos, 81 relaciones, **191 runs**, 44 complaints y **360 operaciones** (conteos derivados; checker Python de **31** lotes **NOT_RUN**). V4 **36,90%**, CT2 **29 ordinal**, VSDS **1/3**, hallazgos científicos nuevos 0/0/0 y gates **0/6**. No atribuir certificación legal, de identidad o de disponibilidad histórica a una suite técnica.
+
+**Decisión R5:** detener repetición de fixtures; quedan **ocho plazas autorizadas no consumidas**. Reanudar con un original independiente, checkout completo actual o ejecución POSIX de pruebas actualmente bloqueadas.
+
+---
+
 # Adenda a CONT80 · C69–C71 (28/10/2026)
 
 La campaña originalmente detenida en C68 se reanudó por petición expresa del usuario **«okei, continua con eso»**, dentro de la misma autorización máxima de 20 ciclos. **Resultado actualizado: 11/20 ciclos A–J realizados (C61–C71), nueve sin consumir.** La sección inferior de este informe describe el cierre histórico 8/20 anterior a la reanudación; **no** es el estado más reciente. [Ledger actualizado](CAMPAIGN_STATUS.json) · [Atlas 0030](../../ab_atlas/updates/0030-pfl-abh-cont80-c69-c71-20261028.json).
