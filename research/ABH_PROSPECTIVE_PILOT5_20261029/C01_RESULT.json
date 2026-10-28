@@ -1,0 +1,97 @@
+{
+  "cycle": "C01",
+  "mode": "AB-R",
+  "prereg_commit": "d070f808240020b073a0e80d36aaf875c6192c65",
+  "type": "EXPLORATORY_DOCUMENTARY_AUDIT",
+  "A": {
+    "estimand": "In future consented adult participants, 2x2 factorial effects of denominator-transparency training and leaderboard display on transfer comprehension of unseen fictional civic round records.",
+    "unit": "person randomly assigned to arm, response to withheld fictional transfer cases",
+    "control": "Neither rule transparency tutorial nor leaderboard",
+    "treatments": [
+      "transparent explanation vs neutral equal-length tutorial",
+      "private no leaderboard vs synthetic leaderboard display"
+    ],
+    "outcome_primary": "unseen 4-item interpretation test: correct distinguish zero observed, unknown coverage, repeat agenda events, and scheduled vs attempted denominator",
+    "outcome_secondary": [
+      "rate of choosing easiest 4/20 toy opportunities under fixed rewards",
+      "reported confidence calibration on same 4-item test"
+    ],
+    "falsifier": "No meaningful difference in transfer accuracy or selection, or changes explained by mismatched exposure/time, or potential harm/withdrawal."
+  },
+  "B": {
+    "H1": "Denominator explanation transfers to unseen cases (not just taught labels)",
+    "H2": "Leaderboard causes rule-dependent shortcut selection and can offset comprehension gains",
+    "H0": "No detectable 2x2 factorial effects",
+    "adversary": "Any gains due to tutorial answer leakage, unequal screen time, or differential attrition"
+  },
+  "C": {
+    "design": "Adult-only randomized 2x2 factorial, 4 arms (no leader/no transparency; transparency alone; leaderboard alone; both); all 4 get matched-duration instructions, identical fictitious events and comprehension transfer cases, conceal scoring key, document randomization before enrollment.",
+    "analysis": "Primary difference in mean 0-4 accuracy by transparency, controlling leaderboard; separately test interaction exploratory with multiplicity; report per-arm N, missingness, attrition and uncertainty, no predictive claim from dry-run data.",
+    "statistical_plan": "Estimate factorial ITT via OLS with transparency, leaderboard, interaction; robust SE if adequate human n, report CI not just p. Prereg power based on pilot data independent of heldout; no arbitrary invented sample size.",
+    "Ethics": "Local institutional ethics/DPO review before recruitment; adult affirmative informed consent separately retained; no opinion/party/religion; disclose study purpose and withdrawal options; no unapproved external data transmission or participant recruitment."
+  },
+  "D": {
+    "papers": [
+      {
+        "url": "https://doi.org/10.1007/s11129-026-09311-3",
+        "published": 2026,
+        "source": "Randomized 10,000-student language app contest plus leaderboard and prizes",
+        "importance": "Engagement improvements published in other educational domain; cannot claim general novelty or infer civic learning."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.lindif.2024.102565",
+        "published": 2024,
+        "source": "Team leaderboard learning study N=103; losing team can perform worse",
+        "importance": "Shows plausible adverse competitor heterogeneity; baseline need interactions and loss attrition."
+      },
+      {
+        "url": "https://link.springer.com/article/10.1007/s40692-025-00366-x",
+        "published": 2025,
+        "source": "Gamification randomized educational experiment with points badges challenges",
+        "importance": "Points/badges education effects studied; isolate variables with factorial arms."
+      },
+      {
+        "url": "https://www.ipr.northwestern.edu/our-work/working-papers/2025/wp-25-27.html",
+        "published": 2025,
+        "source": "Pilot game-assisted deliberation N=38",
+        "importance": "Political/civic gamification also studied, no originality from politics label."
+      },
+      {
+        "url": "https://www.psychologicalscience.org/publications/psychological_science/preregistration",
+        "source": "APS preregistration guidance",
+        "importance": "Preregister study population, outcomes, sample size/exclusions and analysis prior to responses."
+      },
+      {
+        "url": "https://www.uab.cat/en/research-ethics/informed-consent",
+        "source": "UAB research ethics informed consent guidance",
+        "importance": "Online informed consent explicitly required even for otherwise anonymous surveys; consent records separate."
+      }
+    ],
+    "limitations": [
+      "Prior studies use different outcomes/populations and gamification bundles; none establish effect on the exact PFL transfer task.",
+      "Search is targeted, not systematic review; no unique 2/3 claim.",
+      "Consent guide is institutional guidance, not legal determination for this project."
+    ]
+  },
+  "E": {
+    "performed": "Actual targeted online literature and ethics source inspection prior to and after prereg; no original participants or newly observed outcomes",
+    "output": "2x2 factorial consented human protocol with no-profiling fictional material"
+  },
+  "F": "Strong alternative: familiarity with simple displayed denominator may explain success; equal-duration tutorials and holdout transfer must be blinded to teaching condition. Leaderboard may change attention rather than strategic behavior.",
+  "G": "No external independent human data; future trial needed. Published examples are contextual prior art only.",
+  "H": {
+    "PF_P12": "Unverified cognitive benefit of fictional PFL; no support from project-specific participants",
+    "PF_P07": "Gaming and social attention effects untested; published generic studies provide competing hypotheses"
+  },
+  "I": {
+    "grade": "0/3",
+    "CT2_parent_identity": 29,
+    "CT2_child_mechanism": 20,
+    "CT2_prospective_line": 25,
+    "reason": "Distinct concrete discriminating experiment available to implement, not validated behavior",
+    "ethics": "Unapproved; no recruitment or data collection",
+    "novelty": "NOT_VERIFIED",
+    "causal": "prospective design only, no trial executed"
+  },
+  "J": "ACCEPT_DOC_GATE_BRANCHED_TO_OFFLINE_INSTRUMENT; C02-C05 subject to tests and stop gates"
+}
