@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C12",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "A": "Does groupmetrics.group_vote_measure mistake a modal 4/9 leader for a strict majority?",
+  "B": {
+    "H1": "Legacy report labels nonmodal count majority dissent despite no >50%",
+    "H0": "No majority yields None"
+  },
+  "C": {
+    "cases": [
+      "4/3/2 -> modal nonmodal 5 but strict dissent None",
+      "6/3/0 -> strict nonmajority 3"
+    ],
+    "success": "Use strict_majority for majority field, retain modal indicator separate",
+    "stop": "R5 no further variants"
+  },
+  "D": {
+    "source": "groupmetrics.py blob eb6bdaf34e621b294d44811a817ecceb19ac2732",
+    "test": "synthetic GroupRow focused checks"
+  },
+  "E": "PENDING",
+  "F": "Not causal political party discipline",
+  "G": "Full T009 pending",
+  "H": "No gates change",
+  "I": "Sociological reporting truth",
+  "J": "Repair only if reproduced"
+}
