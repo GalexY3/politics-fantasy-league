@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C14",
+  "type": "AB-P",
+  "A": "Can the existing temporal rolling_origin_splits accept non-dates or invalid dates and create meaningless out-of-sample folds?",
+  "B": {
+    "H1": "Current sorted-string check admits invalid ISO dates",
+    "H0": "It rejects malformed temporal labels"
+  },
+  "C": "Run original function with garbage, impossible date and valid ISO lists; if red add actual date.fromisoformat gate, create regression test, rerun focused isolated code",
+  "D": "Actual forecast.py code inspected; isolated Python execution, full repo Python suite T010 remains",
+  "E": "PENDING",
+  "F": "Calendar validity guard doesn't prove holdout independence or as-of field integrity",
+  "G": "Do not change event source semantics",
+  "H": "V4 unchanged",
+  "I": "No badges",
+  "J": "Only accept tests if valid calendar and negative checked"
+}
