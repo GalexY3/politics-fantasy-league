@@ -1,0 +1,93 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C05",
+  "type": "EXPERIMENTAL_AB_R",
+  "status": "VALID_AJ_DISTINCT_CLUSTER_BOOTSTRAP_ESTIMANDS",
+  "at": "2026-10-28T13:30:25.926Z",
+  "drift": "D1.5",
+  "A": {
+    "question": "Which target does the existing session-bootstrap estimate when session observation sizes differ?",
+    "estimands": {
+      "mean_of_sessions": "(mean of each session)/number of sessions",
+      "mean_of_records": "sum all values / number of all observations, with full sessions clustered for uncertainty"
+    }
+  },
+  "B": {
+    "H1": "Existing function targets equal-session mean of means and can differ markedly from pooled observation mean",
+    "H0": "Existing function targets pooled observation mean already",
+    "other": "Both estimands are defensible for different questions; no one method is intrinsically wrong"
+  },
+  "C": {
+    "prereg": "C05_PREREG.json",
+    "contrast": "Session A 100 zero records; session B one value 10",
+    "negative_controls": [
+      "resample blocks not rows",
+      "two groups minimum",
+      "nonfinite values rejected",
+      "deterministic seed"
+    ],
+    "acceptance": "Preserve session-equal original; separate record-equal block-resampling estimator"
+  },
+  "D": {
+    "Git_source_baseline_blob": "985846a93b8665bab15fd0db7144c3e4e458c5c3",
+    "source_after_blob": "0c35692887a5e0e10321286a24115faee2c3d6cf",
+    "new_test_commit": "4be1b378bf796db656d773d0bbb4f0612d8dfbd0",
+    "source_commit": "a45ee58e86f27d2cefbdde3f94d0f5b4fb83bb36",
+    "execution": "CPython 3.13.5 manually reconstructed exact computational core with synthetic arrays; NOT full module/native repository suite"
+  },
+  "E": {
+    "imbalanced_sessions": {
+      "sizes": [
+        100,
+        1
+      ],
+      "equal_session_mean": 5,
+      "equal_record_mean": 0.09900990099009901,
+      "absolute_difference": 4.900990099009901
+    },
+    "balanced_sessions": {
+      "sizes": [
+        2,
+        2
+      ],
+      "both_means": 5
+    },
+    "bootstrap": {
+      "method": "Resample whole session sum-and-count blocks with replacement; aggregate sum/count per draw",
+      "replicates": 400,
+      "seed": 42,
+      "example_interval": [
+        0,
+        10
+      ],
+      "confidence_95_not_external": true
+    },
+    "isolated_checks_passed": 9,
+    "committed_new_tests": "NOT_RUN",
+    "global_suite": "NOT_RUN"
+  },
+  "F": {
+    "adversarial": "Original algorithm was not erroneous for its own equal-session estimand; it becomes wrong only when silently interpreted as per-record mean. Resampling two sessions yields a very wide interval, correctly indicating low independent cluster count. A different sampling design may need different weighting. No real parliamentary sample or bootstrap calibration checked."
+  },
+  "G": {
+    "independent_research_replication": "NONE",
+    "source_modification_verified": "GitHub after commit but full import/tests pending"
+  },
+  "H": {
+    "N1_new": 0,
+    "scientific_grade_0_3": 0,
+    "CT2_identity_before": 29,
+    "CT2_identity_after": 29
+  },
+  "I": {
+    "sociological_value": "Explicit competing estimands and preserves cluster dependence in descriptive uncertainty",
+    "V4_contractual_percent": 36.9,
+    "VSDS": "1/3",
+    "gates_passed": 0
+  },
+  "J": {
+    "decision": "ACCEPT named record-weighted estimator; retain original equal-session estimator; source proof and scientific calibration pending, STOP_R5 repeated seeded bootstraps",
+    "cycles_remaining_after": 15
+  }
+}
