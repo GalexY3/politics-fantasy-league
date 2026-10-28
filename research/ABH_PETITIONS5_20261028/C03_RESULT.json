@@ -1,0 +1,58 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "source_type": "UK Parliament first-party official JSON endpoint observed through web text rendering; original bytes not downloaded or SHA256 authenticated",
+  "n": 12,
+  "unit": "petition-level event history",
+  "bias": "Top 12 CLOSED petitions by signature totals, not random or representative. Individual people may sign multiple petitions.",
+  "data": "PETITIONS12_EVENT_PANEL.json",
+  "metrics": "EVENT_METRICS.json",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "no_personal_political_ratings": true,
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_ALL_TWELVE_SCHEDULED_H1_REJECTED",
+  "A": "Does at least one of twelve closed petitions with 100k signatures fail to have scheduled/completed debate, or are all twelve recorded for debate?",
+  "B": {
+    "H1": "At least one without debate despite 100k",
+    "H0": "All 12 have scheduled debate dates"
+  },
+  "C": {
+    "prereg_commit": "76c55e40ddb471726863e7621cd87d1ce0d5ff3f",
+    "execution": "Inspect 12 official API threshold crossing and scheduled_debate_date and debate_outcome_at, compute interval from exact crossing to UTC midnight of scheduled_debate_date; compare median and 90d benchmark. Do not equate scheduled date to actual completed until Hansard crosscheck in C05."
+  },
+  "D": {
+    "panel": "PETITIONS12_EVENT_PANEL.json",
+    "metrics": "EVENT_METRICS.json",
+    "official_policy": "https://petition.parliament.uk/help"
+  },
+  "E": {
+    "n": 12,
+    "scheduled_date_present": 12,
+    "debate_outcome_timestamp_present": 12,
+    "median_days_from_100k_to_scheduled_date": 86.5775,
+    "mean_days": 130.11275,
+    "min_days": 43.112,
+    "max_days": 319.084,
+    "over90_days": 6
+  },
+  "F": "H1 not found in selected 12. Cannot assert that every petition reaching 100k is debated; the rule only promises consideration. Delays > 90 days in half the selected cases; no required deadline inferred. All 12 have API outcome timestamps, but separate Hansard independently opened only first 5.",
+  "G": "Petitions top signed; survivorship/outcome selection, publication-censoring. One debate can involve multiple petitions, don't count one per unique parliamentary sitting without checking.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No policy outcome evaluation",
+  "J": "Validate subset of actual Hansard debate pages independently."
+}
