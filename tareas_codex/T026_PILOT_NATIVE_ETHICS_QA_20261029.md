@@ -15,3 +15,7 @@ Base: `GalexY3/Metodologia-AB` rama `research/pfl-abh5-prospective-pilot-2026102
 **Criterio de aceptación técnico:** 84/84 controles reproducidos en Node nativo, integridad semántica y pruebas de interfaz registradas sin hallazgos de filtración crítica, mock bloqueado fuera de fixture y documentación de límites. **Criterio humano independiente:** revisión ética/seguridad adecuada y consentimiento antes de invitar participantes; este encargo NO concede ninguno de ellos.
 
 **Estado inicial verificado al crear ficha:** 0 personas reclutadas, 0 consentimientos, 0 outcomes humanos, 0 release gates; solo 84/84 comprobaciones de V8 durante ABH_PROSPECTIVE_PILOT5. No declarar ninguna tarea concluida hasta recibir salida del ejecutor.
+
+
+## Seguimiento parcial 29/10/2026 — NO CERRAR T026
+En la rama sucesora `research/pfl-abh5-pilot-native-integration-20261029`, el entorno Node aislado reprodujo 84/84 comprobaciones con hashes fuente verificados y se ejecutaron 15/15 tests HTTP del servidor local. Se construyó `pilot_local/`, se detectaron y corrigieron validadores con herencia/Symbol (84/84 regresión), y se documentaron condiciones éticas. **NO se dispone de checkout integral, prueba E2E Chromium concluida, aprobación de comité ni captación humana.** Por tanto T026 permanece **PARCIAL / ABIERTA**; ver tarea sucesora T027.
