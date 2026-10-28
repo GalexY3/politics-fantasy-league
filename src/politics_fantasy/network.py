@@ -36,6 +36,9 @@ def covote_edges(votes: list[VoteRecord], *, as_of: datetime, min_joint: int = 3
             continue
         if vote.choice not in ALLOWED:
             continue
+        if (not isinstance(vote.vote_event_id, str) or not vote.vote_event_id.strip()
+                or not isinstance(vote.person_id, str) or not vote.person_id.strip()):
+            raise ValueError('INVALID_VOTE_OR_PERSON_ID')
         v=by_vote[vote.vote_event_id]
         if vote.person_id in v and v[vote.person_id]!=vote.choice:
             raise ValueError('Conflicting vote choice for same person/event')
