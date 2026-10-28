@@ -11,7 +11,7 @@
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 30,
-    "canonical_atlas": "PASS_29_LOTS_SHA256_c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c",
+    "canonical_atlas": "PASS_BASELINE_29_LOTS_SHA256_c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c__CURRENT_30_NOT_RUN",
     "full_repo_python": "WINDOWS_EXIT_1_57_FAILED_558_PASSED_28_SKIPPED_24_SUBTESTS",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
@@ -115,12 +115,26 @@
         "HEAD+logs and limits"
       ],
       "result_file": "T006_RESULTADO.md"
+    },
+    {
+      "id": "PFL-CODEX-T007",
+      "title": "Revalidar HEAD actual tras C71: Atlas 30 lotes, URLs documentales y HTTP",
+      "priority": "P0",
+      "file": "T007_REVALIDACION_ATLAS30_HTTP.md",
+      "status": "PENDIENTE",
+      "depends_on": [],
+      "completion_requires": [
+        "git checkout HEAD actual",
+        "canonical Python checker 30 deltas and fresh SHA",
+        "loopback HTTP new source_url stage fields",
+        "selected Python regressions and complete logs"
+      ]
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "ChatGPT Github branch readback, tasks pending, 2026-10-28",
+  "last_verified_by": "Source reports on GitHub inspected by ChatGPT; original Windows stdout in executor temp not independently available. Historical results retained, T007 pending.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd"
 }
