@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 3,
+    "valid": 4,
     "invalid": 0,
     "planning": 0,
-    "used": 3,
-    "remaining": 17
+    "used": 4,
+    "remaining": 16
   },
-  "state": "ACTIVE_3_VALID_17_REMAINING",
+  "state": "ACTIVE_4_VALID_16_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -41,7 +41,7 @@
     "operations_documentary": 396,
     "canonical_python_checker": "NOT_RUN"
   },
-  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_58",
+  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_59",
   "constraints": [
     "Preregister A–J and freeze hypotheses before each execution",
     "Count only actual completed A–J or mark invalid/planning explicitly",
@@ -85,17 +85,28 @@
       "memo": "docs/RIGHTS_AND_PERSON_SCORING_GATE_20261028.md",
       "grade_0_3": 0,
       "CT2_identity": 29
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "status": "VALID_AJ_DOWNSTREAM_MODAL_VS_STRICT_DISSENT",
+      "prereg": "C04_PREREG.json",
+      "result": "C04_RESULT.json",
+      "atlas": "0059",
+      "synthetic": "4/3/2 had 5 false legacy dissent, no strict majority; strict path 11 isolated checks PASS",
+      "grade_0_3": 0,
+      "CT2_identity": 29
     }
   ],
   "atlas_current": {
-    "lots_documentary": 58,
+    "lots_documentary": 59,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 224,
+    "runs_documentary": 225,
     "complaints_documentary": 48,
-    "operations_documentary": 399,
+    "operations_documentary": 400,
     "canonical_python_checker": "NOT_RUN",
     "canonical_sha256": null
   },
-  "next": "PIVOT to different product safety or historical identity boundary: source rights and XML/JSON access blocked without new evidence."
+  "next": "Separate estimand: session-weighted vs vote-weighted clustered uncertainty in evaluation.py; need prereg and new negative cases for unequal cluster sizes."
 }
