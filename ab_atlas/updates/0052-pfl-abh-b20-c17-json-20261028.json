@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0052-PFL-ABH-BRANCH20-C17-JSON-20261028",
+  "parent_batch": "0051-PFL-ABH-BRANCH20-C16-AGGREGATE-20261028",
+  "at": "2026-10-28T12:56:37.265Z",
+  "actor": "chatgpt",
+  "reason": "C17 member metadata parser previously accepted duplicate JSON members; first 2 red/12 pass then nested strict pairs guard yields 14/14 targeted Python pass; no original raw data.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C17-DUPLICATE-JSON",
+        "activity": "Original member projection accepted duplicate keys nested/identity; fail-closed fix with 2 red and 14 green targeted tests on SHA exact sources",
+        "status": "completed",
+        "at": "2026-10-28T12:56:37.265Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C17_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C17_RESULT.json",
+          "tests/test_congress_members_duplicate_json.py"
+        ],
+        "scope": "AB-P input integrity no release uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
