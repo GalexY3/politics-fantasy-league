@@ -1,0 +1,55 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C14",
+  "mode": "AB-P",
+  "status": "VALID_NEGATIVE_LEGACY_RELEASE_GATE_TRUST",
+  "at": "2026-10-28T12:50:11.314Z",
+  "A": {
+    "question": "Is historical release_gate.py sufficient to independently certify release when caller supplies both evidence and trusted_receipts?"
+  },
+  "B": {
+    "H1": "Forged matching receipts + all approved flags make legacy pure function return release true",
+    "H0": "Strong independent receipt validation internal, such inputs denied"
+  },
+  "C": {
+    "prereg": "C14_PREREG.json",
+    "negative": "synthetic six approved docs with caller-forged matching receipts"
+  },
+  "D": {
+    "old_source_blob": "723c77a7cae2009d997ea81391a073f71bb42f87",
+    "old_test_blob": "93c810d6003533b1576d4664182111d8886effe3",
+    "runtime": "Python 3.13.5 exact Git-binary matching original source and test, offline",
+    "method": "6 original unittest cases and extra forged-receipt control"
+  },
+  "E": {
+    "original_tests": "6/6 PASS",
+    "without_receipts": {
+      "release_allowed": false,
+      "person_scoring_allowed": false
+    },
+    "with_caller_forged_receipts": {
+      "release_allowed": true,
+      "person_scoring_allowed": true
+    }
+  },
+  "F": {
+    "adversarial": "The code comments explicitly warn receipts must be independently supplied by server-owned verified registry. The reproduction deliberately violates that trust assumption: it establishes a hazard if imported naively, not an HTTP exploit of existing main. No real actor scoring or activation performed."
+  },
+  "G": {
+    "full_application_reachability": "NOT_TESTED",
+    "official_attestation": "NOT_OBTAINED"
+  },
+  "H": {
+    "N1_new": 0,
+    "V4_percent": 36.9,
+    "CT2_identity_ordinal": 29
+  },
+  "I": {
+    "risk": "Potential release gate fail-open if caller-controlled receipts accepted by new endpoint",
+    "product_decision": "Do not transplant standalone function to main"
+  },
+  "J": {
+    "decision": "REJECT_PORT_LEGACY_RELEASE_GATE, keep no-production-person-scoring policy, require server-owned signing and issuer attestation in future independently gated design, STOP_R5 on this old helper."
+  }
+}
