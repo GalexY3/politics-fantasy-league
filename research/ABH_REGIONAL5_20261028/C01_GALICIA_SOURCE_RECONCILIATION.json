@@ -1,0 +1,126 @@
+{
+  "schema": "pfl.regional.election.dataquality.v1",
+  "election": "Galicia autonomous election 2024-02-18",
+  "sources": [
+    {
+      "publisher": "Xunta Electoral de Galicia / DOG",
+      "url": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+      "type": "official definitive 2024 legal publication HTML",
+      "evidence": "turn133886view2, sections I-II"
+    },
+    {
+      "publisher": "Xunta de Galicia summary",
+      "url": "https://conselleriadepresidencia.xunta.gal/es/relacions-institucionais-e-parlamentarias/informe-dos-resultados-electorais",
+      "type": "secondary executive overview on institutional website",
+      "evidence": "turn469855view1 2024 panel"
+    }
+  ],
+  "primary_general": {
+    "registered": 2693816,
+    "voters": 1515944,
+    "candidacy": 1488805,
+    "blank": 13052,
+    "valid": 1501857,
+    "null": 14187
+  },
+  "provinces": [
+    {
+      "province": "A Coruña",
+      "registered": 1088529,
+      "voters": 619409,
+      "candidacy": 608185,
+      "blank": 5938,
+      "valid": 614123,
+      "null": 5286
+    },
+    {
+      "province": "Lugo",
+      "registered": 337745,
+      "voters": 189939,
+      "candidacy": 186070,
+      "blank": 1663,
+      "valid": 187733,
+      "null": 2206
+    },
+    {
+      "province": "Ourense",
+      "registered": 355833,
+      "voters": 178353,
+      "candidacy": 176022,
+      "blank": 1105,
+      "valid": 177127,
+      "null": 1226
+    },
+    {
+      "province": "Pontevedra",
+      "registered": 911709,
+      "voters": 528243,
+      "candidacy": 518428,
+      "blank": 4346,
+      "valid": 522774,
+      "null": 5469
+    }
+  ],
+  "party_candidacy_votes": {
+    "PP": 711713,
+    "BNG": 470692,
+    "PSOE": 211361,
+    "VOX": 34045,
+    "SUMAR": 29009,
+    "DO": 15442,
+    "PACMA": 5932,
+    "PODEMOS": 4420,
+    "ESCANOS": 2884,
+    "ECG": 1635,
+    "PUMJ": 1572
+  },
+  "overview": {
+    "registered": 2693816,
+    "voters": 1515944,
+    "candidacy": 1488705,
+    "blank": 13052,
+    "valid": 1501757,
+    "null": 14187,
+    "abstentions": 725229,
+    "psdeG_votes": 253750,
+    "pp_votes": 711713,
+    "bng_votes": 470692,
+    "others_votes": 104323,
+    "psdeg_seat_field": 211361
+  },
+  "checks": {
+    "province_sums": {
+      "registered": 2693816,
+      "voters": 1515944,
+      "candidacy": 1488705,
+      "blank": 13052,
+      "valid": 1501757,
+      "null": 14187
+    },
+    "party_sum": 1488705,
+    "overall_excess_to_provinces": {
+      "candidacy": 100,
+      "valid": 100
+    },
+    "identity": {
+      "primary_voters_minus_valid_null": -100,
+      "provincial_voters_minus_valid_null": 0,
+      "overview_voters_minus_valid_null": 0,
+      "primary_valid_minus_candidates_blank": 0
+    },
+    "overview": {
+      "actual_abstention": 1177872,
+      "published_abstention": 725229,
+      "delta": -452643,
+      "psdeG_vote_delta_vs_DOG": 42389,
+      "claimed_2024_seat_typo": 211361,
+      "other_votes_needed_from_DOG": 94939
+    }
+  },
+  "source_position": "DOG raw 2024 general totals preserved unchanged despite discrepancy; provincial and individual party sums coincide with overview valid/candidacy, no silent correction to official original",
+  "data_gaps": [
+    "Potential errata/change log not yet found; no proof of editorial cause",
+    "Manual HTML transcription, not raw XML/PDF hash; no individual candidate list stored"
+  ],
+  "conclusion": "Authoritative source conflict: DOG general aggregate off by +100 vs independent internal identities; executive overview includes separate severe repeated-year/field errors, thus neither page globally authoritative for all fields."
+}
