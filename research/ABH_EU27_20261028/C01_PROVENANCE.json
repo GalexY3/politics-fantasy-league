@@ -1,0 +1,48 @@
+{
+  "schema": "pfl.eu27.provenance.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "report_date": "2026-10-28",
+  "publisher": "European Parliament final election results portal",
+  "years": [
+    2019,
+    2024
+  ],
+  "country_rows": 27,
+  "excluded_rows": "EU-wide total and former 2019 UK; not independent country rows for 2024",
+  "data_grain": "Member-state x election year; turnout % of eligible, women share % of MEPs in constitutive session",
+  "sources": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "women_2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "women_2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "signed_download_page": "https://results.elections.europa.eu/en/tools/download-datasheets/"
+  },
+  "source_mode": "Public official indexed HTML tables transcribed manually; raw CSV and digital signatures NOT obtained, NOT cryptographically authenticated",
+  "source_incidents": [
+    "web.open 502 Bad Gateway on portal dataset routes despite search index full tables",
+    "container requests DNS failure for results.elections.europa.eu",
+    "source page lists signatures, does not substitute for validation of signature itself"
+  ],
+  "measure_quality": [
+    "2019 MEP gender national shares given as WHOLE percent (rounding); 2024 as TWO decimals",
+    "Germany 2024 includes 1.04% 'Other', so women+men need not equal 100%",
+    "EU 2024 total women 38.53% is seat-weighted aggregate, NOT mean of 27 country percentages",
+    "2019 UK excluded because not member in 2024"
+  ],
+  "legal_classification": {
+    "primary_2024_EPRS_5": [
+      "BE",
+      "BG",
+      "LU",
+      "CY",
+      "EL"
+    ],
+    "secondary_EP_factsheet_4": [
+      "BE",
+      "BG",
+      "LU",
+      "EL"
+    ],
+    "interpretation": "Published 2024 prep sheet differs from current factsheet about Cyprus; do not infer change timing, report both."
+  },
+  "no_identifiable_person_data": true
+}
