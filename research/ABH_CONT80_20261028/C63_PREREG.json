@@ -1,0 +1,12 @@
+{
+  "cycle": "C63",
+  "mode": "AB-R",
+  "A": "Does Interior results data catalog expose `distribution last-updated`, `dataset last-updated`, `temporal coverage` and independently verified `first_public_at` for Congress elected XLSX, and are they distinct?",
+  "B": [
+    "All four timestamps verified",
+    "Catalog lists dates for dataset/coverage but not each distribution's initial publication",
+    "Only stale local metadata"
+  ],
+  "C": "Compare current datos.gob.es `Resultados Electorales` main record, XML metadata, two Congreso distributions; enumerate which timestamp fields are actually present and maintain unknown where missing.",
+  "D": "Falsifier dated original per-file publication explicitly provided; no first-publication inference from dataset update; no original XLSX identity assumptions."
+}
