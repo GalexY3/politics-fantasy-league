@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C08",
+  "type": "AB-R",
+  "A": "¿La unidad expediente de Congreso agrupa votos diferentes en un mismo día y cambia exposición/denominador, invalidando una tabla 1 expediente=1 voto?",
+  "B": {
+    "H1": "Same expediente can have two distinct outcomes and different observed vote totals",
+    "H0": "Same expediente implies identical vote and denominator"
+  },
+  "C": "Extract two independent vote outcomes each for expedientes 130/000049 and 130/000050 from official session193 web catalog; compute totals and compare",
+  "D": "Official HTML aggregates only; no nominal bytes, no member completeness",
+  "E": "PENDING",
+  "F": "Result can refute unsafe event unit for this official sample but not population claims",
+  "G": "First publication and no-vote categories not established",
+  "H": "No CT2 promote",
+  "I": "No individual rankings",
+  "J": "Typed vote_id required under expediente_id"
+}
