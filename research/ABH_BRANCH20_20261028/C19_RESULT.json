@@ -1,0 +1,61 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C19",
+  "mode": "AB-META",
+  "status": "VALID_NEGATIVE_BOUNDARY_OBSERVATION",
+  "at": "2026-10-28T13:00:54.889Z",
+  "A": {
+    "question": "Does Atlas delta batch_check reject non-ISO or timezone-naive batch timestamps?"
+  },
+  "B": {
+    "H1": "Accepts all nonempty strings, including impossible date",
+    "H0": "Strict timestamp date+zone required"
+  },
+  "C": {
+    "prereg": "C19_PREREG.json",
+    "positive_cases": 2,
+    "negative_cases": 4
+  },
+  "D": {
+    "GitHub_source": "ab_atlas/atlas_delta.py",
+    "exact_source_blob": "b47fc8e58b722b5b92830e91514cca253074bb90",
+    "native_scope": "Exact batch_check function body copied with same schema/ID_RE/require into isolated Python file, not imported original full repository",
+    "runtime": "Python 3.13.5",
+    "command": "python /tmp/pfl_c19_atlas_boundary.py | tee /tmp/pfl_c19_atlas_boundary.log",
+    "log_sha256": "c3347fc4b9adf125ae3748e0afb7ecff9dbb3307c6a784a2d192b6fea9dc3757",
+    "no_network": true
+  },
+  "E": {
+    "accepted_positive": [
+      "2026-10-28T11:10:00Z",
+      "2026-10-28T12:10:00+01:00"
+    ],
+    "accepted_invalid": [
+      "not-a-timestamp",
+      "2026-10-28T12:10:00",
+      "2026-02-31T00:00:00Z",
+      "2026-10-28"
+    ],
+    "invalid_accepted": 4,
+    "negative_rejected": 0
+  },
+  "F": {
+    "impact": "Malformed at strings can pass the Atlas delta preflight while metadata is displayed as chronological evidence. Does NOT by itself establish that complete replay accepted them, nor that genuine historical files contain such values.",
+    "repair_risk": "Changing global format before auditing all 54/55 lots could break the chain; do not rewrite immutable historical deltas."
+  },
+  "G": {
+    "native_full_atlas_checker": "NOT_RUN",
+    "full_python_suite": "NOT_RUN"
+  },
+  "H": {
+    "scientific_discovery_new": 0,
+    "CT2_identity_ordinal": 29
+  },
+  "I": {
+    "methodology": "Instrument-level defect documented; no empirical political discovery or progress uplift"
+  },
+  "J": {
+    "decision": "RECORD_COMPLAINT_OPEN; DEFER_VALIDATION_REPAIR_TO_T008 after full current Atlas replay and policy for legacy timestamps; STOP_R5_REPETITION."
+  }
+}
