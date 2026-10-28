@@ -6,6 +6,7 @@
 export function canonicalVoteKey(row){
  const required=['institution','legislature','session_id','session_date','observation_seq','expediente'];
  for(const k of required)if(row[k]===undefined||row[k]===null||String(row[k]).trim()==='')throw Error('MISSING_'+k);
+ for(const k of ['institution','legislature','session_id','expediente'])if(String(row[k]).includes('|'))throw Error('UNSAFE_COMPONENT_DELIMITER '+k);
  if(!Number.isSafeInteger(row.observation_seq)||row.observation_seq<1)throw Error('INVALID_OBSERVATION_SEQ');
  if(!/^\d{4}-\d{2}-\d{2}$/.test(row.session_date))throw Error('DATE_NOT_ISO');
  const key=[row.institution,row.legislature,row.session_id,row.session_date,String(row.observation_seq)].join('|');
