@@ -1,9 +1,9 @@
 {
   "campaign": "CONT80",
   "granted": 20,
-  "executed": 8,
-  "unused": 12,
-  "status": "STOP_R5",
+  "executed": 11,
+  "unused": 9,
+  "status": "STOP_R5_AFTER_C71",
   "cycles": [
     "C61",
     "C62",
@@ -12,13 +12,29 @@
     "C65",
     "C66",
     "C67",
-    "C68"
+    "C68",
+    "C69",
+    "C70",
+    "C71"
   ],
-  "atlas_latest": "0029",
+  "atlas_latest": "0030",
   "canonical_python": "NOT_RUN",
   "tests_C67": "28 passed, 5 prior contract-migration failures",
-  "codex": "PENDING_NOT_EXECUTED",
+  "codex": "T001 Atlas 30 deltas, T002 full project suites and T006 real HTTP remain PENDING_NOT_EXECUTED",
   "gates": "0/6",
   "CT2": 29,
-  "V4": 36.9
+  "V4": 36.9,
+  "atlas_lots": 30,
+  "derived_counts": {
+    "nodes": 63,
+    "edges": 81,
+    "runs": 190,
+    "complaints": 44,
+    "operations": 359
+  },
+  "limited_HTTP": "C69 native selected seven JSON-boundary tests PASS; original server.py handler/checked-in HTTP test NOT_RUN due missing checkout/source-transfer failure",
+  "c70": "Primary indexed institutional BOCCL sources mapped accepted nomination CVE BOCCL-12-000986 and later plenary designation CVE BOCCL-12-001042; direct open CACHE_MISS and first_public_at unknown",
+  "c71": "Two official BOCCL URLs added in source_event_registry.py, 32/32 native selected tests PASS, matched Git source and test SHAs; first attempt 1 wrong-test-expectation failure disclosed",
+  "stop_reason": "STOP_R5 after 11 completed A-J: subsequent work requires independent original bytes or complete checkout; nine remaining slots not counted as completed",
+  "evidence_archive": "/mnt/data/PFL_CONT80_C69_C71_evidencia.zip"
 }
