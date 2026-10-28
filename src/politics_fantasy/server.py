@@ -30,6 +30,15 @@ PILOT=PROJECT/'data/pilot_official_webview/20260723_vote_totals_MANUAL.csv'
 FIELD=PROJECT/'data/local_field/report.json'
 
 
+def _unique_request_json_pairs(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('DUPLICATE_JSON_FIELD')
+        result[key] = value
+    return result
+
+
 def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None):
     class Handler(BaseHTTPRequestHandler):
         server_version = 'PoliticsFantasyDemo/0.2'
@@ -100,7 +109,7 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 size=int(self.headers.get('Content-Length','0'))
                 if not 0 < size <= 16_384:
                     return self.reply(413,{'error':'BAD_CONTENT_LENGTH'})
-                body=json.loads(self.rfile.read(size))
+                body=json.loads(self.rfile.read(size), object_pairs_hook=_unique_request_json_pairs)
                 if not isinstance(body,dict):
                     return self.reply(400,{'error':'OBJECT_REQUIRED'})
                 route=urlsplit(self.path).path
