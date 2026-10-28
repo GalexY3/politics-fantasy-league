@@ -1,0 +1,52 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C13",
+  "mode": "AB-P",
+  "status": "VALID_ADVERSARIAL_NEGATIVE_LEGACY_SOURCE_PORT",
+  "at": "2026-10-28T12:48:49.932Z",
+  "A": {
+    "question": "Old pinned source byte verifier trust of explicitly invalid origin port :0?"
+  },
+  "B": {
+    "H1": "Truthy addr.port guard fails to reject port 0",
+    "H0": "Explicit :0 always rejected"
+  },
+  "C": {
+    "prereg": "C13_PREREG.json",
+    "falsifier": "Synthetic bytes + matching caller digest with host www.congreso.es:0, path /es/file.json"
+  },
+  "D": {
+    "branch": "research/pfl-ab20b-historical-identity-20261026",
+    "source_blob": "ccf812cf126b52fb3385efcde212473162eda2f0",
+    "test_blob": "c9a36ffade6d88a6ab900376b53f84adc79612e2",
+    "native": "Python 3.13.5, exact source/test blobs hash-object match, four original unittest plus one extra adversarial call",
+    "network": "none"
+  },
+  "E": {
+    "original_tests": "4/4 PASS",
+    "adversarial": "Legacy verify_pinned_bytes(b'FAKE_SYNTHETIC_BLOB', 'https://www.congreso.es:0/es/file.json',sha256(payload)) returned accepted record without error",
+    "fail_closed_expected": false,
+    "provider_signature_verified": false,
+    "rights_verified": false
+  },
+  "F": {
+    "interpretation": "This is an origin-shape validation defect, NOT evidence of a real HTTP server reachable on port 0. A matching SHA supplied by caller is not proof of publisher origin. Main ingest code already restricts netloc to host or :443; avoid importing weaker guard."
+  },
+  "G": {
+    "project_suite": "NOT_RUN",
+    "security_integrity": "Original source exact and synthetic counterexample reproducible"
+  },
+  "H": {
+    "new_N1": 0,
+    "V4_percent": 36.9,
+    "CT2_identity": 29
+  },
+  "I": {
+    "risk": "Unnecessary origin validator regression if imported old source",
+    "benefit": "Rejected hazardous historical port; no code change needed"
+  },
+  "J": {
+    "decision": "STOP_R5_DO_NOT_PORT_LEGACY_SOURCE_GUARD; keep branch archived; no release gate changes or scoring."
+  }
+}
