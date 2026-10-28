@@ -1,5 +1,7 @@
 # Politics Fantasy League — Political Data Science Laboratory
 
+> **ESTADO CANÓNICO · 28/10/2026.** `main` es la rama de referencia, tras consolidación de la investigación. La campaña [AB-H BRANCH20](research/ABH_BRANCH20_20261028/FINAL_REPORT.md) está **cerrada (19 A–J válidos, C01 inválido, 0 autorizaciones restantes)**. Atlas **55 lotes** con recuentos documentales; **checker Python 55 NO ejecutado**. [T008](tareas_codex/T008_SUITE_COMPLETA_POSIX.md) está **pendiente** por falta de Codex; exige suite Linux integral y replay canónico. V4 36,90% contractual, CT2 identidad 29/100 ordinal, VSDS 1/3, descubrimientos nuevos 0/0/0, gates 0/6. Las pruebas focalizadas y archivos de fuentes no acreditan scoring real ni preparación para lanzamiento. [CURRENT](ab_atlas/CURRENT.md) · [cola Codex](tareas_codex/README.md). Se conservan ramas antiguas divergentes solo como historia, sin fusiones masivas.
+
 **Cola de trabajo pendiente para Codex:** [tareas_codex/README.md](tareas_codex/README.md) y [BACKLOG.json](tareas_codex/BACKLOG.json). Las tareas están **pendientes o bloqueadas**, no ejecutadas; [issue #17](https://github.com/GalexY3/Metodologia-AB/issues/17). No requieren acceso a Codex para consultarse.
 
 ## Reanudación y fuentes — 27/10/2026
