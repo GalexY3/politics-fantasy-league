@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": {
+    "source": "https://votes.parliament.uk/Votes/Commons",
+    "source_ref": "turn452750search3",
+    "preexposure": "Index counts already displayed before C03 prereg; exploratory test, no blind data confirmation",
+    "original_JSON_bytes": 0
+  },
+  "A": "Does using a single pro/con tally or decision for a UK legislative bill erase meaningful variation among procedural amendments and final reading in the same debate day?",
+  "B": {
+    "H1": "Five consecutive distinct bill divisions 96–100 on 2026-10-20 have materially different aye share, even though all concern Northern Ireland Troubles Bill",
+    "H0": "Same bill yields virtually identical yes shares and a unique outcome indicator",
+    "Halt": "Different amendments/procedures have different substantive meanings; cannot interpret variation as opinion change or support for entire bill"
+  },
+  "C": "Fix divisions 96..100 from 20 Oct 2026 and date; inspect parliament search index, compute counted Aye/(Aye+No) and count margins, compare max-min with falsification threshold 15 percentage points, explicitly test procedure stages and titles, refuse averaging as bill support.",
+  "E": "PENDING",
+  "F": "High differences between procedural motions cannot causally be attributed to time or individual changes; denominator counts also vary; no MP-level scores",
+  "G": "One issuer and bill, not cross-legislature representative sample",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No score or forecast of real political party/member",
+  "J": "If high range, enforce event_id+stage and block bill-level reduction; not novel sociological effect"
+}
