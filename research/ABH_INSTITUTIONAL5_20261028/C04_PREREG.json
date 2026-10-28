@@ -1,0 +1,26 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "publisher": "https://www.congreso.es/es/opendata/votaciones",
+    "open_catalog_in_previous_search": true,
+    "document_nonoriginal": "Web HTML publication of tallies, original nominal JSON/XML bytes not yet captured"
+  },
+  "A": "Can the latest accessible official 2026 Congressional vote catalog support a genuine per-ballot contrast with distinct valid decision grains, without original nominal data or first-public timestamps?",
+  "B": {
+    "H1": "Two separate parliamentary decisions in one confirmed session have separable identities and signed yes/no aggregate outcomes",
+    "H0": "Single session can be treated as single decision",
+    "Halt": "Results may reflect overlapping counting universes or metadata/venue mistakes, so no per-person conclusions"
+  },
+  "C": "Read official Congreso open data voting catalog for session 203, capture two separate expedite numbers/labels and yes/no/abstain counts on 2026-10-02; validate integer sums, compare shares; independent attempt to corroborate real decreto-ley identifiers via BOE institutional record; refuse using event date as first-public_at",
+  "E": "PENDING",
+  "F": "Controls for different expedientes, session id, countable denominator and duplicate vote keys",
+  "G": "Same publisher not independent replication; BOE may confirm legislation exists but not vote counts",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No individual or party behavior scoring",
+  "J": "If records are confirmed, place bounded aggregate and honest date provenance; else record non-counting attempt"
+}
