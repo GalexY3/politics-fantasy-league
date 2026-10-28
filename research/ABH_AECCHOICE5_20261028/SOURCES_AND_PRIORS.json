@@ -1,0 +1,91 @@
+{
+  "schema": "pfl.source_prior_ledger.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "study": "Australian House of Representatives 2025, 150 divisions",
+  "sources": [
+    {
+      "id": "AEC-2025-TALLY",
+      "tier": "primary publisher catalog",
+      "url": "https://results.aec.gov.au/31496/Website/HouseDownloadsMenu-31496-Csv.htm",
+      "observation": "Official source catalogue lists all four 2025 files as downloadable final results, 150 division AEC election",
+      "rights": "AEC website public data; check reuse license on original downloads",
+      "limitation": "CSV linked but direct download failed due tool/cache DNS; NO original raw bytes or first-public capture"
+    },
+    {
+      "id": "AEC-MIRROR",
+      "tier": "secondary public GitHub exact-format copy",
+      "url": "https://github.com/rNLKJA/public-services-open-source-data/tree/main/original/datasets/au-federal-election-results/raw",
+      "observation": "Four named AEC-formatted generated June 16 2025 CSV mirror files, Git blob SHA recorded in C01_SOURCE_AUDIT.json, 150/150 joins",
+      "limitation": "Mirror not first-party authenticated, may be altered or version-dependent."
+    },
+    {
+      "id": "AEC-REVIEW-2026",
+      "tier": "primary institutional report after 2025 data",
+      "url": "https://www.aec.gov.au/About_AEC/research/files/analysis-informal-voting-2025-election.pdf",
+      "observation": "AEC April 2026 review, 919,512 informal votes nationally, reports higher informality with more candidates; 25 divisions selected for high informality and therefore NOT representative.",
+      "limitation": "Report outcome already exposed in the source-discovery stage; same issuer, not independent causal identification."
+    },
+    {
+      "id": "AEC-LEGAL",
+      "tier": "primary official rules",
+      "url": "https://www.aec.gov.au/Voting/How_to_Vote/Voting_HOR.htm",
+      "observation": "Formality typically requires consecutive preferences over all boxes, so more candidates plausibly raise instruction burden",
+      "limitation": "Does not prove errors caused by extra candidates."
+    },
+    {
+      "id": "M-M-2025",
+      "tier": "independent peer-reviewed scientific prior",
+      "url": "https://doi.org/10.1111/1475-4932.12877",
+      "authors": "McGinn and Maruyama",
+      "observation": "Economic Record 2025 causal analysis of 2004–2016 ballots reports greater candidate counts cause higher informality using boundary-induced variation and robustness, prior mechanism is ALREADY published.",
+      "limitation": "Our 2025 cross-sectional FE/CV does not reproduce the identification assumptions, controls, or causal estimate; cannot claim novelty."
+    }
+  ],
+  "prior_updates": [
+    {
+      "id": "P01",
+      "claim": "More candidates associated with higher district informal ballot rates",
+      "before": "Independent older study and AEC 2025 review already support, not novel; two specific 13-candidate high-informal divisions already exposed",
+      "after": "N=150 2025 divisions Pearson 0.5764, Spearman 0.6907, excl two preexposed Spearman 0.6798",
+      "decision": "Cross-temporal descriptive consistency, NOT new original mechanism or causal inference, no N1/N2/N3."
+    },
+    {
+      "id": "P02",
+      "claim": "More nominations retain signal after strong conventional controls",
+      "before": "Potential confounding by state, AEC geography class, close-of-rolls enrolment",
+      "after": "R2 0.4685 to 0.6329 (+0.1644), coefficient +0.838 pp informal per candidate, HC3SE 0.112",
+      "decision": "Additional observational support, strong but noncausal."
+    },
+    {
+      "id": "P03",
+      "claim": "Ballot complexity signal is solely Riverina and Calwell",
+      "before": "Two 13-candidate examples preexposed",
+      "after": "Spearman after excluding both 0.6798, >6 vs <=6 gap 2.566pp falls to 2.480pp excluding both",
+      "decision": "Not driven only by these two anecdotes, but other confounding remains."
+    },
+    {
+      "id": "P04",
+      "claim": "Choice count provides useful geographical holdout incremental fit",
+      "before": "Uncertain; competent simple pre-election baseline required",
+      "after": "Leave-state-out 8 states, MAE demographic+prepoll census 2.3958pp vs adding nominations 1.9801pp, gain +0.4157pp, exceeds prereg +0.25 criterion",
+      "decision": "Supports retrospective holdout descriptive utility; not dated pre-event forecast or independent test on future election."
+    },
+    {
+      "id": "P05",
+      "claim": "Primary originals are authenticated",
+      "before": "Unknown",
+      "after": "AEC catalogue exists, GitHub mirror AEC-like generated header and Git blob verified, source national totals match AEC 919,512; **0 official download bytes directly fetched**",
+      "decision": "Maintain third-party mirror tier; T024 needed. No first_public_at, no original SHA256."
+    }
+  ],
+  "scientific_identity": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "reason": "Published independent prior already establishes choice-overload effect; observational confirm in 2025 cannot count as novel 2/3 PFL mechanism."
+  }
+}
