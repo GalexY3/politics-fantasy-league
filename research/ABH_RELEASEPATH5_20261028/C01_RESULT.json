@@ -1,0 +1,50 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "source_branch": "research/pfl-abh5-aec-choice-20261028",
+  "source_head": "c98b93587e97dab34a93dfec7bba1df3be8b6b45",
+  "method": "AB 3.2.1 R1-R5 O3-O7",
+  "type": "AB-P",
+  "n_assisted": 0,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "V4_before": 36.9,
+  "V4_after": 36.9,
+  "release_gates_before": 0,
+  "release_gates_after": 0,
+  "scientific_claim": "No new N1, N2 or N3 scientific finding. Product auditing may unlock criteria-bound symbolic achievements only.",
+  "limitation": "Read/review and V8 structural tests; neither full clean native checkout nor external DPO/security audit is claimed.",
+  "cycle": "C01",
+  "D": 1,
+  "A": "Which evidence-backed product milestones and gates block actual 100% completion?",
+  "B": {
+    "H1": "At least six major level0 and six open release gates require real work",
+    "H0": "A real gate ready to pass without independent evidence"
+  },
+  "C": "Fetched exact v4 product scope via Github, computed each of 36 weighted values from native maturity map, all level0 and 1, hypothetical gains and tied gate blockers in Code Mode V8.",
+  "E": {
+    "computed_v4_pct": 36.9,
+    "match_snapshot": true,
+    "levels": {
+      "0": 8,
+      "1": 9,
+      "2": 2,
+      "3": 15,
+      "4": 2,
+      "5": 0
+    },
+    "remaining_pp": 63.1,
+    "level0_max_hypothetical_pp": 20.5,
+    "release_gates_passed": 0
+  },
+  "F": "No automatic scoring from plan. The scope itself is manual adjudication and release gates are separate.",
+  "G": "Baseline original scope and CURRENT, not copied research correlations.",
+  "H": "CT2 29 unchanged",
+  "I": "No person data",
+  "J": "Use quantitative priorities in C05, don't claim 100.",
+  "evidence": [
+    "C01_SCOPE_CRITICAL_PATH.json",
+    "product/progress_scope_v4_20261027.json"
+  ],
+  "status": "VALID_BOUNDED_REAL_SCOPE_AUDIT"
+}
