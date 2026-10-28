@@ -1,0 +1,32 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C14",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_FORECAST_CALENDAR_CONTROL",
+  "A": "Check lexical sorting of date labels falsely certifies calendar identity",
+  "B": "Observed false acceptance of garbage and Feb31, as well as bool horizon treated as numeric",
+  "C": "Ran verbatim original helper logic and proposed helper in standalone Python 3, 4 cases plus valid fold exact; committed code patch and pytest regression",
+  "D": {
+    "source": "src/politics_fantasy/forecast.py",
+    "git_after": "3c64d3b7aadb89bca775e091996e9a11810edfa8",
+    "tests": "tests/test_forecast_calendar_splits.py"
+  },
+  "E": {
+    "reconstructed_red": [
+      "ABC DEF GHI accepted",
+      "2026-02-31 accepted",
+      "horizon=True accepted"
+    ],
+    "standalone_green": "five checks passed including valid split",
+    "pytest_created": "NOT_RUN_IN_FULL_CHECKOUT"
+  },
+  "F": "Calendar guard reduces invalid folds, does not establish as-of availability or true longitudinal field coverage",
+  "G": "No full Linux pytest or Atlas checker; T010 pending",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29
+  },
+  "I": "No sociological field finding",
+  "J": "Next independent model validation, not more lexicographic day variants."
+}
