@@ -1,0 +1,81 @@
+{
+  "schema": "pfl.native.targeted.qa.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "execution_location": "Local isolated reconstructed research files, NOT full GitHub checkout",
+  "runtime": {
+    "python": "3.13",
+    "node": "v22.16.0"
+  },
+  "artifact_blobs": [
+    {
+      "path": "src/politics_fantasy/source_capture_guard.py",
+      "sha": "ad6893c494549c1b866c438c8ce93c678ca85387"
+    },
+    {
+      "path": "tests/test_source_capture_guard.py",
+      "sha": "4d0b4f1324e5c47fe93886244cf90ba2ce7af999"
+    },
+    {
+      "path": "src/politics_fantasy/publication_asof_research.mjs",
+      "sha": "6a9359f4dfff62db9d16c7301f947cef2913ebaa"
+    },
+    {
+      "path": "tests/test_publication_asof_research.mjs",
+      "sha": "104617fdf271e39ec06eaf66628c4e0c961fd403"
+    },
+    {
+      "path": "src/politics_fantasy/parity_comparator_research.mjs",
+      "sha": "6e48fc63e1b71ab4b6b4e9296ad7c1357b040321"
+    },
+    {
+      "path": "tests/test_parity_comparator_research.mjs",
+      "sha": "731fc084897182f4a6d4ccb6a62d41f3fc204ed5"
+    },
+    {
+      "path": "src/politics_fantasy/vote_aggregate_sensitivity.py",
+      "sha": "58552b54ae3d5abeaa8cc9ab5d53448d72159c50"
+    },
+    {
+      "path": "tests/test_vote_aggregate_sensitivity.py",
+      "sha": "278ed41dcc5827053842f036d712d78ff88e4c78"
+    }
+  ],
+  "execution": [
+    {
+      "cycle": "C03",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_source_capture_guard.py' -v",
+      "pass": 8,
+      "fail": 0
+    },
+    {
+      "cycle": "C04+C05",
+      "command": "node --test tests/test_publication_asof_research.mjs tests/test_parity_comparator_research.mjs",
+      "pass": 13,
+      "fail": 0,
+      "by_cycle": {
+        "C04": 6,
+        "C05": 7
+      }
+    },
+    {
+      "cycle": "C06",
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -p 'test_vote_aggregate_sensitivity.py' -v",
+      "pass": 6,
+      "fail": 0
+    }
+  ],
+  "combined": {
+    "python_pass": 14,
+    "node_pass": 13,
+    "total_pass": 27,
+    "fail": 0
+  },
+  "negative_repair_trail": [
+    "C03 pre-module import failed with ModuleNotFoundError; this is installation-level red and not independent proof of buggy prior behavior",
+    "C04+C05 pre-module imports failed with ERR_MODULE_NOT_FOUND",
+    "First C04+C05 green candidate passed 12/13; one test incorrectly expected UNMATCHED_STRATUM when valid fail-closed function raised CATEGORY_MISMATCH. Test expectation refined to accept either explicit rejection; final 13/13"
+  ],
+  "environment_scope": "Exact files Git blob-verified against remote branch. Did NOT run complete repo Python/Node/Atlas, Linux clean checkout, real original downloads, or paid CI.",
+  "originals_captured": 0,
+  "earlier_T010_suite_not_attributed_to_new_HEAD": true
+}
