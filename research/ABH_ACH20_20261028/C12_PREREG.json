@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C12",
+  "type": "AB-P",
+  "A": "Does cross-institution reuse of an external_event_id create a false duplicate in evidence_warehouse.eventDuplicates?",
+  "B": {
+    "H1": "Current dedup detects same external ID across independent source namespaces as false collision",
+    "H0": "The implementation already scopes by source or institution"
+  },
+  "C": "Execute original eventDuplicates on two minimal synthetic event records with same external id different source_id vs same source_id; patch only if red; rerun two controls",
+  "D": "Use original JS source bytes from GitHub, no actual people/data",
+  "E": "PENDING",
+  "F": "Source ID is conservative namespace but may miss true duplicates across files same issuer",
+  "G": "No real-person scoring",
+  "H": "V4 unaffected",
+  "I": "Don't award achievement based synthetic",
+  "J": "Constrain false positive detection, open later issuer-contract investigation"
+}
