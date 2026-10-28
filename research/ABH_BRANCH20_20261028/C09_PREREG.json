@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "PREREGISTERED",
+  "at": "2026-10-28T12:40:35.369Z",
+  "topic": "Forecasted event count must not equal per-opportunity intensity without future opportunity exposure",
+  "preexposure": "Existing forecast.py historical_rate returns Prediction(... expected_events=rate, event_rate=rate, observed_history=n, eligible_exposure=exposure); docstring says prediction requires future exposure forecast.",
+  "A": "Can a future expected count be justified if only retrospective opportunity exposure and rate are known?",
+  "B": {
+    "H1": "current expected_events is numerical rate even when no future horizon/exposure was provided; two distinct estimands are conflated",
+    "H0": "existing output explicitly defines one standardized future exposure; no ambiguity"
+  },
+  "C": {
+    "falsifier": "Same trained rate with future exposure zero, one or five must return distinct expected counts 0,rate,5rate; before exposure known no future count should be claimed",
+    "compatibility": "Preserve existing historical_rate signature/legacy Prediction field if full-repo callers might depend on it; add independently named projection function with explicit exposure and limitation, do not infer future opportunities from events"
+  },
+  "D": {
+    "source_sha": "ef4508fadf3bf4529f5433fb45d266af77782b0a",
+    "data": "synthetic numerical rate only, no politician data",
+    "test": "Direct Python native import of isolated forecast module using exact original contents if feasible, else note code-level assertion only"
+  },
+  "E": "PENDING",
+  "F": "Poisson rate per eligible opportunity can exceed 1; projected count is not probability of event. Exposure estimate itself must be prospective and separately validated.",
+  "G": "Selected controls only; no model calibration with real data",
+  "H": "No scientific effect, novelty score or release progress",
+  "I": "Estimand specification, potential prevention of unit error",
+  "J": "Patch only explicit projection if ambiguity established; no auto validation of underlying rates."
+}
