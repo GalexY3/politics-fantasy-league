@@ -1,3 +1,5 @@
+> **Nota de consolidación (28/10/2026).** Para ejecutar esta ficha tras el fast-forward autorizado, usar **`main` como rama de referencia y HEAD real**, no `research/pfl-abh-branch20-20261028` que figura más abajo como origen histórico. Mantener 37 lotes, no 35. Consultar [índice Codex](../../tareas_codex/README.md). El usuario tiene Codex temporalmente no disponible y esta ejecución está **en espera**, sin CI ni job activo. El contrato de ejecución y los límites restantes se mantienen.
+
 # T008 · Entrega a ejecutor POSIX sobre BRANCH20
 
 **Estado PENDIENTE — 28/10/2026.** La ejecución de T008 NO está acreditada. Esta ficha es una tarea concreta para Codex/u otro ejecutor con checkout íntegro, **no** un ciclo AB por sí misma.
