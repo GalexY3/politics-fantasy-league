@@ -1,0 +1,20 @@
+{
+  "cycle": "C75",
+  "mode": "AB-P",
+  "A": "Does original offline quarantine ingestion suite pass on Linux with true exact-source secure_store, ingest, quarantine_ingest, Congress/Senate schema validators, or do functional errors persist after Windows platform obstacle is removed?",
+  "B": {
+    "H1": "Original tests pass in a POSIX confined store with fake responses",
+    "H0": "Schema/sha/quarantine linkage defects persist and are masked by Windows unsupported error",
+    "H2": "Missing original module or source SHA mismatch prevents valid test"
+  },
+  "C": "Fetch exact GitHub five source files and tests/test_quarantine_ingest.py, verify local git blob for every copy; execute original native pytest on Linux without network; record any failures without rewriting code.",
+  "D": "Any SHA mismatch or original test failure rejects clean-pass claim. Tests use only fixture bytes and do not attest publisher originals, personal statuses or real internet HTTP.",
+  "expectedSourceSHAs": {
+    "store": "4695c8d85924869212d916fa163a8f3548272ebc",
+    "ingest": "913f00079c1eba519b977956e18d61d152a3fe20",
+    "quarantine": "8bf3699c4764366b2c2750eadf9303d6ffa470f5",
+    "congressQA": "7e9d79fb841a1e07f379b77486c29088bbfc6512",
+    "senateQA": "83025d93bfeeac8e89574330e54033eb0ae2ac27",
+    "test": "69d3a1f206997a84999598c1b38a6e1664fd3479"
+  }
+}
