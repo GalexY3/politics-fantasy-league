@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0051-PFL-ABH-BRANCH20-C16-AGGREGATE-20261028",
+  "parent_batch": "0050-PFL-ABH-BRANCH20-C15-MEMBER-PROJECTION-20261028",
+  "at": "2026-10-28T12:54:32.680Z",
+  "actor": "chatgpt",
+  "reason": "C16 read real old GitHub Actions source-probe logs: two original aggregate 350-row replays matched. Main lacks legacy /api/verified-rollcalls, rights/first publication unresolved, reject bulk import.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C16-ORIGINAL-AGGREGATE-NONPORT",
+        "activity": "Historical official aggregate original replay receipt from old CI run 40344682502; current API endpoint missing and rights unadjudicated, no code/data port.",
+        "status": "completed",
+        "at": "2026-10-28T12:54:32.680Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C16_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C16_RESULT.json",
+          "https://github.com/GalexY3/Metodologia-AB/actions/runs/40344682502"
+        ],
+        "scope": "AB-R archive provenance no real scoring",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
