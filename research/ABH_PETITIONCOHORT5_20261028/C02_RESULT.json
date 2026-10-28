@@ -1,0 +1,75 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "lineage": "PETITIONS5 / PR #29",
+  "type": "AB-R",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "evidence_tier": "Public third-party GitHub archive of UK Parliament petitions JSON; Git blobs verified, but not original provider bytes nor first-public timestamps",
+  "generalizability": "180 sequential IDs intention sample, only 66 archived. 114 missing archives NOT zero-signature and not necessarily unissued. 700143 was exposed in prior block.",
+  "safety": "Administrative process only; no ratings, forecasts of election outcome, personal voter data or political preference attribution",
+  "cycle": "C02",
+  "status": "VALID_BOUNDED_ARCHIVE_RESPONSE_THRESHOLD_COVERAGE",
+  "A": "Does the 10k institutional administrative boundary align with presence of published government response in a contiguous-ID archive cohort including low-signature records?",
+  "B": {
+    "H1": "Metadata response coverage concentrated above 10k",
+    "H0": "Many 10k+ with no response or under10k with response"
+  },
+  "C": {
+    "prereg_commit": "46d7c78b8d377522db3458b35c4989ce5f7ffa88",
+    "prereg_amendment": "d9c28da48ee1ee2fa946a425488cf6e01c8aed56",
+    "execution": "Added 140 consecutive IDs frozen before source files; 57 additional JSON copies read in four batches. Combined all 66 available with original 9. Counted closed/rejected, exact signature bands, response metadata and reached threshold timestamps; no imputation for 114 missing archive files. One preexposed 700143, C02 not independent of top12 on that case."
+  },
+  "D": {
+    "dataset": "COHORT180_METRICS.json",
+    "archive_parts": [
+      "ARCHIVE_COHORT40_PANEL.json",
+      "ARCHIVE_140_PART1.json",
+      "ARCHIVE_140_PART2.json",
+      "ARCHIVE_140_PART3.json",
+      "ARCHIVE_140_PART4.json"
+    ],
+    "source": "https://github.com/Jonty/uk_petitions_data"
+  },
+  "E": {
+    "intention_ids": 180,
+    "archive_present": 66,
+    "archive_missing": 114,
+    "closed": 46,
+    "rejected": 20,
+    "below10k": {
+      "n": 53,
+      "response": 0
+    },
+    "at_least10k": {
+      "n": 13,
+      "response": 13
+    },
+    "at_least100k": {
+      "n": 2,
+      "response": 2
+    },
+    "response_lag_n": 13,
+    "median_10k_to_response_days": 15.560005949074075,
+    "max_days": 38.798901979166665,
+    "response_over30_n": 1
+  },
+  "F": "Perfect agreement with a known policy rule in these archived records is not an estimated causal effect; the archive includes only public copies, may omit unpublished/rejected/outdated records. Final total signatures measured after response is outcome-derived and no valid prospective feature.",
+  "G": "New lower-signature cases compared with prior popularity-selected top12, but same administrative issuer and an archival intermediary, not scientific external replication",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No petition topic scoring or signer identity",
+  "J": "Preserve institutional response coverage as source-level measurement, reject mechanism claim."
+}
