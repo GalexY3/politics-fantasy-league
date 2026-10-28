@@ -1,0 +1,29 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "cycle": "C01",
+  "mode": "AB-R",
+  "D": "Source URL from ACH20 C02 record; read web response; data past exposure known, not novel pre-registration of source existence",
+  "A": {
+    "question": "Can the original official Congress JSON for one recorded voting event be independently retrieved, parsed and byte-hashed now, beyond earlier web catalog listing?",
+    "estimand": "Valid original document byte capture and official metadata—not tally inferred from HTML"
+  },
+  "B": {
+    "H1": "Official raw source is available as readable bytes and can be hashed",
+    "H0": "Only discoverable link or unsafely partial text without a binary source",
+    "H_other": "Source content available but no authenticated publication-time metadata"
+  },
+  "C": {
+    "planned": "Direct publicly provided Congress official original JSON and catalog access via tools; if available capture and hash bytes, inspect schema and first-public metadata; explicit no modification/scores",
+    "control": "Discriminate public catalog entry from original byte capture, known past C02 failure; independent alternate official endpoint only if justified",
+    "falsifier": "No exact bytes/parse and/or no first-public source timestamp; do not claim capture"
+  },
+  "E": "PENDING",
+  "F": "Reject HTML summary as original JSON payload and fabricated timestamps",
+  "G": "No third-party replication yet",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "AB-R non-scoring institutional source access",
+  "J": "STOP_R5 if same access failure; pivot to distinct evidence class"
+}
