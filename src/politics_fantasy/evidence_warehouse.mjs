@@ -30,6 +30,10 @@ export function source(reg,v){
  check(idValid(v.id),"SOURCE_ID");
  unique(reg.sources,v.id,"DUPLICATE_SOURCE");
  check(typeof v.url==="string"&&/^https:\/\/[^\s/]+\//.test(v.url),"SOURCE_URL");
+ // Do not accept userinfo or escaped authorities masquerading as source origins.
+ // This is syntax hygiene, NOT independent validation of the claim "OFFICIAL".
+ const authority=v.url.slice(8).split('/')[0];
+ check(authority.length>0&&!/[@\\%?#]/.test(authority),"SOURCE_URL");
  check(["OFFICIAL","PUBLISHED_BY_ACTOR","SECONDARY","JOURNALISTIC","SYNTHETIC"].includes(v.kind),"SOURCE_KIND");
  check(["DOCUMENTED_ONLY","RAW_CAPTURED","TEST_FIXTURE"].includes(v.state),"SOURCE_STATE");
  check(instant(v.observed_at),"SOURCE_OBSERVED_AT");
