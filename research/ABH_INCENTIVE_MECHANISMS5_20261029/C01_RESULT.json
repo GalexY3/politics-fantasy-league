@@ -1,0 +1,102 @@
+{
+  "cycle": "C01",
+  "kind": "AB-R_SYNTHETIC",
+  "engine_commit": "cfaa58a11a62a19a0472655eb24e8da255d62dea",
+  "prereg_commit": "66d99e656b1b8d5a28ad6ef1a827003ba820c77c",
+  "A": "Count-vs-rate-vs-Beta smoothing when synthetic opportunity unequal, latent success skill known",
+  "B": [
+    "raw count better",
+    "rate better",
+    "shrinkage stronger in small sample",
+    "null"
+  ],
+  "C": {
+    "reps_each": 600,
+    "seeds": [
+      12001,
+      13999
+    ],
+    "groups": "8 low opportunity 3, 8 high opportunity 12; p uniform(.25,.75); fair-bias challenge p=.5",
+    "outcomes": [
+      "MAE latent p",
+      "equal-skill winner high-exposure probability"
+    ],
+    "comparators": [
+      "count/12",
+      "success/n",
+      "Beta(2,2) posterior mean"
+    ]
+  },
+  "D": "Deterministic PRNG and code frozen in Git before execution; equal information, same draws",
+  "E": [
+    {
+      "seed": 12001,
+      "reps": 600,
+      "mae": {
+        "count_div12": 0.24261472,
+        "observed_rate": 0.16459602,
+        "beta22": 0.10006079
+      },
+      "top_high_exposure": {
+        "count_div12": 1.0000000000000095,
+        "observed_rate": 0.17310119047619055,
+        "beta22": 0.3499999999999996
+      },
+      "by_exposure_mae": {
+        "count_div12": {
+          "low": 0.37690443630123277,
+          "high": 0.10832499943888657
+        },
+        "observed_rate": {
+          "low": 0.2208670435830979,
+          "high": 0.10832499943888657
+        },
+        "beta22": {
+          "low": 0.11502081425866054,
+          "high": 0.08510077081838978
+        }
+      },
+      "errors": []
+    },
+    {
+      "seed": 13999,
+      "reps": 600,
+      "mae": {
+        "count_div12": 0.24216657,
+        "observed_rate": 0.16729696,
+        "beta22": 0.10067585
+      },
+      "top_high_exposure": {
+        "count_div12": 1.0000000000000095,
+        "observed_rate": 0.21362500000000026,
+        "beta22": 0.36833333333333274
+      },
+      "by_exposure_mae": {
+        "count_div12": {
+          "low": 0.3740485133934354,
+          "high": 0.11028462258788455
+        },
+        "observed_rate": {
+          "low": 0.22430930197119284,
+          "high": 0.11028462258788455
+        },
+        "beta22": {
+          "low": 0.11452312177170484,
+          "high": 0.08682857506467068
+        }
+      },
+      "errors": []
+    }
+  ],
+  "F": "No human-agent responses; count/12 is deliberately count-like for demonstration, strong baselines are observed rate and Bayesian shrinkage. 1200 replications do not imply social sample n=1200.",
+  "G": "No empirical external replication",
+  "H": "Synthetic opportunity creates score distortion but rate-versus-shrinkage is known finite-sample trade-off; no original theoretical claim",
+  "I": {
+    "scope": "mathematical generated world only",
+    "causal": "randomized conditional on simulator assumptions, not PFL deployed",
+    "grade": "0/3",
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "J": "CONTINUE_C02_MECHANISM_SELECTION"
+}
