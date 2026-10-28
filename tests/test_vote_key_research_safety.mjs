@@ -40,3 +40,17 @@ test('C04 reject null/array input in controlled form',()=>{
  assert.throws(()=>canonicalVoteKey(null),/INVALID_ROW/);
  assert.throws(()=>canonicalVoteKey([]),/INVALID_ROW/);
 });
+test('C05 bounded aggregate sample has four distinct ballots in two expedientes',()=>{
+ const samples=[
+  {expediente:'130/000049',yes:175,no:33,abstain:140,total:348},
+  {expediente:'130/000049',yes:344,no:0,abstain:0,total:344},
+  {expediente:'130/000050',yes:167,no:37,abstain:144,total:348},
+  {expediente:'130/000050',yes:347,no:0,abstain:0,total:347},
+ ];
+ const data=samples.map((x,i)=>row({...x,observation_seq:i+1}));
+ const actual=indexVotes(data);
+ assert.equal(actual.count,4);
+ assert.equal(actual.multiVoteExpedientes.length,2);
+ assert.deepEqual(actual.multiVoteExpedientes.map(x=>x.vote_keys.length),[2,2]);
+ assert.equal(new Set(actual.votes.map(x=>x.key)).size,4);
+});
