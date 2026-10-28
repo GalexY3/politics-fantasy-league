@@ -1,3 +1,5 @@
+> **Estado actualizado · 28/10/2026:** Registro **v3** con **90 logros activos y 2 desbloqueados** tras auditoría documental de evidencia histórica limitada: `PFL-GAME-01` y `PFL-SECURITY-01`. [Informe y justificación C09](../research/ABH_ACH20_20261028/C09_RESULT.json) · [cierre ACH20](../research/ABH_ACH20_20261028/FINAL_REPORT.md). El texto de «0/90 al inicio» describe únicamente el baseline V1 y no el estado vigente. No se ha recalculado el 36,90 % V4.
+
 # Los 90 logros del AB Atlas · Politics Fantasy League
 **V1 · 28 de octubre de 2026** · [Registro canónico](ACHIEVEMENTS_REGISTRY.json) · [Salón visual](ACHIEVEMENTS_Atlas_Politics_Fantasy.html) · [Visor AB Atlas](AB_Atlas_Politics_Fantasy.html)
 
