@@ -1,0 +1,100 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0077-PFL-ABH-INCENTIVES5-CLOSURE-20261029",
+  "parent_batch": "0076-PFL-ABH-FORECAST5-CLOSURE-20261029",
+  "at": "2026-10-28T23:25:07.447Z",
+  "actor": "chatgpt",
+  "reason": "Five authorized cycles completed on branch from PR #33; 3 simulated mechanics experiments and 2 bounded source-safety engineering checks, C03 failed harness repaired without double counting. No human PFL evidence, N1=0, child CT2=20 ordinal distinct from parental CT2=29.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INCENTIVES5-C01-20261029",
+        "activity": "AB-R bounded synthetic: unequal opportunities, same latent success distributions; C01 engine 2 seeds ×600, Beta(2,2) lowers toy MAE versus rate and count.",
+        "status": "completed",
+        "at": "2026-10-28T23:25:07.447Z",
+        "evidence": [
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C01_PREREG.json",
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C01_RESULT.json"
+        ],
+        "scope": "AB-R simulation/formal experiment, no social evidence",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INCENTIVES5-C02-20261029",
+        "activity": "AB-R bounded formal incentive counterfactual: selective 4/20 improves observed-rate reward but reduces raw and scheduled-denominator reward by construction.",
+        "status": "completed",
+        "at": "2026-10-28T23:25:07.447Z",
+        "evidence": [
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C02_PREREG.json",
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C02_RESULT.json"
+        ],
+        "scope": "AB-R simulation/formal experiment, no social evidence",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INCENTIVES5-C03-20261029",
+        "activity": "AB-P guarded synthetic score; 18/18 V8 PASS after test harness repair; initial 14/18 attempt preserved, no field scoring.",
+        "status": "completed",
+        "at": "2026-10-28T23:25:07.447Z",
+        "evidence": [
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C03_PREREG.json",
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C03_RESULT.json"
+        ],
+        "scope": "AB-P V8 bounded product fixture tests, no native tests",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INCENTIVES5-C04-20261029",
+        "activity": "AB-R synthetic MCAR/MNAR missingness: naive bias and fail-closed coverage quantified under fabricated laws.",
+        "status": "completed",
+        "at": "2026-10-28T23:25:07.447Z",
+        "evidence": [
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C04_PREREG.json",
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C04_RESULT.json"
+        ],
+        "scope": "AB-R simulation/formal experiment, no social evidence",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-INCENTIVES5-C05-20261029",
+        "activity": "AB-P synthetic manifest canonical replay 18/18 V8 PASS; noncryptographic, not real publisher or person data.",
+        "status": "completed",
+        "at": "2026-10-28T23:25:07.447Z",
+        "evidence": [
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C05_PREREG.json",
+          "research/ABH_INCENTIVE_MECHANISMS5_20261029/C05_RESULT.json"
+        ],
+        "scope": "AB-P V8 bounded product fixture tests, no native tests",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
