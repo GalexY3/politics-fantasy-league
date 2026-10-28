@@ -1,0 +1,28 @@
+{
+  "cycle": "C62",
+  "mode": "AB-R",
+  "status": "CLOSED_PARTIAL_OFFICIAL_SEMANTICS_XML_UNVERIFIED",
+  "A": "Check official Senado distinction abstention versus vote not cast, and whether this proves literal XML NO VOTAN.",
+  "B": "Abstention express voting choice; a no-vote count is different, but XML enum mapping requires schema.",
+  "C": "Read Senate official parliamentary dictionary (review 21 January 2026) and institutional attendance description (updated 7 October 2022), compare with official published voting totals located in search. Search for published nominal XML enumerations; none retrieved.",
+  "D": {
+    "dictionary": "https://www.senado.es/web/diccionarioterminosparlamentarios/index.html?lang=es",
+    "attendance": "https://www.senado.es/web/composicionorganizacion/senadores/asistencias/index.html",
+    "dictionary_revision": "2026-01-21",
+    "attendance_updated": "2022-10-07",
+    "schema_found": false
+  },
+  "E": "Official dictionary treats ABSTENCION as an expressed voting option, unlike persons recorded present but expressly not voting, recorded from 2013-06-04. This does NOT resolve unknown exact NO VOTAN XML field or distinguish all attendance/missing states.",
+  "F": "First web exploratory search preceded Github prereg; comparative targeted read followed it. No complete primary XML/XSD. Do not transform no vote into absence or abstention.",
+  "G": "Primary official Senate dictionary and published attendance context only",
+  "H": "Explicit keep missing/unknown and abstention distinct until source-specific nominal XML and legend obtained; STOP repeated broad search.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "novelty": "0/3",
+    "DRIFT": "D1"
+  },
+  "J": "C63 check original official Interior electoral XLSX newer publisher metadata and version semantics, not recapture unless source differs."
+}
