@@ -1,0 +1,52 @@
+{
+  "cycle": "C71",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_SOURCE_URL_TRACEABILITY_32_PASS",
+  "A": "Add two precise official institutional URLs to the CVE-qualified documentary stage catalog, keeping person/first-publication gates blocked.",
+  "B": {
+    "H1": "CVE-specific original link matches scope/claim and remains informational",
+    "H0": "Links mismatched or bring authorization/timestamp promotion",
+    "H2": "Pages indexed but original direct body fetch cache miss, URL itself not proof of bytes"
+  },
+  "C": "After C71 prereg, copied current exact SHA GitHub source locally; augmented only both CCYL CVE entries with source_url strings pointing to official BOCCL 32/12 and 34/12 indexed pages; ran existing 28 tests plus 4 new original-link integrity cases. First run exposed test-only mistaken forward slash assumption in CCyL query path (1 FAIL/31 PASS); revised test expectation to literal encoded backslash; reran 32/32. Published patched source and SHA-identical test to branch.",
+  "D": {
+    "source_previous_sha": "6d06711c8c4ae238ecc292557e40a024877e6a3f",
+    "source_new_sha": "a1c8f9c61dbac5ec51a5ad17964e0ad473ad683b",
+    "test_sha": "27357510b254d5061c4968d1fc15a2a91a50b7db",
+    "source_commit": "378a12bd9debfd7a8b647a19c93b432b6d5d8ccd",
+    "test_commit": "ae7ffee852d012546ce85fd06bb4816182b8eff6",
+    "before_log": "/mnt/data/pfl_cont80/c71/C71_pytest.log",
+    "after_log": "/mnt/data/pfl_cont80/c71/C71_pytest_after.log",
+    "command": "PYTHONPATH=src python -m pytest -q tests"
+  },
+  "E": {
+    "original_tests": 28,
+    "new_tests": 4,
+    "first_run": {
+      "passed": 31,
+      "failed": 1,
+      "reason": "test assumed slash segments, official query parameter uses backslashes"
+    },
+    "final_run": {
+      "passed": 32,
+      "failed": 0,
+      "seconds": 0.07
+    },
+    "github_blobs_match_local": true,
+    "publication_timestamps_verified": 0,
+    "release_ready": false,
+    "real_person_scoring": false
+  },
+  "F": "Neither HTTP route nor full app suite executed. Official URL index can be checked in search, but original response direct fetch had cache miss; no original-byte SHA, signature or precise first availability. Failed test corrected because test expectation wrong, not code bug.",
+  "G": "SHA-identical GitHub original code and new test rerun on native Python; URL content supported by institutional official indexed text, no person data reproduced.",
+  "H": "Increased documentary traceability for two separate stage sources, not identity certification. STOP_R5 until an authenticated original or complete checkout provides distinct evidence.",
+  "I": {
+    "V4_percent": 36.9,
+    "CT2_ordinal": 29,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "new_N1_N2_N3": "0/0/0",
+    "DRIFT": "D1"
+  },
+  "J": "Close actual C69–C71 subset of remaining 12 authorized cycles; append Atlas 0030, update Codex T006 and keep unspent slots untouched."
+}
