@@ -1,3 +1,5 @@
+**Estado vigente 28/10/2026 — CONT80 terminado 20/20:** [T008 suite íntegra Linux/POSIX](T008_SUITE_COMPLETA_POSIX.md) **PENDIENTE**. Los ciclos C73–C80 ejecutaron ocho tests-suite originales con módulos SHA idénticos a Git: **89 PASS + 14 subtests PASS** en Linux (solo ingesta, almacén y auditoría; no la suite global). [Informe](../research/ABH_CONT80_20261028/C77_C80_POSIX_FINAL.md). **Atlas 35 lotes** con checker canónico pendiente, T007 solo comprobó 31. T005 originales institucionales bloqueada. La autorización de 20 ciclos está agotada.
+
 **Última actualización de tareas (28/10/2026):** [T008 — ejecutar el pytest completo en Linux/POSIX](T008_SUITE_COMPLETA_POSIX.md) está **PENDIENTE**. C73-C76 comprobaron realmente 31 tests +14 subtests de ingesta sobre fuentes Git SHA exactas, **no** la suite global. [Informe](../research/ABH_CONT80_20261028/C73_C76_POSIX_REPORT.md). Atlas hasta `0034` / 34 lotes; checker canónico para ese nuevo estado no ejecutado. T005 sigue bloqueada.
 
 # Cola de tareas pendientes para Codex — Politics Fantasy League
