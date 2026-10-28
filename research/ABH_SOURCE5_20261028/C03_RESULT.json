@@ -1,0 +1,50 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "cycle": "C03",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_TESTED_SOURCE_BYTE_GUARD",
+  "A": "Distinguish raw OOXML bytes/structure from catalog listings and fake XLSX, without false provenance claims",
+  "B": {
+    "H1": "Native byte-backed guard rejects insufficient or malicious inputs",
+    "H0": "Metadata or HTML is accepted as original XLSX"
+  },
+  "C": {
+    "prereg_before_code": "d3fd4294fcd674f110310268b881a76b0eb56c37",
+    "red": "Python unittest import failed before implementation (1 ERROR, 0 tests run); not a behavior-level red regression",
+    "green": "8 unittest cases PASS on Python 3.13",
+    "procedure": "Ran module and exact repository-path test locally, compared local Git blobs to GitHub fetched blobs",
+    "test_command": "cd /mnt/data/pfl_source5/project && PYTHONPATH=src python -m unittest discover -s tests -p test_source_capture_guard.py -v"
+  },
+  "D": {
+    "code": "src/politics_fantasy/source_capture_guard.py",
+    "code_git_blob": "ad6893c494549c1b866c438c8ce93c678ca85387",
+    "test": "tests/test_source_capture_guard.py",
+    "test_git_blob": "4d0b4f1324e5c47fe93886244cf90ba2ce7af999",
+    "test_inputs": "Synthetic tiny valid OOXML ZIP; empty and HTML payload, unsafe URL, bad SHA, incomplete archive, path traversal and trailing bytes"
+  },
+  "E": {
+    "green_pass": 8,
+    "green_fail": 0,
+    "source_originals_captured": 0,
+    "sha256_of_real_source": null,
+    "artifact_structure_detects": true,
+    "origin_authenticated": false
+  },
+  "F": "Validating an already-supplied ZIP with source-looking URL and SHA cannot independently prove issuer delivered those bytes. Shallow OOXML structural check is NOT schema, workbook semantic validation or malware security guarantee. Must apply strict TLS transport and independent source capture in T011.",
+  "G": "No full integrated Linux pytest; no original XLSX; synthetic only; GitHub exact byte matches verified",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0
+  },
+  "I": "Non-scientific reliability instrument, no new social finding",
+  "J": "Retain guard; Codex T011 to use it on original capture; continue C04 publication-time validation"
+}
