@@ -2,6 +2,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
+from math import isfinite
+from types import MappingProxyType
 from typing import Mapping
 from .events import PoliticalEvent, as_utc, observable_event_revisions
 
@@ -11,6 +13,36 @@ class Rule:
     version: str
     weights: Mapping[str, float]
     per_kind_week_cap: Mapping[str, int]
+
+    def __post_init__(self):
+        """Validate and snapshot a synthetic scoring rule before use.
+
+        ``frozen=True`` is shallow: caller-owned dictionaries would otherwise
+        allow post-construction changes to scores without a new rule version.
+        This does not authorize scoring identifiable political actors.
+        """
+        if not isinstance(self.version, str) or not self.version.strip():
+            raise ValueError('INVALID_RULE_VERSION')
+        if not isinstance(self.weights, Mapping) or not isinstance(self.per_kind_week_cap, Mapping):
+            raise ValueError('INVALID_RULE_MAPPING')
+        if not self.weights or set(self.weights) != set(self.per_kind_week_cap):
+            raise ValueError('RULE_KIND_SET_MISMATCH')
+        for kind, weight in self.weights.items():
+            if not isinstance(kind, str) or not kind.strip():
+                raise ValueError('INVALID_RULE_KIND')
+            if isinstance(weight, bool) or not isinstance(weight, (int, float)) or weight < 0:
+                raise ValueError('INVALID_RULE_WEIGHT')
+            try:
+                valid = isfinite(weight)
+            except OverflowError:
+                valid = False
+            if not valid:
+                raise ValueError('INVALID_RULE_WEIGHT')
+        for cap in self.per_kind_week_cap.values():
+            if type(cap) is not int or cap < 0:
+                raise ValueError('INVALID_RULE_CAP')
+        object.__setattr__(self, 'weights', MappingProxyType(dict(self.weights)))
+        object.__setattr__(self, 'per_kind_week_cap', MappingProxyType(dict(self.per_kind_week_cap)))
 
 
 DEMO_RULE = Rule(
