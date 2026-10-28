@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "lineage": "PETITIONS5 / PR #29",
+  "type": "AB-R",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "evidence_tier": "Public third-party GitHub archive of UK Parliament petitions JSON; Git blobs verified, but not original provider bytes nor first-public timestamps",
+  "generalizability": "180 sequential IDs intention sample, only 66 archived. 114 missing archives NOT zero-signature and not necessarily unissued. 700143 was exposed in prior block.",
+  "safety": "Administrative process only; no ratings, forecasts of election outcome, personal voter data or political preference attribution",
+  "cycle": "C01",
+  "status": "VALID_BOUNDED_NEGATIVE_SOURCE_ACCESS_COVERAGE",
+  "A": "Can preregistered initial 40 consecutive IDs support a non-popularity selected cohort of at least 20 accessible official petition records?",
+  "B": {
+    "H1": "At least 20 accessible",
+    "H0": "Fewer than 20 available"
+  },
+  "C": {
+    "prereg_commit": "ec0bd1c669fd2a5e8c8ab9a79a11940fa9191189",
+    "execution": "Attempted original first-party JSON access to IDs 700120..129 and direct URL known 700143; most returned cache miss/not accessible. Found third-party GitHub archive (Jonty) and enumerated 700120..159 without looking at signature outcomes. Fetched exact nine public archive JSON files and saved each git blob; source access and 9/40 coverage are actually verified. Rejected 20/40 coverage minimum; R5 adaptive extension 140 more IDs preregistered in an amendment before opening."
+  },
+  "D": {
+    "archived_first40": "ARCHIVE_COHORT40_PANEL.json",
+    "original_service": "https://petition.parliament.uk/petitions.json",
+    "mirror": "https://github.com/Jonty/uk_petitions_data",
+    "amendment": "C02_C05_AMENDMENT_BEFORE_EXPANSION.json"
+  },
+  "E": {
+    "initial_IDs": 40,
+    "archive_present": 9,
+    "absent_archive": 31,
+    "initial_samples_below10k": 6,
+    "initial_10k_plus": 3,
+    "initial_100k_plus": 2,
+    "original_api_binary_bytes_authenticated": 0,
+    "initial_20_minimum_reached": false
+  },
+  "F": "Absence of 31 GitHub JSON files is not absence of petitions or proof of rejection. Third-party GitHub is not Parliament official capture despite preserving JSON attributes. One archive row 700143 was known in prior campaign.",
+  "G": "No independent issuer replication; negative access pre-registration, valid evidence bottleneck audit",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No political scoring",
+  "J": "Bounded cycle executed, hypothesis H1 rejected. One adaptive expansion prereg before accessing any 700160..299 files."
+}
