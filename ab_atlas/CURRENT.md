@@ -1,3 +1,15 @@
+# AB Atlas · ChatRelay CR01 auditada · 32 lotes · 28/10/2026
+
+**Campaña independiente `59e1f051-b3c6-4d6a-9ba5-670017942347`: 1 ciclo documental AB-P A–J ejecutado (CR01), 0 inválidos y 0 de planificación; de los 5 de esta petición quedan 4.** [Prerregistro previo a la matriz exhaustiva](../research/CHATRELAY_59e1f051_20261028/C01_PREREG.json) · [resultado y matriz IC04–IC23](../research/CHATRELAY_59e1f051_20261028/CR01_RESULT.json) · [lote 0032](updates/0032-pfl-chatrelay-59e1f051-cr01-20261028.json). El hecho de que Atlas 0020 ya incluía runs se había visto antes del prerregistro y figura como exposición post hoc, no como descubrimiento prospectivo.
+
+**Verificación directa SHA-fijada:** 20 prerregistros y 20 resultados JSON IC04–IC23 accesibles y con identificadores correspondientes; lote Atlas 0020 con exactamente 20 `run.add` de esos IDs y tres complaints negativas conservadas. **IC20 está registrado como `CLOSED_INCOMPLETE_JSONL_NEGATIVE`; no aparece pendiente.** Esto comprueba trazabilidad documental, **no** la integridad temporal de todos los prerregistros ni la ejecución nativa histórica de cada resultado. Auditoría de `NO VOTAN` sigue siendo `POST_HOC_AUDIT`, sin equivalencia XML institucional acreditada.
+
+**Atlas último 0032:** 32 lotes, conteos **derivados** 63 nodos, 81 relaciones, 192 runs, 44 complaints, 361 operaciones, si el replay del nuevo lote no revela error. **Checker Python canónico de 32 lotes: NOT_RUN; SHA canónico de 32 UNKNOWN.** [Codex T007](../tareas_codex/T007_RESULTADO.md) reporta exit 0 para los **31 lotes previos** (SHA `ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca`), 55 tests focalizados HTTP/registro PASS en Windows. El nuevo lote 0032 y pruebas POSIX de T002/T004 aún necesitan verificación pertinente; no atribuirle a T007 validación del nuevo HEAD.
+
+**Sin promoción:** V4 36,90 % contractual; CT2 identidad 29/100 ordinal; VSDS 1/3; N1/N2/N3 nuevos 0/0/0; gates 0/6. No se han publicado originales privados, fusionado main, iniciado CI costosa ni habilitado scoring real. R5: no repetir auditoría de existencia; para seguir se necesita una prueba instrumental POSIX discriminante o nuevo original legítimo.
+
+---
+
 # AB Atlas · T007 verificada · 28/10/2026
 
 Codex revalidó el checkout `af090f5`: el checker Python oficial pasó con **31 lotes, 63 nodos** y SHA canónico `ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca`. El replay confirmó **81 relaciones, 191 runs, 44 incidencias y 360 operaciones**. En HTTP real de loopback se comprobaron las URL de ambos CVE BOCCL y la cuarentena; los siete módulos focales sumaron **55 pruebas aprobadas**. Ver [T007_RESULTADO](../tareas_codex/T007_RESULTADO.md).
