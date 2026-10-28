@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C01",
+  "type": "AB-P",
+  "D": "Inspect pinned GitHub SHAs; no actual full Linux execution this cycle",
+  "prereg_context": "T010 result and claims already visible before prereg; post hoc scrutiny of existing repair, prospectively specified audit of diff and critical boundaries, not an independent experiment on efficacy.",
+  "A": {
+    "question": "Does PR #18 have a bounded repair for broken Atlas and HTTP Unicode test without altering actual data or production server semantics?",
+    "truth_contract": "Read exact diff, inspect changed production/test paths; reported Linux results remain executors' claims until independently rerun."
+  },
+  "B": {
+    "H1": "Repair confined to executable Atlas timestamps and HTTP test encoding with unchanged server behavior",
+    "H0": "Patch introduces or hides altered semantics/unbounded changes",
+    "H_other": "Evidence artifacts/metadata inflate changed-file count without production changes"
+  },
+  "C": {
+    "instrument": "GitHub compare main ... fix, inspect exact source and test changes, record suspicious paths or unverified tests",
+    "baseline": "T009 historical errors and main broken Atlas, same source tree",
+    "falsifier": "Any unaccounted sensitive production change, altered Atlas digest rules, or changed HTTP server to accept malformed JSON"
+  },
+  "E": "PENDING",
+  "F": "Adversarial changed files and claims-vs-run comparison",
+  "G": "No independent full Linux replication expected",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "QA limited, not new sociological finding",
+  "J": "REPAIR if mismatch, otherwise retain PR as separate pending-human-review"
+}
