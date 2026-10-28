@@ -1,0 +1,12 @@
+{
+  "cycle": "C79",
+  "mode": "AB-P",
+  "A": "Do all current checked-in private_audit tests covering malformed ledgers, orphan objects, mixed reviews, nonfinite JSON and SHA reconciliation pass on Linux exact-source checkout?",
+  "B": {
+    "H1": "All original audit tests pass on POSIX",
+    "H0": "Audit integrity or bad row rejection has an independent failing original case",
+    "H2": "SHA mismatch or unsupported private dirfd means not executable"
+  },
+  "C": "Preregister. Fetch full tests/test_private_audit.py exact GitHub blob, write original bytes to local tree, verify SHA, run pytest with byte-identical private_audit.py and secure_store.py; preserve first result and code unchanged.",
+  "D": "If any test fails preserve detailed negative and do not call suite green; no implicit attribution of actual institutional person data."
+}
