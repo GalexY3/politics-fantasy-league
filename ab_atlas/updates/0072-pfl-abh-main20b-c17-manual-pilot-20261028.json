@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0072-PFL-ABH-MAIN20B-C17-MANUAL-PILOT-20261028",
+  "parent_batch": "0071-PFL-ABH-MAIN20B-C16-HTTP-JSON-20261028",
+  "at": "2026-10-28T14:41:57.383Z",
+  "actor": "chatgpt",
+  "reason": "C17 prereg local manual aggregate corruption isolation; invalid CSV quarantined, focused 5 cases, full T009 pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C17-MANUAL-PILOT-FAILCLOSED",
+        "activity": "Protect local fiction game state from malformed manually transcribed aggregate CSV. No real data.",
+        "status": "completed",
+        "at": "2026-10-28T14:41:57.383Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C17_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C17_RESULT.json"
+        ],
+        "scope": "AB-P local pilot display, gates unchanged",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
