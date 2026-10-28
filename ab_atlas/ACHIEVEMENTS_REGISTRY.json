@@ -1,7 +1,7 @@
 {
   "schema": "pfl.achievements.v1",
   "registry_id": "PFL-ACHIEVEMENTS-20261028",
-  "version": 1,
+  "version": 3,
   "created_at": "2026-10-28",
   "project": "Politics Fantasy League",
   "v4_baseline": {
@@ -793,12 +793,17 @@
       "title": "Mi primer club",
       "criteria": "Demostración jugable de creación de club, saldo, fichaje y jornada con tests integrados.",
       "rarity": "bronce",
-      "status": "locked",
-      "evidence": [],
-      "verified_by": null,
-      "verified_at": null,
+      "status": "unlocked",
+      "evidence": [
+        "docs/PRODUCTO_LOCAL_v0_2.md",
+        "product/QA_RUN_20261024.txt",
+        "tareas_codex/T008_RESULTADO.md",
+        "tareas_codex/T009_RESULTADO.md"
+      ],
+      "verified_by": "ChatGPT-documentary-crosscheck-limited",
+      "verified_at": "2026-10-28T17:50:00+01:00",
       "created_at": "2026-10-28",
-      "updated_at": "2026-10-28",
+      "updated_at": "2026-10-28T17:50:00+01:00",
       "prerequisites": [],
       "retirement_reason": null
     },
@@ -1149,12 +1154,15 @@
       "title": "La puerta cerrada",
       "criteria": "Demostrar que la demo no se expone a red pública y rechaza orígenes indebidos.",
       "rarity": "bronce",
-      "status": "locked",
-      "evidence": [],
-      "verified_by": null,
-      "verified_at": null,
+      "status": "unlocked",
+      "evidence": [
+        "src/politics_fantasy/server.py",
+        "research/BRANCH8N_20261026/NATIVE_EVIDENCE.json"
+      ],
+      "verified_by": "ChatGPT-documentary-crosscheck-limited",
+      "verified_at": "2026-10-28T17:50:00+01:00",
       "created_at": "2026-10-28",
-      "updated_at": "2026-10-28",
+      "updated_at": "2026-10-28T17:50:00+01:00",
       "prerequisites": [],
       "retirement_reason": null
     },
@@ -1777,6 +1785,25 @@
         "PFL-LAUNCH-10"
       ],
       "registry_version": 1
+    },
+    {
+      "seq": 2,
+      "date": "2026-10-28T17:50:00+01:00",
+      "actor": "ChatGPT-documentary-crosscheck-limited",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-GAME-01",
+      "reason": "Synthetic demo has club, credits, acquisition, round scoring and previous executed integrated Python QA 49/49 on 2026-10-24 plus later T008 (different old checkout); T009 current passed 757 with one unrelated positive HTTP encoding failure. Only fictional demo criteria, not a production gate.",
+      "registry_version": 2
+    },
+    {
+      "seq": 3,
+      "date": "2026-10-28T17:50:00+01:00",
+      "actor": "ChatGPT-documentary-crosscheck-limited",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-SECURITY-01",
+      "reason": "server.py binds 127.0.0.1 and rejects nonlocal Host/Origin; earlier native browser/HTTP check returned 403 for hostile Host. This certifies local-demo perimeter only, not multiuser/auth or public deployment.",
+      "registry_version": 3
     }
-  ]
+  ],
+  "updated_at": "2026-10-28T17:50:00+01:00"
 }
