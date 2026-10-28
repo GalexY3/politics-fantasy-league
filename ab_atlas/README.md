@@ -1,3 +1,5 @@
+> **NUEVO · Atlas de logros · 28/10/2026:** [★ Logros (90)](ACHIEVEMENTS_Atlas_Politics_Fantasy.html) está integrado como quinta vista en [AB Atlas](AB_Atlas_Politics_Fantasy.html), con **10 grandes hitos por cada una de las nueve ramas V4**, medallas por rareza y registro versionado [JSON](ACHIEVEMENTS_REGISTRY.json). Se pueden crear, editar, retirar/restaurar y desbloquear con evidencia verificable mediante importación/exportación JSON. Cambios del navegador = borrador local; GitHub es canónico tras commit. **0/90 otorgados inicialmente**; marcador simbólico **independiente del 36,90 % V4, CT2, VSDS y gates 0/6**. [Política de mantenimiento](ACHIEVEMENTS_README.md) · [validador Python](validate_achievements.py). Sidecar NO altera los lotes Atlas ni repara T010; hay que validar la interfaz en navegador real.
+
 # AB Atlas en Politics Fantasy
 
 **Listo para uso como piloto de seguimiento.** Modo híbrido AB-H (modo proyectos AB-P + investigación AB-R). Este directorio contiene un estado inicial editorial del 26/10/2026; no se actualiza automáticamente con otras carpetas del repositorio ni con el chat.
