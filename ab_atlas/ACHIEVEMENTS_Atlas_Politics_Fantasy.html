@@ -9,7 +9,7 @@
 <header class="top"><div><div class="overline">AB ATLAS / REGISTRO DE HITOS</div><h1>Salón de los logros</h1><p>90 metas de largo recorrido — diez por cada área V4. No se conceden por promesas, archivos creados o tests aislados: cada desbloqueo exige evidencia y verificador. La recompensa es simbólica; el éxito científico y los requisitos de lanzamiento son independientes.</p></div><div class="tools"><button id="create" class="primary">+ Crear logro</button><button id="import">Importar JSON</button><button id="export">Exportar JSON</button><button id="reset" title="Vuelve a la versión de referencia incorporada en el archivo">Restablecer</button></div></header>
 <div class="hero"><div class="metric"><b id="unlocked">0</b><small>Logros desbloqueados</small></div><div class="metric"><b id="total">90</b><small>Logros activos</small></div><div class="metric"><b id="completion">0 %</b><small>Completitud simbólica, NO V4</small></div><div class="metric"><b id="baselinePct">36,90 %</b><small>Madurez contractual V4 (referencia congelada)</small></div></div>
 <div class="notice">Todos los logros comienzan bloqueados hasta adjudicar evidencia. Conseguirlos todos representaría avances sustanciales hacia el proyecto completo, pero NO garantiza el 100 %, la legalidad de uso de datos ni sustituye los seis gates. Los cambios en el navegador son borradores; utiliza «Exportar JSON» y un commit revisado para conservarlos en el Atlas canónico.</div>
-<div class="control"><input id="search" type="search" placeholder="Buscar logro, criterio o ID…" aria-label="Buscar logros"><select id="scope" aria-label="Filtrar por rama"><option value="">Todas las ramas</option></select><select id="status" aria-label="Estado"><option value="all">Todos los estados</option><option value="locked">Pendientes</option><option value="unlocked">Desbloqueados</option></select><button id="export" class="hidden">Exportar</button></div>
+<div class="control"><input id="search" type="search" placeholder="Buscar logro, criterio o ID…" aria-label="Buscar logros"><select id="scope" aria-label="Filtrar por rama"><option value="">Todas las ramas</option></select><select id="status" aria-label="Estado"><option value="all">Todos los estados</option><option value="locked">Pendientes</option><option value="unlocked">Desbloqueados</option></select></div>
 <main id="cards" class="grid" aria-label="Atlas de logros"></main><footer class="foot"><span id="revision">Registro v1</span><span>Áreas y pesos V4 · Logros independientes de CT2, VSDS y gates</span></footer></div>
 <dialog id="modal" class="dialog" aria-labelledby="dialogTitle"><div class="dialog-body"><div class="overline">LOGRO / EVIDENCIA</div><h2 id="dialogTitle">—</h2><div id="dialogMeta" class="meta"></div><p id="criterion"></p><p id="dependency" style="margin-top:12px"></p><p id="evidence" style="margin-top:8px"></p><label>Historial de cambios</label><div id="audit" class="audit"></div><div class="actions"><button id="close">Cerrar</button><button id="edit">Editar</button><button id="retire" class="danger">Retirar</button><button id="relock">Revocar</button><button id="unlock" class="primary">Desbloquear con evidencia</button></div></div></dialog>
 <input type="file" id="file" accept="application/json,.json" hidden><div id="message" class="message" role="status"></div>
@@ -31,7 +31,10 @@ function validate(x){
   if(!['locked','unlocked','retired'].includes(a.status)||!a.title?.trim()||!a.criteria?.trim())throw Error('Estado o criterio incompleto');
   if(a.status==='unlocked'&&(!a.verified_by?.trim()||!Array.isArray(a.evidence)||!a.evidence.length||!a.verified_at))throw Error('Logro no verificable '+a.id);
  }
- for(const a of x.achievements)if((a.prerequisites||[]).some(k=>!ids.has(k)||k===a.id))throw Error('Dependencia inválida '+a.id);
+ for(const a of x.achievements){
+  if((a.prerequisites||[]).some(k=>!ids.has(k)||k===a.id))throw Error('Dependencia inválida '+a.id);
+  if(a.status==='unlocked'&&(a.prerequisites||[]).some(k=>x.achievements.find(z=>z.id===k)?.status!=='unlocked'))throw Error('Desbloqueo sin requisitos anteriores');
+ }
  if(!Number.isSafeInteger(x.version)||x.version<1)throw Error('Versión inválida');
  return true;
 }
@@ -113,6 +116,7 @@ $('edit').addEventListener('click',()=>safeEdit(()=>{
  const title=prompt('Título del logro:',a.title);if(!title?.trim())return;
  const criteria=prompt('Criterio de aceptación verificable:',a.criteria);if(!criteria?.trim())return;
  const reason=prompt('Motivo de la revisión del logro:');if(!reason?.trim())return;
+ if(a.status==='unlocked'&&registry.achievements.some(x=>x.status==='unlocked'&&(x.prerequisites||[]).includes(a.id)))throw Error('Revoca o revisa antes los logros dependientes');
  const previous={title:a.title,criteria:a.criteria};a.title=title.trim();a.criteria=criteria.trim();a.updated_at=new Date().toISOString();
  if(a.status==='unlocked'){a.status='locked';a.evidence=[];a.verified_at=null;a.verified_by=null;}
  commit('achievement.edited',a.id,reason,previous);$('modal').close();
