@@ -1,14 +1,12 @@
-# BRANCH20 AB-H · NUEVA RAMA · 28/10/2026
+# PFL · versión consolidada para main · 28/10/2026
 
-**Rama activa para la campaña nueva:** `research/pfl-abh-branch20-20261028`. Autorización expresa del usuario: **máximo 20 ciclos AB-H BRANCHING**, independiente de CONT80 (agotada 20/20) y ChatRelay (2/5 válidos, 3 pendientes separados).
+**`main` es la referencia operativa tras la consolidación autorizada por el usuario.** La rama `research/pfl-abh-branch20-20261028` permanece como archivo de la campaña; no crear más ramas salvo necesidad justificada. Ver [auditoría de las 26 ramas](../docs/BRANCH_CONSOLIDATION_20261028.md) y [cola Codex](../tareas_codex/README.md).
 
-**Saldo actual:** **1 ciclo documental A–J válido (C02, negativo/inconcluso); 1 inválido (C01, resultado registrado prematuramente, errata publicada); 0 planificación; 18 intentos/ciclos no consumidos**, por criterio conservador de presupuesto. [Estado con desglose](../research/ABH_BRANCH20_20261028/CAMPAIGN_STATUS.json) · [Errata C01](../research/ABH_BRANCH20_20261028/C01_ERRATA.md) · [Resultado C02](../research/ABH_BRANCH20_20261028/C02_RESULT.json) · [tarea T008 para Codex](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md).
+**Campaña actual:** `PFL-ABH-BRANCH20-20261028`, autorización explícita de 20 intentos, **1 AB-R documental válido (C02, inconcluso), 1 intento inválido (C01, resultado escrito antes de observar los datos), 0 planificación y 18 disponibles**. [Estado JSON](../research/ABH_BRANCH20_20261028/CAMPAIGN_STATUS.json), [errata C01](../research/ABH_BRANCH20_20261028/C01_ERRATA.md) y [resultado C02](../research/ABH_BRANCH20_20261028/C02_RESULT.json). Las campañas anteriores CONT80 (20/20 cerrado) y ChatRelay (2 válidos, 3 todavía propios) no se agregan a esta cuota.
 
-**Atlas:** 0037 es el último lote, con padre 0036 y 0035 histórico. Conteos documentales derivados **37 lotes, 63 nodos, 81 aristas, 203 runs, 45 incidencias y 373 operaciones**. **Checker canónico Python 37 lotes NO ejecutado**; T007 solo validó 31. No modificar retrospectivamente el lote 0035.
+**Atlas:** lote más reciente **0037**; recuentos derivados 37 lotes, 63 nodos, 81 relaciones, 203 ejecuciones, 45 incidencias y 373 operaciones. **Replay Python 37 NOT_RUN**; T007 solo certificó 31. **T008 POSIX suite integral permanece PENDIENTE** hasta que Codex o un ejecutor con checkout completo esté disponible, sin prueba global nueva. [T008](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md).
 
-**Prioridad:** T008 suite Python integral Linux y checker 37 lotes en checkout privado íntegro; esta sesión no puede clonar GitHub desde el contenedor (`git ls-remote`: DNS `Could not resolve host: github.com`). Las consultas documentales nuevas C02 encontraron índices oficiales BOCCL 32/12 y 34/12 y textos indexados, pero no adquirieron originales PDF/XML: primera publicación, identidad y base legal siguen no acreditadas. **STOP_R5** para repetir el mismo acceso a fuentes sin instrumento distinto.
-
-**Sin promoción:** V4 36,90 % contractual; CT2 identidad 29/100 ordinal; VSDS 1/3; N1/N2/N3 nuevos 0/0/0; seis gates críticos 0/6. No puntuaciones de personas reales, originales nominales en GitHub, fusión a main ni CI costosa. La ejecución de T008 por Codex no cuenta por sí sola como un ciclo AB-H.
+**STOP_R5 actual:** no repetir accesos documentales del Senado o boletines CCYL sin nuevos originales o lector independiente. En C02 solo se hallaron índices oficiales (no bytes PDF/XML). No inferir `first_public_at`, identidades jurídicas o intención individual. V4 36,90 % contractual; CT2 29/100 ordinal; VSDS 1/3; N1/N2/N3 nuevos 0/0/0; gates críticos 0/6. No scoring de personas reales, datos originales privados en GitHub, CI costosa ni actualización arbitraria de método. Las 18 autorizaciones restantes se reservan para discriminantes nuevos, no para llenar cuota.
 
 ---
 
