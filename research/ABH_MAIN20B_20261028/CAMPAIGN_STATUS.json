@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 8,
+    "valid": 9,
     "invalid": 0,
     "planning": 0,
-    "used": 8,
-    "remaining": 12
+    "used": 9,
+    "remaining": 11
   },
-  "state": "ACTIVE_8_VALID_12_LEFT_C08_FIX_BLOCKED",
+  "state": "ACTIVE_9_VALID_11_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -139,19 +139,29 @@
       "atlas": "0063",
       "finding": "PoliticalEvent frozen shallow metadata alias mutable; Python local reconstruction reproduction, proposed 5 focused checks; production modification DENIED no fix",
       "science_grade": 0
+    },
+    {
+      "cycle": "C09",
+      "type": "AB-R",
+      "status": "VALID_NEGATIVE_REVISION_ORDER_CONTRACT",
+      "prereg": "C09_PREREG.json",
+      "result": "C09_RESULT.json",
+      "atlas": "0064",
+      "finding": "inverted first_public_at versus numeric revision priority, 4 isolated tests, no real source claim",
+      "scientific_grade_0_3": 0
     }
   ],
   "atlas_current": {
-    "lots_documentary": 63,
+    "lots_documentary": 64,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 229,
+    "runs_documentary": 230,
     "complaints_documentary": 48,
-    "operations_documentary": 404,
-    "canonical_python_checker": "NOT_RUN_FOR_63_PATCHES",
+    "operations_documentary": 405,
+    "canonical_python_checker": "NOT_RUN_FOR_64_PATCHES",
     "canonical_sha256": null
   },
-  "next": "C09 independent temporal revision-contract audit; do not retry denied production edits without executor.",
+  "next": "C10 CSV physical line provenance under embedded newline; otherwise STOP_R5 if no new instrument",
   "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS62",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
