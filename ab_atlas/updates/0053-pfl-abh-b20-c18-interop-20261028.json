@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0053-PFL-ABH-BRANCH20-C18-INTEROP-20261028",
+  "parent_batch": "0052-PFL-ABH-BRANCH20-C17-JSON-20261028",
+  "at": "2026-10-28T12:58:13.189Z",
+  "actor": "chatgpt",
+  "reason": "C18 separately preregistered interoperation across typedrefs/date/member modules, 35 native focused PASS exact module blobs, no full repo checkout.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C18-ARCHIVAL-INTEROP",
+        "activity": "Three historic scoped modules combined; 6+14+11+3+1=35 synthetic tests PASS, source blobs exact, no inferred cross-legislature identity or scoring",
+        "status": "completed",
+        "at": "2026-10-28T12:58:13.189Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C18_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C18_RESULT.json",
+          "tests/test_archival_contract_interop.py"
+        ],
+        "scope": "AB-H selected QA only no gates",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
