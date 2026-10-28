@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 4,
+    "valid": 5,
     "invalid": 0,
     "planning": 0,
-    "used": 4,
-    "remaining": 16
+    "used": 5,
+    "remaining": 15
   },
-  "state": "ACTIVE_4_VALID_16_REMAINING",
+  "state": "ACTIVE_5_VALID_15_REMAINING_R5_NEW_SOURCE_DEPENDENCY",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -41,7 +41,7 @@
     "operations_documentary": 396,
     "canonical_python_checker": "NOT_RUN"
   },
-  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_59",
+  "T008": "PENDING_EXECUTOR_FULL_CHECKOUT_POSIX_AND_CANONICAL_REPLAY_60",
   "constraints": [
     "Preregister A–J and freeze hypotheses before each execution",
     "Count only actual completed A–J or mark invalid/planning explicitly",
@@ -96,17 +96,28 @@
       "synthetic": "4/3/2 had 5 false legacy dissent, no strict majority; strict path 11 isolated checks PASS",
       "grade_0_3": 0,
       "CT2_identity": 29
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "status": "VALID_AJ_DISTINCT_CLUSTER_BOOTSTRAP_ESTIMANDS",
+      "prereg": "C05_PREREG.json",
+      "result": "C05_RESULT.json",
+      "atlas": "0060",
+      "findings": "Session-weighted 5 vs record-weighted 10/101 under 100:1 synthetic sizes; separate full-session block bootstrap, 9 isolated checks PASS",
+      "grade_0_3": 0,
+      "CT2_identity": 29
     }
   ],
   "atlas_current": {
-    "lots_documentary": 59,
+    "lots_documentary": 60,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 225,
+    "runs_documentary": 226,
     "complaints_documentary": 48,
-    "operations_documentary": 400,
+    "operations_documentary": 401,
     "canonical_python_checker": "NOT_RUN",
     "canonical_sha256": null
   },
-  "next": "Separate estimand: session-weighted vs vote-weighted clustered uncertainty in evaluation.py; need prereg and new negative cases for unequal cluster sizes."
+  "next": "R5 for repeating synthetic source/majority/bootstrap variants. Priority: fresh machine-readable original source bytes, independent validated temporal identity or complete Linux checkout. 15 cycles authorized remain; do not request another grant before real use."
 }
