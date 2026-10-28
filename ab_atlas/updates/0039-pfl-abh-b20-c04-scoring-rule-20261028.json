@@ -1,0 +1,49 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0039-PFL-ABH-BRANCH20-C04-SCORING-RULE-20261028",
+  "parent_batch": "0038-PFL-ABH-BRANCH20-C03-MAJORITY-20261028",
+  "at": "2026-10-28T04:06:00Z",
+  "actor": "chatgpt",
+  "reason": "Valid C04 AB-P prereg negative guards against mutable Rule mappings, negative caps, infinities, invalid key sets; 6 first-red failures + 2 passes, 8 final focused PASS on exact Git code modules; frozen copy repair. Full suite T008 still pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C04-SYNTHETIC-RULE",
+        "activity": "Synthetic fantasy Rule was shallow-frozen and permitted nonfinite or negative contracts; 6 red and 8 green tests; immutable snapshots and typed constraints, no real scoring",
+        "status": "completed",
+        "at": "2026-10-28T04:06:00Z",
+        "method_version": "AB 3.2.1 O7 AB-P",
+        "scope": "product illustrative synthetic only, zero change V4/CT2/VSDS/gates",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C04_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C04_RED_BASELINE.json",
+          "research/ABH_BRANCH20_20261028/C04_RESULT.json",
+          "tests/test_scoring_rule_contract.py"
+        ],
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "complaint.add",
+      "complaint": {
+        "id": "PFL-BRANCH20-C04-MUTABLE-RULE",
+        "run_id": "PFL-BRANCH20-C04-SYNTHETIC-RULE",
+        "severity": "major",
+        "status": "open",
+        "source": "agent",
+        "category": "synthetic_score_contract_integrity",
+        "at": "2026-10-28T04:06:00Z",
+        "description": "Rule dataclass frozen had mutable dicts and accepted negative cap, infinite weight and mismatched keys; synthetic score can change post-construction or become invalid. Not a real-politician score."
+      }
+    },
+    {
+      "op": "complaint.triage",
+      "id": "PFL-BRANCH20-C04-MUTABLE-RULE",
+      "status": "repaired",
+      "reason": "scoring.py commit c4db5e57e67e7dd775fb0b4bb273d046ab894c6b and tests commit e7c18e04fc0f56b2e5d4a407e86c808dc3b7d3c0; 8 targeted Linux PASS. Global compatibility NOT_RUN."
+    }
+  ]
+}
