@@ -1,0 +1,61 @@
+{
+  "schema": "pfl.holdout5.2023.source_vintage_cohort.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "note": "RTVE display snapshot is not proven from election night by timestamp; source coverage/vintage differ, do NOT assert precise cause; 98.14%/98.4%/100% counted refer to RTVE own display, not JEC general final",
+  "cases": [
+    {
+      "name": "Navarra",
+      "RTVE_url": "https://resultados-elecciones.rtve.es/autonomicas/2023/comunidad-foral-de-navarra/",
+      "publisher_url": "https://parlamentodenavarra.es/en/node/167978",
+      "RTVE_reported_percent_scrutinized": 98.14,
+      "RTVE_reported_voters": 325538,
+      "official_voters": 334493,
+      "abs_gap_voters": 8955,
+      "relative_gap_to_RTVE_pct": 2.751,
+      "RTVE_turnout_pct": 67.76,
+      "official_turnout_pct": 64.45,
+      "turnout_pp_diff": -3.31,
+      "official_electors": 518998,
+      "RTVE_implied_electors_approx_from_rounded_pct": 480428
+    },
+    {
+      "name": "Asturias",
+      "RTVE_url": "https://resultados-elecciones.rtve.es/autonomicas/2023/principado-de-asturias/",
+      "publisher_url": "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+      "RTVE_reported_percent_scrutinized": 98.4,
+      "RTVE_reported_voters": 529193,
+      "official_voters": 545002,
+      "abs_gap_voters": 15809,
+      "relative_gap_to_RTVE_pct": 2.987,
+      "RTVE_turnout_pct": 64.36,
+      "official_turnout_pct": 56.85,
+      "turnout_pp_diff": -7.51,
+      "official_electors": 958658,
+      "RTVE_implied_electors_approx_from_rounded_pct": 822239
+    },
+    {
+      "name": "La Rioja",
+      "RTVE_url": "https://resultados-elecciones.rtve.es/autonomicas/2023/la-rioja/",
+      "publisher_url": "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales",
+      "RTVE_reported_percent_scrutinized": 100,
+      "RTVE_reported_voters": 169803,
+      "official_voters": 170779,
+      "abs_gap_voters": 976,
+      "relative_gap_to_RTVE_pct": 0.575,
+      "RTVE_turnout_pct": 72.48,
+      "official_turnout_pct": 67.79,
+      "turnout_pp_diff": -4.69,
+      "official_electors": 251919,
+      "RTVE_implied_electors_approx_from_rounded_pct": 234276
+    }
+  ],
+  "arithmetic": "diff=official_voters - RTVE_reported; vote delta_pct=100 diff/RTVE; turnout diff=official report rate-RTVE displayed rate. Implied RTVE electorate from rounded turnout is approximate, not recovered source column.",
+  "sensitivity": "If raw voter count and turnout percentage disagree in sign when switching source, a model that joins rates to elector census across versions may infer spurious turnout change. Not proof that either source is wrong; likely population/cut differences, precise reason not verified.",
+  "not_verified": [
+    "RTVE exact snapshot UTC or version identifier, thus cannot assert literal election-night or first-public timestamp",
+    "Same census definition and CERA inclusion",
+    "Raw binary originals from both publishers, no hashes",
+    "Reason for per-party differences or count updates without differential source log"
+  ],
+  "action": "Ingestion must store observed_at and issuer/source_type, preserve both, require single scope+version for all numerator/denominator fields, no nominal inference."
+}
