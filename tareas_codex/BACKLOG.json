@@ -10,9 +10,9 @@
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
-    "atlas_lots": 55,
-    "canonical_atlas": "HISTORICAL_T007_31_LOTS_PASS_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca__CURRENT_55_NOT_RUN",
-    "full_repo_python": "HISTORICAL_WINDOWS_T002:57_FAIL_558_PASS_28_SKIP;HISTORICAL_SELECTED_LINUX_CONT80:89_PASS_14_SUBTESTS;BRANCH20_SELECTED_TARGETED_SUITES_ONLY;CURRENT_MAIN_FULL_LINUX_NOT_RUN",
+    "atlas_lots": 60,
+    "canonical_atlas": "HISTORICAL_T007_31_LOTS_PASS_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca__CURRENT_60_NOT_RUN",
+    "full_repo_python": "HISTORICAL_WINDOWS_T002:57_FAIL_558_PASS_28_SKIP;HISTORICAL_SELECTED_LINUX_CONT80:89_PASS_14_SUBTESTS;BRANCH20_SELECTED_TARGETED_SUITES_ONLY;CURRENT_MAIN_FULL_LINUX_NOT_RUN;MAIN20B_C01_C05_FOCUSED_ONLY_NOT_FULL",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
@@ -133,7 +133,7 @@
     },
     {
       "id": "PFL-CODEX-T008",
-      "title": "Suite Python íntegra Linux/POSIX, replay canónico Atlas 55 lotes y clasificación de regresiones del main consolidado",
+      "title": "Suite íntegra Linux/POSIX en main y checker canónico Atlas 60 lotes (T008 P0)",
       "priority": "P0",
       "file": "T008_SUITE_COMPLETA_POSIX.md",
       "status": "PENDIENTE",
@@ -145,10 +145,13 @@
         "no CI/main merge",
         "record HEAD and filesystem",
         "full Linux pytest from updated main exact HEAD with stdout/stderr/exit and PASS/FAIL/SKIP",
-        "native Python Atlas delta check for 55 patches with canonical SHA256",
+        "native Python Atlas delta check for 60 patches with canonical SHA256",
         "run original + new targeted tests C03/C04, C07-C18 including imported historical helpers and `tests/test_overview_readiness_copy.mjs` only if Node explicitly required",
         "audit C19 open complaint `PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT` and report timestamp schema policy without rewriting old patches",
-        "report no more than evidence: original full suite and native 55-checker remain NOT_RUN"
+        "report no more than evidence: original full suite and native 60-checker remain NOT_RUN",
+        "Include new `ab_atlas/tests/test_delta_timestamps.py` and assess historic 0015->0016 1534s timestamp regression without rewriting old patch",
+        "Include new Python tests `tests/test_strict_group_dissent.py` and `tests/test_cluster_bootstrap_estimands.py`, plus all earlier suites",
+        "Validate C01 strict date preflight on original 60-patch replay; C19 complaint remains OPEN until real full checker and regression suite evidence"
       ],
       "observed_selected_linux_suite": {
         "tests_passed": 89,
@@ -162,7 +165,8 @@
         "Do not change T008 to complete using selected 89/89 POSIX or previously checked 31 deltas",
         "See ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md as current command contract; treat branch references there as historical if main was consolidated",
         "Incorporate C03 majority_sign.py / test_majority_sign_failclosed.py and C04 scoring.py / test_scoring_rule_contract.py, compare targeted red-to-green reproductions with complete suite; do not infer broader compatibility from focused passes.",
-        "Campaign BRANCH20 closed 2026-10-28 with 19 valid A-J and 1 invalid C01; executing T008 does not consume an AB cycle."
+        "Campaign BRANCH20 closed 2026-10-28 with 19 valid A-J and 1 invalid C01; executing T008 does not consume an AB cycle.",
+        "MAIN20B C01–C05 documented only selected controls; full Linux and canonical checker remain NOT_RUN. Never infer release gates from source/rights notices."
       ]
     }
   ],
@@ -170,11 +174,21 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "ChatGPT GitHub evidence ledger 2026-10-28: 55 documentary Atlas lots, 19 valid A-J + C01 invalid; native 55 replay and full project Linux Python suite NOT_RUN. Selected historical tests and repo-bounded checker snippets are not substitutes.",
+  "last_verified_by": "ChatGPT 2026-10-28 GitHub read and focused Python; Atlas60 documentary 226 runs 48 complaints 401 ops, native check NOT_RUN. MAIN20B active 5 valid 0 invalid 15 remaining.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
   "active_campaign": {
+    "id": "PFL-ABH-MAIN20B-20261028",
+    "authorized": 20,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "remaining": 15,
+    "status": "ACTIVE_R5_FOR_REPEATED_SIMULATIONS",
+    "not_part_of_codex_execution": true
+  },
+  "previous_campaign": {
     "id": "PFL-ABH-BRANCH20-20261028",
     "authorized": 20,
     "valid": 19,
