@@ -1,3 +1,5 @@
+> **REFERENCIA ACTUAL MAIN20B · 28/10/2026:** usar `main`, `T008` sigue `PENDIENTE`; [Atlas **60 lotes**](../ab_atlas/CURRENT.md), full Python POSIX y checker nativo `NOT_RUN`. MAIN20B tiene **5 válidos y 15 autorizados disponibles**; BRANCH20 anterior está cerrado por separado. El contrato vigente está en [T008](T008_SUITE_COMPLETA_POSIX.md). Incorporar pruebas de fechas Atlas C01, mayoría estricta C04 y bootstrap por registros C05; mantener sin activar scoring real ni CI costosa.
+
 # Cola de Codex · Politics Fantasy League
 
 **Estado vigente, 28/10/2026: Codex no disponible temporalmente.** Ninguna tarea está ejecutándose en segundo plano. Usar exclusivamente `main` como referencia al retomar. La campaña [AB-H BRANCH20](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) está **CERRADA: 19 ciclos válidos + C01 inválido, cero pendientes**. El [estado Atlas](../ab_atlas/CURRENT.md) alcanza **55 lotes documentales** y el **replay canónico de 55 está PENDIENTE**, al igual que la suite global Python Linux/POSIX.
