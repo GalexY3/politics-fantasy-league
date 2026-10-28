@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "D": {
+    "preexposure": "All three early RTVE result pages previously discovered during C01-C03, this is a retrospective pre-registered analysis of exposed sources, not blind",
+    "official_pages": [
+      "https://parlamentodenavarra.es/en/node/167978",
+      "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+      "https://www.parlamento-larioja.org/junta-electoral-car/proceso-electoral-2023/resultados-electorales"
+    ],
+    "early_RTVE": [
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/comunidad-foral-de-navarra/",
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/principado-de-asturias/",
+      "https://resultados-elecciones.rtve.es/autonomicas/2023/la-rioja/"
+    ],
+    "original_bytes": "No source raw CSV/PDF hashes yet; do not assert original bytes"
+  },
+  "A": "Does a third-party election-night snapshot labelled 100% counted give the same official legal final ballot electorate and list vote counts in the fixed 2023 Navarra, Asturias, and La Rioja cases?",
+  "B": {
+    "H1": "All three early displays differ in voters from later definitive institutional results; the 100% displayed Rioja snapshot is still not final legal source",
+    "H0": "Early and final match in all three on turnout and party ballots",
+    "H_other": "Different denominator (total CERA not processed, number of municipalities, 98% reporting) explains some but not demonstrably all changes"
+  },
+  "C": "For fixed 3 jurisdictions preselected C01-C03, collect official final voter and blank/null figures from original institutional pages, and early election-night RTVE displays reporting 98.14%, 98.4%, and 100%. Compute exact gaps, classify stale/final asymmetry; for Rioja crosscheck party vote differences already recorded, for Navarra/Asturias only major totals and any one documented party as illustration, without claiming complete early party capture. Do not treat poll '100%' as final or date of publication. Output a provenance-first trust contract.",
+  "E": "PENDING",
+  "F": "Differences not necessarily error: expected due election-night partial reporting vs CERA/general, cannot infer why without archive timestamps and field definitions. Use as quality gate only.",
+  "G": "RTVE third-party feed not independent publisher of legal final votes; snapshot timing uncontrolled and not a sociological hypothesis test",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No real person political scoring",
+  "J": "Document vintage mismatch in all 3 if verified; close 5/5 with full source/cycle report and executor backlog for original bytes."
+}
