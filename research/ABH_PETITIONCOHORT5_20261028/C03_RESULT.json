@@ -1,0 +1,52 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "lineage": "PETITIONS5 / PR #29",
+  "type": "AB-R",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "evidence_tier": "Public third-party GitHub archive of UK Parliament petitions JSON; Git blobs verified, but not original provider bytes nor first-public timestamps",
+  "generalizability": "180 sequential IDs intention sample, only 66 archived. 114 missing archives NOT zero-signature and not necessarily unissued. 700143 was exposed in prior block.",
+  "safety": "Administrative process only; no ratings, forecasts of election outcome, personal voter data or political preference attribution",
+  "cycle": "C03",
+  "status": "VALID_BOUNDED_NEAR_FIXED_EXPOSURE_TIME_NEGATIVE",
+  "A": "Does variation in petition exposure time explain variation of final petition signatures in ID-selected published closed cohort?",
+  "B": {
+    "H1": "Exposure variation materially informative",
+    "H0": "Exposure close to fixed six months; little identifying variation"
+  },
+  "C": {
+    "prereg_commit": "cd8ca87c9c613468f55cc376f9926aef44a4ae48",
+    "amendment": "d9c28da48ee1ee2fa946a425488cf6e01c8aed56",
+    "execution": "For 46 closed petitions with opened_at and closed_at, computed full exposure exact days, median/range and Spearman exposure vs log1p signatures; rejected petitions with no open time excluded from exposure but retained in archive cohort denominator. All source data observed retrospectively, no temporal predictions."
+  },
+  "D": {
+    "data": "COHORT180_METRICS.json",
+    "source": "Jonty/uk_petitions_data"
+  },
+  "E": {
+    "opened_and_closed_n": 46,
+    "median_exposure_days": 181.33487081597224,
+    "min_days": 181.16382582175925,
+    "max_days": 182.54502899305555,
+    "spearman_exposure_vs_log_signatures": 0.10447439025596897
+  },
+  "F": "Very narrow near-fixed six-month observation time means simple exposure cannot discriminate why support varies. Correlation on 46 administrative records not evidence of individual mobilization. Rejected 20 have different lifecycle and can't be treated as zero-time exposure.",
+  "G": "One cohort from third-party archive; no distinct historical parliament cohort nor source-authenticated first-public status",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No individual or group political evaluation",
+  "J": "Conserve negative; avoid fitting complex temporal mechanism to nearly constant administrative windows."
+}
