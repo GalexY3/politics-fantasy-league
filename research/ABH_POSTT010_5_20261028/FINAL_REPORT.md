@@ -1,0 +1,36 @@
+# Informe final · Politics Fantasy League · AB-H POSTT010-5 · 28/10/2026
+
+**Contrato:** 5 ciclos autorizados en conversación, 5 ciclos A–J documentados y ejecutados en alcance acotado (**4 AB-P, 1 AB-META**), 0 inválidos, 0 de planificación, 0 pendientes. Serie independiente de ACH20/MAIN20B y del saldo ChatRelay. **Nuevos hallazgos científicos N1/N2/N3: 0/0/0.** VSDS **1/3**, CT2 identidad **29/100 ordinal**, V4 **36,90 % contractual**, gates de lanzamiento **0/6**, todos sin promoción. No hay nuevo scoring real, certificado de fuente original ni confirmación externa.
+
+**Rama única de ejecución:** `research/pfl-abh5-postt010-20261028`, creada desde `ccafa33407d8806296881b89b927fe01bcfd4f8a` (cabeza previa de reparación T010, PR #18). No se ha fusionado `main` ni activado CI costosa. La ejecución Linux completa T010 está documentada por otro ejecutor en esa rama base, **no reejecutada** en esta campaña. Las nuevas pruebas de esta campaña sí se ejecutaron nativamente en un laboratorio local Node 22.16.0 y el código/tests usados se verificaron por sus **blobs Git exactos** frente a GitHub.
+
+## Registro A–J
+
+| Ciclo | Modalidad | Prerregistro y resultado | Contraste efectivamente hecho | Conclusión |
+|---|---|---|---|---|
+| C01 | AB-P | [C01_PREREG.json](C01_PREREG.json), [C01_RESULT.json](C01_RESULT.json) | Compare GitHub `main 968f2b1` vs T010 `ccafa334`: 110 rutas modificadas (la mayoría archivos de evidencia/log), solo Atlas y pruebas focales de código; `batch_check` 3→1 y `cli` 3→1; servidor HTTP no modificado | Auditoría de alcance acotada; **no** revalidación Linux ni revisión de autenticidad de cada log. T010 sigue pendiente de revisión/fusión humana. |
+| C02 | AB-P | [C02_PREREG.json](C02_PREREG.json), [C02_RESULT.json](C02_RESULT.json) | Identidad compuesta y scopes de expediente: dos filas distintas con `|` podían generar la misma clave; controles Node **3 PASS/2 FAIL (rojo)**, tras reparación **5 PASS/0 FAIL** | Rechazo explícito del delimitador en todo componente; conserva claves de entradas previas válidas, no reescribe datos históricos. |
+| C03 | AB-P | [C03_PREREG.json](C03_PREREG.json), [C03_RESULT.json](C03_RESULT.json) | Una fecha ISO sintáctica inexistente pasaba; controles Node **6 PASS/1 FAIL (rojo)**, tras validar calendario gregoriano **7 PASS/0 FAIL** | Rechaza 31 de febrero, días fuera de mes, años bisiestos erróneos y año 0000; acepta 29/02/2024 y 29/02/2000. No prueba fecha institucional de celebración ni de publicación. |
+| C04 | AB-P | [C04_PREREG.json](C04_PREREG.json), [C04_RESULT.json](C04_RESULT.json) | Un objeto con `toString()`, un número y un expediente con espacios podían introducir identidad de tipo ambiguo. Controles Node **7 PASS/3 FAIL (rojo)**, tras contrato estricto **10 PASS/0 FAIL** | Campos de identidad deben ser cadenas sin espacios periféricos; `observation_seq` permanece entero positivo. **Compatibilidad pendiente** con posibles formatos de fuentes reales que requieran normalización tipada previa. |
+| C05 | AB-META | [C05_PREREG.json](C05_PREREG.json), [C05_RESULT.json](C05_RESULT.json) | Revisión de directivas activas `AGENTS.md`, `README.md` y O6, reparación prospectiva de solicitudes 20–45→5–15, suspensión por defecto de ChatRelay; nuevo control C08. **11 PASS/0 FAIL** en Node, código y tests coincidentes por hashes Git | Gobierna futuros bloques sin reasignar campañas históricas ni atribuir eficacia científica a la norma. |
+
+## Reproducción e incidentes
+
+La función original del proyecto es `proyectos/politics-fantasy-league/src/politics_fantasy/vote_key_research.mjs`, Git blob original **`c9a4f22a8efd5f97fe74fc9b371896a1e8b9d358`**. Se reconstruyó byte-exacta en entorno local (comprobación `git hash-object`). El código finalmente publicado y ejecutado tiene blob **`64d203c34867ead3f75c34abdd44c7647cd44328`**; las **11 pruebas** del fichero `tests/test_vote_key_research_safety.mjs` tienen blob **`48bdc130a88b46fe4a55b2d20bf1b78fd03efb36`**, igual al del test local tras cambiar únicamente la ruta relativa del import. El comando nativo fue `node --test test_vote_key_research_safety.mjs`, ejecutado sobre la copia exacta de código. C02, C03 y C04 conservaron sus etapas rojas antes de los cambios; los resultados negativos no se omitieron.
+
+El contraste del ejemplo `research/ABH_ACH20_20261028/C08_CONGRESO_AGGREGATE_SAMPLE.json` conserva cuatro recuentos anteriormente transcritos de la web institucional —dos votaciones por cada uno de los expedientes `130/000049` y `130/000050`— y verifica 4 claves distintas/2 grupos multivotación. **No se descargó en esta campaña ningún XML/JSON nominal original ni se verificaron sus bytes, SHA de publicación o primer instante público.** Este control de ingeniería no es confirmación independiente de resultados parlamentarios.
+
+## Auditoría adversarial y límites
+
+- Los tres defectos corregidos fueron reproducidos **en entradas sintéticas**; no hay evidencia de explotación o afectación sobre filas oficiales reales. El helper sigue siendo **research-only**, no un parser de entrada productiva. No se sometió el checkout completo a Pytest/Node/Linux ni se rehizo el replay canónico Atlas sobre esta nueva rama. Los resultados Linux de T010 pertenecen al ejecutor anterior y a otro SHA.
+- La reparación por rechazo evita introducir claves serializadas nuevas incompatibles, pero obliga a normalizar y acreditar tipos institucionales en una frontera de ingesta futura; no usar coerción silenciosa ni declarar que se conoce el identificador nativo de la votación.
+- CT2=29/100 es **juicio ordinal de trayectoria**, no probabilidad. Ni los 11 tests ni el cambio de gobernanza elevan VSDS o V4. No se encontró un hallazgo 1/3 genuinamente novedoso; N1 portfolio histórico queda **NOT_AUDITED**.
+- El cese de ChatRelay sigue la instrucción explícita del investigador: **no volver a usarlo por defecto**. Las inspecciones históricas CR01–CR03 eran acotadas y no demuestran una superioridad excepcional frente al uso de conectores GitHub y pruebas locales. Sus dos ciclos pendientes siguen siendo una autorización histórica separada y en pausa.
+
+## Evidencia, visualización y decisión
+
+[Estado JSON](CAMPAIGN_STATUS.json) · [CT2 6 puntos registrados](CT2_TRAJECTORY.json) · [Gráfica vectorial CT2 escala 0–100 y zoom](CT2_FULL_AND_ZOOM.svg). Los registros A–J preservan prerregistros anteriores a cada ejecución local, commits de pruebas y correcciones, falsadores, criterios de decisión y evidencia adversarial. El historial del Git conserva las tres versiones de código; no se reescribieron lotes Atlas previos ni registros de T009/T010.
+
+**AB-DECIDE:** `STOP_CAMPAIGN` por presupuesto 5/5, `STOP_LOCAL` para más comprobaciones redundantes de identificadores. Siguiente cuello de botella: revisión/QA integrada de esta rama apilada sobre T010, trazabilidad de bytes originales del Congreso/Senado y verificación de identidad/denominadores/publicación temporal bajo finalidad jurídicamente justificada. No hacer scoring real hasta superar gates independientes.
+
+**Siguiente autorización propuesta condicionada al acceso a evidencia nueva:** un bloque de cinco ciclos AB-H prioritariamente orientado a captura institucional verificable, temporalidad de la fuente y comparador sociológico competente; no repetir los microtests cerrados aquí. **SOLICITO BRANCHING AB-H DE 5 CICLOS.**
