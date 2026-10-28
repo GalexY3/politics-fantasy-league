@@ -1,0 +1,26 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "VALID_NEGATIVE_REVISION_ORDER_CONTRACT",
+  "A": "Numerically greater revision versus latest published original",
+  "B": "H1 supported under deliberately contradictory time labels",
+  "C": {
+    "prereg": "C09_PREREG.json",
+    "fixture": "r1 pub day4, r2 pub day3; asof day5"
+  },
+  "D": {
+    "source_sha": "c866d4933061cb11c515c0e45f7421f5fdae9eee",
+    "local": "Python reconstruction of selection algorithm only, not exact source checkout"
+  },
+  "E": {
+    "selected_logic_checks": "4/4",
+    "result": "revision2 selected despite revision1 later public timestamp"
+  },
+  "F": "Unknown issuer guarantees prevent assuming this occurs in real data; not a demonstrated current source error.",
+  "G": "T009 pending",
+  "H": "CT2/gates unchanged",
+  "I": "Timestamp/version estimand hazard",
+  "J": "NO_PRODUCTION_PATCH; add issuer chronology invariant to future source contract, STOP_R5."
+}
