@@ -1,0 +1,60 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "lineage": "research/pfl-abh5-us-house-20261028",
+  "V4": 36.9,
+  "VSDS": "1/3",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "grade_0_3": 0,
+  "original_csv_bytes": 0,
+  "first_public_at_verified": false,
+  "not_a_causal_claim": true,
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_OFFICIAL_HTML_27_COUNTRY_PANEL_NO_SIGNED_BYTES",
+  "A": "Is there a complete cross-country EP turnout and women MEP balance panel 2019/2024 and can original binaries be authenticated?",
+  "B": {
+    "H1": "27 join from official public data",
+    "H0": "No valid complete panel"
+  },
+  "C": {
+    "prereg_commit": "44f6326eb87c3782fa922a208c3f5ffc2c84a883",
+    "method": "Read official EP country tables after prereg of five questions; exclude EU total and former 2019 UK; manually transcribe 27 rows and validate country ISO keys and ranges; attempt to open signed downloads page and direct container access; 502 and DNS failures. No original binary or signature actually verified."
+  },
+  "D": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "download": "https://results.elections.europa.eu/en/tools/download-datasheets/",
+    "fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+    "provenance": "C01_PROVENANCE.json"
+  },
+  "E": {
+    "countries": 27,
+    "missing_cells": 0,
+    "duplicate_iso": 0,
+    "years": [
+      2019,
+      2024
+    ],
+    "source_data_kind": "EP official rendered HTML/index tables",
+    "verified_original_binary_bytes": 0,
+    "EU_2024_women_seat_weighted": 38.53,
+    "unweighted_countries_2024_women": 35.57037037037038
+  },
+  "F": "Publisher says signature links exist but links inaccessible and signatures not checked; therefore manually transcribed UTF-8 is NOT cryptographically authenticated source. EU aggregate 38.53% cannot replace country average 35.57%, and 2019 gender rounded whole percentages.",
+  "G": "Same EP issuer for turnout and gender; no independent replication or population causal inference.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "scientific_grade": 0
+  },
+  "I": "Ecological aggregate, no persons named",
+  "J": "Accept bounded source-backed transcribed country table and preserve failed original access for Codex T020; continue statistical contrasts without pretending original file authenticated."
+}
