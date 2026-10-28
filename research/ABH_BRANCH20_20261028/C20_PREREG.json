@@ -1,0 +1,44 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C20",
+  "mode": "AB-META",
+  "status": "PREREGISTERED_BEFORE_AUDIT",
+  "at": "2026-10-28T13:01:35.935Z",
+  "topic": "Cross-check authorization budget, prereg/result existence and immutable Atlas parent chain before campaign closure",
+  "preexposure": "C01 has documented premature result and invalid status. C02–C19 documented as valid with specific limits; C19 Atlas0054, 54 patches, 220 runs, 48 issues, 395 operations derived, none native replayed. Authorization was 20 attempts; one remains.",
+  "A": {
+    "question": "Do independently enumerated GitHub files prove all 20 cycles have a prereg and result, preserve the invalid C01, match attributions and allow exactly 0 unspent after C20?"
+  },
+  "B": {
+    "H1": "C01 invalid, C02–C20 valid; files and Atlas chain present, no contradictory budget or skipped cycles",
+    "H0": "at least one file missing, mistyped campaign/cycle, invalid C01 promoted or broken 0035→0054 parent link",
+    "other": "A prereg file may exist without time-order guarantee or be written after execution; flag and don't count without commits evidence"
+  },
+  "C": {
+    "checks": [
+      "Fetch C01–C19 paired prereg/result from GitHub main, validate JSON and cycle IDs; check individual result-scientific level 0 and that campaign metrics have no uplift",
+      "Verify GitHub commit chronology of first and last cycles and sample intermediate cases, not merely file names",
+      "Reinspect batch sequence 0036→0054 and compare run ids against ledger; assert only C01 invalid",
+      "After pre-audit, commit C20_RESULT and new batch0055 append-only; compute 221 runs,48 complaints,396 operations, unless observations differ",
+      "Request new authorization only when actually closed; keep T008 PENDING; no CI"
+    ],
+    "negative_controls": [
+      "C01 premature is not a valid cycle even if Atlas run exists",
+      "read test count ≠ full pytest",
+      "documentary consistency ≠ native Atlas Python checker"
+    ],
+    "limits": "Read-only audit of GitHub record metadata, no full original tests; if failures encountered, record STOP_R5 not promote closure."
+  },
+  "D": {
+    "instrument": "Github connector exact file reads, JS deterministic checks, diff/commit comparison when available",
+    "prefix": "research/ABH_BRANCH20_20261028/",
+    "atlas": "ab_atlas/updates/0036-0054"
+  },
+  "E": "NOT_RUN",
+  "F": "Source docs and self-reported result counts do not independently establish execution or scientific novelty",
+  "G": "Full native suite and Atlas checker still NOT_RUN",
+  "H": "No CT2 or gates promotion",
+  "I": "Methodological authorization and provenance integrity",
+  "J": "Close only if bounded checks satisfy contract; do not retrospectively fix any old timestamp or cycle count."
+}
