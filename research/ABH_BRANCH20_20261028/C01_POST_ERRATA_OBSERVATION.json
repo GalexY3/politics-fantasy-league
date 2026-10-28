@@ -1,0 +1,33 @@
+{
+  "schema": "ab.post_errata_observation.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C01",
+  "status": "OBSERVED_AFTER_PREMATURE_RESULT_NOT_RETROACTIVE_EXECUTION",
+  "same_as_retroactively_valid_cycle": false,
+  "sources": [
+    {
+      "type": "official_index",
+      "url": "https://www.senado.es/web/relacionesciudadanos/datosabiertos/catalogodatos/votaciones/index.html?lang=es_ES",
+      "observed": "XV page lists 600/000001 and 600/000002 with xml link labels"
+    },
+    {
+      "type": "linked_web_retrieval_attempt",
+      "url": "https://www.senado.es/web/ficopendataservlet?legis=15&numEx=000001&tipoEx=600&tipoFich=12",
+      "web_retriever_error": "Failed to fetch ...: OK",
+      "is_http_origin_status_verified": false
+    },
+    {
+      "type": "linked_web_retrieval_attempt",
+      "url": "https://www.senado.es/web/ficopendataservlet?legis=15&numEx=000002&tipoEx=600&tipoFich=12",
+      "web_retriever_error": "Cache miss",
+      "is_http_origin_status_verified": false
+    }
+  ],
+  "xml_original_bytes_acquired": false,
+  "sha256_original": null,
+  "NO_VOTAN_literal": null,
+  "NO_VOTAN_semantics": null,
+  "first_public_at": null,
+  "terminal_decision": "STOP_R5_ON_REPEAT_LINKS",
+  "note": "Post hoc observations only, don't interpret internal web fetch exceptions as HTTP status or institutional evidence."
+}
