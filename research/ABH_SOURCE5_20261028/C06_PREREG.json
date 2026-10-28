@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "authorization": "5 cycles total (1 already executed, 4 remaining)",
+  "branch": "research/pfl-abh5-source-validation-20261028",
+  "pre_implementation": true,
+  "rights": "No real-person scoring, no original nominal data in Git, no CI, no merging.",
+  "CT2_before": 29,
+  "V4_before": 36.9,
+  "N1_before": 0,
+  "ChatRelay": "SUSPENDED",
+  "cycle": "C06",
+  "type": "AB-R",
+  "D": 0.4,
+  "A": "Does collapsing ballot outcomes to expediente erase distinct institutional decisions in the limited already-transcribed Congress aggregates?",
+  "B": {
+    "H1": "Four distinct ballots grouped into two expedientes show materially heterogeneous yes-shares; a collapsed numerator/denominator hides variation",
+    "H0": "Paired ballots are same or variation trivial"
+  },
+  "C": "Read four pre-existing C08 aggregate rows with provenance; compute explicit yes/(yes+no+abstain) per ballot and a naive collapsed-by-expediente baseline, verify arithmetic with independent Python or Node; compare within-expediente ranges; classify descriptive only",
+  "D_data": "Prior hand-transcribed aggregates, no new original independent verification and no first-public timestamps",
+  "E": "PENDING",
+  "F": "Adversarial check for unknown omitted ballot categories, sequence synthetic vs actual issuer vote ID, pseudo-replication",
+  "G": "No random sample, no sample-based inferential statistical test, no causal effect",
+  "H": "CT2 29, cannot award N1 by arithmetic on previously exposed rows",
+  "I": "Avoid personal ranking and make no claims of complete legislature",
+  "J": "Document if aggregated analysis is valid only for four records, propose real corpus capture next."
+}
