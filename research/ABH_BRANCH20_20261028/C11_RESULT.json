@@ -1,0 +1,67 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C11",
+  "mode": "AB-R",
+  "status": "VALID_NEGATIVE_HISTORICAL_SOURCE_TIME_NONPORT",
+  "at": "2026-10-28T12:45:39.262Z",
+  "A": {
+    "question": "Should hardcoded legacy day-granularity time gate be ported into main's strict first-public-time eligibility?"
+  },
+  "B": {
+    "H1": "Day-level conservative for one known BOE date, but unverified exact first public time means different estimator; port would risk accidental gate bypass",
+    "H0": "It is a generic safe equivalent to strict timestamp eligibility"
+  },
+  "C": {
+    "prereg": "C11_PREREG.json",
+    "falsifier": "Exact original code returns safe for 2023-11-22 with first_public_at null, although modern gate requires attested exact timestamp"
+  },
+  "D": {
+    "branch": "research/pfl-sequential-32-20261026",
+    "old_source_blob": "7b6074447407f8453695871c5fd02e07ea8e0265",
+    "native": "Python 3.13.5 direct source reconstructed and verified byte-exact Git blob",
+    "code_tests": "3 surrounding days + two invalid date cases, all 5 PASS"
+  },
+  "E": {
+    "cases": [
+      {
+        "as_of": "2023-11-20",
+        "classification": "NOT_OFFICIALLY_PUBLISHED_BY_DATE",
+        "safe": false
+      },
+      {
+        "as_of": "2023-11-21",
+        "classification": "INTRADAY_UNKNOWN_NO_EXACT_FIRST_PUBLIC_AT",
+        "safe": false
+      },
+      {
+        "as_of": "2023-11-22",
+        "classification": "DOCUMENT_PUBLISHED_ON_PRIOR_DAY",
+        "safe": true
+      }
+    ],
+    "first_public_at_all": null,
+    "person_scoring_all": false,
+    "invalid_dates_rejected": 2
+  },
+  "F": {
+    "adversarial": "The older code's safe flag is explicitly only for day-level retrospective study after the known official publication day; it is NOT an independently evidenced first_public_at timestamp. Integrating it into current provenance_claim_gate would silently loosen the stronger rule requiring attested publication time. The class is also hardcoded to one BOE document. No new official original or publication timestamp acquired."
+  },
+  "G": {
+    "independent_publisher_proof": "NOT_RUN",
+    "native_full_suite": "NOT_RUN"
+  },
+  "H": {
+    "new_N1": 0,
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "gates": 0
+  },
+  "I": {
+    "result": "Keep historical source in archive as methodological contrast; no production integration",
+    "scientific_grade": "0/3"
+  },
+  "J": {
+    "decision": "STOP_R5_NO_PORT: preserve day-level published/known distinction but do not substitute it for main's exact time-availability guard; do not merge old branch."
+  }
+}
