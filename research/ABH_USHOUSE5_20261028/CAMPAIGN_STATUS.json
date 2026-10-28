@@ -1,0 +1,140 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-USHOUSE5-20261028",
+  "branch": "research/pfl-abh5-us-house-20261028",
+  "base_branch": "research/pfl-abh5-divisions-20261028",
+  "base_sha": "88c665d1f8c8587c3b7f263b2d1294eda20f1d59",
+  "granted": 5,
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "remaining": 0,
+    "AB_R": 4,
+    "AB_P": 1
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "99c9a1cc9fe2121bb07b776adc4cabc8f11e9b95",
+      "result": "C01_RESULT.json",
+      "result_commit": "bc98ccd1115310e85b01f2021667e0f50357c764",
+      "status": "VALID_BOUNDED_FIXED_2025_PARTY_COHESION_AGGREGATES",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "preexposed_roll": 180
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "90f342375c4f9f446711a336b85374e6e6b5759a",
+      "result": "C02_RESULT.json",
+      "result_commit": "12e10b3cf5e59395e846235a23c6b5411cd77683",
+      "status": "VALID_BOUNDED_PRESELECTED_2026_TEMPORAL_CONTRAST",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "preexposed_roll": 180
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "86d56fc2246100973f0c6d1f48478d6fbff3d2b7",
+      "result": "C03_RESULT.json",
+      "result_commit": "a40d6cae7d3234bc97ef756500aa3a8339dad70c",
+      "status": "VALID_BOUNDED_POSTEXPOSED_BASELINE_COMPARISON",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "preexposed_all_train_test": true
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "bdf8cdeb64b7796db05e2dad4e22a9f80a3b32be",
+      "result": "C04_RESULT.json",
+      "result_commit": "0fdd521e9e335d0a2751236d6ea28ed302d6ce88",
+      "status": "VALID_BOUNDED_POSTHOC_CASEMIX_COMPOSITION_NULL",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "preexposed_all": true
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-P",
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "81a4992b3835cc673f59e15be2d2fc322b0bf7a4",
+      "result": "C05_RESULT.json",
+      "result_commit": "39d0b279e26d0bbe5b66249f85292c9ba0940b69",
+      "status": "VALID_BOUNDED_NATIVE_EXACT_BLOB_SOURCE_AND_LEAKAGE_GUARD",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    }
+  ],
+  "sources": {
+    "new_primary_publisher": "US House Office of the Clerk",
+    "source": "https://clerk.house.gov/Votes",
+    "unit": "12 consecutive roll calls, 2025 178–183 and 2026 178–183",
+    "publisher_original_HTML_pages_read": 12,
+    "original_raw_XML_bytes": 0,
+    "exact_first_public_at_verified": 0,
+    "candidate_individual_rows_saved": 0
+  },
+  "research": {
+    "party_shared_majority_2025": "1/6",
+    "party_shared_majority_2026": "5/6",
+    "crude_gap_pp": 66.6666666667,
+    "within_suspension_same_majority": "2025 1/1; 2026 5/5",
+    "within_other_same_majority": "2025 0/5; 2026 0/1",
+    "standardized_gap_pp": 0,
+    "independent_sitting_days_2025": 3,
+    "independent_sitting_days_2026": 1,
+    "alternative_baseline_modal_2025_accuracy_2026": "1/6",
+    "procedure_heuristic_accuracy_2026": "6/6",
+    "prospective_model_validated": false,
+    "selection_exposure": "2025 and 2026 roll180 pre-exposed; C03/C04 all labels pre-exposed, so those are posthoc exploratory computations"
+  },
+  "code": {
+    "unit_tests_native_pass": 15,
+    "fail": 0,
+    "exact_git_blob_verified": true,
+    "source_blob": "a8ff1dae5b4449a728d7e535bc86ab1947295eec",
+    "tests_blob": "04071e17eec565b9e03ade141266c98e327967cc",
+    "full_repo_suite_executed": false
+  },
+  "baseline": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "achievements": "2/90",
+    "gates": "0/6",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0
+  },
+  "R5": "No repeated UK index, no D'Hondt replay, separate new US House party aggregate population. No source-native bytes, one 2026 date cluster, stop further retrospective repetitions; require 12 original XML files and genuinely prospective pre-vote evaluation before scientific claim.",
+  "Codex_backlog": [
+    "T011",
+    "T016",
+    "T017",
+    "T018",
+    "T019"
+  ],
+  "Codex_T019": "tareas_codex/T019_US_HOUSE_XML_PREDICCION_20261028.md",
+  "prohibitions": {
+    "ChatRelay": "NOT_USED",
+    "merged_main": false,
+    "CI_costly": false,
+    "individual_scoring": false
+  },
+  "next": "Grant exhausted; ask user for separate 5–15 if evidence route meaningfully distinct."
+}
