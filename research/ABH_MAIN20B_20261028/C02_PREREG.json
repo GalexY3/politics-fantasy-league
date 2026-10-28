@@ -1,0 +1,47 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C02",
+  "type": "EXPERIMENTAL_AB_R",
+  "status": "PREREGISTERED_NO_ORIGINAL_READ_YET",
+  "at": "2026-10-28T13:18:59.883Z",
+  "parent_cycle": "C01",
+  "drift": {
+    "score": "D2.0",
+    "reason": "Move from Atlas metadata instrumentation to independent public institutional vote source availability and format concordance; new source and estimand, same PFL socio-political research"
+  },
+  "A": {
+    "question": "For a selected historic vote of Congress XV legislature, can we obtain both publisher-original machine-readable XML and JSON and confirm their anonymous aggregate option totals agree?",
+    "target": {
+      "session": "202",
+      "local_vote_date": "2026-09-30",
+      "institution": "Congreso de los Diputados (España)",
+      "caution": "These selectors and previous 137/175/34 figures are prior unverified leads, not measured outcomes"
+    },
+    "estimand": "Difference in yes/no/abstain aggregate counts between independent parses of two official encodings of the same vote",
+    "real_outcome": "Official provider bytes and source SHA for BOTH formats, with publication-time proof tracked separately",
+    "proxy": "HTML catalog and search snippets do not count as original machine-readable payload"
+  },
+  "B": {
+    "H1": "Both original encodings can be independently retrieved and their aggregate totals match",
+    "H0": "Both formats retrieved but at least one count differs",
+    "H3": "At least one original is inaccessible; outcome must be ACCESS_INCONCLUSIVE, not matched or mismatched"
+  },
+  "C": {
+    "primary_endpoint": "At least one exactly identified voting record in date/session; literal original XML and JSON bytes with preserved SHA256, counts parsed separately",
+    "control": "Verify original publisher host, source identity (legislature/session/date/vote), no cross-vote comparisons",
+    "stop": "At most 2 official catalog views and 4 raw format retrievals plus 2 auxiliary discovery searches; if unavailable STOP_R5",
+    "no_individual_data": "Do not store names or individual votes, only document-level counts and provenance"
+  },
+  "D": {
+    "web": "Official Congreso open-data pages and files; direct HTTPS only",
+    "network_limit": "No paid/new CI",
+    "local_execution": "Raw payload parse with stdlib if available, without full project checkout"
+  },
+  "E": "NOT_RUN",
+  "F": "XML+JSON same issuer are not independent evidence of truth; no first_public_at from URL time; official reuse rights separate",
+  "G": "External source provenance can be independently compared to official published totals if present; no independent identity verification",
+  "H": "CT2 identity stays 29 absent identity evidence",
+  "I": "AB-R source contract, not real-person scoring",
+  "J": "If access blocked, archive exact URLs/HTTP error and move to different mechanism instead of inventing aggregate numbers."
+}
