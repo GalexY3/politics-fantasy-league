@@ -1,0 +1,58 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "type": "AB-R",
+  "unit": "Australian 2025 federal House electoral division (n150)",
+  "source_tier": "Third-party GitHub mirror exact AEC-named June 16 2025 generated CSV header, primary catalogue verifies named files, no authenticated AEC download or first_public_at",
+  "metrics": "AEC2025_METRICS.json",
+  "panel": "AEC2025_DIVISION_PANEL.csv",
+  "baseline": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_prior": "McGinn & Maruyama Economic Record 2025 already documented causal effect candidates→informal in earlier periods; AEC 2025 review independently documented contemporary relation but case-selected on high informality. Our analysis confirms association, NOT novel science or replicated causal design.",
+  "restrictions": "No individual/party scoring, not actually a prospective frozen evaluation, ChatRelay off, no main merge.",
+  "cycle": "C04",
+  "status": "VALID_BOUNDED_BALLOT_LENGTH_DESCRIPTIVE_SENSITIVITY",
+  "A": "Are informal ballots more frequent with more than six nominated candidates, and does effect survive removing preexposed Riverina and Calwell?",
+  "B": {
+    "H1": "Mean informality 7+ > <=6",
+    "H0": "No difference/reversal",
+    "Halt": "Apparent difference comes only from two 13-candidate outliers"
+  },
+  "C": {
+    "prereg_commit": "51c086e56eb2138e947ba3c1ba20a8d119f1f389",
+    "execution": "Used prereg ballot threshold 6 vs 7+: 40 divisions <=6 and 110 >=7, mean and median informal pct. Excluded Riverina/Calwell in sensitivity (2 from long group), computed within-state contrast when both classes exist. State mixed and NT n2 opposite sign; no causal discontinuity or invented legal threshold effect."
+  },
+  "D": {
+    "metrics": "AEC2025_METRICS.json",
+    "rules": "https://www.aec.gov.au/Voting/How_to_Vote/Voting_HOR.htm",
+    "review": "https://www.aec.gov.au/About_AEC/research/files/analysis-informal-voting-2025-election.pdf"
+  },
+  "E": {
+    "short_n": 40,
+    "long_n": 110,
+    "mean_informal_pct_short": 3.69675,
+    "mean_informal_pct_long": 6.263,
+    "difference_pp": 2.56625,
+    "excl_2_outlier_n": 148,
+    "difference_excluding_outliers_pp": 2.4796388888888914,
+    "negative_state_example": "NT 2 divisions, difference -0.92pp, no reliable inference"
+  },
+  "F": "The >6 threshold is heuristic, not abrupt change of Australian formal voting law; all candidates must be ranked correctly, and a ballot with >=7 candidates simply requires more numbering. 2026 AEC informal vote review of 25 high-informal selected divisions describes potential numbering errors, NOT representative all divisions. Limit overinterpreting causal mechanism.",
+  "G": "Previous AEC review and academic paper already documented long-ballot/choice complexity, independent theoretical support but no novelty scientific attribution",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No qualitative ranking of candidates",
+  "J": "Test out-of-state descriptive fit, not prospective accuracy."
+}
