@@ -1,0 +1,46 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C18",
+  "mode": "AB-P",
+  "status": "VALID_BOUNDED_CURRENT_RELEASE_GATE_AUDIT",
+  "A": "Do currently exposed public/demo routes or source gates promote real-person scoring after the preceding patches?",
+  "B": "Six relevant current modules contain no true real scoring or release_ready value, source registry still all unknown first-public times",
+  "C": {
+    "prereg": "C18_PREREG.json",
+    "falsifiers": [
+      "A route enabling scoring real people",
+      "A source registry with verified publication time without original",
+      "A gate producing real_people_scoring_ready=True"
+    ]
+  },
+  "D": {
+    "source_shas": {
+      "server": "22063324bb429b759fca5ecdb3daf77a221838b3",
+      "source_eligibility": "04ddb36b52b69a65b68685f6c8345e131e44c7f2",
+      "source_event_registry": "a1c8f9c61dbac5ec51a5ad17964e0ad473ad683b",
+      "readiness": "20fa2cf2d33e0c85ca41f06ab0543ee46ae19eda",
+      "product": "763c92a30728b95859035053e612a83342a58422",
+      "progress_api": "acde0a32de7b9852d2b6e02cf3fb3ceafc11d08b"
+    },
+    "method": "Six exact GitHub file reads and explicit false-literal/route-source scan, no original nominal inputs"
+  },
+  "E": {
+    "files_checked": 6,
+    "observed_true_release_fields": 0,
+    "observed_true_person_scoring_fields": 0,
+    "source_stage_first_public_verified": 0,
+    "progress_api_constant": "real_people_scoring_ready False",
+    "server": "loopback documented and synthetic route handlers"
+  },
+  "F": "This is a bounded static current-code audit, not proof all reachable paths safe, no live HTTP test or execution of all modules; source eligibility false cannot replace legal advice.",
+  "G": "T009 pending",
+  "H": {
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "V4_percent": 36.9,
+    "gates_passed": 0
+  },
+  "I": "Safety invariant held in inspected source contracts",
+  "J": "ACCEPT negative gate evidence only; never promote readiness or access rights; next C19 independently audit Atlas chronology."
+}
