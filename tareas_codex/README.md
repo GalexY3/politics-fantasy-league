@@ -1,3 +1,5 @@
+> **ESTADO VIGENTE TRAS BRANCH20 C04 (28/10/2026).** Codex no está disponible para el usuario. **T008 PENDIENTE**: checkout completo de `main`, suite Python integral Linux/POSIX y checker canónico de **39 lotes** (0038 y 0039 añaden C03 y C04). Las reparaciones focalizadas C03 (`majority_sign.py`, **14 PASS**) y C04 (`scoring.py`, **8 PASS**) NO certifican compatibilidad global. Preservar los primeros resultados rojos C03/C04 y sus hashes, y ejecutar sus pruebas en la suite global. Campaña activa: 3 válidos, 1 inválido, 16 autorizaciones restantes; no consumirlos automáticamente al ejecutar T008.
+
 # Cola de tareas Codex — Politics Fantasy League
 
 **Estado 28/10/2026: EN ESPERA.** El usuario no tiene disponible Codex en este momento. Conservar el backlog y no fingir ejecución ni programar reintentos automáticos. El trabajo de investigación AB-H puede continuar por otras vías; los 18 intentos restantes de la campaña BRANCH20 no son presupuesto de Codex y no se consumen al redactar tareas.
@@ -6,9 +8,9 @@
 
 ## Tarea principal pendiente
 
-**[T008 — Suite Python integral en Linux/POSIX y replay Atlas de 37 lotes](T008_SUITE_COMPLETA_POSIX.md)** — `PENDIENTE`, prioridad P0. Esta ficha forma parte del [índice estructurado](BACKLOG.json). Una [entrega ejecutable concreta](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md) conserva los comandos y las condiciones de aceptación de esta etapa.
+**[T008 — Suite Python integral en Linux/POSIX y replay Atlas de 39 lotes](T008_SUITE_COMPLETA_POSIX.md)** — `PENDIENTE`, prioridad P0. Esta ficha forma parte del [índice estructurado](BACKLOG.json). Una [entrega ejecutable concreta](../research/ABH_BRANCH20_20261028/T008_EXECUTOR_HANDOFF.md) conserva los comandos y las condiciones de aceptación de esta etapa.
 
-T002 registró **57 FAIL, 558 PASS, 28 SKIP** en la ejecución integral histórica Windows. En CONT80, C73–C80 documentaron **89 pruebas originales PASS + 14 subtests** de **ocho suites seleccionadas** en Linux/POSIX; no son la ejecución integral. El checker Python de T007 verificó **31 lotes**; la cadena llega a **37 lotes** después de 0036 (C01 inválido) y 0037 (C02 negativo). El **replay canónico de 37 lotes no está ejecutado**.
+T002 registró **57 FAIL, 558 PASS, 28 SKIP** en la ejecución integral histórica Windows. En CONT80, C73–C80 documentaron **89 pruebas originales PASS + 14 subtests** de **ocho suites seleccionadas** en Linux/POSIX; no son la ejecución integral. El checker Python de T007 verificó **31 lotes**; la cadena llega a **39 lotes** después de 0036 (C01 inválido) y 0037 (C02 negativo). El **replay canónico de 37 lotes no está ejecutado**.
 
 T008 deberá documentar HEAD real, Python/pytest, sistema de archivos, primera corrida de `PYTHONPATH=src python -m pytest -q -rs` sin alterar tests, exit code, PASS/FAIL/SKIP, logs y SHA; desde raíz repo, `python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates`. Solo con ambas ejecuciones satisfactorias y pruebas registradas podrá indicarse `COMPLETADA_VERIFICADA`; de lo contrario `COMPLETADA_CON_FALLOS` o `BLOQUEADA` según proceda. Correr T008 por sí solo **no es un ciclo AB A–J**.
 
@@ -23,7 +25,7 @@ T008 deberá documentar HEAD real, Python/pytest, sistema de archivos, primera c
 | [T005](T005_ORIGINALES_CONDICIONALES.md) | BLOQUEADA | Original auténtico, derechos, identificadores y revisión jurídica |
 | [T006](T006_RESULTADO.md) | COMPLETADA_VERIFICADA | HTTP y claves BOCCL XI/XII en snapshot histórico |
 | [T007](T007_RESULTADO.md) | COMPLETADA_VERIFICADA | Atlas 31 y HTTP en HEAD histórico |
-| [T008](T008_SUITE_COMPLETA_POSIX.md) | PENDIENTE | Suite completa Linux y Atlas 37 en HEAD actual |
+| [T008](T008_SUITE_COMPLETA_POSIX.md) | PENDIENTE | Suite completa Linux y Atlas 39 en HEAD actual |
 
 ## Condiciones de ejecución
 
