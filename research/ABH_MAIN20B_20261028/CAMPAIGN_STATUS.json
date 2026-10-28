@@ -16,13 +16,13 @@
   "branch": "main",
   "parent_head": "e3c25259765d6a71b20d41a07db0d7a7794ccdec",
   "cycles": {
-    "valid": 18,
+    "valid": 19,
     "invalid": 0,
     "planning": 0,
-    "used": 18,
-    "remaining": 2
+    "used": 19,
+    "remaining": 1
   },
-  "state": "ACTIVE_18_VALID_2_REMAINING",
+  "state": "ACTIVE_19_VALID_1_REMAINING",
   "research_grade": {
     "N1_new": 0,
     "N2_new": 0,
@@ -230,19 +230,28 @@
       "result": "C18_RESULT.json",
       "atlas": "0073",
       "scientific_grade_0_3": 0
+    },
+    {
+      "cycle": "C19",
+      "type": "AB-META",
+      "status": "VALID_BOUNDED_FULL_73_PATCH_DOCUMENTARY_AUDIT",
+      "prereg": "C19_PREREG.json",
+      "result": "C19_RESULT.json",
+      "atlas": "0074",
+      "science_grade": 0
     }
   ],
   "atlas_current": {
-    "lots_documentary": 73,
+    "lots_documentary": 74,
     "nodes_documentary": 63,
     "edges_documentary": 81,
-    "runs_documentary": 239,
+    "runs_documentary": 240,
     "complaints_documentary": 48,
-    "operations_documentary": 414,
-    "canonical_python_checker": "NOT_RUN_FOR_73_PATCHES",
+    "operations_documentary": 415,
+    "canonical_python_checker": "NOT_RUN_FOR_74_PATCHES",
     "canonical_sha256": null
   },
-  "next": "C19 prereg and check complete 73 Atlas JSON chain/ops; C20 campaign closure, maintain native T009 separate.",
+  "next": "C20 final prereg source-ledger audit and closure; T009 full Linux and Atlas final 75 pending.",
   "T009": "PENDING_CURRENT_MAIN_FULL_LINUX_PYTEST_AND_CANONICAL_ATLAS62",
   "T008_provenance": {
     "source_commit": "0c940f02690668d34f0bbe151bab7c77788302ce",
