@@ -4,8 +4,8 @@ from types import MappingProxyType
 from .provenance_claim_gate import AUTHORITY, evaluate_claim_as_of
 
 _RECORDS = MappingProxyType({
- 'CCYL:BOCCL-12-000986': MappingProxyType({'authority': AUTHORITY,'evidence_ref':'CCYL:BOCCL-12-000986','short_ref':'ESE/000002-01','legislature':12,'cve':'BOCCL-12-000986','record_family':'BOCCL_CANDIDATE_ACCEPTANCE','claim_kind':'NOMINATED_AND_ACCEPTED_CANDIDATES','act_day':'2026-09-03','bulletin_day':'2026-09-10','first_public_at':None}),
- 'CCYL:BOCCL-12-001042': MappingProxyType({'authority': AUTHORITY,'evidence_ref':'CCYL:BOCCL-12-001042','short_ref':'ESE/000002-02','legislature':12,'cve':'BOCCL-12-001042','record_family':'BOCCL_PLENARY_DESIGNATION','claim_kind':'DESIGNATED_SENATORS','act_day':'2026-09-10','bulletin_day':'2026-09-16','first_public_at':None}),
+ 'CCYL:BOCCL-12-000986': MappingProxyType({'authority': AUTHORITY,'evidence_ref':'CCYL:BOCCL-12-000986','short_ref':'ESE/000002-01','legislature':12,'cve':'BOCCL-12-000986','source_url':'https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200032%5CBOCCL-12-000986.xml','record_family':'BOCCL_CANDIDATE_ACCEPTANCE','claim_kind':'NOMINATED_AND_ACCEPTED_CANDIDATES','act_day':'2026-09-03','bulletin_day':'2026-09-10','first_public_at':None}),
+ 'CCYL:BOCCL-12-001042': MappingProxyType({'authority': AUTHORITY,'evidence_ref':'CCYL:BOCCL-12-001042','short_ref':'ESE/000002-02','legislature':12,'cve':'BOCCL-12-001042','source_url':'https://www.ccyl.es/Publicaciones/TextoEntradaBOCCL?Fichero=%5C%5CSIRDOCfiles%5Csirdoc%24%5CXML%5CEBOCCL%5C12L%5CBOCCL1200034%5CBOCCL-12-001042.xml','record_family':'BOCCL_PLENARY_DESIGNATION','claim_kind':'DESIGNATED_SENATORS','act_day':'2026-09-10','bulletin_day':'2026-09-16','first_public_at':None}),
  'SENADO-XV-P82-20260915': MappingProxyType({'authority':'Senado de Espana','evidence_ref':'SENADO-XV-P82-20260915','record_family':'SENATE_PLENARY_OATH','claim_kind':'OATH_CONSTITUTION_FULFILLED','act_day':'2026-09-15','bulletin_day':None,'first_public_at':None})
 })
 
