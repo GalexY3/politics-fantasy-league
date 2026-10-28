@@ -1,0 +1,34 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "operation": "R5 PIVOT, original C05 prereg XML known barrier remains explicitly NOT EXECUTED as complete cycle",
+  "reason": "The same BOE XML read has already failed before authorization, so reattempting solely to fill quota would repeat access barrier and violate R5. Use a different adversarial retrospective 2019 regional-list omission counterexample.",
+  "D": {
+    "original_2019": "https://www.boe.es/buscar/doc.php?id=BOE-A-2019-8070",
+    "original_BoE_lines": [
+      "151",
+      "328"
+    ],
+    "prior_selection_exposure": "2019 PRC winning seat and 4/5 missing national seats discovered during C03; it is not a blind hypothesis. C04 computed 2023 quotients but the 2019 six-list ablation result NOT yet computed for this pivot.",
+    "original_C05_prereg": "C05_PREREG.json",
+    "source_access": "Official HTML read; XML/PDF raw bytes missing"
+  },
+  "A": "Does omitting the electorally successful regional party PRC in a 2019 five-seat Cantabria calculation cause a false party to receive the unrepresented seat, even though top national lists are correct?",
+  "B": {
+    "H1": "Full six-list D'Hondt matches BOE 2019 including PRC; deleting PRC changes an awarded seat to another national party",
+    "H0": "Omitting PRC makes no allocation difference",
+    "H_alt": "Other party or lists might still alter ranking if the six-list inventory is incomplete"
+  },
+  "C": "Perform two deterministic D'Hondt allocations for 5 Cantabria seats: all six known party vote totals from Cuadro II 2019 (PSOE, PP, Cs, PRC, Vox, Unidas Podemos), then drop only PRC and compare observed BOE seats. Explicitly report exact winner and highest rejected quotient. No extrapolation outside six lists; all six are table named but other parties could exist below cutoff. Negative check: verify historical 5 observed seats sum.",
+  "E": "PENDING",
+  "F": "Check party names and seat total; a national-only model is incomplete, not necessarily mis-specified electoral system",
+  "G": "No independent issuer or external sample and no randomized held-out benchmark",
+  "H": {
+    "CT2_before": 29,
+    "V4": 36.9
+  },
+  "I": "Party aggregates only; no personal profiling",
+  "J": "If sensitivity changes one seat, preserve as tested negative for schema coverage; no novel scientific 1/3 or CT2 uplift."
+}
