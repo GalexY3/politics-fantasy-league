@@ -8,6 +8,7 @@ import threading
 import unittest
 from pathlib import Path
 from http.server import ThreadingHTTPServer
+from urllib.parse import urlsplit, unquote
 
 from politics_fantasy.server import handler_factory
 
@@ -61,6 +62,21 @@ class SourceStagesHttpTests(unittest.TestCase):
         )
         self.assertEqual(status, 200)
         self.assertTrue(all(record["first_public_at"] is None for record in payload["records"]))
+
+    def test_cve_document_urls_are_served_on_loopback_without_certifying_time(self):
+        status, payload = self.request("GET", "/api/source-stages")
+        self.assertEqual(status, 200)
+        records = {record["cve"]: record for record in payload["records"] if record.get("cve")}
+        self.assertEqual(set(records), {"BOCCL-12-000986", "BOCCL-12-001042"})
+        for cve, record in records.items():
+            url = urlsplit(record["source_url"])
+            self.assertEqual((url.scheme, url.hostname, url.port), ("https", "www.ccyl.es", None))
+            self.assertIsNone(url.username)
+            self.assertIsNone(url.password)
+            self.assertIn(cve + ".xml", unquote(url.query))
+            self.assertIsNone(record["first_public_at"])
+        self.assertFalse(payload["real_person_scoring"])
+        self.assertFalse(payload["release_ready"])
 
     def test_bad_host_rejected_before_source_route(self):
         status, payload = self.request("GET", "/api/source-stages", host="attacker.example")

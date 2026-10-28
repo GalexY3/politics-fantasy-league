@@ -11,7 +11,7 @@
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 31,
-    "canonical_atlas": "PASS_BASELINE_29_LOTS_SHA256_c06641eb51915d0a0a5b21a111cd91b8fb55db33b7c12c0dabcde14c8635275c__CURRENT_31_NOT_RUN",
+    "canonical_atlas": "PASS_31_LOTS_BASE_af090f5_SHA256_ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca",
     "full_repo_python": "WINDOWS_EXIT_1_57_FAILED_558_PASSED_28_SKIPPED_24_SUBTESTS",
     "full_repo_node": "PASS_125",
     "release_gates_passed": 0,
@@ -21,7 +21,7 @@
   "tasks": [
     {
       "id": "PFL-CODEX-T001",
-      "title": "Replay canónico Atlas de 30 lotes",
+      "title": "Replay canónico Atlas de 29 lotes (baseline 6e359a8)",
       "priority": "P0",
       "file": "T001_ATLAS_CANONICO.md",
       "status": "COMPLETADA_VERIFICADA",
@@ -121,20 +121,21 @@
       "title": "Revalidar HEAD actual tras C72: Atlas 31 lotes y HTTP con source_url",
       "priority": "P0",
       "file": "T007_REVALIDACION_ATLAS30_HTTP.md",
-      "status": "PENDIENTE",
+      "status": "COMPLETADA_VERIFICADA",
       "depends_on": [],
       "completion_requires": [
         "git checkout HEAD actual",
-        "canonical Python checker 30 deltas and fresh SHA",
+        "canonical Python checker 31 deltas and fresh SHA",
         "loopback HTTP new source_url stage fields",
         "selected Python regressions and complete logs"
-      ]
+      ],
+      "result_file": "T007_RESULTADO.md"
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "Comprobados informes GitHub de ejecuciones externas del baseline 6e359a8, no reejecutados aquí; T007 current HEAD pending.",
+  "last_verified_by": "Codex T007 en base af090f5; replay Python 31 lotes y HTTP loopback; pruebas POSIX de T002/T004 y T005 pendientes.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd"
 }

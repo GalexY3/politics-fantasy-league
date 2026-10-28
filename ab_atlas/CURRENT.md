@@ -1,3 +1,11 @@
+# AB Atlas · T007 verificada · 28/10/2026
+
+Codex revalidó el checkout `af090f5`: el checker Python oficial pasó con **31 lotes, 63 nodos** y SHA canónico `ff1160dc63a9cfdbd58e9cc534604975375438e47c7fa15a9988386e0bbaeaca`. El replay confirmó **81 relaciones, 191 runs, 44 incidencias y 360 operaciones**. En HTTP real de loopback se comprobaron las URL de ambos CVE BOCCL y la cuarentena; los siete módulos focales sumaron **55 pruebas aprobadas**. Ver [T007_RESULTADO](../tareas_codex/T007_RESULTADO.md).
+
+La validación se refiere a ese checkout y no certifica disponibilidad histórica ni fuentes. T002/T004 siguen con pruebas POSIX pendientes y T005 continúa bloqueada. V4 36,90 %, CT2 29/100 y gates 0/6 sin promoción. El texto de CONT80 debajo es histórico y su afirmación de que T007 no se había ejecutado queda superada por este encabezado.
+
+---
+
 # AB Atlas · CONT80 C61–C72 · STOP_R5 12/20 · 28/10/2026
 
 **Permiso máximo 20 ciclos, 12 A–J completados y ocho sin utilizar.** [Ledger](../research/ABH_CONT80_20261028/CAMPAIGN_STATUS.json) · [informe/adenda](../research/ABH_CONT80_20261028/REPORT_FINAL.md). Últimos C69: 7 tests JSON, **sin HTTP nativo**; C70: dos fuentes oficiales BOCCL de etapas distintas (cuerpo directo no recuperado, tiempo exacto desconocido); C71: dos URL de publicaciones enlazadas por CVE con **32/32 pytest seleccionados PASS**; C72: revisión de informes existentes en GitHub que documentan ejecución externa de Codex en checkout antiguo `6e359a8`.

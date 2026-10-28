@@ -1,6 +1,6 @@
 # Cola de tareas pendientes para Codex — Politics Fantasy League
 
-**Estado actualizado por Codex el 28/10/2026:** se ejecutaron T001, T002, T003, T004 y T006. T002 y T004 conservan fallos por limitaciones y pruebas no completadas en Windows; T005 sigue bloqueada. Los informes y logs identifican resultados reales y límites. La ejecución de esta cola no equivale por sí sola a ciclos AB A–J. El histórico `research/CODEX_CONTRIB_20261027/` corresponde a otra etapa.
+**Estado actualizado por Codex el 28/10/2026:** se ejecutaron T001–T004, T006 y T007. T002 y T004 conservan fallos y pruebas no completadas en Windows; T005 sigue bloqueada. Los informes y logs identifican resultados reales y límites. La ejecución de esta cola no equivale por sí sola a ciclos AB A–J. El histórico `research/CODEX_CONTRIB_20261027/` corresponde a otra etapa.
 
 ## Contexto y punto de partida
 
@@ -8,7 +8,7 @@
 - Rama de trabajo existente: `research/pfl-codex-contributions-20261027`. **No trabajar sobre `main`**.
 - HEAD observado *antes de crear la carpeta*: `8f21411b0c4caf267d77721510d06129fe2eedbe`. **Al empezar**, Codex debe leer y registrar de nuevo el HEAD real, no presumir que este SHA sigue siendo el último.
 - Autoridad: [AGENTS.md](../../../AGENTS.md), protocolo AB 3.2.1 O3–O7, [CURRENT](../ab_atlas/CURRENT.md) y [continuidad](../docs/CONTINUACION_INTEGRADA_CODEX_CHATGPT.md).
-- Atlas en la base de esta ejecución `6e359a8`: **31 lotes**; replay canónico Python ejecutado con 63 nodos / 81 relaciones / 191 runs / 44 incidencias / 360 operaciones. Ver [resultado T001](T001_RESULTADO.md); comprobar el HEAD de nuevo porque ChatGPT trabaja en paralelo.
+- Atlas: [T001](T001_RESULTADO.md) verificó 29 lotes sobre `6e359a8`; [T007](T007_RESULTADO.md) verificó 31 lotes sobre `af090f5`, con 63 nodos / 81 relaciones / 191 runs / 44 incidencias / 360 operaciones. Comprobar el HEAD de nuevo porque ChatGPT trabaja en paralelo.
 - Producto: V4 36,90 % contractual, CT2 identidad 29/100 ordinal, VSDS 1/3, gates de lanzamiento **0/6**. Nada de scoring político real.
 - [Incidencia GitHub #17](https://github.com/GalexY3/Metodologia-AB/issues/17): índice público dentro del repo privado; **no es evidencia de ejecución**.
 
@@ -22,6 +22,7 @@
 | P1 | [T004 — Seguridad del servidor local e ingesta](T004_RESULTADO.md) | T002 para baseline | COMPLETADA_CON_FALLOS |
 | Bloqueada | [T005 — Originales institucionales y certificados](T005_ORIGINALES_CONDICIONALES.md) | Documento legítimo y permiso específico | BLOQUEADA; [matriz preliminar](T005_MATRIZ_PRELIMINAR.md) disponible |
 | P1 | [T006 — Verificar migración XI/XII de códigos BOCCL y HTTP](T006_RESULTADO.md) | T002; checkout íntegro y tests HTTP | COMPLETADA_VERIFICADA |
+| P0 | [T007 — Revalidar Atlas y HTTP](T007_RESULTADO.md) | Checkout `af090f5` | COMPLETADA_VERIFICADA |
 
 [Índice de estado legible por herramientas](BACKLOG.json). Cada tarea tiene objetivo, comandos o procedimiento reproducible, criterios de aceptación y límites.
 
@@ -36,4 +37,4 @@
 
 **Convención de estados:** `PENDIENTE`, `EN_EJECUCION`, `BLOQUEADA`, `COMPLETADA_VERIFICADA`, `COMPLETADA_CON_FALLOS`. No marcar nada como completado por el mero hecho de redactar estas fichas.
 
-**Revalidación posterior a C71 y C72:** [T007 — Atlas actual de 31 lotes y HTTP con enlaces BOCCL](T007_REVALIDACION_ATLAS30_HTTP.md). T001 y T006 constan ejecutadas en checkout anterior de 29 lotes; no extienden automáticamente su validación al HEAD actual.
+**Revalidación posterior a C71 y C72:** [T007 — Atlas de 31 lotes y HTTP con enlaces BOCCL](T007_RESULTADO.md). T001 y T006 constan ejecutadas en checkout anterior de 29 lotes; no extienden automáticamente su validación a commits posteriores.
