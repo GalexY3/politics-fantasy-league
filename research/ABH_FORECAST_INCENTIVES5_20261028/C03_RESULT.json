@@ -1,0 +1,301 @@
+{
+  "cycle": "C03",
+  "type": "AB-R",
+  "prereg_commit": "37b5f1e8d293692db5cc9f9e99f06698a52e4d4e",
+  "A": "Independent later-year same-Parliament archive period Jan-Sep 2026 to check PFL scoring-opportunity concentration",
+  "B": "Thresholds frozen before reading 2026 records: dispersion >2 and top-quarter share >0.45",
+  "C": "2026 Jan1–Sep30, all months, n minimum 80",
+  "D": {
+    "source": "mySociety GitHub pinned archival month JSON, 9 files, only aggregate outcomes",
+    "source_blobs": [
+      {
+        "path": "data/raw/months/2026-01.json",
+        "sha": "25c5eca0d116b907a359bfa89372f57f3b2184dd",
+        "n": 28
+      },
+      {
+        "path": "data/raw/months/2026-02.json",
+        "sha": "6a6ab45f126025b0178301349e8ec8259ff7efc1",
+        "n": 11
+      },
+      {
+        "path": "data/raw/months/2026-03.json",
+        "sha": "d28932bb5afb24c29e5db65e8792ff10ab423ef0",
+        "n": 32
+      },
+      {
+        "path": "data/raw/months/2026-04.json",
+        "sha": "9240872905b96615e80c42883a8fd20c17766af2",
+        "n": 49
+      },
+      {
+        "path": "data/raw/months/2026-05.json",
+        "sha": "60b23c256aeb1d8dea38c971240d848c06d1a85f",
+        "n": 6
+      },
+      {
+        "path": "data/raw/months/2026-06.json",
+        "sha": "72781aa079717c8d3794b8fedd44d9696bbec189",
+        "n": 42
+      },
+      {
+        "path": "data/raw/months/2026-07.json",
+        "sha": "e718b3c196ae5dcd712f13d472faa3f02fb64993",
+        "n": 17
+      },
+      {
+        "path": "data/raw/months/2026-08.json",
+        "sha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+        "n": 0
+      },
+      {
+        "path": "data/raw/months/2026-09.json",
+        "sha": "a48e231ca9f973de0a50b8cb6d7777cfc52a01ce",
+        "n": 15
+      }
+    ],
+    "QA": {
+      "n_raw": 200,
+      "n_unique_all": 195,
+      "n_in_window": 195,
+      "duplication": [
+        {
+          "id": 2399,
+          "sources": [
+            "data/raw/months/2026-06.json",
+            "data/raw/months/2026-07.json"
+          ],
+          "identical": true
+        },
+        {
+          "id": 2398,
+          "sources": [
+            "data/raw/months/2026-06.json",
+            "data/raw/months/2026-07.json"
+          ],
+          "identical": true
+        },
+        {
+          "id": 2397,
+          "sources": [
+            "data/raw/months/2026-06.json",
+            "data/raw/months/2026-07.json"
+          ],
+          "identical": true
+        },
+        {
+          "id": 2396,
+          "sources": [
+            "data/raw/months/2026-06.json",
+            "data/raw/months/2026-07.json"
+          ],
+          "identical": true
+        },
+        {
+          "id": 2395,
+          "sources": [
+            "data/raw/months/2026-06.json",
+            "data/raw/months/2026-07.json"
+          ],
+          "identical": true
+        }
+      ],
+      "source_month_mismatch": 5,
+      "bad_tallies": 0,
+      "nb_weeks": 40,
+      "zero_weeks": 16,
+      "observed_vote_days": 56,
+      "mean_per_week": 4.875,
+      "weekly_dispersion": 6.237820512820513,
+      "top_n": 10,
+      "top_share": 0.6666666666666666,
+      "mean_per_vote_day": 3.482142857142857,
+      "preregistered_H1_both_thresholds": true,
+      "weekly": [
+        {
+          "week": "2026-W01",
+          "n": 0
+        },
+        {
+          "week": "2026-W02",
+          "n": 2
+        },
+        {
+          "week": "2026-W03",
+          "n": 12
+        },
+        {
+          "week": "2026-W04",
+          "n": 8
+        },
+        {
+          "week": "2026-W05",
+          "n": 6
+        },
+        {
+          "week": "2026-W06",
+          "n": 2
+        },
+        {
+          "week": "2026-W07",
+          "n": 3
+        },
+        {
+          "week": "2026-W08",
+          "n": 0
+        },
+        {
+          "week": "2026-W09",
+          "n": 6
+        },
+        {
+          "week": "2026-W10",
+          "n": 1
+        },
+        {
+          "week": "2026-W11",
+          "n": 14
+        },
+        {
+          "week": "2026-W12",
+          "n": 4
+        },
+        {
+          "week": "2026-W13",
+          "n": 13
+        },
+        {
+          "week": "2026-W14",
+          "n": 0
+        },
+        {
+          "week": "2026-W15",
+          "n": 0
+        },
+        {
+          "week": "2026-W16",
+          "n": 22
+        },
+        {
+          "week": "2026-W17",
+          "n": 16
+        },
+        {
+          "week": "2026-W18",
+          "n": 11
+        },
+        {
+          "week": "2026-W19",
+          "n": 0
+        },
+        {
+          "week": "2026-W20",
+          "n": 0
+        },
+        {
+          "week": "2026-W21",
+          "n": 6
+        },
+        {
+          "week": "2026-W22",
+          "n": 0
+        },
+        {
+          "week": "2026-W23",
+          "n": 5
+        },
+        {
+          "week": "2026-W24",
+          "n": 11
+        },
+        {
+          "week": "2026-W25",
+          "n": 10
+        },
+        {
+          "week": "2026-W26",
+          "n": 11
+        },
+        {
+          "week": "2026-W27",
+          "n": 5
+        },
+        {
+          "week": "2026-W28",
+          "n": 5
+        },
+        {
+          "week": "2026-W29",
+          "n": 7
+        },
+        {
+          "week": "2026-W30",
+          "n": 0
+        },
+        {
+          "week": "2026-W31",
+          "n": 0
+        },
+        {
+          "week": "2026-W32",
+          "n": 0
+        },
+        {
+          "week": "2026-W33",
+          "n": 0
+        },
+        {
+          "week": "2026-W34",
+          "n": 0
+        },
+        {
+          "week": "2026-W35",
+          "n": 0
+        },
+        {
+          "week": "2026-W36",
+          "n": 5
+        },
+        {
+          "week": "2026-W37",
+          "n": 10
+        },
+        {
+          "week": "2026-W38",
+          "n": 0
+        },
+        {
+          "week": "2026-W39",
+          "n": 0
+        },
+        {
+          "week": "2026-W40",
+          "n": 0
+        }
+      ],
+      "source_ref": "fafb0659a80a96e3d01c1a48e03a2d4a68fbf337"
+    }
+  },
+  "E": {
+    "actual_execution": "V8",
+    "unique_divisions": 195,
+    "weeks": 40,
+    "weekly_dispersion": 6.237820512820513,
+    "top_quartile_fraction": 0.6666666666666666,
+    "preregistered_thresholds_met": true
+  },
+  "F": "Check duplicate IDs, dates across month files, no named individuals, seasonality/active days explain non-independence; no prospective calibration or actual fantasy rewards",
+  "G": "New chronological later interval but same aggregator/issuer and selection after 2025; temporal sensitivity only, NOT independent external confirmation or true prospective holdout",
+  "H": "Maintain prior that fantasy opportunity depends on legislative calendar; no claim of new mechanism",
+  "I": {
+    "validity": "bounded descriptive archive",
+    "causality": "none",
+    "novelty": "none",
+    "reproducibility": "pinned blobs/months",
+    "ethics": "aggregate only"
+  },
+  "J": "CONTINUE_BRANCH_TO_INDEPENDENT_CONTEXT",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "grade": "0/3"
+}
