@@ -1,0 +1,64 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_NEW_OFFICIAL_SOURCE_ROUTE_NO_BYTES",
+  "prereg_commit": "53dd60257e19ef696470a36a2a87d8bfbb260c75",
+  "A": {
+    "question": "Can the official Ministerio del Interior electoral parity XLSX be acquired in a byte-verified way for a sociological study?",
+    "estimand": "Source availability and authentic candidate/elected corpus, not an inferred political or gender statistic",
+    "truth_contract": "Metadata and original workbook bytes treated separately"
+  },
+  "B": {
+    "H1": "Direct original XLSX retrieved and verified",
+    "H0": "Official distribution listed but original bytes cannot be recovered",
+    "H_other": "Source listed but metadata dates cannot establish first publication"
+  },
+  "C": {
+    "test": "Inspect official Interior catalog and government dataset index, attempt official XLSX URL via web and container HTTP, reject unverified file/cached summary; seek matching candidates URL",
+    "control": "Congress prior 403 recorded as distinct access barrier; avoid reclassifying web index as original XLSX"
+  },
+  "D": {
+    "catalog": "https://sede.interior.gob.es/portal/sede/informacion-general/catalogo-de-datos",
+    "catalog_index": "https://datos.gob.es/eu/catalogo/e00003801-paridad-electoral-candidatos-as-y-cargos-electos",
+    "electos_url": "https://descargas.interior.gob.es/datasets/paridad_electoral/Paridad-cargos-electos.xlsx",
+    "candidatos_url": "https://descargas.interior.gob.es/datasets/paridad_electoral/Paridad-candidatos-y-candidatas.xlsx",
+    "prior_known": "Catalog entry surfaced before prereg; original download attempted after prereg"
+  },
+  "E": {
+    "confirmed": "Interior publicly lists both distinct XLSX distributions; catalog describes candidate/cargo-elected gender records",
+    "catalog_date_metadata": "Interior search index says created/updated 2026-10-09, indexed XML metadata with older 2024 timeline; neither authenticates first publication",
+    "original_bytes": 0,
+    "sha256": null,
+    "row_count": null,
+    "gender_counts": null,
+    "coverage": null,
+    "download": "Web open of XLSX failed; container.download refused 'URL not viewed' even after web attempted open; Python urllib original official domain DNS lookup failed with Temporary failure in name resolution",
+    "source_native_workbook_read": false
+  },
+  "F": {
+    "risk": "Official index/snippet may be stale or contradictory, no confident first_public_at, no original sheets; never infer gender distribution from title alone",
+    "alternatives": "Codex or browser-backed external executor can attempt original HTTPS with TLS verification; record first failed response, hash and schema"
+  },
+  "G": "External original and denominator not independently verified",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "achievement_unlocks": 0,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": {
+    "internal_validity": "Valid bounded new source-discovery and download-access negative, not validation of a corpus",
+    "causality": "NONE",
+    "novelty": "No scientific discovery; existing public dataset, retrieval route not previously confirmed in project",
+    "ethics": "No nominal data committed, no score on real persons"
+  },
+  "J": "STOP_LOCAL repeated download from inaccessible environment; request Codex T011 for original binary capture + source schema, retaining 4 cycle authorizations."
+}
