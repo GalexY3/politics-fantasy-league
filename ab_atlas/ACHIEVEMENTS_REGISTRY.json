@@ -1,0 +1,1809 @@
+{
+  "schema": "pfl.achievements.v1",
+  "registry_id": "PFL-ACHIEVEMENTS-20261028",
+  "version": 3,
+  "created_at": "2026-10-28",
+  "project": "Politics Fantasy League",
+  "v4_baseline": {
+    "scope_revision": 4,
+    "progress_contractual_percent": 36.9,
+    "critical_release_gates_passed": 0
+  },
+  "policy": {
+    "baseline_status": "All LOCKED until audited. Existing maturity evidence is NOT automatically mapped to achievement unlocks.",
+    "symbolic": "90/90 signifies substantial maturity against current scope, but never automatically gives project 100% or overrides release gates.",
+    "dynamic": "Changes to status/title/criteria and create/retire require evidence and append-only change log. Local browser edits are drafts until exported and committed in Git.",
+    "retirement": "Soft-retire with tombstone; never reuse IDs; revised versions retain previous records in audit log.",
+    "unlock": "Unlock only with objective criteria, verifier, at least one evidence link, and all named prerequisites unlocked. No automated fake unlock.",
+    "scoring": "Achievement completion is count(unlocked active)/count(active) and separate from contractual V4 36.90%, CT2, VSDS and 0/6 gates."
+  },
+  "tracks": [
+    {
+      "id": "sources",
+      "name": "Fuentes y datos",
+      "weight": 18,
+      "baseline_progress_pct": 45
+    },
+    {
+      "id": "identity",
+      "name": "Identidad, coaliciones e historial",
+      "weight": 12,
+      "baseline_progress_pct": 42.5
+    },
+    {
+      "id": "events",
+      "name": "Acontecimientos políticos",
+      "weight": 10,
+      "baseline_progress_pct": 35
+    },
+    {
+      "id": "science",
+      "name": "Investigación, predicción y evaluación",
+      "weight": 14,
+      "baseline_progress_pct": 27.5
+    },
+    {
+      "id": "game",
+      "name": "Mecánicas y motor de juego",
+      "weight": 16,
+      "baseline_progress_pct": 45
+    },
+    {
+      "id": "ui",
+      "name": "Interfaz y experiencia de usuario",
+      "weight": 10,
+      "baseline_progress_pct": 32.5
+    },
+    {
+      "id": "security",
+      "name": "Privacidad, seguridad y licencias",
+      "weight": 8,
+      "baseline_progress_pct": 20
+    },
+    {
+      "id": "qa",
+      "name": "Pruebas y reproducibilidad",
+      "weight": 8,
+      "baseline_progress_pct": 45
+    },
+    {
+      "id": "launch",
+      "name": "Operación, pilotos y lanzamiento",
+      "weight": 4,
+      "baseline_progress_pct": 17.5
+    }
+  ],
+  "achievements": [
+    {
+      "id": "PFL-SOURCES-01",
+      "track_id": "sources",
+      "ordinal": 1,
+      "title": "Archivo de los orígenes",
+      "criteria": "Catálogo institucional inventariado con responsables, formatos, periodicidad y licencias por recurso prioritario.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-02",
+      "track_id": "sources",
+      "ordinal": 2,
+      "title": "Original inalterado",
+      "criteria": "Conservar originales íntegros de tres familias de fuentes institucionales, con SHA-256 y cadena de custodia.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-03",
+      "track_id": "sources",
+      "ordinal": 3,
+      "title": "Dos testigos independientes",
+      "criteria": "Conciliar al menos dos fuentes originales independientes para un mismo dato con diferencias documentadas.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-04",
+      "track_id": "sources",
+      "ordinal": 4,
+      "title": "El registro existe",
+      "criteria": "Construir corpus versionado del RPP y candidaturas con cobertura, exclusiones y derechos explícitos.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-05",
+      "track_id": "sources",
+      "ordinal": 5,
+      "title": "El mapa nacional",
+      "criteria": "Representar datos oficiales de Congreso, Senado y una muestra multiterritorial consistente.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-06",
+      "track_id": "sources",
+      "ordinal": 6,
+      "title": "El reloj público",
+      "criteria": "Acreditar con evidencias la primera disponibilidad pública de las series empleadas, no solo su captura.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-07",
+      "track_id": "sources",
+      "ordinal": 7,
+      "title": "Una década en orden",
+      "criteria": "Conservar una serie institucional multianual coherente con revisiones y procedencia por fila.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-08",
+      "track_id": "sources",
+      "ordinal": 8,
+      "title": "Cero silencios estadísticos",
+      "criteria": "Auditar cobertura y ausencia estructural por institución, legislatura y período con denominadores.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-09",
+      "track_id": "sources",
+      "ordinal": 9,
+      "title": "La doble auditoría",
+      "criteria": "Un tercero reproduce un muestreo de originales, hashes y transformaciones sin depender del autor.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SOURCES-10",
+      "track_id": "sources",
+      "ordinal": 10,
+      "title": "Corpus soberano",
+      "criteria": "Pipeline completo incremental y reproducible de fuentes autorizadas con frescura, correcciones y auditoría de deriva.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SOURCES-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-01",
+      "track_id": "identity",
+      "ordinal": 1,
+      "title": "Nombre no es identidad",
+      "criteria": "Resolver identidades mediante claves institucionales y prohibir fusiones automáticas por coincidencia nominal.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-02",
+      "track_id": "identity",
+      "ordinal": 2,
+      "title": "El impostor descubierto",
+      "criteria": "Superar un conjunto adversarial de homónimos y cambios de nombre sin enlaces falsos.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-03",
+      "track_id": "identity",
+      "ordinal": 3,
+      "title": "Legislaturas enlazadas",
+      "criteria": "Conciliar identidades reales en dos legislaturas con evidencias positivas y controles negativos.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-04",
+      "track_id": "identity",
+      "ordinal": 4,
+      "title": "Mandato con fecha",
+      "criteria": "Reconstruir alta, baja y condición plena por actor con intervalos validados.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-05",
+      "track_id": "identity",
+      "ordinal": 5,
+      "title": "Coaliciones sin confusiones",
+      "criteria": "Distinguir partido, candidatura, coalición y grupo parlamentario con relaciones acreditadas.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-06",
+      "track_id": "identity",
+      "ordinal": 6,
+      "title": "Cambio de bancada",
+      "criteria": "Resolver adscripciones de grupo cambiantes sin aplicar el grupo final retrospectivamente.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-07",
+      "track_id": "identity",
+      "ordinal": 7,
+      "title": "El elenco verificable",
+      "criteria": "Cubrir una cohorte real delimitada de cargos con identidad, mandato y fuentes trazables.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-08",
+      "track_id": "identity",
+      "ordinal": 8,
+      "title": "Red de instituciones",
+      "criteria": "Vincular una cohorte controlada entre Congreso, Senado y cargos ejecutivos sin mezclar roles.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-09",
+      "track_id": "identity",
+      "ordinal": 9,
+      "title": "Prueba de falsos positivos",
+      "criteria": "Auditoría independiente de precisión, errores, abstenciones de emparejamiento y conflictos de identidad.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-IDENTITY-10",
+      "track_id": "identity",
+      "ordinal": 10,
+      "title": "Identidad longitudinal",
+      "criteria": "Registro multifuente reproducible y operable con correcciones, trazabilidad y cobertura certificada.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-IDENTITY-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-01",
+      "track_id": "events",
+      "ordinal": 1,
+      "title": "Qué ocurrió",
+      "criteria": "Publicar ontología operativa de eventos, roles, unidades y exclusiones sin causalidad implícita.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-02",
+      "track_id": "events",
+      "ordinal": 2,
+      "title": "Voto fiel",
+      "criteria": "Reconciliar votos nominales de una sesión real completa y sus categorías originales.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-03",
+      "track_id": "events",
+      "ordinal": 3,
+      "title": "Una iniciativa, muchas fases",
+      "criteria": "Reconstruir transiciones documentales de un expediente, con hitos y autores correctamente distinguidos.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-04",
+      "track_id": "events",
+      "ordinal": 4,
+      "title": "El día que se supo",
+      "criteria": "Registrar tiempo del hecho, publicación y captura para consultas as-of verificables.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-05",
+      "track_id": "events",
+      "ordinal": 5,
+      "title": "Corrección sin olvido",
+      "criteria": "Gestionar revisiones contradictorias de eventos sin borrar versiones históricas ni inventar tiempos.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-06",
+      "track_id": "events",
+      "ordinal": 6,
+      "title": "Más allá del hemiciclo",
+      "criteria": "Incorporar una familia extraparlamentaria original admisible con taxonomía y cobertura.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-07",
+      "track_id": "events",
+      "ordinal": 7,
+      "title": "El denominador importa",
+      "criteria": "Medir exposición institucional por actor y período, incluyendo ausencias y no observados.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-08",
+      "track_id": "events",
+      "ordinal": 8,
+      "title": "Cronología cruzada",
+      "criteria": "Conciliar eventos de dos instituciones independientes respetando pertenencia en cada fecha.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-09",
+      "track_id": "events",
+      "ordinal": 9,
+      "title": "Recuento replicable",
+      "criteria": "Un auditor externo reconstruye por completo un conjunto de eventos con hashes y exclusiones.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-EVENTS-10",
+      "track_id": "events",
+      "ordinal": 10,
+      "title": "Historia institucional viva",
+      "criteria": "Pipeline incremental de eventos reales con latencia, rectificaciones, controles y cobertura medidos.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-EVENTS-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-01",
+      "track_id": "science",
+      "ordinal": 1,
+      "title": "La pregunta precisa",
+      "criteria": "Fijar estimando social relevante, rivales falsables, unidades y desenlace operativo.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-02",
+      "track_id": "science",
+      "ordinal": 2,
+      "title": "Baseline incómodo",
+      "criteria": "Comparar modelo propuesto con un baseline temporal fuerte sin ventaja artificial de información.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-03",
+      "track_id": "science",
+      "ordinal": 3,
+      "title": "Fuga temporal cero",
+      "criteria": "Auditar variables disponibles al corte y excluir etiquetas o correcciones publicadas después.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-04",
+      "track_id": "science",
+      "ordinal": 4,
+      "title": "Una cohorte real",
+      "criteria": "Analizar corpus institucional con personas, períodos y denominadores auditados.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-05",
+      "track_id": "science",
+      "ordinal": 5,
+      "title": "El efecto y su incertidumbre",
+      "criteria": "Reportar tamaños de efecto, incertidumbre y sensibilidad a sesiones, agenda y roles.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-06",
+      "track_id": "science",
+      "ordinal": 6,
+      "title": "Sesgo iluminado",
+      "criteria": "Cuantificar desigualdad de oportunidad de observación y fallos de cobertura por subgrupo.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-07",
+      "track_id": "science",
+      "ordinal": 7,
+      "title": "El contrincante justo",
+      "criteria": "Ablaciones de modelo relacional frente a predictores fuertes con presupuesto y datos iguales.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-08",
+      "track_id": "science",
+      "ordinal": 8,
+      "title": "Futuro no visto",
+      "criteria": "Evaluación prospectiva walk-forward preinscrita con conjunto final no reutilizado.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-09",
+      "track_id": "science",
+      "ordinal": 9,
+      "title": "El laboratorio ajeno",
+      "criteria": "Reproducción por otro equipo en datos nuevos, incluyendo casos negativos y costes.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SCIENCE-10",
+      "track_id": "science",
+      "ordinal": 10,
+      "title": "Contribución transferible",
+      "criteria": "Hallazgo o instrumento de utilidad sociológica 2/3 o superior, adoptable y validado externamente.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SCIENCE-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-01",
+      "track_id": "game",
+      "ordinal": 1,
+      "title": "Mi primer club",
+      "criteria": "Demostración jugable de creación de club, saldo, fichaje y jornada con tests integrados.",
+      "rarity": "bronce",
+      "status": "unlocked",
+      "evidence": [
+        "docs/PRODUCTO_LOCAL_v0_2.md",
+        "product/QA_RUN_20261024.txt",
+        "tareas_codex/T008_RESULTADO.md",
+        "tareas_codex/T009_RESULTADO.md"
+      ],
+      "verified_by": "ChatGPT-documentary-crosscheck-limited",
+      "verified_at": "2026-10-28T17:50:00+01:00",
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28T17:50:00+01:00",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-02",
+      "track_id": "game",
+      "ordinal": 2,
+      "title": "Mercado inviolable",
+      "criteria": "Garantizar presupuesto, exclusividad, concurrencia y trazas transaccionales adversariales.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-03",
+      "track_id": "game",
+      "ordinal": 3,
+      "title": "Once decisiones difíciles",
+      "criteria": "Probar diversidad de decisiones estratégicas con incentivos y restricciones reproducibles.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-04",
+      "track_id": "game",
+      "ordinal": 4,
+      "title": "Alineación congelada",
+      "criteria": "Preservar estados históricos de plantillas y cierre de jornadas sin reescritura retrospectiva.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-05",
+      "track_id": "game",
+      "ordinal": 5,
+      "title": "Reglas a la vista",
+      "criteria": "Versionar y explicar puntuaciones con derivaciones reproducibles y un modo ficticio seguro.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-06",
+      "track_id": "game",
+      "ordinal": 6,
+      "title": "Liga que funciona",
+      "criteria": "Operar varias jornadas y clasificaciones ficticias sin dobles conteos ni fallos de asentamiento.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-07",
+      "track_id": "game",
+      "ordinal": 7,
+      "title": "Economía equilibrada",
+      "criteria": "Simular mercado dinámico frente a estrategias dominantes y evaluar desigualdad competitiva.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-08",
+      "track_id": "game",
+      "ordinal": 8,
+      "title": "Partida con memoria",
+      "criteria": "Guardar, restaurar y migrar temporadas completas sin perder posesiones, puntos ni auditoría.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-09",
+      "track_id": "game",
+      "ordinal": 9,
+      "title": "Diversión demostrada",
+      "criteria": "Piloto con participantes que evidencia comprensión y decisiones interesantes, no solo apariencia.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-GAME-10",
+      "track_id": "game",
+      "ordinal": 10,
+      "title": "Temporada verificable",
+      "criteria": "Temporada completa con fuentes permitidas, reglas transparentes, disputas resueltas y gates aprobados.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-GAME-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-01",
+      "track_id": "ui",
+      "ordinal": 1,
+      "title": "Primer vistazo",
+      "criteria": "Navegación integral local por las principales pantallas con prueba automatizada.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-02",
+      "track_id": "ui",
+      "ordinal": 2,
+      "title": "El primer fichaje",
+      "criteria": "Personas nuevas completan compra y alineación sin orientación del observador en un piloto.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-03",
+      "track_id": "ui",
+      "ordinal": 3,
+      "title": "Dos mundos separados",
+      "criteria": "Usuarios distinguen observatorio empírico de puntos ficticios en evaluación de comprensión.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-04",
+      "track_id": "ui",
+      "ordinal": 4,
+      "title": "Móvil de verdad",
+      "criteria": "Verificar flujos críticos y diseño adaptativo en dispositivos móviles reales.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-05",
+      "track_id": "ui",
+      "ordinal": 5,
+      "title": "Teclado soberano",
+      "criteria": "Auditoría WCAG de teclado, foco, contraste y lector de pantalla con correcciones.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-06",
+      "track_id": "ui",
+      "ordinal": 6,
+      "title": "La historia de un dato",
+      "criteria": "Exploración desde indicador hasta fuente, versión y fecha con navegación explicable.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-07",
+      "track_id": "ui",
+      "ordinal": 7,
+      "title": "No más confusiones",
+      "criteria": "Eliminar ambigüedades de porcentajes, CT2, cobertura y mensajes de incertidumbre en tests.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-08",
+      "track_id": "ui",
+      "ordinal": 8,
+      "title": "Onboarding sin tutor",
+      "criteria": "Validar tutorial, errores recuperables y retorno de usuario con pruebas moderadas.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-09",
+      "track_id": "ui",
+      "ordinal": 9,
+      "title": "Diseño contrastado",
+      "criteria": "Evaluación comparativa con prototipo rival o anterior y tareas preregistradas.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-UI-10",
+      "track_id": "ui",
+      "ordinal": 10,
+      "title": "Experiencia demostrada",
+      "criteria": "Flujo completo accesible, móvil, comprensible y validado por usuarios diversos.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-UI-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-01",
+      "track_id": "security",
+      "ordinal": 1,
+      "title": "La puerta cerrada",
+      "criteria": "Demostrar que la demo no se expone a red pública y rechaza orígenes indebidos.",
+      "rarity": "bronce",
+      "status": "unlocked",
+      "evidence": [
+        "src/politics_fantasy/server.py",
+        "research/BRANCH8N_20261026/NATIVE_EVIDENCE.json"
+      ],
+      "verified_by": "ChatGPT-documentary-crosscheck-limited",
+      "verified_at": "2026-10-28T17:50:00+01:00",
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28T17:50:00+01:00",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-02",
+      "track_id": "security",
+      "ordinal": 2,
+      "title": "Amenazas a la vista",
+      "criteria": "Modelo STRIDE o equivalente con abuso, reputación y superficies de datos.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-03",
+      "track_id": "security",
+      "ordinal": 3,
+      "title": "Cada fuente con permiso",
+      "criteria": "Matriz de licencias y finalidades concretas para todos los recursos realmente empleados.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-04",
+      "track_id": "security",
+      "ordinal": 4,
+      "title": "Solo lo necesario",
+      "criteria": "Minimización de datos, retención, borrado y bases legales por clase de dato.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-05",
+      "track_id": "security",
+      "ordinal": 5,
+      "title": "Identidades protegidas",
+      "criteria": "Autenticación y autorización multiusuario con roles y pruebas de acceso ajeno negativo.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-06",
+      "track_id": "security",
+      "ordinal": 6,
+      "title": "Ataque rechazado",
+      "criteria": "Pruebas adversariales de CSRF, sesiones, payloads, SQL y control de concurrencia.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-07",
+      "track_id": "security",
+      "ordinal": 7,
+      "title": "El derecho de rectificar",
+      "criteria": "Procedimiento operativo para corregir atribuciones, atender reclamaciones y trazar decisiones.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-08",
+      "track_id": "security",
+      "ordinal": 8,
+      "title": "La copia de rescate",
+      "criteria": "Restauración de backups cifrados, manejo de secretos y ensayo de incidente verificados.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-09",
+      "track_id": "security",
+      "ordinal": 9,
+      "title": "Evaluación de impacto",
+      "criteria": "Evaluación documentada de riesgo reputacional, sesgo y protección de datos antes de uso real.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-SECURITY-10",
+      "track_id": "security",
+      "ordinal": 10,
+      "title": "Licencia para abrir",
+      "criteria": "Revisión jurídica, controles técnicos y derechos completados para el despliegue específico.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-SECURITY-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-01",
+      "track_id": "qa",
+      "ordinal": 1,
+      "title": "Verde auténtico",
+      "criteria": "Suite íntegra Python y Node en checkout limpio, con logs y hashes reproducibles.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-02",
+      "track_id": "qa",
+      "ordinal": 2,
+      "title": "Atlas reconstruido",
+      "criteria": "Replay canónico de todos los lotes con SHA, sin corrupción ni referencias inválidas.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-03",
+      "track_id": "qa",
+      "ordinal": 3,
+      "title": "Linux y Windows coinciden",
+      "criteria": "Paridad funcional y de formatos entre sistemas con diferencias ambientales clasificadas.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-04",
+      "track_id": "qa",
+      "ordinal": 4,
+      "title": "El caso malicioso",
+      "criteria": "Tests de entradas adversariales, tiempos, IDs y fuentes no confiables sin aceptación indebida.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-05",
+      "track_id": "qa",
+      "ordinal": 5,
+      "title": "La jornada simulada",
+      "criteria": "Ensayo E2E de interfaz, servidor, base de datos, mercado y puntuaciones ficticias.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-06",
+      "track_id": "qa",
+      "ordinal": 6,
+      "title": "Migración reversible",
+      "criteria": "Prueba de upgrade, rollback y consistencia SQLite con datos de ensayo.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-07",
+      "track_id": "qa",
+      "ordinal": 7,
+      "title": "Calendario congelado",
+      "criteria": "Ensayos bitemporales y anti-leakage reproducibles con controles negativos.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-08",
+      "track_id": "qa",
+      "ordinal": 8,
+      "title": "Archivo reproducible",
+      "criteria": "Entorno limpio instalable desde versión etiquetada y artefactos con hashes verificables.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-09",
+      "track_id": "qa",
+      "ordinal": 9,
+      "title": "Segundos ojos",
+      "criteria": "Auditoría independiente reproduce el pipeline y detecta o descarta defectos críticos.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-QA-10",
+      "track_id": "qa",
+      "ordinal": 10,
+      "title": "Calidad de entrega",
+      "criteria": "Tests funcionales, seguridad, accesibilidad, rendimiento y recuperación aprobados para producción.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-QA-09"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-01",
+      "track_id": "launch",
+      "ordinal": 1,
+      "title": "Instalación de una pieza",
+      "criteria": "Paquete instalable y documentado para un usuario local con limpieza y restauración.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-02",
+      "track_id": "launch",
+      "ordinal": 2,
+      "title": "La primera incorporación",
+      "criteria": "Onboarding end-to-end del usuario ficticio sin asistencia y sin datos privados.",
+      "rarity": "bronce",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-01"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-03",
+      "track_id": "launch",
+      "ordinal": 3,
+      "title": "Temporada reglamentada",
+      "criteria": "Reglas, calendario, soporte y procedimientos de disputa versionados.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-02"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-04",
+      "track_id": "launch",
+      "ordinal": 4,
+      "title": "El piloto comienza",
+      "criteria": "Piloto real consentido, instrumentado, de baja escala y sin scoring de personas reales.",
+      "rarity": "plata",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-03"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-05",
+      "track_id": "launch",
+      "ordinal": 5,
+      "title": "Se quedan jugando",
+      "criteria": "Medición de retención, fallos y satisfacción con N, contexto y sesgos declarados.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-04"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-06",
+      "track_id": "launch",
+      "ordinal": 6,
+      "title": "Alertas antes del fallo",
+      "criteria": "Monitorización, registros minimizados y alertas probadas en ambiente controlado.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-05"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-07",
+      "track_id": "launch",
+      "ordinal": 7,
+      "title": "Carga bajo control",
+      "criteria": "Prueba de carga y restauración de servicio con objetivos de latencia explícitos.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-06"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-08",
+      "track_id": "launch",
+      "ordinal": 8,
+      "title": "Seis puertas abiertas",
+      "criteria": "Los seis gates de lanzamiento se satisfacen con evidencia independiente revisada.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-07"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-09",
+      "track_id": "launch",
+      "ordinal": 9,
+      "title": "Primera temporada pública",
+      "criteria": "Despliegue legítimo, autenticado y operado, con usuarios reales y fuentes admisibles.",
+      "rarity": "platino",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-08"
+      ],
+      "retirement_reason": null
+    },
+    {
+      "id": "PFL-LAUNCH-10",
+      "track_id": "launch",
+      "ordinal": 10,
+      "title": "Operación sostenible",
+      "criteria": "Mantenimiento, métricas de daño, soporte y resultados de temporada auditables en continuidad.",
+      "rarity": "legendario",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-28",
+      "updated_at": "2026-10-28",
+      "prerequisites": [
+        "PFL-LAUNCH-09"
+      ],
+      "retirement_reason": null
+    }
+  ],
+  "change_log": [
+    {
+      "seq": 1,
+      "date": "2026-10-28",
+      "type": "registry.created",
+      "reason": "User approved the 9x10 achievements and independent 20-cycle AB-H campaign. No achievements awarded.",
+      "actor": "chatgpt",
+      "affected_ids": [
+        "PFL-SOURCES-01",
+        "PFL-SOURCES-02",
+        "PFL-SOURCES-03",
+        "PFL-SOURCES-04",
+        "PFL-SOURCES-05",
+        "PFL-SOURCES-06",
+        "PFL-SOURCES-07",
+        "PFL-SOURCES-08",
+        "PFL-SOURCES-09",
+        "PFL-SOURCES-10",
+        "PFL-IDENTITY-01",
+        "PFL-IDENTITY-02",
+        "PFL-IDENTITY-03",
+        "PFL-IDENTITY-04",
+        "PFL-IDENTITY-05",
+        "PFL-IDENTITY-06",
+        "PFL-IDENTITY-07",
+        "PFL-IDENTITY-08",
+        "PFL-IDENTITY-09",
+        "PFL-IDENTITY-10",
+        "PFL-EVENTS-01",
+        "PFL-EVENTS-02",
+        "PFL-EVENTS-03",
+        "PFL-EVENTS-04",
+        "PFL-EVENTS-05",
+        "PFL-EVENTS-06",
+        "PFL-EVENTS-07",
+        "PFL-EVENTS-08",
+        "PFL-EVENTS-09",
+        "PFL-EVENTS-10",
+        "PFL-SCIENCE-01",
+        "PFL-SCIENCE-02",
+        "PFL-SCIENCE-03",
+        "PFL-SCIENCE-04",
+        "PFL-SCIENCE-05",
+        "PFL-SCIENCE-06",
+        "PFL-SCIENCE-07",
+        "PFL-SCIENCE-08",
+        "PFL-SCIENCE-09",
+        "PFL-SCIENCE-10",
+        "PFL-GAME-01",
+        "PFL-GAME-02",
+        "PFL-GAME-03",
+        "PFL-GAME-04",
+        "PFL-GAME-05",
+        "PFL-GAME-06",
+        "PFL-GAME-07",
+        "PFL-GAME-08",
+        "PFL-GAME-09",
+        "PFL-GAME-10",
+        "PFL-UI-01",
+        "PFL-UI-02",
+        "PFL-UI-03",
+        "PFL-UI-04",
+        "PFL-UI-05",
+        "PFL-UI-06",
+        "PFL-UI-07",
+        "PFL-UI-08",
+        "PFL-UI-09",
+        "PFL-UI-10",
+        "PFL-SECURITY-01",
+        "PFL-SECURITY-02",
+        "PFL-SECURITY-03",
+        "PFL-SECURITY-04",
+        "PFL-SECURITY-05",
+        "PFL-SECURITY-06",
+        "PFL-SECURITY-07",
+        "PFL-SECURITY-08",
+        "PFL-SECURITY-09",
+        "PFL-SECURITY-10",
+        "PFL-QA-01",
+        "PFL-QA-02",
+        "PFL-QA-03",
+        "PFL-QA-04",
+        "PFL-QA-05",
+        "PFL-QA-06",
+        "PFL-QA-07",
+        "PFL-QA-08",
+        "PFL-QA-09",
+        "PFL-QA-10",
+        "PFL-LAUNCH-01",
+        "PFL-LAUNCH-02",
+        "PFL-LAUNCH-03",
+        "PFL-LAUNCH-04",
+        "PFL-LAUNCH-05",
+        "PFL-LAUNCH-06",
+        "PFL-LAUNCH-07",
+        "PFL-LAUNCH-08",
+        "PFL-LAUNCH-09",
+        "PFL-LAUNCH-10"
+      ],
+      "registry_version": 1
+    },
+    {
+      "seq": 2,
+      "date": "2026-10-28T17:50:00+01:00",
+      "actor": "ChatGPT-documentary-crosscheck-limited",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-GAME-01",
+      "reason": "Synthetic demo has club, credits, acquisition, round scoring and previous executed integrated Python QA 49/49 on 2026-10-24 plus later T008 (different old checkout); T009 current passed 757 with one unrelated positive HTTP encoding failure. Only fictional demo criteria, not a production gate.",
+      "registry_version": 2
+    },
+    {
+      "seq": 3,
+      "date": "2026-10-28T17:50:00+01:00",
+      "actor": "ChatGPT-documentary-crosscheck-limited",
+      "type": "achievement.unlocked",
+      "achievement_id": "PFL-SECURITY-01",
+      "reason": "server.py binds 127.0.0.1 and rejects nonlocal Host/Origin; earlier native browser/HTTP check returned 403 for hostile Host. This certifies local-demo perimeter only, not multiuser/auth or public deployment.",
+      "registry_version": 3
+    }
+  ],
+  "updated_at": "2026-10-28T17:50:00+01:00"
+}

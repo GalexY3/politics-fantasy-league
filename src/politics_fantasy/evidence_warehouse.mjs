@@ -30,6 +30,10 @@ export function source(reg,v){
  check(idValid(v.id),"SOURCE_ID");
  unique(reg.sources,v.id,"DUPLICATE_SOURCE");
  check(typeof v.url==="string"&&/^https:\/\/[^\s/]+\//.test(v.url),"SOURCE_URL");
+ // Do not accept userinfo or escaped authorities masquerading as source origins.
+ // This is syntax hygiene, NOT independent validation of the claim "OFFICIAL".
+ const authority=v.url.slice(8).split('/')[0];
+ check(authority.length>0&&!/[@\\%?#]/.test(authority),"SOURCE_URL");
  check(["OFFICIAL","PUBLISHED_BY_ACTOR","SECONDARY","JOURNALISTIC","SYNTHETIC"].includes(v.kind),"SOURCE_KIND");
  check(["DOCUMENTED_ONLY","RAW_CAPTURED","TEST_FIXTURE"].includes(v.state),"SOURCE_STATE");
  check(instant(v.observed_at),"SOURCE_OBSERVED_AT");
@@ -140,10 +144,21 @@ export function officeStatus(reg,id,on,cutoff=null){
  return list[0].value;
 }
 export function eventDuplicates(reg){
+ // A local external reference may be reused by different publishers/feeds.
+ // Source-id scope avoids asserting that unrelated institutions describe one event.
+ // It can miss a true collision between different files of the same publisher:
+ // this is a *candidate* detector, not a universal deduplicator.
  const byKey=new Map();
- for(const e of reg.events){const key=e.external_event_id;
-  if(!key)continue;const arr=byKey.get(key)??[];arr.push(e.id);byKey.set(key,arr)}
- return [...byKey].filter(([,xs])=>xs.length>1).map(([key,ids])=>({external_event_id:key,event_ids:ids,needs_review:true}))
+ for(const e of reg.events){
+  if(!e.external_event_id)continue;
+  const key=JSON.stringify([e.source_id??null,e.external_event_id]);
+  const rows=byKey.get(key)??[];
+  rows.push(e.id);byKey.set(key,rows);
+ }
+ return [...byKey].filter(([,xs])=>xs.length>1).map(([key,ids])=>{
+  const [source_id,external_event_id]=JSON.parse(key);
+  return {source_id,external_event_id,event_ids:ids,needs_review:true};
+ });
 }
 export function coverage(reg){
  const tally=(xs,key)=>Object.fromEntries([...new Set(xs.map(x=>x[key]))].sort().map(k=>[k,xs.filter(x=>x[key]===k).length]));
@@ -170,7 +185,8 @@ export function auditBundle(reg){
  const ids=new Set(reg.sources.map(x=>x.id));const eids=new Set(reg.entities.map(x=>x.id));
  const broken=[...reg.entities.filter(x=>!ids.has(x.source_id)).map(x=>"ENTITY:"+x.id),
  ...reg.roles.filter(x=>!ids.has(x.source_id)||!eids.has(x.subject_id)).map(x=>"ROLE:"+x.id),
- ...reg.events.filter(x=>!ids.has(x.source_id)||x.participants.some(p=>!eids.has(p.actor_id))).map(x=>"EVENT:"+x.id)];
+ ...reg.events.filter(x=>!ids.has(x.source_id)||x.participants.some(p=>!eids.has(p.actor_id))).map(x=>"EVENT:"+x.id),
+ ...reg.claims.filter(x=>!ids.has(x.source_id)||!eids.has(x.subject_id)).map(x=>"CLAIM:"+x.id)];
  return {ok:broken.length===0,broken,coverage:coverage(reg),gate:evidenceGate(reg),event_collisions:eventDuplicates(reg)}
 }
 export const CAPABILITIES={types:TYPES,eventTypes:TYPES_EVENT,roles:ROLES};

@@ -1,0 +1,49 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-ACH20-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_DISCOVERY_BUT_ORIGINAL_BYTES_NOT_AVAILABLE",
+  "A": "¿Existe un enlace oficial concreto de votación nominal a JSON/XML/ZIP y podemos verificar sus bytes ahora?",
+  "B": {
+    "H1": "Links exist but bytes not reproducibly retrievable with tools used",
+    "H0": "No usable original endpoints exposed"
+  },
+  "C": "Catalogues Congreso votaciones + diputados, click three institutional export links in one session, inspect responses",
+  "D": {
+    "official_catalogues": [
+      "https://www.congreso.es/es/opendata/votaciones",
+      "https://www.congreso.es/es/opendata/diputados"
+    ],
+    "original_json": "https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion193/20260723/Votacion001/VOT_20260723211929.json",
+    "original_xml": "https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion193/20260723/Votacion001/VOT_20260723211927.xml",
+    "original_zip": "https://www.congreso.es/webpublica/opendata/votaciones/Leg15/Sesion193/20260723/VOT_20260723211928.zip"
+  },
+  "E": {
+    "confirmed": "Official Congreso votes catalog 23/07/2026 session193 gives the first voting's recorded 33 yes,315 no,0 abstentions and explicit JSON/XML plus ZIP link; deputies catalogue advertises JSON/CSV/XML for active, former and legislatures.",
+    "json": "HTTP retrieval was labeled application/json but extractor returned one empty line; no parsed payload or verified raw byte count.",
+    "xml": "cache miss in web click",
+    "zip": "unsupported application/zip in web click",
+    "local_fallback": "container requests could not resolve public hostname; no original recovered",
+    "files_downloaded": 0,
+    "hashes_confirmed": 0
+  },
+  "F": "Original nominal payloads unavailable; tally in HTML is not proof of nominal mapping or time available",
+  "G": "One institution only, no independent issuer, first_public_at unknown",
+  "H": {
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievement_unlocks": 0
+  },
+  "I": "No rights adjudication, no individual score",
+  "J": "C03 pivot to Senate cross-institution original discovery rather than retrying same Congress payload.",
+  "sources": [
+    "https://www.congreso.es/es/opendata/votaciones",
+    "https://www.congreso.es/es/opendata/diputados"
+  ]
+}

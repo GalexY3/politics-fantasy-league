@@ -1,0 +1,75 @@
+{
+  "schema": "pfl.official.aggregate.sample.v1",
+  "publisher": "Congreso de los Diputados",
+  "url": "https://www.congreso.es/es/opendata/votaciones",
+  "session": "193",
+  "session_date": "2026-07-23",
+  "observation": "Only HTML tally visible to web reader; no XML/JSON original nominal body captured",
+  "records": [
+    {
+      "expediente": "130/000049",
+      "vote": "convalidación",
+      "yes": 175,
+      "no": 33,
+      "abstain": 140,
+      "total": 348,
+      "granularity": "vote within expediente"
+    },
+    {
+      "expediente": "130/000049",
+      "vote": "urgencia",
+      "yes": 344,
+      "no": 0,
+      "abstain": 0,
+      "total": 344,
+      "granularity": "vote within expediente"
+    },
+    {
+      "expediente": "130/000050",
+      "vote": "convalidación",
+      "yes": 167,
+      "no": 37,
+      "abstain": 144,
+      "total": 348,
+      "granularity": "vote within expediente"
+    },
+    {
+      "expediente": "130/000050",
+      "vote": "urgencia",
+      "yes": 347,
+      "no": 0,
+      "abstain": 0,
+      "total": 347,
+      "granularity": "vote within expediente"
+    }
+  ],
+  "summary": [
+    {
+      "expediente": "130/000049",
+      "distinct_votes": 2,
+      "totals": [
+        348,
+        344
+      ],
+      "total_difference": 4,
+      "vote_yes": [
+        175,
+        344
+      ]
+    },
+    {
+      "expediente": "130/000050",
+      "distinct_votes": 2,
+      "totals": [
+        348,
+        347
+      ],
+      "total_difference": 1,
+      "vote_yes": [
+        167,
+        347
+      ]
+    }
+  ],
+  "first_public_at": null
+}

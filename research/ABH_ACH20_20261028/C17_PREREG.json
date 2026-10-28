@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C17",
+  "type": "AB-P",
+  "A": "Do navigation buttons identify the selected section semantically to assistive technology, beyond a visual active class?",
+  "B": {
+    "H1": "Current web nav switches .active only and never updates aria-current",
+    "H0": "An equivalent semantic selected state already exists"
+  },
+  "C": "Inspect exact index.html/app.js, add aria-current=page for current nav button, remove from inactive, test handler behavior via V8 isolated DOM nodes",
+  "D": "Screen reader and WCAG formal audits not performed; no badge unlock",
+  "E": "PENDING",
+  "F": "One semantic cue only, not full accessibility certification",
+  "G": "No broad CSS rework",
+  "H": "V4 unchanged",
+  "I": "UI-accessibility achievement remains locked",
+  "J": "Later human testing of keyboard and screen reader"
+}

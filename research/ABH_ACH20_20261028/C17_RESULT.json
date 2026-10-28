@@ -1,0 +1,31 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C17",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_ACTIVE_NAV_ACCESSIBILITY",
+  "A": "Visual class active without semantic current-page indication",
+  "B": "H1 verified in current JS, H0 not observed",
+  "C": "Added aria-current=page at initial nav and dynamically switch property on tab changes; executed exact patch callback with fake DOM three nav buttons",
+  "D": {
+    "html": "src/politics_fantasy/web/index.html",
+    "script": "src/politics_fantasy/web/app.js",
+    "test": "tests/test_nav_semantics.mjs"
+  },
+  "E": {
+    "fake_dom_pass": 4,
+    "first": "overview current",
+    "after": "market current, overview attr removed",
+    "node_regression": "CREATED_NOT_RUN",
+    "real_screenreader": "NOT_TESTED"
+  },
+  "F": "Only ARIA current-page accessibility improvement, not WCAG conformance",
+  "G": "No real mobile/keyboard/screen-reader pilot",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "awards": 2
+  },
+  "I": "UI.ACCESS achievement remains locked",
+  "J": "C18 separate issue copy semantics vs scientific indicators"
+}

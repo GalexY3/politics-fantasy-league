@@ -31,4 +31,4 @@ Las órdenes exactas están en `T010_EVIDENCIA/linux/check.sh`. Los ficheros vac
 
 Hashes destacados de evidencia Linux: `atlas.out` `5fb896d27a967a9395209db01b3c518c612f0c9477be2ead0d2e95462ca7a84b`; `atlas_tests.out` `ab67a5d80a7155131503b88fe03948669002e39cc9f1502d7d866129e9bffc21`; `pytest.out` `0ea22f29418e5471114cab7afd190b572226aa0cf38541f4b43cb95e5a938c47`; `node.out` `b8e7d798a081e3d5ec9af19078fd53589b7075faaf59e5fc70fbec87c74cebe5`. [Evidencia y manifiesto](T010_EVIDENCIA/linux/sha256.txt).
 
-[Compare rama contra main](https://github.com/GalexY3/Metodologia-AB/compare/main...fix/pfl-t010-atlas-http-20261028). Los resultados de QA no acreditan las fuentes parlamentarias, los derechos, la identidad, la primera publicación ni un despliegue público.
+[PR #18](https://github.com/GalexY3/Metodologia-AB/pull/18) · [Compare rama contra main](https://github.com/GalexY3/Metodologia-AB/compare/main...fix/pfl-t010-atlas-http-20261028). Los resultados de QA no acreditan las fuentes parlamentarias, los derechos, la identidad, la primera publicación ni un despliegue público.

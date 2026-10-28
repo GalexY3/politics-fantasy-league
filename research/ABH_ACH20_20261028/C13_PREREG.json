@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C13",
+  "type": "AB-P",
+  "A": "Does evidence_warehouse.auditBundle flag dangling claim.subject_id or claim.source_id references just as it flags entities, roles and events?",
+  "B": {
+    "H1": "Claims are accidentally omitted from referential audit and can produce false ok",
+    "H0": "All relevant references are covered"
+  },
+  "C": "Execute original auditBundle with minimal reg no entities, one orphan claim, compare control empty. Patch only if false ok; rerun",
+  "D": "Original GitHub production source JS with function harness; synthetic data only",
+  "E": "PENDING",
+  "F": "Referential check not cryptographic source verification",
+  "G": "Do not alter scoring or sources",
+  "H": "V4 unchanged",
+  "I": "No badge",
+  "J": "Add regression if mismatch discovered"
+}

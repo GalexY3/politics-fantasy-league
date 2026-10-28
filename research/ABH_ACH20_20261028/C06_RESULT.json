@@ -1,0 +1,31 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C06",
+  "type": "AB-P",
+  "status": "VALID_NEGATIVE_TEST_IMPORT_AUDIT_GUARD_MISSING",
+  "A": "Adversarial import registry consistency",
+  "B": "H1 observed; existing browser validator is structurally permissive about audit lineage",
+  "C": "Actual JavaScript validator parsed from GitHub HTML and invoked with six cloned registry cases",
+  "D": {
+    "git_blob": "172dfd6c5208f566c21d0ed26a725ac4a2d57da4"
+  },
+  "E": {
+    "total_cases": 6,
+    "positive_baseline": "accepted",
+    "missing_evidence": "rejected",
+    "unlock_future_without_prerequisites": "rejected",
+    "forged_evidence_without_event": "accepted",
+    "invented_version_999_without_events": "accepted",
+    "empty_audit_log": "accepted"
+  },
+  "F": "Structural validation cannot authenticate invented source claims; additionally three specifically preventable audit consistency failures identified",
+  "G": "A forger can always manufacture a consistent history without external signatures; a local HTML cannot validate external evidence truth",
+  "H": {
+    "unlock": 0,
+    "CT2": 29,
+    "V4": 36.9
+  },
+  "I": "No permission to score persons; exploit hypothetical imported file only",
+  "J": "Add audit version/sequence/event per unlock and baseline tracks in browser validate; negative control after repair."
+}

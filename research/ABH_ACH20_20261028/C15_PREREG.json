@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C15",
+  "type": "AB-P",
+  "A": "Can missing vote_event_id merge otherwise separate roll calls in covote_edges and manufacture descriptive agreement pairs?",
+  "B": {
+    "H1": "Empty/whitespace event identity silently pools records and creates unsupported pair exposure",
+    "H0": "Function rejects missing event identity"
+  },
+  "C": "Exercise actual covote_edges with two minimal synthetic people on different abstract votes sharing empty ID; compare nonempty different IDs and require reject blank ID, also blank person_id",
+  "D": "Isolated Python reconstruction of source, not evidence of real party behavior; patch and regression tests, don't run scoring",
+  "E": "PENDING",
+  "F": "No inference of personal influence",
+  "G": "Check data originally available at as_of and duplicates",
+  "H": "CT2 unchanged",
+  "I": "No new achievement",
+  "J": "Document graph unit requirements"
+}

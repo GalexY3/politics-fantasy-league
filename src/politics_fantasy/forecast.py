@@ -1,7 +1,7 @@
 """Prequential baseline with explicit information availability: demo, not fitted to Spanish politics."""
 from __future__ import annotations
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, date
 from math import log, exp, isfinite
 from typing import Iterable
 from .events import PoliticalEvent, as_utc, observable_event_revisions
@@ -71,9 +71,16 @@ def poisson_log_loss(y: int, lam: float) -> float:
 
 def rolling_origin_splits(weeks: list[str], min_train: int, horizon: int = 1):
     """Chronological expanding-window folds; no random shuffling and no re-use of future."""
-    if len(weeks) != len(set(weeks)) or weeks != sorted(weeks):
-        raise ValueError("Weeks must be unique and sorted ISO dates")
-    if min_train < 2 or horizon < 1:
+    try:
+        calendar_valid = all(
+            type(w) is str and len(w) == 10
+            and date.fromisoformat(w).isoformat() == w for w in weeks
+        )
+    except (TypeError, ValueError):
+        calendar_valid = False
+    if not calendar_valid or len(weeks) != len(set(weeks)) or weeks != sorted(weeks):
+        raise ValueError("Weeks must be valid, unique and sorted ISO dates")
+    if type(min_train) is not int or type(horizon) is not int or min_train < 2 or horizon < 1:
         raise ValueError("Invalid split parameters")
     for test_begin in range(min_train, len(weeks) - horizon + 1):
         yield weeks[:test_begin], weeks[test_begin:test_begin + horizon]

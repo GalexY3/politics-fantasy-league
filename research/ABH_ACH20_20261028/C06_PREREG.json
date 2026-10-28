@@ -1,0 +1,19 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C06",
+  "type": "AB-P",
+  "A": "Can imported registry JSON claim achievements unlocked without authenticated audit history, change-log continuity and irreversible versioning?",
+  "B": {
+    "H1": "Current browser validate rejects structure lacking evidence but accepts fabricated evidence or audit history omissions",
+    "H0": "Existing validator detects version/log tampering"
+  },
+  "C": "Execute exact original validate() from HTML, mutate clone of registry with fake unlocked evidence and altered audit log, separately test missing verifier and missing prerequisite; compare accept/reject",
+  "D": "Same Git blob but different attack class from C05, explicit safety falsifiers",
+  "E": "PENDING",
+  "F": "Data integrity only, no cryptographic authentication without signed provenance",
+  "G": "Do not claim security even on pass",
+  "H": "V4 unmodified",
+  "I": "No achievements awarded",
+  "J": "Repair audit invariants if falsified in new version"
+}

@@ -1,0 +1,39 @@
+{
+  "schema": "ab.campaign.authorization.v1",
+  "id": "PFL-ABH-ACH20-20261028",
+  "date": "2026-10-28",
+  "source": "User grants 20 AB-H cycles and requests 90 Steam-like achievements (10 for each of nine V4 areas), dynamically maintainable and visualized in the AB Atlas.",
+  "authorization": {
+    "granted": 20,
+    "max_attempts": 20,
+    "scope": "AB-H adaptive research and product, no quota chasing",
+    "counted_valid": 0,
+    "counted_invalid": 0,
+    "planning": 0,
+    "remaining": 20
+  },
+  "status": "AUTHORIZED_NOT_YET_EXECUTED",
+  "previous_campaign": "PFL-ABH-MAIN20B-20261028 closed20/20",
+  "baseline": {
+    "progress_contractual_percent": 36.9,
+    "scope_revision": 4,
+    "critical_release_gates_passed": 0,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "new_science_findings": [
+      0,
+      0,
+      0
+    ],
+    "T009": "COMPLETADA_CON_FALLOS",
+    "T010": "PENDING",
+    "atlas_documentary_lots": 75
+  },
+  "constraints": [
+    "Preregister and complete A-J before calling cycle valid; do not count mere preparation.",
+    "No modification of broken root ab_atlas/atlas_delta.py while T010 pending.",
+    "Achievement verification evidence and user approval separate from maturity progress; no automatic unlock or score.",
+    "Future additions/removals by append-only auditable change log and stable IDs; no rewrite of prior Atlas lots.",
+    "No original nominal private data, no political person scoring, no public launch/CI cost."
+  ]
+}

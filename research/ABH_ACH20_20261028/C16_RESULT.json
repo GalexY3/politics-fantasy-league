@@ -1,0 +1,31 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C16",
+  "type": "AB-P",
+  "status": "VALID_NEGATIVE_AND_REPAIR_URL_CREDENTIAL_AUTHORITY",
+  "A": "Declared source could contain user:password@host URL while classified OFFICIAL",
+  "B": "Original source accepted, new guard rejects userinfo",
+  "C": "Loaded original ESM code via Function in V8, tested credential URL, patched only URL syntax in source(), reran 3 cases",
+  "D": {
+    "source": "src/politics_fantasy/evidence_warehouse.mjs",
+    "git_after": "f984fbb0b0290786954ba5b4c25bed86f0d83bdf",
+    "regression": "tests/test_source_url_credentials.mjs"
+  },
+  "E": {
+    "red": "HTTPS with user:pass@fake.invalid was accepted",
+    "green": "credential URL rejected, ordinary HTTPS synthetic accepted, HTTP rejected",
+    "green_checks": 3,
+    "pass": 3,
+    "node_test_committed": "NOT_RUN"
+  },
+  "F": "Pure syntax hygiene, not independent official origin attestation or rights approval",
+  "G": "Official kind still a caller-supplied claim; evidenceGate remains fail closed to real scoring",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "awards": 2
+  },
+  "I": "No real-world original bytes or factual data verified",
+  "J": "R5 stop input-parser variants; next accessibility/user-impact and campaign audit."
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C19",
+  "type": "AB-META",
+  "status": "VALID_BOUNDED_AJ_LEDGER_18_PAIR_AUDIT",
+  "A": "Auditar integridad documental, secuencia y límites de C01–C18 antes del cierre, sin confundir integridad administrativa con evidencia científica.",
+  "B": {
+    "H1": "Los 18 ciclos están representados por pares preregistro/resultado completos, sin resultados anticipados en la muestra de cronología.",
+    "H0": "Faltan archivos A–J, hay E pendiente en resultados o alguno de los cinco casos de cronología contradice el orden esperado."
+  },
+  "C": "Lectura directa vía GitHub de 18 preregistros y 18 resultados, cotejo de campos A–J, verificación de E y contraste de ancestros entre cinco commits de preregistro y resultado; separar auditoría de ejecución.",
+  "D": {
+    "repository": "GalexY3/Metodologia-AB",
+    "directory": "proyectos/politics-fantasy-league/research/ABH_ACH20_20261028/",
+    "examined_cycles": "C01-C18",
+    "prereg_files": 18,
+    "result_files": 18,
+    "chronology_sample": [
+      "C02",
+      "C07",
+      "C10",
+      "C12",
+      "C18"
+    ],
+    "instrument": "GitHub fetch_file + compare_commits; no ejecución del checker Atlas ni pruebas integrales de Linux."
+  },
+  "E": {
+    "pairs_read": 18,
+    "preregs_with_A_to_J": 18,
+    "preregs_with_E_pending": 18,
+    "results_with_A_to_J": 18,
+    "results_with_substantive_E": 18,
+    "ancestry_checked": 5,
+    "ancestry_passed": 5,
+    "missing_or_malformed": 0,
+    "chronology_untested_pairs": 13,
+    "canonical_Atlas75_checker": "NOT_RUN_T010_PENDING"
+  },
+  "F": "La integridad A–J queda respaldada para los 18 pares y la prioridad temporal en cinco muestras. No certifica por sí sola validez causal, científica ni autenticidad de fuentes.",
+  "G": "No se verificó la cronología Git commit por commit para los otros trece pares; los ensayos de código previos son acotados; Atlas 75 sigue sin SHA.",
+  "H": {
+    "V4_contractual_percent": 36.9,
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed": 0,
+    "achievements_awarded_so_far": 2
+  },
+  "I": "Controles documentales observados; no se concede logro adicional ni se reinterpreta ningún fallo histórico como aprobado.",
+  "J": "C20 podrá auditar C19, el estado final del registro, el número de lotes y los bloqueos; cerrar 20/20 únicamente después de efectuarlo."
+}

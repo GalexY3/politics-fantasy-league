@@ -1,0 +1,35 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ACH20-20261028",
+  "cycle": "C10",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_RESEARCH_VOTE_COMPOSITE_KEY",
+  "A": "C08 established multiple distinct ballots per expediente; prevent false deduplication",
+  "B": "Composite key distinguishes sample; expediente-only collapses it",
+  "C": "Actual standalone JS function dynamically compiled and executed in V8 against 4 official aggregates manually transcribed C08, with four negative controls",
+  "D": {
+    "source": "src/politics_fantasy/vote_key_research.mjs",
+    "sample": "research/ABH_ACH20_20261028/C08_CONGRESO_AGGREGATE_SAMPLE.json"
+  },
+  "E": {
+    "checks": 5,
+    "passed": 5,
+    "negative_cases": [
+      "duplicate vote sequence",
+      "inconsistent official aggregate total",
+      "missing session ID",
+      "invalid sequence"
+    ],
+    "real_sample_votes": 4,
+    "real_sample_multi_vote_exp_2": 2
+  },
+  "F": "Source-indexed record order is an internal research sequence, NOT an official vote identity; intended research helper only, not integrated production",
+  "G": "Still no source-native XML/JSON raw, no individual votes, no recorded first-public date",
+  "H": {
+    "V4": 36.9,
+    "CT2": 29,
+    "achievements_no_new_award": true
+  },
+  "I": "No claim of field predictive power",
+  "J": "Next source provenance security, not another vote-key toy test"
+}
