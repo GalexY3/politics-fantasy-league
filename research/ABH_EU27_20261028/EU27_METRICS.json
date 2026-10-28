@@ -1,0 +1,102 @@
+{
+  "schema": "pfl.eu27.analysis.metrics.v1",
+  "n": 27,
+  "sources": [
+    "C01_PROVENANCE.json",
+    "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv"
+  ],
+  "c02": {
+    "pearson": -0.02444189654151927,
+    "spearman": 0.059893082383310654,
+    "theil_slope_women_pp_per_10pp_turnout": 0.9605662285136494,
+    "loocountry_spearman_min": -0.005817935989001613,
+    "loocountry_spearman_max": 0.16601073012010836
+  },
+  "c03": {
+    "exclude_2024_preparatory_compulsory_5": {
+      "countries": [
+        "BE",
+        "BG",
+        "LU",
+        "CY",
+        "EL"
+      ],
+      "n": 22,
+      "pearson": -0.003581249522653629,
+      "spearman": 0.0683809231278553,
+      "voluntary_mean_turnout": 46.01818181818181,
+      "compulsory_mean_turnout": 61.036
+    },
+    "exclude_later_4": {
+      "countries": [
+        "BE",
+        "BG",
+        "LU",
+        "EL"
+      ],
+      "n": 23,
+      "pearson": -0.1193792736382045,
+      "spearman": -0.037577266206213544,
+      "voluntary_mean_turnout": 46.576521739130435,
+      "compulsory_mean_turnout": 61.58
+    },
+    "note": "Two official legal snapshots classify Cyprus differently. Neither list identifies legal enforcement or causal impact; the test shows inference sensitivity."
+  },
+  "c04": {
+    "pearson_delta": 0.1767437854650043,
+    "spearman_delta": 0.19111586240066708,
+    "mean_country_women_2019": 38.629629629629626,
+    "mean_country_women_2024": 35.57037037037038,
+    "unweighted_mean_change_pp": -3.059259259259259,
+    "median_change_pp": -2.14,
+    "extreme_turnout_changes_pp": {
+      "LT": -24.51,
+      "EL": -17.45,
+      "HU": 16.1,
+      "ES": -14.34,
+      "CY": 13.87,
+      "SI": 12.91
+    },
+    "women_changes_at_extremes_pp": {
+      "LT": -8.82,
+      "EL": 4.57,
+      "HU": 9.62,
+      "ES": 3,
+      "CY": 0,
+      "SI": -16.67
+    }
+  },
+  "c05": {
+    "evaluation": "LOOCV country-held-out, each training set 26; source outcome 2024 already inspected by time of model comparison, thus descriptive retrospective CV not future forecast",
+    "models": {
+      "M0_constant_training_mean": {
+        "mae": 11.178062678062677,
+        "rmse": 14.178519422624897
+      },
+      "M1_2019_women_OLS": {
+        "mae": 10.089573201461949,
+        "rmse": 12.696276696031505
+      },
+      "M2_2024_turnout_OLS": {
+        "mae": 11.55027472775084,
+        "rmse": 14.546142837815001
+      },
+      "M3_both_OLS": {
+        "mae": 10.523444308079322,
+        "rmse": 13.055481677745677
+      }
+    },
+    "best": "M1_2019_women_OLS",
+    "mae_M3_minus_M1": 0.4338711066173733
+  },
+  "adjudication": {
+    "scientific_grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "original_signed_csv_verified": false,
+    "external_replication": false
+  }
+}
