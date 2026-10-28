@@ -1,0 +1,36 @@
+{
+  "cycle": "C79",
+  "mode": "AB-P",
+  "status": "VALID_NATIVE_ALL_24_ORIGINAL_PRIVATE_AUDIT_TESTS",
+  "A": "Does original private audit suite handle captured data SHA corruption, orphan/double review, inconsistent lengths, incomplete and duplicate-key JSONL, nonfinite constants, read locks and SIGKILL on Linux?",
+  "B": "All 24 original audit tests pass vs integrity/ledger logic defect persists outside Windows",
+  "C": "Prereg C79 before fetching original test; copied exact original test_private_audit.py (git hash-object same as GitHub) into Linux with native SHA-matched private_audit.py and secure_store.py, executed full original file without editing/patching.",
+  "D": {
+    "test_git_sha": "7b9d89f94579e8be84833662df280847ea70d191",
+    "source_blobs": {
+      "audit": "18c2aea58e98c0aae059169ef70fa5fca77c0dcf",
+      "store": "4695c8d85924869212d916fa163a8f3548272ebc"
+    },
+    "command": "cd /mnt/data/pfl_cont80/c73 && PYTHONPATH=src python -m pytest -q tests/test_private_audit.py -rs",
+    "stdout": "C79_pytest.txt"
+  },
+  "E": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 1.48,
+    "patches": 0
+  },
+  "F": "Original fixtures synthetic only. This is not a full project pytest, no public institutional semantics, long-term retention, signature, EIPD, real-person scoring or true power-loss durability. Snapshot of source SHA only.",
+  "G": "Git SHA identical and real local Linux POSIX native pytest included threaded locking and SIGKILL child.",
+  "H": "Auditor correctly fails/flags unreviewed, forged, duplicate, incomplete or interrupted ledgers in 24 original test cases; Windows missing POSIX is a material earlier limit, not permission to replace confinement.",
+  "I": {
+    "CT2": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "gates": "0/6",
+    "N1_N2_N3": "0/0/0",
+    "DRIFT": "D1"
+  },
+  "J": "C80 test original CLI redaction and fail closed in Linux, then close final 20/20 budget if genuinely executed. Canonical Atlas append and full T008 still outstanding."
+}
