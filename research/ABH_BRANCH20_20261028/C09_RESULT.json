@@ -1,0 +1,55 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C09",
+  "mode": "AB-R",
+  "status": "VALID_EXPOSURE_ESTIMAND_CLARIFICATION",
+  "at": "2026-10-28T12:41:50.828Z",
+  "A": {
+    "estimand": "Conditional future event count requires explicit future eligible opportunity count; historical rate alone is not a prediction of future activity."
+  },
+  "B": {
+    "H1": "Existing Prediction.expected_events is equal to historical rate with an implicit one-opportunity reference",
+    "H0": "Existing code already uses known future exposure"
+  },
+  "C": {
+    "prereg": "C09_PREREG.json",
+    "positive_controls": [
+      "0 future opportunities ->0 expected events",
+      "1 ->rate",
+      "5 ->5*rate"
+    ],
+    "negative_controls": [
+      "-1, fractional, bool and string future exposure rejected"
+    ],
+    "G": "No actual future opportunity source known"
+  },
+  "D": {
+    "original_blob": "ef4508fadf3bf4529f5433fb45d266af77782b0a",
+    "patched_blob": "9516a0b0f31955578704d92ce01123ff9f8c31de",
+    "new_tests_blob": "66d277ecb18ab5fd8b41759e65d1ff082dc9f896",
+    "runtime": "CPython 3.13.5 isolated new function with minimal stand-in Prediction; 7 checks passed; repository module and generated pytest file not executed as a full suite"
+  },
+  "E": {
+    "before": "Expected_events and event_rate identical without a future horizon supplied",
+    "new_api": "expected_events_for_future_exposure(prediction, future_exposure=...) requires supplied opportunity number",
+    "native_isolated_checks_passed": 7,
+    "full_integration_tests": "NOT_RUN",
+    "compatibility": "Original historical_rate interface and legacy field unchanged; annotation explains one-exposure standardized convention"
+  },
+  "F": {
+    "adversarial": "Projection depends on exposure quality, not automatically inferred from future event counts. Gamma-Poisson rate is an intensity, not a binary probability. No evidence of empirical model calibration."
+  },
+  "H": {
+    "N1_new": 0,
+    "CT2_identity": 29,
+    "V4_percent": 36.9
+  },
+  "I": {
+    "science": "Clarifies estimand, no discovery",
+    "product": "Backwards-compatible projection API, not score engine"
+  },
+  "J": {
+    "decision": "ACCEPT explicit exposure function; STOP_R5 repeated uncalibrated synthetic forecasts. Record T008 regression and future validation when genuine exposure estimators exist."
+  }
+}
