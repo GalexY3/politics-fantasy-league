@@ -3,12 +3,12 @@
   "campaign_id": "PFL-ABH-BRANCH20-20261028",
   "as_of": "2026-10-28",
   "grant": 20,
-  "valid": 2,
+  "valid": 3,
   "invalid": 1,
   "planning": 0,
-  "attempts": 3,
-  "remaining": 17,
-  "status": "ACTIVE_ADAPTIVE_BRANCHING_CONTINUE_DISTINCT_C04_RULE_GUARDS",
+  "attempts": 4,
+  "remaining": 16,
+  "status": "ACTIVE_STOP_R5_FOR_REPETITIVE_GUARDS_NEXT_DISTINCT_DISCRIMINANT_REQUIRED",
   "branch": "research/pfl-abh-branch20-20261028",
   "base_branch": "research/pfl-codex-contributions-20261027",
   "parent_head": "72a2ae2deeb9eaa719b598943c1e8d18360ed6ea",
@@ -43,6 +43,18 @@
       "scientific_grade": "0/3",
       "tests": "14/14 focused PASS after 7 red failures",
       "complete_project_suite": "NOT_RUN"
+    },
+    {
+      "id": "C04",
+      "type": "AB-P",
+      "status": "VALID_TARGETED_RULE_CONTRACT_REPAIR",
+      "prereg": "C04_PREREG.json",
+      "red": "C04_RED_BASELINE.json",
+      "result": "C04_RESULT.json",
+      "atlas": "0039",
+      "scientific_grade": "0/3",
+      "tests": "8/8 focused PASS after 6 red failures",
+      "complete_project_suite": "NOT_RUN"
     }
   ],
   "progress": {
@@ -55,12 +67,12 @@
     "gates_passed": 0
   },
   "atlas": {
-    "lots": 38,
+    "lots": 39,
     "derived_nodes": 63,
     "derived_edges": 81,
-    "derived_runs": 204,
-    "derived_complaints": 46,
-    "derived_operations": 376,
+    "derived_runs": 205,
+    "derived_complaints": 47,
+    "derived_operations": 379,
     "canonical_python_checker": "NOT_RUN"
   },
   "tests": {
@@ -73,7 +85,7 @@
     "CHATRELAY 2_VALID_OF_5 and 3 unspent"
   ],
   "environment_blocker": "No full private repository checkout in container, git ls-remote failed Could not resolve host github.com. GitHub connector supports reading/writing files but does not execute native global pytest.",
-  "next_action": "Follow up with distinct scoring Rule stability/non-negative invariants if independently preregistered; full Linux T008 stays on Codex backlog.",
+  "next_action": "R5: Do not create more cycles for closely related synthetic guards; seek distinct independently discriminating empirical originals or materially different product bottleneck. Codex T008 remains queued.",
   "permissions": [
     "No public real-person scoring",
     "No originals nominales in Git",
