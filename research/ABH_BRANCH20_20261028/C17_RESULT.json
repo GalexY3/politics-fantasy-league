@@ -1,0 +1,63 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "VALID_RED_GREEN_DUPLICATE_JSON_GUARD",
+  "at": "2026-10-28T12:56:37.265Z",
+  "A": {
+    "question": "Can nested duplicate JSON members silently override Congress member source metadata?"
+  },
+  "B": {
+    "H1": "Default json.loads last-wins accepts conflicting duplicate required and nested members",
+    "H0": "Original project rejects duplicate object member"
+  },
+  "C": {
+    "prereg": "C17_PREREG.json",
+    "fixtures": "NOMBRE repeated two values and nested unknown telephone repeated, plus nonduplicated fixture"
+  },
+  "D": {
+    "source_git_exact_before": "d815b680d9d7d1affdb96b7a9f77047ea15942d2",
+    "platform": "CPython 3.13.5 Linux pytest",
+    "code_update": "7400306dcfef511027ff9545e6a5d607b78fd403",
+    "source_git_exact_after": "a457857c20e2fc0e4f1bbc4647c75324fd4adf4c",
+    "new_test_commit": "c9ad142502938a33e2f658fea4fbf26fe0926bd9"
+  },
+  "E": {
+    "source_git_blob_original": "d815b680d9d7d1affdb96b7a9f77047ea15942d2",
+    "test_scope": "Original 11 tests + three new synthetic checks",
+    "before": {
+      "pass": 12,
+      "fail": 2,
+      "exit": 1,
+      "stdout_sha256": "f35bae324a5297e807d98954a41c0daa0a70f238e375d9eb056b86a94e2df2c0"
+    },
+    "after": {
+      "pass": 14,
+      "fail": 0,
+      "exit": 0,
+      "stdout_sha256": "8892092fccedc0ad60091ecae9105dee1bf3e62c1eb94e44925582911f109f64"
+    },
+    "new_git_blob": "a457857c20e2fc0e4f1bbc4647c75324fd4adf4c"
+  },
+  "F": {
+    "adversarial": "Real publisher input not inspected in this cycle; no evidence actual Congress JSON includes duplicated keys. Strict nested object_pairs_hook rejects both recognized and unknown duplicated members, avoiding inconsistency in ignored metadata. Source names are synthetic."
+  },
+  "G": {
+    "full_repo_suite": "NOT_RUN",
+    "test_file_as_committed": "NOT_RUN; equivalent three local test cases were run in combined local 14"
+  },
+  "H": {
+    "N1_new": 0,
+    "CT2_identity": 29,
+    "V4": 36.9,
+    "VSDS": "1/3"
+  },
+  "I": {
+    "grade": "0/3",
+    "product": "Deterministic source metadata read, no real scoring"
+  },
+  "J": {
+    "decision": "ACCEPT negative-control repair and targeted tests; STOP_R5 same module until full suite T008; no external validation claim."
+  }
+}
