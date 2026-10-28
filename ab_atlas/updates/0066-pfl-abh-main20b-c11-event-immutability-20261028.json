@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0066-PFL-ABH-MAIN20B-C11-EVENT-IMMUTABILITY-20261028",
+  "parent_batch": "0065-PFL-ABH-MAIN20B-C10-CSV-LINES-20261028",
+  "at": "2026-10-28T14:27:11.362Z",
+  "actor": "chatgpt",
+  "reason": "C11 prereg event metadata deep freeze from C08 counterexample; source patched, test file committed, 6/6 local reconstructed controls passed, full T009 pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C11-EVENT-DEEPFREEZE",
+        "activity": "Recursive immutable snapshot of JSON-like event metadata, preserving revision de-dup and rejecting mutable aliases; targeted tests not global.",
+        "status": "completed",
+        "at": "2026-10-28T14:27:11.362Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C11_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C11_RESULT.json",
+          "tests/test_event_metadata_immutability.py"
+        ],
+        "scope": "AB-P source event integrity; no real scoring",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
