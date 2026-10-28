@@ -1,0 +1,166 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "id": "PFL-ABH-PILOT-NATIVE5-20261029",
+  "branch": "research/pfl-abh5-pilot-native-integration-20261029",
+  "parent": {
+    "pr": 35,
+    "branch": "research/pfl-abh5-prospective-pilot-20261029",
+    "sha": "f60aebb9fae4bfa09bb642c68cdd072ab99583f6"
+  },
+  "state": "CLOSED_BOUNDED_FIVE_CYCLES_NO_HUMAN_DEPLOYMENT",
+  "cycles": {
+    "granted": 5,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "AB_R": 2,
+    "AB_P": 3,
+    "remaining": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-P",
+      "prereg_commit": "2a1ef0e7abbb3c38fc4713b7802507489b627507",
+      "result_commit": "ac4ab78d9ece328b4caa5856728dab49b293cf00",
+      "status": "VALID_SHA_MATCHED_NODE84_NATIVE_REPLAY",
+      "scientific_grade": "0/3",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "real_study_participants": 0,
+      "new_N1": false,
+      "files": [
+        "C01_PREREG.json",
+        "C01_RESULT.json"
+      ]
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "prereg_commit": "b2c64b9787c7c80bf3ecf534799aebe740eca03e",
+      "result_commit": "ec1eae964555d1407d4a028594f5f0a142978cb9",
+      "status": "VALID_ADVERSARIAL_BYPASS_AND_SCHEMA_REPAIR",
+      "scientific_grade": "0/3",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "real_study_participants": 0,
+      "new_N1": false,
+      "files": [
+        "C02_PREREG.json",
+        "C02_RESULT.json"
+      ]
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-P",
+      "prereg_commit": "3e276d56fecbcfcbf15ae53ba4d9a97e825ecb23",
+      "result_commit": "c5be3982c8262206f37c6050fc777a7d8db63a9e",
+      "status": "VALID_LOCAL_STATIC_FOUR_ARM_VIEW",
+      "scientific_grade": "0/3",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "real_study_participants": 0,
+      "new_N1": false,
+      "files": [
+        "C03_PREREG.json",
+        "C03_RESULT.json"
+      ]
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-P",
+      "prereg_commit": "e7aecca5533580b30a0ab2f1409c77dbaf7451a6",
+      "result_commit": "1fd756882e3fadf097a549efdd92af2ef18e771d",
+      "status": "VALID_NATIVE_LOCALHOST_HTTP_15",
+      "scientific_grade": "0/3",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "real_study_participants": 0,
+      "new_N1": false,
+      "files": [
+        "C04_PREREG.json",
+        "C04_RESULT.json"
+      ]
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "prereg_commit": "ed78acde92b04c5ded5af3e5b351bcd1b29fa929",
+      "result_commit": "96a7542b763645ed15448d87fa1678ed0ad48d0b",
+      "status": "VALID_GITHUB_PARENT_ANCESTRY_ATLAS_ETHICS_AUDIT",
+      "scientific_grade": "0/3",
+      "CT2_before": 25,
+      "CT2_after": 25,
+      "real_study_participants": 0,
+      "new_N1": false,
+      "files": [
+        "C05_PREREG.json",
+        "C05_RESULT.json"
+      ]
+    }
+  ],
+  "execution": {
+    "parent_original_five_source_git_blobs": "5/5 verified exact on isolated Node v22.16.0",
+    "parent_native_regression_before_hardening": "84/84 PASS",
+    "after_patch_git_blobs": [
+      "f0959f4576d7e33aa2b756bdd353023d298c5ab2",
+      "34e7af21537997de70b010c3da820042de07b9fe",
+      "97dd19999bfa5520740139b397e16b2783592518"
+    ],
+    "after_patch_native_regression": "84/84 PASS",
+    "security_adversarial": "5 new metadata bypasses rejected after repair, forged mock review remains accepted and NOT security authority",
+    "UI_static_check": "17/17 Node source checks",
+    "HTTP_native_smoke": "15/15 PASS with versioned pilot_local/smoke_http.mjs",
+    "chromium_browser": "ATTEMPTED_TIMED_OUT_NO_DOM_VERIFIED",
+    "full_private_checkout": "UNAVAILABLE_IN_CONTAINER",
+    "full_repo_CI": "NOT_RUN",
+    "T026": "PARTIAL_NOT_CLOSED",
+    "T027": "PENDING",
+    "human_recruited": 0,
+    "human_consent": 0,
+    "human_outcomes": 0
+  },
+  "scientific": {
+    "CT2_identity_parent": 29,
+    "CT2_mechanics_parent": 20,
+    "CT2_prospective_child": 25,
+    "confidence": "LOW_UNCHANGED",
+    "VSDS": "1/3",
+    "V4_contractual_percent": 36.9,
+    "achievements": "2/90",
+    "release_gates": "0/6",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "novel_empirical_result": false
+  },
+  "atlas": {
+    "parent_0078_exists": true,
+    "parent_0078_ops": 5,
+    "canonical_CURRENT_inherited_unsynced": true,
+    "proposed_0079": "ab_atlas/updates/0079-pfl-abh-pilot-native5-closure-20261029.json",
+    "native_replay": "NOT_RUN"
+  },
+  "ethics": {
+    "USAL_CEI": "NOT_APPROVED",
+    "AEPD_legal_basis_review": "NOT_APPROVED",
+    "human_study_enabled": false,
+    "local_demonstration_only": true,
+    "real_people_or_political_scores": false
+  },
+  "rules": {
+    "R1": "fictional event representation not social/merit inference",
+    "R2": "stronger native runtime and static/HTTP negative tests; no human treatment control",
+    "R3": "source SHA matches; local isolated reconstructed checkout cannot certify complete repository",
+    "R4": "six JS boundary tests incl mock known gap; Chromium timed out, Atlas sync pending",
+    "R5": "stop now, no human collection, need ethical approval and true browser/checkout evidence"
+  },
+  "prohibitions": {
+    "ChatRelay_used": false,
+    "merged_main": false,
+    "expensive_CI": false,
+    "real_politician_scoring": false
+  }
+}
