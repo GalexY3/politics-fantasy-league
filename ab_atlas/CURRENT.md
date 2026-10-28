@@ -1,3 +1,19 @@
+# Politics Fantasy League · MAIN20B activo · 28/10/2026
+
+**Rama de referencia: `main`.** Nueva campaña autorizada [MAIN20B](../research/ABH_MAIN20B_20261028/CAMPAIGN_STATUS.json): **20 intentos máximos**, **5 ciclos A–J válidos (C01–C05), 0 inválidos, 0 de planificación, 15 autorizaciones no utilizadas**. [Informe intermedio](../research/ABH_MAIN20B_20261028/C01_C05_INTERIM.md) · [Prerregistros y resultados](../research/ABH_MAIN20B_20261028/). La campaña BRANCH20 anterior terminó separadamente con 19 válidos y un inválido.
+
+**Atlas:** último lote `0060`; **60 lotes, 63 nodos, 81 aristas, 226 runs, 48 incidencias y 401 operaciones**, recuentos documentales. El checker Python canónico de **60** NO SE HA EJECUTADO. SHA reconstruido DESCONOCIDO. C01 endureció la validación de fechas en `ab_atlas/atlas_delta.py`: 55 timestamps anteriores válidos; uno de los límites históricos (0015→0016) retrocede 1534 s en tiempo UTC, por lo que el padre del lote y su cronología no deben confundirse. Incidencia C19 pendiente de cierre completo mediante T008.
+
+**Resultados destacados:** C02 solo verificó el HTML oficial (sin bytes XML/JSON); C03 documentó condiciones generales de reutilización sin acreditar base jurídica de ranking personal; C04 separó discrepancia respecto a mayoría estricta de mera pluralidad en el laboratorio sintético; C05 definió un bootstrap por registros que remuestrea sesiones, conservando el estimador por sesiones anterior. Son controles limitados, no efectos políticos empíricos demostrados.
+
+**T008:** PENDIENTE hasta checkout Linux integral y ejecución del checker Atlas **60 lotes**. [Contrato actualizado](../tareas_codex/T008_SUITE_COMPLETA_POSIX.md) y [BACKLOG](../tareas_codex/BACKLOG.json). Sin Codex disponible para usuario, sin nueva GitHub Actions costosa. Ningún test focalizado sustituye la suite completa.
+
+**Indicadores científicos/producto no promocionados:** CT2 identidad 29/100 ordinal (NO probabilidad), V4 contractual 36,90 %, VSDS 1/3, nuevos N1/N2/N3 0/0/0 y **gates críticos 0/6**. No puntuar políticos reales, publicar datos originales privados, abrir servidor multiusuario, fusiones indiscriminadas ni CI costosa.
+
+**Decisión R5 de bloque:** conservar las 15 autorizaciones pendientes hasta nueva clase de evidencia o instrumento independiente. No se solicita más presupuesto: la campaña sigue abierta.
+
+---
+
 # Politics Fantasy League · main · 28/10/2026
 
 **RAMA CANÓNICA: `main`.** Campaña `PFL-ABH-BRANCH20-20261028` **CERRADA**, máximo autorizado 20 intentos y consumidos **19 ciclos A–J válidos, uno inválido (C01, resultado prematuro), cero disponibles**. [Informe de cierre y gráfico CT2](../research/ABH_BRANCH20_20261028/FINAL_REPORT.md) · [estado estructurado](../research/ABH_BRANCH20_20261028/CAMPAIGN_STATUS.json). CONT80 y ChatRelay tienen sus presupuestos históricos propios, no se agregan.
