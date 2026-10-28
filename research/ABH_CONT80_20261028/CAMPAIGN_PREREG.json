@@ -1,0 +1,33 @@
+{
+  "campaign_id": "PFL-ABH-CONT80-20261028",
+  "user_grant": "'Okei. Te concedo los 20 ciclos adicionales que solicitaste' following 20-cycle request",
+  "authorized_max": 20,
+  "cycle_labels": "C61–C80",
+  "baseline_head": "cd8df6d347fb7503f99ad5029f95f8851dd3fe72",
+  "branch": "research/pfl-codex-contributions-20261027",
+  "status": "ACTIVE",
+  "executed": 0,
+  "planning_only": 0,
+  "stop_rule": "R5 STOP if no new discriminating evidence, do not fill 20 by rewording or test seeds",
+  "method": "AB3.2.1 O3–O7, separate AB-R/AB-P, A–J, prereg before each test, test on genuine modules where accessible",
+  "forbidden": [
+    "merge main",
+    "costly CI",
+    "real-person scoring",
+    "publishing nominal original rows",
+    "invented source provenance",
+    "claiming Codex ran"
+  ],
+  "codex": "Task queue tareas_codex/ remains PENDING. User has not acquired Codex access.",
+  "C61": {
+    "mode": "AB-R",
+    "A": "Resolve conflict: source catalog records 326847-byte SHA-captured Interior Congreso XLSX on 27 Oct, while CONT60 C55 claimed original XLSX never captured. What can authenticated repo evidence prove about the original without recapturing?",
+    "B": [
+      "Detailed catalog has actual historical byte receipt with SHA",
+      "Only catalog metadata and no original",
+      "SHA digest alone cannot establish first publication or person identity"
+    ],
+    "C": "Cross-read catalog and source-scoped capture ledger/record exact hashes, commit and number of rows, verify no release eligibility inferred; create correction to continuity if needed.",
+    "D": "Falsifier: catalog references invalid artifact or hash inconsistency; do not claim byte re-download now."
+  }
+}
