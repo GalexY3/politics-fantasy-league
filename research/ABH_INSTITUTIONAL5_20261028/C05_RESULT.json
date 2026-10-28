@@ -1,0 +1,54 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_MULTIOFFICE_INE_ADVERSE_TREND",
+  "A": "Does women's descriptive representation increase in every INE office category from 2024 to 2025?",
+  "B": {
+    "H1": "At least one falls",
+    "H0": "All increase",
+    "Halt": "Snapshot vintage and changing population could invalidate direct comparability"
+  },
+  "C": {
+    "prereg": "C05_PREREG.json",
+    "prereg_commit": "b01a715b5ff9d339e8376602cecae8cd7d4085e5",
+    "method": "JS delta per subindicator = 2025 indexed percentage - 2024 cached open percentage; external Ministry separately supplies party executive 2024/25 data; all values exposed prior to prereg (exploratory)"
+  },
+  "D": {
+    "INE": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+    "old_ref": "turn723109view0",
+    "new_ref": "turn141124search0",
+    "ministry": "https://portal.mineco.gob.es/es-es/comunicacion/Paginas/MujeresYHombres_INE_poder_tomadecisiones_igualdad.aspx",
+    "data": "C05_INE_TREND_NEGATIVE_CONTROL.json"
+  },
+  "E": {
+    "yearly_pp": {
+      "congreso": -0.86,
+      "senado": -0.48,
+      "consejerias": -1.67,
+      "alcaldias": 0.24,
+      "concejalias": -0.04
+    },
+    "declines": 4,
+    "increases": 1,
+    "all_positive_2015_2025": true,
+    "external_party_exec_annual_pp": -2.1
+  },
+  "F": "Universal annual increase not supported; 2015-25 long-run improvement may still hold. Different denominator, year/version caches and non-random samples defeat causal or individual interpretations.",
+  "G": "No raw SDMX; 2024 open cache vs 2025 search index; potentially varying office snapshot dates; separate ministerial party executive series not pooled into five INE series.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "awards": 0
+  },
+  "I": "Descriptive trend guard against simple monotonic narratives; no real-person scores",
+  "J": "Keep year and source version in schema; complete 5/5 and leave original retrieval to Codex T011 plus SDMX if feasible."
+}
