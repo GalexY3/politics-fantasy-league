@@ -1,0 +1,33 @@
+{
+  "schema": "pfl.native.qa.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C05",
+  "execution": "Native Node local on exact GitHub byte-equivalent two .mjs files, git hash-object compared to remote fetch_file blob",
+  "command": "node --test /mnt/data/pfl_divisions5/test_division_ontology_research.mjs",
+  "tests": 14,
+  "pass": 14,
+  "fail": 0,
+  "engine": "Node in local Linux container",
+  "git_blobs": {
+    "source": "d209949e2c788691d6f0a4e0ccdef9f18e7fb0a7",
+    "test": "17fd8c094768860d58180b6555262e3cea20e9b0"
+  },
+  "controls": [
+    "accept Commons and Lords typed counts",
+    "reject duplicate division ids despite equal tally not duplicate",
+    "reject Lords with Commons category",
+    "reject reported-total inconsistency",
+    "reject Boolean count",
+    "reject physical attendance inference",
+    "reject fabricated first_public_at",
+    "reject wrong house stable ID",
+    "reject HTTP source",
+    "reject claimed unavailable raw JSON provenance",
+    "reject impossible Gregorian date",
+    "reject missing stage"
+  ],
+  "external_original_bytes": 0,
+  "full_repo_suite": false,
+  "negative_initial": "A first V8 inline exploration failed INVALID_SOURCE_URL because URL global unavailable in that restricted JS environment. The final implementation uses exact host/path regex, and Node tests pass. This is a development attempt, not an invalid AB cycle or a first behavioral red.",
+  "scope": "Pure schema checks; not source authentication, not predictive performance and not safety certification"
+}
