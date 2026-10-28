@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0056-PFL-ABH-MAIN20B-C01-TIMESTAMPS-20261028",
+  "parent_batch": "0055-PFL-ABH-BRANCH20-C20-CLOSURE-20261028",
+  "at": "2026-10-28T13:18:23.541Z",
+  "actor": "chatgpt",
+  "reason": "New 20-cycle grant C01 valid AB-META: read all 55 existing delta timestamps; strict aware ISO preflight compatible 55/55, 4 malformed rejected in native focused parser; changed atlas_delta.py and added tests. One historical 0015->0016 time inversion remains, and canonical full replay / T008 is NOT_RUN.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-MAIN20B-C01-ATLAS-TIMESTAMP-CONTRACT",
+        "activity": "AB-META prereg 55 existing batch.at compatibility, 4 negative+2 positive controls; syntactic guard implemented without mutating historical deltas, time inversion documented.",
+        "status": "completed",
+        "at": "2026-10-28T13:18:23.541Z",
+        "evidence": [
+          "research/ABH_MAIN20B_20261028/C01_PREREG.json",
+          "research/ABH_MAIN20B_20261028/C01_RESULT.json",
+          "../../../../ab_atlas/tests/test_delta_timestamps.py"
+        ],
+        "scope": "Atlas metadata provenance integrity, no original native 56-lot replay, no science/gates uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
