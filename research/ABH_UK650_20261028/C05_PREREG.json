@@ -1,0 +1,27 @@
+{
+  "campaign": "PFL-ABH-UK650-20261028",
+  "pre_reg_before_source_bytes": true,
+  "study": "UK House of Commons 2024 election official constituency-level results",
+  "source": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_original": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+  "source_candidates": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-candidate.csv",
+  "unit": "UK constituency; up to 650, 4 nations and English regions",
+  "prespecified_exclusions": "Only missing electorate/turnout or no winner-runner candidate votes for computation; report exclusions and special Speaker/NI observations; don't discard by result",
+  "classification": "All cycles exploratory until independently replicated; contemporaneous margins and vote shares are post-election, cannot be used in genuine pre-election prediction.",
+  "cycle": "C05",
+  "type": "AB-R",
+  "D": 1.6,
+  "A": "Does the final winner margin and ENP offer practical explanatory power for constituency turnout beyond a nation/region-only mean, when held-out geographic regions are evaluated without tuning?",
+  "B": {
+    "H1": "Region-only/UK baseline is competitive; margin+fragmentation cannot reduce MAE >= 0.5 percentage points in held-out geography",
+    "H0": "Joint model improves heldout-geography MAE by >= 0.5 pp",
+    "Halt": "The region model cannot predict unseen region fixed effects and requires careful baseline."
+  },
+  "C": "Choose deterministic leave-one-nation-out or grouped region CV (not random row split); baselines training mean, turnout~margin, turnout~margin+ENP, region model only when test group seen; report MAE/RMSE, residual by nation, and acknowledge all explanatory variables computed after voting, so not genuine forecast.",
+  "E": "PENDING",
+  "F": "4 nation holdouts not enough to quantify country-general model; NI distinct electoral system, no prospective claim.",
+  "G": "Internal same-election crossvalidation not independent future replication.",
+  "H": "No CT2",
+  "I": "No individual target profiling",
+  "J": "Keep negative results and close only after actual execution."
+}
