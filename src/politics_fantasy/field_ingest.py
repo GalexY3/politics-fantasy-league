@@ -117,10 +117,11 @@ def read_snapshot(path: Path, *, kind: str, acquired_at: datetime, max_rows: int
     seen = set()
     rows = []
     for ix, raw in enumerate(reader, 2):
+        physical_line = reader.line_num  # CSV fields can contain embedded newlines.
         if ix - 1 > max_rows:
             raise ValueError('Input exceeds the row budget')
         if '__extra__' in raw or any(v is None for v in raw.values()):
-            raise ValueError(f'Malformed columns at line {ix}')
+            raise ValueError(f'Malformed columns at physical line {physical_line}')
         try:
             vote_id = _id(raw['votacion_id'] if kind == 'individual' else raw['id'])
             day = _day(raw['fecha'])
@@ -134,17 +135,17 @@ def read_snapshot(path: Path, *, kind: str, acquired_at: datetime, max_rows: int
                     raise ValueError('Unknown vote choice')
                 key = (vote_id, deputy_id)
                 item = IndividualRow(vote_id, day, deputy_id, group_label, choice,
-                                     raw.get('temas', '').strip(), ix)
+                                     raw.get('temas', '').strip(), physical_line)
             else:
                 key = vote_id
                 item = AggregateRow(vote_id, day, _count(raw['si']), _count(raw['no']),
-                                    _count(raw['abstencion']), _count(raw['no_vota']), ix)
+                                    _count(raw['abstencion']), _count(raw['no_vota']), physical_line)
             if key in seen:
                 raise ValueError('Duplicate nominal row or aggregate vote identifier')
             seen.add(key)
             rows.append(item)
         except ValueError as exc:
-            raise ValueError(f'Invalid {kind} CSV at line {ix}: {exc}') from exc
+            raise ValueError(f'Invalid {kind} CSV at physical line {physical_line}: {exc}') from exc
     if not rows:
         raise ValueError('No data rows')
     provenance = Provenance(SOURCE_PAGE, digest, len(data),
