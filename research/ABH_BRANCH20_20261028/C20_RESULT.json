@@ -1,0 +1,122 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-BRANCH20-20261028",
+  "cycle": "C20",
+  "mode": "AB-META",
+  "status": "VALID_CAMPAIGN_AUDIT_COMPLETE",
+  "at": "2026-10-28T13:03:28.998Z",
+  "A": {
+    "question": "Does a 20-attempt campaign have complete and uniquely indexed prereg/result docs, consistent invalid C01 and chronological Atlas chain before closure?"
+  },
+  "B": {
+    "H1": "Files and link chain present, invalid C01 retained, 19 valid outcomes after C20",
+    "H0": "missing/misnumbered source/result, parent gap, promoted invalid C01 or duplicated run/complaint link"
+  },
+  "C": {
+    "prereg": "C20_PREREG.json",
+    "primary_checks": [
+      "19 paired pre/result files before C20",
+      "5 sampled pre/result commit timestamps",
+      "19 Atlas patches 0036-0054 parent/unique/complaint-run checks",
+      "budget invariants 20 attempts and 1 invalid"
+    ],
+    "negative_controls": [
+      "C01 invalid persisted",
+      "full T008 and Atlas original checker remain NOT_RUN",
+      "A-J documentary source acceptance is not empirical scientific breakthrough"
+    ]
+  },
+  "D": {
+    "tool": "GitHub connector read-only source and Git commit metadata, JS structural checks",
+    "file_pairs": "C01 through C19, 38 GitHub file bytes parsed JSON",
+    "sample_commit_ids": [
+      "C01",
+      "C02",
+      "C08",
+      "C14",
+      "C19"
+    ],
+    "atlas_tail": "0036-0054 inclusive 19 exact JSON Git blobs",
+    "native_full_Atlas_replay": "NOT_RUN",
+    "repo_global_pytest": "NOT_RUN"
+  },
+  "E": {
+    "prereg_result_file_pairs_checked": 19,
+    "files_read_and_parsed": 38,
+    "bad_cycle_refs": 0,
+    "missing_files": 0,
+    "commit_chronology_samples": 5,
+    "prereg_earlier_than_final_result_samples": 5,
+    "incidents": [
+      "C01 first result was committed prematurely before actual source access; not retroactively valid"
+    ],
+    "atlas_tail": {
+      "patches": 19,
+      "run_adds": 19,
+      "complaint_adds": 4,
+      "complaint_triages": 2,
+      "ops": 25,
+      "parent_chain_breaks": 0,
+      "duplicate_run_in_tail": 0,
+      "duplicate_complaint_in_tail": 0,
+      "complaint_without_known_run_in_tail": 0,
+      "tail_head": "0054-PFL-ABH-BRANCH20-C19-ATLAS-TIME-20261028"
+    },
+    "cumulative_before_C20": {
+      "atlas_lots": 54,
+      "runs": 220,
+      "complaints": 48,
+      "ops": 395,
+      "nodes": 63,
+      "edges": 81
+    },
+    "expected_after_C20": {
+      "atlas_lots": 55,
+      "runs": 221,
+      "complaints": 48,
+      "ops": 396,
+      "nodes": 63,
+      "edges": 81
+    },
+    "campaign_after_C20": {
+      "granted": 20,
+      "valid": 19,
+      "invalid": 1,
+      "planning": 0,
+      "remaining": 0
+    }
+  },
+  "F": {
+    "limitations": [
+      "Only five sampled per-file Git commit chronologies checked, not all 19 full histories",
+      "File/commit existence confirms records but not independently that source statements occurred; C01 documented self-invalidation",
+      "The source bits were read via connector; original native atlas_delta.py checker for 55 batches has not run",
+      "No all-Python-suite checkout or external reproducible proof, C03–C18 focused only",
+      "Instrumentational C19 defect remains OPEN and should not be counted repaired"
+    ]
+  },
+  "G": {
+    "independent_science_replicated": false,
+    "full_python_suite": "NOT_RUN",
+    "canonical_state_sha256": "UNKNOWN"
+  },
+  "H": {
+    "scientific_novelty_N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "CT2_identity_ordinal": 29,
+    "progress_V4_contractual": 36.9
+  },
+  "I": {
+    "AB_META": "Pass documented budget/schema/source traceability at tested scope",
+    "AB_R": "No corroborated independent scientific effect",
+    "AB_P": "Selected safe targeted patches and historical module recovery, no release readiness",
+    "gates_passed": 0,
+    "scientific_grade": "0/3"
+  },
+  "J": {
+    "decision": "CLOSE_CAMPAIGN_19_VALID_1_INVALID_0_REMAINING; STOP_R5 on further similar synthetic checks; request separate new permission for any fresh AB-H cycle, contingent on new primary evidence or materially different bottleneck. Preserve T008 as pending Codex."
+  }
+}
