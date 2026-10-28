@@ -1,0 +1,103 @@
+{
+  "cycle": "C04",
+  "type": "AB-P",
+  "prereg_commit": "dd0065adc7a7bfbd4d5961f63547b82afb185c0f",
+  "A": "Provide aggregate opportunity coverage contract for PFL",
+  "B": "Contrasts unknown exposure with verified zero; rejects duplicate events and person-level inputs",
+  "C": "Acceptance: 8+ adversarial checks; strict source coverage; no real-person scoring",
+  "D": "Pure JS program isolated from existing demo/scoring; source committed unmodified from executed function.toString()",
+  "E": {
+    "executed_in": "V8 functions.exec",
+    "pass": 14,
+    "fail": 0,
+    "native_node_executed": false,
+    "checks": [
+      {
+        "name": "known events",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "verified zero",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "unknown zero",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "unknown with observed",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "aggregate totals",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "immutable",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "duplicate id rejection",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "orphan week rejection",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "duplicate coverage rejection",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "missing evid rejection",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "bad week rejection",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "person scoring reject",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject string IDs",
+        "pass": true,
+        "error": null
+      },
+      {
+        "name": "reject invalid complete",
+        "pass": true,
+        "error": null
+      }
+    ]
+  },
+  "F": "Exposed strict field rejection; absent coverage cannot count zero; duplicate ID fails; SOURCE evidence required for verified completeness",
+  "G": "No user study, no real-identity validation or deployment; not scientific replication",
+  "H": "Update prior PF-P06: opportunity/coverage requires explicit observed denominators in app instrumentation",
+  "I": {
+    "validity": "product unit contract tested V8",
+    "causal": "none",
+    "novelty": "technical acceptance only",
+    "transferability": "unproven",
+    "reproducibility": "source V8 code committed; native replay pending",
+    "ethics": "person names and scores rejected"
+  },
+  "J": "ACCEPT_ABP_BOUNDED_CONTINUE_C05",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "grade": "0/3",
+  "VSDS": "1/3 unchanged"
+}
