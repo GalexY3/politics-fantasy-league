@@ -4,8 +4,13 @@
  * No real-person voting data. Do not turn this into a scoring pipeline.
  */
 export function canonicalVoteKey(row){
+ if(!row||typeof row!=='object'||Array.isArray(row))throw Error('INVALID_ROW');
  const required=['institution','legislature','session_id','session_date','observation_seq','expediente'];
- for(const k of required)if(row[k]===undefined||row[k]===null||String(row[k]).trim()==='')throw Error('MISSING_'+k);
+ for(const k of required)if(row[k]===undefined||row[k]===null||(typeof row[k]==='string'&&row[k].trim()===''))throw Error('MISSING_'+k);
+ for(const k of ['institution','legislature','session_id','session_date','expediente']){
+  if(typeof row[k]!=='string')throw Error('INVALID_COMPONENT_TYPE '+k);
+  if(row[k]!==row[k].trim())throw Error('INVALID_COMPONENT_WHITESPACE '+k);
+ }
  for(const k of ['institution','legislature','session_id','expediente'])if(String(row[k]).includes('|'))throw Error('UNSAFE_COMPONENT_DELIMITER '+k);
  if(!Number.isSafeInteger(row.observation_seq)||row.observation_seq<1)throw Error('INVALID_OBSERVATION_SEQ');
  if(!/^\d{4}-\d{2}-\d{2}$/.test(row.session_date))throw Error('DATE_NOT_ISO');
