@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C19",
+  "mode": "AB-META",
+  "status": "PREREGISTERED",
+  "A": "Do all 73 current Atlas JSON updates form one sequential documentary parent chain and reproduce expected inventory/operation counts after C08–C18?",
+  "B": {
+    "H1": "73 unique numbered patches sequential; 63 nodes,81 edges,239 run additions,48 complaints,414 operations; 0 parent or schema violations",
+    "H0": "At least one missing patch, broken parent, unexpected operation type or derived count"
+  },
+  "C": {
+    "primary": "Fetch all 73 exact GitHub patch JSONs in 6 chunks plus seed; check schema, parent pointers, run/complaint IDs within chunks and aggregate op counts; verify latest `0073`",
+    "negative": "Original Python atlas_delta.py check and canonical SHA remain NOT_RUN; do not call structural read canonical replay",
+    "falsifier": "Any mismatch, broken reference, duplicate, wrong count, or unparseable JSON"
+  },
+  "D": {
+    "sources": "GitHub main recursive tree plus exact 73 patch fetches",
+    "method": "Deterministic JS structural inventory, not Python canonical replay"
+  },
+  "E": "PENDING",
+  "F": "Full origin verification not performed, source journal may be self-reported",
+  "G": "T009 full native checker pending",
+  "H": "No scientific/gate uplift",
+  "I": "Atlas documentary integrity",
+  "J": "Close bounded structural audit or report issue without rewriting archival batches"
+}
