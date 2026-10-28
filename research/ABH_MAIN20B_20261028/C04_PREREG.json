@@ -1,0 +1,66 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C04",
+  "type": "EXPERIMENTAL_AB_R",
+  "status": "PREREGISTERED_BEFORE_SYNTHETIC_TEST",
+  "at": "2026-10-28T13:25:04.296Z",
+  "parent": "C03",
+  "drift": "D2.0 from legal reuse gate to methodological measurement of individual group disagreement; direct downstream causal estimand different from C07 group label",
+  "A": {
+    "question": "Does dissent_report attribute individual dissent to a group majority when the winning option is only a plurality and no strict >50% group majority exists?",
+    "population": "Synthetic nominal vote/group rows only (no actual MPs)",
+    "estimand": "The count of individual expressed votes opposing a strict >50% majority position; undefined/excluded where no strict majority",
+    "baseline": "Existing dissent_report uses argmax modal option, potentially a plurality",
+    "proxy": "Nonmodal vote share must NOT be called strict majority dissent or party discipline"
+  },
+  "B": {
+    "H1": "At 4 YES/3 NO/2 ABSTAIN, original dissent_report counts 5 nonmodal votes as dissent despite no strict majority",
+    "H0": "Existing function excludes sub-half modal winners",
+    "other": "Ties and no_vote already excluded; issue specific to plurality without tie"
+  },
+  "C": {
+    "pre_specified_cases": [
+      {
+        "yes": 4,
+        "no": 3,
+        "abstain": 2,
+        "strict_majority": null,
+        "strict_dissent_eligible": 0,
+        "modal_nonmodal": 5
+      },
+      {
+        "yes": 6,
+        "no": 3,
+        "abstain": 0,
+        "strict_majority": "YES",
+        "strict_nonmajority_count": 3
+      },
+      {
+        "yes": 1,
+        "no": 1,
+        "abstain": 0,
+        "strict_majority": null,
+        "strict_eligible": 0
+      }
+    ],
+    "controls": [
+      "ABSTAIN counted as expressed option",
+      "NO_VOTE excluded",
+      "duplicate row rejected",
+      "Mixto excluded when configured"
+    ],
+    "acceptance": "Add separately named conservative strict majority functions, retain legacy modal metrics under clear labels, use strict output for future lab; no change in real-person scoring"
+  },
+  "D": {
+    "source": "src/politics_fantasy/sociometrics.py Git blob e1d68756824b0a3f629c88f31beddc5a0001b680",
+    "tests": "tests/test_sociometrics.py SHA ddfdf036097a6f40540b4534f089f59e9aeb9f9a",
+    "execution": "Python local isolated synthetic test of exact mathematical algorithm or original module if available; full checkout unavailable"
+  },
+  "E": "NOT_RUN",
+  "F": "Do not infer causal party discipline, motives, party loyalty or group membership from nominal choices",
+  "G": "Full suite original pending, new functions require separate tests",
+  "H": "N1/N2/N3=0; CT2 identity unchanged",
+  "I": "Validity of sociological indicator not model performance",
+  "J": "If observed, implement conservative strict path and document modal legacy. STOP R5 on related plurality bug variants."
+}
