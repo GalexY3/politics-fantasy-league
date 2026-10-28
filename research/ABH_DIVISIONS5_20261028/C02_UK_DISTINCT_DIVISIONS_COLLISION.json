@@ -1,0 +1,58 @@
+{
+  "schema": "pfl.uk.commons.division.aggregatekey.v1",
+  "source": "https://votes.parliament.uk/Votes/Commons?Fromdate=2026-10-21&ToDate=2026-10-21",
+  "date": "2026-10-21",
+  "source_type": "official UK Parliament search-indexed summary (2026 cache), NOT original JSON, list-by-member or first-public snapshot",
+  "source_ref": "turn452750search0",
+  "records": [
+    {
+      "division_number": 101,
+      "title": "Draft Railways (Interoperability in Northern Ireland) (Convention on International Carriage by Rail) (Amendment) Regulations 2026",
+      "aye": 345,
+      "no": 108,
+      "recorded_total": 453
+    },
+    {
+      "division_number": 102,
+      "title": "Draft Code of Practice on Access and Unfair Practices During the Recognition and Derecognition Process",
+      "aye": 295,
+      "no": 111,
+      "recorded_total": 406
+    },
+    {
+      "division_number": 103,
+      "title": "Withdrawal Agreement (Windsor Framework and Governance) (Amendment) Regulations 2026",
+      "aye": 345,
+      "no": 108,
+      "recorded_total": 453
+    },
+    {
+      "division_number": 104,
+      "title": "Opposition day motion: Support for British farmers",
+      "aye": 57,
+      "no": 279,
+      "recorded_total": 336
+    }
+  ],
+  "duplicate_total_pairs": [
+    {
+      "aye": 345,
+      "no": 108,
+      "distinct_division_numbers": [
+        101,
+        103
+      ],
+      "distinct_motion_titles": true
+    }
+  ],
+  "n_votes": 4,
+  "n_distinct_total_vectors": 3,
+  "collision_pairs": 1,
+  "total_votes_counted_per_record_sum": 1648,
+  "limitations": [
+    "Division Number only unique within a parliamentary session; document source is date-scoped, not a universal identifier",
+    "Same two tally totals do not prove overlap in voter identities or party membership, cannot infer political behaviour",
+    "Opened page returned cache miss; index results read, official JSON unavailable",
+    "The duplicate pair was already exposed before C02 prereg; no blinded discovery"
+  ]
+}
