@@ -28,3 +28,15 @@ test('C03 allow real leap day without timezone reinterpretation',()=>{
  assert.equal(canonicalVoteKey(row({session_date:'2024-02-29'})),'C|XV|193|2024-02-29|1');
  assert.equal(canonicalVoteKey(row({session_date:'2000-02-29'})),'C|XV|193|2000-02-29|1');
 });
+test('C04 reject object-to-string alias and numeric legislature',()=>{
+ assert.throws(()=>canonicalVoteKey(row({institution:{toString(){return 'C'}}})),/INVALID_COMPONENT_TYPE/);
+ assert.throws(()=>canonicalVoteKey(row({legislature:15})),/INVALID_COMPONENT_TYPE/);
+});
+test('C04 reject untyped expediente and padded text',()=>{
+ assert.throws(()=>indexVotes([row({expediente:130})]),/INVALID_COMPONENT_TYPE/);
+ assert.throws(()=>indexVotes([row({expediente:'130/000049 '})]),/INVALID_COMPONENT_WHITESPACE/);
+});
+test('C04 reject null/array input in controlled form',()=>{
+ assert.throws(()=>canonicalVoteKey(null),/INVALID_ROW/);
+ assert.throws(()=>canonicalVoteKey([]),/INVALID_ROW/);
+});
