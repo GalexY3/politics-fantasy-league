@@ -1,0 +1,37 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign_id": "PFL-ABH-MAIN20B-20261028",
+  "cycle": "C17",
+  "mode": "AB-P",
+  "status": "VALID_MANUAL_AGGREGATE_QUARANTINE",
+  "A": "Malformed manually transcribed CSV should not crash local fictional state endpoint nor display partial unverified vote totals",
+  "B": "H1 code allowed KeyError/int parsing errors; now quarantine and preserve clubs",
+  "C": {
+    "prereg": "C17_PREREG.json",
+    "bad_cases": [
+      "missing row_id",
+      "nonnumeric yes",
+      "negative total",
+      "sum >350"
+    ],
+    "good_case": "positive manual aggregate explicitly uncertified"
+  },
+  "D": {
+    "source_sha_before": "1fea7738b924cdd70ab73df130cf60e4a22ce0fc",
+    "source_sha_after": "763c92a30728b95859035053e612a83342a58422",
+    "source_commit": "bbab79ddf320536ee37f814ae6822012079651d2",
+    "test_commit": "b48824855f226497a4cf45379a8804f99b03c670",
+    "runner": "Five Python stdlib reconstructed validation cases, not full product app"
+  },
+  "E": {
+    "focused": "5/5 PASS",
+    "source_status": "MANUAL_AGGREGATE_INVALID when bad, EXPLORATORY_MANUAL_AGGREGATE_NOT_VALIDATED when valid",
+    "limits": "1 MiB / 200 rows manual pilot budget",
+    "full_suite": "NOT_RUN"
+  },
+  "F": "The user-supplied pilot file is not an official original and nothing here certifies individual votes or source reuse rights.",
+  "G": "T009 pending",
+  "H": "No CT2 or launch gates change",
+  "I": "Game state availability separate from untrusted local observation cache",
+  "J": "ACCEPT bounded isolation; no false partial data"
+}
