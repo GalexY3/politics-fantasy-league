@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "branch": "research/pfl-abh5-originals-20261028",
+  "method": "A-J complete; R1-R5; preexecute; bounded source evidence; no real-person scoring",
+  "baseline": {
+    "CT2": 29,
+    "V4": 36.9,
+    "achievements": "2/90",
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "initial_evidence": "Official BOE original HTML 2019 and 2023 found; XML download unavailable; exploratory source selection, NOT blind.",
+  "cycle": "C04",
+  "type": "AB-R",
+  "A": "Can a seat-allocation baseline with four named parties reproduce 2023 Guadalajara's observed 1/1/1 while differing from an over-simplified top-three vote model in other districts?",
+  "B": {
+    "H1": "Hondt using only four major named lists may reproduce selected observed outcomes but must be labelled incomplete because smaller lists excluded",
+    "H0": "Simplified model always correct and can be certified whole election"
+  },
+  "C": "Compute deterministic quotient rankings in 2023 Guadalajara, Cantabria and Alicante from BOE Cuadro II four named major lists, compare observed seats, explicitly account excluded other lists by restricting conclusion to upper-bound or diagnostics. Verify second baseline first-past-the-post leader only, quantify where fails.",
+  "D": "BOE 2023 Cuadro II rows 95,107,116; 2019 BOE baseline for context; no original full vote universe in fixture",
+  "E": "PENDING",
+  "F": "Known selection: all four named parties are national, but regional votes may win seats elsewhere; no claims nationally",
+  "G": "Not independent algorithmic validation of source and may be tautological",
+  "H": "No scientific upgrade from textbook d'Hondt",
+  "I": "No real personal ratings",
+  "J": "If 4-party simulation matches, classify methodological illustration not novel finding; if discrepant audit missing party list first",
+  "D_score": 0.3
+}
