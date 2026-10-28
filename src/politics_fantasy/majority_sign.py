@@ -17,15 +17,33 @@ def sign(value: int) -> int:
     return (value > 0) - (value < 0)
 
 def compare_ballot(r: dict) -> str:
-    yes, no = r['totales']['si'], r['totales']['no']
-    votes = r.get('votos', {}) or {}
-    n_yes=len(votes.get('S','').split())
-    n_no=len(votes.get('N','').split())
-    n_any=sum(len(v.split()) for v in votes.values())
-    if n_any==0:return 'NO_NOMINAL'
-    a,b=sign(yes-no),sign(n_yes-n_no)
-    if a==b:return 'SAME_SIGN'
-    if 0 in (a,b):return 'TIE_INVOLVED'
+    """Classify valid disjoint secondary codes, never assert an official outcome.
+
+    Malformed secondary rows receive their own classification rather than being
+    silently counted as a majority reversal. No identity or provenance is certified.
+    """
+    if not isinstance(r, dict) or not isinstance(r.get('totales'), dict):
+        return 'INVALID_TOTALS'
+    totals = r['totales']
+    if any(type(totals.get(k)) is not int or totals[k] < 0 for k in ('si', 'no')):
+        return 'INVALID_TOTALS'
+    yes, no = totals['si'], totals['no']
+    votes = r.get('votos', {})
+    if (not isinstance(votes, dict) or any(k not in ('S', 'N', 'A', 'X') for k in votes)
+            or any(not isinstance(v, str) for v in votes.values())):
+        return 'INVALID_NOMINAL_SCHEMA'
+    indexed = {k: v.split() for k, v in votes.items()}
+    codes = [code for group in indexed.values() for code in group]
+    if len(codes) != len(set(codes)):
+        return 'INVALID_DUPLICATE_NOMINAL_CODE'
+    if not codes:
+        return 'NO_NOMINAL'
+    n_yes, n_no = len(indexed.get('S', [])), len(indexed.get('N', []))
+    a, b = sign(yes - no), sign(n_yes - n_no)
+    if a == b:
+        return 'SAME_SIGN'
+    if 0 in (a, b):
+        return 'TIE_INVOLVED'
     return 'STRICT_REVERSAL'
 
 
