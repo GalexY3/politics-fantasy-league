@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0042-PFL-ABH-BRANCH20-C07-GROUP-MAJORITY-20261028",
+  "parent_batch": "0041-PFL-ABH-BRANCH20-C06-PR11-20261028",
+  "at": "2026-10-28T12:36:42.917Z",
+  "actor": "chatgpt",
+  "reason": "C07 prereg group plurality vs >50% measurement identified legacy 4/9 modal YES; added separate strict group majority with denominator modes. Native isolated 4+11 checks; full suite T008 pending.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-BRANCH20-C07-ABSOLUTE-GROUP-MAJORITY",
+        "activity": "AB-R methodological group modal vs strictly >50%, expressed vs all recorded statuses, no inferred membership and no real-person scoring",
+        "status": "completed",
+        "at": "2026-10-28T12:36:42.917Z",
+        "evidence": [
+          "research/ABH_BRANCH20_20261028/C07_PREREG.json",
+          "research/ABH_BRANCH20_20261028/C07_RESULT.json",
+          "tests/test_group_majority_semantics.py"
+        ],
+        "scope": "Sociological measurement semantics only, no CT2 uplift",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
