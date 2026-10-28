@@ -1,0 +1,29 @@
+{
+  "cycle": "C04",
+  "type": "AB-P",
+  "A": "Does a loopback-only server strictly deny unapproved requests and prevent real-user data retention or tracking?",
+  "B": [
+    "static host no collection",
+    "GET query logging or unexpected paths leak",
+    "localhost remote binding/POST possible"
+  ],
+  "C": {
+    "acceptance": [
+      "bind exact 127.0.0.1 only",
+      "POST/PUT denied",
+      "non-allowlisted files denied",
+      "no analytics/localStorage/network",
+      "CSP, no-store, no-referrer",
+      "adversarial HTTP tests positive and negative"
+    ],
+    "falsifier": "POST succeeds or key/resource leaks"
+  },
+  "D": "Local live Node HTTP tests only; no public hosting",
+  "E": "NOT_EXECUTED",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING",
+  "state": "FROZEN_BEFORE_EXECUTION"
+}
