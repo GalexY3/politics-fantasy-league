@@ -46,3 +46,8 @@ R1: unidad persona futura vs fixture actual claramente separadas. R2: control fa
 Un ejecutor (Codex/PC) debe montar las cuatro condiciones en una interfaz accesible con **datos ficticios únicamente**, reproducir los 84 tests en Node en checkout limpio, auditar key leakage y validación offline, elaborar dos tutoriales de igual duración, instalar protección real de datos y obtener revisión institucional antes de reclutamiento. No se ha hecho todavía. Ningún experimento humano, CI, despliegue o revisión ética se presenta como terminado.
 
 **SOLICITO BRANCHING 5 CICLOS AB-H ADICIONALES**, solamente mediante autorización expresa, enfocados en integración de interfaz de piloto, QA nativa con ejecutor y diseño de revisión ética; no contar sesiones humanas hasta consentimiento y datos verdaderos. La siguiente petición se ofrecerá también mediante botón en ChatGPT.
+
+
+## 6. Registro final del repositorio
+
+**PR draft #35** apilada sobre la PR #34; creada y no fusionada. **Atlas lote 0078 comprometido**, pero el fichero histórico canónico `ab_atlas/CURRENT.md` no pudo actualizarse al intentar escribir su historial extenso: el control de la herramienta rechazó la operación. Se dejó un [estado complementario](../../ab_atlas/CURRENT_PROSPECTIVE_PILOT5.md) y el delta está guardado; **no se declara sincronización canónica ni replay verificado**. Nueva [tarea T026](../../tareas_codex/T026_PILOT_NATIVE_ETHICS_QA_20261029.md) pendiente de ejecutar. Nada de esto modifica las conclusiones científicas ni consume ciclos nuevos.
