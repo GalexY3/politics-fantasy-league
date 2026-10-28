@@ -12,13 +12,13 @@
     ]
   },
   "cycles": {
-    "valid": 11,
+    "valid": 20,
     "invalid": 0,
     "planning": 0,
-    "used": 11,
-    "remaining": 9
+    "used": 20,
+    "remaining": 0
   },
-  "state": "ACTIVE_11_VALID_9_AVAILABLE",
+  "state": "CLOSED_20_VALID_0_INVALID_0_REMAINING",
   "branch": "main",
   "head_at_authorization": "08b244972012bde9a2572f4aa464d1b908258726",
   "executed": [
@@ -121,6 +121,87 @@
       "result": "C11_RESULT.json",
       "grade_0_3": 0,
       "notes": "See A-J result; no scientific or launch promotion."
+    },
+    {
+      "cycle": "C12",
+      "type": "AB-P",
+      "status": "VALID_NEGATIVE_AND_REPAIR_CROSS_SOURCE_DUPLICATE",
+      "prereg": "C12_PREREG.json",
+      "result": "C12_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C13",
+      "type": "AB-P",
+      "status": "VALID_NEGATIVE_AND_REPAIR_ORPHAN_CLAIMS_AUDIT",
+      "prereg": "C13_PREREG.json",
+      "result": "C13_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C14",
+      "type": "AB-P",
+      "status": "VALID_BOUNDED_FORECAST_CALENDAR_CONTROL",
+      "prereg": "C14_PREREG.json",
+      "result": "C14_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C15",
+      "type": "AB-P",
+      "status": "VALID_BOUNDED_NETWORK_IDENTIFIER_FAIL_CLOSED",
+      "prereg": "C15_PREREG.json",
+      "result": "C15_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C16",
+      "type": "AB-P",
+      "status": "VALID_NEGATIVE_AND_REPAIR_URL_CREDENTIAL_AUTHORITY",
+      "prereg": "C16_PREREG.json",
+      "result": "C16_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C17",
+      "type": "AB-P",
+      "status": "VALID_BOUNDED_ACTIVE_NAV_ACCESSIBILITY",
+      "prereg": "C17_PREREG.json",
+      "result": "C17_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C18",
+      "type": "AB-P",
+      "status": "VALID_BOUNDED_CT2_BRANCH_COPY_CLARIFICATION",
+      "prereg": "C18_PREREG.json",
+      "result": "C18_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C19",
+      "type": "AB-META",
+      "status": "VALID_BOUNDED_AJ_LEDGER_18_PAIR_AUDIT",
+      "prereg": "C19_PREREG.json",
+      "result": "C19_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
+    },
+    {
+      "cycle": "C20",
+      "type": "AB-META",
+      "status": "VALID_BOUNDED_FINAL_CLOSE_AUDIT",
+      "prereg": "C20_PREREG.json",
+      "result": "C20_RESULT.json",
+      "grade_0_3": 0,
+      "limits": "Documented scoped result only; do not promote to full-field validation or production QA."
     }
   ],
   "achievements": {
@@ -138,7 +219,8 @@
     "lots_documentary": 75,
     "canonical_checker": "NOT_RUN_SYNTAX_ERROR_T010_PENDING",
     "no_new_delta_in_C01": true,
-    "reason": "Avoid mutation of canonical broken Atlas pipeline; achievements are versioned read-only sidecar and view until repair T010."
+    "reason": "Avoid mutation of canonical broken Atlas pipeline; achievements are versioned read-only sidecar and view until repair T010.",
+    "canonical_state_sha256": null
   },
   "scientific_state": {
     "CT2_identity_ordinal": 29,
@@ -153,5 +235,15 @@
   },
   "T009": "COMPLETADA_CON_FALLOS",
   "T010": "PENDING",
-  "next": "9 cycles authorized remain, target independent evidence and strongly discriminant instruments; STOP R5 allowed. T010 unrelated QA pending."
+  "next": "T010 QA remediation and full Linux test of latest code, then original parliamentary corpora with authentic historical as-of and lawful purpose; R5 stop uninformative synthetic cycles. No new AB cycles remain authorized.",
+  "closed_at": "2026-10-28",
+  "evidence_integrity": {
+    "C01_to_C18_AJ_complete_pairs": 18,
+    "C19_and_C20_AJ_complete": true,
+    "prereg_result_git_ancestry_samples_checked": 6,
+    "preclosure_paired_files": 38,
+    "Atlas_lots_documentary": 75,
+    "Atlas_native_checker_not_run": true,
+    "new_full_linux_test_not_run": true
+  }
 }
