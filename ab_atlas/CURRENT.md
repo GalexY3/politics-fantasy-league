@@ -1,3 +1,18 @@
+# ESTADO CANÓNICO DEL ATLAS — REPRODUCIDO CON PYTHON ORIGINAL (29/10/2026)
+
+**Fuente autorizada:** PR sucesora de #41, `research/pfl-t028-atlas-direct-adversarial-20261029`; ejecución nativa del checkout privado en [GitHub Actions #40805714464](https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464), commit fuente `85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1`. [Recibo verificable](../research/T028_DIRECT_ATLAS_20261029/NATIVE_ATLAS_CHECK_RECEIPT.json).
+
+- `python ab_atlas/atlas_delta.py check`: **PASS, 80 lotes, 63 nodos, SHA256 `e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f`**.
+- `python ab_atlas/atlas_delta.py brief --limit 8`: **PASS, SHA256 idéntico, 81 relaciones**, `head_batch=0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029`, `scope=PFL-V1-20261026-r3`.
+- El aplicador original invoca `abmap.require_valid(strict=True)` tras cada lote. El estado final fue reconstruido sin alterar el `seed.json` ni los lotes históricos.
+- **Readiness = false; gates críticos 0/6**. El piloto ficticio, los resultados científicos y el lanzamiento siguen gobernados por sus requisitos propios. CT2 prospectiva **22/100 ordinal**, N1/N2/N3 nuevos **0/0/0**.
+- Incidencia histórica **sin reparación encubierta**: lote 0079 declara `2026-10-29T01:00:00Z` y 0080 `2026-10-29T00:26:37.468Z`, cronología no monótona; el verificador acepta ambos timestamps ISO. No se reescribieron los originales.
+- La parte Python canónica de T028 está **resuelta** en esta rama. La prueba del navegador Chromium HTTP real permanece separada; no inferirla del checker Python ni de una API HTTP.
+
+**Nota de lectura:** el texto largo a continuación es un archivo histórico de entradas de otras ramas/fechas. Cuando alguna entrada anterior diga «Atlas canónico NO ejecutado», se refiere al estado *anterior* a la ejecución de arriba y no reemplaza este encabezado. Las dos plazas AB-H históricas no ejecutadas se conservan sin consumir.
+
+---
+
 > **CIERRE INCENTIVE_MECHANISMS5 · 29/10/2026 · RAMA NO FUSIONADA:** **5/5 ciclos AB-H A–J válidos acotados** (C01/C02/C04 **3 AB-R sintéticos**, C03/C05 **2 AB-P** de QA), 0 inválidos finales, 0 planificación, 0 restantes. Base PR #33 HEAD `a19b50b0f0576fd2a4ab0b69e24657102e75c7da`. C01 ensayo de exposición sintética **1.200 rondas**: MAE 0,24239 recuento/12, 0,16595 tasa, 0,10037 suavizado Beta2,2 (distribución escogida). C02 contrafactual de estrategia seleccionar 4 fáciles frente a 20: ventajas de selección de **+0,36 tasa**, **+0,1833 Beta**, **−0,32 denominador programado**; son resultados construidos, NO comportamiento social. C03 guard sintético **18/18 V8 PASS** tras fallo inicial de harness **14/18** reparado sin consumir otro ciclo. C04 ausencia no aleatoria de éxitos simulada: sesgo estimador ingenuo **−0,1144** frente al oráculo completo, gate disponible solo **5,83%** (escenario MNAR). C05 manifiestos sintéticos 18/18 pruebas V8, NO firma criptográfica. N1/N2/N3 nuevos **0/0/0**; VSDS **1/3**, V4 **36,90%**, gates **0/6**, logros **2/90**. CT2 identidad parental **29/100** sin cambios; nueva línea ficticia **20/100 ordinal y provisional**, no caída de la anterior. [Informe](../research/ABH_INCENTIVE_MECHANISMS5_20261029/FINAL_REPORT.md) · [ledger](../research/ABH_INCENTIVE_MECHANISMS5_20261029/CAMPAIGN_STATUS.json) · [fuentes/priors](../research/ABH_INCENTIVE_MECHANISMS5_20261029/SOURCES_AND_PRIORS.json) · [CT2](../research/ABH_INCENTIVE_MECHANISMS5_20261029/CT2_FULL_AND_ZOOM.svg). **No estudio humano, scoring real, ChatRelay, CI costosa ni main merge.** Nuevos módulos requieren prueba nativa independiente. 
 
 ---
