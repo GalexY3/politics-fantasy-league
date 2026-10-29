@@ -179,6 +179,14 @@
       "state": "answered",
       "summary": "Original Git source path for Sep27 resolution set absent by Oct01 and Oct06, first published Oct07 07:19:29Z. Existing C01 event-date cutoff applied to later Oct29 snapshot 10 apparently available on Oct01, hence as-of historical availability claim retracted. First genuine published snapshot Oct08 30 eligible; Oct29 later 52. Native Python provenance gate 15/15 tests; no PFL human effect, no local positive original bytes Python E2E.",
       "source": "../ABH30_NEW_20261029/C05_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C06-INTEGRATED-CLI-ASOF-SOURCE",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Integrated production-source-aware temporal gate into actual offline public question CLI: Oct29 Git source cannot be scored Oct01/Oct08; strict UTC as-of instant; 18 new native Node integration tests and 11 prior regression tests PASS. Original four full bytes positive CLI run still NOT executed; source commit is not participant first_public_at.",
+      "source": "../ABH30_NEW_20261029/C06_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -349,6 +357,24 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "related_to",
       "interpretation": "Source publication issue is separate from participant rank exposure and legal/ethical rights."
+    },
+    {
+      "from": "PFL-ABH30-C06-INTEGRATED-CLI-ASOF-SOURCE",
+      "to": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "relation": "addresses",
+      "interpretation": "Closes proven lookahead source-publication bug from original prior C01 interpretation in actual offline audit entrypoint."
+    },
+    {
+      "from": "PFL-ABH30-C06-INTEGRATED-CLI-ASOF-SOURCE",
+      "to": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "relation": "extends",
+      "interpretation": "Adds mandatory Git source publication timestamp to existing real CLI, before disk read or semantic filtering; intentional backward-incompatible date-only argument."
+    },
+    {
+      "from": "PFL-ABH30-C06-INTEGRATED-CLI-ASOF-SOURCE",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Human causal assignment and pre-answer exposure still legally/ethically unavailable; source Git timestamp not proof of person-level exposure."
     }
   ],
   "rules": {
@@ -372,8 +398,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 5,
-      "new_unused": 25,
+      "new_valid": 6,
+      "new_unused": 24,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -382,7 +408,7 @@
         0
       ],
       "last_source_pr": 53,
-      "branch": "research/pfl-abh30-c05-publication-bitemporal-20261029"
+      "branch": "research/pfl-abh30-c06-source-publication-cli-20261029"
     }
   }
 }
