@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 17,
-    "new_remaining": 13,
+    "new_completed": 18,
+    "new_remaining": 12,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -428,15 +428,33 @@
         "actual_browser": false
       },
       "limits": "HMAC with synthetic caller-supplied key only, no real provenance or exposure."
+    },
+    {
+      "id": "ABH30-C18",
+      "mode": "AB-R_ORIGINAL_LICENSED_HUMAN_FORECAST_SOURCE_FEASIBILITY_NEGATIVE",
+      "D": 3,
+      "status": "VALID_LIMITED_PREREGISTERED_NEGATIVE_SOURCE_ACCESS_NO_HUMAN_ROWS",
+      "grade_science": "0/3",
+      "prereg_commit": "9331e120b84844f94babcbfc25797e51cb24e4ad",
+      "run_receipt": "C18_RUN_RECEIPT.json",
+      "verified": {
+        "original_license": "CC-BY-SA-4.0",
+        "original_superforecast_file_exists": true,
+        "pinned_source_git": "583085efe4c752d4b9f6ab2c98ec8642fbc01bca",
+        "original_full_JSON_parse": "FAILED_UNEXPECTED_END",
+        "raw_person_rows_read": 0,
+        "source_structure_identifiers": "POSTHOC_HF_VIEWER_USER_ID_AND_REASONING"
+      },
+      "limits": "Original 4.6MB human individual JSON cannot parse through connector; user_id/reasoning present in public viewer, copyright license not privacy clearance. Stop raw extraction; no human science or original PFL treatment observations."
     }
   ],
   "counting": {
-    "valid_limited": 17,
+    "valid_limited": 18,
     "invalid_cycles": 0,
     "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 13,
-    "new_remaining": 13,
+    "unopened_authorized": 12,
+    "new_remaining": 12,
     "historical_remaining": 2
   },
   "science": {
@@ -542,7 +560,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_17_OF_30_C17_LIMITED_NATIVE_HMAC_13_LEFT_TWO_HIST_STOP_R5",
-  "last_branch": "research/pfl-abh30-c17-integrity-proof-20261029",
+  "decision": "ABH30_18_OF_30_C18_NEGATIVE_HUMAN_FORECAST_DATA_FEASIBILITY_12_REMAIN_2_HISTORICAL_STOP_R5",
+  "last_branch": "research/pfl-abh30-c18-original-human-forecast-license-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
