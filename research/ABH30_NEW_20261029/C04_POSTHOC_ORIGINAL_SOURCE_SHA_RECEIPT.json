@@ -1,0 +1,67 @@
+{
+  "schema": "pfl.abh30.c04.posthoc.original_source.bytes.v1",
+  "date": "2026-10-29",
+  "status": "POSTHOC_SOURCE_QA_NO_EXTRA_AB_CYCLE",
+  "source": "Forecasting Research Institute ForecastBench CC BY-SA 4.0 https://github.com/forecastingresearch/forecastbench-datasets",
+  "upstream_pinned_git_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+  "verification_method": "GitHub read-only git/blobs/<original_sha>; full UTF-8 text roundtrip re-encoded and SHA1 Git object 'blob <byte_len>\\0<byte_content>' calculated in Code Mode V8 pure SHA1 implementation. First verified independent reference 'abc' -> f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f. Four original contents all matched pinned Git blob SHA1 exactly; no bytes uploaded to PFL repo.",
+  "original_blobs": [
+    {
+      "path": "datasets/question_sets/2026-09-27-llm.json",
+      "sha": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+      "matched": true,
+      "utf8_bytes": 1313813
+    },
+    {
+      "path": "datasets/resolution_sets/2026-09-27_resolution_set.json",
+      "sha": "b2ee53f09407e2b555668f66e286073ace6d5fce",
+      "matched": true,
+      "utf8_bytes": 156713
+    },
+    {
+      "path": "datasets/question_sets/2026-10-11-llm.json",
+      "sha": "fe9772f2275edcada671c4082cf9103185f1becf",
+      "matched": true,
+      "utf8_bytes": 1487382
+    },
+    {
+      "path": "datasets/resolution_sets/2026-10-11_resolution_set.json",
+      "sha": "d8416bccbfcd4736e9772748bb42fd4cc403db7e",
+      "matched": true,
+      "utf8_bytes": 109886
+    }
+  ],
+  "original_source_guard_replay": {
+    "source_git_blob": "0802dd7dd2ead0aa17607f3995aea339efbd9c99",
+    "as_of_date": "2026-10-29",
+    "cohorts": [
+      {
+        "date": "2026-09-27",
+        "questions": 500,
+        "resolution_records": 642,
+        "accepted": 52,
+        "rejected": 448,
+        "mean_brier_public_market_resolved_only": 0.16801450256770642
+      },
+      {
+        "date": "2026-10-11",
+        "questions": 500,
+        "resolution_records": 450,
+        "accepted": 8,
+        "rejected": 492,
+        "mean_brier_public_market_resolved_only": 0.07071875
+      }
+    ],
+    "rows_personal": 0
+  },
+  "qualifications": [
+    "Additional posthoc positive source verification by GitHub connector/V8, not preregistered extra test and not counted as extra cycle",
+    "Native local CLI with all four original raw source files has NOT been run; this positive check uses connected GitHub and existing pure guard, not CLI disk-reading path",
+    "Git SHA1 proves match with declared Git blobs, not independent publisher signature or privacy/use license; no human rows or individual histories accessed",
+    "Source text not republished in PFL and no personally attributable forecasts processed",
+    "Not independent new original dataset or causal evidence; earlier resolved-only sample already known"
+  ],
+  "CT2_science_before": 20,
+  "CT2_science_after": 20,
+  "bonus_cycles": 0
+}
