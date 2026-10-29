@@ -32,7 +32,7 @@ function audit(questionSet, resolutionSet) {
   for (const q of questionSet.questions) {
     if (typeof q.source !== "string" || typeof q.id !== "string") {reject("bad_question_key");continue;}
     const k=key(q);
-    if (map.has(k)) dupQuestion.add(k);
+    if (map.has(k)) {dupQuestion.add(k);reject("duplicate_question_record_extra");}
     else map.set(k,q);
   }
   const grouped = new Map();
