@@ -162,5 +162,24 @@
     "merged_main": false,
     "expensive_CI": false,
     "real_politician_scoring": false
+  },
+  "drift": {
+    "parent_domain": "Offline fictional 2x2 PFL pilot instrument, V8-only local QA",
+    "child_domain": "Native Node verification, local-only UI and security/ethics gates",
+    "D_score": 1.1,
+    "scale": "0–5 ordinal, not metric",
+    "reason": "New evidence type (native runtime/HTTP and adversarial object-shape) and instrument, but same fictional PFL study domain; not a major scientific pivot",
+    "rivals": [
+      "old V8 tests might fail in Node",
+      "new browser/server could leak answer key or accept human data",
+      "source validation could accept concealed inherited fields"
+    ],
+    "inherited_evidence": [
+      "PR35 5 prereg/result pairs and Atlas0078",
+      "84 original V8 checks",
+      "parent CT2 25/100"
+    ],
+    "new_evidence_required": "native SHA matched runtime, HTTP deny paths, independent ethics source",
+    "decision": "BRANCH_REPAIR_LOCAL_UI_THEN_STOP_R5_HUMAN_GATE"
   }
 }
