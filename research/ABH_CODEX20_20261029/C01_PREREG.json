@@ -1,0 +1,21 @@
+{
+  "id": "C01",
+  "mode": "AB-P",
+  "A": "Does a supported-looking but unimplemented scoring rule version receive an ordinary score?",
+  "B": [
+    "Unknown versions rejected",
+    "Any syntactic version accepted with v1 formulas",
+    "Other runtime failure"
+  ],
+  "C": "Probe synthetic-v1, synthetic-v2, synthetic-v999 with otherwise identical fixture; baseline is explicit allowlist of implemented version v1. Reject unsupported versions before output.",
+  "D": "Node native, exact commit and script frozen before run",
+  "E": "NOT_RUN",
+  "F": "Check consumers and historical tests; a regex validates syntax, not implemented semantics",
+  "G": "Internal software verification only, no external scientific confirmation",
+  "H": "Update rule contract only after observed behavior",
+  "I": "No effect on CT2 or political validity",
+  "J": "REPAIR if unsupported accepted, else continue with distinct question",
+  "DRIFT": 0,
+  "grade_0_3": 0,
+  "exposure": "Existing source inspected; behavioral result not yet executed"
+}
