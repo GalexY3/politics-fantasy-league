@@ -1,0 +1,26 @@
+{
+  "id": "C18",
+  "type": "AB-P",
+  "status": "PREREGISTERED",
+  "timestamp_utc": "2026-10-29T16:16:51.078658+00:00",
+  "source_commit": "b9c94ed7015a13db3bd02ac67aa786c3fb72731e",
+  "A": "Can the integrated local demo complete its browser and gameplay acceptance flows?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Run existing Chromium HTTP smoke and market-lineup-simulation-round smoke with isolated temporary database.",
+    "acceptance": "Both exit0 with no application JS/CSP errors asserted by their scripts; do not infer production or accessibility certification.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C17 establishes native suites, not real browser workflow.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0
+}
