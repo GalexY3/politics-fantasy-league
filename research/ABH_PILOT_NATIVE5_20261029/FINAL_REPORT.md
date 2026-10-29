@@ -60,3 +60,8 @@ Fuentes actuales independientes para futuras obligaciones: [Comité de Ética de
 ## Decisión
 
 **CLOSE_BOUNDED_5_OF_5**. Guardar fuentes, priors, CT2/Atlas y PR borrador sucesora. **SOLICITO BRANCHING 5 CICLOS AB-H ADICIONALES**, sujetos a autorización nueva, pero priorizar tareas con nueva evidencia independiente: completar navegador/Atlas, requisitos previos de investigación humana o pivot científico PFL no dependiente de reclutamiento; no repetir lo sintético para consumir cupo. La solicitud se ofrecerá también como botón.
+
+
+## Registro GitHub verificable
+
+**PR draft #36**: https://github.com/GalexY3/Metodologia-AB/pull/36, apilada sobre `research/pfl-abh5-prospective-pilot-20261029`; creada y confirmada sin fusionar. Atlas 0079 y estado complementario versionados; `CURRENT.md` canónico aún desincronizado (heredado de 0078). No se ejecutaron GitHub Actions ni estudios humanos.
