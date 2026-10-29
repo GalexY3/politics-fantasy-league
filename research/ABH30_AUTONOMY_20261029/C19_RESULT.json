@@ -1,0 +1,38 @@
+{
+  "id": "ABH30-P1-C19",
+  "status": "VALID_DOM_QA_AB_P",
+  "prereg_commit": "e1122426bb7d2916931affef701eb5eee94382be",
+  "A": "See original Cxx_PREREG contract",
+  "B": "Rival null/competent baseline predeclared",
+  "C": "Endpoints, assumptions, falsifier frozen in prereg",
+  "D": {
+    "source_urls": [],
+    "source_code": "sandbox:/mnt/data/pfl_abh30_c19_c20.py"
+  },
+  "E": {
+    "browser": "Chromium 144 about:blank exact app DOM",
+    "synthetic_payload": "<img src=x onerror='window.pflInjected=1'>",
+    "literal_text_rendered": true,
+    "img_nodes_in_question": 0,
+    "script_side_effect": null,
+    "unsafe_innerHTML_control_img_nodes": 1,
+    "question_groups": 4,
+    "harness_first_attempt": "INVALID due unescaped double quotes in injected script; fixed using single quotes without editing app"
+  },
+  "F": {
+    "adversarial_limit": "Only local textContent path in current app and controlled fixture; no evidence of full XSS resistance to all future dynamic sources or actual HTTP+CSP."
+  },
+  "G": "No external PFL human replication or novel scientific discovery",
+  "H": {
+    "prior_update": "Only local textContent path in current app and controlled fixture; no evidence of full XSS resistance to all future dynamic sources or actual HTTP+CSP."
+  },
+  "I": {
+    "grade": "0/3",
+    "causality": "none for field; math conditional on exact assumptions",
+    "ethics": "No live people, real scoring or releases"
+  },
+  "J": "Conclude scoped mechanism, R5 transition to 10 autonomy probes; no more replicate synthetic generator",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
