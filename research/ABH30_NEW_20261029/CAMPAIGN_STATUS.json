@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 2,
-    "new_remaining": 28,
+    "new_completed": 3,
+    "new_remaining": 27,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -52,15 +52,45 @@
         "real_upstream_four_file_sha_metadata_earlier_confirmed": true
       },
       "limitations": "Positive four original raw source files hashing not performed because unavailable offline; byte digest not source signature or data/license permission."
+    },
+    {
+      "id": "ABH30-C03",
+      "mode": "AB-R",
+      "D": 2,
+      "status": "VALID_LIMITED_PUBLIC_NONPERSON_REAL_MARKET_PARTIAL_IDENTIFICATION",
+      "grade_science": "0/3",
+      "prereg_commit": "9488a557ec45cf4fc45c0327402ab9d9d7be092d",
+      "sha256_freeze_commit": "f9198da1f27560f31449eb2c650a8b6cb9990306",
+      "result": "C03_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "15/15",
+        "real_original_public_500_question_cohorts": 2,
+        "market_questions_per_cohort": 250,
+        "known_asof": [
+          52,
+          8
+        ],
+        "partial_bounds": [
+          [
+            0.09705719762176714,
+            0.5194762392408311
+          ],
+          [
+            0.07839344737261655,
+            0.5985090687999615
+          ]
+        ]
+      },
+      "limits": "Existing original public cohorts, NOT independent new data or human rankings. Deterministic unidentified full mean, weak p=.5 is not competent baseline."
     }
   ],
   "counting": {
-    "valid_limited": 2,
+    "valid_limited": 3,
     "invalid_cycles": 0,
     "invalid_attempts": 0,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 28,
-    "new_remaining": 28,
+    "unopened_authorized": 27,
+    "new_remaining": 27,
     "historical_remaining": 2
   },
   "science": {
@@ -88,7 +118,8 @@
     "Original Sep27 resolved-subset count 10 with as_of Oct 1 vs 52 with Oct 29: retrospective resolution leakage is material",
     "Only existing original public cohort regression reused; no new scientific independent replication",
     "No four-file positive raw-content digest verification locally; source integrity pin still requires external byte-level acceptance",
-    "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged"
+    "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged",
+    "C03 original public market 250-question cohort Brier broad missing-outcome bounds include p=.5 weak reference in both periods, despite low resolved-subset mean; no all-question superiority can be inferred."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -99,5 +130,5 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "STOP_OPENING_ADDITIONAL_CYCLES_WITHOUT_DISTINCT_ORIGINAL_CAUSAL_OR_PRODUCT_DELIVERY_GATE; REMAINING_28_AUTHORIZED_NOT_SPENT"
+  "decision": "3OF30_VALID_LIMITED_ABH30;27_NEW_AUTHORIZED_UNCONSUMED_AND_2_HISTORICAL_BLOCKED;STOP_R5_BEFORE_FURTHER_TRIVIAL_CYCLES"
 }
