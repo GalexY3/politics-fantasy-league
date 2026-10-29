@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 6,
-    "new_remaining": 24,
+    "new_completed": 7,
+    "new_remaining": 23,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -146,15 +146,59 @@
       "original_source_committed_at": "2026-10-29T07:30:17Z",
       "fix": "C04 offline CLI now rejects Oct29 source at Oct01/Oct08 historical cutoff, forces exact UTC second as-of instant before disk IO; reports Git publication metadata only, no first_public_at of individual records.",
       "limitations": "Actual original four-file positive CLI disk run NOT executed; only unit/native integration with local public-like synthetic fixtures, unchanged original public Git hashes and original commit metadata. No human causal evidence, no launch gate."
+    },
+    {
+      "id": "ABH30-C07",
+      "mode": "AB-H_AB-P_AB-R_PUBLIC_NONPERSON",
+      "D": 2,
+      "status": "VALID_BOUNDED_PUBLISHED_GIT_VINTAGE_ORIGINAL_SOURCE_REPLAY_PLUS_NATIVE_CLI_TESTS",
+      "grade_science": "0/3",
+      "prereg_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+      "final_repair_sha_freeze": "4388c76e409854d6ca2667a177b46bc754e5926f",
+      "receipt": "C07_RUN_RECEIPT.json",
+      "legal_gate": "C07_HUMAN_DATA_ACCESS_GATE.json",
+      "verified": {
+        "original_public_git_blobs_raw_sha1": 7,
+        "source_checkpoints": 3,
+        "source_cohorts": 2,
+        "replay_asof": [
+          "2026-10-08T00:00:00Z",
+          "2026-10-24T00:00:00Z",
+          "2026-10-29T16:00:00Z"
+        ],
+        "native_Node_source_tests": "25/25",
+        "native_Node_cli_tests": "8/8",
+        "total_native": "33/33",
+        "counts": {
+          "2026-09-27": [
+            30,
+            46,
+            52
+          ],
+          "2026-10-11": [
+            null,
+            2,
+            8
+          ]
+        },
+        "revisions_known_outcome_flips": 0,
+        "previously_known_lost": 0,
+        "per_source_new_known": [
+          22,
+          6,
+          6
+        ]
+      },
+      "limits": "Exact three verified source checkpoints only. Some intermediate original Git versions exist and are deliberately rejected. Original Git blobs SHA verified in V8/GitHub and original replay executed on exact frozen code; full positive native CLI with all seven original files on local disk NOT run. No personal human data, causal PFL ranking science or new independent institution."
     }
   ],
   "counting": {
-    "valid_limited": 6,
+    "valid_limited": 7,
     "invalid_cycles": 0,
-    "invalid_attempts": 0,
+    "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 24,
-    "new_remaining": 24,
+    "unopened_authorized": 23,
+    "new_remaining": 23,
     "historical_remaining": 2
   },
   "science": {
@@ -188,7 +232,11 @@
     "C05 authoritative original public Git history falsifies stronger interpretation of C01 as-of source availability: Sep27 resolution set first published Oct07, not by Oct01, even though Oct29 snapshot with resolution_date filter yields 10 apparently earlier outcomes. Do not erase C01 tests or claim data absence from other original external markets.",
     "C05 first 2026-10-07 published original JSON 441 resolution rows yields 30 eligible on 2026-10-08 snapshot; latest Oct29 JSON 642 resolution rows yields 52 eligible, same original cohort; this is source version change, not independent replication.",
     "C06 previous C04 offline CLI accepted --as-of-date to score data published after the requested cutoff. It is intentionally backward-incompatible: dates alone and precommit historical cutoffs now fail before reading source; rerun and migrate invocations to --as-of-instant.",
-    "C06 29 native Node tests pass, but positive complete original four-file local disk audit not run; earlier C04 original 4/4 full blobs were verified via GitHub connector and must not be presented as CLI E2E."
+    "C06 29 native Node tests pass, but positive complete original four-file local disk audit not run; earlier C04 original 4/4 full blobs were verified via GitHub connector and must not be presented as CLI E2E.",
+    "C07 first frozen JavaScript code compilation failed Unexpected token ']' due missing third source vintage object closure; minimal one-brace repair preregistered and SHA re-frozen; not a separate cycle.",
+    "C07 after first 24/24 + 8/8 pass, adversarial audit found sparse 3-version manifest falsely claimed latest Git source for intermediate dates (Oct20/Oct25). Preplanned repair restricts source selection to 3 EXACT verified checkpoints, all other intermediate dates fail closed. Final native Node 25/25 + 8/8 pass; preserve initial attempt without counting duplicate cycles.",
+    "C07 original public versions show Sep27 30→46→52 and Oct11 (unavailable)→2→8 eligible market questions, 0 observed flipped or lost among retained known outcomes; this does not prove all historical versions stable or human accuracy.",
+    "C07 new institutional DOI Xu 2026 ICPSR 10.3886/E227582 identifies code/software deposit, not legally accessible human administrative participant records; Statistics Finland data access unverified and historical two AB-H slots remain STOP_R5."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -199,6 +247,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_6OF30_VALID_LIMITED;24_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_20_UNCHANGED;C06_INTEGRATED_PREPUBLICATION_GATE_FIXED",
-  "last_branch": "research/pfl-abh30-c06-source-publication-cli-20261029"
+  "decision": "ABH30_7OF30_VALID_LIMITED;23_NEW_AUTHORIZED_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENTIFIC20_NO_CAUSAL_OR_HUMAN_RIGHTS_PROMOTION",
+  "last_branch": "research/pfl-abh30-c07-bitemporal-replay-20261029",
+  "last_documentary_source_prior": "PF-BR47"
 }
