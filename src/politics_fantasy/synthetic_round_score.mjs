@@ -1,7 +1,9 @@
 /** Synthetic fixtures only; no real persons, parties or political actor scoring. */
+// v2 rejects exotic input objects; the v1 output schema and scoring rules remain unchanged.
+export const SYNTHETIC_SCORE_VALIDATOR_VERSION = 2;
 export function scoreSyntheticRound(input){
-const isObject=x=>x!==null&&typeof x==="object"&&!Array.isArray(x);
-const keys=(x,allowed)=>Object.keys(x).every(k=>allowed.includes(k));
+const isObject=x=>x!==null&&typeof x==="object"&&!Array.isArray(x)&&(Object.getPrototypeOf(x)===Object.prototype||Object.getPrototypeOf(x)===null);
+const keys=(x,allowed)=>Reflect.ownKeys(x).every(k=>typeof k==="string"&&allowed.includes(k)&&Object.getOwnPropertyDescriptor(x,k)?.enumerable===true&&Object.hasOwn(Object.getOwnPropertyDescriptor(x,k),"value"));
 if(!isObject(input)||!keys(input,["round_id","rule_version","verified_complete","evidence_id","slots","events"]))throw Error("SCHEMA_DENIED");
 const {round_id,rule_version,verified_complete,evidence_id,slots,events}=input;
 if(typeof round_id!=="string"||!/^SYN-RND-[A-Za-z0-9_-]+$/.test(round_id))throw Error("SYNTHETIC_ROUND_ONLY");
