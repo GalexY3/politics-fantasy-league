@@ -11,9 +11,9 @@ class TestPublishedAggregate(unittest.TestCase):
  def test_4_conditional_extrema_exact(self):
   x=analyze()['conditional_interest_high_up_minus_control'];self.assertEqual(Fraction(x['conditional_lower']),Fraction(37,100)+Fraction(82,86)*(1-Fraction(337,100)));self.assertEqual(Fraction(x['conditional_upper']),Fraction(37,100)-Fraction(82,90)*(1-Fraction(3)))
  def test_5_finite_feasible_witnesses(self):
-  x=analyze()['conditional_interest_high_up_minus_control'];self.assertEqual(x['lower_witness_missing_higher_up_control_others'],[82,0,0]);self.assertEqual(x['upper_witness_missing_higher_up_control_others'],[0,82,0]);self.assertLess(float(x['conditional_lower']),0);self.assertGreater(float(x['conditional_upper']),0)
+  x=analyze()['conditional_interest_high_up_minus_control'];self.assertEqual(x['lower_witness_missing_higher_up_control_others'],[82,0,0]);self.assertEqual(x['upper_witness_missing_higher_up_control_others'],[0,82,0]);self.assertLess(float(Fraction(x['conditional_lower'])),0);self.assertGreater(float(Fraction(x['conditional_upper'])),0)
  def test_6_competence_secondary_crosses_zero(self):
-  x=analyze()['conditional_competence_high_up_minus_control'];self.assertEqual(x['observed_group_mean_difference'],'1/2');self.assertLess(float(x['conditional_lower']),0);self.assertGreater(float(x['conditional_upper']),0)
+  x=analyze()['conditional_competence_high_up_minus_control'];self.assertEqual(x['observed_group_mean_difference'],'1/2');self.assertLess(float(Fraction(x['conditional_lower'])),0);self.assertGreater(float(Fraction(x['conditional_upper'])),0)
  def test_7_reject_nonpaper_and_no_ITT_claim(self):
   with self.assertRaises(TypeError):_bound(3.37,Fraction(3),345)
   with self.assertRaises(ValueError):_bound(Fraction(337,100),Fraction(3),-10)
