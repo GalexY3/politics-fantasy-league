@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 4,
-    "new_remaining": 26,
+    "new_completed": 5,
+    "new_remaining": 25,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -35,6 +35,14 @@
         "runtime": "Node v22.16.0",
         "prereg_SHA_commit": "7d78ee6745fc7ad52e7dad96874c1e0a6c5cd528",
         "same_cycle": true
+      },
+      "adversarial_source_retraction": {
+        "status": "AS_OF_DATE_ONLY_NOT_PUBLICATION_HISTORIC",
+        "correction_source": "C05_RUN_RECEIPT.json",
+        "prior_conclusion": "Prior C01 10 apparently available as-of Oct01 was calculated from Oct29 repository snapshot, NOT original Oct01 public data",
+        "corrected": "No public Sep27 resolution_set file in this upstream Git history by Oct01; first at Oct07 07:19Z",
+        "tests_status": "C01 15/15 native time filtering not invalidated, but historical availability interpretation is invalid",
+        "cycle_invalidated": false
       }
     },
     {
@@ -98,15 +106,35 @@
         "positive_four_real_raw_files_e2e": false
       },
       "limits": "Runnable offline source audit CLI requires all four original public raw file hashes before JSON scoring; positive four-file original full-source pipeline NOT RUN; no human data or claim of public release."
+    },
+    {
+      "id": "ABH30-C05",
+      "mode": "AB-R",
+      "D": 2,
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLICATION_PROVENANCE_FALSIFICATION",
+      "grade_science": "0/3",
+      "prereg_commit": "16b505b9ed91c429724f08bfe5fa6761118c80e5",
+      "native_freeze_commit": "c117b7d0c8d9c1c29aa04aa9c82a7912f1e8781f",
+      "result": "C05_RUN_RECEIPT.json",
+      "verified": {
+        "native_Python_tests": "15/15",
+        "original_first_public_resolution_set_git_commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+        "original_first_published_at": "2026-10-07T07:19:29Z",
+        "first_Git_blob_sha_match": true,
+        "Oct08_first_original_snapshot_eligible": 30,
+        "Oct29_later_original_snapshot_eligible": 52,
+        "Oct01_public_Git_resolution_set_present": false
+      },
+      "limits": "Git repository whole-file publication only; no per-event first_public_at and no original human causal data. New Python full positive E2E raw-source local run NOT performed."
     }
   ],
   "counting": {
-    "valid_limited": 4,
+    "valid_limited": 5,
     "invalid_cycles": 0,
     "invalid_attempts": 0,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 26,
-    "new_remaining": 26,
+    "unopened_authorized": 25,
+    "new_remaining": 25,
     "historical_remaining": 2
   },
   "science": {
@@ -136,7 +164,9 @@
     "No four-file positive raw-content digest verification locally; source integrity pin still requires external byte-level acceptance",
     "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged",
     "C03 original public market 250-question cohort Brier broad missing-outcome bounds include p=.5 weak reference in both periods, despite low resolved-subset mean; no all-question superiority can be inferred.",
-    "C04 local Node 11/11 native test passes real FS and CLI fail-closed, but no positive original complete 4-file input verification (network blocked). This is a bounded technical product integration, not authenticated deployment or human causal study."
+    "C04 local Node 11/11 native test passes real FS and CLI fail-closed, but no positive original complete 4-file input verification (network blocked). This is a bounded technical product integration, not authenticated deployment or human causal study.",
+    "C05 authoritative original public Git history falsifies stronger interpretation of C01 as-of source availability: Sep27 resolution set first published Oct07, not by Oct01, even though Oct29 snapshot with resolution_date filter yields 10 apparently earlier outcomes. Do not erase C01 tests or claim data absence from other original external markets.",
+    "C05 first 2026-10-07 published original JSON 441 resolution rows yields 30 eligible on 2026-10-08 snapshot; latest Oct29 JSON 642 resolution rows yields 52 eligible, same original cohort; this is source version change, not independent replication."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -147,5 +177,6 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_4_OF_30_VALID_LIMITED;26_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENCE_20_UNCHANGED"
+  "decision": "ABH30_5_OF_30_VALID_BOUNDED;25_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_20_UNCHANGED;C01_ASOF_INTERPRETATION_SUPERSEDED",
+  "last_branch": "research/pfl-abh30-c05-publication-bitemporal-20261029"
 }
