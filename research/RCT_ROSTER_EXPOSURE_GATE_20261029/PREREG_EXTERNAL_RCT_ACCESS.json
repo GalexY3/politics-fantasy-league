@@ -1,0 +1,62 @@
+{
+  "schema": "pfl.source.metadata_gate.v1",
+  "date": "2026-10-29",
+  "status": "PREREGISTERED_NOT_AB_AJ_CYCLE",
+  "parent_pr": 43,
+  "parent_sha": "7a6876f71b6cbc286f86ff4bf1393889e4f22851",
+  "method": "AB 3.2.1 R1–R5 O1–O7; source gate only, not outcome analysis",
+  "question": "Are independent RCT leaderboard datasets legally reusable with participant assignment roster incl nonrespondents and pre-outcome exposure, avoiding already-published effects?",
+  "sources": [
+    {
+      "id": "STEFAN2023",
+      "paper_doi": "10.1016/j.euroecorev.2023.104458",
+      "repository": "https://osf.io/ujncd/",
+      "population": "286 finance professionals; within-subject rank displayed/absent randomized block order; piece rates between-subject; source-paper openly accessible CC BY, dataset rights NOT YET VERIFIED"
+    },
+    {
+      "id": "CHEN2024",
+      "paper_doi": "10.1016/j.labeco.2024.102602",
+      "population": "890 consenting students randomized into Control 272, Goals 330, Social Goals leaderboard 288; original includes software access logs",
+      "data_availability": "AUTHORS_NO_PERMISSION_TO_SHARE_DATA"
+    },
+    {
+      "id": "DOBRESCU2019",
+      "paper": "Rank Incentives and Social Learning, IZA DP12437",
+      "population": "1101 participants randomized to five variants, original full student roster existed; reuse license not identified"
+    },
+    {
+      "id": "PICKAL2026",
+      "paper_doi": "10.1016/j.lindif.2025.102836",
+      "population": "N427 random assignment to five leaderboard feedback variants and control; specific raw data rights not verified"
+    }
+  ],
+  "planned_test": "One read-only OSF API inspection (osf.io/v2/nodes/ujncd/, followed at most once by files API if public); retrieve status, license ID/string, registration/ethics metadata, high-level filenames and sizes, no human dataset bytes, no DOI discovery guessing",
+  "success": "Exact dataset-specific public license and disclosed files with assignment and opportunity logs; only then consider schema/bytes after separate prereg and privacy check.",
+  "negative_controls": [
+    "Do not confuse article CC BY with OSF dataset license",
+    "If OSF API returns 403/429/invalid JSON, stop; no circumvention",
+    "No human rows, filenames only, no GitHub archival copies of microdata",
+    "Do not confuse randomized within-subject ranking with observed screen impressions or a political forecasting tournament"
+  ],
+  "science_gate": {
+    "unit": "registered person×period, including zero-action outcomes",
+    "treatment": "randomized rank feedback and its timing",
+    "outcomes": "effort allocation between ranked and unranked tasks",
+    "competition": [
+      "Hudja 2025",
+      "Lemus–Marshall 2021/2025",
+      "Merkle 2015/2017",
+      "Bo 2017",
+      "ForecastBench",
+      "Chen 2024",
+      "Stefan 2023 original estimate"
+    ],
+    "must_falsify": "Predictions distinctive from Stefan 2023 original ranking substitution effect, not reproduce already-known effect",
+    "claim_grade": "0/3 unless executed independent test with clear novelty and competitor",
+    "nonresponse_roster": "required",
+    "exposure": "availability is not display log"
+  },
+  "stop_rule": "R5 if license/data unavailable or no additional discriminant evidence, preserve two legacy slots",
+  "CT2_start": 22,
+  "AB_H_legacy_remaining": 2
+}
