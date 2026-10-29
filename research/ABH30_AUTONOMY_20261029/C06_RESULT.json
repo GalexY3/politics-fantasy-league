@@ -1,0 +1,63 @@
+{
+  "id": "ABH30-P1-C06",
+  "status": "VALID_AB_P_NEGATIVE_QA",
+  "prereg_commit": "535850d2995f95520c6af89dd91b51df57962879",
+  "A": "Read Cxx_PREREG for precommitted endpoint",
+  "B": "Falsifiable declared null vs mechanism",
+  "C": "Control and endpoint defined in precommit",
+  "D": "/mnt/data/pfl_native_qa local verified Git blob snapshot of PR37 pilot, Node v22.16.0, script pfl_abh30_native_probe.mjs; full transcript/JSON in current sandbox",
+  "E": {
+    "tests": 4096,
+    "each_arm_once_per_block": true,
+    "count_matrix": [
+      [
+        1148,
+        937,
+        924,
+        1087
+      ],
+      [
+        1141,
+        933,
+        942,
+        1080
+      ],
+      [
+        1126,
+        935,
+        940,
+        1095
+      ],
+      [
+        681,
+        1291,
+        1290,
+        834
+      ]
+    ],
+    "expected_per_cell": 1024,
+    "max_relative_deviation": 0.3349609375,
+    "chi_square_diagnostic": 385.703125,
+    "predeclared_tolerance_pass": false
+  },
+  "F": {
+    "adversarial_limit": "Serial neighboring seeds produce position-dependent imbalance despite exact block balance; cannot equate a simple seeded LCG over sequential seeds with a randomized assignment design. Potential risk only if small consecutive seeds are used. Whitening repair required; not a claim of biased outcomes with uniformly random full 32-bit seeds.",
+    "controls_measured": true
+  },
+  "G": "No human outcomes. Node local-only. No independent empirical replication.",
+  "H": {
+    "prior_update": "Serial neighboring seeds produce position-dependent imbalance despite exact block balance; cannot equate a simple seeded LCG over sequential seeds with a randomized assignment design. Potential risk only if small consecutive seeds are used. Whitening repair required; not a claim of biased outcomes with uniformly random full 32-bit seeds."
+  },
+  "I": {
+    "internal_validity": "Local native Node QA with source snapshot; no full clean checkout",
+    "novelty": "technical local result not new science",
+    "grade": "0/3",
+    "ethics": "No human data"
+  },
+  "J": "REPAIR within same C06 slot; keep original negative",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0,
+  "executable_probe": "sandbox:/mnt/data/pfl_abh30_native_probe.mjs",
+  "verifiable_receipt": "sandbox:/mnt/data/pfl_abh30_native_probe_result.json"
+}
