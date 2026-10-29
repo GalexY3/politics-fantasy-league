@@ -275,6 +275,14 @@
       "state": "answered",
       "summary": "C16 Node computed five-arm fictional views and self-generated synthetic receipts, native 15/15 pass, no browser or independent delivery, science 0/3.",
       "source": "../ABH30_NEW_20261029/C16_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C17-SYNTHETIC-HMAC-INTEGRITY",
+      "type": "synthetic_cryptographic_receipt_integrity",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C17 Node HMAC-SHA256 exact receipt field tamper/replay tests 16/16 PASS, no external key provenance or human evidence, grade 0/3.",
+      "source": "../ABH30_NEW_20261029/C17_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -601,6 +609,12 @@
       "to": "PFL-ABH30-C15-FIVE-ARM-OPPORTUNITY-RECEIPT",
       "relation": "tests",
       "interpretation": "Renderer internally constructs receipts for C15, unlike pre-supplied synthetic receipt fixtures."
+    },
+    {
+      "from": "PFL-ABH30-C17-SYNTHETIC-HMAC-INTEGRITY",
+      "to": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
+      "relation": "audits",
+      "interpretation": "Would conditionally detect tampering of self-generated synthetic C16 receipts but cannot make their origin independent."
     }
   ],
   "rules": {
@@ -624,8 +638,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 16,
-      "new_unused": 14,
+      "new_valid": 17,
+      "new_unused": 13,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -633,9 +647,9 @@
         0,
         0
       ],
-      "last_source_pr": 68,
-      "branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
-      "latest_valid_cycle": "ABH30-C16",
+      "last_source_pr": 69,
+      "branch": "research/pfl-abh30-c17-integrity-proof-20261029",
+      "latest_valid_cycle": "ABH30-C17",
       "invalid_attempts": 3
     }
   }
