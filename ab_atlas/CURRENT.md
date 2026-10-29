@@ -1,3 +1,15 @@
+# ACTUALIZACIÓN DE CAMPAÑA ABH30 — C10 (29/10/2026; no despliegue)
+
+**Contabilidad autoritativa de campaña:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) en rama `research/pfl-abh30-c10-original-raw-revisions-20261029`: **10/30 ciclos nuevos válidos de alcance acotado**, **20 nuevos sin consumir**, **dos plazas históricas separadas bajo STOP_R5**. AB-R/AB-P no se confunden: **CT2 científica 20/100 ordinal**, N1/N2/N3 nuevos **0/0/0**, puertas críticas de lanzamiento **0/6**, sin habilitación de puntuación de personas reales ni estudio de participantes. Corregida discrepancia administrativa de `authorization.new_completed=8` del C09 al reconciliar autorización y ledger `10/30` en C10, sin contabilizar esa reparación como ciclo.
+
+**C09:** módulo AB-P de auditoría de revisiones de filas públicas, pruebas nativas Node **19/19** sobre fixtures sintéticos. [Informe](../research/ABH30_NEW_20261029/C09_REPORT.md).
+
+**C10:** tres pares prerregistrados de archivos de resolución **originales públicos** de ForecastBench; seis cuerpos UTF-8 completos con SHA1 Git verificado independientemente, ejecutados en **V8 sobre fuente C09 exacta congelada**, sin E2E original nativo en disco. Resultados: **16 eliminaciones, dos altas y 671 mutaciones de fila por transiciones de versión**, no eventos únicos ni inversiones de Y binario; la mayoría de campos observados se refieren a fechas y valores continuos. [Informe](../research/ABH30_NEW_20261029/C10_REPORT.md) · [recibo](../research/ABH30_NEW_20261029/C10_RUN_RECEIPT.json) · [prior PF-BR49](../research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json).
+
+**Atlas:** se ha **añadido de manera inmutable el lote 0081** para incorporar dos recibos C09/C10, [delta](updates/0081-pfl-abh30-c09-c10-original-raw-source-20261029.json), parent=0080. **NO se ha ejecutado el verificador Python original ni reconstruido el SHA canónico del Atlas con 81 lotes** en esta sesión: el último estado **reproducido con checker original sigue siendo 80 lotes / 63 nodos** como documenta la sección histórica siguiente. Por tanto **0081 es un delta añadido pendiente de comprobación canónica** y no se declara validación Atlas 81/81 ni que el visualizador HTML ya lo muestre. El desfase temporal preexistente entre 0079 y 0080 se conserva, no se reescribe.
+
+---
+
 # ESTADO CANÓNICO DEL ATLAS — REPRODUCIDO CON PYTHON ORIGINAL (29/10/2026)
 
 **Fuente autorizada:** PR sucesora de #41, `research/pfl-t028-atlas-direct-adversarial-20261029`; ejecución nativa del checkout privado en [GitHub Actions #40805714464](https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464), commit fuente `85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1`. [Recibo verificable](../research/T028_DIRECT_ATLAS_20261029/NATIVE_ATLAS_CHECK_RECEIPT.json).
