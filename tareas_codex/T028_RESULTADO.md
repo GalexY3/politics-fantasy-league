@@ -13,7 +13,7 @@
 ## A. Python Atlas original — ejecución en checkout íntegro
 
 - Job real: [GitHub Actions 40805714464](https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464), job `123224069258`, commit original `85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1`, **conclusión SUCCESS**.
-- Workflow limitado: [`.github/workflows/pfl-t028-atlas-native-20261029.yml`](../../../../.github/workflows/pfl-t028-atlas-native-20261029.yml). **Un job, timeout 3 min, ninguna instalación de dependencias**, sin lanzar la CI integral de PFL.
+- Workflow limitado: [`.github/workflows/pfl-t028-atlas-native-20261029.yml`](../../../.github/workflows/pfl-t028-atlas-native-20261029.yml). **Un job, timeout 3 min, ninguna instalación de dependencias**, sin lanzar la CI integral de PFL.
 - Comandos realmente ejecutados:
 
 ```bash
@@ -30,7 +30,7 @@ python ab_atlas/atlas_delta.py brief --base proyectos/politics-fantasy-league/ab
 ## B. Navegador real HTTP autorizado y controles negativos
 
 - Job: [GitHub Actions 40806035386](https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386), job `123225098835`, commit original `f9a9f8f06e119005d92e796968fd1a1f806bf8f9`, **conclusión SUCCESS**.
-- Workflow [`.github/workflows/pfl-t028-browser-native-20261029.yml`](../../../../.github/workflows/pfl-t028-browser-native-20261029.yml). **Un job, timeout 4 min**, paquete Python Playwright 1.56.0 y Google Chrome preinstalado en el runner, **sin descarga/instalación de navegador ni suites costosas**.
+- Workflow [`.github/workflows/pfl-t028-browser-native-20261029.yml`](../../../.github/workflows/pfl-t028-browser-native-20261029.yml). **Un job, timeout 4 min**, paquete Python Playwright 1.56.0 y Google Chrome preinstalado en el runner, **sin descarga/instalación de navegador ni suites costosas**.
 - Se inició `node pilot_local/server.mjs` escuchando en `127.0.0.1:8787`; Playwright Chromium usó **`page.goto()` HTTP real** y el módulo `/materials.mjs` cargó. Esto no es una página DOM `about:blank` ni una petición API de Playwright.
 - Log `PFL_T028_BROWSER_HTTP_PASS 21 of 21`. Los 21 checks incluyen HTTP 200, cuatro `fieldset`, doce radios etiquetados, misma batería de preguntas en las cuatro condiciones, selector y mensajes T×L esperados, progreso/reinicio, JS sin excepciones, GET sin otros orígenes, CSP, `no-store`, `nosniff`, POST 405, clave privada 404, cero cookies o localStorage y viewport móvil 375 px sin scroll horizontal.
 - Las solicitudes observadas de la página fueron cuatro y del mismo origen; `page_errors=[]`. Se apagó el servidor al cerrar.
