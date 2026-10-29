@@ -334,6 +334,30 @@
       "grade": "0/3",
       "CT2_prospective_unchanged": 22,
       "type": "ENGINEERING_SYNTHETIC_ABP_0OF3"
+    },
+    {
+      "id": "PF-BR24",
+      "claim": "Gamification using points or visual theme necessarily reduces longitudinal study attrition",
+      "update": "FALSIFIED_AS_UNIVERSAL_EXPECTATION_BY_2017_INDEPENDENT_NULL_TRIAL",
+      "support": "Lumsden, Skinner, Coyle, Lawrence and Munafò (2017), randomized three Stop Signal Task variants (nongame/points/theme) among 482 registered; 265 completed mandatory four sessions and entered primary conforming analysis; six optional days yielded log-rank chi-square(2)=3.0 p=.22 and mean-session ANOVA F(2,262)=1.534 p=.21. Points rated more enjoyable but did not convincingly lower attrition.",
+      "source": "https://www.jmir.org/2017/11/e395/",
+      "additional_dataset_catalog": "https://doi.org/10.5523/bris.2lh5oz3p93q7p2uyx4w2h70a0v",
+      "limits": "No leaderboard or rank intervention: points/theme only. The main attrition contrast is on 265 conforming persons, not proof of effect in all 482 registrations; absence of statistical significance does not establish exact equality. Dataset catalog only, NO individual rows downloaded.",
+      "type": "INDEPENDENT_NEGATIVE_RCT_PRIOR_ART",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR25",
+      "claim": "As-of leaderboard membership may be reconstructed from the room visible at the end of observation regardless of transfers",
+      "update": "SYNTHETIC_TIME_VARYING_EXPOSURE_C05_REJECTS_RETROSPECTIVE_ROOM_LABELLING",
+      "support": "Frozen offline fixture: 3 fictitious subjects and 4 synthetic display events, member P0 switches A->B on 2026-01-04T00:00:00Z; 9/9 native Node tests require half-open historical membership to classify each event and reject stale room, overlap/gaps, different arms simultaneously assigned to a room and forged data labels.",
+      "evidence": "research/ABH_BRANCHING5_DYNAMIC_ROOM_20261029/C05_RUN_RECEIPT.json",
+      "prior_art": "https://doi.org/10.1016/j.labeco.2024.102602",
+      "limits": "Not independently observed event exposure or randomization, not a novel leaderboard effect, no identifiable human outcomes, no safety of real survey/participants proven.",
+      "type": "SYNTHETIC_PRODUCT_MEASUREMENT",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -412,5 +436,20 @@
     "old_legacy_slots": 2,
     "new_slots_remaining": 1,
     "individual_rows_retrieved": false
+  },
+  "latest_branching5_close": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-c05-dynamic-room-exposure-20261029",
+    "new_authorized": 5,
+    "new_valid": 5,
+    "new_remaining": 0,
+    "historical_unused": 2,
+    "science_CT2": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "human_microdata_downloaded": 0
   }
 }
