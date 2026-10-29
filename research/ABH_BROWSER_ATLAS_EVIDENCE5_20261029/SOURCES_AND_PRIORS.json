@@ -58,6 +58,36 @@
       "url": "https://doi.org/10.1037/dec0000032",
       "support": "Forecaster comparisons with changing question difficulty and timing, established baseline for novelty review",
       "limit": "No human microdata downloaded and no PFL sample test"
+    },
+    {
+      "kind": "Original GJP Harvard Dataverse dataset-level license",
+      "url": "https://doi.org/10.7910/DVN/BPCDH5",
+      "support": "v1.0 CC0 1.0; 25 unrestrict; run 40807901958",
+      "limit": "Personal-data/ethics and data-specific variables still reviewed separately"
+    },
+    {
+      "kind": "Original GJP documentation and ifps.csv SHA256",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808128321",
+      "support": "Readmes and 617-question metadata original bytes hashed, conditions CTT decoded",
+      "limit": "No person-level forecasts obtained"
+    },
+    {
+      "kind": "Original GJP DDI forecast variables 2011/12–year4",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+      "support": "Year1 DDI 16 columns incl ctt/viewtime, metadata 308232 rows, no values",
+      "limit": "viewtime semantics unresolved, no nonforecast exposure event"
+    },
+    {
+      "kind": "Original GJP date quality repaired",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+      "support": "%m/%d/%y parse dates; 617 opens, 498 closed, 1 start>deadline anomaly",
+      "limit": "Question timing not personalized eligibility, 273 suspend after closed requires interpretation"
+    },
+    {
+      "kind": "GJ Open official Relative Brier participation weighted FAQ",
+      "url": "https://www.gjopen.com/faq",
+      "support": "Relative Brier score includes active-day participation rate and crowd median",
+      "limit": "Not same historical GJP competition scoring"
     }
   ],
   "priors": [
@@ -148,6 +178,50 @@
       "limits": "Model prior art, not data access or confirmation of PFL treatment effect; PFL needs pre-response exposure and randomized feedback to claim a distinctive new effect",
       "grade": "0/3",
       "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR11",
+      "claim": "Public GJP dataset is not verifiably lawfully reusable, so independent archival research is unavailable",
+      "update": "SPECIFIC_GJP_DATASET_COPYRIGHT_GATE_PASSED",
+      "support": "Harvard Dataverse official API dataset 2917327, DOI 10.7910/DVN/BPCDH5 v1.0 returns CC0-1.0, termsOfUse null, 25 files unrestricted; original four documentation/IFP SHA256 computed",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40807901958",
+      "limit": "CC0 copyright permission does not automatically authorize all pseudonymized personal-data processing; no human records downloaded; legal/ethics and pre-response exposure gates unverified",
+      "type": "SOURCE_RIGHTS_TECHNICAL",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR12",
+      "claim": "GJP Year1 assigned access to crowd opinions proves an original randomized leaderboard treatment with observable individual exposures",
+      "update": "PARTLY_SUPERSEDED_BY_EXACT_TREATMENT_DESCRIPTION",
+      "support": "Original GJP readme ctt 1a/1b/1c vs 2a/2b/2c could view crowd information; Mellers et al 2014 describes randomized 3 training x4 social influence design; DDI Year1 16 columns including ctt, viewtime, fcast_date",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+      "limit": "Crowd information availability is not public rank leaderboard. DDI viewtime has no operational pre-response definition and forecast-only rows cannot identify nonrespondent exposure, assignment roster not checked.",
+      "type": "EMPIRICAL_SOURCE_DESIGN_UNEXECUTED",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR13",
+      "claim": "Question calendar is missing or unparseable in source GJP dataset",
+      "update": "US_2_DIGIT_DATE_PARSER_REPAIRED_WITH_MEASUREMENT_RISKS",
+      "support": "IFPS original sha256 1f64e548... 617 distinct questions; 498 closed and 119 voided; all 617 start and intended deadlines parse %m/%d/%y; 582 suspend timestamps; 498 actual close; one start after deadline and 273 suspend after actual close",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+      "limit": "Initial ISO-only attempt yielded 0 parse and was preserved as failed instrumentation. Closing/suspension event semantics and one anomalous record require robust risk-set rules; availability of question is not person-specific visibility.",
+      "type": "DATA_QUALITY_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR14",
+      "claim": "Generic participation-weighted relative forecast scoring constitutes a novel PFL mechanism",
+      "update": "GENERIC_NOVELTY_NOT_SUPPORTED_GJ_OPEN_PARTICIPATION_WEIGHTING",
+      "support": "GJ Open official FAQ defines Relative Brier as daily Brier relative to crowd median multiplied by fraction of days with active forecast; unanswered questions score zero in its challenges.",
+      "source": "https://www.gjopen.com/faq",
+      "limit": "Modern GJ Open is distinct from GJP Year1 rules, does not solve logged person-question opportunity or causal leaderboard design. Comparators must match exact scoring and estimand.",
+      "type": "PRIOR_ART_NEGATIVE",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -182,5 +256,19 @@
     ],
     "legacy_AB_slots_unused": 2,
     "report": "../T028_DIRECT_ATLAS_20261029/EXTERNAL_PRIOR_ART_AND_DATA_GATE.md"
+  },
+  "latest_empirical_gate": {
+    "date": "2026-10-29",
+    "root": "../EMPIRICAL_EXPOSURE_GATE_20261029/",
+    "status": "DATASET_CC0_AND_METADATA_PASS_STOP_R5_NO_INDIVIDUAL_TREATMENT_EXPOSURE",
+    "legacy_AB_remaining": 2,
+    "CT2_prospective": 22,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "GJP_documentation_SHA256_verified": true,
+    "forecast_rows_downloaded": false
   }
 }
