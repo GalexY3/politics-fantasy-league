@@ -1,0 +1,91 @@
+{
+  "schema": "pfl.abh30.c06.preregister_A-J_sha.v1",
+  "date": "2026-10-29",
+  "campaign": {
+    "new_granted": 30,
+    "valid_before": 5,
+    "available_before": 25,
+    "historical_authorized_separately": 2,
+    "parent_pr": 56,
+    "parent_sha": "a562f7ba5e7c0f4a5147a2a872b78cc4c74054aa"
+  },
+  "cycle": "ABH30-C06",
+  "mode": "AB-P_INTEGRATED_REAL_PRODUCT_PREQUENTIAL_PUBLICATION_FAILCLOSED",
+  "distance_D": 2,
+  "novel_science": "0/3",
+  "A": {
+    "question": "Does the already delivered actual offline PFL public source-audit CLI reject an Oct29-original-blob dataset requested at Oct01 or earlier than its original Git commit? Previous C04 CLI allowed such retrospective leakage despite byte identity and event-day controls.",
+    "target": "Runnable import path, not sample-only research helper or human treatment",
+    "unit": "One local invocation and official pinned source snapshot"
+  },
+  "B": {
+    "hypothesis": "Source version publication time is an independent prerequisite of event date for prequential safety. A mandatory second-resolution UTC instant and declared original Git commit pair should cause an explicit fail-closed before disk read.",
+    "strong_rivals": [
+      "Source res_date is not first_public_at, as proven original C05; exact file SHA alone is not proof of historical availability.",
+      "Original first Oct07 snapshot is distinct source version; rejecting Oct08 when using Oct29 snapshot is correct, not evidence that no Oct08 information exists elsewhere.",
+      "This is established bitemporal engineering, not novel causal or original social science."
+    ],
+    "falsifiers": [
+      "CLI accepts 2026-10-01T23:59:59Z for Oct29 source",
+      "CLI accepts instant 1 second before verified Oct29 commit",
+      "old --as-of-date date-only CLI still accepted",
+      "noncanonical local offsets/seconds dropped",
+      "test fixture can silently assert publisher or human rights",
+      "misleading source-specific availability metadata absent in output"
+    ]
+  },
+  "C": {
+    "original_public_source": "ForecastBench repo forecastingresearch/forecastbench-datasets, CC BY-SA 4.0, original pinned Git commit 027ba0b3017a60e0e64602d724284ac6b2d91134 committed 2026-10-29T07:30:17Z",
+    "four_original_blob_hashes": "already anchored in PUBLIC_DATASET_PIN Git blob manifest, unchanged",
+    "previous_adversarial_evidence": "C05 original resolution_set first Git publication 2026-10-07 for Sep27; C01-Oct01 historical availability inference withdrawn, C04 CLI remained vulnerable because it used Oct29 source with as_of_date parameter",
+    "design": "Make exact original commit and time mandatory before reading file/JSON; UTC second canonical format. Derive event-day cutoff only AFTER source publication passes. Date-only and local timezone forms explicitly invalid. Exact four original hashes still required for production CLI.",
+    "test_plan": "18 prewritten independent integrated Node native tests with real filesystem & CLI subprocess; preserve 11 old C04 tests updated for safe instant interface; do not call original four full source file local positive unless bytes actually exist.",
+    "negative_controls": [
+      "Oct01, Oct08 and precommit second with false dates",
+      "old CLI syntax",
+      "test-only fake expected_blobs flagged as untrusted",
+      "correct UTC exact commit allowed",
+      "no personal text or file paths on errors"
+    ],
+    "no_human_data": true
+  },
+  "D": {
+    "frozen_files": [
+      {
+        "path": "src/politics_fantasy/forecastbench_publication_gate.mjs",
+        "git_blob_sha1": "9777035e56d31e64ce108ff78338cb43f171776e",
+        "sha256": "bbb5040c463cbea1df5e82da29c5c9092b3e956a2b28e21b210f7277867baf24"
+      },
+      {
+        "path": "scripts/offline_forecastbench_audit.mjs",
+        "git_blob_sha1": "f0577ff16bb48eaad292dad151a59f2ce7b4d209",
+        "sha256": "b1c66ce81f98fc5121a54775341d265646158eada117453d333aa92be2d8ab03"
+      },
+      {
+        "path": "tests/test_publication_integrated.mjs",
+        "git_blob_sha1": "156388f7c0950ed3f3ba8a0ce9de186eff1af4b7",
+        "sha256": "01ab75e84e72bc031117f66d3008117da73f04a6de4d8fd04f13bcfc73d49498"
+      },
+      {
+        "path": "tests/test_offline_forecastbench_audit.mjs",
+        "git_blob_sha1": "47aff4fbb6804bf82e3740112202a6f5d331c075",
+        "sha256": "TO_BE_VERIFIED_BEFORE_NATIVE_EXECUTION_WITH_REMOTE_BLOB"
+      }
+    ],
+    "dependency_blobs_unchanged": {
+      "provenance": "f619ff589c935371c6fb15a7869efcff92e50fee",
+      "source_guard": "0802dd7dd2ead0aa17607f3995aea339efbd9c99"
+    },
+    "runtime": "Node 22 native, Python local Git blob SHA256 matching exact Github bytes before test",
+    "source_readme": "Old documented date-only CLI usage requires migration"
+  },
+  "E": {
+    "execution": "First verify local bytes identical to GitHub Git blobs and SHA256. Run 18/18 integrated tests only after this A-J Git commit, and if feasible native 11 migrated original C04 regression tests; preserve failure and preregister narrow repairs before rerun. No CI dispatch.",
+    "threshold": "All 18 primary tests and migrated 11 regression tests if executed PASS; valid bounded AB-P only if no leakage and actual native subprocess exercised."
+  },
+  "F": "Potential race between source version and per-record `first_public_at` remains unresolved; dated commit metadata is only an official original repo file publication, not source record availability across platforms, not ethics. Test-only expected_blobs override is non-production API and flagged `used_project_manifest:false`.",
+  "G": "Source proof from GitHub original public commit, engineering tested with synthetic fixtures and subprocess. No original human assignment/exposure and no claimed causal event. If original bytes not downloaded, no positive complete file E2E claimed.",
+  "H": "Update O7 and campaign ledger with source-published gate. No new PF-BR prior unless distinct external evidence beyond PF-BR45; don't duplicate citations. Preserve C01 correction and prior failures.",
+  "I": "CT2 PFL science stays ordinal 20/100, N1/2/3 new 0/0/0, release gates 0/6, no participant rights or causal claim.",
+  "J": "Count one AB-P scoped production-safety cycle if prereg, 18 primary native checks, and other regression checks really pass; reduce new 25 to 24. Historical 2 separate unchanged. No merge to main, costly CI, ChatRelay, legal license agreement, political scoring, personal microdata."
+}
