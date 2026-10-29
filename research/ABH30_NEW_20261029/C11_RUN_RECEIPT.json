@@ -1,0 +1,64 @@
+{
+  "schema": "pfl.abh30.c11.pinned_cli_native_run.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C11",
+  "status": "VALID_LIMITED_NATIVE_LOCAL_SOURCE_REVISION_CLI_SYNTHETIC",
+  "prereg_commit": "5d386f40ade3148296c30780af15f9ef72cefcc3",
+  "node": "v22.16.0",
+  "python": "3.13.5",
+  "environment": "ChatGPT isolated local Linux container; network DNS for github.com blocked; verified byte-identical local copies against GitHub blobs before execution",
+  "command": "cd /mnt/data/pfl_c11 && node --test tests/test_offline_forecastbench_revision_audit.mjs",
+  "executed_after_prereg": true,
+  "exit_code": 0,
+  "tests": {
+    "planned": 17,
+    "run": 17,
+    "passed": 17,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "TAP_output_sha256": "c46653bbba7d179bd52e40bad648f0066c27be0e08b7b9f602f835398930ad5e",
+    "duration_ms": 268.19388
+  },
+  "frozen_files": [
+    {
+      "repo_path": "proyectos/politics-fantasy-league/scripts/offline_forecastbench_revision_audit.mjs",
+      "git_blob": "2b6e910c998f99de121050badfab83adaf345220",
+      "sha256": "1ad4adc05680c5dcfe6b5eb3d5ce25575fcf4c3b2a36f8e8e59e6a140b7154cc"
+    },
+    {
+      "repo_path": "proyectos/politics-fantasy-league/tests/test_offline_forecastbench_revision_audit.mjs",
+      "git_blob": "d81e5197104bbd0dad287cd3519950a5dad1f196",
+      "sha256": "17e39790c88d66f50935dc76b1032fbe1439776f8021d39af741b6f6e4c4af2b"
+    },
+    {
+      "repo_path": "proyectos/politics-fantasy-league/src/politics_fantasy/forecastbench_raw_revision_guard.mjs",
+      "git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+      "sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9"
+    }
+  ],
+  "original_data_positive_native": "NOT_EXECUTED",
+  "original_full_files_local": false,
+  "original_public_source_sha_from_C10": "Six earlier Github original blobs were verified in V8, but not downloaded here; no native original positive outcome reused",
+  "synthetic_buffer_positive": "PASS",
+  "CLI_negative_original_pins_with_synthetic_bytes": "PASS_FAIL_CLOSED",
+  "actual_cli_subprocess_tested": true,
+  "no_original_input_rows_republished": true,
+  "no_person_or_politician_scoring": true,
+  "safety_notes": [
+    "Git SHA-1 of local file compared with frozen upstream object identity; not a publisher digital signature.",
+    "Library helper permits synthetic caller-supplied pins for tests; interactive CLI never takes pins from user.",
+    "Local CLI prints aggregates only after identity gate. Errors are categorized, no paths or public IDs.",
+    "No read/parse of actual six original source files in this run, no clean clone across full repository, no Atlas 0081 native check."
+  ],
+  "scientific_CT2_ordinal": 20,
+  "science_grade": "0/3",
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "product_release_gates_passed": 0,
+  "decision": "Count exactly one AB-P bounded C11 if native 17/17 passes; 11/30 new, 19 remaining, 2 historical STOP_R5; no causal inference or product release."
+}
