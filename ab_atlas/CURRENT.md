@@ -1,3 +1,13 @@
+# ACTUALIZACIÓN ABH30-C12 · PIVOT A EVIDENCIA EXPERIMENTAL HUMANA PUBLICADA (29/10/2026)
+
+**Contabilidad:** 12/30 ciclos nuevos AB-H válidos acotados, **18 nuevos disponibles**, **2 históricos STOP_R5** separados. **CT2 PFL científica 20/100 ordinal**, N1/N2/N3 nuevos 0/0/0, gates de lanzamiento 0/6. [Estado](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) · [Informe C12](../research/ABH30_NEW_20261029/C12_REPORT.md).
+
+**Nueva evidencia independiente:** Mandal, Radanović y Parkes (AAAI 2020), experimento real de pronóstico humano cuatro brazos con regla Brier diferida, peer prediction monetario y **feedback privado diario por cuartil**. Código fuente Rmd y README originales de repo [PP-MTurk-AAAI2020](https://github.com/debmandal/PP-MTurk-AAAI2020), commit `a5ac7fcc0eec4325f603f0de9085e3021def9830` Git SHA confirmado. 891 analizados de 945 incorporados; selección de supervivientes y paquete de incentivos limitan transferibilidad. El feedback privado por cuartil **no es** leaderboard social público. C12 observó *post hoc* error de índice en cálculo de actualizaciones 13/oct (`var2=5` en vez de 6) y omisión de Change13 en salida de otra medida; **no** se conocen magnitudes reales de efectos de esos errores. No se han descargado microdatos, la licencia del repositorio no está declarada y no se ha ejecutado R original. Priors [PF-BR50 y PF-BR51](../research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json), exclusivamente fuente/QA 0/3. Contraste futuro PFL específico: feedback *privado por cuartil* vs *tabla pública con identidad* frente a *feedback no comparativo*, con iguales recompensas y control de exposición.
+
+**Atlas** lote append-only **0083** sobre **0082**: [delta](updates/0083-pfl-abh30-c12-independent-rank-rct-20261029.json). **Python checker canónico 81–83 lotes NO EJECUTADO**; último checkpoint certificado sigue en 80 lotes / 63 nodos. El fichero HTML no es garantía de vista actualizada y los lotes previos no se reescribieron.
+
+---
+
 # ACTUALIZACIÓN DE CAMPAÑA ABH30 — C11 (29/10/2026; sin validación de lanzamiento)
 
 **Fuente de estado:** [CAMPAIGN_STATUS.json](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json), rama `research/pfl-abh30-c11-pinned-original-cli-20261029`: **11/30 ciclos nuevos válidos de alcance limitado, 19 nuevos sin consumir y 2 plazas históricas separadas STOP_R5**. CT2 científica **20/100 ordinal**, N1/N2/N3 nuevos **0/0/0**, puertas críticas de lanzamiento **0/6**. No se ha puntuado a políticos reales ni tratado registros de participantes.
