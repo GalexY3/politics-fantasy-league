@@ -1,0 +1,447 @@
+{
+  "group": 4,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0031-pfl-abh-cont80-c72-20261028.json",
+      "source_git_blob": "8751c7aa7ccf291cfb2e039de1af328a759ae202",
+      "batch_id": "0031-PFL-ABH-CONT80-C72-20261028",
+      "parent_batch": "0030-PFL-ABH-CONT80-C69-C71-20261028",
+      "at": "2026-10-28T01:12:20.108Z",
+      "reason": "One bounded AB-P A-J cross-executor source report reconciliation. Windows native evidence recorded on old baseline; current 30-lot canonical/HTTP not run. 12 of 20 total authorization spent.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C72",
+            "activity": "Read committed Codex T001-006 Windows reports: canonical Atlas 29 SHA/HTTP C67 tested, Python full suite platform failures, later 30 lot and C71 URLs not replayed; add pending T007 without rewriting history",
+            "status": "completed",
+            "at": "2026-10-28T01:12:20.108Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C72_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%; CT2 29; VSDS 1/3; launch gates 0/6 unchanged",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0032-pfl-chatrelay-59e1f051-cr01-20261028.json",
+      "source_git_blob": "ce9eb9bcb1528c94637f8e2f67f8a6647e0bca34",
+      "batch_id": "0032-PFL-CHATRELAY-59E1F051-CR01-20261028",
+      "parent_batch": "0031-PFL-ABH-CONT80-C72-20261028",
+      "at": "2026-10-28T01:27:31.217Z",
+      "reason": "CR01 one distinct AB-P documentary A-J cycle; 40 IC04–IC23 prereg/result files SHA-pinned and Atlas 0020 runs reconciled. Historical cycles not recounted; 31-lot T007 checker does not certify 32-lot state. No source semantic or gate promotion.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CHATRELAY-59E1F051-CR01",
+            "activity": "Audit completeness of historical IC04-IC23 files and Atlas 0020; 20 matched prereg/result pairs, 20 matched runs, 3 preserved complaint records, NO VOTAN remains unproven XML semantic, CI/local suites not rerun",
+            "status": "completed",
+            "at": "2026-10-28T01:27:31.217Z",
+            "evidence": [
+              "research/CHATRELAY_59e1f051_20261028/C01_PREREG.json",
+              "research/CHATRELAY_59e1f051_20261028/CR01_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%; CT2 29; VSDS 1/3; release gates 0/6 unchanged",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0033-pfl-chatrelay-59e1f051-cr02-senado-20261028.json",
+      "source_git_blob": "a946361b0ad5428ef9e7a559779f4602a3e1b230",
+      "batch_id": "0033-PFL-CHATRELAY-59E1F051-CR02-SENADO-20261028",
+      "parent_batch": "0032-PFL-CHATRELAY-59E1F051-CR01-20261028",
+      "at": "2026-10-28T01:34:43.737Z",
+      "reason": "CR02 preregistered AB-R targeted Senate primary technical-schema audit. Senate tender establishes distinctions in SVE presence/vote and internal XML model access constraints, but does NOT prove nominal XML NO VOTAN mapping. Evidence-grade and gates unchanged. Separate from concurrently registered CONT80 C73.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CHATRELAY-59E1F051-CR02",
+            "activity": "Five bounded search queries, three institutional source pages, official Senate SVE procurement PDF with four failed screenshot fetches; discovered internal XML specification restricted to tender bidders, presence distinct from abstention in UI, no official 2025 literal NO VOTAN mapping or reliable technical schema obtained; STOP_R5",
+            "status": "completed",
+            "at": "2026-10-28T01:34:43.737Z",
+            "evidence": [
+              "research/CHATRELAY_59e1f051_20261028/CR02_PREREG.json",
+              "research/CHATRELAY_59e1f051_20261028/CR02_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-R",
+            "scope": "NO_VOTAN literal UNKNOWN; V4 36.90%; CT2 identity 29; VSDS 1/3; release gates 0/6 unchanged",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0034-pfl-abh-cont80-c73-c76-posix-20261028.json",
+      "source_git_blob": "2b55272646b8bf7d4e797440980e0c59cf538927",
+      "batch_id": "0034-PFL-ABH-CONT80-C73-C76-POSIX-20261028",
+      "parent_batch": "0033-PFL-CHATRELAY-59E1F051-CR02-SENADO-20261028",
+      "at": "2026-10-28T01:44:53.734Z",
+      "reason": "Append four true preregistered AB-P native Linux POSIX tests C73-C76 after separate concurrent documentary CR01/CR02 Atlas 0032/0033. 16 of grant's 20 executed, four unused. No full-suite or release claim.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C73",
+            "activity": "C73 native exact Git SHA checked-in ingest suite Linux POSIX: 9 passed in 2.11s, false external HTTP; Windows unsupported-store distinction",
+            "status": "completed",
+            "at": "2026-10-28T01:44:53.734Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C73_RESULT.json",
+              "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C74",
+            "activity": "C74 native original redirected-source guard suite: 9 passed and 14 subtests in 0.19s; HTTP handler original not rerun",
+            "status": "completed",
+            "at": "2026-10-28T01:44:53.734Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C74_RESULT.json",
+              "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C75",
+            "activity": "C75 native original offline quarantine ingest: 10 passed in 0.12s, SHA tamper and symlink checks, still no person scoring",
+            "status": "completed",
+            "at": "2026-10-28T01:44:53.734Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C75_RESULT.json",
+              "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C76",
+            "activity": "C76 exact-source original capture to private audit CLI E2E: 3 passed, combined four original source suites 31 passed 14 subtests in 2.30s, no patch",
+            "status": "completed",
+            "at": "2026-10-28T01:44:53.734Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C76_RESULT.json",
+              "research/ABH_CONT80_20261028/C73_C76_EVIDENCE_MANIFEST.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, N1-N3 unchanged, 0/6 release gates; Linux original-source limited suite",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0035-pfl-abh-cont80-c77-c80-posix-20261028.json",
+      "source_git_blob": "eef45888f7344cd049df51913b18ad5d9968ea9c",
+      "batch_id": "0035-PFL-ABH-CONT80-C77-C80-POSIX-20261028",
+      "parent_batch": "0034-PFL-ABH-CONT80-C73-C76-POSIX-20261028",
+      "at": "2026-10-28T01:58:58.511Z",
+      "reason": "Four real preregistered AB-P C77-C80 cycles close previously granted maximum 20/20. Native exact-source Linux POSIX tests, eight original checked-in suites jointly 89 PASS, 14 subtests. Full repo T008 remains pending; no scientific/release change.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C77",
+            "activity": "C77 exact Git original secure_store.py 22/22 POSIX tests passed: no symlink escapes, permissions, fsync, cooperating thread locks and partial append handling",
+            "status": "completed",
+            "at": "2026-10-28T01:58:58.511Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C77_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C78",
+            "activity": "C78 exact Git original multiprocess tests 4/4 passed: four processes 48 unique JSONL records and SIGKILL mid-ledger/object flags uncertainty",
+            "status": "completed",
+            "at": "2026-10-28T01:58:58.511Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C78_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C79",
+            "activity": "C79 original private_audit.py 24/24 tests passed including forged/duplicate/incomplete JSONL, orphan review, object length, reader-writer lock and SIGKILL",
+            "status": "completed",
+            "at": "2026-10-28T01:58:58.511Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C79_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CONT80-C80",
+            "activity": "C80 original private_audit_cli.py 8/8 tests passed, aggregate exit2 and privacy; integrated previous eight original suites 89 PASS +14 subtests, exit0, no patches",
+            "status": "completed",
+            "at": "2026-10-28T01:58:58.511Z",
+            "evidence": [
+              "research/ABH_CONT80_20261028/C80_RESULT.json"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "V4 36.90%, CT2 29 ordinal, VSDS 1/3, gates 0/6; original source tests and fixture data only",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0036-pfl-abh-branch20-c01-invalid-20261028.json",
+      "source_git_blob": "6ce8c0e2f7a205db31db9e0c8e5830b61d9df30b",
+      "batch_id": "0036-PFL-ABH-BRANCH20-C01-INVALID-20261028",
+      "parent_batch": "0035-PFL-ABH-CONT80-C77-C80-POSIX-20261028",
+      "at": "2026-10-28T02:27:45Z",
+      "reason": "Preserve one invalid C01 attempt due result file committed before actual source retrieval. Observations after errata cannot retroactively repair the result. New BRANCH20 authorized 20; valid 0, invalid 1, remaining 19. No scientific finding or release uplift.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C01-INVALID",
+            "activity": "Prematurely created Senate XV XML result before actual browsing; later web lookups found two official xml links but obtained no XML bytes; CR02 historical overlap",
+            "status": "invalid",
+            "at": "2026-10-28T02:27:45Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C01_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C01_ERRATA.md",
+              "research/ABH_BRANCH20_20261028/C01_POST_ERRATA_OBSERVATION.json"
+            ],
+            "scope": "V4 36.90%, CT2 identity 29 ordinal, VSDS 1/3, 0/6 gates; no uplift",
+            "method_version": "AB 3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-BRANCH20-C01-PREMATURE-RESULT",
+            "run_id": "PFL-BRANCH20-C01-INVALID",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "research_integrity_prereg_execution_order",
+            "at": "2026-10-28T02:27:45Z",
+            "description": "C01_RESULT.json initially claimed tool-derived observations before the sources were actually accessed. Original commit retained; a subsequent errata and observed link retrieval cannot be counted retroactively as valid A-J execution."
+          }
+        }
+      ]
+    },
+    {
+      "file": "0037-pfl-abh-branch20-c02-boccl-20261028.json",
+      "source_git_blob": "73d79e95e5753eb7f8acf4995937d93d9f910a5a",
+      "batch_id": "0037-PFL-ABH-BRANCH20-C02-BOCCL-20261028",
+      "parent_batch": "0036-PFL-ABH-BRANCH20-C01-INVALID-20261028",
+      "at": "2026-10-28T02:31:07Z",
+      "reason": "Preregistered bounded C02 official alternate archival source retrieval. Search index confirms issue listing but direct original bytes unavailable; completed documentary A-J with negative access result, no 2/3 finding or gate uplift.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C02-BOCCL-ARCHIVE",
+            "activity": "New official CCYL BOCCL XII issue archive indexes checked for CVE 000986 vs 001042; 5 searches and 4 direct retrievals, all full-original retrievals unavailable. Timed first publication unknown.",
+            "status": "completed",
+            "at": "2026-10-28T02:31:07Z",
+            "method_version": "AB 3.2.1 O7 AB-R",
+            "scope": "No person scoring; no source first publication; V4 36.90 CT2 29 VSDS 1/3 gates 0/6",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C02_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C02_RESULT.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "file": "0038-pfl-abh-b20-c03-majority-20261028.json",
+      "source_git_blob": "1e69ca9aaa150fcf1bc7c66d2c4ed1e66fbd7c2c",
+      "batch_id": "0038-PFL-ABH-BRANCH20-C03-MAJORITY-20261028",
+      "parent_batch": "0037-PFL-ABH-BRANCH20-C02-BOCCL-20261028",
+      "at": "2026-10-28T03:41:00Z",
+      "reason": "Valid preregistered AB-H C03: exact historical Git module + five baseline tests; synthetic disjointness violation yielded seven red tests then 14 green after fail-closed classification and corrected legacy fixture. No global suite, independent official evidence or gate uplift.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C03-OVERLAPPING-CODES",
+            "activity": "Source-identified synthetic cross-option and intra-option code overlap can falsely be classified as STRICT_REVERSAL; invalidity classification implemented, 7-red 14-green, Git blobs exact; targeted only",
+            "status": "completed",
+            "at": "2026-10-28T03:41:00Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C03_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C03_RED_BASELINE.json",
+              "research/ABH_BRANCH20_20261028/C03_RESULT.json",
+              "tests/test_majority_sign_failclosed.py"
+            ],
+            "method_version": "AB 3.2.1 O7 AB-H",
+            "scope": "synthetic secondary-vote QA, V4/CT2/VSDS/gates unchanged",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-BRANCH20-C03-SECONDARY-CODES-OVERLAP",
+            "run_id": "PFL-BRANCH20-C03-OVERLAPPING-CODES",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "analytical_false_positive_secondary_nominal",
+            "at": "2026-10-28T03:41:00Z",
+            "description": "Original majority_sign.py accepted a synthetic person code in both S and N, producing STRICT_REVERSAL although secondary nominal codes were not exclusive. Baseline Git verified; fix classifies malformed rows and corrects overlapping legacy fixtures. No claim real source contains these anomalies."
+          }
+        },
+        {
+          "op": "complaint.triage",
+          "id": "PFL-BRANCH20-C03-SECONDARY-CODES-OVERLAP",
+          "status": "repaired",
+          "reason": "Git commits 96989d002a12456d45ebf5ba43ea8478972ee5ff, ceafeb22a710a79ec7d3ebd428173528ffe95422, 01d2176d575da5b073e1de423610044569552a31; 14/14 targeted tests green, source/test blobs verified; FULL SUITE STILL PENDING."
+        }
+      ]
+    },
+    {
+      "file": "0039-pfl-abh-b20-c04-scoring-rule-20261028.json",
+      "source_git_blob": "3a0c0c264fa93992ef898086fd3b08f9806ad193",
+      "batch_id": "0039-PFL-ABH-BRANCH20-C04-SCORING-RULE-20261028",
+      "parent_batch": "0038-PFL-ABH-BRANCH20-C03-MAJORITY-20261028",
+      "at": "2026-10-28T04:06:00Z",
+      "reason": "Valid C04 AB-P prereg negative guards against mutable Rule mappings, negative caps, infinities, invalid key sets; 6 first-red failures + 2 passes, 8 final focused PASS on exact Git code modules; frozen copy repair. Full suite T008 still pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C04-SYNTHETIC-RULE",
+            "activity": "Synthetic fantasy Rule was shallow-frozen and permitted nonfinite or negative contracts; 6 red and 8 green tests; immutable snapshots and typed constraints, no real scoring",
+            "status": "completed",
+            "at": "2026-10-28T04:06:00Z",
+            "method_version": "AB 3.2.1 O7 AB-P",
+            "scope": "product illustrative synthetic only, zero change V4/CT2/VSDS/gates",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C04_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C04_RED_BASELINE.json",
+              "research/ABH_BRANCH20_20261028/C04_RESULT.json",
+              "tests/test_scoring_rule_contract.py"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-BRANCH20-C04-MUTABLE-RULE",
+            "run_id": "PFL-BRANCH20-C04-SYNTHETIC-RULE",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "synthetic_score_contract_integrity",
+            "at": "2026-10-28T04:06:00Z",
+            "description": "Rule dataclass frozen had mutable dicts and accepted negative cap, infinite weight and mismatched keys; synthetic score can change post-construction or become invalid. Not a real-politician score."
+          }
+        },
+        {
+          "op": "complaint.triage",
+          "id": "PFL-BRANCH20-C04-MUTABLE-RULE",
+          "status": "repaired",
+          "reason": "scoring.py commit c4db5e57e67e7dd775fb0b4bb273d046ab894c6b and tests commit e7c18e04fc0f56b2e5d4a407e86c808dc3b7d3c0; 8 targeted Linux PASS. Global compatibility NOT_RUN."
+        }
+      ]
+    },
+    {
+      "file": "0040-pfl-abh-b20-c05-atlas-audit-20261028.json",
+      "source_git_blob": "60f9be9aa3c44c2c4cae39e39290982cd701a46b",
+      "batch_id": "0040-PFL-ABH-BRANCH20-C05-ATLAS-AUDIT-20261028",
+      "parent_batch": "0039-PFL-ABH-BRANCH20-C04-SCORING-RULE-20261028",
+      "at": "2026-10-28T12:30:55.264Z",
+      "reason": "C05 preregistered independent bounded documentary check of 39 patches, 379 ops, 205 runs, 47 complaints, no anomalies in inspected parent chain and run/complaint refs; native Python checker not executed.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C05-ATLAS-RECORD-CHECK",
+            "activity": "39-patch official GitHub archival chain ID and count independent read audit; no original Python native validation",
+            "status": "completed",
+            "at": "2026-10-28T12:30:55.264Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C05_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C05_RESULT.json"
+            ],
+            "scope": "AB-META audit, zero science/readiness uplift",
+            "method_version": "AB 3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}
