@@ -1,0 +1,38 @@
+{
+  "schema": "pfl.abh30.c14.repair_r1_prereg_aj_sha.v1",
+  "cycle": "ABH30-C14",
+  "attempt": "R1_AFTER_NEGATIVE",
+  "date": "2026-10-29",
+  "parent_prereg_commit": "cb6b06a69e813a54b610e062cbad2e6035ebfe7c",
+  "negative_receipt": "C14_INITIAL_INVALID_ATTEMPT.json",
+  "basis": "Original frozen 18/18 suite passed but posthoc real native adversarial counterexample accepted fake non-string event_frame object with toString returning valid hex. Original attempt INVALID, preserved, without cycle spend.",
+  "A": "Repair original C14 five-arm frozen rank-visibility factorial configuration guard to reject non-string opaque hash objects for event frame and schedule before parity checks. No real participant data.",
+  "B": {
+    "H1": "Explicit primitive string type checks reject arbitrary objects with spoofed hex toString for event or schedule hashes while preserving previous 18 cases.",
+    "H0": "A coercible nonstring object still passes or any original test regresses.",
+    "rival": "Practical safe input would arrive via JSON disallowing toString functions, but reusable exported JS API accepts raw objects and must fail closed without trusting context."
+  },
+  "C": "Exactly two posthoc-adversarial additional native tests, 20 total, preserve unchanged original 18 tests, no other code changes. No human outcomes or PFL trial.",
+  "D": {
+    "source": {
+      "path": "src/politics_fantasy/fictional_rank_visibility_contract.mjs",
+      "git_blob": "cad226a589772de6c733929d32a527252d719ad6",
+      "sha256": "c007e0320e4ab5b4b2f1d3e7d37208828e70da253da47727547dff1f804f8c20",
+      "staged_commit": "ec0c805184efb829eb3e579bfcb5d8b83eb29ff5"
+    },
+    "tests": {
+      "path": "tests/test_fictional_rank_visibility_contract.mjs",
+      "git_blob": "cbbbfc6556502494c4d49ef6d3ee1d85abe87c55",
+      "sha256": "32651b31728146e9a422cab67c006fad5025f2a051c6bdccca3209c2a3b4f011",
+      "staged_commit": "9fb5039a4baba43b889f2a6b07700ac611856ccb"
+    },
+    "command": "node --test tests/test_fictional_rank_visibility_contract.mjs",
+    "expected_tests": 20
+  },
+  "E": "Run exact native Node tests AFTER GitHub commit of this R1 prereg, verify Git and SHA256 against local files, preserve first run output/exit and explicit R1 not count new cycle.",
+  "F": "Original flaw must remain recorded and original 18/18 not presented as complete proof. No human exposure/randomness/privacy attested by correction.",
+  "G": "Compare the positive failing original counterexample vs repaired explicit string checks and all 18 original tests for regression; no external data.",
+  "H": "No scientific source-prior promotion for pure code repair. O7 product graph may record original invalid attempt and repaired QA explicitly.",
+  "I": "Scientific CT2 PFL 20/100 ordinal and N1/N2/N3 0/0/0; release 0/6. C14 valid ONLY after 20/20 and frozen source; otherwise invalid and no quota consumed.",
+  "J": "If 20/20 pass, count exactly one C14 bounded product cycle with one invalid first attempt preserved: 14/30 valid new, 16 remain, 2 historical STOP_R5, invalid attempts campaign 3. No main/CI costosa/ChatRelay or personal/scoring activity."
+}
