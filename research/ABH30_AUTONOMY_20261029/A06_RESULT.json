@@ -1,0 +1,43 @@
+{
+  "id": "ABH30-P2-A06",
+  "phase": "AUTONOMY",
+  "status": "VALID_LOCAL_PYTHON_BOUNDARY",
+  "prereg_commit": "74f74dadef57f6d4747e38e0fc0caffcb4b15cca",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "python": "3.13.5",
+    "stdlib_imports": [
+      "json",
+      "hashlib",
+      "subprocess",
+      "pathlib"
+    ],
+    "fixture_roundtrip_pass": true,
+    "fixture_sha256": "2f96829eb55cee264107134787006223e90c9e2273369dc58219a08852bc4f4f",
+    "mutation_sha256_differs": true,
+    "local_mirror_files": 13,
+    "original_atlas_delta_py_present": false,
+    "canonical_atlas_replay": "NOT_EXECUTED"
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "Local Python can execute real scripts, but the complete private Atlas checkout and original dependencies were absent; fixture success not proof of replay 0080."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "Local Python can execute real scripts, but the complete private Atlas checkout and original dependencies were absent; fixture success not proof of replay 0080."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
