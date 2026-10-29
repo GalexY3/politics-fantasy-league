@@ -1,0 +1,48 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0081-PFL-ABH30-C09-C10-ORIGINAL-RAW-SOURCE-20261029",
+  "parent_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+  "at": "2026-10-29T20:14:36.639Z",
+  "actor": "chatgpt",
+  "reason": "Synchronized bounded C09 native synthetic raw public source QA and C10 original Git SHA-verified V8 source revision comparisons. No human causal results, CT2 unchanged, 0/6 release gates. Prior Atlas 0080 chronology discrepancy preserved without edits; full canonical Atlas check NOT_EXECUTED in this session because original code/80 batches not on local runtime.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C09-RAW-REVISION-QA-20261029",
+        "at": "2026-10-29T20:14:36.639Z",
+        "activity": "C09 frozen original public source raw-row comparison instrument: Node 22.16.0 19/19 synthetic adversarial tests passed; no original source data processed in C09",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C09_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C09_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C09_REPORT.md"
+        ],
+        "scope": "AB-P bounded native synthetic QA only, original-positive source not executed",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-20261029",
+        "at": "2026-10-29T20:14:36.639Z",
+        "activity": "C10 original public ForecastBench raw source Git data read-only: six complete public original blobs SHA1 independently matched, 3 preregistered source revision comparisons on exact frozen C09 source in V8; raw key deletions 16, additions 2, mutation-transition events 671. Same supplier, no causal humans, no native file-positive Node",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C10_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C10_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C10_REPORT.md"
+        ],
+        "scope": "AB-H public nonperson source integrity audit, 0/3 causal science",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
