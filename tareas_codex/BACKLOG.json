@@ -254,6 +254,42 @@
       "result_file": "T010_RESULTADO.md",
       "verified_code_commit": "c2ff3386798eb51040559510e88040a234cbcce5",
       "pull_request": "https://github.com/GalexY3/Metodologia-AB/pull/18"
+    },
+    {
+      "id": "PFL-CODEX-T028",
+      "title": "Replay canónico Atlas 0001–0080, actualizar CURRENT.md tras PASS y Playwright real PFL en localhost",
+      "priority": "P0",
+      "file": "T028_BROWSER_ATLAS_REPLAY_20261029.md",
+      "status": "PENDIENTE_DE_EJECUTOR_NO_EJECUTADO",
+      "authorization": "QA_TECHNICAL_ONLY__NOT_AUTOMATIC_AB_CYCLE",
+      "source_pr": 37,
+      "source_branch": "research/pfl-abh5-browser-atlas-independent-20261029",
+      "source_head": "7d622850d0410db3b3e8b8d7acbe01a1bdea7a42",
+      "depends_on": [
+        "Checkout Git completo con permisos",
+        "Python y Node disponibles",
+        "Playwright/Chromium autorizado para acceder al loopback"
+      ],
+      "completion_requires": [
+        "Ejecutar atlas_delta.py check y brief sobre seed+80 lotes, registrar exit/stdout/stderr, SHA256 canónico y conteos",
+        "Auditar timestamps 0079/0080 sin reescribir deltas históricos",
+        "Actualizar CURRENT.md exclusivamente si replay nativo pasa",
+        "Ejecutar Playwright con navegación HTTP real a 127.0.0.1:8787 y comprobar CSP, módulos, teclado, cuatro condiciones y exclusión de clave/POST",
+        "Registrar prueba nativa de regresión y reparar solo fallos reproducidos",
+        "Crear T028_RESULT.json, T028_RESULTADO.md y PR draft apilada sin merge ni CI costosa",
+        "Mantener campaña AB-H: 2 valid, 1 incomplete, 2 unexecuted/unused; no reclutar, no scoring de políticos, no ChatRelay"
+      ],
+      "result_file": "T028_RESULTADO.md",
+      "structured_result_file": "T028_RESULT.json",
+      "execution_receipt": "NOT_RUN",
+      "cycle_budget": {
+        "grant": 5,
+        "valid": 2,
+        "incomplete": 1,
+        "unexecuted": 2,
+        "consumed_by_codex_task": 0
+      },
+      "blocked_legal_dataset": "Independent source original bytes and legal reuse rights not verified; R5"
     }
   ],
   "no_automatic_actions": true,
@@ -291,5 +327,12 @@
     "status": "COMPLETADA_VERIFICADA_ONLY_old_checkout"
   },
   "T009_current_main_status": "COMPLETADA_CON_FALLOS_CHECKOUT_8a761cf",
-  "T010_status": "COMPLETADA_EN_RAMA_PENDIENTE_REVISION"
+  "T010_status": "COMPLETADA_EN_RAMA_PENDIENTE_REVISION",
+  "queue_refresh": {
+    "at": "2026-10-29",
+    "scope": "T028 only; old T001-T010 records preserved; T027 historical parent task not separately added",
+    "branch": "research/pfl-t028-handoff-and-evidence-20261029",
+    "current_pr": 37,
+    "executor_not_called": true
+  }
 }
