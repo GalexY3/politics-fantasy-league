@@ -1,0 +1,93 @@
+{
+  "sample": "12 previously top-closed by signatures, deliberately outcome-selected; not representative",
+  "original_jsons_captured": 12,
+  "field_discrepancy_counts": {
+    "signatures": 4,
+    "opened_at": 0,
+    "response_threshold_reached_at": 0,
+    "government_response_at": 0,
+    "debate_threshold_reached_at": 0,
+    "scheduled_debate_date": 0,
+    "debate_outcome_at": 0,
+    "closed_at": 0,
+    "updated_at": 4,
+    "response_responded_on": 0
+  },
+  "differences": {
+    "signatures": [
+      {
+        "id": 700143,
+        "prior": 3084713,
+        "captured": 3084712
+      },
+      {
+        "id": 702844,
+        "prior": 281794,
+        "captured": 281793
+      },
+      {
+        "id": 746363,
+        "prior": 244450,
+        "captured": 244451
+      },
+      {
+        "id": 700824,
+        "prior": 229773,
+        "captured": 229772
+      }
+    ],
+    "updated_at": [
+      {
+        "id": 700143,
+        "prior": "2026-06-22T10:44:15.014Z",
+        "captured": "2026-10-26T16:18:06.492Z"
+      },
+      {
+        "id": 702844,
+        "prior": "2025-12-23T15:37:17.809Z",
+        "captured": "2026-10-26T16:18:06.483Z"
+      },
+      {
+        "id": 746363,
+        "prior": "2026-05-18T23:00:00.355Z",
+        "captured": "2026-08-28T13:44:40.000Z"
+      },
+      {
+        "id": 700824,
+        "prior": "2025-12-17T15:49:18.764Z",
+        "captured": "2026-05-08T10:22:47.279Z"
+      }
+    ]
+  },
+  "response_date_disagreements": [
+    {
+      "id": 727309,
+      "timestamp_date": "2025-08-12",
+      "publication_date": "2025-08-11"
+    },
+    {
+      "id": 705383,
+      "timestamp_date": "2025-06-24",
+      "publication_date": "2025-06-23"
+    },
+    {
+      "id": 730605,
+      "timestamp_date": "2025-07-30",
+      "publication_date": "2025-12-05"
+    },
+    {
+      "id": 746363,
+      "timestamp_date": "2025-12-05",
+      "publication_date": "2025-12-04"
+    }
+  ],
+  "median_response_threshold_to_technical_timestamp_days": 16.457034305555553,
+  "median_response_threshold_to_published_date_midnight_utc_days": 18.77372685185185,
+  "limits": [
+    "No verified first public timestamp; published date treated as UTC midnight only for comparability",
+    "No causal inference or representativeness",
+    "Differences are two snapshots, not evidence of cause",
+    "Raw originals may contain creator names and are local only",
+    "T023 covers a separate 180-ID cohort; one overlap does not replace all 12 originals"
+  ]
+}

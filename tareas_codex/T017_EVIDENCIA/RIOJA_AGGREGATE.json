@@ -1,0 +1,39 @@
+{
+  "head": "7a6876f71b6cbc286f86ff4bf1393889e4f22851",
+  "original_sha256": "8b10fe138a809d631a38696ed11a6342874382a2eff86730edc6571cd65479e3",
+  "source_pages": 60,
+  "inspected_page": 1,
+  "reproduction": "pdftotext -f 1 -l 1 -layout; page image visually inspected",
+  "source_totals": {
+    "electorate": 251919,
+    "voters": 170779,
+    "null": 2860,
+    "blank": 2360,
+    "valid": 167919,
+    "candidacy": 165559
+  },
+  "observed_candidate_values_by_published_order": [
+    53562,
+    954,
+    619,
+    1473,
+    1065,
+    4349,
+    76205,
+    8543,
+    6016,
+    12773
+  ],
+  "checks": {
+    "all_ten_party_counts_match": true,
+    "all_four_summary_fields_present": true,
+    "valid_derived": true,
+    "candidacy_derived": true,
+    "ten_candidates_sum": true
+  },
+  "limitations": [
+    "PDF and page image contain personal names: local only",
+    "Not a full 60-page municipal reconciliation",
+    "First publication timing UNKNOWN"
+  ]
+}

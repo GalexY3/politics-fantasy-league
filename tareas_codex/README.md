@@ -1,3 +1,5 @@
+> **Fuentes · 29/10/2026:** avances parciales [T017](T017_AVANCE_20261029.md), [T018](T018_AVANCE_20261029.md) y [T022](T022_AVANCE_20261029.md). Originales potencialmente nominales únicamente fuera de Git; QA integral y condiciones por fuente pendientes.
+
 > **T016 · 29/10/2026:** [avance parcial](T016_AVANCE_20261029.md); discrepancia Galicia y acceso TLS a Euskadi pendientes de aclarar.
 
 > **Fuentes · 29/10/2026:** avances parciales [T019](T019_AVANCE_20261029.md), [T020](T020_AVANCE_20261029.md), [T023](T023_AVANCE_20261029.md); [T021](T021_AVANCE_20261029.md) recibió 403. Ninguno se declara cerrado. Originales fuera de Git.
