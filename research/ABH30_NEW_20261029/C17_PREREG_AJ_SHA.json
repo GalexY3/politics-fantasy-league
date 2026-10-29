@@ -1,0 +1,42 @@
+{
+  "schema": "pfl.abh30.c17.prereg_AJ_SHA.v1",
+  "cycle": "ABH30-C17",
+  "mode": "AB-P_NATIVE_CRYPTOGRAPHIC_SYNTHETIC_INTEGRITY",
+  "drift_D": 1,
+  "base_PR": 69,
+  "base_HEAD": "41dd8212d3661be0f5599f1968ec6755a2b73e4d",
+  "authorization_before": {
+    "valid_new": 16,
+    "available_new": 14,
+    "historical_STOP_R5": 2
+  },
+  "A": "Prior synthetic renderer labels self-generated receipts INDEPENDENT even though unauthenticated. Can a separate HMAC verifier detect alteration and replay of five-arm fictional receipt records, without claiming authenticity of a deployed renderer?",
+  "B": {
+    "H1": "SHA256 HMAC with 32-byte key detects arm/time/audience/content tampering and wrong keys, and strict chain rejects duplicate opportunity even when receipt ID changes.",
+    "H0": "Some tampered or replayed records pass or self-signed receipts falsely indicate real delivery.",
+    "rivals": [
+      "A shared key inside same executable trust domain allows forgery; HMAC verifies possession only, NOT external independence.",
+      "Real UI needs independently managed secret and authenticated server trust boundary; out of scope."
+    ]
+  },
+  "C": "16 frozen Node tests: valid message, key and four field tamper checks, replay with different ID, empty receipt unknown, schema exclusion of individual data, key size and coercion, no causal/exposure claims.",
+  "D": {
+    "source": {
+      "path": "src/politics_fantasy/fictional_receipt_auth.mjs",
+      "git_blob": "32753527824a788b8b15ecebfa7320dca2e93517",
+      "sha256": "0ba9423f3e34fc4818367ceae6c6bfa99edb630e719e6410cd2fc380c8567e89"
+    },
+    "test": {
+      "path": "tests/test_fictional_receipt_auth.mjs",
+      "git_blob": "9eaa5a261937ff8f7dc5b7bc0fd8205536680701",
+      "sha256": "6185b35bf0ae3ce504bcaa022359a16f90f2554db895d05257d84110a94f4bf3"
+    },
+    "command": "node --test tests/test_fictional_receipt_auth.mjs"
+  },
+  "E": "After this GitHub commit, verify source/test Git SHA and sha256 locally; run native Node v22.16.0 tests first time and retain failure output/exit.",
+  "F": "Scheme is for strictly fictional IDs, no human data. Signing and verifying with caller-provided test keys does NOT authenticate a separate renderer; source string in C15 remains synthetically spoofable. No external key authority.",
+  "G": "Competent comparator C15 source literal + C16 self-generated receipt: integrity not authenticated before; HMAC adds tamper-replay integrity only with external secret assumption.",
+  "H": "Update technical prior distinguish integrity of payload vs independence of emission; no research effect prior.",
+  "I": "Scientific CT2 20/100 ordinal, novelty grade 0/3, N1/N2/N3 0 and launch gates 0/6.",
+  "J": "If original code frozen and 16 tests pass, C17 counts one bounded AB-P: 17/30 new, 13 new available, historical 2 STOP_R5. Otherwise invalid attempt, no cycle."
+}
