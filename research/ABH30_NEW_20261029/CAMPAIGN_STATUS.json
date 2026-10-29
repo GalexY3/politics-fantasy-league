@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 7,
-    "new_remaining": 23,
+    "new_completed": 8,
+    "new_remaining": 22,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -190,15 +190,45 @@
         ]
       },
       "limits": "Exact three verified source checkpoints only. Some intermediate original Git versions exist and are deliberately rejected. Original Git blobs SHA verified in V8/GitHub and original replay executed on exact frozen code; full positive native CLI with all seven original files on local disk NOT run. No personal human data, causal PFL ranking science or new independent institution."
+    },
+    {
+      "id": "ABH30-C08",
+      "mode": "AB-H_AB-P_PLUS_AB-R_PUBLIC_EVENT_SOURCE",
+      "D": 2,
+      "status": "VALID_LIMITED_FULL_ORIGINAL_GIT_PATH_HISTORY_PUBLIC_SOURCE_EXECUTED_V8_NOT_NATIVE_FILE_E2E",
+      "grade_science": "0/3",
+      "prereg_commit": "eb6fae1336ff734c13d975aae4c1c9d83157ee1d",
+      "run_receipt": "C08_RUN_RECEIPT.json",
+      "verified": {
+        "original_public_git_resolution_versions": 19,
+        "original_unique_public_full_git_blobs_sha1_verified": 21,
+        "source_history_complete_in_checked_window": true,
+        "original_question_cohorts": 2,
+        "frozen_code_V8_test_groups": "27/27",
+        "native_Node_source_tests": "NOT_EXECUTED",
+        "complete_local_original_cli_positive": "NOT_EXECUTED",
+        "sep27_eligible_first_last": [
+          30,
+          52
+        ],
+        "oct11_eligible_first_last": [
+          2,
+          8
+        ],
+        "previously_eligible_binary_y_lost": 0,
+        "previously_eligible_binary_y_flipped": 0,
+        "raw_source_row_counts_nonmonotone": true
+      },
+      "limits": "Complete source PATH publication revisions within checked window, not complete third-party event first publication. Public original data analyzed by exact code in V8 over batched full Git blobs; no positive native Node full-source file E2E, no human participant causal effect."
     }
   ],
   "counting": {
-    "valid_limited": 7,
+    "valid_limited": 8,
     "invalid_cycles": 0,
     "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 23,
-    "new_remaining": 23,
+    "unopened_authorized": 22,
+    "new_remaining": 22,
     "historical_remaining": 2
   },
   "science": {
@@ -236,7 +266,9 @@
     "C07 first frozen JavaScript code compilation failed Unexpected token ']' due missing third source vintage object closure; minimal one-brace repair preregistered and SHA re-frozen; not a separate cycle.",
     "C07 after first 24/24 + 8/8 pass, adversarial audit found sparse 3-version manifest falsely claimed latest Git source for intermediate dates (Oct20/Oct25). Preplanned repair restricts source selection to 3 EXACT verified checkpoints, all other intermediate dates fail closed. Final native Node 25/25 + 8/8 pass; preserve initial attempt without counting duplicate cycles.",
     "C07 original public versions show Sep27 30→46→52 and Oct11 (unavailable)→2→8 eligible market questions, 0 observed flipped or lost among retained known outcomes; this does not prove all historical versions stable or human accuracy.",
-    "C07 new institutional DOI Xu 2026 ICPSR 10.3886/E227582 identifies code/software deposit, not legally accessible human administrative participant records; Statistics Finland data access unverified and historical two AB-H slots remain STOP_R5."
+    "C07 new institutional DOI Xu 2026 ICPSR 10.3886/E227582 identifies code/software deposit, not legally accessible human administrative participant records; Statistics Finland data access unverified and historical two AB-H slots remain STOP_R5.",
+    "C08 original Sep27 and Oct11 raw Git resolution record counts decreased on several published updates (e.g. Sept 441 Oct7 to 440 Oct8; Oct11 441 Oct23 to 438 Oct24), although all 16+3 inspected eligible binary market outcomes were retained and no Y flipped. Never infer append-only raw data rows from a monotone accepted subset.",
+    "C08 original 21 distinct public Git blobs were retrieved and SHA1 checked via connected GitHub V8 in separate overlapping batches; local runtime DNS could not access original content. Native positive multi-source CLI E2E NOT performed, and 27 tests ran in V8 rather than Node: do not call them native tests."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -247,7 +279,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_7OF30_VALID_LIMITED;23_NEW_AUTHORIZED_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENTIFIC20_NO_CAUSAL_OR_HUMAN_RIGHTS_PROMOTION",
-  "last_branch": "research/pfl-abh30-c07-bitemporal-replay-20261029",
+  "decision": "ABH30_8_OF_30_VALID_LIMITED_ORIGINAL_PUBLIC_PATH_HISTORY;22_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENTIFIC_20_AND_N123_ZERO_NO_LAUNCH",
+  "last_branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
   "last_documentary_source_prior": "PF-BR47"
 }
