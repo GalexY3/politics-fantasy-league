@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 13,
-    "new_remaining": 17,
+    "new_completed": 14,
+    "new_remaining": 16,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -347,15 +347,40 @@
         "positive_production_integration": "NOT_EXECUTED"
       },
       "limits": "Standard mathematical partial identification applied to entirely synthetic four-arm aggregate, not novel social science or a human ITT estimate. Assumption normalized outcomes in [0,1]. Can bound but cannot identify sign under MNAR. No full product rollout."
+    },
+    {
+      "id": "ABH30-C14",
+      "mode": "AB-H_AB-P_FIVE_ARM_RANK_VISIBILITY_X_GRANULARITY_DESIGN",
+      "D": 2,
+      "status": "VALID_REPAIRED_BOUNDED_NATIVE_20_OF_20_WITH_PRESERVED_INITIAL_INVALID_ATTEMPT",
+      "grade_science": "0/3",
+      "prereg_commit": "cb50ce4a84ebfdf98829b9d93fa3eafb945e331e",
+      "initial_prereg_commit": "cb6b06a69e813a54b610e062cbad2e6035ebfe7c",
+      "initial_invalid_attempt": "C14_INITIAL_INVALID_ATTEMPT.json",
+      "run_receipt": "C14_RUN_RECEIPT.json",
+      "verified": {
+        "repair_source_Git_blob": "cad226a589772de6c733929d32a527252d719ad6",
+        "repair_tests_Git_blob": "cbbbfc6556502494c4d49ef6d3ee1d85abe87c55",
+        "runtime": "Node v22.16.0",
+        "native_tests_first_frozen": "18/18_PASS_BUT_LATER_ADVERSARIAL_DEFECT_INVALIDATED",
+        "adversarial_negative": "Nonstring hash object toString accepted; preserved",
+        "native_tests_after_new_R1_freeze": "20/20_PASS",
+        "same_Brier_and_event_schedule_string_declared_parity": true,
+        "planned_rank_factorial_arm_count": 5,
+        "actual_human_randomization": "NOT_EXECUTED",
+        "display_delivery_exposure": "NOT_EXECUTED",
+        "human_rows": 0
+      },
+      "limits": "Design contract and static peer visibility/granularity orthogonality only, neither outcomes nor delivered stimulus nor allocation, no person data. Historical four-arm pilot not replaced. Initial invalid attempt registered separately without consumption."
     }
   ],
   "counting": {
-    "valid_limited": 13,
+    "valid_limited": 14,
     "invalid_cycles": 0,
-    "invalid_attempts": 2,
+    "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 17,
-    "new_remaining": 17,
+    "unopened_authorized": 16,
+    "new_remaining": 16,
     "historical_remaining": 2
   },
   "science": {
@@ -414,6 +439,14 @@
       "originality": "STANDARD_MANSKI_BOUNDS_NOT_NOVEL_MATH",
       "human_data_used": false,
       "release_gate_changed": false
+    },
+    "fictional_rank_visibility_factorial": {
+      "status": "NATIVE_REPAIRED_20_OF_20_PASS",
+      "armed_conditions": 5,
+      "private_quartile_vs_public_quartile": "PLANNED_ONLY",
+      "private_order_vs_public_order": "PLANNED_ONLY",
+      "genuine_human_effect": "NOT_ESTIMATED",
+      "release_gate_changed": false
     }
   },
   "negative_results": [
@@ -446,7 +479,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_13_OF_30_C13_SYNTHETIC_MANSKI_PARTIAL_IDENTIFICATION;17_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_20_N123_0_RELEASE_0_OF_6",
-  "last_branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
+  "decision": "ABH30_C14_REPAIRED_14_OF_30_VALID_16_NEW_AVAILABLE_2_HIST_STOP_R5_CT2_20_0_NEW_N123_RELEASE_0_6_INITIAL_INVALID_ATTEMPT_PRESERVED",
+  "last_branch": "research/pfl-abh30-c14-rank-visibility-factorial-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
