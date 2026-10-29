@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-29",
+  "kind": "SOURCE_METADATA_SEMANTIC_QUERY_NOT_AB_CYCLE",
+  "source": "Original GJP survey_fcasts.yr1.tab Dataverse DDI, file 2917351, SHA256 earlier DDI 519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063",
+  "question": "Do official DDI labels for viewtime, ctt, cond, fcast_date and timestamp define pre-response independent question exposure or condition randomization?",
+  "test": "Fetch DDI again, verify exact raw SHA256, XML parse only var ID/name, label/notes/varFormat, ignore frequencies, categories, values and participant data",
+  "success": "Explicit text documents pre-response screen impression on all eligible person-question pairs including nonrespondents",
+  "negative": "Field named viewtime is not sufficient; if no textual definition or only forecast rows, classify exposure UNVERIFIED",
+  "decision": "No AB-H cycle opened if independent display logging missing; CT2=22",
+  "source_prior": "GJP dataset CC0 and 2 readmes already verified",
+  "runner": "one 2min GitHub job DDI only; no person rows"
+}
