@@ -1,3 +1,9 @@
+# ABH30-C17 · HMAC sintético (29/10/2026)
+
+**17/30 nuevos válidos limitados, 13 pendientes, 2 históricos STOP_R5.** C17 implementa y ejecuta verificación HMAC y replay de recibos de visualización ficticios [A–J](../research/ABH30_NEW_20261029/C17_REPORT.md) con Git SHA congelados antes de ejecución, **16/16 Node PASS**, pero ni clave independiente ni recibo humano real. CT2 científica PFL 20/100, N1–3 0, lanzamiento 0/6. Fuente/prior PF-BR57 y O7 actualizados. Atlas append-only lote 0088 sobre 0087; Python original 81–88 **NO EJECUTADO**. No confundir integridad con procedencia. No merge main ni CI costosa.
+
+---
+
 # ABH30-C16 · renderizador Node ficticio ejecutado (29/10/2026)
 
 **16/30 nuevos limitados válidos; 14 disponibles; 2 históricos STOP_R5.** El nuevo código Node [C16](../research/ABH30_NEW_20261029/C16_REPORT.md) computa realmente vistas de los cinco brazos a partir de puntuaciones ficticias y genera recibos sintéticos que verifica con C15. Prerregistro SHA anterior a primera ejecución, **15/15 PASS nativos**, recibo archivado. **NO es navegador, registro externo de exposición ni evidencia causal**. PF-BR56; O7 C16; Atlas 0087 añadido pero checker original Python 81–87 no ejecutado. CT2 científica 20/100, N1–3 0/3, gates 0/6.
