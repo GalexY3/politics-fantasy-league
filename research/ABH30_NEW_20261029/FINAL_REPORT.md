@@ -1,3 +1,11 @@
+# Cierre de la campaña ABH30 · 30/30 ejecutados de alcance limitado
+
+**Estado definitivo 29/10/2026:** [C20–C30 informe A–J y resultados](C20_C30_FINAL_REPORT.md) · [manifiesto de las once ejecuciones](C20_C30_FINAL_RUN_MANIFEST.json) · [falsadores iniciales conservados](C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json) · [CT2 completa/ampliada](CT2_FULL_AND_ZOOM_C30.svg). **30/30 nuevos ciclos ejecutados válidos acotados, 0 plazas nuevas restantes, 2 históricas STOP_R5 separadas intactas.** Del último bloque, 11 AB-P en familia preplanificada y un mismo generador, no 11 ensayos humanos independientes. Las primeras 22 pruebas pasaron pero siete instrumentos tuvieron errores o lagunas adversariales reales; primeras ejecuciones marcadas INVALID/INCOMPLETE, R1 con nuevos SHA y A–J congelados antes de rerun, 30/30 suite final PASS, intentos inválidos acumulados **10**, 0 ciclos inválidos sin reparar. Priors PF-BR60–70 actualizados a **70** totales; **no** se eleva la CT2 científica **20/100 ordinal** ni N1/N2/N3 nuevos (0), ni gates (0/6). No hay experimentos humanos de PFL, causalidad, datos personales reutilizados ni permiso implícito de lanzamiento.
+
+**Atlas 0091 añadido** (11 entradas C20–C30; Python canónico 81–91 NO EJECUTADO, C19 comprobó solo primera cadena 89/89 estáticamente). Grafo O7 original no actualizado por rechazo del conector; [propuesta O7 separada, pendiente](C20_C30_O7_ADDENDUM_PENDING.json), y C18 en nota de reconciliación. Los siguientes retos requieren otra *clase de evidencia*: fuentes humanas legítimas, oportunidades observadas con consentimiento, o validación de Python original; no consumir plazas con más fixtures redundantes.
+
+---
+
 # Politics Fantasy League — campaña AB-H BRANCHING de 30 ciclos: informe de continuidad
 
 **Fecha:** 29/10/2026. **Autorización nueva expresa:** 30 ciclos AB-H BRANCHING adicionales a la campaña anterior 5/5; las **dos plazas AB-H históricas permanecen separadas, no ejecutadas**. La PR #53 estaba abierta en HEAD `59c00952547b53c91e05e3173495d5902c4528e0`. Nueva rama: `research/pfl-abh30-source-cutoff-20261029` (PR de borrador apilada sobre #53; no merge a main). Aplicadas normas AGENTS, AB 3.2.1 O1–O7, congelación de contrato, Git blob + SHA256 local antes de pruebas nativas, STOP_R5 y adversarios fuertes.
