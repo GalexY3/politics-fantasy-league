@@ -211,6 +211,14 @@
       "state": "answered",
       "summary": "Full original GitHub resolution_file path history for source 16 Sep27 + 3 Oct11 versions: 21 distinct full public Git blobs independently SHA1 checked from official source, exact source V8 verified by 27/27 adversarial tests, source-eligible binary market outcomes Sep27 30→52 Oct11 2→8 with no lost/flipped in this range, but raw source row counts decreased; no participant data, no native file E2E, no causal science.",
       "source": "../ABH30_NEW_20261029/C08_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C09 importable public non-person raw revision auditor compares all (source,id) source JSON rows across revisions and detects adds, removes, metadata/Y mutations including constant-size replacement. SHA/Git code and 19/19 native Node synthetic adversarial tests frozen before run. No original 21-blob positive native application, no Git byte verification internally, no human scientific effects.",
+      "source": "../ABH30_NEW_20261029/C09_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -441,6 +449,18 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "related_to",
       "interpretation": "Public market question source revision history lacks complete human assignment, independent pre-answer exposure and legal permissions."
+    },
+    {
+      "from": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
+      "to": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "relation": "tests",
+      "interpretation": "C08 identified raw resolution row count drops while tracking only accepted binary outcome stability; C09 adds a distinct synthetic-only raw row transition guard without claiming original-body validation."
+    },
+    {
+      "from": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Synthetic public row QA cannot supply assignment rosters, independent pre-response exposure or legal participant data rights."
     }
   ],
   "rules": {
@@ -464,8 +484,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 8,
-      "new_unused": 22,
+      "new_valid": 9,
+      "new_unused": 21,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -473,9 +493,9 @@
         0,
         0
       ],
-      "last_source_pr": 53,
-      "branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
-      "latest_valid_cycle": "ABH30-C08"
+      "last_source_pr": 59,
+      "branch": "research/pfl-abh30-c09-raw-revision-guard-20261029",
+      "latest_valid_cycle": "ABH30-C09"
     }
   }
 }
