@@ -88,6 +88,24 @@
       "url": "https://www.gjopen.com/faq",
       "support": "Relative Brier score includes active-day participation rate and crowd median",
       "limit": "Not same historical GJP competition scoring"
+    },
+    {
+      "kind": "Original 2026 randomized imitation study",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+      "support": "Signals versus same signals plus past action visibility; stronger originality rival",
+      "limit": "No human original data or processing rights verified"
+    },
+    {
+      "kind": "Original 2026 rank-reference-group RCT",
+      "url": "https://topcat.aeaweb.org/articles?id=10.1257%2Fapp.20240181",
+      "support": "Narrow comparator group stronger income satisfaction than national; replication package hyperlink",
+      "limit": "No exact package DOI/license or private admin data authorization verified"
+    },
+    {
+      "kind": "AEA 2026 data and code rights policy",
+      "url": "https://www.aeaweb.org/journals/data/data-code-policy",
+      "support": "Explicit non-public data exceptions; README and per-deposit license needed",
+      "limit": "General policy does not authorize individual human rows"
     }
   ],
   "priors": [
@@ -519,6 +537,55 @@
       "grade": "0/3",
       "CT2_prospective": 20,
       "limits": "Not forecasting or PFL, and not enough evidence to separate effects on public welfare or social learning in political questions."
+    },
+    {
+      "id": "PF-BR39",
+      "claim": "If raw signals are already visible, additionally displaying others' decisions cannot causally improve information aggregation",
+      "update": "CONTRADICTED_BY_INDEPENDENT_EXPERIMENTAL_DESIGN_AT_LEAST_IN_STUDIED_TASK",
+      "support": "Agranov, Lopez-Moctezuma, Strack and Tamuz (2026) JET 235:106203, RCT compared signals-only to same signals plus others' previous actions and reported improved optimal choices with action visibility. Manuscript originally available NBER 2022, trial registration AEARCTR-0003315 cited by authors.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+      "original_metadata": "https://authors.library.caltech.edu/records/e24t8-8p337",
+      "rights": "Original Caltech supplemental PDF 2.2MB, © Elsevier reserved; NBER data appendix listed but access failed; neither human level rights nor assignment/eligibility established.",
+      "limits": "The intervention is observing past binary decisions on a shared public-signal urn, NOT a rank display or geopolitical probability forecast. No PFL effect, no microdata retrieved, no novelty in 'see other's actions' alone.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_ORIGINAL_2026_RCT_NOVELTY_RIVAL"
+    },
+    {
+      "id": "PF-BR40",
+      "claim": "Changing a rank comparison group has no previous direct randomized evidence regarding welfare and reference groups",
+      "update": "FALSE_REFERENT_GROUP_RANDOMIZATION_WITH_WELFARE_OUTCOMES",
+      "support": "Xu et al (2026), AEJ Applied Economics 18(3):145–177, DOI 10.1257/app.20240181, randomized Finnish middle-aged subjects to receive relative income rank from distinct comparison groups; stronger income-satisfaction reaction in narrow references than national; life-satisfaction evidence weaker.",
+      "source": "https://topcat.aeaweb.org/articles?id=10.1257%2Fapp.20240181",
+      "independent_repository": "https://researchportal.tuni.fi/en/publications/which-reference-groups-matter-and-how-a-relative-income-informati/",
+      "rights": "AEA page lists replication package but exact DOI/readme/license not fetched, and administrative income/personal outcomes may be restricted. No human records read.",
+      "limits": "Income and subjective welfare, not forecasting leaderboard causal effect. Strong refutation of broad novelty claim only; direction/size do not transfer to PFL.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_ORIGINAL_2026_RCT_NOVELTY_RIVAL"
+    },
+    {
+      "id": "PF-BR41",
+      "claim": "A journal's replication-package hyperlink or article license automatically permits original participant-microdata processing",
+      "update": "FALSE_DATASET_AND_LICENSE_GATES_SEPARATE",
+      "support": "AEA Data and Code Availability Policy updated Feb2026 requires Data Availability Statement, instrument/code and licensing; explicitly allows exceptions for confidential individual data, with README documenting omissions. AEA Data Editor FAQ Aug2026 distinguishes migrated and newer deposits, and deposit-specific license.",
+      "source": "https://www.aeaweb.org/journals/data/data-code-policy",
+      "secondary": "https://aeadataeditor.github.io/aea-de-guidance/FAQ.html",
+      "limits": "This is source-use governance, NOT a novel scientific observation; dataset-specific privacy, IRB, GDPR and use permissions remain unverified until actual approved deposit is inspected.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "SOURCE_AND_ETHICS_ADVERSARIAL_GATE"
+    },
+    {
+      "id": "PF-BR42",
+      "claim": "Beating an uninformative prior is sufficient evidence of forecasting usefulness independent of simple benchmark models",
+      "update": "STRONG_KNOWN_BASELINE_COMPARATOR",
+      "support": "Forecasting Collaborative 2023 Nature Human Behaviour, DOI 10.1038/s41562-022-01517-1: social science forecasting tournaments 86 teams/359 forecasts, later 120 teams/546 forecasts; authors found mean expert forecasts no more accurate than historical means, random walks, linear models or public aggregate on their studied series.",
+      "source": "https://www.nature.com/articles/s41562-022-01517-1",
+      "limits": "Published paper is not a randomized public leaderboard effect; it's independent forecasting baseline prior. No original individual rows downloaded.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_FORECASTING_COMPETENT_BASELINE"
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -661,5 +728,31 @@
     ],
     "c05": "NOT EXECUTED STOP_R5; conditional A–J causal fork",
     "source_rights": "NO HUMAN ROWS OR PERSONAL DATA PERMISSION"
+  },
+  "latest_branching5b_c05_external_gate": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c05-external-identification-gate-20261029",
+    "head_base_pr": 51,
+    "c05_status": "PLANNING_ONLY_R5_NOT_EXECUTED",
+    "authorized_new": 5,
+    "valid_before": 4,
+    "valid_after": 4,
+    "new_remaining": 1,
+    "historical_remaining": 2,
+    "ct2_before": 20,
+    "ct2_after": 20,
+    "novel_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "new_prior_ids": [
+      "PF-BR39",
+      "PF-BR40",
+      "PF-BR41",
+      "PF-BR42"
+    ],
+    "no_human_rows": true,
+    "audit_file": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json"
   }
 }
