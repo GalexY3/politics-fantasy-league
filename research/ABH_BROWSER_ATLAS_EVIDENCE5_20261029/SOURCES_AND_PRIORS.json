@@ -683,6 +683,32 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Three outcome-informed source pairs chosen because C08 had already found declining total rows; non-random selection and same public publisher. Field-level decomposition posthoc. Git version identity is not authoritative per-item first_public_at, no human microdata/exposure/causal effect, no full positive native source-file CLI. Counts of transitions are not unique changed events."
+    },
+    {
+      "id": "PF-BR50",
+      "claim": "Interim comparison feedback/rank in human forecasting is an untested or novel general PFL mechanism for increasing engagement.",
+      "update": "PRIOR_ART_DIRECT_RANDOMIZED_FOUR_ARM_2018_PUBLISHED_AAAI_2020; NOT_NOVEL_AS_GENERIC_CLAIM",
+      "support": "Independent original paper Mandal, Radanović & Parkes (AAAI 2020), DOI 10.1609/aaai.v34i02.5591, RCT four incentive treatments. 891 included selected workers of 945 enrolled, arms SR=207, PP=220, SR+PPRank=238, SR+PP=226. Rank condition daily **private quartile of peer prediction score**, not proven public all-player leaderboard. Authors report greater engagement with interim peer feedback and good aggregate accuracy for SR and SR+PPRank in subsets. Repo README Git SHA d4197dbdb69b6934b6ad565cfe070ae9009ee046 and analysis Rmd 9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c. No PFL human replication.",
+      "source": "https://github.com/debmandal/PP-MTurk-AAAI2020",
+      "doi": "10.1609/aaai.v34i02.5591",
+      "evidence": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json",
+      "type": "ABH_INDEPENDENT_PRIMARY_PRIOR_ART_RANDOMIZED_HUMAN_FEEDBACK_DESIGN",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "rights": "PUBLIC_README_AND_ANALYSIS_CODE_ONLY; participant files not downloaded; repository license NULL",
+      "limits": "External prior art about private quartile, not a PFL public leaderboard experiment. No comparable PFL human estimand. Conditioning on retained weekly workers and monetary package differences limit transport and interpretation."
+    },
+    {
+      "id": "PF-BR51",
+      "claim": "Published external longitudinal update/forecast-change analysis code can be assumed to align with its stated daily increments, without independent indexing audit.",
+      "update": "ORIGINAL_RMD_STATIC_CODE_COUNTEREXAMPLE_POSTHOC: OCT13 UPDATES CALL USES VAR2_5_MATCHING_OCT11_TO_OCT12_NOT_6; CHANGE13_EXCLUDED_FROM_CHANGE.oct",
+      "support": "Pinned independent Rmd 1169 lines blob SHA 9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c: CountUpdates var2=5 reads Oct11/Oct12 (lines 183-186); var2=6 reads Oct12/Oct13 (188-192); Updates13$updates calls var2=5 on line 222 (days 8-13 selectors [1,2,3,4,5,5]); Change.oct rbind lines 313-316 omits Change13. V8 static regex extracted original code with frozen document identity. Synthetic logic example cumulative Oct11=2 Oct12=4 Oct13=7: wrong source-tagged Oct13 increment 2 vs expected 3. Impact on final paper outcomes not measured, R not run.",
+      "source": "https://github.com/debmandal/PP-MTurk-AAAI2020/blob/a5ac7fcc0eec4325f603f0de9085e3021def9830/src/analysis.Rmd",
+      "evidence": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json",
+      "type": "ABH_INDEPENDENT_ORIGINAL_ANALYSIS_SCRIPT_POSTHOC_CODE_VALIDITY_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Post-hoc source-code issue, not preregistered directional outcome, no raw data or original R execution, can't infer published aggregate effects invalid/size. No participant identifiers processed."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -876,10 +902,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
+    "branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
     "granted": 30,
-    "valid_limited": 11,
-    "new_remaining": 19,
+    "valid_limited": 12,
+    "new_remaining": 18,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -893,7 +919,9 @@
       "PF-BR46",
       "PF-BR47",
       "PF-BR48",
-      "PF-BR49"
+      "PF-BR49",
+      "PF-BR50",
+      "PF-BR51"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
@@ -908,6 +936,9 @@
     "new_observation": "Original version pairs show 16 raw-row removals, 2 additions, 671 mutated row transitions (not unique outcomes), and many resolution_date / continuous resolved_to edits; market-binary eligible C08 results unchanged; V8 not native.",
     "verified_original_public_git_blobs_in_C10": 6,
     "raw_original_source_pair_audits": 3,
-    "product_latest": "C11 strict local CLI three C10 originals pinned Git SHA, Node 17/17 native synthetic fixture tests. Original local Git files NOT_AVAILABLE; positive original CLI NOT_EXECUTED; Atlas 0081 static parent+run checks only, not Python full replay."
+    "product_latest": "C11 strict local CLI three C10 originals pinned Git SHA, Node 17/17 native synthetic fixture tests. Original local Git files NOT_AVAILABLE; positive original CLI NOT_EXECUTED; Atlas 0081 static parent+run checks only, not Python full replay.",
+    "independent_external_human_prior_art": "AAAI 2020 Mandal et al. four-arm randomized forecasting incentive experiment private quartile feedback; paper and original Rmd checked, no person data or license",
+    "new_code_issue": "Original Rmd Oct13 updates var2=5 vs expected 6; posthoc statically verified, impact unknown",
+    "positive_PFL_human_causal_evidence": false
   }
 }
