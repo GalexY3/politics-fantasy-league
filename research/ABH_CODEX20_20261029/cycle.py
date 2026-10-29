@@ -18,7 +18,7 @@ elif mode=='run':
  if command and command[0]=='--':command=command[1:]
  pre=git('rev-parse','HEAD');out=subprocess.run(command,cwd=ROOT,capture_output=True)
  for name,blob in [('stdout',out.stdout),('stderr',out.stderr)]: (HERE/(cid+'.'+name)).write_bytes(blob)
- rec={'command':command,'cwd':str(ROOT),'code_commit':pre,'exit':out.returncode,'stdout_sha256':hashlib.sha256(out.stdout).hexdigest(),'stderr_sha256':hashlib.sha256(out.stderr).hexdigest()};write(HERE/(cid+'_RUN.json'),rec)
+ rec={'command':command,'cwd':str(ROOT),'code_commit':pre,'exit':out.returncode,'working_tree_status':git('status','--porcelain'),'source_file_sha256':{str(q.relative_to(ROOT)).replace(chr(92),'/'):hashlib.sha256(q.read_bytes()).hexdigest() for q in (ROOT/'proyectos/politics-fantasy-league/src').rglob('*') if q.is_file() and q.suffix in ('.py','.mjs','.cjs','.js')},'stdout_sha256':hashlib.sha256(out.stdout).hexdigest(),'stderr_sha256':hashlib.sha256(out.stderr).hexdigest()};write(HERE/(cid+'_RUN.json'),rec)
  print(json.dumps(rec));print(out.stdout.decode('utf8',errors='replace')[-1600:]);print(out.stderr.decode('utf8',errors='replace')[-500:])
 elif mode=='close':
  finding,decision,next_question=args
