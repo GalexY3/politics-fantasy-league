@@ -1,0 +1,20 @@
+{
+  "schema": "pfl.abh30.c14.first_attempt_invalidated.v1",
+  "cycle": "ABH30-C14",
+  "initial_prereg_commit": "cb6b06a69e813a54b610e062cbad2e6035ebfe7c",
+  "initial_code_Git_blob": "9380c56b37de9c0b80626c50de74a0af1287c8d5",
+  "initial_test_Git_blob": "29215400e0f5cdf67b0b5709ea15a902047c9a9a",
+  "original_native_tests": "18/18_PASS_FIRST_RUN",
+  "original_TAP_sha256": "83a105f343c3af5e64a6baa865aa2ad087469f2f7b88afd95751315fafc69a6c",
+  "status": "FIRST_INSTRUMENT_ATTEMPT_INVALIDATED_BY_POSTHOC_ADVERSARIAL_COUNTEREXAMPLE",
+  "new_cycle_counted": false,
+  "issue": "Hash regex .test() coerces nonstring object whose toString returns 64 hex; same object across arms passes strict equality, so nonstring fake event_frame accepted.",
+  "actual_native_repro": {
+    "unexpected_acceptance": true,
+    "type_of_event_frame": "object",
+    "synthetic_fake_toString_return": "64 lowercase hex a",
+    "runtime": "Node v22.16.0"
+  },
+  "scope": "Only synthetic contract validation; no real data, no exploitation, no participants.",
+  "repair_plan": "Add explicit typeof for event_frame and schedule and prereg adversarial regression test before re-run. Keep initial negative receipt unchanged; same C14 one-cycle repair, do not count posthoc as extra discovery."
+}
