@@ -1,0 +1,88 @@
+{
+  "schema": "pfl.abh.branch5.campaign.v1",
+  "date": "2026-10-29",
+  "mode": "AB-H_BRANCHED_5",
+  "authorized_new": 5,
+  "base_pr": 43,
+  "base_head": "631aa015cc4696c557b92f8f2e76fa4de9d21261",
+  "branch": "research/pfl-abh-branching5-exposure-20261029",
+  "cycles": [
+    {
+      "id": "C01",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "result": "full assigned synthetic roster incl 0 responses, 12 eligible units and 4 initial responses; 8/8 initial then 9/9 final suite, no human inference",
+      "grade": "0/3",
+      "D": 0
+    },
+    {
+      "id": "C02",
+      "type": "AB-P",
+      "status": "VALID_AFTER_PREREG_REPAIR_LIMITED_SYNTHETIC",
+      "result": "strict separation of earlier vs later vs equal-time vs undocumented display; initial adversarial bug reproduced and fixed with 9/9 checks",
+      "grade": "0/3",
+      "D": 1
+    },
+    {
+      "id": "C03",
+      "type": "AB-R",
+      "status": "PLANNING_ONLY_STOP_R5",
+      "result": "GJP original 2246 count does not furnish full assigned roster including nonrespondents; no human rows examined",
+      "grade": "0/3",
+      "D": 0
+    },
+    {
+      "id": "C04",
+      "type": "AB-R",
+      "status": "PLANNING_ONLY_STOP_R5",
+      "result": "Erat et al author links OSF data/code; OSF contents/license unverified. Palikot 2026 supplies competing composite treatment with existing control leaderboard.",
+      "grade": "0/3",
+      "D": 2
+    },
+    {
+      "id": "C05",
+      "type": "AB-H",
+      "status": "UNOPENED_R5",
+      "result": "No extra distinct experiment identified for ethical/legal and scientific gate",
+      "grade": "0/3",
+      "D": null
+    }
+  ],
+  "counts": {
+    "valid": 2,
+    "invalid_cycles_final": 0,
+    "invalid_attempts": 1,
+    "planning": 2,
+    "unopened": 1,
+    "remaining_new": 3,
+    "remaining_legacy_separate": 2
+  },
+  "CT2": {
+    "branch": "PFL_V1_prospective_science",
+    "before": 22,
+    "after": 22,
+    "scale": [
+      1,
+      100
+    ],
+    "ordinal_not_probability": true
+  },
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "pilot_launch_gates_passed": 0,
+  "total_launch_gates": 6,
+  "decision": "STOP_R5_SCIENTIFIC; TWO_SYNTHETIC_PRODUCT_CYCLES_COMPLETED; PRESERVE_THREE_NEW_AND_TWO_LEGACY",
+  "no_main_merge": true,
+  "no_chatrelay": true,
+  "no_expensive_CI": true,
+  "personal_records_downloaded": 0,
+  "source_prior_update": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+  "receipts": [
+    "PREREG_FREEZE.json",
+    "TIMESTAMP_TIE_REPAIR_PREREG.json",
+    "RUN_RECEIPT.json"
+  ]
+}
