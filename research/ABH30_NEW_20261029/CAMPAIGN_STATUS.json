@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 11,
-    "new_remaining": 19,
+    "new_completed": 12,
+    "new_remaining": 18,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -294,15 +294,40 @@
         "atlas_0081_native_python_full_replay": "NOT_EXECUTED"
       },
       "limits": "17 synthetic/local CLI tests only; no genuine original local file E2E, no clean clone, no new publisher or human data, no causal evidence. Existing read-only CLI supplements but does not supersede original C04/C06 question audit."
+    },
+    {
+      "id": "ABH30-C12",
+      "mode": "AB-R_INDEPENDENT_PRIMARY_HUMAN_RANDOMIZED_FORECAST_INCENTIVES_DOCS",
+      "D": 2,
+      "status": "VALID_LIMITED_PRIMARY_AAAI_CODE_AND_METHOD_DOCUMENTARY_NO_PERSON_DATA",
+      "grade_science": "0/3",
+      "prereg_commit": "eec8c9ce4bdc847c6b30f8527a5e14d0cc55cd68",
+      "run_receipt": "C12_RUN_RECEIPT.json",
+      "verified": {
+        "independent_published_RCT": true,
+        "paper_DOI": "10.1609/aaai.v34i02.5591",
+        "external_readme_SHA": "d4197dbdb69b6934b6ad565cfe070ae9009ee046",
+        "original_analysis_Rmd_SHA": "9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c",
+        "treated_forecasters_in_paper": 891,
+        "arms": 4,
+        "private_daily_quartile_feedback_not_public_leaderboard": true,
+        "original_Rmd_Oct13_update_selector_bug": "POST_HOC_STATIC_SOURCE_VALIDATED",
+        "Rmd_last_day_change_missing": "POST_HOC_STATIC_SOURCE_VALIDATED",
+        "person_level_downloads": 0,
+        "repo_license_declared": null,
+        "original_R_script_native": "NOT_EXECUTED",
+        "PFL_human_experiment": "NOT_EXECUTED"
+      },
+      "limits": "Independent published human RCT is prior art, not new PFL result or direct replicated estimand. 54/945 inclusion selection may affect ITT, no attrition arm data; private quartile not public league. Rmd original code defects posthoc; impact on published results not established. Public repo no declared license, no participant rows accessed."
     }
   ],
   "counting": {
-    "valid_limited": 11,
+    "valid_limited": 12,
     "invalid_cycles": 0,
     "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 19,
-    "new_remaining": 19,
+    "unopened_authorized": 18,
+    "new_remaining": 18,
     "historical_remaining": 2
   },
   "science": {
@@ -347,6 +372,13 @@
       "CLI_rejects_synthetic_if_original_Git_pins": "PASS",
       "release_gate_changed": false,
       "main_integration": false
+    },
+    "independent_rank_feedback_published_prior": {
+      "source": "AAAI-2020-Mandal-Radanovic-Parkes",
+      "verified_design_and_Rmd": true,
+      "translates_to_product_hypothesis": "DIFFERENTIAL_PFL_PRIVATE_QUARTILE_VS_PUBLIC_LEADERBOARD_UNTESTED",
+      "new_release_gate_passed": false,
+      "personal_microdata_allowed": false
     }
   },
   "negative_results": [
@@ -379,7 +411,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_11_OF_30_C11_LOCAL_PINNED_PUBLIC_REVISION_CLI;19_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_SCIENCE_20_NEW_N123_0_RELEASE_0_OF_6",
-  "last_branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
-  "last_documentary_source_prior": "PF-BR49"
+  "decision": "ABH30_12_OF_30_C12_INDEPENDENT_HUMAN_RANDOMIZED_PRIOR_ART_DOC_AUDIT;18_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_20_N123_0_RELEASE_0_OF_6",
+  "last_branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
+  "last_documentary_source_prior": "PF-BR51"
 }
