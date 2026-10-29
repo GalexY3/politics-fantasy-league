@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {boundFictionalPilot} from '../src/politics_fantasy/fictional_missingness_bounds.mjs';
+const cell=(assigned,observed,sum)=>({assigned,observed,observed_score_sum:sum});
+const data=(arms)=>({study_fixture:'FICTIONAL_AGGREGATES_ONLY',arms});
+const base=()=>data({control:cell(10,10,6),transparency:cell(10,10,6),leaderboard:cell(10,10,6),both:cell(10,10,6)});
+const replace=(source,arm,v)=>data({...source.arms,[arm]:v});
+
+test('fully observed synthetic outcomes produce zero effect and collapsed bounds',()=>{const z=boundFictionalPilot(base());assert.equal(z.missing_total,0);for(const x of Object.values(z.effects)){assert.equal(x.lower,0);assert.equal(x.upper,0);assert.equal(x.complete_case_descriptive,0)}});
+test('known factorial differences are point identified in fully observed synthetic four arms',()=>{const v=data({control:cell(10,10,1),transparency:cell(10,10,3),leaderboard:cell(10,10,5),both:cell(10,10,9)});const z=boundFictionalPilot(v);assert.ok(Math.abs(z.effects.interaction.lower-0.2)<1e-12);assert.equal(z.effects.interaction.lower,z.effects.interaction.upper)});
+test('completer advantage can reverse after worst-case missingness',()=>{const v=replace(base(),'leaderboard',cell(10,4,3.8));const z=boundFictionalPilot(v);assert.ok(z.cells.leaderboard.complete_case_mean>z.cells.control.complete_case_mean);assert.ok(z.cells.leaderboard.lower<z.cells.control.lower);assert.equal(z.effects.leaderboard.sign_identified,'NOT_IDENTIFIED');assert.equal(z.missing_total,6)});
+test('all-missing arm returns finite [0,1] without fictional zero outcomes',()=>{const v=replace(base(),'both',cell(10,0,0));const z=boundFictionalPilot(v);assert.equal(z.cells.both.lower,0);assert.equal(z.cells.both.upper,1);assert.equal(z.cells.both.complete_case_mean,null);assert.equal(z.effects.interaction.complete_case_descriptive,null)});
+test('extra missingness can only widen when observed sum and assigned stay fixed',()=>{const z1=boundFictionalPilot(replace(base(),'both',cell(10,9,3)));const z2=boundFictionalPilot(replace(base(),'both',cell(10,5,3)));assert.equal(z1.cells.both.lower,z2.cells.both.lower);assert.ok(z2.cells.both.upper>z1.cells.both.upper)});
+test('positive interaction can be sign-identified with fully observed extreme cells',()=>{const v=data({control:cell(10,10,10),transparency:cell(10,10,0),leaderboard:cell(10,10,0),both:cell(10,10,10)});assert.equal(boundFictionalPilot(v).effects.interaction.sign_identified,'POSITIVE')});
+test('negative interaction can be sign-identified with fully observed extreme cells',()=>{const v=data({control:cell(10,10,0),transparency:cell(10,10,10),leaderboard:cell(10,10,10),both:cell(10,10,0)});assert.equal(boundFictionalPilot(v).effects.interaction.sign_identified,'NEGATIVE')});
+test('missing effects cannot be interpreted as authenticated causal ITT',()=>{const z=boundFictionalPilot(base());assert.equal(z.actual_randomization_authenticated,false);assert.equal(z.actual_exposure_authenticated,false);assert.equal(z.causal_effect_claim,false);assert.equal(z.release_ready,false)});
+test('input forbids identities and individual rows',()=>assert.throws(()=>boundFictionalPilot({...base(),rows:[]}),/FICTIONAL_AGGREGATES_REQUIRED/));
+test('rejects extra unregistered arm',()=>assert.throws(()=>boundFictionalPilot(data({...base().arms,private_quartile:cell(1,1,1)})),/FICTIONAL_AGGREGATES_REQUIRED/));
+test('rejects negative scores',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'control',cell(10,10,-0.01))),/INVALID_BOUNDED_COUNTS/));
+test('rejects sum exceeding observed successes',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'control',cell(10,4,4.2))),/INVALID_BOUNDED_COUNTS/));
+test('rejects missing fraction masquerading as zero assigned',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'control',cell(0,0,0))),/INVALID_BOUNDED_COUNTS/));
+test('rejects observed greater than assigned',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'both',cell(10,11,5))),/INVALID_BOUNDED_COUNTS/));
+test('rejects floating assigned counts',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'both',cell(10.5,5,2))),/INVALID_BOUNDED_COUNTS/));
+test('rejects non-finite score',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'both',cell(10,2,Infinity))),/INVALID_BOUNDED_COUNTS/));
+test('rejects all-missing with nonzero observed score',()=>assert.throws(()=>boundFictionalPilot(replace(base(),'both',cell(10,0,0.1))),/INVALID_BOUNDED_COUNTS/));
+test('rejects inherited prototype payload',()=>assert.throws(()=>boundFictionalPilot(Object.assign(Object.create({danger:true}),base())),/FICTIONAL_AGGREGATES_REQUIRED/));
