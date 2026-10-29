@@ -29,7 +29,13 @@
         "questions": 1000,
         "cohort_regression_date_effect": "2026-09-27 changes accepted 10→52 between as_of 2026-10-01 and 2026-10-29"
       },
-      "limitations": "V8 exact code/tests, not Node end-to-end; existing cohort regression not new independent confirmation, no real human effect."
+      "limitations": "V8 exact tests and native Node module tests 15/15; not full production HTTP end-to-end. existing cohort regression not new independent confirmation, no real human effect.",
+      "native_additional_confirmation": {
+        "tests": "15/15",
+        "runtime": "Node v22.16.0",
+        "prereg_SHA_commit": "7d78ee6745fc7ad52e7dad96874c1e0a6c5cd528",
+        "same_cycle": true
+      }
     },
     {
       "id": "ABH30-C02",
