@@ -1,3 +1,5 @@
+> **Fuentes · 29/10/2026:** avances parciales [T019](T019_AVANCE_20261029.md), [T020](T020_AVANCE_20261029.md), [T023](T023_AVANCE_20261029.md); [T021](T021_AVANCE_20261029.md) recibió 403. Ninguno se declara cerrado. Originales fuera de Git.
+
 > **T026 · 29/10/2026:** [avance parcial](T026_AVANCE_20261029.md), 84 pruebas reconstruidas y persistentes; sin aprobación ética ni participantes.
 
 > **QA 29/10/2026:** [T025 mecanismos](T025_MECANISMOS_RESULTADO.md) tiene controles nativos y reparación con versión de validación, con límites pendientes. [T028](T028_COMPLEMENTO_20261029.md) añade 11 comprobaciones de navegador a las ya verificadas. Hay otra T025 RELEASEPATH en un linaje distinto; no confundirlas.
