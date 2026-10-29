@@ -267,6 +267,14 @@
       "state": "answered",
       "summary": "C15 strict five-arm synthetic assigned membership × opportunity window × render-receipt comparison. Native Node frozen 20/20, no real renderer attestation, missing receipts remain unknown. CT2 science 20, grade 0/3, 0/6 release.",
       "source": "../ABH30_NEW_20261029/C15_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
+      "type": "product_native_view_generation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C16 Node computed five-arm fictional views and self-generated synthetic receipts, native 15/15 pass, no browser or independent delivery, science 0/3.",
+      "source": "../ABH30_NEW_20261029/C16_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -587,6 +595,12 @@
       "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
       "relation": "related_to",
       "interpretation": "No synthetic display receipt is unknown exposure and cannot be treated as known outcome missingness or no treatment; independent estimands."
+    },
+    {
+      "from": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
+      "to": "PFL-ABH30-C15-FIVE-ARM-OPPORTUNITY-RECEIPT",
+      "relation": "tests",
+      "interpretation": "Renderer internally constructs receipts for C15, unlike pre-supplied synthetic receipt fixtures."
     }
   ],
   "rules": {
@@ -610,8 +624,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 15,
-      "new_unused": 15,
+      "new_valid": 16,
+      "new_unused": 14,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -619,9 +633,9 @@
         0,
         0
       ],
-      "last_source_pr": 67,
-      "branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
-      "latest_valid_cycle": "ABH30-C15",
+      "last_source_pr": 68,
+      "branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
+      "latest_valid_cycle": "ABH30-C16",
       "invalid_attempts": 3
     }
   }
