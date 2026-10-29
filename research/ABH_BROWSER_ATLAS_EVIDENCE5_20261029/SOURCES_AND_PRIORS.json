@@ -770,6 +770,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Node-only synthetic self-receipts cannot establish actual human display or effect, no authorized participants."
+    },
+    {
+      "id": "PF-BR57",
+      "claim": "Synthetic render receipts declared independent and integrity-proof can be treated as external human delivery.",
+      "update": "SOURCE_PROVENANCE_AND_DATA_INTEGRITY_ARE_DIFFERENT; NATIVE_HMAC_TAMPER_GUARD_PASSES_BUT_NO_TRUSTED_KEY_DOMAIN",
+      "support": "C17 frozen Git SHA32753527824a788b8b15ecebfa7320dca2e93517, native 16/16 Node tests, HMAC-SHA256 on exact synthetic receipt fields rejects tampering and replay; caller supplied key and verifier in same runtime cannot prove deployed renderer or human view.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C17_RUN_RECEIPT.json",
+      "type": "ABH_PRODUCT_CRYPTO_INTEGRITY_CONDITIONAL",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No independent trust root, key custody, real event provenance or participants; ordinary HMAC not novel mathematical discovery."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -963,10 +975,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
+    "branch": "research/pfl-abh30-c17-integrity-proof-20261029",
     "granted": 30,
-    "valid_limited": 16,
-    "new_remaining": 14,
+    "valid_limited": 17,
+    "new_remaining": 13,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -987,7 +999,8 @@
       "PF-BR53",
       "PF-BR54",
       "PF-BR55",
-      "PF-BR56"
+      "PF-BR56",
+      "PF-BR57"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
