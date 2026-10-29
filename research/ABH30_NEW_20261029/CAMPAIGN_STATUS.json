@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 12,
-    "new_remaining": 18,
+    "new_completed": 13,
+    "new_remaining": 17,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -319,15 +319,43 @@
         "PFL_human_experiment": "NOT_EXECUTED"
       },
       "limits": "Independent published human RCT is prior art, not new PFL result or direct replicated estimand. 54/945 inclusion selection may affect ITT, no attrition arm data; private quartile not public league. Rmd original code defects posthoc; impact on published results not established. Public repo no declared license, no participant rows accessed."
+    },
+    {
+      "id": "ABH30-C13",
+      "mode": "AB-H_AB-P_MATHEMATICAL_PARTIAL_ID_SYNTHETIC_AGGREGATES",
+      "D": 2,
+      "status": "VALID_LIMITED_NATIVE_MANSKI_BOUNDS_18_OF_18_NO_HUMAN_DATA",
+      "grade_science": "0/3",
+      "prereg_commit": "5c2b06558f7f497a4d21954467f48d95310247d7",
+      "run_receipt": "C13_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_version": "v22.16.0",
+        "native_tests_first_execution": "18/18_PASS",
+        "native_git_blob_source": "93f18028fba28e9a4ee2b71183ca5a9a6825fde6",
+        "native_git_blob_tests": "eedf1b826914ffae4634216107fa090be0d3910c",
+        "original_synthetic_factorial_complete_case_leaderboard": 0.175,
+        "mathematical_identification_bounds_leaderboard": [
+          -0.11,
+          0.19
+        ],
+        "interaction_bounds": [
+          -0.38,
+          0.22
+        ],
+        "human_rows_processed": 0,
+        "actual_randomization_or_exposure": "NOT_VERIFIED",
+        "positive_production_integration": "NOT_EXECUTED"
+      },
+      "limits": "Standard mathematical partial identification applied to entirely synthetic four-arm aggregate, not novel social science or a human ITT estimate. Assumption normalized outcomes in [0,1]. Can bound but cannot identify sign under MNAR. No full product rollout."
     }
   ],
   "counting": {
-    "valid_limited": 12,
+    "valid_limited": 13,
     "invalid_cycles": 0,
     "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 18,
-    "new_remaining": 18,
+    "unopened_authorized": 17,
+    "new_remaining": 17,
     "historical_remaining": 2
   },
   "science": {
@@ -379,6 +407,13 @@
       "translates_to_product_hypothesis": "DIFFERENTIAL_PFL_PRIVATE_QUARTILE_VS_PUBLIC_LEADERBOARD_UNTESTED",
       "new_release_gate_passed": false,
       "personal_microdata_allowed": false
+    },
+    "fictional_missingness_partial_identification": {
+      "native_mathematical_tests": "18/18_PASS",
+      "source": "src/politics_fantasy/fictional_missingness_bounds.mjs",
+      "originality": "STANDARD_MANSKI_BOUNDS_NOT_NOVEL_MATH",
+      "human_data_used": false,
+      "release_gate_changed": false
     }
   },
   "negative_results": [
@@ -411,7 +446,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_12_OF_30_C12_INDEPENDENT_HUMAN_RANDOMIZED_PRIOR_ART_DOC_AUDIT;18_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_20_N123_0_RELEASE_0_OF_6",
-  "last_branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
-  "last_documentary_source_prior": "PF-BR51"
+  "decision": "ABH30_13_OF_30_C13_SYNTHETIC_MANSKI_PARTIAL_IDENTIFICATION;17_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_20_N123_0_RELEASE_0_OF_6",
+  "last_branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
+  "last_documentary_source_prior": "PF-BR52"
 }
