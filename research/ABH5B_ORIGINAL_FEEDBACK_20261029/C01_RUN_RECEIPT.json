@@ -1,0 +1,87 @@
+{
+  "schema": "pfl.abh5b.c01.receipt.v1",
+  "date": "2026-10-29",
+  "status": "EXECUTED_LIMITED_ABR_AFTER_TEST_REPAIR",
+  "source": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+  "source_page_numbers": [
+    5,
+    7,
+    9,
+    10
+  ],
+  "parent_prereg_commit": "b120259533672e2a05293eecb586b3c204ddb596",
+  "raw_human_rows_processed": 0,
+  "runtime": "Python 3.13, local isolated stdlib",
+  "original_source_sha256": "265f2d736982fb7f2d1aea29f81fa77bdd3c4acfde3b85c4dedd7a273165216e",
+  "git_source_blob": "ec5bf6b63699e78beb2880d0eaa82fa0a04911b1",
+  "initial_test_sha256": "6439ca0ce743014927c44cf6a1a183036f4b7aaa9b0aae684b94b11fb2257ade",
+  "initial_test_blob": "632f6f42f651107625b05e708dd466866c84f46b",
+  "initial_run": {
+    "tests": 7,
+    "ok": 5,
+    "errors": 2,
+    "exit_code": 1,
+    "analysis_exit": 0,
+    "negative_preserved": true,
+    "error": "float() cannot parse textual Fraction -4063/2150; two test harness assertions invalid, source analysis produced valid JSON"
+  },
+  "repair_prereg_commits": [
+    "eeb2e4f54c19b42671b5c2129c5d0ea0d90a4803",
+    "95ff3dba28ecbd650163f605defa2d02fd3cb2bc"
+  ],
+  "fixed_test_git_sha": "13a6ad7eb7b9b1c8f5fa1406db576f891cd28588",
+  "fixed_test_sha256": "1afa975678069f3e080ef3c4fbf3ed6a0626e92fa57744cdcf69e1bb5f3cc04c",
+  "fixed_test_commit": "31bab2fe553cafe9fbd4787b78c91dd136ddcae5",
+  "repaired_run": {
+    "tests": 7,
+    "pass": 7,
+    "errors": 0,
+    "exit_code": 0,
+    "analysis_exit": 0
+  },
+  "result": {
+    "N_published": 427,
+    "interest_anova_inferred_N": 345,
+    "cases_not_in_ANOVA": 82,
+    "treatment_check_N": 344,
+    "primary_high_up_vs_control_observed_mean_diff": 0.37,
+    "conditional_bounds_interest": [
+      -1.889767,
+      2.192222
+    ],
+    "competence_observed_diff": 0.5,
+    "conditional_bounds_competence": [
+      -1.99814,
+      2.431556
+    ],
+    "feasible_focal_allocations_enumerated": 3486,
+    "lower_witness_missing_higher_up_control_others": [
+      82,
+      0,
+      0
+    ],
+    "upper_witness_missing_higher_up_control_others": [
+      0,
+      82,
+      0
+    ]
+  },
+  "caveats": [
+    "F degrees imply case count assuming ordinary one-way ANOVA",
+    "Unrepresented is not documented to be dropout; true reasons unknown",
+    "All outcomes in [1,5], arm-level missing allocation unknown; published means rounded",
+    "Wide bounds do not contradict published significance for complete cases",
+    "Original OSF not accessible; no actual underlying human replications"
+  ],
+  "science": {
+    "ct2_before": 22,
+    "after": 22,
+    "grade": "0/3",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "classification": "ONE A-J SCIENTIFIC_METHODOLOGICAL_PUBLISHED_AGGREGATE; NOT ORIGINAL HUMAN_CAUSAL_DISCOVERY"
+}
