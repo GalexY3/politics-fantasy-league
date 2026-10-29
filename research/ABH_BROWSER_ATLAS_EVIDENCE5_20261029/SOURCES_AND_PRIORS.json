@@ -106,6 +106,12 @@
       "url": "https://www.aeaweb.org/journals/data/data-code-policy",
       "support": "Explicit non-public data exceptions; README and per-deposit license needed",
       "limit": "General policy does not authorize individual human rows"
+    },
+    {
+      "kind": "Original public non-person forecasting source licensed CC BY-SA 4.0",
+      "url": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "support": "Immutable upstream original commit and four holdout blob SHA checks; 2×500 real event questions, 60 valid filtered market probabilities, 500 invalid semantic nonprobability question records",
+      "limit": "Source questions heterogeneous including raw count/numeric forecasts, public aggregate market p not PFL prediction; inherited rights for text must be checked before public reproduction."
     }
   ],
   "priors": [
@@ -586,6 +592,20 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "type": "INDEPENDENT_FORECASTING_COMPETENT_BASELINE"
+    },
+    {
+      "id": "PF-BR43",
+      "claim": "Published mixed-source forecasting question-set snapshots can be Brier-scored by interpreting any numeric freeze_datetime_value between 0 and 1 as a probability and matching only by question ID",
+      "update": "FALSE_REAL_ORIGINAL_QUESTION_SEMANTICS_AND_TIME_PROVENANCE_AUDIT",
+      "support": "Original ForecastBench ICLR 2025 official CC BY-SA repository, immutable Git source commit 027ba0b3017a60e0e64602d724284ac6b2d91134. Our AB-P pre-frozen code/test and post-prereg independent real public cohorts 2026-09-27 and 2026-10-11 each contain 500 actual questions. Exactly 250 per cohort come from non-probability raw-quantity source families, excluded even if numeric freeze value is <=1. Of 1000 original questions 60 meet source and outcome/date gates (52 Sep27,8 Oct11), with missing/unresolved others. Native Node 12/12 PASS after preregistered exact duplicate-row accounting repair; preserved first 8/12 crash. Source+ID join, strict freeze<due<resolution, disallow multiple resolution records, no imputation of unresolved outcomes. On selected resolved external market subset official frozen market aggregate Brier 0.1680 and 0.0707 respectively; these are NOT PFL forecasts nor population-wide evidence.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "pinned_upstream_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "license": "CC BY-SA 4.0 for repository question/outcome datasets, authors Forecasting Research Institute, Karger et al ICLR 2025",
+      "evidence": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/C05_RUN_RECEIPT.json",
+      "type": "VALID_ABP_SOURCE_BACKED_REAL_QUESTION_INGESTION_PROVENANCE_GUARD",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No original human forecast history, identification, rank exposure, users or personal data; source publisher/market texts not redistributed. Frozen aggregate market forecast provenance and event resolutions are observational among selected resolved cases. Do NOT claim statistical superiority vs naive p=.5 as a competent comparator; release gates remain 0/6."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -754,5 +774,27 @@
     ],
     "no_human_rows": true,
     "audit_file": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json"
+  },
+  "latest_branching5b_c05_real_source": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c05-real-forecastbench-safegate-20261029",
+    "previous_pr": 52,
+    "status": "AB-P VALID LIMITED ORIGINAL QUESTION DATA SOURCE AUDIT",
+    "new_granted": 5,
+    "new_completed": 5,
+    "new_remaining": 0,
+    "historical_remaining_unspent": 2,
+    "ct2_science_before": 20,
+    "ct2_science_after": 20,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "source_sha": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "original_questions": 1000,
+    "eligible_resolved_market_probabilities": 60,
+    "first_native_failed_attempt_preserved": true,
+    "final_native_tests": "12/12"
   }
 }
