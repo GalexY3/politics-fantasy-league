@@ -1,3 +1,13 @@
+# ABH30-C15 — CONTINUIDAD DEL PROYECTO (29/10/2026)
+
+**Contabilidad verificada:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **15/30 nuevos válidos de alcance técnico limitado; 15 nuevos autorizados pendientes y 2 plazas históricas separadas STOP_R5**. CT2 prospectiva científica **20/100 ordinal**, nuevos N1/N2/N3 0/0/0 y seis gates de lanzamiento **0/6**. No merge main, no ChatRelay, no CI costosa, ni datos personales o puntuaciones de políticos reales.
+
+**C15:** el [código](../src/politics_fantasy/fictional_rank_delivery_audit.mjs) conecta la configuración estricta de cinco brazos C14 con **asignaciones sintéticas**, **oportunidades de visualización fechadas** y **recibos ficticios de render**. Valida brazo, sala, granularidad, audiencia, duplicados, ventanas y discrepancias entre configurado y supuestamente visto. La ausencia de recibo permanece **EXPOSICIÓN DESCONOCIDA** y no convierte no visualizado en cero. La marca `INDEPENDENT_SYNTHETIC_RENDER_LOG` es un literal de fixture y **no acredita independencia del renderizador real**. [Prerregistro A–J](../research/ABH30_NEW_20261029/C15_PREREG_AJ_SHA.json) commit `582035ac5d18ddb1ce2504cf0dba044225f61e9a` anterior a ejecución nativa, archivos cotejados con Git/SHA256 y **Node.js v22.16.0 20/20 PASS (exit 0)**. [Recibo](../research/ABH30_NEW_20261029/C15_RUN_RECEIPT.json) · [informe](../research/ABH30_NEW_20261029/C15_REPORT.md) · prior **PF-BR55**, grado 0/3. No hay prueba de entrega real, asignación humana, integridad de logs externos ni efecto experimental.
+
+**Atlas:** nuevo delta append-only [0086](updates/0086-pfl-abh30-c15-five-arm-receipt-riskset-20261029.json), parent 0085; el reloj `at` del lote procede de una declaración de la herramienta sin comprobación de sincronización de reloj con el host de ejecución, no usar para inferir precedencia independiente. **El replay del checker original Python de los 81–86 lotes NO se ejecutó**: runtime local no resuelve GitHub para descargar 86 deltas y baseline; no sustituirlo por el recuento del directorio o checks estáticos parciales. Último checker Python completo certificado previamente **80 lotes/63 nodos**. La visualización HTML no puede afirmarse sincronizada.
+
+---
+
 # CONTINUIDAD ABH30-C14 · FACTORIAL DE VISIBILIDAD DEL RANKING (29/10/2026)
 
 **Ledger:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **14/30 ciclos nuevos limitados ejecutados, 16 pendientes**, dos plazas históricas STOP_R5 separadas. **CT2 científica PFL 20/100 ordinal**, nuevos N1/N2/N3 0/0/0, puertas de lanzamiento 0/6. Esta cuenta incluye C14 UNA sola vez, tras reparación del primer intento inválido; intentos inválidos acumulados 3, no ciclos inválidos adicionales.
