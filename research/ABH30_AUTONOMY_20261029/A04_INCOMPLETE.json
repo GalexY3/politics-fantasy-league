@@ -1,0 +1,35 @@
+{
+  "id": "ABH30-P2-A04",
+  "status": "INCOMPLETE_NOT_VALID",
+  "prereg_commit": "cfea3db0f7cb9940d7cdc797d6a765bd1a712ebf",
+  "A": "Verify all 80 Atlas JSON parent references through private GitHub connector (not canonical Python)",
+  "B": "H0 missing or broken chain versus contiguous parent references",
+  "C": "Precommitted parse of all 80 JSON, parent_batch adjacency, lot0080 two run.add, chronology anomaly",
+  "D": "Connected GitHub REST directory (A03 verified 80 distinct files) and direct file fetch for 0079/0080",
+  "E": {
+    "full_80_file_metadata_parse": "NOT_COMPLETED: large GitHub REST listing intermittently returned empty, 80-file batch traversal halted",
+    "parse_verified_2_of_80": true,
+    "lot79": {
+      "blob": "2f4fa0f47eca3a90b2548a467a4ab0b5fb723df5",
+      "batch_id": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+      "at": "2026-10-29T01:00:00Z",
+      "operations": 5
+    },
+    "lot80": {
+      "blob": "e26ae1469846b2e57aa702503682ab50f95f500e",
+      "parent": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+      "at": "2026-10-29T00:26:37.468Z",
+      "operations": 2,
+      "run_add": 2
+    },
+    "current_0079_0080_parent_matches": true,
+    "timestamp_nonmonotonic": true
+  },
+  "F": "Previous PR37 reports manual 79-file chain check but not rerun by A04; do not count as full 80/80; no canonical replay.",
+  "G": "No independent native Python check",
+  "H": "Capability read of small files works; large inventory bulk operation fails intermittently",
+  "I": "Tech attempt incomplete; 0/3 science; unchanged CT2=22",
+  "J": "STOP A04; preserve test failure and seek native Python/download alternatives",
+  "CT2_before": 22,
+  "CT2_after": 22
+}
