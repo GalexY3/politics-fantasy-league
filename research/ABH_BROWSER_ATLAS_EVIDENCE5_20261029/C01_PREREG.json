@@ -1,0 +1,30 @@
+{
+  "cycle": "C01",
+  "type": "AB-P",
+  "A": "Does the local PFL four-arm viewer render and function in a real sandboxed Chromium browser with no key or network, against static-only previous testing?",
+  "B": [
+    "Full browser works",
+    "JS module route or CSP blocks rendering",
+    "keyboard/reset/navigation flawed"
+  ],
+  "C": {
+    "acceptance": [
+      "Chromium actual DOM rendered",
+      "four arms available",
+      "4 questions each with 3 inputs",
+      "condition toggle changes tutorial/board only",
+      "reset clears selection",
+      "no remote requests, persistence or score key"
+    ],
+    "controls": "Network recording, JS errors, compare baseline static test; explicit real Chromium binary version",
+    "falsifier": "Any critical rendering failure or unauthorized HTTP request"
+  },
+  "D": "Source bytes from PR36 must be exact Git blob SHA; browser test local isolated only; screenshots no personal content",
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED",
+  "status": "PREREG_BEFORE_EXECUTION"
+}
