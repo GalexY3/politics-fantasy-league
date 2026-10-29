@@ -18,7 +18,7 @@ export const SOURCE_VINTAGES=Object.freeze([
  {at:'2026-10-29T07:30:17Z',commit:'027ba0b3017a60e0e64602d724284ac6b2d91134',
   cohorts:Object.freeze({
    '2026-09-27':Object.freeze({questions:'d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0',resolutions:'b2ee53f09407e2b555668f66e286073ace6d5fce'}),
-   '2026-10-11':Object.freeze({questions:'fe9772f2275edcada671c4082cf9103185f1becf',resolutions:'d8416bccbfcd4736e9772748bb42fd4cc403db7e'})})
+   '2026-10-11':Object.freeze({questions:'fe9772f2275edcada671c4082cf9103185f1becf',resolutions:'d8416bccbfcd4736e9772748bb42fd4cc403db7e'})})}
 ]);
 const MARKETS=new Set(['metaculus','manifold','kalshi','polymarket']);
 const DATE=/^\d{4}-\d{2}-\d{2}$/;
