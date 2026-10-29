@@ -1,0 +1,45 @@
+{
+  "id": "ABH30-P1-C20",
+  "status": "VALID_KEYBOARD_DOM_AB_P",
+  "prereg_commit": "45bdf474c7b6a37e280da5ac20cb41555164321c",
+  "A": "See original Cxx_PREREG contract",
+  "B": "Rival null/competent baseline predeclared",
+  "C": "Endpoints, assumptions, falsifier frozen in prereg",
+  "D": {
+    "source_urls": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
+    ],
+    "source_code": "sandbox:/mnt/data/pfl_abh30_c19_c20.py"
+  },
+  "E": {
+    "chromium": "144.0.7559.96",
+    "focus_sequence": [
+      "arm",
+      "X1-0",
+      "X2-0",
+      "X3-0",
+      "X4-0",
+      "reset"
+    ],
+    "arm_after_ArrowDown": "transparency",
+    "progress_after_Space": "1 de 4",
+    "progress_after_keyboard_Enter_reset": "0 de 4",
+    "http_navigated": false
+  },
+  "F": {
+    "adversarial_limit": "Native keys and focus passed in about:blank with inline source; no validation of actual HTTP navigation, contrast/voice assistive devices, screen-reader behavior, or full WCAG conformance."
+  },
+  "G": "No external PFL human replication or novel scientific discovery",
+  "H": {
+    "prior_update": "Native keys and focus passed in about:blank with inline source; no validation of actual HTTP navigation, contrast/voice assistive devices, screen-reader behavior, or full WCAG conformance."
+  },
+  "I": {
+    "grade": "0/3",
+    "causality": "none for field; math conditional on exact assumptions",
+    "ethics": "No live people, real scoring or releases"
+  },
+  "J": "Conclude scoped mechanism, R5 transition to 10 autonomy probes; no more replicate synthetic generator",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
