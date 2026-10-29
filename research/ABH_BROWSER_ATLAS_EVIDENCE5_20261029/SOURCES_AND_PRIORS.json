@@ -709,6 +709,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Post-hoc source-code issue, not preregistered directional outcome, no raw data or original R execution, can't infer published aggregate effects invalid/size. No participant identifiers processed."
+    },
+    {
+      "id": "PF-BR52",
+      "claim": "Given missing outcomes, analyzing four-arm PFL fictional pilots with only completer means and a COMPLETE_CASE_NOT_ITT warning is enough to know which sign of treatment effect is compatible with the assigned population.",
+      "update": "MATHEMATICAL_COUNTEREXAMPLE_PARTIAL_IDENTIFICATION_BOUNDS_DEPEND_ON_MISSINGNESS; SIGN_NOT_IDENTIFIED_IN_ADVERSARIAL_FIXTURE",
+      "support": "Native Node 22.16.0 first run 18/18 on frozen code commit 5c2b06558f7f497a4d21954467f48d95310247d7. For assigned N, observed n, observed normalized sum S, arm mean lies in [S/N,(S+N-n)/N] with only outcomes in [0,1]. In synthetic four-cell PFL case 10 assigned per arm, complete control/transparency/both means 0.6; leaderboard 4/10 observed sum 3.8 => complete-case mean 0.95, naive factorial leaderboard +0.175 while bounded effect [-0.11,+0.19] includes zero, interaction [-0.38,+0.22]. Mathematical partial identification not human causal effect. Existing pilot_analysis_dryrun.mjs flags incomplete cases but does not compute bounds.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C13_RUN_RECEIPT.json",
+      "type": "ABH_MATHEMATICAL_BOUNDED_SYNTHETIC_PRODUCT_IDENTIFICATION",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Standard worst-case outcome bounds, not original mathematical discovery; synthetic aggregate only, no human randomization/exposure, no interpolation to real-political social effects, no release gate passed."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -902,10 +914,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
+    "branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
     "granted": 30,
-    "valid_limited": 12,
-    "new_remaining": 18,
+    "valid_limited": 13,
+    "new_remaining": 17,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -921,7 +933,8 @@
       "PF-BR48",
       "PF-BR49",
       "PF-BR50",
-      "PF-BR51"
+      "PF-BR51",
+      "PF-BR52"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
@@ -939,6 +952,7 @@
     "product_latest": "C11 strict local CLI three C10 originals pinned Git SHA, Node 17/17 native synthetic fixture tests. Original local Git files NOT_AVAILABLE; positive original CLI NOT_EXECUTED; Atlas 0081 static parent+run checks only, not Python full replay.",
     "independent_external_human_prior_art": "AAAI 2020 Mandal et al. four-arm randomized forecasting incentive experiment private quartile feedback; paper and original Rmd checked, no person data or license",
     "new_code_issue": "Original Rmd Oct13 updates var2=5 vs expected 6; posthoc statically verified, impact unknown",
-    "positive_PFL_human_causal_evidence": false
+    "positive_PFL_human_causal_evidence": false,
+    "new_product_mechanism": "C13 bounded [0,1] missingness interval 18/18 native Node on purely fictional 4-arm aggregate, sign ambiguity example, not causal"
   }
 }
