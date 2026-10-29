@@ -88,7 +88,20 @@
         "D": null,
         "grade": "0/3",
         "kind": "No distinct discriminating legal and ethical source with novelty beyond Pickal, Palikot, Felkey, Chen, Lumsden, GJP, and original forecasting evidence."
-      }
+      },
+      "last_review": "2026-10-29",
+      "last_audit": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json",
+      "last_decision": "../ABH5B_C05_EXTERNAL_GATE_20261029/C05_R5_DECISION.json",
+      "novelty_competitors_added": [
+        "PF-BR39 Agranov et al. 2026 raw signal v action visibility",
+        "PF-BR40 Xu et al. 2026 randomized rank comparison group",
+        "PF-BR42 Forecasting Collaborative 2023 strong naive forecasts baseline"
+      ],
+      "source_and_rights_unresolved": [
+        "Caltech original supplement reserved © Elsevier and NBER data appendix not opened",
+        "AEA linked replication package DOI/readme/license unavailable; personal income records protected",
+        "No joint public rank x action visibility within PFL, no complete assignment roster including nonrespondents, no independent exposure log, no ethics clearance"
+      ]
     }
   ],
   "counting": {
@@ -100,7 +113,11 @@
     "new_remaining": 1,
     "historical_unused": 2,
     "valid_product_formal": 1,
-    "valid_research_published_aggregate": 3
+    "valid_research_published_aggregate": 3,
+    "source_qa_activities_this_turn": 4,
+    "additional_valid_cycles_this_turn": 0,
+    "additional_invalid_cycles_this_turn": 0,
+    "additional_planning_cycles_this_turn": 0
   },
   "CT2": {
     "line": "PFL_V1_prospective_science",
@@ -126,7 +143,10 @@
     "C03 original Kloc randomized direct leaderboard offer reported no statistically discernible five-engagement benefit; 95% CI upper +.040 SD, conservative 5-endpoint familywise upper +.0502 SD exceeds illustrative 0.05 benchmark; cannot assert equivalence or positive effect.",
     "Kloc paper's intra-board dispersion association is not identical to random offer effect; 3,762 eligible ≠ verified all-registrant ITT.",
     "C04 deterministic winner-take-all quadratic ranking not incentive-compatible in exact p=.55 q=.60 case: rational r=.61 improves win probability by .10 despite worse expected quadratic score.",
-    "C05 STOP_R5: strong existing original prior art on public rank welfare, social-learning accuracy-risk, GJP ranking and strategy-proof forecast prizes. Neither consent/ethics nor legal access to eligible full randomized human roster available."
+    "C05 STOP_R5: strong existing original prior art on public rank welfare, social-learning accuracy-risk, GJP ranking and strategy-proof forecast prizes. Neither consent/ethics nor legal access to eligible full randomized human roster available.",
+    "New 2026 original Agranov RCT already isolates others' actions from common public raw signals: social-action visibility not an original untested mechanism; observed positive task effect does not generalize to PFL.",
+    "New 2026 original Xu randomized relative-rank reference group: comparison-group welfare heterogeneity not original; actual replication package rights and admin person rows not verified.",
+    "AEA Feb 2026 policy allows non-public confidential replication data. A 'replication package' label cannot authorize access nor prove assignment/eligibility/exposure records."
   ],
   "ethics": {
     "human_person_records_downloaded": 0,
@@ -138,8 +158,10 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "FOUR_VALID_LIMITED_CYCLES_OF_FIVE; C05_ONE_PLANNING_ONLY_AND_UNCONSUMED_R5; TWO_HISTORICAL_SEPARATE_UNCONSUMED",
+  "decision": "C05_R5_STOP_AFTER_FOUR_INDEPENDENT_SOURCE_QA_ACTIVITIES_NO_EXECUTION; FOUR_NEW_VALID_LIMITED_TOTAL; ONE_NEW_PLUS_TWO_HISTORICAL_UNCONSUMED",
   "sources_and_priors": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
   "latest_branch": "research/pfl-abh5b-incentive-proof-r5-20261029",
-  "canonical_report": "../ABH5B_INCENTIVE_FORMAL_20261029/FINAL_REPORT.md"
+  "canonical_report": "../ABH5B_C05_EXTERNAL_GATE_20261029/FINAL_REPORT.md",
+  "last_documentary_gate_date": "2026-10-29",
+  "last_documentary_gate_branch": "research/pfl-abh5b-c05-external-identification-gate-20261029"
 }
