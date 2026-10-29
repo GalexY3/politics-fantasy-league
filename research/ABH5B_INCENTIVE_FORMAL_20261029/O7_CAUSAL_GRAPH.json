@@ -219,6 +219,14 @@
       "state": "answered",
       "summary": "C09 importable public non-person raw revision auditor compares all (source,id) source JSON rows across revisions and detects adds, removes, metadata/Y mutations including constant-size replacement. SHA/Git code and 19/19 native Node synthetic adversarial tests frozen before run. No original 21-blob positive native application, no Git byte verification internally, no human scientific effects.",
       "source": "../ABH30_NEW_20261029/C09_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "type": "original_public_source_integrity_audit",
+      "mode": "AB-H",
+      "state": "answered",
+      "summary": "C10 original publisher public source event resolution JSON: six full original Git SHA reverified, three fixed source-version pairs compared with C09 frozen pure source in V8. 16 raw composite key removals, 2 additions, 671 mutations (transition events; mostly dates and continuous numeric resolved_to, not binary outcomes). 0/3 causal science, no positive native original-file CLI and no human participant exposure.",
+      "source": "../ABH30_NEW_20261029/C10_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -461,6 +469,24 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "related_to",
       "interpretation": "Synthetic public row QA cannot supply assignment rosters, independent pre-response exposure or legal participant data rights."
+    },
+    {
+      "from": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "to": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
+      "relation": "tests",
+      "interpretation": "Moves C09 from synthetic-only checks to bounded original public source comparisons in V8 with six complete Git SHA verified bodies."
+    },
+    {
+      "from": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "to": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "relation": "extends",
+      "interpretation": "Explains C08 original nonmonotone raw record counts, but does not undo eligible market binary outcome stability."
+    },
+    {
+      "from": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Original public event metadata is not a human randomization or consent/exposure roster."
     }
   ],
   "rules": {
@@ -484,8 +510,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 9,
-      "new_unused": 21,
+      "new_valid": 10,
+      "new_unused": 20,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -493,9 +519,9 @@
         0,
         0
       ],
-      "last_source_pr": 59,
-      "branch": "research/pfl-abh30-c09-raw-revision-guard-20261029",
-      "latest_valid_cycle": "ABH30-C09"
+      "last_source_pr": 60,
+      "branch": "research/pfl-abh30-c10-original-raw-revisions-20261029",
+      "latest_valid_cycle": "ABH30-C10"
     }
   }
 }
