@@ -1,0 +1,83 @@
+{
+  "id": "ABH30-P2-A02",
+  "status": "VALID_TECHNICAL_CAPABILITY_INTEGRITY_FAIL",
+  "prereg": "16d3d927d543507c692e26611c8f1d022d3aa5a8",
+  "A": "Can a limited local mirror be proven byte-identical to PFL branch sources without Codex?",
+  "B": "Exact matching vs local drift",
+  "C": "10 files, git hash-object, GitHub SHA; negative byte mutation",
+  "D": "Pinned private GitHub connector and local git hash-object",
+  "E": {
+    "results": [
+      {
+        "p": "pilot_local/server.mjs",
+        "local_git_blob": "b66ca94ec3ec5b038116f4e53ddb122617f2c5d2",
+        "remote_git_blob": "b66ca94ec3ec5b038116f4e53ddb122617f2c5d2",
+        "match": true
+      },
+      {
+        "p": "pilot_local/app.mjs",
+        "local_git_blob": "8d876e0f41d9473f56307f7939545c6c0b00d509",
+        "remote_git_blob": "8d876e0f41d9473f56307f7939545c6c0b00d509",
+        "match": true
+      },
+      {
+        "p": "pilot_local/index.html",
+        "local_git_blob": "b0700bad57b25aaadd859919d5d1a11d06e930a8",
+        "remote_git_blob": "b0700bad57b25aaadd859919d5d1a11d06e930a8",
+        "match": true
+      },
+      {
+        "p": "pilot_local/style.css",
+        "local_git_blob": "eabb5485d7d6d9c78574993281e89e00069ff4a9",
+        "remote_git_blob": "eabb5485d7d6d9c78574993281e89e00069ff4a9",
+        "match": true
+      },
+      {
+        "p": "pilot_local/smoke_http.mjs",
+        "local_git_blob": "a1fc27d8703fa9875b199cb7811aee3a67ee1f44",
+        "remote_git_blob": "a1fc27d8703fa9875b199cb7811aee3a67ee1f44",
+        "match": true
+      },
+      {
+        "p": "src/politics_fantasy/fictional_transfer_items.mjs",
+        "local_git_blob": "a23a8a9fddbd59a58633f049190e125100fbef50",
+        "remote_git_blob": "a23a8a9fddbd59a58633f049190e125100fbef50",
+        "match": true
+      },
+      {
+        "p": "src/politics_fantasy/fictional_transfer_key.mjs",
+        "local_git_blob": "34e7af21537997de70b010c3da820042de07b9fe",
+        "remote_git_blob": "34e7af21537997de70b010c3da820042de07b9fe",
+        "match": true
+      },
+      {
+        "p": "src/politics_fantasy/pilot_assignment.mjs",
+        "local_git_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+        "remote_git_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+        "match": true
+      },
+      {
+        "p": "src/politics_fantasy/pilot_analysis_dryrun.mjs",
+        "local_git_blob": "97dd19999bfa5520740139b397e16b2783592518",
+        "remote_git_blob": "97dd19999bfa5520740139b397e16b2783592518",
+        "match": true
+      },
+      {
+        "p": "src/politics_fantasy/pilot_dryrun_intake.mjs",
+        "local_git_blob": "f0959f4576e33aa2b756bdd353023d298c5ab2",
+        "remote_git_blob": "f0959f4576d7e33aa2b756bdd353023d298c5ab2",
+        "match": false
+      }
+    ],
+    "positive_matches": 9,
+    "control_app_original": "8d876e0f41d9473f56307f7939545c6c0b00d509",
+    "control_app_mutated_append_X": "b28b112288336ad9e2b9cfbe0f1e393345d8f24e"
+  },
+  "F": "Git blob SHA-1 is source integrity consistency, not original publisher SHA-256, not private full checkout or trust of host; C06 patch included",
+  "G": "Independent module execution separate; no claim whole repo snapshot",
+  "H": "Tool matrix: local restricted subset can be verified",
+  "I": "Bounded technical 0/3",
+  "J": "CONTINUE to Atlas completeness",
+  "CT2_before": 22,
+  "CT2_after": 22
+}
