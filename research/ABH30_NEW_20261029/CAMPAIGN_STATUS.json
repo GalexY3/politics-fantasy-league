@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 16,
-    "new_remaining": 14,
+    "new_completed": 17,
+    "new_remaining": 13,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -412,15 +412,31 @@
         "causal": false
       },
       "limits": "Node renders real fixture-dependent computed views but no real browser or attested human exposure"
+    },
+    {
+      "id": "ABH30-C17",
+      "mode": "AB-P_HMAC_INTEGRITY_SYNTHETIC_RECEIPTS",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_16_OF_16",
+      "grade_science": "0/3",
+      "prereg_commit": "cff57d7abc625576a49554e243d33c6bad5d7312",
+      "run_receipt": "C17_RUN_RECEIPT.json",
+      "verified": {
+        "tests": "16/16_PASS",
+        "source_Git": "32753527824a788b8b15ecebfa7320dca2e93517",
+        "real_key_trust_root": false,
+        "actual_browser": false
+      },
+      "limits": "HMAC with synthetic caller-supplied key only, no real provenance or exposure."
     }
   ],
   "counting": {
-    "valid_limited": 16,
+    "valid_limited": 17,
     "invalid_cycles": 0,
     "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 14,
-    "new_remaining": 14,
+    "unopened_authorized": 13,
+    "new_remaining": 13,
     "historical_remaining": 2
   },
   "science": {
@@ -526,7 +542,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "C16_VALID_BOUNDED_NATIVE_16_OF_30_14_AVAILABLE_TWO_HISTORIC_STOP_R5_CT2_20",
-  "last_branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
+  "decision": "ABH30_17_OF_30_C17_LIMITED_NATIVE_HMAC_13_LEFT_TWO_HIST_STOP_R5",
+  "last_branch": "research/pfl-abh30-c17-integrity-proof-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
