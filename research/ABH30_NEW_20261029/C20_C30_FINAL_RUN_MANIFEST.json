@@ -1,0 +1,149 @@
+{
+  "schema": "pfl.abh30.c20_c30.final_native_execution_manifest.v1",
+  "date": "2026-10-29",
+  "branch": "research/pfl-abh30-c20-c30-multiaxis-20261029",
+  "prereg": "C20_PREREG_AJ_SHA.json through C30_PREREG_AJ_SHA.json each frozen before first tests",
+  "preserved_initial_negative": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+  "frozen_original_source_git": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+  "frozen_original_tests_git": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+  "frozen_r1_source_git": "dde0f5b5e92e95e44b5088b5457e3d8f9b4a65b7",
+  "frozen_r1_tests_git": "365f56f6c6a8a15f46ca8c8a186cad4d9f3c739b",
+  "native_node": "v22.16.0",
+  "actual_C20_to_C30_sequential_exec": [
+    {
+      "cycle": "ABH30-C20",
+      "final_pass": 2,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "4699ea20abc3cf9198356c0674c7e0856aa6d20d386ea3b8798021ebc6f87ff6",
+      "repair_freeze_commit": null,
+      "first_attempt_invalid_or_incomplete": null,
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C21",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "f8d551ae29dac56cb9f799a37b356345297f2fc24add6acb7b146a1d71fb0c00",
+      "repair_freeze_commit": "48171af9490dd17971b473a04ed61ed7bc39b3ad",
+      "first_attempt_invalid_or_incomplete": "DUPLICATE_MEMBER",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C22",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "6fdc953993016ca361aa86fc6b43b01c2b2bb098c57e955459784061c3059276",
+      "repair_freeze_commit": "9199796702f829afb254602de7477dd64b58ad26",
+      "first_attempt_invalid_or_incomplete": "DUPLICATE_NETWORK_EDGE",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C23",
+      "final_pass": 2,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "b4a1fe2e0061b9ef498154639a26afadc9c840581a2792dd0fc667c12414b87b",
+      "repair_freeze_commit": null,
+      "first_attempt_invalid_or_incomplete": null,
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C24",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "a9187616e9c0cfee91aedd4425a65abe17f59b8b12a7b74eb4dfb2cdbabbb940",
+      "repair_freeze_commit": "9c6ef64a9b05621c08e3881f848d1a7d7f220075",
+      "first_attempt_invalid_or_incomplete": "EMPTY_RISKSET",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C25",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "49a22d80aaca42670575d3587abccdd76519455a76f4f9399cdbbd201390dba7",
+      "repair_freeze_commit": "eabf89a3a6469ea22754b5c8cc51e8bb238f5a6c",
+      "first_attempt_invalid_or_incomplete": "HIDDEN_SYMBOL_KEY",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C26",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "d9c6a1d5a0490ada96c2dd75ca6ff85cac02da7b4a8a08abef5e2ff03863dec7",
+      "repair_freeze_commit": "663632b0adbc52ed1449caab6ef63bf215cd7f9b",
+      "first_attempt_invalid_or_incomplete": "NONCANONICAL_TIME",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C27",
+      "final_pass": 4,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "9d9f7520390e4b753c117466d5ab679b9753a9fc9f87f7b4ee26ea19c990e626",
+      "repair_freeze_commit": "7bb5aba9dadd3e1e06a2c1aa7d93da979c995374",
+      "first_attempt_invalid_or_incomplete": "VERSIONED_RULES_INCOMPLETE",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C28",
+      "final_pass": 3,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "eae5ac28f97d9e539836124682ec5679f881f1b6d8996cc92facaa35ca0ae9b6",
+      "repair_freeze_commit": "82bad5af0ca44542d1f6bf1f9cb36530520a2da7",
+      "first_attempt_invalid_or_incomplete": "NAN_SCORE",
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C29",
+      "final_pass": 2,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "c3b9fbfefce245225462d02c326c23960a6f3a2f233926a745db7dc5701d0728",
+      "repair_freeze_commit": null,
+      "first_attempt_invalid_or_incomplete": null,
+      "valid_bounded": true
+    },
+    {
+      "cycle": "ABH30-C30",
+      "final_pass": 2,
+      "final_fail": 0,
+      "exit": 0,
+      "TAP_sha256": "a8205d9ad87bf8c00dd59ea05cf94b81d566d1d94210903f908962d13a3bb2c2",
+      "repair_freeze_commit": null,
+      "first_attempt_invalid_or_incomplete": null,
+      "valid_bounded": true
+    }
+  ],
+  "full_r1_regression": {
+    "passed": 30,
+    "failed": 0,
+    "exit": 0,
+    "TAP_sha256": "ed65356f5b81ec64f844161b33020b0faea4d0db16fedb386fa4d866689c65d3"
+  },
+  "effects_scientific_grade": "0/3",
+  "science_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "invalid_attempts_added": 7,
+  "earlier_invalid_attempts": 3,
+  "invalid_attempts_total": 10,
+  "cycle_counts": {
+    "valid_new_before": 19,
+    "newly_valid": 11,
+    "valid_new_after": 30,
+    "new_remaining_after": 0,
+    "historical_two_STOP_R5_separate": 2
+  },
+  "limits": "All data synthetic fixtures; all 11 within a single preplanned family and one implementation source; no independent experimental human replication or causal effect. Repairs are not extra cycles. No original Python full Atlas replay."
+}
