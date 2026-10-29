@@ -1,0 +1,43 @@
+{
+  "schema": "pfl.abh30.cycle.repair_R1_prereg_AJ_SHA.v1",
+  "cycle": "ABH30-C24",
+  "repair": "R1_AFTER_FIRST_NATIVE_2_OF_2_WAS_INVALIDATED_OR_INCOMPLETE",
+  "origin": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+  "original_frozen_PREREG": "C24_PREREG_AJ_SHA.json",
+  "new_source": {
+    "path": "src/politics_fantasy/fictional_pfl_impact_suite.mjs",
+    "Git_blob": "dde0f5b5e92e95e44b5088b5457e3d8f9b4a65b7",
+    "sha256": "ea161924354b7a6706b8aedf65705900c1be48626081918bf92f16cce7b6329e",
+    "commit": "1685aca4e3e9ff6f8cc2eadb8ca2d547e8300bd0"
+  },
+  "new_tests": {
+    "path": "tests/test_fictional_pfl_impact_suite.mjs",
+    "Git_blob": "365f56f6c6a8a15f46ca8c8a186cad4d9f3c739b",
+    "sha256": "46a8d75ec76c34a31def5a0c81a04d55e3864e814e1e467c725d013b6d840f24",
+    "commit": "73ded6de32417bfc5dfa8269f5eaac97ed90edbf"
+  },
+  "A": "Repair operational definition of C24 instrument, original target held fixed, original first attempt invalid or incomplete because Empty retention risk set returned spurious event fraction zero; one original cycle, not an extra cycle.",
+  "B": {
+    "H1": "Explicit fail-closed code catches EMPTY_RISKSET on the new preregistered adversarial fixture without regressing prior 2 tests.",
+    "H0": "Original failure still accepted or regression in existing fixture.",
+    "alternatives": "Same runtime/synthetic model, still no empirical PFL data or independent behavior."
+  },
+  "C": {
+    "comparison": "Frozen original C24 prereg and its 2/2 native first attempt; new negative fixture plus earlier positive/negative original, all same family",
+    "falsifier": "EMPTY_RISKSET",
+    "expected_tests": 3
+  },
+  "D": {
+    "original_code_sha_pinned": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+    "original_test_git": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+    "repaired_source_git": "dde0f5b5e92e95e44b5088b5457e3d8f9b4a65b7",
+    "repaired_test_git": "365f56f6c6a8a15f46ca8c8a186cad4d9f3c739b",
+    "command": "node --test --test-name-pattern='C24 ' tests/test_fictional_pfl_impact_suite.mjs"
+  },
+  "E": "After this R1 freeze, verify local exact SHA256 and Git blobs; rerun C24 tests native; preserve first trial as invalid without overwriting.",
+  "F": "Competent adverse counterexample observed by separate post-hoc script before R1 freeze; do not claim original 2/2 proof validated full C24.",
+  "G": "Compare corrected vs original in one falsifying and original positive/negative fixtures; no novel PFL human evidence.",
+  "H": "Update distinct technical prior only if R1 tests pass, no posterior claim from fixture used to discover error.",
+  "I": "Scientific PFL CT2=20/100 ordinal, grade 0/3, N1-3 0 and launch 0/6.",
+  "J": "If repaired C24 meets 3/3 native, count exactly one limited AB-P cycle C24; preserved initial invalid attempt, no new cycle for repair. If fails, keep invalid and seek further branch/STOP_R5."
+}
