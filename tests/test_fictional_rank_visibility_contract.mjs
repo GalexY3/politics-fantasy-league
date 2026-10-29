@@ -30,3 +30,5 @@ test('cannot add unsupported sixth treatment',()=>{const p=specimen();p.arms.ext
 test('rejects inherited prototype input',()=>err(Object.assign(Object.create({real:true}),specimen()),'FICTIONAL_FIVE_CELL_CONTRACT_REQUIRED'));
 test('rejects unexpected per-arm exposure claims',()=>{const p=specimen();p.arms.public_order.real_display_verified=true;err(p,'INVALID_TREATMENT_SHAPE')});
 test('rejects malicious symbol property',()=>{const p=specimen();p.arms.own_only[Symbol('secret')]=1;err(p,'INVALID_TREATMENT_SHAPE')});
+test('fake event hash object with coercible toString rejected',()=>{const p=specimen();const impostor={toString:()=> 'a'.repeat(64)};for(const a of Object.values(p.arms))a.event_frame=impostor;err(p,'NONCOMPARABLE_COMMON_PROTOCOL')});
+test('fake schedule hash object with coercible toString rejected',()=>{const p=specimen();const impostor={toString:()=> 'b'.repeat(64)};for(const a of Object.values(p.arms))a.schedule=impostor;err(p,'NONCOMPARABLE_COMMON_PROTOCOL')});
