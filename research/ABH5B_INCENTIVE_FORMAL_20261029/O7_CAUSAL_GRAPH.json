@@ -203,6 +203,14 @@
       "state": "blocked",
       "summary": "Institutional original metadata Xu et al 2026 ICPSR DOI 10.3886/E227582 provides CODE, underlying Statistics Finland human administrative records not legally available to current tool; no complete treatment assignment/eligible roster or independent exposure. Agranov 2026 randomized social information also prior art without authorized original individual rows.",
       "source": "../ABH30_NEW_20261029/C07_HUMAN_DATA_ACCESS_GATE.json"
+    },
+    {
+      "id": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "type": "product_and_public_source_validation",
+      "mode": "AB-H",
+      "state": "answered",
+      "summary": "Full original GitHub resolution_file path history for source 16 Sep27 + 3 Oct11 versions: 21 distinct full public Git blobs independently SHA1 checked from official source, exact source V8 verified by 27/27 adversarial tests, source-eligible binary market outcomes Sep27 30→52 Oct11 2→8 with no lost/flipped in this range, but raw source row counts decreased; no participant data, no native file E2E, no causal science.",
+      "source": "../ABH30_NEW_20261029/C08_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -415,6 +423,24 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "blocks",
       "interpretation": "Even exact 2026 ICPSR original code DOI is not consent or right to source confidential human data."
+    },
+    {
+      "from": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "to": "PFL-ABH30-C07-ORIGINAL-VINTAGE-PANEL",
+      "relation": "extends",
+      "interpretation": "Expands three discrete verified checkpoints into complete observed 16+3 original Git resolution-file versions to fix intermediate as-of gaps."
+    },
+    {
+      "from": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "to": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "relation": "addresses",
+      "interpretation": "A source file's Git publication version matters independently of event resolution_date; complete path version selection prevents future file leakage."
+    },
+    {
+      "from": "PFL-ABH30-C08-FULL-GIT-PATH-REVISION-PANEL",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Public market question source revision history lacks complete human assignment, independent pre-answer exposure and legal permissions."
     }
   ],
   "rules": {
@@ -438,8 +464,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 7,
-      "new_unused": 23,
+      "new_valid": 8,
+      "new_unused": 22,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -448,8 +474,8 @@
         0
       ],
       "last_source_pr": 53,
-      "branch": "research/pfl-abh30-c07-bitemporal-replay-20261029",
-      "latest_valid_cycle": "ABH30-C07"
+      "branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
+      "latest_valid_cycle": "ABH30-C08"
     }
   }
 }
