@@ -1,3 +1,9 @@
+# ABH30-C19 · AUDITORÍA ESTRUCTURAL COMPLETA 89 LOTES (29/10/2026)
+
+**19/30 nuevos válidos acotados; 11 nuevos pendientes y 2 históricos STOP_R5.** Tras [prerregistro](../research/ABH30_NEW_20261029/C19_PREREG_AJ_SHA.json) y 8/8 tests nativos, se recorrieron **89/89 deltas originales** del Atlas por GitHub con SHA de objeto coincidente, 448 operaciones (273 run.add), sin errores de JSON, esquema, prefijo numérico o enlaces `parent_batch`. [Informe C19](../research/ABH30_NEW_20261029/C19_REPORT.md). Se añadió **0090** para registrar C19 (no incluido en los 89 auditados). **No se ejecutó el checker canónico `atlas_delta.py` ni `abmap.py`; no hay digest/graph validado.** Se mantiene la nota explícita del O7 C18 cuya actualización se bloqueó y no se inventa dicha inserción. CT2 PFL científica 20/100 ordinal, N1-N3 0, lanzamiento 0/6.
+
+---
+
 # ABH30-C18 · fuente humana licenciada pero NO utilizable por esta vía (29/10/2026)
 
 **18/30 nuevos ciclos AB limitados verificados; 12 pendientes; 2 históricos STOP_R5.** C18 [informe](../research/ABH30_NEW_20261029/C18_REPORT.md): licencia CC BY-SA confirmada en repositorio oficial ForecastBench; original JSON de pronósticos humanos no pudo parsearse por acceso parcial y el esquema público incorpora identificadores pseudónimos y texto libre, de modo que **no hay análisis de datos humanos ni autorización para asumir privacidad**. Se ejecutó una comprobación documental negativa preregistrada, sin repetir el acceso fallido. PF-BR58 y Atlas append-only 0089; **O7 graph no actualizado por rechazo explícito del conector**, nota de reconciliación separada. CT2 científica 20/100, N1–3 cero, lanzamiento 0/6. El Python original del Atlas 81–89 no ha sido ejecutado.
