@@ -1,0 +1,65 @@
+{
+  "schema": "pfl.abh30.c07.external_human_R5_rights_audit.v1",
+  "date": "2026-10-29",
+  "status": "DOCUMENTARY_GATE_ONLY_NO_HUMAN_AB_CYCLE",
+  "sources": [
+    {
+      "id": "PFL-EXTERNAL-XU-2026-ICPSR-ORIGINAL-CODE",
+      "title": "Code for: Which Reference Groups Matter and How? A Relative Income Information Experiment with Administrative Data",
+      "primary_institutional_metadata": "https://researchportal.tuni.fi/en/datasets/code-for-which-reference-groups-matter-and-how-a-relative-income-/",
+      "exact_original_dataset_DOI": "10.3886/E227582",
+      "article_DOI": "10.1257/app.20240181",
+      "published_institutional_catalog": "2026-07-07",
+      "type_of_public_deposit": "Software/code for replicated study; DO NOT infer participant experiment rows included",
+      "underlying_microdata": "Research team assists data access in collaboration with Statistics Finland (SF); administrative income files not open as part of code metadata",
+      "study_design": "Randomized personal income rank information among reference groups, meaningful welfare/information rival to PFL, but no demonstrated public leaderboard and self-selection exposure equivalent",
+      "gates": {
+        "exact_DOI": true,
+        "original_publisher_landing_page_metadata": true,
+        "individual_assignment_full_eligible_roster": false,
+        "independent_pre_response_exposure": false,
+        "underlying_data_open_license": false,
+        "ethics_and_legal_reuse_permission": false,
+        "causal_PFL_novelty_established": false
+      },
+      "decision": "STOP_R5: code metadata supports source identification only; no request/download/acceptance or human inferential cycle."
+    },
+    {
+      "id": "PFL-EXTERNAL-AGRANOV-2026-LEARNING",
+      "title": "Learning through imitation: An experiment",
+      "official_publisher": "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+      "article_DOI": "10.1016/j.jet.2026.106203",
+      "registered_trial": "AEARCTR-0003315",
+      "author_institutional_secondary": "https://cowles.yale.edu/research/cfdp-2530-learning-through-imitation-experiment",
+      "source": "https://www.nber.org/papers/w29962",
+      "design": "Same public signals, with or without previously observed others' actions; demonstrates strong scientific alternative to automatically harmful social information",
+      "gates": {
+        "published_paper": true,
+        "source_reported_RCT_registration": true,
+        "verified_access_to_full_human_assignment_roster": false,
+        "original_microdata_legal_license": false,
+        "independent_exposure_log_at_individual_level": false,
+        "novel_PFL_discriminant_beyond_published_study": false
+      },
+      "decision": "STOP_R5: no demonstrated consent/rights to original human-level assignment and performance records, despite informative paper."
+    }
+  ],
+  "policy": {
+    "ICPSR_public_policy": "https://www.icpsr.umich.edu/sites/icpsr/about/policies/redistribution",
+    "reason": "ICPSR standard redistribution and LLM-specific restrictions; publicly visible source metadata and article abstract are not equivalent to permission to download and process controlled human data. Distinguish openICPSR self-published policies from ICPSR standard; deposit-specific license remains unverified.",
+    "did_not_accept_any_terms": true,
+    "did_not_download_original_individual_rows": true,
+    "did_not_contact_authors": true
+  },
+  "consequence": {
+    "new_R5_historical_slots_used": 0,
+    "new_A_B_C_causal_cycles": 0,
+    "CT2_science": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "not_a_claim": "Code-only primary deposit DOI closes a metadata identification gap but NOT a legal access gate."
+}
