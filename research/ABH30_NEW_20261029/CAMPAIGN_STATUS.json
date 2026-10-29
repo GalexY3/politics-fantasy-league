@@ -1,8 +1,8 @@
 {
   "schema": "pfl.abh30.campaign.status.v1",
   "date": "2026-10-29",
-  "branch": "research/pfl-abh30-source-cutoff-20261029",
-  "parent_pr": 53,
+  "branch": "research/pfl-abh30-c09-raw-revision-guard-20261029",
+  "parent_pr": 59,
   "parent_sha": "59c00952547b53c91e05e3173495d5902c4528e0",
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
@@ -220,15 +220,35 @@
         "raw_source_row_counts_nonmonotone": true
       },
       "limits": "Complete source PATH publication revisions within checked window, not complete third-party event first publication. Public original data analyzed by exact code in V8 over batched full Git blobs; no positive native Node full-source file E2E, no human participant causal effect."
+    },
+    {
+      "id": "ABH30-C09",
+      "mode": "AB-P",
+      "D": 1,
+      "status": "VALID_LIMITED_NATIVE_SYNTHETIC_RAW_REVISION_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "464b56c0f78416701b015dff4467912bd7cb97b5",
+      "result": "C09_RUN_RECEIPT.json",
+      "verified": {
+        "github_frozen_code_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+        "github_frozen_test_blob": "b9edf86d4a0609b9e4bb542fe85221857460a12d",
+        "local_code_sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9",
+        "local_test_sha256": "7abf599d3f8cbe6b9312484d1944cd3b8039c7ee926c48172e473165bf2a34ed",
+        "native_Node_version": "v22.16.0",
+        "native_Node_tests": "19/19_PASS",
+        "exit_code": 0,
+        "original_public_21_blob_positive_rerun": "NOT_EXECUTED"
+      },
+      "limits": "New read-only component tests synthetic public source revisions, detects raw record deletion/replacement/mutation not covered by C08 binary subset; source Git blob authenticity must be performed upstream. No original source execution in C09, deployment, human trial or scientific discovery."
     }
   ],
   "counting": {
-    "valid_limited": 8,
+    "valid_limited": 9,
     "invalid_cycles": 0,
     "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 22,
-    "new_remaining": 22,
+    "unopened_authorized": 21,
+    "new_remaining": 21,
     "historical_remaining": 2
   },
   "science": {
@@ -249,7 +269,14 @@
     "readiness_gates_total": 6,
     "code_in_product_src": true,
     "deployed_to_user": false,
-    "real_source_full_file_positive_e2e": false
+    "real_source_full_file_positive_e2e": false,
+    "raw_public_revision_guard": {
+      "code_in_product_src": true,
+      "native_synthetic_tests": "19/19_PASS",
+      "wired_into_offline_public_source_CLI": false,
+      "original_public_bodies_verified_by_C09": false,
+      "release_gate_changed": false
+    }
   },
   "negative_results": [
     "All raw numerical values are not event probabilities; guard restricts original source semantics, duplicate question/outcome IDs and time cutoffs",
@@ -268,7 +295,8 @@
     "C07 original public versions show Sep27 30→46→52 and Oct11 (unavailable)→2→8 eligible market questions, 0 observed flipped or lost among retained known outcomes; this does not prove all historical versions stable or human accuracy.",
     "C07 new institutional DOI Xu 2026 ICPSR 10.3886/E227582 identifies code/software deposit, not legally accessible human administrative participant records; Statistics Finland data access unverified and historical two AB-H slots remain STOP_R5.",
     "C08 original Sep27 and Oct11 raw Git resolution record counts decreased on several published updates (e.g. Sept 441 Oct7 to 440 Oct8; Oct11 441 Oct23 to 438 Oct24), although all 16+3 inspected eligible binary market outcomes were retained and no Y flipped. Never infer append-only raw data rows from a monotone accepted subset.",
-    "C08 original 21 distinct public Git blobs were retrieved and SHA1 checked via connected GitHub V8 in separate overlapping batches; local runtime DNS could not access original content. Native positive multi-source CLI E2E NOT performed, and 27 tests ran in V8 rather than Node: do not call them native tests."
+    "C08 original 21 distinct public Git blobs were retrieved and SHA1 checked via connected GitHub V8 in separate overlapping batches; local runtime DNS could not access original content. Native positive multi-source CLI E2E NOT performed, and 27 tests ran in V8 rather than Node: do not call them native tests.",
+    "C09 new AB-P raw-record revision guard 19 native Node adversarial tests pass only on synthetic public-like fixtures. Without authenticated original resolution source bodies in local Node, no empirical deletion rates or source QA effectiveness in vivo can be claimed. Git identifiers supplied by caller are not authenticated in this pure module."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -279,7 +307,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_8_OF_30_VALID_LIMITED_ORIGINAL_PUBLIC_PATH_HISTORY;22_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENTIFIC_20_AND_N123_ZERO_NO_LAUNCH",
-  "last_branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
+  "decision": "ABH30_9_OF_30_VALID_LIMITED_C09_NATIVE_RAW_SOURCE_REVISION_GUARD;21_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENTIFIC_20_N123_ZERO_NO_LAUNCH",
+  "last_branch": "research/pfl-abh30-c09-raw-revision-guard-20261029",
   "last_documentary_source_prior": "PF-BR47"
 }
