@@ -1,0 +1,49 @@
+{
+  "schema": "pfl.t028.native_atlas.verify.v1",
+  "date": "2026-10-29",
+  "status": "PASS_CANONICAL_PYTHON",
+  "environment": "GitHub-hosted ubuntu-latest runner, private repo read-only checkout, stdlib Python, one job 3-minute maximum",
+  "run_id": 40805714464,
+  "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464",
+  "job_id": 123224069258,
+  "job_name": "atlas-check-0080",
+  "head_sha": "85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1",
+  "branch": "research/pfl-t028-atlas-direct-adversarial-20261029",
+  "source_code_git_blobs": {
+    "ab_atlas_atlas_delta_py": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "ab_atlas_abmap_py": "687449178deba84f77b6cc2df2c61cc36d9cf0cd",
+    "seed": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+    "updates_tree": "af39287287f0307ede6c9d6b27930c8025501311"
+  },
+  "commands": [
+    "python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates",
+    "python ab_atlas/atlas_delta.py brief --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates --limit 8"
+  ],
+  "observed_stdout": {
+    "check": "OK 80 lotes 63 nodos SHA256 e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+    "brief_verified": "PFL_T028_CANONICAL_PASS {\"lots\": 80, \"nodes\": 63, \"edges\": 81, \"sha256\": \"e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f\", \"scope\": \"PFL-V1-20261026-r3\", \"head_batch\": \"0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029\", \"readiness\": false}"
+  },
+  "check_exit": 0,
+  "brief_exit": 0,
+  "sha256_canonic": "e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+  "sha256_cross_command_match": true,
+  "lots": 80,
+  "nodes": 63,
+  "edges": 81,
+  "scope": "PFL-V1-20261026-r3",
+  "head_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+  "ready": false,
+  "atlas_delta_calls_abmap_require_valid_strict": true,
+  "notes": [
+    "Native Python check and brief pass; structural JS shadow showed 438 ops, 263 runs, 48 complaints, 6 gates but these secondary counts not part of native stdout",
+    "0079 at 01:00Z and 0080 at 00:26Z remain non-monotonic; Python accepts ISO timestamps and does not require monotonicity",
+    "No scientific/human validation, no release gates promoted, not merged to main, prior 2 AB-H slots still unused"
+  ],
+  "classification": "TECHNICAL_QA_NOT_NEW_AB_CYCLE",
+  "ct2_unchanged": 22,
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ]
+}
