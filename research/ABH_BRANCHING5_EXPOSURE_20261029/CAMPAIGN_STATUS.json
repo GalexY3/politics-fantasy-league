@@ -61,23 +61,25 @@
     },
     {
       "id": "C05",
-      "type": "AB-H",
-      "status": "UNOPENED_R5",
-      "result": "STOP_R5: verified external prior art and source rights but no further distinct discriminant with ethical and scientific novelty. Not opened.",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "result": "Time-varying leaderboard room membership proof obligation under as-of exposure witness: 3 synthetic members, 1 switch, 4 impressions, 9/9 Node positive and adversarial tests. Strict half-open assignment history and room arm consistency; no observed humans.",
       "grade": "0/3",
-      "D": null
+      "D": 1.2,
+      "prereg_commit": "cf075afa73994987492b8d683d80776ad4bb5148",
+      "result_record": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/C05_RUN_RECEIPT.json"
     }
   ],
   "counts": {
-    "valid": 4,
+    "valid": 5,
     "valid_scientific_0of3": 1,
-    "valid_product_synthetic_0of3": 3,
+    "valid_product_synthetic_0of3": 4,
     "invalid_cycles_final": 0,
     "invalid_attempts": 1,
     "planning_active": 0,
     "planning_historical_superseded": 2,
-    "unopened": 1,
-    "remaining_new": 1,
+    "unopened": 0,
+    "remaining_new": 0,
     "remaining_legacy_separate": 2
   },
   "CT2": {
@@ -97,7 +99,7 @@
   ],
   "pilot_launch_gates_passed": 0,
   "total_launch_gates": 6,
-  "decision": "STOP_R5_NEW_C05; FOUR_AB_CYCLES_COMPLETED_OF_FIVE_GRANTED, C04_AGGREGATE_NONCAUSAL, ONE_NEW_PLUS_TWO_HISTORICAL_UNCONSUMED",
+  "decision": "NEW_FIVE_COMPLETE_5OF5; HISTORICAL_TWO_UNCONSUMED_R5_EXTERNAL_DATA_AND_ETHICS_GATE",
   "no_main_merge": true,
   "no_chatrelay": true,
   "no_expensive_CI": true,
@@ -108,6 +110,6 @@
     "TIMESTAMP_TIE_REPAIR_PREREG.json",
     "RUN_RECEIPT.json"
   ],
-  "latest_branch": "research/pfl-abh5-cluster-interference-20261029",
-  "canonical_report": "../ABH_BRANCHING5_INTERFERENCE_20261029/FINAL_REPORT.md"
+  "latest_branch": "research/pfl-abh5-c05-dynamic-room-exposure-20261029",
+  "canonical_report": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/FINAL_REPORT.md"
 }
