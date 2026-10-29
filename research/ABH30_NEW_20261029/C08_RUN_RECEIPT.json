@@ -1,0 +1,324 @@
+{
+  "schema": "pfl.abh30.c08.original_git_full_path_history_run.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C08",
+  "mode": "AB-H_AB-P_INSTRUMENT_AB-R_PUBLIC_SOURCE_PROVENANCE",
+  "grade_science": "0/3",
+  "original_public_repo": "forecastingresearch/forecastbench-datasets",
+  "original_source_license": "CC BY-SA 4.0 public question/resolution, not participant forecast rights",
+  "parent_pr": 58,
+  "parent_sha": "5ce781d554320b23eb58aa33ac67c5606b441715",
+  "prereg_commit": "eb6fae1336ff734c13d975aae4c1c9d83157ee1d",
+  "code": {
+    "path": "src/politics_fantasy/forecastbench_full_history.mjs",
+    "git_blob": "c20974eee19f768f638797a6c712aaa19a6e25b7",
+    "sha256": "a505f27800f65bfe97ff576aad10b12ac78be1ea4fcdf0a7067024aa6e5df1ae",
+    "dependency_git_blob": "a209206f0678673cebecc97408d3eb8bfce3bad1"
+  },
+  "test": {
+    "path": "tests/test_forecastbench_full_history.mjs",
+    "git_blob": "2a0b0e2b44093278dbab84ec0167ad939eb0e97f",
+    "sha256": "92677038f2bc2f05eb247d0c20e661c63bbaa63f0ad6c8f73154fd98b036ddbc",
+    "V8_on_Git_frozen_code_passed": 27,
+    "planned": 27,
+    "Node_native_run": "NOT_EXECUTED",
+    "first_attempt_failures": 0
+  },
+  "original_data_execution": {
+    "method": "Original public GitHub connector git/blob full UTF-8 bodies, exact Git object SHA1 independently rehashed with known abc vector, original previously frozen C07 inspectPublicCohort Git blob run in V8 on each original file and C08 frozen versionAt selection. 16 Sep27 and 3 Oct11 versions inspected in overlapping six-version batches; each adjacent source accepted-set compared directly in same isolate. Results are not a single positive complete local CLI run.",
+    "question_files_sha_verified": 2,
+    "resolution_files_distinct_sha_verified": 19,
+    "original_public_distinct_full_blobs": 21,
+    "raw_question_text_saved_or_republished": false,
+    "personal_records_downloaded": 0,
+    "vintage_paths": {
+      "2026-09-27": 16,
+      "2026-10-11": 3
+    },
+    "checked_up_to": "2026-10-29T16:00:00Z",
+    "date_policy": "12 hours after source commit, capped at source history verification cutoff; last-known original Git source version for each file as of the instant, not per-event first_public_at",
+    "scientific_independent_replicates": 0
+  },
+  "result": {
+    "2026-09-27": {
+      "original_question_sha": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+      "market_questions": 250,
+      "versions": [
+        {
+          "version": 1,
+          "at": "2026-10-07T07:19:29Z",
+          "commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+          "blob": "0b67cfec67fad4b23899e8e48c6ca3a034344edc",
+          "original_resolution_rows": 441,
+          "eligible_market_binary": 30,
+          "newly_eligible": 30,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17264950821433986
+        },
+        {
+          "version": 2,
+          "at": "2026-10-08T07:01:49Z",
+          "commit": "d354d26d6f3feb03bacc363f6b346232645e8550",
+          "blob": "2efa48b677c7c4e8a4827585d49c4f59393e233e",
+          "original_resolution_rows": 440,
+          "eligible_market_binary": 30,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17264950821433986
+        },
+        {
+          "version": 3,
+          "at": "2026-10-09T07:01:29Z",
+          "commit": "8cae09d792922fa2580a7c7c5482c76b9710e3c3",
+          "blob": "59397edd6428a248e74d56ccd7af69d758aee604",
+          "original_resolution_rows": 440,
+          "eligible_market_binary": 31,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.1749522982719418
+        },
+        {
+          "version": 4,
+          "at": "2026-10-10T06:51:43Z",
+          "commit": "b977388e168b338d47d53f567ab023d19ae2719e",
+          "blob": "02efeb0cb0c74d65415551e7cc18beded2ace212",
+          "original_resolution_rows": 440,
+          "eligible_market_binary": 31,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.1749522982719418
+        },
+        {
+          "version": 5,
+          "at": "2026-10-11T06:35:43Z",
+          "commit": "3928408907498c991bc367c2d3493241aa19e516",
+          "blob": "424965825aae022f5861b69d17880665cd3026bb",
+          "original_resolution_rows": 437,
+          "eligible_market_binary": 32,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17022538673220308
+        },
+        {
+          "version": 6,
+          "at": "2026-10-12T07:03:09Z",
+          "commit": "d6dac818ec036aa8fa41dfc1fcb369d24ca81ce4",
+          "blob": "ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3",
+          "original_resolution_rows": 427,
+          "eligible_market_binary": 33,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.16592731229245994
+        },
+        {
+          "version": 7,
+          "at": "2026-10-13T06:46:08Z",
+          "commit": "4629a73c505a0d619ef0ee59e697d57d21015131",
+          "blob": "0bd4533837ccfe2b14f6f23459daccf29a906ef4",
+          "original_resolution_rows": 440,
+          "eligible_market_binary": 33,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.16592731229245994
+        },
+        {
+          "version": 8,
+          "at": "2026-10-14T06:55:40Z",
+          "commit": "ab1df37b3ccda9765d4879ddd52c2a9b4e6cad7b",
+          "blob": "55d87d015ab7cbd06cf1065f3c094d4918357846",
+          "original_resolution_rows": 490,
+          "eligible_market_binary": 34,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.1611529795779758
+        },
+        {
+          "version": 9,
+          "at": "2026-10-15T07:34:05Z",
+          "commit": "dc59cac62b32dde8fb942f87af1f063af942cc79",
+          "blob": "97166cd083574ffb7462e2ff281113bff9608c16",
+          "original_resolution_rows": 488,
+          "eligible_market_binary": 36,
+          "newly_eligible": 2,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.16188059182364384
+        },
+        {
+          "version": 10,
+          "at": "2026-10-16T06:49:58Z",
+          "commit": "dc4a1511374cb641dd31aa688bc1bcd93f0fb1f2",
+          "blob": "2dbd04d35e5197d12e634e6217262ba42aa2174e",
+          "original_resolution_rows": 490,
+          "eligible_market_binary": 36,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.16188059182364384
+        },
+        {
+          "version": 11,
+          "at": "2026-10-17T07:31:51Z",
+          "commit": "c870c1124aa51cd16b4bc0276a8b89bd1ab941c7",
+          "blob": "60380b27cc293441ec02e4b05d95df29625252e7",
+          "original_resolution_rows": 490,
+          "eligible_market_binary": 37,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17751787988246429
+        },
+        {
+          "version": 12,
+          "at": "2026-10-18T07:26:33Z",
+          "commit": "f1698426edba99423344f6abb7619f3c4c9ee4f8",
+          "blob": "2a1821161d5a963137393bce94de8de415bc8cf3",
+          "original_resolution_rows": 490,
+          "eligible_market_binary": 37,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17751787988246429
+        },
+        {
+          "version": 13,
+          "at": "2026-10-19T07:03:18Z",
+          "commit": "11a93354f70453c45f6080482c45b4caf3db9a44",
+          "blob": "07b75c45860f556ad00e9f9863b094b29a052938",
+          "original_resolution_rows": 490,
+          "eligible_market_binary": 38,
+          "newly_eligible": 1,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.1745575409381889
+        },
+        {
+          "version": 14,
+          "at": "2026-10-23T06:53:25Z",
+          "commit": "f3d8a4f83754f6c26990c67c69185f91f214c30c",
+          "blob": "9d17e5f8487ae2cad9c9d3130c3006cd1cc5d880",
+          "original_resolution_rows": 488,
+          "eligible_market_binary": 46,
+          "newly_eligible": 8,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17318551751415606
+        },
+        {
+          "version": 15,
+          "at": "2026-10-24T07:39:55Z",
+          "commit": "420dc4f3a1e23774347da7b199c58592dce45448",
+          "blob": "5fd032d0df1eea0dc47880bb3c640e6f75ab7fcd",
+          "original_resolution_rows": 486,
+          "eligible_market_binary": 46,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.17318551751415606
+        },
+        {
+          "version": 16,
+          "at": "2026-10-29T07:30:17Z",
+          "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+          "blob": "b2ee53f09407e2b555668f66e286073ace6d5fce",
+          "original_resolution_rows": 642,
+          "eligible_market_binary": 52,
+          "newly_eligible": 6,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.16801450256770642
+        }
+      ],
+      "first_binary_market_eligible": 30,
+      "last_binary_market_eligible": 52,
+      "total_newly_eligible": 52,
+      "net_increase_after_first": 22,
+      "total_lost": 0,
+      "total_outcome_flips": 0,
+      "aggregate_resolution_rows_nonmonotonic": true
+    },
+    "2026-10-11": {
+      "original_question_sha": "fe9772f2275edcada671c4082cf9103185f1becf",
+      "market_questions": 250,
+      "versions": [
+        {
+          "version": 1,
+          "at": "2026-10-23T06:53:25Z",
+          "commit": "f3d8a4f83754f6c26990c67c69185f91f214c30c",
+          "blob": "1556a17106131cf8a7d7cb3b33122d18c3b9ef6a",
+          "original_resolution_rows": 441,
+          "eligible_market_binary": 2,
+          "newly_eligible": 2,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.06484999999999999
+        },
+        {
+          "version": 2,
+          "at": "2026-10-24T07:39:55Z",
+          "commit": "420dc4f3a1e23774347da7b199c58592dce45448",
+          "blob": "0c535475a4037a47ecf009c933d635fd49f67e29",
+          "original_resolution_rows": 438,
+          "eligible_market_binary": 2,
+          "newly_eligible": 0,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.06484999999999999
+        },
+        {
+          "version": 3,
+          "at": "2026-10-29T07:30:17Z",
+          "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+          "blob": "d8416bccbfcd4736e9772748bb42fd4cc403db7e",
+          "original_resolution_rows": 450,
+          "eligible_market_binary": 8,
+          "newly_eligible": 6,
+          "previously_eligible_lost": 0,
+          "previously_eligible_y_flipped": 0,
+          "resolved_only_market_brier": 0.07071875
+        }
+      ],
+      "first_binary_market_eligible": 2,
+      "last_binary_market_eligible": 8,
+      "total_newly_eligible": 8,
+      "net_increase_after_first": 6,
+      "total_lost": 0,
+      "total_outcome_flips": 0,
+      "aggregate_resolution_rows_nonmonotonic": true
+    }
+  },
+  "negative_and_limits": [
+    "Public resolution source row totals decrease on some Git revisions, but no loss or binary outcome flip among source-eligible accepted market questions across verified adjacent versions; not a statement about unrelated sources or all raw rows",
+    "No original human experiment, eligible participant roster, source-independent participant treatment exposure logs or legal individual data license",
+    "Original source Git publication timestamps do not establish per-market question first_public_at and outcome-date filters remain conservative",
+    "No full original 21-blob native CLI disk-positive E2E; actual original source processing executed in GitHub-connected V8, synthetic/pure tests executed in V8, not Node native",
+    "No predictive superiority versus competent baseline; resolved-subset Brier is selected and C03 full-cohort bounds remain broad",
+    "Original public source 16+3 versions and C07 3 checkpoints same source institution, not independent scientific replication"
+  ],
+  "budget": {
+    "valid_before": 7,
+    "valid_after": 8,
+    "new_granted": 30,
+    "new_remaining_after": 22,
+    "historical_separate_remaining": 2
+  },
+  "science": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "launch_passed": 0,
+    "launch_total": 6
+  }
+}
