@@ -758,6 +758,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Synthetic-only receipts are self-declared fixture records. No secure independent delivery, real exposure or allocation, opportunity frame completeness, no human ITT or effect sizes."
+    },
+    {
+      "id": "PF-BR56",
+      "claim": "A five-arm treatment configuration and matched synthetic receipt imply the view content was actually computed and displayed.",
+      "update": "DISTINGUISH_STATIC_CONFIG_SYNTHETIC_RECEIPT_FROM_EXECUTED_NODE_VIEW; STILL_NO_BROWSER_EXPOSURE",
+      "support": "C16 Node frozen prereg af6ee3f18d954dca3d1e6ed7d932ac630bc8872a, original source ee94c85dc66b81b933e6ef3359cfef889bd2cf8d, 15/15 native tests. Computes five-arm view content with private/public compartments and synthetic receipts internally. Not a DOM browser and not independently attested human receipt.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C16_RUN_RECEIPT.json",
+      "type": "ABH_PRODUCT_NATIVE_RENDER_COMPUTATION_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Node-only synthetic self-receipts cannot establish actual human display or effect, no authorized participants."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -951,10 +963,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
+    "branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
     "granted": 30,
-    "valid_limited": 15,
-    "new_remaining": 15,
+    "valid_limited": 16,
+    "new_remaining": 14,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -974,7 +986,8 @@
       "PF-BR52",
       "PF-BR53",
       "PF-BR54",
-      "PF-BR55"
+      "PF-BR55",
+      "PF-BR56"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
