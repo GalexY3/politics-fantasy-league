@@ -2,7 +2,11 @@
 
 **Fecha:** 29/10/2026. **Autorización nueva expresa:** 30 ciclos AB-H BRANCHING adicionales a la campaña anterior 5/5; las **dos plazas AB-H históricas permanecen separadas, no ejecutadas**. La PR #53 estaba abierta en HEAD `59c00952547b53c91e05e3173495d5902c4528e0`. Nueva rama: `research/pfl-abh30-source-cutoff-20261029` (PR de borrador apilada sobre #53; no merge a main). Aplicadas normas AGENTS, AB 3.2.1 O1–O7, congelación de contrato, Git blob + SHA256 local antes de pruebas nativas, STOP_R5 y adversarios fuertes.
 
-**Resultado actualizado tras C07: 7/30 ciclos nuevos ejecutados y válidos de alcance acotado (C07 híbrido AB-P + AB-R de fuente pública no personal), 23/30 concedidos sin consumir.** Históricos **2/2 pendientes** sin gastar. CT2 científica PFL `20→20/100` ordinal, **N1/N2/N3 nuevos 0/0/0**. Lanzamiento público **0/6 gates**; scope y madurez V4 no se reevalúan por estos cambios. [Ledger oficial](CAMPAIGN_STATUS.json), [grafo O7](../ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json), [CT2 escala 1–100 y ampliación](CT2_FULL_AND_ZOOM.svg). Las ejecuciones originales de AEA/GJP y leaderboard de personas siguen bloqueadas por derechos, ausencia de padrón aleatorizado completo y exposición registrada independientemente.
+**Resultado actualizado tras C08: 8/30 ciclos nuevos ejecutados y válidos de alcance acotado (C08 híbrido AB-P + AB-R de fuente pública no personal), 22/30 concedidos sin consumir.** Históricos **2/2 pendientes** sin gastar. CT2 científica PFL `20→20/100` ordinal, **N1/N2/N3 nuevos 0/0/0**. Lanzamiento público **0/6 gates**; scope y madurez V4 no se reevalúan por estos cambios. [Ledger oficial](CAMPAIGN_STATUS.json), [grafo O7](../ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json), [CT2 escala 1–100 y ampliación](CT2_FULL_AND_ZOOM.svg). Las ejecuciones originales de AEA/GJP y leaderboard de personas siguen bloqueadas por derechos, ausencia de padrón aleatorizado completo y exposición registrada independientemente.
+
+## C08 — secuencia completa de versiones Git de las dos cohortes
+
+La continuación C08 amplía el replay original de C07 de **tres checkpoints** a los **19 cambios públicos de los ficheros de resoluciones originales** (16 para 27/09/2026, 3 para 11/10/2026). Los dos ficheros originales de preguntas y los 19 de resoluciones se recuperaron con fuente GitHub y sus **21 SHA Git de bytes íntegros se comprobaron**. La ruta pública `commits?path` y las carpetas originales de cada commit son la base de un selector de última publicación válida **hasta 2026-10-29 16:00Z**, sin usar el archivo del futuro. Con código de fuente previamente congelado, **27/27 tests adversariales ejecutados en V8** y contenidos originales comprobados en lotes solapados, la cohorte 27/09 crece **30→52 resultados binarios de mercado elegibles**, y 11/10 crece **2→8**. Entre versiones adyacentes: **0 pérdidas, 0 inversiones de Y en el subconjunto admitido**. Se encontró un negativo informativo: el total de filas de resolución originales **baja** en ciertas publicaciones pese al aumento de preguntas binarias elegibles; no suponer ingesta append-only. **Este ciclo NO tiene ejecución Node nativa ni CLI positivo original en disco**; se documentan por separado en [C08_REPORT.md](C08_REPORT.md) y [recibo C08](C08_RUN_RECEIPT.json). Prior nuevo **PF-BR48** (48 acumulados). CT2 científica 20/100, N1/N2/N3 0/0/0 y gates 0/6 sin cambio; **8/30 válidos limitados, 22 restantes**, más 2 históricos bajo STOP_R5.
 
 ## Nueva referencia prioritaria C07 — replay de archivos originales publicados
 
@@ -53,7 +57,7 @@ No hay experimentación con personas, puntuación de políticos reales, acceso a
 
 **Criterios próximos de avance sin consumir cuotas triviales:** localizar datos originales con identificación causal y derechos, o ejecutar una intervención de producto con criterios verificables y con rutas de uso real, no variantes de análisis agregado o nuevas semillas sintéticas. Las mejoras de integridad del código por sí solas NO aportan evidencia sobre el comportamiento humano.
 
-**Saldo vigente: 23 ciclos AB-H nuevos todavía concedidos, más 2 históricos en STOP_R5. No se solicita nuevo permiso.**
+**Saldo vigente: 22 ciclos AB-H nuevos todavía concedidos, más 2 históricos en STOP_R5. No se solicita nuevo permiso.**
 
 ## ABH30-C05 · AB-R original de publicación vs acontecimiento
 
@@ -70,3 +74,7 @@ A–J y Git/SHA256 [congelados antes de ejecutar](C06_PREREG_AJ_SHA.json); **18/
 ## C07 · balance actualizado
 
 Tras el C07, **7/30** nuevos ciclos ejecutados de alcance limitado; **23** autorizados no consumidos; **dos históricos** separados y todavía sujetos a STOP_R5. La ampliación documental ha llegado a **47 priors**. Ninguna ejecución sobre datos originales humanos, ni elevación CT2 por número de versiones, y ninguna puerta de lanzamiento superada. [CT2 original escala completa y ampliada](CT2_FULL_AND_ZOOM_C07.svg). No abrir ciclos adicionales para consumir presupuesto sin identificar nuevas fuentes legales o un producto distinto realmente validable.
+
+## Balance posterior a C08
+
+Estado canónico nuevo: **8/30 ciclos de esta concesión válidos limitados, 22/30 autorizados sin gastar; dos históricos separados, 0 consumidos y sujetos a STOP_R5**. Datos originales de eventos públicos únicamente; no se ha aprobado tratamiento personal ni un ensayo causal. El avance de ingeniería no supera una puerta de lanzamiento ni aumenta CT2. [CT2 completa y ampliada](CT2_FULL_AND_ZOOM_C08.svg).
