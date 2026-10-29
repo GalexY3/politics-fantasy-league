@@ -1,0 +1,53 @@
+{
+  "id": "ABH30-P1-C18",
+  "status": "VALID_ANALYTICAL_AB_P",
+  "prereg_commit": "fd0a3e6850058c6db307c3043d1fc21371cb565d",
+  "A": "See original Cxx_PREREG contract",
+  "B": "Rival null/competent baseline predeclared",
+  "C": "Endpoints, assumptions, falsifier frozen in prereg",
+  "D": {
+    "source_urls": [],
+    "source_code": "sandbox:/mnt/data/pfl_abh30_c16_c18.py"
+  },
+  "E": {
+    "bound_Y": [
+      0,
+      4
+    ],
+    "variance_upper": 4,
+    "alpha": 0.05,
+    "power": 0.8,
+    "zsum": 2.8,
+    "mde_interaction_by_n": {
+      "n40": 3.541750979388585,
+      "n100": 2.24,
+      "n400": 1.12,
+      "n1600": 0.56
+    },
+    "n_for_MDE_half_point_upper_bound": 2008,
+    "monte_carlo_control": {
+      "seed": 20261029,
+      "reps": 10000,
+      "n": 400,
+      "score_distribution": "uniform integers 0-4",
+      "observed_standard_deviation_interaction": 0.2838298612514437,
+      "analytic_standard_deviation_interaction": 0.282842712474619
+    }
+  },
+  "F": {
+    "adversarial_limit": "Precision calculation assumes balanced independent cells and no attrition; 2008 is conservative normal approximation for detection, not recruitment target, sample size certification, effect prediction, or ethical authorization. Missingness and clustered dependence require different treatment."
+  },
+  "G": "No external PFL human replication or novel scientific discovery",
+  "H": {
+    "prior_update": "Precision calculation assumes balanced independent cells and no attrition; 2008 is conservative normal approximation for detection, not recruitment target, sample size certification, effect prediction, or ethical authorization. Missingness and clustered dependence require different treatment."
+  },
+  "I": {
+    "grade": "0/3",
+    "causality": "none for field; math conditional on exact assumptions",
+    "ethics": "No live people, real scoring or releases"
+  },
+  "J": "Conclude scoped mechanism, R5 transition to 10 autonomy probes; no more replicate synthetic generator",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
