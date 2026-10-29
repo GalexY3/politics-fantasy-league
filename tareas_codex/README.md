@@ -1,3 +1,5 @@
+> **T016 · 29/10/2026:** [avance parcial](T016_AVANCE_20261029.md); discrepancia Galicia y acceso TLS a Euskadi pendientes de aclarar.
+
 > **Fuentes · 29/10/2026:** avances parciales [T019](T019_AVANCE_20261029.md), [T020](T020_AVANCE_20261029.md), [T023](T023_AVANCE_20261029.md); [T021](T021_AVANCE_20261029.md) recibió 403. Ninguno se declara cerrado. Originales fuera de Git.
 
 > **T026 · 29/10/2026:** [avance parcial](T026_AVANCE_20261029.md), 84 pruebas reconstruidas y persistentes; sin aprobación ética ni participantes.
