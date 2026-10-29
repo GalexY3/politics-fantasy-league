@@ -1,0 +1,34 @@
+{
+  "id": "ABH30-P1-C09",
+  "status": "VALID_AB_P_NEGATIVE_ETHICS",
+  "prereg_commit": "c5ec368f88853cf8e1b15205d680f204f7a442fe",
+  "A": "Read Cxx_PREREG for precommitted endpoint",
+  "B": "Falsifiable declared null vs mechanism",
+  "C": "Control and endpoint defined in precommit",
+  "D": "/mnt/data/pfl_native_qa local verified Git blob snapshot of PR37 pilot, Node v22.16.0, script pfl_abh30_native_probe.mjs; full transcript/JSON in current sandbox",
+  "E": {
+    "forged_review_ref_accepted": true,
+    "forged_ref": "FORGED-STRING-NOT-AN-APPROVAL",
+    "wrong_status_error": "REVIEW_GATE_CLOSED"
+  },
+  "F": {
+    "adversarial_limit": "Mock approval accepts arbitrary review_ref, as documented; NO ethical approval evidence. Deployment must have external nonmock authorization, never substitute this object.",
+    "controls_measured": true
+  },
+  "G": "No human outcomes. Node local-only. No independent empirical replication.",
+  "H": {
+    "prior_update": "Mock approval accepts arbitrary review_ref, as documented; NO ethical approval evidence. Deployment must have external nonmock authorization, never substitute this object."
+  },
+  "I": {
+    "internal_validity": "Local native Node QA with source snapshot; no full clean checkout",
+    "novelty": "technical local result not new science",
+    "grade": "0/3",
+    "ethics": "No human data"
+  },
+  "J": "STOP_LOCAL for this mechanism; pivot to different evidence",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0,
+  "executable_probe": "sandbox:/mnt/data/pfl_abh30_native_probe.mjs",
+  "verifiable_receipt": "sandbox:/mnt/data/pfl_abh30_native_probe_result.json"
+}
