@@ -1,0 +1,84 @@
+{
+  "schema": "pfl.t028.browser.e2e.native.v1",
+  "date": "2026-10-29",
+  "status": "PASS_REAL_BROWSER_HTTP_PILOT",
+  "environment": "GitHub-hosted ubuntu-latest private read-only checkout; system /usr/bin/google-chrome; Python Playwright 1.56.0; Node local server 127.0.0.1:8787",
+  "runner": {
+    "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386",
+    "run_id": 40806035386,
+    "job_id": 123225098835,
+    "head_sha": "f9a9f8f06e119005d92e796968fd1a1f806bf8f9",
+    "workflow": ".github/workflows/pfl-t028-browser-native-20261029.yml",
+    "max_runner_minutes": 4,
+    "single_job": true,
+    "no_playwright_browser_download": true
+  },
+  "observed": {
+    "status": "success",
+    "tests_passed": 21,
+    "total": 21,
+    "checks": {
+      "http_document_200": true,
+      "four_question_groups": true,
+      "twelve_radios": true,
+      "all_radios_labeled": true,
+      "four_arms_selectable": true,
+      "transparency_tutorial": true,
+      "leaderboard_title": true,
+      "one_checked_updates_progress": true,
+      "reset_clears_progress": true,
+      "module_loaded_by_browser": true,
+      "no_client_javascript_errors": true,
+      "no_external_requests": true,
+      "no_non_GET_page_requests": true,
+      "csp_restricts_connect": true,
+      "cache_no_store": true,
+      "header_nosniff": true,
+      "secret_resource_is_404": true,
+      "post_is_405": true,
+      "no_browser_cookies": true,
+      "no_local_storage": true,
+      "mobile_no_horizontal_overflow": true
+    },
+    "page_javascript_errors": [],
+    "page_http_requests": 4,
+    "page_http_origin": "http://127.0.0.1:8787/",
+    "client_arms": {
+      "control": {
+        "tutorial": "Cómo navegar por el calendario",
+        "competition": "Actividad agregada de la jornada"
+      },
+      "transparency": {
+        "tutorial": "Cómo se contabilizan las oportunidades",
+        "competition": "Actividad agregada de la jornada"
+      },
+      "leaderboard": {
+        "tutorial": "Cómo navegar por el calendario",
+        "competition": "Tabla de avatares simulados"
+      },
+      "both": {
+        "tutorial": "Cómo se contabilizan las oportunidades",
+        "competition": "Tabla de avatares simulados"
+      }
+    },
+    "four_questions_same_across_arms": true,
+    "radio_count": 12,
+    "labeled_radios": 12,
+    "post_status": 405,
+    "secret_route_status": 404,
+    "mobile_width_checked_px": 375
+  },
+  "source_code": "PR #41 original fictional pilot as included in checkout, no code alteration during test",
+  "claim": "Actual browser page.goto HTTP and JS module integration with localhost on authorized hosted runner; supersedes previous admin-blocked local environment for this pilot only.",
+  "limitations": [
+    "Does not demonstrate Chromium navigation from ChatGPT's administratively blocked local environment",
+    "Does not certify full product, screen reader/WCAG, production auth, user study or remote deployment",
+    "No screenshots generated; screenshot acceptance not claimed",
+    "No real participants and no real politician scoring",
+    "Does not pass project's broader critical release gate e2e; those six gates remain 0/6",
+    "Scientific novelty 0/3 and CT2 prospective 22/100 unchanged"
+  ],
+  "AB_cycles_consumed": 0,
+  "main_merged": false,
+  "ChatRelay": false
+}
