@@ -232,7 +232,14 @@
       "limits": "Causal effect belongs to bundled contest intervention in education, not isolated leaderboard or adult political forecast decisions. No person-level data inspected.",
       "type": "INDEPENDENT_RCT_PRIOR_ART",
       "grade": "0/3",
-      "CT2_prospective_unchanged": 22
+      "CT2_prospective_unchanged": 22,
+      "additional_verified_20261029": {
+        "design": "138 randomized schools, 9327 actually randomized students (figure 1 original paper); 50% assigned at school level",
+        "source": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+        "important_timing": "4-week active 9.6% treatment vs6.5% control; 12-week active 14.3% vs12.2%. Twelve-week story ITT +0.301 SE0.139 over control mean0.395 is NOT the same four-week participation window.",
+        "data_rights": "Official publisher section says 'Data will be provided in supplementary information files'; underlying person data not accessed.",
+        "mechanism": "Bundled trial school-wide contest + leaderboard + books + notifications; conditional-on-rank analyses posttreatment noncausal; active-user mean decomposition conditional only."
+      }
     },
     {
       "id": "PF-BR16",
@@ -358,6 +365,54 @@
       "type": "SYNTHETIC_PRODUCT_MEASUREMENT",
       "grade": "0/3",
       "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR26",
+      "claim": "Leaderboard ranking and trends have no published randomized direct evidence separating position feedback from true performance",
+      "update": "FALSE_ORIGINAL_PICKAL_2026_RANDOMIZED_FICTITIOUS_FEEDBACK_PREEXISTS_PFL",
+      "support": "Pickal et al 2026, five arms N427 (86 high/up,81 high/down,75 low/up,95 low/down,90 no feedback), random fictitious images unrelated to actual performance, outcome mean higher/up interest=3.37, no-feedback=3.00, higher/up competence=3.62, no-feedback=3.12. Authors report motivation main effect F4,340=3.18, p=.014; actual performance effects small/negligible. Motivation measured only once, preregistered longitudinal H5 could not be tested.",
+      "source": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+      "doi": "10.1016/j.lindif.2025.102836",
+      "license": "CC BY 4.0 original university repository",
+      "limits": "Original study is not PFL and uses fabricated rankings with debriefing; no actual real ranking dynamic, long-term retention, real person's political choices or platform adoption. OSF original record linked but inaccessible, no participant rows accessed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "STRONG_ORIGINAL_HUMAN_RCT_PRIOR_ART"
+    },
+    {
+      "id": "PF-BR27",
+      "claim": "Published motivation group mean contrast is automatically identified for all 427 five-arm randomized sample in Pickal study",
+      "update": "NOT_IDENTIFIED_CONDITIONAL_345_CASE_ANOVA",
+      "support": "Published F(4,422) for initial accuracy =427; F(4,340) for motivation denotes 345 cases if standard 5-arm ANOVA; 82 present in five-arm reported total but not in that ANOVA. Published interest means 3.37 higher-up and 3.00 no feedback; over scale 1–5, if 82 outcomes have unknown arm distribution, exact worst-case bounds for full 427 are -1.889767 to +2.192222 under stated assumptions. Native test repaired after preserved initial 5/7, then 7/7 pass.",
+      "source": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+      "evidence": "../ABH5B_ORIGINAL_FEEDBACK_20261029/C01_RUN_RECEIPT.json",
+      "limits": "Conditional mathematical sensitivity with extreme unobserved scores and no arm-specific exclusions, not observed dropout, not an ITT estimate nor error in original complete-case analysis; published means rounded; 0/3 scientific novelty.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ORIGINAL_PUBLISHED_AGGREGATE_PARTIAL_ID"
+    },
+    {
+      "id": "PF-BR28",
+      "claim": "Palikot paper's 4-week active share 9.6/6.5 can be combined without qualification with 12-week story gain and interpreted as leaderboard mechanism",
+      "update": "TWO_DISTINCT_WINDOWS_AND_POSTTREATMENT_COMPONENTS",
+      "support": "Original paper section 3.1: 4wk stories control .146, ITT +.178; section 3.3: active treatment .096 vs control .065 (4wk). At 12wk stories control .395, ITT +.301, active .143 vs .122 (12wk). A pre-frozen exact Fraction decomposition of E[Y]=p*E[Y|A] gives conditional symmetric contributions extensive/intensive .08713/.09087 four-week and .08510/.21590 twelve-week, if active share corresponds to same positive completed-story metric.",
+      "source": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+      "evidence": "../ABH5B_ORIGINAL_FEEDBACK_20261029/C02_RUN_RECEIPT.json",
+      "limits": "Reported ITT adjusted for strata while public activity rates may be raw; rounded, window lengths differ, activity semantics not fully matched; post-treatment active selection prohibits causal component attribution, original effect is bundled competition, not PFL.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_RCT_AGGREGATE_TWO_HORIZON_SENSITIVITY"
+    },
+    {
+      "id": "PF-BR29",
+      "claim": "Public CC BY data archive alone proves a legally and ethically sound PFL leaderboard replication dataset",
+      "update": "ARCHIVE_FOUND_OTHER_GAMIFICATION_MECHANISM_NOT_SUITABLE_WITHOUT_DESIGN_AND_ETHICS_GATE",
+      "support": "Regaco 2026 dataset for Matching-to-Sample learning and gamification on Mendeley Data V2 (21 Apr 2026), CC BY 4.0; index lists data_analysis.R, eval_data.csv and mts_data.csv, experiment behavioral psychology rather than confirmed randomized leaderboard assignment.",
+      "source": "https://doi.org/10.17632/3bhp6zd2cw.2",
+      "limits": "Only catalogue/rights metadata examined; no data rows downloaded, no match to PFL estimand, no participant-level privacy adjudication. No A–J opened, only new source candidate.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ALTERNATIVE_SOURCE_CATALOG_GATE"
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -451,5 +506,21 @@
       0
     ],
     "human_microdata_downloaded": 0
+  },
+  "new_campaign_ABH5B": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-original-feedback-sensitivity-20261029",
+    "authorized_new": 5,
+    "executed_valid_limited": 2,
+    "planned_or_blocked_unopened": 3,
+    "historical_slots_separate": 2,
+    "source_reuse_published_aggregates_only": true,
+    "CT2_scientific": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "codes": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/"
   }
 }
