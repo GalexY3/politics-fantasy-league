@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-29",
+  "kind": "SOURCE_DATA_QUALITY_QA_NOT_AB_CYCLE",
+  "source": {
+    "doi": "10.7910/DVN/BPCDH5",
+    "file": "ifps.csv",
+    "file_id": 2917330,
+    "licence": "CC0 1.0",
+    "bytes": 1072153,
+    "sha256": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286"
+  },
+  "preregistration": [
+    "PREREG_IFP_QUALITY.json",
+    "IFP_DATE_PARSE_REPAIR_PREREG.json",
+    "IFP_CHRONOLOGY_REPAIR_PREREG.json"
+  ],
+  "runs": [
+    {
+      "run_id": 40808853715,
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808853715",
+      "status": "INITIAL_INCOMPLETE_DATE_FORMAT_ASSUMED_ISO",
+      "initial_rows": 617,
+      "date_start_ISO_parseable": 0
+    },
+    {
+      "run_id": 40809018691,
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809018691",
+      "status": "DATE_FORMAT_DISCOVERY",
+      "formats": {
+        "start": "%m/%d/%y",
+        "planned_close": "%m/%d/%y",
+        "date_closed": "%m/%d/%y",
+        "date_suspend": "%m/%d/%y %H:%M",
+        "missing": [
+          "NA",
+          "NULL"
+        ]
+      }
+    },
+    {
+      "run_id": 40809208653,
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+      "status": "CORRECTED_CHRONOLOGY_QA_PASS_FORMATS"
+    }
+  ],
+  "row_counts": {
+    "n": 617,
+    "distinct_ifp_id": 617,
+    "q_status": {
+      "closed": 498,
+      "voided": 119
+    },
+    "question_types": {
+      "0": 355,
+      "1": 84,
+      "2": 84,
+      "3": 2,
+      "4": 2,
+      "6": 90
+    },
+    "nonempty_outcome": 498
+  },
+  "corrected_date_quality": {
+    "valid_start": 617,
+    "valid_planned_close": 617,
+    "valid_suspend": 582,
+    "valid_actual_closed": 498,
+    "missing_actual_closed_voided": 119,
+    "start_after_planned_close": 1,
+    "start_after_suspend": 1,
+    "start_after_actual_closed": 0,
+    "suspend_after_actual_closed": 273,
+    "median_planned_window_days": 102
+  },
+  "interpretation": {
+    "denominator": "Question open dates and planned deadlines can be reconstructed; but dates are not person-specific exposures.",
+    "suspend_after_closed": "Differences may reflect retroactive outcomes, sentinel timestamps, or mismatched date/time precision; NOT automatically 273 errors. Investigate before defining eligibility cutoff.",
+    "start_after_deadline": "One source record is temporally inconsistent under parsed date values; requires handling predefined (exclude and sensitivity).",
+    "not_a_new_scientific_result": true,
+    "do_not_attribute_political_scores": true
+  },
+  "no_participant_rows": true,
+  "AB_slots_consumed": 0,
+  "CT2": 22
+}
