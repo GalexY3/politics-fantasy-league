@@ -1,0 +1,59 @@
+{
+  "schema": "pfl.abh30.c04.preregister.A-J.v1",
+  "date": "2026-10-29",
+  "campaign": {
+    "authorized_new": 30,
+    "previous_valid": 3,
+    "available_before": 27,
+    "historical_remaining_separate": 2,
+    "source_pr": 54,
+    "source_head": "bb6397e536ddb1886838579d33d9de772b1c2f24"
+  },
+  "cycle": "ABH30-C04",
+  "mode": "AB-P",
+  "DRIFT_D": 2,
+  "scientific_grade": "0/3",
+  "A": "Can the two original public ForecastBench cohorts be made auditable through an offline read-only command that requires exactly the four verified pinned raw files, and returns only aggregate counts rather than question text or person data?",
+  "B": {
+    "H1": "A runnable offline CLI rejects substituted, missing, surplus or symlinked source files before producing a misleading Brier summary, with no file-path or question-text leakage to stderr.",
+    "H0": "Corrupted/unpinned source file is accepted and silently interpreted as original, or missing results are treated as performance observations.",
+    "strong_rival": "Existing source and as-of guards already implement the calculations, so this cycle must exercise actual native file-system/CLI behavior and composition, not re-label their pure tests as independent science."
+  },
+  "C": {
+    "source": "Existing original ForecastBench public question/resolution files under declared CC BY-SA 4.0, pinned upstream commit 027ba0b3017a60e0e64602d724284ac6b2d91134; no human-level data",
+    "design": "Offline CLI --source-dir and --as-of-date; exact four filename allowlist from original immutable manifest; bounded raw byte read; Git blob verification before JSON parsing and any scoring; nonpersonal aggregate JSON output; external personal source files not accepted.",
+    "precommitted_tests": 11,
+    "tests_include": [
+      "positive synthetic fixture using test-only explicitly self-supplied manifest marked not project official",
+      "older as-of excludes future resolution",
+      "project four hashes reject synthetic originals",
+      "post-hash mutation fails",
+      "file set missing/extra fails",
+      "invalid JSON does not leak data",
+      "empty source path fails",
+      "real local Node FS IO fails closed on forged full dataset",
+      "CLI negative run stdout empty stderr redacted and exit2",
+      "CLI bad args fail",
+      "symlink final component not accepted"
+    ],
+    "positive_original_four_file_e2e_expected": "NOT_RUN: actual original source file bytes unavailable in offline container. Strict pin fails synthetic; do not claim original source full-file positive verification."
+  },
+  "D": {
+    "source": "scripts/offline_forecastbench_audit.mjs",
+    "source_git_blob_sha1": "63f18b9a9d1eaf474d3dae6080b2a15575c15974",
+    "source_sha256": "f361571dc412a5d000f9854b51c88c51ca324e0f04092c35268d6bf721511df2",
+    "source_commit": "bdf4c11e38b2dc547d25663d4ed70ac21829398e",
+    "test": "tests/test_offline_forecastbench_audit.mjs",
+    "test_git_blob_sha1": "e9eab29ff83d289bd993bff6025f81d753298645",
+    "test_sha256": "a157c5790f9c120e937b59abf658fe862c9e6bed2bd0c0003163c5522b1c70ab",
+    "test_commit": "e6c2806331408980563d66be1014ef071490b913",
+    "both_locally_hashed_and_git_verified_before_native_run": true,
+    "runtime": "Node local (native ES module via original GitHub matching copies)"
+  },
+  "E": "After this prereg commit, run exactly 11 native Node tests with real read/write of temporary *synthetic* public question bytes and subprocess; capture first run and preserve any failure. Do not use CI or fetch personal data.",
+  "F": "Adversarial: file path/possible symlink handling, file-size gate, test-only alternative manifest explicitly not authoritative, no file paths/question contents in CLI errors, no official rights from Git hash. Attack path roots and race constraints documented.",
+  "G": "No independent experimental replication. The data schema is licensed public question-level but original real raw positive verification missing. Need site/runner with the four original raw bytes to complete positive E2E.",
+  "H": "Update technical O7 graph and ledger only, preserve priors PF-BR01–PF-BR44, do not add scientific source prior for ordinary known integrity control.",
+  "I": "If 11 native IO cases pass classify AB-P limited correctness, not a scientific finding or deployed production data import, CT2=20, novel N1/N2/N3 zero, release gates zero.",
+  "J": "Count one new AB-H30 valid limited only if all native tests pass; if blocked/failure mark invalid attempts honestly, keep 26 remaining only if completed and verified. Historical two never consumed."
+}
