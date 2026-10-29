@@ -7,7 +7,7 @@
   "prereg_commit": "ee37d75c6ffb61a0a5da6c54cd6fe1930f31d0c9",
   "source_git_blob": "0802dd7dd2ead0aa17607f3995aea339efbd9c99",
   "test_git_blob": "fb555e36aa27238904c987d9fcd55799affabc68",
-  "runtime": "JavaScript V8 code execution, real exact GitHub source/test text transformed only ESM scaffolding; not claimed as native Node execution",
+  "runtime": "V8 direct exact source/test suite 15/15, plus native Node v22.16.0 identical module+test SHA 15/15 PASS",
   "tests_passed": 15,
   "tests_total": 15,
   "exit": 0,
@@ -50,5 +50,17 @@
     0
   ],
   "release_gates_passed": 0,
-  "status": "VALID_LIMITED_PRODUCT_ASOF_GATE"
+  "status": "VALID_LIMITED_PRODUCT_ASOF_GATE",
+  "native_follow_up": {
+    "runtime": "Native Node v22.16.0, exact independent byte copy matched both original Git blobs",
+    "freeze_commit": "7d78ee6745fc7ad52e7dad96874c1e0a6c5cd528",
+    "source_sha256": "030c1b14a900f56399e8b849e48e19c2e0827b347ed9db1e4e64d3c8f76440fd",
+    "test_sha256": "e78f7ff36528ebfa5df142a6450f233e39b83e03b53b1926d4f35c6e73ab736a",
+    "command": "node tests/test_forecastbench_source_guard.mjs",
+    "stdout": "PFL source as-of safety 15/15 PASS",
+    "exit": 0,
+    "passed": 15,
+    "total": 15,
+    "not_new_cycle": true
+  }
 }
