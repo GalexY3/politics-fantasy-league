@@ -270,6 +270,70 @@
       "type": "ALTERNATIVE_REPLICATION_CANDIDATE",
       "grade": "0/3",
       "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR19",
+      "claim": "A public ranking affects all participant ranks and anonymity settings uniformly",
+      "update": "PUBLISHED_HETEROGENEITY_AND_ANONYMITY_PRIOR_ART",
+      "support": "Felkey, Dziadula and Chiang (2023) randomly allocate 400 students into teams up to 10; paper reports high-rank motivation and lower-ranked male disengagement when usernames are non-anonymous. The AEA page links OpenICPSR replication E189681V1, whose public catalog shows 496.7KB Stata .dta and 6.7KB .do.",
+      "sources": [
+        "https://doi.org/10.1257/pandp.20231047",
+        "https://doi.org/10.3886/E189681V1",
+        "https://www.openicpsr.org/openicpsr/project/189681/version/V1/view?path=%2Fopenicpsr%2F189681%2Ffcr%3Aversions%2FV1%2Faeapandprogram2023.do&type=file"
+      ],
+      "limits": "Association of post-treatment rank with subsequent engagement is not randomized rank assignment. Source files not downloaded; user-level data rights, de-identification, assignment roster and eligibility still require review. Product avatar alias may not confer actual anonymity.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_PUBLISHED_PRIOR_AND_ACCESS_GATE"
+    },
+    {
+      "id": "PF-BR20",
+      "claim": "A smaller local leaderboard automatically eliminates ranking drawbacks and all welfare trade-offs",
+      "update": "LOCAL_LEAGUE_RANDOMIZED_COMPARISON_MIXED_OUTCOMES",
+      "support": "Chen, Dobrescu, Foster and Motta (2024), Labour Economics 90:102602, RCT of 890 students comparing local rank + goals versus goals/no feedback; local leagues groups up to 30 showed heterogeneous positive effort/grades and negative stress/wellbeing or grade trade-offs. Authors explicitly state no permission to share data.",
+      "source": "https://doi.org/10.1016/j.labeco.2024.102602",
+      "limits": "No original data access; published RCT in university classes not PFL. Local league is not a universal product-safe treatment; must define outcomes including unintended effort allocation.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_RCT_PRIOR_ART_NEGATIVE_DATA_ACCESS"
+    },
+    {
+      "id": "PF-BR21",
+      "claim": "Leaderboards uniquely increase app participation relative to other salient feedback",
+      "update": "SIX_ARM_RCT_RANK_V_PROGRESS_EXISTING_PRIOR_ART",
+      "support": "Karabiber & Gurol (2026), Acta Psychologica 266:106908, online experiment six conditions with N=219 analyzed participants. Authors report leaderboard and progress bar both improved weighted contributions versus no gamification; longer session duration only in leaderboard condition, no significant structure main effect/interaction.",
+      "source": "https://doi.org/10.1016/j.actpsy.2026.106908",
+      "limits": "Population ages 18–50 short-term app context not PFL, conditional analytic sample excludes <1 min sessions, 13 excluded arms not specified. Reported significance is authors' result, not reproduced. OSF data link noted but files not accessed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_EXPERIMENT_CONTRAST"
+    },
+    {
+      "id": "PF-BR22",
+      "claim": "5.6% overall short-session exclusions are by themselves sufficient to bound any per-arm retention difference near 5.6 percentage points",
+      "update": "FALSE_UNDER_UNREPORTED_ARM_ALLOCATION_SENSITIVITY",
+      "support": "Published Karabiber & Gurol 2026 includes arm sizes [36,37,36,36,37,37], total N219 and excludes 13 <1-min registrants; independent exact rational enumeration of C(18,5)=8568 possible six-arm allocations gives upper feasible retention difference 13/49=26.5306 percentage points if all 13 excluded had been allocated to a 36-person included arm, while pooled 13/232=5.60345%.",
+      "source": "https://doi.org/10.1016/j.actpsy.2026.106908",
+      "evidence": "research/ABH_BRANCHING5_INTERFERENCE_20261029/C04_RUN_RECEIPT.json",
+      "limits": "Conditional feasibility, NOT observed dropout pattern, causal bias, exclusion actual treatment assignment, effect on behavioral outcome, external verification or novel 1/3 discovery. If any excluded individuals were never assigned to an arm, 232 is not verified randomization population.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "PUBLISHED_AGGREGATE_ORIGINAL_SENSITIVITY_0OF3"
+    },
+    {
+      "id": "PF-BR23",
+      "claim": "Individual-level 2×2 factor contrasts are invariant to small-room versus large-room weighting and valid under mixed assignments within a shared ranking room",
+      "update": "SYNTHETIC_CLUSTER_INTERFERENCE_AND_TARGET_ESTIMAND_DIAGNOSTIC",
+      "support": "Pre-frozen eight group fixture 16 fictitious members in 4 arms: control 0/1 and 3/3 across room sizes 1,3; transparency 1/1 and 0/3; leaderboard 0/4; both 4/4. Equal-room transparency-factor contrast 0.5 vs person-weighted 0.25; tests fail closed on mixed treatment room and non-unique participants.",
+      "evidence": "research/ABH_BRANCHING5_INTERFERENCE_20261029/C03_RUN_RECEIPT.json",
+      "sources": [
+        "https://doi.org/10.1257/pandp.20231047",
+        "https://doi.org/10.1016/j.labeco.2024.102602"
+      ],
+      "limits": "Synthetic arithmetic only; estimands differ and neither is universally correct. Human interference exposure, cluster randomization, sample precision, legal/ethics and real-person response not observed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ENGINEERING_SYNTHETIC_ABP_0OF3"
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -332,5 +396,21 @@
     ],
     "legacy_unused": 2,
     "personal_rows_downloaded": 0
+  },
+  "latest_branching5_continuation": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-cluster-interference-20261029",
+    "science_ct2": 22,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "cyc3": "AB-P synthetic executed",
+    "cyc4": "AB-R aggregate sensitivity executed",
+    "cyc5": "STOP_R5_UNOPENED",
+    "old_legacy_slots": 2,
+    "new_slots_remaining": 1,
+    "individual_rows_retrieved": false
   }
 }
