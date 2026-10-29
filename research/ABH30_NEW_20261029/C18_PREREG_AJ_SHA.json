@@ -1,0 +1,40 @@
+{
+  "schema": "pfl.abh30.c18.prereg_AJ_SHA.v1",
+  "cycle": "ABH30-C18",
+  "mode": "AB-R_INDEPENDENT_PRIMARY_LICENSED_HUMAN_SOURCE_FEASIBILITY",
+  "drift_D": 3,
+  "branch": "research/pfl-abh30-c18-original-human-forecast-license-20261029",
+  "parent_PR": 70,
+  "parent_HEAD": "cc0cf4bb85e8dafa5448db24f80dcc8daaaf0760",
+  "authorization_before": {
+    "new_valid": 17,
+    "new_remaining": 13,
+    "historical_STOP_R5": 2
+  },
+  "pre_freeze_seen": "Initial internet search and read-only upstream GitHub metadata established public license CC BY-SA 4.0, published README/license, sample path and file sizes, plus Git LFS pointer for public individual and 4.595MB raw super individual. These facts are pilot known, not blinded outcomes.",
+  "source_pin": {
+    "repo": "forecastingresearch/forecastbench-datasets",
+    "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "README_Git_blob": "1edea28cb04516a41d3878860bfca905ee1fa094",
+    "LICENSE_Git_blob": "4a771ccadef06d2509ca54ea80e8427a14e5c667",
+    "public_forecast_LFS_pointer_Git_blob": "5653e59c09daa14b0a203a23d2bd0193e836b43b",
+    "super_forecast_Git_blob": "583085efe4c752d4b9f6ab2c98ec8642fbc01bca"
+  },
+  "A": "Does a previously inaccessible class of independent original licensed human forecasting records exist and can it be inspected in a privacy-minimizing way without downloading/retaining participant IDs? This is source feasibility, not causal PFL ranking estimand.",
+  "B": {
+    "H1": "GitHub connector can fetch full pinned super individual JSON (~4.6MB) read-only, source record structure includes forecast probabilities and event/round identifiers sufficient for aggregative descriptive evaluation without persistent participant data.",
+    "H0": "Too large/blocked or only LFS pointer, no allowed aggregate analysis; source license not sufficient to claim persons anonymized or PFL exposure.",
+    "alternatives": "License covers dataset distribution but personal/retention rights may impose further constraints; if direct identifiers or pseudo-identifiers are present, do not emit values or retain dataset."
+  },
+  "C": "Inspect only JSON top-level type, container array sizes/structural field keys and count parseability from pinned immutable original source; never output row contents or ID values. Compare actual raw JSON vs LFS pointer and explicit license. Reject human PFL causal claims and any per-person records. Source access success and structure are primary prospective endpoints, not forecast performance.",
+  "D": {
+    "instrument": "GitHub fetch_file exact pinned commit and original Git blob; JS in-memory metadata-only structural probe with no raw stdout, no filesystem or persisting identifiers",
+    "script_sha": "ORIGINAL_UPSTREAM_GIT_BLOB_LOCKED; no locally deployed analyzer, documentary path"
+  },
+  "E": "After this commit read the original raw super individual source exactly once. If connector too large, stop and preserve negative; do not retry exhausted endpoint. Inspect raw source metadata only. Document bounded count and field keys if legally safe.",
+  "F": "Do not infer per-person privacy clearance, independence of participants, feedback visibility, human randomized assignment, causal effects, or fresh as-of public outcomes from original Git file.",
+  "G": "Compared against C12 AAAI MTurk individual data missing explicit license; ForecastBench has explicit CC BY-SA original human forecast file, but NOT feedback-treatment experiment. Compare original raw vs public LFS pointer blocked.",
+  "H": "Update rights/source prior if substantive new feasibility established, preserving pre-known facts as pilot not confirmatory.",
+  "I": "Even if native source accessible, original PFL human science grade 0/3 and CT2 ordinal 20/100, N1-3=0 and launch gates 0/6.",
+  "J": "If actual primary raw source inspection succeeds and yields independent rights/data opportunity, one limited C18 AB-R documentary source-feasibility cycle, 18/30 used 12 remaining. If blocked, no valid cycle and pivot."
+}
