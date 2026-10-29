@@ -19,17 +19,18 @@ export function runReplayTests(api){
  const old='2026-10-08T00:00:00Z',mid='2026-10-24T00:00:00Z',late='2026-10-29T16:00:00Z';
  ok('reject before first original Git vintage',()=>throws(()=>selectVintage('2026-10-01T23:59:59Z'),'NO_VERIFIED_PUBLIC_VINTAGE'));
  ok('Oct8 selects published Oct7 version',()=>eq(selectVintage(old).commit,'4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110'));
- ok('Oct20 still selects Oct7 not future Oct23',()=>eq(selectVintage('2026-10-20T00:00:00Z').commit,'4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110'));
+ ok('Oct20 unverified intermediary revision dates fail closed',()=>throws(()=>selectVintage('2026-10-20T00:00:00Z'),'NO_VERIFIED_EXACT_CHECKPOINT'));
  ok('Oct24 selects Oct23 original version',()=>eq(selectVintage(mid).commit,'f3d8a4f83754f6c26990c67c69185f91f214c30c'));
- ok('one second before Oct29 commit still selects Oct23',()=>eq(selectVintage('2026-10-29T07:30:16Z').commit,'f3d8a4f83754f6c26990c67c69185f91f214c30c'));
- ok('Oct29 exact commit accepted',()=>eq(selectVintage('2026-10-29T07:30:17Z').commit,'027ba0b3017a60e0e64602d724284ac6b2d91134'));
+ ok('Oct29 unverified precommit second does not claim latest source',()=>throws(()=>selectVintage('2026-10-29T07:30:16Z'),'NO_VERIFIED_EXACT_CHECKPOINT'));
+ ok('Oct29 documented exact evaluation checkpoint accepted',()=>eq(selectVintage(late).commit,'027ba0b3017a60e0e64602d724284ac6b2d91134'));
  ok('invalid UTC offsets and impossible day rejected',()=>{
   for(const s of ['2026-10-29','2026-10-29T16:00:00+01:00','2026-10-40T16:00:00Z'])throws(()=>selectVintage(s),s.includes('40')?'INVALID_INSTANT':'NONCANONICAL_INSTANT');
  });
  ok('reject reversed or equal time',()=>{throws(()=>planVintagePair(late,mid),'INVALID_REPLAY_ORDER');throws(()=>planVintagePair(mid,mid),'INVALID_REPLAY_ORDER');});
- ok('reject two instants with same source vintage',()=>throws(()=>planVintagePair(old,'2026-10-18T00:00:00Z'),'NO_DISTINCT_VERIFIED_SOURCE_VERSION'));
+ ok('reject an invented second exact checkpoint inside same source vintage',()=>throws(()=>planVintagePair(old,'2026-10-18T00:00:00Z'),'NO_VERIFIED_EXACT_CHECKPOINT'));
  ok('Oct8 only Sept27 question set available',()=>{const v=selectVintage(old);eq(Object.keys(v.cohorts).length,1);eq(Object.hasOwn(v.cohorts,'2026-10-11'),false);});
  ok('Oct24 has two question cohorts',()=>eq(Object.keys(selectVintage(mid).cohorts).length,2));
+ ok('Oct25 another unpublished checkpoint cannot masquerade as Oct23 latest',()=>throws(()=>selectVintage('2026-10-25T00:00:00Z'),'NO_VERIFIED_EXACT_CHECKPOINT'));
  ok('simple original-source cohort acceptance',()=>{const x=inspectPublicCohort(dat('2026-09-27').questions,dat('2026-09-27').resolutions,{cohort:'2026-09-27',as_of_instant:old});eq(x.report.accepted,1);eq(x.accepted.size,1);});
  ok('source dated numeric quantity despite p in range vetoed',()=>{const c='2026-09-27',d=dat(c,[q(c,'a','fred','0.4')],[rr(c,'a',1,'fred')]);eq(inspectPublicCohort(d.questions,d.resolutions,{cohort:c,as_of_instant:old}).report.accepted,0);});
  ok('ambiguous multiple resolution remains unresolved',()=>{const c='2026-09-27',d=dat(c,[q(c)],[rr(c),rr(c,'a',0)]);const x=inspectPublicCohort(d.questions,d.resolutions,{cohort:c,as_of_instant:old});eq(x.report.accepted,0);eq(x.report.unresolved,1);});
