@@ -1,0 +1,60 @@
+{
+  "cycle": "C01",
+  "type": "AB-P",
+  "prereg_commit": "75cee495e3c5de60e04e7c4276b4dc9292bb76ae",
+  "A": "Test PFL fictional four-arm client in actual Chromium rather than Node static tests",
+  "B": [
+    "full integrated HTTP navigation works",
+    "browser blocks local requests",
+    "isolated DOM with unchanged client logic works but HTTP cannot be verified"
+  ],
+  "C": "Exact source Git blob SHA matched locally: server b66ca94e, HTML b0700bad, app 8d876e0f, CSS eabb5485 and materials a23a8a9f; chromium 144.0.7559.96; 18 DOM acceptance cases; 3 navigation routes attempted",
+  "D": {
+    "browser": "Chromium 144.0.7559.96 Debian, Playwright Python, executable /usr/bin/chromium",
+    "source_hash_verified": true,
+    "network": "Blocked by sandbox administrator for http://127.0.0.1, http://localhost, file:// and data: navigation; page.set_content on about:blank works",
+    "execution": "Original HTML, CSS, materials and client JS exact files; HTML external script and link tags removed for set_content, materials module export and single client import inlined in test only. No actual HTTP/module/CSP verification. Screenshots locally /mnt/data/pfl_browser_dom_desktop.png and ...mobile.png."
+  },
+  "E": {
+    "initial_assertions": {
+      "passes": 16,
+      "failed": 2,
+      "reason": "Harness expected 'denominadores' literal in tutorial DOM, but real text is 'Cómo se contabilizan las oportunidades'. No source change."
+    },
+    "repaired_harness": {
+      "passes": 18,
+      "failed": 0,
+      "tests": [
+        "4 arm options",
+        "4 fieldsets",
+        "12 radio inputs",
+        "neutral tutorial",
+        "aggregate view",
+        "same questions each condition",
+        "T condition switch",
+        "leaderboard switch",
+        "both conditions",
+        "progress live update",
+        "reset",
+        "no submit",
+        "no JS errors",
+        "mobile no horizontal overflow"
+      ],
+      "chromium_executed": true,
+      "successful_dom_render": true
+    },
+    "http_navigation": "BLOCKED_BY_ADMINISTRATOR",
+    "full_e2e": "NOT_VERIFIED",
+    "screenshots_captured": true
+  },
+  "F": "Client-side DOM logic tested in actual browser through about:blank and inline import, not loaded via original web server. Navigation block is environment policy, not app bug. Prior 15/15 Node HTTP still separate. No participant observations or accessibility certification.",
+  "G": "Native browser proves only DOM and interaction on same JS/HTML, not independent scientific replication. Contradicts earlier inability to render DOM in prior campaign, with narrower bound.",
+  "H": "T027 browser partially resolved: visual/DOM and mobile responsive YES, actual HTTP browser navigation and CSP browser enforcement NO. No claim user experiment.",
+  "I": {
+    "scientific_grade": "0/3",
+    "CT2_prospective": 25,
+    "VSDS": "1/3",
+    "launch_gates": "0/6"
+  },
+  "J": "ACCEPT_BOUNDED_C01; do not consume C04 repair because only test harness adjusted; proceed Atlas replay."
+}
