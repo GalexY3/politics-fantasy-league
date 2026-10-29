@@ -55,4 +55,10 @@ test('guard prototype getters and nested extra fields',()=>{
  rejects(x=>{x.roster[0].email='hidden'},'INVALID_ROSTER');
  rejects(x=>{Object.defineProperty(x.first_answers[0],'submitted_at',{get:()=>t(3),enumerable:true})},'INVALID_FIRST_ANSWER');
 });
-console.log(JSON.stringify({schema:'pfl.synthetic.opportunity.tests.v1',pass,total:8,context:'SYNTHETIC_ONLY_NO_PEOPLE'}));
+test('timestamp tie cannot attest pre-response display order',()=>{
+ const x=make();x.impressions[0].observed_at=t(3);
+ const s=auditFictionalOpportunities(x);
+ assert.equal(s.cells.control.timestamp_tied_displays,1);
+ assert.equal(s.cells.control.pre_response_displays,0);
+});
+console.log(JSON.stringify({schema:'pfl.synthetic.opportunity.tests.v2',pass,total:9,context:'SYNTHETIC_ONLY_NO_PEOPLE'}));
