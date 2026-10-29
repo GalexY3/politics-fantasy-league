@@ -1,0 +1,142 @@
+{
+  "schema": "pfl.ab3.2.1.o7.causal_graph.v1",
+  "date": "2026-10-29",
+  "status": "PILOT_UNVALIDATED",
+  "root_id": "PFL-ABH5B-CENTER",
+  "nodes": [
+    {
+      "id": "PFL-ABH5B-CENTER",
+      "type": "causal_research_question",
+      "mode": "AB-H",
+      "state": "active",
+      "summary": "Can leaderboard policy cause better forecast quality/participation without welfare or social-learning harms?",
+      "source": "C05_CONDITIONAL_AJ_PLAN_NOT_EXECUTED.json"
+    },
+    {
+      "id": "PFL-ABH5B-C03",
+      "type": "scientific_evidence",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Kloc published random offer vs none analysis, individual active-time CI; 0/3 scientific novelty.",
+      "source": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH5B-C04",
+      "type": "product_formal_check",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Exact counterexample deterministic win vs proper single-event two-person quadratic lottery; 8/8 pass, 0/3 scientific novelty.",
+      "source": "C04_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH5B-C05",
+      "type": "conditional_protocol",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Joint public-v-private rank × social information; welfare, coverage, forecast quality and correlated risk; no human consent/assignment rights and novelty insufficient.",
+      "source": "C05_CONDITIONAL_AJ_PLAN_NOT_EXECUTED.json"
+    },
+    {
+      "id": "PFL-ABH5B-WELFARE",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Zou & Gao 2023: full public rank performance gain may carry individual welfare loss (private/partial full comparisons).",
+      "source": "https://doi.org/10.1016/j.jebo.2023.09.030"
+    },
+    {
+      "id": "PFL-ABH5B-CROWD-RISK",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Adjodah et al 2021 social learning: accuracy-risk frontier in crowd predictions, not direct rank randomization.",
+      "source": "https://doi.org/10.3390/e23070801"
+    },
+    {
+      "id": "PFL-ABH5B-TRUTH",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Witkowski et al published ELF mechanism; proper score != incentive-compatible winner-take-all payout.",
+      "source": "https://doi.org/10.1287/mnsc.2022.4410"
+    },
+    {
+      "id": "PFL-ABH5B-GJP-ROSTER",
+      "type": "data_ethics_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "No verified complete assignment roster, nonrespondents and independent pre-response exposures for historical GJP hypothesis.",
+      "source": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/LEGACY_R5_GATE.json"
+    },
+    {
+      "id": "PFL-ABH5B-LEGACY02",
+      "type": "independent_source_gate",
+      "mode": "AB-H",
+      "state": "blocked",
+      "summary": "Historical randomized true public leaderboard-visible intervention with ethics and rights not verified.",
+      "source": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/LEGACY_R5_GATE.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "PFL-ABH5B-C03",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "tests",
+      "interpretation": "Already randomized offer effect, limits novelty"
+    },
+    {
+      "from": "PFL-ABH5B-C04",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "tests",
+      "interpretation": "Safety property of hypothetical prize mechanism only"
+    },
+    {
+      "from": "PFL-ABH5B-C05",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "branches_from",
+      "interpretation": "Potential joint causal welfare/accuracy-risk fork"
+    },
+    {
+      "from": "PFL-ABH5B-WELFARE",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "Novelty competitor: welfare/public recognition already studied"
+    },
+    {
+      "from": "PFL-ABH5B-CROWD-RISK",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "Novelty competitor: accuracy-risk already studied"
+    },
+    {
+      "from": "PFL-ABH5B-TRUTH",
+      "to": "PFL-ABH5B-C04",
+      "relation": "supports",
+      "interpretation": "Formal proof anticipated by published theorem"
+    },
+    {
+      "from": "PFL-ABH5B-GJP-ROSTER",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "Missing assignment and exposure with optouts"
+    },
+    {
+      "from": "PFL-ABH5B-LEGACY02",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "Cannot infer PFL causal effect from rankings alone"
+    }
+  ],
+  "rules": {
+    "states_are_not_validation": true,
+    "scientific_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "slots_completed_new": 4,
+    "slots_remaining_new": 1,
+    "slots_remaining_historical": 2,
+    "CT2_ordinal": 20
+  }
+}
