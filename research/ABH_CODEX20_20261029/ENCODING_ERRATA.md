@@ -1,0 +1,1 @@
+Campaign metadata had cp1252 bytes from the Windows command pipeline. The C02 merge succeeded; receipt closure failed while decoding metadata. Original bytes preserved; converted to UTF-8 without changing counters or findings. This runner error is not an additional AB cycle.
