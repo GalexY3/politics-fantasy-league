@@ -1,0 +1,245 @@
+[
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "open",
+      "http://127.0.0.1:8787/"
+    ],
+    "exit": 0,
+    "stdout": "### Browser `pfl-t028-supplement-qa` opened with pid 20856.\n### Ran Playwright code\n```js\nawait page.goto('http://127.0.0.1:8787/');\n```\n### Page\n- Page URL: http://127.0.0.1:8787/\n- Page Title: PFL — Demostración ficticia sin recogida\n### Snapshot\n- [Snapshot](.playwright-cli\\page-2026-10-29T10-47-00-351Z.yml)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({tag:document.activeElement.tagName,id:document.activeElement.id})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"tag\": \"SELECT\",\n  \"id\": \"arm\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({tag:document.activeElement.tagName,id:document.activeElement.id,type:document.activeElement.type})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"tag\": \"INPUT\",\n  \"id\": \"X1-0\",\n  \"type\": \"radio\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Space"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Space\nawait page.keyboard.press('Space');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({checked:document.activeElement.checked,progress:document.querySelector(\"#progress\").innerText})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"checked\": true,\n  \"progress\": \"Respuestas marcadas: 1 de 4. Nada se envía ni se guarda.\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Tab"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Tab\nawait page.keyboard.press('Tab');\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({tag:document.activeElement.tagName,id:document.activeElement.id})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"tag\": \"BUTTON\",\n  \"id\": \"reset\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "press",
+      "Enter"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\n// Press Enter\nawait page.keyboard.press('Enter');\n```\n### Page\n- Page URL: http://127.0.0.1:8787/\n- Page Title: PFL — Demostración ficticia sin recogida\n### Snapshot\n- [Snapshot](.playwright-cli\\page-2026-10-29T10-47-17-619Z.yml)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({progress:document.querySelector(\"#progress\").innerText,selected:document.querySelectorAll(\"#questions input:checked\").length})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"progress\": \"Respuestas marcadas: 0 de 4. Nada se envía ni se guarda.\",\n  \"selected\": 0\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({sheets:Array.from(document.styleSheets).map(s=>({href:s.href,rules:s.cssRules.length})),ua:navigator.userAgent})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"sheets\": [\n    {\n      \"href\": \"http://127.0.0.1:8787/style.css\",\n      \"rules\": 25\n    }\n  ],\n  \"ua\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "resize",
+      "1280",
+      "800"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 1280, height: 800 });\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "screenshot",
+      "--full-page",
+      "--filename",
+      "desktop.png"
+    ],
+    "exit": 0,
+    "stdout": "### Result\n- [Screenshot of full page](./desktop.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as ./desktop.png\nawait page.screenshot({\n  fullPage: true,\n  path: './desktop.png',\n  scale: 'css',\n  type: 'png'\n});\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "resize",
+      "375",
+      "812"
+    ],
+    "exit": 0,
+    "stdout": "### Ran Playwright code\n```js\nawait page.setViewportSize({ width: 375, height: 812 });\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "screenshot",
+      "--full-page",
+      "--filename",
+      "mobile.png"
+    ],
+    "exit": 0,
+    "stdout": "### Result\n- [Screenshot of full page](./mobile.png)\n### Ran Playwright code\n```js\n// Screenshot full page and save it as ./mobile.png\nawait page.screenshot({\n  fullPage: true,\n  path: './mobile.png',\n  scale: 'css',\n  type: 'png'\n});\n```\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "--raw",
+      "eval",
+      "() => ({width:innerWidth,scrollWidth:document.documentElement.scrollWidth})"
+    ],
+    "exit": 0,
+    "stdout": "{\n  \"width\": 375,\n  \"scrollWidth\": 375\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "playwright-cli",
+      "-s=pfl-t028-supplement-qa",
+      "close"
+    ],
+    "exit": 0,
+    "stdout": "Browser 'pfl-t028-supplement-qa' closed\n\n",
+    "stderr": ""
+  }
+]

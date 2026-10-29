@@ -333,6 +333,19 @@
         "scientific_2of3": "NOT_ACREDITED",
         "two_legacy_AB_slots_untouched": true
       }
+    },
+    {
+      "id": "PFL-CODEX-T025-MECHANISM",
+      "title": "Reproducción nativa y auditoría de mecanismos sintéticos",
+      "file": "T025_MECHANISM_SYNTHETIC_NATIVE_QA_20261029.md",
+      "status": "PARCIAL_EN_RAMA",
+      "result_file": "T025_MECANISMOS_RESULTADO.md",
+      "tested_commit": "070ecb0ae2b2597e09b3df5819da9509f6f5c354",
+      "notes": [
+        "36 cases independently reconstructed; exact original fixtures unavailable",
+        "Validation contract v2 rejects exotic inputs; manifests remain unauthenticated",
+        "Distinct from older T025 release task"
+      ]
     }
   ],
   "no_automatic_actions": true,
@@ -377,5 +390,11 @@
     "branch": "research/pfl-t028-handoff-and-evidence-20261029",
     "current_pr": 37,
     "executor_not_called": true
+  },
+  "T028_supplemental_20261029": {
+    "result_file": "T028_COMPLEMENTO_20261029.md",
+    "commit_tested": "7a6876f71b6cbc286f86ff4bf1393889e4f22851",
+    "controls_passed": 11,
+    "scope": "pilot keyboard, CSS, headers, methods, screenshots; not WCAG or release"
   }
 }

@@ -1,0 +1,76 @@
+{
+  "head": "7a6876f71b6cbc286f86ff4bf1393889e4f22851",
+  "scope": "supplemental fictional pilot controls, not full accessibility or launch",
+  "results": {
+    "keyboard_select_focus": true,
+    "keyboard_radio_focus": true,
+    "keyboard_space_selects_radio": true,
+    "keyboard_reset_focus": true,
+    "keyboard_enter_resets": true,
+    "css_loaded_and_applied": true,
+    "mobile_no_horizontal_overflow": true,
+    "no_referrer_header": true,
+    "put_denied": true,
+    "delete_denied": true,
+    "two_png_screenshots": true
+  },
+  "passed": 11,
+  "total": 11,
+  "keyboard": {
+    "select": {
+      "tag": "SELECT",
+      "id": "arm"
+    },
+    "radio": {
+      "tag": "INPUT",
+      "id": "X1-0",
+      "type": "radio"
+    },
+    "answer": {
+      "checked": true,
+      "progress": "Respuestas marcadas: 1 de 4. Nada se envía ni se guarda."
+    },
+    "reset_focus": {
+      "tag": "BUTTON",
+      "id": "reset"
+    },
+    "reset": {
+      "progress": "Respuestas marcadas: 0 de 4. Nada se envía ni se guarda.",
+      "selected": 0
+    }
+  },
+  "css_and_browser": {
+    "sheets": [
+      {
+        "href": "http://127.0.0.1:8787/style.css",
+        "rules": 25
+      }
+    ],
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36"
+  },
+  "mobile": {
+    "width": 375,
+    "scrollWidth": 375
+  },
+  "http": {
+    "GET": {
+      "status": 200,
+      "allow": null,
+      "referrer_policy": "no-referrer"
+    },
+    "PUT": {
+      "status": 405,
+      "allow": "GET, HEAD",
+      "referrer_policy": "no-referrer"
+    },
+    "DELETE": {
+      "status": 405,
+      "allow": "GET, HEAD",
+      "referrer_policy": "no-referrer"
+    }
+  },
+  "screenshots": {
+    "desktop.png": "24dbf9908af29a8854c03f9a0b872029efb884b0e515d319a916eeb80131c002",
+    "mobile.png": "fa2225e05a8734973c0c90aebd0ff5ba478bb079712fcdbfea7732645da9aa93"
+  }
+}

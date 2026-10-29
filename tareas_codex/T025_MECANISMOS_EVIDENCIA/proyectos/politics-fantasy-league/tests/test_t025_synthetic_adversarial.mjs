@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {scoreSyntheticRound as score} from '../src/politics_fantasy/synthetic_round_score.mjs';
+import {buildSyntheticManifest as manifest} from '../src/politics_fantasy/synthetic_round_manifest.mjs';
+const fixture = () => ({round_id:'SYN-RND-1',rule_version:'synthetic-v1',verified_complete:true,evidence_id:'synthetic-fixture:test',slots:['SYN-EVT-1'],events:[{id:'SYN-EVT-1',attempted:true,success:true}]});
+test('reject inherited person metadata in scorer',()=>{const x=fixture();Object.setPrototypeOf(x,{person_id:'SYN-PERSON'});assert.throws(()=>score(x));});
+test('reject symbol property in scorer',()=>{const x=fixture();x[Symbol('person_id')]='SYN-PERSON';assert.throws(()=>score(x));});
+test('reject non-enumerable metadata in scorer',()=>{const x=fixture();Object.defineProperty(x,'person_id',{value:'SYN-PERSON'});assert.throws(()=>score(x));});
+test('reject getters in scorer',()=>{const x=fixture();Object.defineProperty(x,'round_id',{enumerable:true,get:()=> 'SYN-RND-1'});assert.throws(()=>score(x));});
+test('reject symbol property in event',()=>{const x=fixture();x.events[0][Symbol('person_id')]='SYN-PERSON';assert.throws(()=>score(x));});
+test('reject symbol property in snapshot',()=>{const x={...score(fixture())};x[Symbol('person_id')]='SYN-PERSON';assert.throws(()=>manifest(x));});
+test('reject inherited person metadata in snapshot',()=>{const x={...score(fixture())};Object.setPrototypeOf(x,{person_id:'SYN-PERSON'});assert.throws(()=>manifest(x));});
+test('reject non-enumerable metadata in snapshot',()=>{const x={...score(fixture())};Object.defineProperty(x,'person_id',{value:'SYN-PERSON'});assert.throws(()=>manifest(x));});
+test('reject non-finite and unsafe counts',()=>{for(const n of [NaN,Infinity,Number.MAX_SAFE_INTEGER+1]){const x={...score(fixture()),scheduled:n};assert.throws(()=>manifest(x));}});
+test('unknown coverage produces no scores',()=>{const x=fixture();x.verified_complete=false;assert.equal(score(x).scores,null);});
+test('score is independent of later input mutation',()=>{const x=fixture(),result=score(x);x.events[0].success=false;assert.equal(result.successes,1);});
+test('forged previous manifest with matching cleartext is accepted, proving it is not authentication',()=>{const x=score(fixture()),m=manifest(x);const forgery={schema:m.schema,round_id:m.round_id,canonical_payload:m.canonical_payload};assert.equal(manifest(x,forgery).duplicate_safe,true);});

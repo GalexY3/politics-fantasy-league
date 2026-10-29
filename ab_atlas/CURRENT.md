@@ -1,3 +1,5 @@
+> **QA complementaria 29/10/2026:** [T028](../tareas_codex/T028_COMPLEMENTO_20261029.md) añade 11 controles locales de navegador; [T025 mecanismos](../tareas_codex/T025_MECANISMOS_RESULTADO.md) registra reproducción y corrección acotadas. No se añaden lotes ni ciclos, no se revalida con ello el grafo y no se abren gates.
+
 # ESTADO CANÓNICO DEL ATLAS — REPRODUCIDO CON PYTHON ORIGINAL (29/10/2026)
 
 **Fuente autorizada:** PR sucesora de #41, `research/pfl-t028-atlas-direct-adversarial-20261029`; ejecución nativa del checkout privado en [GitHub Actions #40805714464](https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464), commit fuente `85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1`. [Recibo verificable](../research/T028_DIRECT_ATLAS_20261029/NATIVE_ATLAS_CHECK_RECEIPT.json).
