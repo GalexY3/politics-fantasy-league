@@ -1,0 +1,46 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+  "parent_batch": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+  "at": "2026-10-29T00:26:37.468Z",
+  "actor": "chatgpt",
+  "reason": "Two bounded AB cycles executed, browser DOM and independent novelty source gate. C02 Atlas Python check incomplete NOT COUNTED, C04/C05 not executed. Parent 0079 has at=2026-10-29T01:00:00Z, which may postdate actual creation; retain authentic current timestamp and flag non-monotonic chronology rather than fabricating a future timestamp.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH-BROWSER-EVIDENCE-C01-20261029",
+        "at": "2026-10-29T00:26:37.468Z",
+        "activity": "Chromium 144 DOM isolated 18/18 after test harness correction; administrator blocks browser HTTP navigation; no real participant data",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C01_PREREG.json",
+          "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C01_RESULT.json"
+        ],
+        "scope": "AB-P bounded browser client test, not HTTP E2E",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH-BROWSER-EVIDENCE-C03-20261029",
+        "at": "2026-10-29T00:26:37.468Z",
+        "activity": "Peer-reviewed prior art 2019–2025 falsifies generic novelty of correlated-event forecasting, leaderboard dynamics and political social signalling; legal independent microdata not obtained",
+        "status": "completed",
+        "evidence": [
+          "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C03_PREREG.json",
+          "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C03_RESULT.json"
+        ],
+        "scope": "AB-R documentary novelty gate; no independent experiment",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
