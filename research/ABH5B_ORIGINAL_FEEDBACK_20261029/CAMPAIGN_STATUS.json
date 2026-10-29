@@ -40,10 +40,20 @@
     {
       "id": "ABH5B-C03",
       "mode": "AB-R",
-      "status": "PLANNING_ONLY_R5_NO_CYCLE",
-      "D": 2,
+      "status": "VALID_BOUNDED_DIRECT_RANDOMIZED_PUBLISHED_AGGREGATE",
       "grade": "0/3",
-      "kind": "Original Pickal OSF prereg/data/code linked in paper but web OSF inaccessible; no human rows or license/ethics attestation, cannot reanalyse exposures or missingness mechanism."
+      "D": 2,
+      "prereg_commit": "db06458f74dc77c6990971d58ff4486431d07c0b",
+      "result": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json",
+      "kind": "Direct independent 2024 randomized offer of leaderboard versus none; N3762 eligible, five outcome B/SE table; 8/8 tests show single vs 5-family CI discrepancy at illustrative 0.05 SD; post-allocation dispersion not causal.",
+      "superseded_unexecuted_plan": {
+        "id": "ABH5B-C03",
+        "mode": "AB-R",
+        "status": "PLANNING_ONLY_R5_NO_CYCLE",
+        "D": 2,
+        "grade": "0/3",
+        "kind": "Original Pickal OSF prereg/data/code linked in paper but web OSF inaccessible; no human rows or license/ethics attestation, cannot reanalyse exposures or missingness mechanism."
+      }
     },
     {
       "id": "ABH5B-C04",
@@ -63,19 +73,20 @@
     }
   ],
   "counting": {
-    "valid_limited": 2,
+    "valid_limited": 3,
     "invalid_cycles_final": 0,
     "invalid_attempts": 1,
-    "planning_not_consumed": 2,
+    "planning_not_consumed": 1,
     "unopened": 1,
-    "new_remaining": 3,
+    "new_remaining": 2,
     "historical_unused": 2
   },
   "CT2": {
     "line": "PFL_V1_prospective_science",
     "before": 22,
-    "after": 22,
-    "ordinal_not_probability": true
+    "after": 20,
+    "ordinal_not_probability": true,
+    "reason": "Direct randomized leaderboard offer and 8-arm older factorial competition reduce originality of prospective PFL mechanism; research access still lacks ethically authorized person-level exposures. Internal ordinal—not calibrated probability."
   },
   "N1_N2_N3_new": [
     0,
@@ -90,7 +101,9 @@
     "C01 original 5/7 suite invalid due Fraction harness; rerun after frozen repair 7/7 PASS",
     "Wide 1..5 full-sample Pickal motivation bounds cross zero under unknown 82-case missing allocation",
     "Palikot exact post-treatment decomposition cannot assign causal effects to intensity or public ranking component",
-    "OSF access blocked; Mendeley catalogue alone does not imply a valid research estimand"
+    "OSF access blocked; Mendeley catalogue alone does not imply a valid research estimand",
+    "C03 original Kloc randomized direct leaderboard offer reported no statistically discernible five-engagement benefit; 95% CI upper +.040 SD, conservative 5-endpoint familywise upper +.0502 SD exceeds illustrative 0.05 benchmark; cannot assert equivalence or positive effect.",
+    "Kloc paper's intra-board dispersion association is not identical to random offer effect; 3,762 eligible ≠ verified all-registrant ITT."
   ],
   "ethics": {
     "human_person_records_downloaded": 0,
@@ -102,6 +115,8 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "STOP_R5_WITH_3_NEW_AND_2_HISTORICAL_SLOTS_UNCONSUMED; NO_MORE_TRIVIAL_SYNTHETIC_CYCLES",
-  "sources_and_priors": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json"
+  "decision": "THREE_LIMITED_ABR_AGGREGATE_CYCLES_EXECUTED; TWO_NEW_R5_UNEXECUTED; TWO_HISTORICAL_UNTOUCHED",
+  "sources_and_priors": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+  "latest_branch": "research/pfl-abh5b-c03-randomized-leaderboard-20261029",
+  "canonical_report": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/FINAL_REPORT.md"
 }
