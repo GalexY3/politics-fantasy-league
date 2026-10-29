@@ -20,3 +20,5 @@ test('forged previous manifest with matching cleartext is accepted, proving it i
 
 test('reject arrays whose iterator hides scheduled events',()=>{const x=fixture();x.slots[Symbol.iterator]=function*(){};x.events[Symbol.iterator]=function*(){};assert.throws(()=>score(x));});
 test('reject array accessors before invoking them',()=>{const x=fixture();let invoked=false;Object.defineProperty(x.events,'0',{get(){invoked=true;return {id:'SYN-EVT-1',attempted:true,success:true}}});assert.throws(()=>score(x));assert.equal(invoked,false);});
+
+test("reject unimplemented scoring rules in scorer and manifest",()=>{for(const rule_version of ["synthetic-v2","synthetic-v999"]){assert.throws(()=>score({...fixture(),rule_version}));assert.throws(()=>manifest({...score(fixture()),rule_version}));}});

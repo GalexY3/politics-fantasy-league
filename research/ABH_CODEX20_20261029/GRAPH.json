@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {
+      "id": "CODEX20",
+      "type": "campaign",
+      "state": "active",
+      "authorized": 20
+    },
+    {
+      "id": "C01",
+      "type": "product_acceptance",
+      "state": "answered",
+      "evidence": "C01_RESULT.json"
+    },
+    {
+      "id": "EMPIRICAL_GATE",
+      "type": "dependency",
+      "state": "blocked",
+      "reason": "Independent identified scientific evidence still required"
+    }
+  ],
+  "edges": [
+    {
+      "from": "CODEX20",
+      "to": "C01",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "EMPIRICAL_GATE",
+      "type": "depends_on"
+    }
+  ]
+}

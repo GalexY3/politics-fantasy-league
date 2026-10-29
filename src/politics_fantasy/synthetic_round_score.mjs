@@ -9,7 +9,7 @@ const isDataArray=x=>{if(!Array.isArray(x)||Object.getPrototypeOf(x)!==Array.pro
 if(!isObject(input)||!keys(input,["round_id","rule_version","verified_complete","evidence_id","slots","events"]))throw Error("SCHEMA_DENIED");
 const {round_id,rule_version,verified_complete,evidence_id,slots,events}=input;
 if(typeof round_id!=="string"||!/^SYN-RND-[A-Za-z0-9_-]+$/.test(round_id))throw Error("SYNTHETIC_ROUND_ONLY");
-if(typeof rule_version!=="string"||!/^synthetic-v[1-9]\d*$/.test(rule_version))throw Error("SYNTHETIC_RULE_ONLY");
+if(typeof rule_version!=="string"||rule_version!=="synthetic-v1")throw Error("SYNTHETIC_RULE_ONLY");
 if(typeof verified_complete!=="boolean"||!isDataArray(slots)||!isDataArray(events))throw Error("INVALID_COVERAGE");
 if(verified_complete&&!(typeof evidence_id==="string"&&/^synthetic-fixture:[a-z0-9_-]+$/.test(evidence_id)))throw Error("EVIDENCE_REQUIRED");
 const ids=new Set();for(const id of slots){if(typeof id!=="string"||!/^SYN-EVT-[A-Za-z0-9_-]+$/.test(id))throw Error("SYNTHETIC_EVENT_ONLY");if(ids.has(id))throw Error("DUPLICATE_SLOT");ids.add(id)}

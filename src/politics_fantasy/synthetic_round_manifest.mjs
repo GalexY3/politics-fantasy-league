@@ -6,7 +6,7 @@ const isObject=x=>!!x&&typeof x==="object"&&!Array.isArray(x)&&(Object.getProtot
 const hasExactFields=(x,expected)=>{const names=Reflect.ownKeys(x);return names.length===expected.length&&names.every(k=>typeof k==="string"&&expected.includes(k)&&Object.getOwnPropertyDescriptor(x,k)?.enumerable===true&&Object.hasOwn(Object.getOwnPropertyDescriptor(x,k),"value"));};
 if(!isObject(snapshot)||!hasExactFields(snapshot,["attempted","evidence_id","round_id","rule_version","scheduled","schema","scores","status","successes"]))throw Error("BAD_SNAPSHOT_SCHEMA");
 const {round_id,rule_version,status,evidence_id,scheduled,attempted,successes,scores,schema}=snapshot;
-if(schema!=="pfl.synthetic.round.v1"||typeof round_id!=="string"||!/^SYN-RND-[A-Za-z0-9_-]+$/.test(round_id)||typeof rule_version!=="string"||!/^synthetic-v[1-9]\d*$/.test(rule_version))throw Error("SYNTHETIC_ONLY");
+if(schema!=="pfl.synthetic.round.v1"||typeof round_id!=="string"||!/^SYN-RND-[A-Za-z0-9_-]+$/.test(round_id)||typeof rule_version!=="string"||rule_version!=="synthetic-v1")throw Error("SYNTHETIC_ONLY");
 if(!Number.isSafeInteger(scheduled)||scheduled<0||!Number.isSafeInteger(attempted)||attempted<0||attempted>scheduled||!Number.isSafeInteger(successes)||successes<0||successes>attempted)throw Error("COUNTS_INVALID");
 if(!["COVERAGE_UNKNOWN","VERIFIED_NO_OPPORTUNITIES","VERIFIED_SYNTHETIC_ROUND"].includes(status))throw Error("STATUS_INVALID");
 if(status==="COVERAGE_UNKNOWN"){if(scores!==null||evidence_id!==null)throw Error("UNKNOWN_CANNOT_SCORE")}
