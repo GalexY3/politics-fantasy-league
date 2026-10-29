@@ -283,6 +283,14 @@
       "state": "answered",
       "summary": "C17 Node HMAC-SHA256 exact receipt field tamper/replay tests 16/16 PASS, no external key provenance or human evidence, grade 0/3.",
       "source": "../ABH30_NEW_20261029/C17_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C19-ATLAS-89-FULL-STATIC-AUDIT",
+      "type": "atlas_original_full_static_chain_audit",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C19 all 89 original Atlas delta JSON sourced from connected GitHub in six windows: SHA matched listing, 448 ops, 273 runs, no parent/schema errors, 8/8 Node unit tests. Canonical Python not run, no full graph digest.",
+      "source": "../ABH30_NEW_20261029/C19_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -615,6 +623,12 @@
       "to": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
       "relation": "audits",
       "interpretation": "Would conditionally detect tampering of self-generated synthetic C16 receipts but cannot make their origin independent."
+    },
+    {
+      "from": "PFL-ABH30-C19-ATLAS-89-FULL-STATIC-AUDIT",
+      "to": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
+      "relation": "audits",
+      "interpretation": "C19 checks append-only source chain including recorded C16 source contribution; not scientific causality."
     }
   ],
   "rules": {
@@ -638,8 +652,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 17,
-      "new_unused": 13,
+      "new_valid": 19,
+      "new_unused": 11,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -647,9 +661,9 @@
         0,
         0
       ],
-      "last_source_pr": 69,
-      "branch": "research/pfl-abh30-c17-integrity-proof-20261029",
-      "latest_valid_cycle": "ABH30-C17",
+      "last_source_pr": 71,
+      "branch": "research/pfl-abh30-c19-atlas-89-static-all-20261029",
+      "latest_valid_cycle": "ABH30-C19",
       "invalid_attempts": 3
     }
   }
