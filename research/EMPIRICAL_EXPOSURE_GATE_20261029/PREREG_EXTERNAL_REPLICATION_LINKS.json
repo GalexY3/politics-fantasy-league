@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-29",
+  "kind": "TECHNICAL_SOURCE_DISCOVERY_NOT_AB_CYCLE",
+  "sources": [
+    {
+      "study": "Hudja Roberson Rosokha 2025",
+      "author_site": "https://web.ics.purdue.edu/~yrosokha/research.html",
+      "goal": "Extract exact official experimental software GitHub target, check repository license and whether it actually contains deidentified data and randomized condition manifests"
+    },
+    {
+      "study": "Lemus Marshall 2021",
+      "author_site": "https://g-marshall.github.io/",
+      "publisher": "https://www.journals.uchicago.edu/doi/10.1086/711762",
+      "goal": "Extract exact Data Archive link if present; check publisher access and archive-specific rights without retrieving human data"
+    }
+  ],
+  "method": "Single small hosted runner HTML GET and parse anchor links with Python HTMLParser; output link labels/href/status only; no dataset or subjects downloaded. If URL blocked/anti-bot, record status, no workarounds.",
+  "minimum_evidence": [
+    "official named link target",
+    "whether archive is licensed for reuse",
+    "whether individual exposure and condition assignment logged (requires actual authorized data description, not guessing)"
+  ],
+  "decision": "If data permission or matching variables unavailable, STOP_R5 and preserve legacy 2 AB cycles",
+  "CT2": 22
+}
