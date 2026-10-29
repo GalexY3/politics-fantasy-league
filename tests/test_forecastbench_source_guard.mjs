@@ -30,3 +30,5 @@ test('bad cohort/date rejected',()=>{throws(()=>audit([q('a')],[res('a')],'2026-
 test('outcomes cannot masquerade as participant effects',()=>{const x=audit([q('a')],[res('a')]);eq(x.personal_forecasts_processed,false);eq(x.source_rights_attested,false);eq(x.interpret_as,'PUBLIC_QUESTION_RESOLUTION_SUBSET_NOT_PFL_FORECAST_OR_CAUSAL_STUDY')});
 export const testsPassed=pass;
 if(typeof process!=='undefined')process.stdout.write('PFL source as-of safety '+pass+'/15 PASS\n');
+
+test("calendar rollover freeze rejected",()=>{const x=audit([q("bad","metaculus","0.7","2026-02-30T12:00:00Z")],[res("bad")]);eq(x.accepted,0);eq(x.reasons.invalid_or_future_freeze,1)});

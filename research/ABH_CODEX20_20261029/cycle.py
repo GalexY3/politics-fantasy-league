@@ -1,6 +1,8 @@
 """Sequential, Git-frozen AB-P campaign receipts. No scientific promotion."""
 import sys,json,subprocess,datetime,hashlib
 from pathlib import Path
+sys.stdout.reconfigure(errors='backslashreplace')
+sys.stderr.reconfigure(errors='backslashreplace')
 ROOT=Path(__file__).resolve().parents[4]
 HERE=Path(__file__).resolve().parent
 

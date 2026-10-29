@@ -18,7 +18,7 @@ function day(v) {
  return Number.isFinite(ms) && new Date(ms).toISOString().slice(0,10)===v ? ms : null;
 }
 function instant(v) {
- if (typeof v!=='string'||!ISO_INSTANT.test(v))return null;
+ if (typeof v!=='string'||!ISO_INSTANT.test(v)||day(v.slice(0,10))===null||Number(v.slice(11,13))>23||Number(v.slice(14,16))>59||Number(v.slice(17,19))>59)return null;
  const ms=Date.parse(v);
  return Number.isFinite(ms)?ms:null;
 }
