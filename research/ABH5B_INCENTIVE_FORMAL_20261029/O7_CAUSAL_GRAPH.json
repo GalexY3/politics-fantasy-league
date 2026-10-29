@@ -251,6 +251,14 @@
       "state": "answered",
       "summary": "C13 frozen fictional four-arm normalized-outcome Manski partial-identification interval engine. Native Node 22.16.0 18/18 first run; complete-case nominal +0.175 leaderboard factorial contrast becomes bounds [-0.11,+0.19] under six missing synthetic scores. 0 human records, no RCT evidence, grade PFL science 0/3, no release gate.",
       "source": "../ABH30_NEW_20261029/C13_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
+      "type": "synthetic_product_experimental_design_contract",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C14 five-arm synthetic rank granularity x self/room visibility factorial static parity contract. Initial 18/18 instrument later invalidated by hash object toString coercion; preserved. Frozen explicit-string repair plus 2 new tests 20/20 Node native. No human allocation, treatment delivered, outcomes, rights, or release progress. CT2 20 ordinal 0/3.",
+      "source": "../ABH30_NEW_20261029/C14_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -547,6 +555,18 @@
       "to": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
       "relation": "related_to",
       "interpretation": "Different safety line: source-file version integrity vs inference under missing outcomes; neither establishes human causal effect."
+    },
+    {
+      "from": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
+      "to": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "relation": "depends_on",
+      "interpretation": "AAAI 2020 private daily quartile prior motivates but does not validate public vs private audience × granularity factorial."
+    },
+    {
+      "from": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "If later a human factorial becomes ethical and rights-cleared, outcome missingness bounds and room interference still apply; neither code result is human validation."
     }
   ],
   "rules": {
@@ -570,8 +590,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 13,
-      "new_unused": 17,
+      "new_valid": 14,
+      "new_unused": 16,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -579,9 +599,10 @@
         0,
         0
       ],
-      "last_source_pr": 64,
-      "branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
-      "latest_valid_cycle": "ABH30-C13"
+      "last_source_pr": 65,
+      "branch": "research/pfl-abh30-c14-rank-visibility-factorial-20261029",
+      "latest_valid_cycle": "ABH30-C14",
+      "invalid_attempts": 3
     }
   }
 }
