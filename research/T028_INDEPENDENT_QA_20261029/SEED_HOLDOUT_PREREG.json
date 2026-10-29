@@ -1,0 +1,42 @@
+{
+  "schema": "pfl.qa.followup.prereg.v1",
+  "kind": "TECHNICAL_QA_NOT_NEW_AB_CYCLE",
+  "date": "2026-10-29",
+  "parent_pr": 40,
+  "parent_head": "f69aeadf5aaa392a9e29580e66ddcb894aca3fd0",
+  "source_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+  "source": "proyectos/politics-fantasy-league/src/politics_fantasy/pilot_assignment.mjs",
+  "question": "Does repaired deterministic block allocation remain balanced on independent seed windows not used to tune the initial whitening transformation?",
+  "comparator": "Original pre-repair LCG; both share same deterministic blocks and full per-block balance requirement",
+  "frozen_seed_windows": [
+    {
+      "label": "adjacent_holdout",
+      "start": 4096,
+      "count": 4096
+    },
+    {
+      "label": "high_bit_holdout",
+      "start": 2147483648,
+      "count": 4096
+    },
+    {
+      "label": "maximum_seed_holdout",
+      "start": 4294963200,
+      "count": 4096
+    }
+  ],
+  "endpoints": [
+    "every n=4 block has exactly one arm each",
+    "maximum relative deviation from expected 1024 of each arm in each position per holdout window <=0.12",
+    "24-permutation histogram counts, min/max/chi-square descriptive only, no p-value confirmation after tuning",
+    "n=8 and n=10000 at seed 0, 4294967295 retains exact 4-arm balance",
+    "repeated invocation same seed returns same sequence and frozen array",
+    "reject invalid seed (-1, 2^32, NaN) and invalid n (0,5,10001)"
+  ],
+  "decision_rule": "PASS if all invariants and three max deviation tests pass; otherwise FAIL, preserve failure and request repair, no promotion to secure randomization.",
+  "prior_selection_exposure": "Original seed window 0..4095 was used to choose and validate 32-bit avalanche; cannot reuse for external confirmation.",
+  "assumptions": "LCG and 32-bit hash are noncryptographic; tests do not validate human random assignment, unbiasedness under all seeds or concealment",
+  "scientific_grade": "0/3",
+  "CT2": 22,
+  "R5": "Do not consume two legacy AB-H slots for repair alone; no novel human evidence"
+}
