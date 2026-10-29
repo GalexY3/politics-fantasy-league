@@ -187,6 +187,22 @@
       "state": "answered",
       "summary": "Integrated production-source-aware temporal gate into actual offline public question CLI: Oct29 Git source cannot be scored Oct01/Oct08; strict UTC as-of instant; 18 new native Node integration tests and 11 prior regression tests PASS. Original four full bytes positive CLI run still NOT executed; source commit is not participant first_public_at.",
       "source": "../ABH30_NEW_20261029/C06_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C07-ORIGINAL-VINTAGE-PANEL",
+      "type": "product_scientific_source_validation",
+      "mode": "AB-H",
+      "state": "answered",
+      "summary": "Exact three Git-public source vintage replay 7 original SHA-verified public blobs: Sep27 eligible 30 Oct08→46 Oct24→52 Oct29; Oct11 source unavailable Oct08→2 Oct24→8 Oct29. 0 observed prior-known outcome flips/losses, but only exact dates permitted. Frozen core 25/25 native tests + CLI 8/8, full original native CLI positive not performed, no individual data or new PFL causal science.",
+      "source": "../ABH30_NEW_20261029/C07_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C07-EXTERNAL-HUMAN-DATA-RIGHTS",
+      "type": "original_human_access_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Institutional original metadata Xu et al 2026 ICPSR DOI 10.3886/E227582 provides CODE, underlying Statistics Finland human administrative records not legally available to current tool; no complete treatment assignment/eligible roster or independent exposure. Agranov 2026 randomized social information also prior art without authorized original individual rows.",
+      "source": "../ABH30_NEW_20261029/C07_HUMAN_DATA_ACCESS_GATE.json"
     }
   ],
   "edges": [
@@ -375,6 +391,30 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "related_to",
       "interpretation": "Human causal assignment and pre-answer exposure still legally/ethically unavailable; source Git timestamp not proof of person-level exposure."
+    },
+    {
+      "from": "PFL-ABH30-C07-ORIGINAL-VINTAGE-PANEL",
+      "to": "PFL-ABH30-C06-INTEGRATED-CLI-ASOF-SOURCE",
+      "relation": "extends",
+      "interpretation": "C06 rejected future original dataset. C07 adds real earlier original source vintages for precisely three independently verified source-date checkpoints."
+    },
+    {
+      "from": "PFL-ABH30-C07-ORIGINAL-VINTAGE-PANEL",
+      "to": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "relation": "responds_to",
+      "interpretation": "Explicit source-version-asof replay rather than interpreting resolution_date from Oct29 as Oct01 publication."
+    },
+    {
+      "from": "PFL-ABH30-C07-ORIGINAL-VINTAGE-PANEL",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Public question event source versions do not identify or authorize individual human ranking-exposure effects."
+    },
+    {
+      "from": "PFL-ABH30-C07-EXTERNAL-HUMAN-DATA-RIGHTS",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "blocks",
+      "interpretation": "Even exact 2026 ICPSR original code DOI is not consent or right to source confidential human data."
     }
   ],
   "rules": {
@@ -398,8 +438,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 6,
-      "new_unused": 24,
+      "new_valid": 7,
+      "new_unused": 23,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -408,7 +448,8 @@
         0
       ],
       "last_source_pr": 53,
-      "branch": "research/pfl-abh30-c06-source-publication-cli-20261029"
+      "branch": "research/pfl-abh30-c07-bitemporal-replay-20261029",
+      "latest_valid_cycle": "ABH30-C07"
     }
   }
 }
