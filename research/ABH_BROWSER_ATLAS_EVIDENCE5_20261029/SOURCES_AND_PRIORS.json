@@ -782,6 +782,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "No independent trust root, key custody, real event provenance or participants; ordinary HMAC not novel mathematical discovery."
+    },
+    {
+      "id": "PF-BR58",
+      "claim": "Openly licensed original ForecastBench human individual forecasts are automatically accessible, deidentified and usable as PFL causal leaderboard exposure evidence.",
+      "update": "REFUTED_AS_CONJUNCTION: CC_BY_SA_4_0_LICENSE_CONFIRMED_BUT_RAW_SUPER_JSON_CONNECTOR_TRUNCATED_AND_PUBLIC_VIEWER_HAS_USER_ID_FREE_TEXT; NO_EXPOSURE_RCT",
+      "support": "Repo original ForecastBench commit 027ba0b3017a60e0e64602d724284ac6b2d91134, README blob 1edea28cb04516a41d3878860bfca905ee1fa094, LICENSE blob 4a771ccadef06d2509ca54ea80e8427a14e5c667, super individual file Git blob 583085efe4c752d4b9f6ab2c98ec8642fbc01bca. After prereg 9331e120b84844f94babcbfc25797e51cb24e4ad, one read-only original JSON attempt failed JSON.parse Unexpected end, no retry. HuggingFace public viewer inspected posthoc shows fields user_id and reasoning, so nonpublic research processing needs further privacy review. No participant raw rows stored, no actual PFL rank exposure.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C18_RUN_RECEIPT.json",
+      "type": "ABH_PREREG_NEGATIVE_LICENSED_HUMAN_ORIGINAL_DATA_FEASIBILITY",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Copyright license is not legal/ethical basis for handling identifiers and free text. Source content unavailable in parser; field metadata inferred from public HF viewer posthoc. PFL causality untested."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -975,10 +987,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c17-integrity-proof-20261029",
+    "branch": "research/pfl-abh30-c18-original-human-forecast-license-20261029",
     "granted": 30,
-    "valid_limited": 17,
-    "new_remaining": 13,
+    "valid_limited": 18,
+    "new_remaining": 12,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -1000,7 +1012,8 @@
       "PF-BR54",
       "PF-BR55",
       "PF-BR56",
-      "PF-BR57"
+      "PF-BR57",
+      "PF-BR58"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
