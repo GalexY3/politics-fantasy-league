@@ -1,0 +1,68 @@
+{
+  "schema": "pfl.abh5.c05.run.v1",
+  "date": "2026-10-29",
+  "cycle": "C05",
+  "category": "AB-P",
+  "status": "VALID_LIMITED_SYNTHETIC",
+  "prereg_commit": "cf075afa73994987492b8d683d80776ad4bb5148",
+  "source_commit": "83352fa2b2099166f2c4309c62f094f38cf5b35a",
+  "test_commit": "13260a0b9f36207de09eb4c5a6d1fc44ca67083d",
+  "git_source_blob": "8d65bec7fcd4c35c60d48233f19bdfc4740fc7ad",
+  "git_test_blob": "424b55567f96c87db5359c54110d797cce923465",
+  "source_sha256": "cdffb342ba9774513a941cae5ba173c05229b9cc3ae579403ca85bbb3ac8fd96",
+  "test_sha256": "8024196daaf2ef7fb53bf3b61ec5bb7de6884cc130b53d7d0c0724f5fb4c977f",
+  "command": "node test_fictional_room_exposure.mjs",
+  "runtime": "Node v22.16.0 local isolated container",
+  "exit_code": 0,
+  "passed_groups": 9,
+  "total_groups": 9,
+  "stdout": [
+    "PASS initial room and new room both valid in half-open membership history",
+    "PASS old room after switch rejected",
+    "PASS switch boundary belongs to new room, not previous room",
+    "PASS overlapping and missing time-dependent membership rejected",
+    "PASS mixed arms inside a shared room at display time rejected",
+    "PASS untrusted label, duplicate event and missing question rejected",
+    "PASS future display outside closing window rejected",
+    "PASS reject personal fields, getters, real-study fixture and noncanonical time",
+    "PASS no real exposure or causal inference inferred",
+    "{\"schema\":\"pfl.synthetic.room.exposure.tests.v1\",\"pass\":9,\"total\":9,\"person_level_human_records\":0}"
+  ],
+  "frozen_fixture": {
+    "members": 3,
+    "room_switches": 1,
+    "observed_synthetic_impressions": 4,
+    "condition": "control",
+    "test_arms": [
+      "control",
+      "transparency",
+      "leaderboard",
+      "both"
+    ]
+  },
+  "interpretation": "In half-open room histories, a display after a move must belong to the new room. Membership overlap, gap, stale room, different arm in a room or forged independent-source label fails closed. No demonstrated real log authenticity.",
+  "adversarial_controls": [
+    "room switch exact boundary",
+    "overlap and gaps",
+    "different-arm co-occupants",
+    "fake source",
+    "duplicate view",
+    "question closure",
+    "extra personal field",
+    "accessor getter",
+    "fake real-study marker"
+  ],
+  "scientific_grade": "0/3",
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "CT2_scientific_before": 22,
+  "CT2_scientific_after": 22,
+  "external_human_replication": "NONE",
+  "research_actor_data_processed": 0,
+  "clean_checkout": "NOT_REVALIDATED",
+  "CI_executed": false,
+  "conclusion": "Technical synthetic evidence only, not behavioral effects nor release/ethics."
+}

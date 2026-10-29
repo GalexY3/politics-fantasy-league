@@ -1,0 +1,66 @@
+{
+  "schema": "pfl.abh30.c01.execution.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C01",
+  "mode": "AB-P",
+  "grade_scientific": "0/3",
+  "prereg_commit": "ee37d75c6ffb61a0a5da6c54cd6fe1930f31d0c9",
+  "source_git_blob": "0802dd7dd2ead0aa17607f3995aea339efbd9c99",
+  "test_git_blob": "fb555e36aa27238904c987d9fcd55799affabc68",
+  "runtime": "V8 direct exact source/test suite 15/15, plus native Node v22.16.0 identical module+test SHA 15/15 PASS",
+  "tests_passed": 15,
+  "tests_total": 15,
+  "exit": 0,
+  "real_external_regression": {
+    "repo": "forecastingresearch/forecastbench-datasets",
+    "pinned_original_git_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "cohorts": [
+      {
+        "date": "2026-09-27",
+        "questions": 500,
+        "resolution_records": 642,
+        "accepted_asof_2026_10_01": 10,
+        "accepted_asof_2026_10_29": 52,
+        "rejected_future_relative_to_2026_10_01": 42,
+        "brier_market_resolved_only_asof_2026_10_29": 0.16801450256770642
+      },
+      {
+        "date": "2026-10-11",
+        "questions": 500,
+        "resolution_records": 450,
+        "accepted_asof_2026_10_29": 8,
+        "brier_market_resolved_only_asof_2026_10_29": 0.07071875
+      }
+    ],
+    "same_two_cohorts_as_prior_C05": true,
+    "independent_external_confirmation_claim": false
+  },
+  "negative_and_limits": [
+    "No PFL predictions, no human participant records; market-community freeze baselines not product scoring",
+    "Historical source-regression cohorts previously seen in prior C05, NOT new independent replication",
+    "As-of date is a conservative start-of-day cutoff; same-day date-only resolution always excluded to avoid leakage",
+    "This is an importable module with tests but integration into deployed PFL source service NOT demonstrated",
+    "No validation of source market closure timestamp, independent random exposures or external legal user data"
+  ],
+  "CT2_before": 20,
+  "CT2_after": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates_passed": 0,
+  "status": "VALID_LIMITED_PRODUCT_ASOF_GATE",
+  "native_follow_up": {
+    "runtime": "Native Node v22.16.0, exact independent byte copy matched both original Git blobs",
+    "freeze_commit": "7d78ee6745fc7ad52e7dad96874c1e0a6c5cd528",
+    "source_sha256": "030c1b14a900f56399e8b849e48e19c2e0827b347ed9db1e4e64d3c8f76440fd",
+    "test_sha256": "e78f7ff36528ebfa5df142a6450f233e39b83e03b53b1926d4f35c6e73ab736a",
+    "command": "node tests/test_forecastbench_source_guard.mjs",
+    "stdout": "PFL source as-of safety 15/15 PASS",
+    "exit": 0,
+    "passed": 15,
+    "total": 15,
+    "not_new_cycle": true
+  }
+}

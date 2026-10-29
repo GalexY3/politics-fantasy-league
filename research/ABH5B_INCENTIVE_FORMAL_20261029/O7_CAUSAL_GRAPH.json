@@ -1,0 +1,388 @@
+{
+  "schema": "pfl.ab3.2.1.o7.causal_graph.v1",
+  "date": "2026-10-29",
+  "status": "PILOT_UNVALIDATED",
+  "root_id": "PFL-ABH5B-CENTER",
+  "nodes": [
+    {
+      "id": "PFL-ABH5B-CENTER",
+      "type": "causal_research_question",
+      "mode": "AB-H",
+      "state": "active",
+      "summary": "Can leaderboard policy cause better forecast quality/participation without welfare or social-learning harms?",
+      "source": "C05_CONDITIONAL_AJ_PLAN_NOT_EXECUTED.json"
+    },
+    {
+      "id": "PFL-ABH5B-C03",
+      "type": "scientific_evidence",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Kloc published random offer vs none analysis, individual active-time CI; 0/3 scientific novelty.",
+      "source": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH5B-C04",
+      "type": "product_formal_check",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Exact counterexample deterministic win vs proper single-event two-person quadratic lottery; 8/8 pass, 0/3 scientific novelty.",
+      "source": "C04_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "type": "conditional_protocol",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Independent causal future public/private rank × others' actions, welfare and predictive risk remains blocked by source-specific human rights, original assignment roster and novelty; document-only plan NOT executed.",
+      "source": "C05_CONDITIONAL_AJ_PLAN_NOT_EXECUTED.json"
+    },
+    {
+      "id": "PFL-ABH5B-WELFARE",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Zou & Gao 2023: full public rank performance gain may carry individual welfare loss (private/partial full comparisons).",
+      "source": "https://doi.org/10.1016/j.jebo.2023.09.030"
+    },
+    {
+      "id": "PFL-ABH5B-CROWD-RISK",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Adjodah et al 2021 social learning: accuracy-risk frontier in crowd predictions, not direct rank randomization.",
+      "source": "https://doi.org/10.3390/e23070801"
+    },
+    {
+      "id": "PFL-ABH5B-TRUTH",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Witkowski et al published ELF mechanism; proper score != incentive-compatible winner-take-all payout.",
+      "source": "https://doi.org/10.1287/mnsc.2022.4410"
+    },
+    {
+      "id": "PFL-ABH5B-GJP-ROSTER",
+      "type": "data_ethics_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "No verified complete assignment roster, nonrespondents and independent pre-response exposures for historical GJP hypothesis.",
+      "source": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/LEGACY_R5_GATE.json"
+    },
+    {
+      "id": "PFL-ABH5B-LEGACY02",
+      "type": "independent_source_gate",
+      "mode": "AB-H",
+      "state": "blocked",
+      "summary": "Historical randomized true public leaderboard-visible intervention with ethics and rights not verified.",
+      "source": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/LEGACY_R5_GATE.json"
+    },
+    {
+      "id": "PFL-ABH5B-IMITATION2026",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Agranov et al. 2026 original RCT: same public signals + others' actions can outperform signals alone. Not rank feedback, not PFL. Supplemental PDF © Elsevier, NBER appendix not retrieved; rights not established.",
+      "source": "https://doi.org/10.1016/j.jet.2026.106203"
+    },
+    {
+      "id": "PFL-ABH5B-REFGROUP2026",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Xu et al. 2026 original rank-reference comparison RCT finds stronger satisfaction shifts in narrow reference groups; no verified original human reuse rights.",
+      "source": "https://doi.org/10.1257/app.20240181"
+    },
+    {
+      "id": "PFL-ABH5B-RIGHTS-AEA",
+      "type": "data_rights_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "AEA page replication-package link not sufficient: must verify specific DOI, README, license, identity/privacy and assignment/exposure/eligible denominator before accessing human records.",
+      "source": "https://www.aeaweb.org/journals/data/data-code-policy"
+    },
+    {
+      "id": "PFL-ABH5B-BASELINE",
+      "type": "strong_baseline",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Forecasting Collaborative 2023 social scientist forecasts no better on average than simple historical means/random walk/linear baselines; prospective policy score needs strong non-response baseline.",
+      "source": "https://doi.org/10.1038/s41562-022-01517-1"
+    },
+    {
+      "id": "PFL-ABH5B-C05-REAL-SOURCE",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Original 1000 public ForecastBench questions+1092 resolution rows two independent sealed cohorts; 60 eligible binary market p/outcomes; non-probability numeric sources fail closed; 12/12 tests after prereg repair. NOT human leaderboard causal evidence, grade 0/3.",
+      "source": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/C05_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH5B-C05-PROVENANCE",
+      "type": "source_provenance",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "ForecastBench official CC BY-SA 4.0; immutable upstream snapshot Git 027ba0b3017a60e0e64602d724284ac6b2d91134, 4 original blob SHAs checked. Source question text not reproduced.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets"
+    },
+    {
+      "id": "PFL-ABH5B-C05-FAILED-RUN",
+      "type": "repair_record",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "First run 8 of 12 tests then fail on duplicate original question record accounting; correction preregistered and SHA re-frozen before 12/12 pass; not counted as extra cycle.",
+      "source": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/C05_TEST_FAIL_AND_REPAIR_PREREG.json"
+    },
+    {
+      "id": "PFL-ABH30-C01-ASOF-GUARD",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Importable ForecastBench public question guard with source units and explicit cutoff as-of; 15 frozen tests on exact GitHub code V8 PASS; reused real two public cohorts: as-of Oct 1 selects 10 vs Oct29 52 in Sep27, no human causal evidence.",
+      "source": "../ABH30_NEW_20261029/C01_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C02-RAW-BYTES",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Node git-blob byte integrity guard with original 4-file pin set, 13 native tests PASS, Git byte hash known vector. Positive verification of all four original raw dataset bytes has NOT run locally because network unavailable; no rights or person data authority.",
+      "source": "../ABH30_NEW_20261029/C02_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "type": "data_ethics_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Prior strong scientific causal PFL roster/display log rights and novelty still unavailable, independent of event-question provenance. No next scientific cycle without assigned nonresponders and legal/ethics clearance.",
+      "source": "../ABH5B_C05_EXTERNAL_GATE_20261029/C05_R5_DECISION.json"
+    },
+    {
+      "id": "PFL-ABH30-C03-PUBLIC-BRIER-MISSING",
+      "type": "scientific_evidence",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Real original non-person ForecastBench p/y source: two market-only 250 question cohorts, 52 and 8 known, exact Brier no-assumption full-cohort bounds [0.0971,0.5195] and [0.0784,0.5985]; both include weak p=.5 reference; no causal PFL or independent confirmation.",
+      "source": "../ABH30_NEW_20261029/C03_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Runnable offline local read-only CLI composes frozen original 4-file Git byte gate and temporal public-question evaluation. Native Node FS/subprocess 11/11 pass. Posthoc connector original 4/4 byte SHA1 confirmation and pure guard 52/8; no local original four-file CLI positive run, human data or causal effect. Release still 0/6.",
+      "source": "../ABH30_NEW_20261029/C04_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "type": "source_epistemic_correction",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Original Git source path for Sep27 resolution set absent by Oct01 and Oct06, first published Oct07 07:19:29Z. Existing C01 event-date cutoff applied to later Oct29 snapshot 10 apparently available on Oct01, hence as-of historical availability claim retracted. First genuine published snapshot Oct08 30 eligible; Oct29 later 52. Native Python provenance gate 15/15 tests; no PFL human effect, no local positive original bytes Python E2E.",
+      "source": "../ABH30_NEW_20261029/C05_RUN_RECEIPT.json"
+    }
+  ],
+  "edges": [
+    {
+      "from": "PFL-ABH5B-C03",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "tests",
+      "interpretation": "Already randomized offer effect, limits novelty"
+    },
+    {
+      "from": "PFL-ABH5B-C04",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "tests",
+      "interpretation": "Safety property of hypothetical prize mechanism only"
+    },
+    {
+      "from": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "branches_from",
+      "interpretation": "Potential joint causal welfare/accuracy-risk fork"
+    },
+    {
+      "from": "PFL-ABH5B-WELFARE",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Novelty competitor: welfare/public recognition already studied"
+    },
+    {
+      "from": "PFL-ABH5B-CROWD-RISK",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Novelty competitor: accuracy-risk already studied"
+    },
+    {
+      "from": "PFL-ABH5B-TRUTH",
+      "to": "PFL-ABH5B-C04",
+      "relation": "supports",
+      "interpretation": "Formal proof anticipated by published theorem"
+    },
+    {
+      "from": "PFL-ABH5B-GJP-ROSTER",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Missing assignment and exposure with optouts"
+    },
+    {
+      "from": "PFL-ABH5B-LEGACY02",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Cannot infer PFL causal effect from rankings alone"
+    },
+    {
+      "from": "PFL-ABH5B-IMITATION2026",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "External direct original action-visibility causal study; cannot claim novel social imitation alone"
+    },
+    {
+      "from": "PFL-ABH5B-REFGROUP2026",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "External direct original reference-group effect; not novel in itself"
+    },
+    {
+      "from": "PFL-ABH5B-RIGHTS-AEA",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Copyright/ethics/availability of specific individual observations not verified"
+    },
+    {
+      "from": "PFL-ABH5B-BASELINE",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "related_to",
+      "interpretation": "Competent forecasting baselines are required for policy-value outcomes"
+    },
+    {
+      "from": "PFL-ABH5B-C05-REAL-SOURCE",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "tests",
+      "interpretation": "AB-P correctness of original question-level opportunity eligibility, not public rank treatment efficacy"
+    },
+    {
+      "from": "PFL-ABH5B-C05-PROVENANCE",
+      "to": "PFL-ABH5B-C05-REAL-SOURCE",
+      "relation": "supports",
+      "interpretation": "Nonpersonal source licensing and pinned immutable original question datasets"
+    },
+    {
+      "from": "PFL-ABH5B-C05-FAILED-RUN",
+      "to": "PFL-ABH5B-C05-REAL-SOURCE",
+      "relation": "related_to",
+      "interpretation": "Transparent negative and post-failure prereg repair"
+    },
+    {
+      "from": "PFL-ABH5B-GJP-ROSTER",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "Independent participant assignment not established by nonhuman question dataset"
+    },
+    {
+      "from": "PFL-ABH30-C01-ASOF-GUARD",
+      "to": "PFL-ABH5B-C05-REAL-SOURCE",
+      "relation": "depends_on",
+      "interpretation": "Promotes research-only audit into importable PFL source module, adds as-of cutoff, not independent causal result"
+    },
+    {
+      "from": "PFL-ABH30-C02-RAW-BYTES",
+      "to": "PFL-ABH30-C01-ASOF-GUARD",
+      "relation": "supports",
+      "interpretation": "Source integrity before trusting question+resolution JSON. Four-file positive test pending actual raw bytes."
+    },
+    {
+      "from": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
+      "relation": "blocks",
+      "interpretation": "No human assignment/exposure/ethics metadata from public question-only data"
+    },
+    {
+      "from": "PFL-ABH30-C02-RAW-BYTES",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "related_to",
+      "interpretation": "Product source provenance only, no evidence of leaderboard participation"
+    },
+    {
+      "from": "PFL-ABH30-C03-PUBLIC-BRIER-MISSING",
+      "to": "PFL-ABH5B-CENTER",
+      "relation": "related_to",
+      "interpretation": "Risk of interpreting selected resolved-only forecast accuracy as all-opportunity skill, not human effect."
+    },
+    {
+      "from": "PFL-ABH30-C03-PUBLIC-BRIER-MISSING",
+      "to": "PFL-ABH30-C01-ASOF-GUARD",
+      "relation": "depends_on",
+      "interpretation": "Requires as-of date and market probability semantics before partial identification."
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C02-RAW-BYTES",
+      "relation": "depends_on",
+      "interpretation": "Verify exact four original Git bytes before any JSON aggregation"
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C01-ASOF-GUARD",
+      "relation": "depends_on",
+      "interpretation": "Public question semantics and time cutoff, no personal observations"
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Offline public event-question QA does NOT solve human assignment, rank exposure or ethics"
+    },
+    {
+      "from": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "to": "PFL-ABH30-C01-ASOF-GUARD",
+      "relation": "refutes",
+      "interpretation": "Event resolution date does not certify source dataset published at the historical cutoff. C01 tests remain valid but earlier inference of 10 source-public outcomes at Oct01 is retracted."
+    },
+    {
+      "from": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "to": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "relation": "blocks",
+      "interpretation": "Input file integrity checked against LATER SHA may be wrong for earlier backtest; require source-version-asof metadata or abstain."
+    },
+    {
+      "from": "PFL-ABH30-C05-PUBLICATION-VS-EVENT",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Source publication issue is separate from participant rank exposure and legal/ethical rights."
+    }
+  ],
+  "rules": {
+    "states_are_not_validation": true,
+    "scientific_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "slots_completed_new": 5,
+    "slots_remaining_new": 0,
+    "slots_remaining_historical": 2,
+    "CT2_ordinal": 20,
+    "last_update": "2026-10-29",
+    "version_note": "new strong sources PF-BR39-42 documentary audit only, no C05 execution",
+    "source_evidence_file": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json",
+    "latest_cycle": "ABH5B-C05-REAL-SOURCE",
+    "original_causes_still_blocked": true,
+    "completed_science_grade": "0/3",
+    "date": "2026-10-29",
+    "latest_campaign": {
+      "id": "ABH30",
+      "new_granted": 30,
+      "new_valid": 5,
+      "new_unused": 25,
+      "historical_2_unconsumed": 2,
+      "CT2_ordinal": 20,
+      "N1_N2_N3": [
+        0,
+        0,
+        0
+      ],
+      "last_source_pr": 53,
+      "branch": "research/pfl-abh30-c05-publication-bitemporal-20261029"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "pfl.abh5b.c05.external_source_rights_audit.v1",
+  "date": "2026-10-29",
+  "baseline": {
+    "pr": 51,
+    "head": "10713417abe87bb98ab77cb3a70641535686a8a6",
+    "branch": "research/pfl-abh5b-c05-external-identification-gate-20261029"
+  },
+  "mode": "DOCUMENTARY_SOURCE_AUDIT_NO_AB_CYCLE",
+  "data_policy": {
+    "human_rows_downloaded": 0,
+    "licenses_accepted": 0,
+    "subject_approvals_inferred": 0,
+    "author_contacted": 0,
+    "CI_triggered": false
+  },
+  "sources": [
+    {
+      "id": "PF-SRC39",
+      "authors": "Marina Agranov, Gabriel Lopez-Moctezuma, Philipp Strack and Omer Tamuz",
+      "title": "Learning through imitation: An experiment",
+      "doi": "10.1016/j.jet.2026.106203",
+      "source_urls": [
+        "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+        "https://www.nber.org/papers/w29962",
+        "https://authors.library.caltech.edu/records/e24t8-8p337"
+      ],
+      "type": "Original published randomized laboratory experiment; NBER working paper 2022, JET 2026",
+      "design": "Public raw signal access in both conditions; signals versus signals plus past other-player actions, also group-size and private-signal conditions. Authors report better decisions when actions added; experimental clusters/groups, not PFL league randomization.",
+      "registered": "AEARCTR-0003315 mentioned on NBER author page, registry underlying trial detail page not retrieved independently",
+      "files_and_rights": {
+        "supplemental_catalog": "CaltechAUTHORS lists one 2.2MB supplementary PDF; rights statement © 2026 Elsevier Inc. all rights reserved including text/data mining/AI training",
+        "nber_data_appendix": "NBER page has 'data appendix' link; following it returned tool cache error, contents/LICENSE NOT VERIFIED",
+        "human_level_files_retrieved": 0,
+        "assignments_and_exposure_verified": false,
+        "possible_personal_data_rights": "NOT_ESTABLISHED",
+        "IRB_scope": "NOT_ESTABLISHED"
+      },
+      "novelty_effect": "Pure hypothesis showing others' actions may improve social belief aggregation despite no additional payoff-relevant raw information is already tested. PFL cannot assume visibility strictly damages calibration or is a novel social-information treatment.",
+      "falsifier_if_reopened": "Identify original license and nonpersonal program/rand scripts plus genuine complete eligibility (including nonresponders) before any person-row use; for PFL novel estimand requires randomized public rank × action visibility and independent display witness, not just actions."
+    },
+    {
+      "id": "PF-SRC40",
+      "authors": "Xiaogeng Xu, Satu Metsälampi, Michael Kirchler, Kaisa Kotakorpi, Peter Hans Matthews and Topi Miettinen",
+      "title": "Which Reference Groups Matter and How? A Relative Income Information Experiment with Administrative Data",
+      "doi": "10.1257/app.20240181",
+      "source_urls": [
+        "https://topcat.aeaweb.org/articles?id=10.1257%2Fapp.20240181",
+        "https://researchportal.tuni.fi/en/publications/which-reference-groups-matter-and-how-a-relative-income-informati/",
+        "https://www.aeaweb.org/journals/data/data-code-policy"
+      ],
+      "type": "Original randomized rank reference-group information experiment, AEJ Applied Economics 2026 18(3):145–177",
+      "design": "Representative midcareer Finnish workers randomized to receive personal relative-income rank among alternative reference groups; strong differences in income satisfaction for narrow vs national comparator, weaker life satisfaction effects.",
+      "files_and_rights": {
+        "publisher_page": "Has labeled Replication Package link, but package DOI, README, license, and exact files NOT retrieved",
+        "access_rule": "AEA 2026 data-and-code policy explicitly permits confidential exceptions and requires relevant README provenance/permissions; publisher link does NOT certify data public or unrestricted",
+        "source_domain": "Administrative personal-income and individual survey records, high privacy sensitivity",
+        "human_level_files_retrieved": 0,
+        "assignments_and_exposure_verified": false,
+        "possible_personal_data_rights": "NOT_ESTABLISHED",
+        "IRB_scope": "NOT_ESTABLISHED"
+      },
+      "novelty_effect": "Changing the comparison group is itself prior randomized rank intervention; PFL can't advertise reference-group effects as untested causal novelty, although transfer to forecasting remains open.",
+      "falsifier_if_reopened": "First obtain exact package DOI / README / license as metadata; no administrative microdata without source-specific legal and ethics basis, and no PFL ranking causal replication without aligned outcome."
+    },
+    {
+      "id": "PF-SRC41",
+      "authors": "American Economic Association",
+      "title": "Data and Code Availability Policy (February 2026)",
+      "source_urls": [
+        "https://www.aeaweb.org/journals/data/data-code-policy",
+        "https://aeadataeditor.github.io/aea-de-guidance/FAQ.html"
+      ],
+      "type": "Binding scholarly publisher reproducibility policy, not direct PFL experiment",
+      "design": "Does not supply original treatment or outcome data.",
+      "files_and_rights": {
+        "public_guidance": "Data Availability Statement, instrument code, metadata, licensing and documented limitations required. Restricted individual data may be excluded from public replication package. License applies to specific deposit, rights and distribution subject to README.",
+        "exact_package": "N/A",
+        "human_level_files_retrieved": 0
+      },
+      "novelty_effect": "Existence of 'Replication Package' or CC BY on articles is not independent evidence of rights to process personal/admin records or complete assignment roster."
+    },
+    {
+      "id": "PF-SRC42",
+      "authors": "The Forecasting Collaborative",
+      "title": "Insights into the accuracy of social scientists’ forecasts of societal change",
+      "doi": "10.1038/s41562-022-01517-1",
+      "source_urls": [
+        "https://www.nature.com/articles/s41562-022-01517-1",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10192018/"
+      ],
+      "type": "Original social-science forecasting tournaments 2023, prior art of baseline comparison",
+      "design": "Tournaments: original 86 teams/359 forecasts, subsequent 120 teams/546 forecasts; authors benchmark simple time-series and public aggregates and report mean social scientists no better. Not randomized public rank recognition treatment.",
+      "files_and_rights": {
+        "dataset_or_microdata_retrieved": 0,
+        "license_for_individual_forecast_rows": "NOT_ASSESSED"
+      },
+      "novelty_effect": "PFL policy scoring must compare naïve competent baseline and independent holdouts, not treat better-than-chance as novel performance."
+    }
+  ],
+  "negative_results": [
+    "Published 2026 RCT already varies public decision observation while keeping raw data access constant; this weakens novelty, does not establish PFL effect.",
+    "Published 2026 RCT already varies reference-group composition for rank information; novelty restricted to joint causal mechanism and appropriate target domain.",
+    "NBER data appendix link not fetched; Caltech supplemental copyright reserved. No original human data rights or randomized log established.",
+    "AEA publisher lists a replication package but no exact DOI/readme/license/data roster retrieved; AEA policy explicitly permits confidential packages without public rows.",
+    "No joint randomized rank-publicity × others' actions visibility outcomes with complete eligibility and welfare/risk found within inspected sources. This does NOT prove that no such study exists."
+  ],
+  "R5_decision": "NO_NEW_AB_R_EXECUTION; no true preregistration + SHA freeze of empirical code because no eligible original data/rights/novelty gate; preserve remaining slots."
+}

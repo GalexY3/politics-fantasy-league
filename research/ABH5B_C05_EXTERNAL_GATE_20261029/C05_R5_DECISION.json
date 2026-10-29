@@ -1,0 +1,86 @@
+{
+  "schema": "pfl.abh5b.c05.stop_r5.decision.v1",
+  "date": "2026-10-29",
+  "parent_pr": 51,
+  "parent_sha": "10713417abe87bb98ab77cb3a70641535686a8a6",
+  "branch": "research/pfl-abh5b-c05-external-identification-gate-20261029",
+  "mode": "SOURCE_QA_ONLY_NOT_AB_R_OR_AB_P_EXECUTION",
+  "status": "BLOCKED_STOP_R5",
+  "counts": {
+    "authorized_new_total": 5,
+    "valid_new_total": 4,
+    "used_new_this_turn": 0,
+    "invalid_cycles_this_turn": 0,
+    "planning_cycles_new_this_turn": 0,
+    "unconsumed_new": 1,
+    "unconsumed_historical_separate": 2,
+    "scientific_CT2_before": 20,
+    "scientific_CT2_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "launch_gates_passed": 0,
+    "launch_gates_total": 6
+  },
+  "read_before_action": [
+    "AGENTS.md",
+    "AB 3.2.1 O7 and current report",
+    "ABH5B_ORIGINAL_FEEDBACK_20261029/CAMPAIGN_STATUS.json",
+    "ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
+    "ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json PF-BR01–PF-BR38"
+  ],
+  "GATES": [
+    {
+      "id": "G1",
+      "name": "Distinct scientific prediction vis-a-vis strongest already published designs",
+      "status": "FAIL_NOVELTY_UNPROVEN",
+      "evidence": "Kloc 2024 leaderboard offer, Lovasz 2023 factorial, Zou Gao 2023 public welfare, Adjodah 2021 social accuracy-risk, Witkowski proper rank incentive, Agranov 2026 public signal plus action visibility, Xu 2026 randomized comparator group. Joint PFL-specific interactions possible but not validated as novel."
+    },
+    {
+      "id": "G2",
+      "name": "Exact original data file identity, version and license",
+      "status": "NOT_VERIFIED",
+      "evidence": "Caltech supplement is PDF copyrighted Elsevier; NBER data appendix not fetched. AEA Xu package title displayed but exact DOI/README and LICENSE not inspected."
+    },
+    {
+      "id": "G3",
+      "name": "Competent processing rights, human privacy/ethics",
+      "status": "NOT_VERIFIED",
+      "evidence": "Original experimental and administrative individual data were not downloaded; original ethics approval does not grant PFL reuse. AEA policy permits confidential data exceptions."
+    },
+    {
+      "id": "G4",
+      "name": "Complete assigned roster and all zero-response opportunities",
+      "status": "NOT_VERIFIED",
+      "evidence": "No original files of all randomized registrants and full question timeline. Published analyzed N != total assigned."
+    },
+    {
+      "id": "G5",
+      "name": "Independent pre-response exposure, treatment and spillover mapping",
+      "status": "NOT_VERIFIED",
+      "evidence": "Published treatments are conceptual descriptions, not independent event logs with as-of room exposure per person, incl nonresponders."
+    },
+    {
+      "id": "G6",
+      "name": "Strong control, prospective outcome and confirmation sample",
+      "status": "NOT_READY",
+      "evidence": "Precommitted cross-product R(public/private rank) × A(actions shown/hidden) with raw signals and benchmark forecasting score still a conditional plan. No frozen executable instrument, sample or independent new question holdout."
+    }
+  ],
+  "allowed_non_personal_next_actions": [
+    "Locate verified official dataset DOI and README / LICENSE for Xu 2026, inspect only metadata and experiment program without participant rows.",
+    "Check NBER public data appendix metadata (link presently fails), original registration AEARCTR-0003315 and nonparticipant codebook for Agranov 2026, without downloading individuals or accepting terms.",
+    "Compare planned interaction R×A against experiment methods of Agranov 2026, Kloc 2024 and Chen 2023 and define one discriminating estimand not reducible to their hypotheses.",
+    "If authorized prospective pilot becomes feasible, perform prior ethics/privacy assessment, recruitment authority and full assignment/exposure instrumentation, with frozen baseline and researcher-graded harms and retention."
+  ],
+  "do_not_do": [
+    "Do not open an A–J run solely for four documentary references or code schema tests",
+    "Do not infer actual personal-data rights from article license",
+    "Do not claim replication from paper findings alone",
+    "Do not merge PR to main or launch costly CI",
+    "Do not score public political figures or collect PII"
+  ],
+  "decision": "No experimental code was frozen or run because eligible empirical source + rights + truly discriminant estimand were not established. New C05 slot remains unspent. Historical 2 slots unspent and governed by separate gate."
+}

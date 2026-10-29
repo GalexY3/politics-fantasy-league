@@ -1,0 +1,54 @@
+{
+  "schema": "pfl.abh30.c03.prereg.aj.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C03",
+  "mode": "AB-R_REAL_PUBLIC_QUESTION_PARTIAL_IDENTIFICATION",
+  "DRIFT_D": 2,
+  "scientific_grade": "0/3",
+  "campaign": {
+    "new_granted": 30,
+    "previous_valid_limited": 2,
+    "new_remaining_before": 28,
+    "historical_unconsumed": 2
+  },
+  "A": "Are the observed resolved-subset market/community frozen Brier means in ForecastBench 2026-09-27 and 2026-10-11 informative about their full 250-market-question cohorts when binary outcomes are missing, without unverifiable MCAR/ignorability assumptions?",
+  "B": {
+    "H1": "Worst-case missing binary outcomes bound the full-cohort Brier broadly; at least one cohort's interval contains the illustrative p=.5 Brier .25. Resolved-only market Brier is not transferable to all events.",
+    "H0": "Both full-cohort upper bounds are <.25, meaning even arbitrary missing binary outcomes cannot overcome the weak p=.5 threshold; this would still not prove competence vs strong forecasting baselines.",
+    "rivals": [
+      "Publication/readiness selection may give nonignorable censored outcomes.",
+      "External frozen market p is not PFL participant predictions, proper benchmark is the original platform methods or an independent competitive baseline; p=.5 is not competent."
+    ],
+    "falsifier": "If all outcomes uniquely resolved and all records p valid, lower=upper=observed mean, contrary to wide missingness."
+  },
+  "C": {
+    "original_source": "ForecastBench ICLR 2025 original official CC BY-SA 4.0 public question and resolution sets",
+    "original_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "cohorts": [
+      "2026-09-27",
+      "2026-10-11"
+    ],
+    "external_original_data_already_seen_in_previous_C05": true,
+    "non_independent_confirmation": false,
+    "method": "For every valid market question frozen probability p in [0,1] before due, if exactly one observed binary y with resolution date after due and strictly before as_of=2026-10-29, loss=(p-y)^2. If y unknown, min loss=min(p^2,(1-p)^2), max loss=max(p^2,(1-p)^2). Sum all over eligible public market questions and divide by eligible count; no imputation, distribution, sampling or statistical CI.",
+    "risk_set": "market sources allowlist kalshi/manifold/metaculus/polymarket, duplicate source+id fails, missing/invalid numeric p excluded and counted, other raw quantity sources excluded",
+    "primary_outcome": "lower/upper bound of mean Brier for full market-question cohort at as_of=2026-10-29; known/unknown counts, known resolved-only mean separate",
+    "illustrative_reference": "0.25 for p=.5, explicitly a weak diagnostic not competent predictive comparator",
+    "test_groups": 15
+  },
+  "D": {
+    "source_path": "research/ABH30_NEW_20261029/brier_partial_id.mjs",
+    "source_git_blob_sha1": "18dbfeeace65efd8e5f13540bc3a94dbe7f49886",
+    "source_commit": "b90cd0fe6980b950bd37a19e122ccbc55feef7d0",
+    "test_path": "research/ABH30_NEW_20261029/test_brier_partial_id.mjs",
+    "test_git_blob_sha1": "6e7afd21df7de81d47422fb1145b7701b27f7cac",
+    "test_commit": "9d5d2d2207bfb166743e947a4e3a88638db122e4",
+    "runtime": "Exact original JS file body and tests from GitHub V8; native Node same-blob reproduction if possible; use trusted original upstream files via read-only GitHub connector."
+  },
+  "E": "Execute staged 15 adversarial deterministic checks after frozen prereg, then process two original public 500-question cohorts with same pinned Git commit as C05 (not claim independent confirmation). Preserve all negatives and first failures.",
+  "F": "Compare bounds to observed resolved-only mean, disclose resolution selection, date-only conservative as-of, duplicate outcome ambiguity, source exclusion, arbitrary unknown outcomes and source rights. Do not call partial bounds confidence intervals.",
+  "G": "Independent authors original public dataset but our two cohorts already inspected previously, so analysis is internal new estimand, not independent empirical replication.",
+  "H": "Add a distinct evidence prior only if numeric bounds materially discriminate over resolved-only anecdote. Do not duplicate known literature or inflate science.",
+  "I": "0/3 own discovery, unchanged CT2 20/100; no human rank causal or PFL score benefits.",
+  "J": "Count one AB-R quantitative original public-question audit only if real original data loaded, frozen 15 test cases pass, and numeric bounds validated; leave 27 new authorized and 2 historic separate."
+}

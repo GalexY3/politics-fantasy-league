@@ -1,0 +1,64 @@
+{
+  "schema": "pfl.ab321.abh5.c04.run.v1",
+  "prereg_commit": "9d0a42fa573c7a6fe05b790a4bc944e6894f6e8d",
+  "mode": "AB-R_PUBLISHED_AGGREGATES_ONLY",
+  "execution": "Python 3.13.5, stdlib fractions/itertools, local container without web",
+  "commands": [
+    "python test_published_attrition_bounds.py",
+    "python published_attrition_bounds.py"
+  ],
+  "code_git_sha1": "d41947bce09a9c3a6c513134b096e4d39ff5341f",
+  "test_git_sha1": "92a922b1bd7742bc429f72bb1226c5f572d74f38",
+  "source_sha256": "4fc060733744af727562d20ca51bd6e953eb79d27098f7820dc4631a4bd06d97",
+  "test_sha256": "8de28081fd0a5ca396e16cf87014758e5ba98c2864fcecbdee1cabafb1bfc89d",
+  "native_test_groups": 7,
+  "passed": 7,
+  "exit_code": 0,
+  "publication": {
+    "doi": "10.1016/j.actpsy.2026.106908",
+    "included_per_six_arms": [
+      36,
+      37,
+      36,
+      36,
+      37,
+      37
+    ],
+    "included_N": 219,
+    "reported_short_session_exclusions": 13,
+    "exclusion_allocation_by_arm": "NOT_REPORTED"
+  },
+  "observed": {
+    "weak_compositions": 8568,
+    "conditional_total_registered": 232,
+    "conditional_pooled_exclusion_share": 0.05603448275862069,
+    "max_possible_arm_retention_gap": 0.2653061224489796,
+    "exact_bound": "13/49",
+    "witness_exclusions": [
+      0,
+      0,
+      0,
+      13,
+      0,
+      0
+    ]
+  },
+  "limitations": [
+    "Feasibility not observed dropout, outcome change, statistical significance, bias or causal contrast",
+    "Conditional on all 13 excluded having been assigned to exactly one of six original arms",
+    "Do not assume randomized roster size 232 from postselection counts",
+    "No individual-level data accessed or analysis of particular individuals"
+  ],
+  "scientific_grade": "0/3",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "status": "VALID_ABR_LIMITED_AGGREGATE_SENSITIVITY",
+  "clean_clone": "NOT_VERIFIED",
+  "real_participant_rows_processed": 0,
+  "external_replication": "NONE"
+}

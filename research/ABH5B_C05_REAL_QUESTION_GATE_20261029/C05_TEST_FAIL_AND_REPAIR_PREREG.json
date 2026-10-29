@@ -1,0 +1,21 @@
+{
+  "schema": "pfl.c05.test_failure.before_external_data.v1",
+  "date": "2026-10-29",
+  "original_prereg_commit": "c945b3190e8598e684a138c5ee64c83013ff494e",
+  "source_sha256": "cd89017bf27664fadd7d7b14d3f946fdd3a3e13bababd96e1f3a981c9c3ddc52",
+  "test_sha256": "9886c11eaa57c501d73ac8c5730ab6395033e5dfc622daaf7acfcf7e823b7d2a",
+  "source_git_blob_sha1": "4ee6e376e0c471c0d976d3a8f7d9c8023d77e7db",
+  "test_git_blob_sha1": "ae7e3dfba4f674c529c1160e8eeb6bbdb2999503",
+  "runtime": "Node 22.16.0",
+  "command": "node test_forecastbench_gate.js",
+  "exit": 1,
+  "passed_before_failure": 8,
+  "planned_cases": 12,
+  "failed_on": "case9 duplicated question key fails closed",
+  "error": "QUESTION_ACCOUNTING_INCONSISTENT",
+  "mechanism": "Question map de-duplicates duplicate rows but rejection counter counts each unique duplicate key only once; original input 2 question rows vs 1 counted reject. No original holdout cohort has been opened.",
+  "preserve_negative": true,
+  "repair_preregistered_scope": "When second-or-later original question row has same source+id, count EACH extra row as rejected 'duplicate_question_record_extra', retain distinct duplicate-key rejection in main loop, thereby accepted+all rejection counters == original question row count. No change to allowlist, Brier formula, chronology, cohort pinning, outcome data, tests, other rules or hypothetical scientific claim.",
+  "falsifier": "Re-run frozen 12 tests after repair, and only then inspect both previously unseen independent original-source cohorts.",
+  "cycles": "Initial run invalid test attempt inside C05; 0 valid additional at this moment; do not inflate counts."
+}

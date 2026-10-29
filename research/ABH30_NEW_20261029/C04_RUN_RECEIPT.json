@@ -1,0 +1,75 @@
+{
+  "schema": "pfl.abh30.c04.run_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C04",
+  "mode": "AB-P_OFFLINE_ORIGINAL_SOURCE_COMPOSITION",
+  "status": "VALID_TECHNICALLY_BOUNDED_NOT_END_TO_END_ORIGINAL",
+  "grade": "0/3",
+  "D": 2,
+  "prereg_commit": "17559aa255434ef125f7cbe792c08544caa81721",
+  "code": {
+    "path": "scripts/offline_forecastbench_audit.mjs",
+    "git_blob_sha1": "63f18b9a9d1eaf474d3dae6080b2a15575c15974",
+    "sha256": "f361571dc412a5d000f9854b51c88c51ca324e0f04092c35268d6bf721511df2",
+    "stage_commit": "bdf4c11e38b2dc547d25663d4ed70ac21829398e"
+  },
+  "tests": {
+    "path": "tests/test_offline_forecastbench_audit.mjs",
+    "git_blob_sha1": "e9eab29ff83d289bd993bff6025f81d753298645",
+    "sha256": "a157c5790f9c120e937b59abf658fe862c9e6bed2bd0c0003163c5522b1c70ab",
+    "stage_commit": "e6c2806331408980563d66be1014ef071490b913",
+    "native_Node": "v22.16.0",
+    "command": "cd proyectos/politics-fantasy-league && node tests/test_offline_forecastbench_audit.mjs",
+    "tests_passed": 11,
+    "tests_total": 11,
+    "exit": 0,
+    "underlying_dependencies_original_Git_blobs_confirmed": true,
+    "original_Git_blob_matches_local_before_run": true,
+    "first_run_failure": false
+  },
+  "verified": [
+    "Typed source loader rejects extra/missing public data filenames and non-buffer JSON",
+    "Test-only manifest clearly marked not original publisher authorization",
+    "On user fake public data, Git original four-pinned hashes reject before scoring",
+    "One-byte mutation after manifest generation fails identity verification",
+    "Real temporary folder IO and `node` CLI subprocess return exit2 and stderr bounded label without revealing public question text or local source directory path",
+    "Final-component symlink refused on POSIX; no claims about all symlink races or parent components",
+    "As-of cutoff keeps not-yet-resolved original-like synthetic events excluded",
+    "Output returns only nonpersonal aggregate counts, with rights/causal/release flags false"
+  ],
+  "not_executed": [
+    "Positive full four public official source file checksum + aggregate audit, original raw input bytes unavailable in local container",
+    "No production HTTP integration, deployment, user study, legal approval or data processing authorization",
+    "Original questions from published CC BY-SA data not copied to branch, no individual forecast records"
+  ],
+  "weaknesses": [
+    "Test-only injectable expected_blobs is a function parameter with `used_project_manifest:false`; consumers must not mistake it for official provenance",
+    "Directory parent may contain symlink; O_NOFOLLOW blocks final component on POSIX but cannot be described as a full path traversal security proof",
+    "External content license/rights for all underlying third-party market question texts not independently adjudicated; CLI emits only aggregates and does not redistribute questions",
+    "No positive original source four files end-to-end; this is technically bounded local fallback, not certified end-to-end"
+  ],
+  "accounting": {
+    "new_grant": 30,
+    "completed_before": 3,
+    "completed_after": 4,
+    "new_remaining": 26,
+    "historical_remaining_separate": 2,
+    "additional_invalid_cycles": 0
+  },
+  "science": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "ordinal_not_probability": true,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_passed": 0
+  },
+  "no_main_merge": true,
+  "no_chatrelay": true,
+  "no_costly_ci": true,
+  "no_personal_forecast_data": true,
+  "no_political_scoring": true
+}

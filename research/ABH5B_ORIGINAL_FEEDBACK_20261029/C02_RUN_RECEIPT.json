@@ -1,0 +1,65 @@
+{
+  "schema": "pfl.abh5b.c02.receipt.v1",
+  "date": "2026-10-29",
+  "status": "EXECUTED_LIMITED_ABR_AGGREGATE_ONLY",
+  "source": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+  "prereg_commit": "b40d4bae29c443c07d29dc29862818ab49ef77da",
+  "source_sha256": "ba5fc19630ba31cacd8ab4a9ffc8badc7e8fe798fb7396e6ef9d8839c817a2df",
+  "source_git_blob": "d881445b907a5bf1d3466fa963b43fc7c70bbec5",
+  "test_sha256": "82d954c5ae8ae5660240424b19c17a2f64d9c56a810d8a77b7b355da9516e0f2",
+  "test_git_blob": "e82993b0af3f19459498755cc3df0ad0c155629a",
+  "runtime": "Python 3.13 stdlib Fraction",
+  "exit_code": 0,
+  "test_groups": 7,
+  "test_passed": 7,
+  "analysis_exit": 0,
+  "source_values": {
+    "4weeks": {
+      "control_stories": 0.146,
+      "treated_increment": 0.178,
+      "active_control": 0.065,
+      "active_treated": 0.096
+    },
+    "12weeks": {
+      "control_stories": 0.395,
+      "treated_increment": 0.301,
+      "active_control": 0.122,
+      "active_treated": 0.143
+    }
+  },
+  "derived": {
+    "4weeks": {
+      "treated_mean": 0.324,
+      "active_gap_pp": 3.1,
+      "extensive_component": 0.08712788,
+      "intensive_component": 0.09087212,
+      "extensive_share": 0.4894825
+    },
+    "12weeks": {
+      "treated_mean": 0.696,
+      "active_gap_pp": 2.1,
+      "extensive_component": 0.0851008,
+      "intensive_component": 0.2158992,
+      "extensive_share": 0.2827269
+    }
+  },
+  "caveats": [
+    "Only original paper reported rounded aggregates, not person rows",
+    "Assumes active means completed at least one story in same outcome window, authors partly describe positive engagement",
+    "Adjusted ITT effects and raw descriptive active rates need not share exactly the same weighting: decomposition only approximate",
+    "Post-treatment active sets are different, so conditional intensive/extensive terms NOT separately causal",
+    "Different 4week/12week accumulated windows cannot be read as weekly retention decline",
+    "School-randomized 138 schools, 9327 students, bundled intervention, control had existing leaderboard"
+  ],
+  "novelty": "No 1/3 original human mechanism established; contrasts are arithmetic reuse of existing RCT data, not independent replication.",
+  "science": {
+    "ct2_before": 22,
+    "after": 22,
+    "grade": "0/3",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "pfl.abh5b.c01.repair.freeze.v1",
+  "date": "2026-10-29",
+  "parent_prereg_commit": "b120259533672e2a05293eecb586b3c204ddb596",
+  "pre_repair_source_sha256": "265f2d736982fb7f2d1aea29f81fa77bdd3c4acfde3b85c4dedd7a273165216e",
+  "pre_repair_test_sha256": "6439ca0ce743014927c44cf6a1a183036f4b7aaa9b0aae684b94b11fb2257ade",
+  "failure": {
+    "unittest_groups_total": 7,
+    "passed": 5,
+    "errors": 2,
+    "exit": 1,
+    "reason": "test harness calls float('-4063/2150') on a Fraction string, which Python rejects; no failure of published aggregate computational enum in source; analysis json exited 0",
+    "negative_preservation": true
+  },
+  "repair_scope": "Replace float(x['conditional_lower']) and float(x['conditional_upper']) in test code with float(Fraction(x['conditional_lower'])) and float(Fraction(x['conditional_upper'])); leave source, original data, assumptions, outcomes, hypotheses, 7 groups, and stage unchanged.",
+  "new_test_sha256_pending": "Compute after exact test edit, freeze Git blob and SHA before re-executing",
+  "new_tests_required": 7,
+  "score_handling": "Invalid first execution attempt; not an extra AB cycle.",
+  "decision": "REPAIR_TEST_HARNESS_BEFORE_NEW_RUN"
+}

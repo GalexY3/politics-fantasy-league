@@ -1,0 +1,138 @@
+{
+  "schema": "pfl.abh5b.c05.original_nonpersonal.real_source_receipt.v1",
+  "date": "2026-10-29",
+  "mode": "AB-P",
+  "classification": "VALID_BOUNDED_REAL_ORIGINAL_QUESTION_PROVENANCE_0OF3_SCIENCE",
+  "parent_pr": 52,
+  "parent_sha": "e9c4c6010c831061e3d17cc10df9787cbc8ddc81",
+  "prereg_commit": "c945b3190e8598e684a138c5ee64c83013ff494e",
+  "first_failure_preregistered_commit": "be1c3bcbf3ba880d05dcb7c3c3b1b5f8eaeb1f9d",
+  "repair_sha_freeze_commit": "a6b5f0dbb973271fd3efb98fa6c21417c7bcf0af",
+  "repaired_code_commit": "fc3d7a71fd3f533ae09a010466ce1a97074f4c55",
+  "code_source": "forecastbench_gate.js",
+  "code_git_blob_sha1": "b1e2910d1ae7f7e778e1cf8cb8b5e7cd5ba77e71",
+  "code_sha256": "0bfb5b5f1fce00de4147a87b91b9c37358203a9462d1bbaf20bdfba3bb6d8eff",
+  "test_source": "test_forecastbench_gate.js",
+  "test_git_blob_sha1": "ae7e3dfba4f674c529c1160e8eeb6bbdb2999503",
+  "test_sha256": "9886c11eaa57c501d73ac8c5730ab6395033e5dfc622daaf7acfcf7e823b7d2a",
+  "execution": {
+    "native_node": "v22.16.0",
+    "original_test_run": {
+      "exit": 1,
+      "tests_passed_before_exception": 8,
+      "total_predeclared": 12,
+      "error": "QUESTION_ACCOUNTING_INCONSISTENT",
+      "cause": "duplicate original question row counted once when rejecting unique duplicate key; preserved and preregistered narrow fix"
+    },
+    "after_repair_native_test_run": {
+      "exit": 0,
+      "tests_passed": 12,
+      "tests_total": 12,
+      "source_hash_unchanged_after_repair": true
+    },
+    "external_real_data_execution": "Code blob fetched directly from own GitHub, dynamically evaluated in connector orchestration with the same function body; identical SHA1 Git blob verified; original question and resolution JSON read-only from pinned public original GitHub upstream commit; no original files copied to user repo.",
+    "original_upstream": "forecastingresearch/forecastbench-datasets",
+    "original_upstream_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "original_license": "CC BY-SA 4.0 per original README and LICENSE; source attribution and non-person aggregate counts only",
+    "original_question_text_redistributed": false,
+    "human_forecast_rows_downloaded": 0,
+    "personal_identifiers_processed": 0,
+    "author_contacted": 0,
+    "license_clicked_or_accepted": false
+  },
+  "holdouts": [
+    {
+      "date": "2026-09-27",
+      "original_question_blob": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+      "original_resolution_blob": "b2ee53f09407e2b555668f66e286073ace6d5fce",
+      "questions": 500,
+      "resolution_records": 642,
+      "accepted_market_probability_resolved": 52,
+      "accepted_by_source": {
+        "manifold": 5,
+        "metaculus": 5,
+        "kalshi": 19,
+        "polymarket": 23
+      },
+      "excluded_by_reason": {
+        "unresolved_or_nonbinary_outcome": 181,
+        "no_resolution_record": 17,
+        "nonprobability_source": 250
+      },
+      "rejected_total": 448,
+      "positive_resolutions": 17,
+      "original_public_market_freeze_value_mean_brier": 0.16801450256770642,
+      "uninformative_p_0_5_mean_brier": 0.25,
+      "market_brier_sum": 8.73675413
+    },
+    {
+      "date": "2026-10-11",
+      "original_question_blob": "fe9772f2275edcada671c4082cf9103185f1becf",
+      "original_resolution_blob": "d8416bccbfcd4736e9772748bb42fd4cc403db7e",
+      "questions": 500,
+      "resolution_records": 450,
+      "accepted_market_probability_resolved": 8,
+      "accepted_by_source": {
+        "metaculus": 2,
+        "kalshi": 4,
+        "polymarket": 2
+      },
+      "excluded_by_reason": {
+        "unresolved_or_nonbinary_outcome": 212,
+        "no_resolution_record": 30,
+        "nonprobability_source": 250
+      },
+      "rejected_total": 492,
+      "positive_resolutions": 5,
+      "original_public_market_freeze_value_mean_brier": 0.07071875,
+      "uninformative_p_0_5_mean_brier": 0.25,
+      "market_brier_sum": 0.56575
+    }
+  ],
+  "integrity": {
+    "upstream_4_git_blob_sha1_against_immutable_commit": true,
+    "code_git_blob_match_after_repair": true,
+    "question_accounting_both_cohorts": true,
+    "first_run_negative_preserved": true,
+    "untouched_confirmatory_source_before_freeze": true,
+    "cohorts_from_same_upstream_public_git_repo": true
+  },
+  "important_limits": [
+    "Nonprobability sources acled, FRED, DBnomics, Wikipedia and yfinance contain raw predictions in units other than probabilities; 250 per cohort were semantically excluded even when numeric values could appear inside [0,1].",
+    "This is real original benchmark public question/outcome data, not a study of participation, PFL users, random assignment or human treatment effects.",
+    "Official original data may include market-generated aggregate probabilities but not individual forecast rows; aggregate probability not a participant-level privacy inference.",
+    "0.5 Brier comparison is a diagnostic sanity comparator, deliberately not a competent predictive rival, so zero claims of performance advantage or causal novelty.",
+    "The 60 accepted questions are an outcome-selected resolved subset (52+8), not representative of every question or the full market; some sources have repeated time-series resolution per id and fail closed.",
+    "Date-order requires question freeze before due before resolution date, but original resolution_date precision is only day-level and questions may have market-specific close dates; no event-level PFL exposure can be inferred.",
+    "CC BY-SA terms and external platforms' attribution/rights for underlying question text must be revisited before product republication; we did not copy text or create a public product.",
+    "This result is an engineering data validation advance that makes future evaluation safer; not a novel scientific mechanism or causal test."
+  ],
+  "science": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "scientific_grade": "0/3"
+  },
+  "pilot_release": {
+    "gates_passed_before": 0,
+    "gates_passed_after": 0,
+    "needed": 6
+  },
+  "budget": {
+    "new_block_after": 5,
+    "granted_new": 5,
+    "remaining_new": 0,
+    "historical_unchanged_remaining": 2
+  },
+  "ethical_conditions": {
+    "no_main_merge": true,
+    "no_CI": true,
+    "no_ChatRelay": true,
+    "no_real_politician_ranking": true,
+    "no_human_microdata": true
+  }
+}
