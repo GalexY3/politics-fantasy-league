@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-29",
+  "type": "BOUNDED_NATIVE_QA_NOT_AB_CYCLE",
+  "reason": "Original Python atlas_delta.py cannot be run in the local ChatGPT container because private GitHub repository bytes cannot be downloaded into that container; public connected GitHub connector can read originals.",
+  "hypotheses": [
+    "H1 original Python Atlas check on authenticated GitHub Actions checkout passes for 80 original deltas",
+    "H2 check fails at a specific batch or environment constraint"
+  ],
+  "intervention": "Try a single tightly scoped GitHub Actions native Python stdlib job in PRIVATE repo on draft branch, no internet source data, no pipeline-wide tests, no browser installs, no tests requiring secrets.",
+  "budget_guardrails": {
+    "max_runner_minutes": 3,
+    "max_jobs": 1,
+    "run_only_on_workflow_file_creation_and_matching_branch_push": true,
+    "no_CI_expensive": true,
+    "no_auto_merge": true,
+    "no_touch_main": true,
+    "no_secret_access": true
+  },
+  "commands": [
+    "python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates",
+    "python ab_atlas/atlas_delta.py brief --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates --limit 8"
+  ],
+  "pass_criteria": "Exactly 80 deltas; stdout printed original checker with SHA256, brief SHA identical, exit codes 0, no script modifications.",
+  "failure_criteria": "App lacks permission to create workflow, workflow not scheduled, job blocked or check nonzero; do not invent SHA.",
+  "limitations": "GitHub Actions does run on a private GitHub hosted runner, not in the ChatGPT local container; does not prove browser E2E, scientific findings or release readiness. May incur up to 3 private runner minutes.",
+  "AB_slots_used": 0
+}
