@@ -1,0 +1,3 @@
+# Preflight T025 mechanism native QA, 2026-10-29
+
+Base: 7a6876f71b6cbc286f86ff4bf1393889e4f22851, extracted from Git archive; no repository mutations. Reproduce the 18 named C03 and 18 named C05 assertions using fictional fixtures. Test inherited and symbol properties, accessors, non-finite and unsafe numbers, no coverage, mutation, proxy behavior, and previous-manifest forgery separately. Record fails before considering any changes. A manifest is not authenticated; canonical text cannot resist an adversary controlling persisted records. Simulations and QA do not authorize human participants, actual political scoring, or increase gates. Preserve numeric experiment output and original result artifacts and do not count this run as a new AB cycle.
