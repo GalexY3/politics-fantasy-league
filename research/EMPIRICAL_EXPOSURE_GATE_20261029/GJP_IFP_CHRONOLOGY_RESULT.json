@@ -1,0 +1,22 @@
+{
+  "status": "SOURCE_QA_DATE_FORMAT_REPAIRED_WITH_QUALITY_WARNINGS",
+  "run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+  "source_sha256": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",
+  "rows": 617,
+  "open_dates_valid": 617,
+  "suspend_dates_valid": 582,
+  "deadline_dates_valid": 617,
+  "close_dates_valid": 498,
+  "start_after_deadline": 1,
+  "start_after_suspend": 1,
+  "start_after_actual_close": 0,
+  "suspend_after_actual_close": 273,
+  "closed_labeled_missing_actual_date": 0,
+  "voided_with_actual_close": 0,
+  "median_nominal_window_days": 102,
+  "interpretation": "Corrected US date formats %m/%d/%y and %m/%d/%y %H:%M. 273 suspend-after-close chronology disagreements may reflect platform/event processing or fields semantics; must NOT silently repair or use suspend as exposure. One start-after-close deadline and one start-after-suspend need investigation. No human-level analysis performed.",
+  "prior_failed_parser": "ISO-only 0/617 date parses preserved as instrumentation failure",
+  "not_a_cycle": true,
+  "legacy_AB_slots_unused": 2,
+  "CT2": 22
+}
