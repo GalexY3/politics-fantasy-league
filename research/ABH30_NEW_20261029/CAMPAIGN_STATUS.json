@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 15,
-    "new_remaining": 15,
+    "new_completed": 16,
+    "new_remaining": 14,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -396,15 +396,31 @@
         "actual_human_RCT": "NOT_EXECUTED"
       },
       "limits": "Only synthetically declared renderer receipts and synthetic opportunity frame. No authenticator/renderer integration and no signed human exposure, so user-facing causal and launch remain blocked."
+    },
+    {
+      "id": "ABH30-C16",
+      "mode": "AB-P_NATIVE_NODE_SYNTHETIC_FIVE_ARM_VIEW_RENDER",
+      "D": 1,
+      "status": "VALID_LIMITED_FROZEN_NATIVE_15_OF_15",
+      "grade_science": "0/3",
+      "prereg_commit": "af6ee3f18d954dca3d1e6ed7d932ac630bc8872a",
+      "run_receipt": "C16_RUN_RECEIPT.json",
+      "verified": {
+        "native_tests": "15/15",
+        "real_browser": false,
+        "real_receipt": false,
+        "causal": false
+      },
+      "limits": "Node renders real fixture-dependent computed views but no real browser or attested human exposure"
     }
   ],
   "counting": {
-    "valid_limited": 15,
+    "valid_limited": 16,
     "invalid_cycles": 0,
     "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 15,
-    "new_remaining": 15,
+    "unopened_authorized": 14,
+    "new_remaining": 14,
     "historical_remaining": 2
   },
   "science": {
@@ -510,7 +526,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_15_OF_30_C15_NATIVE_FIVE_ARM_SYNTHETIC_RECEIPT_OPPORTUNITY_MATCH;15_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_SCIENCE_20_N123_0_GATES_0_OF_6",
-  "last_branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
+  "decision": "C16_VALID_BOUNDED_NATIVE_16_OF_30_14_AVAILABLE_TWO_HISTORIC_STOP_R5_CT2_20",
+  "last_branch": "research/pfl-abh30-c16-executed-fictional-render-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
