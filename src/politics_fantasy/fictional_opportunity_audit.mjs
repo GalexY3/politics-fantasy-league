@@ -62,7 +62,7 @@ export function auditFictionalOpportunities(payload){
   const k=e.participant_id+'|'+e.question_id, previous=observed.get(k);
   if(previous===undefined||ts<previous)observed.set(k,ts);
  }
- const cells=Object.fromEntries(ARMS.map(a=>[a,{assigned:0,eligible_opportunities:0,first_responses:0,pre_response_displays:0,post_response_only_displays:0,unknown_display_opportunities:0,display_without_response:0}]));
+ const cells=Object.fromEntries(ARMS.map(a=>[a,{assigned:0,eligible_opportunities:0,first_responses:0,pre_response_displays:0,post_response_only_displays:0,timestamp_tied_displays:0,unknown_display_opportunities:0,display_without_response:0}]));
  for(const person of people.values()){
   const s=cells[person.arm];s.assigned++;
   for(const [qid,q] of questions){
@@ -73,6 +73,7 @@ export function auditFictionalOpportunities(payload){
    const answer=answers.get(k),view=observed.get(k);
    if(answer!==undefined)s.first_responses++;
    if(view===undefined)s.unknown_display_opportunities++;
+   else if(answer!==undefined && view===answer)s.timestamp_tied_displays++;
    else if(answer!==undefined && view>answer)s.post_response_only_displays++;
    else {s.pre_response_displays++;if(answer===undefined)s.display_without_response++}
   }
