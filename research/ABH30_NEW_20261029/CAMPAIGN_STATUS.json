@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 10,
-    "new_remaining": 20,
+    "new_completed": 11,
+    "new_remaining": 19,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -271,15 +271,38 @@
         ]
       },
       "limits": "Three selected source-revision contrasts from two already inspected cohorts; posthoc field decomposition; values are continuous for many noneligible sources. Not proof of binary event outcome flips, original market first_public_at, independent human research, production E2E, rights to personal rows."
+    },
+    {
+      "id": "ABH30-C11",
+      "mode": "AB-P_LOCAL_ORIGINAL_PUBLIC_PINNED_REVISION_CLI",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_17_OF_17_CLI_WITH_SYNTHETIC_FIXTURES",
+      "grade_science": "0/3",
+      "prereg_commit": "5d386f40ade3148296c30780af15f9ef72cefcc3",
+      "run_receipt": "C11_RUN_RECEIPT.json",
+      "verified": {
+        "native_node_version": "v22.16.0",
+        "native_frozen_tests": "17/17_PASS",
+        "CLI_source": "scripts/offline_forecastbench_revision_audit.mjs",
+        "code_git_blob": "2b6e910c998f99de121050badfab83adaf345220",
+        "test_git_blob": "d81e5197104bbd0dad287cd3519950a5dad1f196",
+        "dependency_original_C09_git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+        "synthetic_positive_buffer_adaptor": "PASS",
+        "pinned_original_CLI_negative_wrong_bytes": "PASS_FAIL_CLOSED",
+        "original_full_source_positive_native": "NOT_EXECUTED",
+        "atlas_0081_batch_static_check": "PASS",
+        "atlas_0081_native_python_full_replay": "NOT_EXECUTED"
+      },
+      "limits": "17 synthetic/local CLI tests only; no genuine original local file E2E, no clean clone, no new publisher or human data, no causal evidence. Existing read-only CLI supplements but does not supersede original C04/C06 question audit."
     }
   ],
   "counting": {
-    "valid_limited": 10,
+    "valid_limited": 11,
     "invalid_cycles": 0,
     "invalid_attempts": 2,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 20,
-    "new_remaining": 20,
+    "unopened_authorized": 19,
+    "new_remaining": 19,
     "historical_remaining": 2
   },
   "science": {
@@ -315,6 +338,15 @@
       "native_original_files_in_container": false,
       "integration_with_offline_cli": false,
       "release_gate_changed": false
+    },
+    "pinned_public_raw_revision_cli": {
+      "status": "NATIVE_SYNTHETIC_17_OF_17_PASS",
+      "code_in_repo_scripts": true,
+      "pair_count": 3,
+      "public_source_original_file_positive": "NOT_EXECUTED",
+      "CLI_rejects_synthetic_if_original_Git_pins": "PASS",
+      "release_gate_changed": false,
+      "main_integration": false
     }
   },
   "negative_results": [
@@ -347,7 +379,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_10_OF_30_LIMITED_C10_ORIGINAL_RAW_GIT_REVISION_AUDIT;20_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_20_N123_ZERO_RELEASE_0_OF_6",
-  "last_branch": "research/pfl-abh30-c10-original-raw-revisions-20261029",
+  "decision": "ABH30_11_OF_30_C11_LOCAL_PINNED_PUBLIC_REVISION_CLI;19_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_SCIENCE_20_NEW_N123_0_RELEASE_0_OF_6",
+  "last_branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
   "last_documentary_source_prior": "PF-BR49"
 }
