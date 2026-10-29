@@ -1,0 +1,33 @@
+Linux localhost 6.18.58-0-virt #1-Alpine SMP PREEMPT_DYNAMIC 2026-10-21 10:53:34 x86_64 Linux
+uid=1000(pfl) gid=1000(pfl) groups=1000(pfl)
+Filesystem           Type       1K-blocks      Used Available Use% Mounted on
+tmpfs                tmpfs        1012812    273652    739160  27% /
+Python 3.14.10
+pytest 9.0.3
+v24.22.1
+Package         Version
+--------------- -------
+attrs           26.1.0
+iniconfig       2.3.0
+numpy           2.4.6
+packaging       26.2
+pip             26.1.2
+pluggy          1.6.0
+py              1.11.0
+Pygments        2.20.0
+pyparsing       3.3.2
+pytest          9.0.3
+pytest-subtests 0.15.0
+setuptools      82.0.1
+tzdata          2026.6
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN qlen 1000
+    link/ether 52:54:00:12:34:56 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 scope global eth0
+       valid_lft forever preferred_lft forever
+Thu Oct 29 16:12:01 UTC 2026

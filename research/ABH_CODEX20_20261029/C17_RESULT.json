@@ -1,0 +1,52 @@
+{
+  "id": "C17",
+  "type": "AB-P",
+  "status": "EXECUTED",
+  "timestamp_utc": "2026-10-29T16:10:22.584920+00:00",
+  "source_commit": "e4dfc8d57143e0438a4f74c42b32da0891d0f69c",
+  "A": "Does the integrated project pass complete native QA on POSIX from a clean exact checkout?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Use existing local Alpine QEMU runtime with Git bundle, unprivileged user, external network disabled during tests; run Python, Node discovery, Atlas and symlink checks.",
+    "acceptance": "Preserve all first failures; do not attribute old Linux results to this commit. Windows symlink skip must execute on POSIX.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C16 reveals one environment-specific control remains unexecuted and imports need complete integration QA.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0,
+  "prereg_commit": "20e01950bc00044b546c7e7c658fab168232bb57",
+  "E": {
+    "command": [
+      "python",
+      "C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-codex20-linux-20261029\\hostrun.py"
+    ],
+    "code_commit": "20e01950bc00044b546c7e7c658fab168232bb57",
+    "exit": 1,
+    "host_error": "UnicodeEncodeError while printing node summary after all guest outputs recovered and hashes verified; VM powered off by exception cleanup",
+    "guest_exits": "achievements=0\nzone=0\natlas=0\nreplay=0\ncounts=0\natlas_tests=0\npytest=0\nnode=0\n",
+    "guest_metadata": "C17_LINUX/MANIFEST.json",
+    "clean_status_before_and_after": true,
+    "scope": "Exact guest checkout, not subsequent evidence/report commits"
+  },
+  "H": {
+    "finding": "Guest clean exact checkout passes Python799+32subtests, Node314 with zero skips, Atlas38+91subtests and 80-lot replay. Host exited1 only after verified recovery due Unicode summary printing; preserved both facts. No expensive Actions.",
+    "hypothesis_update": "Restricted to tested software or documented sources",
+    "new_question": "Does the integrated fictional product still work through a real Chromium browser?"
+  },
+  "I": {
+    "scientific_validity": "NOT_ESTABLISHED",
+    "novelty": "NOT_CLAIMED",
+    "external_replication": "NOT_RUN",
+    "CT2_reason": "No new identified external scientific evidence"
+  },
+  "J": "CONTINUE"
+}

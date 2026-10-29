@@ -119,7 +119,7 @@
     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "H": {
-    "finding": "Portable runner discovers 36 first-party Node files across tests and src. Native result 313 PASS, 1 explicit Windows symlink SKIP, 0 FAIL; custom in-file assertions separately visible. Research/evidence archives excluded.",
+    "finding": "Portable runner discovers 35 first-party Node files across tests and src. Native result 313 PASS, 1 explicit Windows symlink SKIP, 0 FAIL; custom in-file assertions separately visible. Research/evidence archives excluded.",
     "hypothesis_update": "Restricted to tested software or documented sources",
     "new_question": "Does the integrated checkout pass on POSIX including the skipped symlink control?"
   },
@@ -129,5 +129,6 @@
     "external_replication": "NOT_RUN",
     "CT2_reason": "No new identified external scientific evidence"
   },
-  "J": "REPAIR"
+  "J": "REPAIR",
+  "errata": "File count corrected from 36 to 35 using recorded discovery stdout; test totals unchanged."
 }
