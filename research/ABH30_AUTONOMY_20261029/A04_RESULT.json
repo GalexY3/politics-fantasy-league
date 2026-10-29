@@ -1,0 +1,38 @@
+{
+  "id": "ABH30-P2-A04",
+  "status": "VALID_AFTER_REPAIR_WITH_ORIGINAL_INCOMPLETE_PRESERVED",
+  "prior_attempt": "A04_INCOMPLETE.json",
+  "prereg_commit": "cfea3db0f7cb9940d7cdc797d6a765bd1a712ebf",
+  "A": "Can connected GitHub read and validate every Atlas JSON batch metadata without Codex?",
+  "B": "Broken or missing chain vs 80 full contiguous batches",
+  "C": "Frozen JSON parse, batch id, per-file Git blob SHA and parent_batch adjacency + 0080 operations + chronology",
+  "D": "GitHub authenticated content API, exact source tree SHA af39287287f0307ede6c9d6b27930c8025501311; 8 chunks preserved in A04_CHUNK_01.json..08.json",
+  "E": {
+    "file_count": 80,
+    "files_with_valid_json": 80,
+    "git_blobs_checked": 80,
+    "git_blob_mismatches": 0,
+    "parent_links_checked": 79,
+    "parent_link_failures": 0,
+    "first_batch": "0001-PFL-ABH20-20261026",
+    "last_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+    "lot_0079_at": "2026-10-29T01:00:00Z",
+    "lot_0080_at": "2026-10-29T00:26:37.468Z",
+    "lot_0080_ops": 2,
+    "chronology_nonmonotonic": true
+  },
+  "F": {
+    "negative": "0079 declared 01:00Z, 0080 00:26Z on same date (historical anomaly)",
+    "limitation": "Only metadata/ops count. No canonical Python ab_atlas/atlas_delta.py check, abmap.require_valid(strict=True), graph semantic replay, CURRENT update or SHA256 state."
+  },
+  "G": "Repeatable 8 chunks; still no independent native graph checker",
+  "H": "Prior updated: GitHub direct connector can audit JSON chain 80/80, native checker remains dependency",
+  "I": {
+    "technical_validity": "80 files read and parsed, 79 parent links check out",
+    "scientific_grade": "0/3",
+    "causal": "NONE"
+  },
+  "J": "PASS metadata, STOP short of native T028; retain original A04_INCOMPLETE and repair as SAME cycle, not extra",
+  "CT2_before": 22,
+  "CT2_after": 22
+}
