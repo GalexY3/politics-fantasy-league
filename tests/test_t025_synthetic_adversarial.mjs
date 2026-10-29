@@ -12,7 +12,11 @@ test('reject symbol property in event',()=>{const x=fixture();x.events[0][Symbol
 test('reject symbol property in snapshot',()=>{const x={...score(fixture())};x[Symbol('person_id')]='SYN-PERSON';assert.throws(()=>manifest(x));});
 test('reject inherited person metadata in snapshot',()=>{const x={...score(fixture())};Object.setPrototypeOf(x,{person_id:'SYN-PERSON'});assert.throws(()=>manifest(x));});
 test('reject non-enumerable metadata in snapshot',()=>{const x={...score(fixture())};Object.defineProperty(x,'person_id',{value:'SYN-PERSON'});assert.throws(()=>manifest(x));});
+test('reject a non-string rule version without coercing it',()=>{let coerced=false;const x={...score(fixture()),rule_version:{person_id:'SYN-PERSON',toString(){coerced=true;return 'synthetic-v1'}}};assert.throws(()=>manifest(x),/SYNTHETIC_ONLY/);assert.equal(coerced,false);});
 test('reject non-finite and unsafe counts',()=>{for(const n of [NaN,Infinity,Number.MAX_SAFE_INTEGER+1]){const x={...score(fixture()),scheduled:n};assert.throws(()=>manifest(x));}});
 test('unknown coverage produces no scores',()=>{const x=fixture();x.verified_complete=false;assert.equal(score(x).scores,null);});
 test('score is independent of later input mutation',()=>{const x=fixture(),result=score(x);x.events[0].success=false;assert.equal(result.successes,1);});
 test('forged previous manifest with matching cleartext is accepted, proving it is not authentication',()=>{const x=score(fixture()),m=manifest(x);const forgery={schema:m.schema,round_id:m.round_id,canonical_payload:m.canonical_payload};assert.equal(manifest(x,forgery).duplicate_safe,true);});
+
+test('reject arrays whose iterator hides scheduled events',()=>{const x=fixture();x.slots[Symbol.iterator]=function*(){};x.events[Symbol.iterator]=function*(){};assert.throws(()=>score(x));});
+test('reject array accessors before invoking them',()=>{const x=fixture();let invoked=false;Object.defineProperty(x.events,'0',{get(){invoked=true;return {id:'SYN-EVT-1',attempted:true,success:true}}});assert.throws(()=>score(x));assert.equal(invoked,false);});
