@@ -1,0 +1,26 @@
+{
+  "id": "C14",
+  "type": "AB-P",
+  "status": "PREREGISTERED",
+  "timestamp_utc": "2026-10-29T16:08:22.625500+00:00",
+  "source_commit": "109e4b732dc12ddbb64c9b76b149be377a0b0c5d",
+  "A": "Do source-evidence indexes still match the versioned artifacts they describe?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Rehash each listed evidence file in T016-T023 and enforce paths stay inside its evidence directory.",
+    "acceptance": "Every existing indexed file matches its recorded SHA256; missing or unsupported indexes reported, never inferred authentic.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C13 locates sources but a pointer alone does not prove artifact integrity.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0
+}
