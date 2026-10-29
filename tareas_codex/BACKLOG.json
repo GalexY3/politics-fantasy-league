@@ -260,7 +260,7 @@
       "title": "Replay canónico Atlas 0001–0080, actualizar CURRENT.md tras PASS y Playwright real PFL en localhost",
       "priority": "P0",
       "file": "T028_BROWSER_ATLAS_REPLAY_20261029.md",
-      "status": "PENDIENTE_DE_EJECUTOR_NO_EJECUTADO",
+      "status": "PENDIENTE_EJECUTOR__METADATA_ONLY_ALREADY_VERIFIED",
       "authorization": "QA_TECHNICAL_ONLY__NOT_AUTOMATIC_AB_CYCLE",
       "source_pr": 37,
       "source_branch": "research/pfl-abh5-browser-atlas-independent-20261029",
@@ -281,7 +281,7 @@
       ],
       "result_file": "T028_RESULTADO.md",
       "structured_result_file": "T028_RESULT.json",
-      "execution_receipt": "NOT_RUN",
+      "execution_receipt": "NOT_RUN_NATIVE_ATLAS_OR_CHROMIUM_HTTP",
       "cycle_budget": {
         "grant": 5,
         "valid": 2,
@@ -289,14 +289,25 @@
         "unexecuted": 2,
         "consumed_by_codex_task": 0
       },
-      "blocked_legal_dataset": "Independent source original bytes and legal reuse rights not verified; R5"
+      "blocked_legal_dataset": "Independent source original bytes and legal reuse rights not verified; R5",
+      "current_verified_preconditions": {
+        "atlas_metadata_80_of_80": "PASS_JSON_GIT_BLOB",
+        "atlas_parent_links_79_of_79": "PASS",
+        "native_atlas_semantic_checker": "NOT_RUN",
+        "canonical_sha256_state": "UNKNOWN",
+        "chromium_http_browser": "ERR_BLOCKED_BY_ADMINISTRATOR",
+        "playwright_api_get_localhost": "HTTP_200",
+        "partial_node_regression": "84/84 PASS",
+        "evidence": "research/ABH30_AUTONOMY_20261029/A04_RESULT.json; A09_RESULT.json; FINAL_REPORT.md",
+        "remaining_2_legacy_AB_cycles": true
+      }
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "2026-10-28 GitHub verified T009 original user-uploaded exact report, 757 Python pass 1 fail 28 subtests, Node127 pass, Atlas SyntaxError line24 no SHA; source file at 8a761cf corrupted with triplicate functions; current main full validation remains FAIL/UNKNOWN; T010 P0 executor QA repair, MAIN20B closed 20/20.",
+  "last_verified_by": "2026-10-29 ABH30 80/80 Atlas JSON + parent metadata verified, canonical Python checker NOT_RUN; browser HTTP Chromium BLOCKED; no main merge, no additional AB budgets consumed by T028",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
