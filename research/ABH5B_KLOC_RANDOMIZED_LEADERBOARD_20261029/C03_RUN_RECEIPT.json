@@ -1,0 +1,81 @@
+{
+  "schema": "pfl.abh5b.c03.execution.v1",
+  "date": "2026-10-29",
+  "prereg_commit": "db06458f74dc77c6990971d58ff4486431d07c0b",
+  "run": "Native CPython 3.11 local container, stdlib no network",
+  "source_file": "kloc_aggregate_ci.py",
+  "source_sha256": "269691294827cae3bf37438963a92d802b91599c73c511a1e8354f81feb64888",
+  "source_git_blob_sha1": "4ccf4b5721dcdd5088e496f1d8ed682fd00bea6f",
+  "test_file": "test_kloc_aggregate_ci.py",
+  "test_sha256": "18e4d39c843b0f06339193b77d2c5f3d90ad1710f0937e458199a995b8996c07",
+  "test_git_blob_sha1": "19e72edd55411ae914c9dc600e444face3c005bd",
+  "test_command": "python -m unittest -v test_kloc_aggregate_ci.py",
+  "test_pass": 8,
+  "test_total": 8,
+  "test_exit": 0,
+  "analysis_command": "python kloc_aggregate_ci.py",
+  "analysis_exit": 0,
+  "source": "Kloc, Belo, Li Oct 2024, author PDF https://rodrigobelo.com/assets/pdf/leaderboards.pdf Table3 p16",
+  "data": {
+    "eligible_users_reported": 3762,
+    "table3_panel_rows": 108171,
+    "metrics": [
+      "login",
+      "active_time",
+      "learning",
+      "practice",
+      "hardest_subject"
+    ],
+    "betas": [
+      0.008,
+      0.009,
+      0.008,
+      0.002,
+      0.007
+    ],
+    "se": [
+      0.006,
+      0.016,
+      0.014,
+      0.02,
+      0.015
+    ],
+    "active_time_unadjusted_95_normal": [
+      -0.02235942,
+      0.04035942
+    ],
+    "active_time_five_endpoint_bonf": [
+      -0.03221327,
+      0.05021327
+    ],
+    "threshold_sensitivity_SD": 0.05,
+    "threshold_preselected_in_source": false,
+    "claimed_single_endpoint_upper_under_threshold": true,
+    "claimed_familywise_upper_under_threshold": false,
+    "other_metric_CI_contains_zero": true
+  },
+  "distinctions": [
+    "This is analysis of published table with normal approximation, not original participant analysis",
+    "Five outcomes: 95% individual interval upper 0.04036 below 0.05; Bonferroni familywise upper 0.05021 above",
+    "0.05 SD is illustrative post-literature threshold not validated practical significance",
+    "Familywise adjustment conservative; correlated outcomes not jointly modeled",
+    "Eligible 3762 post registration active subset; no complete all-registered roster",
+    "Delayed leaderboard 3+ days; offer Z vs actual exposure E vs within-treatment rank/distance R not conflated",
+    "Dispersion beta 0.092 in Table 4 is postallocation association, not randomized causal rank manipulation",
+    "Published user-clustered SE, 108171 user-day rows not 108171 human subjects",
+    "No independent replication, data license or effect novel to PFL"
+  ],
+  "grade": "0/3",
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "CT2_prior": 22,
+  "CT2_after_recommendation": 20,
+  "CT2_reason": "One more strong, prior direct randomized ranking-offer intervention and independent Lovasz 2023 factorial study constrain originality; real ethically available mechanism dataset remains missing. Ordinal judgment, not likelihood.",
+  "no_original_human_rows": true,
+  "CI_cost": false,
+  "legacy_two_unchanged": true,
+  "status": "VALID_LIMITED_ABR_SOURCE_BACKED_AGGREGATE"
+}
