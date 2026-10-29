@@ -1,0 +1,38 @@
+{
+  "id": "ABH30-P1-C02",
+  "status": "VALID_BOUNDED_DESCRIPTIVE_AB_R",
+  "prereg_commit": "1c1fa0dd2e62805e6934b45caa14cf16772ea7d6",
+  "A": "Question: unequal N across ForecastBench leaderboard model rows",
+  "B": "Preregistered test: >=2 distinct positive N dataset",
+  "C": "Source CC BY-SA 4.0 public GitHub baseline leaderboard CSV, repository main commit e1defb1a70d10311670b12701c837f712c672c03",
+  "D": "CSV full quote-aware parsing and N arithmetic negative control preregistered",
+  "E": "Executed JS parsing on actual GitHub connector response, 24 columns and 130 data rows",
+  "F": {
+    "blob_git_sha": "fa76366ba425a0597d0af3c847197cd4be2d2fe7",
+    "chars": 24335,
+    "rows": 130,
+    "rows_width_valid": 130,
+    "rows_N_valid": 130,
+    "rows_N_sum_inconsistent": 0,
+    "model_rows_excluding_ForecastBench": 119,
+    "distinct_dataset_N": 63,
+    "dataset_N_min": 963,
+    "dataset_N_max": 21914,
+    "distinct_market_N": 63,
+    "market_N_min": 89,
+    "market_N_max": 2605
+  },
+  "G": "Positive heterogeneity confirmed; negative control N overall=N dataset+N market passes 130/130 rows",
+  "H": "Adversarial limit: row-level model outputs aggregated; no individual opportunity visibility, no assignment, no causality, not a novel Brier adjustment; 'model rows' not independent people",
+  "I": "No new scientific finding N1/N2/N3, no CT2 update; strengthens requirement to compare with difficulty-adjusted Brier prior art",
+  "J": "Valid narrow descriptive audit, not product/causal validation; R5 stop escalation until exposure identified",
+  "budget_impact": {
+    "phase1_valid": 1,
+    "phase1_incomplete": 1,
+    "phase1_unexecuted": 18,
+    "phase2_valid": 0,
+    "phase2_unexecuted": 10
+  },
+  "scientific_grade": "0/3",
+  "CT2_prospective": 22
+}
