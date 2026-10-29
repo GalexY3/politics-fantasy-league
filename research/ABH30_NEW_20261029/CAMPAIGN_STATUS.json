@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 18,
-    "new_remaining": 12,
+    "new_completed": 19,
+    "new_remaining": 11,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -446,15 +446,34 @@
         "source_structure_identifiers": "POSTHOC_HF_VIEWER_USER_ID_AND_REASONING"
       },
       "limits": "Original 4.6MB human individual JSON cannot parse through connector; user_id/reasoning present in public viewer, copyright license not privacy clearance. Stop raw extraction; no human science or original PFL treatment observations."
+    },
+    {
+      "id": "ABH30-C19",
+      "mode": "AB-P_FULL_89_BATCH_STATIC_GITHUB_ATLAS_STRUCTURE",
+      "D": 2,
+      "status": "VALID_LIMITED_NATIVE_8_TESTS_AND_FULL_89_GITHUB_STATIC_NO_PYTHON",
+      "grade_science": "0/3",
+      "prereg_commit": "32e662ca2cd4395b133f379b746bfbca0d8d2e86",
+      "run_receipt": "C19_RUN_RECEIPT.json",
+      "verified": {
+        "source_batches_read": "89/89",
+        "operations": 448,
+        "run_adds": 273,
+        "static_parent_failures": 0,
+        "git_blobs_match": true,
+        "native_local_tests": "8/8_PASS",
+        "full_original_Python_replay": "NOT_EXECUTED"
+      },
+      "limits": "No canonical Python replay, no graph digest, global duplicate ids not machine verified, structural checks do not certify research claims"
     }
   ],
   "counting": {
-    "valid_limited": 18,
+    "valid_limited": 19,
     "invalid_cycles": 0,
     "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 12,
-    "new_remaining": 12,
+    "unopened_authorized": 11,
+    "new_remaining": 11,
     "historical_remaining": 2
   },
   "science": {
@@ -560,7 +579,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_18_OF_30_C18_NEGATIVE_HUMAN_FORECAST_DATA_FEASIBILITY_12_REMAIN_2_HISTORICAL_STOP_R5",
-  "last_branch": "research/pfl-abh30-c18-original-human-forecast-license-20261029",
+  "decision": "ABH30_19_OF_30_C19_FULL_89_NONCANONICAL_STRUCTURE_11_AVAILABLE_2_HIST_R5",
+  "last_branch": "research/pfl-abh30-c19-atlas-89-static-all-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
