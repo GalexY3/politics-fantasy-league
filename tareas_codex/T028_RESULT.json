@@ -1,0 +1,93 @@
+{
+  "schema": "pfl.codex_task_result.v1",
+  "task_id": "PFL-CODEX-T028",
+  "status": "CORE_TECHNICAL_VERIFIED_WITH_LIMITS",
+  "date": "2026-10-29",
+  "executed_by": "ChatGPT orchestrated authorized read-only GitHub Actions jobs; no Codex invoked",
+  "branch": "research/pfl-t028-atlas-direct-adversarial-20261029",
+  "source_pr": 41,
+  "source_head": "d8c6f59f391fb16de1fa157a809b12de87cfaa58",
+  "native_atlas": {
+    "status": "PASS",
+    "runner_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464",
+    "run_id": 40805714464,
+    "job_id": 123224069258,
+    "head_sha": "85f5513f801f0c34a03b2d73cbf95d5ae3e5c5d1",
+    "check_exit": 0,
+    "brief_exit": 0,
+    "batches": 80,
+    "nodes": 63,
+    "edges": 81,
+    "canonical_sha256": "e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+    "brief_sha_matches": true,
+    "head_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+    "scope": "PFL-V1-20261026-r3",
+    "readiness": false,
+    "strict_graph_validation": "Original atlas_delta.py invokes abmap.require_valid(strict=True) at every delta",
+    "historical_anomaly": "0079 at 01:00:00Z, 0080 at 00:26:37.468Z, accepted ISO but non-monotonic; not edited",
+    "CURRENT_updated_after_native_pass": true,
+    "receipt": "../research/T028_DIRECT_ATLAS_20261029/NATIVE_ATLAS_CHECK_RECEIPT.json"
+  },
+  "browser_e2e": {
+    "status": "PASS_REAL_CHROMIUM_HTTP",
+    "runner_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386",
+    "run_id": 40806035386,
+    "job_id": 123225098835,
+    "head_sha": "f9a9f8f06e119005d92e796968fd1a1f806bf8f9",
+    "browser": "/usr/bin/google-chrome",
+    "playwright_python": "1.56.0",
+    "site": "http://127.0.0.1:8787/",
+    "checks_pass": 21,
+    "checks_total": 21,
+    "no_js_errors": true,
+    "csp_pass": true,
+    "privacy_negatives_pass": true,
+    "arms_four": true,
+    "radios_twelve": true,
+    "mobile_375px_no_overflow": true,
+    "receipt": "../research/T028_DIRECT_ATLAS_20261029/NATIVE_BROWSER_E2E_RECEIPT.json",
+    "prior_chatgpt_environment": "ERR_BLOCKED_BY_ADMINISTRATOR remains local; hosted runner distinct authorized environment"
+  },
+  "regressions": {
+    "previous_native_subset": "84/84 PASS from PR40 locally verified subset; NOT rerun in this new Actions job",
+    "node_http_smoke": "15/15 PASS from PR41 mirror, not rerun in this new Actions job",
+    "heldout_seed_windows": "12,288 synthetic seeds, three windows PASS from PR41; not new human trial",
+    "eight_mirrored_batch_ops": "80 JSON original blobs, 438 ops JS shadow semantic replay PASS, independent not native",
+    "shadow_graph_final": "63 nodes, 81 edges, 263 runs, 48 complaints, 6 gates"
+  },
+  "scientific": {
+    "status": "R5_STOP_NO_INDEPENDENT_CAUSAL_DATA",
+    "CT2_prospective": 22,
+    "novel_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "sources_memo": "../research/T028_DIRECT_ATLAS_20261029/EXTERNAL_PRIOR_ART_AND_DATA_GATE.md",
+    "GJP_data": "Candidate public research archive, specific rights/schema/exposure not verified",
+    "Metaculus": "API access restrictions and terms limit data; no unauthorized access"
+  },
+  "project_release": {
+    "critical_gates_passed": 0,
+    "critical_gates_defined": 6,
+    "game_production_ready": false,
+    "ethical_approval": false,
+    "people_recruited": 0,
+    "politicians_scored": 0
+  },
+  "accounting": {
+    "new_AB_cycles_consumed": 0,
+    "legacy_authorized_unused": 2,
+    "previous_ABH30_valid": 29,
+    "previous_ABH30_incomplete": 1
+  },
+  "resource_limits": {
+    "workflow_atlas_max_minutes": 3,
+    "workflow_browser_max_minutes": 4,
+    "actual_single_job_each": true,
+    "expensive_ci": false,
+    "no_merge_main": true,
+    "ChatRelay": false
+  },
+  "next_dependency": "Before human product or causal claims: verify legal rights, obtain pre-response exposure/assignment records or ethical study; no further T028 core technical blockers."
+}
