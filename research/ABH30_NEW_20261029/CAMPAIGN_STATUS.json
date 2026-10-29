@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 14,
-    "new_remaining": 16,
+    "new_completed": 15,
+    "new_remaining": 15,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -372,15 +372,39 @@
         "human_rows": 0
       },
       "limits": "Design contract and static peer visibility/granularity orthogonality only, neither outcomes nor delivered stimulus nor allocation, no person data. Historical four-arm pilot not replaced. Initial invalid attempt registered separately without consumption."
+    },
+    {
+      "id": "ABH30-C15",
+      "mode": "AB-P_FIVE_ARM_SYNTHETIC_OPPORTUNITY_RENDER_RECEIPT_AUDIT",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_FROZEN_20_OF_20_SYNTHETIC",
+      "grade_science": "0/3",
+      "prereg_commit": "582035ac5d18ddb1ce2504cf0dba044225f61e9a",
+      "run_receipt": "C15_RUN_RECEIPT.json",
+      "verified": {
+        "node_version": "v22.16.0",
+        "first_native_run": "20/20_PASS",
+        "source_Git_blob": "db4df150fa73d26ee3ec40965586e4f3ca3c790f",
+        "tests_Git_blob": "ff04ef970dca3e5f68c98aa7f5818e6022287b1b",
+        "original_C14_dep_blob": "cad226a589772de6c733929d32a527252d719ad6",
+        "synthetic_fixture_five_arms": true,
+        "same_opportunity_duplicate_rejected": true,
+        "wrong_arm_granularity_publicity_rejected": true,
+        "missing_exposure": "UNKNOWN_NOT_ZERO",
+        "real_renderer_delivered_receipt": "NOT_AUTHENTICATED",
+        "original_human_rows": 0,
+        "actual_human_RCT": "NOT_EXECUTED"
+      },
+      "limits": "Only synthetically declared renderer receipts and synthetic opportunity frame. No authenticator/renderer integration and no signed human exposure, so user-facing causal and launch remain blocked."
     }
   ],
   "counting": {
-    "valid_limited": 14,
+    "valid_limited": 15,
     "invalid_cycles": 0,
     "invalid_attempts": 3,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 16,
-    "new_remaining": 16,
+    "unopened_authorized": 15,
+    "new_remaining": 15,
     "historical_remaining": 2
   },
   "science": {
@@ -447,6 +471,13 @@
       "private_order_vs_public_order": "PLANNED_ONLY",
       "genuine_human_effect": "NOT_ESTIMATED",
       "release_gate_changed": false
+    },
+    "fictional_rank_receipt_riskset": {
+      "status": "NATIVE_SYNTHETIC_20_OF_20_PASS",
+      "path": "src/politics_fantasy/fictional_rank_delivery_audit.mjs",
+      "opportunity_missingness_separated": true,
+      "real_renderer_integrated": false,
+      "release_gate_changed": false
     }
   },
   "negative_results": [
@@ -479,7 +510,7 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "ABH30_C14_REPAIRED_14_OF_30_VALID_16_NEW_AVAILABLE_2_HIST_STOP_R5_CT2_20_0_NEW_N123_RELEASE_0_6_INITIAL_INVALID_ATTEMPT_PRESERVED",
-  "last_branch": "research/pfl-abh30-c14-rank-visibility-factorial-20261029",
+  "decision": "ABH30_15_OF_30_C15_NATIVE_FIVE_ARM_SYNTHETIC_RECEIPT_OPPORTUNITY_MATCH;15_NEW_AVAILABLE;2_HISTORICAL_STOP_R5;CT2_SCIENCE_20_N123_0_GATES_0_OF_6",
+  "last_branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
   "last_documentary_source_prior": "PF-BR52"
 }
