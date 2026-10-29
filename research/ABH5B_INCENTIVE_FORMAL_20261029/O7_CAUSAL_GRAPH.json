@@ -235,6 +235,14 @@
       "state": "answered",
       "summary": "C11 native CLI wraps frozen C09 public raw revision guard and hardcodes C10 six original Git pins for three pairs. 17/17 native Node synthetic/local negative CLI checks after A-J freeze, Git SHA parity for code/tests. No local positive original source files, no human experiment or launch readiness.",
       "source": "../ABH30_NEW_20261029/C11_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "type": "independent_published_primary_human_experiment",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "C12 independently published AAAI 2020 randomized four-arm human forecasting incentives study, includes delayed Brier + daily private quartile peer feedback, not public social leaderboard. Source README and Rmd immutable Git blobs checked; 891 selected of 945 workers with selection concern, repo license null, no person rows. Posthoc original Rmd Oct13 CountUpdates selector 5 rather than 6 and Change13 omitted, effect size unquantified; novel PFL human causal evidence 0/3.",
+      "source": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -507,6 +515,18 @@
       "to": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
       "relation": "tests",
       "interpretation": "Integrates unchanged pure raw revision audit with mandatory local file Git pins and Node subprocess."
+    },
+    {
+      "from": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "to": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
+      "relation": "related_to",
+      "interpretation": "C11 original public source CLI is a different evidence family; PFL must not conflate public market source outcomes with external RCT participant forecasts."
+    },
+    {
+      "from": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "to": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "relation": "related_to",
+      "interpretation": "New independent publisher and experimental intervention population, but person-level outcome access remains legally unverified; documentary only."
     }
   ],
   "rules": {
@@ -530,8 +550,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 11,
-      "new_unused": 19,
+      "new_valid": 12,
+      "new_unused": 18,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -539,9 +559,9 @@
         0,
         0
       ],
-      "last_source_pr": 61,
-      "branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
-      "latest_valid_cycle": "ABH30-C11"
+      "last_source_pr": 62,
+      "branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
+      "latest_valid_cycle": "ABH30-C12"
     }
   }
 }
