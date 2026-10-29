@@ -1,0 +1,110 @@
+{
+  "schema": "pfl.abh.branch5.run_receipt.v1",
+  "date": "2026-10-29",
+  "source_branch": "research/pfl-abh-branching5-exposure-20261029",
+  "source_pr": 43,
+  "original_parent_sha": "631aa015cc4696c557b92f8f2e76fa4de9d21261",
+  "authorization": {
+    "new_slots": 5,
+    "legacy_separate": 2
+  },
+  "execution_environment": {
+    "runner": "local isolated container",
+    "node": "v22.16.0",
+    "internet_required": false,
+    "GitHub_Actions_used": false,
+    "clean_clone": "NOT_VERIFIED"
+  },
+  "first_prereg_commit": "ebfba33a262cbc110b042170f4991604e18c0b22",
+  "first_code_commit": "d42c105dfb891b4fd582043c78d244551a8965e0",
+  "first_test_commit": "14b2da4b261d8958d80a261b213e38b55bd5fd3b",
+  "first_run": {
+    "status": "EXECUTED",
+    "test_groups": 8,
+    "passed": 8,
+    "exit_code": 0,
+    "source_SHA256": "542a56984c83121a4b69e9225470f853568fae7399b18ec57ac034f6abdfef7d",
+    "test_SHA256": "3c92a00c6d6daeb30d82f32451d9529e1e297a27929a291ae646709b1e5e897a",
+    "source_git_blob": "b782c6bee611ea671a463c0a620f641f78a06963",
+    "test_git_blob": "81dafb2c5cfa54eec4cb918166747664d909b25e",
+    "result": "8/8 PASS; no verified semantic guarantee for timestamp tie; preserve as pre-repair result"
+  },
+  "adversarial_case": {
+    "status": "DEFECT_REPRODUCED",
+    "unit": "1 synthetic participant × 1 question",
+    "equal_answer_view_time": "2026-01-03T00:00:00Z",
+    "incorrect_pre_response_count": 1,
+    "invalid_interpretation": "A tied timestamp is not proof of strict pre-response display.",
+    "invalid_run_attempts": 1
+  },
+  "repair_prereg_commit": "65cd43bb2795865200a855a90b33954174a8994d",
+  "repaired_source_commit": "629ccdaaf11c99ad9a0fcf0175883742d7ad1514",
+  "repaired_test_commit": "a0d3eb3a1a38d348ad01b11819effb68106205ac",
+  "repaired_run": {
+    "status": "EXECUTED",
+    "test_groups": 9,
+    "passed": 9,
+    "exit_code": 0,
+    "source_SHA256": "c631d35123798cae52953c8a673b8812dd1b930b14d108ae29e682acc75e19a3",
+    "test_SHA256": "86b2040d87ddfa25a6bd895a0e6b5784e794b25c51557d0480517506f43c1a27",
+    "source_git_blob": "ae0e23db4b5086fe4e0aec2b9f4a69394857b55c",
+    "test_git_blob": "d4c6978c37424ab10a95451a32570e04c1e3342a",
+    "result": "9/9 PASS including tie semantics regression; synthetic full roster: 8 assigned, 12 eligible person-question, 4 first forecasts, aggregate uptake 1/3; no human causal inference."
+  },
+  "checks": [
+    {
+      "name": "complete randomized synthetic roster",
+      "result": "PASS",
+      "cycle": "C01"
+    },
+    {
+      "name": "calendar risk-set and late registration",
+      "result": "PASS",
+      "cycle": "C01"
+    },
+    {
+      "name": "independent display vs first forecast and unknown impression",
+      "result": "PASS",
+      "cycle": "C02"
+    },
+    {
+      "name": "temporal tie never counts as strict pre-response",
+      "result": "PASS after prereg repair",
+      "cycle": "C02"
+    },
+    {
+      "name": "negative schema/time, duplicate and spoofed provenance",
+      "result": "PASS",
+      "cycle": "C01/C02"
+    },
+    {
+      "name": "native Node and Git blob equivalence",
+      "result": "PASS",
+      "cycle": "C01/C02"
+    }
+  ],
+  "limits": [
+    "No real randomized assignment roster, GJP view or participant rows",
+    "Caller assertion synthetic cannot authenticate real impressions or consent",
+    "The denominator is conditional on complete known synthetic registration and availability",
+    "Same implementation and suite support C01/C02; not independent replication",
+    "No actual efficacy or human behavior measurements",
+    "No launch or ethical approval inferred"
+  ],
+  "counting": {
+    "unique_executed_valid_ABP_cycles": 2,
+    "invalid_attempts_not_extra_cycles": 1,
+    "planning_only_C03_C04": 2,
+    "unopened_C05": 1,
+    "legacy_unused": 2,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "CT2_prospective_before": 22,
+    "CT2_prospective_after": 22,
+    "product_gates_after": 0,
+    "product_gates_total": 6
+  }
+}
