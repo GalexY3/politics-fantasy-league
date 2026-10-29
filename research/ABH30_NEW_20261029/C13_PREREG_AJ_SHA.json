@@ -1,0 +1,65 @@
+{
+  "schema": "pfl.abh30.c13.manski_bounds.prereg_AJ_SHA.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C13",
+  "mode": "AB-H_AB-P_INFERENCE_SAFETY_MATHEMATICAL",
+  "drift_D": 2,
+  "parent_PR": 64,
+  "parent_HEAD": "2aeb77b8e24555709559e8069f41126628fc821f",
+  "working_branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
+  "authorization_before": {
+    "granted_new": 30,
+    "valid_new": 12,
+    "unspent_new": 18,
+    "historical_separate_STOP_R5": 2
+  },
+  "A": "Can a four-cell fictional PFL pilot's aggregate assigned counts, observed counts and bounded [0,1] observed-score totals provide worst-case arm mean/interaction uncertainty bounds when outcomes are missing, avoiding false complete-case causal effect claims? Unit is synthetic arm aggregate; scientific estimand for future valid cluster RCT would be arm ITT contrast under randomization and no interference; here those conditions are NOT met.",
+  "B": {
+    "H1": "A positive complete-case leaderboard advantage can be sign-unidentified under worst-case missingness; bounds collapse when no missing and widen monotonically for fixed sum and assigned with more missing.",
+    "H0": "Complete-case signs always identify bounded treatment effect even with unobserved scores; computation may falsely collapse uncertainty.",
+    "rivals": [
+      "Simple missing-count warning already exists, so this source only adds value if it quantifies effect and interaction bounds.",
+      "A modeled MAR/MCAR or Bayesian imputation can be narrower but requires extra assumptions; compare against assumption-free Manski bounds.",
+      "Without verified randomized assignment and exposure, mathematical identification bands are NOT human causal inference."
+    ]
+  },
+  "C": {
+    "scope": "four EXISTING fictitious arms control/transparency/leaderboard/both; all input synthetic aggregate counts, no individual rows, no politician names. Outcome values normalized 0..1.",
+    "frozen_design": "compute arm [sum/N,(sum+N-observed)/N] and linear factorial effects by choosing lower for positive weights and upper for negative weights (vice versa for upper); no priors on missing values",
+    "comparator": "existing pilot_analysis_dryrun.mjs warning COMPLETE_CASE_NOT_ITT without numeric partial-ID bounds",
+    "primary_endpoints": [
+      "18 frozen native node:test cases all execute PASS; first attempts preserved",
+      "positive complete-case leaderboard vs control counterexample becomes NOT_IDENTIFIED",
+      "all missing broadens bound without coercion to 0",
+      "fully observed point bounds collapse",
+      "positive and negative interaction signs recoverable only in complete extreme cases",
+      "reject aggregate schemas with participant rows, malformed scores, empty arms"
+    ],
+    "expected_status": "Mathematical product QA, not external human effect."
+  },
+  "D": {
+    "frozen_files": [
+      {
+        "path": "src/politics_fantasy/fictional_missingness_bounds.mjs",
+        "git_blob": "93f18028fba28e9a4ee2b71183ca5a9a6825fde6",
+        "sha256": "fec140b8f467be3c8514661ba697b669cb0a43342864e8ddf13122004df5c584",
+        "staged_commit": "950ceb9ec4ce3b6d37de21d9acf2d5efa75a9a64"
+      },
+      {
+        "path": "tests/test_fictional_missingness_bounds.mjs",
+        "git_blob": "eedf1b826914ffae4634216107fa090be0d3910c",
+        "sha256": "6cd78e9fe28215570688197e19135370db874f9f17009a1a9cd7873adcf2d3ad",
+        "staged_commit": "e4e2b0ab4aee0cfd92c29213d4482af434577472"
+      }
+    ],
+    "node_environment": "v22.16.0",
+    "command": "node --test tests/test_fictional_missingness_bounds.mjs",
+    "first_test_after_this_commit": true
+  },
+  "E": "After prereg commit, verify Git blob and SHA256 of exact local source and tests against previously staged source GitHub; run native Node 18 tests, archive first-pass actual output and status. On failure preserve error and repair only under new freeze.",
+  "F": "Test adversarial schema, provenance, integer/finite outcomes, missing not equal to zero, factor contrasts, mathematical bounds, no IDs/person inputs, not causal/ITT without validated allocation. No MAR assumption or normal CI.",
+  "G": "Compare to frozen existing warning-only PFL synthetic dryrun, a competent naive complete-case contrast and the direct algebraic bounded-outcome control; no simulation seeds or human data. No claim of superior science based on synthetic fixtures.",
+  "H": "Retain PF-BR50/51 external prior; do not add new empirical prior for a mathematical tool; register distinct product line and potential future null with bounds.",
+  "I": "Count one AB-P mathematical limited if all exact native tests pass, grade PFL scientific 0/3, CT2 20/100, N1-N3 zero, release 0/6. Cannot infer individual treatment effect from aggregate synthetic calculations.",
+  "J": "Upon verified valid run, 13/30 new used, 17 new authorized pending, two historical STOP_R5. Further experimental design distinguish private quartile vs public leaderboard at equal virtual reward, but requires new prereg and independent exposure proof."
+}
