@@ -243,6 +243,14 @@
       "state": "answered",
       "summary": "C12 independently published AAAI 2020 randomized four-arm human forecasting incentives study, includes delayed Brier + daily private quartile peer feedback, not public social leaderboard. Source README and Rmd immutable Git blobs checked; 891 selected of 945 workers with selection concern, repo license null, no person rows. Posthoc original Rmd Oct13 CountUpdates selector 5 rather than 6 and Change13 omitted, effect size unquantified; novel PFL human causal evidence 0/3.",
       "source": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "type": "product_mathematical_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C13 frozen fictional four-arm normalized-outcome Manski partial-identification interval engine. Native Node 22.16.0 18/18 first run; complete-case nominal +0.175 leaderboard factorial contrast becomes bounds [-0.11,+0.19] under six missing synthetic scores. 0 human records, no RCT evidence, grade PFL science 0/3, no release gate.",
+      "source": "../ABH30_NEW_20261029/C13_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -527,6 +535,18 @@
       "to": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
       "relation": "related_to",
       "interpretation": "New independent publisher and experimental intervention population, but person-level outcome access remains legally unverified; documentary only."
+    },
+    {
+      "from": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "to": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "relation": "depends_on",
+      "interpretation": "The 945→891 retained subject discrepancy in external experiment motivates attrition-sensitive math, but no source participant data are used and PFL effects remain fictional."
+    },
+    {
+      "from": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "to": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
+      "relation": "related_to",
+      "interpretation": "Different safety line: source-file version integrity vs inference under missing outcomes; neither establishes human causal effect."
     }
   ],
   "rules": {
@@ -550,8 +570,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 12,
-      "new_unused": 18,
+      "new_valid": 13,
+      "new_unused": 17,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -559,9 +579,9 @@
         0,
         0
       ],
-      "last_source_pr": 62,
-      "branch": "research/pfl-abh30-c12-independent-rank-rct-20261029",
-      "latest_valid_cycle": "ABH30-C12"
+      "last_source_pr": 64,
+      "branch": "research/pfl-abh30-c13-missingness-bounds-20261029",
+      "latest_valid_cycle": "ABH30-C13"
     }
   }
 }
