@@ -606,6 +606,19 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "No original human forecast history, identification, rank exposure, users or personal data; source publisher/market texts not redistributed. Frozen aggregate market forecast provenance and event resolutions are observational among selected resolved cases. Do NOT claim statistical superiority vs naive p=.5 as a competent comparator; release gates remain 0/6."
+    },
+    {
+      "id": "PF-BR44",
+      "claim": "Strong Brier accuracy on the subset of questions that resolved by a fixed date guarantees a good mean Brier on all initially forecast market questions",
+      "update": "NOT_IDENTIFIED_WITH_ORIGINAL_FORECASTBENCH_MISSING_BINARY_OUTCOMES",
+      "support": "Original ForecastBench publicly licensed 2026-09-27 and 2026-10-11 LLM question cohorts (500 each), immutable Git original dataset version 027ba0b3017a60e0e64602d724284ac6b2d91134, market binary questions 250 per cohort. At as-of 2026-10-29 only 52/250 and 8/250 have unique observed eligible binary outcome. Frozen market/community p resolved-only means 0.1680145 and 0.07071875. Exact no-assumption binary missing-outcome partial bounds (all 250): 2026-09-27 [0.0970572,0.5194762], 2026-10-11 [0.0783934,0.5985091]. Both include 0.25 weak p=.5 comparator; therefore no full-cohort market superiority claim is identified without further outcomes/assumptions.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "source_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "evidence": "../ABH30_NEW_20261029/C03_RUN_RECEIPT.json",
+      "type": "ABR_PUBLIC_NONPERSON_ORIGINAL_QUESTION_PARTIAL_IDENTIFICATION",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Deterministic worst-case bounds NOT confidence intervals, source-author community p not PFL forecast, p=.5 weak comparator, data same platform/cohorts already analyzed in former C05 (not independent confirmation); unknown resolutions may not be simple missing-at-random; no human causal effect."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -796,5 +809,24 @@
     "eligible_resolved_market_probabilities": 60,
     "first_native_failed_attempt_preserved": true,
     "final_native_tests": "12/12"
+  },
+  "latest_ABH30": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh30-source-cutoff-20261029",
+    "granted": 30,
+    "valid_limited": 3,
+    "new_remaining": 27,
+    "historical_remaining": 2,
+    "CT2_scientific_ordinal": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "new_prior_ids": [
+      "PF-BR44"
+    ],
+    "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
+    "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13"
   }
 }
