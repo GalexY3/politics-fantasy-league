@@ -1,0 +1,40 @@
+{
+  "campaign": "ABH30_AUTONOMY_20261029",
+  "status": "STOP_R5_PARTIAL_EXECUTION",
+  "parent_pr": 40,
+  "phase1": {
+    "granted": 20,
+    "valid": 1,
+    "incomplete": 1,
+    "not_attempted": 18
+  },
+  "phase2": {
+    "granted": 10,
+    "valid": 0,
+    "incomplete": 0,
+    "not_attempted": 10
+  },
+  "legacy": {
+    "valid": 2,
+    "incomplete": 1,
+    "unused": 2
+  },
+  "evidence": [
+    "C01 preregistered and attempted; large JSON response truncated, no join and no success",
+    "C02 preregistered before test and executed: 130 aggregate model leaderboard rows; 63 distinct positive dataset N values; 0 N arithmetic inconsistencies"
+  ],
+  "constraints": [
+    "No actual individual exposure E_iqt; cannot test central scientific causal claim",
+    "No full private checkout and native Atlas replay; T028 pending",
+    "Phase2 intentionally not opened before phase1 complete or documented stop; this is documented R5 stop, not a completed campaign"
+  ],
+  "CT2": 22,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "T028": "PENDING_CODEX",
+  "main_merged": false,
+  "statement": "Not all 30 cycles performed. Unexecuted budget preserved; no claims of background execution."
+}
