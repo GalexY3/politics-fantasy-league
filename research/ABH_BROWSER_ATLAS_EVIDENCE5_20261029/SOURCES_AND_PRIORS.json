@@ -32,6 +32,13 @@
       "kind": "JOP 2019",
       "url": "https://www.journals.uchicago.edu/doi/pdfplus/10.1086/700199",
       "support": "political-information signaling experiment, strong prior-art constraint"
+    },
+    {
+      "kind": "External CC BY-SA 4.0 datasets & strong baseline",
+      "url": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "support": "ForecastBench public repo main e1defb1a70d10311670b12701c837f712c672c03, verified license/README and immutable Git blob hashes for question sets, resolution metadata and model/team leaderboard CSV; methodology already provides difficulty-adjusted Brier",
+      "limitation": "No individual forecaster files inspected, no person-level exposure or randomized leaderboard treatment, no SHA-256 local checkout; no effect measured",
+      "memo": "FORECASTBENCH_EXTERNAL_DATA_GATE_20261029.md"
     }
   ],
   "priors": [
@@ -69,9 +76,33 @@
       "update": "DOWN_25_TO_22_ORDINAL",
       "evidence": "Stronger relevant prior art, access gate unresolved and no human evidence",
       "limitation": "Judgment is ordinal and provisional, not calibrated probability"
+    },
+    {
+      "id": "PF-BR06",
+      "claim": "Opportunity-heterogeneity adjustment in PFL automatically constitutes novel forecasting tournament mechanism",
+      "update": "GENERIC_NOVELTY_WEAKENED_BY_FORECASTBENCH_ICLR2025",
+      "evidence": "ForecastBench existing difficulty-adjusted Brier score compares forecasters over different question sets; public question sets, resolutions, N dataset/market and model leaderboards under CC BY-SA 4.0 at Git blob hashes in memo",
+      "limitations": "Difficulty adjustment not synonymous with human exposure/availability; PFL specific 2x2 transparency x leaderboard causal effect not tested; no scoring run",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "source": "https://www.forecastbench.org/docs/"
     }
   ],
   "CT2_parent_unchanged": 29,
   "CT2_prospective_now": 22,
-  "new_N1": 0
+  "new_N1": 0,
+  "later_source_audit": {
+    "status": "POSTHOC_METADATA_ONLY_NOT_AB_CYCLE",
+    "date": "2026-10-29",
+    "remaining_AB_slots": 2,
+    "evidence_doc": "FORECASTBENCH_EXTERNAL_DATA_GATE_20261029.md",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "prior_CT2": 22,
+    "post_CT2": 22,
+    "security": "No human individual forecast sets loaded"
+  }
 }
