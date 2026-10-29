@@ -1,3 +1,9 @@
+# ABH30-C16 · renderizador Node ficticio ejecutado (29/10/2026)
+
+**16/30 nuevos limitados válidos; 14 disponibles; 2 históricos STOP_R5.** El nuevo código Node [C16](../research/ABH30_NEW_20261029/C16_REPORT.md) computa realmente vistas de los cinco brazos a partir de puntuaciones ficticias y genera recibos sintéticos que verifica con C15. Prerregistro SHA anterior a primera ejecución, **15/15 PASS nativos**, recibo archivado. **NO es navegador, registro externo de exposición ni evidencia causal**. PF-BR56; O7 C16; Atlas 0087 añadido pero checker original Python 81–87 no ejecutado. CT2 científica 20/100, N1–3 0/3, gates 0/6.
+
+---
+
 # ABH30-C15 — CONTINUIDAD DEL PROYECTO (29/10/2026)
 
 **Contabilidad verificada:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **15/30 nuevos válidos de alcance técnico limitado; 15 nuevos autorizados pendientes y 2 plazas históricas separadas STOP_R5**. CT2 prospectiva científica **20/100 ordinal**, nuevos N1/N2/N3 0/0/0 y seis gates de lanzamiento **0/6**. No merge main, no ChatRelay, no CI costosa, ni datos personales o puntuaciones de políticos reales.
