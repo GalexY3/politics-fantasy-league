@@ -1,0 +1,34 @@
+{
+  "id": "ABH30-P2-A04",
+  "prereg_commit": "cfea3db0f7cb9940d7cdc797d6a765bd1a712ebf",
+  "previous_incomplete_file": "A04_INCOMPLETE.json",
+  "type": "SAME_CYCLE_REPAIR_NO_NEW_SLOT",
+  "A": "Complete all 80 Atlas parent metadata audit despite REST listing limitation",
+  "B": "Full 80 valid vs missing/bad links",
+  "C": "Original 80 batches, parent adjacency, 0080 two run.add",
+  "D": "GitHub private connector immutable updates tree SHA af39287287f0307ede6c9d6b27930c8025501311; 8 chunk files, 80 content reads and tree blob consistency",
+  "E": {
+    "status": "VALID_AUTONOMY_A04_AFTER_REPAIR",
+    "n": 80,
+    "unique_ids": 80,
+    "parse_failures": 0,
+    "consecutive_parent_errors": [],
+    "blob_mismatch": [],
+    "all_chunk_internal_links": true,
+    "all_hashes_match": true,
+    "last_ops": [
+      "run.add",
+      "run.add"
+    ],
+    "last_parent": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+    "at_79": "2026-10-29T01:00:00Z",
+    "at_80": "2026-10-29T00:26:37.468Z",
+    "original_blocker": "large REST directory listing returned empty; repaired by resolving updates tree SHA and fetching 10 JSON files per chunk",
+    "canonical_python_replay": "NOT_RUN"
+  },
+  "F": "Does not run official atlas_delta.py / abmap validator or synchronize CURRENT. Timestamp anomaly preserved, no history rewritten.",
+  "G": "No external native full replay",
+  "H": "Git tree traversal plus chunked exact fetch replaces Codex for metadata and source-hash checks only",
+  "I": "Valid bounded technical test 0/3 science, CT2 unchanged 22",
+  "J": "Repair successful, do NOT claim T028 complete"
+}
