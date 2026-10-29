@@ -1,27 +1,78 @@
-# T028 — T027 continuación: reproducción canónica Atlas 0078–0080 y navegador con HTTP real
+# PFL-CODEX-T028 — EJECUTOR: replay canónico Atlas 0001–0080, navegador HTTP real y auditoría
 
-**Estado: NEEDS_EXECUTOR · no ejecutada · no cuenta como ciclo AB nuevo.**
-Base: rama `research/pfl-abh5-browser-atlas-independent-20261029`, verificar HEAD de la PR draft sucesora antes de actuar. No CI costosa, no ChatRelay, no fusionar main, no reclutar personas ni puntuar políticos reales.
+**ESTADO: PENDIENTE DE EJECUTOR, NO EJECUTADO. PRIORIDAD: P0.** Esta ficha es una orden autocontenida para Codex (checkout Git, Python, Node y Playwright), preparada por ChatGPT a petición del usuario el 29-10-2026. No es autorización de despliegue, reclutamiento, fusión ni gasto de CI.
 
-## 1. Atlas: requisito central aún abierto
-En entorno **con checkout Git autenticado**, leer `AGENTS.md`, `ab_atlas/atlas_delta.py`, `ab_atlas/abmap.py`, `proyectos/politics-fantasy-league/ab_atlas/seed.json` y los 79 lotes 0001–0079 más el lote 0080 si existe al ejecutar. El conector de chat comprobó que los **79 JSON históricos se pueden parsear** y sus `parent_batch` son consecutivos, pero **no ejecutó el replay nativo Python ni el validador `abmap.require_valid(strict=True)`**.
+## 0. Punto de partida, preflight y reglas
 
-Ejecutar:
+- Repo privado: `GalexY3/Metodologia-AB`.
+- PR fuente **#37**: `https://github.com/GalexY3/Metodologia-AB/pull/37`, rama `research/pfl-abh5-browser-atlas-independent-20261029`; HEAD de referencia **`7d622850d0410db3b3e8b8d7acbe01a1bdea7a42`**.
+- Esta ficha y BACKLOG pueden estar en una rama PR sucesora: si la cola se ha actualizado después del HEAD de PR37, **comprueba la PR de entrega de esta ficha y basa tu trabajo en el HEAD que contenga tanto PR37 como esta tarea**, sin perder cambios. No uses `main` como origen de trabajo.
+- Al comenzar lee `AGENTS.md`, `README.md`, protocolo AB 3.2.1 O1–O7, `ab_atlas/README.md`, `proyectos/politics-fantasy-league/ab_atlas/{README.md,CURRENT.md}`, `T027_PILOT_BROWSER_ATLAS_ETHICS_20261029.md`, el ledger de `research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/` y su `FINAL_REPORT.md`.
+- Verifica permisos reales, HEAD/base de PR37, rama de esta ficha, `git status`, commits y SHA de `main`; crea rama sucesora de trabajo desde el HEAD efectivo autorizado más reciente. Si ves cambios ajenos, haz análisis del diff antes de tocar nada. Sin force push, sin merge.
+- **Prohibiciones:** no ChatRelay, no CI costosa, no main merge, no despliegue público, no reclutamiento ni tratamiento personal, no scoring de políticos/partidos/candidatos reales, no claves ni secretos en logs y no elusión de las restricciones del entorno.
+- **Contabilidad AB-H congelada:** autorización 5; **2 ciclos válidos**, **1 intento incompleto C02**, **C04 y C05 no ejecutados (2 plazas sin usar)**. Completar una tarea Codex **no consume** esas dos plazas ni acredita causalidad. Si C02 llega a resolución técnica, preservar resultado previo y emitir recibo enlazado, sin borrar el intento ni contarlo dos veces. R5 prevalece.
+
+## 1. PRIORIDAD P0 — Atlas Python canónico, no solo JSON encadenados
+
+El control anterior analizó **79 archivos 0001–0079** y verificó continuidad de `parent_batch`; 0080 se añadió en PR37. Eso **NO equivale** a ejecutar el replay ni a validar la semántica del grafo.
+
+Desde raíz de un checkout privado completo:
 
 ```bash
+python --version
 python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates
 python ab_atlas/atlas_delta.py brief --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates --limit 8
 ```
 
-Registrar HEAD, Python, exit codes, stdout/stderr, batch final, hash SHA-256 del estado, `runs`, nodos, `release_gates`, IDs nuevos 0078–0080 y cualquier `complaint`. Comprobar si el lote **0079 tenía `at=2026-10-29T01:00:00Z` que puede no corresponder al momento cronológico de creación**: no reescribir eventos históricos; documentar anomalía y criterio de timestamp.
-Solo **si el validador pasa**, actualizar `ab_atlas/CURRENT.md` canónico a estado con hash real, manteniendo el histórico. Si falla, preservar error y marcar `BLOCKED`.
+Coteja la semántica de `atlas_delta.py` y `abmap.py`: 80 lotes y `parent_batch`, `batch_check`, `apply_one`, `abmap.require_valid(strict=True)`, ID único de cada run/complaint/nodo/arista, referencia, gate, timestamp ISO y ausencia de promover validación científica o release gates por mero cierre.
 
-## 2. Navegador: diferencia entre DOM aislado y HTTP integrado
-La sesión anterior logró Chromium 144.0.7559.96 sobre `about:blank` + `page.set_content()`, con fuentes originales DOM cargadas **inline exclusivamente en el test** (18/18 comprobaciones y capturas locales). Sin embargo, el entorno prohibía navegación Chromium a `http://127.0.0.1`, `file://` y `data:` por un control de administrador. **No es bug confirmado del servidor PFL**.
-En el checkout local real, arrancar `node proyectos/politics-fantasy-league/pilot_local/server.mjs` y verificar acceso HTTP con Chromium/Firefox, importación real de `/materials.mjs`, CSP, teclado, responsive móvil, ausencia de solicitudes remotas, de `localStorage` y de rutas de claves/POST. Guardar **capturas, versiones y log de peticiones**. No declarar PASS de HTTP browser por el anterior DOM aislado.
+Registra **comando real, entorno, exit code y stdout/stderr**, HEAD, conteos (batch, run, node, edge, complaint, gates), IDs de 0078–0080, hash SHA-256 del estado canónico calculado por el código del repositorio y diferencias contra seed y parent 0077. Valida 0080: exactamente **2 `run.add`** (C01 y C03), no 5.
 
-## 3. Ciencia: puerta de datos independientes
-Antes de calcular cualquier medida nueva de incentivos, obtener **derechos, licencia/permiso, bytes, hash, variables y marca temporal** de un paquete de replicación comparable. Contrastarlo con Frongillo et al. (2025) correlación de eventos, Monroe et al. (2025) hedging, Lemus y Marshall (2021), Lemus (2025) premios contingentes, y Marshall (2019) información política reputacional. Si no hay microdatos legalmente reutilizables de diseño comparable, **STOP_R5** sin hacer otro simulador.
+**Incidencia histórica:** 0079 declara `at=2026-10-29T01:00:00Z`; 0080 declara `2026-10-29T00:26:37.468Z`. Examina fecha real de commits, regla del parser y si la cronología irregular exige errata; **no cambies silenciosamente esos lotes ni inventes una fecha**.
 
-## Aceptación
-Emitir `T028_RESULT.json` con PASS/FAIL/SKIP real, hash de commits, fuente y entorno; actualizar Atlas y priors únicamente por cambios ejecutados. No confundir un resultado de browser o checker con causalidad científica, ni reusar el cupo AB sin contraste aprobado.
+**Solo si `check` pasa y el estado/hash está verificado**: actualiza `proyectos/politics-fantasy-league/ab_atlas/CURRENT.md`, preserva el historial y escribe cabecera veraz sobre 0080 y las plazas AB-H pendientes. Vuelve a comprobar replay y coherencia. Si falla, encuentra el **primer** lote/operación causante, guarda el error y haz la mínima reparación permitida (preferir nuevo lote/errata, no reescritura histórica); si no es seguro, marca `BLOCKED` y **no declares CURRENT sincronizado**.
+
+## 2. PRIORIDAD P0 — navegador Playwright HTTP end-to-end real
+
+El resultado anterior **18/18 en Chromium 144** fue una prueba DOM en `about:blank`, con import inline para esquivar restricción de administrador. NO acredita HTTP/browser real. También existen 15/15 checks nativos HTTP en una campaña anterior.
+
+```bash
+node --version
+node proyectos/politics-fantasy-league/pilot_local/smoke_http.mjs
+node proyectos/politics-fantasy-league/pilot_local/server.mjs
+```
+
+Abrir **`http://127.0.0.1:8787/`** con Playwright + Chromium y opcionalmente Firefox en un entorno autorizado. Comprobar **navegación HTTP, carga real HTML/CSS/JS/`/materials.mjs` y CSP aplicada**, más:
+
+1. Cuatro condiciones T×L, mismo conjunto X1–X4 y 12 radios; cambiar condición cambia tutorial/leaderboard, no el contenido del test.
+2. Ratón, tabulación, lector de etiquetas/fieldset, progreso, reset; escritorio/móvil sin overflow y sin errores JS.
+3. Ausencia de envío de resultados, cookies, almacenamiento local, analítica, telemetría y peticiones a otros orígenes.
+4. `fictional_transfer_key.mjs`, intake, análisis y rutas no autorizadas no son recursos públicos; POST/PUT/DELETE denegados; CSP `connect-src 'none'`, `no-referrer`, `no-store`, `nosniff`.
+5. Capturas de ambas resoluciones, registro de peticiones/respuestas y consola **sin información sensible**.
+
+Versiona tests Playwright deterministas y registra versiones, exit codes y PASS/FAIL/SKIP, con controles negativos. Si la política del navegador devuelve `ERR_BLOCKED_BY_ADMINISTRATOR`, **no la burles ni atribuyas el problema a la aplicación**; marca `BLOCKED_BY_ENVIRONMENT`, conserva el 18/18 DOM (sin recontarlo como E2E) y pide un host autorizado. Evita reescribir UI solo para pasar un harness que esperaba texto incorrecto.
+
+## 3. PRUEBAS Y CORRECCIONES REALES
+
+Ejecuta la suite relevante de Python/Node de alcance razonable, y las regresiones focalizadas de la nueva UI/Atlas. Respeta que la campaña anterior encontró campos ocultos heredados/`Symbol` en validadores basados en `Object.keys` y parcheó tres módulos: verifica que no se ha perdido esa garantía. `approval` en `pilot_dryrun_intake.mjs` es **mock falsificable**, nunca autorización ética.
+
+Por cada defecto: prueba FAIL reproducible → versión y hash → parche **mínimo** → PASS del fallo → regresión → comprobación de no nuevas filtraciones. Conservar fallos y erratas. No declarar suites amplias PASS sin ejecutarlas ni adoptar cambios de arquitectura no solicitados.
+
+## 4. FUENTES Y PRUEBA CIENTÍFICA (solo si aparece evidencia distinta)
+
+Los prior art de Frongillo et al. y Monroe et al. (AAAI 2025), Lemus & Marshall (JPE 2021), premios contingentes (2025) y señalización política (2019) impiden afirmar novedad general. Para comprobar algo más, primero conseguir paquete empírico **legalmente reutilizable**, con licencia/permiso, archivos reales, SHA, fechas, variables, exposición, outcomes y comparador competente. **Prerregistra antes de calcular** y separa la novedad científica de la calidad de la aplicación. Si no, STOP_R5 sin más simulaciones de relleno.
+
+## 5. ENTREGABLES + PR DRAFT
+
+Crear:
+- `proyectos/politics-fantasy-league/tareas_codex/T028_RESULT.json` (estatus específico PASS/FAIL/BLOCKED/SKIP/NOT_RUN, fecha y SHA del HEAD, entorno, comandos, stdout/stderr/exit, hash estado, tests, limitaciones).
+- `proyectos/politics-fantasy-league/tareas_codex/T028_RESULTADO.md` (informe reproducible con comparación anterior, defectos y correcciones reales).
+- Tests de browser y regresión versionados si los escribes y ejecutas; capturas sin datos personales.
+- `CURRENT.md` **solo con replay canónico PASS**; no reescribir deltas históricos.
+- Ledger/prior/CT2 **solo** si se obtiene evidencia realmente nueva. El cierre técnico no eleva N1/N2/N3 ni permite un scoring político real.
+
+Abrir PR **draft sucesora** a la rama exacta que contiene PR37 y esta cola (apilada, sin fusionar). Título sugerido: `PFL T028: canonical Atlas 0080 replay and real browser E2E`. Mantén `main` sin modificar y CI costosa sin activar.
+
+El informe final ha de contener: HEAD inicial/final, PR URL, check Atlas/80 lotes/estado SHA256, browser por HTTP y capturas, regresiones FAIL→FIX→PASS, derechos/fuentes si se investigaron, límites, estado exacto de las **2 plazas AB-H no ejecutadas**, y una única siguiente dependencia con criterios de aceptación.
+
+**Empieza ejecutando, no únicamente planificando. No confirmes éxito antes del test. Si hay bloqueo, deja evidencia exacta y STOP_R5.**
