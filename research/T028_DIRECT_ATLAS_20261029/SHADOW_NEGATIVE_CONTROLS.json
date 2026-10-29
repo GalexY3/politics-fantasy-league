@@ -1,0 +1,12 @@
+{
+  "status": "PASS_SYNTHETIC_NEGATIVE_CONTROLS",
+  "source_seed_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+  "checks": {
+    "duplicate_node_detected": true,
+    "self_edge_detected": true,
+    "missing_endpoint_detected": true,
+    "depends_on_cycle_detected": true,
+    "no_remote_source_mutations": true
+  },
+  "note": "In-memory mutations only, not native Python; a minimal independent shadow-validator control"
+}
