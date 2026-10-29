@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P1-C06-R1",
+  "status": "PREREGISTERED_QA_REPAIR_NOT_NEW_CYCLE",
+  "trigger": "C06 initial observed serial seed imbalance 33.496% vs tolerance 8% for 4096 adjacent seeds; original C06 result preserved",
+  "proposed_fix": "Whitelist same inputs and exact 4-person block balance; replace raw-seed LCG initialization with 32-bit avalanche hash (xorshift16/13/16, Math.imul constants 0x85ebca6b and 0xc2b2ae35) before LCG, retain output type and freeze",
+  "tests_frozen": [
+    "4096 consecutive seeds n=4, each arm at each position within ±8% relative to 1024 expected",
+    "all arm permutations balance across 4096 seeds",
+    "prior native 84/84 suite unchanged",
+    "seed reproducible, n=10000 works, 2 distinct seeds usually reorder",
+    "no claim cryptographic security or allocation concealment"
+  ],
+  "controls": "C06 exact original generator same seeds, plus independent baseline chi-square uniform multinomial expectation 1024",
+  "execution_limit": "local copy of exact Git source; no human tests or large CI",
+  "success": "If tolerance and 84/84 pass, commit patch on draft branch; else leave source unchanged; preserve failure",
+  "CT2_before": 22,
+  "CT2_after": "no automatic increase"
+}
