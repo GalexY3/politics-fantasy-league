@@ -163,6 +163,14 @@
       "state": "answered",
       "summary": "Real original non-person ForecastBench p/y source: two market-only 250 question cohorts, 52 and 8 known, exact Brier no-assumption full-cohort bounds [0.0971,0.5195] and [0.0784,0.5985]; both include weak p=.5 reference; no causal PFL or independent confirmation.",
       "source": "../ABH30_NEW_20261029/C03_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Runnable offline local read-only CLI composes frozen original 4-file Git byte gate and temporal public-question evaluation. Native Node FS/subprocess 11/11 pass. Posthoc connector original 4/4 byte SHA1 confirmation and pure guard 52/8; no local original four-file CLI positive run, human data or causal effect. Release still 0/6.",
+      "source": "../ABH30_NEW_20261029/C04_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -297,6 +305,24 @@
       "to": "PFL-ABH30-C01-ASOF-GUARD",
       "relation": "depends_on",
       "interpretation": "Requires as-of date and market probability semantics before partial identification."
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C02-RAW-BYTES",
+      "relation": "depends_on",
+      "interpretation": "Verify exact four original Git bytes before any JSON aggregation"
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C01-ASOF-GUARD",
+      "relation": "depends_on",
+      "interpretation": "Public question semantics and time cutoff, no personal observations"
+    },
+    {
+      "from": "PFL-ABH30-C04-OFFLINE-AUDIT",
+      "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
+      "relation": "related_to",
+      "interpretation": "Offline public event-question QA does NOT solve human assignment, rank exposure or ethics"
     }
   ],
   "rules": {
@@ -320,8 +346,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 3,
-      "new_unused": 27,
+      "new_valid": 4,
+      "new_unused": 26,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -330,7 +356,7 @@
         0
       ],
       "last_source_pr": 53,
-      "branch": "research/pfl-abh30-source-cutoff-20261029"
+      "branch": "research/pfl-abh30-c04-offline-public-audit-20261029"
     }
   }
 }
