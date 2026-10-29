@@ -1,0 +1,75 @@
+{
+  "schema": "pfl.abh30.c09.native_run_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C09",
+  "prereg_commit": "464b56c0f78416701b015dff4467912bd7cb97b5",
+  "source": {
+    "git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+    "sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9"
+  },
+  "test": {
+    "git_blob": "b9edf86d4a0609b9e4bb542fe85221857460a12d",
+    "sha256": "7abf599d3f8cbe6b9312484d1944cd3b8039c7ee926c48172e473165bf2a34ed"
+  },
+  "git_blobs_byte_equivalent_to_native_local": true,
+  "validation": "SHA1 git blob and SHA256 computed from native local UTF-8 exact bytes and compared with GitHub fetched original file blob SHAs before native execution",
+  "command": "node --test test_forecastbench_raw_revision_guard.mjs",
+  "cwd": "/mnt/data/pfl_c09",
+  "node": "v22.16.0",
+  "python_for_sha": "3.13.5",
+  "exit_code": 0,
+  "tests_total": 19,
+  "passed": 19,
+  "failed": 0,
+  "skipped": 0,
+  "duration_ms_reported": 92.143533,
+  "test_classes": [
+    "raw removed",
+    "row replacement at equal total",
+    "Y flip",
+    "non-Y metadata correction",
+    "key-order invariance",
+    "(source,id) collision",
+    "new row",
+    "duplicate rejection",
+    "missing id rejection",
+    "schema rejection",
+    "cross cohort rejection",
+    "nonincreasing commit time",
+    "same blob rejection",
+    "invalid datetime and hash",
+    "no source ID output",
+    "multi-revision chain",
+    "missing chain input",
+    "unsafe JS object field rejection",
+    "grade/privacy gate"
+  ],
+  "executed_on_original_upstream_source_files": false,
+  "positive_original_21_blob_disk_execution": false,
+  "actual_original_raw_row_deletions_estimated": false,
+  "result": "VALID_LIMITED_AB_P_NATIVE_SYNTHETIC_ADVERSARIAL_QA_ONLY",
+  "scientific_grade": "0/3",
+  "CT2": 20,
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "launch_gates": "0/6",
+  "limitations": [
+    "No original public source bodies were replayed in this C09 run; only synthetic adversarial cases.",
+    "Git blob IDs and publication timestamps supplied to module are NOT authenticated by module; upstream C08/original byte hash checks remain necessary.",
+    "No proof of absence of correction on real original source data, no per-item first-public-at and no authorized human exposure dataset.",
+    "Not connected to production scoring, not deployment, clean checkout Node suite not independently verified."
+  ],
+  "status": "C09 count one AB-P bounded cycle only; 9/30 new, 21 remaining; historical two separate STOP_R5",
+  "ethics": {
+    "human_microdata_processed": 0,
+    "politicians_scored": 0,
+    "licenses_accepted": 0,
+    "authors_contacted": 0,
+    "main_merged": false,
+    "ChatRelay": false,
+    "CI_costly": false
+  }
+}
