@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-29",
+  "mode": "AB-H_PFL",
+  "source_head": "3d3a1eda1dc51f74bc9cdef50afacc4d27f6e8a5",
+  "source_pr": 42,
+  "unit": "person×IFP×date",
+  "treatment_target": "Randomized public leaderboard on/off",
+  "alternative_treatment_available": "Year-1 randomized (?) assigned access to crowd distribution, not leaderboard",
+  "exposure_target": "Independent person-specific pre-response shown/eligible E_iqt including nonrespondents",
+  "evidence_gates": [
+    {
+      "gate": "Data source exact identity and license",
+      "status": "PASS",
+      "evidence": "Harvard Dataverse GJP doi:10.7910/DVN/BPCDH5 v1.0 CC0 1.0; 25 files unrestricted"
+    },
+    {
+      "gate": "Original documentation bytes SHA256",
+      "status": "PASS",
+      "evidence": "Four documentation/question source files SHA256 obtained; original forecast data files not retrieved"
+    },
+    {
+      "gate": "Question availability dates/ID schema",
+      "status": "PARTIAL_PASS",
+      "evidence": "617 distinct IFPS, opening/deadline dates parse US %m/%d/%y; one start-after-deadline and one start-after-suspend, 273 suspend-after-close; exact eligibility rules unresolved"
+    },
+    {
+      "gate": "Assigned group label ctt",
+      "status": "METADATA_PASS",
+      "evidence": "Original GJP readme describes 1a/1b/1c independent vs 2a/2b/2c could see crowd info; year1 survey DDI has ctt/cond/training"
+    },
+    {
+      "gate": "Randomization of year1 3×4",
+      "status": "PUBLICATION_REPORTED_NOT_RECONSTRUCTED",
+      "evidence": "Mellers et al 2014 describes random assignment; no complete assignment roster or randomization logs inspected"
+    },
+    {
+      "gate": "Forecaster-level outcome and timing schema",
+      "status": "METADATA_PASS_NO_ROWS",
+      "evidence": "DDI Year1 survey_fcasts.yr1.tab has user_id, ifp_id, forecast_id, fcast_type, fcast_date, timestamp, viewtime; 308232 declared rows; NO individual rows downloaded"
+    },
+    {
+      "gate": "Independent pre-response page-view log E_iqt for nonrespondents",
+      "status": "NOT_VERIFIED",
+      "evidence": "DDI viewtime numeric name/UNF only, no documented independent event semantics; rows conditioned on forecast"
+    },
+    {
+      "gate": "True randomized leaderboard visibility",
+      "status": "NOT_FOUND",
+      "evidence": "GJP 2a–2c aggregate crowd beliefs access ≠ ranked leaderboard"
+    },
+    {
+      "gate": "Roster includes zero-forecast subjects and registration time",
+      "status": "NOT_VERIFIED",
+      "evidence": "GJP forecast file is decisions, not randomized complete participant roster"
+    },
+    {
+      "gate": "Data ethics and pseudonym rights for participant microdata",
+      "status": "NOT_ESTABLISHED",
+      "evidence": "CC0 copyright terms alone cannot settle processing permissions, demographic reidentification protections or research ethics"
+    },
+    {
+      "gate": "Strong scientific originality beyond prior literature",
+      "status": "NOT_DEMONSTRATED",
+      "evidence": "Mellers 2014 group and training, Merkle 2015/2017, Bo2017, ForecastBench, Hudja and Lemus, GJ Open participation weighting"
+    },
+    {
+      "gate": "Original Lemus–Marshall and Hudja replication files specific rights",
+      "status": "NOT_VERIFIED",
+      "evidence": "Author links checked; JPE publisher returned 403, no complete machine-readable replication data license/assignment file inspected"
+    }
+  ],
+  "AB_budget": {
+    "historical_authorized_unused": 2,
+    "new_cycles_valid": 0,
+    "new_cycles_invalid": 0,
+    "new_cycles_planning": 0,
+    "source_qa_activities_not_cycles": 7
+  },
+  "CT2_prospective_before": 22,
+  "CT2_prospective_after": 22,
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "product_T028": "TECHNICAL_CLOSED_NATIVE_ATLAS_AND_CHROMIUM_ALREADY_VERIFIED_PR42",
+  "decision": "STOP_R5 for new A-J: legal-source QA is progress but not a discriminating original human experiment. Conditional GJP ITT prereg is a future hypothesis, not an executed A-J."
+}
