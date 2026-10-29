@@ -260,7 +260,7 @@
       "title": "Replay canónico Atlas 0001–0080, actualizar CURRENT.md tras PASS y Playwright real PFL en localhost",
       "priority": "P0",
       "file": "T028_BROWSER_ATLAS_REPLAY_20261029.md",
-      "status": "PENDIENTE_EJECUTOR__METADATA_ONLY_ALREADY_VERIFIED",
+      "status": "PENDIENTE_CHECK_CANONICAL_ATLAS_Y_BROWSER_REAL",
       "authorization": "QA_TECHNICAL_ONLY__NOT_AUTOMATIC_AB_CYCLE",
       "source_pr": 37,
       "source_branch": "research/pfl-abh5-browser-atlas-independent-20261029",
@@ -281,7 +281,7 @@
       ],
       "result_file": "T028_RESULTADO.md",
       "structured_result_file": "T028_RESULT.json",
-      "execution_receipt": "NOT_RUN_NATIVE_ATLAS_OR_CHROMIUM_HTTP",
+      "execution_receipt": "PARTIAL_QA_RECEIPT_NO_FULL_T028_EXECUTION",
       "cycle_budget": {
         "grant": 5,
         "valid": 2,
@@ -300,6 +300,23 @@
         "partial_node_regression": "84/84 PASS",
         "evidence": "research/ABH30_AUTONOMY_20261029/A04_RESULT.json; A09_RESULT.json; FINAL_REPORT.md",
         "remaining_2_legacy_AB_cycles": true
+      },
+      "latest_independent_qa": {
+        "date": "2026-10-29",
+        "scope": "Rehearsal isolated mirror verified by Git blobs; after ABH30",
+        "script": "tareas_codex/T028_NATIVE_PREFLIGHT.py",
+        "documentation": "research/T028_INDEPENDENT_QA_20261029/REPORT.md",
+        "direct_http_9_of_9": true,
+        "smoke_node_15_of_15": true,
+        "independent_holdout_seeds": 12288,
+        "holdout_windows_passed": 3,
+        "heldout_threshold_max_relative": 0.12,
+        "chromium_browser": "ERR_BLOCKED_BY_ADMINISTRATOR",
+        "canonical_atlas_python_replay": "NOT_RUN",
+        "canonical_state_sha256": null,
+        "atlas_json_metadata": "80/80 JSON and 79/79 links from ABH30",
+        "release_gates_passed": 0,
+        "prior_legacy_slots_unconsumed": 2
       }
     }
   ],
@@ -307,7 +324,7 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "2026-10-29 ABH30 80/80 Atlas JSON + parent metadata verified, canonical Python checker NOT_RUN; browser HTTP Chromium BLOCKED; no main merge, no additional AB budgets consumed by T028",
+  "last_verified_by": "2026-10-29 PFL T028 selftest PR successor: 12288 independent synthetic seeds PASS, 15/15 smoke + 9/9 HTTP direct PASS, Chromium page.goto BLOCKED_BY_ADMINISTRATOR, canonical Python Atlas still NOT_RUN; 2 AB slots retained.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
