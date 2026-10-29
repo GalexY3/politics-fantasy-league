@@ -1,0 +1,36 @@
+{
+  "id": "ABH30-P1-C03",
+  "status": "VALID_BOUNDED_AB_R",
+  "A": "Original public overall Brier Index vs naïve average of Dataset/Market indices",
+  "B": "H0 arithmetic equality; H1 nonlinearity",
+  "C": "frozen endpoint |diff| >0.051 and max diff",
+  "D": "Quote-aware CSV all 24 columns, no rows dropped",
+  "E": {
+    "n": 130,
+    "invalid_width": 0,
+    "count_deviation_gt_0_051": 17,
+    "count_deviation_gt_0_5": 2,
+    "max_abs_deviation": 1.6500000000000057,
+    "mean_abs_deviation": 0.07076923076923104,
+    "discrepancy_signs": {
+      "plus": 0,
+      "minus": 17
+    },
+    "brier_overall_naive_max_abs": 0.0005000000000000282,
+    "source_git_blob": "fa76366ba425a0597d0af3c847197cd4be2d2fe7"
+  },
+  "F": "Authoritative method says transform after average Brier, not average after transforming; naïve index is incompetent baseline and must not be PFL proposed scoring method",
+  "G": "No independent confirmation nor human outcome",
+  "H": "Prior updated: PFL cannot present arithmetic index averaging as a suitable comparator",
+  "I": {
+    "validity": "Descriptive full-table deterministic",
+    "causality": "none",
+    "novelty": "0/3; published ForecastBench rule",
+    "ethics": "aggregate public leaderboard"
+  },
+  "J": "PIVOT to real scientific design; keep CT2=22 and R5",
+  "prereg_commit": "16e5485ab56eaa47e04d7b5dac852cd17cd5d8bc",
+  "source_url": "https://www.forecastbench.org/leaderboards/",
+  "CT2_before": 22,
+  "CT2_after": 22
+}
