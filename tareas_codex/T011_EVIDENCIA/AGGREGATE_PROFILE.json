@@ -1,0 +1,392 @@
+{
+  "scope": "T011_READ_ONLY_AGGREGATE_PROFILE_NOT_TASK_COMPLETION",
+  "no_person_rows_or_names_exported": true,
+  "keys_status": "PROPOSED_METADATA_KEY_REJECTED_AS_NONUNIQUE",
+  "units": "Rows are source candidature aggregates with count and percent categories; source observations are not distinct people; physical five-row block order is not a certified election key.",
+  "restrictions": [
+    "No election-success rates calculated",
+    "No historical first_public_at inferred",
+    "No gender inferred from names",
+    "Female shares only describe source general totals within stated administrative strata; nomination/substitute semantics not independently established",
+    "No cross-file individual linkage"
+  ],
+  "profiles": [
+    {
+      "file": "electos",
+      "read_only_load": "PASS",
+      "source_sha256": "8432b436a59f769c011f1f6b47429dd5e47d3b17cc3b1970526435d400499b60",
+      "sheet_count": 1,
+      "sheet_title": "Paridad cargos electos",
+      "declared_dimension": "A1:BG2974",
+      "header_row": 4,
+      "headers": [
+        "Fecha",
+        "Código Elección",
+        "Tipo Elección",
+        "Candidatura",
+        "Siglas Candidatura",
+        "Descripción",
+        "1 - Araba/Álava",
+        "2 - Albacete",
+        "3 - Alicante/Alacant",
+        "4 - Almería",
+        "5 - Ávila",
+        "6 - Badajoz",
+        "7 - Balears, Illes",
+        "8 - Barcelona",
+        "9 - Burgos",
+        "10 - Cáceres",
+        "11 - Cádiz",
+        "12 - Castellón/Castelló",
+        "13 - Ciudad Real",
+        "14 - Córdoba",
+        "15 - A Coruña",
+        "16 - Cuenca",
+        "17 - Girona",
+        "18 - Granada",
+        "19 - Guadalajara",
+        "20 - Gipuzkoa",
+        "21 - Huelva",
+        "22 - Huesca",
+        "23 - Jaén",
+        "24 - León",
+        "25 - Lleida",
+        "26 - La Rioja",
+        "27 - Lugo",
+        "28 - Madrid",
+        "29 - Málaga",
+        "30 - Murcia",
+        "31 - Navarra",
+        "32 - Ourense",
+        "33 - Asturias",
+        "34 - Palencia",
+        "35 - Las Palmas",
+        "36 - Pontevedra",
+        "37 - Salamanca",
+        "38 - Santa Cruz de Tenerife",
+        "39 - Cantabria",
+        "40 - Segovia",
+        "41 - Sevilla",
+        "42 - Soria",
+        "43 - Tarragona",
+        "44 - Teruel",
+        "45 - Toledo",
+        "46 - Valencia/València",
+        "47 - Valladolid",
+        "48 - Bizkaia",
+        "49 - Zamora",
+        "50 - Zaragoza",
+        "51 - Ceuta",
+        "52 - Melilla",
+        "Total General"
+      ],
+      "nonempty_data_rows": 2970,
+      "consecutive_five_category_blocks": 594,
+      "malformed_five_row_blocks": 0,
+      "block_categories": [
+        "Mujer",
+        "Hombre",
+        "Total",
+        "% Mujer",
+        "% Hombre"
+      ],
+      "hypothesized_key": [
+        "Fecha",
+        "Codigo Eleccion",
+        "Tipo Eleccion",
+        "Candidatura",
+        "Siglas Candidatura",
+        "Descripcion"
+      ],
+      "hypothesized_key_is_unique": false,
+      "duplicate_base_keys": 35,
+      "extra_blocks_for_repeated_base_keys": 235,
+      "exact_duplicate_entire_rows": 5,
+      "repeated_block_keys_by_admin_stratum": [
+        {
+          "date": "2008-03-09",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2011-11-20",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2011-11-20",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2015-12-20",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 143
+        },
+        {
+          "date": "2015-12-20",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 89
+        }
+      ],
+      "arithmetic_checks": {
+        "count_triplets_compared": 2255,
+        "female_plus_male_disagrees_with_total": 0,
+        "partial_count_triplet": 0,
+        "non_nonnegative_integer_count_triplet": 0
+      },
+      "source_percentage_checks": {
+        "percent_cells_compared": 4510,
+        "beyond_exploratory_0_005pp": 1206,
+        "within_0_050001pp": 4510,
+        "max_absolute_error_pp": 0.04999999999999716,
+        "interpretation": "All observed source percentages are compatible with rounding to one decimal percentage point. This is an empirical compatibility check, not an authenticated publisher rounding specification."
+      },
+      "geography_checks": {
+        "known_province_sum_vs_general_compared": 1683,
+        "general_total_without_province_cells": 99,
+        "known_province_sum_vs_general_disagrees": 0
+      },
+      "descriptive_pilot_no_election_success_rates": [
+        {
+          "date": "2024-06-09",
+          "type": "Parlamento Europeo",
+          "blocks": 9,
+          "source_metadata_keys_unique": true,
+          "source_general_counts": {
+            "Mujer": 30,
+            "Hombre": 31,
+            "Total": 61
+          },
+          "arithmetic_consistent": true,
+          "female_share_in_source_general_counts_percent": 49.18032786885246
+        }
+      ],
+      "exact_duplicates_are_not_auto_deleted": true
+    },
+    {
+      "file": "candidaturas",
+      "read_only_load": "PASS",
+      "source_sha256": "670770cd65f6d1821db943f74dd10fb5dc44d95b9668ed004981dad7ab808d80",
+      "sheet_count": 1,
+      "sheet_title": "Paridad candidatos y candidatas",
+      "declared_dimension": "A1:BG14164",
+      "header_row": 4,
+      "headers": [
+        "Fecha",
+        "Código Elección",
+        "Tipo Elección",
+        "Candidatura",
+        "Siglas Candidatura",
+        "Descripción",
+        "1 - Araba/Álava",
+        "2 - Albacete",
+        "3 - Alicante/Alacant",
+        "4 - Almería",
+        "5 - Ávila",
+        "6 - Badajoz",
+        "7 - Balears, Illes",
+        "8 - Barcelona",
+        "9 - Burgos",
+        "10 - Cáceres",
+        "11 - Cádiz",
+        "12 - Castellón/Castelló",
+        "13 - Ciudad Real",
+        "14 - Córdoba",
+        "15 - A Coruña",
+        "16 - Cuenca",
+        "17 - Girona",
+        "18 - Granada",
+        "19 - Guadalajara",
+        "20 - Gipuzkoa",
+        "21 - Huelva",
+        "22 - Huesca",
+        "23 - Jaén",
+        "24 - León",
+        "25 - Lleida",
+        "26 - La Rioja",
+        "27 - Lugo",
+        "28 - Madrid",
+        "29 - Málaga",
+        "30 - Murcia",
+        "31 - Navarra",
+        "32 - Ourense",
+        "33 - Asturias",
+        "34 - Palencia",
+        "35 - Las Palmas",
+        "36 - Pontevedra",
+        "37 - Salamanca",
+        "38 - Santa Cruz de Tenerife",
+        "39 - Cantabria",
+        "40 - Segovia",
+        "41 - Sevilla",
+        "42 - Soria",
+        "43 - Tarragona",
+        "44 - Teruel",
+        "45 - Toledo",
+        "46 - Valencia/València",
+        "47 - Valladolid",
+        "48 - Bizkaia",
+        "49 - Zamora",
+        "50 - Zaragoza",
+        "51 - Ceuta",
+        "52 - Melilla",
+        "Total General"
+      ],
+      "nonempty_data_rows": 14160,
+      "consecutive_five_category_blocks": 2832,
+      "malformed_five_row_blocks": 0,
+      "block_categories": [
+        "Mujer",
+        "Hombre",
+        "Total",
+        "% Mujer",
+        "% Hombre"
+      ],
+      "hypothesized_key": [
+        "Fecha",
+        "Codigo Eleccion",
+        "Tipo Eleccion",
+        "Candidatura",
+        "Siglas Candidatura",
+        "Descripcion"
+      ],
+      "hypothesized_key_is_unique": false,
+      "duplicate_base_keys": 138,
+      "extra_blocks_for_repeated_base_keys": 1040,
+      "exact_duplicate_entire_rows": 146,
+      "repeated_block_keys_by_admin_stratum": [
+        {
+          "date": "2008-03-09",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 2
+        },
+        {
+          "date": "2008-03-09",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 3
+        },
+        {
+          "date": "2011-05-22",
+          "election_type_code": 6,
+          "type": "Cabildos Insulares",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2011-11-20",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 5
+        },
+        {
+          "date": "2011-11-20",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 5
+        },
+        {
+          "date": "2015-05-24",
+          "election_type_code": 6,
+          "type": "Cabildos Insulares",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2015-12-20",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 483
+        },
+        {
+          "date": "2015-12-20",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 533
+        },
+        {
+          "date": "2019-04-28",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2023-05-28",
+          "election_type_code": 6,
+          "type": "Cabildos Insulares",
+          "extra_blocks": 1
+        },
+        {
+          "date": "2023-07-23",
+          "election_type_code": 2,
+          "type": "Congreso",
+          "extra_blocks": 3
+        },
+        {
+          "date": "2023-07-23",
+          "election_type_code": 3,
+          "type": "Senado",
+          "extra_blocks": 2
+        }
+      ],
+      "arithmetic_checks": {
+        "count_triplets_compared": 11045,
+        "female_plus_male_disagrees_with_total": 0,
+        "partial_count_triplet": 0,
+        "non_nonnegative_integer_count_triplet": 0
+      },
+      "source_percentage_checks": {
+        "percent_cells_compared": 22090,
+        "beyond_exploratory_0_005pp": 9982,
+        "within_0_050001pp": 22090,
+        "max_absolute_error_pp": 0.04999999999999716,
+        "interpretation": "All observed source percentages are compatible with rounding to one decimal percentage point. This is an empirical compatibility check, not an authenticated publisher rounding specification."
+      },
+      "geography_checks": {
+        "known_province_sum_vs_general_compared": 8076,
+        "general_total_without_province_cells": 420,
+        "known_province_sum_vs_general_disagrees": 0
+      },
+      "descriptive_pilot_no_election_success_rates": [
+        {
+          "date": "2024-06-09",
+          "type": "Parlamento Europeo",
+          "blocks": 34,
+          "source_metadata_keys_unique": true,
+          "source_general_counts": {
+            "Mujer": 982,
+            "Hombre": 1092,
+            "Total": 2074
+          },
+          "arithmetic_consistent": true,
+          "female_share_in_source_general_counts_percent": 47.34811957569913
+        }
+      ],
+      "exact_duplicates_are_not_auto_deleted": true
+    }
+  ],
+  "pilot_comparison": {
+    "scope": "2024-06-09 Spanish European Parliament election only; aggregate source General totals",
+    "both_source_metadata_keys_unique": true,
+    "electos": {
+      "Mujer": 30,
+      "Hombre": 31,
+      "Total": 61
+    },
+    "candidate_source_counts": {
+      "Mujer": 982,
+      "Hombre": 1092,
+      "Total": 2074
+    },
+    "female_share_electos_percent": 49.18032786885246,
+    "female_share_candidate_source_counts_percent": 47.34811957569913,
+    "difference_female_share_percentage_points": 1.8322082931533288,
+    "not_election_success_rate": true,
+    "denominator_limit": "Publisher nomination/substitute inclusion rules and distinct-person identity are not independently established; shares describe two different source denominators and do not measure causal selection or individual success."
+  }
+}

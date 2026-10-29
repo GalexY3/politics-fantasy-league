@@ -1,0 +1,128 @@
+{
+  "scope": "RETROSPECTIVE_ORIGINAL_BYTE_REPLICATION_NO_CAUSAL_OR_FORECAST_CLAIM",
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0"
+  },
+  "originals": [
+    {
+      "file": "HouseNominationsByDivisionDownload-31496.csv",
+      "sha256": "afe642fc36ef817bb01eb57a0e3b7bec9dab933fd6e5dc2df26a057e93cfae78"
+    },
+    {
+      "file": "GeneralEnrolmentByDivisionDownload-31496.csv",
+      "sha256": "19bc25f89362e14a910b2ed4857459b5daa63c3acba8582a0b9c132fe491c4f3"
+    },
+    {
+      "file": "HouseInformalByDivisionDownload-31496.csv",
+      "sha256": "52d6201910a2401fbbf3ecb3f87c089aaff268b19ed9f5b463489fcf322078de"
+    },
+    {
+      "file": "HouseTurnoutByDivisionDownload-31496.csv",
+      "sha256": "37ae6598a2b4a54f6a8ad83ee787a1842d73ce82b9a405db3d00d765c34c1526"
+    }
+  ],
+  "rows": 150,
+  "states": 8,
+  "demographic_types": 4,
+  "stored_panel_field_differences": 0,
+  "sums": {
+    "informal": 919512,
+    "ballots": 16409748
+  },
+  "pearson": 0.5763872015150481,
+  "spearman": 0.6906766590097019,
+  "excluded_spearman": 0.6798432529352153,
+  "baseline_r2": 0.468528165353043,
+  "choice_r2": 0.6329173402649536,
+  "candidate_coef": 0.8382629663298242,
+  "candidate_hc3_se": 0.11153477968111222,
+  "high_low_difference": 2.5662500000000006,
+  "excluded_high_low_difference": 2.4796388888888896,
+  "leave_state_out_mae": {
+    "mean": 2.4845711645022575,
+    "demo": 2.395796632394497,
+    "choice": 1.9800878516811515
+  },
+  "limits": [
+    "Captured bytes match the historical mirrors but do not attest first_public_at",
+    "Outcome and headers were known before this replication",
+    "Post-election observational association, not causal identification or temporal prediction"
+  ],
+  "comparisons": {
+    "pearson": {
+      "expected": 0.5763872015150482,
+      "actual": 0.5763872015150481,
+      "absolute_error": 1.1102230246251565e-16,
+      "pass_abs_1e_8": true
+    },
+    "spearman": {
+      "expected": 0.6906766590097019,
+      "actual": 0.6906766590097019,
+      "absolute_error": 0.0,
+      "pass_abs_1e_8": true
+    },
+    "excluded_spearman": {
+      "expected": 0.6798432529352152,
+      "actual": 0.6798432529352153,
+      "absolute_error": 1.1102230246251565e-16,
+      "pass_abs_1e_8": true
+    },
+    "baseline_r2": {
+      "expected": 0.4685281653530431,
+      "actual": 0.468528165353043,
+      "absolute_error": 1.1102230246251565e-16,
+      "pass_abs_1e_8": true
+    },
+    "choice_r2": {
+      "expected": 0.6329173402649529,
+      "actual": 0.6329173402649536,
+      "absolute_error": 6.661338147750939e-16,
+      "pass_abs_1e_8": true
+    },
+    "candidate_coef": {
+      "expected": 0.8382629663300967,
+      "actual": 0.8382629663298242,
+      "absolute_error": 2.724487302430134e-13,
+      "pass_abs_1e_8": true
+    },
+    "candidate_hc3_se": {
+      "expected": 0.11153477968150467,
+      "actual": 0.11153477968111222,
+      "absolute_error": 3.92449961417185e-13,
+      "pass_abs_1e_8": true
+    },
+    "high_low_difference": {
+      "expected": 2.5662500000000015,
+      "actual": 2.5662500000000006,
+      "absolute_error": 8.881784197001252e-16,
+      "pass_abs_1e_8": true
+    },
+    "excluded_high_low_difference": {
+      "expected": 2.4796388888888914,
+      "actual": 2.4796388888888896,
+      "absolute_error": 1.7763568394002505e-15,
+      "pass_abs_1e_8": true
+    },
+    "cv_mae_mean": {
+      "expected": 2.484571164502258,
+      "actual": 2.4845711645022575,
+      "absolute_error": 4.440892098500626e-16,
+      "pass_abs_1e_8": true
+    },
+    "cv_mae_demo": {
+      "expected": 2.3957966323935422,
+      "actual": 2.395796632394497,
+      "absolute_error": 9.547918011776346e-13,
+      "pass_abs_1e_8": true
+    },
+    "cv_mae_choice": {
+      "expected": 1.9800878516750648,
+      "actual": 1.9800878516811515,
+      "absolute_error": 6.086686710204958e-12,
+      "pass_abs_1e_8": true
+    }
+  }
+}
