@@ -1,0 +1,33 @@
+{
+  "id": "ABH30-P2-A03",
+  "status": "VALID_ATLAS_INVENTORY",
+  "prereg": "f01aa445560812eea8083f0f2bdddb2b93b2676d",
+  "A": "Can private Atlas updates be enumerated from GitHub without Codex?",
+  "B": "Full inventory vs missing/duplicate groups",
+  "C": "Read directory listing, 0001–0080 exactly, 0081 negative control",
+  "D": "Private GitHub connector REST contents endpoint at PR branch",
+  "E": {
+    "total_entries": 81,
+    "numbered_json_files": 80,
+    "min": 1,
+    "max": 80,
+    "missing_0001_0080": [],
+    "duplicates": [],
+    "batch_0080_present": true,
+    "unexpected_0081_present": false,
+    "sample_last_filenames": [
+      "0078-pfl-abh-prospective-pilot5-closure-20261029.json",
+      "0079-pfl-abh-pilot-native5-closure-20261029.json",
+      "0080-pfl-abh-browser-atlas-evidence-partial-20261029.json",
+      "README.md"
+    ],
+    "api_fetch": "PASS"
+  },
+  "F": "Directory names do not validate JSON schema/parent chain, let alone canonical graph",
+  "G": "No Python replay done",
+  "H": "Capability inventory available",
+  "I": "Bounded technical 0/3",
+  "J": "Next: inspect 80 JSON parent metadata with connector",
+  "CT2_before": 22,
+  "CT2_after": 22
+}
