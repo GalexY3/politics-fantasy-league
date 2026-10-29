@@ -24,7 +24,7 @@ export function auditFictionalRankVisibilityContract(payload){
   const v=payload.arms[name],spec=SPEC[name];
   if(!exact(v,KEYS))fail('INVALID_TREATMENT_SHAPE');
   if(v.feedback!==spec[0]||v.audience!==spec[1]||v.alias_mode!==spec[2]||v.show_own_score!==true)fail('TREATMENT_ISOLATION_BROKEN');
-  if(v.reward!=='VIRTUAL_SAME_BRIER' || !HEX.test(v.event_frame)||!HEX.test(v.schedule))fail('NONCOMPARABLE_COMMON_PROTOCOL');
+  if(v.reward!=='VIRTUAL_SAME_BRIER' || typeof v.event_frame!=='string' || typeof v.schedule!=='string' || !HEX.test(v.event_frame)||!HEX.test(v.schedule))fail('NONCOMPARABLE_COMMON_PROTOCOL');
   if(v.reward!==ref.reward||v.event_frame!==ref.event_frame||v.schedule!==ref.schedule)fail('PROTOCOL_PARITY_VIOLATION');
  }
  return Object.freeze({
