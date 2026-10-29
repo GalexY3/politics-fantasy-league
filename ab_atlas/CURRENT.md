@@ -1,3 +1,13 @@
+# CONTINUIDAD ABH30-C14 · FACTORIAL DE VISIBILIDAD DEL RANKING (29/10/2026)
+
+**Ledger:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **14/30 ciclos nuevos limitados ejecutados, 16 pendientes**, dos plazas históricas STOP_R5 separadas. **CT2 científica PFL 20/100 ordinal**, nuevos N1/N2/N3 0/0/0, puertas de lanzamiento 0/6. Esta cuenta incluye C14 UNA sola vez, tras reparación del primer intento inválido; intentos inválidos acumulados 3, no ciclos inválidos adicionales.
+
+**C14:** nuevo diseño de producto ficticio [`fictional_rank_visibility_contract.mjs`](../src/politics_fantasy/fictional_rank_visibility_contract.mjs), cinco brazos: `own_only` + 2×2 {cuartil/orden completo}×{privado/sala}, mismo Brier virtual, referencia declarada de eventos y calendario y feedback de puntuación propia. Se distingue el efecto hipotético de **audiencia** del de **granularidad**, sin afirmar que la asignación, la entrega del estímulo, las oportunidades reales o la interferencia de salas estén comprobadas. Se conserva [primer intento INVALID](../research/ABH30_NEW_20261029/C14_INITIAL_INVALID_ATTEMPT.json): 18/18 pruebas nativas iniciales pero fallo post hoc de coerción de objeto como falso hash. Nuevo [prerregistro R1](../research/ABH30_NEW_20261029/C14_REPAIR_R1_PREREG_AJ_SHA.json) commit `cb50ce4a84ebfdf98829b9d93fa3eafb945e331e`, luego **20/20 pruebas Node.js nativas correctas**, SHA Git y SHA256 verificados; [recibo](../research/ABH30_NEW_20261029/C14_RUN_RECEIPT.json), [A–J](../research/ABH30_NEW_20261029/C14_REPORT.md). Prior PF-BR53 corresponde a metodología del diseño, **no experimento humano**.
+
+**Atlas:** lote append-only [0085](updates/0085-pfl-abh30-c14-rank-visibility-factorial-20261029.json), parent 0084. La lectura íntegra de los 85 lotes se vio limitada por el número de llamadas del conector, y **el replay de Python original 81–85 y SHA canónico NO se han ejecutado**; último checkpoint confirmado con checker sigue 80 lotes/63 nodos. No declarar Atlas 85/85 validado ni visualizador HTML sincronizado. Sin fusión a main, ChatRelay, CI costosa, licencias de datos humanos ni puntuación de políticos reales.
+
+---
+
 # ACTUALIZACIÓN ABH30-C13 · LÍMITES DE IDENTIFICACIÓN EN PILOTO FICTICIO (29/10/2026)
 
 **Estado de campaña verificado:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **13/30 ciclos nuevos limitados válidos, 17 nuevos pendientes**, dos plazas históricas STOP_R5 separadas. **CT2 científica PFL 20/100 ordinal**, N1/N2/N3 nuevos 0/0/0, 0/6 gates de lanzamiento, sin personas o políticos reales.
