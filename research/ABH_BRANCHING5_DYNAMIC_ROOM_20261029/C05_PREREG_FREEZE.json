@@ -1,0 +1,63 @@
+{
+  "schema": "pfl.abh5.c05.prereg.v1",
+  "date": "2026-10-29",
+  "mode": "AB-H_BRANCHING_NEW_C05_AS_AB-P",
+  "parent_pr": 47,
+  "parent_sha": "4b98ea00a6af698dc508f6d053f42fb6d1a50612",
+  "authorization": {
+    "new_total": 5,
+    "prior_new_executed": 4,
+    "new_slots_remaining_before": 1,
+    "legacy_separate_unused": 2
+  },
+  "prereg_stage": "SOURCE_TEST_BYTES_COMMITTED_AND_VERIFIED_NOT_RUN",
+  "D": {
+    "source_file": "src/politics_fantasy/fictional_room_exposure.mjs",
+    "source_commit": "83352fa2b2099166f2c4309c62f094f38cf5b35a",
+    "source_sha256": "cdffb342ba9774513a941cae5ba173c05229b9cc3ae579403ca85bbb3ac8fd96",
+    "source_git_blob_sha1": "8d65bec7fcd4c35c60d48233f19bdfc4740fc7ad",
+    "test_file": "src/politics_fantasy/test_fictional_room_exposure.mjs",
+    "test_commit": "13260a0b9f36207de09eb4c5a6d1fc44ca67083d",
+    "test_sha256": "8024196daaf2ef7fb53bf3b61ec5bb7de6884cc130b53d7d0c0724f5fb4c977f",
+    "test_git_blob_sha1": "424b55567f96c87db5359c54110d797cce923465",
+    "runtime": "Native Node v22.16.0, exact local bytes matching Git blob SHA",
+    "no_ci": true,
+    "no_network": true
+  },
+  "A": "Does time-varying leaderboard room membership change which independently logged display can be attributed to an assigned room at the instant of display, including exact switch boundaries?",
+  "B": {
+    "mechanism": "As-of room/arm assignment must be uniquely matched and must not be read retrospectively from current membership.",
+    "null": "Room snapshot would suffice for every display, even after a recorded move.",
+    "strong_rival": "Room changes need not imply treatment violation if exposure maps are specified; implementation checks only consistency of a declared synthetic history, not actual human causal effects."
+  },
+  "C": {
+    "design": "3 fiction members, 4 display events, one P0 switches A→B at Jan04 00:00 UTC within a half-open interval, P1 remains A, P2 remains B. One question open Jan02–Jan09.",
+    "primary_accept": "Four independently labelled synthetic displays accepted with room as-of; P0 old room after switch and at boundary must be rejected; valid new room at exact boundary accepted.",
+    "negative_tests": [
+      "overlapping and missing membership",
+      "mixed-arm shared room as-of",
+      "spoofed impression source",
+      "duplicate event ID",
+      "question outside window",
+      "extra PII keys",
+      "getters and noncanonical time",
+      "false human study fixture"
+    ],
+    "multiplicity": "Single nine-group preregistered suite; no parameter search nor statistical effect estimand."
+  },
+  "E": "Execute node test_fictional_room_exposure.mjs only after GitHub prereg freeze; archive exit, stdout, stderr, result SHA.",
+  "F": "First adversarial exclusions: snapshot-only backdating, as-of tie boundary, registration gap, arm contamination; compare fixed-room-only C03 as rival.",
+  "G": "No human replication. Literature Chen et al 2024 dynamically reassigns leaderboard groups of 30, already prior art; cannot claim new scientific phenomenon. Lumsden et al 2017 gaming/points no clear effect on attrition, separate negative comparator.",
+  "H": "Update priors on need for membership event-time witness and inability to infer real display from declared synthetic label.",
+  "I": "Grade 0/3 scientific regardless of pass; only bounded AB-P correctness, no human rights, assignment or welfare attestation. CT2 22/100 maintained.",
+  "J": "If 9/9 exact frozen tests pass, count C05 only AB-P limited and close new 5/5. If fail preserve invalid and repair prereg; otherwise STOP_R5. Two legacy experimental AB-H grants remain separate and subject to R5; no autopromotions.",
+  "ethics": {
+    "original_individual_records": 0,
+    "pseudonymized_person_records": 0,
+    "politicians_scored": 0,
+    "public_launch_gates": 0,
+    "no_chatrelay": true,
+    "no_main_merge": true,
+    "no_heavy_ci": true
+  }
+}
