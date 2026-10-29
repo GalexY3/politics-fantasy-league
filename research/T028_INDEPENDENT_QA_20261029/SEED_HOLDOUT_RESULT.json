@@ -1,0 +1,144 @@
+{
+  "schema": "pfl.t028.seed_holdout.v1",
+  "type": "INDEPENDENT_TECH_QA_NOT_AB_CYCLE",
+  "status": "PASS_BOUNDED",
+  "prereg_commit": "a4fe5b87d5c3571155926702dc9c96f45f23ea16",
+  "script_git_blob": "a802818cd62843c6f8f6fa9bd646b680a641b013",
+  "source_git_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+  "node_version": "v22.16.0",
+  "data": "synthetic deterministic seed windows only",
+  "holdout_windows": [
+    {
+      "name": "adjacent_holdout",
+      "start": 4096,
+      "count": 4096,
+      "max_relative_cell_deviation": 0.0615234375,
+      "permutations_seen": 24,
+      "permutation_min": 146,
+      "permutation_max": 205,
+      "chi_square_descriptive": 19.783203125,
+      "counts": [
+        [
+          999,
+          1062,
+          1069,
+          966
+        ],
+        [
+          1031,
+          1047,
+          1038,
+          980
+        ],
+        [
+          1019,
+          1005,
+          985,
+          1087
+        ],
+        [
+          1047,
+          982,
+          1004,
+          1063
+        ]
+      ]
+    },
+    {
+      "name": "high_bit_holdout",
+      "start": 2147483648,
+      "count": 4096,
+      "max_relative_cell_deviation": 0.0634765625,
+      "permutations_seen": 24,
+      "permutation_min": 144,
+      "permutation_max": 207,
+      "chi_square_descriptive": 20.16796875,
+      "counts": [
+        [
+          1014,
+          1040,
+          1070,
+          972
+        ],
+        [
+          1068,
+          959,
+          994,
+          1075
+        ],
+        [
+          1027,
+          1072,
+          989,
+          1008
+        ],
+        [
+          987,
+          1025,
+          1043,
+          1041
+        ]
+      ]
+    },
+    {
+      "name": "maximum_seed_holdout",
+      "start": 4294963200,
+      "count": 4096,
+      "max_relative_cell_deviation": 0.052734375,
+      "permutations_seen": 24,
+      "permutation_min": 141,
+      "permutation_max": 193,
+      "chi_square_descriptive": 9.7265625,
+      "counts": [
+        [
+          1022,
+          1042,
+          1000,
+          1032
+        ],
+        [
+          999,
+          1009,
+          1032,
+          1056
+        ],
+        [
+          1021,
+          1013,
+          1078,
+          984
+        ],
+        [
+          1054,
+          1032,
+          986,
+          1024
+        ]
+      ]
+    }
+  ],
+  "max_allowable_relative_deviation": 0.12,
+  "all_per_block_balance": true,
+  "multiblock_checks": {
+    "seeds": [
+      0,
+      4096,
+      2147483648,
+      4294967295
+    ],
+    "n": [
+      8,
+      10000
+    ],
+    "deterministic": true,
+    "array_frozen": true,
+    "all_blocks_balanced": true
+  },
+  "invalid_inputs_rejected": 6,
+  "prior_84_checks": "84/84 passed in local mirror, not full suite",
+  "original_source_untouched": true,
+  "interpretation": "Three prospectively specified windows not used to fit C06 repair passed. Supports narrow robustness to seed position bias but NOT cryptographic unpredictability, random assignment of humans, or causal generalization.",
+  "CT2_prospective_unchanged": 22,
+  "legacy_AB_cycles_consumed": 0,
+  "local_result_sha256": "bdb1aec275257972624ff5f4ac6a942cf8930785e9a1ac6c4243f5af6fe6d377"
+}
