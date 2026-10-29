@@ -19,7 +19,7 @@ elif mode=='run':
  pre=git('rev-parse','HEAD');out=subprocess.run(command,cwd=ROOT,capture_output=True)
  for name,blob in [('stdout',out.stdout),('stderr',out.stderr)]: (HERE/(cid+'.'+name)).write_bytes(blob)
  rec={'command':command,'cwd':str(ROOT),'code_commit':pre,'exit':out.returncode,'working_tree_status':git('status','--porcelain'),'source_file_sha256':{str(q.relative_to(ROOT)).replace(chr(92),'/'):hashlib.sha256(q.read_bytes()).hexdigest() for q in (ROOT/'proyectos/politics-fantasy-league/src').rglob('*') if q.is_file() and q.suffix in ('.py','.mjs','.cjs','.js')},'stdout_sha256':hashlib.sha256(out.stdout).hexdigest(),'stderr_sha256':hashlib.sha256(out.stderr).hexdigest()};write(HERE/(cid+'_RUN.json'),rec)
- print(json.dumps(rec));print(out.stdout.decode('utf8',errors='replace')[-1600:]);print(out.stderr.decode('utf8',errors='replace')[-500:])
+ print(json.dumps({k:v for k,v in rec.items() if k!="source_file_sha256"}));print(out.stdout.decode('utf8',errors='replace')[-1600:]);print(out.stderr.decode('utf8',errors='replace')[-500:])
 elif mode=='close':
  finding,decision,next_question=args
  x=json.loads((HERE/(cid+'_PREREG.json')).read_text(encoding='utf8'));x.update({'status':'EXECUTED','prereg_commit':git('log','-1','--format=%H','--',str(HERE/(cid+'_PREREG.json'))),'E':json.loads((HERE/(cid+'_RUN.json')).read_text(encoding='utf8')),'H':{'finding':finding,'hypothesis_update':'Restricted to tested software or documented sources','new_question':next_question},'I':{'scientific_validity':'NOT_ESTABLISHED','novelty':'NOT_CLAIMED','external_replication':'NOT_RUN','CT2_reason':'No new identified external scientific evidence'},'J':decision});write(HERE/(cid+'_RESULT.json'),x)
