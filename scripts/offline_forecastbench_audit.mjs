@@ -77,7 +77,7 @@ export async function runOfflineAudit({source_dir,as_of_instant}){
 
 function parseArgs(args){
  if(args.length!==4||args[0]!=='--source-dir'||args[2]!=='--as-of-instant')
-  throw Error('USAGE_SOURCE_DIR_AND_AS_OF_DATE');
+  throw Error('USAGE_SOURCE_DIR_AND_AS_OF_INSTANT');
  return {source_dir:args[1],as_of_instant:args[3]};
 }
 export async function main(args=process.argv.slice(2)){
@@ -89,7 +89,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
  main().catch(e=>{
   // Only safe bounded category, never a private path or a question string.
   const known=['EXPECTED_FOUR_FILES','INVALID_EXPECTED_MANIFEST','INVALID_PUBLIC_DATASET_JSON',
-   'INVALID_PUBLIC_FILE_SIZE','ORIGINAL_SOURCE_BYTES_MISMATCH','USAGE_SOURCE_DIR_AND_AS_OF_DATE',
+   'INVALID_PUBLIC_FILE_SIZE','ORIGINAL_SOURCE_BYTES_MISMATCH','USAGE_SOURCE_DIR_AND_AS_OF_INSTANT',
    'SOURCE_DIR_REQUIRED','COHORT_MISMATCH','INVALID_CUTOFF','ROW_ACCOUNTING_FAIL',
    'INVALID_AS_OF_INSTANT','UNVERIFIED_SOURCE_COMMIT','SOURCE_NOT_PUBLIC_AT_CUTOFF'];
   const code=known.includes(e.message)?e.message:'SOURCE_INPUT_UNAVAILABLE_OR_INVALID';
