@@ -1,0 +1,25 @@
+{
+  "id": "ABH30-P1-C01",
+  "status": "INCOMPLETE_NOT_VALID",
+  "phase": 1,
+  "prereg_commit": "1dfe37c18e500ddd70d68107d47195d46394a78c",
+  "A": "Join public ForecastBench question/resolution data",
+  "B": "Hypothesis of stable (source,id) join",
+  "C": "Public GitHub repo e1defb1a70d10311670b12701c837f712c672c03, CC BY-SA 4.0",
+  "D": "Pre-registered counts, key uniqueness, resolved and synthetic negative source",
+  "E": "Invoked GitHub connector fetch_file for two original historical JSON files",
+  "F": "At least one returned payload could not be parsed as complete JSON: Unexpected end of JSON input",
+  "G": "No key statistics, resolved labels, or negative control computed; do not invent",
+  "H": "Likely connector truncation/size limit; not yet independently established which payload or exact byte limit",
+  "I": "Alternative next attempt: use API file range/pagination if supported or authorized container full checkout; rerun with same prereg",
+  "J": "R5 STOP; no scientific finding and no new valid cycle",
+  "budget_impact": {
+    "phase1_valid": 0,
+    "phase1_incomplete": 1,
+    "phase1_unexecuted": 19,
+    "phase2_valid": 0,
+    "phase2_unexecuted": 10
+  },
+  "prior_unchanged": true,
+  "CT2_unchanged": 22
+}
