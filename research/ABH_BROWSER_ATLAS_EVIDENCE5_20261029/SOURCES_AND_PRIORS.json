@@ -413,10 +413,48 @@
       "grade": "0/3",
       "CT2_prospective_unchanged": 22,
       "type": "ALTERNATIVE_SOURCE_CATALOG_GATE"
+    },
+    {
+      "id": "PF-BR30",
+      "claim": "A public leaderboard offered on its own reliably increases all-user platform engagement and has no strong original field experiment rival",
+      "update": "FALSE_STRONG_DIRECT_RANDOMIZED_OFFER_RIVAL",
+      "support": "Kloc, Belo & Li author working paper Oct2024: Dutch high-school exam-preparation app randomized leaderboard offer 2/3 vs none 1/3 at registration, 3,762 eligible users and 108,171 person-days in Table3. Direct offer coefficient for standardized daily active time +0.009(SE0.016), logins +0.008(SE0.006); no statistically discernible engagement effect on five outcomes. Leaderboard placement 3+ days later conditional on continued activity; no full all-registrant ITT verified. Treatment composition high/low similarity between peers was also randomized.",
+      "source": "https://rodrigobelo.com/assets/pdf/leaderboards.pdf",
+      "source_version": "Author-hosted working paper October 2024, NOT independently verified peer-reviewed final publication",
+      "type": "INDEPENDENT_ORIGINAL_FIELD_RANDOMIZATION_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Do not infer equality or all-user result, cannot re-estimate from person-time aggregates. Inside-board peer distance coefficients 0.092 (SE0.012) etc are post-allocation observational associations, not randomized board-offer effects. No participant data downloaded."
+    },
+    {
+      "id": "PF-BR31",
+      "claim": "Published individual time-of-use contrast +0.009(SE0.016) rules out +0.05SD effects robustly under any choice of a five-outcome inference family",
+      "update": "FALSE_MULTIPLICITY_AND_EXPLORATORY_THRESHOLD",
+      "support": "Native exact Git-source-matched Python code and 8/8 tests: point estimate +0.009 SE.016 => normal 95% [-.02235942,.04035942], but Bonferroni five simultaneous outcomes 95% [-.03221327,.05021327]; the illustrative +.05 SD threshold is outside first interval but inside second. All five ordinary 95% intervals cross zero.",
+      "source": "https://rodrigobelo.com/assets/pdf/leaderboards.pdf",
+      "evidence": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json",
+      "type": "ORIGINAL_PUBLISHED_AGGREGATE_REANALYSIS",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Post-source-knowledge chosen .05 SD is illustrative, not preregistered before source consultation or domain MCID. Normal/Bonferroni assumption, rounded original b and SE; correlated outcomes make Bonferroni conservative. It is not an equivalence test, new data, external causal replication or statistical power claim."
+    },
+    {
+      "id": "PF-BR32",
+      "claim": "Only leaderboards bundled with prizes provide published direct experiments on persistence and cognitive performance",
+      "update": "FALSE_EIGHT_ARM_5191_RCT_SEPARATES_PUBLIC_TOP10_AND_SUBJECTIVE_FEEDBACK",
+      "support": "Lovász et al. 2023, 5,191 individuals randomized into 8=2 leaderboard presence ×4 subjective feedback arms (none, supportive, praise, trash talk) in an online perceptual game. Published table A1 has 644 baseline players mean1.72 plays and 652 leaderboard-alone mean2.01. These are session-conditioned participants who clicked start, not an all-eligible uptake cohort. Study reports heterogeneous performance and persistence by feedback and subgroup. Original published article repository accessible without human microdata.",
+      "sources": [
+        "https://doi.org/10.1016/j.socec.2022.101954",
+        "https://real.mtak.hu/153707/"
+      ],
+      "type": "INDEPENDENT_2X4_RANDOMIZED_PRIOR_ART_DOCUMENTARY_GATE",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Do not compare study populations as direct replication of Kloc field cohort; no person-level rows inspected; differences in means without variance and full covariance are not inferential findings. No new A–J opened merely for extracting its existing published means."
     }
   ],
   "CT2_parent_unchanged": 29,
-  "CT2_prospective_now": 22,
+  "CT2_prospective_now": 20,
   "new_N1": 0,
   "later_source_audit": {
     "status": "POSTHOC_METADATA_ONLY_NOT_AB_CYCLE",
@@ -522,5 +560,22 @@
       0
     ],
     "codes": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/"
+  },
+  "latest_branching5b_c03": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c03-randomized-leaderboard-20261029",
+    "prior_pr": 49,
+    "new_granted": 5,
+    "new_completed_limited": 3,
+    "new_remaining": 2,
+    "historical_unused": 2,
+    "CT2_prospective_ordinal_before": 22,
+    "CT2_prospective_ordinal_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "reason": "Direct already-published leaderboard-only randomized assignment and full 2x4 factorial provide stronger novelty counterevidence, while access to causal microdata still blocked."
   }
 }
