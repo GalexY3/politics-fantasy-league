@@ -1,0 +1,19 @@
+{
+  "schema": "pfl.abh30.c28.repair_r1.prereg_AJ_SHA.v1",
+  "cycle": "ABH30-C28",
+  "original_failure": "Native posthoc test found NaN scored outcome accepted, JSON bounds become null; original 2/2 attempt INVALID; preserve C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+  "source_git": "dde0f5b5e92e95e44b5088b5457e3d8f9b4a65b7",
+  "source_sha256": "ea161924354b7a6706b8aedf65705900c1be48626081918bf92f16cce7b6329e",
+  "tests_git": "365f56f6c6a8a15f46ca8c8a186cad4d9f3c739b",
+  "tests_sha256": "46a8d75ec76c34a31def5a0c81a04d55e3864e814e1e467c725d013b6d840f24",
+  "A": "Reject non-finite synthetic scores before bounding selection/abstention outcomes.",
+  "B": "H1 corrected isFinite catches NaN and original valid data remains accepted; H0 passes NaN",
+  "C": "3 native tests C28, negative NaN fixture plus original 2",
+  "D": "Frozen SHA files and command node --test --test-name-pattern='C28 ' tests/test_fictional_pfl_impact_suite.mjs",
+  "E": "Execute only after freeze, retain TAP and original invalid attempt.",
+  "F": "Original code's NaN acceptance recorded, not rewritten.",
+  "G": "Compare original failure with repaired guard, synthetic only.",
+  "H": "No human scientific inference.",
+  "I": "CT2 science 20, grade 0/3 and launch 0/6.",
+  "J": "Count one repaired bounded C28 if native tests pass; original invalid attempt remains."
+}
