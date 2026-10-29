@@ -1,0 +1,220 @@
+{
+  "schema": "pfl.abh30.c07.original_public_bitemporal_replay_run_v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C07",
+  "mode": "AB-H_AB-P_PRODUCTION_CLI_AB-R_ORIGINAL_PUBLIC_QUESTION_REPLAY",
+  "grade_science": "0/3",
+  "DRIFT_D": 2,
+  "status": "VALID_BOUNDED_REAL_ORIGINAL_PUBLIC_REPLAY_PLUS_NATIVE_TESTS",
+  "parent_pr": 57,
+  "parent_head": "bcb4503695950e93e06c6b2c00ad9520b33d7774",
+  "prereg_AJ_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+  "first_compilation_failure_repair_prereg_commit": "db3dcf89bdfa9cfae7c6002c01ec3dff8d334bfa",
+  "first_postrepair_freeze_commit": "393d85c83420dc40d65ed753f7edc7c0dc03c880",
+  "postrun_gap_negative_repair_prereg_commit": "0376bd8ff14a24e1e98bdcdd6cf47cb4896d2cb3",
+  "final_exact_checkpoint_sha_freeze_commit": "4388c76e409854d6ca2667a177b46bc754e5926f",
+  "final_code_sha": [
+    {
+      "path": "src/politics_fantasy/forecastbench_vintage_replay.mjs",
+      "git_blob_sha1": "a209206f0678673cebecc97408d3eb8bfce3bad1",
+      "sha256": "f35e26efbabcd94edeb9cc475ed44c6d35382014462b34d67e5566d5644bb8b3"
+    },
+    {
+      "path": "tests/test_forecastbench_vintage_replay.mjs",
+      "git_blob_sha1": "c5c7f917c8a18de7bbc80757d85ec78cd4633e73",
+      "sha256": "09e55664a984a8bcbeda2afca1d376c9f897dfd268cfc9d862efa16adb9efc14"
+    },
+    {
+      "path": "scripts/replay_forecastbench_vintages.mjs",
+      "git_blob_sha1": "3b9e8bb784ff499fdabb47257c31a671da4c65a9",
+      "sha256": "a2269df5394a9206bc56525ace5f272142e336964978d6a10d3fbb8ba6eedf7c"
+    },
+    {
+      "path": "tests/test_forecastbench_vintage_cli.mjs",
+      "git_blob_sha1": "29bc64c591dcd23c1b6585f2a710d2ada3deec73",
+      "sha256": "d640b0972f773da614b7f6323de929c34ad1a363e3d787c79d6cfc89e54f3ff3"
+    }
+  ],
+  "executions": {
+    "first_Github_source_JS_compile": "FAIL Unexpected token ']' on first original source; preserved and preregistered minimal one-brace repair; not a separate cycle",
+    "initial_after_first_repair": {
+      "V8_pure_tests": "24/24",
+      "Node_native_pure_tests": "24/24",
+      "Node_native_cli_tests": "8/8",
+      "first_original_real_source_replay": true
+    },
+    "adversarial_postrun": "Caught unverified intermediate source versions (e.g. Oct25) making arbitrary last-known choice over incomplete manifest invalid. Repair preregistered after run.",
+    "final_postrepair": {
+      "Node_version": "v22.16.0",
+      "V8_pure_tests_if_repeated": "25/25 not separately rerun in V8; 25/25 Node",
+      "Node_native_pure_tests": "25/25",
+      "Node_native_cli_tests": "8/8",
+      "total_native_passed": 33,
+      "total_native_failed": 0,
+      "Git_blob_and_SHA256_exact_matches_local_before_native": true
+    },
+    "final_original_public_source_replay": "Exact final GitHub core blob executed in V8 on original public source JSON after final freeze. No local full original seven-file CLI-positive run; native CLI tested with real temp FS and spoofed-byte rejection."
+  },
+  "source": {
+    "original": "forecastingresearch/forecastbench-datasets",
+    "license": "CC BY-SA 4.0 public question and resolution files, license does not establish rights to underlying individual forecasts or texts for external redistribution",
+    "git_history_checked": true,
+    "seven_original_Git_blob_raw_UTF8_sha1_reverified_prior_to_first_run": true,
+    "verified_raw_public_blobs": [
+      {
+        "name": "Sep27 question set",
+        "blob": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+        "bytes": 1313813
+      },
+      {
+        "name": "Oct11 question set",
+        "blob": "fe9772f2275edcada671c4082cf9103185f1becf",
+        "bytes": 1487382
+      },
+      {
+        "name": "Sep27 Oct07 original resolution",
+        "blob": "0b67cfec67fad4b23899e8e48c6ca3a034344edc",
+        "bytes": 107702
+      },
+      {
+        "name": "Sep27 Oct23 original resolution",
+        "blob": "9d17e5f8487ae2cad9c9d3130c3006cd1cc5d880",
+        "bytes": 120493
+      },
+      {
+        "name": "Sep27 Oct29 original resolution",
+        "blob": "b2ee53f09407e2b555668f66e286073ace6d5fce",
+        "bytes": 156713
+      },
+      {
+        "name": "Oct11 Oct23 original resolution",
+        "blob": "1556a17106131cf8a7d7cb3b33122d18c3b9ef6a",
+        "bytes": 107499
+      },
+      {
+        "name": "Oct11 Oct29 original resolution",
+        "blob": "d8416bccbfcd4736e9772748bb42fd4cc403db7e",
+        "bytes": 109886
+      }
+    ]
+  },
+  "primary_original_observations": [
+    {
+      "cohort": "2026-09-27",
+      "source_public_at": "2026-10-07T07:19:29Z",
+      "as_of": "2026-10-08T00:00:00Z",
+      "questions": 500,
+      "market_questions": 250,
+      "resolution_rows": 441,
+      "accepted": 30,
+      "resolved_only_brier": 0.17264950821433986
+    },
+    {
+      "cohort": "2026-09-27",
+      "source_public_at": "2026-10-23T06:53:25Z",
+      "as_of": "2026-10-24T00:00:00Z",
+      "questions": 500,
+      "market_questions": 250,
+      "resolution_rows": 488,
+      "accepted": 46,
+      "resolved_only_brier": 0.17318551751415606
+    },
+    {
+      "cohort": "2026-10-11",
+      "source_public_at": "2026-10-23T06:53:25Z",
+      "as_of": "2026-10-24T00:00:00Z",
+      "questions": 500,
+      "market_questions": 250,
+      "resolution_rows": 441,
+      "accepted": 2,
+      "resolved_only_brier": 0.06484999999999999
+    },
+    {
+      "cohort": "2026-09-27",
+      "source_public_at": "2026-10-29T07:30:17Z",
+      "as_of": "2026-10-29T16:00:00Z",
+      "questions": 500,
+      "market_questions": 250,
+      "resolution_rows": 642,
+      "accepted": 52,
+      "resolved_only_brier": 0.16801450256770642
+    },
+    {
+      "cohort": "2026-10-11",
+      "source_public_at": "2026-10-29T07:30:17Z",
+      "as_of": "2026-10-29T16:00:00Z",
+      "questions": 500,
+      "market_questions": 250,
+      "resolution_rows": 450,
+      "accepted": 8,
+      "resolved_only_brier": 0.07071875
+    }
+  ],
+  "preregistered_differences": [
+    {
+      "from": "2026-10-08",
+      "to": "2026-10-29",
+      "cohort": "2026-09-27",
+      "retained": 30,
+      "newly_known": 22,
+      "lost": 0,
+      "flipped": 0
+    },
+    {
+      "from": "2026-10-24",
+      "to": "2026-10-29",
+      "cohort": "2026-09-27",
+      "retained": 46,
+      "newly_known": 6,
+      "lost": 0,
+      "flipped": 0
+    },
+    {
+      "from": "2026-10-24",
+      "to": "2026-10-29",
+      "cohort": "2026-10-11",
+      "retained": 2,
+      "newly_known": 6,
+      "lost": 0,
+      "flipped": 0
+    }
+  ],
+  "inference_limits": [
+    "Accepted binary market public question source events not forecast human participants or PFL performance",
+    "Two same-institution public cohorts not independent scientific replication",
+    "No original individual rows, no user assignment/exposure denominator, no permission to use protected records",
+    "No statement about all historical intraday versions; precisely THREE checkpoints source-verified, all other dates fail closed",
+    "No difference in previously recorded known y in these examined vintages, but cannot generalize to other Git versions",
+    "Brier on outcome-selected resolved subset only, not full population and no competent predictive rival benchmark",
+    "The current CLI complete original multi-vintage local disk positive E2E has not been executed; all seven original Git blobs were byte SHA verified in connector V8 and 33 native Node tests executed with fixtures"
+  ],
+  "rights": {
+    "human_personal_rows_downloaded": 0,
+    "license_accepted_on_user_behalf": false,
+    "authors_contacted": false,
+    "real_political_people_ranked": false,
+    "main_merged": false,
+    "costly_CI": false,
+    "ChatRelay": false
+  },
+  "scientific": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "ordinal": true,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "launch_gates_passed": 0,
+    "launch_gates_total": 6
+  },
+  "budget": {
+    "new_grant": 30,
+    "new_valid_before": 6,
+    "new_valid_after": 7,
+    "new_unused_after": 23,
+    "historical_authorized_unused_separately": 2,
+    "failed_attempts_reported_separately": true
+  }
+}
