@@ -227,6 +227,14 @@
       "state": "answered",
       "summary": "C10 original publisher public source event resolution JSON: six full original Git SHA reverified, three fixed source-version pairs compared with C09 frozen pure source in V8. 16 raw composite key removals, 2 additions, 671 mutations (transition events; mostly dates and continuous numeric resolved_to, not binary outcomes). 0/3 causal science, no positive native original-file CLI and no human participant exposure.",
       "source": "../ABH30_NEW_20261029/C10_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
+      "type": "product_validation",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C11 native CLI wraps frozen C09 public raw revision guard and hardcodes C10 six original Git pins for three pairs. 17/17 native Node synthetic/local negative CLI checks after A-J freeze, Git SHA parity for code/tests. No local positive original source files, no human experiment or launch readiness.",
+      "source": "../ABH30_NEW_20261029/C11_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -487,6 +495,18 @@
       "to": "PFL-ABH30-C03-ORIGINAL-HUMAN-GATE",
       "relation": "related_to",
       "interpretation": "Original public event metadata is not a human randomization or consent/exposure roster."
+    },
+    {
+      "from": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
+      "to": "PFL-ABH30-C10-ORIGINAL-RAW-SOURCE-VERSIONS",
+      "relation": "depends_on",
+      "interpretation": "Pinned public original six SHA versions from C10; no files distributed or run through native CLI."
+    },
+    {
+      "from": "PFL-ABH30-C11-PINNED-LOCAL-RAW-REVISION-CLI",
+      "to": "PFL-ABH30-C09-RAW-REVISION-ADVERSARIAL-GUARD",
+      "relation": "tests",
+      "interpretation": "Integrates unchanged pure raw revision audit with mandatory local file Git pins and Node subprocess."
     }
   ],
   "rules": {
@@ -510,8 +530,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 10,
-      "new_unused": 20,
+      "new_valid": 11,
+      "new_unused": 19,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -519,9 +539,9 @@
         0,
         0
       ],
-      "last_source_pr": 60,
-      "branch": "research/pfl-abh30-c10-original-raw-revisions-20261029",
-      "latest_valid_cycle": "ABH30-C10"
+      "last_source_pr": 61,
+      "branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
+      "latest_valid_cycle": "ABH30-C11"
     }
   }
 }
