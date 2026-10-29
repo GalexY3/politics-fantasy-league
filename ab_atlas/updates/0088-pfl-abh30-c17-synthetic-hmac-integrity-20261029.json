@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0088-PFL-ABH30-C17-SYNTHETIC-HMAC-INTEGRITY-20261029",
+  "parent_batch": "0087-PFL-ABH30-C16-EXECUTED-FICTIONAL-RENDER-20261029",
+  "at": "2026-10-29T23:10:05Z",
+  "actor": "chatgpt",
+  "reason": "C17 preregistered native HMAC receipt integrity 16/16 PASS, no independent renderer or human attestation. Full Python Atlas validator remains not run.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C17-SYNTHETIC-HMAC-20261029",
+        "activity": "Node crypto HMAC-SHA256 signed fictional receipts, alteration/replay detection 16/16 PASS; source/origin remains unverified in any real renderer.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C17_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C17_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C17_REPORT.md"
+        ],
+        "scope": "AB-P synthetic integrity, not genuine exposure",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}
