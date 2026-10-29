@@ -83,3 +83,20 @@ El informe final ha de contener: HEAD inicial/final, PR URL, check Atlas/80 lote
 - Se ejecutaron Node y Python sobre un **espejo local parcial** cotejado por blobs Git, incluidos 84/84 controles Node, servicio HTTP `http://127.0.0.1:8787/` y Playwright APIRequest GET 200. [A07](../research/ABH30_AUTONOMY_20261029/A07_RESULT.json) · [A08](../research/ABH30_AUTONOMY_20261029/A08_RESULT.json) · [A09](../research/ABH30_AUTONOMY_20261029/A09_RESULT.json). En Chromium real `page.goto` permanece **ERR_BLOCKED_BY_ADMINISTRATOR**; HTTP API no sustituye E2E de navegador. No evitar la política de administración.
 - La campaña 20+10 quedó cerrada **29 válidos de alcance acotado, C01 incompleto**. [Informe final](../research/ABH30_AUTONOMY_20261029/FINAL_REPORT.md). Las **2 plazas históricas** de PR37 permanecen sin consumir.
 - **Subtareas T028 todavía a ejecutar por un entorno autorizado:** `python ab_atlas/atlas_delta.py check/brief` con repo privado íntegro, `abmap.require_valid(strict=True)`, reporte SHA256 canónico y actualización condicional de `CURRENT.md`; además Playwright Chromium/Firefox con navegación HTTP auténtica y regresiones. Si el entorno sigue bloqueando browser, registrar `BLOCKED_BY_ENVIRONMENT` y no afirmar PASS de ese extremo.
+
+## Continuación del 29/10/2026 — QA independiente posterior a ABH30
+
+**Estado: sigue PENDIENTE para validación íntegra.** Ver [reporte y código reproducibles](../research/T028_INDEPENDENT_QA_20261029/REPORT.md), [prerregistro holdout](../research/T028_INDEPENDENT_QA_20261029/SEED_HOLDOUT_PREREG.json), [resultado de 12.288 semillas](../research/T028_INDEPENDENT_QA_20261029/SEED_HOLDOUT_RESULT.json) y [recibo de preflight](../research/T028_INDEPENDENT_QA_20261029/T028_PREFLIGHT_RECEIPT.json). Esta continuación **no es otro ciclo AB** y no utiliza las dos plazas históricas disponibles.
+
+**Ayuda directa sin Codex:** ejecutar desde un **checkout privado íntegro autorizado**:
+
+```bash
+python proyectos/politics-fantasy-league/tareas_codex/T028_NATIVE_PREFLIGHT.py --repo . --out /tmp/T028_NATIVE_PREFLIGHT_RESULT.json
+node proyectos/politics-fantasy-league/src/politics_fantasy/pilot_assignment_holdout_qa.mjs
+```
+
+La herramienta es de solo lectura sobre el repositorio; inicia y detiene temporalmente el servidor ficticio loopback para pruebas y no toca `CURRENT.md`. Clasifica por separado `PASS_CANONICAL_CHECK`, bloqueo del checker, `PASS_NATIVE_HTTP_API` y estado del navegador. Ejecutar el script **en el checkout destino y adjuntar salida/exit**, ya que el equivalente probado en este chat solo tenía el espejo parcial. El helper subido a GitHub no se ha probado byte a byte en un checkout completo; no considerarlo recibo previo de éxito.
+
+**Evidencia actual:** 15/15 smoke Node + 9/9 HTTP directos PASS, Playwright HTTP API 200, Chromium navegación `ERR_BLOCKED_BY_ADMINISTRATOR`. Atlas 80/80 JSON y 79/79 padres comprobados por API GitHub, **semántica Python canónica y SHA256 del estado NO calculados**. C06 reparado pasa tres ventanas independientes de 4.096 semillas (desviaciones máximas 6,15 %, 6,35 %, 5,27 % contra tolerancia 12 %), control no criptográfico.
+
+**No promover:** `CURRENT.md`, `e2e` de lanzamiento, VSDS, N1/N2/N3 o CT2 por las pruebas anteriores. Buscar un entorno autorizado para la comprobación original y un origen de datos científicamente discriminante, sin eludir restricciones del navegador.
