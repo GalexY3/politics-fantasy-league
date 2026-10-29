@@ -68,7 +68,7 @@ export function timelineFromOriginals(cohort,questionObject,resolutionsByGit){
   const source=resolutionsByGit[v.git];
   const next=versions[index+1];
   const d=new Date(utc(v.at)+12*60*60*1000);
-  const target=next&&d.getTime()>=utc(next.at)?new Date(utc(v.at)+60*1000):d;
+  const target=new Date(Math.min(utc(VERIFIED_AT),next&&d.getTime()>=utc(next.at)?utc(v.at)+60*1000:d.getTime()));
   const cutoff=target.toISOString().replace('.000Z','Z');
   const check=versionAt(cohort,cutoff);
   if(check.commit!==v.commit)throw Error('INCOMPLETE_OR_MISORDERED_VERSION_HISTORY');
