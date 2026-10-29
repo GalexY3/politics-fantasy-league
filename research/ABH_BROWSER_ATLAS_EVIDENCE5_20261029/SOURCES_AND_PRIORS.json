@@ -659,6 +659,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Institutional code record only; deposit README/license and original administrative rows not retrieved or inspected. No license accepted, no personal data downloaded and no human experiment executed."
+    },
+    {
+      "id": "PF-BR48",
+      "claim": "Original public resolution-set row counts will increase monotonically over repository versions if known binary outcomes accumulate, and non-monotone raw rows necessarily mean loss of eligible observed binary outcomes.",
+      "update": "FALSIFIED_FOR_RAW_ROW_COUNTS; MARKET_BINARY_ELIGIBLE_OUTCOMES_MONOTONE_IN_VERIFIED_16_PLUS_3_SOURCE_VINTAGES",
+      "support": "Complete original git commits?path history for forecastingresearch/forecastbench-datasets: Sep27 resolution_set has 16 original published Git blobs 7–29 Oct 2026; Oct11 has three 23/24/29 Oct, plus two unchanged original public question blobs. All 21 distinct full UTF-8 Git blob SHA1 independently verified, frozen code evaluated source-eligible market binary p/y at each version. Sep27 eligible 30→52, Oct11 2→8, 0 lost accepted keys or flipped Y among directly compared adjacent source versions; nevertheless source raw resolution record counts Sep27 441 at 7 Oct, 440 at 8 Oct, 427 at 12 Oct, 490 at 14 Oct, and 486 on 24 Oct; Oct11 441 23 Oct→438 24 Oct, showing non-monotone raw data maintenance not simple append-only row growth. This is a diagnostic about source version maintenance and selection, not causal ranking behavior or human prediction quality.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C08_RUN_RECEIPT.json",
+      "type": "ABH_ORIGINAL_PUBLIC_COMPLETE_GIT_VERSION_PROVENANCE_INTRA_SOURCE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Original same source vendor, two previously inspected cohorts, no independent scientific replication, not proof no outcome revisions outside public binary eligible subset or outside checked Git history. 27 V8 tests on frozen Git code (not native Node); original source data processed in connected V8 in overlapping version batches rather than native local source-file E2E."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -852,10 +864,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c07-bitemporal-replay-20261029",
+    "branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
     "granted": 30,
-    "valid_limited": 7,
-    "new_remaining": 23,
+    "valid_limited": 8,
+    "new_remaining": 22,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -867,7 +879,8 @@
       "PF-BR44",
       "PF-BR45",
       "PF-BR46",
-      "PF-BR47"
+      "PF-BR47",
+      "PF-BR48"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
@@ -876,6 +889,9 @@
     "source_vintage_checkpoints": 3,
     "original_source_outcome_flips_observed": 0,
     "source_coverage_updated": true,
-    "human_Causal_stop": "Original Xu 2026 ICPSR E227582 code-only and Statistics Finland human data blocked; Agranov AEARCTR-0003315 original human access not documented."
+    "human_Causal_stop": "Original Xu 2026 ICPSR E227582 code-only and Statistics Finland human data blocked; Agranov AEARCTR-0003315 original human access not documented.",
+    "verified_original_public_git_blobs": 21,
+    "resolution_source_versions": 19,
+    "new_observation": "Original total resolution row counts non-monotone while eligible source binary outcomes monotone; preserve selection warnings and human R5."
   }
 }
