@@ -1,0 +1,77 @@
+{
+  "schema": "pfl.abh5b.c04.native.execution.v1",
+  "date": "2026-10-29",
+  "cycle_id": "ABH5B-C04",
+  "classification": "VALID_ABP_FORMAL_PRODUCT_MECHANISM_AUDIT_0OF3_SCIENCE",
+  "source": "https://doi.org/10.1287/mnsc.2022.4410",
+  "prereg_commit": "f00d936343fecd74da0e98069b78152fe34056c7",
+  "environment": "CPython 3.13.5, stdlib Fraction only, offline local container",
+  "command_test": "python -m unittest -v test_rank_incentive_proof.py",
+  "command_analysis": "python rank_incentive_proof.py",
+  "exit_test": 0,
+  "exit_analysis": 0,
+  "tests_completed": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "seed_or_randomness": "NONE_EXACT_ARITHMETIC_NOT_MONTE_CARLO",
+  "github_blobs": {
+    "source": "95d0f78b39d72b12e9ae79fa0da5e4ceae44d88c",
+    "test": "a6804606c17e80acb3a8ac3ffb375ee411181b33"
+  },
+  "sha256": {
+    "source": "ad07bc5f0251966c727ff7d38206348098cfd493b3a3ea0581cd020d16491ded",
+    "test": "24e13df63a31ce8653a736d2d5631def2a8c332cdfebc71e38b1209bbbb06598"
+  },
+  "git_verified_exact_before_run": true,
+  "observations": {
+    "subjective_probability": "11/20",
+    "rival_fixed_report": "3/5",
+    "truthful": "11/20",
+    "deviation": "61/100",
+    "deterministic_truth_win": "9/20",
+    "deterministic_deviation_win": "11/20",
+    "deterministic_gain": "1/10",
+    "expected_proper_quadratic_score_truth_advantage": "9/2500",
+    "lottery_truth_win": "401/800",
+    "lottery_deviation_win": "9989/20000",
+    "lottery_truth_advantage": "9/5000",
+    "lottery_truth_gap_identity": "(r-p)^2/2 for all [0,1] reports and fixed rival q"
+  },
+  "native_test_groups": [
+    "deterministic report counterexample",
+    "proper score expected utility",
+    "lottery probability valid and complement",
+    "lottery truth advantage exact",
+    "rational grid sanity checks, NOT continuum proof",
+    "fair ties",
+    "invalid input fail closed",
+    "nonhuman nondeployed scope flags"
+  ],
+  "limitations": [
+    "Known theoretical mechanism, not original discovery; Witkowski et al preceded PFL",
+    "Hypothetical winner-take-all prize, not a verified PFL feature",
+    "Two forecasters, one binary event, independent rival report q, subjective belief p; does not establish risk attitudes in actual participants",
+    "Probability ranking on one outcome is not a causal field trial, not a welfare evaluation and does not transfer automatically to correlated political event forecasting",
+    "No claim to reproduce full published ELF/I-ELF implementation, only a two-player one-event explanatory quadratic lottery",
+    "No human microdata, real politicians or public deployed functionality"
+  ],
+  "ethics": {
+    "personal_records_downloaded": 0,
+    "original_data_licenses_accepted": 0,
+    "authors_contacted": 0,
+    "ChatRelay": false,
+    "CI_dispatched": false,
+    "main_merged": false
+  },
+  "scientific": {
+    "grade": "0/3",
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "decision": "Count C04 one valid AB-P formal product audit, preserve C05 and both historical slots under R5."
+}
