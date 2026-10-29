@@ -260,7 +260,7 @@
       "title": "Replay canónico Atlas 0001–0080, actualizar CURRENT.md tras PASS y Playwright real PFL en localhost",
       "priority": "P0",
       "file": "T028_BROWSER_ATLAS_REPLAY_20261029.md",
-      "status": "PENDIENTE_CHECK_CANONICAL_ATLAS_Y_BROWSER_REAL",
+      "status": "COMPLETADA_P0_TECNICA_VERIFICADA_CON_LIMITES_R5",
       "authorization": "QA_TECHNICAL_ONLY__NOT_AUTOMATIC_AB_CYCLE",
       "source_pr": 37,
       "source_branch": "research/pfl-abh5-browser-atlas-independent-20261029",
@@ -281,7 +281,7 @@
       ],
       "result_file": "T028_RESULTADO.md",
       "structured_result_file": "T028_RESULT.json",
-      "execution_receipt": "PARTIAL_QA_RECEIPT_NO_FULL_T028_EXECUTION",
+      "execution_receipt": "ACTUAL_NATIVE_PYTHON_ATLAS_AND_CHROME_HTTP_PLAYWRIGHT_PASS",
       "cycle_budget": {
         "grant": 5,
         "valid": 2,
@@ -317,6 +317,21 @@
         "atlas_json_metadata": "80/80 JSON and 79/79 links from ABH30",
         "release_gates_passed": 0,
         "prior_legacy_slots_unconsumed": 2
+      },
+      "completed_on": "2026-10-29",
+      "executed_by": "ChatGPT via two bounded authorized private GitHub Actions jobs, no Codex",
+      "latest_verified_preconditions": {
+        "native_atlas_check": "PASS_80_LOTS_63_NODES",
+        "state_sha256": "e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+        "native_atlas_brief": "PASS_SAME_SHA_81_EDGES",
+        "atlas_job_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464",
+        "chromium_http_e2e": "PASS_21_OF_21",
+        "browser_job_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386",
+        "local_admin_block": "still ERR_BLOCKED_BY_ADMINISTRATOR, hosted runner separate",
+        "CURRENT_updated_after_native_pass": true,
+        "release_gates_passed": 0,
+        "scientific_2of3": "NOT_ACREDITED",
+        "two_legacy_AB_slots_untouched": true
       }
     }
   ],
@@ -324,7 +339,7 @@
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "2026-10-29 PFL T028 selftest PR successor: 12288 independent synthetic seeds PASS, 15/15 smoke + 9/9 HTTP direct PASS, Chromium page.goto BLOCKED_BY_ADMINISTRATOR, canonical Python Atlas still NOT_RUN; 2 AB slots retained.",
+  "last_verified_by": "29 Oct 2026: T028 native Python Atlas 80/80 and canonical SHA e41270..., actual Chrome HTTP Playwright 21/21, two bounded one-off GitHub jobs. Pilot core P0 completed; 0/6 release gates, R5. No Codex or main merge.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
