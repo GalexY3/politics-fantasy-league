@@ -39,6 +39,19 @@
       "support": "ForecastBench public repo main e1defb1a70d10311670b12701c837f712c672c03, verified license/README and immutable Git blob hashes for question sets, resolution metadata and model/team leaderboard CSV; methodology already provides difficulty-adjusted Brier",
       "limitation": "No individual forecaster files inspected, no person-level exposure or randomized leaderboard treatment, no SHA-256 local checkout; no effect measured",
       "memo": "FORECASTBENCH_EXTERNAL_DATA_GATE_20261029.md"
+    },
+    {
+      "kind": "PR41 T028 original Python and real browser native QA",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464",
+      "second_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386",
+      "support": "80 lots/63 nodes/81 edges same SHA256, 21/21 Playwright Chrome HTTP pilot checks",
+      "limit": "Technical pilot/Atlas QA only; readiness remains false"
+    },
+    {
+      "kind": "JDM 2017 IRT GJP prior art",
+      "url": "https://doi.org/10.1017/S1930297500005647",
+      "support": "Question difficulty/discrimination and non-random forecaster choice already studied",
+      "limit": "No raw microdata acquired or reanalysis done"
     }
   ],
   "priors": [
@@ -86,6 +99,39 @@
       "grade": "0/3",
       "CT2_prospective_unchanged": 22,
       "source": "https://www.forecastbench.org/docs/"
+    },
+    {
+      "id": "PF-BR07",
+      "claim": "PFL scoring based on forecaster skill corrected for event difficulty and self-selection constitutes new general statistical methodology",
+      "update": "GENERIC_NOVELTY_FURTHER_WEAKENED_BY_2017_GJP_IRT",
+      "source": "https://doi.org/10.1017/S1930297500005647",
+      "support": "Bo et al. 2017 already use item response theory on Good Judgment Project forecasts to handle question difficulty/discrimination and non-random question selection; different setup from PFL's causal leaderboard × transparency experiment",
+      "limits": "Published source comparison only, no legal person-level GJP file obtained, no PFL effect tested",
+      "grade": "0/3",
+      "ct2_after": 22
+    },
+    {
+      "id": "PF-BR08",
+      "claim": "Reproducing Atlas 0080 and performing actual Chromium localhost Playwright HTTP requires Codex",
+      "update": "REFUTED_FOR_TWO_BOUNDED_TECHNICAL_SUBTASKS",
+      "evidence": "Original Python atlas_delta.py check and brief on 80 lots pass on private GitHub hosted runner with canonical SHA256 e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f (run 40805714464); original pilot HTML/JS Playwright HTTP passes 21/21 on separate hosted runner (run 40806035386)",
+      "limits": "Not proof full product 6/6 gates, browser from administratively restricted local ChatGPT runtime or scientific effects; two short authorized jobs, not Codex",
+      "grade": "0/3",
+      "ct2_after": 22
+    },
+    {
+      "id": "PF-BR09",
+      "claim": "Public existence of a human forecasting archive implies ready-to-analyze individual exposure/eligibility records with unrestricted reuse",
+      "update": "NOT_SUPPORTED_RIGHTS_AND_EXPOSURE_GAP",
+      "support": "Good Judgment Project archive acknowledged by IARPA; Harvard Dataverse may use custom licences/Data Use Agreements; Metaculus API permissions and ToU must be individually respected",
+      "sources": [
+        "https://www.iarpa.gov/newsroom/article/iarpa-announces-publication-of-data-from-the-good-judgment-project",
+        "https://support.dataverse.harvard.edu/harvard-dataverse-general-terms-use",
+        "https://www.metaculus.com/api/"
+      ],
+      "limits": "No verified human bytes, SHA256, source-specific rights, pre-response exposure or randomised PFL leaderboard condition",
+      "grade": "0/3",
+      "ct2_after": 22
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -104,5 +150,21 @@
     "prior_CT2": 22,
     "post_CT2": 22,
     "security": "No human individual forecast sets loaded"
+  },
+  "latest_verified_qa": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-t028-atlas-direct-adversarial-20261029",
+    "atlas_check": "PASS_ORIGINAL_PYTHON",
+    "atlas_sha256": "e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+    "pilot_browser": "PASS_HTTP_CHROMIUM_21_OF_21",
+    "GJP_exposure_verified": false,
+    "CT2_prospective": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "legacy_AB_slots_unused": 2,
+    "report": "../T028_DIRECT_ATLAS_20261029/EXTERNAL_PRIOR_ART_AND_DATA_GATE.md"
   }
 }
