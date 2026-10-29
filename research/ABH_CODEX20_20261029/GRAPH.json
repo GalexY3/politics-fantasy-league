@@ -3,20 +3,130 @@
     {
       "id": "CODEX20",
       "type": "campaign",
-      "state": "active",
-      "authorized": 20
+      "status": "closed",
+      "authorized": 20,
+      "executed": 20,
+      "mode": "AB-H with AB-P cycles"
     },
     {
       "id": "C01",
-      "type": "product_acceptance",
-      "state": "answered",
+      "type": "AB-P",
+      "status": "answered",
       "evidence": "C01_RESULT.json"
     },
     {
-      "id": "EMPIRICAL_GATE",
-      "type": "dependency",
-      "state": "blocked",
-      "reason": "Independent identified scientific evidence still required"
+      "id": "C02",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C02_RESULT.json"
+    },
+    {
+      "id": "C03",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C03_RESULT.json"
+    },
+    {
+      "id": "C04",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C04_RESULT.json"
+    },
+    {
+      "id": "C05",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C05_RESULT.json"
+    },
+    {
+      "id": "C06",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C06_RESULT.json"
+    },
+    {
+      "id": "C07",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C07_RESULT.json"
+    },
+    {
+      "id": "C08",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C08_RESULT.json"
+    },
+    {
+      "id": "C09",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C09_RESULT.json"
+    },
+    {
+      "id": "C10",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C10_RESULT.json"
+    },
+    {
+      "id": "C11",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C11_RESULT.json"
+    },
+    {
+      "id": "C12",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C12_RESULT.json"
+    },
+    {
+      "id": "C13",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C13_RESULT.json"
+    },
+    {
+      "id": "C14",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C14_RESULT.json"
+    },
+    {
+      "id": "C15",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C15_RESULT.json"
+    },
+    {
+      "id": "C16",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C16_RESULT.json"
+    },
+    {
+      "id": "C17",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C17_RESULT.json"
+    },
+    {
+      "id": "C18",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C18_RESULT.json"
+    },
+    {
+      "id": "C19",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C19_RESULT.json"
+    },
+    {
+      "id": "C20",
+      "type": "AB-P",
+      "status": "answered",
+      "evidence": "C20_RESULT.json"
     }
   ],
   "edges": [
@@ -27,8 +137,98 @@
     },
     {
       "from": "CODEX20",
-      "to": "EMPIRICAL_GATE",
-      "type": "depends_on"
+      "to": "C02",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C03",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C04",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C05",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C06",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C07",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C08",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C09",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C10",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C11",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C12",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C13",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C14",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C15",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C16",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C17",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C18",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C19",
+      "type": "branches_from"
+    },
+    {
+      "from": "CODEX20",
+      "to": "C20",
+      "type": "branches_from"
     }
   ]
 }

@@ -1,3 +1,5 @@
+> **CODEX20 cerrado:** [20 ciclos AB-P y resultados](../research/ABH_CODEX20_20261029/FINAL_REPORT.md); autorizacion agotada, 0 pendientes. No equivale a cerrar todas las tareas T016-T028: conservan los criterios externos pendientes.
+
 # Cola de trabajo de Politics Fantasy League
 
 Estado por expediente; los resultados solo acreditan el commit indicado en cada informe.
