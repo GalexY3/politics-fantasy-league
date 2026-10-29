@@ -35,11 +35,18 @@ function day(s){
  return Number.isFinite(n)&&new Date(n).toISOString().slice(0,10)===s?n:null;
 }
 const key=x=>JSON.stringify([x.source,x.id]);
+// Exact checkpoints only: other intermediate original Git file revisions exist.
+const VERIFIED_CHECKPOINTS=Object.freeze({
+ '2026-10-08T00:00:00Z':0,
+ '2026-10-24T00:00:00Z':1,
+ '2026-10-29T16:00:00Z':2
+});
 export function selectVintage(asOfInstant){
  const asOf=instant(asOfInstant);
- const candidates=SOURCE_VINTAGES.filter(v=>instant(v.at)<=asOf);
- if(!candidates.length)throw Error('NO_VERIFIED_PUBLIC_VINTAGE');
- const last=candidates[candidates.length-1];
+ if(asOf<instant(SOURCE_VINTAGES[0].at))throw Error('NO_VERIFIED_PUBLIC_VINTAGE');
+ if(!Object.hasOwn(VERIFIED_CHECKPOINTS,asOfInstant))throw Error('NO_VERIFIED_EXACT_CHECKPOINT');
+ const last=SOURCE_VINTAGES[VERIFIED_CHECKPOINTS[asOfInstant]];
+ if(instant(last.at)>asOf)throw Error('FUTURE_SOURCE_SNAPSHOT');
  return Object.freeze({at:last.at,commit:last.commit,cohorts:last.cohorts,as_of_instant:asOfInstant});
 }
 export function planVintagePair(fromInstant,toInstant){
