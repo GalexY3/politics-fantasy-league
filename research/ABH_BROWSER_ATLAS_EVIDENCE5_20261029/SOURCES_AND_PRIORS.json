@@ -671,6 +671,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Original same source vendor, two previously inspected cohorts, no independent scientific replication, not proof no outcome revisions outside public binary eligible subset or outside checked Git history. 27 V8 tests on frozen Git code (not native Node); original source data processed in connected V8 in overlapping version batches rather than native local source-file E2E."
+    },
+    {
+      "id": "PF-BR49",
+      "claim": "Original public ForecastBench resolution-set records are effectively append-only in source key and metadata, so source-version changes matter only when the eligible binary market outcome changes.",
+      "update": "REFUTED_FOR_RAW_SOURCE_ROWS: ORIGINAL_SOURCE_REMOVALS_AND_METADATA_VALUE_REVISIONS_PRESENT; PREVIOUS_BINARY_ELIGIBLE_SUBSET_ZERO_FLIPS_NOT CONTRADICTED",
+      "support": "After pre-registering 3 historical revision pairs (C10) and freezing prior C09 original code Git blob, connected GitHub fetched 6 complete public original resolution-set JSON files; independent Git blob SHA1 was recomputed on all full UTF8 bodies and matched original repository objects 6/6. Across Sep27 Oct07→Oct08 441→440 rows: removed1 added0 mutated219; Sep27 Oct11→Oct12 437→427: removed10 added0 mutated212; Oct11 Oct23→Oct24 441→438: removed5 added2 mutated240. All source+id unique and count identities hold. Separate posthoc field breakdown found resolution_date changes 214/212/239 and resolved_to changes 79/77/128; many continuous values not binary Y. Same cohort/source as C08; not new human science.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C10_RUN_RECEIPT.json",
+      "type": "ABH_ORIGINAL_PUBLIC_GIT_RAW_ROW_REVISION_SOURCE_QUALITY",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Three outcome-informed source pairs chosen because C08 had already found declining total rows; non-random selection and same public publisher. Field-level decomposition posthoc. Git version identity is not authoritative per-item first_public_at, no human microdata/exposure/causal effect, no full positive native source-file CLI. Counts of transitions are not unique changed events."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -864,10 +876,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
+    "branch": "research/pfl-abh30-c10-original-raw-revisions-20261029",
     "granted": 30,
-    "valid_limited": 8,
-    "new_remaining": 22,
+    "valid_limited": 10,
+    "new_remaining": 20,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -880,7 +892,8 @@
       "PF-BR45",
       "PF-BR46",
       "PF-BR47",
-      "PF-BR48"
+      "PF-BR48",
+      "PF-BR49"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
@@ -892,6 +905,8 @@
     "human_Causal_stop": "Original Xu 2026 ICPSR E227582 code-only and Statistics Finland human data blocked; Agranov AEARCTR-0003315 original human access not documented.",
     "verified_original_public_git_blobs": 21,
     "resolution_source_versions": 19,
-    "new_observation": "Original total resolution row counts non-monotone while eligible source binary outcomes monotone; preserve selection warnings and human R5."
+    "new_observation": "Original version pairs show 16 raw-row removals, 2 additions, 671 mutated row transitions (not unique outcomes), and many resolution_date / continuous resolved_to edits; market-binary eligible C08 results unchanged; V8 not native.",
+    "verified_original_public_git_blobs_in_C10": 6,
+    "raw_original_source_pair_audits": 3
   }
 }
