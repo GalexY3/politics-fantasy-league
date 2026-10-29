@@ -1,0 +1,15 @@
+{
+  "schema": "pfl.abh30.c07.initial_negative_repair_before_change.v1",
+  "date": "2026-10-29",
+  "prereg_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+  "failed_test": "First compilation of frozen original source `new Function` before any original Oct23 resolution body read",
+  "failure": "SyntaxError: Unexpected token ']'",
+  "cause": "In SOURCE_VINTAGES third object, closing `cohorts:Object.freeze({...})` omitted a final `}` closing the vintage object before `]);`",
+  "initial_source_git_blob": "7cf7585b7310f495dcfdd56b9adf4cd5514c8ef3",
+  "initial_source_sha256": "383bd43add9daa11d0010f8f43561fdc051d6a4b7fc7df0c880caf18e180729b",
+  "allowed_repair": "Only insert missing `}` immediately before `]);` after the third metadata item. Do not change dates, source blobs, outcome logic, test source, hypotheses or thresholds. Re-freeze Git blob and SHA256 after patch, before rerun and original data inspection.",
+  "negative_preserved": true,
+  "cycles_consumed_by_failure": 0,
+  "original_oct23_resolution_body_read_before_freeze": false,
+  "decision": "REPAIR_WITHIN_C07_NOT_EXTRA_CYCLE"
+}
