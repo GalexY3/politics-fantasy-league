@@ -1,0 +1,99 @@
+{
+  "schema": "pfl.abh30.c19.static_atlas_89_actual_read_receipt.v1",
+  "cycle": "ABH30-C19",
+  "status": "VALID_LIMITED_STATIC_FULL_89_SOURCE_AUDIT_NOT_CANONICAL",
+  "prereg_commit": "32e662ca2cd4395b133f379b746bfbca0d8d2e86",
+  "code_frozen": {
+    "code_Git": "c38bada62c89ecd8cea4089e454aaf26f74c49bb",
+    "tests_Git": "98c452efd4f20f1598de1b9e62e6cb53b80bd8ec",
+    "canonical_atlas_delta_py_Git": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "canonical_abmap_py_Git": "687449178deba84f77b6cc2df2c61cc36d9cf0cd"
+  },
+  "native_fixture_tests": {
+    "runtime": "Node v22.16.0",
+    "passed": 8,
+    "failed": 0,
+    "exit_code": 0,
+    "TAP_sha256": "1a3a4db767dd748cc02f4be44b8a6449943dc8658c6dc52798e1426788e82360"
+  },
+  "real_GitHub_data": {
+    "branch_base": "839028b96899bb3bb7f6e5869981138b6a3bfef4",
+    "original_source_batch_count": 89,
+    "original_source_bytes_sum_directory": 308790,
+    "chunks": [
+      {
+        "index": [
+          1,
+          15
+        ],
+        "ops": 230,
+        "run_add": 86
+      },
+      {
+        "index": [
+          16,
+          30
+        ],
+        "ops": 129,
+        "run_add": 104
+      },
+      {
+        "index": [
+          31,
+          45
+        ],
+        "ops": 26,
+        "run_add": 21
+      },
+      {
+        "index": [
+          46,
+          60
+        ],
+        "ops": 16,
+        "run_add": 15
+      },
+      {
+        "index": [
+          61,
+          75
+        ],
+        "ops": 15,
+        "run_add": 15
+      },
+      {
+        "index": [
+          76,
+          89
+        ],
+        "ops": 32,
+        "run_add": 32
+      }
+    ],
+    "total_ops": 448,
+    "total_run_add": 273,
+    "all_files_retrieved": true,
+    "git_blob_SHA_matched_listing_per_file": true,
+    "JSON_parse_errors": 0,
+    "schema_errors": 0,
+    "parent_link_breaks": 0,
+    "batch_number_prefix_mismatches": 0,
+    "global_run_ID_duplicates": "NOT_MACHINE_CERTIFIED_ACROSS_CHUNKS; manually disjoint families observed",
+    "native_Python_89_batch_replay": "NOT_EXECUTED",
+    "canonical_graph_validation": "NOT_EXECUTED"
+  },
+  "scope": "Original source structural chain audit only, no human/causal novelty, no canonical digest/graph",
+  "science_grade": "0/3",
+  "CT2": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "gates": "0/6",
+  "budget_after": {
+    "new_valid": 19,
+    "new_remaining": 11,
+    "historical_STOP_R5": 2
+  }
+}
