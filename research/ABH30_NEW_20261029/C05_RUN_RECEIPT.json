@@ -1,0 +1,97 @@
+{
+  "schema": "pfl.abh30.c05.original_source_publication_run.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C05",
+  "mode": "AB-R_ORIGINAL_GIT_PUBLICATION_FALSIFICATION_WITH_ABP_GATE",
+  "scientific_grade": "0/3",
+  "DRIFT_D": 2,
+  "prereg_commit": "16b505b9ed91c429724f08bfe5fa6761118c80e5",
+  "native_sha_freeze_commit": "c117b7d0c8d9c1c29aa04aa9c82a7912f1e8781f",
+  "code": {
+    "path": "src/politics_fantasy/forecastbench_publication.py",
+    "git_sha1": "91119f6c42f1a4a1ac4126de9ea249d538f862c2",
+    "sha256": "2dea74904ec9fa00b60e92a5ff542cb1c37b2cbc87316dd7d387bf5b16be89d7"
+  },
+  "tests": {
+    "path": "tests/test_forecastbench_publication.py",
+    "git_sha1": "9d1a1afd0a08a4dc010d47f963b9a76ae116dedc",
+    "sha256": "243b7334d901cd226544b1782f3febfaa497abb0bf1298e1805244a717eb7a41",
+    "runtime": "Python 3 native stdlib",
+    "command": "PYTHONPATH=src python -m unittest discover -s tests -p test_forecastbench_publication.py -v",
+    "planned": 15,
+    "passed": 15,
+    "failed": 0,
+    "exit": 0,
+    "local_exact_blob_match": true
+  },
+  "original_public_git_search": {
+    "upstream": "forecastingresearch/forecastbench-datasets",
+    "first_question_commit": "1c1ed16c8d0a1b14e548336b9c4ff91c80809acd",
+    "first_question_commit_at": "2026-09-27T00:08:59Z",
+    "resolution_path": "datasets/resolution_sets/2026-09-27_resolution_set.json",
+    "queries": [
+      "GitHub commit history for resolution path asof 2026-10-01T23:59:59Z -> empty",
+      "asof 2026-10-06T23:59:59Z -> empty",
+      "asof 2026-10-07T08:00:00Z -> 4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110, dated 07:19:29Z"
+    ],
+    "first_public_git_source_commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+    "first_git_committed_at": "2026-10-07T07:19:29Z",
+    "first_resolution_blob_sha1": "0b67cfec67fad4b23899e8e48c6ca3a034344edc",
+    "first_resolution_utf8_bytes": 107702,
+    "first_resolution_sha_recomputed_in_code_mode": true,
+    "independent_sha1_known_vector_test": true,
+    "first_qblob_sha1": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+    "later_source_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "later_commit_at": "2026-10-29T07:30:17Z",
+    "later_resolution_blob": "b2ee53f09407e2b555668f66e286073ace6d5fce"
+  },
+  "real_public_original_outcome_validation": {
+    "execution": "Frozen original JS guard code SHA1 0802dd7dd2ead0aa17607f3995aea339efbd9c99 run in V8 Code Mode on JSON of original first Oct07 Git snapshot and original question snapshot. The NEW Python evaluator full positive run against these two original byte files was not performed locally because no network bytes available in Python container; its exact byte/hash and negative case behavior are native tested.",
+    "first_git_snapshot_as_of": "2026-10-08T00:00:00Z",
+    "first_source_question_records": 500,
+    "first_source_resolution_entries": 441,
+    "admissible": 30,
+    "rejected": 470,
+    "positive_outcomes": 9,
+    "by_market": {
+      "manifold": 1,
+      "metaculus": 2,
+      "kalshi": 14,
+      "polymarket": 13
+    },
+    "published_market_frozen_brier_resolved_only": 0.17264950821433986,
+    "later_git_snapshot_as_of": "2026-10-29T16:00:00Z",
+    "later_question_records": 500,
+    "later_resolution_entries": 642,
+    "later_admissible": 52,
+    "source_publication_at_oct1": "NO_PUBLIC_RESOLUTION_SET_FILE_IN_ORIGINAL_GIT_HISTORY",
+    "oct1_unwarranted_prior_claim": "Prior ABH30 C01 counted 10 outcomes using Oct29 snapshot plus Oct01 event cutoff; cannot assert those were available on Oct01 from repository."
+  },
+  "limitations": [
+    "No claim that source outcomes were unavailable on original markets or all external websites by Oct01, only in THIS public Git repository",
+    "File commit timestamp is availability of whole file, not per-row first_public_at; as-of Oct08 uses first snapshot, but cannot prove each source record was published earlier by third parties",
+    "One exact source provenance audit, not independent scientific replication across datasets or causal human leaderboard effect",
+    "PFL ABH30 C01 existing source guard mechanics of event date still pass its tests; its stronger as-of interpretation is explicitly withdrawn/superseded",
+    "The new Python code guards two narrow frozen checkpoints only and has no locally executed positive full raw first-snapshot ingestion",
+    "No personal forecasts, identities, licensing of individual observations, new recruitment, political actor scoring or automated public collection"
+  ],
+  "scientific": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates_before": 0,
+    "release_gates_after": 0
+  },
+  "accounting": {
+    "granted_new": 30,
+    "valid_before": 4,
+    "valid_after": 5,
+    "new_remaining": 25,
+    "legacy_separate_remaining": 2
+  },
+  "negative_results_preserved": true
+}
