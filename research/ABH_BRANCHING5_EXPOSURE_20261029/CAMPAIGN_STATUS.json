@@ -25,36 +25,59 @@
     },
     {
       "id": "C03",
-      "type": "AB-R",
-      "status": "PLANNING_ONLY_STOP_R5",
-      "result": "GJP original 2246 count does not furnish full assigned roster including nonrespondents; no human rows examined",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "D": 1,
       "grade": "0/3",
-      "D": 0
+      "result": "New distinct assignment interference and room weighting diagnostic: 8/8 Node tests, 16 synthetic actors in 8 rooms; transparency factorial contrast equal person 0.25 versus equal room 0.5; room mixing fails closed.",
+      "prereg_commit": "b6409e2c7715f5f1bc6bcab572c3945860248e2e",
+      "result_record": "../ABH_BRANCHING5_INTERFERENCE_20261029/C03_RUN_RECEIPT.json",
+      "superseded_unexecuted_plan": {
+        "id": "C03",
+        "type": "AB-R",
+        "status": "PLANNING_ONLY_STOP_R5",
+        "result": "GJP original 2246 count does not furnish full assigned roster including nonrespondents; no human rows examined",
+        "grade": "0/3",
+        "D": 0
+      }
     },
     {
       "id": "C04",
       "type": "AB-R",
-      "status": "PLANNING_ONLY_STOP_R5",
-      "result": "Erat et al author links OSF data/code; OSF contents/license unverified. Palikot 2026 supplies competing composite treatment with existing control leaderboard.",
+      "status": "VALID_LIMITED_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "D": 2,
       "grade": "0/3",
-      "D": 2
+      "result": "Source-backed aggregate analysis Karabiber & Gurol 2026, N219 included, 13 <1min excluded; 8568 allocations examined, max feasible six-arm retention gap 13/49 versus pooled excluded 13/232. Non-causal conditional bound.",
+      "prereg_commit": "9d0a42fa573c7a6fe05b790a4bc944e6894f6e8d",
+      "result_record": "../ABH_BRANCHING5_INTERFERENCE_20261029/C04_RUN_RECEIPT.json",
+      "superseded_unexecuted_plan": {
+        "id": "C04",
+        "type": "AB-R",
+        "status": "PLANNING_ONLY_STOP_R5",
+        "result": "Erat et al author links OSF data/code; OSF contents/license unverified. Palikot 2026 supplies competing composite treatment with existing control leaderboard.",
+        "grade": "0/3",
+        "D": 2
+      }
     },
     {
       "id": "C05",
       "type": "AB-H",
       "status": "UNOPENED_R5",
-      "result": "No extra distinct experiment identified for ethical/legal and scientific gate",
+      "result": "STOP_R5: verified external prior art and source rights but no further distinct discriminant with ethical and scientific novelty. Not opened.",
       "grade": "0/3",
       "D": null
     }
   ],
   "counts": {
-    "valid": 2,
+    "valid": 4,
+    "valid_scientific_0of3": 1,
+    "valid_product_synthetic_0of3": 3,
     "invalid_cycles_final": 0,
     "invalid_attempts": 1,
-    "planning": 2,
+    "planning_active": 0,
+    "planning_historical_superseded": 2,
     "unopened": 1,
-    "remaining_new": 3,
+    "remaining_new": 1,
     "remaining_legacy_separate": 2
   },
   "CT2": {
@@ -74,7 +97,7 @@
   ],
   "pilot_launch_gates_passed": 0,
   "total_launch_gates": 6,
-  "decision": "STOP_R5_SCIENTIFIC; TWO_SYNTHETIC_PRODUCT_CYCLES_COMPLETED; PRESERVE_THREE_NEW_AND_TWO_LEGACY",
+  "decision": "STOP_R5_NEW_C05; FOUR_AB_CYCLES_COMPLETED_OF_FIVE_GRANTED, C04_AGGREGATE_NONCAUSAL, ONE_NEW_PLUS_TWO_HISTORICAL_UNCONSUMED",
   "no_main_merge": true,
   "no_chatrelay": true,
   "no_expensive_CI": true,
@@ -84,5 +107,7 @@
     "PREREG_FREEZE.json",
     "TIMESTAMP_TIE_REPAIR_PREREG.json",
     "RUN_RECEIPT.json"
-  ]
+  ],
+  "latest_branch": "research/pfl-abh5-cluster-interference-20261029",
+  "canonical_report": "../ABH_BRANCHING5_INTERFERENCE_20261029/FINAL_REPORT.md"
 }
