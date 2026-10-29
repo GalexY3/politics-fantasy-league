@@ -1,0 +1,11 @@
+# AB Atlas · Estado complementario de PILOT_NATIVE5 (29/10/2026)
+
+**No sustituye al archivo canónico `ab_atlas/CURRENT.md`**, que ya estaba sin sincronizar del lote 0078 de la campaña anterior y no se ha reescrito aquí. La actualización O7 real es `updates/0079-pfl-abh-pilot-native5-closure-20261029.json`, con `parent_batch=0078-PFL-ABH-PROSPECTIVE-PILOT5-CLOSURE-20261029` y cinco `run.add` ejecutados, cada uno enlazado a sus propios `C0X_PREREG.json` y `C0X_RESULT.json`. El checker/replay nativo del Atlas 0078–0079 está **NOT_RUN**.
+
+Estado de campaña: **5/5 AB-H A–J acotados válidos** (3 AB-P, 2 AB-R) / 0 inválidos / 0 planning / 0 restantes; branch `research/pfl-abh5-pilot-native-integration-20261029` desde HEAD de PR #35 `f60aebb9fae4bfa09bb642c68cdd072ab99583f6`. C01: 5/5 Git source blob SHA exactos y 84/84 pruebas previas Node `v22.16.0` locales. C02: cinco entradas heredadas/`Symbol` indebidamente aceptadas en el código anterior; tres validadores corregidos; 84/84 regresión Node. El mock de aprobación aún **se falsifica** y NO autoriza captación. C03: demo local 4 brazos, 17/17 comprobaciones estáticas, sin key/recogida. C04: servidor loopback `127.0.0.1:8787`, 15/15 tests HTTP negativos/positivos. C05: cinco ancestros prereg→resultado de PR35 comprobados, 5 `run.add` en 0078 y fuentes CEI USAL/AEPD verificadas.
+
+Pendiente: **Chromium E2E timed out**, suite de checkout privado integral NOT_RUN, script local de 84 pruebas no versionado en GitHub, synchronizar CURRENT/Atlas replay, revisión de privacidad/ética, autorización y consentimiento, paridad temporal/psicométrica. **CERO** participantes, consentimientos reales, resultados humanos y puntuación política nominal.
+
+CT2 identidad 29/100, mecanismos 20/100, prospectiva 25/100 (líneas independientes, ordinal, sin variación); VSDS 1/3, V4 contractual 36,90%, premios 2/90, gates 0/6, N1/N2/N3 nuevos 0/0/0.
+
+[Informe](../research/ABH_PILOT_NATIVE5_20261029/FINAL_REPORT.md) · [ledger](../research/ABH_PILOT_NATIVE5_20261029/CAMPAIGN_STATUS.json) · [sources/priors](../research/ABH_PILOT_NATIVE5_20261029/SOURCES_AND_PRIORS.json) · [CT2](../research/ABH_PILOT_NATIVE5_20261029/CT2_FULL_AND_ZOOM.svg) · [tarea T027](../tareas_codex/T027_PILOT_BROWSER_ATLAS_ETHICS_20261029.md).
