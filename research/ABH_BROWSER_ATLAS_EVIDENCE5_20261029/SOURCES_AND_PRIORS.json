@@ -746,6 +746,18 @@
       "CT2_prospective_ordinal": 20,
       "rights": "ARTICLE_OPEN_ACCESS_AGGREGATES_ONLY; authors explicitly do not have permission to share individual participant data",
       "limits": "Not public vs private quartile factorial, not PFL users, some heterogeneity by post-treatment academic achievement, direct paper data unavailable. Pre-freeze results seen; no cycle spent, no new PFL causal finding. Source abstract % wording not interpreted as percentage points."
+    },
+    {
+      "id": "PF-BR55",
+      "claim": "A matching fictional design assignment or opportunity proves an individual viewed the assigned rank feedback; a missing display receipt can be encoded as no exposure.",
+      "update": "REJECT_AS_INSTRUMENTATION_ASSUMPTION: SYNTHETIC_ASSIGNMENT_OPPORTUNITY_RECEIPT_COUNTS_SEPARATED_AND_MISSING_NOT_ZERO",
+      "support": "ABH30-C15 prereg commit 582035ac5d18ddb1ce2504cf0dba044225f61e9a frozen code Git blob db4df150fa73d26ee3ec40965586e4f3ca3c790f and 20-case tests ff04ef970dca3e5f68c98aa7f5818e6022287b1b. Native Node v22.16.0 20/20 PASS. Five-arm synthetic assignment/opportunity/log mapping rejects changed rank granularity, audience, stale room, duplicate receipts, out-of-window renders, contaminated room arms. Absent receipts output UNKNOWN_EXPOSURE_NOT_ZERO. A literal 'INDEPENDENT_SYNTHETIC_RENDER_LOG' does not authenticate real renderer. No human data, causal evidence, or launch gate.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C15_RUN_RECEIPT.json",
+      "type": "ABH_SYNTHETIC_FIVE_ARM_EXPOSURE_OPPORTUNITY_PRODUCT_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Synthetic-only receipts are self-declared fixture records. No secure independent delivery, real exposure or allocation, opportunity frame completeness, no human ITT or effect sizes."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -939,10 +951,10 @@
   },
   "latest_ABH30": {
     "date": "2026-10-29",
-    "branch": "research/pfl-abh30-c14-rank-visibility-factorial-20261029",
+    "branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
     "granted": 30,
-    "valid_limited": 14,
-    "new_remaining": 16,
+    "valid_limited": 15,
+    "new_remaining": 15,
     "historical_remaining": 2,
     "CT2_scientific_ordinal": 20,
     "N1_N2_N3": [
@@ -961,7 +973,8 @@
       "PF-BR51",
       "PF-BR52",
       "PF-BR53",
-      "PF-BR54"
+      "PF-BR54",
+      "PF-BR55"
     ],
     "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
     "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
@@ -981,7 +994,7 @@
     "new_code_issue": "Original Rmd Oct13 updates var2=5 vs expected 6; posthoc statically verified, impact unknown",
     "positive_PFL_human_causal_evidence": false,
     "new_product_mechanism": "C13 bounded [0,1] missingness interval 18/18 native Node on purely fictional 4-arm aggregate, sign ambiguity example, not causal",
-    "new_product": "C14 five-arm rank audience×resolution factorial contract 20/20 repaired native, one preserved initial invalid attempt, no people/outcomes",
+    "new_product": "C15 five-arm assignment/opportunity/receipt synthetic join Node 20/20 frozen; missing is unknown; real exposure attestation unverified",
     "posthoc_non_cycle_source": "PF-BR54 open-access Chen et al. 2024 randomised local leaderboard rank/effort displacement; article primary data unavailable, no independent C15 prereg"
   }
 }
