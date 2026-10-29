@@ -49,7 +49,7 @@ def _date_time(value: str) -> datetime:
 def git_blob_sha1(raw: bytes) -> str:
     if type(raw) is not bytes or not 0 < len(raw) <= 5_000_000:
         raise ValueError("BOUNDED_ORIGINAL_BYTES_REQUIRED")
-    return sha1(b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw).hexdigest()
+    return sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest()
 
 
 def select_verified_checkpoint(as_of_instant: str) -> dict:
