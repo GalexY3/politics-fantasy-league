@@ -2,7 +2,13 @@
 
 **Fecha:** 29/10/2026. **Autorización nueva expresa:** 30 ciclos AB-H BRANCHING adicionales a la campaña anterior 5/5; las **dos plazas AB-H históricas permanecen separadas, no ejecutadas**. La PR #53 estaba abierta en HEAD `59c00952547b53c91e05e3173495d5902c4528e0`. Nueva rama: `research/pfl-abh30-source-cutoff-20261029` (PR de borrador apilada sobre #53; no merge a main). Aplicadas normas AGENTS, AB 3.2.1 O1–O7, congelación de contrato, Git blob + SHA256 local antes de pruebas nativas, STOP_R5 y adversarios fuertes.
 
-**Resultado actualizado tras C06: 6/30 ciclos nuevos ejecutados y válidos de alcance acotado (4 AB-P; 2 AB-R de fuentes públicas no humanas), 24/30 concedidos sin consumir.** Históricos **2/2 pendientes** sin gastar. CT2 científica PFL `20→20/100` ordinal, **N1/N2/N3 nuevos 0/0/0**. Lanzamiento público **0/6 gates**; scope y madurez V4 no se reevalúan por estos cambios. [Ledger oficial](CAMPAIGN_STATUS.json), [grafo O7](../ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json), [CT2 escala 1–100 y ampliación](CT2_FULL_AND_ZOOM.svg). Las ejecuciones originales de AEA/GJP y leaderboard de personas siguen bloqueadas por derechos, ausencia de padrón aleatorizado completo y exposición registrada independientemente.
+**Resultado actualizado tras C07: 7/30 ciclos nuevos ejecutados y válidos de alcance acotado (C07 híbrido AB-P + AB-R de fuente pública no personal), 23/30 concedidos sin consumir.** Históricos **2/2 pendientes** sin gastar. CT2 científica PFL `20→20/100` ordinal, **N1/N2/N3 nuevos 0/0/0**. Lanzamiento público **0/6 gates**; scope y madurez V4 no se reevalúan por estos cambios. [Ledger oficial](CAMPAIGN_STATUS.json), [grafo O7](../ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json), [CT2 escala 1–100 y ampliación](CT2_FULL_AND_ZOOM.svg). Las ejecuciones originales de AEA/GJP y leaderboard de personas siguen bloqueadas por derechos, ausencia de padrón aleatorizado completo y exposición registrada independientemente.
+
+## Nueva referencia prioritaria C07 — replay de archivos originales publicados
+
+**C07 sí utiliza versiones originales distintas, no el archivo del 29/10 desplazado al pasado.** Los siete objetos Git públicos íntegros se verificaron contra sus SHA, se ejecutó el motor exacto sobre los originales y se hizo regresión nativa 25/25 + 8/8 (33/33). En la cohorte 27/09 se admiten 30 eventos el 08/10, 46 el 24/10 y 52 el 29/10. La cohorte 11/10 **no estaba disponible el 08/10** en este repositorio; el 24/10 incorpora 2 y el 29/10 8. En las comparaciones de eventos previamente conocidos hubo **0 resultados binarios invertidos y 0 resultados desaparecidos**. La fuente Git puede incorporar más eventos sin que ello pruebe calidad predictiva ni causalidad humana. **Solo se admiten tres instantes exactos**: la auditoría descubrió versiones intermedias no cubiertas, registró el negativo y reparó esa laguna para impedir atribuir incorrectamente la «última versión». Se preserva el primer fallo de compilación y la reparación posterior, con prerregistros separados. [Informe A–J C07](C07_REPORT.md), [recibo de siete fuentes](C07_RUN_RECEIPT.json), [manual de CLI](../../docs/FORECASTBENCH_ORIGINAL_VINTAGE_REPLAY.md).
+
+**Nuevo bloqueo documentado:** DOI exacto de código del experimento aleatorizado de Xu et al. `10.3886/E227582`, sin derecho acreditado de usar microdatos originales custodiados por Statistics Finland. Priors **PF-BR46–47** añadidos; no hay ciclo humano. CT2 científica prospectiva sigue **20/100** ordinal; N1/N2/N3 nuevos **0/0/0**, lanzamiento **0/6**. **7/30 ciclos válidos limitados, 23 nuevos autorizados pendientes, 2 históricos separados bajo STOP_R5.**
 
 ## Corrección adversarial posterior C05 — prioridad de lectura
 
@@ -47,7 +53,7 @@ No hay experimentación con personas, puntuación de políticos reales, acceso a
 
 **Criterios próximos de avance sin consumir cuotas triviales:** localizar datos originales con identificación causal y derechos, o ejecutar una intervención de producto con criterios verificables y con rutas de uso real, no variantes de análisis agregado o nuevas semillas sintéticas. Las mejoras de integridad del código por sí solas NO aportan evidencia sobre el comportamiento humano.
 
-**Saldo vigente: 24 ciclos AB-H nuevos todavía concedidos, más 2 históricos en STOP_R5. No se solicita nuevo permiso.**
+**Saldo vigente: 23 ciclos AB-H nuevos todavía concedidos, más 2 históricos en STOP_R5. No se solicita nuevo permiso.**
 
 ## ABH30-C05 · AB-R original de publicación vs acontecimiento
 
@@ -60,3 +66,7 @@ El código nuevo de producto (no solo documento) [`forecastbench_publication_gat
 A–J y Git/SHA256 [congelados antes de ejecutar](C06_PREREG_AJ_SHA.json); **18/18 tests nativos Node de integración** y **11/11 regresiones previas actualizadas** PASS (29/29, exit 0). Pruebas de filesystem y proceso auténticos con datos locales artificiales explícitamente no oficiales, originales completos no ingeridos en el CLI local. [Informe A–J](C06_REPORT.md) · [recibo verificable](C06_RUN_RECEIPT.json) · [guía de CLI actualizada](../../docs/FORECASTBENCH_PUBLIC_OFFLINE_AUDIT.md). El anterior análisis original de fuente Git de C05 se conserva sin contar como nueva réplica. 
 
 **Saldo nuevo 6/30 ciclos válidos limitados, 24 pendientes y 2 históricos separados bajo STOP_R5.** CT2 científica **20/100** ordinal, N1/N2/N3 **0/0/0**, puertas **0/6**. No hay evidencia causal humana, autorización de microdatos personales ni readiness pública. [CT2 escala completa y zoom](CT2_FULL_AND_ZOOM_C06.svg).
+
+## C07 · balance actualizado
+
+Tras el C07, **7/30** nuevos ciclos ejecutados de alcance limitado; **23** autorizados no consumidos; **dos históricos** separados y todavía sujetos a STOP_R5. La ampliación documental ha llegado a **47 priors**. Ninguna ejecución sobre datos originales humanos, ni elevación CT2 por número de versiones, y ninguna puerta de lanzamiento superada. [CT2 original escala completa y ampliada](CT2_FULL_AND_ZOOM_C07.svg). No abrir ciclos adicionales para consumir presupuesto sin identificar nuevas fuentes legales o un producto distinto realmente validable.
