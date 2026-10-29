@@ -1,0 +1,43 @@
+{
+  "id": "ABH30-P2-A10",
+  "phase": "AUTONOMY",
+  "status": "VALID_GITHUB_WRITE_WITHOUT_CODEX",
+  "prereg_commit": "4e45c0a6b6ec54261446fc6ffcf0c48486a7f100",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "proof_file": "A10_GITHUB_WRITE_PROOF.json",
+    "create_commit": "4ab8ac1b24a3fd90e42467a431e9f54e0160141b",
+    "proof_blob": "5e57ba0cb1f4424cb6c1e91cd6037b8c8bdf8e43",
+    "read_back_exact": true,
+    "nonexistent_path_404": true,
+    "main_sha": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "main_unmodified": true,
+    "pr40_draft": true,
+    "local_executables": {
+      "ollama": false,
+      "qwen": false,
+      "codex": false
+    }
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "Can write code/receipts to a private branch and read back exactly, not proof that a local code-execution agent is installed; cannot presume authenticated local checkout or PR merge permissions."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "Can write code/receipts to a private branch and read back exactly, not proof that a local code-execution agent is installed; cannot presume authenticated local checkout or PR merge permissions."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
