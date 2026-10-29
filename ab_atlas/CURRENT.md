@@ -1,3 +1,9 @@
+# ABH30-C18 · fuente humana licenciada pero NO utilizable por esta vía (29/10/2026)
+
+**18/30 nuevos ciclos AB limitados verificados; 12 pendientes; 2 históricos STOP_R5.** C18 [informe](../research/ABH30_NEW_20261029/C18_REPORT.md): licencia CC BY-SA confirmada en repositorio oficial ForecastBench; original JSON de pronósticos humanos no pudo parsearse por acceso parcial y el esquema público incorpora identificadores pseudónimos y texto libre, de modo que **no hay análisis de datos humanos ni autorización para asumir privacidad**. Se ejecutó una comprobación documental negativa preregistrada, sin repetir el acceso fallido. PF-BR58 y Atlas append-only 0089; **O7 graph no actualizado por rechazo explícito del conector**, nota de reconciliación separada. CT2 científica 20/100, N1–3 cero, lanzamiento 0/6. El Python original del Atlas 81–89 no ha sido ejecutado.
+
+---
+
 # ABH30-C17 · HMAC sintético (29/10/2026)
 
 **17/30 nuevos válidos limitados, 13 pendientes, 2 históricos STOP_R5.** C17 implementa y ejecuta verificación HMAC y replay de recibos de visualización ficticios [A–J](../research/ABH30_NEW_20261029/C17_REPORT.md) con Git SHA congelados antes de ejecución, **16/16 Node PASS**, pero ni clave independiente ni recibo humano real. CT2 científica PFL 20/100, N1–3 0, lanzamiento 0/6. Fuente/prior PF-BR57 y O7 actualizados. Atlas append-only lote 0088 sobre 0087; Python original 81–88 **NO EJECUTADO**. No confundir integridad con procedencia. No merge main ni CI costosa.
