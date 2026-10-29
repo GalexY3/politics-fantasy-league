@@ -1,0 +1,37 @@
+{
+  "id": "ABH30-P1-C11",
+  "status": "VALID_AB_P_INTEGRITY",
+  "prereg_commit": "dad9aa1bc1d0b466a47b79288681080707e2cd1f",
+  "A": "Read Cxx_PREREG for precommitted endpoint",
+  "B": "Falsifiable declared null vs mechanism",
+  "C": "Control and endpoint defined in precommit",
+  "D": "/mnt/data/pfl_native_qa local verified Git blob snapshot of PR37 pilot, Node v22.16.0, script pfl_abh30_native_probe.mjs; full transcript/JSON in current sandbox",
+  "E": {
+    "http_requests": 80,
+    "status_200": 53,
+    "status_405": 27,
+    "cookie_responses": 0,
+    "files_sha256_before_after_identical": 5,
+    "files_total": 5
+  },
+  "F": {
+    "adversarial_limit": "80 synthetic HTTP interactions did not mutate five original files; not evidence about files not audited or long-running server memory.",
+    "controls_measured": true
+  },
+  "G": "No human outcomes. Node local-only. No independent empirical replication.",
+  "H": {
+    "prior_update": "80 synthetic HTTP interactions did not mutate five original files; not evidence about files not audited or long-running server memory."
+  },
+  "I": {
+    "internal_validity": "Local native Node QA with source snapshot; no full clean checkout",
+    "novelty": "technical local result not new science",
+    "grade": "0/3",
+    "ethics": "No human data"
+  },
+  "J": "STOP_LOCAL for this mechanism; pivot to different evidence",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0,
+  "executable_probe": "sandbox:/mnt/data/pfl_abh30_native_probe.mjs",
+  "verifiable_receipt": "sandbox:/mnt/data/pfl_abh30_native_probe_result.json"
+}
