@@ -7,8 +7,8 @@
   "mode": "AB-H_BRANCHED_30",
   "authorization": {
     "new_granted": 30,
-    "new_completed": 3,
-    "new_remaining": 27,
+    "new_completed": 4,
+    "new_remaining": 26,
     "prior_grant_completed": 5,
     "prior_grant_remaining": 0,
     "historical_legacy_approved_remaining": 2,
@@ -82,15 +82,31 @@
         ]
       },
       "limits": "Existing original public cohorts, NOT independent new data or human rankings. Deterministic unidentified full mean, weak p=.5 is not competent baseline."
+    },
+    {
+      "id": "ABH30-C04",
+      "mode": "AB-P",
+      "D": 2,
+      "status": "VALID_TECHNICALLY_BOUNDED_OFFLINE_PUBLIC_SOURCE_IO_CLI",
+      "grade_science": "0/3",
+      "prereg_commit": "17559aa255434ef125f7cbe792c08544caa81721",
+      "result": "C04_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "11/11",
+        "github_and_local_git_blobs_match": true,
+        "native_filesystem_and_process_e2e_negative": true,
+        "positive_four_real_raw_files_e2e": false
+      },
+      "limits": "Runnable offline source audit CLI requires all four original public raw file hashes before JSON scoring; positive four-file original full-source pipeline NOT RUN; no human data or claim of public release."
     }
   ],
   "counting": {
-    "valid_limited": 3,
+    "valid_limited": 4,
     "invalid_cycles": 0,
     "invalid_attempts": 0,
     "planning_only_unconsumed": 0,
-    "unopened_authorized": 27,
-    "new_remaining": 27,
+    "unopened_authorized": 26,
+    "new_remaining": 26,
     "historical_remaining": 2
   },
   "science": {
@@ -119,7 +135,8 @@
     "Only existing original public cohort regression reused; no new scientific independent replication",
     "No four-file positive raw-content digest verification locally; source integrity pin still requires external byte-level acceptance",
     "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged",
-    "C03 original public market 250-question cohort Brier broad missing-outcome bounds include p=.5 weak reference in both periods, despite low resolved-subset mean; no all-question superiority can be inferred."
+    "C03 original public market 250-question cohort Brier broad missing-outcome bounds include p=.5 weak reference in both periods, despite low resolved-subset mean; no all-question superiority can be inferred.",
+    "C04 local Node 11/11 native test passes real FS and CLI fail-closed, but no positive original complete 4-file input verification (network blocked). This is a bounded technical product integration, not authenticated deployment or human causal study."
   ],
   "ethics": {
     "person_forecast_rows_downloaded": 0,
@@ -130,5 +147,5 @@
     "main_merge": false,
     "chatrelay": false
   },
-  "decision": "3OF30_VALID_LIMITED_ABH30;27_NEW_AUTHORIZED_UNCONSUMED_AND_2_HISTORICAL_BLOCKED;STOP_R5_BEFORE_FURTHER_TRIVIAL_CYCLES"
+  "decision": "ABH30_4_OF_30_VALID_LIMITED;26_NEW_AVAILABLE;2_HISTORICAL_SEPARATE_STOP_R5;CT2_SCIENCE_20_UNCHANGED"
 }
