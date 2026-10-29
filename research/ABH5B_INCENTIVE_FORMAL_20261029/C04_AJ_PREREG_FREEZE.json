@@ -1,0 +1,74 @@
+{
+  "schema": "pfl.abh5b.c04.formal.prereg.v1",
+  "date": "2026-10-29",
+  "authorization": {
+    "campaign": "ABH5B_NEW_FIVE",
+    "executed_before": 3,
+    "remaining_new_before": 2,
+    "legacy_remaining_separate": 2
+  },
+  "type": "AB-P_EXACT_MECHANISM_FORMAL_CHECK",
+  "scientific_grade_prior": "0/3",
+  "CT2_science_before": 20,
+  "DRIFT_D": 2,
+  "source_status": "Witkowski et al., Incentive-Compatible Forecasting Competitions, Management Science, published online 2022 final issue 2023, DOI 10.1287/mnsc.2022.4410. Already known mechanism prior art. No novelty claim.",
+  "A": "Under a hypothetical SINGLE-BINARY-EVENT TWO-FORECASTER competition, does awarding deterministic winner purely by quadratic score incentivize a more extreme report than the agent's subjective true belief, despite Brier score itself being strictly proper; does a bounded quadratic-score lottery instead reward truthfulness?",
+  "B": {
+    "H_det": "Deterministic score-winner can be strategically manipulated in published single-event winner-take-all context.",
+    "H_lottery": "Quadratic two-player lottery win probability 1/2+(S_i-S_j)/2 is bounded and strictly proper in expected win chance.",
+    "null": "For the frozen numerical case deterministic truthful and misreport win chances equal, or lottery misreport increases win chance.",
+    "strong_rival": "PFL currently might have no winner-take-all tangible prize or utility based on rank; this formal counterexample cannot establish actual users game the leaderboard. An ELF-like mechanism for one independent event does not automatically solve multiple correlated geopolitical questions."
+  },
+  "C": {
+    "scope": "Exact arithmetic, no stochastic simulation or human study: two forecasters; forecaster belief p=11/20, rival fixed q=3/5; truthful r=p, deliberate more extreme r=61/100. One binary outcome x in {0,1}.",
+    "scores": "quadratic S(r,x)=1-(r-x)^2",
+    "deterministic": "winner has larger S; tied forecasters get 1/2 chance each",
+    "lottery": "P_win_lottery(r,q,x)=1/2+(S(r,x)-S(q,x))/2",
+    "exact_prediction": {
+      "deterministic_truthful_win": "9/20",
+      "deterministic_misreport_win": "11/20",
+      "deterministic_misreport_gain": "1/10",
+      "proper_expected_score_truthful_advantage": "9/2500",
+      "lottery_truthful_advantage": "9/5000"
+    },
+    "proof_identity": "E_{X~Bern(p)}[lottery(p,q,X)-lottery(r,q,X)]=(r-p)^2/2 >=0. Algebraic identity proven in report; grid tests are checks, not proof continuum.",
+    "falsifiers": [
+      "deterministic expected win deviation not greater than truthful",
+      "ELF expected win deviation greater than truthful",
+      "lottery non-normalized or negative at any report tested",
+      "ties give auto-win",
+      "invalid rational/report accepted",
+      "code implies PFL prizes implemented or real causal effect"
+    ],
+    "test_groups": 8,
+    "multiplicity": "One pre-frozen counterexample plus identity, eight adversarial/structural test groups; no effect search."
+  },
+  "D": {
+    "code": "research/ABH5B_INCENTIVE_FORMAL_20261029/rank_incentive_proof.py",
+    "source_git_sha1": "95d0f78b39d72b12e9ae79fa0da5e4ceae44d88c",
+    "source_sha256": "ad07bc5f0251966c727ff7d38206348098cfd493b3a3ea0581cd020d16491ded",
+    "source_commit": "d729c172aadba48032198fcd4e563d629f0efab6",
+    "tests": "research/ABH5B_INCENTIVE_FORMAL_20261029/test_rank_incentive_proof.py",
+    "test_git_sha1": "a6804606c17e80acb3a8ac3ffb375ee411181b33",
+    "test_sha256": "24e13df63a31ce8653a736d2d5631def2a8c332cdfebc71e38b1209bbbb06598",
+    "test_commit": "4a7b21213f2357fdd049eedca56566c00e1f5e87",
+    "source_same_blobs_as_local": true,
+    "runtime": "Native Python stdlib Fraction, isolated offline"
+  },
+  "E": "Execute exact frozen source and eight unit test groups only AFTER commit of this contract. Capture command, Python version, exit, stdout, checksum and negative failures.",
+  "F": "Adversarial distinguish truthful proper SCORE from truthful incentive to maximize CHANCE OF FIRST PLACE; reject uncontrolled continuous real-data assertions; randomized lottery is not a claim of current product implementation or appropriateness.",
+  "G": "Independent strong mechanism prior Witkowski et al. The mathematical result is existing literature and not human experimental replication; no human original data accessed.",
+  "H": "Cumulative ledger prior revised: Brier-proper score is not sufficient for winner-take-all truthful report; truthful lottery is only scoped single-event two players. Add R5 gate for reward/score use before implementation.",
+  "I": "If exact frozen formal tests pass: count one AB-P technical cycle at level 0/3 scientific; no N1/2/3 and no leap CT2. This is not a new causal claim nor a trivial synthetic seed variant.",
+  "J": "STOP on C05 until independently original data/causal novelty or explicit product scope for incentive scheme; preserve 1 new plus 2 historical slots even if source gate blocked.",
+  "safety": {
+    "never_score_real_politicians": true,
+    "never_deploy_public_product": true,
+    "no_original_person_rows": true,
+    "no_authors_contacted": true,
+    "no_license_acceptance": true,
+    "no_main_merge": true,
+    "no_costly_CI": true,
+    "no_ChatRelay": true
+  }
+}
