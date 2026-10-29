@@ -1,0 +1,27 @@
+{
+  "schema": "pfl.abh30.cycle_native_execution_receipt.v1",
+  "cycle": "ABH30-C20",
+  "mode": "AB-P",
+  "prereg_commit": "d61b67bbb7ec287b081de432a28e95a00739819e",
+  "source_Git": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+  "tests_Git": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+  "node": "v22.16.0",
+  "native": {
+    "command": "node --test --test-name-pattern='C20 ' tests/test_fictional_pfl_impact_suite.mjs",
+    "pass": 2,
+    "fail": 0,
+    "exit": 0,
+    "TAP_sha256": "4699ea20abc3cf9198356c0674c7e0856aa6d20d386ea3b8798021ebc6f87ff6"
+  },
+  "observed": {
+    "ranked_delta": 2,
+    "unranked_delta": -2,
+    "total_delta": 0,
+    "all_fixture_only": true
+  },
+  "novel_product_capability": "Track non-ranked effort displacement and not merely ranked KPI",
+  "causal_claim": false,
+  "grade": "0/3",
+  "CT2_scientific_ordinal": 20,
+  "decision": "VALID_LIMITED_AB_P_C20; proceed to C21 independent preassignment heterogeneity guard; original external rank RCT supports why measure unranked tasks, but arithmetic fixture is not empirical evidence."
+}
