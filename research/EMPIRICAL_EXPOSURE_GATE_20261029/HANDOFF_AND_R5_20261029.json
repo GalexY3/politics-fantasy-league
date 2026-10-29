@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-29",
+  "state": "STOP_R5_SOURCE_IDENTIFICATION_ONLY",
+  "origin_pr": 42,
+  "origin_head": "3d3a1eda1dc51f74bc9cdef50afacc4d27f6e8a5",
+  "dataset": {
+    "name": "Good Judgment Project GJP Data",
+    "doi": "10.7910/DVN/BPCDH5",
+    "version": "1.0",
+    "specific_license": "CC0-1.0 VERIFIED",
+    "terms_of_use": null,
+    "files": 25,
+    "restricted_files": 0
+  },
+  "original_bytes_hashed": [
+    {
+      "name": "all_individual_differences.README.md",
+      "bytes": 71883,
+      "sha256": "e9f137862188efa9d6d40cf904849cf99fe21a91e3fd440ee6ad8f04a73959ff"
+    },
+    {
+      "name": "readme.txt",
+      "file_id": 2917338,
+      "bytes": 5804,
+      "sha256": "7f66c343e910ca1a2b7262f708a3e73f275e8f3e283072428001a25292214737"
+    },
+    {
+      "name": "readme.txt",
+      "file_id": 2917350,
+      "bytes": 4382,
+      "sha256": "adfc00ea8255a14542a6a2128e67b9902d182d7ec53b701d1343c9a6eb61c2b1"
+    },
+    {
+      "name": "ifps.csv",
+      "file_id": 2917330,
+      "bytes": 1072153,
+      "sha256": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286"
+    }
+  ],
+  "question_data": {
+    "rows": 617,
+    "unique_ifp": 617,
+    "closed": 498,
+    "voided": 119,
+    "actual_date_closed_valid": 498,
+    "opened": 617,
+    "date_format": "US month/day/two-digit-year, not ISO",
+    "date_anomalies": {
+      "start_after_deadline": 1,
+      "start_after_suspend": 1,
+      "suspend_after_actual_close": 273
+    },
+    "note": "Historical data oddities not silently fixed"
+  },
+  "forecast_ddi_metadata": {
+    "human_rows_downloaded": 0,
+    "year1": {
+      "file_id": 2917351,
+      "case_quantity": 308232,
+      "variables": 16,
+      "ddi_sha256": "519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063"
+    },
+    "year2": {
+      "file_id": 2917352,
+      "case_quantity": 435624,
+      "variables": 16
+    },
+    "year4": {
+      "file_id": 2917354,
+      "case_quantity": 1685784,
+      "variables": 16
+    },
+    "relevant_columns": [
+      "ctt",
+      "cond",
+      "training",
+      "user_id",
+      "ifp_id",
+      "fcast_type",
+      "fcast_date",
+      "viewtime",
+      "timestamp"
+    ],
+    "viewtime_meaning": "UNVERIFIED; DDI says numeric and supplies no exposure definition"
+  },
+  "hypothesis": "Original GJP Year1 published randomized 3x4 training and influence-access design might enable an ITT on first forecast uptake (crowd access vs individual), but participant roster with nonresponders, assignment details, privacy review and question eligibility remain unverified. Not public leaderboard and not actual individual impression E_iqt.",
+  "preregistered_next": "GJP_YEAR1_CONDITIONAL_PREREG.json, no experiment executed",
+  "other_replications": {
+    "Hudja": "author page 200 but no verified licensed microdata or software source",
+    "LemusMarshall": "author page accessible, publisher page 403; exact data archive rights unknown"
+  },
+  "references": [
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40807901958",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808128321",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808668080",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808853715",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809018691",
+    "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653"
+  ],
+  "scientific": {
+    "AB_legacy_unused": 2,
+    "new_valid_cycles": 0,
+    "CT2_prospective": 22,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "governance": "No person-level forecast records downloaded, no rights bypass, no scoring real politicians, no ChatRelay, no main merge, limited seven one-shot jobs max 2–3 minutes each; only metadata/CC0 original docs/question file inspected",
+  "next_action": "Recover consent/lawful processing and randomized roster incl nonparticipants before causal ITT or verify original article's hypotheses; otherwise R5 STOP. No further cyclical source checks without new discrimination."
+}
