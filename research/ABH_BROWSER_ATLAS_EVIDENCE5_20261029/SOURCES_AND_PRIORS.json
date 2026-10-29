@@ -451,6 +451,74 @@
       "grade": "0/3",
       "CT2_prospective_after": 20,
       "limits": "Do not compare study populations as direct replication of Kloc field cohort; no person-level rows inspected; differences in means without variance and full covariance are not inferential findings. No new A–J opened merely for extracting its existing published means."
+    },
+    {
+      "id": "PF-BR33",
+      "claim": "More activity or performance from full public rank unambiguously improves participant welfare",
+      "update": "FALSE_PUBLIC_RECOGNITION_WELFARE_TRADEOFF_ALREADY_PUBLISHED",
+      "support": "Zou & Gao (2023), J Econ Behavior & Organization 216:187–220, DOI 10.1016/j.jebo.2023.09.030. Controlled laboratory four-policy rank feedback: none, private rank, partial public top-third, full public. Authors find full public can increase performance while elicited unconditional WTP indicates a welfare cost relative to partial/no announcement; structural model ranks partial public + financial incentives as favorable under its assumptions. They report 47.1% judge full public recognition welfare worsening, but this is their laboratory measure, not an empirical estimate for PFL.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0167268123003517",
+      "type": "INDEPENDENT_2023_RCT_WELFARE_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "No person-level data accessed; task cognitive lab, not geopolitical probability forecasting. WTP elicitation and model are context dependent. A score from another task cannot be transported to PFL."
+    },
+    {
+      "id": "PF-BR34",
+      "claim": "Social information that increases mean crowd forecasting accuracy must also reduce aggregate risk",
+      "update": "FALSE_SCIENTIFIC_PRIOR_MEAN_ACCURACY_VS_CORRELATED_TAIL_RISK",
+      "support": "Adjodah, Leng, Chong, Krafft, Moro, Pentland (2021), Entropy 23(7):801, DOI 10.3390/e23070801: study of 2037 people, 4634 forecast sets in seven real financial asset rounds with pre/post information exposure, relating social belief updates to mean accuracy and aggregate predictive risk. Source describes a Pareto accuracy-risk frontier, and the Brexit round as contextual finding.",
+      "source": "https://www.mdpi.com/1099-4300/23/7/801",
+      "secondary_official": "https://www.media.mit.edu/publications/accuracy-risk-trade-off-due-to-social-learning-in-crowd-sourced-financial-predictions/",
+      "type": "INDEPENDENT_CROWD_FORECASTING_EXPERIMENT_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Not a specific randomized PFL rank intervention. Publisher article text says release data but PMC Data Availability Statement says Not applicable; licensing/rows not inspected. Even if paper open CC BY, no authority to process underlying human data inferred."
+    },
+    {
+      "id": "PF-BR35",
+      "claim": "A truthful Brier score necessarily elicits truthful beliefs even when only the highest-scoring forecaster wins",
+      "update": "FALSE_PROPER_SCORE_NOT_EQUAL_INDIVIDUAL_STRATEGY_PROOF_PRIZE_MECHANISM",
+      "support": "Witkowski, Freeman, Vaughan, Pennock, Krause, Incentive-Compatible Forecasting Competitions, Management Science (online 2022, volume 69 2023), DOI 10.1287/mnsc.2022.4410. Authors prove classic deterministic winner-take-all can incentivize exaggerated beliefs and introduce Event Lotteries Forecasting mechanism with scoped incentive-compatible selection. Our original frozen Fraction formal product audit C04 reproduces exact scoped counterexample: p=.55 rival=.6, report .61 increases deterministic win chance .45→.55 while a quadratic score-lottery has strictly best win chance at p under fixed rival q.",
+      "source": "https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4410",
+      "evidence": "../ABH5B_INCENTIVE_FORMAL_20261029/C04_RUN_RECEIPT.json",
+      "type": "ORIGINAL_THEORETICAL_PRIOR_AND_NEW_LOCAL_FORMAL_ABP",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "No novel theorem claimed; no existing PFL winner-take-all payout established; two forecasters/single binary event only, not dependent political elections. Product code is standalone audit, not deployed incentive scheme."
+    },
+    {
+      "id": "PF-BR36",
+      "claim": "Proper score + public ranked forecasting is an untested governance idea for long-term geopolitical tournament",
+      "update": "PRIOR_GJP_RANDOMIZED_TOURNAMENT_MARKET_V_POLL_2016",
+      "support": "Atanasov et al. (published online 2016, Management Science 63(3) 2017), DOI 10.1287/mnsc.2015.2374, 2400+ forecasters over 261 events and two seasons randomized into prediction markets ranked by earnings or prediction polls individually/in teams ranked by Brier. Carefully weighted/calibrated polls performed competitively with markets; study is not randomized public vs private rank visibility per se.",
+      "source": "https://pubsonline.informs.org/doi/10.1287/mnsc.2015.2374",
+      "type": "ORIGINAL_GEOPOLITICAL_FORECASTER_EXPERIMENT_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Rank based on Brier among poll arms does not isolate the social exposure or recognition treatment; published summaries only, microdata not accessed."
+    },
+    {
+      "id": "PF-BR37",
+      "claim": "Peer social information and team competitive ranking must be delivered as an inseparable treatment bundle",
+      "update": "ALREADY_SEPARATELY_RANDOMIZED_IN_FIELD_CONTEST",
+      "support": "Chen et al. (first online 2021, Journal Economics & Management Strategy 32(3) 2023) DOI 10.1111/jems.12459: Taiwan university electricity-saving group contest randomizes contest participation, group composition and competitive inter-team and social within-team information; study reports both information types changed relative rank beliefs and effort. Thus PFL must separate social-belief access from rank publicity for a novel causal mechanism claim.",
+      "source": "https://doi.org/10.1111/jems.12459",
+      "type": "INDEPENDENT_2023_FIELD_FEEDBACK_FACTOR_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Residential electricity room-hour outcomes are not probabilistic forecasts or direct prediction league engagement, no person-level source data permission inspected."
+    },
+    {
+      "id": "PF-BR38",
+      "claim": "Private vs public rank recognition is untested in real field settings",
+      "update": "KNOWN_TOEIC_PRIVATE_V_PUBLIC_RANK_RANDOMIZATION",
+      "support": "Rank as an inherent incentive: Evidence from a field experiment (2012), Journal of Public Economics, contrasts no rank vs privately informed ranking vs publicly posted ranking in language-course TOEIC prep. Published abstract reports initial balance and end-test means 604,656,680 respectively.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0047272712000436",
+      "type": "INDEPENDENT_ORIGINAL_FIELD_RANK_VISIBILITY_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Not forecasting or PFL, and not enough evidence to separate effects on public welfare or social learning in political questions."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -577,5 +645,21 @@
       0
     ],
     "reason": "Direct already-published leaderboard-only randomized assignment and full 2x4 factorial provide stronger novelty counterevidence, while access to causal microdata still blocked."
+  },
+  "latest_branching5b_c04": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-incentive-proof-r5-20261029",
+    "c04": "AB-P formal exact proof 8/8 valid, 0/3 scientific",
+    "new_completed": 4,
+    "new_remaining": 1,
+    "historical_untouched": 2,
+    "CT2_prospective_ordinal": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "c05": "NOT EXECUTED STOP_R5; conditional A–J causal fork",
+    "source_rights": "NO HUMAN ROWS OR PERSONAL DATA PERMISSION"
   }
 }
