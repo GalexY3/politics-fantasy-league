@@ -1,0 +1,107 @@
+{
+  "schema": "pfl.abh5b.campaign.status.v1",
+  "date": "2026-10-29",
+  "mode": "AB-H BRANCHING",
+  "source_pr": 48,
+  "source_sha": "08deb85b00db09429a78c37383127e5eb9c8060f",
+  "branch": "research/pfl-abh5-original-feedback-sensitivity-20261029",
+  "authorization": {
+    "new_granted": 5,
+    "prior_new_complete": 5,
+    "prior_new_remaining": 0,
+    "older_legacy_granted_unused": 2,
+    "separated": true
+  },
+  "cycles": [
+    {
+      "id": "ABH5B-C01",
+      "mode": "AB-R",
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "b120259533672e2a05293eecb586b3c204ddb596",
+      "repair_commit": "eeb2e4f54c19b42671b5c2129c5d0ea0d90a4803",
+      "repair_hash_freeze_commit": "95ff3dba28ecbd650163f605defa2d02fd3cb2bc",
+      "result": "C01_RUN_RECEIPT.json",
+      "valid_after_repair": true,
+      "negative_run_preserved": true,
+      "kind": "One independent published RCT Pickal 2026, 427 five-arm sample vs 345 motivation cases, 82 not in ANOVA. Unidentified full-arm contrast bounds conditional, not causal novelty."
+    },
+    {
+      "id": "ABH5B-C02",
+      "mode": "AB-R",
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "b40d4bae29c443c07d29dc29862818ab49ef77da",
+      "result": "C02_RUN_RECEIPT.json",
+      "kind": "Palikot 2026 randomized school bundled treatment; 4 vs 12 week original published aggregate activity/volume decomposition, no post-treatment causal mechanism claims."
+    },
+    {
+      "id": "ABH5B-C03",
+      "mode": "AB-R",
+      "status": "PLANNING_ONLY_R5_NO_CYCLE",
+      "D": 2,
+      "grade": "0/3",
+      "kind": "Original Pickal OSF prereg/data/code linked in paper but web OSF inaccessible; no human rows or license/ethics attestation, cannot reanalyse exposures or missingness mechanism."
+    },
+    {
+      "id": "ABH5B-C04",
+      "mode": "AB-R",
+      "status": "PLANNING_ONLY_R5_NO_CYCLE",
+      "D": 2,
+      "grade": "0/3",
+      "kind": "Regaco 2026 original Mendeley archive CC BY and analysis R code publicly catalogued. Matching-to-sample psychology does not establish PFL leaderboard randomization or eligibility/assignment; no human data accessed."
+    },
+    {
+      "id": "ABH5B-C05",
+      "mode": "AB-H",
+      "status": "UNOPENED_R5",
+      "D": null,
+      "grade": "0/3",
+      "kind": "No distinct discriminating legal and ethical source with novelty beyond Pickal, Palikot, Felkey, Chen, Lumsden, GJP, and original forecasting evidence."
+    }
+  ],
+  "counting": {
+    "valid_limited": 2,
+    "invalid_cycles_final": 0,
+    "invalid_attempts": 1,
+    "planning_not_consumed": 2,
+    "unopened": 1,
+    "new_remaining": 3,
+    "historical_unused": 2
+  },
+  "CT2": {
+    "line": "PFL_V1_prospective_science",
+    "before": 22,
+    "after": 22,
+    "ordinal_not_probability": true
+  },
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": {
+    "passed": 0,
+    "total": 6
+  },
+  "negative_results": [
+    "C01 original 5/7 suite invalid due Fraction harness; rerun after frozen repair 7/7 PASS",
+    "Wide 1..5 full-sample Pickal motivation bounds cross zero under unknown 82-case missing allocation",
+    "Palikot exact post-treatment decomposition cannot assign causal effects to intensity or public ranking component",
+    "OSF access blocked; Mendeley catalogue alone does not imply a valid research estimand"
+  ],
+  "ethics": {
+    "human_person_records_downloaded": 0,
+    "original_person_forecasts_downloaded": 0,
+    "licenses_accepted": 0,
+    "authors_contacted": 0,
+    "public_political_scoring": 0,
+    "ci_costly_triggered": 0,
+    "main_merge": false,
+    "chatrelay": false
+  },
+  "decision": "STOP_R5_WITH_3_NEW_AND_2_HISTORICAL_SLOTS_UNCONSUMED; NO_MORE_TRIVIAL_SYNTHETIC_CYCLES",
+  "sources_and_priors": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json"
+}
