@@ -1,0 +1,97 @@
+{
+  "schema": "pfl.abh30.campaign.status.v1",
+  "date": "2026-10-29",
+  "branch": "research/pfl-abh30-source-cutoff-20261029",
+  "parent_pr": 53,
+  "parent_sha": "59c00952547b53c91e05e3173495d5902c4528e0",
+  "mode": "AB-H_BRANCHED_30",
+  "authorization": {
+    "new_granted": 30,
+    "new_completed": 2,
+    "new_remaining": 28,
+    "prior_grant_completed": 5,
+    "prior_grant_remaining": 0,
+    "historical_legacy_approved_remaining": 2,
+    "legacy_separate": true
+  },
+  "cycles": [
+    {
+      "id": "ABH30-C01",
+      "mode": "AB-P",
+      "D": 1,
+      "status": "VALID_LIMITED_REAL_SOURCE_REGRESSION_IMPORTABLE_ASOF_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "ee37d75c6ffb61a0a5da6c54cd6fe1930f31d0c9",
+      "result": "C01_RUN_RECEIPT.json",
+      "verified": {
+        "V8_tests": "15/15",
+        "existing_original_public_question_cohorts": 2,
+        "questions": 1000,
+        "cohort_regression_date_effect": "2026-09-27 changes accepted 10→52 between as_of 2026-10-01 and 2026-10-29"
+      },
+      "limitations": "V8 exact code/tests, not Node end-to-end; existing cohort regression not new independent confirmation, no real human effect."
+    },
+    {
+      "id": "ABH30-C02",
+      "mode": "AB-P",
+      "D": 2,
+      "status": "VALID_LIMITED_ORIGINAL_SOURCE_GIT_BLOB_IDENTITY_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "912361cbf7266c1e9f2175fb08b2d3e9118a3b6e",
+      "sha_freeze_commit": "01fd351e062781078163fbffabc66ff4bc3caf20",
+      "result": "C02_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "13/13",
+        "known_git_hash_vector": true,
+        "real_upstream_four_file_sha_metadata_earlier_confirmed": true
+      },
+      "limitations": "Positive four original raw source files hashing not performed because unavailable offline; byte digest not source signature or data/license permission."
+    }
+  ],
+  "counting": {
+    "valid_limited": 2,
+    "invalid_cycles": 0,
+    "invalid_attempts": 0,
+    "planning_only_unconsumed": 0,
+    "unopened_authorized": 28,
+    "new_remaining": 28,
+    "historical_remaining": 2
+  },
+  "science": {
+    "CT2_line": "PFL_V1_prospective_science",
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "CT2_ordinal_not_probability": true,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "novel_human_effects": 0
+  },
+  "product": {
+    "progress_scope_v4_unchanged": true,
+    "readiness_gates_passed": 0,
+    "readiness_gates_total": 6,
+    "code_in_product_src": true,
+    "deployed_to_user": false,
+    "real_source_full_file_positive_e2e": false
+  },
+  "negative_results": [
+    "All raw numerical values are not event probabilities; guard restricts original source semantics, duplicate question/outcome IDs and time cutoffs",
+    "Original Sep27 resolved-subset count 10 with as_of Oct 1 vs 52 with Oct 29: retrospective resolution leakage is material",
+    "Only existing original public cohort regression reused; no new scientific independent replication",
+    "No four-file positive raw-content digest verification locally; source integrity pin still requires external byte-level acceptance",
+    "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged"
+  ],
+  "ethics": {
+    "person_forecast_rows_downloaded": 0,
+    "licenses_accepted": 0,
+    "authors_contacted": 0,
+    "real_politician_scored": 0,
+    "CI_costly_triggered": 0,
+    "main_merge": false,
+    "chatrelay": false
+  },
+  "decision": "STOP_OPENING_ADDITIONAL_CYCLES_WITHOUT_DISTINCT_ORIGINAL_CAUSAL_OR_PRODUCT_DELIVERY_GATE; REMAINING_28_AUTHORIZED_NOT_SPENT"
+}
