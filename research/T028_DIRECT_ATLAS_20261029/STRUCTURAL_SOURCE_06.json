@@ -1,0 +1,308 @@
+{
+  "group": 6,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0051-pfl-abh-b20-c16-aggregate-20261028.json",
+      "source_git_blob": "a2ada074f9ffa09439c432a8e0fe8f692d8d4447",
+      "batch_id": "0051-PFL-ABH-BRANCH20-C16-AGGREGATE-20261028",
+      "parent_batch": "0050-PFL-ABH-BRANCH20-C15-MEMBER-PROJECTION-20261028",
+      "at": "2026-10-28T12:54:32.680Z",
+      "reason": "C16 read real old GitHub Actions source-probe logs: two original aggregate 350-row replays matched. Main lacks legacy /api/verified-rollcalls, rights/first publication unresolved, reject bulk import.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C16-ORIGINAL-AGGREGATE-NONPORT",
+            "activity": "Historical official aggregate original replay receipt from old CI run 40344682502; current API endpoint missing and rights unadjudicated, no code/data port.",
+            "status": "completed",
+            "at": "2026-10-28T12:54:32.680Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C16_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C16_RESULT.json",
+              "https://github.com/GalexY3/Metodologia-AB/actions/runs/40344682502"
+            ],
+            "scope": "AB-R archive provenance no real scoring",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0052-pfl-abh-b20-c17-json-20261028.json",
+      "source_git_blob": "3b94a138c2138ed7d2b18f30c4064acd50789177",
+      "batch_id": "0052-PFL-ABH-BRANCH20-C17-JSON-20261028",
+      "parent_batch": "0051-PFL-ABH-BRANCH20-C16-AGGREGATE-20261028",
+      "at": "2026-10-28T12:56:37.265Z",
+      "reason": "C17 member metadata parser previously accepted duplicate JSON members; first 2 red/12 pass then nested strict pairs guard yields 14/14 targeted Python pass; no original raw data.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C17-DUPLICATE-JSON",
+            "activity": "Original member projection accepted duplicate keys nested/identity; fail-closed fix with 2 red and 14 green targeted tests on SHA exact sources",
+            "status": "completed",
+            "at": "2026-10-28T12:56:37.265Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C17_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C17_RESULT.json",
+              "tests/test_congress_members_duplicate_json.py"
+            ],
+            "scope": "AB-P input integrity no release uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0053-pfl-abh-b20-c18-interop-20261028.json",
+      "source_git_blob": "99cb2191f5a8f3d0ff7e71e5ac929b8c99cd7de1",
+      "batch_id": "0053-PFL-ABH-BRANCH20-C18-INTEROP-20261028",
+      "parent_batch": "0052-PFL-ABH-BRANCH20-C17-JSON-20261028",
+      "at": "2026-10-28T12:58:13.189Z",
+      "reason": "C18 separately preregistered interoperation across typedrefs/date/member modules, 35 native focused PASS exact module blobs, no full repo checkout.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C18-ARCHIVAL-INTEROP",
+            "activity": "Three historic scoped modules combined; 6+14+11+3+1=35 synthetic tests PASS, source blobs exact, no inferred cross-legislature identity or scoring",
+            "status": "completed",
+            "at": "2026-10-28T12:58:13.189Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C18_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C18_RESULT.json",
+              "tests/test_archival_contract_interop.py"
+            ],
+            "scope": "AB-H selected QA only no gates",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0054-pfl-abh-b20-c19-atlas-time-20261028.json",
+      "source_git_blob": "7478a0f73d4c8b3ecf0b68d0d0ed3cefd5254088",
+      "batch_id": "0054-PFL-ABH-BRANCH20-C19-ATLAS-TIME-20261028",
+      "parent_batch": "0053-PFL-ABH-BRANCH20-C18-INTEROP-20261028",
+      "at": "2026-10-28T13:00:54.889Z",
+      "reason": "Preregistered C19 Python exact Atlas batch_check excerpt accepts 4 invalid synthetic timestamps and 2 valid ones; native full checker not run; preserve negative as open instrumentation complaint.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C19-ATLAS-TIMESTAMP",
+            "activity": "AB-META original Atlas batch_check preflight accepts 'not-a-timestamp', naive timestamp and impossible calendar date; four invalid inputs accepted in isolated Python.",
+            "status": "completed",
+            "at": "2026-10-28T13:00:54.889Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C19_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C19_RESULT.json"
+            ],
+            "scope": "Instrumentation negative, no CT2/gates change; full canonical replay NOT_RUN",
+            "method_version": "AB 3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-BRANCH20-C19-ATLAS-UNVALIDATED-AT",
+            "run_id": "PFL-BRANCH20-C19-ATLAS-TIMESTAMP",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "atlas_timestamp_schema",
+            "at": "2026-10-28T13:00:54.889Z",
+            "description": "Atlas batch_check only requires a nonempty at string. Isolated exact-source function accepts non-date 'not-a-timestamp', naive and impossible calendar date. Must audit legacy timestamps and canonical checker before strengthening validation; avoid editing immutable patches."
+          }
+        }
+      ]
+    },
+    {
+      "file": "0055-pfl-abh-b20-c20-closure-20261028.json",
+      "source_git_blob": "c75a0523a3c8d54399ca532bf863852039c6ebdd",
+      "batch_id": "0055-PFL-ABH-BRANCH20-C20-CLOSURE-20261028",
+      "parent_batch": "0054-PFL-ABH-BRANCH20-C19-ATLAS-TIME-20261028",
+      "at": "2026-10-28T13:03:28.998Z",
+      "reason": "C20 prereg independent documentary audit: 38 prereg/result files C01-C19 parsed, 5 commit-order samples, 19 tail Atlas deltas reference/parent checked, preserve C01 invalid and close 20-attempt budget with 19 valid/1 invalid/0 left. No native 55-lot replay.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C20-CAMPAIGN-CLOSE",
+            "activity": "C20 final independent records audit, 38 prereg/result documents, 5 commit chronology samples and 19 Atlas tail patches; C01 invalid, 19 valid, 0 remaining; no new empirical claims.",
+            "status": "completed",
+            "at": "2026-10-28T13:03:28.998Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C20_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C20_RESULT.json"
+            ],
+            "scope": "AB-META documentary closure, full pytest and canonical checker NOT_RUN",
+            "method_version": "AB 3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0056-pfl-abh-main20b-c01-timestamps-20261028.json",
+      "source_git_blob": "830f29b46d1d619163d0cd4d454df668ead9da32",
+      "batch_id": "0056-PFL-ABH-MAIN20B-C01-TIMESTAMPS-20261028",
+      "parent_batch": "0055-PFL-ABH-BRANCH20-C20-CLOSURE-20261028",
+      "at": "2026-10-28T13:18:23.541Z",
+      "reason": "New 20-cycle grant C01 valid AB-META: read all 55 existing delta timestamps; strict aware ISO preflight compatible 55/55, 4 malformed rejected in native focused parser; changed atlas_delta.py and added tests. One historical 0015->0016 time inversion remains, and canonical full replay / T008 is NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C01-ATLAS-TIMESTAMP-CONTRACT",
+            "activity": "AB-META prereg 55 existing batch.at compatibility, 4 negative+2 positive controls; syntactic guard implemented without mutating historical deltas, time inversion documented.",
+            "status": "completed",
+            "at": "2026-10-28T13:18:23.541Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C01_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C01_RESULT.json",
+              "../../../../ab_atlas/tests/test_delta_timestamps.py"
+            ],
+            "scope": "Atlas metadata provenance integrity, no original native 56-lot replay, no science/gates uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0057-pfl-abh-main20b-c02-official-access-20261028.json",
+      "source_git_blob": "1fb9a3459ebab55b58f4691ef7a1ae7e2245413c",
+      "batch_id": "0057-PFL-ABH-MAIN20B-C02-ORIGINAL-ACCESS-20261028",
+      "parent_batch": "0056-PFL-ABH-MAIN20B-C01-TIMESTAMPS-20261028",
+      "at": "2026-10-28T13:20:07.370Z",
+      "reason": "C02 prereg source access: official Congreso XV 2026-09-30 session202 HTML catalog and initiative page agree 137 yes/175 no/34 abstain for expte 162/000814, but authentic original XML and JSON payloads NOT_OBTAINED and format equality cannot be established. No nominal capture.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C02-CONGRESS-FORMAT-ACCESS",
+            "activity": "Official Congress indexed HTML source comparison only; XML/JSON raw inaccessible to reader, no original byte SHA, result ACCESS_INCONCLUSIVE; avoid misclassifying HTML as independent source encoding.",
+            "status": "completed",
+            "at": "2026-10-28T13:20:07.370Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C02_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C02_RESULT.json"
+            ],
+            "scope": "AB-R documentary inconclusive, zero CT2/rights/gates uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0058-pfl-abh-main20b-c03-rights-20261028.json",
+      "source_git_blob": "39103400bf6c9490989839ff8815ef62f6c1857c",
+      "batch_id": "0058-PFL-ABH-MAIN20B-C03-RIGHTS-20261028",
+      "parent_batch": "0057-PFL-ABH-MAIN20B-C02-ORIGINAL-ACCESS-20261028",
+      "at": "2026-10-28T13:22:46.578Z",
+      "reason": "C03 prereg official Congreso website reuse notice located, Ley37/2007 and AEPD confirm need independent purpose-specific personal-data legality; docs matrix added, real person scores remain blocked, gates 0/6.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C03-REUSE-PURPOSE-GATE",
+            "activity": "Source-audited general Congress reuse notice and GDPR legal basis documentation; standalone memo distinguishes aggregate lawful reuse conditions from unapproved named-person fantasy scoring.",
+            "status": "completed",
+            "at": "2026-10-28T13:22:46.578Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C03_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C03_RESULT.json",
+              "docs/RIGHTS_AND_PERSON_SCORING_GATE_20261028.md"
+            ],
+            "scope": "AB-R legal source documentary, 0/6 release gates, no personal data processed",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0059-pfl-abh-main20b-c04-strict-dissent-20261028.json",
+      "source_git_blob": "96d16cc19619ed0f57223d3be607b0353fdc1fcb",
+      "batch_id": "0059-PFL-ABH-MAIN20B-C04-STRICT-DISSENT-20261028",
+      "parent_batch": "0058-PFL-ABH-MAIN20B-C03-RIGHTS-20261028",
+      "at": "2026-10-28T13:27:46.433Z",
+      "reason": "New20 C04 AB-R prereg synthetic group choice 4/9 plurality was mislabeled as dissent from majority downstream; preserving legacy modal API, added strict majority dissent and used in synthetic lab; 11 isolated Python checks PASS, full suite NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C04-STRICT-MAJORITY-DISSENT",
+            "activity": "Sociological estimand upgrade: distinguish modal nonconformity from votes against strict >50% group majority, 4/3/2 counterexample and 11 targeted checks",
+            "status": "completed",
+            "at": "2026-10-28T13:27:46.433Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C04_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C04_RESULT.json",
+              "tests/test_strict_group_dissent.py"
+            ],
+            "scope": "Synthetic lab only; neither party discipline nor identity/cause, 0 release gates",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0060-pfl-abh-main20b-c05-bootstrap-20261028.json",
+      "source_git_blob": "e37b15c6535a6a5d10e8f6eb47405fb0ca1b3c54",
+      "batch_id": "0060-PFL-ABH-MAIN20B-C05-BOOTSTRAP-20261028",
+      "parent_batch": "0059-PFL-ABH-MAIN20B-C04-STRICT-DISSENT-20261028",
+      "at": "2026-10-28T13:30:42.232Z",
+      "reason": "Preregistered C05 AB-R distinction: average of session means 5 vs pooled row mean 10/101 in 100:1 synthetic cluster sizes. Preserve old session estimator; new record-weighted block bootstrap and tests, 9 isolated Python controls PASS, full repo NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C05-BOOTSTRAP-ESTIMANDS",
+            "activity": "Explicit record-weighted session-block bootstrap; 100 zero votes in one session and 10 in one row of other session => mean 5 vs 10/101, both estimands distinct and conditional.",
+            "status": "completed",
+            "at": "2026-10-28T13:30:42.232Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C05_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C05_RESULT.json",
+              "tests/test_cluster_bootstrap_estimands.py"
+            ],
+            "scope": "AB-R synthetic research method, no empirical effect or release change",
+            "method_version": "AB 3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}
