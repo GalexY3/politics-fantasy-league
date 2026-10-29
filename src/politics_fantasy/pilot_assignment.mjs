@@ -3,7 +3,11 @@ export function assignSyntheticArms(n,seed){
   if(!Number.isSafeInteger(n)||n<4||n>10000||n%4!==0)throw Error("INVALID_ALLOCATION_SIZE");
   if(!Number.isSafeInteger(seed)||seed<0||seed>4294967295)throw Error("INVALID_SEED");
   const arms=["control","transparency","leaderboard","both"];
+  // Deterministic 32-bit avalanche for adjacent rehearsal seeds. NOT secure enrolment.
   let state=seed>>>0;
+  state^=state>>>16;state=Math.imul(state,0x85ebca6b)>>>0;
+  state^=state>>>13;state=Math.imul(state,0xc2b2ae35)>>>0;
+  state^=state>>>16;
   const next=()=>{state=(Math.imul(1664525,state)+1013904223)>>>0;return state/4294967296};
   const result=[];
   for(let b=0;b<n/4;b++){
