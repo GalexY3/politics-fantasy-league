@@ -1,3 +1,13 @@
+# ACTUALIZACIÓN ABH30-C13 · LÍMITES DE IDENTIFICACIÓN EN PILOTO FICTICIO (29/10/2026)
+
+**Estado de campaña verificado:** [CAMPAIGN_STATUS](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) **13/30 ciclos nuevos limitados válidos, 17 nuevos pendientes**, dos plazas históricas STOP_R5 separadas. **CT2 científica PFL 20/100 ordinal**, N1/N2/N3 nuevos 0/0/0, 0/6 gates de lanzamiento, sin personas o políticos reales.
+
+**C13 AB-P matemático**, continuación del pivote al estudio independiente C12: [código](../src/politics_fantasy/fictional_missingness_bounds.mjs) en cuatro brazos ficticios existentes, de agregados asignados/observados/suma de resultados normalizados [0,1]; devuelve cotas agudas [S/N, (S+N-n)/N] y cotas de contrastes factoriales bajo valores ausentes arbitrarios. Código/test subidos antes de [prerregistro](../research/ABH30_NEW_20261029/C13_PREREG_AJ_SHA.json) commit `5c2b06558f7f497a4d21954467f48d95310247d7` y posteriormente ejecutados en **Node.js 22.16.0 18/18 PASS**, Git SHA+SHA256 locales coincidentes. Contraejemplo sintético: diferencia factorial `leaderboard` cases completos +0,175 mientras cotas completas [−0,11,+0,19], signo no identificado. [Recibo](../research/ABH30_NEW_20261029/C13_RUN_RECEIPT.json) · [informe A–J](../research/ABH30_NEW_20261029/C13_REPORT.md) · [prior matemático PF-BR52](../research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json). **No hay efecto causal ni innovación matemática original de PFL**, tampoco interfaz de producto final ni RCT. Los previos 4 brazos siguen `control,transparency,leaderboard,both`; no se declara probado aún feedback privado de cuartiles del estudio externo.
+
+**Atlas:** añadido lote append-only [0084](updates/0084-pfl-abh30-c13-synthetic-missingness-bound-20261029.json) sobre 0083. **Replay del Python original para 81–84 lotes no ejecutado**, último checkpoint nativo comprobado 80 lotes y 63 nodos. No se han editado deltas históricos ni el HTML se ha sincronizado por artefacto.
+
+---
+
 # ACTUALIZACIÓN ABH30-C12 · PIVOT A EVIDENCIA EXPERIMENTAL HUMANA PUBLICADA (29/10/2026)
 
 **Contabilidad:** 12/30 ciclos nuevos AB-H válidos acotados, **18 nuevos disponibles**, **2 históricos STOP_R5** separados. **CT2 PFL científica 20/100 ordinal**, N1/N2/N3 nuevos 0/0/0, gates de lanzamiento 0/6. [Estado](../research/ABH30_NEW_20261029/CAMPAIGN_STATUS.json) · [Informe C12](../research/ABH30_NEW_20261029/C12_REPORT.md).
