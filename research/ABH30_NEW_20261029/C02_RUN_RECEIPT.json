@@ -1,0 +1,57 @@
+{
+  "schema": "pfl.abh30.c02.execution.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C02",
+  "mode": "AB-P",
+  "grade_scientific": "0/3",
+  "prereg_commit": "912361cbf7266c1e9f2175fb08b2d3e9118a3b6e",
+  "sha256_freeze_commit": "01fd351e062781078163fbffabc66ff4bc3caf20",
+  "source": {
+    "path": "src/politics_fantasy/forecastbench_provenance.mjs",
+    "sha256": "13c1d982a02c2b71e9306a5632a64d2970f6cec938f13fce500ee3167e21b86f",
+    "git_blob_sha1": "f619ff589c935371c6fb15a7869efcff92e50fee"
+  },
+  "test": {
+    "path": "tests/test_forecastbench_provenance.mjs",
+    "sha256": "a2c2acb0788a92e787db8965e63b4c3fc24b63453449385664f14a32664f422e",
+    "git_blob_sha1": "8bf6ebb2f4641dc6a7206b2b402b351c909f04a5"
+  },
+  "native": {
+    "runtime": "Node v22.16.0",
+    "working_directory": "/mnt/data/pfl_abh30_20261029",
+    "command": "node tests/test_forecastbench_provenance.mjs",
+    "stdout": "PFL original source byte gate 13/13 PASS",
+    "exit": 0,
+    "tests_passed": 13,
+    "tests_total": 13,
+    "local_copy_byte_matches_GitHub_git_blobs_before_execution": true
+  },
+  "positive_independent_git_sha_fixture": {
+    "literal_bytes": "abc",
+    "git_hash_object_sha1": "f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f",
+    "matches": true
+  },
+  "external_source": "ForecastBench official repository, immutable source commit 027ba0b3017a60e0e64602d724284ac6b2d91134, CC BY-SA 4.0, four file Git blob SHAs independently sourced from official metadata",
+  "not_executed": "Positive four-file checksum against actual original raw source bytes, because local container outbound network cannot resolve original GitHub; this test remains a required future manual/source-assisted integration verification.",
+  "negative_checks": [
+    "mutation rejects",
+    "missing/extra file rejects",
+    "invalid hash/type rejects",
+    "empty and >5MiB rejects",
+    "source rights/personal-processing remain false"
+  ],
+  "scientific": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "release_gates": {
+    "passed": 0,
+    "total": 6
+  },
+  "count": "ONE TECHNICALLY BOUNDED AB-P CYCLE; not original causal evidence"
+}
