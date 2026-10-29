@@ -1,0 +1,83 @@
+{
+  "schema": "pfl.abh30.c03.execution.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C03",
+  "mode": "AB-R_REAL_PUBLIC_NONPERSON_OUTCOME_PARTIAL_IDENTIFICATION",
+  "grade_scientific": "0/3",
+  "prereg_commit": "9488a557ec45cf4fc45c0327402ab9d9d7be092d",
+  "native_SHA256_freeze_commit": "f9198da1f27560f31449eb2c650a8b6cb9990306",
+  "code_sha256": "a80062bbc1233e90ba711a49e87ceb519e0b30ce01e6eb53b17e972ff4ddc5c5",
+  "code_git_blob_sha1": "18dbfeeace65efd8e5f13540bc3a94dbe7f49886",
+  "test_sha256": "92298621cd1b63f5a016736ba62dfc7de1fa8cfbd660a556f31394b6dcfa22c1",
+  "test_git_blob_sha1": "6e7afd21df7de81d47422fb1145b7701b27f7cac",
+  "tests": {
+    "V8_frozen_exact": "15/15 PASS",
+    "Node_native_version": "22.16.0",
+    "Node_native_command": "node research/test_brier_partial_id.mjs",
+    "Node_native_passed": 15,
+    "Node_native_total": 15,
+    "Node_native_exit": 0,
+    "source_and_test_Git_SHA_verified_exact": true
+  },
+  "source": {
+    "original_repo": "forecastingresearch/forecastbench-datasets",
+    "original_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "license": "CC BY-SA 4.0",
+    "cohorts_previously_seen_in_previous_campaign": true,
+    "external_independent_confirmation_claim": false
+  },
+  "original_data_results": [
+    {
+      "cohort": "2026-09-27",
+      "all_questions": 500,
+      "market_questions": 250,
+      "valid_market_probability_questions": 250,
+      "known_binary_outcomes_asof_2026_10_29": 52,
+      "unknown_binary_outcomes": 198,
+      "known_resolved_only_mean_brier": 0.16801450256770642,
+      "full_cohort_brier_identification_lower": 0.09705719762176714,
+      "full_cohort_brier_identification_upper": 0.5194762392408311,
+      "weak_p05_reference_inside": true
+    },
+    {
+      "cohort": "2026-10-11",
+      "all_questions": 500,
+      "market_questions": 250,
+      "valid_market_probability_questions": 250,
+      "known_binary_outcomes_asof_2026_10_29": 8,
+      "unknown_binary_outcomes": 242,
+      "known_resolved_only_mean_brier": 0.07071875,
+      "full_cohort_brier_identification_lower": 0.07839344737261655,
+      "full_cohort_brier_identification_upper": 0.5985090687999615,
+      "weak_p05_reference_inside": true
+    }
+  ],
+  "method": "For y unknown, p frozen original public market forecast: sum min(p^2,(1-p)^2) and max(p^2,(1-p)^2) over unresolved, known (p-y)^2 exact, denominator all 250 source-eligible binary market questions, no stochastic imputation or missing-at-random claim.",
+  "interpretation": [
+    "Intervals are deterministic worst-case partial-identification bounds, NOT 95% confidence intervals",
+    "Each includes 0.25, a WEAK diagnostic p=.5 loss reference, NOT a competent market or temporal benchmark",
+    "All 250 market questions per cohort have original published frozen probability and plausible binary outcome; no assertion that every question ultimately resolves with known good labels",
+    "No result on PFL forecasting, rankings, participants, personal data, randomization, causal effect or independent replication",
+    "Same external cohorts were previously inspected in earlier C05, so this is new bounded estimand but not independent data validation",
+    "No market time-series leakage proof beyond public freeze/due/resolution date fields, and possible censoring is unrestricted"
+  ],
+  "scientific": {
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "novel_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "product": {
+    "release_passed": 0,
+    "release_total": 6
+  },
+  "budget": {
+    "new_granted": 30,
+    "new_total_valid_after": 3,
+    "new_remaining": 27,
+    "historical_separate_remaining": 2
+  }
+}
