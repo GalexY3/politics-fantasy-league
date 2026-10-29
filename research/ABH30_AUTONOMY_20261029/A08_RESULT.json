@@ -1,0 +1,70 @@
+{
+  "id": "ABH30-P2-A08",
+  "phase": "AUTONOMY",
+  "status": "VALID_LOOPBACK_API_ONLY",
+  "prereg_commit": "8371819840bcaeb4ebecfaadd36cf1fbf8200b6b",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "url": "http://127.0.0.1:8787",
+    "responses": [
+      {
+        "method": "GET",
+        "path": "/",
+        "status": 200,
+        "body_bytes": 1982
+      },
+      {
+        "method": "GET",
+        "path": "/materials.mjs",
+        "status": 200,
+        "body_bytes": 1663
+      },
+      {
+        "method": "HEAD",
+        "path": "/",
+        "status": 200,
+        "body_bytes": 0
+      },
+      {
+        "method": "POST",
+        "path": "/",
+        "status": 405
+      },
+      {
+        "method": "GET",
+        "path": "/does-not-exist",
+        "status": 404
+      },
+      {
+        "method": "GET",
+        "path": "/fictional_transfer_key.mjs",
+        "status": 404
+      }
+    ],
+    "all_responses_have_csp_connect_src_none": true,
+    "all_no_store": true,
+    "all_no_cookie": true,
+    "native_http_browser_playwright": "NOT_DEMONSTRATED"
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "HTTP tests direct Python urllib / Node loopback; do not equate server reachability to browser navigation, external security, CSP execution or ethical approval."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "HTTP tests direct Python urllib / Node loopback; do not equate server reachability to browser navigation, external security, CSP execution or ethical approval."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}
