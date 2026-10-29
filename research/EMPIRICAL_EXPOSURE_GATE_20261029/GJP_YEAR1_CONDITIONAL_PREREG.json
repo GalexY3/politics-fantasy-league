@@ -1,0 +1,78 @@
+{
+  "schema": "pfl.hypothesis.pre_reg.v1",
+  "date": "2026-10-29",
+  "status": "PREREGISTERED_CONDITIONAL_NO_ANALYSIS",
+  "AB_cycle": "NOT_OPENED_OR_CONSUMED",
+  "data_source": {
+    "doi": "10.7910/DVN/BPCDH5",
+    "dataset_version": "1.0",
+    "license": "CC0-1.0 independently verified on original dataset",
+    "year1_forecast_file_id": 2917351,
+    "forecast_DDI_SHA256": "519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063",
+    "question_file_id": 2917330,
+    "question_sha256": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",
+    "published_randomization": "Mellers et al. (2014) reported Year1 3 training × 4 influence design randomized allocation",
+    "original_docs": "readme.txt id2917350 sha256 adfc00ea8255a14542a6a2128e67b9902d182d7ec53b701d1343c9a6eb61c2b1"
+  },
+  "research_question": "Does randomized access to the distribution of other forecasters' opinions change prospective first-forecast uptake across eligible questions, distinct from accuracy conditional on participating?",
+  "unit": "all year-1 RANDOMIZED person × eligible opened IFP, including nonrespondents; do not condition on making >=1 forecast",
+  "treatment": {
+    "assignment_field": "ctt",
+    "crowd_access": [
+      "2a",
+      "2b",
+      "2c"
+    ],
+    "comparison_individual": [
+      "1a",
+      "1b",
+      "1c"
+    ],
+    "training_strata": [
+      "a=untrained",
+      "b=probability training",
+      "c=scenario training"
+    ],
+    "exclude": "Teams, prediction markets, superforecaster tracking from primary analysis",
+    "is_leaderboard": "NO; aggregate crowd beliefs access is NOT public rank position"
+  },
+  "estimand": "ITT difference in proportion of IFPs forecast at least once by eligibility window between assigned crowd-belief access and individual control within original randomized training strata. Actual question-view effects are outside identifiable target.",
+  "response": "First forecast fcast_type=0 within IFP dates; collapse subsequent updates and affirmations per user-IFP; denominator all common IFP opportunities while user was registered and eligible ex ante; NOT number answered, NOT page views",
+  "necessary_gate": [
+    "Verifiable full randomized participant roster including zero-forecast users and registration date/time; do not select on response",
+    "Exact assignment protocol and any exclusions/attrition documented",
+    "Reliable cohort matching user_id to ctt without retaining direct identifiers",
+    "Question open/suspend/close corrected to original %m/%d/%y and %m/%d/%y %H:%M formats",
+    "Authorization/ethics/privacy safeguards for processing pseudonymized person-level records despite public CC0 copyright terms",
+    "Audit whether original GJP publications already estimate uptake: no novelty claim before adversarial check"
+  ],
+  "strong_rivals": [
+    "Mellers et al. 2014 original 3x4 effects on Brier accuracy and teaming",
+    "Merkle et al. 2015 skill vs question/time",
+    "Merkle et al. 2017 MNAR question choice",
+    "Bo et al. 2017 IRT",
+    "ForecastBench difficulty-adjusted Brier",
+    "Hudja et al. 2025 lab finite-horizon negative feedback",
+    "Lemus and Marshall 2021 dynamic contest and 2025 contingent prizes",
+    "Good Judgment Open official relative Brier and participation-rate scoring"
+  ],
+  "analysis_plan_if_gate_passed": "One pooled ITT with training-stratum fixed effects and randomization inference by participant assignment; two-way cluster-robust alternative by person and IFP; predeclare exact common availability risk set; no control for post-treatment participation/accuracy. Follow-up interaction with question horizon would be exploratory, multiplicity controlled in a new prereg.",
+  "falsifiers_and_negative_controls": [
+    "cTT assignment imbalance or missing nonrespondent roster invalidates primary ITT",
+    "fake pre-open response count should equal zero and if not flag timestamp/clock mismatch",
+    "treatment shuffling within training strata should remove systematic differences (sanity test, not a causal guarantee)",
+    "informative censoring/differential attrition sensitivity",
+    "compare accuracy only conditional on forecast as descriptive, not causal"
+  ],
+  "no_field_E_iqt": "GJP DDI 'viewtime' is a numeric variable in forecast rows but official label gives no semantics, and does not establish independent views for non-forecasters. A target involving actual exposure E_iqt remains STOP_R5.",
+  "scope_and_novelty": "A preregistered hypothesis conditional on access and proper data governance, not a proven original finding; near-identical participation outcomes may already be in prior publications.",
+  "data_access": "No individual forecasts or demographic rows obtained; only CC0 original documentation and DDI variable metadata inspected.",
+  "CT2": 22,
+  "legacy_AB_slots_unused": 2,
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "decision": "BLOCKED_BY_ROSTER_PRIVACY_AND_TARGET_EXPOSURE; NO A–J EXECUTED"
+}
