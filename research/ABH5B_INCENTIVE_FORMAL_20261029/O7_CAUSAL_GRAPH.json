@@ -75,6 +75,38 @@
       "state": "blocked",
       "summary": "Historical randomized true public leaderboard-visible intervention with ethics and rights not verified.",
       "source": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/LEGACY_R5_GATE.json"
+    },
+    {
+      "id": "PFL-ABH5B-IMITATION2026",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Agranov et al. 2026 original RCT: same public signals + others' actions can outperform signals alone. Not rank feedback, not PFL. Supplemental PDF © Elsevier, NBER appendix not retrieved; rights not established.",
+      "source": "https://doi.org/10.1016/j.jet.2026.106203"
+    },
+    {
+      "id": "PFL-ABH5B-REFGROUP2026",
+      "type": "strong_rival",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Xu et al. 2026 original rank-reference comparison RCT finds stronger satisfaction shifts in narrow reference groups; no verified original human reuse rights.",
+      "source": "https://doi.org/10.1257/app.20240181"
+    },
+    {
+      "id": "PFL-ABH5B-RIGHTS-AEA",
+      "type": "data_rights_gate",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "AEA page replication-package link not sufficient: must verify specific DOI, README, license, identity/privacy and assignment/exposure/eligible denominator before accessing human records.",
+      "source": "https://www.aeaweb.org/journals/data/data-code-policy"
+    },
+    {
+      "id": "PFL-ABH5B-BASELINE",
+      "type": "strong_baseline",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Forecasting Collaborative 2023 social scientist forecasts no better on average than simple historical means/random walk/linear baselines; prospective policy score needs strong non-response baseline.",
+      "source": "https://doi.org/10.1038/s41562-022-01517-1"
     }
   ],
   "edges": [
@@ -125,6 +157,30 @@
       "to": "PFL-ABH5B-C05",
       "relation": "blocks",
       "interpretation": "Cannot infer PFL causal effect from rankings alone"
+    },
+    {
+      "from": "PFL-ABH5B-IMITATION2026",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "External direct original action-visibility causal study; cannot claim novel social imitation alone"
+    },
+    {
+      "from": "PFL-ABH5B-REFGROUP2026",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "External direct original reference-group effect; not novel in itself"
+    },
+    {
+      "from": "PFL-ABH5B-RIGHTS-AEA",
+      "to": "PFL-ABH5B-C05",
+      "relation": "blocks",
+      "interpretation": "Copyright/ethics/availability of specific individual observations not verified"
+    },
+    {
+      "from": "PFL-ABH5B-BASELINE",
+      "to": "PFL-ABH5B-C05",
+      "relation": "related_to",
+      "interpretation": "Competent forecasting baselines are required for policy-value outcomes"
     }
   ],
   "rules": {
@@ -137,6 +193,9 @@
     "slots_completed_new": 4,
     "slots_remaining_new": 1,
     "slots_remaining_historical": 2,
-    "CT2_ordinal": 20
+    "CT2_ordinal": 20,
+    "last_update": "2026-10-29",
+    "version_note": "new strong sources PF-BR39-42 documentary audit only, no C05 execution",
+    "source_evidence_file": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json"
   }
 }
