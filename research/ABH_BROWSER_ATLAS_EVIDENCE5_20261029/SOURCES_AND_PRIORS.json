@@ -1082,6 +1082,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "29-row CSV does not mean the universe of commission meetings contains only 29; merely that particular file. ZIP version mismatch is not evidence of malicious changes; no bytes of ZIP evaluated after checksum guard. No causal inference, no study sample."
+    },
+    {
+      "id": "PF-BR83",
+      "claim": "A signature threshold is equivalent to a published government response in official UK petitions",
+      "update": "FALSE_EQUIVALENCE: official API contains separate fields; selected closed pages are nonrepresentative",
+      "support": "First 25 records original SHA256 4a60864bcae9d87c35034836640c6ca470f9aaf47c0fb06b53e164d3a661bdee; second 25 records SHA256 6d2cae6f74f171369b757715f87483aa2808d1f310df9c937657f18bdcd7c63f; C04 naive threshold count not a response measure; C07 verifies response_at distinct. No general response estimate.",
+      "source": "https://petition.parliament.uk/petitions.json?state=closed&page=2",
+      "evidence": "../ABH25_20261030/C07_RUN_RECEIPT.json",
+      "type": "ORIGINAL_EXTERNAL_DESCRIPTIVE_LIMITED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No causal claim; only two fixed sorted pages, different dates/status not adjusted."
     }
   ],
   "CT2_parent_unchanged": 29,
