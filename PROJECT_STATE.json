@@ -1,5 +1,5 @@
 {
-  "revision": 14,
+  "revision": 15,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -202,11 +202,11 @@
     "new_ab_cycles": 0
   },
   "latest_validation": {
-    "status": "ABH25_25_BOUNDED_TRIALS_ATLAS97_REPLAYED_FINAL_QA_PENDING",
-    "verified_commit": "acec7a86b1b1f8178ffb7d2e6de361d9257c805e",
-    "summary": "New ABH25: 25/25 A–J limited trials C01,C02,C04–C26; C03 blocked noncycle. UK original fixed pages 25+25 but nonrepresentative; 19/19 synthetic formal/product trials PASS Actions #41078862636; Atlas97 replay digest 609e93fa... Actions #41079465386 PASS; candidate branch full state/index verification pending. No full Python/Node suite repeated, no human UX acceptance, no causal generalization.",
+    "status": "ABH25_FINAL_FULL_LINUX_QA_PASS_D18EDB8",
+    "verified_commit": "d18edb854acb3676f917e48c331fccf34735124a",
+    "summary": "GitHub Actions #41080905547 on PR #3: full Linux Python 861/861 plus 32 subtests PASS; full Atlas engine 38/38 plus 108 subtests PASS; Node 511/511 PASS; canonical Atlas97 SHA 609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc; tracked index 2920 PASS; project_status.errors=[]; ABH25 25/25, prior grants unchanged and science CT2 20 PASS.",
     "evidence": "research/ABH25_20261030/FINAL_REPORT.md",
-    "scope_note": "Verified commits refer to separate earlier bounded jobs; later content edits cannot be retroactively represented as tested. Final CI will check latest branch source state."
+    "scope_note": "Full suite verified candidate PR merge at head d18edb8; subsequent workflow trigger and continuity metadata changes are not independently re-tested. No public deployment, accepted human UX, new causal evidence or merge to main."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -255,7 +255,9 @@
     "abh25_r5": "French C03 route parked due checksum and unlinked frame; campaign continued via UK C04,C07 and formal/product checks C05,C06,C08-C26; 25/25 executed bounded, no external causal findings.",
     "abh25_source_probe": "C03 stage0 original commission CSV 29 rows MD5 PASS but no meeting ID; alternate official Agenda.json.zip MD5 mismatch before unzipping. R5 PARK; not a scientific cycle.",
     "abh25_scientific_discoveries": 0,
-    "abh25_final_report": "research/ABH25_20261030/FINAL_REPORT.md"
+    "abh25_final_report": "research/ABH25_20261030/FINAL_REPORT.md",
+    "abh25_final_ci": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080905547",
+    "abh25_final_ci_criteria": "Full Python/Node/Atlas and catalogue+budget PASS on tested candidate; documentation amendments after test not separately verified."
   },
   "integration_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/2",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
