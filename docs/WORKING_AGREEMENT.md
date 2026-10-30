@@ -1,3 +1,5 @@
+> **Repositorio independiente desde 30/10/2026:** la raíz canónica es `GalexY3/politics-fantasy-league`; AB es la referencia de método fijada en METHOD_REFERENCE.json.
+
 # Política de progreso y continuidad · piloto PFL · 30/10/2026
 
 ## Motivo y alcance
@@ -13,7 +15,7 @@ Hay una tensión documental: AB 3.2.1 R5 dice que el cupo es un límite y J cond
 3. **Trabajo en curso limitado.** Un hito activo por línea. Completar, invalidar con evidencia o aparcar antes de añadir otro. Documentar una dependencia bloqueada no la resuelve.
 4. **Parada con memoria.** Dos intentos equivalentes bloqueados sin evidencia nueva llevan a `PARKED`, con artefacto/condición de reapertura. No requiere agotar el presupuesto. Conservar el saldo de cinco ABH10 y dos históricos en sus propios ledgers.
 5. **Creatividad contrastable.** Al cambiar de dirección, tres rutas diferentes por mecanismo/población/fuente; especificar por qué cada una podría fracasar y qué se aprendería. Reservar una exploración breve dentro del trabajo autorizado; si no produce un test o una decisión útil en esa sesión, aparcarla. El número de ideas no es resultado científico.
-6. **Una sola línea técnica de integración.** Los cambios vuelven a `integration/pfl`; no encadenar una PR por ciclo. Los experimentos y ramas conceptuales siguen en ledgers y carpetas. Concurrencia real y cambios grandes sí pueden justificar una rama técnica adicional con propietario y destino declarados.
+6. **Una sola línea técnica de integración.** Los cambios vuelven a `main`; no encadenar una PR por ciclo. Los experimentos y ramas conceptuales siguen en ledgers y carpetas. Concurrencia real y cambios grandes sí pueden justificar una rama técnica adicional con propietario y destino declarados.
 7. **Cierre verificable.** Estado vivo, evidencia, negativos, siguiente acción y condición de bloqueo guardados juntos. No obligar a solicitar más ciclos. Proponer mantenimiento o ejecución directa cuando eso sea lo que falta.
 
 ## Ruta inmediata por línea

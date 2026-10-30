@@ -38,6 +38,10 @@ class IndexTests(unittest.TestCase):
         self.assertEqual(len(data['files']), 1)
         self.assertNotIn('status', data['files'][0])
 
+    def test_repository_root_and_vendored_engine_are_indexed(self):
+        self.assertEqual(index.ROOT, PROJECT)
+        self.assertEqual(index.classify('tools/ab_atlas/atlas_delta.py'), 'atlas_engine')
+
 
 if __name__ == '__main__':
     unittest.main()

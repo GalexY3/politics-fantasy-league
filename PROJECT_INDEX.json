@@ -5,12 +5,13 @@
   "category_counts": {
     "archive": 6,
     "atlas": 106,
-    "continuity": 7,
+    "atlas_engine": 12,
+    "continuity": 8,
     "data": 10,
     "evidence": 312,
     "experimental_code": 28,
     "operations": 69,
-    "reference": 38,
+    "reference": 42,
     "research": 1792,
     "runtime": 76,
     "task_queue": 119,
@@ -56,6 +57,11 @@
       "path": "MANIFEST_SHA256.json",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "METHOD_REFERENCE.json",
+      "category": "continuity",
+      "purpose": "Versión de AB adoptada y enlaces al método en su repositorio"
     },
     {
       "path": "NEW_CHAT_PROMPT.md",
@@ -854,6 +860,26 @@
     },
     {
       "path": "docs/WORKING_AGREEMENT.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/COMMIT_MAP.tsv",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/README.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/SOURCE_BRANCHES.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/SOURCE_TREE.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -13661,6 +13687,66 @@
       "path": "tests/test_warehouse.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tools/ab_atlas/README.md",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/UPSTREAM.json",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/abmap.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/atlas_delta.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/docs/AB_ATLAS_V03_CHATGPT_SYNC.md",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/docs/AB_P_MODO_PROYECTOS_V02.md",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/examples/ab_meta_example.json",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/tests/test_abmap.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/tests/test_cycles.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/tests/test_delta.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/tests/test_delta_timestamps.py",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
+    },
+    {
+      "path": "tools/ab_atlas/viewer/template.html",
+      "category": "atlas_engine",
+      "purpose": "Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json"
     }
   ]
 }

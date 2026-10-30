@@ -1,24 +1,31 @@
-name: Python and JavaScript checks
+name: Manual PFL verification
 on:
-  push:
-    branches: [main]
-  pull_request:
-
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   tests:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ['3.10', '3.13']
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install test dependencies
-        run: python -m pip install pytest
-      - name: Python tests
-        run: PYTHONPATH=src python -m pytest -q
-      - name: JavaScript syntax
-        run: node --check src/politics_fantasy/web/app.js
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install declared test dependencies
+        run: python -m pip install '.[test]'
+      - name: Catalogue and continuity
+        run: |
+          python scripts/project_index.py check
+          python scripts/project_status.py check
+      - name: Python and Atlas
+        run: |
+          PYTHONPATH=src python -m pytest -q -rs
+          python -m pytest -q -rs tools/ab_atlas/tests
+      - name: JavaScript
+        run: node scripts/run_node_tests.mjs

@@ -10,8 +10,8 @@ import subprocess
 import sys
 
 PROJECT = Path(__file__).resolve().parents[1]
-ROOT = PROJECT.parents[1]
-sys.path.insert(0, str(ROOT / 'ab_atlas'))
+ROOT = PROJECT
+sys.path.insert(0, str(ROOT / 'tools' / 'ab_atlas'))
 import atlas_delta
 
 
@@ -21,6 +21,24 @@ def git(*args):
 
 def load(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
+
+
+def resolve_commit(commit):
+    """Resolve a retained original AB SHA through the documented extraction map."""
+    if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit):
+        return None
+    def exists(value):
+        return subprocess.run(['git','cat-file','-e',value+'^{commit}'],cwd=ROOT,
+                              stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode == 0
+    if exists(commit):
+        return commit
+    mapping = PROJECT / 'docs/migration/COMMIT_MAP.tsv'
+    if mapping.is_file():
+        for line in mapping.read_text(encoding='utf-8').splitlines()[1:]:
+            old, new = line.split()
+            if old == commit and new != '0'*40 and exists(new):
+                return new
+    return None
 
 
 def validate_state(state, observed_atlas, observed_budget, project=PROJECT):
@@ -68,10 +86,7 @@ def validate_state(state, observed_atlas, observed_budget, project=PROJECT):
             if not evidence or not m.get('verified_commit'):
                 errors.append(f'Unsubstantiated completion: {m.get("id")}')
             commit = m.get('verified_commit', '')
-            if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit) or subprocess.run(
-                ['git', 'cat-file', '-e', commit + '^{commit}'], cwd=ROOT,
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
-            ).returncode:
+            if resolve_commit(commit) is None:
                 errors.append(f'Unknown completion commit: {m.get("id")}')
             for ref in evidence:
                 if ref.startswith('https://'):
@@ -97,8 +112,9 @@ def publication_observation(verified_commit):
     for ref in ('refs/remotes/origin/main', 'refs/heads/main'):
         result = subprocess.run(['git', 'rev-parse', '--verify', ref], cwd=ROOT, capture_output=True)
         if result.returncode == 0:
-            included = subprocess.run(['git', 'merge-base', '--is-ancestor', verified_commit, ref],
-                                      cwd=ROOT, capture_output=True).returncode == 0
+            resolved = resolve_commit(verified_commit)
+            included = bool(resolved) and subprocess.run(['git', 'merge-base', '--is-ancestor', resolved, ref],
+                                                         cwd=ROOT, capture_output=True).returncode == 0
             return {'main_ref': ref, 'main_head': result.stdout.decode().strip(),
                     'reviewed_commit_in_main': included, 'scope': 'LOCAL_GIT_REF_FETCH_REQUIRED'}
     return {'main_ref': None, 'main_head': None, 'reviewed_commit_in_main': None,
@@ -121,9 +137,7 @@ def derive():
                                cwd=ROOT, capture_output=True)
     if catalogue.returncode:
         errors.append('STALE_PROJECT_INDEX: stage intended files and rebuild the project catalogue')
-    code_paths = ['ab_atlas', 'proyectos/politics-fantasy-league/src',
-                  'proyectos/politics-fantasy-league/tests', 'proyectos/politics-fantasy-league/scripts',
-                  'proyectos/politics-fantasy-league/pyproject.toml']
+    code_paths = ['tools/ab_atlas', 'src', 'tests', 'scripts', 'pyproject.toml']
     names = subprocess.check_output(['git', 'ls-files', '-z', '--', *code_paths], cwd=ROOT).decode().split('\0')
     digest = hashlib.sha256()
     for name in sorted(n for n in names if n and (ROOT / n).is_file()):

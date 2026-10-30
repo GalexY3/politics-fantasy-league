@@ -2,12 +2,12 @@
   "schema": "pfl.codex.pending_tasks.v1",
   "created_on": "2026-10-28",
   "project": "Politics Fantasy League",
-  "repository": "GalexY3/Metodologia-AB",
-  "branch": "integration/pfl",
+  "repository": "GalexY3/politics-fantasy-league",
+  "branch": "main",
   "baseline_head_before_task_queue": "8f21411b0c4caf267d77721510d06129fe2eedbe",
   "execution_status": "INTEGRATED_AND_MERGED_PR80_CODE_REVIEW_PASS",
   "codex_available_to_user": true,
-  "github_issue_number": 17,
+  "github_issue_number": null,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 93,
@@ -447,7 +447,7 @@
   "last_verified_by": "Codex delegated main review 074f72e19b522e7a507045e3738609fa5f6139cc: Python820, Node511, Atlas38+104 subtests; race regression baseline red/fixed green; see docs/MAIN_REVIEW_20261030.md",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
-  "branch_policy": "integration/pfl is the stable operational line; main publication is reviewed separately; one change branch per milestone, not per chat or conceptual cycle",
+  "branch_policy": "main is the sole project authority; use short branches per milestone and reviewed integration",
   "active_campaign": {
     "id": "ABH10",
     "authorized": 10,
@@ -514,5 +514,12 @@
     "source": "Observed GitHub merge tool response; expected head SHA enforced",
     "new_ab_cycles": 0
   },
-  "main_merge_scope": "Specific user-delegated assessment and incorporation of PR80; future milestone changes still require review, not automatic merges."
+  "main_merge_scope": "Specific user-delegated assessment and incorporation of PR80; future milestone changes still require review, not automatic merges.",
+  "source_github_issue": "https://github.com/GalexY3/Metodologia-AB/issues/17",
+  "migration": {
+    "source_commit": "69ed402dd4a3f25207d9e620ede568b5e92ad8af",
+    "method_reference": "../METHOD_REFERENCE.json",
+    "commit_map": "../docs/migration/COMMIT_MAP.tsv",
+    "qa": "PENDING_STANDALONE"
+  }
 }

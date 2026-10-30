@@ -1,20 +1,45 @@
-> **Continuidad y organización:** [empezar](START_HERE.md) · [dónde está cada cosa](PROJECT_MAP.md) · [investigaciones](research/INDEX.md) · [estado e hitos](PROJECT_STATE.json) · [prompt reutilizable](NEW_CHAT_PROMPT.md). La rama operativa estable es `integration/pfl`; la incorporación a main se comprueba en Git. Producto e investigación tienen objetivos y progreso distintos.
+# Politics Fantasy League · WIP
 
-# Politics Fantasy League
+Prototipo fantasy con datos ficticios e investigación sociológica/institucional. **Producto e investigación tienen objetivos y evaluaciones separados.** La aplicación sigue siendo una demo local; autenticación multiusuario, fuentes institucionales y lanzamiento tienen sus propios requisitos pendientes.
 
-Laboratorio en desarrollo: juego local con fixtures ficticias, observatorio de fuentes y subinvestigaciones metodologicas. El avance contractual V4 es 36,90 %; las puertas de lanzamiento siguen 0/6. Las pruebas tecnicas no acreditan validez predictiva ni autorizan puntuaciones sobre personas reales.
+## Por dónde empezar
 
-## Retomar trabajo
+- **[Continuar el proyecto o empezar un chat](START_HERE.md)**
+- [Mapa: dónde está cada cosa](PROJECT_MAP.md) · [Índice de investigación](research/INDEX.md)
+- [Estado e hitos actuales](PROJECT_STATE.json) · [Último handoff](HANDOFF.md)
+- [Prompt reutilizable](NEW_CHAT_PROMPT.md) · [Cola técnica](tareas_codex/README.md)
 
-- [Cola vigente y resultados Codex](tareas_codex/README.md).
-- [Estado y limites de Atlas](ab_atlas/CURRENT.md).
-- [Campana CODEX20 cerrada](research/ABH_CODEX20_20261029/CAMPAIGN.json): su ledger es la autoridad del saldo, no esta pagina.
-- [Catalogo de fuentes](docs/CATALOGO_FUENTES.md).
-- [Instrucciones del repositorio](../../AGENTS.md).
-- [Historial completo del proyecto](README_HISTORICO_HASTA_20261029.md), preservado con sus fechas, ramas y balances originales.
+## Ejecutar la demo
 
-## Verificacion local
+Desde la raíz de este repositorio, con Python 3.10 o superior:
 
-Desde la raiz del repositorio, usar los comandos del informe correspondiente y registrar el commit ensayado. Node tiene pruebas en tests/ y tambien en src/politics_fantasy/; no asumir que un unico glob las descubre todas. Comando Node desde raiz: `node proyectos/politics-fantasy-league/scripts/run_node_tests.mjs`. Python requiere los extras del pyproject del proyecto. Los controles POSIX y navegador deben reportarse por separado cuando el entorno no los permita.
+```sh
+python run_demo.py
+```
 
-Los originales potencialmente nominativos permanecen en data/raw/ fuera de Git. Consultar cada manifiesto de captura, derechos y limites temporales antes de reutilizarlos. El linaje RELEASEPATH de PR44 tiene un registro de logros distinto; sus snapshots no sustituyen los de este linaje automaticamente.
+En Windows también puedes usar `start_windows.bat`; en Linux/macOS, `start_linux_mac.sh`. El servidor escucha solo en loopback. Los controles de almacenamiento privado requieren POSIX; la demo del juego y ese importador son capacidades distintas.
+
+## Comprobar el proyecto
+
+```sh
+python -m pip install '.[test]'
+PYTHONPATH=src python -m pytest -q -rs
+node scripts/run_node_tests.mjs
+python -m pytest -q -rs tools/ab_atlas/tests
+python scripts/project_status.py check
+python scripts/project_index.py find T005
+```
+
+Los comandos de pruebas anteriores usan sintaxis de shell POSIX; en PowerShell establece `$env:PYTHONPATH='src'` antes de ejecutar pytest. La CI remota es manual para no disparar trabajos por cada commit.
+
+## Relación con AB
+
+PFL **utiliza** AB; el repositorio del método es [Metodologia-AB](https://github.com/GalexY3/Metodologia-AB). [METHOD_REFERENCE.json](METHOD_REFERENCE.json) fija la versión documental adoptada y las adaptaciones locales. Actualizar el método no modifica automáticamente las reglas o resultados del proyecto.
+
+El motor Atlas necesario está fijado en `tools/ab_atlas/`; el estado y los lotes de PFL están en `ab_atlas/`. Ni una medalla, ni un test, ni un porcentaje de madurez acreditan por sí solos evidencia humana o preparación de lanzamiento.
+
+## Historia y migración
+
+El proyecto se extrajo de AB conservando su historia relevante. [Procedencia y mapa de commits](docs/migration/README.md). Los SHA originales y enlaces históricos siguen identificando sus fuentes en AB; el mapa permite localizar sus equivalentes en esta historia filtrada. Se conservaron los blobs originales antes de adaptar las rutas operativas.
+
+El README extenso anterior sigue en [el archivo histórico](README_HISTORICO_HASTA_20261029.md). Los originales locales no versionados no se han incorporado a la migración.

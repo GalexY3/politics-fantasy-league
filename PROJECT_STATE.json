@@ -1,12 +1,12 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 5,
+  "revision": 6,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
-  "operational_branch": "integration/pfl",
+  "operational_branch": "main",
   "publication_branch": "main",
-  "publication_status": "MERGED_PR80",
-  "entry_url": "https://github.com/GalexY3/Metodologia-AB/blob/integration/pfl/proyectos/politics-fantasy-league/START_HERE.md",
+  "publication_status": "STANDALONE_MIGRATION_QA_IN_PROGRESS",
+  "entry_url": "https://github.com/GalexY3/politics-fantasy-league/blob/main/START_HERE.md",
   "source_heads": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
     "PR79": "9354e4fe1afdce073b85bf4605a8664e2f62b338",
@@ -42,7 +42,10 @@
     "PROJECT_MAP.md",
     "PROJECT_INDEX.json",
     "research/INDEX.md",
-    "scripts/project_index.py"
+    "scripts/project_index.py",
+    "METHOD_REFERENCE.json",
+    "docs/migration/COMMIT_MAP.tsv",
+    "tools/ab_atlas/UPSTREAM.json"
   ],
   "milestones": [
     {
@@ -166,14 +169,28 @@
         "research/INDEX.md",
         "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json"
       ]
+    },
+    {
+      "id": "P-MIGRATION",
+      "lane": "product",
+      "status": "IN_PROGRESS",
+      "outcome": "Proyecto independiente de AB con historia y herramientas reproducibles",
+      "acceptance": "Identidad de archivos importados, mapa de commits, rutas corregidas, QA completo y una única autoridad publicada; entradas AB redirigen después de verificar destino",
+      "next_action": "Completar QA y publicar destino antes del corte de AB",
+      "dependencies": [
+        "P0-INTEGRATION"
+      ],
+      "evidence": [
+        "docs/migration/SOURCE_TREE.json"
+      ]
     }
   ],
   "latest_validation": {
-    "status": "REVIEW_APPROVED",
+    "status": "MIGRATION_QA_IN_PROGRESS",
     "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
-    "summary": "Linux limpio 074f72e1: 820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; catálogo/continuidad/replay PASS. Regresión determinista del almacén roja en baseline y verde en corrección.",
-    "evidence": "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json",
-    "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
+    "summary": "Baseline AB: 820 Python/511 Node/38 Atlas PASS. Standalone paths, commit resolution and declared dependencies changed; complete standalone QA is pending.",
+    "evidence": "docs/migration/README.md",
+    "scope_note": "Old results do not automatically certify the extracted repository."
   },
   "scientific_status": {
     "prospective_CT2_ordinal": 20,
@@ -198,5 +215,20 @@
     "method": "merge",
     "source": "Observed GitHub merge tool response; expected head SHA enforced",
     "new_ab_cycles": 0
+  },
+  "canonical_repository": "https://github.com/GalexY3/politics-fantasy-league",
+  "method_reference": "METHOD_REFERENCE.json",
+  "migration_source": {
+    "repository": "GalexY3/Metodologia-AB",
+    "commit": "69ed402dd4a3f25207d9e620ede568b5e92ad8af",
+    "source_tree": "docs/migration/SOURCE_TREE.json",
+    "commit_map": "docs/migration/COMMIT_MAP.tsv"
+  },
+  "source_validation": {
+    "status": "REVIEW_APPROVED",
+    "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
+    "summary": "Linux limpio 074f72e1: 820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; catálogo/continuidad/replay PASS. Regresión determinista del almacén roja en baseline y verde en corrección.",
+    "evidence": "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json",
+    "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   }
 }

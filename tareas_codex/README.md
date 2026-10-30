@@ -1,3 +1,5 @@
+> **Cola migrada:** este repositorio es la autoridad. Los SHA, PR y resultados antiguos conservan su origen en AB; para ejecución actual consultar START_HERE y el informe de migración.
+
 # Cola de Politics Fantasy · rama de integración
 
 **Entrada de continuidad:** [START_HERE](../START_HERE.md). Los objetivos y siguientes acciones de producto e investigación se mantienen en [PROJECT_STATE.json](../PROJECT_STATE.json); este índice conserva los expedientes históricos.

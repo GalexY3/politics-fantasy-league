@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 PROJECT = Path(__file__).resolve().parents[1]
-ROOT = PROJECT.parents[1]
+ROOT = PROJECT
 OUTPUTS = {'PROJECT_INDEX.json', 'PROJECT_MAP.md', 'research/INDEX.md'}
 CATEGORIES = {
     'continuity': 'Estado vigente, objetivos e inicio de conversación',
@@ -18,6 +18,7 @@ CATEGORIES = {
     'research': 'Preguntas, campañas, análisis y resultados de investigación',
     'evidence': 'Recibos, originales conservados y copias históricas; no código activo',
     'atlas': 'Grafo Atlas, logros y sincronización',
+    'atlas_engine': 'Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json',
     'reference': 'Manuales, contratos y referencias',
     'data': 'Datos/fixtures versionados y metadatos; no datos locales privados',
     'task_queue': 'Expedientes y resultados de ejecución',
@@ -30,6 +31,7 @@ ROLES = {
     'HANDOFF.md': 'Último briefing guardado; comprobar frescura con Git',
     'BRANCHES.json': 'Inventario de ramas integradas y alternativas históricas',
     'NEW_CHAT_PROMPT.md': 'Prompt reutilizable que apunta al estado vivo',
+    'METHOD_REFERENCE.json': 'Versión de AB adoptada y enlaces al método en su repositorio',
     'src/politics_fantasy/server.py': 'Servidor HTTP de la demo local; rutas API y cabeceras',
     'src/politics_fantasy/product.py': 'Clubes, mercado, alineación, jornadas y persistencia',
     'src/politics_fantasy/scoring.py': 'Reglas de puntuación del prototipo',
@@ -61,6 +63,8 @@ def classify(path):
         return 'evidence'
     if path.startswith('ab_atlas/'):
         return 'atlas'
+    if path.startswith('tools/ab_atlas/'):
+        return 'atlas_engine'
     if path.startswith('tests/') or p.name.startswith('test_') and path.startswith('src/'):
         return 'verification'
     if path.startswith('src/'):
@@ -95,8 +99,8 @@ def make_catalogue(paths):
 
 
 def tracked_paths():
-    prefix = PROJECT.relative_to(ROOT).as_posix() + '/'
-    raw = subprocess.check_output(['git', 'ls-files', '-z', '--', prefix], cwd=ROOT).decode('utf-8')
+    prefix = '' if PROJECT == ROOT else PROJECT.relative_to(ROOT).as_posix() + '/'
+    raw = subprocess.check_output(['git', 'ls-files', '-z', '--', prefix or '.'], cwd=ROOT).decode('utf-8')
     return [p[len(prefix):] for p in raw.split('\0') if p.startswith(prefix) and (ROOT / p).is_file()]
 
 

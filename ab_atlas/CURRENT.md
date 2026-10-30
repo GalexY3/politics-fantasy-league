@@ -1,3 +1,11 @@
+# Repositorio independiente · 30/10/2026
+
+PFL se migra a [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league). Consultar [START_HERE](../START_HERE.md), [METHOD_REFERENCE](../METHOD_REFERENCE.json) y [la procedencia](../docs/migration/README.md). Los datos Atlas93 y su SHA se conservan; no se ejecutaron nuevos ciclos. La QA independiente del destino se registra antes del corte.
+
+---
+
+## Historial procedente de AB
+
 # Incorporado a main · revisión delegada · 30/10/2026
 
 La [PR80](https://github.com/GalexY3/Metodologia-AB/pull/80) está **fusionada** tras revisión del código y corrección de tres fallos. [Recibo GitHub](../research/MAIN_REVIEW_20261030/MERGE_RECEIPT.json). QA Linux final: **820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS**, sin fallos/omisiones. La regresión determinista del almacén falla en la base y pasa corregida.

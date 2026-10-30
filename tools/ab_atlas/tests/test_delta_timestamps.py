@@ -45,8 +45,8 @@ class BatchTimestampTests(unittest.TestCase):
                 delta.batch_check(self.sample(at))
 
     def test_all_committed_atlas_batch_timestamps_are_backward_compatible(self):
-        root = Path(__file__).resolve().parents[2]
-        folder = root / "proyectos" / "politics-fantasy-league" / "ab_atlas" / "updates"
+        root = Path(__file__).resolve().parents[3]
+        folder = root / "ab_atlas" / "updates"
         files = sorted(folder.glob("*.json"))
         self.assertGreaterEqual(len(files), 55)
         for file in files:

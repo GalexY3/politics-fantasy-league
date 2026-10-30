@@ -54,6 +54,11 @@ class ContinuityTests(unittest.TestCase):
         self.state['milestones'][0].update(status='DONE', evidence=['START_HERE.md'], verified_commit='a'*40)
         self.assertTrue(any('Unknown completion commit' in e for e in self.errors()))
 
+    def test_original_ab_evidence_commit_resolves_through_extraction_map(self):
+        resolved = status.resolve_commit('074f72e19b522e7a507045e3738609fa5f6139cc')
+        self.assertIsNotNone(resolved)
+        self.assertNotEqual(resolved, '074f72e19b522e7a507045e3738609fa5f6139cc')
+
     def test_matching_but_impossible_budget_still_fails(self):
         self.budget['remaining'] = -1
         self.state['authorization_snapshot'] = copy.deepcopy(self.budget)
