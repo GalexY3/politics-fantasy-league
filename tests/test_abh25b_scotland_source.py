@@ -19,5 +19,5 @@ class ScottishSource(unittest.TestCase):
     def test_html_and_bad_rows_rejected(self):
         with self.assertRaises(Exception):audit(b'<html>'+b'a'*130+b'</html>')
         with self.assertRaisesRegex(ValueError,'ROW_SHAPE'):
-            audit(json.dumps({'data':[{'pe_number':'P1','attributes':'not-a-dict'}]}).encode())
+            audit(json.dumps({'data':[{'pe_number':'P1','attributes':'not-a-dict', 'padding':'SYNTHETIC'*20}]}).encode())
 if __name__=='__main__':unittest.main()
