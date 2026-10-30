@@ -1,0 +1,24 @@
+{
+  "schema": "pfl.ab3.2.1.aj",
+  "cycle": "ABH25B-C02",
+  "mode": "AB-R",
+  "status": "PRE_DATA_FROZEN",
+  "A": "Does a distinct official Canadian House of Commons petitions XML feed provide per-petition governmental response timestamp or only petition counts, stage and signature metadata?",
+  "B": {
+    "H1": "Direct response timestamp and stable petition link present in feed",
+    "H0": "Only certification/status/signature details; linkage to response requires another source",
+    "rivals": [
+      "Actual publisher redirected URL or XML schema changed",
+      "Current Parliament feed cannot support retrospective generalization"
+    ]
+  },
+  "C": "One XML original GET official domain only, max 8MB, XML parse without external entities; derive element tag frequency and response-tag presence, never record names, IDs, titles or people.",
+  "D": "Frozen parser and exact URL after official current Open Data link, sha and source provenance; fail closed on redirect off *.ourcommons.ca.",
+  "E": "GitHub Actions one bounded original request, source digest and general schema only.",
+  "F": "Distinguish absence in fetched XML from absence in broader website; stage != response; reject HTML and malformed XML.",
+  "G": "Contrasts UK response-time field schema and French agenda metadata; not comparable response rates.",
+  "H": "New source-prior limited 0/3 unless actual independent event times and cross-source verification.",
+  "I": "No real politician scoring or reuse of person metadata; CT2 20.",
+  "J": "Count if genuine original structured source and semantic audit; otherwise R5 park after bounded failure.",
+  "grant": "PFL-ABH25B-20261030"
+}
