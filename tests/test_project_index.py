@@ -20,7 +20,7 @@ class IndexTests(unittest.TestCase):
         self.assertEqual(index.classify('src/politics_fantasy/server.py'), 'runtime')
 
     def test_experimental_receipt_signing_is_not_user_authentication(self):
-        data = index.make_catalogue(['src/politics_fantasy/fictional_receipt_auth.mjs'])
+        data = index.make_catalogue(['research/old/linux/receipt.out','src/politics_fantasy/fictional_receipt_auth.mjs'])
         match = index.search(data, 'recibos')[0]
         self.assertEqual(match['category'], 'experimental_code')
         self.assertIn('no autenticación de usuarios', match['purpose'])

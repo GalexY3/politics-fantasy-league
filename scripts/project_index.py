@@ -102,8 +102,13 @@ def tracked_paths():
 
 def search(catalogue, query, category=None):
     words = query.casefold().split()
-    return [x for x in catalogue['files'] if (category is None or x['category'] == category)
-            and all(w in (x['path'] + ' ' + x['purpose'] + ' ' + x['category']).casefold() for w in words)]
+    matches = [x for x in catalogue['files'] if (category is None or x['category'] == category)
+               and all(w in (x['path'] + ' ' + x['purpose'] + ' ' + x['category']).casefold() for w in words)]
+    def rank(row):
+        score = 20 * (row['path'] in ROLES) + 10 * (row['category'] not in {'evidence','archive'})
+        score += sum(5 for w in words if w in PurePosixPath(row['path']).name.casefold())
+        return (-score, row['path'])
+    return sorted(matches, key=rank)
 
 
 def map_markdown(catalogue):
