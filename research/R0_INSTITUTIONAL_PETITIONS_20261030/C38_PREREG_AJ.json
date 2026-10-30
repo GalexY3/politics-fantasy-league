@@ -1,0 +1,60 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.prereg.v1",
+  "cycle": "ABH10-C38",
+  "date": "2026-10-30",
+  "lane": "research",
+  "mode": "AB-R_OBSERVATIONAL_OFFICIAL_OPEN_PETITIONS",
+  "drift_D": 2,
+  "not_an_experiment": true,
+  "grants": {
+    "applicable_old_ABH10_remaining_before": 5,
+    "historical_legacy_STOP_R5": 2,
+    "new_additional_grant_PFL_GRANT_20261030_INTEGRATION10_remaining": 10,
+    "spend_order": "ABH10 previous applicable first; this new separate 10 remains unspent"
+  },
+  "A": "Among terminal French Assembly petitions published at least 180 days before snapshot, does an official scraped dataset carry a DOCUMENTED committee decision more frequently for 10,000+ signatures than for 100-9,999, and is direction consistent within eligible publication-year strata? Unit PETITION, not person. This is not threshold RD, not causal legislative response.",
+  "B": {
+    "H1": "Descriptive documentation rate higher in 10k+ than 100–9999 AND positive in a majority of eligible years (>=3 high and >=10 low), with >=10 high total and >=2 comparable years.",
+    "H0": "No positive association after stratified direction check, or insufficient comparable years/high N; both informative about data suitability.",
+    "rivals": [
+      "Data field missingness is not no decision. Committees may decide in minutes not captured by scraping.",
+      "Signature support reflects age/topic and prior media visibility; selection into closed petition and processing is endogenous.",
+      "Ten thousand is an analytic cut, NOT a French legal response threshold; actual 100k and 500k rules differ."
+    ]
+  },
+  "C": {
+    "three_material_routes": "ROUTE_COMPARISON.md frozen before data, rank-human blocked, incentive formal only synthetic, petitions open selected",
+    "source_metadata": "data.gouv.fr Pétitions de l'Assemblée Nationale, dataset 6889cc10e79a25f17ed69acb, resource c94c9dfe-23eb-45aa-acd1-7438c4e977db, Licence Ouverte v2",
+    "scraper_source": "datagouv/datagouvfr_data_pipelines main blob adbd473614d65b874ee18d3c8f15a7513238f7b1",
+    "columns": [
+      "identifiant",
+      "date_publication",
+      "nb_votes",
+      "statut",
+      "commission",
+      "decision_commission"
+    ],
+    "preoutcome_known": "Dataset page/third-party historical index mentions about 4k petitions and ~51 above 10k; code scraper field names/statuses known. NO primary exact eligible rate or within-year test seen before prereg.",
+    "snapshot_date": "2026-10-26",
+    "maturity_date_cutoff": "2026-04-29",
+    "selection": "terminal status classee/expiree/archivee, vote >=100, non-missing, date before cutoff",
+    "primary": "documented decision field rate high>=10000 vs low [100,9999], predeclared year-stratum direction; negative/inconclusive accepted",
+    "other": "Audit per-year counts and number of comparable commission-year strata; do not estimate treatment effect or person data."
+  },
+  "D": {
+    "instrument_path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py",
+    "instrument_git_blob": "42383b26989674d445acd144defce8c62b62657d",
+    "tests_path": "tests/test_petition_documentation_audit.py",
+    "tests_git_blob": "6ce385bde631ff305cf05d7f5b99a0d6334dafb2",
+    "run_command": "PYTHONPATH=src python -m pytest -q tests/test_petition_documentation_audit.py && python research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py /tmp/pfl-petitions-open.csv",
+    "single_source": "https://www.data.gouv.fr/api/1/datasets/r/c94c9dfe-23eb-45aa-acd1-7438c4e977db",
+    "source_sha256": "record at first successful original execution; source object timestamp/publisher is mutable",
+    "no_person_rows_persisted": true
+  },
+  "E": "After this prereg GitHub commit, run native Python pinned sources/tests and download official CSV once in GitHub-hosted bounded job. Validate source SHA256 and CSV schema, output only aggregate table and no titles/descriptions/names/URLs. If source unavailable, do not count; no invented original observation.",
+  "F": "If different open source file schema, user identifiers or manipulated statuses, negative/blocked and no use of source. Avoid taking API license as proof of truth of committee decisions. No causal PFL human evidence.",
+  "G": "Competent comparison year-stratified direction and risk-set age filter, sensitivity missing decision not response absence, no p-value/RD claims. Human-rank RCT has access blocker, formal synthetic weak external transfer.",
+  "H": "Update distinct prior only if original data analyzed and discriminates H1/H0/insufficient, store limits, no CT2 promotion.",
+  "I": "PFL CT2 ordinal 20/100, N1/N2/N3 0/0/0, release 0/6. Independent French administrative evidence cannot validate PFL causal leaderboard effect.",
+  "J": "Count one actual executed bounded AB-R C38 only if frozen code and original dataset run yields interpretable negative/positive/inconclusive result with checks and source provenance; otherwise mark blocked/not counted. Then previous ABH10 remaining 4, new 10 unchanged. STOP after two equivalent blocked access attempts, no repeating this dataset."
+}

@@ -1,6 +1,6 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 7,
+  "revision": 8,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
   "operational_branch": "main",
@@ -15,20 +15,20 @@
     "PR44": "d6db8fcd4be1ccec79b78251b9e50485555fa727"
   },
   "atlas_snapshot": {
-    "batches": 93,
+    "batches": 94,
     "nodes": 63,
     "edges": 81,
-    "runs": 310,
+    "runs": 311,
     "complaints": 51,
-    "state_sha256": "7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d",
+    "state_sha256": "ac64213f1901a0e07832083a0c6afbe8ddf02097a2d2a83556a94fc77a10ae8a",
     "passed_gates": 0
   },
   "authorization_ledger": "research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json",
   "authorization_snapshot": {
     "campaign": "ABH10",
     "authorized": 10,
-    "executed": 5,
-    "remaining": 5,
+    "executed": 6,
+    "remaining": 4,
     "historical_separate_stop_r5": 2
   },
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -66,14 +66,18 @@
     {
       "id": "P1-ACCOUNTS",
       "lane": "product",
-      "status": "QUEUED",
-      "outcome": "Usuarios y permisos aislados en el prototipo ficticio",
-      "acceptance": "Dos usuarios crean clubes distintos; sesiones válidas; otro usuario no puede leer ni modificar recursos ajenos; persistencia y regresiones del flujo",
-      "next_action": "Definir y ejecutar una implementación local mínima con pruebas de aislamiento, sin personas políticas reales",
+      "status": "READY_REVIEW",
+      "outcome": "Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público",
+      "acceptance": "35/35 pruebas HTTP y regresión nativas en GitHub Actions #40995507812; dos usuarios crean clubes distintos y acciones de otro no leen/escriben, sesión/CSRF/persistencia. Falta revisión humana UX antes de DONE.",
+      "next_action": "Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada",
       "dependencies": [
         "P0-INTEGRATION"
       ],
-      "evidence": []
+      "evidence": [
+        "docs/P1_ACCOUNTS_REVIEW.md",
+        "tests/test_accounts.py"
+      ],
+      "verified_commit": "9f0fe6509b5f74a26241ac75cb39e0c10a912bc1"
     },
     {
       "id": "P2-PLAYABLE-FLOW",
@@ -81,7 +85,7 @@
       "status": "QUEUED",
       "outcome": "Flujo ficticio completo usable y persistente",
       "acceptance": "Acceso, creación de club, alineación, jornada y resultado desde navegador; reinicio conserva estado; revisión de uso por el investigador",
-      "next_action": "Tras P1, verificar un recorrido de usuario completo y corregir fricciones observadas",
+      "next_action": "Tras aceptación humana P1, comprobar acceso→club→alineación→jornada ficticia→resultado en navegador con persistencia/reinicio.",
       "dependencies": [
         "P1-ACCOUNTS"
       ],
@@ -90,26 +94,32 @@
     {
       "id": "R0-FEASIBLE-QUESTION",
       "lane": "research",
-      "status": "IN_PROGRESS",
-      "outcome": "Una pregunta sociológica delimitada con evidencia accesible y falsador",
+      "status": "READY_REVIEW",
+      "outcome": "Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta",
       "acceptance": "Comparar tres rutas materiales, elegir una con antecedente y rival competentes, verificar el acceso y alcance de uso de su observación; contrato prospectivo antes de analizar",
-      "next_action": "Una sesión acotada para seleccionar entre feedback humano, respuesta institucional u otro mecanismo formal claramente etiquetado; no repetir C37 sin artefacto nuevo",
+      "next_action": "Revisar el resultado C38 importado y sus fuentes; al validar el commit independiente decidir aceptaciÃ³n cientÃ­fica y el siguiente contraste.",
       "dependencies": [],
       "evidence": [
-        "docs/WORKING_AGREEMENT.md"
-      ]
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md"
+      ],
+      "source_verified_commit": "f6fcb5490b07107ce8c1787ca4d2d4b1a197a540"
     },
     {
       "id": "R1-DISCRIMINATING-RESULT",
       "lane": "research",
-      "status": "QUEUED",
-      "outcome": "Resultado que cambie una hipótesis social o institucional frente a un rival",
-      "acceptance": "Datos originales/versionados adecuados al estimando, análisis reproducible, control competente y auditoría; negativo válido aceptable; causalidad solo si el diseño la identifica",
-      "next_action": "Ejecutar el contrato de la pregunta elegida con el presupuesto autorizado aplicable; preservar exposición previa",
+      "status": "READY_REVIEW",
+      "outcome": "Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario",
+      "acceptance": "Evidencia original pública SHA congelada al ejecutar, Python 8/8 nativo, control de año y edad, primer test 6/8 inválido registrado; resultado solo descriptivo, la validación independiente de decisiones reales sigue pendiente.",
+      "next_action": "Revisión del investigador; si interesa validar interpretación sustantiva, obtener actas oficiales fechadas de comisiones y auditar decisión no consignada, no más umbrales arbitrarios",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
-      "evidence": []
+      "evidence": [
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json"
+      ]
     },
     {
       "id": "R-AEA-C37",
@@ -233,5 +243,53 @@
     "summary": "Linux limpio 074f72e1: 820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; catálogo/continuidad/replay PASS. Regresión determinista del almacén roja en baseline y verde en corrección.",
     "evidence": "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json",
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
+  },
+  "additional_authorization_ledger": "research/AUTHORIZATION_20261030_NEW10.json",
+  "additional_authorization_snapshot": {
+    "id": "PFL-GRANT-20261030-INTEGRATION10",
+    "authorized": 10,
+    "executed": 0,
+    "remaining": 10
+  },
+  "ported_source_validation": {
+    "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
+    "verified_commit": "9f0fe6509b5f74a26241ac75cb39e0c10a912bc1",
+    "summary": "P1 GitHub Actions #40995507812: 35 Python tests PASS y node --check, dos cuentas y clubes separados. R1 C38 GitHub Actions #40996183394: 8/8 tests Python y 4170 registros originales, diferencia documentacion −29,08 p.p. Atlas94 original Python #40996696957: 94 lotes, SHA ac64213f..., nodes63 edges81.",
+    "evidence": "docs/P1_ACCOUNTS_REVIEW.md",
+    "scope_note": "Feature branch P1 not merged and no human UI acceptance yet; R1 observational field documentation not institutional causality; existing publication PR80 unaffected."
+  },
+  "latest_work": {
+    "branch": "migration/pfl-final-cutover-20261030",
+    "base_integration_head": "69ed402dd4a3f25207d9e620ede568b5e92ad8af",
+    "product": "P1_READY_REVIEW",
+    "research": "R1_NEGATIVE_READY_REVIEW",
+    "first_invalid_research_runner": "40996014251",
+    "successful_research_runner": "40996183394",
+    "atlas_canonical_runner": "40996696957",
+    "new_AB_cycles_from_previous_ABH10": 1,
+    "additional_new10_used": 0,
+    "release_gates": "0/6",
+    "source_repository": "GalexY3/Metodologia-AB",
+    "source_pr": 81,
+    "source_head": "d725a8dff37429a035b6e1ffb27c3568e51322ce",
+    "ported_into_repository": "GalexY3/politics-fantasy-league",
+    "migration_status": "DRAFT_PENDING_INDEPENDENT_LINUX_QA",
+    "no_additional_AB_cycles_used": true
+  },
+  "cutover_transfer": {
+    "source_repository": "GalexY3/Metodologia-AB",
+    "source_pr": 81,
+    "source_commit": "d725a8dff37429a035b6e1ffb27c3568e51322ce",
+    "destination_base": "903c000c3f6a60f408cc470564471cfba9a1354a",
+    "branch": "migration/pfl-final-cutover-20261030",
+    "manifest": "docs/migration/CUTOVER_PR81_TRANSFER_MANIFEST.json",
+    "file_level_provenance": "Unadapted source bytes verified before optional documentation changes; see manifest entries.",
+    "status": "DRAFT_PENDING_INDEPENDENT_LINUX_QA",
+    "ABH10_after_C38": "6/10, remaining 4",
+    "new_separate_grant": "0/10, remaining 10",
+    "historical_STOP_R5": 2,
+    "new_cycles_from_migration": 0,
+    "windows_qa_summary": "docs/migration/CUTOVER_PR81_WINDOWS_QA.json",
+    "linux_qa_workflow": ".github/workflows/pfl-cutover-linux-qa.yml"
   }
 }

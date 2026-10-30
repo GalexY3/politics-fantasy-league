@@ -31,3 +31,16 @@ La CI remota queda manual. Datos raw/private/local_field no versionados y creden
 ## Workflows del monorepo
 
 Se conservan además los **16 workflows históricos de PFL** de la raíz de AB, con bytes y SHA-256, en [source_workflows/SOURCE.json](source_workflows/SOURCE.json). Son archivo inerte fuera de `.github`; sus rutas y contratos pertenecen al monorepo original. La única CI activa del destino es el workflow manual adaptado y completo. Sus historiales originales siguen consultables en AB; no se incluyeron estos paths de raíz en el filtrado de commits del proyecto.
+
+## Adenda: trabajo posterior a la extracciÃ³n (PR #81)
+
+El lote C38, cuentas P1, grafo O7, priors y concesiones de la antigua PR #81
+no pertenecÃ­an al corte de extracciÃ³n inicial. El traspaso controlado se documenta en
+[CUTOVER_PR81_TRANSFER_MANIFEST.json](CUTOVER_PR81_TRANSFER_MANIFEST.json).
+La importaciÃ³n no equivale a validar de nuevo las ejecuciones originales ni a fusionar
+la PR antigua en AB. Metodologia-AB queda como referencia metodolÃ³gica e histÃ³rica;
+no es el repositorio donde continuar PFL. La concesiÃ³n independiente de 10 plazas menciona cinco plazas previas como prioridad
+redactada antes de C38: el saldo operativo correcto despuÃ©s de C38 es **cuatro**,
+segÃºn el ledger ABH10 (6/10); las diez nuevas siguen intactas.
+El informe C38 conserva la distinciÃ³n entre
+una celda sin decisiÃ³n documentada y una decisiÃ³n institucional inexistente.

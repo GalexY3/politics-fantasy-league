@@ -1,0 +1,189 @@
+{
+  "schema": "pfl.pr81.standalone_cutover_manifest.v1",
+  "date": "2026-10-30",
+  "source_repository": "GalexY3/Metodologia-AB",
+  "source_pr": 81,
+  "source_branch": "feature/pfl-p1-accounts",
+  "source_head": "d725a8dff37429a035b6e1ffb27c3568e51322ce",
+  "destination_repository": "GalexY3/politics-fantasy-league",
+  "destination_base": "903c000c3f6a60f408cc470564471cfba9a1354a",
+  "transfer_branch": "migration/pfl-final-cutover-20261030",
+  "original_changed_files_in_pr": 29,
+  "monorepo_workflows_not_imported": 4,
+  "project_files_reconciled": 25,
+  "verified_pre_adaptation_source_bytes": [
+    {
+      "path": "ab_atlas/updates/0094-pfl-abh10-c38-french-petitions-20261030.json",
+      "source_path": "proyectos/politics-fantasy-league/ab_atlas/updates/0094-pfl-abh10-c38-french-petitions-20261030.json",
+      "sha256": "61714e5b8c2ae0a04ade1ce496376eec22fc662b512f7b212d9e4f44aa10391f",
+      "source_git_blob": "f86bf9e30ab7b17e829503ee388a3a386ecc428f",
+      "destination_git_blob": "f86bf9e30ab7b17e829503ee388a3a386ecc428f",
+      "bytes": 1753
+    },
+    {
+      "path": "docs/P1_ACCOUNTS_REVIEW.md",
+      "source_path": "proyectos/politics-fantasy-league/docs/P1_ACCOUNTS_REVIEW.md",
+      "sha256": "1fc225fc30da9de6bf0d5656aae3018694e2c5b8735615335c0099736024af01",
+      "source_git_blob": "26f0665691e0be66f60b7f603004ffa60e118dd9",
+      "destination_git_blob": "26f0665691e0be66f60b7f603004ffa60e118dd9",
+      "bytes": 4297
+    },
+    {
+      "path": "research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json",
+      "source_path": "proyectos/politics-fantasy-league/research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json",
+      "sha256": "2d1556755e3dfbfd631daba15544a0cd1651293148b90fd13774df8855fdbb63",
+      "source_git_blob": "80f71fcf74ef4fbeb87f1b3bc7d2e07a1d2ee4a6",
+      "destination_git_blob": "80f71fcf74ef4fbeb87f1b3bc7d2e07a1d2ee4a6",
+      "bytes": 5720
+    },
+    {
+      "path": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
+      "source_path": "proyectos/politics-fantasy-league/research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
+      "sha256": "2ff971e172f77bde13f61729dce43918dbfa72c54bbfc355117b780636d4578b",
+      "source_git_blob": "da08907ceb5e3540ebcfd5dee50eaa5b5e80fe41",
+      "destination_git_blob": "da08907ceb5e3540ebcfd5dee50eaa5b5e80fe41",
+      "bytes": 48992
+    },
+    {
+      "path": "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+      "source_path": "proyectos/politics-fantasy-league/research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+      "sha256": "dc83c3ddb9288ca99944318222795a425868ec795b0d76fb52c0890c18fefb81",
+      "source_git_blob": "a225a843431273982b54a3f0bc3269dfa3602bd5",
+      "destination_git_blob": "a225a843431273982b54a3f0bc3269dfa3602bd5",
+      "bytes": 108997
+    },
+    {
+      "path": "research/AUTHORIZATION_20261030_NEW10.json",
+      "source_path": "proyectos/politics-fantasy-league/research/AUTHORIZATION_20261030_NEW10.json",
+      "sha256": "2bf56b5112e54d13cb3e3715df47fe6b5d9c5143a1634a9412f6bac7016fa525",
+      "source_git_blob": "2dc24db13a653781a022de4e9ac76fdf59d419b1",
+      "destination_git_blob": "2dc24db13a653781a022de4e9ac76fdf59d419b1",
+      "bytes": 1601
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+      "sha256": "f63ce1a07ffa5abd5f1adb6d29c63ab6d7e05e14ffb89aa62622a34ea0493ab7",
+      "source_git_blob": "1bfb049773d569c4e715c2d0e1affb9f4a5c8cb6",
+      "destination_git_blob": "1bfb049773d569c4e715c2d0e1affb9f4a5c8cb6",
+      "bytes": 1334
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+      "sha256": "6d20719e66a57dc7dcd8cd96b3e06dc92a73df59ad16cd0ae55d9f741f10a689",
+      "source_git_blob": "df7d49484748c06ebafbebbdb467a262dbbea348",
+      "destination_git_blob": "df7d49484748c06ebafbebbdb467a262dbbea348",
+      "bytes": 5112
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_R1_FREEZE.json",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_R1_FREEZE.json",
+      "sha256": "2cbdcb91aeeca81b9f216719c1d817aefd089e662b8d8ff124878066986d988f",
+      "source_git_blob": "55877553c036c374216f3ef498efb1fe9721c028",
+      "destination_git_blob": "55877553c036c374216f3ef498efb1fe9721c028",
+      "bytes": 1174
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+      "sha256": "8b4e92ce0177f76e6ec92dbf4671702e8d6ebb83911b4adc34b384f21852f1c2",
+      "source_git_blob": "b268f555b10eb4cbd9dad8087776fc4571bdcd60",
+      "destination_git_blob": "b268f555b10eb4cbd9dad8087776fc4571bdcd60",
+      "bytes": 5274
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "sha256": "e1db46b19cff0cb0a830a2e3a42cefbc331ce30aedc679a3a504296a542a023b",
+      "source_git_blob": "7736521219386cad942ffc2b06cf1a9673003f75",
+      "destination_git_blob": "7736521219386cad942ffc2b06cf1a9673003f75",
+      "bytes": 3694
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
+      "sha256": "db77a17786db2cc00b24f269ab7526972c999d7e9ffc72e21553ba1725ce3d03",
+      "source_git_blob": "b28cc9caae40fd84f8f5e5add8c8ee9450f37622",
+      "destination_git_blob": "b28cc9caae40fd84f8f5e5add8c8ee9450f37622",
+      "bytes": 3584
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py",
+      "source_path": "proyectos/politics-fantasy-league/research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py",
+      "sha256": "e8d8992fe8a93c6fbf5f85d09c48d5215f427fe8c5aa299bb02e7f65dc85e2f6",
+      "source_git_blob": "42383b26989674d445acd144defce8c62b62657d",
+      "destination_git_blob": "42383b26989674d445acd144defce8c62b62657d",
+      "bytes": 6362
+    },
+    {
+      "path": "src/politics_fantasy/accounts.py",
+      "source_path": "proyectos/politics-fantasy-league/src/politics_fantasy/accounts.py",
+      "sha256": "2ec8873309bdc07894433fef78f1ef9431782bb8303fc3e70ee7085263491613",
+      "source_git_blob": "a0dfb700d7ed51a9553592c1a098f7ee90f3b6fa",
+      "destination_git_blob": "a0dfb700d7ed51a9553592c1a098f7ee90f3b6fa",
+      "bytes": 5990
+    },
+    {
+      "path": "src/politics_fantasy/server.py",
+      "source_path": "proyectos/politics-fantasy-league/src/politics_fantasy/server.py",
+      "sha256": "5245a3b05b8657ea000bf844300156c72eaa5f992b9a88b7804a6cc66686c110",
+      "source_git_blob": "78f221617231c6a09c11625ffbcf04732c5699b3",
+      "destination_git_blob": "78f221617231c6a09c11625ffbcf04732c5699b3",
+      "bytes": 12936
+    },
+    {
+      "path": "src/politics_fantasy/web/app.js",
+      "source_path": "proyectos/politics-fantasy-league/src/politics_fantasy/web/app.js",
+      "sha256": "993e18ce63455f4fe2ac2f11a94903df879d644670edfa3af92e3c15c2ccdd25",
+      "source_git_blob": "a6f378ae98959a5845050ad6a4ddcaf4023cc214",
+      "destination_git_blob": "a6f378ae98959a5845050ad6a4ddcaf4023cc214",
+      "bytes": 34964
+    },
+    {
+      "path": "src/politics_fantasy/web/index.html",
+      "source_path": "proyectos/politics-fantasy-league/src/politics_fantasy/web/index.html",
+      "sha256": "b7d77e3eeb854d6b3ab1b2d1960e0d3ded8155c114acef2b68539ae3c7452e4c",
+      "source_git_blob": "d424ddb516b95ced60a350e9f86d376c99429073",
+      "destination_git_blob": "d424ddb516b95ced60a350e9f86d376c99429073",
+      "bytes": 2400
+    },
+    {
+      "path": "tests/test_accounts.py",
+      "source_path": "proyectos/politics-fantasy-league/tests/test_accounts.py",
+      "sha256": "204a6e9199301970f8382c9560fef079e3a44411502aeeb2bcbd054892362b2a",
+      "source_git_blob": "372d2a30a4966b8138e95dc18bea67622a9442fd",
+      "destination_git_blob": "372d2a30a4966b8138e95dc18bea67622a9442fd",
+      "bytes": 7331
+    },
+    {
+      "path": "tests/test_petition_documentation_audit.py",
+      "source_path": "proyectos/politics-fantasy-league/tests/test_petition_documentation_audit.py",
+      "sha256": "10de7599c8d5ebba0d041b002b2179c4d0b491eccb6d0b0e42394ad4cc47f80b",
+      "source_git_blob": "dc475c4c85328ec9229c6ec9584c90e3fc876a53",
+      "destination_git_blob": "dc475c4c85328ec9229c6ec9584c90e3fc876a53",
+      "bytes": 3998
+    }
+  ],
+  "post_copy_adaptation": [
+    "docs/P1_ACCOUNTS_REVIEW.md",
+    "README.md",
+    "docs/migration/README.md",
+    "scripts/project_status.py",
+    "PROJECT_STATE.json"
+  ],
+  "excluded_paths": [
+    ".github/workflows/pfl-p1-accounts-acceptance.yml",
+    ".github/workflows/pfl-p1-c38-atlas94-recheck.yml",
+    ".github/workflows/pfl-p1-rebuild-continuity.yml",
+    ".github/workflows/pfl-r0-petitions-original-one-shot.yml"
+  ],
+  "method_reference_pinned_unchanged": true,
+  "original_history_not_duplicated": true,
+  "new_AB_cycles_from_migration": 0,
+  "QA": "WINDOWS_TARGETED_PASS_LINUX_FULL_PENDING",
+  "main_merge": "NOT_PERFORMED",
+  "privacy": "No original private institutional data imported",
+  "windows_qa_summary": "docs/migration/CUTOVER_PR81_WINDOWS_QA.json",
+  "linux_qa_workflow": ".github/workflows/pfl-cutover-linux-qa.yml"
+}

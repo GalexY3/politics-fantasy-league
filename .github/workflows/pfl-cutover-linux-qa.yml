@@ -1,0 +1,59 @@
+name: PFL PR81 cutover - one bounded Linux QA
+# One source-isolated check, only when this review workflow is first pushed.
+# No privileged writes, no secrets, no scheduled jobs, no deployment.
+on:
+  push:
+    branches:
+      - migration/pfl-final-cutover-20261030
+    paths:
+      - .github/workflows/pfl-cutover-linux-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pfl-pr81-cutover-linux-20261030
+  cancel-in-progress: false
+jobs:
+  review-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated test requirements
+        run: python -m pip install --disable-pip-version-check -e '.[test]'
+      - name: Compile copied product and research code
+        run: python -m compileall -q src scripts research/R0_INSTITUTIONAL_PETITIONS_20261030
+      - name: Python full suite (POSIX storage tests included)
+        env:
+          PYTHONPATH: src
+        run: python -m pytest -q -rs
+      - name: Atlas canonical regression suite
+        run: python -m pytest -q -rs tools/ab_atlas/tests
+      - name: Node full suite
+        run: node scripts/run_node_tests.mjs
+      - name: Source-backed project index and derived state
+        run: |
+          python scripts/project_index.py check
+          python scripts/project_status.py check
+      - name: Verify C38 is recorded once and ledger is unchanged
+        run: |
+          python - <<'PYCODE'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('PROJECT_STATE.json').read_text())
+          old = json.loads(Path(state['authorization_ledger']).read_text())
+          new = json.loads(Path(state['additional_authorization_ledger']).read_text())
+          assert state['atlas_snapshot']['batches'] == 94
+          assert state['atlas_snapshot']['state_sha256'] == 'ac64213f1901a0e07832083a0c6afbe8ddf02097a2d2a83556a94fc77a10ae8a'
+          assert old['executed_new'] == 6 and old['new_remaining'] == 4
+          assert new['valid_executed'] == 0 and new['remaining'] == 10
+          print('C38/Atlas94/ABH10 and independent grant snapshots match')
+          PYCODE

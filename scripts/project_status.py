@@ -133,6 +133,19 @@ def derive():
               'executed': ledger['executed_new'], 'remaining': ledger['new_remaining'],
               'historical_separate_stop_r5': ledger['historical_legacy_separate_STOP_R5']}
     errors = validate_state(state, atlas, budget)
+    additional = None
+    if state.get('additional_authorization_ledger'):
+        extra = load(PROJECT / state['additional_authorization_ledger'])
+        additional = {
+            'id': extra['id'], 'authorized': extra['max_new_cycles'],
+            'executed': extra['valid_executed'], 'remaining': extra['remaining']
+        }
+        if state.get('additional_authorization_snapshot') != additional:
+            errors.append('STALE_ADDITIONAL_GRANT: independent new budget needs reconciliation')
+        if (any(type(additional[k]) is not int or additional[k] < 0
+                for k in ('authorized', 'executed', 'remaining'))
+                or additional['authorized'] != additional['executed'] + additional['remaining']):
+            errors.append('INCONSISTENT_ADDITIONAL_GRANT')
     catalogue = subprocess.run([sys.executable, str(PROJECT / 'scripts/project_index.py'), 'check'],
                                cwd=ROOT, capture_output=True)
     if catalogue.returncode:
@@ -143,7 +156,7 @@ def derive():
     for name in sorted(n for n in names if n and (ROOT / n).is_file()):
         digest.update(name.encode()); digest.update(b'\0'); digest.update((ROOT / name).read_bytes())
     return state, {'branch': git('branch', '--show-current'), 'head': git('rev-parse', 'HEAD'),
-                   'atlas': atlas, 'authorization': budget, 'code_fingerprint': digest.hexdigest(),
+                   'atlas': atlas, 'authorization': budget, 'additional_authorization': additional, 'code_fingerprint': digest.hexdigest(),
                    'publication': publication_observation(state['latest_validation'].get('verified_commit', 'HEAD')),
                    'errors': errors, 'note': 'Metadata consistency only; does not execute product tests, validate rights, or authorize release.'}
 
@@ -154,6 +167,21 @@ def brief(state, observed):
              f"Código revisado incluido en {observed['publication']['main_ref']}: {observed['publication']['reviewed_commit_in_main']} (referencia local; hacer fetch).", '',
              f"Atlas: {observed['atlas']['batches']} lotes; SHA `{observed['atlas']['state_sha256']}`; gates {observed['atlas']['passed_gates']}/6.",
              f"Autorización ABH10: {observed['authorization']['executed']}/{observed['authorization']['authorized']} ejecutados; {observed['authorization']['remaining']} disponibles, preservados bajo R5. Históricos separados: {observed['authorization']['historical_separate_stop_r5']}.", '']
+    if state.get('ported_source_validation'):
+        lines += ['## Ãšltimo trabajo de origen migrado (AB PR81)',
+                  state['ported_source_validation']['summary'],
+                  'Pruebas histÃ³ricas de AB; no sustituyen QA sobre el nuevo commit.', '']
+    if state.get('cutover_transfer'):
+        t = state['cutover_transfer']
+        lines += ['## Estado del corte de repositorios',
+                  f"{t['status']}; origen: PR #{t['source_pr']} ({t['source_commit']}); "
+                  f"rama de revisiÃ³n: {t['branch']}. No fusionado a main hasta revisiÃ³n.", '']
+    if observed.get('additional_authorization'):
+        extra = observed['additional_authorization']
+        lines.append(f"ConcesiÃ³n nueva INDEPENDIENTE {extra['id']}: "
+                     f"{extra['executed']}/{extra['authorized']} ejecutados; "
+                     f"{extra['remaining']} disponibles. No reasignar saldo ABH10.")
+        lines.append('')
     for lane in ('product', 'research'):
         lines.append(f'## {lane}')
         for m in state['milestones']:

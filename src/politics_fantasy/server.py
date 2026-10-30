@@ -1,17 +1,20 @@
-"""Loopback-only HTTP application. Demonstration, not hardened multiuser web hosting.
+"""Loopback-only fictional demo with local accounts (NOT public internet hosting).
 
 Run: PYTHONPATH=src python -m politics_fantasy.server --db data/demo/game.db
-Do NOT reverse-proxy to internet: there is no session authentication or CSRF account protection.
+Sessions/CSRF and per-account SQLite are local safeguards, NOT a production
+identity system, TLS stack, distributed rate limiter or internet deployment.
 """
 from __future__ import annotations
 import argparse
 import json
 import mimetypes
+from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
 from .product import GameError, add_club, seed_demo, set_lineup, simulate_round, state, transfer
+from . import accounts
 from .lab import local_lab_report
 from .field_api import local_field_status
 from .actor_api import local_actor_universe_status
@@ -39,33 +42,82 @@ def _unique_request_json_pairs(pairs):
     return result
 
 
-def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None):
+def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None,
+                    accounts_path: Path | None=None):
+    # accounts_path=None exists solely for old single-user test harnesses.
+    # The real serve() ALWAYS supplies an accounts_path and enforces identity.
     class Handler(BaseHTTPRequestHandler):
         server_version = 'PoliticsFantasyDemo/0.2'
         sys_version = ''
-        def respond(self, code: int, body: bytes, content_type: str):
+        def respond(self, code: int, body: bytes, content_type: str, cookie: str | None=None):
             self.send_response(code)
             self.send_header('Content-Type',content_type)
             self.send_header('Content-Length',str(len(body)))
+            if cookie is not None:
+                self.send_header('Set-Cookie',cookie)
             self.send_header('Cache-Control','no-store')
             self.send_header('X-Content-Type-Options','nosniff')
             self.send_header('X-Frame-Options','DENY')
             self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
             self.end_headers()
             self.wfile.write(body)
-        def reply(self, code: int, payload: object):
-            self.respond(code,json.dumps(payload,ensure_ascii=False,default=str).encode('utf-8'),'application/json; charset=utf-8')
+        def reply(self, code: int, payload: object, cookie: str | None=None):
+            self.respond(code,json.dumps(payload,ensure_ascii=False,default=str).encode('utf-8'),'application/json; charset=utf-8',cookie)
         def _is_local_host(self):
             # Never trust a user-controlled Host header to bless an Origin.
             # Combined with binding only 127.0.0.1 this limits DNS rebinding.
             host=self.headers.get('Host','').strip().lower()
             return host in (f'127.0.0.1:{self.server.server_port}',
                             f'localhost:{self.server.server_port}')
+        def _token(self):
+            try:
+                jar = SimpleCookie()
+                raw = self.headers.get('Cookie', '')
+                if len(raw) > 4096:
+                    return None
+                jar.load(raw)
+                item = jar.get('pfl_session')
+                return item.value if item else None
+            except Exception:
+                return None
+        def _identity(self):
+            if accounts_path is None:
+                return None
+            return accounts.lookup(accounts_path, self._token())
+        def _cookie(self, token: str | None):
+            value = token or ''
+            lifetime = accounts.SESSION_TTL if token else 0
+            return (f'pfl_session={value}; Path=/; HttpOnly; SameSite=Strict; '
+                    f'Max-Age={lifetime}')
+        def _origin_allowed(self):
+            origin = self.headers.get('Origin')
+            # SameSite Strict and an explicit CSRF request header complement Origin.
+            # No permissive CORS is enabled for localhost.
+            host = self.headers.get('Host','')
+            return not origin or origin in (
+                f'http://{host}', f'http://127.0.0.1:{self.server.server_port}',
+                f'http://localhost:{self.server.server_port}')
         def do_GET(self):
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
             route=urlsplit(self.path).path
+            if route == '/api/session':
+                if accounts_path is None:
+                    return self.reply(200,{'authenticated':False,'legacy_test_mode':True})
+                session = self._identity()
+                if session is None:
+                    return self.reply(401,{'authenticated':False,'error':'AUTH_REQUIRED'})
+                return self.reply(200,{'authenticated':True,'username':session.handle,
+                                       'csrf':session.csrf_secret})
             if route == '/api/state':
+                if accounts_path is not None:
+                    session = self._identity()
+                    if session is None:
+                        return self.reply(401,{'error':'AUTH_REQUIRED'})
+                    payload = state(accounts.game_path(accounts_path,session.user_id),pilot_csv=pilot_path)
+                    payload['authentication'] = 'LOCAL_ACCOUNT_ISOLATED'
+                    payload['account'] = {'username':session.handle}
+                    return self.reply(200,payload)
                 return self.reply(200,state(db_path,pilot_csv=pilot_path))
             if route == '/api/lab':
                 return self.reply(200,local_lab_report())
@@ -98,10 +150,11 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
         def do_POST(self):
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
-            if urlsplit(self.path).path not in ('/api/clubs','/api/buy','/api/sell','/api/lineup','/api/simulate-round'):
+            if urlsplit(self.path).path not in ('/api/register','/api/login','/api/logout',
+                                                    '/api/clubs','/api/buy','/api/sell',
+                                                    '/api/lineup','/api/simulate-round'):
                 return self.reply(404,{'error':'NOT_FOUND'})
-            origin=self.headers.get('Origin')
-            if origin and origin not in (f'http://{self.headers.get("Host", "")}',f'http://127.0.0.1:{self.server.server_port}',f'http://localhost:{self.server.server_port}'):
+            if not self._origin_allowed():
                 return self.reply(403,{'error':'CROSS_ORIGIN_REJECTED'})
             if self.headers.get('Content-Type','').split(';')[0].strip().lower()!='application/json':
                 return self.reply(415,{'error':'JSON_REQUIRED'})
@@ -113,32 +166,66 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 if not isinstance(body,dict):
                     return self.reply(400,{'error':'OBJECT_REQUIRED'})
                 route=urlsplit(self.path).path
+                if route in ('/api/register','/api/login'):
+                    if accounts_path is None:
+                        return self.reply(404,{'error':'ACCOUNTS_NOT_CONFIGURED'})
+                    if self.headers.get('X-PFL-Request') != '1':
+                        return self.reply(403,{'error':'REQUEST_HEADER_REQUIRED'})
+                    if route == '/api/register':
+                        handle=accounts.register(accounts_path,body.get('username'),body.get('password'))
+                        return self.reply(201,{'ok':True,'result':{'username':handle}})
+                    token,session=accounts.login(accounts_path,body.get('username'),body.get('password'))
+                    return self.reply(200,{'ok':True,'result':{
+                        'username':session.handle,'csrf':session.csrf_secret}},
+                        self._cookie(token))
+                session = self._identity()
+                if accounts_path is not None:
+                    if session is None:
+                        return self.reply(401,{'error':'AUTH_REQUIRED'})
+                    if not accounts.csrf_matches(session,self.headers.get('X-PFL-CSRF')):
+                        return self.reply(403,{'error':'CSRF_REQUIRED'})
+                    if route == '/api/logout':
+                        accounts.revoke(accounts_path,self._token())
+                        return self.reply(200,{'ok':True,'result':{'logged_out':True}},
+                                          self._cookie(None))
+                    game_db=accounts.game_path(accounts_path,session.user_id)
+                else:
+                    if route == '/api/logout':
+                        return self.reply(404,{'error':'ACCOUNTS_NOT_CONFIGURED'})
+                    game_db=db_path
                 if route == '/api/clubs':
-                    result=add_club(db_path,body.get('name',''))
+                    result=add_club(game_db,body.get('name',''))
                 elif route in ('/api/buy','/api/sell'):
-                    result=transfer(db_path,club_id=body.get('club_id'),figure_id=body.get('figure_id'),
+                    result=transfer(game_db,club_id=body.get('club_id'),figure_id=body.get('figure_id'),
                                     action=route.removeprefix('/api/'))
                 elif route == '/api/simulate-round':
-                    result=simulate_round(db_path,round_id=body.get('round_id'))
+                    result=simulate_round(game_db,round_id=body.get('round_id'))
                 else:
-                    result=set_lineup(db_path,club_id=body.get('club_id'),round_id=body.get('round_id'),
+                    result=set_lineup(game_db,club_id=body.get('club_id'),round_id=body.get('round_id'),
                                       figures=body.get('figures'))
                 self.reply(200,{'ok':True,'result':result})
+            except accounts.AccountError as exc:
+                self.reply(exc.status,{'ok':False,'error':exc.code})
             except GameError as exc:
                 self.reply(exc.status,{'ok':False,'error':exc.code,'message':str(exc)})
             except (ValueError, TypeError, json.JSONDecodeError):
                 self.reply(400,{'ok':False,'error':'BAD_REQUEST'})
         def log_message(self, fmt, *args):
-            # No personal data/authorization tokens in log; this is a single-user local demo.
+            # Do not log requests, cookies, account names or authorization tokens.
             return
     return Handler
 
 
 def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT, field_path: Path | None=FIELD):
-    seed_demo(db_path)
-    server=ThreadingHTTPServer(('127.0.0.1',port),handler_factory(db_path,pilot_path,field_path))
+    # Existing direct handler_factory() use is maintained for legacy unit tests.
+    # serve() uses a mandatory account boundary: it NEVER serves the shared demo
+    # game's club data to authenticated users.
+    auth_db=db_path.parent/'accounts.sqlite3'
+    accounts.init_accounts(auth_db)
+    server=ThreadingHTTPServer(('127.0.0.1',port),
+                               handler_factory(db_path,pilot_path,field_path,auth_db))
     print(f'Politics Fantasy League · DEMO SINTÉTICA · http://127.0.0.1:{server.server_port}',flush=True)
-    print('Sin autenticación: NO exponer a internet. No hay puntos políticos reales.',flush=True)
+    print('Cuentas locales con sesiones; NO exponer a internet. No hay puntos políticos reales.',flush=True)
     try:
         server.serve_forever()
     finally:

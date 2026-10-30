@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, progress:null, picks:null, message:'' };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, progress:null, picks:null, message:'', session:null, csrf:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -17,7 +17,14 @@ const count = n => new Intl.NumberFormat('es-ES').format(n);
 const day = iso => new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(iso));
 const money = n => `${count(n)} CR`;
 function notice(msg, error=false){ const t=el('toast'); t.textContent=msg; t.className=error?'visible error':'visible'; clearTimeout(notice.timer); notice.timer=setTimeout(()=>t.className='',3600); }
-async function call(route, body){ const response=await fetch(route,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); const result=await response.json();if(!response.ok)throw new Error(result.message||result.error||'Error');return result.result; }
+async function call(route, body){
+ const headers={'Content-Type':'application/json','X-PFL-Request':'1'};
+ if(ui.csrf)headers['X-PFL-CSRF']=ui.csrf;
+ const response=await fetch(route,{method:'POST',headers,credentials:'same-origin',body:JSON.stringify(body)});
+ const result=await response.json();
+ if(!response.ok)throw new Error(result.message||result.error||'Error');
+ return result.result;
+}
 async function refresh(){ const [response,labResponse,fieldResponse,atlasResponse,evidenceResponse,progressResponse,candidacyResponse,nominationsResponse]=await Promise.all([fetch('/api/state',{cache:'no-store'}),fetch('/api/lab',{cache:'no-store'}),fetch('/api/field',{cache:'no-store'}),fetch('/api/electoral-atlas',{cache:'no-store'}),fetch('/api/evidence-readiness',{cache:'no-store'}),fetch('/api/progress',{cache:'no-store'}),fetch('/api/verified-candidacies',{cache:'no-store'}),fetch('/api/official-nominations',{cache:'no-store'})]); if(!response.ok||!labResponse.ok||!fieldResponse.ok)throw new Error('Servicio no disponible'); ui.state=await response.json();ui.lab=await labResponse.json();ui.field=await fieldResponse.json();ui.atlas=await atlasResponse.json();ui.candidacies=candidacyResponse.ok?await candidacyResponse.json():{ok:false,error:'CANDIDACY_ORIGINAL_UNAVAILABLE'};ui.nominations=nominationsResponse.ok?await nominationsResponse.json():{ok:false,error:'MULTIPROVINCE_SOURCE_UNAVAILABLE'};ui.evidence=evidenceResponse.ok?await evidenceResponse.json():{ok:false,error:'READINESS_UNAVAILABLE'};ui.progress=progressResponse.ok?await progressResponse.json():{ok:false,error:'PROGRESS_UNAVAILABLE'};if(!ui.state.clubs.some(c=>c.id===ui.club)) ui.club=ui.state.clubs[0]?.id; draw(); }
 function selected(){return ui.state.clubs.find(x=>x.id===ui.club);}
 function own(){return ui.state.figures.filter(x=>x.owner_id===ui.club);}
@@ -114,9 +121,57 @@ function progress(){
  <h2>Detalle de las sublíneas y sus fuentes</h2>${lanes}<section class='card'><h2>Cuando crece el alcance</h2><p class='help'>Cada revisión conserva el indicador anterior y separa los puntos ganados por trabajo de los puntos ganados o perdidos por una ampliación/reponderación de objetivos. Ejemplo histórico hipotético, calculado sobre la revisión 1 (no sobre el porcentaje actual): añadir cobertura municipal nacional completa sin construirla cambiaba 33,725 % a 32,330 % (−1,395 puntos de alcance, 0 de trabajo). El avance actual de la revisión 2 incorpora trabajo verificado y sigue sin ampliar el alcance.</p></section>`;
 }
 const pages={overview,club,market,rounds,observatory,atlas,progress};
+function authScreen(){
+ ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
+ el('account-logout').hidden=true;el('account-name').textContent='';
+ el('club-select').innerHTML='';
+ el('crumb').textContent='CUENTA LOCAL';
+ el('content').innerHTML=`<section class="card" aria-label="Acceso a la demostración ficticia">
+ <div class="section-title"><h2>Cuenta local del prototipo</h2></div>
+ <p>Los clubes, fichajes, alineaciones y jornadas de cada cuenta se guardan en una base independiente.
+ Esta pantalla es exclusivamente para pruebas locales; no publiques el servidor en internet.</p>
+ <form id="auth-form" autocomplete="on">
+ <label>Usuario (3–24 caracteres, letras, números y _)<input name="username" required pattern="[a-zA-Z][a-zA-Z0-9_]{2,23}" maxlength="24" autocomplete="username"></label>
+ <label>Contraseña (12 caracteres mínimo)<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="current-password"></label>
+ <div style="display:flex;gap:1rem;margin-top:1rem">
+ <button class="btn" type="submit" name="intent" value="login">Iniciar sesión</button>
+ <button class="btn secondary" type="submit" name="intent" value="register">Crear cuenta</button>
+ </div></form><p id="auth-error" class="help" role="status"></p></section>`;
+}
+async function bootstrap(){
+ const response=await fetch('/api/session',{cache:'no-store',credentials:'same-origin'});
+ if(response.status===404){return refresh();} // Explicit legacy handler test mode.
+ if(!response.ok){authScreen();return;}
+ const session=await response.json();
+ if(!session.authenticated){return refresh();} // Legacy test-mode endpoint.
+ ui.session=session.username;ui.csrf=session.csrf;ui.club='demo';ui.picks=null;
+ el('account-name').textContent=session.username;el('account-logout').hidden=false;
+ await refresh();
+}
+
 function draw(){if(!ui.state)return;let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';document.querySelectorAll('[data-tab]').forEach(n=>{const current=n.dataset.tab===ui.tab;n.classList.toggle('active',current);if(current)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
 async function perform(kind,id){if(kind==='pick'){ui.picks=ui.picks.includes(id)?ui.picks.filter(x=>x!==id):ui.picks.length<3?[...ui.picks,id]:ui.picks;draw();return;}
 try{const c=selected();if(['buy','sell'].includes(kind)){await call('/api/'+kind,{club_id:c.id,figure_id:id});notice(kind==='buy'?'Fichaje registrado.':'Venta registrada.');}else if(kind==='save-lineup'){await call('/api/lineup',{club_id:c.id,round_id:upcoming().id,figures:ui.picks});notice('Alineación guardada en SQLite.');}else if(kind==='simulate-round'){await call('/api/simulate-round',{round_id:id});ui.picks=null;notice('Jornada ficticia simulada y cerrada.');}await refresh();}catch(e){notice(e.message,true);}}
-document.addEventListener('click',e=>{const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();return;}const act=e.target.closest('[data-action]');if(act)perform(act.dataset.action,act.dataset.id);});
+document.addEventListener('submit',async e=>{
+ if(e.target.id!=='auth-form')return;
+ e.preventDefault();
+ const fields=new FormData(e.target);
+ const username=String(fields.get('username')||'');
+ const password=String(fields.get('password')||'');
+ const register=e.submitter?.value==='register';
+ try {
+  if(register)await call('/api/register',{username,password});
+  const a=await call('/api/login',{username,password});
+  ui.session=a.username;ui.csrf=a.csrf;ui.club='demo';ui.picks=null;
+  el('account-name').textContent=a.username;el('account-logout').hidden=false;
+  await refresh();notice(register?'Cuenta creada y sesión iniciada.':'Sesión iniciada.');
+ } catch(err){el('auth-error').textContent=String(err.message);}
+});
+document.addEventListener('click',async e=>{
+ if(e.target.closest('#account-logout')){
+  try{await call('/api/logout',{});}catch(_){/* A failed logout cannot authorize access. */}
+  authScreen();return;
+ }
+ const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();return;}const act=e.target.closest('[data-action]');if(act)perform(act.dataset.action,act.dataset.id);});
 el('club-select').addEventListener('change',async e=>{if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
-refresh().catch(e=>{el('content').innerHTML=`<p class="warning">No se ha podido cargar la demo: ${esc(e.message)}</p>`;});
+bootstrap().catch(e=>{el('content').innerHTML=`<p class="warning">No se ha podido cargar la demo: ${esc(e.message)}</p>`;});

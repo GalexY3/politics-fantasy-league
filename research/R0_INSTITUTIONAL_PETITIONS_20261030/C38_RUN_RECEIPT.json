@@ -1,0 +1,113 @@
+{
+  "schema": "pfl.ABH10.C38.executed_original_observational.v1",
+  "cycle": "ABH10-C38",
+  "mode": "AB-R",
+  "type": "INDEPENDENT_ORIGINAL_PUBLISHED_PUBLIC_CSV_OBSERVATIONAL",
+  "status": "VALID_BOUNDED_NEGATIVE_PREDICTION",
+  "prereg": {
+    "commit": "88424736de5645941a56269abd8f8793734a6918",
+    "contract": "C38_PREREG_AJ.json",
+    "code_git_sha": "42383b26989674d445acd144defce8c62b62657d",
+    "test_git_sha_first": "6ce385bde631ff305cf05d7f5b99a0d6334dafb2"
+  },
+  "initial_invalid": {
+    "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996014251",
+    "tests": "6 pass / 2 fail",
+    "source_original_read": false,
+    "defects": "Fixtures date after cutoff and too-small schema fixture",
+    "record": "C38_INITIAL_INVALID_TEST_ATTEMPT.json"
+  },
+  "repair": {
+    "freeze_commit": "545a432f6ae103b18b992533d712beab1ce1d16f",
+    "test_git_sha": "dc475c4c85328ec9229c6ec9584c90e3fc876a53",
+    "code_unchanged": true
+  },
+  "executed": {
+    "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996183394",
+    "job_id": 123869734727,
+    "status": "success",
+    "first_successful_original_read": true,
+    "native_unit_tests": "8/8 PASS",
+    "original_source_sha256": "a57572556e945076a421760b0ed6a0b43335c5378abf78b5e179190e4c009d4a",
+    "original_source_bytes": 9663413,
+    "original_publisher": "data.gouv.fr",
+    "dataset_id": "6889cc10e79a25f17ed69acb",
+    "resource_id": "c94c9dfe-23eb-45aa-acd1-7438c4e977db",
+    "rights": "Licence Ouverte v2",
+    "source_pipeline_git_sha": "adbd473614d65b874ee18d3c8f15a7513238f7b1",
+    "no_raw_csv_committed": true,
+    "no_title_description_person_data_output": true
+  },
+  "results": {
+    "total_records": 4170,
+    "excluded_young": 552,
+    "excluded_open": 969,
+    "excluded_missing": 22,
+    "excluded_low_support": 1627,
+    "eligible": 1000,
+    "high_support": {
+      "n": 22,
+      "documented": 8,
+      "rate": 0.36363636363636365
+    },
+    "low_support": {
+      "n": 978,
+      "documented": 640,
+      "rate": 0.65439672801636
+    },
+    "overall_diff_high_minus_low": -0.2907603643799963,
+    "comparable_year_count": 4,
+    "positive_years": 1,
+    "yearly": [
+      {
+        "year": 2021,
+        "high": 5,
+        "low": 53,
+        "diff": 0.4037735849056604
+      },
+      {
+        "year": 2022,
+        "high": 3,
+        "low": 97,
+        "diff": -0.5773195876288659
+      },
+      {
+        "year": 2023,
+        "high": 3,
+        "low": 179,
+        "diff": -0.6759776536312849
+      },
+      {
+        "year": 2025,
+        "high": 7,
+        "low": 496,
+        "diff": -0.4501728110599078
+      }
+    ],
+    "comparable_commission_year_strata": 5,
+    "predeclared_verdict": "DIRECTIONAL_H1_NOT_SUPPORTED_BY_PREDECLARED_CRITERION"
+  },
+  "limits": [
+    "Field absent is NOT evidence no institutional decision was made; weekly scraper may omit committee minutes",
+    "Aggregate support is cumulative and endogenous, groups differ in age, topics and committees",
+    "No legal threshold discontinuity was tested (10000 purely descriptive), nor committee-level matched effect estimate",
+    "Publication date of petition is not age since threshold crossing; no real causal impact of rank feedback",
+    "One source snapshot, no independent second institutional outcome"
+  ],
+  "grade": "OBSERVATIONAL_DESCRIPTIVE_NEGATIVE_NOT_CAUSAL",
+  "PFL_science_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "accounting": {
+    "old_ABH10_before": 5,
+    "old_ABH10_after": 6,
+    "old_ABH10_new_remaining_after": 4,
+    "additional_new10_used": 0,
+    "additional_new10_remaining": 10,
+    "historical_STOP_R5": 2
+  }
+}

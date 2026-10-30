@@ -1,23 +1,32 @@
 # PFL · briefing derivado
 
-Rama: `main`; HEAD: `24190815ed361b47ac688f532a57f1812f796f97`.
-Estado rev. 7; publicación declarada: STANDALONE_QA_PASS_CUTOVER_PENDING.
+Rama: `migration/pfl-final-cutover-20261030`; HEAD: `903c000c3f6a60f408cc470564471cfba9a1354a`.
+Estado rev. 8; publicación declarada: STANDALONE_QA_PASS_CUTOVER_PENDING.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
-Atlas: 93 lotes; SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`; gates 0/6.
-Autorización ABH10: 5/10 ejecutados; 5 disponibles, preservados bajo R5. Históricos separados: 2.
+Atlas: 94 lotes; SHA `ac64213f1901a0e07832083a0c6afbe8ddf02097a2d2a83556a94fc77a10ae8a`; gates 0/6.
+Autorización ABH10: 6/10 ejecutados; 4 disponibles, preservados bajo R5. Históricos separados: 2.
+
+## Ãšltimo trabajo de origen migrado (AB PR81)
+P1 GitHub Actions #40995507812: 35 Python tests PASS y node --check, dos cuentas y clubes separados. R1 C38 GitHub Actions #40996183394: 8/8 tests Python y 4170 registros originales, diferencia documentacion −29,08 p.p. Atlas94 original Python #40996696957: 94 lotes, SHA ac64213f..., nodes63 edges81.
+Pruebas histÃ³ricas de AB; no sustituyen QA sobre el nuevo commit.
+
+## Estado del corte de repositorios
+DRAFT_PENDING_INDEPENDENT_LINUX_QA; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisiÃ³n: migration/pfl-final-cutover-20261030. No fusionado a main hasta revisiÃ³n.
+
+ConcesiÃ³n nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados; 10 disponibles. No reasignar saldo ABH10.
 
 ## product
 - P0-INTEGRATION [DONE]: Una base técnica y de evidencia reunida y revisable. Siguiente: Integración incorporada; el siguiente hito de producto es P1-ACCOUNTS con datos ficticios
-- P1-ACCOUNTS [QUEUED]: Usuarios y permisos aislados en el prototipo ficticio. Siguiente: Definir y ejecutar una implementación local mínima con pruebas de aislamiento, sin personas políticas reales
-- P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: Tras P1, verificar un recorrido de usuario completo y corregir fricciones observadas
+- P1-ACCOUNTS [READY_REVIEW]: Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público. Siguiente: Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada
+- P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: Tras aceptación humana P1, comprobar acceso→club→alineación→jornada ficticia→resultado en navegador con persistencia/reinicio.
 - P-CONTINUITY [DONE]: Continuidad verificable entre conversaciones sin copiar un resumen que caduque. Siguiente: Cada nueva sesión lee START_HERE y cada cierre guarda estado y handoff
 - P-ORGANIZATION [DONE]: Mapa por tareas, catálogo buscable e índice de investigaciones mantenidos con Git. Siguiente: Regenerar catálogo al cambiar rutas versionadas; conservar la trazabilidad de los archivos históricos
 - P-MIGRATION [READY_REVIEW]: Proyecto independiente de AB con historia y herramientas reproducibles. Siguiente: Publicar y comprobar destino; retirar copia activa de AB con redirecciones
 
 ## research
-- R0-FEASIBLE-QUESTION [IN_PROGRESS]: Una pregunta sociológica delimitada con evidencia accesible y falsador. Siguiente: Una sesión acotada para seleccionar entre feedback humano, respuesta institucional u otro mecanismo formal claramente etiquetado; no repetir C37 sin artefacto nuevo
-- R1-DISCRIMINATING-RESULT [QUEUED]: Resultado que cambie una hipótesis social o institucional frente a un rival. Siguiente: Ejecutar el contrato de la pregunta elegida con el presupuesto autorizado aplicable; preservar exposición previa
+- R0-FEASIBLE-QUESTION [READY_REVIEW]: Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta. Siguiente: Revisar el resultado C38 importado y sus fuentes; al validar el commit independiente decidir aceptaciÃ³n cientÃ­fica y el siguiente contraste.
+- R1-DISCRIMINATING-RESULT [READY_REVIEW]: Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario. Siguiente: Revisión del investigador; si interesa validar interpretación sustantiva, obtener actas oficiales fechadas de comisiones y auditar decisión no consignada, no más umbrales arbitrarios
 - R-AEA-C37 [PARKED]: Acceso al registro original e historial del ensayo AEARCTR-0000981. Siguiente: No repetir búsquedas equivalentes
 - R-T005 [PARKED]: Originales y condiciones de uso suficientes para una pieza concreta de T005. Siguiente: Reabrir solo la pieza para la que haya evidencia nueva
 
@@ -27,5 +36,5 @@ Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, c
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 
 Consistencia: PASS
-Huella código/tests: `5f4ae080600c8280b1fab1f548d63e8635081c904a0601089795d04ed94abd61`.
+Huella código/tests: `b7f35a82a2c17f443b0165807d9eeffc11be24287326666f31c0139717a02410`.
 No pedir ciclos por fórmula. Aparcar bloqueos sin observación nueva. Actualizar PROJECT_STATE y este handoff al cerrar.

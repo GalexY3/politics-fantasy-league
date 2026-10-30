@@ -1,0 +1,52 @@
+{
+  "schema": "pfl.ab.authorization_grant.v1",
+  "id": "PFL-GRANT-20261030-INTEGRATION10",
+  "requested_by": "user",
+  "date": "2026-10-30",
+  "max_new_cycles": 10,
+  "valid_executed": 0,
+  "invalid_attempts": 0,
+  "planning_only": 0,
+  "remaining": 10,
+  "independent_of_previous_grants": true,
+  "applicable_previous": {
+    "ABH10": {
+      "source": "research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json",
+      "authorized": 10,
+      "executed": 6,
+      "remaining": 4
+    },
+    "historical_two_STOP_R5": {
+      "remaining": 2,
+      "not_reassigned": true
+    }
+  },
+  "spend_priority": "First spend existing applicable ABH10 five slots on new substantive AB-R A-J executions satisfying R5; preserve two historical separately. Then spend this new grant only if available prior applicable balance exhausted.",
+  "exclusions": [
+    "P1 implementation",
+    "routine QA",
+    "catalogue rebuild",
+    "integration",
+    "state/handoff",
+    "literature-only posthoc",
+    "planning-only D3-D5",
+    "repeat simulations"
+  ],
+  "scope": "Both product and research advanced, but only AB substantive research cycles count.",
+  "changes_in_this_work": {
+    "valid_AB_cycles": 1,
+    "cycle": "ABH10-C38",
+    "spent_from": "PREEXISTING_ABH10_GRANT",
+    "additional_new10_executed": 0,
+    "additional_new10_remaining": 10,
+    "other_project_work": "P1 accounts engineering; QA 35/35 not cycles, R0 research negative original observational C38",
+    "new_budget_untouched": true
+  },
+  "scientific_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6"
+}

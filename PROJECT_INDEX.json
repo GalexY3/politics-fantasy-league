@@ -4,18 +4,18 @@
   "certifies_results": false,
   "category_counts": {
     "archive": 6,
-    "atlas": 106,
+    "atlas": 107,
     "atlas_engine": 12,
     "continuity": 8,
     "data": 10,
     "evidence": 345,
     "experimental_code": 28,
-    "operations": 69,
-    "reference": 64,
-    "research": 1792,
-    "runtime": 76,
+    "operations": 70,
+    "reference": 67,
+    "research": 1800,
+    "runtime": 77,
     "task_queue": 119,
-    "verification": 166
+    "verification": 168
   },
   "files": [
     {
@@ -25,6 +25,11 @@
     },
     {
       "path": ".github/workflows/ci.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-cutover-linux-qa.yml",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -624,6 +629,11 @@
       "purpose": "Grafo Atlas, logros y sincronización"
     },
     {
+      "path": "ab_atlas/updates/0094-pfl-abh10-c38-french-petitions-20261030.json",
+      "category": "atlas",
+      "purpose": "Grafo Atlas, logros y sincronización"
+    },
+    {
       "path": "ab_atlas/updates/README.md",
       "category": "atlas",
       "purpose": "Grafo Atlas, logros y sincronización"
@@ -779,6 +789,11 @@
       "purpose": "Manuales, contratos y referencias"
     },
     {
+      "path": "docs/P1_ACCOUNTS_REVIEW.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
       "path": "docs/PILOTO_UX_FICCIONAL_PRE_T009_20261028.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
@@ -870,6 +885,16 @@
     },
     {
       "path": "docs/migration/COMMIT_MAP.tsv",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/CUTOVER_PR81_TRANSFER_MANIFEST.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/CUTOVER_PR81_WINDOWS_QA.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -8809,6 +8834,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/AUTHORIZATION_20261030_NEW10.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/B50_REMAINING_20261026/CONTRACTS.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -10289,6 +10319,41 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_R1_FREEZE.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/RCT_ROSTER_EXPOSURE_GATE_20261029/PREREG_EXTERNAL_RCT_ACCESS.json",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -10675,6 +10740,11 @@
     },
     {
       "path": "src/politics_fantasy/__init__.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/accounts.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -13174,6 +13244,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_accounts.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_achievements_atlas.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -13630,6 +13705,11 @@
     },
     {
       "path": "tests/test_partial_seed_guard.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_petition_documentation_audit.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
