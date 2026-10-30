@@ -1,0 +1,201 @@
+{
+  "schema": "pfl.ab3.2.1.AJ_batch.v1",
+  "campaign": "ABH25B",
+  "status": "PRE_OUTCOME_FROZEN",
+  "grant": "PFL-ABH25B-20261030",
+  "exposure": "Earlier UK closed pages 1,2,7,17,37,67 and Scottish closed 4,9 and under_consideration 5 seen; none of the eight fixed page URLs below inspected in this campaign. Senedd page via public HTML seen as context; JSON fields not previously opened.",
+  "cycles": [
+    {
+      "id": "ABH25B-C09",
+      "mode": "AB-R",
+      "title": "Wales official JSON all-state schema and stage differentiation",
+      "A": "Which explicit stage/status fields distinguish open, referral, completed and rejected in one fixed Senedd page?",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Status coding vs unsupported string inference",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petitions.senedd.wales/petitions.json?state=all&page=1",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C10",
+      "mode": "AB-R",
+      "title": "Wales open signatures and referral threshold",
+      "A": "How often does a fixed page of open Welsh petitions show at least 250 signatures but no referred state?",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Signature count is not observed committee referral",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petitions.senedd.wales/petitions.json?state=open&page=1",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C11",
+      "mode": "AB-R",
+      "title": "Wales completed petitions state and metadata",
+      "A": "Does completed Senedd page separately expose closure decision dates and committee response fields?",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Completion does not automatically mean petition request granted",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petitions.senedd.wales/petitions.json?state=completed&page=1",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C12",
+      "mode": "AB-R",
+      "title": "UK open petition threshold/right censoring",
+      "A": "On fixed UK open page 12, distinguish the response threshold reached from observed government response before closure; never treat absent as zero",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Still-open status implies exposure and outcome censoring",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petition.parliament.uk/petitions.json?state=open&page=12",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C13",
+      "mode": "AB-R",
+      "title": "UK debate threshold vs actually recorded debate",
+      "A": "On fixed UK closed page 3, distinguish >100k signatures, debate_threshold_at, considered and actual debate outcome. Does threshold alone establish event?",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Eligibility/consideration not equal debate actually held",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petition.parliament.uk/petitions.json?state=closed&page=3",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C14",
+      "mode": "AB-R",
+      "title": "Scottish 2026 cohort under consideration timestamp support",
+      "A": "On previously untouched under-consideration page 12 inspect age and signature support without hazard inference or closure imputation",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Zero or unavailable signature fields must not be assumed absent support",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petitions.parliament.scot/petitions.json?state=under_consideration&page=12",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C15",
+      "mode": "AB-R",
+      "title": "Wales referred committee status vs 250 threshold",
+      "A": "On fixed Welsh referred page1, distinguish signature count threshold crossings and referral stage, compare C10 only descriptively",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Different ranking/exposure between filtered pages",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petitions.senedd.wales/petitions.json?state=referred&page=1",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    },
+    {
+      "id": "ABH25B-C16",
+      "mode": "AB-R",
+      "title": "UK rejected petition count and status missingness",
+      "A": "On fixed UK rejected page 5 determine if rejection is distinct from closed and whether response fields can be interpreted",
+      "B": {
+        "H1": "The original returned record fields permit exact non-imputed stage/threshold/event distinctions",
+        "H0": "Rejection is moderation, not government denial",
+        "rival": "Pagination and state filter not random; parser or public site schema may change"
+      },
+      "C": {
+        "source_url": "https://petition.parliament.uk/petitions.json?state=rejected&page=5",
+        "selection": "FIRST FIXED PAGE ONLY",
+        "limit_bytes": 2000000,
+        "privacy": "No petition text, person, email, author or ID in persisted report"
+      },
+      "D": "Frozen source, script and commit before retrieving outcomes. Fail closed on unexpected shape/redirect; distinct ID and null controls",
+      "E": "Exactly one bounded CI source read for given URL; preserve HTTP error as negative",
+      "F": "Adversarial missingness: missing key is unknown, not false; classification field exact, not guessed",
+      "G": "Compare official thresholds and status definitions; no UK vs Wales causal transport or extrapolation from filtered pages",
+      "H": "Only source-specific methodological/descriptive prior upon verified metadata, grade max 0/3",
+      "I": "CT2 20 ordinal, zero new human causal validation, release 0/6",
+      "J": "Count only if actual independent original structured page and predeclared indicator tested with controls. Schema-only or source access block noncycle; R5 pivot elsewhere."
+    }
+  ]
+}
