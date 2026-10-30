@@ -1,8 +1,6 @@
 name: PFL ABH25B C04 cumulative fictional standings
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-standings.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
