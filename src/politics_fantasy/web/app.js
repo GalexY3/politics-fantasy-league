@@ -43,12 +43,33 @@ function voteBar(r,i){
  const yes=pct(r.yes),no=pct(r.no),abs=pct(r.abstain);
  return `<div class="statbar"><label>Vot. ${String(i+1).padStart(2,'0')}</label><div class="track"><svg class="vote-stack" viewBox="0 0 100 12" preserveAspectRatio="none" role="img" aria-label="${esc(label)}"><title>${esc(label)}</title><rect class="yes" x="0" y="0" width="${yes}" height="12"></rect><rect class="no" x="${yes}" y="0" width="${no}" height="12"></rect><rect class="abs" x="${yes+no}" y="0" width="${abs}" height="12"></rect></svg></div><b>${r.total}</b></div>`;
 }
+function insightsPanel(){
+ const x=ui.state?.insights?.[ui.club];
+ if(!x)return '<p class="footnote">Sin indicadores para el club.</p>';
+ const fmt=n=>n===null||n===undefined?'—':Number(n).toFixed(2);
+ const val=n=>n===null||n===undefined?'—':count(n);
+ const entries=[
+  ['C17 · Valor contable',money(x.c17.portfolio_book_value),'Saldo y activos ficticios de precio fijo'],
+  ['C18 · Fichajes posibles',val(x.c18.affordable_unowned_count),'Disponibilidad + créditos + huecos'],
+  ['C19 · Diversidad de roles',fmt(x.c19.entropy_normalized),'Entropía normalizada de roles inventados'],
+  ['C20 · Concentración',fmt(x.c20.hhi),'HHI de grupos ficticios'],
+  ['C21 · Valor titulares',x.c21.status==='SAVED_VALID_LINEUP'?money(x.c21.starter_value):'—','No son puntos futuros'],
+  ['C22 · Flujo registrado',money(x.c22.cash_delta_bounded),'Historial parcial, no caja inicial'],
+  ['C23 · Activos con rotación',val(x.c23.figures_traded_multiple_times),'Historial limitado de compras/ventas'],
+  ['C24 · Alineación preparada',esc(x.c24.status),'Jornada pendiente; sin pronóstico'],
+  ['C25 · Media de puntos',fmt(x.c25.mean_scored),'Solo jornadas cerradas puntuadas'],
+  ['C26 · HHI de aportaciones',fmt(x.c26.hhi),'Solo recibos por figura congelados']
+ ];
+ return '<section class="card" aria-label="Diez indicadores del club ficticio"><div class="section-title"><h2>Economía y rendimiento · ficción</h2><span>10 CONTROLES LOCALES</span></div><div class="metrics">'
+  +entries.map(t=>stat(t[0],t[1],t[2])).join('')
+  +'</div><p class="footnote">Todos los indicadores pertenecen a la cuenta local y utilizan únicamente figuras ficticias. Ausente no equivale a cero. No es una medición ni una predicción de política real.</p></section>';
+}
 function overview(){let s=ui.state,c=selected(),r=past();let points=r?.scores?.[ui.club];return `
 ${heading('CUADRO DE MANDO / EDICIÓN 00','El parlamento, convertido en tablero.','Un espacio para explorar datos legislativos y experimentar con un juego de gestión transparente. Separación estricta entre evidencia y simulación.')}
 <div class="hero"><div><div class="tag">◉ POLITICAL DATA SCIENCE / GAME LAB</div><h2>Más allá del pronóstico.<br>La política como sistema.</h2><p>Explora decisiones institucionales documentadas. Gestiona un equipo ficticio de prueba. El observatorio y la competición están aislados hasta validar datos nominales.</p><button class="btn" data-nav="observatory">EXPLORAR OBSERVATORIO →</button></div><div class="hero-index">15</div></div>
 <section class="metrics">${stat('Tu presupuesto',money(c?.credits??0),'Créditos de demostración')}${stat('Tu plantilla',`${own().length} / ${s.roster_limit}`,'Figuras disponibles')}${stat('Última jornada',points===null?'—':`${points} pt`,'Puntos sintéticos')}${stat('Votos observados',count(s.observatory.votes.length),'Transcripción agregada')}</section>
   <div class="cols"><section class="card"><div class="section-title"><h2>Tu equipo</h2><span>${esc(c?.name||'Sin club')}</span></div>${own().length?own().slice(0,4).map(f=>row(f)).join(''):'<p class="empty">Todavía no has fichado figuras.</p>'}<div class="team-actions"><button class="btn secondary" data-nav="club">GESTIONAR PLANTILLA →</button></div></section>
-  <section class="card"><div class="section-title"><h2>Estado de investigación</h2><span>AB 3.2.1</span></div><p class="eyebrow text-amber">SIN DESCUBRIMIENTOS EMPÍRICOS CONFIRMADOS</p><p class="help"><strong>Preparación para publicación: NO VERIFICADA.</strong> La existencia de una demo local no equivale a completar los gates ni a demostrar validez científica. Consulta los hitos documentados en la pestaña Progreso.</p><button class="btn secondary" data-nav="progress">CONSULTAR PROGRESO Y GATES →</button><p class="help">Motor local, mercado y jornadas operativos con datos sintéticos. Ingesta nominal, validación independiente, calibración predictiva y despliegue seguros siguen pendientes.</p><p class="footnote">CT2 predicción parlamentaria (corte histórico 25/10/2026): 24/100. CT2 identidad multifuente (28/10/2026): 29/100. Son ramas distintas y escalas ordinales, no probabilidades. No atribuir mérito político a los puntos del juego.</p></section></div>${warning()}`;}
+  <section class="card"><div class="section-title"><h2>Estado de investigación</h2><span>AB 3.2.1</span></div><p class="eyebrow text-amber">SIN DESCUBRIMIENTOS EMPÍRICOS CONFIRMADOS</p><p class="help"><strong>Preparación para publicación: NO VERIFICADA.</strong> La existencia de una demo local no equivale a completar los gates ni a demostrar validez científica. Consulta los hitos documentados en la pestaña Progreso.</p><button class="btn secondary" data-nav="progress">CONSULTAR PROGRESO Y GATES →</button><p class="help">Motor local, mercado y jornadas operativos con datos sintéticos. Ingesta nominal, validación independiente, calibración predictiva y despliegue seguros siguen pendientes.</p><p class="footnote">CT2 predicción parlamentaria (corte histórico 25/10/2026): 24/100. CT2 identidad multifuente (28/10/2026): 29/100. Son ramas distintas y escalas ordinales, no probabilidades. No atribuir mérito político a los puntos del juego.</p></section></div>${insightsPanel()}${warning()}`;}
 function club(){const c=selected(),f=own(),r=upcoming(),chosen=r.lineups[ui.club]||[];if(ui.picks===null)ui.picks=[...chosen];return `${heading('DIRECCIÓN DEPORTIVA','Mi club','Una plantilla de hasta cinco figuras ficticias. Elige tres titulares para la próxima jornada antes del cierre.')}
 <div class="metrics">${stat('Saldo',money(c.credits),'Sin dinero real')}${stat('Fichajes',`${f.length}/5`,'Máximo de plantilla')}${stat('Alineación',`${chosen.length}/3`,'Guardada en servidor')}${stat('Cierre',day(r.lock_at),'Plazo de demostración')}</div>
 <div class="cols"><section class="card"><div class="section-title"><h2>Plantilla bajo contrato</h2><span>${f.length} activos</span></div>${f.length?f.map(x=>row(x,actionButton('Vender','sell',x.id))).join(''):'<p class="empty">Ve al mercado para iniciar tu equipo.</p>'}<button class="btn secondary" data-nav="market">IR AL MERCADO →</button></section>
