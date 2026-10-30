@@ -299,6 +299,94 @@
       "state": "answered",
       "summary": "C18 independent human forecasting source published under CC-BY-SA; original file access limited and individual records not processed, no rank causal evidence. Late reconciliation after connector rejection; same C18 no new cycle.",
       "source": "../ABH30_NEW_20261029/C18_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C20-EFFORT_DISPLACEMENT",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C20 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C21-PREASSIGNMENT_HETEROGENEITY",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C21 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C22-CROSSROOM_SOCIAL_INTERFERENCE",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C22 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C23-CLUSTER_ROOM_ASSIGNMENT",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C23 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C24-DURATION_CENSORING",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C24 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C25-PUBLIC_ALIAS_PRIVACY",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C25 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C26-ASOF_OUTCOME_LEAKAGE",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C26 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C27-INSTITUTIONAL_RULE_EPOCHS",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C27 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C28-ABSTENTION_MISSINGNESS",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C28 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C29-HOLM_MULTIPLICITY",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C29 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH30-C30-RELEASE_GATE",
+      "type": "synthetic_product_guard",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "C30 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
     }
   ],
   "edges": [
@@ -643,6 +731,72 @@
       "to": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
       "relation": "related_to",
       "interpretation": "Human observational forecast source availability does not prove experimental PFL rank effects."
+    },
+    {
+      "from": "PFL-ABH30-C20-EFFORT_DISPLACEMENT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C21-PREASSIGNMENT_HETEROGENEITY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C22-CROSSROOM_SOCIAL_INTERFERENCE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C23-CLUSTER_ROOM_ASSIGNMENT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C24-DURATION_CENSORING",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C25-PUBLIC_ALIAS_PRIVACY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C26-ASOF_OUTCOME_LEAKAGE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C27-INSTITUTIONAL_RULE_EPOCHS",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C28-ABSTENTION_MISSINGNESS",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C29-HOLM_MULTIPLICITY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH30-C30-RELEASE_GATE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to",
+      "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
     }
   ],
   "rules": {
@@ -666,8 +820,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 19,
-      "new_unused": 11,
+      "new_valid": 30,
+      "new_unused": 0,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -676,9 +830,9 @@
         0
       ],
       "last_source_pr": 71,
-      "branch": "research/pfl-abh30-c19-atlas-89-static-all-20261029",
-      "latest_valid_cycle": "ABH30-C19",
-      "invalid_attempts": 3
+      "branch": "research/pfl-abh10-source-atlas-o7-20261030",
+      "latest_valid_cycle": "ABH30-C30",
+      "invalid_attempts": 10
     }
   }
 }
