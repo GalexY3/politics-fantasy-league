@@ -1,8 +1,8 @@
-# PFL · handoff de cierre ABH25 (31/10? NO: 30/10/2026)
+# PFL · handoff de cierre ABH25 · 30/10/2026
 
 Repositorio independiente: `GalexY3/politics-fantasy-league`. Rama: `research/pfl-abh25-evidence-and-product-20261030`, [PR #3](https://github.com/GalexY3/politics-fantasy-league/pull/3), **draft, no fusionada**. Base canónica de `main` al inicio: `653604358183b59e8c0446497f47ff4a3769134f`. El HEAD cambia con nuevas revisiones: comprobarlo directamente.
 
-**Estado:** `PROJECT_STATE.json` rev. 14. [Cierre](research/ABH25_20261030/FINAL_REPORT.md) y [ledger](research/ABH25_20261030/AUTHORIZATION.json) son fuentes canónicas, no memoria del chat.
+**Estado:** `PROJECT_STATE.json` rev. 15. [Cierre](research/ABH25_20261030/FINAL_REPORT.md) y [ledger](research/ABH25_20261030/AUTHORIZATION.json) son fuentes canónicas, no memoria del chat.
 
 ## Autorizaciones (separadas)
 
@@ -30,6 +30,6 @@ Repositorio independiente: `GalexY3/politics-fantasy-league`. Rama: `research/pf
 
 Atlas **97 lotes**, 63 nodos, 81 aristas, 337 ejecuciones, 51 complaints. SHA canónica `609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc`, [replay nativo](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41079465386). O7 es grafo distinto. **CT2 científico 20/100 ordinal; N1/N2/N3 0/0/0; lanzamiento 0/6**.
 
-Índice de 2.919 archivos regenerado; debe pasar `python scripts/project_index.py check`. El estado/Atlas/presupuestos deben pasar `python scripts/project_status.py check` en el HEAD de revisión. El pase anterior de Atlas97 no valida automáticamente ediciones posteriores. No se reejecutó la suite Python/Node completa ni hubo aceptación humana.
+**Validación final integral:** [Actions #41080905547](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080905547) sobre candidato basado en HEAD `d18edb854acb3676f917e48c331fccf34735124a`: **861 Python PASS + 32 subtests; 38 Atlas PASS + 108 subtests; 511 Node PASS**. Replay Atlas97 correcto, índice **2.920** archivos correcto, `project_status.errors=[]`, aritmética ABH25 25/25 e históricos PASS. El fallo previo de índice queda conservado y reparado. Ediciones posteriores del workflow y este handoff no se han revalidado con la suite completa; no hay aceptación humana ni despliegue.
 
 La concesión ABH25 se agotó mediante pivotes y nuevas pruebas diferenciadas, pero **no se ha demostrado una teoría sociológica original con observación externa independiente**. El siguiente hito exige una fuente institucional versionada con decisiones o una revisión humana real de P1. R5 bloquea rutas, no autoriza afirmar conclusiones sin datos.
