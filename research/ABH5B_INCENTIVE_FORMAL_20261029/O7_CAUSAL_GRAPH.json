@@ -387,6 +387,14 @@
       "state": "answered",
       "summary": "C30 preplanned synthetic-only product QA, first 2/2 native; seven repaired with separate frozen R1 after counterexamples; 30/30 full suite. No human effect, no science promotion.",
       "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json"
+    },
+    {
+      "id": "PFL-ABH10-C31-PUBLISHED-MODEL-LEADERBOARD-COMPARABILITY",
+      "type": "independent_original_published_aggregate_evidence",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "C31 CC BY-SA ForecastBench public model aggregates baseline vs tournament. Eleven matched model submissions out of 130 and 464; median reported Overall difference 0, rank changes not comparable across league denominator. V8 source/test 11/11 after prereg. No human/PFL causal effect.",
+      "source": "../ABH10_NEW_20261030/C31_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -797,6 +805,12 @@
       "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
       "relation": "related_to",
       "interpretation": "Risk control in shared synthetic-only code family, not independent human replication."
+    },
+    {
+      "from": "PFL-ABH10-C31-PUBLISHED-MODEL-LEADERBOARD-COMPARABILITY",
+      "to": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
+      "relation": "constrains",
+      "interpretation": "Ranks of unequal competition size cannot be interpreted as comparable model quality or participant effect."
     }
   ],
   "rules": {
@@ -832,7 +846,10 @@
       "last_source_pr": 71,
       "branch": "research/pfl-abh10-source-atlas-o7-20261030",
       "latest_valid_cycle": "ABH30-C30",
-      "invalid_attempts": 10
+      "invalid_attempts": 10,
+      "ABH10_new_granted": 10,
+      "ABH10_new_executed": 1,
+      "ABH10_new_remaining": 9
     }
   }
 }
