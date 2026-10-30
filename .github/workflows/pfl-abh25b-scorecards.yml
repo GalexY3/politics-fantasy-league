@@ -1,8 +1,6 @@
 name: PFL ABH25B empirical sources and product scorecards
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-scorecards.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
