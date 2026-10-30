@@ -1,0 +1,33 @@
+........................................................................ [  8%]
+........................................................................ [ 17%]
+........................................................................ [ 26%]
+.................................................................... [ 34%]
+.......................................................... [ 41%]
+........................................................................ [ 50%]
+........................................................................ [ 59%]
+........................................................................ [ 68%]
+...................................................................... [ 76%]
+..............F......................................................... [ 85%]
+............................................................ [ 93%]
+.........................................................                [100%]
+=================================== FAILURES ===================================
+_________________ test_parallel_same_hash_writers_dont_clobber _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-pfl/pytest-0/test_parallel_same_hash_writer0')
+
+    def test_parallel_same_hash_writers_dont_clobber(tmp_path):
+        results, errors = [], []
+        def worker():
+            try: results.append(store_bytes(tmp_path, PAYLOAD, DIGEST))
+            except BaseException as exc: errors.append(repr(exc))
+        threads = [threading.Thread(target=worker) for _ in range(10)]
+        for t in threads: t.start()
+        for t in threads: t.join(timeout=10)
+>       assert errors == []
+E       assert ["ValueError(...ING_OBJECT')"] == []
+E         
+E         Left contains one more item: "ValueError('UNSAFE_EXISTING_OBJECT')"
+E         Use -v to get more diff
+
+tests/test_secure_store.py:92: AssertionError
+1 failed, 816 passed, 32 subtests passed in 65.52s (0:01:05)

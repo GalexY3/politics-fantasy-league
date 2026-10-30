@@ -19,6 +19,8 @@
 
 Los negativos y regresiones están en `research/MAIN_REVIEW_20261030/`; son QA correctiva y no ciclos AB nuevos.
 
+5. **Carrera de escritores del almacén privado.** La suite Linux de revisión detectó `UNSAFE_EXISTING_OBJECT` en un escritor concurrente: un peer instalaba un objeto válido después del primer open ENOENT pero antes del segundo stat, que volvía a lanzar el error anterior. Se elimina esa segunda consulta ambigua, se distingue la causa del open original y se verifica el inode ganador tras el enlace exclusivo. Se añade una regresión determinista para objeto válido, corrupto y symlink, sin relajar permisos ni O_NOFOLLOW. La primera suite negativa (816 PASS/1 FAIL, Node511 PASS) se conserva.
+
 ## Organización incorporada
 
 - `PROJECT_MAP.md`: rutas por tarea y responsabilidad de carpetas.
