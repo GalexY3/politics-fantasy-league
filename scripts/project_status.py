@@ -168,17 +168,17 @@ def brief(state, observed):
              f"Atlas: {observed['atlas']['batches']} lotes; SHA `{observed['atlas']['state_sha256']}`; gates {observed['atlas']['passed_gates']}/6.",
              f"Autorización ABH10: {observed['authorization']['executed']}/{observed['authorization']['authorized']} ejecutados; {observed['authorization']['remaining']} disponibles, preservados bajo R5. Históricos separados: {observed['authorization']['historical_separate_stop_r5']}.", '']
     if state.get('ported_source_validation'):
-        lines += ['## Ãšltimo trabajo de origen migrado (AB PR81)',
+        lines += ['## Último trabajo de origen migrado (AB PR81)',
                   state['ported_source_validation']['summary'],
-                  'Pruebas histÃ³ricas de AB; no sustituyen QA sobre el nuevo commit.', '']
+                  'Pruebas históricas de AB; no sustituyen QA sobre el nuevo commit.', '']
     if state.get('cutover_transfer'):
         t = state['cutover_transfer']
         lines += ['## Estado del corte de repositorios',
                   f"{t['status']}; origen: PR #{t['source_pr']} ({t['source_commit']}); "
-                  f"rama de revisiÃ³n: {t['branch']}. No fusionado a main hasta revisiÃ³n.", '']
+                  f"rama de revisión: {t['branch']}. Consultar status del traslado y recibo de incorporación antes de continuar.", '']
     if observed.get('additional_authorization'):
         extra = observed['additional_authorization']
-        lines.append(f"ConcesiÃ³n nueva INDEPENDIENTE {extra['id']}: "
+        lines.append(f"Concesión nueva INDEPENDIENTE {extra['id']}: "
                      f"{extra['executed']}/{extra['authorized']} ejecutados; "
                      f"{extra['remaining']} disponibles. No reasignar saldo ABH10.")
         lines.append('')

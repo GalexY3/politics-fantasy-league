@@ -36,6 +36,6 @@ Abrir `http://127.0.0.1:8787/`, crear usuario y contraseña de al menos 12 carac
 ## Nota del repositorio independiente
 
 Los comandos originales escritos para el monorrepositorio deben ejecutarse ahora desde
-la **raÃ­z de politics-fantasy-league** (sin `cd proyectos/politics-fantasy-league`).
-Los enlaces a Actions de AB describen pruebas histÃ³ricas, no validaciÃ³n del nuevo commit.
-La versiÃ³n independiente conserva la restricciÃ³n de operaciÃ³n local y la revisiÃ³n humana pendiente.
+la **raíz de politics-fantasy-league** (sin `cd proyectos/politics-fantasy-league`).
+Los enlaces a Actions de AB describen pruebas históricas, no validación del nuevo commit.
+La versión independiente conserva la restricción de operación local y la revisión humana pendiente.

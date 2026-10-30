@@ -112,7 +112,7 @@ function progress(){
  if(!p.ok)return heading('ESTADO DEL PROYECTO','Progreso no disponible','El manifiesto versionado de alcance no ha superado la validación.');
  const fmt=x=>Number(x).toLocaleString('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1});
  const bar=(pct)=>{const x=Math.max(0,Math.min(100,Number(pct)||0));return `<progress class='scope-progress' max='100' value='${x}' aria-label='Progreso ${fmt(x)} por ciento'>${fmt(x)} %</progress>`};
- const evidenceUrl=x=>'https://github.com/GalexY3/Metodologia-AB/blob/main/proyectos/politics-fantasy-league/'+encodeURI(x);
+ const evidenceUrl=x=>'https://github.com/GalexY3/politics-fantasy-league/blob/main/'+encodeURI(x);
  const lanes=p.tracks.map(t=>`<details class='card scope-detail'><summary class='scope-summary'><strong>${esc(t.name)}</strong> · ${fmt(t.progress_pct)} % · peso ${fmt(t.weight)} %</summary><div class='scope-track'>${bar(t.progress_pct)}</div><p class='help'>Aporta ${fmt(t.contribution_pp)} puntos al resultado global; ${t.milestones.length} hitos definidos.</p><div class='tablewrap'><table><thead><tr><th>Hito</th><th>Madurez</th><th>Evidencia</th></tr></thead><tbody>${t.milestones.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(String(m.maturity))}/5</td><td><a href='${esc(evidenceUrl(m.evidence_ref))}' target='_blank' rel='noopener noreferrer'>Referencia</a></td></tr>`).join('')}</tbody></table></div></details>`).join('');
  const critical=p.release_blockers.map(t=>`<li>${esc(t)}</li>`).join('');
  return `${heading('MADUREZ POR ALCANCE · REV. '+p.revision,'Progreso del proyecto','Estimación trazable de hitos cumplidos en un alcance explícito. No es la probabilidad de terminar ni el nivel VSDS/CT2.')}
@@ -133,7 +133,7 @@ function authScreen(){
  <form id="auth-form" autocomplete="on">
  <label>Usuario (3–24 caracteres, letras, números y _)<input name="username" required pattern="[a-zA-Z][a-zA-Z0-9_]{2,23}" maxlength="24" autocomplete="username"></label>
  <label>Contraseña (12 caracteres mínimo)<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="current-password"></label>
- <div style="display:flex;gap:1rem;margin-top:1rem">
+ <div class="auth-actions">
  <button class="btn" type="submit" name="intent" value="login">Iniciar sesión</button>
  <button class="btn secondary" type="submit" name="intent" value="register">Crear cuenta</button>
  </div></form><p id="auth-error" class="help" role="status"></p></section>`;
