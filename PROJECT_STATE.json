@@ -1,11 +1,11 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 3,
+  "revision": 4,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
   "operational_branch": "integration/pfl",
   "publication_branch": "main",
-  "publication_status": "DELEGATED_CODE_REVIEW_QA_IN_PROGRESS",
+  "publication_status": "CODE_REVIEW_APPROVED_PENDING_MERGE",
   "entry_url": "https://github.com/GalexY3/Metodologia-AB/blob/integration/pfl/proyectos/politics-fantasy-league/START_HERE.md",
   "source_heads": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
@@ -48,16 +48,17 @@
     {
       "id": "P0-INTEGRATION",
       "lane": "product",
-      "status": "IN_PROGRESS",
+      "status": "READY_REVIEW",
       "outcome": "Una base técnica y de evidencia reunida y revisable",
       "acceptance": "Revisión de código delegada a Codex por el usuario, correcciones, suites completas y decisión de incorporación a main",
-      "next_action": "Revisar PR80 para main; la base operativa estable integration/pfl ya está disponible para continuar",
+      "next_action": "Incorporar PR80 a main con comprobación del SHA aprobado",
       "dependencies": [],
       "evidence": [
-        "research/INTEGRATION_20261030/linux/MANIFEST.json",
-        "research/INTEGRATION_20261030/ATLAS_RECONCILIATION.json"
+        "docs/MAIN_REVIEW_20261030.md",
+        "research/MAIN_REVIEW_20261030/DECISION.json",
+        "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json"
       ],
-      "verified_commit": "a4a730f3962edc0703ab0be8c3901a309366e7b6"
+      "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc"
     },
     {
       "id": "P1-ACCOUNTS",
@@ -147,14 +148,32 @@
         "scripts/project_status.py",
         "research/INTEGRATION_20261030/linux/MANIFEST.json"
       ]
+    },
+    {
+      "id": "P-ORGANIZATION",
+      "lane": "product",
+      "status": "DONE",
+      "outcome": "Mapa por tareas, catálogo buscable e índice de investigaciones mantenidos con Git",
+      "acceptance": "Rutas de navegación existentes, búsqueda que prioriza entradas mantenidas, exclusión de datos locales privados y detección del índice desactualizado",
+      "next_action": "Regenerar catálogo al cambiar rutas versionadas; conservar la trazabilidad de los archivos históricos",
+      "dependencies": [
+        "P-CONTINUITY"
+      ],
+      "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
+      "evidence": [
+        "PROJECT_MAP.md",
+        "PROJECT_INDEX.json",
+        "research/INDEX.md",
+        "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json"
+      ]
     }
   ],
   "latest_validation": {
-    "status": "REVIEW_QA_IN_PROGRESS",
-    "verified_commit": "a4a730f3962edc0703ab0be8c3901a309366e7b6",
-    "summary": "El árbol anterior a4a730f3 pasó QA; la revisión actual añade correcciones de recibos/reglas, organización y validación. Su suite final está pendiente.",
-    "evidence": "research/INTEGRATION_20261030/linux/MANIFEST.json",
-    "scope_note": "No acredita derechos, identidad de personas, efecto humano ni lanzamiento; gates 0/6."
+    "status": "REVIEW_APPROVED",
+    "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
+    "summary": "Linux limpio 074f72e1: 820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; catálogo/continuidad/replay PASS. Regresión determinista del almacén roja en baseline y verde en corrección.",
+    "evidence": "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json",
+    "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "scientific_status": {
     "prospective_CT2_ordinal": 20,

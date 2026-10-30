@@ -1,0 +1,205 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+__________ test_peer_creation_after_missing_probe_is_verified[valid] ___________
+
+folder = 13
+name = '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+data = b'{"synthetic": "politics fantasy"}'
+
+    def _verify_object(folder: int, name: str, data: bytes) -> None:
+        try:
+>           fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=folder)
+E                        FileNotFoundError: [Errno 2] No such file or directory: '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:126: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-pfl/pytest-0/test_peer_creation_after_missi0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7b486fd350>
+peer_kind = 'valid'
+
+    @pytest.mark.parametrize('peer_kind', ['valid', 'corrupt', 'symlink'])
+    def test_peer_creation_after_missing_probe_is_verified(tmp_path, monkeypatch, peer_kind):
+        """Deterministically occupy the ENOENT-to-creation window, without timing luck."""
+        import politics_fantasy.secure_store as module
+        original = module._verify_object
+        injected = False
+        outside = tmp_path.parent / (tmp_path.name + '_peer_target')
+        outside.write_bytes(b'outside must remain unchanged')
+        def verify_with_peer(folder, name, data):
+            nonlocal injected
+            if injected:
+                return original(folder, name, data)
+            try:
+                return original(folder, name, data)
+            except ValueError as exc:
+                assert isinstance(exc.__cause__, FileNotFoundError)
+                injected = True
+                if peer_kind == 'symlink':
+                    os.symlink(str(outside), name, dir_fd=folder)
+                else:
+                    fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                                 0o600, dir_fd=folder)
+                    try:
+                        os.write(fd, data if peer_kind == 'valid' else b'corrupt peer data')
+                        os.fsync(fd)
+                    finally:
+                        os.close(fd)
+                raise
+        monkeypatch.setattr(module, '_verify_object', verify_with_peer)
+        if peer_kind == 'valid':
+>           relative = module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+../test_store_peer_race.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:149: in store_bytes
+    _verify_object(folder, digest, data)
+../test_store_peer_race.py:112: in verify_with_peer
+    return original(folder, name, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+folder = 13
+name = '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+data = b'{"synthetic": "politics fantasy"}'
+
+    def _verify_object(folder: int, name: str, data: bytes) -> None:
+        try:
+            fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=folder)
+        except OSError as exc:
+>           raise ValueError("UNSAFE_EXISTING_OBJECT") from exc
+E           ValueError: UNSAFE_EXISTING_OBJECT
+
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:129: ValueError
+_________ test_peer_creation_after_missing_probe_is_verified[corrupt] __________
+
+folder = 13
+name = '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+data = b'{"synthetic": "politics fantasy"}'
+
+    def _verify_object(folder: int, name: str, data: bytes) -> None:
+        try:
+>           fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=folder)
+E                        FileNotFoundError: [Errno 2] No such file or directory: '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:126: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = PosixPath('/tmp/pytest-of-pfl/pytest-0/test_peer_creation_after_missi1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7b486fce90>
+peer_kind = 'corrupt'
+
+    @pytest.mark.parametrize('peer_kind', ['valid', 'corrupt', 'symlink'])
+    def test_peer_creation_after_missing_probe_is_verified(tmp_path, monkeypatch, peer_kind):
+        """Deterministically occupy the ENOENT-to-creation window, without timing luck."""
+        import politics_fantasy.secure_store as module
+        original = module._verify_object
+        injected = False
+        outside = tmp_path.parent / (tmp_path.name + '_peer_target')
+        outside.write_bytes(b'outside must remain unchanged')
+        def verify_with_peer(folder, name, data):
+            nonlocal injected
+            if injected:
+                return original(folder, name, data)
+            try:
+                return original(folder, name, data)
+            except ValueError as exc:
+                assert isinstance(exc.__cause__, FileNotFoundError)
+                injected = True
+                if peer_kind == 'symlink':
+                    os.symlink(str(outside), name, dir_fd=folder)
+                else:
+                    fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                                 0o600, dir_fd=folder)
+                    try:
+                        os.write(fd, data if peer_kind == 'valid' else b'corrupt peer data')
+                        os.fsync(fd)
+                    finally:
+                        os.close(fd)
+                raise
+        monkeypatch.setattr(module, '_verify_object', verify_with_peer)
+        if peer_kind == 'valid':
+            relative = module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+            assert (tmp_path / relative).read_bytes() == PAYLOAD
+        else:
+            error = 'UNSAFE_EXISTING_OBJECT' if peer_kind == 'symlink' else 'SHA_COLLISION_OR_CORRUPTED_STORE'
+            with pytest.raises(ValueError, match=error):
+>               module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+
+../test_store_peer_race.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:149: in store_bytes
+    _verify_object(folder, digest, data)
+../test_store_peer_race.py:112: in verify_with_peer
+    return original(folder, name, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+folder = 13
+name = '9b30ddaf9a72591b1f083893902d4f833ae642a73e32075f8d5f49eecda9e417'
+data = b'{"synthetic": "politics fantasy"}'
+
+    def _verify_object(folder: int, name: str, data: bytes) -> None:
+        try:
+            fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,
+                         dir_fd=folder)
+        except OSError as exc:
+>           raise ValueError("UNSAFE_EXISTING_OBJECT") from exc
+E           ValueError: UNSAFE_EXISTING_OBJECT
+
+../store-before/proyectos/politics-fantasy-league/src/politics_fantasy/secure_store.py:129: ValueError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-pfl/pytest-0/test_peer_creation_after_missi1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7b486fce90>
+peer_kind = 'corrupt'
+
+    @pytest.mark.parametrize('peer_kind', ['valid', 'corrupt', 'symlink'])
+    def test_peer_creation_after_missing_probe_is_verified(tmp_path, monkeypatch, peer_kind):
+        """Deterministically occupy the ENOENT-to-creation window, without timing luck."""
+        import politics_fantasy.secure_store as module
+        original = module._verify_object
+        injected = False
+        outside = tmp_path.parent / (tmp_path.name + '_peer_target')
+        outside.write_bytes(b'outside must remain unchanged')
+        def verify_with_peer(folder, name, data):
+            nonlocal injected
+            if injected:
+                return original(folder, name, data)
+            try:
+                return original(folder, name, data)
+            except ValueError as exc:
+                assert isinstance(exc.__cause__, FileNotFoundError)
+                injected = True
+                if peer_kind == 'symlink':
+                    os.symlink(str(outside), name, dir_fd=folder)
+                else:
+                    fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                                 0o600, dir_fd=folder)
+                    try:
+                        os.write(fd, data if peer_kind == 'valid' else b'corrupt peer data')
+                        os.fsync(fd)
+                    finally:
+                        os.close(fd)
+                raise
+        monkeypatch.setattr(module, '_verify_object', verify_with_peer)
+        if peer_kind == 'valid':
+            relative = module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+            assert (tmp_path / relative).read_bytes() == PAYLOAD
+        else:
+            error = 'UNSAFE_EXISTING_OBJECT' if peer_kind == 'symlink' else 'SHA_COLLISION_OR_CORRUPTED_STORE'
+>           with pytest.raises(ValueError, match=error):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: Regex pattern did not match.
+E             Expected regex: 'SHA_COLLISION_OR_CORRUPTED_STORE'
+E             Actual message: 'UNSAFE_EXISTING_OBJECT'
+
+../test_store_peer_race.py:133: AssertionError
+2 failed, 1 passed, 22 deselected in 1.17s

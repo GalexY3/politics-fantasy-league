@@ -34,4 +34,14 @@ Solo se indexan rutas versionadas; se excluyen raw/private/local_field. Las copi
 
 La incorporación es aceptable si el árbol final tiene replay canónico, suites completas Linux, pruebas del catálogo/continuidad, integridad de evidencias y un diff delimitado al proyecto y sus instrucciones de gobernanza. Una carencia ya explícita y fuera del alcance de la demo (autenticación o fuente institucional pendiente) no se presentará como resuelta ni como bloqueo para incorporar mantenimiento correcto a main.
 
-**Decisión actual: revisión completada; QA final del commit corregido en ejecución.** La resolución y el commit efectivamente incorporado se registrarán aquí después de observar los resultados y la operación GitHub. No se fusionará una cabeza que haya cambiado respecto a la revisada.
+**Decisión: APROBADO PARA INCORPORAR A MAIN.** Código revisado y probado: `074f72e19b522e7a507045e3738609fa5f6139cc`. Los resultados siguientes justifican la decisión; la operación se hará con comprobación de SHA para impedir fusionar una cabeza que haya cambiado. La incorporación efectiva se registrará tras observar GitHub.
+
+## Validación final de la corrección
+
+Checkout limpio Linux Alpine/QEMU `074f72e19b522e7a507045e3738609fa5f6139cc`: **820 Python +32 subtests, 511 Node, 38 Atlas +104 subtests PASS**, sin fallos ni omisiones; catálogo, continuidad, logros v6 y replay93 también PASS. El SHA canónico sigue `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`.
+
+La nueva prueba del almacén se ejecutó primero contra el código anterior `ed35a29d` y produjo **2 FAIL/1 PASS**: el peer válido y el corrupto reproducen la clasificación incorrecta, mientras el symlink sigue rechazado. Contra el código corregido obtiene **3/3 PASS** y la suite íntegra, incluido el test original de diez escritores, pasa. Los negativos se conservan, no se cambió el resultado esperado para forzar aprobación.
+
+Logs/entorno/comandos y manifiestos originales en `research/MAIN_REVIEW_20261030/linux_first/` y `linux_final/`. Todos los archivos recuperados se contrastaron con sus hashes del invitado. La VM se apagó; no se usó CI remota. Los cambios posteriores a ese commit solo registran evidencia y organización generada; no cambian código ni tests.
+
+La decisión autoriza incorporar la base mantenible a main por delegación del usuario. Autenticación, T005 y los gates de lanzamiento siguen pendientes; no son capacidades adquiridas por esta revisión.
