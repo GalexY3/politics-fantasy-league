@@ -1,7 +1,6 @@
 name: PFL ABH25 final full Linux verification
 on:
-  pull_request:
-    paths: [.github/workflows/pfl-abh25-final-audit.yml]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
