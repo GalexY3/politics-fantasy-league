@@ -1070,6 +1070,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Static token scan plus manual context; no upstream code execution, no review of all other scripts/infrastructure and no original human observations. Absence of first-public evidence in this file is not proof of absence system-wide; novelty not claimed."
+    },
+    {
+      "id": "PF-BR82",
+      "claim": "The 17th-legislature official French commission LibreOffice CSV directly supplies unique meeting IDs and official compte-rendu references sufficient for prospective petition decision linkage.",
+      "update": "FALSIFIED_FOR_PINNED_CSV_SCHEMA; ALTERNATE_STRUCTURED_ZIP_BLOCKED_BY_PUBLISHER_CHECKSUM_DRIFT",
+      "support": "After preregistered metadata-only probe, GitHub Actions #41019397659 downloaded original official 16,285-byte CSV, matched published MD5 255fd163..., SHA256 9ee8c4f501532874ced99adce43dd2a162beef08f9b4f646d674b18a37ca37dd. Exactly 29 rows; five header fields for commission type, date, hour, organizer and agenda; no unique meeting ID or report reference. Alternative original Agenda.json.zip probe #41019680394 failed closed before decompression: observed MD5 bcdbda980881c326d437a69e78beaa9a != publisher page 97332eb327d19e22d42a2f639e754d87. No outcomes inspected.",
+      "source": "https://data.assemblee-nationale.fr/reunions/reunions",
+      "evidence": "../ABH25_20261030/C03_REPORT.md",
+      "type": "ORIGINAL_OFFICIAL_METADATA_PROBE_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "29-row CSV does not mean the universe of commission meetings contains only 29; merely that particular file. ZIP version mismatch is not evidence of malicious changes; no bytes of ZIP evaluated after checksum guard. No causal inference, no study sample."
     }
   ],
   "CT2_parent_unchanged": 29,
