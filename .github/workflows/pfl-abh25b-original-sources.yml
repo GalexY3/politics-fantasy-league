@@ -1,8 +1,6 @@
 name: PFL ABH25B two independent original institution audits
 on:
-  push:
-    branches:
-      - research/pfl-ab-h25-v2-source-provenance-playability-20261030
+  pull_request:
     paths:
       - .github/workflows/pfl-abh25b-original-sources.yml
 permissions:
