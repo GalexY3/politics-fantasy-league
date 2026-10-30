@@ -27,3 +27,8 @@ jobs:
         run: |
           node --check src/politics_fantasy/web/app.js
           node --test tests/test_abh25b_scorecard_ui.mjs
+      - name: Canonical Atlas98 replay and source catalogue integrity
+        run: |
+          python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
+          python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 1
+          python scripts/project_index.py check
