@@ -515,6 +515,46 @@
       "state": "answered",
       "summary": "Nineteen separate synthetic formal/product validation checks PASS; NO empirical novelty, one minor resource warning",
       "source": "../ABH25_20261030/C08_C26_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25B-WALES-ORIGINAL-STAGES",
+      "type": "original_metadata_measurement",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Wales source stage/current state non-equivalence; original mixed, open, completed and referred filtered pages, null-safe and nonrandom",
+      "source": "../ABH25B_20261030/C09_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25B-UK-REJECTION-VS-DEBATE",
+      "type": "original_institutional_measurement",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "UK moderation refusal distinct from governmental response; 100k eligibility distinct from observed debate; C10/C11 previously frozen original receipts incorporated",
+      "source": "../ABH25B_20261030/C11_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25B-UK-CONSTITUENCY-HHI",
+      "type": "original_aggregate_spatial_measurement",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "One UK petition 650 constituency aggregate records, HHI 0.00211, no population denominator or MP support inference",
+      "source": "../ABH25B_20261030/C14B_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25B-FICTIONAL-TEN-INSIGHTS",
+      "type": "new_product_capability",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Ten account-scoped fictional economic/score indicators implemented with 10 Python +2 Node native PASS, no real political scoring or human acceptance",
+      "source": "../ABH25B_20261030/C17_C26_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25B-NEGATIVE-SAMPLE-AND-OVERLAP",
+      "type": "source_gate_blocked_noncycle",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Scottish under_consideration page12 empty; repeated UK C13/C16 were not charged; previous C10/C11 IDs collided with Welsh studies and were reconciled",
+      "source": "../ABH25B_20261030/C09_C16_COLLISION_AND_NEGATIVES.json"
     }
   ],
   "edges": [
@@ -1003,6 +1043,30 @@
       "to": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
       "relation": "related_to",
       "interpretation": "Adds distinct formal and technical stress controls, not a human test or release gate."
+    },
+    {
+      "from": "PFL-ABH25B-WALES-ORIGINAL-STAGES",
+      "to": "PFL-ABH25-UK-C07",
+      "relation": "related_to",
+      "interpretation": "Different institutional rules: nontransportable stage/threshold comparators"
+    },
+    {
+      "from": "PFL-ABH25B-UK-REJECTION-VS-DEBATE",
+      "to": "PFL-ABH25-UK-C04",
+      "relation": "related_to",
+      "interpretation": "UK within-institution differentiated response, threshold and admissibility fields"
+    },
+    {
+      "from": "PFL-ABH25B-UK-CONSTITUENCY-HHI",
+      "to": "PFL-ABH25B-UK-REJECTION-VS-DEBATE",
+      "relation": "related_to",
+      "interpretation": "Both official UK data, but aggregate geographic signers are not decision outcomes or MP behavior"
+    },
+    {
+      "from": "PFL-ABH25B-FICTIONAL-TEN-INSIGHTS",
+      "to": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "relation": "related_to",
+      "interpretation": "Product derived from synthetic account fixtures, no transfer to empirical research"
     }
   ],
   "rules": {
