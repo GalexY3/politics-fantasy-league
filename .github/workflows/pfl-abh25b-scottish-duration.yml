@@ -1,7 +1,6 @@
 name: PFL ABH25B C06 Scottish petition closure intervals
 on:
-  pull_request:
-    paths: [.github/workflows/pfl-abh25b-scottish-duration.yml]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
