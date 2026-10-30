@@ -435,6 +435,22 @@
       "state": "blocked",
       "summary": "C37 planned prereg original AEARCTR-0000981 registry history check, but official trial/historical version inaccessible via available web. Published 2018/2022/2025 summaries known before prereg; no original registry, no valid empirical cycle, no CT2 increase. D3 planning-only per AGENTS.",
       "source": "../ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md"
+    },
+    {
+      "id": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
+      "type": "external_institutional_observation_negative",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Original French government-open petition CSV 4170, terminal/age/signature filters 1000; 10k+ support 8/22 documented committee decisions vs 100–9999 support 640/978; raw delta −29.08pp, 3 of 4 comparable years negative. Reject predeclared positive descriptive H1, NOT causal, missing field != no committee decision. Source sha a57572....",
+      "source": "../R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "type": "posthoc_measurement_audit",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Four selected explicit committee decisions absent from CSV text field; two remain open. Known prior-art replication, no correction of C38 population estimate, zero new scientific cycles.",
+      "source": "../CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -875,6 +891,18 @@
       "to": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
       "relation": "blocks",
       "interpretation": "Cannot establish whether independent public/private rank study social network interaction was prospectively registered, so no confirmation credit to PFL comparison."
+    },
+    {
+      "from": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
+      "to": "PFL-ABH10-C37-AEA-REGISTRY-HISTORY-UNACCESSIBLE",
+      "relation": "related_to",
+      "interpretation": "R5 pivot from inaccessible human RCT original registry to openly licensed original institutional petition source; different population and estimand. No transfer of causal claims."
+    },
+    {
+      "from": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "to": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
+      "relation": "related_to",
+      "interpretation": "Audits measurement limitation, not independent confirmation of directional H1."
     }
   ],
   "rules": {
@@ -915,8 +943,8 @@
       "ABH10_new_executed": 1,
       "ABH10_new_remaining": 9,
       "ABH10_new_grant": 10,
-      "ABH10_valid_limited": 5,
-      "ABH10_unused_R5": 5,
+      "ABH10_valid_limited": 6,
+      "ABH10_unused_R5": 4,
       "new_N1_N2_N3": [
         0,
         0,
@@ -928,7 +956,9 @@
         0,
         0
       ],
-      "C37": "BLOCKED_NONCYCLE_REGISTRY_ACCESS"
+      "C37": "BLOCKED_NONCYCLE_REGISTRY_ACCESS",
+      "new_separate10_unused": 10,
+      "launch_gates": "0/6"
     }
   },
   "integration_20261030": {

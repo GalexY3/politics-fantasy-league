@@ -1,0 +1,42 @@
+{
+  "schema": "pfl.cutover.windows_qa_summary.v1",
+  "observed_on": "2026-10-30T04:39:40.780349+00:00",
+  "purpose": "Partial Windows compatibility check, not full project QA",
+  "targeted_checks": [
+    {
+      "name": "python_compile",
+      "passed": true,
+      "summary": ""
+    },
+    {
+      "name": "accounts_petitions_product_43",
+      "passed": true,
+      "summary": "43 passed in 11.85s"
+    },
+    {
+      "name": "atlas_38",
+      "passed": true,
+      "summary": "38 passed, 105 subtests passed in 1.40s"
+    },
+    {
+      "name": "javascript_syntax",
+      "passed": true,
+      "summary": ""
+    }
+  ],
+  "prior_full_python": {
+    "status": "FAILED_56_ON_WINDOWS_PYTHON314",
+    "observed_counts_from_user_log": {
+      "failed": 56,
+      "passed": 754,
+      "skipped": 31,
+      "passed_subtests": 28
+    },
+    "diagnosed_first_five": "SECURE_STORE_UNSUPPORTED_PLATFORM - POSIX anchored dirfd unavailable",
+    "uninvestigated_failure_count": 51,
+    "not_equivalent_to": "all 56 failures explained or Linux QA passed"
+  },
+  "linux_full_suite": "PENDING_GITHUB_ACTIONS",
+  "raw_paths_and_tracebacks": "Retained locally only; not published",
+  "human_product_review": "PENDING"
+}

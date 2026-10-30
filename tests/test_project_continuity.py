@@ -73,6 +73,14 @@ class ContinuityTests(unittest.TestCase):
         a['dependencies'] = [b['id']]; b['dependencies'] = [a['id']]
         self.assertTrue(any('Cyclic milestone' in e for e in self.errors()))
 
+    def test_reading_allocation_cannot_inflate_twenty_into_twenty_five(self):
+        allocation = {'user_authorized_total_units': 20, 'review_units_allocated': 5,
+                      'review_units_completed': 5, 'substantive_units_allocated': 15,
+                      'valid_scientific_cycles_executed': 0, 'substantive_units_remaining': 15}
+        self.assertEqual(status.validate_allocation(allocation), [])
+        allocation.update(substantive_units_allocated=20, substantive_units_remaining=20)
+        self.assertIn('INCONSISTENT_CONTINUATION_ALLOCATION', status.validate_allocation(allocation))
+
     def test_brief_uses_observed_publication_instead_of_hardcoded_review_status(self):
         state, observed = status.derive()
         state['publication_status'] = 'MERGED'

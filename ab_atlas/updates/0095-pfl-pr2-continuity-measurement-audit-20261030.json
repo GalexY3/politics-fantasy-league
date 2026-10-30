@@ -1,0 +1,26 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0095-PFL-PR2-CONTINUITY-MEASUREMENT-AUDIT-20261030",
+  "parent_batch": "0094-PFL-ABH10-C38-FR-PETITIONS-20261030",
+  "at": "2026-10-30T05:54:04.555451Z",
+  "actor": "codex",
+  "reason": "Reviewed PR2 on current main, repaired strict-CSP UI regression, full Linux QA and posthoc four-case original source measurement audit. Maintenance/audit only: no new scientific cycle, grade or release gate. Five documentary reviews plus 15 available substantive units in user grant, not five plus twenty.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-PR2-REVIEW-POSTHOC-MEASUREMENT-20261030",
+        "at": "2026-10-30T05:54:04.555451Z",
+        "activity": "Full Linux 837 Python/511 Node/38 Atlas pass on 7de66007; four explicitly numbered minute decisions all match exact C38 CSV and have empty decision cells; two open and two terminal statuses. Selected posthoc audit, not representative missingness or causal evidence.",
+        "status": "completed",
+        "evidence": [
+          "research/CONTINUATION20_20261030/REVIEW.md",
+          "research/CONTINUATION20_20261030/linux/MANIFEST.json",
+          "research/CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
+        ],
+        "scope": "Technical integration and posthoc selected-case measurement audit; no new AB scientific cycle or human UX acceptance",
+        "method_version": "AB3.2.1 O7 with local WORKING_AGREEMENT"
+      }
+    }
+  ]
+}

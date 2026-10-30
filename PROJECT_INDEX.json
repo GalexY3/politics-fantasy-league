@@ -4,18 +4,18 @@
   "certifies_results": false,
   "category_counts": {
     "archive": 6,
-    "atlas": 106,
+    "atlas": 108,
     "atlas_engine": 12,
     "continuity": 8,
     "data": 10,
-    "evidence": 345,
+    "evidence": 378,
     "experimental_code": 28,
-    "operations": 69,
-    "reference": 65,
-    "research": 1792,
-    "runtime": 76,
+    "operations": 70,
+    "reference": 68,
+    "research": 1825,
+    "runtime": 77,
     "task_queue": 119,
-    "verification": 166
+    "verification": 168
   },
   "files": [
     {
@@ -25,6 +25,11 @@
     },
     {
       "path": ".github/workflows/ci.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-cutover-linux-qa.yml",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -624,6 +629,16 @@
       "purpose": "Grafo Atlas, logros y sincronización"
     },
     {
+      "path": "ab_atlas/updates/0094-pfl-abh10-c38-french-petitions-20261030.json",
+      "category": "atlas",
+      "purpose": "Grafo Atlas, logros y sincronización"
+    },
+    {
+      "path": "ab_atlas/updates/0095-pfl-pr2-continuity-measurement-audit-20261030.json",
+      "category": "atlas",
+      "purpose": "Grafo Atlas, logros y sincronización"
+    },
+    {
       "path": "ab_atlas/updates/README.md",
       "category": "atlas",
       "purpose": "Grafo Atlas, logros y sincronización"
@@ -779,6 +794,11 @@
       "purpose": "Manuales, contratos y referencias"
     },
     {
+      "path": "docs/P1_ACCOUNTS_REVIEW.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
       "path": "docs/PILOTO_UX_FICCIONAL_PRE_T009_20261028.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
@@ -870,6 +890,16 @@
     },
     {
       "path": "docs/migration/COMMIT_MAP.tsv",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/CUTOVER_PR81_TRANSFER_MANIFEST.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/migration/CUTOVER_PR81_WINDOWS_QA.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -8814,6 +8844,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/AUTHORIZATION_20261030_NEW10.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/B50_REMAINING_20261026/CONTRACTS.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -9579,6 +9614,291 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/CONTINUATION20_20261030/AUTHORIZATION.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/C39_AUDIT_CONTRACT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/C39_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/NEXT_RESEARCH_CONTRACT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/PR2_FAILED_REMOTE_QA.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/REVIEW.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/bootstrap.sh",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/check.sh",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/.gitattributes",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/MANIFEST.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/atlas_pytest_unavailable.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/atlas_pytest_unavailable.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/atlas_unittest.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/atlas_unittest.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/continuity.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/continuity.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/measurement_controls.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/measurement_controls.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/replay_posthoc.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/replay_posthoc.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/state.err",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/followup/state.out",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/.gitattributes",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/MANIFEST.json",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/achievements.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/achievements.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/atlas.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/atlas.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/atlas_tests.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/atlas_tests.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/bootstrap.log",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/catalogue.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/catalogue.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/commit.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/continuity.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/continuity.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/counts.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/counts.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/end.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/environment.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/exits.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/install.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/install.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/node.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/node.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/pytest.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/pytest.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/pytest_end.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/pytest_start.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/replay.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/replay.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/status.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/status_after.txt",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/zone.err",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/linux/zone.out",
+      "category": "evidence",
+      "purpose": "Recibos, originales conservados y copias históricas; no código activo"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/replay_measurement_audit.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/CONTINUATION20_20261030/test_measurement_audit.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/CT2_TRAJECTORY.csv",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -10294,6 +10614,46 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_R1_FREEZE.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/committee_measurement_audit.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/R0_INSTITUTIONAL_PETITIONS_20261030/petition_documentation_audit.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/RCT_ROSTER_EXPOSURE_GATE_20261029/PREREG_EXTERNAL_RCT_ACCESS.json",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -10680,6 +11040,11 @@
     },
     {
       "path": "src/politics_fantasy/__init__.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/accounts.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -13179,6 +13544,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_accounts.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_achievements_atlas.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -13635,6 +14005,11 @@
     },
     {
       "path": "tests/test_partial_seed_guard.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_petition_documentation_audit.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

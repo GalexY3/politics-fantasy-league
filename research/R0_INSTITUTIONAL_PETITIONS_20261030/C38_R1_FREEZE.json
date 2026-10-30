@@ -1,0 +1,20 @@
+{
+  "schema": "pfl.ABH10.C38.R1.pre_execution.v1",
+  "timestamp": "2026-10-30",
+  "original_prereg_commit": "88424736de5645941a56269abd8f8793734a6918",
+  "first_run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996014251",
+  "first_run_status": "INVALID_TEST_FIXTURE_6_PASS_2_FAIL_CSV_NOT_DOWNLOADED",
+  "issue_file": "C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+  "code_git_unchanged": "42383b26989674d445acd144defce8c62b62657d",
+  "test_original_git": "6ce385bde631ff305cf05d7f5b99a0d6334dafb2",
+  "test_repaired_git": "dc475c4c85328ec9229c6ec9584c90e3fc876a53",
+  "test_repaired_commit": "fe0b0d6bfe5d8787d18dd3c60e0fd22b7a94b663",
+  "hypothesis_falsifier_selection_unchanged": true,
+  "repairs": [
+    "2027 future date fixture after age cutoff instead of 2026-02-03 before cutoff",
+    "Malformed CSV fixture with >50 bytes to exercise missing schema instead of source byte threshold"
+  ],
+  "next_run": "Update one-shot existing dedicated workflow exact repaired test Git SHA and rerun native tests before original CSV. If 8/8 and CSV accessible analyze, count one bounded AB-R C38; otherwise no cycle.",
+  "no_source_rows_seen": true,
+  "budget_spent": 0
+}

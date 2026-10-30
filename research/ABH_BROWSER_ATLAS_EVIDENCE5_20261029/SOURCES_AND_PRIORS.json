@@ -1046,6 +1046,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "No exposure logs or original PFL events, no licensed participant data verified/processed, source summary only, cannot claim causal effect size or PFL transport."
+    },
+    {
+      "id": "PF-BR80",
+      "claim": "For already closed French Assembly petitions aged 180+ days, 10,000+ signatures predicts a higher rate of documented committee decision than 100–9,999 signatures.",
+      "update": "FALSIFIED_WITHIN_PRESPECIFIED_OBSERVED_CSV_INDICATOR_NOT_CAUSAL: high 8/22=36.36%, low 640/978=65.44%, raw delta −29.08 percentage points, only one of four comparable publication years positive. Does NOT imply missing institutional action, because public dataset scraper lacks some decisions.",
+      "support": "ABH10-C38 original France data.gouv public weekly petition CSV, Licence Ouverte v2, 4,170 records, age/status filters leave 1,000 eligible. A–J prereg commit 88424736de5645941a56269abd8f8793734a6918 and R1 freeze 545a432f6ae103b18b992533d712beab1ce1d16f BEFORE original CSV download; original GitHub Actions native Python 8/8 pass, raw SHA256 a57572556e945076a421760b0ed6a0b43335c5378abf78b5e179190e4c009d4a. First fixture-invalid 6/8 preserved, zero original source rows seen before repair.",
+      "source": "https://www.data.gouv.fr/datasets/petitions-de-lassemblee-nationale",
+      "evidence": "../R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "type": "ORIGINAL_EXTERNAL_INSTITUTIONAL_OBSERVATIONAL_NEGATIVE_AB_R",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Documentation field not actual decision/no response, no timing of support threshold, support endogenous and n-high=22, one scrape source and one cohort, no causal/fairness claims or PFL human effect."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -1303,10 +1315,10 @@
   },
   "latest_ABH10": {
     "new_grant": 10,
-    "new_executed_valid_limited": 5,
-    "new_remaining_R5_unspent": 5,
+    "new_executed_valid_limited": 6,
+    "new_remaining_R5_unspent": 4,
     "historical_two_STOP_R5": true,
-    "branch": "research/pfl-abh10-source-atlas-o7-20261030",
+    "branch": "feature/pfl-p1-accounts",
     "CT2_scientific_ordinal": 20,
     "latest_priors": [
       "PF-BR71",
@@ -1327,6 +1339,20 @@
       "registry": "AEARCTR-0000981",
       "freeze_commit": "2cc076a4fa2c6d9fa0233384b932483fefc0ed4d",
       "records_inspected": false
-    }
+    },
+    "latest_prior": "PF-BR80",
+    "newest_cycle": "ABH10-C38"
+  },
+  "posthoc_petition_measurement_audit_20261030": {
+    "status": "SELECTED_CASE_POSTHOC_AUDIT_NOT_NEW_AB_CYCLE",
+    "evidence": "../CONTINUATION20_20261030/C39_RUN_RECEIPT.json",
+    "prior_art": "https://suiteadonner.nucom.fr/methodologie",
+    "claim": "Four decisions explicitly numbered in one 8 April 2026 minute link uniquely to C38 snapshot; all four decision cells empty. Two examined petitions remain open and are outside C38 terminal risk set. No population estimate, causal interpretation, independent confirmation or novelty claim.",
+    "related_prior": "PF-BR80",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
   }
 }

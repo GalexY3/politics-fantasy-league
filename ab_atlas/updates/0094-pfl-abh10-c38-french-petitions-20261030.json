@@ -1,0 +1,31 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0094-PFL-ABH10-C38-FR-PETITIONS-20261030",
+  "parent_batch": "0093-PFL-INTEGRATION-CODEX20-HISTORY-20261030",
+  "at": "2026-10-30T03:17:37.669Z",
+  "actor": "chatgpt",
+  "reason": "One genuinely executed bounded AB-R original institutional observational result C38; positive H1 on documented petition decisions rejected; first 6/8 fixture failure preserved, repaired 8/8 before reading original CSV. No QA/product cycles, 4 old ABH10 grant remain, new separate 10 wholly unused. CT2 20/100 ordinal, N1/2/3 zero, gates 0/6.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH10-C38-FRENCH-PETITIONS-OPEN-SOURCE-20261030",
+        "at": "2026-10-30T03:17:37.671Z",
+        "activity": "C38 independent government-published open French petition snapshot, 4170 rows, 1000 predeclared eligible, high>=10k n22 documented8 vs low 100-9999 n978 documented640, difference -29.08pp; three of four comparable years negative; noncausal observed field documentation only.",
+        "status": "completed",
+        "evidence": [
+          "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
+          "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_R1_FREEZE.json",
+          "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_INITIAL_INVALID_TEST_ATTEMPT.json",
+          "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+          "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md"
+        ],
+        "scope": "AB-R external observational negative bounded single frozen CSV, not PFL causal effect or person scoring",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 1
+        }
+      }
+    }
+  ]
+}

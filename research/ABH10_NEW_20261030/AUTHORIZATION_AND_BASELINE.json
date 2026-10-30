@@ -2,8 +2,8 @@
   "schema": "pfl.abh10.new_grant.v1",
   "date": "2026-10-30",
   "user_authorized_new": 10,
-  "executed_new": 5,
-  "new_remaining": 5,
+  "executed_new": 6,
+  "new_remaining": 4,
   "prior_ABH30": {
     "granted": 30,
     "executed": 30,
@@ -82,31 +82,37 @@
       "prereg_commit": "2cc076a4fa2c6d9fa0233384b932483fefc0ed4d",
       "receipt": "C37_BLOCKED_NOT_COUNTED.md",
       "evidence": "Official original AEARCTR-0000981 version history unaccessible; only 2018/2022/2025 posthoc paper versions reviewed, one cohort not independent replication. No original registry/version fields inspected; no cycle counted."
+    },
+    {
+      "cycle": "ABH10-C38",
+      "mode": "AB-R_ORIGINAL_INSTITUTIONAL_PETITION_OBSERVATION",
+      "status": "VALID_BOUNDED_NEGATIVE_DESCRIPTIVE_NOT_CAUSAL",
+      "prereg_commit": "88424736de5645941a56269abd8f8793734a6918",
+      "repair_freeze_commit": "545a432f6ae103b18b992533d712beab1ce1d16f",
+      "run_receipt": "../R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+      "native_job": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996183394",
+      "initial_invalid_attempt": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996014251",
+      "original_data_sha256": "a57572556e945076a421760b0ed6a0b43335c5378abf78b5e179190e4c009d4a",
+      "reason": "French official open petition 4,170 records, prereg high-support association refuted on 1000 age/terminal eligible. No causal effect or personal rows."
     }
   ],
   "source_credits": "CC-BY-SA-4.0 ForecastBench external published aggregate leaderboard candidate (not causal PFL)",
   "R5_decision": {
-    "state": "STOP_R5_AFTER_C37_BLOCKED_NO_NEW_INDEPENDENT_CLASS",
-    "new_slots_preserved": 5,
+    "state": "REOPENED_FOR_NEW_EXTERNAL_SOURCE_C38_THEN_PARKED_DECISION_TRUTH",
+    "new_slots_preserved": 4,
     "historical_two_preserved": 2,
-    "reason": "C37 prereg D3 was a planning-only registration-history probe; official AEARCTR-0000981 trial original page and history inaccessible. 2018, 2022, 2025 Ashraf results same RCT and had been viewed before freeze; new income reference-group RCT 2026 outcomes also posthoc abstract, not an executable source. Original PFL exposures and rights-unrestricted human opportunity/outcomes still unavailable; no slots consumed.",
     "counts": {
-      "new_valid_limited": 5,
+      "new_valid_limited": 6,
       "new_invalid_cycles": 0,
+      "new_invalid_attempts_this_continuation": 1,
       "new_blocked_unconsumed": 2,
-      "new_unopened_unconsumed": 3,
-      "new_remaining": 5
+      "new_unopened_unconsumed": 2,
+      "new_remaining": 4
     },
-    "PFL_science_CT2_ordinal": 20,
-    "new_N1_N2_N3": [
-      0,
-      0,
-      0
-    ],
-    "release_gates": "0/6"
+    "reason": "New original openly licensed French institutional dataset supported prospective negative observational C38; subsequent decision truth verification requires independently versioned committee minutes; do not try same snapshot with varied thresholds. New 10 grant stays untouched."
   },
-  "latest_branch": "research/pfl-abh10-c37-rank-aea-registration-20261030",
-  "priors_latest": "PF-BR79",
+  "latest_branch": "feature/pfl-p1-accounts",
+  "priors_latest": "PF-BR80",
   "Atlas92_last_verified_sha": "a8b77478962627b3be78023a34ef20b075537a6b7eab0b90a98dab8018deb9fb",
   "PFL_science_CT2_ordinal": 20
 }

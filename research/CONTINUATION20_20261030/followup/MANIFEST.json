@@ -1,0 +1,119 @@
+{
+  "schema": "pfl.pr2.incremental_verification.v1",
+  "scope": "Windows Python 3.14 after full Linux 7de66007; app/engine/dependencies unchanged since full run. Atlas95, ledger and exact originals replay verified; one missing-pytest runner attempt retained.",
+  "commands": {
+    "continuity": {
+      "exit": 0,
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_project_continuity.py",
+        "-q"
+      ]
+    },
+    "measurement_controls": {
+      "exit": 0,
+      "command": [
+        "python",
+        "research/CONTINUATION20_20261030/test_measurement_audit.py",
+        "-q"
+      ]
+    },
+    "atlas_pytest_unavailable": {
+      "exit": 1,
+      "cause": "Windows interpreter has no pytest installed. Linux full pytest PASS preserved separately. Retried same unittest-native Atlas tests with stdlib runner, without suppressing tests."
+    },
+    "atlas_unittest": {
+      "exit": 0,
+      "command": [
+        "python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/ab_atlas/tests",
+        "-q"
+      ]
+    },
+    "replay_posthoc": {
+      "exit": 0,
+      "command": [
+        "python",
+        "research/CONTINUATION20_20261030/replay_measurement_audit.py",
+        "LOCAL_C38_CSV",
+        "LOCAL_ORIGINAL_MINUTE_HTML"
+      ]
+    },
+    "state": {
+      "exit": 0,
+      "command": [
+        "python.exe",
+        "scripts/project_status.py",
+        "check"
+      ]
+    }
+  },
+  "inputs": {
+    "scripts/project_status.py": "279acbddc5259b90c036378ddeb5dc8308135fa51a125751819eed774f7cfd49",
+    "tests/test_project_continuity.py": "9790c03d28b3b1b320c9db97feab18db0a272760ef0eaa6c7f38e41268e26be0",
+    "research/R0_INSTITUTIONAL_PETITIONS_20261030/committee_measurement_audit.py": "7f09eb9817f2a876f8b386e1434c5dc0e75f363fca1984f0b2cba232dc0f371c",
+    "research/CONTINUATION20_20261030/test_measurement_audit.py": "53cf7ccee74f65ade04c08372cca0be1bcdec8fbabc3153ca3d3de6decaf314d",
+    "research/CONTINUATION20_20261030/replay_measurement_audit.py": "65867ad56ed6ad8d7a574b380b1d26e25f7d0bd9757c3c58e9fe465231f65aed",
+    "PROJECT_STATE.json": "59c0c6570788cdf081d3011c792d9d33b0045ffd0dcc2082ec7b1b7304baf2d0"
+  },
+  "files": {
+    "atlas_pytest_unavailable.err": {
+      "bytes": 93,
+      "sha256": "5272d276ed3139594d792206c7a44b507a600f84f0efe30003c4fe097cdadf26"
+    },
+    "atlas_pytest_unavailable.out": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "atlas_unittest.err": {
+      "bytes": 102,
+      "sha256": "0524378dfe063cafecd7062c6c5184e435adf97369bbd6ebf68d687ad9bc0e9a"
+    },
+    "atlas_unittest.out": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "continuity.err": {
+      "bytes": 102,
+      "sha256": "230f7dbb1a6b5f603a19cb2b1f8989e27de0f40fe2d5787094d2553f36706914"
+    },
+    "continuity.out": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "measurement_controls.err": {
+      "bytes": 101,
+      "sha256": "d6fbbf05036c09d629dc66d2ce7b62700a4096dde31dc9825b2dc9ccea67bc5b"
+    },
+    "measurement_controls.out": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "replay_posthoc.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "replay_posthoc.out": {
+      "bytes": 764,
+      "sha256": "6b12bc274e2bd71c2737cb636b650c03aa749bb6d61958b752ab489592a5f63a"
+    },
+    "state.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "state.out": {
+      "bytes": 2761,
+      "sha256": "c072c53f32bb41de3b5e332a589030adb3acf45ac51f7881456ef57b1f5cb900"
+    }
+  }
+}

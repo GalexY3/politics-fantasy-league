@@ -1,0 +1,30 @@
+{
+  "schema": "pfl.posthoc.measurement_audit.v1",
+  "id": "C39-POSTHOC-MEASUREMENT-AUDIT",
+  "status": "FROZEN_BEFORE_LOCAL_CSV_READ",
+  "scientific_cycle_count": 0,
+  "A": "Can four explicitly numbered committee decisions be linked uniquely to the exact CSV snapshot used in C38, and does its decision field carry any text?",
+  "B": "An empty CSV cell can coexist with a decision documented in minutes. Rival: the four records have a nonempty field, are absent, or do not match uniquely. This is a selected-case diagnostic, not prevalence or causality.",
+  "C": {
+    "sample": [2760, 3021, 3070, 4583],
+    "sampling": "All four numbered decisions in the 8 April 2026 sustainable-development committee minute. No expansion after seeing CSV fields.",
+    "minute_url": "https://www.assemblee-nationale.fr/dyn/opendata/CRCANR5L17S2026PO419865N038.html",
+    "csv_url": "https://www.data.gouv.fr/api/1/datasets/r/c94c9dfe-23eb-45aa-acd1-7438c4e977db",
+    "required_csv_sha256": "a57572556e945076a421760b0ed6a0b43335c5378abf78b5e179190e4c009d4a",
+    "primary": "Unique matched records with an empty decision_commission field / unique matched records, separately by decision type; no causal inference.",
+    "competent_baseline": "Exact petition numbers plus explicit decision wording, following the published Suite à donner measurement safeguards. No fuzzy title matching and no inferred membership of the unnamed batch of 39."
+  },
+  "D": "Freeze code and control fixtures in Git before downloading the CSV. Validate byte limit, snapshot hash, required columns, unique IDs and four explicit numbered decision anchors. Failure is invalid or blocked, not an invented zero.",
+  "E": "One bounded download of each original into a local temporary directory; output aggregates and hashes only. Preserve failures. Raw CSV and full minute are not committed.",
+  "F": "Check open vs terminal status composition. Cases outside C38's risk set cannot repair its -29.08 pp estimate or identify eligible-population missingness. A nonempty field does not prove agreement with the minute.",
+  "G": "NOT independent confirmation: the minute, all four decision types and a prior observation about petition 2760 have already been seen. No blind holdout, no novelty claim, no population estimate or new scientific cycle.",
+  "H": "Refine the measurement plan only. Historical C38 receipt remains untouched. Preserve ordinal CT2 20 and N1/N2/N3 0/0/0.",
+  "I": "Four purposively selected cases from one meeting; two-stage sampling and open-status selection. This is an audit of measurement feasibility, not institutional effectiveness or causal response.",
+  "J": "After this diagnostic stop rechecking the same cases. Prepare a genuinely new, finite corpus and freeze its sampling/instrument before further outcome inspection; otherwise park C39 confirmatory work. Keep all research balances intact.",
+  "selection_exposure": {
+    "minute_and_sample_seen_before_contract": true,
+    "expected_minute_decisions": {"examination": [2760, 3070], "classification": [3021, 4583]},
+    "antecedent": "Suite à donner / Clément Tournier, methodology and 15 September 2026 public article; matching minutes to missing CSV decisions is already published.",
+    "csv_cells_not_read_locally_before_freeze": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "run_id": 41004587727,
+  "head": "9d5603ea1cb023f1c7edd6f1036cc2b8a731cd8e",
+  "url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41004587727",
+  "python": "PASS",
+  "atlas": "PASS",
+  "node": {
+    "passed": 510,
+    "failed": 1,
+    "failure": "tests/test_ui_vote_bars.mjs: inline style introduced by account form violates existing strict CSP contract"
+  },
+  "repair": "Move auth action layout to style.css; keep strict CSP and regression test."
+}

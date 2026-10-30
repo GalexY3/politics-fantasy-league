@@ -1,0 +1,28 @@
+{
+  "schema": "pfl.ABH10.C38.invalid_attempt.v1",
+  "timestamp_date": "2026-10-30",
+  "prereg_commit": "88424736de5645941a56269abd8f8793734a6918",
+  "workflow_run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40996014251",
+  "status": "INVALID_PRE_SOURCE_TEST_FIXTURES",
+  "passed": 6,
+  "failed": 2,
+  "download_of_original_CSV": "NOT_EXECUTED_DUE_EARLY_TEST_FAILURE",
+  "issues": [
+    {
+      "test": "test_future_and_open_are_not_assumed_closed",
+      "cause": "Fixture date 2026-02-03 is BEFORE fixed 2026-04-29 cutoff; should be later year/date to be excluded as young",
+      "impact": "Test expected eligible 1 but actual 2",
+      "repair": "Use 2027-02-03 which is after cutoff; no code or predeclared cutoff changes"
+    },
+    {
+      "test": "test_require_schema_and_reject_missing_columns",
+      "cause": "Malformed CSV fixture was shorter than frozen source minimum 50 bytes",
+      "impact": "Encountered BAD_SOURCE_BYTES before REQUIRED_FIELDS_MISSING",
+      "repair": "Make bogus CSV fixture >=50 bytes but still lacking needed columns"
+    }
+  ],
+  "counting": "Zero AB substantive cycles consumed, not an original-data outcome",
+  "new_code_sha_pre_repair": "42383b26989674d445acd144defce8c62b62657d",
+  "new_test_sha_pre_repair": "6ce385bde631ff305cf05d7f5b99a0d6334dafb2",
+  "CT2_unchanged": 20
+}
