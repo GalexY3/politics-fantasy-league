@@ -1,0 +1,72 @@
+{
+  "schema": "pfl.abh10.c31.original_published_aggregate_benchmark_run.v1",
+  "cycle": "ABH10-C31",
+  "date": "2026-10-30",
+  "mode": "AB-R_ORIGINAL_LICENSED_PUBLIC_MODEL_AGGREGATES",
+  "classification": "VALID_LIMITED_ORIGINAL_DESCRIPTIVE_NOT_CAUSAL",
+  "prereg_commit": "7d0d6f921ce093e5f9f92d8cc2ba8b35d463cec8",
+  "frozen_code_git": "9feecfa486fd8c5ecebe50608146eacc6e3974fa",
+  "frozen_tests_git": "ec4d4c6bea273d6dc8522974dd43a2ec6ccd9d1f",
+  "upstream_repo": "forecastingresearch/forecastbench-datasets",
+  "upstream_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+  "copyright_license": "CC-BY-SA-4.0",
+  "upstream_blobs": {
+    "leaderboard_baseline": "9a6c441644b88fef649942dfb21dd2be5be759dc",
+    "leaderboard_tournament": "63740de68261eeaddb24731df2d5b848049050e2"
+  },
+  "execution": {
+    "runtime": "V8 isolated JS interpreter using exact GitHub-frozen source with ESM 'export' syntax removed; original frozen test bodies run with explicit assertion shim; NOT native Node --test",
+    "unit_tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "original_csv_sha_match": true,
+    "raw_individual_forecast_rows": 0,
+    "personal_identifiers_processed": 0
+  },
+  "frozen_primary_outcomes": {
+    "baseline_rows": 130,
+    "tournament_rows": 464,
+    "unique_matched_eligible_N_at_least_20": 11,
+    "median_delta_reported_Overall": 0,
+    "mean_delta_reported_Overall": 0.33636363636363664,
+    "mean_delta_rank": 296,
+    "mean_delta_N": 0,
+    "matched_equal_N": 11,
+    "duplicate_model_keys_baseline": 0,
+    "duplicate_model_keys_tournament": 0
+  },
+  "posthoc_adversarial_sensitivity": {
+    "delta_Overall_distribution_without_model_ID": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.6000000000000014,
+      0.6000000000000014,
+      0.6000000000000014,
+      0.8999999999999986,
+      1
+    ],
+    "zero_deltas": 6,
+    "smallest_rank_shift": 6,
+    "largest_rank_shift": 343,
+    "classification": "POSTHOC_DESCRIPTION_NOT_SECOND_PREREGISTERED_TEST"
+  },
+  "interpretation": "Same N and model labels do NOT identify same question set, rank denominator, observation vintage or causal effect. Huge average rank movement in different leaderboard populations is not evidence of performance change. This is aggregate external benchmark comparability evidence only.",
+  "PFL_scientific_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "rights": "Published CC BY-SA-4.0 model-level leaderboard; attribution to source, no individual rows, no unaccepted license.",
+  "grant_after": {
+    "new_approved": 10,
+    "new_valid_limited": 1,
+    "new_remaining": 9,
+    "historical_2_STOP_R5_unchanged": true
+  }
+}
