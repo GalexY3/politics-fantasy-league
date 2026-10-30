@@ -435,6 +435,105 @@
       "state": "blocked",
       "summary": "C37 planned prereg original AEARCTR-0000981 registry history check, but official trial/historical version inaccessible via available web. Published 2018/2022/2025 summaries known before prereg; no original registry, no valid empirical cycle, no CT2 increase. D3 planning-only per AGENTS.",
       "source": "../ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md"
+    },
+    {
+      "id": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C26-FORECAST-ASOF",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C29-HOLM-FAMILY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C30-LAUNCH-GATES",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
     }
   ],
   "edges": [
@@ -527,12 +626,6 @@
       "to": "PFL-ABH5B-C05-REAL-SOURCE",
       "relation": "related_to",
       "interpretation": "Transparent negative and post-failure prereg repair"
-    },
-    {
-      "from": "PFL-ABH5B-GJP-ROSTER",
-      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
-      "relation": "blocks",
-      "interpretation": "Independent participant assignment not established by nonhuman question dataset"
     },
     {
       "from": "PFL-ABH30-C01-ASOF-GUARD",
@@ -881,6 +974,61 @@
       "to": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
       "relation": "blocks",
       "interpretation": "Cannot establish whether independent public/private rank study social network interaction was prospectively registered, so no confirmation credit to PFL comparison."
+    },
+    {
+      "from": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C26-FORECAST-ASOF",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C29-HOLM-FAMILY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C30-LAUNCH-GATES",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
     }
   ],
   "rules": {
@@ -936,5 +1084,27 @@
       ],
       "C37": "BLOCKED_NONCYCLE_REGISTRY_ACCESS"
     }
+  },
+  "integration_20261030": {
+    "sources": [
+      "9354e4fe",
+      "22fb79ec"
+    ],
+    "strategy": "Latest ABH10 node metadata; union missing nodes and unique semantic edges; no new scientific claims.",
+    "added_missing_nodes": [
+      "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "PFL-ABH30-C24-RETENTION-CENSORING",
+      "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "PFL-ABH30-C26-FORECAST-ASOF",
+      "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "PFL-ABH30-C29-HOLM-FAMILY",
+      "PFL-ABH30-C30-LAUNCH-GATES"
+    ],
+    "node_count": 65,
+    "edge_count": 84
   }
 }
