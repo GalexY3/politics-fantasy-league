@@ -1,0 +1,114 @@
+name: PFL T028 real browser HTTP one-shot bounded
+on:
+  push:
+    branches:
+      - research/pfl-t028-atlas-direct-adversarial-20261029
+    paths:
+      - .github/workflows/pfl-t028-browser-native-20261029.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pfl-t028-real-browser-one-shot-20261029
+  cancel-in-progress: true
+
+jobs:
+  chromium-http-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use existing Chrome and small Python Playwright package only
+        run: |
+          command -v google-chrome || command -v chromium || (echo "NO_PREINSTALLED_BROWSER" && exit 4)
+          python -m pip install -q playwright==1.56.0
+      - name: Run real HTTP navigation and 2x2 fictional conditions
+        working-directory: proyectos/politics-fantasy-league
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, shutil, socket, subprocess, time
+          from playwright.sync_api import sync_playwright
+
+          url='http://127.0.0.1:8787/'
+          server=subprocess.Popen(['node','pilot_local/server.mjs'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+          try:
+              for _ in range(50):
+                  if server.poll() is not None:
+                      raise RuntimeError('SERVER_EXITED_EARLY')
+                  try:
+                      with socket.create_connection(('127.0.0.1',8787),timeout=.5):
+                          break
+                  except OSError:
+                      time.sleep(.1)
+              else:
+                  raise RuntimeError('SERVER_NOT_READY')
+              chrome=shutil.which('google-chrome') or shutil.which('chromium')
+              if chrome is None:raise RuntimeError('PREINSTALLED_CHROME_NOT_FOUND')
+              with sync_playwright() as playwright:
+                  browser=playwright.chromium.launch(executable_path=chrome,headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+                  try:
+                      context=browser.new_context(viewport={'width':1280,'height':800})
+                      page=context.new_page()
+                      errors=[];requests=[]
+                      page.on('pageerror',lambda err:errors.append(str(err)[:350]))
+                      page.on('request',lambda req:requests.append((req.method,req.url)))
+                      resp=page.goto(url,wait_until='load',timeout=15000)
+                      page.wait_for_timeout(250)
+                      initial=[x.inner_text() for x in page.locator('#questions legend').all()]
+                      arm_text={}
+                      for arm in ('control','transparency','leaderboard','both'):
+                          page.locator('#arm').select_option(arm)
+                          arm_text[arm]={
+                              'selected':page.locator('#arm').input_value(),
+                              'tutorial':page.locator('#tutorial h3').inner_text(),
+                              'competition':page.locator('#competition h3').inner_text(),
+                              'same_questions':initial==[x.inner_text() for x in page.locator('#questions legend').all()]
+                          }
+                      page.locator('#questions input[type="radio"]').first.check()
+                      progress=page.locator('#progress').inner_text()
+                      page.locator('#reset').click()
+                      reset=page.locator('#progress').inner_text()
+                      page.set_viewport_size({'width':375,'height':812})
+                      overflow=page.evaluate('document.documentElement.scrollWidth > document.documentElement.clientWidth')
+                      sec=context.request.get(url+'fictional_transfer_key.mjs')
+                      denied=context.request.post(url)
+                      checks={
+                          'http_document_200':resp is not None and resp.status==200,
+                          'four_question_groups':page.locator('#questions fieldset').count()==4,
+                          'twelve_radios':page.locator('#questions input[type="radio"]').count()==12,
+                          'all_radios_labeled':page.locator('#questions label').count()==12,
+                          'four_arms_selectable':all(v['selected']==k and v['same_questions'] for k,v in arm_text.items()),
+                          'transparency_tutorial':arm_text['transparency']['tutorial']=='Cómo se contabilizan las oportunidades',
+                          'leaderboard_title':arm_text['leaderboard']['competition']=='Tabla de avatares simulados',
+                          'one_checked_updates_progress':'1 de 4' in progress,
+                          'reset_clears_progress':'0 de 4' in reset,
+                          'module_loaded_by_browser':any(x[1]==url+'materials.mjs' for x in requests),
+                          'no_client_javascript_errors':not errors,
+                          'no_external_requests':all(x[1].startswith(url) for x in requests),
+                          'no_non_GET_page_requests':all(x[0]=='GET' for x in requests),
+                          'csp_restricts_connect':"connect-src 'none'" in resp.headers.get('content-security-policy',''),
+                          'cache_no_store':'no-store' in resp.headers.get('cache-control',''),
+                          'header_nosniff':resp.headers.get('x-content-type-options')=='nosniff',
+                          'secret_resource_is_404':sec.status==404,
+                          'post_is_405':denied.status==405,
+                          'no_browser_cookies':len(context.cookies())==0,
+                          'no_local_storage':page.evaluate('localStorage.length')==0,
+                          'mobile_no_horizontal_overflow':not overflow
+                      }
+                      report={'tests_passed':sum(checks.values()),'total':len(checks),'checks':checks,'arms':arm_text,
+                              'page_errors':errors,'browser_executable':chrome,'http_origin':url,'request_count':len(requests)}
+                      print('PFL_T028_BROWSER_HTTP_REPORT',json.dumps(report,ensure_ascii=False,sort_keys=True),flush=True)
+                      assert all(checks.values()),'PLAYWRIGHT_HTTP_NEGATIVE_CHECKS'
+                      print('PFL_T028_BROWSER_HTTP_PASS',sum(checks.values()),'of',len(checks),flush=True)
+                  finally:
+                      browser.close()
+          finally:
+              server.terminate()
+              try:server.wait(timeout=3)
+              except subprocess.TimeoutExpired:server.kill();server.wait(timeout=3)
+          PY

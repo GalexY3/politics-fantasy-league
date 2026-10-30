@@ -1,0 +1,174 @@
+name: Politics Fantasy evidence checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'proyectos/politics-fantasy-league/**'
+      - '.github/workflows/politics-fantasy-evidence.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'proyectos/politics-fantasy-league/**'
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-app-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: proyectos/politics-fantasy-league
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: JS source contracts
+        run: |
+          node --test tests/test_jec2023_audit.mjs
+          node --test tests/test_political_universe.mjs
+          node --test tests/test_br30g_audit.mjs
+          node --test tests/test_evidence_warehouse.mjs
+          node --test tests/test_evidence_privacy_recursive.mjs
+          node --test tests/test_evidence_ingest_cli.mjs
+          node --test tests/test_progress_model.mjs
+          node --test tests/test_progress_revision_v2.mjs
+          node --test tests/test_progress_revision_v3.mjs
+          node --test tests/test_progress_revision_v4.mjs
+          node --test tests/test_audit_candidacy_crosswalk.mjs
+          node scripts/audit_candidacy_crosswalk.mjs > /tmp/pf-albacete-crosswalk.json
+          node scripts/progress_report.mjs product/progress_scope_v2_20261026.json product/progress_scope_v3_20261026.json > /tmp/pf-progress.json
+      - name: Python local integration
+        run: |
+          python -m pip install pytest
+          PYTHONPATH=src python -m pytest -q tests/test_actor_api.py tests/test_product.py tests/test_evidence_warehouse_status.py tests/test_evidence_http_smoke.py tests/test_progress_api.py tests/test_progress_http.py tests/test_source_stage_http.py tests/test_ingest.py tests/test_ingest_redirect_security.py tests/test_quarantine_ingest.py tests/test_ingest_http_boundary.py tests/test_secure_store.py tests/test_private_audit.py tests/test_private_audit_cli.py tests/test_ingest_full_local_e2e.py tests/test_capture_official_sources.py tests/test_verify_boe_table_pdf.py tests/test_audit_proclaimed_candidates.py tests/test_candidacy_api.py tests/test_audit_boe_nominations_all.py tests/test_nomination_atlas.py tests/test_boe_quarantine.py
+      - name: Synthetic source-original Senate and Congress guards (no private raw data)
+        run: |
+          PYTHONPATH=src python -m unittest discover -s tests -p 'test_source_original*.py' -v
+      - name: Secondary source fetch, pinned revision verification
+        run: |
+          curl -fsSL --retry 3 --max-time 35 -o /tmp/pf-202307.csv https://raw.githubusercontent.com/anerodata/data-elecciones-congreso-espana/main/202307.csv
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          blob=Path('/tmp/pf-202307.csv').read_bytes()
+          sha=hashlib.sha1(b'blob '+str(len(blob)).encode()+b'\x00'+blob).hexdigest()
+          expected='59a7734f0deba570ea87681236ecd4c9008ebd33'
+          assert sha == expected, f'SOURCE_REVISION_CHANGED: {sha}'
+          print('Secondary 2023 Git blob SHA verified:',sha)
+          PY
+      - name: Reconcile JEC official transcription and secondary 2023 CSV
+        run: |
+          node scripts/run_jec2023_audit.mjs /tmp/pf-202307.csv > /tmp/pf-jec-audit-result.json
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(Path('/tmp/pf-jec-audit-result.json').read_text())
+          assert a['comparison']['different_cells']==[]
+          assert all(x['exact'] for x in a['nonseatOfficialFive'])
+          print('JEC match cells:', a['comparison']['comparisons'])
+          PY
+
+  original-source-download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: proyectos/politics-fantasy-league
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Attempt authentic HTTPS source capture with fail-closed validation
+        run: |
+          python scripts/capture_official_sources.py
+      - name: Validate presence and consistency of capture manifest
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          base=Path('/tmp/pf-official-source-capture')
+          x=json.loads((base/'capture_manifest.json').read_text())
+          assert x['original_download_attempts']==5
+          assert x['raw_downloads_success']==sum(bool(v['original_binary_captured']) for v in x['sources'])
+          for row in x['sources']:
+              if not row['original_binary_captured']:
+                  assert row['capture_status']=='STOP_R5_NETWORK_OR_FORMAT'
+                  print('FAILED_OR_BLOCKED',row['id'],row.get('error_type'),row.get('error'))
+                  continue
+              raw=(base/row['raw_filename']).read_bytes()
+              assert hashlib.sha256(raw).hexdigest()==row['sha256']
+              print('ORIGINAL_HTTPS_CAPTURED',row['id'],'bytes',len(raw),'sha256',row['sha256'])
+          PY
+      - name: Reconcile 52-by-6 actual BOE PDF page against previous transcription
+        run: |
+          if [ -f /tmp/pf-official-source-capture/boe_jec_2023_original.pdf ]; then
+            if ! command -v pdftotext >/dev/null 2>&1; then
+              sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+            fi
+            python scripts/verify_boe_table_pdf.py /tmp/pf-official-source-capture/boe_jec_2023_original.pdf research/BRANCH30I_20261026/JEC_2023_TABLE_I_TRANSCRIPTION.psv --output /tmp/pf-official-source-capture/boe_pdf_table_audit.json
+          else
+            echo 'BOE original unavailable; STOP_R5 PDF full comparison'
+          fi
+      - name: Audit eight Albacete proclaimed Congress lists from original BOE 15066
+        run: |
+          if [ -f /tmp/pf-official-source-capture/boe_2023_proclaimed_lists.pdf ]; then
+            python scripts/audit_proclaimed_candidates.py /tmp/pf-official-source-capture/boe_2023_proclaimed_lists.pdf /tmp/pf-official-source-capture/albacete_candidacies_2023.json
+          else
+            echo "STOP_R5: proclaimed candidacies original unavailable"
+          fi
+      - name: Audit whole BOE candidature PDF by electoral provincial sections
+        run: |
+          if [ -f /tmp/pf-official-source-capture/boe_2023_proclaimed_lists.pdf ]; then
+            python scripts/audit_boe_nominations_all.py /tmp/pf-official-source-capture/boe_2023_proclaimed_lists.pdf /tmp/pf-official-source-capture/multi_province_nominations_2023.json
+          else
+            echo 'STOP_R5: no original nomination PDF downloaded'
+          fi
+      - name: Preserve short-lived internal audit manifest and authentic raw captures
+        uses: actions/upload-artifact@v4
+        with:
+          name: politics-fantasy-official-sources-${{ github.run_id }}
+          path: /tmp/pf-official-source-capture/
+          retention-days: 3
+          if-no-files-found: error
+
+  browser-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: proyectos/politics-fantasy-league
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install actual Chromium browser automation runtime
+        run: |
+          python -m pip install playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Real local Chromium UI, navigation and security smoke
+        run: |
+          PYTHONPATH=src python tests/run_browser_smoke.py
+      - name: Preserve local-only browser QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: politics-fantasy-browser-qa-${{ github.run_id }}
+          path: /tmp/pf-browser-e2e/
+          if-no-files-found: warn
+          retention-days: 3

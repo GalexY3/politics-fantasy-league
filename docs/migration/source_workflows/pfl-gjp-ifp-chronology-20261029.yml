@@ -1,0 +1,48 @@
+name: PFL GJP IFP original date chronology corrected parser
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-ifp-chronology-20261029.yml
+permissions:
+  contents: read
+jobs:
+  chronology:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Original CC0 question dates only; aggregate QA
+        run: |
+          python - <<'PY'
+          import urllib.request,csv,io,json,hashlib,datetime,statistics
+          u="https://dataverse.harvard.edu/api/access/datafile/2917330?format=original"
+          with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'PFL-IFP-Chronology-QA/1.0'}),timeout=30) as h:raw=h.read(1300001)
+          assert hashlib.sha256(raw).hexdigest()=="1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286"
+          rows=list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig','replace'),newline='')))
+          def date(v,fmt):
+              if not v or v.strip().upper() in ('NA','NULL','N/A',''):return None
+              return datetime.datetime.strptime(v.strip(),fmt)
+          start=[];suspend=[];planned=[];closed=[]
+          for r in rows:
+              start.append(date(r['date_start'],'%m/%d/%y'))
+              suspend.append(date(r['date_suspend'],'%m/%d/%y %H:%M'))
+              planned.append(date(r['date_to_close'],'%m/%d/%y'))
+              closed.append(date(r['date_closed'],'%m/%d/%y'))
+          paired=lambda a,b:[(x,y) for x,y in zip(a,b) if x is not None and y is not None]
+          durations=[(b-a).total_seconds()/86400 for a,b in paired(start,planned) if b>=a]
+          out={'source_sha256':hashlib.sha256(raw).hexdigest(),'total':len(rows),
+               'start_valid':sum(x is not None for x in start),
+               'suspend_valid':sum(x is not None for x in suspend),
+               'deadline_valid':sum(x is not None for x in planned),
+               'closed_valid':sum(x is not None for x in closed),
+               'start_after_deadline':sum(a>b for a,b in paired(start,planned)),
+               'start_after_suspend':sum(a>b for a,b in paired(start,suspend)),
+               'start_after_closed':sum(a>b for a,b in paired(start,closed)),
+               'suspend_after_closed':sum(a>b for a,b in paired(suspend,closed)),
+               'closed_status_missing_closed_date':sum(r.get('q_status')=='closed' and c is None for r,c in zip(rows,closed)),
+               'voided_status_has_closed_date':sum(r.get('q_status')=='voided' and c is not None for r,c in zip(rows,closed)),
+               'median_nominal_window_days':statistics.median(durations) if durations else None,
+               'note':'Nominal deadlines are not observation logs; some actual closures may occur early; no persons assessed'}
+          print('PFL_IFP_CHRONOLOGY_RESULT',json.dumps(out,ensure_ascii=False),flush=True)
+          PY

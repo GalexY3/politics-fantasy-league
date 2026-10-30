@@ -1,0 +1,53 @@
+name: PFL ABH10 Atlas 0091 native canonical one-shot
+on:
+  push:
+    branches:
+      - research/pfl-abh10-source-atlas-o7-20261030
+    paths:
+      - .github/workflows/pfl-abh10-atlas91-native-one-shot.yml
+permissions:
+  contents: read
+concurrency:
+  group: pfl-abh10-atlas91-one-shot-20261030
+  cancel-in-progress: true
+jobs:
+  canonical-python-91:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run original Atlas Python with pinned source and one-shot budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib, re, subprocess, sys
+          root = pathlib.Path('proyectos/politics-fantasy-league/ab_atlas')
+          for path, expected in [
+              ('ab_atlas/atlas_delta.py','32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7'),
+              ('ab_atlas/abmap.py','687449178deba84f77b6cc2df2c61cc36d9cf0cd'),
+              (str(root/'seed.json'),'f503c3fe3432110de2edf3a3d7517ca344c40623')]:
+              sha=subprocess.check_output(['git','hash-object',path],text=True).strip()
+              assert sha == expected, f'ORIGINAL_SOURCE_DRIFT {path} {sha}'
+          args=['--base',str(root/'seed.json'),'--updates',str(root/'updates')]
+          cmd=[sys.executable,'ab_atlas/atlas_delta.py']
+          check=subprocess.run(cmd+['check']+args, text=True, capture_output=True)
+          print('CANONICAL_CHECK_RC',check.returncode,flush=True)
+          print('CANONICAL_CHECK_STDOUT',check.stdout.strip(),flush=True)
+          print('CANONICAL_CHECK_STDERR',check.stderr.strip(),flush=True)
+          if check.returncode: sys.exit(check.returncode)
+          match=re.search(r'OK\s+(\d+)\s+lotes\s+(\d+)\s+nodos\s+SHA256\s+([0-9a-f]{64})',check.stdout)
+          assert match is not None,'CANONICAL_CHECK_FORMAT_UNEXPECTED'
+          assert int(match.group(1))==91,f'EXPECTED_91_BATCHES_GOT_{match.group(1)}'
+          brief=subprocess.run(cmd+['brief']+args+['--limit','8'],text=True,capture_output=True)
+          print('CANONICAL_BRIEF_RC',brief.returncode,flush=True)
+          print('CANONICAL_BRIEF_STDERR',brief.stderr.strip(),flush=True)
+          if brief.returncode:sys.exit(brief.returncode)
+          report=json.loads(brief.stdout)
+          assert report['state_sha256']==match.group(3),'CANONICAL_DIGEST_CONFLICT'
+          assert report['node_count']==int(match.group(2)),'NODE_COUNT_CONFLICT'
+          assert report['head_batch']=='0091-PFL-ABH30-C20-C30-MULTIAXIS-ENGINEERING-20261029','WRONG_HEAD_BATCH'
+          print('PFL_ABH10_ORIGINAL_CANONICAL_ATLAS_91',json.dumps({'lots':int(match.group(1)),'nodes':int(match.group(2)),'edges':report.get('edge_count'),'state_sha256':match.group(3),'head_batch':report['head_batch']},sort_keys=True),flush=True)
+          PY

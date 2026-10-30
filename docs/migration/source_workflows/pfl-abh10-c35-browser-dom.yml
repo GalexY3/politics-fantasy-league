@@ -1,0 +1,67 @@
+name: PFL ABH10 C35 actual headless browser five-arm one-shot
+on:
+  push:
+    branches:
+      - research/pfl-abh10-source-atlas-o7-20261030
+    paths:
+      - .github/workflows/pfl-abh10-c35-browser-dom.yml
+permissions:
+  contents: read
+concurrency:
+  group: pfl-abh10-c35-browser-one-shot
+  cancel-in-progress: true
+jobs:
+  chromium-real-dom-synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Actual headless Chrome HTTP DOM with five-arm component, no human data
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object proyectos/politics-fantasy-league/product/fictional_rank_browser_smoke.html)" = 11a7b03e60e99b10a1473dbbe3bc60899363d6d9
+          test "$(git hash-object proyectos/politics-fantasy-league/src/politics_fantasy/fictional_rank_session_renderer.mjs)" = ee94c85dc66b81b933e6ef3359cfef889bd2cf8d
+          test "$(git hash-object proyectos/politics-fantasy-league/src/politics_fantasy/fictional_rank_delivery_audit.mjs)" = db4df150fa73d26ee3ec40965586e4f3ca3c790f
+          CHROME=$(command -v google-chrome || command -v chromium)
+          test -n "$CHROME"
+          python -m http.server 8767 --bind 127.0.0.1 --directory proyectos/politics-fantasy-league > /tmp/pfl-c35-http.log 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          sleep 0.5
+          timeout 40s "$CHROME" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage --virtual-time-budget=8000 --dump-dom http://127.0.0.1:8767/product/fictional_rank_browser_smoke.html > /tmp/pfl-c35-dom.html 2> /tmp/pfl-c35-chrome.stderr
+          python - <<'PY'
+          import json,pathlib
+          from html.parser import HTMLParser
+          class Extract(HTMLParser):
+           def __init__(self):super().__init__();self.in_report=False;self.report='';self.section=None;self.views=[]
+           def handle_starttag(self,tag,attrs):
+            attrs=dict(attrs)
+            if tag=='pre' and attrs.get('id')=='report':self.in_report=True
+            if tag=='section' and attrs.get('data-arm'):self.section={'arm':attrs['data-arm'],'content':''}
+           def handle_data(self,data):
+            if self.in_report:self.report+=data
+            if self.section is not None:self.section['content']+=data
+           def handle_endtag(self,tag):
+            if tag=='pre':self.in_report=False
+            if tag=='section' and self.section is not None:self.views.append(self.section);self.section=None
+          p=Extract();p.feed(pathlib.Path('/tmp/pfl-c35-dom.html').read_text())
+          a=json.loads(p.report)
+          assert a['status']=='DOM_RENDERED_SYNTHETIC_ONLY', a
+          assert a['cards']==10 and a['receipts']==10,a
+          assert a['real_human_exposure'] is False
+          arms=['own_only','private_quartile','public_quartile','private_order','public_order']
+          assert a['arms']=={arm:2 for arm in arms},a
+          for item in p.views:
+           v=json.loads(item['content'])
+           arm=item['arm']
+           assert 'own_score' in v
+           if arm=='own_only':assert list(v)==['own_score'],v
+           if arm=='private_quartile':assert 'own_quartile' in v and 'room_quartiles' not in v
+           if arm=='private_order':assert 'own_rank' in v and 'room_order' not in v
+           if arm=='public_quartile':assert 'room_quartiles' in v and 'room_order' not in v
+           if arm=='public_order':assert 'room_order' in v
+          print('PFL_C35_NATIVE_BROWSER_DOM_PASS',json.dumps({'views':len(p.views),'receipts':a['receipts'],'arms':a['arms'],'real_human_exposure':False},sort_keys=True),flush=True)
+          PY

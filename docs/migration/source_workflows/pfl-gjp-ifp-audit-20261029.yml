@@ -1,0 +1,48 @@
+name: PFL GJP IFP public question metadata quality
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-ifp-audit-20261029.yml
+permissions:
+  contents: read
+jobs:
+  ifp-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Audit immutable original 617-row IFP CSV, aggregate only
+        run: |
+          python - <<'PY'
+          import csv,collections,datetime,hashlib,io,json,urllib.request
+          u="https://dataverse.harvard.edu/api/access/datafile/2917330?format=original"
+          with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'PFL-IFP-Question-Metadata-Audit/1.0'}),timeout=30) as h:raw=h.read(1300001)
+          assert len(raw)<=1300000,'FILE_TOO_LARGE'
+          sha=hashlib.sha256(raw).hexdigest()
+          assert sha=="1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",'PINNED_SHA_MISMATCH'
+          rows=list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig','replace'),newline='')))
+          ids=[row.get('ifp_id','') for row in rows]
+          def parse(s):
+              if not s or not s.strip():return None
+              try:return datetime.datetime.fromisoformat(s.strip().replace('Z','+00:00'))
+              except ValueError:return None
+          starts=[parse(r.get('date_start','')) for r in rows]
+          closed=[parse(r.get('date_closed','')) for r in rows]
+          sfields=collections.Counter((r.get('q_type') or 'MISSING') for r in rows)
+          states=collections.Counter((r.get('q_status') or 'MISSING') for r in rows)
+          outcomes=sum(bool((r.get('outcome') or '').strip()) for r in rows)
+          suspended=sum(bool((r.get('date_suspend') or '').strip()) for r in rows)
+          days=sum(1 for r in rows if (r.get('days_open') or '').strip().replace('.','',1).isdigit())
+          both=[(a,b) for a,b in zip(starts,closed) if a is not None and b is not None]
+          bad=sum(1 for a,b in both if a>b)
+          result={'sha256':sha,'bytes':len(raw),'rows':len(rows),'distinct_ifp_ids':len(set(ids)),
+             'duplicates_over_distinct':len(ids)-len(set(ids)),
+             'q_type_counts':dict(sfields),'q_status_counts':dict(states),
+             'date_start_parseable':sum(x is not None for x in starts),
+             'date_closed_parseable':sum(x is not None for x in closed),
+             'both_dates_parseable':len(both),'invalid_start_gt_closed':bad,
+             'date_suspend_nonblank':suspended,'days_open_numeric':days,'outcome_nonblank':outcomes,
+             'scope':'question metadata only; cannot infer who saw each IFP; no individual human data'}
+          print('PFL_IFP_QUALITY_RESULT',json.dumps(result,ensure_ascii=False,sort_keys=True),flush=True)
+          PY

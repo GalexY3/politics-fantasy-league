@@ -1,0 +1,39 @@
+name: PFL GJP DDI viewtime semantic metadata one shot
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-viewtime-definition-20261029.yml
+permissions:
+  contents: read
+jobs:
+  ddi-meaning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Read only original DDI metadata labels and descriptions, no human rows
+        run: |
+          python - <<'PY'
+          import urllib.request,xml.etree.ElementTree as ET,hashlib,json
+          url='https://dataverse.harvard.edu/api/access/datafile/2917351/metadata/ddi'
+          with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'PFL-Original-DDI-Label-Audit/1.0'}),timeout=25) as h:
+              raw=h.read(250001)
+          if len(raw)>250000:raise RuntimeError('DDI_TOO_LARGE')
+          sha=hashlib.sha256(raw).hexdigest()
+          assert sha=='519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063','DDI_REVISION_CHANGED'
+          root=ET.fromstring(raw)
+          rows=[]
+          for e in root.iter():
+              if e.tag.rsplit('}',1)[-1]!='var':continue
+              name=(e.attrib.get('name') or '').strip('"')
+              if name not in ('viewtime','ctt','cond','training','fcast_date','timestamp'):continue
+              labels=[]
+              for child in e:
+                  tag=child.tag.rsplit('}',1)[-1]
+                  if tag in ('labl','notes','txt','varFormat','qstn'):
+                      labels.append({'tag':tag,'label':(child.text or '').strip()[:400],'attributes':child.attrib})
+              rows.append({'variable':name,'labels_and_notes':labels})
+          print('GJP_VIEWTIME_METADATA',json.dumps({'source_ddi_sha256':sha,'fields':rows,
+            'person_records_downloaded':False},ensure_ascii=False),flush=True)
+          PY

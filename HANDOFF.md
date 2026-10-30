@@ -1,8 +1,8 @@
 # PFL · briefing derivado
 
-Rama: `main`; HEAD: `70de73612b140b827bf28d88df6800bf8e1e0b28`.
+Rama: `main`; HEAD: `24190815ed361b47ac688f532a57f1812f796f97`.
 Estado rev. 7; publicación declarada: STANDALONE_QA_PASS_CUTOVER_PENDING.
-Código revisado incluido en refs/heads/main: True (referencia local; hacer fetch).
+Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
 Atlas: 93 lotes; SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`; gates 0/6.
 Autorización ABH10: 5/10 ejecutados; 5 disponibles, preservados bajo R5. Históricos separados: 2.

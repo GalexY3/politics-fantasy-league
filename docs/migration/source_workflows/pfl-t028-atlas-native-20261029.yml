@@ -1,0 +1,53 @@
+name: PFL T028 Atlas 0080 native bounded one-shot
+on:
+  push:
+    branches:
+      - research/pfl-t028-atlas-direct-adversarial-20261029
+    paths:
+      - .github/workflows/pfl-t028-atlas-native-20261029.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pfl-t028-atlas-native-one-shot-20261029
+  cancel-in-progress: true
+
+jobs:
+  atlas-check-0080:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Execute exact Atlas native Python CLI and verify matching SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, re, subprocess, sys
+          root="proyectos/politics-fantasy-league/ab_atlas"
+          prefix=[sys.executable,"ab_atlas/atlas_delta.py"]
+          args=["--base",root+"/seed.json","--updates",root+"/updates"]
+          first=subprocess.run(prefix+["check"]+args,check=True,capture_output=True,text=True)
+          print("CHECK_STDOUT:",first.stdout.strip(),flush=True)
+          print("CHECK_STDERR:",first.stderr.strip(),flush=True)
+          m=re.search(r"OK\s+(\d+)\s+lotes\s+(\d+)\s+nodos\s+SHA256\s+([0-9a-f]{64})",first.stdout)
+          assert m, "CHECK_OUTPUT_FORMAT_UNEXPECTED"
+          assert int(m.group(1))==80, "ATLAS_BATCH_COUNT_NOT_80"
+          second=subprocess.run(prefix+["brief"]+args+["--limit","8"],check=True,capture_output=True,text=True)
+          report=json.loads(second.stdout)
+          assert report["state_sha256"]==m.group(3), "CANONICAL_STATE_SHA256_MISMATCH"
+          assert report["node_count"]==int(m.group(2)), "NODE_COUNT_MISMATCH"
+          assert report["head_batch"]=="0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029"
+          print("PFL_T028_CANONICAL_PASS",json.dumps({
+            "lots":int(m.group(1)),
+            "nodes":int(m.group(2)),
+            "edges":report["edge_count"],
+            "sha256":m.group(3),
+            "scope":report.get("scope"),
+            "head_batch":report["head_batch"],
+            "readiness":report.get("readiness",{}).get("ready"),
+          },ensure_ascii=False),flush=True)
+          PY

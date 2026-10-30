@@ -1,0 +1,67 @@
+name: PFL GJP dataset rights metadata read-only gate
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-rights-metadata-20261029.yml
+permissions:
+  contents: read
+jobs:
+  metadata-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Retrieve published Harvard Dataverse metadata only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, urllib.request, urllib.parse, urllib.error, hashlib
+          url="https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId="+urllib.parse.quote("doi:10.7910/DVN/BPCDH5",safe="")
+          def get(url,maxbytes=3000000):
+              req=urllib.request.Request(url,headers={'User-Agent':'PFL-Research-Metadata-Audit/1.0 (non-commercial; no personal data)'})
+              with urllib.request.urlopen(req,timeout=24) as r:
+                  data=r.read(maxbytes+1)
+                  if len(data)>maxbytes:raise ValueError("METADATA_TOO_LARGE")
+                  return r.status,data
+          try:
+              status,raw=get(url)
+              obj=json.loads(raw)
+              if obj.get('status')!="OK":raise ValueError("API_STATUS_NOT_OK")
+              dataset=obj['data'];ver=dataset.get('latestVersion',{})
+              license_meta=ver.get('license')
+              terms=ver.get('termsOfUse')
+              files=ver.get('files',[])
+              rows=[]
+              for row in files:
+                  d=row.get('dataFile') or {}
+                  rows.append({'id':d.get('id'),'name':d.get('filename'),'bytes':d.get('filesize'),
+                    'restricted':row.get('restricted'),'description':(row.get('description') or '')[:160],
+                    'directoryLabel':row.get('directoryLabel')})
+              cc0=((isinstance(license_meta,dict) and 'CC0' in (license_meta.get('name','')+' '+license_meta.get('uri','')))
+                   or (isinstance(license_meta,str) and 'CC0' in license_meta))
+              cc0=bool(cc0)
+              print('GJP_DATAVERSE_METADATA',json.dumps({'http_status':status,'persistent_id':dataset.get('persistentId'),
+                'dataset_id':dataset.get('id'),'version':str(ver.get('versionNumber'))+'.'+str(ver.get('versionMinorNumber')),
+                'license':license_meta,'terms_of_use':str(terms)[:1000],
+                'files_total':len(rows),'files':rows[:75],'file_list_truncated':len(rows)>75},ensure_ascii=False),flush=True)
+              readmes=[x for x in rows if x['name'] and ('readme' in x['name'].lower() or x['name'].lower() in ('description.txt','codebook.txt'))
+                       and not x['restricted'] and 0<(x['bytes'] or 0)<=262144]
+              if not cc0:
+                  print('GJP_BYTES_STATUS NO_READ_LICENSE_NOT_VERIFIED_CC0',flush=True)
+              elif not readmes:
+                  print('GJP_BYTES_STATUS NO_ELIGIBLE_UNRESTRICTED_SMALL_README',flush=True)
+              else:
+                  for item in readmes[:1]:
+                      u="https://dataverse.harvard.edu/api/access/datafile/"+str(item['id'])+"?format=original"
+                      try:
+                          _,content=get(u,maxbytes=262144)
+                          print('GJP_SMALL_README_SHA256',json.dumps({'id':item['id'],'name':item['name'],
+                            'size':len(content),'sha256':hashlib.sha256(content).hexdigest(),
+                            'text_excerpt':content[:2400].decode('utf-8',errors='replace')[:1800]},ensure_ascii=False),flush=True)
+                      except Exception as e:
+                          print('GJP_README_BLOCKED',type(e).__name__,str(e)[:220],flush=True)
+          except Exception as e:
+              print('GJP_METADATA_GATE_BLOCKED',type(e).__name__,str(e)[:450],flush=True)
+          PY

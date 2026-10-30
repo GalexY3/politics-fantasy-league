@@ -1,0 +1,59 @@
+name: PFL GJP CC0 readme and IFP schema hashes
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-original-readme-ifps-20261029.yml
+permissions:
+  contents: read
+jobs:
+  original-documentation-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Reverify dataset CC0 and fetch only two readmes and question metadata (no participant forecasts)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request, urllib.parse, json, hashlib, csv, io
+          base="https://dataverse.harvard.edu"
+          def read(url,limit):
+              req=urllib.request.Request(url,headers={'User-Agent':'PFL-Academic-Reuse-Schema-Audit/1.0'})
+              with urllib.request.urlopen(req,timeout=40) as h:
+                  raw=h.read(limit+1)
+                  if len(raw)>limit:raise RuntimeError("MAX_BYTES_LIMIT")
+                  return raw
+          meta=json.loads(read(base+"/api/datasets/:persistentId/?persistentId="+urllib.parse.quote("doi:10.7910/DVN/BPCDH5",safe=""),3000000))
+          ver=meta["data"]["latestVersion"]
+          lic=ver.get("license") or {}
+          if lic.get("rightsIdentifier")!="CC0-1.0":
+              print("STOP_LICENSE_CHANGED",repr(lic),flush=True)
+              raise SystemExit(5)
+          known={x.get('dataFile',{}).get('id'):x for x in ver.get('files',[])}
+          files=[(2917338,'readme.txt',10000),(2917350,'readme.txt',10000),(2917330,'ifps.csv',1300000)]
+          for ident,name,cap in files:
+              r=known.get(ident)
+              if not r or r.get('restricted') or r['dataFile']['filename']!=name:
+                  print("STOP_DATAFILE_CHANGED",ident,flush=True)
+                  raise SystemExit(6)
+              raw=read(base+"/api/access/datafile/"+str(ident)+"?format=original",cap)
+              rec={"id":ident,"name":name,"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}
+              if name=='readme.txt':
+                  txt=raw.decode('utf-8','replace')
+                  rec['description_text']=txt[:10000]
+              else:
+                  rows=csv.reader(io.StringIO(raw.decode("utf-8-sig","replace"),newline=''))
+                  header=next(rows)
+                  record_count=0
+                  widths={}
+                  for row in rows:
+                      record_count+=1
+                      widths[str(len(row))]=widths.get(str(len(row)),0)+1
+                  rec['columns']=header
+                  rec['row_count']=record_count
+                  rec['field_count_histogram']=widths
+                  rec['privacy']="No question texts/participant entries printed; only header/count/hash"
+              print("GJP_ORIGINAL_DOC_RESULT",json.dumps(rec,ensure_ascii=False),flush=True)
+          PY

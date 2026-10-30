@@ -1,0 +1,64 @@
+name: PFL ABH10 C34 original public revision CLI one-shot
+on:
+  push:
+    branches:
+      - research/pfl-abh10-source-atlas-o7-20261030
+    paths:
+      - .github/workflows/pfl-abh10-c34-original-public-cli.yml
+permissions:
+  contents: read
+concurrency:
+  group: pfl-abh10-c34-original-cli-once
+  cancel-in-progress: true
+jobs:
+  native-original-public-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run pinned original Git blobs through C11 native CLI and falsify tampered bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib, subprocess
+          expected={
+           'proyectos/politics-fantasy-league/scripts/offline_forecastbench_revision_audit.mjs':'2b6e910c998f99de121050badfab83adaf345220',
+           'proyectos/politics-fantasy-league/src/politics_fantasy/forecastbench_raw_revision_guard.mjs':'2e1ed7f5e23bbad79c81013505882830907cb258',
+          }
+          for path,sha in expected.items():
+           actual=subprocess.check_output(['git','hash-object',path],text=True).strip()
+           assert actual==sha,(path,'CODE_SHA_DRIFT',actual)
+          PY
+          mkdir -p /tmp/pfl-c34-public-original /tmp/pfl-c34-tampered
+          BASE=https://raw.githubusercontent.com/forecastingresearch/forecastbench-datasets
+          PATH_IN_REPO=datasets/resolution_sets/2026-09-27_resolution_set.json
+          curl --fail --silent --show-error --location --max-time 35 "$BASE/3928408907498c991bc367c2d3493241aa19e516/$PATH_IN_REPO" -o /tmp/pfl-c34-public-original/sep11to12.before.json
+          curl --fail --silent --show-error --location --max-time 35 "$BASE/d6dac818ec036aa8fa41dfc1fcb369d24ca81ce4/$PATH_IN_REPO" -o /tmp/pfl-c34-public-original/sep11to12.after.json
+          test "$(git hash-object /tmp/pfl-c34-public-original/sep11to12.before.json)" = 424965825aae022f5861b69d17880665cd3026bb
+          test "$(git hash-object /tmp/pfl-c34-public-original/sep11to12.after.json)" = ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3
+          node --version
+          cd proyectos/politics-fantasy-league
+          node scripts/offline_forecastbench_revision_audit.mjs --pair sep11to12 --source-dir /tmp/pfl-c34-public-original > /tmp/pfl-c34-original-audit.json
+          python - <<'PY'
+          import json,pathlib
+          result=json.loads(pathlib.Path('/tmp/pfl-c34-original-audit.json').read_text())
+          assert result['local_bytes_git_sha1_verified'] is True
+          assert result['validated_against_supplied_git_pins'] is True
+          assert result['source_personal_rows_processed'] is False
+          assert result['before_rows'] - result['removed'] + result['added']==result['after_rows']
+          allowed=['before_rows','after_rows','retained_unchanged','added','removed','mutated','raw_append_only_consistent','manual_review_required','local_bytes_git_sha1_verified','source_personal_rows_processed']
+          print('PFL_C34_ORIGINAL_NATIVE_AGGREGATES',json.dumps({key:result[key] for key in allowed},sort_keys=True),flush=True)
+          PY
+          cp /tmp/pfl-c34-public-original/sep11to12.*.json /tmp/pfl-c34-tampered/
+          printf ' ' >> /tmp/pfl-c34-tampered/sep11to12.before.json
+          set +e
+          node scripts/offline_forecastbench_revision_audit.mjs --pair sep11to12 --source-dir /tmp/pfl-c34-tampered > /tmp/pfl-c34-tampered.stdout 2> /tmp/pfl-c34-tampered.stderr
+          status=$?
+          set -e
+          test "$status" -eq 1
+          test ! -s /tmp/pfl-c34-tampered.stdout
+          grep -q 'PINNED_PUBLIC_GIT_BLOB_MISMATCH' /tmp/pfl-c34-tampered.stderr
+          echo PFL_C34_NEGATIVE_TAMPER_FAIL_CLOSED_PASS

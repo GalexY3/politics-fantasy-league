@@ -27,3 +27,7 @@ QA íntegro sobre `3d66e813a422572b2a2ce7a3155df8dac667e224`: **822 Python +32 s
 El corte de AB queda pendiente hasta verificar la publicación del destino. No se ejecutan nuevos ciclos AB por esta operación, ni se infieren concesiones de otros chats que no consten en el ledger migrado.
 
 La CI remota queda manual. Datos raw/private/local_field no versionados y credenciales no forman parte de la extracción.
+
+## Workflows del monorepo
+
+Se conservan además los **16 workflows históricos de PFL** de la raíz de AB, con bytes y SHA-256, en [source_workflows/SOURCE.json](source_workflows/SOURCE.json). Son archivo inerte fuera de `.github`; sus rutas y contratos pertenecen al monorepo original. La única CI activa del destino es el workflow manual adaptado y completo. Sus historiales originales siguen consultables en AB; no se incluyeron estos paths de raíz en el filtrado de commits del proyecto.

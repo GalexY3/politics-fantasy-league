@@ -1,0 +1,41 @@
+name: PFL GJP metadata-only DDI variable gate
+on:
+  push:
+    branches:
+      - research/pfl-empirical-exposure-rights-gate-20261029
+    paths:
+      - .github/workflows/pfl-gjp-ddi-schema-20261029.yml
+permissions:
+  contents: read
+jobs:
+  ddi-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Fetch official Dataverse tabular variable metadata; no rows
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request,urllib.error,xml.etree.ElementTree as ET,json,hashlib
+          targets=[(2917351,'survey_fcasts.yr1.tab'),(2917352,'survey_fcasts.yr2.tab'),(2917354,'survey_fcasts.yr4.tab'),(2917341,'pm_transactions.control.yr4.csv'),(2917348,'pm_transactions.supers.yr4.csv')]
+          for ident,name in targets:
+              url='https://dataverse.harvard.edu/api/access/datafile/'+str(ident)+'/metadata/ddi'
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'PFL-Scholarly-DDI-Metadata-Only/1.0'})
+                  with urllib.request.urlopen(req,timeout=16) as res:
+                      raw=res.read(2000001)
+                      status=res.status
+                  if len(raw)>2000000: raise ValueError('DDI_LARGER_THAN_LIMIT')
+                  root=ET.fromstring(raw)
+                  vars=[e.attrib.get('name') for e in root.iter() if e.tag.rsplit('}',1)[-1]=='var']
+                  case=[e.text for e in root.iter() if e.tag.rsplit('}',1)[-1]=='caseQnty']
+                  vcount=[e.text for e in root.iter() if e.tag.rsplit('}',1)[-1]=='varQnty']
+                  row={'file_id':ident,'file':name,'http':status,'ddi_sha256':hashlib.sha256(raw).hexdigest(),
+                    'ddi_bytes':len(raw),'number_of_variable_tags':len(vars),'variables':vars,
+                    'case_quantity':case[0] if case else None,'declared_var_quantity':vcount[0] if vcount else None,
+                    'metadata_only':True,'human_rows_downloaded':False}
+              except Exception as e:
+                  row={'file_id':ident,'file':name,'status':'UNAVAILABLE','error_type':type(e).__name__,'error':str(e)[:180]}
+              print('GJP_DDI_METADATA',json.dumps(row,ensure_ascii=False),flush=True)
+          PY
