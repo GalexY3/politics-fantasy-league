@@ -1,8 +1,6 @@
 name: PFL ABH25B Scotland primary source
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-scotland.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
