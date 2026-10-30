@@ -467,6 +467,14 @@
       "state": "validated",
       "summary": "Real localhost HTTP 2/2 success across account registration, separate clubs/figures, lineup, simulation, CSRF and cross-account negative controls, restart persistence. Human visual acceptance pending; no real political data.",
       "source": "../ABH25_20261030/C02_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C03-FRENCH-OFFICIAL-MEETING-FRAME-BLOCKED",
+      "type": "official_metadata_probe_blocked_noncycle",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "17th-legislature commission CSV MD5 matches but only five agenda columns and no meeting ID/report link. Alternate Agenda.json.zip observed MD5 differs from published before opening archive; C03 unconsumed, R5 park until authoritative version.",
+      "source": "../ABH25_20261030/C03_REPORT.md"
     }
   ],
   "edges": [
@@ -931,6 +939,12 @@
       "to": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
       "relation": "related_to",
       "interpretation": "AB-P fictional product capability independent of AB-R original external source provenance; must not transfer technical pass to scientific claim."
+    },
+    {
+      "from": "PFL-ABH25-C03-FRENCH-OFFICIAL-MEETING-FRAME-BLOCKED",
+      "to": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "relation": "related_to",
+      "interpretation": "Both concern missing versioned event provenance; no institutional decision outcomes or causal tests."
     }
   ],
   "rules": {
