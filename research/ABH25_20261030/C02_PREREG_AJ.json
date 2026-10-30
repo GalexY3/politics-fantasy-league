@@ -1,0 +1,36 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.prereg.v1",
+  "cycle": "ABH25-C02",
+  "mode": "AB-P_REAL_HTTP_P1_P2_FLOW",
+  "status": "PREREG_BEFORE_NEW_FULL_JOURNEY_TEST",
+  "A": "Does the current fictitious local-account build support a complete independent HTTP flow for two accounts (registration/login→club→three purchases→lineup→simulate round→persistent scoring), without cross-account access or state mutation? Outcome: functional correctness, not human acceptance.",
+  "B": {
+    "H1": "Both isolated flows succeed and remain independent with score persisting across server restart",
+    "H0": "At least one integration failure, account leak, unauthorized mutation, invalid score or lost persistence",
+    "rivals": [
+      "Existing unit tests may cover individual endpoints without exercising entire flow",
+      "A test-fixture-only success is not evidence of browser UX acceptance"
+    ]
+  },
+  "C": "Standard-library loopback HTTP integration test with real ThreadingHTTPServer, isolated temporary SQLite and two separate cookie jars; compare existing test_accounts baseline. Negative unauthenticated/foreign-CSRF/foreign-club actions; double settlement idempotence; server restart.",
+  "D": {
+    "instrument": "tests/test_abh25_p1p2_journey.py",
+    "frozen_code_before_runner": true,
+    "verification": "GitHub Actions bounded ubuntu Python stdlib no costly full CI",
+    "acceptance": "Both new tests PASS, original code SHA and output logged, no real people"
+  },
+  "E": "Execute on HEAD frozen by remote Git commit, preserve failed runs and repairs; never assume test exists implies execution.",
+  "F": "Audit that no public server, people or political scores and temp dir cleaned; simulate-round is fictional, not real event evidence.",
+  "G": "Repeat after restart in new HTTP server; is isolation physical across per-account game DB? Negative control unauthenticated block and cross-account forbidden.",
+  "H": "Only product capability update, no social prior/CT2 increase.",
+  "I": "Product technical readiness at most READY_REVIEW, P1 human acceptance and deployment gates remain unchanged.",
+  "J": "COUNT one bounded AB-P only if new real HTTP test executed successfully and all negative controls pass; failures invalid and frozen repair. No new social N1/2/3 or release gate.",
+  "grant": "PFL-ABH25-20261030-POSTACCESS",
+  "selection_exposure": "Existing product code/tests inspected before freeze; no new HTTP journey test executed yet.",
+  "constraints": [
+    "No deployment",
+    "No user privacy data",
+    "No merge main",
+    "No human UX acceptance inferred"
+  ]
+}
