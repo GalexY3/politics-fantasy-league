@@ -1,0 +1,23 @@
+{
+  "schema": "pfl.abh25.c03.stage1_independent_metadata_probe.v1",
+  "status": "PRE_DOWNLOAD_NO_MINUTE_OUTCOMES",
+  "cycle_counted": 0,
+  "source": "https://data.assemblee-nationale.fr/static/openData/repository/17/vp/reunions/Agenda.json.zip",
+  "publisher": "Assemblée nationale",
+  "publisher_md5": "97332eb327d19e22d42a2f639e754d87",
+  "published_at": "2026-10-29 12:40:44 (official resource metadata)",
+  "selection": "Before any minutes, inspect archive schema only, count meeting records and check if commission/meeting IDs, timestamps and compteRenduRef fields occur. Do not inspect agenda titles, individual petitions, decisions or minutes.",
+  "limit_bytes": 50000000,
+  "limit_member_bytes": 250000,
+  "max_samples": 32,
+  "rivals": [
+    "Structured ZIP includes meeting ID and compteRenduRef, unlike 29-row CSV",
+    "Archive lacks IDs or is too large/unavailable; stop without forced assumptions"
+  ],
+  "exposure": [
+    "Previous third-party original fetch-reunions script revealed r.timeStampDebut and r.compteRenduRef keys and Agenda.json.zip URL, so this is NOT a novel blind test",
+    "Original ZIP bytes and 2026 source membership not yet inspected"
+  ],
+  "followup": "If source passes hash and schema, freeze a finite original meeting list with deterministic source date window and exact code SHA in separate A-J before retrieving decisions.",
+  "R5": "One alternate artifact only. If blocked, park institutional C40 outcome run. No charge for metadata scout."
+}
