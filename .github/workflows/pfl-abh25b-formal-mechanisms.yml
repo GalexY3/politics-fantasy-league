@@ -1,0 +1,24 @@
+name: PFL ABH25B C12-C26 original formal mechanisms
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-formal-mechanisms.yml
+permissions:
+  contents: read
+jobs:
+  prospective-formal-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Static syntax and fail-closed contract
+        run: |
+          python -m py_compile research/ABH25B_20261030/c12_c26_formal_mechanisms.py
+          PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_formal_mechanisms.py -v
+      - name: Run exactly 15 distinct preregistered paired formal experiments
+        run: |
+          python research/ABH25B_20261030/c12_c26_formal_mechanisms.py > "$RUNNER_TEMP/abh25b-formal-output.json"
+          PYTHONPATH=.:src python tests/test_abh25b_formal_mechanisms.py "$RUNNER_TEMP/abh25b-formal-output.json"
