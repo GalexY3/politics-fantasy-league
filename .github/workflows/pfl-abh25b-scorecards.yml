@@ -1,0 +1,29 @@
+name: PFL ABH25B C03 explainable fictional scores
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-scorecards.yml
+permissions:
+  contents: read
+jobs:
+  product-scorecards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: C03 new transactional scorecard tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25b_scorecard.py -v
+      - name: New scorecard UI and escaping
+        run: node --test tests/test_abh25b_scorecard_ui.mjs
+      - name: CSP and frontend syntax regressions
+        run: |
+          node --check src/politics_fantasy/web/app.js
+          node --test tests/test_ui_vote_bars.mjs
