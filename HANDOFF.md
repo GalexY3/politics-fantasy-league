@@ -1,6 +1,6 @@
 # PFL · briefing derivado
 
-Rama: `codex/pfl-pr2-review`; HEAD: `3b6a53a3806942e4a5e7d46d3d396574064539c3`.
+Rama: `main`; HEAD: `35e9ebe409d6b37d7409b42ba610283901cda8ba`.
 Estado rev. 11; publicación declarada: MAIN_PR2_MERGED_CODE_REVIEW_PASS.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
@@ -39,5 +39,5 @@ Full Linux 7de66007: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests P
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 
 Consistencia: PASS
-Huella código/tests: `5e7d3c287e1e8e67f2dc2e8e230ddc9cb40cd88143779d3ca3f0fc45c3e42b31`.
+Huella código/tests: `892ef755fcec3985512ffa02661ece29f4c1799b6b0fcbb63c09c1d9fb75a8dd`.
 No pedir ciclos por fórmula. Aparcar bloqueos sin observación nueva. Actualizar PROJECT_STATE y este handoff al cerrar.
