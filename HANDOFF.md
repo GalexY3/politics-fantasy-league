@@ -39,9 +39,10 @@ C01: fuente original [Suite à donner](https://github.com/Clemsrec/suiteadonner/
 - R-T005 [PARKED]: Originales y condiciones de uso suficientes para una pieza concreta de T005. Siguiente: Reabrir solo la pieza para la que haya evidencia nueva
 
 ## Última validación declarada
-Histórico full Linux de PFL #2: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS en `7de66007`. Nueva rama ABH25: Actions #41018524103 HTTP real 2/2 PASS; #41018842403 Atlas96 96 lotes SHA `8072cc...` PASS; #41019269617 catálogo y project_status PASS en un commit anterior a C03. Run #41019397612 falló por índice desactualizado tras C03; catálogo/mapa/índice regenerados en la rama. C03 CSV original #41019397659 PASS; ZIP original #41019680394 FALLÓ MD5, conservado. No afirmar full suite ni estado íntegro en HEAD actual sin nueva ejecución.
+Histórico full Linux de PFL #2: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS en `7de66007`. Nueva rama ABH25: Actions #41018524103 HTTP real 2/2 PASS; #41018842403 Atlas96 96 lotes SHA `8072cc...` PASS; #41019269617 catálogo y project_status PASS en un commit anterior a C03. Run #41019397612 falló por índice desactualizado tras C03; catálogo/mapa/índice regenerados. **Validación final del candidato de PR #3**: Actions #41020562908 éxito, 2/2 tests HTTP, Atlas96 SHA exacto, índice de 2899 archivos PASS, project_status.errors=[], verificador de presupuesto nuevo e histórico PASS. C03 CSV original #41019397659 PASS; ZIP original #41019680394 FALLÓ MD5, conservado. NO se reejecutó toda la suite Python/Node en esta rama ni se acreditó aceptación humana.
 
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 
-Consistencia: pendiente de `python scripts/project_status.py check` y de `python scripts/project_index.py check` sobre el HEAD final de esta rama. No se recalculó la huella código/tests en el API.
+Consistencia: PASS en PR #3, Actions #41020562908, candidato de merge `e06811c435296f03f28dce5a9b52a072671affe6` (checkout separado; no constituye fusión a main).
+Huella código/tests en ese candidato: `7688664942efc7a1783e58c73f76cc1d695d5c679fffc516d636c623e6a7343f`.
 No pedir ciclos por fórmula. Aparcar bloqueos sin observación nueva. Actualizar PROJECT_STATE y este handoff al cerrar.
