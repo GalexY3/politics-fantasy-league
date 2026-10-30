@@ -1,0 +1,61 @@
+{
+  "schema": "pfl.abh10.c31.prereg_AJ_SHA.v1",
+  "cycle": "ABH10-C31",
+  "branch": "research/pfl-abh10-source-atlas-o7-20261030",
+  "mode": "AB-R_PUBLIC_LICENSED_MODEL_LEVEL_AGGREGATE_BENCHMARK",
+  "drift_D": 3,
+  "parent_PR": 73,
+  "parent_HEAD": "56b5049741fda5f94663e35dfdd0e589fdde0e05",
+  "A": "Are independent, original, copyright-licensed and person-free model-level forecasting leaderboard aggregates accessible and comparable across ForecastBench baseline/tournament publications? Unit public model-level submission, not users, politicians, participants, treatments or outcomes.",
+  "B": {
+    "H1": "Pinned public aggregate leaderboards contain at least ten uniquely identifiable model submissions with parseable common Overall/N/rank and N>=20 per table; the matched descriptive comparison quantifies coverage and sample shift, not PFL effects.",
+    "H0": "Too few shared unique models, broken published source, or unmatched sample sizes make paired comparisons misleading; describe sample attrition only.",
+    "rivals": [
+      "Even if models match, baseline/tournament different question mix, time, and coverage, so difference is not treatment effect.",
+      "A published leaderboard may identify organization or authors but contains no participant microdata; return only numeric aggregate summaries."
+    ]
+  },
+  "C": {
+    "sources": [
+      "leaderboards/csv/leaderboard_baseline.csv",
+      "leaderboards/csv/leaderboard_tournament.csv"
+    ],
+    "source_headers_and_file_sizes_seen_before_freeze": true,
+    "pre_freeze_outcomes_seen": false,
+    "source_pin": {
+      "repo": "forecastingresearch/forecastbench-datasets",
+      "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "license": "CC-BY-SA-4.0",
+      "baseline_blob": "9a6c441644b88fef649942dfb21dd2be5be759dc",
+      "tournament_blob": "63740de68261eeaddb24731df2d5b848049050e2"
+    },
+    "primary_endpoint": "N uniquely matched models with N>=20 in both, then difference in reported Overall and sample N; no causal effect.",
+    "threshold_min_matched_for_interpretation": 10,
+    "negative_controls": [
+      "CSV quoted comma parser",
+      "duplicated model keys excluded",
+      "N filter in both",
+      "no model names or identities output",
+      "missing/invalid sample not coerced to 0"
+    ]
+  },
+  "D": {
+    "code": {
+      "path": "scripts/forecastbench_published_leaderboard_panel.mjs",
+      "git_blob": "9feecfa486fd8c5ecebe50608146eacc6e3974fa",
+      "staging_commit": "9a5574bed108d8c28baca57cf7df8e53ccf3a09c"
+    },
+    "tests": {
+      "path": "tests/test_forecastbench_published_leaderboard_panel.mjs",
+      "git_blob": "ec4d4c6bea273d6dc8522974dd43a2ec6ccd9d1f",
+      "staging_commit": "8a73be343aa5e62c80a68be12f17e75ac5e23fff"
+    },
+    "execution": "Node --test using exact frozen content if mounted, or V8 isolated exact production source with export declarations removed and adversarial test fixtures; report actual rather than invent native Node."
+  },
+  "E": "After prereg commit, fetch original two published aggregate CSVs by immutable pinned commit, exact Git blob verify, run 11 programmed tests and compare original source in memory, output only aggregate statistics without model names.",
+  "F": "Aggregate source (no human individual rows) not causal PFL; unmatched competition and partial snapshots create selection, attrition and rank instability. No rights clearance for different personal raw data inferred from CC-BY-SA.",
+  "G": "Competent baseline raw counts, unpaired rank comparison; improved version matches identical composite team/organization/model only, excludes duplicates and applies N threshold. No interventional comparator.",
+  "H": "Update original source prior on aggregate comparability and constraints only, not PFL experimental effectiveness.",
+  "I": "Scientific PFL CT2 20/100 ordinal, N1-3 0, release 0/6. External descriptive evidence not PFL causal validation.",
+  "J": "Count one AB-R bounded documentary descriptive cycle C31 only if actual frozen instrument executes on pinned originals and yields discriminant; otherwise log failed access and keep grant slot. Remaining nine authorized if valid. No main merge or CI."
+}
