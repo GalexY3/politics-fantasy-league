@@ -1,0 +1,29 @@
+name: PFL ABH25B C17-C26 ten new fictional game insights
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-c17-c26.yml
+permissions:
+  contents: read
+jobs:
+  local-game-metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ten purpose-built and executed product feature tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25b_insights_c17_c26.py -v
+      - name: JS user-visible panel and account-scope controls
+        run: node --test tests/test_abh25b_insights_ui.mjs
+      - name: Frontend syntax and existing UI smoke
+        run: |
+          node --check src/politics_fantasy/web/app.js
+          node --test tests/test_abh25b_scorecard_ui.mjs
