@@ -1,8 +1,6 @@
 name: PFL ABH25B three original UK institutional pathways
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-uk-three-paths.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
