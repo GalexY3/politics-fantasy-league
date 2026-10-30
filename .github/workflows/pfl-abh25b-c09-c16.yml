@@ -20,3 +20,5 @@ jobs:
         run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_c09_c16_source_guards.py -v
       - name: Exact eight preregistered page source requests and isolated negative results
         run: PYTHONPATH=. python research/ABH25B_20261030/c09_c16_institutional_pages.py
+
+# Pre-source malformed fixture corrected; original fetch remains unopened.
