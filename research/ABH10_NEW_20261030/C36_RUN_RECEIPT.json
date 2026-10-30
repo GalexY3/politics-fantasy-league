@@ -1,0 +1,64 @@
+{
+  "schema": "pfl.abh10.c36.original_public_field_level_revision_receipt.v1",
+  "cycle": "ABH10-C36",
+  "mode": "AB-R_ORIGINAL_NON_PERSON_SOURCE_FIELD_CHANGES",
+  "status": "VALID_LIMITED_ORIGINAL_RAW_PUBLIC_SOURCE_PROSPECTIVE_FIELD_DECOMPOSITION",
+  "prereg_commit": "b69cf855b7b55ff45e778bea91f3a62d60ed0cee",
+  "frozen_source_git": "68d04e3969218f4d1b0033c6ff1045225a9102fa",
+  "source_sha256": "5938d85b69dc537f37d3019e8ec1a56078c9d3de1e889285ada4c2a2532b11cf",
+  "frozen_test_git": "390569f896a1d719ef13e5f106484b8945f99418",
+  "source_blobs": {
+    "upstream_repo": "forecastingresearch/forecastbench-datasets",
+    "original_before": "424965825aae022f5861b69d17880665cd3026bb",
+    "original_after": "ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3",
+    "source_path": "datasets/resolution_sets/2026-09-27_resolution_set.json",
+    "copyright": "CC-BY-SA-4.0"
+  },
+  "native_tests": {
+    "runtime": "Node.js v22.16.0",
+    "first_after_prereg": true,
+    "passed": 7,
+    "failed": 0,
+    "exit_code": 0,
+    "TAP_sha256": "03802a5bc606c79c3e3cddc70f6da4dc3cae1c4455607580a688922e3d850fe9",
+    "local_exact_git_sha_verified": true
+  },
+  "raw_original_analysis": {
+    "execution": "V8 isolated exact GitHub original module after removing ESM export for evaluation; no source IDs emitted",
+    "git_blob_verified": true,
+    "before_rows": 437,
+    "after_rows": 427,
+    "unchanged": 215,
+    "mutated": 212,
+    "removed": 10,
+    "added": 0,
+    "changed_direction": 0,
+    "changed_resolution_date": 212,
+    "changed_resolved_to": 77,
+    "changed_resolved_flag": 1,
+    "date_only": 135,
+    "outcome_changed": 77,
+    "paired_outcome_date_change": 77,
+    "bookkeeping_identity": true,
+    "original_person_rows_processed": false,
+    "individual_public_source_ids_printed": false
+  },
+  "limits": [
+    "This is a source-version field-value change, NOT proof of incorrect original event ground truth or retrospective predictability.",
+    "First publication of each outcome not verified; original Git commit timestamps are not event publication times.",
+    "C36 and C34 share publisher and source pair; not independent external replication of effect. Product provenance only.",
+    "No humans or politicians scored."
+  ],
+  "PFL_CT2_science_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "launch_gates": "0/6",
+  "grant_after": {
+    "valid_new": 5,
+    "remaining_new": 5,
+    "historical_STOP_R5": 2
+  }
+}
