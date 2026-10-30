@@ -42,3 +42,12 @@ Los seis gates anteriores proceden del replay real en `ATLAS91.json`, no de inte
 4. Para investigación sociológica: definir el contraste humano y sus datos/permiso, separar mejoras técnicas de resultados científicos.
 
 No se han intentado nuevas búsquedas repetitivas de originales ni se ha dado por conseguida autorización jurídica. Esos requisitos permanecen abiertos, descritos con un siguiente paso concreto.
+
+## QA Linux real y procedencia exacta
+
+- **Padre PR73 `56b5049741fda5f94663e35dfdd0e589fdde0e05`**, checkout limpio íntegro, usuario `pfl` UID1000, tmpfs Linux Alpine/QEMU, Python 3.14.10, pytest 9.0.3 y Node 24.22.1: **799 Python +32 subtests PASS**, sin fallos/omisiones, 86,40 s; **38 Atlas +102 subtests PASS**, 16,84 s; replay91 PASS, mismo SHA que Windows. Node inicial **289 PASS/2 FAIL**, ambos imports rotos; no se oculta el negativo. Los logs y hashes originales del invitado están en `linux_parent/`.
+- **Código corregido `29a85c8387df70b967a83a68ab63c929d54b35b1`**, segunda VM limpia Linux: runner completo `node scripts/run_node_tests.mjs`, **341 tests PASS**, exit0, sin fallos ni omisiones; descubre también los tests bajo `src/politics_fantasy`. Logs y hashes originales en `linux_corrected_node/`. Los controles de symlink que fallan por permisos en Windows se ejecutan en Linux.
+- Los módulos Python de producto y motor Atlas no cambian entre esos dos commits. Solo cambian dos imports Node, se recupera el runner y se actualizan documentos/grafo. No se atribuye la suite Python del padre al commit posterior como una segunda ejecución. La red exterior del invitado se desactivó después de instalar dependencias; las dos VM se apagaron al terminar. Sin Actions.
+- Se contrastaron hashes de todos los archivos recibidos con los manifiestos SHA256 producidos dentro de Linux. `.gitattributes` evita normalizar los bytes de la evidencia al guardarla en Git.
+
+**Revisión entregada en [PR75](https://github.com/GalexY3/Metodologia-AB/pull/75)**; la [incidencia #17](https://github.com/GalexY3/Metodologia-AB/issues/17) se actualizó conservando su historial. El replay y QA quedan resueltos para los commits indicados; consolidación de ramas y bloqueos externos continúan abiertos.

@@ -1,6 +1,6 @@
 # Revisión nativa de seguimiento · 30/10/2026
 
-**Rama de revisión descendiente de PR73, sin fusionar a main.** Replay canónico real sobre `56b5049`: **91 lotes, 63 nodos, 81 aristas, 285 runs, 48 incidencias, 460 operaciones**, exit 0; SHA `e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4`. **38 tests Atlas PASS**. [Evidencia](../tareas_codex/REVISION_20261030/ATLAS91.json).
+**Rama de revisión descendiente de PR73, sin fusionar a main.** Replay canónico real sobre `56b5049`: **91 lotes, 63 nodos, 81 aristas, 285 runs, 48 incidencias, 460 operaciones**, exit 0; SHA `e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4`. **38 tests Atlas PASS**. Linux: 799 Python +32 subtests y Atlas 38 +102 subtests PASS en el padre; Node corregido 341/341 PASS en `29a85c83`, con negativos iniciales conservados. [Evidencia](../tareas_codex/REVISION_20261030/ATLAS91.json).
 
 El anexo O7 C18/C20–C30 ha sido incorporado al grafo en esta rama: 48 nodos/66 aristas, sin referencias colgantes ni duplicados; no es una nueva ejecución AB ni evidencia humana. Corregidos import de la suite sintética y seguimiento de tareas. [Bloqueos, límites y confianza 0–5](../tareas_codex/REVISION_20261030/INFORME.md). **Gates 0/6 y métricas científicas sin promoción.** Los estados inferiores son históricos del commit descrito.
 
