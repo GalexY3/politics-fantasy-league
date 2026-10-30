@@ -4,10 +4,10 @@
   "authorized_by": "user",
   "authorized_at": "2026-10-30",
   "new_granted": 25,
-  "valid_executed": 0,
-  "invalid_attempts": 0,
+  "valid_executed": 4,
+  "invalid_attempts": 1,
   "planning_only": 0,
-  "remaining": 25,
+  "remaining": 21,
   "work_branch": "research/pfl-ab-h25-v2-source-provenance-playability-20261030",
   "base_unmerged_pr3_head": "f347900cf3524e39a8049973e3c63573626d5ad8",
   "base_main_sha": "653604358183b59e8c0446497f47ff4a3769134f",
@@ -38,13 +38,74 @@
       "remaining": 2
     }
   },
-  "cycles": [],
-  "noncycle_work": [],
+  "cycles": [
+    {
+      "id": "ABH25B-C01",
+      "mode": "AB-R",
+      "status": "VALID_LIMITED_EXECUTED",
+      "receipt": "C01_RUN_RECEIPT.json",
+      "run": 41084623277,
+      "scope": "UK original 4 frozen pages 100 closed, 25 response pairs, descriptive sample",
+      "empirical_original": true,
+      "causal": false,
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "ABH25B-C03",
+      "mode": "AB-P",
+      "status": "VALID_LIMITED_EXECUTED",
+      "receipt": "C03_RUN_RECEIPT.json",
+      "run": 41084370201,
+      "scope": "New transactionally frozen fictional per-figure scorecard and UI",
+      "empirical_original": false,
+      "causal": false,
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "ABH25B-C04",
+      "mode": "AB-P",
+      "status": "VALID_LIMITED_EXECUTED",
+      "receipt": "C04_RUN_RECEIPT.json",
+      "run": 41085325815,
+      "scope": "New cumulative settled-only ranks with incomplete-score protection",
+      "empirical_original": false,
+      "causal": false,
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "ABH25B-C05",
+      "mode": "AB-R",
+      "status": "VALID_LIMITED_EXECUTED",
+      "receipt": "C05_RUN_RECEIPT.json",
+      "run": 41086112609,
+      "scope": "Scottish original closed page4 schema 15 records, response keys absent in page",
+      "empirical_original": true,
+      "causal": false,
+      "scientific_grade": "0/3"
+    }
+  ],
+  "noncycle_work": [
+    {
+      "id": "ABH25B-C02",
+      "status": "ORIGINAL_SOURCE_FAIL_CLOSED",
+      "receipt": "C02_RUN_RECEIPT.json",
+      "reason": "Canadian official endpoint returned HTML_NOT_XML, no XML original accepted",
+      "valid_cycle": false
+    },
+    {
+      "id": "ABH25B-C05-FIRST_RUN",
+      "status": "INVALID_PRE_SOURCE_TEST",
+      "run": 41085712577,
+      "reason": "Undersized synthetic JSON fixture rejected before intended bad-row control; repaired before fetching Scottish original",
+      "valid_cycle": false
+    }
+  ],
   "quality_gate": {
     "CT2_ordinal": 20,
     "N1": 0,
     "N2": 0,
     "N3": 0,
     "release_gates": "0/6"
-  }
+  },
+  "latest_decision": "CONTINUE: 4 distinct valid limited cycles; 21 remain. Pivot among policy-duration source designs and new playable fictional capabilities. R5 Canadian XML parked."
 }
