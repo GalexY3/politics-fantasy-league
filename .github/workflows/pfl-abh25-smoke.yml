@@ -6,10 +6,6 @@ on:
       - .github/workflows/pfl-abh25-smoke.yml
       - tests/test_abh25_p1p2_journey.py
       - ab_atlas/updates/0096-pfl-abh25-c01-c02-20261030.json
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25-smoke.yml
-      - tests/test_abh25_p1p2_journey.py
 permissions:
   contents: read
 jobs:
@@ -38,3 +34,5 @@ jobs:
         run: python scripts/project_index.py check
       - name: State, budgets and O7 consistency check
         run: python scripts/project_status.py check
+      - name: Compact derived handoff preview
+        run: python scripts/project_status.py brief
