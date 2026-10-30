@@ -291,6 +291,113 @@
       "state": "answered",
       "summary": "C19 all 89 original Atlas delta JSON sourced from connected GitHub in six windows: SHA matched listing, 448 ops, 273 runs, no parent/schema errors, 8/8 Node unit tests. Canonical Python not run, no full graph digest.",
       "source": "../ABH30_NEW_20261029/C19_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C26-FORECAST-ASOF",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C29-HOLM-FAMILY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C30-LAUNCH-GATES",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3",
+      "state": "answered",
+      "summary": "Bounded synthetic product QA; no independent human evidence."
+    },
+    {
+      "id": "PFL-ABH30-C18-LICENSED-HUMAN-SOURCE-NEGATIVE",
+      "type": "source_feasibility_negative",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "Human forecast source remains unavailable for the stated analysis; no participant data processed.",
+      "source": "../ABH30_NEW_20261029/C18_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -383,12 +490,6 @@
       "to": "PFL-ABH5B-C05-REAL-SOURCE",
       "relation": "related_to",
       "interpretation": "Transparent negative and post-failure prereg repair"
-    },
-    {
-      "from": "PFL-ABH5B-GJP-ROSTER",
-      "to": "PFL-ABH5B-C05-CAUSAL-PLAN",
-      "relation": "blocks",
-      "interpretation": "Independent participant assignment not established by nonhuman question dataset"
     },
     {
       "from": "PFL-ABH30-C01-ASOF-GUARD",
@@ -629,6 +730,61 @@
       "to": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
       "relation": "audits",
       "interpretation": "C19 checks append-only source chain including recorded C16 source contribution; not scientific causality."
+    },
+    {
+      "from": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C26-FORECAST-ASOF",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C29-HOLM-FAMILY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C30-LAUNCH-GATES",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
     }
   ],
   "rules": {
@@ -652,8 +808,8 @@
     "latest_campaign": {
       "id": "ABH30",
       "new_granted": 30,
-      "new_valid": 19,
-      "new_unused": 11,
+      "new_valid": 30,
+      "new_unused": 0,
       "historical_2_unconsumed": 2,
       "CT2_ordinal": 20,
       "N1_N2_N3": [
@@ -661,10 +817,30 @@
         0,
         0
       ],
-      "last_source_pr": 71,
-      "branch": "research/pfl-abh30-c19-atlas-89-static-all-20261029",
-      "latest_valid_cycle": "ABH30-C19",
-      "invalid_attempts": 3
+      "last_source_pr": 73,
+      "branch": "research/pfl-abh30-c20-c30-multiaxis-20261029",
+      "latest_valid_cycle": "ABH30-C30",
+      "invalid_attempts": 10
     }
+  },
+  "reconciliation_20261030": {
+    "source_commit": "56b5049741fda5f94663e35dfdd0e589fdde0e05",
+    "added_nodes": [
+      "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "PFL-ABH30-C24-RETENTION-CENSORING",
+      "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "PFL-ABH30-C26-FORECAST-ASOF",
+      "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "PFL-ABH30-C29-HOLM-FAMILY",
+      "PFL-ABH30-C30-LAUNCH-GATES",
+      "PFL-ABH30-C18-LICENSED-HUMAN-SOURCE-NEGATIVE"
+    ],
+    "added_edges": 11,
+    "removed_exact_duplicate_edges": 1,
+    "scope": "Applied pending documentary addendum in review branch; no AB cycle, no new causal evidence or main merge."
   }
 }

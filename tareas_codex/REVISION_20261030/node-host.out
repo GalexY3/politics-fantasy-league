@@ -1,0 +1,592 @@
+{"test_files":44,"scope":["tests","src/politics_fantasy"],"archives_excluded":true}
+PASS 16 participants, 8 groups, 4 arms including non-completion
+PASS cluster-equal vs person-weighted change transparency contrast
+PASS stable across row order and fresh clones
+PASS refuse contamination within a ranking room
+PASS refuse duplicated participant and fabricated arm
+PASS refuse fake study type and empty or incomplete frame
+PASS refuse extra personal fields and getters
+PASS no causal claims even with a well-formed synthetic cluster partition
+{"passed":8,"total":8,"real_people":0,"context":"PFL_ABH5_C03_OFFLINE_CLUSTER_GATE"}
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\src\politics_fantasy\test_fictional_cluster_gate.mjs (187.431ms)
+PASS full roster includes people with no response and late registrants
+PASS pre-response vs post-response and unknown display are distinct
+PASS order invariant and deterministic
+PASS reject missing roster/guarded fixture
+PASS reject duplicates and invalid time
+PASS reject fabricated exposure from response or unknown provenance
+PASS reject answer without eligibility and duplicate first forecast
+PASS guard prototype getters and nested extra fields
+PASS timestamp tie cannot attest pre-response display order
+{"schema":"pfl.synthetic.opportunity.tests.v2","pass":9,"total":9,"context":"SYNTHETIC_ONLY_NO_PEOPLE"}
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\src\politics_fantasy\test_fictional_opportunity_audit.mjs (187.5824ms)
+PASS initial room and new room both valid in half-open membership history
+PASS old room after switch rejected
+PASS switch boundary belongs to new room, not previous room
+PASS overlapping and missing time-dependent membership rejected
+PASS mixed arms inside a shared room at display time rejected
+PASS untrusted label, duplicate event and missing question rejected
+PASS future display outside closing window rejected
+PASS reject personal fields, getters, real-study fixture and noncanonical time
+PASS no real exposure or causal inference inferred
+{"schema":"pfl.synthetic.room.exposure.tests.v1","pass":9,"total":9,"person_level_human_records":0}
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\src\politics_fantasy\test_fictional_room_exposure.mjs (191.336ms)
+✔ versioned registry has exactly nine V4 weighted branches and 90 independently named achievements (2.0459ms)
+✔ V4 contract preserved and achievement progress never replaces existing metrics (0.3251ms)
+✔ audit chain and no automatically conferred achievements (0.2221ms)
+✔ Atlas contains a reachable achievements tab and same-folder iframe (0.2149ms)
+✔ Achievements UI script parses as JavaScript and embeds exact initial registry (2.3645ms)
+✔ Achievement UI offers evidence, reversible retirement and audited JSON export (0.4584ms)
+{
+  "campaign": "PF-BR8N",
+  "scope": "ALBACETE_CANDIDACY_VS_NATIONAL_2023_SECONDARY_TOTALS",
+  "original_boe_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+  "joined_rows": [
+    {
+      "acronym": "PSOE",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_002",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 7821718,
+      "national_seats_secondary": 121,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "FO",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_014",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 46274,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PP",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_001",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 8160837,
+      "national_seats_secondary": 137,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PACMA",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_012",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 169237,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PUM+J",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_018",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 23290,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "SUMAR",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_004",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 3044996,
+      "national_seats_secondary": 31,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "VOX",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_003",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 3057000,
+      "national_seats_secondary": 33,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "RECORTES CERO",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_017",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 23421,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    }
+  ],
+  "exact_unique_matches": 8,
+  "no_seat_labels_with_candidacy": 4,
+  "ambiguities": 0,
+  "legal_parties_validated": 0,
+  "people_joined": 0,
+  "disclaimer": "Link is an exact acronym across two electoral datasets. National total votes/seats, NOT Albacete-only totals and NOT parties' legal identities; never infer political influence."
+}
+✔ all eight Albacete original BOE labels have a unique exact secondary election label (0.8087ms)
+✔ at least four options with original proclaimed list had no seats in this historical election (0.8386ms)
+✔ ambiguous acronym does not silently resolve legal identity (1.0856ms)
+✔ reject false original-source declaration (0.8558ms)
+✔ 28 distinct numbered effects emitted (1.5639ms)
+✔ synthetic cross-option miss counter preserves total (0.1365ms)
+✔ C13 identifies one strict reversal only in close margins (0.1199ms)
+✔ C14 conservative certification has no false sign proof (0.0956ms)
+✔ C29 no false group count mismatch in complete fixture (0.069ms)
+✔ C30 does not claim official certification even with complete fixtures (0.0604ms)
+✔ future-derived prediction is declared retrospective (0.1666ms)
+✔ Orphan claim source and subject are reported by warehouse audit (1.1613ms)
+✔ Empty warehouse audit is referentially valid but NOT source-ready (0.2201ms)
+✔ Forecast and identity CT2 are separate dated ordinal measures (0.5427ms)
+✔ real CLI processes fictional actor bundle without exposing personal names (78.7936ms)
+✔ CLI fails closed on unsupported class or invalid first-public evidence (68.9263ms)
+✔ CLI recomputes SHA256 on local input bytes; rejects deliberately wrong hash (170.3303ms)
+✔ CLI rejects raw attachment that escapes bundle directory (60.0016ms)
+✔ nested event participant politically-sensitive guess is rejected (1.9216ms)
+✔ nested role payload with private contact key rejected (1.3064ms)
+✔ nested source with personal political profile rejected (0.2517ms)
+✔ JSON prototype pollution key rejected even when nested (0.2556ms)
+✔ cyclic untrusted payload rejected deterministically (0.2612ms)
+✔ legitimate public event still accepted with documented roles (2.6992ms)
+✔ PF-BR30J-S01: Registry metadata has no actual captured raw parties (1.1625ms)
+✔ PF-BR30J-S02: Interior elected officials catalogue is not an ingested roster (0.14ms)
+✔ PF-BR30J-S03: JEC candidates are separate from juridical party registration (0.1167ms)
+✔ PF-BR30J-S04: At least one official municipal source other than national Congress (0.2867ms)
+✔ PF-BR30J-S05: RAW source fails without recomputed SHA256 (0.858ms)
+✔ PF-BR30J-S06: Catalog-only source cannot back a political actor (0.7445ms)
+✔ PF-BR30J-S07: Unknown rights do not pass reuse gate (0.492ms)
+✔ PF-BR30J-S08: Source revisions retained under distinct IDs, duplicates rejected (1.4315ms)
+✔ PF-BR30J-I09: Stable name-independent exact namespace ID resolution (0.4984ms)
+✔ PF-BR30J-I10: Homonym names remain unresolved without external ID (0.3729ms)
+✔ PF-BR30J-I11: Coalition only has members when an explicit role is sourced (1.3376ms)
+✔ PF-BR30J-I12: Candidacy does not silently create party membership (0.6343ms)
+✔ PF-BR30J-I13: Effective intervals exclude expired spokesperson role (0.5931ms)
+✔ PF-BR30J-I14: Seat status is unknown without official dated claim (0.3815ms)
+✔ PF-BR30J-E15: Non-parliament public debate with documented participants (0.5346ms)
+✔ PF-BR30J-E16: As-of excludes even published fact if source observed later (0.6103ms)
+✔ PF-BR30J-E17: No numeric influence scoring accepted (0.2664ms)
+✔ PF-BR30J-E18: Civic platform may organize events without parliamentary seat (0.2487ms)
+✔ PF-BR30J-E19: Public event corrections retain both versions (0.2819ms)
+✔ PF-BR30J-E20: External IDs require review only when shared by the same source (0.4635ms)
+✔ PF-BR30J-E21: Ordinary private person records rejected (0.1841ms)
+✔ PF-BR30J-M22: Coverage denominator remains unknown (0.4506ms)
+✔ PF-BR30J-M23: Coverage stratified by actor and source type, without ranking (0.2428ms)
+✔ PF-BR30J-M24: Absent office claims not inferred from public events (0.1867ms)
+✔ PF-BR30J-M25: No longitudinal forecasting without timestamped primary field data (0.2232ms)
+✔ PF-BR30J-M26: Conflicting dated office claims produce review status (0.2006ms)
+✔ PF-BR30J-P27: Fictional bundle integrity reports only source-scoped event collisions (0.4836ms)
+✔ PF-BR30J-P28: Demo exposes aggregate readiness but not personal labels (0.0859ms)
+✔ PF-BR30J-P29: 30 test cases are registered for standalone Node, with errors reported (0.1148ms)
+✔ PF-BR30J-P30: Conservative readiness reports no real people verified (0.2537ms)
+✔ fully observed synthetic outcomes produce zero effect and collapsed bounds (2.1823ms)
+✔ known factorial differences are point identified in fully observed synthetic four arms (0.2488ms)
+✔ completer advantage can reverse after worst-case missingness (0.1906ms)
+✔ all-missing arm returns finite [0,1] without fictional zero outcomes (0.1712ms)
+✔ extra missingness can only widen when observed sum and assigned stay fixed (0.2122ms)
+✔ positive interaction can be sign-identified with fully observed extreme cells (0.1612ms)
+✔ negative interaction can be sign-identified with fully observed extreme cells (0.1935ms)
+✔ missing effects cannot be interpreted as authenticated causal ITT (0.1707ms)
+✔ input forbids identities and individual rows (0.5948ms)
+✔ rejects extra unregistered arm (0.3212ms)
+✔ rejects negative scores (0.2097ms)
+✔ rejects sum exceeding observed successes (0.1747ms)
+✔ rejects missing fraction masquerading as zero assigned (0.1317ms)
+✔ rejects observed greater than assigned (0.0942ms)
+✔ rejects floating assigned counts (1.0537ms)
+✔ rejects non-finite score (0.2191ms)
+✔ rejects all-missing with nonzero observed score (0.1665ms)
+✔ rejects inherited prototype payload (0.1606ms)
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\src\fictional_pfl_impact_suite.mjs' imported from C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_fictional_pfl_impact_suite.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:691:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:740:52)
+    at #resolve (node:internal/modules/esm/loader:673:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:593:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/src/fictional_pfl_impact_suite.mjs'
+}
+
+Node.js v24.16.0
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_fictional_pfl_impact_suite.mjs (104.5338ms)
+✔ positive full five-arm synthetic receipt audit (3.3925ms)
+✔ missing render is UNKNOWN not evidence of zero receipt delivery (0.4894ms)
+✔ empty set of receipts is permitted as unknown not successful exposure (0.3525ms)
+✔ public quartile cannot masquerade as public full ordering (0.6189ms)
+✔ private full order cannot be delivered to room (0.2962ms)
+✔ replayed duplicate receipt ID rejected (0.3341ms)
+✔ distinct receipt ID cannot double-count same opportunity (1.2408ms)
+✔ room change without assignment is rejected (0.2182ms)
+✔ arm substitution at render time rejected (0.2649ms)
+✔ render before opportunity opens rejected (0.3437ms)
+✔ render at end of half-open opportunity rejected (0.2752ms)
+✔ mixed arms in same room rejected (0.1847ms)
+✔ unassigned opportunity rejected (0.195ms)
+✔ wrong receipt provenance rejected (0.2144ms)
+✔ real participant fields forbidden (0.2451ms)
+✔ prototype pollution or accessors rejected (0.1832ms)
+✔ noncanonical UTC rejected (0.1867ms)
+✔ invalid opportunity interval rejected (0.1271ms)
+✔ no opportunities rejected, not invented as zero (0.1077ms)
+✔ configured contract failing parity prevents any synthetic receipt scoring (0.0947ms)
+✔ executes ten independent synthetic renders and generates receipts internally (3.3036ms)
+✔ own only has no comparative signal (1.1703ms)
+✔ private quartile contains no room aliases (1.1334ms)
+✔ public quartile has room ranks but no precise full order (0.4661ms)
+✔ private order has rank but no peers (0.5352ms)
+✔ public order displays pseudonymous room order (0.587ms)
+✔ equal scores tie at best rank consistently (8.2688ms)
+✔ invalid score >1 rejected (0.7366ms)
+✔ duplicate synthetic score rejected (0.3386ms)
+✔ missing score rejected (0.4009ms)
+✔ injecting receipt field rejected (0.1776ms)
+✔ cross-arm opportunity rejected by independent auditor (0.2137ms)
+✔ same room cannot host conflicting arms (0.1862ms)
+✔ non-finite synthetic score rejected (0.2441ms)
+✔ renderer not certified as actual human exposure or browser delivery (0.4488ms)
+✔ five valid synthetic arms and four factorial cells produce planned contrasts (1.4651ms)
+✔ never treats contract parity as delivered exposure (0.2036ms)
+✔ public full-order vs private quartile is a bundled contrast, not main publicness effect (0.1283ms)
+✔ public quartile cannot silently become full ordered leaderboard (0.3609ms)
+✔ private full order cannot silently become a room display (0.1372ms)
+✔ public room feedback cannot remove fictional aliases (0.1857ms)
+✔ cannot send real participant identities (0.179ms)
+✔ all arms retain own score (0.1177ms)
+✔ virtual scoring rule cannot drift to real monetary incentives (0.1413ms)
+✔ same game events required across arms (0.6762ms)
+✔ common schedule must not vary by arm (0.2979ms)
+✔ malformed event hash rejected (0.2558ms)
+✔ extra participant rows never accepted (0.1825ms)
+✔ missing control invalidates the entire contract (0.1614ms)
+✔ cannot add unsupported sixth treatment (0.297ms)
+✔ rejects inherited prototype input (0.2685ms)
+✔ rejects unexpected per-arm exposure claims (0.1468ms)
+✔ rejects malicious symbol property (0.1649ms)
+✔ fake event hash object with coercible toString rejected (0.1844ms)
+✔ fake schedule hash object with coercible toString rejected (0.1311ms)
+✔ valid HMAC and chain of distinct synthetic events (2.1129ms)
+✔ signatures are not fake real renderer attestation (0.2648ms)
+✔ wrong key fails signature (0.3061ms)
+✔ mutating arm fails cryptographic check (0.2631ms)
+✔ mutating feedback fails (0.2048ms)
+✔ mutating audience fails (0.1637ms)
+✔ mutating time fails (0.2007ms)
+✔ replaying same receipt fails chain (0.6552ms)
+✔ same opportunity with other receipt id fails chain (0.2864ms)
+✔ empty chain is not proof of zero exposure (0.2232ms)
+✔ short key rejected (0.1641ms)
+✔ key must be Buffer not coerced (0.1072ms)
+✔ unexpected personal fields rejected (0.1086ms)
+✔ invalid arm rejected (0.0866ms)
+✔ noncanonical ISO rejected (0.0789ms)
+✔ tampered hex rejected (0.2582ms)
+PASS 1 complete Sep27 path has 16 original unique versions
+PASS 2 complete Oct11 path has 3 original unique versions
+PASS 3 commit times monotonically ordered per path
+PASS 4 question original SHAs immutable
+PASS 5 prior Sep27 question first public returns unavailable
+PASS 6 Sep27 public question with no public resolution file yields unavailable
+PASS 7 Oct11 question first available but resolution data absent
+PASS 8 Oct08 midnight still Oct07 published original file
+PASS 9 Oct08 after 07:01 published new source version selected
+PASS 10 Oct10 version selected rather than Oct07 sparse shortcut
+PASS 11 Oct20 uses last Oct19 source not outdated Oct07
+PASS 12 Oct25 uses Oct24 original source not Oct23 shortcut
+PASS 13 Oct11 before Oct23 first resolution still absent even with questions
+PASS 14 Oct11 Oct23 original resolution source becomes eligible
+PASS 15 Oct11 Oct25 chooses actual Oct24 updated source
+PASS 16 Oct29 last verified checkpoint as of 16 UTC permitted
+PASS 17 any future source date beyond observed Git verification refused
+PASS 18 noncanonical dates and offsets denied
+PASS 19 unsupported cohort rejected
+PASS 20 false empty original resolution source cannot masquerade as known value
+PASS 21 same outcome retained across complete source history
+PASS 22 one newly known outcome added when the 9th source version arrives
+PASS 23 real per-source original outcome flip detected rather than erased
+PASS 24 source outcome disappearing is preserved explicitly
+PASS 25 missing original version source file fails closed, never filled from future version
+PASS 26 all summary outputs omit source market question IDs
+PASS 27 source full time-line cannot be passed through unrecognized cohort
+PFL full original Git source history 27/27 PASS
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_full_history.mjs (193.1347ms)
+PFL original source byte gate 13/13 PASS
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_provenance.mjs (213.8331ms)
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\forecastbench_raw_revision_guard.mjs' imported from C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_raw_revision_guard.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:691:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:740:52)
+    at #resolve (node:internal/modules/esm/loader:673:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:593:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/forecastbench_raw_revision_guard.mjs'
+}
+
+Node.js v24.16.0
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_raw_revision_guard.mjs (155.1845ms)
+PFL source as-of safety 15/15 PASS
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_source_guard.mjs (215.0251ms)
+PASS 1 published source version plan has three distinct original SHA sets
+PASS 2 missing directory rejected before reading
+PASS 3 prepublication source failure occurs without file IO
+PASS 4 reverse-ordered snapshots rejected before file IO
+PASS 5 file from correctly named original commit rejected if byte hash wrong
+PASS 6 CLI error never prints raw question, local path or file contents
+PASS 7 CLI bad args do not open source paths
+PASS 8 CLI before first source commit rejects non-existent directory before IO
+PFL public original bitemporal CLI 8/8 PASS
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_vintage_cli.mjs (313.6396ms)
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_vintage_replay.mjs (137.2711ms)
+✔ BOE Table I transcribed 52 provinces and 6 official totals (2.1915ms)
+✔ JEC transcription rejects altered count even if line algebra remains valid (0.9009ms)
+✔ JEC rejects a duplicate district row (0.4519ms)
+✔ Five official BOE Table III options without seats match secondary atlas (1.5212ms)
+✔ Coalitions are typed distinct from parties and Senate-only not matched as Congress (3.9216ms)
+✔ Original verification and as-of disabled unless evidence exists (0.246ms)
+✔ Initial selected section is exposed semantically (0.5811ms)
+✔ Dynamic navigation updates and removes the selected-state attribute (0.2005ms)
+✔ parented two-batch chunk passes with runs and no canonical claim (0.8687ms)
+✔ parent mismatch is explicitly fatal diagnostic (0.1587ms)
+✔ prior seed allows independent chunks (0.9254ms)
+✔ bad schema flagged (0.2628ms)
+✔ missing ops flagged (0.254ms)
+✔ duplicate run ids in chunk flagged (0.2728ms)
+✔ invalid seed rejected (0.5987ms)
+✔ empty selection rejected (0.1987ms)
+PASS 1 synthetic exact four-file hash produces aggregate only, never personal or authenticated
+PASS 2 past source snapshot denied even when event would already be resolved
+PASS 3 published pinned four original hashes cannot be defeated with fake fixture
+PASS 4 mutating a value after computing the manifest rejects entire record
+PASS 5 partial file set or extra file rejected before audit
+PASS 6 invalid JSON rejected after matching exact bytes without echoing source
+PASS 7 no supplied source path fails closed
+PASS 8 real Node file IO refuses four raw files with wrong original SHA, no silent fallback
+PASS 9 CLI never emits question text or path on invalid source, nonzero exit
+PASS 10 CLI rejects argument shape before file IO
+node:internal/fs/promises:1002
+  return await PromisePrototypeThen(
+         ^
+
+Error: EPERM: operation not permitted, symlink 'C:\Users\Nitropc\AppData\Local\Temp\pfl-offline-audit-UjpPRF\resolution_sets\2026-10-11_resolution_set.json' -> 'C:\Users\Nitropc\AppData\Local\Temp\pfl-offline-audit-UjpPRF\question_sets\2026-09-27-llm.json'
+    at async symlink (node:internal/fs/promises:1002:10)
+    at async file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:70:3
+    at async check (file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:9:30)
+    at async file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:68:2 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'symlink',
+  path: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-offline-audit-UjpPRF\\resolution_sets\\2026-10-11_resolution_set.json',
+  dest: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-offline-audit-UjpPRF\\question_sets\\2026-09-27-llm.json'
+}
+
+Node.js v24.16.0
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (258.5237ms)
+✔ Git SHA-1 known abc object (0.8224ms)
+✔ three real public C10 pairs pinned in source, not user manifest (0.6921ms)
+✔ pure positive synthetic buffers distinguish mutation and addition (1.8204ms)
+✔ reject corrupted bytes before JSON parsing (1.4812ms)
+✔ reject forged expected source digest (0.3101ms)
+✔ reject missing pin contract (0.1639ms)
+✔ reject duplicate (source,id) keys in source (0.4068ms)
+✔ reject schema mismatch despite correct original byte SHA (0.1931ms)
+✔ reject backwards Git commit time with correct bytes (0.2251ms)
+✔ reject cross cohort even if Git SHA matches (0.2347ms)
+✔ CLI no arguments fails closed with empty stdout (78.7551ms)
+✔ CLI refuses unknown source pair and never prints path (63.1949ms)
+✔ CLI rejects synthetic source bytes against its immutable original Git pins (57.9947ms)
+✔ CLI rejects missing source file without disclosing filesystem path (47.7996ms)
+✖ reject symlink before opening contents (1.4651ms)
+✔ reject empty source input before hashing (0.1331ms)
+✔ reject path and resolution row identifiers from CLI error output (49.276ms)
+✔ overview must not invent a three-of-five production-readiness indicator (0.9199ms)
+✔ overview directs user to documented progress, not implied release readiness (0.2458ms)
+✔ paired complete strata return shares and representation gap, not election probability (1.5685ms)
+✔ different distribution represented without inferring identity (0.2995ms)
+✔ mismatched election or territory rejected (1.8177ms)
+✔ missing category, unknown category asymmetry rejected, never silently discarded (0.5799ms)
+✔ zero denominators and duplicate category rejected (0.2637ms)
+✔ bad types and impossible elected count within a stratum rejected (0.2374ms)
+✔ empty/array malformed input rejected (0.1626ms)
+✔ PF-BR20H-C01 (2.1119ms)
+✔ PF-BR20H-C02 (0.3922ms)
+✔ PF-BR20H-C03 (0.4321ms)
+✔ PF-BR20H-C04 (0.4692ms)
+✔ PF-BR20H-C05 (0.3338ms)
+✔ PF-BR20H-C06 (0.4335ms)
+✔ PF-BR20H-C07 (1.7645ms)
+✔ PF-BR20H-C08 (0.4053ms)
+✔ PF-BR20H-C09 (0.3649ms)
+✔ PF-BR20H-C10 (1.3627ms)
+✔ PF-BR20H-C11 (0.3929ms)
+✔ PF-BR20H-C12 (0.2912ms)
+✔ PF-BR20H-C13 (0.1848ms)
+✔ PF-BR20H-C14 (0.2944ms)
+✔ PF-BR20H-C15 (0.4254ms)
+✔ PF-BR20H-C16 (0.1995ms)
+✔ PF-BR20H-C17 (0.2162ms)
+✔ PF-BR20H-C18 (0.2531ms)
+✔ PF-BR20H-C19 (0.0941ms)
+✔ PF-BR20H-C20 (0.4194ms)
+✔ missing critical release milestones block all six gates (1.8474ms)
+✔ only V1 scope family is supported (1.399ms)
+✔ missing track name is invalid (0.1551ms)
+✔ malformed milestone id is invalid (0.1557ms)
+✔ malformed milestone name is invalid (0.0843ms)
+✔ malformed milestone why is invalid (0.0661ms)
+✔ malformed milestone evidence_ref is invalid (0.0977ms)
+✔ malformed milestone size is invalid (0.099ms)
+✔ malformed milestone size is invalid (0.1709ms)
+✔ native V3 and V4 evaluate and compare the full snapshots (3.3448ms)
+✔ a missing critical milestone remains a blocker (0.4464ms)
+✔ NaN is rejected rather than accepted as a numeric size (0.524ms)
+✔ different families report lineage mismatch; unsupported matching families still fail validation (0.3261ms)
+✔ nine tracks 36 milestones (1.8094ms)
+✔ baseline completion 33.725 percent (0.654ms)
+✔ report one decimal 33.7 (0.3698ms)
+✔ per track contributions sum global (0.34ms)
+✔ release blockers stop public launch (0.1927ms)
+✔ maturity histogram covers 36 (0.2257ms)
+✔ duplicate milestone rejected (0.3147ms)
+✔ source without evidence rejected (1.8635ms)
+✔ invalid weight sum rejected (0.3425ms)
+✔ invalid maturity rejected (0.2596ms)
+✔ version bump requires reason (0.291ms)
+✔ scope expansion lowers progress by 1.395 points (0.8257ms)
+✔ new evidence raises score without scope effect (0.4508ms)
+✔ scope plus work decompose exactly (0.3227ms)
+✔ wrong scope identity cannot be compared (0.2718ms)
+✔ wrong revision direction cannot compare (0.193ms)
+✔ revised scope does not mutate baseline (0.3007ms)
+✔ unknown milestone update rejected (0.331ms)
+✔ unknown track is rejected (0.2499ms)
+✔ reintroducing same task rejected (0.3401ms)
+✔ V2 work improvement is +1.725 pp with unchanged V1 scope (3.7085ms)
+✔ 9 tracks 36 milestones and six release blocks remain (0.3556ms)
+✔ Only evidence-backed source and QA maturities change (0.9099ms)
+✔ V1 snapshot never overwritten and hypothetical V2 isn't silently adopted (0.2304ms)
+✔ V3 is 36.35%: +0.90 pp verified browser activity, unchanged scope (3.5227ms)
+✔ only frontend and E2E QA milestones are upgraded (1.0003ms)
+✔ 36 tasks, nine lines and all six production safeguards remain (0.2922ms)
+✔ V4 is 36.90% with +0.55 pp only work, unchanged scope (3.241ms)
+✔ only id.real and ev.person specified at level 1 (1.0874ms)
+✔ V4 preserves 9 tracks, 36 milestones, six gates and no scores (0.3762ms)
+✔ unknown first publication never inherits event or capture time (2.195ms)
+✔ attested publication included only at or after cutoff (0.3387ms)
+✔ incomplete attestation remains unknown (0.1366ms)
+✔ reject impossible calendar and non-UTC timestamps (1.4603ms)
+✔ reject contradictory capture before published time (0.3339ms)
+✔ reject credential-bearing or non-https proof URL (0.2697ms)
+PASS 1 source commit date is the published original GitHub snapshot
+PASS 2 Oct01 prior retrospective day always rejects the Oct29 source
+PASS 3 Oct08 prior snapshot still cannot use Oct29 source
+PASS 4 just before publish is not allowed
+PASS 5 exact published second is allowed with source-only caveats
+PASS 6 valid later as-of maintains explicit source timestamp
+PASS 7 non UTC, date-only, invalid calendar and fractional times denied
+PASS 8 unrecognized source commit denied, even if date later
+PASS 9 old date-only API cannot silently default to later instant
+PASS 10 integrated pure audit rejects future published original before parsing
+PASS 11 test fixture can be counted only with explicit untrusted-manifest flag
+PASS 12 same fake bytes cannot impersonate the real four pinned source files
+PASS 13 missing file rejected for supported as-of
+PASS 14 native disk reader refuses historical source before any disk read
+PASS 15 native CLI refuses Oct01 time without reading data and leaks no path
+PASS 16 native CLI refuses legacy --as-of-date argument rather than silently leak
+PASS 17 native CLI with correct time and synthetic bytes fails original hashes
+PASS 18 native CLI with malformed time rejects before source bytes
+PFL bitemporal publication CLI 18/18 PASS
+✔ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_publication_integrated.mjs (325.2793ms)
+✔ Same external vote ID in different independent sources is not silently merged (1.4492ms)
+✔ Same source and external ID still prompts manual duplicate review (0.2554ms)
+✔ Absent external reference cannot certify duplicates (0.0973ms)
+✔ source URL with embedded credentials is rejected even if HTTPS (1.2888ms)
+✔ plain HTTPS fixture remains syntactically permitted, not authenticated (0.3604ms)
+✔ plain HTTP and escaped source authority rejected (0.1564ms)
+✔ unsafe or deceptive source URLs cannot become links in either BOE panel (69.1931ms)
+✔ an official HTTPS BOE source stays clickable in both panels (0.5044ms)
+✔ vote bars retain all vote proportions without inline styles under strict CSP (1.9417ms)
+✔ zero votes do not create NaN geometry or lose the accessible total (0.6346ms)
+✔ all page renderers avoid style attributes blocked by the server CSP (0.157ms)
+✔ C02 reject ambiguous separator in identity component (1.0936ms)
+✔ C02 reject separator in expediente scope (0.2508ms)
+✔ C02 unchanged key for canonical existing inputs (0.1873ms)
+✔ C02 duplicates inside same vote remain fail-closed (0.264ms)
+✔ C02 distinct observations in one expediente remain distinct (0.1543ms)
+✔ C03 reject impossible and non-Gregorian calendar days (0.2482ms)
+✔ C03 allow real leap day without timezone reinterpretation (0.0971ms)
+✔ C04 reject object-to-string alias and numeric legislature (0.1162ms)
+✔ C04 reject untyped expediente and padded text (0.1518ms)
+✔ C04 reject null/array input in controlled form (0.1589ms)
+✔ C05 bounded aggregate sample has four distinct ballots in two expedientes (0.5847ms)
+ℹ tests 294
+ℹ suites 0
+ℹ pass 290
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 650.561
+
+✖ failing tests:
+
+test at tests\test_fictional_pfl_impact_suite.mjs:1:1
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_fictional_pfl_impact_suite.mjs (104.5338ms)
+  'test failed'
+
+test at tests\test_forecastbench_raw_revision_guard.mjs:1:1
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_forecastbench_raw_revision_guard.mjs (155.1845ms)
+  'test failed'
+
+test at tests\test_offline_forecastbench_audit.mjs:1:1
+✖ C:\Programación\PFL-status-20261030\proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (258.5237ms)
+  'test failed'
+
+test at tests\test_offline_forecastbench_revision_audit.mjs:31:1
+✖ reject symlink before opening contents (1.4651ms)
+  Error: EPERM: operation not permitted, symlink 'C:\Users\Nitropc\AppData\Local\Temp\pfl-c11-5DNOPr\orig.json' -> 'C:\Users\Nitropc\AppData\Local\Temp\pfl-c11-5DNOPr\sep07to08.before.json'
+      at symlinkSync (node:fs:1877:11)
+      at file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_revision_audit.mjs:31:100
+      at tmp (file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_revision_audit.mjs:15:78)
+      at TestContext.<anonymous> (file:///C:/Programaci%C3%B3n/PFL-status-20261030/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_revision_audit.mjs:31:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    errno: -4048,
+    code: 'EPERM',
+    syscall: 'symlink',
+    path: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-c11-5DNOPr\\orig.json',
+    dest: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-c11-5DNOPr\\sep07to08.before.json'
+  }

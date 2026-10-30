@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {auditPublicRawRevision, auditPublicRawChain} from './forecastbench_raw_revision_guard.mjs';
+import {auditPublicRawRevision, auditPublicRawChain} from '../src/politics_fantasy/forecastbench_raw_revision_guard.mjs';
 const A='a'.repeat(40), B='b'.repeat(40), C='c'.repeat(40);
 const r=(id,y=1)=>({source:'metaculus',id,resolved:true,resolved_to:y});
 const mk=(rows,opts={})=>({cohort:opts.cohort||'2026-09-27',

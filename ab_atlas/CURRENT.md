@@ -1,3 +1,11 @@
+# Revisión nativa de seguimiento · 30/10/2026
+
+**Rama de revisión descendiente de PR73, sin fusionar a main.** Replay canónico real sobre `56b5049`: **91 lotes, 63 nodos, 81 aristas, 285 runs, 48 incidencias, 460 operaciones**, exit 0; SHA `e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4`. **38 tests Atlas PASS**. [Evidencia](../tareas_codex/REVISION_20261030/ATLAS91.json).
+
+El anexo O7 C18/C20–C30 ha sido incorporado al grafo en esta rama: 48 nodos/66 aristas, sin referencias colgantes ni duplicados; no es una nueva ejecución AB ni evidencia humana. Corregidos import de la suite sintética y seguimiento de tareas. [Bloqueos, límites y confianza 0–5](../tareas_codex/REVISION_20261030/INFORME.md). **Gates 0/6 y métricas científicas sin promoción.** Los estados inferiores son históricos del commit descrito.
+
+---
+
 # POLITICS FANTASY LEAGUE · ABH30 COMPLETADO, C30 (29/10/2026)
 
 **Contabilidad real comprobada:** 30/30 nuevos ciclos AB-H de alcance limitado, **0 nuevos sin ejecutar**, y **2 históricos separados STOP_R5 sin consumir**. Los ciclos C20–C30 se ejecutaron por separado sobre once mecanismos de **un solo código sintético preplanificado**, nunca como once réplicas humanas. Los 22 tests nativos iniciales pasaron, pero un control posterior **invalidó o dejó incompletos siete instrumentos**; los fallos se preservaron, se congelaron SHA y A–J R1 antes de las reparaciones, pasaron 3/3 o 4/4 cada uno, y 30/30 pruebas de regresión final. **10 intentos inválidos acumulados**, no 10 ciclos inválidos. [C20–C30 informe completo](../research/ABH30_NEW_20261029/C20_C30_FINAL_REPORT.md) · [recibos nativos SHA](../research/ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json) · [fallos preservados](../research/ABH30_NEW_20261029/C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json).
