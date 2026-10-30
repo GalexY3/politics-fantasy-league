@@ -1,4 +1,4 @@
-name: PFL ABH25B C17-C26 ten new fictional game insights
+name: PFL ABH25B final complete Linux QA and Atlas98
 on:
   pull_request:
     paths:
@@ -8,7 +8,7 @@ permissions:
 jobs:
   local-game-metrics:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install verified test dependencies
+        run: python -m pip install --disable-pip-version-check -e '.[test]'
       - name: Ten purpose-built and executed product feature tests
         run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25b_insights_c17_c26.py -v
       - name: JS user-visible panel and account-scope controls
@@ -32,3 +34,31 @@ jobs:
           python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
           python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 1
           python scripts/project_index.py check
+      - name: Complete Python regression suite
+        env:
+          PYTHONPATH: src
+        run: python -m pytest -q -rs
+      - name: Atlas engine regression suite
+        run: python -m pytest -q -rs tools/ab_atlas/tests
+      - name: All Node regressions
+        run: node scripts/run_node_tests.mjs
+      - name: State, budget and grade integrity
+        run: |
+          python scripts/project_status.py check
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          load=lambda p:json.loads(Path(p).read_text())
+          g=load('research/ABH25B_20261030/AUTHORIZATION.json')
+          s=load('PROJECT_STATE.json')
+          old=load('research/ABH25_20261030/AUTHORIZATION.json')
+          assert (g['new_granted'],g['valid_executed'],g['remaining'])==(25,25,0)
+          assert len(g['cycles'])==25 and len({x['id'] for x in g['cycles']})==25
+          assert (old['valid_executed'],old['remaining'])==(25,0)
+          assert s['atlas_snapshot']['batches']==98
+          assert s['atlas_snapshot']['state_sha256']=='ca0bae27ec478a8a204a2bc3469540f806a8cdc4af36dba59c8d568cb6d4de75'
+          assert s['scientific_status']['prospective_CT2_ordinal']==20
+          assert s['abh25b_authorization_snapshot']['scientific_discoveries']==0
+          assert s['atlas_snapshot']['passed_gates']==0
+          print('ABH25B_25_GRANTS_ATLAS_CT2_NO_CAUSAL_PROMOTION_PASS')
+          PY
