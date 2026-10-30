@@ -21,7 +21,7 @@ class StageControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'DUPLICATE_ID'):
             parse('C09',json.dumps(duplicated).encode())
         with self.assertRaisesRegex(ValueError,'SCHEMA_NO_DATA_LIST'):
-            parse('C09',b'{"bad": "schema"' + b'x'*90+b'}')
+            parse('C09',json.dumps({'bad':'schema','padding':'x'*90}).encode())
     def test_arithmetic_threshold_boundary(self):
         x=parse('C10',sample(n=250))
         self.assertEqual(x['signatures_ge250'],1)
