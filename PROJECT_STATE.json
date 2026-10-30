@@ -1,5 +1,5 @@
 {
-  "revision": 12,
+  "revision": 13,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -46,7 +46,7 @@
       "status": "READY_REVIEW",
       "outcome": "Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público",
       "acceptance": "Cuentas locales e aislamiento revisados; QA completo Linux PASS. Alta/entrada Chrome observadas; aceptación humana de uso pendiente antes de DONE.",
-      "next_action": "Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada",
+      "next_action": "Linux P1/P2 HTTP dual-account smoke 2/2 PASS (#41018524103, #41018842403); human visual acceptance of account/club journey still required, no public deployment.",
       "dependencies": [
         "P0-INTEGRATION"
       ],
@@ -63,7 +63,7 @@
       "status": "QUEUED",
       "outcome": "Flujo ficticio completo usable y persistente",
       "acceptance": "Acceso, creación de club, alineación, jornada y resultado desde navegador; reinicio conserva estado; revisión de uso por el investigador",
-      "next_action": "Tras aceptación humana P1, comprobar acceso→club→alineación→jornada ficticia→resultado en navegador con persistencia/reinicio.",
+      "next_action": "Two-account HTTP transfer→lineup→simulate→score→restart confirmed, no full browser-human acceptance. Preserve QUEUED until P1 accepted and browser UX evaluated.",
       "dependencies": [
         "P1-ACCOUNTS"
       ],
@@ -92,7 +92,7 @@
       "status": "READY_REVIEW",
       "outcome": "Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario",
       "acceptance": "Evidencia original pública SHA congelada al ejecutar, Python 8/8 nativo, control de año y edad, primer test 6/8 inválido registrado; resultado solo descriptivo, la validación independiente de decisiones reales sigue pendiente.",
-      "next_action": "C38 sigue negativo descriptivo. Cuatro casos posthoc validan omisiones locales del CSV, sin corregir su efecto; fijar corpus nuevo y baseline antes del contraste siguiente.",
+      "next_action": "C38 descriptive negative remains; C03 official CSV cannot uniquely link meeting→minute, alternate Agenda.zip MD5 drift. Reopen only with verified source version/new independent observation; do not pretend absent CSV field means no decision.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -206,7 +206,7 @@
     "verified_commit": "446e99130e7a4d96e9f05265319bdfc7a5fa1dcf",
     "summary": "Native GitHub Actions #41018524103: P1/P2 two-account real localhost HTTP 2/2 PASS; subsequent #41018842403: same tests 2/2, Python compile and JS syntax PASS, canonical Atlas replay 96 batches / 63 nodes / SHA 8072ccbd... PASS. Full Python/Node suites last proven separately at 7de66007, not re-run here. P1 human acceptance and all release gates remain pending.",
     "evidence": "research/ABH25_20261030/C02_RUN_RECEIPT.json",
-    "scope_note": "Code app unchanged; bounded workflow verifies new integration test and Atlas96. Full clean-clone after these metadata changes not claimed; JSON/catalogue consistency checked separately."
+    "scope_note": "Code app unchanged; bounded workflow verifies new integration test and Atlas96. Full clean-clone after these metadata changes not claimed; JSON/catalogue consistency checked separately. Official agenda metadata probe #41019397659 PASS, alternate ZIP integrity check #41019680394 BLOCKED; neither counts as scientific cycle. Failure preserved."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -252,7 +252,8 @@
     "abh25_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/3",
     "abh25_research": "C01 limited independent original source audit; first publication not established in inspected script",
     "abh25_product": "C02 real two-account HTTP journey passed CI; P1 human acceptance still pending",
-    "abh25_r5": "Do not repeat source variants or synthetic loops to spend authorization; new independent original observations needed"
+    "abh25_r5": "Park C03 until publisher-verified ZIP version or independently source-linked meeting ID and original decision corpus is available; do not spend 23 remaining cycles on repeated fetches.",
+    "abh25_source_probe": "C03 stage0 original commission CSV 29 rows MD5 PASS but no meeting ID; alternate official Agenda.json.zip MD5 mismatch before unzipping. R5 PARK; not a scientific cycle."
   },
   "integration_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/2",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -333,6 +334,7 @@
     "authorized": 25,
     "executed_limited": 2,
     "remaining": 23,
+    "planning_only": 1,
     "scientific_discoveries": 0
   }
 }
