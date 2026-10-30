@@ -1,4 +1,4 @@
-> **Continuidad entre chats:** leer [START_HERE.md](START_HERE.md), [estado vivo y hitos](PROJECT_STATE.json) y [prompt reutilizable](NEW_CHAT_PROMPT.md). La rama operativa estable es `integration/pfl`; la fusión a main se verifica por separado. Producto e investigación tienen objetivos y progreso distintos.
+> **Continuidad y organización:** [empezar](START_HERE.md) · [dónde está cada cosa](PROJECT_MAP.md) · [investigaciones](research/INDEX.md) · [estado e hitos](PROJECT_STATE.json) · [prompt reutilizable](NEW_CHAT_PROMPT.md). La rama operativa estable es `integration/pfl`; la incorporación a main se comprueba en Git. Producto e investigación tienen objetivos y progreso distintos.
 
 # Politics Fantasy League
 

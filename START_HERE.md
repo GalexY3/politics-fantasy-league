@@ -2,6 +2,8 @@
 
 Este enlace es estable. **El estado se consulta en Git; no se copia de una conversación anterior.** Esta entrada sirve para ChatGPT, Codex y cualquier colaborador con acceso al repositorio.
 
+**Para localizar cualquier pieza:** [mapa por tareas](PROJECT_MAP.md), [catálogo buscable](PROJECT_INDEX.json) e [índice de investigación](research/INDEX.md). No hace falta leer todos los informes para encontrar una ruta.
+
 ## Recuperación breve obligatoria
 
 1. Leer este archivo, [AGENTS.md](AGENTS.md) y [PROJECT_STATE.json](PROJECT_STATE.json).
@@ -34,6 +36,6 @@ Antes de continuar una línea estancada, proponer tres acciones materialmente di
 
 ## Cierre de cada sesión
 
-Actualizar `PROJECT_STATE.json` con avances observados, evidencia y próxima acción. Conservar los saldos en sus ledgers originales. Ejecutar `check`, actualizar [HANDOFF.md](HANDOFF.md) con `python scripts/project_status.py handoff` y guardar los cambios en Git. Si falta acceso de escritura, entregar un parche/estado propuesto y declararlo **NO GUARDADO**; no afirmar sincronización.
+Actualizar `PROJECT_STATE.json` con avances observados, evidencia y próxima acción. Conservar los saldos en sus ledgers originales. Preparar los archivos previstos en Git; si cambió el inventario, ejecutar `python scripts/project_index.py build`. Ejecutar `python scripts/project_status.py check`, actualizar [HANDOFF.md](HANDOFF.md) con `python scripts/project_status.py handoff` y guardar los cambios en Git. El verificador también rechaza un catálogo desactualizado. Si falta acceso de escritura, entregar un parche/estado propuesto y declararlo **NO GUARDADO**; no afirmar sincronización.
 
 La siguiente conversación vuelve a leer esta entrada y el estado actual. **El prompt reutilizable solo contiene este enlace y la instrucción de comprobarlo.**

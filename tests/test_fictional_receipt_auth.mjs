@@ -19,3 +19,13 @@ test('unexpected personal fields rejected',()=>fail(()=>sign({...receipt(),email
 test('invalid arm rejected',()=>fail(()=>sign({...receipt(),arm:'real_politician'},key),'INVALID_RECEIPT_SCHEMA'));
 test('noncanonical ISO rejected',()=>fail(()=>sign({...receipt(),shown_at:'2026-10-29T12:00:00+00:00'},key),'INVALID_RECEIPT_SCHEMA'));
 test('tampered hex rejected',()=>fail(()=>verify({receipt:receipt(),mac:'00'},key),'INVALID_ENVELOPE'));
+
+test('impossible calendar dates and normalized midnight cannot be signed',()=>{
+ for(const shown_at of ['2026-02-30T12:00:00Z','2026-04-31T12:00:00Z','2026-10-29T24:00:00Z'])
+  fail(()=>sign({...receipt(),shown_at},key),'INVALID_RECEIPT_SCHEMA');
+});
+
+test('real leap-day receipt remains verifiable',()=>{
+ const x=sign({...receipt(),shown_at:'2028-02-29T23:59:59Z'},key);
+ assert.equal(verify(x,key),true);
+});

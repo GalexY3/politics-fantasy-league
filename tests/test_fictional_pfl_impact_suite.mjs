@@ -32,3 +32,9 @@ test('C26 invalid calendar normalization is rejected',()=>throws(()=>C26_asOfRes
 test('C27 chronological rule revision selects newest active version',()=>{const a=C27_institutionalRuleEpochs({...f([{room:'r',rule:'norm1',version:'v2',opens_at:later}]),rules:[{room:'r',rule:'norm1',version:'v1',effective_at:T},{room:'r',rule:'norm1',version:'v2',effective_at:'2026-10-29T12:30:00Z'}]});assert.equal(a.rule_versions,2)});
 test('C27 stale previous rule after revision is rejected',()=>throws(()=>C27_institutionalRuleEpochs({...f([{room:'r',rule:'norm1',version:'v1',opens_at:later}]),rules:[{room:'r',rule:'norm1',version:'v1',effective_at:T},{room:'r',rule:'norm1',version:'v2',effective_at:'2026-10-29T12:30:00Z'}]}), 'STALE_RULE_VERSION'));
 test('C28 NaN scored outcome cannot make null numerical bounds',()=>throws(()=>C28_selectiveParticipation(f([{arm:'own_only',opp:'o1',status:'scored',score:NaN}])), 'BAD_SCORE'));
+
+test('C27 simultaneous versions are ambiguous regardless of input order',()=>{
+ const rules=[{room:'r',rule:'norm1',version:'v1',effective_at:T},{room:'r',rule:'norm1',version:'v2',effective_at:T}];
+ for(const ordered of [rules,rules.slice().reverse()])
+  throws(()=>C27_institutionalRuleEpochs({...f([{room:'r',rule:'norm1',version:'v2',opens_at:later}]),rules:ordered}), 'AMBIGUOUS_RULE_EPOCH');
+});

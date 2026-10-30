@@ -50,6 +50,33 @@ class ContinuityTests(unittest.TestCase):
             m['status'] = 'IN_PROGRESS'
         self.assertTrue(any('Too much active work' in e for e in self.errors()))
 
+    def test_nonexistent_commit_cannot_substantiate_done(self):
+        self.state['milestones'][0].update(status='DONE', evidence=['START_HERE.md'], verified_commit='a'*40)
+        self.assertTrue(any('Unknown completion commit' in e for e in self.errors()))
+
+    def test_matching_but_impossible_budget_still_fails(self):
+        self.budget['remaining'] = -1
+        self.state['authorization_snapshot'] = copy.deepcopy(self.budget)
+        self.assertTrue(any('INCONSISTENT_AUTHORIZATION' in e for e in self.errors()))
+
+    def test_unknown_milestone_dependency_fails(self):
+        self.state['milestones'][0]['dependencies'] = ['MISSING-MILESTONE']
+        self.assertTrue(any('Unknown milestone dependency' in e for e in self.errors()))
+
+    def test_cyclic_milestone_dependencies_fail(self):
+        a,b = self.state['milestones'][:2]
+        a['dependencies'] = [b['id']]; b['dependencies'] = [a['id']]
+        self.assertTrue(any('Cyclic milestone' in e for e in self.errors()))
+
+    def test_brief_uses_observed_publication_instead_of_hardcoded_review_status(self):
+        state, observed = status.derive()
+        state['publication_status'] = 'MERGED'
+        observed['publication'] = {'main_ref': 'origin/main', 'reviewed_commit_in_main': True}
+        text = status.brief(state, observed)
+        self.assertIn('MERGED', text)
+        self.assertIn('True', text)
+        self.assertNotIn('pendiente de revisión según GitHub', text)
+
 
 if __name__ == '__main__':
     unittest.main()

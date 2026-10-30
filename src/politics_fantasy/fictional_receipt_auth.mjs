@@ -4,7 +4,7 @@ const arms=['own_only','private_quartile','public_quartile','private_order','pub
 const id=/^[A-Za-z0-9_-]{1,24}$/;
 const fields=['receipt_id','opportunity_id','room_id','arm','shown_at','feedback','audience'];
 const exact=(x,ks)=>x&&typeof x==='object'&&!Array.isArray(x)&&(Object.getPrototypeOf(x)===Object.prototype||Object.getPrototypeOf(x)===null)&&Reflect.ownKeys(x).length===ks.length&&ks.every(k=>Object.hasOwn(x,k)&&Object.hasOwn(Object.getOwnPropertyDescriptor(x,k),'value'));
-function valid(o){if(!exact(o,fields)||![o.receipt_id,o.opportunity_id,o.room_id].every(v=>typeof v==='string'&&id.test(v))||!arms.includes(o.arm)||typeof o.feedback!=='string'||typeof o.audience!=='string'||typeof o.shown_at!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(o.shown_at)||!Number.isFinite(Date.parse(o.shown_at)))throw Error('INVALID_RECEIPT_SCHEMA')}
+function valid(o){if(!exact(o,fields)||![o.receipt_id,o.opportunity_id,o.room_id].every(v=>typeof v==='string'&&id.test(v))||!arms.includes(o.arm)||typeof o.feedback!=='string'||typeof o.audience!=='string'||typeof o.shown_at!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(o.shown_at)||(!Number.isFinite(Date.parse(o.shown_at))||new Date(Date.parse(o.shown_at)).toISOString()!==o.shown_at.replace('Z','.000Z')))throw Error('INVALID_RECEIPT_SCHEMA')}
 const signerKey=k=>{if(!Buffer.isBuffer(k)||k.length!==32)throw Error('KEY_MUST_BE_32_BYTES')};
 function serial(r){return fields.map(k=>JSON.stringify(r[k])).join('|')}
 export function signSyntheticReceipt(receipt,key){valid(receipt);signerKey(key);return Object.freeze({receipt:{...receipt},mac:createHmac('sha256',key).update(serial(receipt),'utf8').digest('hex')})}
