@@ -1022,6 +1022,30 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Posthoc prior not counted cycle, domain high-school memorization with no tangible rewards, not PFL forecasting or private/public leaderboard trial; no raw people or confirmed registry timing."
+    },
+    {
+      "id": "PF-BR78",
+      "claim": "Published 2018, 2022 and 2025 Ashraf rank-feedback factory results constitute separate independent RCT replications of private vs public leaderboard effects.",
+      "update": "REFUTED_MULTIPLE_PUBLICATIONS_SAME_RCT_POSTHOC_PRIOR_ONLY",
+      "support": "Primary public GOV.UK 2018 working paper Do Performance Ranks Increase Productivity (Bangladesh sweater factory 366 workers), CESifo 2022 working paper Performance Ranks Conformity and Cooperation, and Management Science 2025 DOI 10.1287/mnsc.2023.01381 report the same Ashraf experiment, AEARCTR-0000981, with evolved claims: 2018 private surprise heterogeneity and public lower vs private, 2022/2025 private zero on average, public lower, cooperation effect. Three paper vintages are NOT three independent randomized cohorts. Exact registry initial history not accessible in this session.",
+      "source": "https://doi.org/10.1287/mnsc.2023.01381",
+      "evidence": "../ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md",
+      "type": "POSTHOC_PRIMARY_HUMAN_RCT_LITERATURE_PROVENANCE_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Outcomes visible before C37 prereg. No original AEARCTR-0000981 archived record inspected; 2025 final publisher supplemental microdata license not verified and none downloaded; no new PFL empirical causal effect."
+    },
+    {
+      "id": "PF-BR79",
+      "claim": "A relative-rank intervention has a context-independent behavioral effect transferable to PFL irrespective of reference-group definition.",
+      "update": "INDEPENDENT_2026_REFERENCE_GROUP_RANDOMIZATION_SUGGESTS_TRANSPORT_BOUNDARIES_BUT_ONLY_ABSTRACT_POSTHOC",
+      "support": "Published July 2026 American Economic Journal: Applied Economics trial Xu et al. Which Reference Groups Matter and How? A Relative Income Information Experiment with Administrative Data DOI 10.1257/app.20240181. Authors randomized personal income rank information across multiple reference groups among a Finnish middle-aged representative sample; abstract says strong income satisfaction effects for narrow groups and weak/inconclusive national rank, weaker life satisfaction. Independent human source but treatment is INCOME, not forecast rank, no person data/replication package accessed or recalculated; results seen before any dedicated prereg, not a cycle.",
+      "source": "https://doi.org/10.1257/app.20240181",
+      "evidence": null,
+      "type": "POSTHOC_INDEPENDENT_HUMAN_REFERENCE_GROUP_RCT_PRIOR_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No exposure logs or original PFL events, no licensed participant data verified/processed, source summary only, cannot claim causal effect size or PFL transport."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -1291,10 +1315,18 @@
       "PF-BR74",
       "PF-BR75",
       "PF-BR76",
-      "PF-BR77"
+      "PF-BR77",
+      "PF-BR78",
+      "PF-BR79"
     ],
     "human_PFL_causal_results": 0,
     "launch_gates": "0/6",
-    "decision": "STOP_R5_ON_LACK_OF_NEW_EVIDENCE_CLASS_AFTER_C36; grant remainder preserved, not revoked"
+    "decision": "STOP_R5_UNCONSUMED_FIVE_SLOTS_NO_INDEPENDENT_EXECUTABLE_SOURCE",
+    "C37": {
+      "status": "BLOCKED_NOT_COUNTED_PLANNING_ONLY",
+      "registry": "AEARCTR-0000981",
+      "freeze_commit": "2cc076a4fa2c6d9fa0233384b932483fefc0ed4d",
+      "records_inspected": false
+    }
   }
 }
