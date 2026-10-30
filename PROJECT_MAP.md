@@ -41,7 +41,7 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `experimental_code` | 28 | Instrumentos experimentales; su presencia no prueba integración en el juego |
 | `operations` | 77 | Herramientas, configuración y operación local |
 | `reference` | 68 | Manuales, contratos y referencias |
-| `research` | 1854 | Preguntas, campañas, análisis y resultados de investigación |
+| `research` | 1855 | Preguntas, campañas, análisis y resultados de investigación |
 | `runtime` | 77 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 119 | Expedientes y resultados de ejecución |
 | `verification` | 171 | Pruebas y ejecutores de comprobación |
