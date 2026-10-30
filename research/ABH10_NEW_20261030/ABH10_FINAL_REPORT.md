@@ -1,3 +1,9 @@
+# Addendum de continuación ABH10 (30/10/2026) — STOP_R5 y cinco plazas conservadas
+
+No cambia el informe ni sus cinco ciclos ejecutados originales C31/C33/C34/C35/C36. La continuación desde PR #77 verificó métodos y fuentes y **no generó ningún ciclo nuevo válido**. C37 prerregistró una auditoría de la versión inicial del ensayo AEA RCT 0000981, pero el original estuvo inaccesible y queda **BLOCKED/PLANNING_ONLY**, no contabilizado. Se registraron PF-BR78/79 como literatura POSTHOC con dependencia de cohorte, no descubrimientos. **5 de 10 siguen ejecutados, cinco plazas ya autorizadas sin consumir**, dos históricos STOP_R5 separados. [Auditoría de continuidad](CONTINUATION_R5_20261030.md). Atlas 0092 Python original ya validado en campaña anterior, sin nueva corrida ni lote; ciencia PFL CT2 20/100, N1–3 cero, gates 0/6. Se conserva toda la autorización para una fuente efectivamente diferenciadora.
+
+---
+
 # Politics Fantasy League · ABH10 — cierre condicionado por R5 (30/10/2026)
 
 **Autorización:** diez ciclos nuevos AB-H BRANCHING, sobre PR #73 HEAD `56b5049741fda5f94663e35dfdd0e589fdde0e05`. **Ejecución efectiva: cinco ciclos nuevos válidos delimitados (C31, C33, C34, C35, C36); cinco nuevas plazas NO consumidas** por STOP_R5 local y falta de clases de evidencia independientes. **Dos plazas históricas separadas STOP_R5 intactas**. Los 30 de la campaña anterior continúan completos sin recuento adicional. No interpretar 5/10 como fallo del ejecutor ni 10/10 planificado como ejecutado; los otros cinco no están autorizados para rellenar con resultados sintéticos redundantes.
