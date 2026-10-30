@@ -3,15 +3,15 @@
   "created_on": "2026-10-28",
   "project": "Politics Fantasy League",
   "repository": "GalexY3/Metodologia-AB",
-  "branch": "fix/pfl-pending-reconciliation-20261030",
+  "branch": "integration/pfl",
   "baseline_head_before_task_queue": "8f21411b0c4caf267d77721510d06129fe2eedbe",
-  "execution_status": "TECHNICAL_QA_PASS_EXTERNAL_AND_INTEGRATION_OPEN",
+  "execution_status": "INTEGRATION_CANDIDATE_QA_IN_PROGRESS",
   "codex_available_to_user": true,
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
-    "atlas_lots": 91,
-    "canonical_atlas": "PASS_91_LOTS_SHA256_e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4",
+    "atlas_lots": 93,
+    "canonical_atlas": "PASS_93_LOTS_SHA256_7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d",
     "full_repo_python": "LINUX_799_PASS_32_SUBTESTS_0_FAIL_0_SKIP_COMMIT_56b5049741fda5f94663e35dfdd0e589fdde0e05",
     "full_repo_node": "LINUX_341_PASS_0_FAIL_0_SKIP_COMMIT_29a85c8387df70b967a83a68ab63c929d54b35b1",
     "release_gates_passed": 0,
@@ -346,9 +346,7 @@
         "36 cases independently reconstructed; exact original fixtures unavailable",
         "Validation contract v2 rejects exotic inputs; manifests remain unauthenticated",
         "Distinct from older T025 release task"
-      ],
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T025_MECANISMOS_RESULTADO.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      ]
     },
     {
       "id": "PFL-CODEX-T026",
@@ -360,9 +358,7 @@
       "notes": [
         "84 tests reconstructed, original harness unavailable",
         "Human and ethics criteria remain pending"
-      ],
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T026_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      ]
     },
     {
       "id": "PFL-CODEX-T019",
@@ -374,36 +370,28 @@
         "12 XML originales nominales guardados solo fuera de Git",
         "84 comprobaciones agregadas y 15 tests focalizados PASS",
         "QA integral, derechos y first_public_at pendientes"
-      ],
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T019_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      ]
     },
     {
       "id": "PFL-CODEX-T020",
       "title": "Originales europeos firmados",
       "file": "T020_EP_ORIGINALES_FIRMADOS_20261028.md",
       "status": "PARCIAL_EN_RAMA",
-      "result_file": "T020_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T020_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T020_AVANCE_20261029.md"
     },
     {
       "id": "PFL-CODEX-T021",
       "title": "Originales UK650",
       "file": "T021_UK650_ORIGINALES_Y_RÉPLICA_20261028.md",
       "status": "BLOQUEADA_ACCESO_403",
-      "result_file": "T021_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T021_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T021_AVANCE_20261029.md"
     },
     {
       "id": "PFL-CODEX-T023",
       "title": "Peticiones UK por cohorte",
       "file": "T023_PETITIONS_IDCOHORT_ORIGINALES_20261028.md",
       "status": "PARCIAL_EN_RAMA",
-      "result_file": "T023_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T023_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T023_AVANCE_20261029.md"
     },
     {
       "id": "PFL-CODEX-T016",
@@ -415,55 +403,58 @@
         "Discrepancia de 100 entre cabecera DOG y CSV; causa desconocida",
         "Euskadi TLS no validado, sin bypass",
         "Originales solo fuera de Git"
-      ],
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T016_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      ]
     },
     {
       "id": "PFL-CODEX-T017",
       "title": "Originales de holdout regional",
       "file": "T017_HOLDOUT_ORIGINALES_20261028.md",
       "status": "PARCIAL_EN_RAMA",
-      "result_file": "T017_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T017_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T017_AVANCE_20261029.md"
     },
     {
       "id": "PFL-CODEX-T018",
       "title": "Originales UK divisiones",
       "file": "T018_UK_DIVISIONS_ORIGINALES_20261028.md",
       "status": "PARCIAL_EN_RAMA",
-      "result_file": "T018_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T018_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T018_AVANCE_20261029.md"
     },
     {
       "id": "PFL-CODEX-T022",
       "title": "Originales UK peticiones top12",
       "file": "T022_PETICIONES_JSON_COHORTE_20261028.md",
       "status": "PARCIAL_EN_RAMA",
-      "result_file": "T022_AVANCE_20261029.md",
-      "evidence_url": "https://github.com/GalexY3/Metodologia-AB/blob/aab3ec9c59a46a44a56fcaa73610c8c9e8283332/proyectos/politics-fantasy-league/tareas_codex/T022_AVANCE_20261029.md",
-      "evidence_location_note": "Preserved in PR45 commit; absent from current PR73 tree. Historical QA does not certify current code."
+      "result_file": "T022_AVANCE_20261029.md"
+    },
+    {
+      "id": "PFL-CODEX-T025-RELEASEPATH",
+      "title": "QA release path y sincronización snapshot logros v6",
+      "file": "T025_RELEASEPATH_V6_QA_AND_GATE_EVIDENCE_20261028.md",
+      "status": "VERIFICADA_EN_RAMA_CON_LIMITACIONES",
+      "tested_commit": "6992eee108cec67b0a246a4f575e87daa8efd5ad",
+      "result_file": "T025_RESULTADO.md",
+      "notes": [
+        "Distinct from T025 mechanism task on other branches",
+        "Release remains blocked 0/6",
+        "file protocol not directly tested"
+      ]
     }
   ],
   "no_automatic_actions": true,
   "no_main_merge": false,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "Codex 2026-10-30: Atlas91, Linux parent 799 Python+32 subtests and 38 Atlas+102 subtests; corrected Linux Node 341 PASS; see exact commits and retained negatives in report.",
+  "last_verified_by": "Current integration replay93; full candidate QA in progress. Historical task evidence remains scoped to its original commit.",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
   "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
   "active_campaign": {
-    "id": "PFL-ABH30-NEW-20261029",
-    "authorized": 30,
-    "valid_limited": 30,
-    "invalid_attempts": 10,
-    "remaining": 0,
+    "id": "ABH10",
+    "authorized": 10,
+    "executed_limited": 5,
+    "remaining_preserved": 5,
     "historical_separate_STOP_R5": 2,
-    "status": "CLOSED",
-    "this_maintenance_consumes_cycles": false
+    "ledger": "../research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json"
   },
   "previous_campaign": {
     "id": "PFL-ABH-BRANCH20-20261028",
@@ -485,11 +476,10 @@
   "T010_status": "COMPLETADA_EN_RAMA_PENDIENTE_REVISION",
   "queue_refresh": {
     "at": "2026-10-30",
-    "scope": "Reconcile PR45 evidence with PR73 tree; native Atlas91 and O7 addendum; review branch, no main merge",
-    "source_commit": "56b5049741fda5f94663e35dfdd0e589fdde0e05",
-    "report": "REVISION_20261030/INFORME.md",
-    "executor_not_called": false,
-    "pr": 75
+    "branch": "integration/pfl",
+    "scope": "Selected PR44/45/75/79 integrated; imported original CODEX20 delta as 0093, no new AB cycles",
+    "entry": "../START_HERE.md",
+    "report": "../research/INTEGRATION_20261030/REPORT.md"
   },
   "reconciliation_20261030": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
@@ -509,5 +499,6 @@
     "remaining": 0,
     "status": "CLOSED_20_VALID_0_INVALID_0_REMAINING",
     "not_part_of_codex_execution": true
-  }
+  },
+  "project_state": "../PROJECT_STATE.json"
 }

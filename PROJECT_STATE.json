@@ -1,0 +1,148 @@
+{
+  "schema": "pfl.project_state.v1",
+  "revision": 1,
+  "updated_on": "2026-10-30",
+  "user_priority": "Producto e investigación, con objetivos y progreso separados",
+  "operational_branch": "integration/pfl",
+  "publication_branch": "main",
+  "publication_status": "REVIEW_CANDIDATE_NOT_MERGED",
+  "entry_url": "https://github.com/GalexY3/Metodologia-AB/blob/integration/pfl/proyectos/politics-fantasy-league/START_HERE.md",
+  "source_heads": {
+    "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "PR79": "9354e4fe1afdce073b85bf4605a8664e2f62b338",
+    "PR75": "22fb79ec9d10651cc0504aa7bfde3fd85a09a1a0",
+    "PR45": "aab3ec9c59a46a44a56fcaa73610c8c9e8283332",
+    "PR44": "d6db8fcd4be1ccec79b78251b9e50485555fa727"
+  },
+  "atlas_snapshot": {
+    "batches": 93,
+    "nodes": 63,
+    "edges": 81,
+    "runs": 310,
+    "complaints": 51,
+    "state_sha256": "7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d",
+    "passed_gates": 0
+  },
+  "authorization_ledger": "research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json",
+  "authorization_snapshot": {
+    "campaign": "ABH10",
+    "authorized": 10,
+    "executed": 5,
+    "remaining": 5,
+    "historical_separate_stop_r5": 2
+  },
+  "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
+  "required_entry_files": [
+    "START_HERE.md",
+    "AGENTS.md",
+    "NEW_CHAT_PROMPT.md",
+    "docs/WORKING_AGREEMENT.md",
+    "BRANCHES.json",
+    "scripts/project_status.py"
+  ],
+  "milestones": [
+    {
+      "id": "P0-INTEGRATION",
+      "lane": "product",
+      "status": "IN_PROGRESS",
+      "outcome": "Una base técnica y de evidencia reunida y revisable",
+      "acceptance": "Merge trazable de las líneas actuales, replay Atlas, suites integrales y verificación de artefactos; PR contra main para revisión humana",
+      "next_action": "Finalizar QA Linux del árbol integrado y entregar la PR de integración",
+      "dependencies": [],
+      "evidence": [
+        "research/INTEGRATION_20261030/ATLAS_RECONCILIATION.json"
+      ]
+    },
+    {
+      "id": "P1-ACCOUNTS",
+      "lane": "product",
+      "status": "QUEUED",
+      "outcome": "Usuarios y permisos aislados en el prototipo ficticio",
+      "acceptance": "Dos usuarios crean clubes distintos; sesiones válidas; otro usuario no puede leer ni modificar recursos ajenos; persistencia y regresiones del flujo",
+      "next_action": "Definir y ejecutar una implementación local mínima con pruebas de aislamiento, sin personas políticas reales",
+      "dependencies": [
+        "P0-INTEGRATION"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "P2-PLAYABLE-FLOW",
+      "lane": "product",
+      "status": "QUEUED",
+      "outcome": "Flujo ficticio completo usable y persistente",
+      "acceptance": "Acceso, creación de club, alineación, jornada y resultado desde navegador; reinicio conserva estado; revisión de uso por el investigador",
+      "next_action": "Tras P1, verificar un recorrido de usuario completo y corregir fricciones observadas",
+      "dependencies": [
+        "P1-ACCOUNTS"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R0-FEASIBLE-QUESTION",
+      "lane": "research",
+      "status": "IN_PROGRESS",
+      "outcome": "Una pregunta sociológica delimitada con evidencia accesible y falsador",
+      "acceptance": "Comparar tres rutas materiales, elegir una con antecedente y rival competentes, verificar el acceso y alcance de uso de su observación; contrato prospectivo antes de analizar",
+      "next_action": "Una sesión acotada para seleccionar entre feedback humano, respuesta institucional u otro mecanismo formal claramente etiquetado; no repetir C37 sin artefacto nuevo",
+      "dependencies": [],
+      "evidence": [
+        "docs/WORKING_AGREEMENT.md"
+      ]
+    },
+    {
+      "id": "R1-DISCRIMINATING-RESULT",
+      "lane": "research",
+      "status": "QUEUED",
+      "outcome": "Resultado que cambie una hipótesis social o institucional frente a un rival",
+      "acceptance": "Datos originales/versionados adecuados al estimando, análisis reproducible, control competente y auditoría; negativo válido aceptable; causalidad solo si el diseño la identifica",
+      "next_action": "Ejecutar el contrato de la pregunta elegida con el presupuesto autorizado aplicable; preservar exposición previa",
+      "dependencies": [
+        "R0-FEASIBLE-QUESTION"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "R-AEA-C37",
+      "lane": "research",
+      "status": "PARKED",
+      "outcome": "Acceso al registro original e historial del ensayo AEARCTR-0000981",
+      "acceptance": "Original/versiones accesibles y una predicción que distinga un rival no resuelto con lo ya observado",
+      "next_action": "No repetir búsquedas equivalentes",
+      "dependencies": [],
+      "reopen_when": "Se aporte un original/historial nuevo verificable o cambie de forma comprobada la vía de acceso",
+      "evidence": [
+        "research/ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md"
+      ]
+    },
+    {
+      "id": "R-T005",
+      "lane": "research",
+      "status": "PARKED",
+      "outcome": "Originales y condiciones de uso suficientes para una pieza concreta de T005",
+      "acceptance": "Cerrar cada pieza con su propio original, vigencia y alcance; no exigir todas las fuentes para avanzar en el prototipo ficticio",
+      "next_action": "Reabrir solo la pieza para la que haya evidencia nueva",
+      "dependencies": [],
+      "reopen_when": "Original institucional nuevo y contraste concreto: diccionario XML, certificado RPP o versión/publicación de archivo electoral; evaluación de uso cuando corresponda",
+      "evidence": [
+        "tareas_codex/T005_ORIGINALES_CONDICIONALES.md"
+      ]
+    }
+  ],
+  "latest_validation": {
+    "status": "INTEGRATION_QA_IN_PROGRESS",
+    "summary": "Replay Atlas93 ejecutado; Node Windows 506 PASS, un fallo y un skip por privilegios de symlink. QA Linux íntegro pendiente sobre este árbol; resultados históricos preservados por commit.",
+    "evidence": "research/INTEGRATION_20261030/",
+    "scope_note": "Las pruebas anteriores no certifican automáticamente los merges actuales."
+  },
+  "scientific_status": {
+    "prospective_CT2_ordinal": 20,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates": "0/6",
+    "no_promotion_from_this_maintenance": true
+  },
+  "closure_rule": "Guardar estado compacto + briefing/handoff + evidencia observada; no pedir ciclos por fórmula; no consumir saldo por mantenimiento."
+}

@@ -1,3 +1,13 @@
+# Integración vigente de PFL · 30/10/2026
+
+**Leer primero [START_HERE](../START_HERE.md) y [PROJECT_STATE](../PROJECT_STATE.json).** `integration/pfl` reúne las líneas PR44/45/75/79 como candidato revisable, no fusionado a main. Se conservan las ramas antiguas.
+
+Replay nativo actual: **93 lotes, 63 nodos, 81 aristas, 310 runs, 51 incidencias y 488 operaciones**, SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`. El lote 0093 importa exactamente las operaciones del 0081 CODEX20 paralelo, cuyo original se conserva byte a byte en [el archivo de integración](../research/INTEGRATION_20261030/ATLAS_RECONCILIATION.json). **0 ciclos nuevos**, 5 ABH10 y 2 históricos preservados, gates 0/6.
+
+O7 separado: 54 nodos y 73 aristas; se reconciliaron once alias de los mismos ciclos C20–C30 para evitar contarlos dos veces. [Informe y QA](../research/INTEGRATION_20261030/REPORT.md). Los textos siguientes son históricos; el estado compacto superior y su briefing se actualizan antes de continuar.
+
+---
+
 # Continuación ABH10 · 30/10/2026 — C37 bloqueado sin consumir plazas
 
 **El usuario reautorizó la continuación de las cinco plazas ABH10 pendientes (no es una concesión adicional).** Se verificó PR #77 HEAD `491adb46eafd94f352f043fc4779fd202705091a` y se revisó AB3.2.1 O1–O7. **NUEVOS CICLOS EJECUTADOS EN ESTA CONTINUACIÓN = 0.** La contabilidad permanece **ABH10 5/10 válidos limitados, 5 ya autorizados y sin gastar, 2 históricos STOP_R5 separados**. C37 cuenta como **planificación documental BLOQUEADA**, no ciclo: A–J freeze commit `2cc076a4fa2c6d9fa0233384b932483fefc0ed4d`, registro AEARCTR-0000981 original e historial inaccesibles; 2018/2022/2025 son publicaciones de **un solo ensayo**, y su outcome ya era conocido. [Informe C37](../research/ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md) · [R5 e inventario de fuentes](../research/ABH10_NEW_20261030/CONTINUATION_R5_20261030.md). PF-BR78 y PF-BR79 se añadieron como priors POSTHOC sin ciclo; O7 añade nodo bloqueado C37.

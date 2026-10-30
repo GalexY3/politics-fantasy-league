@@ -1,3 +1,5 @@
+> **Continuidad entre chats:** leer [START_HERE.md](START_HERE.md), [estado vivo y hitos](PROJECT_STATE.json) y [prompt reutilizable](NEW_CHAT_PROMPT.md). La rama operativa estable es `integration/pfl`; la fusión a main se verifica por separado. Producto e investigación tienen objetivos y progreso distintos.
+
 # Politics Fantasy League
 
 Laboratorio en desarrollo: juego local con fixtures ficticias, observatorio de fuentes y subinvestigaciones metodologicas. El avance contractual V4 es 36,90 %; las puertas de lanzamiento siguen 0/6. Las pruebas tecnicas no acreditan validez predictiva ni autorizan puntuaciones sobre personas reales.
