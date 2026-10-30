@@ -1,0 +1,33 @@
+{
+  "schema": "pfl.abh25.c03.stage1.negative_access.v1",
+  "status": "BLOCKED_UNCOUNTED_PUBLISHED_CHECKSUM_DRIFT",
+  "mode": "AB-R_DOCUMENTARY_PLANNING_ONLY",
+  "cycle_candidate": "ABH25-C03",
+  "new_cycle_consumed": 0,
+  "source_url": "https://data.assemblee-nationale.fr/static/openData/repository/17/vp/reunions/Agenda.json.zip",
+  "expected_publisher_md5": "97332eb327d19e22d42a2f639e754d87",
+  "observed_download_md5": "bcdbda980881c326d437a69e78beaa9a",
+  "observed_sha256": null,
+  "original_archive_bytes_not_recorded": true,
+  "run_url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41019680394",
+  "job_id": 123943908867,
+  "run_conclusion": "failure",
+  "error": "ValueError PUBLISHED_CHECKSUM_DRIFT",
+  "before_outcomes": true,
+  "archive_unzipped": false,
+  "meeting_records_inspected": 0,
+  "possible_causes": [
+    "Official file may have been replaced since resource metadata indexing",
+    "HTTP cache/CDN may serve a different version",
+    "Unknown; no evidence of malicious tampering"
+  ],
+  "R5": "PARK until current authoritative published file/version hash verified from publisher; do not download again using old expected checksum just to consume a cycle",
+  "prior_stage0": "C03_STAGE0_CSV_RECEIPT.json",
+  "CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6"
+}
