@@ -1,10 +1,10 @@
 # PFL · briefing derivado
 
-Rama: `main`; HEAD: `35e9ebe409d6b37d7409b42ba610283901cda8ba`.
-Estado rev. 11; publicación declarada: MAIN_PR2_MERGED_CODE_REVIEW_PASS.
-Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
+Rama de trabajo: `research/pfl-abh25-evidence-and-product-20261030` (PR #3, draft); base de `main`: `653604358183b59e8c0446497f47ff4a3769134f` (verificar HEAD remoto de nuevo al continuar).
+Estado rev. 13; publicación canónica: MAIN_PR2_MERGED_CODE_REVIEW_PASS; ABH25 aún no fusionado.
+El código ABH25 vive SOLO en la rama de revisión; no está integrado a main. No confundir QA de la rama con liberación.
 
-Atlas: 95 lotes; SHA `39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a`; gates 0/6.
+Atlas: 96 lotes; SHA `8072ccbd76ed7851f96757cf8567a17e869f66d59da7ef6637f122583ac93d3f`, 63 nodos, 81 aristas, 314 ejecuciones, 51 complaints; gates 0/6.
 Autorización ABH10: 6/10 ejecutados; 4 disponibles, preservados bajo R5. Históricos separados: 2.
 
 ## Último trabajo de origen migrado (AB PR81)
@@ -19,25 +19,29 @@ Concesión nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados
 ## Concesión de continuación: lectura y trabajo sustantivo
 20 unidades totales: 5/5 revisiones documentales; 0 ciclos científicos válidos nuevos; 15 unidades sustantivas disponibles. Las revisiones y el mantenimiento no son experimentos; no sumar otra vez esta concesión.
 
+## Nueva concesión ABH25 (independiente, 30/10/2026)
+25 autorizados, 2 válidos de alcance limitado ejecutados: C01 AB-R original de código externo, C02 AB-P HTTP ficticio; 1 intento C03 solo planificación bloqueada sin consumir; quedan 23. Contratos, recibos, prior PF-BR81/82 y O7 están en `research/ABH25_20261030/`; Atlas lote 0096. Históricos READ5-CONTINUE15 (15), ABH10 (4), INTEGRATION10 (10) y STOP_R5 (2) intactos.
+
+C01: fuente original [Suite à donner](https://github.com/Clemsrec/suiteadonner/blob/a627cc26f255231d67faebb14e265523e46c0a66/scripts/fetch-reunions.mjs), script inspeccionado sin `first_public_at` acreditado por evento; no equivale a ausencia universal ni prueba causal. C02: [Actions #41018524103](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41018524103), 2/2 pruebas HTTP de dos cuentas, rondas, controles negativos y persistencia. C03: [CSV oficial](research/ABH25_20261030/C03_STAGE0_CSV_RECEIPT.json) 29 filas, MD5 coincidente, sin meeting ID; [ZIP oficial](research/ABH25_20261030/C03_STAGE1_BLOCKED.json) con MD5 distinto al publicado y FAIL-CLOSED antes de abrir: PARK/R5, no repetir sin nueva versión autenticada.
+
 ## product
 - P0-INTEGRATION [DONE]: Una base técnica y de evidencia reunida y revisable. Siguiente: Integración incorporada; el siguiente hito de producto es P1-ACCOUNTS con datos ficticios
-- P1-ACCOUNTS [READY_REVIEW]: Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público. Siguiente: Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada
-- P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: Tras aceptación humana P1, comprobar acceso→club→alineación→jornada ficticia→resultado en navegador con persistencia/reinicio.
+- P1-ACCOUNTS [READY_REVIEW]: Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público. Siguiente: 2/2 pruebas HTTP reales en Linux, pero revisión humana de dos perfiles en navegador pendiente antes de DONE
+- P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: test HTTP de acceso→club→alineación→jornada ficticia→resultado y reinicio PASS; faltan UX real y aceptación humana antes de DONE.
 - P-CONTINUITY [DONE]: Continuidad verificable entre conversaciones sin copiar un resumen que caduque. Siguiente: Cada nueva sesión lee START_HERE y cada cierre guarda estado y handoff
 - P-ORGANIZATION [DONE]: Mapa por tareas, catálogo buscable e índice de investigaciones mantenidos con Git. Siguiente: Regenerar catálogo al cambiar rutas versionadas; conservar la trazabilidad de los archivos históricos
 - P-MIGRATION [DONE]: Proyecto independiente de AB con historia y herramientas reproducibles. Siguiente: Continuar P1-ACCOUNTS en este repositorio; adoptar cambios de AB solo explícitamente
 
 ## research
 - R0-FEASIBLE-QUESTION [DONE]: Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta. Siguiente: Pregunta/acceso validados; continuar R1 con medida auditada y antecedente competente, sin reivindicar novedad general.
-- R1-DISCRIMINATING-RESULT [READY_REVIEW]: Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario. Siguiente: C38 sigue negativo descriptivo. Cuatro casos posthoc validan omisiones locales del CSV, sin corregir su efecto; fijar corpus nuevo y baseline antes del contraste siguiente.
+- R1-DISCRIMINATING-RESULT [READY_REVIEW]: Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario. Siguiente: C38 negativo descriptivo sin corrección causal; C03 no habilita corpus nuevo por falta de enlace y desfase MD5 del ZIP. Reabrir solo con versión oficial verificada.
 - R-AEA-C37 [PARKED]: Acceso al registro original e historial del ensayo AEARCTR-0000981. Siguiente: No repetir búsquedas equivalentes
 - R-T005 [PARKED]: Originales y condiciones de uso suficientes para una pieza concreta de T005. Siguiente: Reabrir solo la pieza para la que haya evidencia nueva
 
 ## Última validación declarada
-Full Linux 7de66007: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS. Later allocation validator: 14 continuity tests PASS; new posthoc instrument: 6 controls PASS and actual originals audit. Current Atlas/index/continuity checked separately; raw evidence in continuation folder.
+Histórico full Linux de PFL #2: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS en `7de66007`. Nueva rama ABH25: Actions #41018524103 HTTP real 2/2 PASS; #41018842403 Atlas96 96 lotes SHA `8072cc...` PASS; #41019269617 catálogo y project_status PASS en un commit anterior a C03. Run #41019397612 falló por índice desactualizado tras C03; catálogo/mapa/índice regenerados en la rama. C03 CSV original #41019397659 PASS; ZIP original #41019680394 FALLÓ MD5, conservado. No afirmar full suite ni estado íntegro en HEAD actual sin nueva ejecución.
 
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 
-Consistencia: PASS
-Huella código/tests: `892ef755fcec3985512ffa02661ece29f4c1799b6b0fcbb63c09c1d9fb75a8dd`.
+Consistencia: pendiente de `python scripts/project_status.py check` y de `python scripts/project_index.py check` sobre el HEAD final de esta rama. No se recalculó la huella código/tests en el API.
 No pedir ciclos por fórmula. Aparcar bloqueos sin observación nueva. Actualizar PROJECT_STATE y este handoff al cerrar.
