@@ -1,6 +1,6 @@
 # PFL · briefing derivado
 
-Rama: `migration/pfl-final-cutover-20261030`; HEAD: `903c000c3f6a60f408cc470564471cfba9a1354a`.
+Rama: `migration/pfl-final-cutover-20261030`; HEAD: `bc38a456945f1c6c5d5e9d0c0521814720bcbd40`.
 Estado rev. 8; publicación declarada: STANDALONE_QA_PASS_CUTOVER_PENDING.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
