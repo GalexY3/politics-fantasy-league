@@ -1,11 +1,11 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 7,
+  "revision": 8,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
   "operational_branch": "main",
   "publication_branch": "main",
-  "publication_status": "STANDALONE_QA_PASS_CUTOVER_PENDING",
+  "publication_status": "MAIN_STANDALONE_PUBLISHED",
   "entry_url": "https://github.com/GalexY3/politics-fantasy-league/blob/main/START_HERE.md",
   "source_heads": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
@@ -173,17 +173,18 @@
     {
       "id": "P-MIGRATION",
       "lane": "product",
-      "status": "READY_REVIEW",
+      "status": "DONE",
       "outcome": "Proyecto independiente de AB con historia y herramientas reproducibles",
       "acceptance": "Identidad de archivos importados, mapa de commits, rutas corregidas, QA completo y una única autoridad publicada; entradas AB redirigen después de verificar destino",
-      "next_action": "Publicar y comprobar destino; retirar copia activa de AB con redirecciones",
+      "next_action": "Continuar P1-ACCOUNTS en este repositorio; adoptar cambios de AB solo explícitamente",
       "dependencies": [
         "P0-INTEGRATION"
       ],
       "evidence": [
         "docs/migration/SOURCE_TREE.json",
         "docs/migration/linux/MANIFEST.json",
-        "docs/migration/PORT_CODE.patch"
+        "docs/migration/PORT_CODE.patch",
+        "docs/migration/PUBLICATION_RECEIPT.json"
       ],
       "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224"
     }
@@ -207,18 +208,6 @@
   },
   "closure_rule": "Guardar estado compacto + briefing/handoff + evidencia observada; no pedir ciclos por fórmula; no consumir saldo por mantenimiento.",
   "integration_pr": "https://github.com/GalexY3/Metodologia-AB/pull/80",
-  "publication_observed": {
-    "pr": 80,
-    "url": "https://github.com/GalexY3/Metodologia-AB/pull/80",
-    "merged": true,
-    "merge_commit": "0ff160f301eb2b200f24e4335f962c42ece61268",
-    "approved_head": "825bbef8acf0b568178b4aaed5f15d3eea792f4f",
-    "reviewed_code_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
-    "previous_main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
-    "method": "merge",
-    "source": "Observed GitHub merge tool response; expected head SHA enforced",
-    "new_ab_cycles": 0
-  },
   "canonical_repository": "https://github.com/GalexY3/politics-fantasy-league",
   "method_reference": "METHOD_REFERENCE.json",
   "migration_source": {
@@ -233,5 +222,61 @@
     "summary": "Linux limpio 074f72e1: 820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; catálogo/continuidad/replay PASS. Regresión determinista del almacén roja en baseline y verde en corrección.",
     "evidence": "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json",
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
-  }
+  },
+  "source_publication_observed": {
+    "pr": 80,
+    "url": "https://github.com/GalexY3/Metodologia-AB/pull/80",
+    "merged": true,
+    "merge_commit": "0ff160f301eb2b200f24e4335f962c42ece61268",
+    "approved_head": "825bbef8acf0b568178b4aaed5f15d3eea792f4f",
+    "reviewed_code_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
+    "previous_main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "method": "merge",
+    "source": "Observed GitHub merge tool response; expected head SHA enforced",
+    "new_ab_cycles": 0
+  },
+  "publication_observed": {
+    "destination_repository": "GalexY3/politics-fantasy-league",
+    "published_head": "24190815ed361b47ac688f532a57f1812f796f97",
+    "readback_files_verified": true,
+    "new_issue": {
+      "number": 1,
+      "url": "https://github.com/GalexY3/politics-fantasy-league/issues/1"
+    },
+    "new_ab_cycles": 0,
+    "schema": "pfl.migration.publication_receipt.v1",
+    "source_repository": "GalexY3/Metodologia-AB",
+    "source_snapshot": "69ed402dd4a3f25207d9e620ede568b5e92ad8af",
+    "source_cutover_commit": "385d6a21958cbe3bf18d7fd6f01d50538f6da2c5",
+    "source_main_and_integration_verified": true,
+    "source_retained_entry_files": [
+      "proyectos/politics-fantasy-league/AGENTS.md",
+      "proyectos/politics-fantasy-league/HANDOFF.md",
+      "proyectos/politics-fantasy-league/NEW_CHAT_PROMPT.md",
+      "proyectos/politics-fantasy-league/PROJECT_MAP.md",
+      "proyectos/politics-fantasy-league/PROJECT_STATE.json",
+      "proyectos/politics-fantasy-league/README.md",
+      "proyectos/politics-fantasy-league/START_HERE.md",
+      "proyectos/politics-fantasy-league/ab_atlas/CURRENT.md",
+      "proyectos/politics-fantasy-league/ab_atlas/README.md",
+      "proyectos/politics-fantasy-league/docs/MAIN_REVIEW_20261030.md",
+      "proyectos/politics-fantasy-league/docs/WORKING_AGREEMENT.md",
+      "proyectos/politics-fantasy-league/tareas_codex/README.md"
+    ],
+    "source_snapshot_tag": "pfl-monorepo-final-20261030",
+    "source_workflows_preserved": 16,
+    "source_issue": {
+      "url": "https://github.com/GalexY3/Metodologia-AB/issues/17",
+      "state": "closed",
+      "reason": "Migrated; outstanding tasks continue in destination issue 1"
+    },
+    "tested_code_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224",
+    "source_generic_atlas_tests": {
+      "environment": "Windows Python 3.14",
+      "passed": 37
+    },
+    "owned_repositories_public_verified": 12,
+    "scope": "Observed GitHub API/git readback; subsequent commit contains metadata, evidence and navigation only."
+  },
+  "tracking_issue": "https://github.com/GalexY3/politics-fantasy-league/issues/1"
 }

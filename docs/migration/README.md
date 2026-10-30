@@ -18,13 +18,13 @@ Los verificadores de hitos resuelven SHA históricos mediante ese mapa. La exist
 
 La raíz del proyecto pasa a ser la del repositorio. Se adaptan catálogo, briefing, importación del motor Atlas y su prueba de compatibilidad; la app, las reglas y las evidencias no se reescriben por una mudanza. Se regenera la navegación y se fija la metodología mediante enlaces a una revisión concreta de AB.
 
-Los documentos operativos apuntan al repositorio nuevo. Los informes históricos y recibos se conservan como fuentes fechadas; sus enlaces originales no se sustituyen a ciegas. Los puntos de entrada del repositorio AB se convertirán en redirecciones solo después de publicar y verificar este destino.
+Los documentos operativos apuntan al repositorio nuevo. Los informes históricos y recibos se conservan como fuentes fechadas; sus enlaces originales no se sustituyen a ciegas. Los puntos de entrada de AB se convirtieron en redirecciones después de publicar y verificar este destino.
 
 ## Verificación y corte
 
 QA íntegro sobre `3d66e813a422572b2a2ce7a3155df8dac667e224`: **822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS**, cero fallos/skips. Instalación desde `.[test]`, catálogo, continuidad, logros y replay PASS. [Resultados y hashes](linux/MANIFEST.json), [comandos](check.sh), [preparación Linux](bootstrap.sh), [adaptación de código/configuración](PORT_CODE.patch). Linux Alpine 3.24, Python 3.14 y Node 24; UID sin privilegios, red externa desactivada durante pruebas. La instalación genera `build/` y `*.egg-info/` en el entorno efímero; no cambia archivos versionados.
 
-El corte de AB queda pendiente hasta verificar la publicación del destino. No se ejecutan nuevos ciclos AB por esta operación, ni se infieren concesiones de otros chats que no consten en el ledger migrado.
+**Corte completado y comprobado** en AB `385d6a21958cbe3bf18d7fd6f01d50538f6da2c5`, ramas `main` e `integration/pfl`. Doce entradas antiguas redirigen; el código activo y los workflows PFL ya no están allí. La etiqueta `pfl-monorepo-final-20261030` fija el snapshot previo. [Recibo de publicación y traslado de seguimiento](PUBLICATION_RECEIPT.json). Las copias locales principales `Metodologia-AB` y `PFL-unified` se actualizaron por fast-forward; los worktrees de investigación antiguos son históricos, sin reescritura. No se ejecutan nuevos ciclos AB por esta operación, ni se infieren concesiones de otros chats que no consten en el ledger migrado.
 
 La CI remota queda manual. Datos raw/private/local_field no versionados y credenciales no forman parte de la extracción.
 

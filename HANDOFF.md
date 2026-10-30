@@ -1,7 +1,7 @@
 # PFL · briefing derivado
 
-Rama: `main`; HEAD: `24190815ed361b47ac688f532a57f1812f796f97`.
-Estado rev. 7; publicación declarada: STANDALONE_QA_PASS_CUTOVER_PENDING.
+Rama: `main`; HEAD: `903c000c3f6a60f408cc470564471cfba9a1354a`.
+Estado rev. 8; publicación declarada: MAIN_STANDALONE_PUBLISHED.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
 Atlas: 93 lotes; SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`; gates 0/6.
@@ -13,7 +13,7 @@ Autorización ABH10: 5/10 ejecutados; 5 disponibles, preservados bajo R5. Histó
 - P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: Tras P1, verificar un recorrido de usuario completo y corregir fricciones observadas
 - P-CONTINUITY [DONE]: Continuidad verificable entre conversaciones sin copiar un resumen que caduque. Siguiente: Cada nueva sesión lee START_HERE y cada cierre guarda estado y handoff
 - P-ORGANIZATION [DONE]: Mapa por tareas, catálogo buscable e índice de investigaciones mantenidos con Git. Siguiente: Regenerar catálogo al cambiar rutas versionadas; conservar la trazabilidad de los archivos históricos
-- P-MIGRATION [READY_REVIEW]: Proyecto independiente de AB con historia y herramientas reproducibles. Siguiente: Publicar y comprobar destino; retirar copia activa de AB con redirecciones
+- P-MIGRATION [DONE]: Proyecto independiente de AB con historia y herramientas reproducibles. Siguiente: Continuar P1-ACCOUNTS en este repositorio; adoptar cambios de AB solo explícitamente
 
 ## research
 - R0-FEASIBLE-QUESTION [IN_PROGRESS]: Una pregunta sociológica delimitada con evidencia accesible y falsador. Siguiente: Una sesión acotada para seleccionar entre feedback humano, respuesta institucional u otro mecanismo formal claramente etiquetado; no repetir C37 sin artefacto nuevo

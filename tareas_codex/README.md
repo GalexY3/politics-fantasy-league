@@ -1,6 +1,8 @@
 > **Cola migrada:** este repositorio es la autoridad. Los SHA, PR y resultados antiguos conservan su origen en AB; para ejecución actual consultar START_HERE y el informe de migración.
 
-# Cola de Politics Fantasy · rama de integración
+# Cola de Politics Fantasy · main independiente
+
+**Seguimiento vigente:** [PFL#1](https://github.com/GalexY3/politics-fantasy-league/issues/1). QA de extracción: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS. [Migración completada](../docs/migration/README.md).
 
 **Entrada de continuidad:** [START_HERE](../START_HERE.md). Los objetivos y siguientes acciones de producto e investigación se mantienen en [PROJECT_STATE.json](../PROJECT_STATE.json); este índice conserva los expedientes históricos.
 
