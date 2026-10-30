@@ -1,0 +1,26 @@
+{
+  "schema": "pfl.abh10.atlas92.maintenance_freeze.v1",
+  "activity": "NON_CYCLE_APPEND_ONLY_ATLAS_VALIDATION",
+  "date": "2026-10-30",
+  "head_expected": "0092-PFL-ABH10-C31-C33-C34-C35-C36-20261030",
+  "expected_batches": 92,
+  "code_original_git": {
+    "atlas_delta": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "abmap": "687449178deba84f77b6cc2df2c61cc36d9cf0cd",
+    "seed": "f503c3fe3432110de2edf3a3d7517ca344c40623"
+  },
+  "workflow_to_upload": {
+    "path": ".github/workflows/pfl-abh10-atlas92-maintenance-recheck.yml",
+    "Git_blob_precomputed": "f8761ecacf14ea1211b8af566e883f27923b28a3",
+    "sha256": "eb5e679c7243ce5a3ebce024a170b8616c59127c4192a94516265e84927fb5c6",
+    "bytes": 2869
+  },
+  "purpose": "Validate that append-only Atlas batch 0092 after earlier genuine C33 check of 91 is canonically replayable by original Python, with brief matching SHA. No experiment, no new AB cycle or prior credit.",
+  "resource_budget": "GitHub Actions one shot 3 min cap no pip/npm, no new data",
+  "classification_on_failure": "BLOCKED_OR_INVALID_MAINTENANCE_ONLY, preserve five executed bounded ABH10 cycles but mark Atlas92 unvalidated",
+  "classification_on_success": "Atlas92 exact canonical digest, node and edge counts; not independent scientific evidence",
+  "PFL_scientific_CT2_ordinal": 20,
+  "new_grant_used": 5,
+  "new_remaining_R5": 5,
+  "historical_STOP_R5": 2
+}
