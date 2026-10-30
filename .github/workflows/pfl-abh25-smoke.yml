@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          fetch-depth: 1
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
@@ -34,3 +34,7 @@ jobs:
         run: |
           python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
           python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 3
+      - name: Canonical tracked index check
+        run: python scripts/project_index.py check
+      - name: State, budgets and O7 consistency check
+        run: python scripts/project_status.py check
