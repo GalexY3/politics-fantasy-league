@@ -1,11 +1,13 @@
-name: PFL ABH25 final Atlas audit
+name: PFL ABH25 final full Linux verification
 on:
+  pull_request:
+    paths: [.github/workflows/pfl-abh25-final-audit.yml]
 permissions:
   contents: read
 jobs:
   review:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -14,7 +16,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
-      - name: Verify append-only Atlas97 and source checksum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install --disable-pip-version-check -e '.[test]'
+      - name: Full Python regression suite
+        run: PYTHONPATH=src python -m pytest -q -rs
+      - name: Atlas engine full suite
+        run: python -m pytest -q -rs tools/ab_atlas/tests
+      - name: Full Node suite
+        run: node scripts/run_node_tests.mjs
+      - name: Replay Atlas97 and validate sources and state
         run: |
           python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
-          python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 1
+          python scripts/project_index.py check
+          python scripts/project_status.py check
+      - name: Verify new and legacy grant arithmetic
+        run: python scripts/abh25_final_budget_check.py
