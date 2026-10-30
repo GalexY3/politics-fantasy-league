@@ -938,6 +938,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR71",
+      "claim": "When the same forecasting model appears in two public leaderboard rankings, a change in position identifies a change in forecast quality.",
+      "update": "REJECT_UNMATCHED_RANK_DENOMINATORS: original CC-BY-SA model-level ForecastBench leaderboard baseline vs tournament, preregistered A-J first, only 11 unique comparable model keys N>=20 of 130 and 464 rows; every matched N equal, median Overall difference 0 and mean +0.336 units, yet mean rank shift +296. Ranking shift cannot be causal effect.",
+      "support": "C31 prereg Git commit 7d0d6f921ce093e5f9f92d8cc2ba8b35d463cec8, original V8 compiled exact frozen parser/test 11/11 pass and original pinned upstream Git blobs 9a6c441644b88fef649942dfb21dd2be5be759dc/63740de68261eeaddb24731df2d5b848049050e2; posthoc delta distribution audit no IDs. Only model aggregates, no participant-level data or new PFL randomization.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH10_NEW_20261030/C31_RUN_RECEIPT.json",
+      "type": "INDEPENDENT_PUBLISHED_LICENSED_EXTERNAL_MODEL_AGGREGATES_AB_R",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Competition question sets/vintage, relative denominator, and submission selection not equal; 'Overall' unit origin unverified, no identity return and no causal effect."
     }
   ],
   "CT2_parent_unchanged": 29,
@@ -1192,5 +1204,15 @@
     "new_product": "C15 five-arm assignment/opportunity/receipt synthetic join Node 20/20 frozen; missing is unknown; real exposure attestation unverified",
     "posthoc_non_cycle_source": "PF-BR54 open-access Chen et al. 2024 randomised local leaderboard rank/effort displacement; article primary data unavailable, no independent C15 prereg",
     "multi_axis_family": "C20-C30 preplanned distinct technical 11 functions in shared source, native first 22/22 but 7 invalid/incomplete found, repaired to 30/30; no human science and no independent replication"
+  },
+  "latest_ABH10": {
+    "grant": 10,
+    "new_completed": 1,
+    "new_remaining": 9,
+    "branch": "research/pfl-abh10-source-atlas-o7-20261030",
+    "CT2_scientific_ordinal": 20,
+    "latest_prior": "PF-BR71",
+    "human_causal_results": 0,
+    "release_gates": "0/6"
   }
 }
