@@ -1,0 +1,20 @@
+name: PFL ABH25 UK strict second-page audit
+on:
+  push:
+    paths:
+      - .github/workflows/pfl-abh25-c07.yml
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25-c07.yml
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python research/ABH25_20261030/c07_uk_response_strict.py
