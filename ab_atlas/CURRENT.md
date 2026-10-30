@@ -1,3 +1,11 @@
+# Continuación ABH10 · 30/10/2026 — C37 bloqueado sin consumir plazas
+
+**El usuario reautorizó la continuación de las cinco plazas ABH10 pendientes (no es una concesión adicional).** Se verificó PR #77 HEAD `491adb46eafd94f352f043fc4779fd202705091a` y se revisó AB3.2.1 O1–O7. **NUEVOS CICLOS EJECUTADOS EN ESTA CONTINUACIÓN = 0.** La contabilidad permanece **ABH10 5/10 válidos limitados, 5 ya autorizados y sin gastar, 2 históricos STOP_R5 separados**. C37 cuenta como **planificación documental BLOQUEADA**, no ciclo: A–J freeze commit `2cc076a4fa2c6d9fa0233384b932483fefc0ed4d`, registro AEARCTR-0000981 original e historial inaccesibles; 2018/2022/2025 son publicaciones de **un solo ensayo**, y su outcome ya era conocido. [Informe C37](../research/ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md) · [R5 e inventario de fuentes](../research/ABH10_NEW_20261030/CONTINUATION_R5_20261030.md). PF-BR78 y PF-BR79 se añadieron como priors POSTHOC sin ciclo; O7 añade nodo bloqueado C37.
+
+**Atlas canónico sigue en 0092**, 92 lotes, 63 nodos, 81 aristas, SHA `a8b77478962627b3be78023a34ef20b075537a6b7eab0b90a98dab8018deb9fb` (última ejecución nativa existente; **no repetida en esta continuidad**). **No hay 0093 porque no hay nuevos ciclos ejecutados.** O7 es un grafo distinto. Ciencia PFL CT2 20/100 ordinal, nuevos N1/N2/N3 cero, gates de lanzamiento 0/6. No main merge ni CI costosa.
+
+---
+
 # ABH10 · 30/10/2026: C31, C33, C34, C35, C36 ejecutados, STOP_R5 local
 
 **Autorización nueva 10 ciclos:** **5 ejecutados de alcance limitado**, **5 ya autorizados y NO gastados por R5**, más **2 históricos separados STOP_R5**. El bloque anterior ABH30 sigue 30/30 sin duplicación. [Informe A–J ABH10](../research/ABH10_NEW_20261030/ABH10_FINAL_REPORT.md) · [ledger de autorización](../research/ABH10_NEW_20261030/AUTHORIZATION_AND_BASELINE.json) · [CT2 full/zoom](../research/ABH10_NEW_20261030/CT2_FULL_AND_ZOOM_ABH10.svg).
