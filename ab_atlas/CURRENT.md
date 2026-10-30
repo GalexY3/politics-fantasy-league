@@ -4,6 +4,8 @@
 
 Replay nativo actual: **93 lotes, 63 nodos, 81 aristas, 310 runs, 51 incidencias y 488 operaciones**, SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`. El lote 0093 importa exactamente las operaciones del 0081 CODEX20 paralelo, cuyo original se conserva byte a byte en [el archivo de integración](../research/INTEGRATION_20261030/ATLAS_RECONCILIATION.json). **0 ciclos nuevos**, 5 ABH10 y 2 históricos preservados, gates 0/6.
 
+QA Linux del árbol integrado `a4a730f3`: **806 Python +32 subtests, 508 Node y 38 Atlas +104 subtests PASS**, cero fallos/omisiones. Estado compacto verificado. Propuesta en PR80, sin fusionar main.
+
 O7 separado: 54 nodos y 73 aristas; se reconciliaron once alias de los mismos ciclos C20–C30 para evitar contarlos dos veces. [Informe y QA](../research/INTEGRATION_20261030/REPORT.md). Los textos siguientes son históricos; el estado compacto superior y su briefing se actualizan antes de continuar.
 
 ---

@@ -5,15 +5,15 @@
   "repository": "GalexY3/Metodologia-AB",
   "branch": "integration/pfl",
   "baseline_head_before_task_queue": "8f21411b0c4caf267d77721510d06129fe2eedbe",
-  "execution_status": "INTEGRATION_CANDIDATE_QA_IN_PROGRESS",
+  "execution_status": "INTEGRATED_QA_PASS_READY_HUMAN_REVIEW",
   "codex_available_to_user": true,
   "github_issue_number": 17,
   "method": "AB 3.2.1 O3-O7, only measured A-J work counts as cycles",
   "scope": {
     "atlas_lots": 93,
     "canonical_atlas": "PASS_93_LOTS_SHA256_7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d",
-    "full_repo_python": "LINUX_799_PASS_32_SUBTESTS_0_FAIL_0_SKIP_COMMIT_56b5049741fda5f94663e35dfdd0e589fdde0e05",
-    "full_repo_node": "LINUX_341_PASS_0_FAIL_0_SKIP_COMMIT_29a85c8387df70b967a83a68ab63c929d54b35b1",
+    "full_repo_python": "LINUX_806_PASS_32_SUBTESTS_0_FAIL_0_SKIP_COMMIT_a4a730f3962edc0703ab0be8c3901a309366e7b6",
+    "full_repo_node": "LINUX_508_PASS_0_FAIL_0_SKIP_COMMIT_a4a730f3962edc0703ab0be8c3901a309366e7b6",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
     "progress_contractual_percent": 36.9,
@@ -441,13 +441,13 @@
     }
   ],
   "no_automatic_actions": true,
-  "no_main_merge": false,
+  "no_main_merge": true,
   "no_expensive_ci": true,
   "no_real_person_scoring": true,
-  "last_verified_by": "Current integration replay93; full candidate QA in progress. Historical task evidence remains scoped to its original commit.",
+  "last_verified_by": "Codex 30 Oct 2026 integration a4a730f3: Linux806 Python+32 subtests, Node508, Atlas38+104 subtests, replay93, continuity and achievements v6 all PASS; main not merged",
   "execution_base_head": "6e359a89e74f06927e51ca4dc8a9ea1714e37acd",
   "consolidation_permission": "2026-10-28 user expressly authorized integration of current PFL history into main; this does not authorize future uncontrolled merges",
-  "branch_policy": "main source of truth for future verified evidence; archival divergent branches retained until explicit audit; avoid new working branches absent need",
+  "branch_policy": "integration/pfl is the stable operational line; main publication is reviewed separately; one change branch per milestone, not per chat or conceptual cycle",
   "active_campaign": {
     "id": "ABH10",
     "authorized": 10,
@@ -479,7 +479,8 @@
     "branch": "integration/pfl",
     "scope": "Selected PR44/45/75/79 integrated; imported original CODEX20 delta as 0093, no new AB cycles",
     "entry": "../START_HERE.md",
-    "report": "../research/INTEGRATION_20261030/REPORT.md"
+    "report": "../research/INTEGRATION_20261030/REPORT.md",
+    "pr": 80
   },
   "reconciliation_20261030": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",

@@ -35,6 +35,23 @@ La tensión entre R5 y la obligación O6 de pedir más ciclos es observada en lo
 
 ## QA del candidato
 
-Pendiente de ejecución Linux íntegra sobre el commit de integración congelado. Primer Node Windows: 506 PASS, 1 FAIL y 1 SKIP; los dos últimos son creación de symlinks sin privilegios. Se conserva el negativo y se ejecutarán esos controles en Linux sin omitirlos. Los 7 tests específicos de continuidad pasan, incluido rechazo de Atlas obsoleto, presupuesto reiniciado, finalización inventada, evidencia ausente y exceso de hitos activos.
+La ejecución Linux íntegra del commit congelado terminó aprobada; se detallan sus resultados a continuación. Primer Node Windows: 506 PASS, 1 FAIL y 1 SKIP; los dos últimos son creación de symlinks sin privilegios. Se conserva el negativo y se ejecutarán esos controles en Linux sin omitirlos. Los 7 tests específicos de continuidad pasan, incluido rechazo de Atlas obsoleto, presupuesto reiniciado, finalización inventada, evidencia ausente y exceso de hitos activos.
 
 No se ha fusionado main, borrado ramas, publicado datos personales, puntuado políticos reales ni ejecutado CI remota. Los gates siguen 0/6. La autenticación y el recorrido ficticio son trabajo siguiente, no capacidades que esta integración ya implemente.
+
+## Resultado final observado
+
+Checkout íntegro y limpio **`a4a730f3962edc0703ab0be8c3901a309366e7b6`**, Linux Alpine 3.24.3 bajo QEMU 11.1.0, usuario pfl UID1000 y tmpfs, Python 3.14.10, pytest9.0.3, Node24.22.1. Dependencias instaladas antes de cortar la red exterior; loopback activo durante pruebas. VM apagada al terminar. Sin CI remota.
+
+| Comprobación | Resultado | Exit |
+| --- | --- | ---: |
+| Consistencia del estado vivo | PASS, Atlas y saldo derivados del ledger | 0 |
+| Registro de logros | v6, 5/90 simbólicos, sin promover ciencia/gates | 0 |
+| Checker y replay Atlas | 93 lotes; SHA7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d | 0 |
+| Tests Atlas | 38 PASS +104 subtests PASS, 9,07 s | 0 |
+| Suite Python completa PFL | 806 PASS +32 subtests PASS, 59,49 s | 0 |
+| Suite completa Node, incluye src y release guard | 508 PASS, 0 fallos/skips, 80,87 s | 0 |
+
+Los siete tests de continuidad forman parte de los 806, no se suman dos veces. Los negativos Windows por symlink se preservan y los controles Linux se ejecutan sin omisión. Se verificaron tamaño y SHA256 de cada archivo contra el manifiesto generado dentro del invitado. Comandos y entorno en `linux/check.sh`, `linux/bootstrap.sh` y `linux/environment.txt`; resultados íntegros y hashes en `linux/MANIFEST.json`.
+
+La [PR80 contra main](https://github.com/GalexY3/Metodologia-AB/pull/80) reúne la propuesta. `integration/pfl` es la entrada operativa estable desde ahora; `main` sigue sin fusionar. P0 queda READY_REVIEW, la continuidad entregada queda DONE, autenticación y flujo ficticio están QUEUED, la elección de pregunta social sigue IN_PROGRESS. No se afirma que el mantenimiento haya ejecutado esa investigación ni resuelto sus datos externos.
