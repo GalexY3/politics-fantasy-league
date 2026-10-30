@@ -1,0 +1,32 @@
+{
+  "schema": "pfl.abh25.c03.stage0.primary_source_probe.v1",
+  "status": "SUCCESS_METADATA_ONLY_UNLINKABLE_FRAME",
+  "cycle_counted": 0,
+  "source_url": "https://data.assemblee-nationale.fr/static/openData/repository/17/vp/reunions/reunions_init_commission_libre_office.csv",
+  "source_publisher": "Assemblée nationale",
+  "publisher_md5": "255fd1632c8993b3dcf6d6c303b3d2d3",
+  "md5_match": true,
+  "source_sha256": "9ee8c4f501532874ced99adce43dd2a162beef08f9b4f646d674b18a37ca37dd",
+  "source_bytes": 16285,
+  "header": [
+    "Type de commission",
+    "Date",
+    "Heure",
+    "À l'initiative de",
+    "Ordre(s) du jour"
+  ],
+  "rows": 29,
+  "has_meeting_id": false,
+  "has_minute_ref": false,
+  "has_petition_decisions": false,
+  "run": {
+    "url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41019397659",
+    "job_id": 123943029496,
+    "conclusion": "success",
+    "no_outcome_read": true
+  },
+  "decision": "STOP CSV_ONLY_LINKAGE; attempt structurally different official Agenda.json.zip metadata (not minutes) at most once, or park",
+  "noncausal": true,
+  "authorization_note": "Metadata-only preparation; no scientific cycle burned",
+  "source_license": "Open licence on official data portal; no original acta text stored"
+}
