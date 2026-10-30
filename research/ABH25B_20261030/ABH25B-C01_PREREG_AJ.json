@@ -1,0 +1,26 @@
+{
+  "schema": "pfl.ab3.2.1.aj",
+  "cycle": "ABH25B-C01",
+  "mode": "AB-R",
+  "status": "PRE_DATA_FROZEN",
+  "A": "In fixed, nonadjacent pages 7,17,37,67 of UK closed e-petitions, how are government response publication lags distributed relative to the 14 and 21 day administrative targets? Unit: distinct petitions with both threshold and response dates.",
+  "B": {
+    "H1": "Published response lags predominantly <=21 calendar days in this nonprobability selection",
+    "H0": "Material fraction >21 days and/or missing/censored response dates",
+    "rivals": [
+      "API ranking and first-page selection affect sample",
+      "Government changed response practice by cohort; older petitions not representative",
+      "Administrative guidance is not a causal model and 14/21 days may be working vs calendar"
+    ]
+  },
+  "C": "GET fixed pages only; 2MB/page 25 records cap; sha256 each raw page; strict parse timestamps and id uniqueness; no titles/creators/IDs exported; distinct vs prior pages1&2.",
+  "D": "Frozen Python source in same campaign, examples before outcomes; no adaptive page replacement. Coverage, eligible, non-response and inversions separately. If a page unavailable record failure, not silently replace.",
+  "E": "GitHub Actions read-only, <=3 minutes, one execution. Metadata/page-by-page checksum and count.",
+  "F": "Negative control: threshold date alone never a government response. Censoring/NULL explicit; inverted time flagged. Aggregates by >=100k solely descriptive.",
+  "G": "Compare UK parliamentary policy on 14 days, 21 latest with measured raw dates; avoid inference to France and real-world causal impact.",
+  "H": "New carefully scoped institutional descriptive prior only with original pages verified.",
+  "I": "CT2 20 ordinal, N1/2/3 0 until independent meaningful corroboration; release gates 0/6.",
+  "J": "Count one empirical AB-R only if original public observations and adversarial parser checks execute; else blocked and pivot.",
+  "known_prior_art": "UK Parliament MPs Guide documented department should respond within 14 days and at latest 21 days. Prior two pages of UK API seen under ABH25, not reused.",
+  "grant": "PFL-ABH25B-20261030"
+}
