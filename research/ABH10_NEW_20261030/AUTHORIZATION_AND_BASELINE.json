@@ -74,19 +74,27 @@
       "prereg_commit": "b69cf855b7b55ff45e778bea91f3a62d60ed0cee",
       "receipt": "C36_RUN_RECEIPT.json",
       "evidence": "Original source 212 mutations: 135 date-only, 77 changed resolved_to; 7/7 native tests then original V8 source analysis"
+    },
+    {
+      "cycle": "ABH10-C37",
+      "status": "BLOCKED_NONCYCLE_PLANNING_ONLY_REGISTRY_UNAVAILABLE",
+      "mode": "AB-R_PLANNING_D3",
+      "prereg_commit": "2cc076a4fa2c6d9fa0233384b932483fefc0ed4d",
+      "receipt": "C37_BLOCKED_NOT_COUNTED.md",
+      "evidence": "Official original AEARCTR-0000981 version history unaccessible; only 2018/2022/2025 posthoc paper versions reviewed, one cohort not independent replication. No original registry/version fields inspected; no cycle counted."
     }
   ],
   "source_credits": "CC-BY-SA-4.0 ForecastBench external published aggregate leaderboard candidate (not causal PFL)",
   "R5_decision": {
-    "state": "STOP_LOCAL_ON_NO_NEW_INDEPENDENT_EVIDENCE_CLASS",
+    "state": "STOP_R5_AFTER_C37_BLOCKED_NO_NEW_INDEPENDENT_CLASS",
     "new_slots_preserved": 5,
     "historical_two_preserved": 2,
-    "reason": "Five distinct original source/native integration findings completed; next branches require legally usable new human exposure or genuinely independent original public events, not extra simulations/versions or literature posthoc.",
+    "reason": "C37 prereg D3 was a planning-only registration-history probe; official AEARCTR-0000981 trial original page and history inaccessible. 2018, 2022, 2025 Ashraf results same RCT and had been viewed before freeze; new income reference-group RCT 2026 outcomes also posthoc abstract, not an executable source. Original PFL exposures and rights-unrestricted human opportunity/outcomes still unavailable; no slots consumed.",
     "counts": {
       "new_valid_limited": 5,
       "new_invalid_cycles": 0,
-      "new_blocked_unconsumed": 1,
-      "new_unopened_unconsumed": 4,
+      "new_blocked_unconsumed": 2,
+      "new_unopened_unconsumed": 3,
       "new_remaining": 5
     },
     "PFL_science_CT2_ordinal": 20,
@@ -96,5 +104,9 @@
       0
     ],
     "release_gates": "0/6"
-  }
+  },
+  "latest_branch": "research/pfl-abh10-c37-rank-aea-registration-20261030",
+  "priors_latest": "PF-BR79",
+  "Atlas92_last_verified_sha": "a8b77478962627b3be78023a34ef20b075537a6b7eab0b90a98dab8018deb9fb",
+  "PFL_science_CT2_ordinal": 20
 }
