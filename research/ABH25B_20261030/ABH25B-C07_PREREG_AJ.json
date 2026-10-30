@@ -1,0 +1,16 @@
+{
+  "cycle": "C07",
+  "mode": "AB-P",
+  "A": "Does the local fictional market expose a read-only, per-club transaction history with signed credit changes, honest 40-row retention limit, and no other club's actions?",
+  "B": "Success: viewer sees only own club's completed buy/sell records with price credits delta, escaped identifiers. Rival: cross-club leak, fabricated initial acquisitions, or incorrect sign.",
+  "C": "UI `tradeHistory(state,clubId)` from existing SQLite `trade` records, no client writes, 40 retained max; tests synthetic DOM and a real buy/sell state after restart.",
+  "D": "Freeze A-J before new UI or tests; code SHA before CI.",
+  "E": "GitHub Action 4min: Node renderer tests and Python actual db roundtrip.",
+  "F": "Exclude hidden foreign club entries, escape names and labels, no account data, do not reconstruct initial fixture balance.",
+  "G": "Existing market labels owners/price but not transactions; comparison is new visible audit capability.",
+  "H": "Product only.",
+  "I": "CT2 20 and release 0/6.",
+  "J": "Count only if newly exposed and tested state persists.",
+  "status": "PRE_OUTCOME_PRE_CODE",
+  "authorization": "PFL-ABH25B-20261030"
+}
