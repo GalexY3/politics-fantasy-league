@@ -1,5 +1,5 @@
 {
-  "revision": 13,
+  "revision": 14,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -202,11 +202,11 @@
     "new_ab_cycles": 0
   },
   "latest_validation": {
-    "status": "ABH25_BOUNDED_SMOKE_AND_ATLAS96_PASS",
-    "verified_commit": "446e99130e7a4d96e9f05265319bdfc7a5fa1dcf",
-    "summary": "Native GitHub Actions #41018524103: P1/P2 two-account real localhost HTTP 2/2 PASS; subsequent #41018842403: same tests 2/2, Python compile and JS syntax PASS, canonical Atlas replay 96 batches / 63 nodes / SHA 8072ccbd... PASS. Full Python/Node suites last proven separately at 7de66007, not re-run here. P1 human acceptance and all release gates remain pending.",
-    "evidence": "research/ABH25_20261030/C02_RUN_RECEIPT.json",
-    "scope_note": "Code app unchanged; bounded workflow verifies new integration test and Atlas96. Full clean-clone after these metadata changes not claimed; JSON/catalogue consistency checked separately. Official agenda metadata probe #41019397659 PASS, alternate ZIP integrity check #41019680394 BLOCKED; neither counts as scientific cycle. Failure preserved."
+    "status": "ABH25_25_BOUNDED_TRIALS_ATLAS97_REPLAYED_FINAL_QA_PENDING",
+    "verified_commit": "acec7a86b1b1f8178ffb7d2e6de361d9257c805e",
+    "summary": "New ABH25: 25/25 A–J limited trials C01,C02,C04–C26; C03 blocked noncycle. UK original fixed pages 25+25 but nonrepresentative; 19/19 synthetic formal/product trials PASS Actions #41078862636; Atlas97 replay digest 609e93fa... Actions #41079465386 PASS; candidate branch full state/index verification pending. No full Python/Node suite repeated, no human UX acceptance, no causal generalization.",
+    "evidence": "research/ABH25_20261030/FINAL_REPORT.md",
+    "scope_note": "Verified commits refer to separate earlier bounded jobs; later content edits cannot be retroactively represented as tested. Final CI will check latest branch source state."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -247,13 +247,15 @@
     "new_scientific_cycles_in_this_review": 0,
     "research_next": "Freeze a new finite minute corpus and compare against Suite à donner; selected four-case audit is exposed prior evidence, not confirmation.",
     "abh25_grant": "PFL-ABH25-20261030-POSTACCESS",
-    "abh25_valid_limited": 2,
-    "abh25_remaining": 23,
+    "abh25_valid_limited": 25,
+    "abh25_remaining": 0,
     "abh25_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/3",
     "abh25_research": "C01 limited independent original source audit; first publication not established in inspected script",
     "abh25_product": "C02 real two-account HTTP journey passed CI; P1 human acceptance still pending",
-    "abh25_r5": "Park C03 until publisher-verified ZIP version or independently source-linked meeting ID and original decision corpus is available; do not spend 23 remaining cycles on repeated fetches.",
-    "abh25_source_probe": "C03 stage0 original commission CSV 29 rows MD5 PASS but no meeting ID; alternate official Agenda.json.zip MD5 mismatch before unzipping. R5 PARK; not a scientific cycle."
+    "abh25_r5": "French C03 route parked due checksum and unlinked frame; campaign continued via UK C04,C07 and formal/product checks C05,C06,C08-C26; 25/25 executed bounded, no external causal findings.",
+    "abh25_source_probe": "C03 stage0 original commission CSV 29 rows MD5 PASS but no meeting ID; alternate official Agenda.json.zip MD5 mismatch before unzipping. R5 PARK; not a scientific cycle.",
+    "abh25_scientific_discoveries": 0,
+    "abh25_final_report": "research/ABH25_20261030/FINAL_REPORT.md"
   },
   "integration_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/2",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -301,12 +303,12 @@
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "atlas_snapshot": {
-    "batches": 96,
+    "batches": 97,
     "nodes": 63,
     "edges": 81,
-    "runs": 314,
+    "runs": 337,
     "complaints": 51,
-    "state_sha256": "8072ccbd76ed7851f96757cf8567a17e869f66d59da7ef6637f122583ac93d3f",
+    "state_sha256": "609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc",
     "passed_gates": 0
   },
   "method_reference": "METHOD_REFERENCE.json",
@@ -332,8 +334,8 @@
   "abh25_authorization_ledger": "research/ABH25_20261030/AUTHORIZATION.json",
   "abh25_authorization_snapshot": {
     "authorized": 25,
-    "executed_limited": 2,
-    "remaining": 23,
+    "executed_limited": 25,
+    "remaining": 0,
     "planning_only": 1,
     "scientific_discoveries": 0
   }
