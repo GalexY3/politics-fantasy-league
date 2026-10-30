@@ -6,6 +6,9 @@ on:
       - .github/workflows/pfl-abh25-smoke.yml
       - tests/test_abh25_p1p2_journey.py
       - ab_atlas/updates/0096-pfl-abh25-c01-c02-20261030.json
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25-smoke.yml
 permissions:
   contents: read
 jobs:
@@ -34,5 +37,21 @@ jobs:
         run: python scripts/project_index.py check
       - name: State, budgets and O7 consistency check
         run: python scripts/project_status.py check
+      - name: Validate new 25-grant separately from historical ledgers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          g=json.loads(Path('research/ABH25_20261030/AUTHORIZATION.json').read_text())
+          s=json.loads(Path('PROJECT_STATE.json').read_text())
+          assert g['new_granted']==25 and g['valid_executed']==2 and g['remaining']==23
+          assert g['planning_only']==1 and len(g['cycle_register'])==2
+          assert s['abh25_authorization_snapshot']['remaining']==g['remaining']
+          assert s['authorization_snapshot']['executed']==6 and s['authorization_snapshot']['remaining']==4
+          assert s['additional_authorization_snapshot']['executed']==0
+          assert s['atlas_snapshot']['batches']==96
+          assert s['atlas_snapshot']['passed_gates']==0
+          print('ABH25_NEW_GRANT_AND_HISTORICAL_SEPARATION_PASS')
+          PY
       - name: Compact derived handoff preview
         run: python scripts/project_status.py brief
