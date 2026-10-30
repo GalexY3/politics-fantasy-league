@@ -1,0 +1,62 @@
+{
+  "scope": "T023 180 IDs fixed before source access; metadata/aggregate only, raw data excluded from Git",
+  "response_classification": {
+    "valid_json": 66,
+    "html_redirected_gathering_support": 88,
+    "http_404": 26
+  },
+  "archive_rows": 66,
+  "overlap_archived_and_official": 66,
+  "official_only_json_ids": [],
+  "archive_missing_from_official_json_ids": [],
+  "git_blob_match_count": 0,
+  "git_blob_differ_count": 66,
+  "field_discrepancy_counts": {
+    "state": 0,
+    "signatures": 0,
+    "created_at": 0,
+    "opened_at": 0,
+    "closed_at": 0,
+    "updated_at": 0,
+    "response_threshold_reached_at": 0,
+    "government_response_at": 0,
+    "debate_threshold_reached_at": 0,
+    "scheduled_debate_date": 0,
+    "debate_outcome_at": 0,
+    "rejected_at": 0,
+    "government_response_responded_on": 0
+  },
+  "field_discrepancies": {},
+  "audit_ids": {
+    "700189": {
+      "state": "closed",
+      "signature_count": 24114,
+      "government_response_at": "2024-12-11T09:37:21.922Z",
+      "government_response_responded_on": "2024-12-10",
+      "updated_at": "2026-03-20T16:40:50.479Z"
+    },
+    "700262": {
+      "state": "closed",
+      "signature_count": 16302,
+      "government_response_at": "2025-02-11T08:37:19.219Z",
+      "government_response_responded_on": "2025-02-10",
+      "updated_at": "2025-11-03T10:55:22.195Z"
+    },
+    "700143": {
+      "state": "closed",
+      "signature_count": 3084712,
+      "government_response_at": "2024-12-06T16:09:44.690Z",
+      "government_response_responded_on": "2024-12-06",
+      "updated_at": "2026-10-26T16:18:06.492Z"
+    }
+  },
+  "limits": [
+    "HTTP 404 is not proof of nonexistence",
+    "HTTP 200 HTML redirect is not a JSON or definitive state",
+    "88 redirected HTML bodies were not retained due to capture script ordering; their metadata and SHA remain recorded",
+    "current source capture does not establish first publication time",
+    "original archived source uses Git blob hashes; mismatch does not prove cause or chronology",
+    "response timestamps and public response dates are different fields",
+    "no person, creator, action text, party or individual signature in this report"
+  ]
+}

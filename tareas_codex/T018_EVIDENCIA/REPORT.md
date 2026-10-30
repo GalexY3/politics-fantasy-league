@@ -1,0 +1,15 @@
+# T018: avance de captura y controles — PARCIAL
+
+Se inspeccionó `git log --all` para T018_RESULTADO y T018_EVIDENCIA; no aparecieron cierres previos en las ramas conocidas localmente. La consulta no prueba que no exista documentación con otro nombre ni cubre ramas aún no descargadas. La ejecución no consume ciclos AB.
+
+Se capturaron 16 respuestas HTTP 200 por HTTPS con verificación TLS: 3 búsquedas Commons (20 y 21 de octubre y 15 de julio de 2026), 10 fichas Commons obtenidas desde ellas y 3 fichas en el API distinto de Lords. MANIFEST.json conserva dirección exacta, hora UTC, status, MIME, tamaño, SHA-256, metadatos seleccionados y first_public_at desconocido. Las respuestas de raw/ pueden incluir votos individuales y permanecen fuera del repositorio; no se deben publicar.
+
+AGGREGATES.json contiene exclusivamente campos agregados y metadatos de votación: una comprobación de estructura whitelist escalar y conteos se recoge en EVIDENCE_INDEX.json. Ninguna fila contiene miembros individuales o datos personales. Contra fixtures preexistentes C02, C03 y C04 coinciden 12/12 totales. Commons 101 y 103 son dos divisiones distintas (IDs 2459 y 2461) con idéntico par 345/108; ello no prueba identidad de votantes. Las cinco votaciones 96–100 siguen siendo preguntas y trámites distintos. En Lords los resultados autorizados y los conteos de miembros se conservan por separado; no sumar tellers otra vez.
+
+Para el control Commons 2411 el API indica división 60 y modalidad diferida. Ni el proxy ni la ausencia de voto registrado prueban presencia física o abstención voluntaria. Las fechas de voto y `PublicationUpdated` no acreditan primera publicación conocida.
+
+El test Node de ontología, exactamente con blobs módulo d209949e2c788691d6f0a4e0ccdef9f18e7fb0a7 y test 17fd8c094768860d58180b6555262e3cea20e9b0, pasó 14/14 con Node v24.16.0 y código 0. La ejecución se hizo en checkout `14b033da8bb9370516de69637e561a1184f5f699`; NODE_META.json recoge comando, versión y hashes de stdout/stderr, con ambos ficheros preservados. No se ha ejecutado la suite integral específica sobre la rama base requerida.
+
+Fuentes institucionales: https://commonsvotes-api.parliament.uk/swagger/ui/index ; https://lordsvotes-api.parliament.uk/index.html ; https://www.data.gov.uk/collections/government-and-parliament/parliament-voting-records . Open Parliament Licence v3.0: https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/ . Su texto exige atribución para material bajo esa licencia y excluye datos personales y derechos de terceros; esta revisión no asegura que todos los datos concretos estén cubiertos por ella. Attribution para material cubierto: Contains Parliamentary information licensed under the Open Parliament Licence v3.0.
+
+Quedan pendientes la QA integral específica en la base indicada, el cierre formal en la rama solicitada y revisión de condiciones efectivas por clase de datos; por ello esto no declara T018 SUCCESS ni habilita puntuación personal, inferencia predictiva, cambios de métricas ni promoción.

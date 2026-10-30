@@ -1,0 +1,26 @@
+{
+  "id": "C05",
+  "type": "AB-P",
+  "status": "PREREGISTERED",
+  "timestamp_utc": "2026-10-29T16:03:45.377061+00:00",
+  "source_commit": "4ece48b6da50fcf3dbd70cdf6e3cba13365bcefe",
+  "A": "Can the offline audit CLI accidentally bypass provenance through file input?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Run native CLI regressions, including malformed and original-byte mismatch cases.",
+    "acceptance": "All existing negative controls reject unsupported input; no network required.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C04 tested pure provenance, not the file orchestration layer.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0
+}

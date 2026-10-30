@@ -1,0 +1,13 @@
+# T025 mecanismos · Reproducción y validación más estricta
+
+**Estado: avance técnico con limitaciones; no se declara cierre completo.** Base `7a6876f71b6cbc286f86ff4bf1393889e4f22851`; código y pruebas integradas `070ecb0ae2b2597e09b3df5819da9509f6f5c354`. Esta ficha es distinta de T025 RELEASEPATH en otra rama.
+
+Se ejecutaron 36 comprobaciones Node reconstruidas a partir de los nombres y comportamiento descritos en C03/C05; no se afirma que sean byte a byte los fixtures originales. Los tres motores congelados C01/C02/C04 reprodujeron ambas semillas registradas por motor, con tolerancia relativa/absoluta 1e-12. La [evidencia inicial](T025_MECANISMOS_EVIDENCIA/RESULTADO_QA.md) incluye hashes, salidas y el registro local previo al experimento; ese registro no fue sellado externamente ni comprometido antes de ejecutarse.
+
+En 12 controles adversariales adicionales se obtuvieron 8 fallos iniciales: se admitían propiedades heredadas, símbolos, propiedades no enumerables o getters en varios objetos. Se conservaron la [salida anterior](T025_MECANISMOS_EVIDENCIA/ADVERSARIAL_BASELINE.txt) y el [parche experimental](T025_MECANISMOS_EVIDENCIA/FIX.patch). Se incorporó una corrección que exige objetos ordinarios o con prototipo nulo y propiedades propias enumerables de datos en los objetos inspeccionados. Los controles adversariales pasan tras el cambio y se añadieron tests persistentes.
+
+La aceptación de entradas ha cambiado para esos objetos exóticos: los módulos exportan versión **2 del contrato de validación**. El esquema de salida serializado v1, las reglas y cálculos de entradas JSON ordinarias siguen iguales; deben revisarse los consumidores externos antes de integrar el cambio porque recibirán rechazos donde antes se aceptaban algunos objetos. Una búsqueda del checkout no encontró consumidores adicionales en `src` o `tests` anteriores a estas pruebas.
+
+La suite Node local del checkout pasó **220/220**, sin omisiones; el test Python focalizado pasó **6/6**. [Salidas](T025_MECANISMOS_EVIDENCIA/NODE_INTEGRATED.stdout.txt) y [Python](T025_MECANISMOS_EVIDENCIA/PYTHON_TARGET.stdout.txt). El resultado Node previo de 219/219 se refiere a la extracción temporal y no al commit integrado.
+
+La protección no autentica manifiestos: un registro previo controlado por un atacante sigue siendo falsificable, como muestra una prueba. Los proxies pueden falsear introspección, las matrices no se han endurecido exhaustivamente contra getters y no se han establecido límites de tamaño. Tampoco se ha demostrado equivalencia con todos los fixtures originales ni se ha ejecutado una suite Python completa para este commit. Ninguna de estas pruebas autoriza datos humanos, puntuación política real o lanzamiento; no cambia gates ni consume ciclos AB.

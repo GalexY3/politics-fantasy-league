@@ -1,0 +1,51 @@
+{
+  "id": "C03",
+  "type": "AB-P",
+  "status": "EXECUTED",
+  "timestamp_utc": "2026-10-29T16:02:39.149683+00:00",
+  "source_commit": "d968d650bca84442939fd32015d669a4631841a7",
+  "A": "Does the integrated public-question guard enforce probability, cohort and temporal boundaries?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Execute native guard regressions and inspect canonical date validation against rollover timestamps.",
+    "acceptance": "Existing negatives pass; invalid calendar instants must not be silently normalized.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C02 imported a guard using Date.parse for freeze instants.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0,
+  "prereg_commit": "532e112a03d6b961f1dfeaba75836f74241c73d4",
+  "E": {
+    "command": [
+      "node",
+      "--test",
+      "proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs"
+    ],
+    "cwd": "C:\\Github\\Politics-Fantasy-Codex",
+    "code_commit": "532e112a03d6b961f1dfeaba75836f74241c73d4",
+    "exit": 0,
+    "stdout_sha256": "4fe76182c5b10b057795ce18d59f29756145b95a4210f1b830920a94f6a59353",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "H": {
+    "finding": "Original controls pass, but Feb30 freeze was accepted. New negative failed before repair; calendar and time components are now validated before Date.parse and regression passes. Runner console encoding also repaired; byte logs remained intact.",
+    "hypothesis_update": "Restricted to tested software or documented sources",
+    "new_question": "Does provenance establish authenticity independently of score completeness?"
+  },
+  "I": {
+    "scientific_validity": "NOT_ESTABLISHED",
+    "novelty": "NOT_CLAIMED",
+    "external_replication": "NOT_RUN",
+    "CT2_reason": "No new identified external scientific evidence"
+  },
+  "J": "REPAIR"
+}

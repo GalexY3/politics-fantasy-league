@@ -1,0 +1,164 @@
+✖ reject inherited person metadata in scorer (1.5465ms)
+✖ reject symbol property in scorer (0.2166ms)
+✖ reject non-enumerable metadata in scorer (0.1196ms)
+✖ reject getters in scorer (0.1077ms)
+✖ reject symbol property in event (0.1085ms)
+✖ reject symbol property in snapshot (0.2554ms)
+✖ reject inherited person metadata in snapshot (0.1465ms)
+✖ reject non-enumerable metadata in snapshot (0.1089ms)
+✔ reject non-finite and unsafe counts (0.1893ms)
+✔ unknown coverage produces no scores (0.1502ms)
+✔ score is independent of later input mutation (0.0869ms)
+✔ forged previous manifest with matching cleartext is accepted, proving it is not authentication (0.1007ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 4
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.2684
+
+✖ failing tests:
+
+test at tests\test_t025_synthetic_adversarial.mjs:6:1
+✖ reject inherited person metadata in scorer (1.5465ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:6:131)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:7:1
+✖ reject symbol property in scorer (0.2166ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:7:107)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:8:1
+✖ reject non-enumerable metadata in scorer (0.1196ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:8:137)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:9:1
+✖ reject getters in scorer (0.1077ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:9:138)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:10:1
+✖ reject symbol property in event (0.1085ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:10:116)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:11:1
+✖ reject symbol property in snapshot (0.2554ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:11:121)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:12:1
+✖ reject inherited person metadata in snapshot (0.1465ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:12:145)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests\test_t025_synthetic_adversarial.mjs:13:1
+✖ reject non-enumerable metadata in snapshot (0.1089ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Users/Nitropc/AppData/Local/Temp/pfl-t025-mechanism-qa-20261029/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:13:151)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,0 +1,57 @@
+{
+  "status": "PASS_OFFICIAL_CORRECTION_RECONCILES_CSV",
+  "document_date": "2024-03-08",
+  "issue": "DOG 49",
+  "first_public_at_not_inferred": true,
+  "records": [
+    {
+      "name": "rectification.html",
+      "requested_url": "https://www.xunta.gal/dog/Publicados/2024/20240308/AnuncioG2453-070324-1_es.html",
+      "effective_url": "https://www.xunta.gal/dog/Publicados/2024/20240308/AnuncioG2453-070324-1_es.html",
+      "status": 200,
+      "started_utc": "2026-10-29T11:08:50.598275+00:00",
+      "ended_utc": "2026-10-29T11:08:51.400049+00:00",
+      "tls": "system trust verified",
+      "bytes": 7979,
+      "sha256": "2b988ee40073598351db32a70a9e97ef348416e6fcf587b90b3a632a4c38bdcb",
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": "Thu, 07 Mar 2024 23:00:22 GMT",
+      "etag": "\"1f2b-6131a0a496ac0\""
+    },
+    {
+      "name": "rectification.pdf",
+      "requested_url": "https://www.xunta.gal/dog/Publicados/2024/20240308/AnuncioG2453-070324-1_es.pdf",
+      "effective_url": "https://www.xunta.gal/dog/Publicados/2024/20240308/AnuncioG2453-070324-1_es.pdf",
+      "status": 200,
+      "started_utc": "2026-10-29T11:08:51.400049+00:00",
+      "ended_utc": "2026-10-29T11:08:51.925177+00:00",
+      "tls": "system trust verified",
+      "bytes": 324333,
+      "sha256": "aa5444147ae014d54a566b6a883c3346f43ac85fbdddbd2c484a2977268efc40",
+      "content_type": "application/pdf",
+      "last_modified": "Thu, 07 Mar 2024 23:00:06 GMT",
+      "etag": "\"4f2ed-6131a094e901e\""
+    }
+  ],
+  "pdf_extraction": {
+    "tool": "C:\\Users\\Nitropc\\AppData\\Local\\Microsoft\\WinGet\\Packages\\oschwartz10612.Poppler_Microsoft.Winget.Source_8wekyb3d8bbwe\\poppler-25.07.0\\Library\\bin\\pdftotext.exe",
+    "exit": 0,
+    "text_sha256": "4f46be007024da26b5196294ed68b32fad87b7b26663687f3985f032fd34cbda"
+  },
+  "document_patterns": {
+    "candidaturas": {
+      "html": true,
+      "pdf": true
+    },
+    "validos": {
+      "html": true,
+      "pdf": true
+    }
+  },
+  "aggregate_checks": {
+    "validos": true,
+    "candidaturas": true,
+    "votantes_minus_nulos": true
+  },
+  "scope": "correction applies to general tally only; other T016 criteria remain pending"
+}

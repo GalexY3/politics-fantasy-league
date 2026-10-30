@@ -1,0 +1,26 @@
+{
+  "id": "C17",
+  "type": "AB-P",
+  "status": "PREREGISTERED",
+  "timestamp_utc": "2026-10-29T16:10:22.584920+00:00",
+  "source_commit": "e4dfc8d57143e0438a4f74c42b32da0891d0f69c",
+  "A": "Does the integrated project pass complete native QA on POSIX from a clean exact checkout?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Use existing local Alpine QEMU runtime with Git bundle, unprivileged user, external network disabled during tests; run Python, Node discovery, Atlas and symlink checks.",
+    "acceptance": "Preserve all first failures; do not attribute old Linux results to this commit. Windows symlink skip must execute on POSIX.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C16 reveals one environment-specific control remains unexecuted and imports need complete integration QA.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0
+}

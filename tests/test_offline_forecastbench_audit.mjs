@@ -1,7 +1,10 @@
+import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,symlink,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const projectRoot=fileURLToPath(new URL('../',import.meta.url));
 import {spawnSync} from 'node:child_process';
 import {gitBlobHash,PUBLIC_DATASET_PIN} from '../src/politics_fantasy/forecastbench_provenance.mjs';
 import {auditBuffers,runOfflineAudit} from '../scripts/offline_forecastbench_audit.mjs';
@@ -57,18 +60,18 @@ try{
   await assert.rejects(runOfflineAudit({source_dir:root,as_of_instant:'2026-10-29T16:00:00Z'}),/ORIGINAL_SOURCE_BYTES_MISMATCH/);
  });
  await check('CLI never emits question text or path on invalid source, nonzero exit',()=>{
-  const result=spawnSync(process.execPath,['scripts/offline_forecastbench_audit.mjs','--source-dir',root,'--as-of-instant','2026-10-29T16:00:00Z'],{cwd:process.cwd(),encoding:'utf8'});
+  const result=spawnSync(process.execPath,['scripts/offline_forecastbench_audit.mjs','--source-dir',root,'--as-of-instant','2026-10-29T16:00:00Z'],{cwd:projectRoot,encoding:'utf8'});
   assert.equal(result.status,2);assert.equal(result.stdout,'');assert.match(result.stderr,/AUDIT_FAILED:ORIGINAL_SOURCE_BYTES_MISMATCH/);
   assert.equal(result.stderr.includes('fictional'),false);assert.equal(result.stderr.includes(root),false);
  });
  await check('CLI rejects argument shape before file IO',()=>{
-  const result=spawnSync(process.execPath,['scripts/offline_forecastbench_audit.mjs','--wrong',root,'--as-of-instant','2026-10-29T16:00:00Z'],{cwd:process.cwd(),encoding:'utf8'});
+  const result=spawnSync(process.execPath,['scripts/offline_forecastbench_audit.mjs','--wrong',root,'--as-of-instant','2026-10-29T16:00:00Z'],{cwd:projectRoot,encoding:'utf8'});
   assert.equal(result.status,2);assert.match(result.stderr,/AUDIT_FAILED:USAGE_SOURCE_DIR_AND_AS_OF_INSTANT/);
  });
- await check('symlink final component never accepted as authoritative source',async()=>{
+ await test('symlink final component never accepted as authoritative source',async(t)=>{
   const victim=join(root,'question_sets','2026-09-27-llm.json');await rm(victim);
-  await symlink(join(root,'resolution_sets','2026-10-11_resolution_set.json'),victim);
+  try{await symlink(join(root,'resolution_sets','2026-10-11_resolution_set.json'),victim)}catch(e){if(process.platform==='win32'&&e.code==='EPERM'){t.skip('Host does not grant file-symlink creation; control must run on POSIX');return}throw e}
   await assert.rejects(runOfflineAudit({source_dir:root,as_of_instant:'2026-10-29T16:00:00Z'}));
  });
 }finally{await rm(root,{recursive:true,force:true});}
-process.stdout.write('PFL offline public audit '+pass+'/11 PASS\n');
+process.stdout.write('PFL offline public audit '+pass+' custom checks PASS; symlink control reported separately\n');

@@ -4,7 +4,7 @@
  * Dataset attribution: Forecasting Research Institute / Karger et al. (ICLR
  * 2025), forecastingresearch/forecastbench-datasets, CC BY-SA 4.0.
  */
-import {open} from 'node:fs/promises';
+import {open,lstat} from 'node:fs/promises';
 import {constants} from 'node:fs';
 import {resolve, join} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -58,6 +58,7 @@ async function readPinnedFile(base,name){
  const path=resolve(base,...name.split('/'));
  // O_NOFOLLOW stops final-component symlink replacement on POSIX; bounded
  // handle.stat prevents reading a large file. No path comes from user JSON.
+ if((await lstat(path)).isSymbolicLink())throw Error('SOURCE_INPUT_UNAVAILABLE_OR_INVALID');
  const handle=await open(path,constants.O_RDONLY|(constants.O_NOFOLLOW||0));
  try{
   const s=await handle.stat();

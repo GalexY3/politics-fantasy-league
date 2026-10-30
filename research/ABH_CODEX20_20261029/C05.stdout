@@ -1,0 +1,20 @@
+PASS 1 synthetic exact four-file hash produces aggregate only, never personal or authenticated
+PASS 2 earlier as-of excludes future outcome in both cohorts
+PASS 3 published pinned four original hashes cannot be defeated with fake fixture
+PASS 4 mutating a value after computing the manifest rejects entire record
+PASS 5 partial file set or extra file rejected before audit
+PASS 6 invalid JSON rejected after matching exact bytes without echoing source
+PASS 7 no supplied source path fails closed
+PASS 8 real Node file IO refuses four raw files with wrong original SHA, no silent fallback
+PASS 9 CLI never emits question text or path on invalid source, nonzero exit
+PASS 10 CLI rejects argument shape before file IO
+﹣ symlink final component never accepted as authoritative source (2.5836ms) # Host does not grant file-symlink creation; control must run on POSIX
+PFL offline public audit 10 custom checks PASS; symlink control reported separately
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 250.806

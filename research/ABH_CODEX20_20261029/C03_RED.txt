@@ -1,0 +1,30 @@
+PFL source as-of safety 15/15 PASS
+file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs:4
+const eq=(a,b)=>{if(a!==b)throw Error('EXPECTED '+JSON.stringify(b)+' GOT '+JSON.stringify(a))};
+                                ^
+
+Error: EXPECTED 0 GOT 1
+    at eq (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs:4:33)
+    at file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs:34:127
+    at test (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs:15:20)
+    at file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs:34:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:633:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.16.0
+✖ proyectos\politics-fantasy-league\tests\test_forecastbench_source_guard.mjs (65.749ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.3804
+
+✖ failing tests:
+
+test at proyectos\politics-fantasy-league\tests\test_forecastbench_source_guard.mjs:1:1
+✖ proyectos\politics-fantasy-league\tests\test_forecastbench_source_guard.mjs (65.749ms)
+  'test failed'
