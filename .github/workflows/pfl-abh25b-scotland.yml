@@ -1,0 +1,22 @@
+name: PFL ABH25B Scotland primary source
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-scotland.yml
+permissions:
+  contents: read
+jobs:
+  frozen-primary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Scottish JSON null and adversarial guard
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_scotland_source.py -v
+      - name: One original Scottish closed page and aggregate only
+        run: python research/ABH25B_20261030/c05_scottish_petition_lifecycle.py
