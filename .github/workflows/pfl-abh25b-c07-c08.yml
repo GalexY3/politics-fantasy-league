@@ -1,8 +1,6 @@
 name: PFL ABH25B C07 transfer audit and C08 open petitions
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-c07-c08.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
