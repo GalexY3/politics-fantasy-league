@@ -6,9 +6,6 @@ on:
       - .github/workflows/pfl-abh25-smoke.yml
       - tests/test_abh25_p1p2_journey.py
       - ab_atlas/updates/0096-pfl-abh25-c01-c02-20261030.json
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25-smoke.yml
 permissions:
   contents: read
 jobs:
