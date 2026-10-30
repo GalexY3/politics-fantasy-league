@@ -388,6 +388,8 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
             rr['lineups']={}
             rr['scores']={}
             rr['score_details']={}
+            rr['is_settled'] = bool(db.execute(
+                'SELECT 1 FROM round_settlement WHERE round_id=?', (r['id'],)).fetchone())
             for club in clubs:
                 selection=[x[0] for x in db.execute('SELECT figure_id FROM lineup WHERE club_id=? AND round_id=? ORDER BY figure_id',(club['id'],r['id']))]
                 rr['lineups'][club['id']]=selection
@@ -422,6 +424,36 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
                 rr['score_details'][club['id']] = detail
             rr['is_locked']=now >= as_utc(r['lock_at'])
             rounds.append(rr)
+        # Season classifications use only frozen, settled scores. Historical
+        # fixtures and missing lineups never become implicit zeros.
+        settled_rounds = [round_info for round_info in rounds if round_info['is_settled']]
+        season_standings = []
+        for club in clubs:
+            observations = [round_info['scores'][club['id']] for round_info in settled_rounds]
+            valid = [points for points in observations if points is not None]
+            missing = len(observations) - len(valid)
+            status = ('NO_SETTLED_ROUNDS' if not observations else
+                      'INCOMPLETE_COVERAGE' if missing else 'RANKED')
+            season_standings.append({
+                'club_id':club['id'], 'club_name':club['name'],
+                'total_points':sum(valid) if status=='RANKED' else None,
+                'observed_points_lower_bound':sum(valid),
+                'rounds_scored':len(valid),'rounds_unknown':missing,
+                'rounds_settled':len(observations),
+                'status':status,'rank':None})
+        season_standings.sort(key=lambda row:(
+            row['status']!='RANKED',
+            -(row['total_points'] if row['total_points'] is not None else -1),
+            row['club_name'].casefold(),row['club_id']))
+        previous_points = None
+        previous_rank = 0
+        for position,entry in enumerate(season_standings,1):
+            if entry['status']!='RANKED':
+                break
+            if previous_points is None or entry['total_points'] != previous_points:
+                previous_rank = position
+            entry['rank'] = previous_rank
+            previous_points = entry['total_points']
         trades=[dict(x) for x in db.execute('SELECT * FROM trade ORDER BY id DESC LIMIT 40')]
     observatory={'status':'SOURCE_NOT_LOADED','votes':[], 'provenance':None}
     if pilot_csv and pilot_csv.is_file():
@@ -450,7 +482,7 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
     return {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
             'mode':DATA_PROVENANCE, 'authentication':'NONE_LOCAL_LOOPBACK_ONLY',
             'scoring_rule':DEMO_RULE.version,'roster_limit':MAX_OWNED,'lineup_size':LINEUP_SIZE,
-            'figures':figures,'clubs':clubs,'rounds':rounds,'trades':trades,
+            'figures':figures,'clubs':clubs,'rounds':rounds,'season_standings':season_standings,'trades':trades,
             'demo_clock': {'now':stamp(now), 'offset_seconds':clock_offset[0] if clock_offset else 0,
                            'simulated':bool(clock_offset and clock_offset[0])},
             'observatory':observatory,
