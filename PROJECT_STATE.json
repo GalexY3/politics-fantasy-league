@@ -1,5 +1,5 @@
 {
-  "revision": 15,
+  "revision": 16,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -15,7 +15,8 @@
     "docs/migration/COMMIT_MAP.tsv",
     "tools/ab_atlas/UPSTREAM.json",
     "research/CONTINUATION20_20261030/AUTHORIZATION.json",
-    "research/ABH25_20261030/AUTHORIZATION.json"
+    "research/ABH25_20261030/AUTHORIZATION.json",
+    "research/ABH25B_20261030/AUTHORIZATION.json"
   ],
   "additional_authorization_snapshot": {
     "id": "PFL-GRANT-20261030-INTEGRATION10",
@@ -202,11 +203,11 @@
     "new_ab_cycles": 0
   },
   "latest_validation": {
-    "status": "ABH25_FINAL_FULL_LINUX_QA_PASS_D18EDB8",
-    "verified_commit": "d18edb854acb3676f917e48c331fccf34735124a",
-    "summary": "GitHub Actions #41080905547 on PR #3: full Linux Python 861/861 plus 32 subtests PASS; full Atlas engine 38/38 plus 108 subtests PASS; Node 511/511 PASS; canonical Atlas97 SHA 609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc; tracked index 2920 PASS; project_status.errors=[]; ABH25 25/25, prior grants unchanged and science CT2 20 PASS.",
-    "evidence": "research/ABH25_20261030/FINAL_REPORT.md",
-    "scope_note": "Full suite verified candidate PR merge at head d18edb8; subsequent workflow trigger and continuity metadata changes are not independently re-tested. No public deployment, accepted human UX, new causal evidence or merge to main."
+    "status": "ABH25B_ATLAS98_INDEX2997_AND_FOCUSED_PRODUCT_PASS_FULL_QA_PENDING",
+    "verified_commit": "115c171d67d49b8371044d9b7cf80dadd79cfe53",
+    "summary": "Native GitHub Actions #41107410073: canonical Atlas98 98 batches, 63 nodes SHA ca0bae27ec478a8a204a2bc3469540f806a8cdc4af36dba59c8d568cb6d4de75 PASS; 2997 tracked files indexed PASS; 10 new Python fictional metric checks + 2 Node UI checks PASS. Earlier ABH25 full suite #41080905547 remains reference; ABH25B full Linux QA on final branch pending.",
+    "evidence": "research/ABH25B_20261030/FINAL_REPORT.md",
+    "scope_note": "Atlas and index verified at specific earlier HEAD. Later metadata edits not retested. Never claim human P1 acceptance, causal source validation, public release, or main merge."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -257,7 +258,16 @@
     "abh25_scientific_discoveries": 0,
     "abh25_final_report": "research/ABH25_20261030/FINAL_REPORT.md",
     "abh25_final_ci": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080905547",
-    "abh25_final_ci_criteria": "Full Python/Node/Atlas and catalogue+budget PASS on tested candidate; documentation amendments after test not separately verified."
+    "abh25_final_ci_criteria": "Full Python/Node/Atlas and catalogue+budget PASS on tested candidate; documentation amendments after test not separately verified.",
+    "abh25b_campaign": "PFL-ABH25B-20261030",
+    "abh25b_executed_limited": 25,
+    "abh25b_remaining": 0,
+    "abh25b_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/4",
+    "abh25b_research": "12 AB-R limited original-source measurements, including UK petition response/rejection/debate, Wales status/referral, Scotland dated censored records, one UK constituency spatial sample; no causal or representative extrapolation.",
+    "abh25b_product": "13 AB-P features, including 10 new fictional portfolio, market, diversity, lineup and settled-score indicators in UI; Linux 10 Python +2 Node controls PASS.",
+    "abh25b_blockers": "Canadian petition returned HTML, Scottish page12 empty; repeated UK C13/C16 not counted, pre-existing C10/C11 reconciled with Welsh C10W/C11W.",
+    "abh25b_r5": "STOP individually blocked source; no repeats for quota; grant now exhausted, new independent sampling frame and human P1 acceptance needed.",
+    "abh25b_final_report": "research/ABH25B_20261030/FINAL_REPORT.md"
   },
   "integration_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/2",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -305,12 +315,12 @@
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "atlas_snapshot": {
-    "batches": 97,
+    "batches": 98,
     "nodes": 63,
     "edges": 81,
-    "runs": 337,
+    "runs": 355,
     "complaints": 51,
-    "state_sha256": "609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc",
+    "state_sha256": "ca0bae27ec478a8a204a2bc3469540f806a8cdc4af36dba59c8d568cb6d4de75",
     "passed_gates": 0
   },
   "method_reference": "METHOD_REFERENCE.json",
@@ -340,5 +350,19 @@
     "remaining": 0,
     "planning_only": 1,
     "scientific_discoveries": 0
+  },
+  "abh25b_authorization_ledger": "research/ABH25B_20261030/AUTHORIZATION.json",
+  "abh25b_authorization_snapshot": {
+    "authorized": 25,
+    "executed_limited": 25,
+    "remaining": 0,
+    "invalid_pre_source_attempts": 2,
+    "planning_only": 1,
+    "scientific_discoveries": 0,
+    "mode_counts": {
+      "AB-R": 12,
+      "AB-P": 13
+    },
+    "separate_from_earlier_grants": true
   }
 }
