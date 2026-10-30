@@ -1058,6 +1058,18 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "Documentation field not actual decision/no response, no timing of support threshold, support endogenous and n-high=22, one scrape source and one cohort, no causal/fairness claims or PFL human effect."
+    },
+    {
+      "id": "PF-BR81",
+      "claim": "The independent Suite à donner ingest script records verified first_public_at/version for each petition committee decision, enabling event-time identification without older published snapshots.",
+      "update": "NOT_ESTABLISHED_IN_PINNED_ORIGINAL_SCRIPT_AUDIT",
+      "support": "Original a627cc26 scripts/fetch-reunions.mjs blob 4d6b24a1; 36,917 chars reviewed under frozen ABH25-C01. 3 'archive' hits concern ZIP containers, updatedAt Timestamp.now() is Firestore metadata, r.timeStampDebut is meeting date, zero snapshot/hash hints in the audited source file. Exact-number linking and commission minutes are independently implemented; cannot claim their novelty.",
+      "source": "https://github.com/Clemsrec/suiteadonner/blob/a627cc26f255231d67faebb14e265523e46c0a66/scripts/fetch-reunions.mjs",
+      "evidence": "../ABH25_20261030/C01_RUN_RECEIPT.json",
+      "type": "ORIGINAL_EXTERNAL_CODE_PROVENANCE_LIMITED_AB_R",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Static token scan plus manual context; no upstream code execution, no review of all other scripts/infrastructure and no original human observations. Absence of first-public evidence in this file is not proof of absence system-wide; novelty not claimed."
     }
   ],
   "CT2_parent_unchanged": 29,
