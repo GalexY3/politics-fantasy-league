@@ -1,3 +1,5 @@
+**Publicado en main:** [PR2 fusionada](https://github.com/GalexY3/politics-fantasy-league/pull/2); [recibo](../research/CONTINUATION20_20261030/MERGE_RECEIPT.json). No continuar en la rama de migración.
+
 # Continuidad PR2 y medición · 30/10/2026
 
 Atlas95: 39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a. QA completo de producto y auditoría posthoc guardados en [revisión](../research/CONTINUATION20_20261030/REVIEW.md). C38 no se duplica; ABH10 6/10, nueva independiente 0/10, históricos 2. Nueva concesión: cinco revisiones y quince unidades sustantivas pendientes, sin nuevos ciclos científicos por mantenimiento. P1 espera aceptación humana; gates 0/6.

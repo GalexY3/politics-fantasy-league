@@ -44,3 +44,5 @@ redactada antes de C38: el saldo operativo correcto después de C38 es **cuatro*
 según el ledger ABH10 (6/10); las diez nuevas siguen intactas.
 El informe C38 conserva la distinción entre
 una celda sin decisión documentada y una decisión institucional inexistente.
+
+**Adenda incorporada:** PR2 fusionada en `main` con revisión y correcciones; PR81 de AB cerrada por traslado, sin borrar su rama. [Recibo](../../research/CONTINUATION20_20261030/MERGE_RECEIPT.json). QA y auditoría actuales en [la revisión](../../research/CONTINUATION20_20261030/REVIEW.md); P1 sigue esperando aceptación humana.

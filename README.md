@@ -44,12 +44,8 @@ El proyecto se extrajo de AB conservando su historia relevante. [Procedencia y m
 
 El README extenso anterior sigue en [el archivo histórico](README_HISTORICO_HASTA_20261029.md). Los originales locales no versionados no se han incorporado a la migración.
 
-## Trabajo reciente incorporado para revisión
+## Trabajo reciente incorporado
 
-La migración de la [PR #81 histórica de AB](https://github.com/GalexY3/Metodologia-AB/pull/81)
-se prepara y valida **en este repositorio**. Incluye cuentas multiusuario locales ficticias (P1),
-C38 observacional negativo sobre documentación institucional y Atlas 0094. Consultar
-[estado](PROJECT_STATE.json), [revisión P1](docs/P1_ACCOUNTS_REVIEW.md) y
-[manifiesto del traspaso](docs/migration/CUTOVER_PR81_TRANSFER_MANIFEST.json).
-Las pruebas de origen no equivalen a ejecución en el nuevo commit; el estado de revisión se
-mantiene hasta completar QA y aceptación. Todas las futuras tareas de PFL se realizan aquí.
+La [PR2](https://github.com/GalexY3/politics-fantasy-league/pull/2) incorporó cuentas locales P1 y el negativo descriptivo C38, reconciliados con la migración y revisados con QA completo Linux. P1 sigue pendiente de aceptación humana de uso. Atlas95 añade el recibo de revisión y una auditoría posthoc de medición, sin nuevos ciclos científicos ni gates superados.
+
+[Revisión, fuentes y siguiente contraste](research/CONTINUATION20_20261030/REVIEW.md) · [Recibo de incorporación](research/CONTINUATION20_20261030/MERGE_RECEIPT.json). Estado, saldos y siguiente acción vigentes en PROJECT_STATE.json y el briefing; toda tarea nueva de PFL se realiza en este repositorio.

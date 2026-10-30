@@ -1,3 +1,5 @@
+> **Actualización:** código incorporado en PFL main mediante PR2 tras revisión y QA completo. Este informe conserva la entrega original de AB; [revisión actual](../research/CONTINUATION20_20261030/REVIEW.md). La aceptación humana de uso sigue pendiente.
+
 # P1-ACCOUNTS · Acceso multiusuario local ficticio — listo para revisión
 
 **Estado propuesto:** `READY_REVIEW`, NO `DONE` público. **Cero ciclos AB cargados**: implementación y QA de producto. Se parte del `integration/pfl` HEAD `69ed402dd4a3f25207d9e620ede568b5e92ad8af`. Rama técnica única del hito `feature/pfl-p1-accounts`, destino de PR `integration/pfl`, no main.

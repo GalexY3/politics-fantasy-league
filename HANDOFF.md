@@ -1,8 +1,8 @@
 # PFL · briefing derivado
 
-Rama: `codex/pfl-pr2-review`; HEAD: `ef57c492cc5b83dd4a97c447b21670570b383f5a`.
-Estado rev. 10; publicación declarada: PR2_REVIEW_ON_CURRENT_MAIN.
-Código revisado incluido en refs/remotes/origin/main: False (referencia local; hacer fetch).
+Rama: `codex/pfl-pr2-review`; HEAD: `3b6a53a3806942e4a5e7d46d3d396574064539c3`.
+Estado rev. 11; publicación declarada: MAIN_PR2_MERGED_CODE_REVIEW_PASS.
+Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
 Atlas: 95 lotes; SHA `39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a`; gates 0/6.
 Autorización ABH10: 6/10 ejecutados; 4 disponibles, preservados bajo R5. Históricos separados: 2.
@@ -12,7 +12,7 @@ P1 GitHub Actions #40995507812: 35 Python tests PASS y node --check, dos cuentas
 Pruebas históricas de AB; no sustituyen QA sobre el nuevo commit.
 
 ## Estado del corte de repositorios
-CODE_REVIEW_PASS_READY_TO_MERGE; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisión: migration/pfl-final-cutover-20261030. Consultar status del traslado y recibo de incorporación antes de continuar.
+MERGED_PR2_CODE_REVIEW_PASS; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisión: migration/pfl-final-cutover-20261030. Consultar status del traslado y recibo de incorporación antes de continuar.
 
 Concesión nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados; 10 disponibles. No reasignar saldo ABH10.
 
