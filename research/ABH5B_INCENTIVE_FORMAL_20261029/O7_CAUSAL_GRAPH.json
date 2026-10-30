@@ -451,6 +451,14 @@
       "state": "answered",
       "summary": "Four selected explicit committee decisions absent from CSV text field; two remain open. Known prior-art replication, no correction of C38 population estimate, zero new scientific cycles.",
       "source": "../CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "type": "original_source_audit",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Pinned independent Suite à donner ingest script does not demonstrate per-event first-public timestamp/version; ZIP archive and Firestore updatedAt false positives. No general system-wide absence, no causal validation.",
+      "source": "../ABH25_20261030/C01_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -903,6 +911,12 @@
       "to": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
       "relation": "related_to",
       "interpretation": "Audits measurement limitation, not independent confirmation of directional H1."
+    },
+    {
+      "from": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "to": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "relation": "related_to",
+      "interpretation": "Audits provenance prerequisite after C39 selected-case missingness; source-code conclusion scoped to one pinned original file, not independent new institutional outcomes."
     }
   ],
   "rules": {
