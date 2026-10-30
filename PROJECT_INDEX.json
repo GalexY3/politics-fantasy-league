@@ -4,18 +4,18 @@
   "certifies_results": false,
   "category_counts": {
     "archive": 6,
-    "atlas": 108,
+    "atlas": 110,
     "atlas_engine": 12,
     "continuity": 8,
     "data": 10,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 70,
+    "operations": 78,
     "reference": 68,
-    "research": 1826,
+    "research": 1855,
     "runtime": 77,
     "task_queue": 119,
-    "verification": 168
+    "verification": 171
   },
   "files": [
     {
@@ -25,6 +25,41 @@
     },
     {
       "path": ".github/workflows/ci.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-agenda-stage0.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-c04-c06.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-c07.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-c08-c26.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-final-audit.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-smoke.yml",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": ".github/workflows/pfl-abh25-zip-stage1.yml",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -635,6 +670,16 @@
     },
     {
       "path": "ab_atlas/updates/0095-pfl-pr2-continuity-measurement-audit-20261030.json",
+      "category": "atlas",
+      "purpose": "Grafo Atlas, logros y sincronización"
+    },
+    {
+      "path": "ab_atlas/updates/0096-pfl-abh25-c01-c02-20261030.json",
+      "category": "atlas",
+      "purpose": "Grafo Atlas, logros y sincronización"
+    },
+    {
+      "path": "ab_atlas/updates/0097-pfl-abh25-c04-c26-20261030.json",
       "category": "atlas",
       "purpose": "Grafo Atlas, logros y sincronización"
     },
@@ -1925,6 +1970,151 @@
     },
     {
       "path": "research/ABH20_ATLAS_20261026/REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/AUTHORIZATION.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C01_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C01_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C01_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C02_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C02_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C02_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C03_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C03_STAGE0_CSV_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C03_STAGE0_FRAME_PLAN.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C03_STAGE1_BLOCKED.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C03_STAGE1_ZIP_PLAN.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C04_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C04_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C05_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C05_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C06_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C06_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C07_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C07_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C08_C26_PREREG_AJ.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/C08_C26_RUN_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/FINAL_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/ROUTE_TRIAGE.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/c01_source_audit.js",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/c03_agenda_metadata_only.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/c03_zip_schema_only.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/c04_uk_petition_snapshot.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/ABH25_20261030/c07_uk_response_strict.py",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -10814,6 +11004,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/abh25_final_budget_check.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/actor_universe_cli.mjs",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -13540,6 +13735,21 @@
     },
     {
       "path": "tests/test_ab30d_full.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_abh25_c05_c06.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_abh25_c08_c26.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_abh25_p1p2_journey.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

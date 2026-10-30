@@ -1,0 +1,20 @@
+name: PFL ABH25 C08-C26 formal discriminants
+on:
+  push:
+    branches: [research/pfl-abh25-evidence-and-product-20261030]
+    paths: [.github/workflows/pfl-abh25-c08-c26.yml]
+permissions:
+  contents: read
+jobs:
+  synthetic-discriminants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Syntax and imports
+        run: python -m compileall -q src/politics_fantasy tests/test_abh25_c08_c26.py
+      - name: Nineteen separately labelled synthetic formal and product controls
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25_c08_c26.py -v

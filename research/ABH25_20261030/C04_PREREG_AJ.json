@@ -1,0 +1,27 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.v1",
+  "id": "ABH25-C04-UK-PETITIONS-RESPONSE-MEASUREMENT",
+  "status": "FROZEN_BEFORE_ORIGINAL_UK_JSON",
+  "mode": "AB-R",
+  "source_url": "https://petition.parliament.uk/petitions.json?state=closed&page=1",
+  "A": "On the first page of closed UK Parliament petitions, is the government's response status and date unambiguously represented and distinguishable from debate and closure? Unit petition on FIRST official API page only; no population inference.",
+  "B": {
+    "H1": "Response metadata directly and unambiguously encodes written response and timing for each record",
+    "H0": "Missing/heterogeneous fields, ambiguities or censored pending responses make response inferential",
+    "rivals": [
+      "API schema changed in 2026 redesign",
+      "Page ranked by popularity not random",
+      "Threshold and response obligations differ from France"
+    ]
+  },
+  "C": "GET one and only one first-page closed JSON, 2MB max, pinned URL, do not iterate other pages; record source sha256, shape, n, keys, aggregated response fields, no petition title/name/ID.",
+  "D": "Python script c04_uk_petition_snapshot.py frozen in GitHub before HTTP request; missing fields null not zero; no person-level export.",
+  "E": "Execute once CI with read-only GitHub token and 2min limit, record remote job id/status; no outcome selection.",
+  "F": "Adversarial schema checks: status closed, null/absent response keys, alternatives, explicit nonresponse not inferred from null.",
+  "G": "Compare to UK Parliament public 2026 FAQ; a response obligation is not observed response. No French thresholds transported.",
+  "H": "Update descriptive measurement prior only upon verified original source; negative result and fail-closed allowed.",
+  "I": "CT2=20, N1/2/3=0, no causal claim, no graded discovery.",
+  "J": "Count only if original JSON valid, direct outcome metadata reviewed with checksum + conservative conclusion; otherwise park and pivot; no new person data in repo.",
+  "exposure": "Earlier public metadata: site API supports .json, 10k/100k threshold; exact first-page JSON not opened before this freeze.",
+  "grant": "PFL-ABH25-20261030-POSTACCESS"
+}

@@ -1,0 +1,7 @@
+# ABH25 C03 · acceso a marco oficial detenido sin consumir ciclo
+
+El intento A (CSV oficial de reuniones de comisiones) fue **válido como metadato**, no como resultado institucional: 29 filas, cinco columnas, MD5 editorial confirmado, SHA-256 `9ee8c4f501532874ced99adce43dd2a162beef08f9b4f646d674b18a37ca37dd`. No lleva ID de reunión ni referencia de acta; por sí solo no permite enlace unívoco.
+
+El intento B (archivo oficial estructurado `Agenda.json.zip`) se **congeló antes de descargar**. El [workflow #41019680394](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41019680394) obtuvo bytes, pero el MD5 calculado `bcdbda980881c326d437a69e78beaa9a` no coincidía con el publicado previamente `97332eb327d19e22d42a2f639e754d87`. El script lanzó `PUBLISHED_CHECKSUM_DRIFT` **antes de abrir el ZIP**. No se conoce aquí SHA-256 de ese ZIP, contenido exacto, nuevos IDs ni resultados de actas. Con la evidencia existente **no se puede determinar** si el archivo cambió, si los metadatos están retrasados o si hubo otra divergencia.
+
+**AB-DECIDE: PARK/STOP_R5**, cero ciclos científicos C03. Reapertura solo tras una versión autenticada por el editor (huella vigente, histórico o archivo fijado) con extracción estructural sin outcomes y prerregistro posterior de la muestra. Ningún cambio a C38/C39, priors científicos, CT2 20, N1/2/3 cero, lanzamiento 0/6. No se repetirán las descargas hasta obtener la condición de reapertura.

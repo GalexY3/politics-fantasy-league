@@ -1,0 +1,64 @@
+{
+  "schema": "pfl.abh25.c02.native_http_product_run.v1",
+  "cycle": "ABH25-C02",
+  "mode": "AB-P",
+  "status": "VALID_LIMITED_FICTIONAL_HTTP_PRODUCT_INTEGRATION",
+  "prereg": {
+    "path": "research/ABH25_20261030/C02_PREREG_AJ.json",
+    "sha": "bb3d1ccacce4018ca188e405b281eca657269c91"
+  },
+  "frozen_code": {
+    "path": "tests/test_abh25_p1p2_journey.py",
+    "freeze_commit": "d8466ced9a4391217a6d71565c5532c2b83f03ae",
+    "git_blob": "e888dac6941e9ba9a3cf7644b3da479140570401"
+  },
+  "runner": {
+    "url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41018524103",
+    "id": 41018524103,
+    "job_id": 123940239885,
+    "workflow": "PFL ABH25 limited P1-P2 smoke",
+    "head_sha": "ef92bad49d167173dbbcfac493ad7bbdf56f60c4",
+    "conclusion": "success",
+    "os": "ubuntu-latest",
+    "python": "3.14.9",
+    "tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "elapsed_test_seconds": 1.911,
+    "node_frontend_syntax": "PASS",
+    "compileall": "PASS"
+  },
+  "assertions": [
+    "registration and login under distinct cookies",
+    "each account creates separate fictional club and buys figures",
+    "each creates three-figure lineup",
+    "foreign club and foreign CSRF rejected 404/403",
+    "one account simulates next fictional round and retains numeric score",
+    "other account remains at pending next round",
+    "double settlement idempotent",
+    "login after server restart yields same score and successor round",
+    "unauthenticated state and simulation both 401",
+    "no legacy game DB opened"
+  ],
+  "warnings": [
+    "ResourceWarning: HTTPError 404/403/401 objects from expected negative responses not explicitly closed; non-fatal test hygiene to repair without charging new cycle"
+  ],
+  "limits": [
+    "HTTP server real; no graphical browser UX or user acceptance",
+    "Only synthetic fixture data and localhost; no real politician scores",
+    "Not production deployment security audit",
+    "No new external social outcome or causality",
+    "P1 still READY_REVIEW until human acceptance; P2 technical route tested only"
+  ],
+  "grade": "AB-P_FUNCTIONAL_TECHNICAL_ONLY",
+  "scientific_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "grant": "PFL-ABH25-20261030-POSTACCESS",
+  "charge_new25": 1,
+  "prior_grants_unchanged": true
+}

@@ -1,0 +1,54 @@
+name: PFL ABH25 limited P1-P2 smoke
+on:
+  push:
+    branches: [research/pfl-abh25-evidence-and-product-20261030]
+    paths:
+      - .github/workflows/pfl-abh25-smoke.yml
+      - tests/test_abh25_p1p2_journey.py
+      - ab_atlas/updates/0096-pfl-abh25-c01-c02-20261030.json
+permissions:
+  contents: read
+jobs:
+  p1p2-loopback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Compile new integration test and app
+        run: python -m compileall -q src/politics_fantasy tests/test_abh25_p1p2_journey.py
+      - name: Two-account real HTTP flow and negative controls
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25_p1p2_journey.py -v
+      - name: Static frontend syntax
+        run: node --check src/politics_fantasy/web/app.js
+      - name: Native append-only Atlas replay, count and digest
+        run: |
+          python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
+          python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 3
+      - name: Canonical tracked index check
+        run: python scripts/project_index.py check
+      - name: State, budgets and O7 consistency check
+        run: python scripts/project_status.py check
+      - name: Validate new 25-grant separately from historical ledgers
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          g=json.loads(Path('research/ABH25_20261030/AUTHORIZATION.json').read_text())
+          s=json.loads(Path('PROJECT_STATE.json').read_text())
+          assert g['new_granted']==25 and g['valid_executed']==2 and g['remaining']==23
+          assert g['planning_only']==1 and len(g['cycle_register'])==2
+          assert s['abh25_authorization_snapshot']['remaining']==g['remaining']
+          assert s['authorization_snapshot']['executed']==6 and s['authorization_snapshot']['remaining']==4
+          assert s['additional_authorization_snapshot']['executed']==0
+          assert s['atlas_snapshot']['batches']==96
+          assert s['atlas_snapshot']['passed_gates']==0
+          print('ABH25_NEW_GRANT_AND_HISTORICAL_SEPARATION_PASS')
+          PY
+      - name: Compact derived handoff preview
+        run: python scripts/project_status.py brief

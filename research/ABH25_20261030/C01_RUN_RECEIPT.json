@@ -1,0 +1,52 @@
+{
+  "schema": "pfl.abh25.c01.original_source_audit.v1",
+  "cycle": "ABH25-C01",
+  "status": "VALID_LIMITED_ORIGINAL_EXTERNAL_SOURCE_CODE_AUDIT",
+  "mode": "AB-R",
+  "prereg": {
+    "contract_path": "research/ABH25_20261030/C01_PREREG_AJ.json",
+    "freeze_commit": "a3a8e405b1e586ef0c3c568961955c8bbdb40e7a",
+    "instrument_path": "research/ABH25_20261030/c01_source_audit.js",
+    "instrument_commit": "14fd74d6f8b2ba18e975336b0fcfad90edfc0741",
+    "verified_readback": true
+  },
+  "original_source": {
+    "repo": "Clemsrec/suiteadonner",
+    "pinned_commit": "a627cc26f255231d67faebb14e265523e46c0a66",
+    "path": "scripts/fetch-reunions.mjs",
+    "git_blob_sha": "4d6b24a1d65ac6293793da3ffc2a0f41df9ba61b",
+    "characters": 36917,
+    "license": "MIT from LICENSE at pinned project; no copying source to PFL"
+  },
+  "instrument_results": {
+    "versionedHints": 3,
+    "timestampHints": 1,
+    "explicitNumberHints": 12,
+    "snapshotHints": 0,
+    "first_public_verified": "NOT_ESTABLISHED_BY_STRING_SCAN",
+    "semantic_execution_of_upstream": false
+  },
+  "adversarial_context": {
+    "false_positive_archive": "all 3 token matches refer to ZIP archives, not archival versioning of events (lines 79,91,756)",
+    "updatedAt": "Timestamp.now() on Firestore metadata document, lines 863–870; crawl/update time, not first public appearance of minute",
+    "meeting_time": "r.timeStampDebut at line 696 stores meeting date, not first publication",
+    "official_reference": "compteRenduRef and direct original numbered decision link retained, but neither itself records first-public timestamp",
+    "cached_copy": "Cached HTML saved to filesystem; no content hash/version history in inspected script",
+    "scope_limit": "Other scripts or external infrastructure may track first publication; audit one declared pinned script only; no run of third-party workflow or original petitions"
+  },
+  "observation": "In pinned ingestion script, no code-backed first-public time/version per individual decision evidenced; H1 not demonstrated at source-file level; H0 consistent only for inspected file.",
+  "novelty": "NOT_CLAIMED — baseline already publishes agenda↔minutes and explicit petition numbers",
+  "grade": "0/3",
+  "CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "R5": "Do not re-run same code with more keyword queries; next material evidence must provide dated source histories, official meeting frame or real product acceptance",
+  "old_grants_unchanged": true,
+  "new25_charge": 1,
+  "external_human_evidence": false,
+  "causal": false
+}

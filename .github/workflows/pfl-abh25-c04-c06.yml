@@ -1,0 +1,30 @@
+name: PFL ABH25 C04-C06 bounded pivots
+on:
+  push:
+    branches: [research/pfl-abh25-evidence-and-product-20261030]
+    paths:
+      - .github/workflows/pfl-abh25-c04-c06.yml
+permissions:
+  contents: read
+jobs:
+  uk-primary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: python -m py_compile research/ABH25_20261030/c04_uk_petition_snapshot.py
+      - name: Preregistered first-page UK official source only
+        run: python research/ABH25_20261030/c04_uk_petition_snapshot.py
+  product-adversarial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: C05 concurrency and C06 as-of revision tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25_c05_c06.py -v

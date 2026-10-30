@@ -1,0 +1,28 @@
+{
+  "schema": "pfl.abh25.c03.stage0_frame_probe.v1",
+  "status": "DESIGN_ONLY_METADATA_NO_NEW_OUTCOMES",
+  "cycle_candidate": "ABH25-C03",
+  "preregistered_cycle": false,
+  "source": "https://data.assemblee-nationale.fr/static/openData/repository/17/vp/reunions/reunions_init_commission_libre_office.csv",
+  "publisher": "Assemblée nationale",
+  "source_page": "https://data.assemblee-nationale.fr/reunions/reunions",
+  "page_published_md5": "255fd1632c8993b3dcf6d6c303b3d2d3",
+  "page_time": "2026-10-27 23:00:06 (source metadata)",
+  "fields_permitted": [
+    "header names",
+    "file bytes and SHA256",
+    "number of rows",
+    "non-outcome agenda keyword counts"
+  ],
+  "forbidden": [
+    "reading original committee-minute decisions",
+    "downloading petition outcome snapshot",
+    "treating absent keyword as no decision",
+    "publishing personal names or petition titles",
+    "altering C38 or C39 receipts"
+  ],
+  "intended_frame": "After seeing schema only, freeze a deterministic time-window 2026-02-01–2026-09-30 with at most 30 meeting IDs, excluding prior exposed meetings, and write full A-J + code SHA before outcomes.",
+  "value_of_information": "A stable metadata roster enables a non-outcome-selected sample. If no unique agenda→minute link, STOP or PIVOT; absence is not zero.",
+  "cycle_accounting": "Metadata-only preparation does not consume new 25 or 15 old cycles",
+  "R5": "One bounded attempt; do not spend quota on repeated failed downloads."
+}

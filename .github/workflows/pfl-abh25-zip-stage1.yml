@@ -1,0 +1,22 @@
+name: PFL ABH25 C03 official ZIP structure only
+on:
+  push:
+    branches: [research/pfl-abh25-evidence-and-product-20261030]
+    paths:
+      - .github/workflows/pfl-abh25-zip-stage1.yml
+      - research/ABH25_20261030/c03_zip_schema_only.py
+permissions:
+  contents: read
+jobs:
+  zip-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Syntax check
+        run: python -m py_compile research/ABH25_20261030/c03_zip_schema_only.py
+      - name: One bounded official ZIP fetch, structural keys only
+        run: python research/ABH25_20261030/c03_zip_schema_only.py

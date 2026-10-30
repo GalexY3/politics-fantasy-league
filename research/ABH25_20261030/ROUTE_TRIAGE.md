@@ -1,0 +1,21 @@
+# ABH25 — selección de rutas y controles (antes de nuevos outcomes)
+
+Base main: `653604358183b59e8c0446497f47ff4a3769134f`. Concesión nueva: 25; anteriores intactas.
+
+1. **Procedencia temporal de actas (elegida C01):** auditar código original fijado de *Suite à donner*. Rival: captura primera publicación verificable vs solo fecha de extracción o reunión. Falsador: localización de una instrumentación versionada que vincule cada acta con primera publicación, hashes y cambios históricos. No confundir ausencia en el fichero inspeccionado con ausencia en el sistema completo. Fuente: Clemsrec/suiteadonner commit `a627cc26f255231d67faebb14e265523e46c0a66`, código aún no inspeccionado.
+2. **Nuevo marco de reuniones C40:** CSV oficial de agendas de comisiones, publicado bajo licencia abierta; seleccionar solo metadatos antes del resultado. Rival: el CSV no permite enlace unívoco agenda-acta; detenerse sin seleccionar decisiones. La descarga CSV desde el entorno actual falló (no es un dataset leído). No repetir C38 ni C39.
+3. **Producto ficticio P1→P2:** contrastes locales sobre aislamiento, persistencia, flujo y seguridad; baseline tests existentes, nunca presentar tests sintéticos como evidencia social. P1 aún requiere aceptación humana. No despliegue ni puntuación de políticos reales.
+
+Conocido antes del freeze: README de *Suite à donner* describe cruces de actas y peticiones, omisiones de `decision_commission`, estados no concluyentes y umbrales institucionales heterogéneos. Su licencia de código MIT se verificó. El resultado de C01 no puede reivindicar originalidad de esos mecanismos.
+
+Gobernanza: R5 puede cerrar anticipadamente. Cualquier test de programación rutinario no consume ciclo científico. Los nuevos A–J y fuente exacta se vinculan a commits remotos antes de consultar resultados. CT2 PFL 20 ordinal, N1/N2/N3 0, gates 0/6 sin cambios.
+
+## Cierre observado de la presente continuación
+
+- **C01 AB-R — VALID_LIMITED:** [contrato congelado](C01_PREREG_AJ.json) antes de inspeccionar original `scripts/fetch-reunions.mjs`, fuente `Clemsrec/suiteadonner@a627cc26`. No se demostró procedencia de primer día público por evento en ese archivo. No inferir ausencia en el sistema, efecto causal ni novedad de cruces de actas ya establecidos en el antecedente. [Informe](C01_REPORT.md), [recibo](C01_RUN_RECEIPT.json), prior PF-BR81.
+- **C02 AB-P — VALID_LIMITED:** [contrato](C02_PREREG_AJ.json), [tests congelados](../../tests/test_abh25_p1p2_journey.py), [Actions #41018524103](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41018524103), 2/2 pruebas de API HTTP para dos cuentas ficticias, negativa de CSRF/ajenos y persistencia tras reinicio. Solo funcionalidad; **P1 espera aceptación humana**. [Recibo](C02_RUN_RECEIPT.json).
+- **C03 — PLANNING/BLOCKED, NO CICLO:** [CSV de comisiones](C03_STAGE0_CSV_RECEIPT.json): 29 registros en ese fichero oficial, MD5 publicado igual, sin ID reunión ni referencia acta. [ZIP estructurado](C03_STAGE1_BLOCKED.json): MD5 real `bcdbda980881c326d437a69e78beaa9a` distinto del MD5 editorial congelado `97332eb327d19e22d42a2f639e754d87`; detenido antes de leer registros. [Informe](C03_REPORT.md), PF-BR82. No repetir intentos hasta versión oficial confirmada.
+- **Atlas96** canónico verificado en [Actions #41018842403](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41018842403): 96 lotes, SHA-256 `8072ccbd76ed7851f96757cf8567a17e869f66d59da7ef6637f122583ac93d3f`, 63 nodos/81 aristas, 0/6 gates. O7 separado 59 nodos/78 aristas. Las nuevas actas observadas son **cero**.
+- Se conservan [incidencias de ejecución](C03_REPORT.md), incluidas discrepancia checksum y una ejecución intermedia roja de catálogo desactualizado (posteriormente regenerado), sin reescribir el historial.
+- **Contabilidad:** 25 nuevos autorizados, 2 de alcance limitado realizados (C01 + C02), 1 planificación bloqueada no cargada, **23 restantes**. Anteriores READ5-CONTINUE15 15, ABH10 4, INTEGRATION10 10, históricos R5 2, sin transferencia ni consumo.
+- **AB-DECIDE:** `STOP_R5` sobre fuente institucional actual; reabrir solo con un artefacto/versión original nuevos y discriminantes. Producto queda `READY_REVIEW` para aceptación humana P1, no hay despliegue. Ciencia CT2 20/100 ordinal, N1/N2/N3 = 0, grado de descubrimiento propio 0/3.

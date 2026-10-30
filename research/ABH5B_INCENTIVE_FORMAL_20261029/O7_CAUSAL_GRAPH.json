@@ -451,6 +451,70 @@
       "state": "answered",
       "summary": "Four selected explicit committee decisions absent from CSV text field; two remain open. Known prior-art replication, no correction of C38 population estimate, zero new scientific cycles.",
       "source": "../CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "type": "original_source_audit",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Pinned independent Suite à donner ingest script does not demonstrate per-event first-public timestamp/version; ZIP archive and Firestore updatedAt false positives. No general system-wide absence, no causal validation.",
+      "source": "../ABH25_20261030/C01_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "type": "bounded_product_acceptance",
+      "mode": "AB-P",
+      "state": "validated",
+      "summary": "Real localhost HTTP 2/2 success across account registration, separate clubs/figures, lineup, simulation, CSRF and cross-account negative controls, restart persistence. Human visual acceptance pending; no real political data.",
+      "source": "../ABH25_20261030/C02_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C03-FRENCH-OFFICIAL-MEETING-FRAME-BLOCKED",
+      "type": "official_metadata_probe_blocked_noncycle",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "17th-legislature commission CSV MD5 matches but only five agenda columns and no meeting ID/report link. Alternate Agenda.json.zip observed MD5 differs from published before opening archive; C03 unconsumed, R5 park until authoritative version.",
+      "source": "../ABH25_20261030/C03_REPORT.md"
+    },
+    {
+      "id": "PFL-ABH25-UK-C04",
+      "type": "original_source_measurement",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "First 25 UK closed petitions have threshold and response-related fields; naive field grouping not valid rate",
+      "source": "../ABH25_20261030/C04_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C05-ROUND-CONCURRENCY",
+      "type": "product_adversarial",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Six concurrent round-settlement attempts create one persistent successor",
+      "source": "../ABH25_20261030/C05_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C06-ASOF-REVISION",
+      "type": "temporal_product",
+      "mode": "AB-P",
+      "state": "answered",
+      "summary": "Synthetic first-public revisions resolve at cutoff without double count",
+      "source": "../ABH25_20261030/C06_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-UK-C07",
+      "type": "original_source_measurement",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Disjoint second page 25 original UK closed petitions has separate threshold and actual response dates, 23 debate outcomes; nonrepresentative",
+      "source": "../ABH25_20261030/C07_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C08-C26-FORMAL-SYNTHETIC",
+      "type": "formal_checks",
+      "mode": "AB-H",
+      "state": "answered",
+      "summary": "Nineteen separate synthetic formal/product validation checks PASS; NO empirical novelty, one minor resource warning",
+      "source": "../ABH25_20261030/C08_C26_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -903,6 +967,42 @@
       "to": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
       "relation": "related_to",
       "interpretation": "Audits measurement limitation, not independent confirmation of directional H1."
+    },
+    {
+      "from": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "to": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "relation": "related_to",
+      "interpretation": "Audits provenance prerequisite after C39 selected-case missingness; source-code conclusion scoped to one pinned original file, not independent new institutional outcomes."
+    },
+    {
+      "from": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "to": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "relation": "related_to",
+      "interpretation": "AB-P fictional product capability independent of AB-R original external source provenance; must not transfer technical pass to scientific claim."
+    },
+    {
+      "from": "PFL-ABH25-C03-FRENCH-OFFICIAL-MEETING-FRAME-BLOCKED",
+      "to": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "relation": "related_to",
+      "interpretation": "Both concern missing versioned event provenance; no institutional decision outcomes or causal tests."
+    },
+    {
+      "from": "PFL-ABH25-UK-C07",
+      "to": "PFL-ABH25-UK-C04",
+      "relation": "related_to",
+      "interpretation": "Two distinct fixed pages of same UK API, not independent institution; C07 repairs response-field semantic ambiguity."
+    },
+    {
+      "from": "PFL-ABH25-UK-C04",
+      "to": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
+      "relation": "related_to",
+      "interpretation": "Different petition institutions and measurement regimes; no transport of French support sign."
+    },
+    {
+      "from": "PFL-ABH25-C08-C26-FORMAL-SYNTHETIC",
+      "to": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "relation": "related_to",
+      "interpretation": "Adds distinct formal and technical stress controls, not a human test or release gate."
     }
   ],
   "rules": {

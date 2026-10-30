@@ -1,0 +1,40 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0096-PFL-ABH25-C01-C02-20261030",
+  "parent_batch": "0095-PFL-PR2-CONTINUITY-MEASUREMENT-AUDIT-20261030",
+  "at": "2026-10-30T07:13:48.508Z",
+  "actor": "chatgpt",
+  "reason": "ABH25 new independent grant: C01 bounded original external source-code provenance audit and C02 real fictional two-account HTTP functional integration; no causal promotion or human UX acceptance.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25-C01-EXTERNAL-CODE-PROVENANCE",
+        "at": "2026-10-30T07:13:48.508Z",
+        "activity": "Pinned original independent source-code audit a627cc26, first-public per-event not demonstrated in inspected script; semantic false positives excluded. Freeze and original blob recorded.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25_20261030/C01_PREREG_AJ.json",
+          "research/ABH25_20261030/C01_RUN_RECEIPT.json"
+        ],
+        "scope": "AB-R original external code audit limited; no human outcomes, novelty 0/3",
+        "method_version": "AB3.2.1 O1-O7"
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25-C02-HTTP-FICTIONAL-P1P2",
+        "at": "2026-10-30T07:13:48.508Z",
+        "activity": "GitHub Actions #41018524103 real HTTP localhost two-user round and restart: 2/2 unit tests PASS, isolated per-account game state, negative CSRF and unauthorized controls. Human browser acceptance pending.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25_20261030/C02_PREREG_AJ.json",
+          "research/ABH25_20261030/C02_RUN_RECEIPT.json"
+        ],
+        "scope": "AB-P technical functional bounded, not social validation or release gate",
+        "method_version": "AB3.2.1 O1-O7"
+      }
+    }
+  ]
+}

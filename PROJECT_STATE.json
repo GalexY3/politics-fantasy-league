@@ -1,5 +1,5 @@
 {
-  "revision": 11,
+  "revision": 15,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -14,7 +14,8 @@
     "METHOD_REFERENCE.json",
     "docs/migration/COMMIT_MAP.tsv",
     "tools/ab_atlas/UPSTREAM.json",
-    "research/CONTINUATION20_20261030/AUTHORIZATION.json"
+    "research/CONTINUATION20_20261030/AUTHORIZATION.json",
+    "research/ABH25_20261030/AUTHORIZATION.json"
   ],
   "additional_authorization_snapshot": {
     "id": "PFL-GRANT-20261030-INTEGRATION10",
@@ -45,7 +46,7 @@
       "status": "READY_REVIEW",
       "outcome": "Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público",
       "acceptance": "Cuentas locales e aislamiento revisados; QA completo Linux PASS. Alta/entrada Chrome observadas; aceptación humana de uso pendiente antes de DONE.",
-      "next_action": "Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada",
+      "next_action": "Linux P1/P2 HTTP dual-account smoke 2/2 PASS (#41018524103, #41018842403); human visual acceptance of account/club journey still required, no public deployment.",
       "dependencies": [
         "P0-INTEGRATION"
       ],
@@ -62,7 +63,7 @@
       "status": "QUEUED",
       "outcome": "Flujo ficticio completo usable y persistente",
       "acceptance": "Acceso, creación de club, alineación, jornada y resultado desde navegador; reinicio conserva estado; revisión de uso por el investigador",
-      "next_action": "Tras aceptación humana P1, comprobar acceso→club→alineación→jornada ficticia→resultado en navegador con persistencia/reinicio.",
+      "next_action": "Two-account HTTP transfer→lineup→simulate→score→restart confirmed, no full browser-human acceptance. Preserve QUEUED until P1 accepted and browser UX evaluated.",
       "dependencies": [
         "P1-ACCOUNTS"
       ],
@@ -91,7 +92,7 @@
       "status": "READY_REVIEW",
       "outcome": "Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario",
       "acceptance": "Evidencia original pública SHA congelada al ejecutar, Python 8/8 nativo, control de año y edad, primer test 6/8 inválido registrado; resultado solo descriptivo, la validación independiente de decisiones reales sigue pendiente.",
-      "next_action": "C38 sigue negativo descriptivo. Cuatro casos posthoc validan omisiones locales del CSV, sin corregir su efecto; fijar corpus nuevo y baseline antes del contraste siguiente.",
+      "next_action": "C38 descriptive negative remains; C03 official CSV cannot uniquely link meeting→minute, alternate Agenda.zip MD5 drift. Reopen only with verified source version/new independent observation; do not pretend absent CSV field means no decision.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -201,12 +202,11 @@
     "new_ab_cycles": 0
   },
   "latest_validation": {
-    "status": "REVIEW_APPROVED_PR2_MERGED",
-    "verified_commit": "ef57c492cc5b83dd4a97c447b21670570b383f5a",
-    "summary": "Full Linux 7de66007: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS. Later allocation validator: 14 continuity tests PASS; new posthoc instrument: 6 controls PASS and actual originals audit. Current Atlas/index/continuity checked separately; raw evidence in continuation folder.",
-    "evidence": "research/CONTINUATION20_20261030/REVIEW.md",
-    "scope_note": "Composed validation: full product suite on 7de66007, incremental continuity/research checks on ef57c49. Human UX acceptance and deployment remain pending.",
-    "incremental_evidence": "research/CONTINUATION20_20261030/followup/MANIFEST.json"
+    "status": "ABH25_FINAL_FULL_LINUX_QA_PASS_D18EDB8",
+    "verified_commit": "d18edb854acb3676f917e48c331fccf34735124a",
+    "summary": "GitHub Actions #41080905547 on PR #3: full Linux Python 861/861 plus 32 subtests PASS; full Atlas engine 38/38 plus 108 subtests PASS; Node 511/511 PASS; canonical Atlas97 SHA 609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc; tracked index 2920 PASS; project_status.errors=[]; ABH25 25/25, prior grants unchanged and science CT2 20 PASS.",
+    "evidence": "research/ABH25_20261030/FINAL_REPORT.md",
+    "scope_note": "Full suite verified candidate PR merge at head d18edb8; subsequent workflow trigger and continuity metadata changes are not independently re-tested. No public deployment, accepted human UX, new causal evidence or merge to main."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -245,7 +245,19 @@
     "no_additional_AB_cycles_used": true,
     "posthoc_measurement_audit": "research/CONTINUATION20_20261030/C39_RUN_RECEIPT.json",
     "new_scientific_cycles_in_this_review": 0,
-    "research_next": "Freeze a new finite minute corpus and compare against Suite à donner; selected four-case audit is exposed prior evidence, not confirmation."
+    "research_next": "Freeze a new finite minute corpus and compare against Suite à donner; selected four-case audit is exposed prior evidence, not confirmation.",
+    "abh25_grant": "PFL-ABH25-20261030-POSTACCESS",
+    "abh25_valid_limited": 25,
+    "abh25_remaining": 0,
+    "abh25_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/3",
+    "abh25_research": "C01 limited independent original source audit; first publication not established in inspected script",
+    "abh25_product": "C02 real two-account HTTP journey passed CI; P1 human acceptance still pending",
+    "abh25_r5": "French C03 route parked due checksum and unlinked frame; campaign continued via UK C04,C07 and formal/product checks C05,C06,C08-C26; 25/25 executed bounded, no external causal findings.",
+    "abh25_source_probe": "C03 stage0 original commission CSV 29 rows MD5 PASS but no meeting ID; alternate official Agenda.json.zip MD5 mismatch before unzipping. R5 PARK; not a scientific cycle.",
+    "abh25_scientific_discoveries": 0,
+    "abh25_final_report": "research/ABH25_20261030/FINAL_REPORT.md",
+    "abh25_final_ci": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080905547",
+    "abh25_final_ci_criteria": "Full Python/Node/Atlas and catalogue+budget PASS on tested candidate; documentation amendments after test not separately verified."
   },
   "integration_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/2",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -293,12 +305,12 @@
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "atlas_snapshot": {
-    "batches": 95,
+    "batches": 97,
     "nodes": 63,
     "edges": 81,
-    "runs": 312,
+    "runs": 337,
     "complaints": 51,
-    "state_sha256": "39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a",
+    "state_sha256": "609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc",
     "passed_gates": 0
   },
   "method_reference": "METHOD_REFERENCE.json",
@@ -320,5 +332,13 @@
     "historical_separate_stop_r5": 2
   },
   "additional_authorization_ledger": "research/AUTHORIZATION_20261030_NEW10.json",
-  "continuation_allocation_ledger": "research/CONTINUATION20_20261030/AUTHORIZATION.json"
+  "continuation_allocation_ledger": "research/CONTINUATION20_20261030/AUTHORIZATION.json",
+  "abh25_authorization_ledger": "research/ABH25_20261030/AUTHORIZATION.json",
+  "abh25_authorization_snapshot": {
+    "authorized": 25,
+    "executed_limited": 25,
+    "remaining": 0,
+    "planning_only": 1,
+    "scientific_discoveries": 0
+  }
 }

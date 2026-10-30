@@ -1,0 +1,39 @@
+name: PFL ABH25 final full Linux verification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install --disable-pip-version-check -e '.[test]'
+      - name: Validate generated index and state before suites
+        run: |
+          python scripts/project_index.py check
+          python scripts/project_status.py check
+      - name: Full Python regression suite
+        run: PYTHONPATH=src python -m pytest -q -rs
+      - name: Atlas engine full suite
+        run: python -m pytest -q -rs tools/ab_atlas/tests
+      - name: Full Node suite
+        run: node scripts/run_node_tests.mjs
+      - name: Replay Atlas97 and validate sources and state
+        run: |
+          python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
+          python scripts/project_index.py check
+          python scripts/project_status.py check
+      - name: Verify new and legacy grant arithmetic
+        run: python scripts/abh25_final_budget_check.py
+# Revalidated after final catalogue 2920 and grant ledger 25/25.
