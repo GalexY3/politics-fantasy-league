@@ -6,7 +6,7 @@
   "new_granted": 25,
   "valid_executed": 2,
   "invalid_attempts": 0,
-  "planning_only": 0,
+  "planning_only": 1,
   "remaining": 23,
   "base_repository": "GalexY3/politics-fantasy-league",
   "base_main_sha": "653604358183b59e8c0446497f47ff4a3769134f",
@@ -61,7 +61,7 @@
       "human_acceptance": "PENDING"
     }
   ],
-  "latest_decision": "STOP_R5_INDEPENDENT_HUMAN_PROVENANCE_UNAVAILABLE; PRODUCT_P1_READY_REVIEW; C01_C02_DONE",
+  "latest_decision": "STOP_R5: C03 institutional original outcome access parked after integrity and linkage blockers; 23 new slots preserved; P1 human acceptance remains.",
   "scientific_unchanged": {
     "CT2_ordinal": 20,
     "N1_N2_N3": [
@@ -70,5 +70,15 @@
       0
     ],
     "release_gates": "0/6"
-  }
+  },
+  "noncycle_probes": [
+    {
+      "id": "ABH25-C03-STAGE0-1",
+      "status": "PARKED_METADATA_ONLY_UNCOUNTED",
+      "original_csv": "C03_STAGE0_CSV_RECEIPT.json",
+      "zip_drift": "C03_STAGE1_BLOCKED.json",
+      "read_outcomes": false,
+      "counted": false
+    }
+  ]
 }
