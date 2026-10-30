@@ -1,0 +1,42 @@
+{
+  "schema": "pfl.AB3.2.1.AJ.prereg.v1",
+  "cycle": "ABH25-C01",
+  "status": "PREREG_PRE_SOURCE_CONTENT",
+  "mode": "AB-R_ORIGINAL_EXTERNAL_CODE_PROVENANCE_AUDIT",
+  "source_commit": "a627cc26f255231d67faebb14e265523e46c0a66",
+  "source_files": [
+    "scripts/fetch-reunions.mjs"
+  ],
+  "exposure_before_freeze": [
+    "Third-party README describes use of official agenda, commission minutes and numbered petitions; known general prior-art conclusions",
+    "Never inspected contents of scripts/fetch-reunions.mjs in this campaign"
+  ],
+  "A": "Does the pinned independent original meeting-harvesting implementation preserve a source-backed first-public timestamp or version for each linked committee minute/event, separately from its meeting date and crawl date? Unit: repository source file, NOT petitions or persons.",
+  "B": {
+    "H1": "Explicit source-level provenance of first public appearance or immutable version for each decision-bearing meeting",
+    "H0": "Only meeting date, latest crawl timestamp, hash of current data or no per-event first-public provenance",
+    "rivals": [
+      "Provenance may reside in other files or remote infrastructure; absence from one file is not complete absence",
+      "A regex occurrence may be a comment or variable unrelated to version history"
+    ]
+  },
+  "C": "Read exactly pinned upstream script; automatic token counts plus manual context audit; report file size and blob SHA; no upstream network execution; accepted informative negative/inconclusive.",
+  "D": {
+    "frozen_code": "research/ABH25_20261030/c01_source_audit.js",
+    "frozen_before_outcome": true,
+    "anticipated_command": "Run same auditSource() bytes on the source string returned from pinned GitHub commit, then inspect context of matched claims.",
+    "negative_controls": [
+      "bare date, fetch date, update timestamp do not count as first-public",
+      "keyword match alone never upgrades source provenance"
+    ]
+  },
+  "E": "After both files have remote Git commits, read original script and calculate exact candidate counts; record binary version and evidence.",
+  "F": "Manual adversarial review of matched snippets and source dependencies. Distinguish source-level versus event-level and temporal evidence.",
+  "G": "No independent future source holdout. Compare conservative reading to repository README and full system limits.",
+  "H": "New PF-BR prior only if original source changes a precise instrumentation belief, else negative/no update.",
+  "I": "N1/N2/N3=0; CT2 20 ordinal; no human source outcome or causal validation.",
+  "J": "COUNT only if complete freeze and exact original file reviewed with source context, falsifier and negative controls; otherwise BLOCKED_UNCOUNTED. R5 stop after bounded pass.",
+  "selection_exposure": "README and licenses viewed before freeze; original script not viewed",
+  "authorization": "PFL-ABH25-20261030-POSTACCESS",
+  "notes": "Do not claim general research discovery from source-code audit."
+}
