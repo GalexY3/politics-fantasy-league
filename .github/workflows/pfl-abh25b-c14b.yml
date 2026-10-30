@@ -1,0 +1,20 @@
+name: PFL ABH25B C14B official geographic signatures
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-c14b.yml
+permissions:
+  contents: read
+jobs:
+  single-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Three adversarial controls before original detail
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_c14b_spatial.py -v
+      - name: Read deterministic original UK petition detail and print aggregate only
+        run: python research/ABH25B_20261030/c14b_uk_geographic_signatures.py
