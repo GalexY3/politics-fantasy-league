@@ -1,0 +1,269 @@
+{
+  "schema": "pfl.abh25b.formal_branching_aj.v1",
+  "status": "PRE_OUTPUT_FROZEN",
+  "grant": "PFL-ABH25B-20261030",
+  "mode": "AB-R_FORMAL_THEORETICAL_SIMULATION_NOT_EMPIRICAL",
+  "base_pr4": "research/pfl-ab-h25-v2-source-provenance-playability-20261030",
+  "method": "AB 3.2.1 O1–O7",
+  "fixed_seeds": "Each C<n> uses 200 paired replicates, seeds 20263000+100*n+i for i=0..199, no adaptive seed selection",
+  "decision_criterion": "Primary direction precommitted; report observed paired mean delta, sample SE, 95% Monte Carlo interval, falsified or inconclusive. Placebo/mechanism-off control in each scenario. Do not treat Monte Carlo CI as generalization to humans.",
+  "cycles": [
+    {
+      "id": "ABH25B-C12",
+      "A": "Public rank visibility and concentration",
+      "B": {
+        "H1": "Concentration of fictional issue attention is higher with cumulative public rankings than with private preferences",
+        "direction": "+",
+        "H0_rival": "H0 status sensitivity zero; rival public ranking can also diversify if fairness rules intervene"
+      },
+      "C": "Herfindahl index of 80 sequential issue choices, public popularity feedback vs blind selection",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C13",
+      "A": "Source-audit precision and forecast calibration",
+      "B": {
+        "H1": "Adding an independent lower-noise audit signal reduces simulated agents' squared estimation error",
+        "direction": "-",
+        "H0_rival": "H0 signal adds correlated noise, improvement absent; negative if audit signal unreliable"
+      },
+      "C": "MSE of 120 independent synthetic estimates of fictional event likelihood",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C14",
+      "A": "Institutional action threshold coordination",
+      "B": {
+        "H1": "Threshold-based institutional bonus increases strategic bunching at petition support targets",
+        "direction": "+",
+        "H0_rival": "H0 smooth continuous bonus, no bunching; competing concern of crowd-out"
+      },
+      "C": "Support concentration near target when agents coordinate donations with near-threshold priority",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C15",
+      "A": "Queue capacity and response backlogs",
+      "B": {
+        "H1": "An adaptive committee-processing capacity policy reduces average pending cases versus fixed capacity",
+        "direction": "-",
+        "H0_rival": "H0 arrivals far below capacity; rival increased demand offsets service gains"
+      },
+      "C": "Mean end-of-week pending petition queue in 60-week synthetic arrivals",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C16",
+      "A": "Homophily and polarization retention",
+      "B": {
+        "H1": "Homophilous social contact maintains a higher opinion gap than cross-group mixing",
+        "direction": "+",
+        "H0_rival": "H0 no interaction, or exposure through cross-group bridges collapses gap"
+      },
+      "C": "Absolute group opinion mean separation after six weighted averaging steps",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C17",
+      "A": "Feedback timeliness and adaptation regret",
+      "B": {
+        "H1": "Delayed reward publication increases adaptation regret under a midseason environment reversal",
+        "direction": "+",
+        "H0_rival": "H0 stable rewards and symmetric arms, delay inconsequential"
+      },
+      "C": "Cumulative regret in nonstationary two-arm synthetic feedback task",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C18",
+      "A": "Gaming score proxies and substantive output",
+      "B": {
+        "H1": "Rewarding a cheap public proxy instead of substantive output reduces simulated substantive effort",
+        "direction": "-",
+        "H0_rival": "H0 score aligned perfectly with substantive effort, no shift"
+      },
+      "C": "Mean substantive work units under proxy-heavy vs outcome-aligned rewards",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C19",
+      "A": "Liquidity inequality and roster advantage",
+      "B": {
+        "H1": "Unequal fictional starting credits generate higher concentration of assets than equal budgets",
+        "direction": "+",
+        "H0_rival": "H0 equal budgets or randomized bid prices erase early capitalization effect"
+      },
+      "C": "Gini of acquired intrinsic fictional player value across clubs",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C20",
+      "A": "Winner-take-all rewards and risk selection",
+      "B": {
+        "H1": "Winner-take-all rank prizes induce more risky actions than proportional expected utility",
+        "direction": "+",
+        "H0_rival": "H0 rival threshold irrelevant or safe actions always win"
+      },
+      "C": "Risky-action probability under score threshold vs linear rewards",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C21",
+      "A": "Cumulative advantage and tournament feedback",
+      "B": {
+        "H1": "Reinvested winner bonuses increase concentration of accumulated wins versus no bonuses",
+        "direction": "+",
+        "H0_rival": "H0 identical reinvestment across all participants; innovation shocks dominate"
+      },
+      "C": "HHI of wins after repeated stochastic fictional competitions",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C22",
+      "A": "Bridging norms and coalition structure",
+      "B": {
+        "H1": "Explicit cross-faction bridge norm raises observed cross-bloc ties versus no bridge norm",
+        "direction": "+",
+        "H0_rival": "H0 no norm effect or alternative coalition-wide trust"
+      },
+      "C": "Fraction of cross-bloc ties among possible pairs in synthetic coalition networks",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C23",
+      "A": "Selective coverage and ranking validity",
+      "B": {
+        "H1": "Missing-not-at-random high-quality events reduce ranking fidelity versus random missingness",
+        "direction": "-",
+        "H0_rival": "H0 coverage independent of quality, no systematic top-rank distortion"
+      },
+      "C": "Top-decile precision of observed fictional event scores under MNAR vs MCAR",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C24",
+      "A": "Algorithmic amplification and agenda concentration",
+      "B": {
+        "H1": "Preferential recommendation increases attention inequality versus uniform issue discovery",
+        "direction": "+",
+        "H0_rival": "H0 no reinforcement; exploratory slots keep attention diverse"
+      },
+      "C": "Gini attention from successive hypothetical issue impressions",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C25",
+      "A": "Explicit uncertainty and platform participation",
+      "B": {
+        "H1": "Explicitly showing uncertain evidence increases voluntary participation versus defaulting missing evidence to zero",
+        "direction": "+",
+        "H0_rival": "H0 users are loss-averse to uncertainty and participate less; rival honest uncertainty lowers adoption"
+      },
+      "C": "Share of synthetic users with uncertain information who elect to try the fantasy",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    },
+    {
+      "id": "ABH25B-C26",
+      "A": "Rule revisions and historical fairness",
+      "B": {
+        "H1": "Retroactive point-rule changes create more historic rank reversals than frozen settlement rules",
+        "direction": "+",
+        "H0_rival": "H0 revised weights proportional to originals, no order changes"
+      },
+      "C": "Fraction of club pairs whose old-round order reverses under retrospective recomputation",
+      "D": "Frozen run code research/ABH25B_20261030/c12_c26_formal_mechanisms.py must be committed before any model outcome; same code and seed schedule for all, 200 paired replicates.",
+      "E": "One read-only GitHub Actions Linux execution per scenario (can batch runner), log all outcomes including unsuccessful and negative.",
+      "F": "Placebo switch equal to control with paired random numbers and reverse/other counterfactual where feasible; invalid/nonfinite flagged, do not drop failures.",
+      "G": "Compare mechanism-active to active named competitor; designs deliberately synthetic. No social data, no externally identified behavioral parameter.",
+      "H": "Update theory priors only as conditional model implications with explicit assumptions and competitor; no source falsification.",
+      "I": "CT2 stays 20/100 ordinal, N1/N2/N3 stay0, gates0/6, no political people scored.",
+      "J": "Count a formal cycle only if distinct mechanism, A–J frozen before experiment, code tested and executed, rival/placebo recorded; NOT empirical validation, no invented novelty grade 2/3."
+    }
+  ],
+  "old_ABH25_not_repeated": "Older 19 checks asserted algebraic implementation invariants; these C12-C26 are new agent/institution generative mechanism scenarios with explicit competing behavioral models and counterfactual interventions, not direct repeats.",
+  "no_merges": true
+}
