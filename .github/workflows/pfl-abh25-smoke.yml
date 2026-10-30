@@ -1,0 +1,31 @@
+name: PFL ABH25 limited P1-P2 smoke
+on:
+  push:
+    branches: [research/pfl-abh25-evidence-and-product-20261030]
+    paths:
+      - .github/workflows/pfl-abh25-smoke.yml
+      - tests/test_abh25_p1p2_journey.py
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25-smoke.yml
+      - tests/test_abh25_p1p2_journey.py
+permissions:
+  contents: read
+jobs:
+  p1p2-loopback:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Compile new integration test and app
+        run: python -m compileall -q src/politics_fantasy tests/test_abh25_p1p2_journey.py
+      - name: Two-account real HTTP flow and negative controls
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25_p1p2_journey.py -v
+      - name: Static frontend syntax
+        run: node --check src/politics_fantasy/web/app.js
