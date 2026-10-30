@@ -479,7 +479,7 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
                          'provenance':'Congreso, sesión plenaria 193 (2026-07-23); transcripción manual de recuentos; SIN DETALLE NOMINAL'}
         except (OSError, UnicodeError, ValueError, TypeError, KeyError, csv.Error):
             observatory={'status':'MANUAL_AGGREGATE_INVALID','votes':[], 'provenance':None}
-    return {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
+    result = {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
             'mode':DATA_PROVENANCE, 'authentication':'NONE_LOCAL_LOOPBACK_ONLY',
             'scoring_rule':DEMO_RULE.version,'roster_limit':MAX_OWNED,'lineup_size':LINEUP_SIZE,
             'figures':figures,'clubs':clubs,'rounds':rounds,'season_standings':season_standings,'trades':trades,
@@ -487,3 +487,6 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
                            'simulated':bool(clock_offset and clock_offset[0])},
             'observatory':observatory,
             'research_status':'NO_REAL_INDIVIDUAL_PLAYER_SCORING_OR_PREDICTIONS'}
+    from .insights import derive_all
+    result['insights'] = derive_all(result)
+    return result
