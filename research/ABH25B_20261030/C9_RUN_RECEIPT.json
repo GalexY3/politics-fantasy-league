@@ -1,0 +1,41 @@
+{
+  "schema": "pfl.abh25b.uk_original_lifecycle_receipt.v1",
+  "cycle": "ABH25B-C9",
+  "mode": "AB-R",
+  "status": "VALID_LIMITED_ORIGINAL_UK_INSTITUTIONAL_MEASUREMENT",
+  "focus": "OPEN_PETITION_THRESHOLD_VS_RESPONSE",
+  "prereg_commit": "fcb016353af3655ae7bb30cfc1be53f496318ce0",
+  "instrument_commit": "8a0c91a1a981f91b3af7c55d8c92922ce7614db9",
+  "controls_commit": "b413d768d463c26c8deee3a2ddecd7849149b658",
+  "run_id": 41087910108,
+  "job_id": 124173910929,
+  "selected_original_pages": [
+    {
+      "page": 3,
+      "sha": "4386b9c029b9eed2b73756bddbed78a0414c0e80f3b098237749352bae24ba75"
+    },
+    {
+      "page": 11,
+      "sha": "39c2a096ced2179a9d5c1f684ca21f6ccfa9d3bad7695fca8985328f095c2fbf"
+    }
+  ],
+  "aggregates": {
+    "n": 50,
+    "below_10000": 33,
+    "at_least_10000_below_100000": 17,
+    "at_least_100000": 0,
+    "response_at": 7,
+    "threshold_at": 17,
+    "threshold_pending_response": 10,
+    "closed_at_while_open": 0
+  },
+  "limitations": [
+    "Two fixed nonrandom sorted public API pages, no representative rate",
+    "Raw published field date not independently source-versioned",
+    "A missing timestamp is not proof the institution never acted",
+    "No causal or value judgement about persons, no identity/title export"
+  ],
+  "grade": "0/3",
+  "ct2_science": 20,
+  "launch_gates": "0/6"
+}
