@@ -1,3 +1,9 @@
+# Continuidad PR2 y medición · 30/10/2026
+
+Atlas95: 39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a. QA completo de producto y auditoría posthoc guardados en [revisión](../research/CONTINUATION20_20261030/REVIEW.md). C38 no se duplica; ABH10 6/10, nueva independiente 0/10, históricos 2. Nueva concesión: cinco revisiones y quince unidades sustantivas pendientes, sin nuevos ciclos científicos por mantenimiento. P1 espera aceptación humana; gates 0/6.
+
+---
+
 # Repositorio independiente · 30/10/2026
 
 PFL se migra a [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league). Consultar [START_HERE](../START_HERE.md), [METHOD_REFERENCE](../METHOD_REFERENCE.json) y [la procedencia](../docs/migration/README.md). Los datos Atlas93 y su SHA se conservan; no se ejecutaron nuevos ciclos. QA independiente: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; [evidencia](../docs/migration/linux/MANIFEST.json). Corte de AB completado y verificado; [recibo](../docs/migration/PUBLICATION_RECEIPT.json). Seguimiento actual: [PFL#1](https://github.com/GalexY3/politics-fantasy-league/issues/1).

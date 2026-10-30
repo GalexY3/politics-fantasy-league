@@ -1,0 +1,73 @@
+{
+  "branch": "codex/pfl-pr2-review",
+  "head": "ef57c492cc5b83dd4a97c447b21670570b383f5a",
+  "atlas": {
+    "batches": 95,
+    "nodes": 63,
+    "edges": 81,
+    "runs": 312,
+    "complaints": 51,
+    "state_sha256": "39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a",
+    "passed_gates": 0
+  },
+  "authorization": {
+    "campaign": "ABH10",
+    "authorized": 10,
+    "executed": 6,
+    "remaining": 4,
+    "historical_separate_stop_r5": 2
+  },
+  "additional_authorization": {
+    "id": "PFL-GRANT-20261030-INTEGRATION10",
+    "authorized": 10,
+    "executed": 0,
+    "remaining": 10
+  },
+  "continuation_allocation": {
+    "schema": "pfl.continuation.allocation.v1",
+    "id": "PFL-GRANT-20261030-READ5-CONTINUE15",
+    "user_authorized_total_units": 20,
+    "review_units_allocated": 5,
+    "review_units_completed": 5,
+    "substantive_units_allocated": 15,
+    "valid_scientific_cycles_executed": 0,
+    "substantive_units_remaining": 15,
+    "source": "User supplied continuation transcript: 20 cycles, five dedicated to studying accumulated work. This registers that same grant once, not another grant of 20.",
+    "interpretation": "Five documentary reviews occupy the requested reading allocation, without being scientific experiments. Do not turn 20 total units into five reviews plus 20 scientific cycles.",
+    "prior_budgets": {
+      "ABH10_executed": 6,
+      "ABH10_remaining": 4,
+      "separate_INTEGRATION10_executed": 0,
+      "separate_INTEGRATION10_remaining": 10,
+      "historical_STOP_R5_remaining": 2,
+      "reassigned": false
+    },
+    "reviews": [
+      "R01-continuity",
+      "R02-method",
+      "R03-evidence",
+      "R04-product",
+      "R05-sources-and-prior-art"
+    ],
+    "review_evidence": "REVIEW.md",
+    "not_scientific_cycles": [
+      "PR reconciliation",
+      "CSP repair",
+      "Linux QA",
+      "browser smoke test",
+      "posthoc source audit",
+      "catalogue and handoff"
+    ],
+    "source_assistant_deliverables": "Not attached: original downloadable review bundle and TAREA_CODEX_CONTINUAR_PFL.md. Their contents are not represented as inspected.",
+    "scope": "Product and research remain separate; R5 applies. No deployment, political scoring or promotion of scientific grades."
+  },
+  "code_fingerprint": "5e7d3c287e1e8e67f2dc2e8e230ddc9cb40cd88143779d3ca3f0fc45c3e42b31",
+  "publication": {
+    "main_ref": "refs/remotes/origin/main",
+    "main_head": "08f83444be751f4c9e1e401fb53c135decb1af01",
+    "reviewed_commit_in_main": false,
+    "scope": "LOCAL_GIT_REF_FETCH_REQUIRED"
+  },
+  "errors": [],
+  "note": "Metadata consistency only; does not execute product tests, validate rights, or authorize release."
+}

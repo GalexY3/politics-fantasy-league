@@ -443,6 +443,14 @@
       "state": "answered",
       "summary": "Original French government-open petition CSV 4170, terminal/age/signature filters 1000; 10k+ support 8/22 documented committee decisions vs 100–9999 support 640/978; raw delta −29.08pp, 3 of 4 comparable years negative. Reject predeclared positive descriptive H1, NOT causal, missing field != no committee decision. Source sha a57572....",
       "source": "../R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "type": "posthoc_measurement_audit",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "Four selected explicit committee decisions absent from CSV text field; two remain open. Known prior-art replication, no correction of C38 population estimate, zero new scientific cycles.",
+      "source": "../CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -889,6 +897,12 @@
       "to": "PFL-ABH10-C37-AEA-REGISTRY-HISTORY-UNACCESSIBLE",
       "relation": "related_to",
       "interpretation": "R5 pivot from inaccessible human RCT original registry to openly licensed original institutional petition source; different population and estimand. No transfer of causal claims."
+    },
+    {
+      "from": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
+      "to": "PFL-ABH10-C38-FRENCH-PETITION-DOCUMENTATION-NEGATIVE",
+      "relation": "related_to",
+      "interpretation": "Audits measurement limitation, not independent confirmation of directional H1."
     }
   ],
   "rules": {

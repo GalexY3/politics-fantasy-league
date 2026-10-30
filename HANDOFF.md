@@ -1,10 +1,10 @@
 # PFL · briefing derivado
 
-Rama: `codex/pfl-pr2-review`; HEAD: `7de66007ac24c383f0433680b1e2edb3eb96462b`.
-Estado rev. 9; publicación declarada: PR2_REVIEW_ON_CURRENT_MAIN.
-Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
+Rama: `codex/pfl-pr2-review`; HEAD: `ef57c492cc5b83dd4a97c447b21670570b383f5a`.
+Estado rev. 10; publicación declarada: PR2_REVIEW_ON_CURRENT_MAIN.
+Código revisado incluido en refs/remotes/origin/main: False (referencia local; hacer fetch).
 
-Atlas: 94 lotes; SHA `ac64213f1901a0e07832083a0c6afbe8ddf02097a2d2a83556a94fc77a10ae8a`; gates 0/6.
+Atlas: 95 lotes; SHA `39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a`; gates 0/6.
 Autorización ABH10: 6/10 ejecutados; 4 disponibles, preservados bajo R5. Históricos separados: 2.
 
 ## Último trabajo de origen migrado (AB PR81)
@@ -12,7 +12,7 @@ P1 GitHub Actions #40995507812: 35 Python tests PASS y node --check, dos cuentas
 Pruebas históricas de AB; no sustituyen QA sobre el nuevo commit.
 
 ## Estado del corte de repositorios
-DRAFT_PENDING_INDEPENDENT_LINUX_QA; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisión: migration/pfl-final-cutover-20261030. Consultar status del traslado y recibo de incorporación antes de continuar.
+CODE_REVIEW_PASS_READY_TO_MERGE; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisión: migration/pfl-final-cutover-20261030. Consultar status del traslado y recibo de incorporación antes de continuar.
 
 Concesión nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados; 10 disponibles. No reasignar saldo ABH10.
 
@@ -28,13 +28,13 @@ Concesión nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados
 - P-MIGRATION [DONE]: Proyecto independiente de AB con historia y herramientas reproducibles. Siguiente: Continuar P1-ACCOUNTS en este repositorio; adoptar cambios de AB solo explícitamente
 
 ## research
-- R0-FEASIBLE-QUESTION [READY_REVIEW]: Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta. Siguiente: Revisar el resultado C38 importado y sus fuentes; al validar el commit independiente decidir aceptación científica y el siguiente contraste.
-- R1-DISCRIMINATING-RESULT [READY_REVIEW]: Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario. Siguiente: Revisión del investigador; si interesa validar interpretación sustantiva, obtener actas oficiales fechadas de comisiones y auditar decisión no consignada, no más umbrales arbitrarios
+- R0-FEASIBLE-QUESTION [DONE]: Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta. Siguiente: Pregunta/acceso validados; continuar R1 con medida auditada y antecedente competente, sin reivindicar novedad general.
+- R1-DISCRIMINATING-RESULT [READY_REVIEW]: Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario. Siguiente: C38 sigue negativo descriptivo. Cuatro casos posthoc validan omisiones locales del CSV, sin corregir su efecto; fijar corpus nuevo y baseline antes del contraste siguiente.
 - R-AEA-C37 [PARKED]: Acceso al registro original e historial del ensayo AEARCTR-0000981. Siguiente: No repetir búsquedas equivalentes
 - R-T005 [PARKED]: Originales y condiciones de uso suficientes para una pieza concreta de T005. Siguiente: Reabrir solo la pieza para la que haya evidencia nueva
 
 ## Última validación declarada
-Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, cero fallos/skips. Instalación .[test], catálogo, continuidad, logros y replay PASS. Atlas93 sin cambios.
+Full Linux 7de66007: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS. Later allocation validator: 14 continuity tests PASS; new posthoc instrument: 6 controls PASS and actual originals audit. Current Atlas/index/continuity checked separately; raw evidence in continuation folder.
 
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 

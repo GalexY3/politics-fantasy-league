@@ -1,5 +1,5 @@
 {
-  "revision": 9,
+  "revision": 10,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -44,16 +44,17 @@
       "lane": "product",
       "status": "READY_REVIEW",
       "outcome": "Cuentas y sesiones locales con clubes ficticios aislados por cuenta; sin despliegue público",
-      "acceptance": "35/35 pruebas HTTP y regresión nativas en GitHub Actions #40995507812; dos usuarios crean clubes distintos y acciones de otro no leen/escriben, sesión/CSRF/persistencia. Falta revisión humana UX antes de DONE.",
+      "acceptance": "Cuentas locales e aislamiento revisados; QA completo Linux PASS. Alta/entrada Chrome observadas; aceptación humana de uso pendiente antes de DONE.",
       "next_action": "Revisión visual humana de dos perfiles en navegador y confirmación de aceptación; después P2 flujo jornada",
       "dependencies": [
         "P0-INTEGRATION"
       ],
       "evidence": [
         "docs/P1_ACCOUNTS_REVIEW.md",
-        "tests/test_accounts.py"
+        "tests/test_accounts.py",
+        "research/CONTINUATION20_20261030/REVIEW.md"
       ],
-      "verified_commit": "9f0fe6509b5f74a26241ac75cb39e0c10a912bc1"
+      "verified_commit": "7de66007ac24c383f0433680b1e2edb3eb96462b"
     },
     {
       "id": "P2-PLAYABLE-FLOW",
@@ -70,17 +71,19 @@
     {
       "id": "R0-FEASIBLE-QUESTION",
       "lane": "research",
-      "status": "READY_REVIEW",
+      "status": "DONE",
       "outcome": "Pregunta institucional delimitada frente a rutas de rank humano e incentivos, con datos públicos originales accesibles y licencia abierta",
       "acceptance": "Comparar tres rutas materiales, elegir una con antecedente y rival competentes, verificar el acceso y alcance de uso de su observación; contrato prospectivo antes de analizar",
-      "next_action": "Revisar el resultado C38 importado y sus fuentes; al validar el commit independiente decidir aceptación científica y el siguiente contraste.",
+      "next_action": "Pregunta/acceso validados; continuar R1 con medida auditada y antecedente competente, sin reivindicar novedad general.",
       "dependencies": [],
       "evidence": [
         "research/R0_INSTITUTIONAL_PETITIONS_20261030/ROUTE_COMPARISON.md",
         "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_PREREG_AJ.json",
-        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md"
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
+        "research/CONTINUATION20_20261030/REVIEW.md"
       ],
-      "source_verified_commit": "f6fcb5490b07107ce8c1787ca4d2d4b1a197a540"
+      "source_verified_commit": "f6fcb5490b07107ce8c1787ca4d2d4b1a197a540",
+      "verified_commit": "ef57c492cc5b83dd4a97c447b21670570b383f5a"
     },
     {
       "id": "R1-DISCRIMINATING-RESULT",
@@ -88,13 +91,14 @@
       "status": "READY_REVIEW",
       "outcome": "Negativo observacional C38 preregistrado: diferencia high−low −29,08 pp en documentación CSV, 3 de 4 años comparables con signo contrario",
       "acceptance": "Evidencia original pública SHA congelada al ejecutar, Python 8/8 nativo, control de año y edad, primer test 6/8 inválido registrado; resultado solo descriptivo, la validación independiente de decisiones reales sigue pendiente.",
-      "next_action": "Revisión del investigador; si interesa validar interpretación sustantiva, obtener actas oficiales fechadas de comisiones y auditar decisión no consignada, no más umbrales arbitrarios",
+      "next_action": "C38 sigue negativo descriptivo. Cuatro casos posthoc validan omisiones locales del CSV, sin corregir su efecto; fijar corpus nuevo y baseline antes del contraste siguiente.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
       "evidence": [
         "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_REPORT.md",
-        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json"
+        "research/R0_INSTITUTIONAL_PETITIONS_20261030/C38_RUN_RECEIPT.json",
+        "research/CONTINUATION20_20261030/C39_RUN_RECEIPT.json"
       ]
     },
     {
@@ -197,11 +201,11 @@
     "new_ab_cycles": 0
   },
   "latest_validation": {
-    "status": "STANDALONE_REVIEW_PASS",
-    "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224",
-    "summary": "Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, cero fallos/skips. Instalación .[test], catálogo, continuidad, logros y replay PASS. Atlas93 sin cambios.",
-    "evidence": "docs/migration/linux/MANIFEST.json",
-    "scope_note": "Historical extraction QA; changed P1 and research code require full current review."
+    "status": "PR2_CODE_REVIEW_PASS_METADATA_PUBLICATION_PENDING",
+    "verified_commit": "ef57c492cc5b83dd4a97c447b21670570b383f5a",
+    "summary": "Full Linux 7de66007: 837 Python +32 subtests, 511 Node, 38 Atlas +105 subtests PASS. Later allocation validator: 14 continuity tests PASS; new posthoc instrument: 6 controls PASS and actual originals audit. Current Atlas/index/continuity checked separately; raw evidence in continuation folder.",
+    "evidence": "research/CONTINUATION20_20261030/REVIEW.md",
+    "scope_note": "Composed validation: full product suite on 7de66007, incremental continuity/research checks on ef57c49. Human UX acceptance and deployment remain pending."
   },
   "ported_source_validation": {
     "status": "P1_READY_REVIEW_AND_R1_OBSERVATIONAL_NEGATIVE_VERIFIED",
@@ -236,8 +240,11 @@
     "source_pr": 81,
     "source_head": "d725a8dff37429a035b6e1ffb27c3568e51322ce",
     "ported_into_repository": "GalexY3/politics-fantasy-league",
-    "migration_status": "DRAFT_PENDING_INDEPENDENT_LINUX_QA",
-    "no_additional_AB_cycles_used": true
+    "migration_status": "CODE_REVIEW_PASS_READY_TO_MERGE",
+    "no_additional_AB_cycles_used": true,
+    "posthoc_measurement_audit": "research/CONTINUATION20_20261030/C39_RUN_RECEIPT.json",
+    "new_scientific_cycles_in_this_review": 0,
+    "research_next": "Freeze a new finite minute corpus and compare against Suite à donner; selected four-case audit is exposed prior evidence, not confirmation."
   },
   "integration_pr": "https://github.com/GalexY3/Metodologia-AB/pull/80",
   "o7_graph": "research/ABH5B_INCENTIVE_FORMAL_20261029/O7_CAUSAL_GRAPH.json",
@@ -293,7 +300,7 @@
     "branch": "migration/pfl-final-cutover-20261030",
     "manifest": "docs/migration/CUTOVER_PR81_TRANSFER_MANIFEST.json",
     "file_level_provenance": "Unadapted source bytes verified before optional documentation changes; see manifest entries.",
-    "status": "DRAFT_PENDING_INDEPENDENT_LINUX_QA",
+    "status": "CODE_REVIEW_PASS_READY_TO_MERGE",
     "ABH10_after_C38": "6/10, remaining 4",
     "new_separate_grant": "0/10, remaining 10",
     "historical_STOP_R5": 2,
@@ -311,12 +318,12 @@
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "atlas_snapshot": {
-    "batches": 94,
+    "batches": 95,
     "nodes": 63,
     "edges": 81,
-    "runs": 311,
+    "runs": 312,
     "complaints": 51,
-    "state_sha256": "ac64213f1901a0e07832083a0c6afbe8ddf02097a2d2a83556a94fc77a10ae8a",
+    "state_sha256": "39d72fa912437072734bc8639d9d1c23c85cadf7842bb0f8a32f4824a1760f3a",
     "passed_gates": 0
   },
   "method_reference": "METHOD_REFERENCE.json",
