@@ -459,6 +459,14 @@
       "state": "answered",
       "summary": "Pinned independent Suite à donner ingest script does not demonstrate per-event first-public timestamp/version; ZIP archive and Firestore updatedAt false positives. No general system-wide absence, no causal validation.",
       "source": "../ABH25_20261030/C01_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "type": "bounded_product_acceptance",
+      "mode": "AB-P",
+      "state": "validated",
+      "summary": "Real localhost HTTP 2/2 success across account registration, separate clubs/figures, lineup, simulation, CSRF and cross-account negative controls, restart persistence. Human visual acceptance pending; no real political data.",
+      "source": "../ABH25_20261030/C02_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -917,6 +925,12 @@
       "to": "PFL-POSTHOC-PETITION-MEASUREMENT-AUDIT-20261030",
       "relation": "related_to",
       "interpretation": "Audits provenance prerequisite after C39 selected-case missingness; source-code conclusion scoped to one pinned original file, not independent new institutional outcomes."
+    },
+    {
+      "from": "PFL-ABH25-C02-FICTIONAL-TWO-ACCOUNT-HTTP-P1P2",
+      "to": "PFL-ABH25-C01-EXTERNAL-CODE-FIRST-PUBLIC-GATE",
+      "relation": "related_to",
+      "interpretation": "AB-P fictional product capability independent of AB-R original external source provenance; must not transfer technical pass to scientific claim."
     }
   ],
   "rules": {
