@@ -427,6 +427,14 @@
       "state": "answered",
       "summary": "Original public 212 changed source rows include 77 outcome-value changes and 135 date-only changes; no event first-public provenance.",
       "source": "../ABH10_NEW_20261030/C36_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH10-C37-AEA-REGISTRY-HISTORY-UNACCESSIBLE",
+      "type": "documentary_blocker_noncycle",
+      "mode": "AB-R",
+      "state": "blocked",
+      "summary": "C37 planned prereg original AEARCTR-0000981 registry history check, but official trial/historical version inaccessible via available web. Published 2018/2022/2025 summaries known before prereg; no original registry, no valid empirical cycle, no CT2 increase. D3 planning-only per AGENTS.",
+      "source": "../ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md"
     }
   ],
   "edges": [
@@ -867,6 +875,12 @@
       "to": "PFL-ABH30-C19-ATLAS-89-FULL-STATIC-AUDIT",
       "relation": "contrasts",
       "interpretation": "Product/source evidence does not establish independent PFL human causal effect or advance release gates."
+    },
+    {
+      "from": "PFL-ABH10-C37-AEA-REGISTRY-HISTORY-UNACCESSIBLE",
+      "to": "PFL-ABH30-C14-FIVE-ARM-RANK-VISIBILITY-CONTRACT",
+      "relation": "blocks",
+      "interpretation": "Cannot establish whether independent public/private rank study social network interaction was prospectively registered, so no confirmation credit to PFL comparison."
     }
   ],
   "rules": {
@@ -914,7 +928,13 @@
         0,
         0
       ],
-      "release_gates": "0/6"
+      "release_gates": "0/6",
+      "new_human_N1_N2_N3": [
+        0,
+        0,
+        0
+      ],
+      "C37": "BLOCKED_NONCYCLE_REGISTRY_ACCESS"
     }
   }
 }
