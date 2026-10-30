@@ -28,3 +28,9 @@ La [captura metadata-only oficial](C03_STAGE0_CSV_RECEIPT.json) obtuvo un CSV de
 - **Estado de publicación:** cambios en PR #3 **draft**, separados de `main`; ninguna fusión ni despliegue.
 
 **AB-DECIDE:** El requisito de agotar la concesión se ha satisfecho mediante pivotes reales y pruebas diferenciadas, no repitiendo C03. El bloqueo de resultados sociológicos originales suficientes persiste y no se ha resuelto con simulaciones. La siguiente tarea ya no es gastar más ciclos: revisión humana de P1 y búsqueda de un corpus institucional versionado que permita observar decisiones completas.
+
+## Certificación final de integridad de rama (posterior a la reparación del catálogo)
+
+[GitHub Actions #41080905547](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080905547) terminó **SUCCESS**: suite Python completa **861 PASS +32 subtests**; suite Atlas **38 PASS +108 subtests**; suite Node **511 PASS**; replay **Atlas97, SHA256 `609e93fa0abd03b4b0137bbe7549a745fd0a4f8c7317932cb6fc9057ba573ebc`**; `project_index.py check` **2.920 archivos**; `project_status.py check` con `errors=[]`; `abh25_final_budget_check.py` **PASS**, verificando 25/25, C03 excluido y saldos anteriores intactos. Candidato de PR probado basado en HEAD `d18edb854acb3676f917e48c331fccf34735124a`; cambios de documentación y desactivación de repetición automática de CI posteriores no se atribuyen retrospectivamente a ese HEAD probado.
+
+La primera ejecución completa [#41080594765](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41080594765) **falló** con 860 Python PASS y 1 fallo de índice, y se preserva como evidencia de reparación. Este éxito no autoriza ningún merge o despliegue, ni modifica los resultados de C38/C39.
