@@ -1,0 +1,103 @@
+{
+  "schema": "pfl.release_gates.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "product": "Politics Fantasy League",
+  "mode": "PUBLIC_NAMED_PERSON",
+  "as_of": "2026-10-28",
+  "scope_path": "product/progress_scope_v4_20261027.json",
+  "achievement_path": "ab_atlas/ACHIEVEMENTS_REGISTRY.json",
+  "status": "BLOCKED",
+  "reason": "No real-person/party scoring or public hosting: 6/6 absent independent source, legal, auth and pilot attestations. All statuses blocked. This artifact does not substitute DPO or legal counsel.",
+  "gates": [
+    {
+      "id": "G01_REGISTRY_RIGHTS",
+      "title": "Original RPP and candidates; license and purpose-specific DPO",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "src.registry",
+        "sec.rights"
+      ],
+      "blocking": "T011/T016 and independent legal review",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    },
+    {
+      "id": "G02_REAL_IDENTITY",
+      "title": "Multi-source real legal identity including false match controls",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "id.real",
+        "id.temporal"
+      ],
+      "blocking": "Identity QA and adjudication",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    },
+    {
+      "id": "G03_REAL_EVENTS",
+      "title": "Current verified source event person timeline, first_public_at and coverage",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "ev.person",
+        "ev.extra"
+      ],
+      "blocking": "Real primary ingest and as-of",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    },
+    {
+      "id": "G04_MULTIUSER_AUTH",
+      "title": "Real session authorization, IDOR CSRF abuse and ops",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "sec.auth",
+        "sec.ops"
+      ],
+      "blocking": "Codex/PC security suite",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    },
+    {
+      "id": "G05_E2E_ACTUAL",
+      "title": "Independent real-data full flow browser, source proof, scoring guard",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "qa.endtoend",
+        "qa.independent",
+        "ui.flow"
+      ],
+      "blocking": "Clean checkout full Python/Node/browser suite",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    },
+    {
+      "id": "G06_HOSTING_PILOT",
+      "title": "Safe deployment and observed user pilot under approved purpose",
+      "status": "BLOCKED",
+      "attestation": null,
+      "required_milestones": [
+        "launch.hosted",
+        "launch.pilot"
+      ],
+      "blocking": "Hosting DPO signoff and prospective pilot",
+      "next_evidence": "Independent authenticated artifact and reviewer required",
+      "reviewed_by": null
+    }
+  ],
+  "local_demo": {
+    "allowed_if_loopback": true,
+    "synthetic_only": true,
+    "public_person_scores": false
+  },
+  "aggregate_mode": {
+    "requires_separate_scope_and_rights_review": true,
+    "not_auto_authorized": true
+  },
+  "required_independent_evidence_to_clear_gate": "Manual independent verifier callback, actual source and commit examination; modifying manifest or V4 % is insufficient.",
+  "no_automatic_status_promotion": true
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "source_branch": "research/pfl-abh5-aec-choice-20261028",
+  "source_head": "c98b93587e97dab34a93dfec7bba1df3be8b6b45",
+  "method": "AB 3.2.1 R1-R5 O3-O7",
+  "type": "AB-P",
+  "n_assisted": 0,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "V4_before": 36.9,
+  "V4_after": 36.9,
+  "release_gates_before": 0,
+  "release_gates_after": 0,
+  "scientific_claim": "No new N1, N2 or N3 scientific finding. Product auditing may unlock criteria-bound symbolic achievements only.",
+  "limitation": "Read/review and V8 structural tests; neither full clean native checkout nor external DPO/security audit is claimed.",
+  "cycle": "C02",
+  "D": 1.5,
+  "A": "Can we develop a concrete PFL-specific STRIDE model that reveals residual risk of public named-person scoring?",
+  "B": {
+    "H1": "All STRIDE categories mapped with executable acceptance criteria and blocked controls",
+    "H0": "Model only generic statements with no product surfaces"
+  },
+  "C": "Inspected exact `server.py`, `scoring.py`, `events.py`, `evidence_warehouse.mjs` and rights/privacy docs. Authored threats S01/S02 T01/T02 R01 I01/I02 D01 E01/E02, 5 trust boundaries, 9 negative falsifier tests and GO/NO-GO modes; released new repo doc.",
+  "E": {
+    "STRIDE_categories": [
+      "S",
+      "T",
+      "R",
+      "I",
+      "D",
+      "E"
+    ],
+    "unique_threat_ids": 10,
+    "explicit_negative_acceptance_cases": 9,
+    "mode_public_real": "BLOCKED",
+    "not_a_penetration_test": true
+  },
+  "F": "Threat model is documentation, not implemented authentication or DPO approval; no release gate unlock.",
+  "G": "Compared existing generic VALIDACION_ETICA and current code to avoid empty STRIDE list.",
+  "H": "CT2 unchanged; may support SECURITY-02 criterion after separate audit",
+  "I": "Explicit prevent reputation scoring/ideological inference",
+  "J": "Queue native adversarial implementation for T025; keep gates blocked.",
+  "evidence": [
+    "docs/THREAT_MODEL_STRIDE_PUBLIC_RELEASE_20261028.md"
+  ],
+  "status": "VALID_BOUNDED_THREAT_MODEL_PUBLISHED"
+}

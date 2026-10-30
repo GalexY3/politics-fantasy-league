@@ -1,0 +1,54 @@
+{
+  "scope": "COMPARISON_WITH_RECORDED_C01_FACTS_NOT_A_REPLACEMENT_OF_HISTORICAL_MANIFEST",
+  "rows": 150,
+  "file_checks": [
+    {
+      "name": "HouseNominationsByDivisionDownload-31496.csv",
+      "size_ok": true,
+      "git_blob_ok": true,
+      "header_ok": true,
+      "columns_ok": true,
+      "rows_ok": true,
+      "unique_ids_ok": true
+    },
+    {
+      "name": "GeneralEnrolmentByDivisionDownload-31496.csv",
+      "size_ok": true,
+      "git_blob_ok": true,
+      "header_ok": true,
+      "columns_ok": true,
+      "rows_ok": true,
+      "unique_ids_ok": true
+    },
+    {
+      "name": "HouseInformalByDivisionDownload-31496.csv",
+      "size_ok": true,
+      "git_blob_ok": true,
+      "header_ok": true,
+      "columns_ok": true,
+      "rows_ok": true,
+      "unique_ids_ok": true
+    },
+    {
+      "name": "HouseTurnoutByDivisionDownload-31496.csv",
+      "size_ok": true,
+      "git_blob_ok": true,
+      "header_ok": true,
+      "columns_ok": true,
+      "rows_ok": true,
+      "unique_ids_ok": true
+    }
+  ],
+  "checks": {
+    "states_equal": true,
+    "demographics_equal": true,
+    "informal_rounding_under_0_012_pp": true,
+    "turnout_rounding_under_0_012_pp": true,
+    "formal_plus_informal_equal_total": true,
+    "total_not_more_than_turnout": true
+  },
+  "max_informal_rounding_error_pp": 0.004901320822071398,
+  "max_turnout_rounding_error_pp": 0.004987012344457753,
+  "formal_plus_informal_mismatches": 0,
+  "total_greater_than_turnout": 0
+}

@@ -1,0 +1,161 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "branch": "research/pfl-abh5-release-criticalpath-20261028",
+  "source_branch": "research/pfl-abh5-aec-choice-20261028",
+  "source_head": "c98b93587e97dab34a93dfec7bba1df3be8b6b45",
+  "user_authorized": 5,
+  "state": "CLOSED_5_BOUNDED_AB_P",
+  "cycles": {
+    "granted": 5,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "used": 5,
+    "remaining": 0,
+    "AB_R": 0,
+    "AB_P": 5,
+    "red_test_failures": 1,
+    "red_test_failure_not_a_separate_cycle": true
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-P",
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "bc85d98be41f49c0e1811c4edee5928a6c52ed2e",
+      "result": "C01_RESULT.json",
+      "result_commit": "fefb067304ba3d704b2ff64d4ef163df568b4601",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_PRODUCT_ARTIFACT_AND_AUDIT"
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-P",
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "9dbf4d8554b8aef27cb7b51c32c4dc3782b908af",
+      "result": "C02_RESULT.json",
+      "result_commit": "8d3f5e5c4aa5c935adb42bf08c4be10295f03fed",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_PRODUCT_ARTIFACT_AND_AUDIT"
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-P",
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "2a1e055303724ee3373879fa2e48149ca4c25209",
+      "result": "C03_RESULT.json",
+      "result_commit": "557250808ea6f87ae6b46e3fc069416940243bac",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_PRODUCT_ARTIFACT_AND_AUDIT"
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-P",
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "325f913e4ca20128d95245eeb11b895a4c22e80c",
+      "result": "C04_RESULT.json",
+      "result_commit": "7916c4374f71f735ac3e1d4297909eb51d4d9fad",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_PRODUCT_ARTIFACT_AND_AUDIT"
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-P",
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "fcf190032f6081601efe2b166cd1fba5663861bb",
+      "result": "C05_RESULT.json",
+      "result_commit": "4117976e2faabdb9c130f07143ef007a1ff4dddd",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0,
+      "status": "VALID_BOUNDED_PRODUCT_ARTIFACT_AND_AUDIT"
+    }
+  ],
+  "outputs": {
+    "scope_audit": "C01_SCOPE_CRITICAL_PATH.json",
+    "threat_model": "docs/THREAT_MODEL_STRIDE_PUBLIC_RELEASE_20261028.md",
+    "registry": "ab_atlas/ACHIEVEMENTS_REGISTRY.json",
+    "registry_before_v": 3,
+    "registry_after_v": 6,
+    "new_badges": [
+      "PFL-SCIENCE-01",
+      "PFL-EVENTS-01",
+      "PFL-SECURITY-02"
+    ],
+    "release_manifest": "product/release_gates_v1_20261028.json",
+    "release_guard": "src/politics_fantasy/release_guard.cjs",
+    "node_test_file": "tests/test_release_guard.cjs",
+    "v8_test_run": "C04_GUARD_TESTS.json",
+    "critical_path": "C05_PRIORITY_MATRIX.json",
+    "Codex_T025": "tareas_codex/T025_RELEASEPATH_V6_QA_AND_GATE_EVIDENCE_20261028.md"
+  },
+  "validation": {
+    "actual_v4_recomputed": 36.9,
+    "scope_milestones": 36,
+    "level0": 8,
+    "level1": 9,
+    "achievement_registry_unique": 90,
+    "achievement_registry_version": 6,
+    "achievement_status_unlocked": 5,
+    "achievement_status_locked": 85,
+    "registry_appended_events": 3,
+    "complete_registry_validation_in_python_executed": false,
+    "original_AEC_data_not_reanalyzed": true,
+    "GuardV8_red": {
+      "pass": 8,
+      "failed": 1
+    },
+    "GuardV8_green": {
+      "pass": 9,
+      "failed": 0
+    },
+    "native_node_tests_executed": false,
+    "full_python_node_browser_suite_executed": false,
+    "release_gates_passed": 0
+  },
+  "progress": {
+    "V4_before": 36.9,
+    "V4_after": 36.9,
+    "remaining_pp": 63.1,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "VSDS": "1/3",
+    "achievements_before": "2/90",
+    "achievements_after": "5/90",
+    "gates": "0/6",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "sources": {
+    "evidence_from_repo_exact_files": true,
+    "independent_external_evidence_auth": false,
+    "strict_rights_review_passed": false
+  },
+  "backlog_preserved": [
+    "T011",
+    "T016",
+    "T017",
+    "T018",
+    "T019",
+    "T020",
+    "T021",
+    "T022",
+    "T023",
+    "T024"
+  ],
+  "new_task": "T025",
+  "new_task_status": "NOT_EXECUTED",
+  "R5": "Research plateau: no progress from unrelated historical correlations, material product artifacts produced and audited; release cannot proceed before original party registry, purpose-specific lawful processing, 2-clock identity events, true multiuser auth, full QA and pilot; stop and request new explicitly scoped cycles, don't assert 100%."
+}

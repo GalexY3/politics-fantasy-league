@@ -1,0 +1,439 @@
+{
+  "schema": "pfl.releasepath5.priority_matrix.v1",
+  "campaign": "PFL-ABH-RELEASEPATH5-20261028",
+  "input": {
+    "scope_revision": 4,
+    "achievements_registry_version": 6,
+    "release_gate_manifest": "pfl.release_gates.v1"
+  },
+  "summary": {
+    "contractual_progress_pct": 36.9,
+    "remaining_pct": 63.1,
+    "critical_release_gates_passed": 0,
+    "critical_release_gates_total": 6,
+    "achievements_unlocked": 5,
+    "achievements_total": 90,
+    "achievements_immediately_eligible_for_review": 9,
+    "achievements_locked_by_prerequisites": 76,
+    "milestones_level_0": 8,
+    "milestones_level_1": 9,
+    "max_hypothetical_remaining_level0_points": 20.5,
+    "full_scope_remaining_points": 63.1
+  },
+  "milestones_sorted_by_hypothetical_weighted_gap": [
+    {
+      "id": "src.registry",
+      "level": 0,
+      "gain_to_5_pct_points": 4.5,
+      "track": "sources"
+    },
+    {
+      "id": "src.local",
+      "level": 1,
+      "gain_to_5_pct_points": 4.05,
+      "track": "sources"
+    },
+    {
+      "id": "game.real",
+      "level": 0,
+      "gain_to_5_pct_points": 4,
+      "track": "game"
+    },
+    {
+      "id": "sci.field",
+      "level": 0,
+      "gain_to_5_pct_points": 3.5,
+      "track": "science"
+    },
+    {
+      "id": "sci.fairness",
+      "level": 1,
+      "gain_to_5_pct_points": 3.15,
+      "track": "science"
+    },
+    {
+      "id": "id.real",
+      "level": 1,
+      "gain_to_5_pct_points": 2.7,
+      "track": "identity"
+    },
+    {
+      "id": "ui.flow",
+      "level": 0,
+      "gain_to_5_pct_points": 2.5,
+      "track": "ui"
+    },
+    {
+      "id": "ev.extra",
+      "level": 1,
+      "gain_to_5_pct_points": 2.25,
+      "track": "events"
+    },
+    {
+      "id": "ev.person",
+      "level": 1,
+      "gain_to_5_pct_points": 2.25,
+      "track": "events"
+    },
+    {
+      "id": "ui.access",
+      "level": 1,
+      "gain_to_5_pct_points": 2.25,
+      "track": "ui"
+    },
+    {
+      "id": "sci.baseline",
+      "level": 2,
+      "gain_to_5_pct_points": 2.1,
+      "track": "science"
+    },
+    {
+      "id": "sec.auth",
+      "level": 0,
+      "gain_to_5_pct_points": 2,
+      "track": "security"
+    },
+    {
+      "id": "qa.independent",
+      "level": 0,
+      "gain_to_5_pct_points": 2,
+      "track": "qa"
+    },
+    {
+      "id": "sec.rights",
+      "level": 1,
+      "gain_to_5_pct_points": 1.8,
+      "track": "security"
+    },
+    {
+      "id": "sec.ops",
+      "level": 1,
+      "gain_to_5_pct_points": 1.8,
+      "track": "security"
+    },
+    {
+      "id": "id.temporal",
+      "level": 2,
+      "gain_to_5_pct_points": 1.8,
+      "track": "identity"
+    },
+    {
+      "id": "game.core",
+      "level": 3,
+      "gain_to_5_pct_points": 1.6,
+      "track": "game"
+    },
+    {
+      "id": "game.market",
+      "level": 3,
+      "gain_to_5_pct_points": 1.6,
+      "track": "game"
+    },
+    {
+      "id": "game.rule",
+      "level": 3,
+      "gain_to_5_pct_points": 1.6,
+      "track": "game"
+    },
+    {
+      "id": "sci.protocol",
+      "level": 3,
+      "gain_to_5_pct_points": 1.4,
+      "track": "science"
+    },
+    {
+      "id": "id.schema",
+      "level": 3,
+      "gain_to_5_pct_points": 1.2,
+      "track": "identity"
+    },
+    {
+      "id": "id.ambiguities",
+      "level": 3,
+      "gain_to_5_pct_points": 1.2,
+      "track": "identity"
+    },
+    {
+      "id": "ev.schema",
+      "level": 3,
+      "gain_to_5_pct_points": 1,
+      "track": "events"
+    },
+    {
+      "id": "ev.time",
+      "level": 3,
+      "gain_to_5_pct_points": 1,
+      "track": "events"
+    },
+    {
+      "id": "ui.pages",
+      "level": 3,
+      "gain_to_5_pct_points": 1,
+      "track": "ui"
+    },
+    {
+      "id": "ui.atlas",
+      "level": 3,
+      "gain_to_5_pct_points": 1,
+      "track": "ui"
+    },
+    {
+      "id": "launch.hosted",
+      "level": 0,
+      "gain_to_5_pct_points": 1,
+      "track": "launch"
+    },
+    {
+      "id": "launch.pilot",
+      "level": 0,
+      "gain_to_5_pct_points": 1,
+      "track": "launch"
+    },
+    {
+      "id": "launch.rules",
+      "level": 1,
+      "gain_to_5_pct_points": 0.9,
+      "track": "launch"
+    },
+    {
+      "id": "sec.loopback",
+      "level": 3,
+      "gain_to_5_pct_points": 0.8,
+      "track": "security"
+    },
+    {
+      "id": "qa.py",
+      "level": 3,
+      "gain_to_5_pct_points": 0.8,
+      "track": "qa"
+    },
+    {
+      "id": "qa.js",
+      "level": 3,
+      "gain_to_5_pct_points": 0.8,
+      "track": "qa"
+    },
+    {
+      "id": "qa.endtoend",
+      "level": 3,
+      "gain_to_5_pct_points": 0.8,
+      "track": "qa"
+    },
+    {
+      "id": "src.catalog",
+      "level": 4,
+      "gain_to_5_pct_points": 0.675,
+      "track": "sources"
+    },
+    {
+      "id": "src.election",
+      "level": 4,
+      "gain_to_5_pct_points": 0.675,
+      "track": "sources"
+    },
+    {
+      "id": "launch.docs",
+      "level": 3,
+      "gain_to_5_pct_points": 0.4,
+      "track": "launch"
+    }
+  ],
+  "next_achievements": [
+    {
+      "id": "PFL-SOURCES-01",
+      "criterion": "Catálogo institucional inventariado con responsables, formatos, periodicidad y licencias por recurso prioritario.",
+      "rarity": "bronce",
+      "track": "sources"
+    },
+    {
+      "id": "PFL-IDENTITY-01",
+      "criterion": "Resolver identidades mediante claves institucionales y prohibir fusiones automáticas por coincidencia nominal.",
+      "rarity": "bronce",
+      "track": "identity"
+    },
+    {
+      "id": "PFL-EVENTS-02",
+      "criterion": "Reconciliar votos nominales de una sesión real completa y sus categorías originales.",
+      "rarity": "bronce",
+      "track": "events"
+    },
+    {
+      "id": "PFL-SCIENCE-02",
+      "criterion": "Comparar modelo propuesto con un baseline temporal fuerte sin ventaja artificial de información.",
+      "rarity": "bronce",
+      "track": "science"
+    },
+    {
+      "id": "PFL-GAME-02",
+      "criterion": "Garantizar presupuesto, exclusividad, concurrencia y trazas transaccionales adversariales.",
+      "rarity": "bronce",
+      "track": "game"
+    },
+    {
+      "id": "PFL-UI-01",
+      "criterion": "Navegación integral local por las principales pantallas con prueba automatizada.",
+      "rarity": "bronce",
+      "track": "ui"
+    },
+    {
+      "id": "PFL-SECURITY-03",
+      "criterion": "Matriz de licencias y finalidades concretas para todos los recursos realmente empleados.",
+      "rarity": "plata",
+      "track": "security"
+    },
+    {
+      "id": "PFL-QA-01",
+      "criterion": "Suite íntegra Python y Node en checkout limpio, con logs y hashes reproducibles.",
+      "rarity": "bronce",
+      "track": "qa"
+    },
+    {
+      "id": "PFL-LAUNCH-01",
+      "criterion": "Paquete instalable y documentado para un usuario local con limpieza y restauración.",
+      "rarity": "bronce",
+      "track": "launch"
+    }
+  ],
+  "deepest_prerequisite_chains": [
+    {
+      "id": "PFL-SOURCES-10",
+      "remaining_prerequisites": 9
+    },
+    {
+      "id": "PFL-IDENTITY-10",
+      "remaining_prerequisites": 9
+    },
+    {
+      "id": "PFL-UI-10",
+      "remaining_prerequisites": 9
+    },
+    {
+      "id": "PFL-QA-10",
+      "remaining_prerequisites": 9
+    },
+    {
+      "id": "PFL-LAUNCH-10",
+      "remaining_prerequisites": 9
+    },
+    {
+      "id": "PFL-SOURCES-09",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-IDENTITY-09",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-EVENTS-10",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-SCIENCE-10",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-GAME-10",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-UI-09",
+      "remaining_prerequisites": 8
+    },
+    {
+      "id": "PFL-QA-09",
+      "remaining_prerequisites": 8
+    }
+  ],
+  "priorities": [
+    {
+      "id": "SOURCE_REGISTRY_ORIGINALS",
+      "dependent_gates": [
+        "G01_REGISTRY_RIGHTS",
+        "G02_REAL_IDENTITY",
+        "G03_REAL_EVENTS"
+      ],
+      "required": [
+        "src.registry",
+        "id.real",
+        "ev.person"
+      ],
+      "owner": "data+legal",
+      "executor": "Codex T011/T016/T023/T024 plus source owner",
+      "accept": "Obtain originals from RPP+nomination datasets; per-file original SHA256, time+rights, independent mismatches, identity false-positive/false-negative audits; do not automatically enable named scoring"
+    },
+    {
+      "id": "PUBLIC_RIGHTS_PURPOSE",
+      "dependent_gates": [
+        "G01_REGISTRY_RIGHTS",
+        "G03_REAL_EVENTS"
+      ],
+      "required": [
+        "sec.rights"
+      ],
+      "owner": "DPO+legal",
+      "executor": "Human independent legal reviewer",
+      "accept": "Lawful basis, commercial reuse terms for exact datasets, minimization, duty of transparency, correction/objection process, and test for prohibited political profile inference"
+    },
+    {
+      "id": "HOSTED_AUTHORIZATION",
+      "dependent_gates": [
+        "G04_MULTIUSER_AUTH",
+        "G06_HOSTING_PILOT"
+      ],
+      "required": [
+        "sec.auth",
+        "sec.ops",
+        "launch.hosted"
+      ],
+      "owner": "engineering+security",
+      "executor": "Codex T025 plus engineer",
+      "accept": "Authentic multiuser sessions, CSRF IDOR tests, network binding, rate-limit, permission matrix; no public named-person release pending rights"
+    },
+    {
+      "id": "SOURCE_TO_GAME_E2E",
+      "dependent_gates": [
+        "G03_REAL_EVENTS",
+        "G05_E2E_ACTUAL"
+      ],
+      "required": [
+        "ev.person",
+        "ui.flow",
+        "qa.independent"
+      ],
+      "owner": "engineering+independent QA",
+      "executor": "Codex T025",
+      "accept": "End-to-end data provenance through source-event-eligibility to UI, reproduction from genuine checked-out sources and full browser/Python/Node tests with one hash"
+    },
+    {
+      "id": "REPRESENTATIVE_PILOT",
+      "dependent_gates": [
+        "G06_HOSTING_PILOT"
+      ],
+      "required": [
+        "launch.pilot",
+        "sci.field"
+      ],
+      "owner": "product+research ethics",
+      "executor": "External participant/user research, not auto",
+      "accept": "Consent/admissibility, predeclared metrics of onboarding, usability, retention and representativeness, incidents and opt-outs, frozen versions and negative/false success cases"
+    }
+  ],
+  "alternative_modes": [
+    {
+      "mode": "DEMO_SYNTHETIC_LOCAL",
+      "status": "Available as local demo subject to loopback QA, NOT public user launch",
+      "v4_scope_change": false
+    },
+    {
+      "mode": "AGGREGATE_PUBLIC_OBSERVATORY",
+      "status": "POTENTIAL ONLY: separately revised scope, rights review, aggregation, hosted auth/QA; no real person scoring",
+      "v4_scope_change": "requires independent documented scope revision, never silently count as full PFL success"
+    },
+    {
+      "mode": "PUBLIC_NAMED_PERSON_FANTASY",
+      "status": "BLOCKED 0/6 gates; no scoring or ranking real politicians",
+      "v4_scope_change": false
+    }
+  ],
+  "no_inflation": "Hypothetical point gains are NOT earned. Audit does not imply unlocks or release."
+}

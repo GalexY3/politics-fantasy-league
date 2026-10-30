@@ -1,0 +1,58 @@
+[
+  {
+    "name": "open",
+    "command": [
+      "open",
+      "http://127.0.0.1:52951/ACHIEVEMENTS_Atlas_Politics_Fantasy.html"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "snapshot_http",
+    "command": [
+      "snapshot"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "registry_unavailable",
+    "command": [
+      "route",
+      "**/ACHIEVEMENTS_REGISTRY.json",
+      "--status",
+      "503",
+      "--body",
+      "Unavailable"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "reload_fallback",
+    "command": [
+      "reload"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "snapshot_fallback",
+    "command": [
+      "snapshot"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "console",
+    "command": [
+      "console",
+      "error"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "close",
+    "command": [
+      "close"
+    ],
+    "exit": 0
+  }
+]
