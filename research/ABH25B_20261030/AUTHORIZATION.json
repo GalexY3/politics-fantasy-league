@@ -1,0 +1,50 @@
+{
+  "schema": "pfl.abh.authorization.v2",
+  "id": "PFL-ABH25B-20261030",
+  "authorized_by": "user",
+  "authorized_at": "2026-10-30",
+  "new_granted": 25,
+  "valid_executed": 0,
+  "invalid_attempts": 0,
+  "planning_only": 0,
+  "remaining": 25,
+  "work_branch": "research/pfl-ab-h25-v2-source-provenance-playability-20261030",
+  "base_unmerged_pr3_head": "f347900cf3524e39a8049973e3c63573626d5ad8",
+  "base_main_sha": "653604358183b59e8c0446497f47ff4a3769134f",
+  "constraints": [
+    "A-J + remote SHA before prospective observations and experiments",
+    "Do not count maintenance, duplicate testing, or synthetic repeats as science",
+    "Independent data with raw provenance, competing explanations and R5",
+    "No merges/deployments, real-politician scoring, personal data exports, unsolicited contacts or licence acceptance",
+    "AB-R and AB-P separate, no causal discoveries from product QA"
+  ],
+  "prior_budgets_unchanged": {
+    "ABH25": {
+      "executed": 25,
+      "remaining": 0
+    },
+    "READ5_CONTINUE15": {
+      "remaining": 15
+    },
+    "ABH10": {
+      "executed": 6,
+      "remaining": 4
+    },
+    "INTEGRATION10": {
+      "executed": 0,
+      "remaining": 10
+    },
+    "STOP_R5_historical": {
+      "remaining": 2
+    }
+  },
+  "cycles": [],
+  "noncycle_work": [],
+  "quality_gate": {
+    "CT2_ordinal": 20,
+    "N1": 0,
+    "N2": 0,
+    "N3": 0,
+    "release_gates": "0/6"
+  }
+}
