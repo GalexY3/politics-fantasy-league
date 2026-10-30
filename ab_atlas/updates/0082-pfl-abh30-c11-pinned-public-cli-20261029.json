@@ -1,0 +1,29 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0082-PFL-ABH30-C11-PINNED-ORIGINAL-PUBLIC-CLI-20261029",
+  "parent_batch": "0081-PFL-ABH30-C09-C10-ORIGINAL-RAW-SOURCE-20261029",
+  "at": "2026-10-29T20:52:21Z",
+  "actor": "chatgpt",
+  "reason": "Add bounded C11 original-public pinned local CLI technical receipt: 17/17 native Node test with synthetic cases and Git SHA preflight. 0081 static-schema/parent check passed; original 81/82 batch Python native full replay NOT_EXECUTED. No new human data, CT2 remains 20/100 ordinal, no release gates change.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C11-PINNED-PUBLIC-CLI-20261029",
+        "at": "2026-10-29T20:52:21Z",
+        "activity": "Source pinned local public resolution revision CLI stage, prereg Git commit 5d386f40..., Node v22.16.0 17/17 synthetic fixture and CLI subprocess tests PASS; real original file native positive NOT_EXECUTED due offline isolated container.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C11_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C11_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C11_REPORT.md"
+        ],
+        "scope": "AB-P limited source/CLI safety; no human inference, no launch",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}

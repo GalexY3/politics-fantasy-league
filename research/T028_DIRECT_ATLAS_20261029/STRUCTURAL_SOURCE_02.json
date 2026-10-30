@@ -1,0 +1,2389 @@
+{
+  "group": 2,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0011-pfl-b20c-bocg-final-20261027.json",
+      "source_git_blob": "b40ed98f663bb0b68c1bf49e8893db42810c62d5",
+      "batch_id": "0011-PFL-B20C-BOCG-FINAL-20261027",
+      "parent_batch": "0010-PFL-B20C-BOE-DOB-20261027",
+      "at": "2026-10-27T03:27:48.086Z",
+      "reason": "Close human-authorized BRANCHING20C 20/20 after 2023 and 2025 original BOCG person-level full-condition and credential-effective-day evidence. Keep pending first_public_at and no N1–N3 or gate promotion.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B20C-C19",
+            "activity": "Document 8 dated full-condition cessations, 8 acquisitions and 8 credential presentations from BOCG XV-D-51 15/12/2023",
+            "status": "completed",
+            "at": "2026-10-27T03:27:48.086Z",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B20C-C20",
+            "activity": "Replicate dated full-condition and credential sequences BOCG XV-D-390 12/09/2025, observed 39/7/0 day credential gaps",
+            "status": "completed",
+            "at": "2026-10-27T03:27:48.086Z",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B20C-BOCG-ASOF-UNVERIFIED",
+            "run_id": "PFL-B20C-C20",
+            "severity": "major",
+            "status": "open",
+            "category": "source_temporal_provenance",
+            "source": "agent",
+            "description": "Full-condition event day and credential filing dates are directly listed in 2023/2025 BOCG, but published day is an issue date and no independent first-public HTTP receipt, signed original PDF hash or BOCG punctuality guarantee acquired. The 2023 BOE publisher report cannot transfer to BOCG.",
+            "at": "2026-10-27T03:27:48.086Z"
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+            "title": "BOCG XV-D-51: condición plena individual fechada (8 bajas y 8 altas)",
+            "kind": "finding",
+            "mode": "research",
+            "status": "answered",
+            "detail": "BOCG XV-D-51 issue 15/12/2023, PLENO 051/000002: 8 bajas efectivas 06/12/2023, 8 altas condición plena 12/12/2023, 8 credenciales presentadas 12/12/2023. Número de casos iguales no vincula individualmente alta con baja; first_public_at de BOCG desconocido.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json",
+              "docs/CATALOGO_FUENTES.md"
+            ],
+            "phase": "verify"
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+            "title": "BOCG XV-D-390: credencial 39/7/0 días antes de condición plena",
+            "kind": "finding",
+            "mode": "research",
+            "status": "answered",
+            "detail": "BOCG XV-D-390 issue 12/09/2025, PLENO 051/000002: 1 baja condición plena efectiva 02/09 y 3 altas efectivas 09/09. Tres credenciales depositadas 01/08, 02/09 y 09/09, anticipación 39/7/0 días sobre condición plena. Necesarios campos temporales tipados separados y prohibición de relleno as-of antes de publicación acreditada.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json",
+              "docs/CATALOGO_FUENTES.md"
+            ],
+            "phase": "verify"
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B20C-BOCG-E19",
+          "from": "n_ca9094a596e4",
+          "to": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B20C-BOCG-E20",
+          "from": "PFL-B20C-BOCG-FULL-CONDITION-2023",
+          "to": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B20C-BOCG-E21",
+          "from": "PFL-B20C-BOCG-CREDENTIAL-LAG-2025",
+          "to": "n_fdb37e730626",
+          "relation": "related_to"
+        },
+        {
+          "op": "node.set",
+          "id": "PFL-B20C-AUTH-20261027",
+          "set": {
+            "detail": "BRANCHING20C humanamente concedido e independiente del antiguo bloque: C01–C20 cerrados, autorizado 20/20 consumido, C04 consta como STOP_R5 y no equivale a éxito científico. Se encontraron cotas BOE ordinario 2023, once continuidades positivas, conflicto DOB entre editoriales y fecha individual de condición plena de BOCG 2023/2025. SALDO CERO; iniciar ciclos futuros requiere nueva autorización.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_INIT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/CAMPAIGN_FINAL_C01_C20.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C20_FINAL.md"
+            ]
+          },
+          "reason": "Cerrar nueva autorización al completarse los ciclos 19 y 20 con fuentes institucionales BOCG discriminantes"
+        },
+        {
+          "op": "node.set",
+          "id": "PFL-FUENTES-CATALOGO-20261027",
+          "set": {
+            "detail": "Catálogo ampliado con BOE 2023 firmado e informe editorial 312/312, biografías históricas Congreso/Moncloa/PSOE y BOCG XV-D-51 2023 y XV-D-390 2025 con credenciales/altas/bajas individualizadas. Fecha de firma, evento, credencial y boletín son distintas; as-of original exacto de BOCG queda desconocido.",
+            "sources": [
+              "docs/CATALOGO_FUENTES.md",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/REPORT_C13_C20_FINAL.md",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C19_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH20C_20261027/C20_RESULT.json"
+            ]
+          },
+          "reason": "Incorporar dos familias de actos individuales históricos verificados a grano día sin promover gates"
+        }
+      ]
+    },
+    {
+      "file": "0012-pfl-b45-a01-a20-20261027.json",
+      "source_git_blob": "370a18044cfd1d9e6a1434010f7318b87a398f6a",
+      "batch_id": "0012-PFL-B45-A01-A20-20261027",
+      "parent_batch": "0011-PFL-B20C-BOCG-FINAL-20261027",
+      "at": "2026-10-27T05:08:15+01:00",
+      "reason": "New human-approved AB-H A stage 20 cycles, mixed science/product/meta, with prereg, evidence, negative test runs, source family findings and conditional R5. Preserve six release gates and previous percent.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A01",
+            "activity": "AB-H B45 stage A cycle A01: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A01_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A01_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A02",
+            "activity": "AB-H B45 stage A cycle A02: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A02_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A02_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A03",
+            "activity": "AB-H B45 stage A cycle A03: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A03_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A03_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A04",
+            "activity": "AB-H B45 stage A cycle A04: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A04_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A04_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A05",
+            "activity": "AB-H B45 stage A cycle A05: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A05_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A05_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A06",
+            "activity": "AB-H B45 stage A cycle A06: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A06_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A06_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A07",
+            "activity": "AB-H B45 stage A cycle A07: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A07_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A07_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A08",
+            "activity": "AB-H B45 stage A cycle A08: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A08_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A08_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A09",
+            "activity": "AB-H B45 stage A cycle A09: see prereg and source-grounded result",
+            "status": "stopped",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A09_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A09_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A10",
+            "activity": "AB-H B45 stage A cycle A10: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A10_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A10_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A11",
+            "activity": "AB-H B45 stage A cycle A11: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A11_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A11_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A12",
+            "activity": "AB-H B45 stage A cycle A12: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A12_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A12_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A13",
+            "activity": "AB-H B45 stage A cycle A13: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A13_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A13_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A14",
+            "activity": "AB-H B45 stage A cycle A14: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A14_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A14_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A15",
+            "activity": "AB-H B45 stage A cycle A15: see prereg and source-grounded result",
+            "status": "stopped",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A15_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A15_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A16",
+            "activity": "AB-H B45 stage A cycle A16: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A16_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A16_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A17",
+            "activity": "AB-H B45 stage A cycle A17: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A17_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A17_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A18",
+            "activity": "AB-H B45 stage A cycle A18: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A18_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A18_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A19",
+            "activity": "AB-H B45 stage A cycle A19: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A19_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A19_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-A20",
+            "activity": "AB-H B45 stage A cycle A20: see prereg and source-grounded result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A20_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A20_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "scope": "PFL-V1 rev3",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "at": "2026-10-27T05:08:15+01:00"
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-A02-HTTP-NOT-RUN",
+            "run_id": "PFL-B45-A02",
+            "severity": "major",
+            "status": "open",
+            "category": "verification",
+            "source": "agent",
+            "description": "Read-only GET /api/source-stages is committed on research branch and 4 new HTTP tests are authored, but no end-to-end local HTTP run or CI checkout verified. No source authenticity or public person scoring certified."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-A13-RPP-NOT-CAPTURED",
+            "run_id": "PFL-B45-A13",
+            "severity": "major",
+            "status": "open",
+            "category": "source_gap",
+            "source": "agent",
+            "description": "Interior official party registry search UI found, but not operated to retrieve an issuer-certified party entry; 2020/21 XLSX are statistical aggregate distributions and 2021 XLSX download failed 502. src.registry remains blocked."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-A19-TESTS-UNRUN",
+            "run_id": "PFL-B45-A19",
+            "severity": "minor",
+            "status": "open",
+            "category": "engineering_test",
+            "source": "agent",
+            "description": "New parliament procedure type validator and its five Python tests are committed but not run in a clean checkout; do not claim runtime acceptance."
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-STAGE-A-AUDIT",
+            "title": "Campaña ABH45 — etapa A01–A20 auditada",
+            "kind": "milestone",
+            "mode": "meta",
+            "status": "active",
+            "detail": "El usuario autorizó secuencia A20, R5 y B20. Etapa A consumida 20/20; 19 ciclos previos con prereg/resultado confirmados 38/38, A20 resultados auditados. Limitaciones de validación HTTP/Python y fuente RPP persisten.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/CAMPAIGN_AUTHORIZATION.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A20_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-BOCG-REORDER",
+            "title": "BOCG 2025: dos de tres enlaces de fila serían falsos por orden",
+            "kind": "finding",
+            "mode": "research",
+            "status": "active",
+            "detail": "Las listas de adquisición de condición plena y presentación de credenciales del mismo BOCG-15-D-390 están ordenadas de modo distinto. La unión por posición falla 2/3; enlace por nombre fuente dentro del documento 3/3, pero nunca ID global.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A06_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A07_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-SOURCE-STAGES-HTTP",
+            "title": "Ruta localhost de estados institucionales en cuarentena",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "GET /api/source-stages escrito en server.py, Host guard antes; 4 pruebas HTTP publicadas y NO ejecutadas, real_person_scoring=false, first_public_at sin acreditar.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A02_RESULT.json",
+              "src/politics_fantasy/server.py",
+              "tests/test_source_stage_http.py"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-RPP-ORIGINAL-GAP",
+            "title": "Registro jurídico RPP por partido: original individual ausente",
+            "kind": "blocker",
+            "mode": "project",
+            "status": "blocked",
+            "detail": "Existe búsqueda RPP del Ministerio y anuarios XLSX agregados 2020/21; no se capturó entrada registral individual emitida por Interior, descarga XLSX 2021 502. Prohibido inferir registro de siglas o grupo.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A12_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A13_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/A15_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-A-EDGE-1",
+          "from": "root",
+          "to": "PFL-B45-STAGE-A-AUDIT",
+          "relation": "branches_from"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-A-EDGE-2",
+          "from": "PFL-B45-STAGE-A-AUDIT",
+          "to": "PFL-B45-BOCG-REORDER",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-A-EDGE-3",
+          "from": "PFL-B45-STAGE-A-AUDIT",
+          "to": "PFL-B45-SOURCE-STAGES-HTTP",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-A-EDGE-4",
+          "from": "PFL-B45-STAGE-A-AUDIT",
+          "to": "PFL-B45-RPP-ORIGINAL-GAP",
+          "relation": "related_to"
+        }
+      ]
+    },
+    {
+      "file": "0013-pfl-b45-r01-r05-20261027.json",
+      "source_git_blob": "d7c257367ba81c713528e5326d385815e0fa1e55",
+      "batch_id": "0013-PFL-B45-R01-R05-20261027",
+      "parent_batch": "0012-PFL-B45-A01-A20-20261027",
+      "at": "2026-10-27T05:19:31+01:00",
+      "reason": "Five authorized AB-H integration reviews, source-grounded V4 contractual 36.90% with 0 release gates and no new AB-R discovery, plus full recap and adaptive B-stage plan.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-R01",
+            "activity": "AB-H independent review cycle R01: see primary report and signed result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R01_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R01_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "at": "2026-10-27T05:19:31+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-R02",
+            "activity": "AB-H independent review cycle R02: see primary report and signed result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R02_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R02_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "at": "2026-10-27T05:19:31+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-R03",
+            "activity": "AB-H independent review cycle R03: see primary report and signed result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R03_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R03_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "at": "2026-10-27T05:19:31+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-R04",
+            "activity": "AB-H independent review cycle R04: see primary report and signed result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R04_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R04_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "at": "2026-10-27T05:19:31+01:00"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-R05",
+            "activity": "AB-H independent review cycle R05: see primary report and signed result",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R05_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R05_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "at": "2026-10-27T05:19:31+01:00"
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-V4-20261027",
+            "title": "V4 contractual 36,90 %, dos especificaciones nivel 1",
+            "kind": "finding",
+            "mode": "meta",
+            "status": "answered",
+            "detail": "Se revisaron 36 hitos con pesos originales, id.real y ev.person de 0 a 1, efecto trabajo +0,55pp, efecto alcance 0. CT2/VSDS/N1-N3 y gates independientes.",
+            "sources": [
+              "product/progress_scope_v4_20261027.json",
+              "product/progress_snapshot_v4_20261027.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R01_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-REVIEW-SCIENCE",
+            "title": "AB-R no logra aún dataset/persona-semana y baselines fuera de muestra",
+            "kind": "finding",
+            "mode": "meta",
+            "status": "answered",
+            "detail": "CT2 identidad 29/100 VSDS 1/3 N1-N3 0; fuentes institucionales y código disponible pero sin corpus de corte as-of ni negativa de homónimo completo confirmada, no ventaja predictiva validada.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R03_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R03_DISENO_VALIDACION.md"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-REVIEW-READINESS",
+            "title": "Seis gates de lanzamiento siguen bloqueados",
+            "kind": "finding",
+            "mode": "meta",
+            "status": "answered",
+            "detail": "src.registry0 id.real1 ev.person1 sec.auth0 qa.endtoend3 launch.hosted0. Servidor solo localhost sin sesiones, ruta documental leída pero nuevas pruebas HTTP aún no ejecutadas; sin puntuación política real.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R04_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R04_AUDITORIA_READINESS.md"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-R-EDGE1",
+          "from": "PFL-B45-STAGE-A-AUDIT",
+          "to": "PFL-B45-V4-20261027",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-R-EDGE2",
+          "from": "PFL-B45-V4-20261027",
+          "to": "PFL-B45-REVIEW-SCIENCE",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-R-EDGE3",
+          "from": "PFL-B45-REVIEW-SCIENCE",
+          "to": "PFL-B45-REVIEW-READINESS",
+          "relation": "related_to"
+        }
+      ]
+    },
+    {
+      "file": "0014-pfl-b45-b01-b20-20261027.json",
+      "source_git_blob": "57b35160f2d95c3ad001ff5c4767717630bef550",
+      "batch_id": "0014-PFL-B45-B01-B20-20261027",
+      "parent_batch": "0013-PFL-B45-R01-R05-20261027",
+      "at": "2026-10-27T14:17:32+01:00",
+      "reason": "Append user-authorized adaptive B01-B20 stage and completed 45-cycle AB-H campaign, preserve negative findings, source original tests, no scientific or launch gate promotion.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B01",
+            "activity": "AB-H B-stage adaptive cycle B01; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B01_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B01_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B02",
+            "activity": "AB-H B-stage adaptive cycle B02; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B02_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B02_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B03",
+            "activity": "AB-H B-stage adaptive cycle B03; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B03_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B03_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B04",
+            "activity": "AB-H B-stage adaptive cycle B04; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B04_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B04_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B05",
+            "activity": "AB-H B-stage adaptive cycle B05; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B05_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B05_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B06",
+            "activity": "AB-H B-stage adaptive cycle B06; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B06_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B06_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B07",
+            "activity": "AB-H B-stage adaptive cycle B07; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B07_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B07_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B08",
+            "activity": "AB-H B-stage adaptive cycle B08; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B08_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B08_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B09",
+            "activity": "AB-H B-stage adaptive cycle B09; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B09_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B09_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B10",
+            "activity": "AB-H B-stage adaptive cycle B10; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B10_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B10_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B11",
+            "activity": "AB-H B-stage adaptive cycle B11; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B11_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B11_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B12",
+            "activity": "AB-H B-stage adaptive cycle B12; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B12_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B12_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B13",
+            "activity": "AB-H B-stage adaptive cycle B13; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B13_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B13_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B14",
+            "activity": "AB-H B-stage adaptive cycle B14; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B14_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B14_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B15",
+            "activity": "AB-H B-stage adaptive cycle B15; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B15_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B15_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B16",
+            "activity": "AB-H B-stage adaptive cycle B16; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B16_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B16_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B17",
+            "activity": "AB-H B-stage adaptive cycle B17; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B17_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B17_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B18",
+            "activity": "AB-H B-stage adaptive cycle B18; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B18_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B18_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B19",
+            "activity": "AB-H B-stage adaptive cycle B19; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B19_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B19_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-B45-B20",
+            "activity": "AB-H B-stage adaptive cycle B20; actual scope and findings in prereg/result",
+            "status": "completed",
+            "at": "2026-10-27T14:17:32+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B20_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B20_RESULT.json"
+            ],
+            "scope": "PFL-V1 rev4",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-B09-NATIVE-PROGRESS-NOT-RUN",
+            "run_id": "PFL-B45-B09",
+            "severity": "minor",
+            "status": "open",
+            "category": "verification_boundary",
+            "source": "agent",
+            "at": "2026-10-27T14:17:32+01:00",
+            "description": "V4 numerical evaluator was run on real GitHub JSON in JS; progress_api Python and full HTTP V4 endpoint not natively run, so do not count full application acceptance."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-B18-WORKFLOW-NOT-RUN",
+            "run_id": "PFL-B45-B18",
+            "severity": "major",
+            "status": "open",
+            "category": "verification_boundary",
+            "source": "agent",
+            "at": "2026-10-27T14:17:32+01:00",
+            "description": "Optional CI now includes correct 23-case Congress+Senate source guard glob, but no GitHub Actions or clean checkout run was triggered. Regression acceptance is isolated native test only."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-B19-CANONICAL-ATLAS-PYTHON-NOT-RUN",
+            "run_id": "PFL-B45-B19",
+            "severity": "major",
+            "status": "open",
+            "category": "verification_boundary",
+            "source": "agent",
+            "at": "2026-10-27T14:17:32+01:00",
+            "description": "Atlas seed and 13 historical deltas replayed successfully under JS structural checks; canonical ab_atlas/atlas_delta.py check not executed; do not imply official Python certification."
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-CAMPAIGN-FINAL",
+            "title": "Campaña AB-H autorizada 20 + 5 + 20 cerrada",
+            "kind": "milestone",
+            "mode": "meta",
+            "status": "closed",
+            "detail": "20 ciclos A, 5 revisiones R, 20 ciclos B, 45/45 con prerregistro y resultado. B06–B20 incluyen QA original Congreso/Senado; cero nuevos descubrimientos científicos N1–N3 y cero gates de lanzamiento pasados. Permiso agotado.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/CAMPAIGN_FINAL_A20_R5_B20.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/REPORT_FINAL_ABH45.md"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-VOTE-ORIGINAL-QA",
+            "title": "QA de originales Congreso/Senado con tests nativos",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "Dos parsers puros de fuentes con checks de totales, fechas, sentinelas, IDs de evento y prevención de filas duplicadas. 23 tests Python nativos de ambos, 4 votos Congreso y 10 Senado originales verificados. No integrados E2E ni equivalen a autenticidad del emisor.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B17_RESULT.json",
+              "src/politics_fantasy/source_original_qa.py",
+              "src/politics_fantasy/source_original_senate_qa.py"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-SOURCE-PARSER-NEGATIVE-CONTROLS",
+            "title": "Falsos positivos de fuente y duplicaciones corruptas identificados",
+            "kind": "finding",
+            "mode": "research",
+            "status": "answered",
+            "detail": "Se corrigió totales nulos y asiento no canónico en Congreso; plural NO VOTAN, fechas de meses españoles, duplicación de escaño y duplicación de CodVotacion/num_vot Senado. Ningún asiento/identificador de voto es ID personal longitudinal.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B08_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B12_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B14_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B15_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/B16_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-B45-RELEASE-GATES-UNCHANGED",
+            "title": "Seis gates de lanzamiento permanecen sin acreditar",
+            "kind": "blocker",
+            "mode": "project",
+            "status": "blocked",
+            "detail": "V4 36.9 contractual y CT2/VSDS independientes; src.registry, identity, events, authentication, e2e, deployment ninguno passed. No scoring de personas reales; aprobación de condiciones de uso y primera disponibilidad histórica pendiente.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/REPORT_FINAL_ABH45.md",
+              "proyectos/politics-fantasy-league/research/ABH_BRANCH45_20261027/R04_AUDITORIA_READINESS.md"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-B-EDGE-1",
+          "from": "PFL-B45-STAGE-A-AUDIT",
+          "to": "PFL-B45-CAMPAIGN-FINAL",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-B-EDGE-2",
+          "from": "PFL-B45-CAMPAIGN-FINAL",
+          "to": "PFL-B45-VOTE-ORIGINAL-QA",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-B-EDGE-3",
+          "from": "PFL-B45-VOTE-ORIGINAL-QA",
+          "to": "PFL-B45-SOURCE-PARSER-NEGATIVE-CONTROLS",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-B45-B-EDGE-4",
+          "from": "PFL-B45-CAMPAIGN-FINAL",
+          "to": "PFL-B45-RELEASE-GATES-UNCHANGED",
+          "relation": "related_to"
+        }
+      ]
+    },
+    {
+      "file": "0015-pfl-b45-atlas-timestamp-repair-20261027.json",
+      "source_git_blob": "2f21557c5f770fd7745fa6e08e89597f7eb13eff",
+      "batch_id": "0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027",
+      "parent_batch": "0014-PFL-B45-B01-B20-20261027",
+      "at": "2026-10-27T14:21:01+01:00",
+      "reason": "Maintenance only: log and resolve model-authored future registration timestamp defects in earlier A/R/B delta metadata. GitHub original commit timestamps independently verified; no AB cycle or scientific/gate promotion.",
+      "ops": [
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-B45-B20-ATLAS-PLACEHOLDER-TIMES",
+            "run_id": "PFL-B45-B20",
+            "severity": "major",
+            "status": "open",
+            "category": "provenance_metadata",
+            "source": "agent",
+            "at": "2026-10-27T14:21:01+01:00",
+            "description": "Atlas 0012,0013,0014 `at` and run event times were model-authored future placeholders inconsistent with actual GitHub first registration commit timestamps (0012:05:08:15,0013:05:19:31,0014:14:17:32 Madrid). Three delta files corrected in Git; old and corrected values preserved in Git history and timestamp repair dossier."
+          }
+        },
+        {
+          "op": "complaint.triage",
+          "id": "PFL-B45-B20-ATLAS-PLACEHOLDER-TIMES",
+          "status": "repaired",
+          "reason": "Verified GitHub commit metadata and corrected 51 metadata fields in 0012–0014. Detailed repair report: research/ABH_BRANCH45_20261027/ATLAS_TIMESTAMP_REPAIR.json. This is a recorded exception to byte-level append-only invariance, not an alteration of scientific or release outcomes."
+        }
+      ]
+    },
+    {
+      "file": "0016-pfl-codex-20261027.json",
+      "source_git_blob": "b35a9ac25fa5ecd47aa471af2328a5435638c3fa",
+      "batch_id": "0016-PFL-CODEX-20261027",
+      "parent_batch": "0015-PFL-B45-ATLAS-TIMESTAMP-REPAIR-20261027",
+      "at": "2026-10-27T12:55:27+00:00",
+      "reason": "Registrar nueve ciclos separados de producto e investigación sin promover métricas ni gates; la rama paralela requiere reconciliación antes de unir deltas. Integración: antes era 0012-PFL-CODEX-20261027 con padre 0011; se reencadena tras 0015 sin alterar operaciones ni fecha original; versión inicial preservada en Git.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX01",
+            "activity": "Validar replay oficial de Atlas sobre base propia",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX01_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX01_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX02",
+            "activity": "Integrar reparaciones locales y comprobar regresiones",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX02_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX02_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX03",
+            "activity": "Implementar avance y liquidación de jornada sintética",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX03_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX03_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX04",
+            "activity": "Integrar jornada simulada en HTTP y navegador",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX04_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX04_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX05",
+            "activity": "Auditar consistencia interna del XML del Senado con vocabulario estricto y candidato post hoc",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX05_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX05_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX06",
+            "activity": "Corregir diagnóstico de identidad incompleta",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX06_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX06_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX07",
+            "activity": "Endurecer tipos y hosts candidatos de procedencia",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX07_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX07_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX08",
+            "activity": "Reproducir instalación limpia de test y research",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX08_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX08_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-CODEX-CDX09",
+            "activity": "Corregir filtros y manifiesto de exportación local",
+            "status": "completed",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX09_PREREG.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX09_RESULT.json"
+            ],
+            "cost": {
+              "github_actions_minutes": 0
+            },
+            "method_version": "AB3.2.1 O7 AB-H",
+            "scope": "PFL-V1 rev3"
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CODEX-CDX02-DEPENDENCIES",
+            "run_id": "PFL-CODEX-CDX08",
+            "severity": "minor",
+            "status": "repaired",
+            "category": "local_review",
+            "source": "agent",
+            "description": "Extras de test y research incompletos, reparados y comprobados en Windows limpio."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CODEX-CDX05-XML-DICTIONARY",
+            "run_id": "PFL-CODEX-CDX05",
+            "severity": "minor",
+            "status": "open",
+            "category": "local_review",
+            "source": "agent",
+            "description": "La etiqueta XML NO VOTAN permanece como mapeo candidato post hoc sin diccionario oficial acreditado."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CODEX-CDX08-WINDOWS-TZDATA",
+            "run_id": "PFL-CODEX-CDX08",
+            "severity": "minor",
+            "status": "repaired",
+            "category": "local_review",
+            "source": "agent",
+            "description": "Los tests Windows limpios carecían de la zona IANA; añadida tzdata al extra correspondiente."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CODEX-CDX09-PACKAGING",
+            "run_id": "PFL-CODEX-CDX09",
+            "severity": "minor",
+            "status": "repaired",
+            "category": "local_review",
+            "source": "agent",
+            "description": "Filtros de datos locales y metadatos históricos del paquete corregidos; probado con fixtures."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CODEX-CDX09-SYMLINK-TEST",
+            "run_id": "PFL-CODEX-CDX09",
+            "severity": "minor",
+            "status": "open",
+            "category": "local_review",
+            "source": "agent",
+            "description": "Windows no permitió crear enlace simbólico para probar el filtro."
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-CODEX-PLAYABLE-ROUND",
+            "title": "Jornada sintética local liquidable con nueva jornada",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "Jornada simulada, puntuación congelada e interfaz comprobadas en tests locales y navegador; no despliegue ni jugadores reales.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX03_RESULT.json",
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX04_RESULT.json"
+            ],
+            "phase": "verify"
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-CODEX-SENATE-INTERNAL",
+            "title": "Comprobación interna de categorías del XML del Senado",
+            "kind": "finding",
+            "mode": "research",
+            "status": "answered",
+            "detail": "7 votaciones comparables coinciden con vocabulario preregistrado; 3 indeterminadas. Bajo un mapeo post hoc no certificado coinciden 10/10. No valida identidad, procedencia temporal ni fuente independiente.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/CODEX_CONTRIB_20261027/CDX05_RESULT.json"
+            ],
+            "phase": "verify"
+          }
+        }
+      ]
+    },
+    {
+      "file": "0017-pfl-ingest-ic01-ic03-20261027.json",
+      "source_git_blob": "4c6e7132c00f3cdb263ecac1ebfb9fa6ae25d044",
+      "batch_id": "0017-PFL-INGEST-IC01-IC03-20261027",
+      "parent_batch": "0016-PFL-CODEX-20261027",
+      "at": "2026-10-27T15:31:19+01:00",
+      "reason": "Append three independently authorized integration cycles after separate ABH45 and Codex CDX09 campaigns, with prereg, native synthetic negative findings, HTTP boundary limitation and no V4, scientific or release gate promotion.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-IC01",
+            "activity": "Source scoped redirect precontact security and nine negative tests",
+            "status": "completed",
+            "at": "2026-10-27T15:31:19+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_RESULT.json"
+            ],
+            "scope": "PFL-V1 revision 4 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-IC02",
+            "activity": "Local capture, SHA recheck, source-specific validation and quarantine six tests",
+            "status": "completed",
+            "at": "2026-10-27T15:31:19+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_RESULT.json"
+            ],
+            "scope": "PFL-V1 revision 4 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-IC03",
+            "activity": "HTTP read-only stage boundary inspected, negative local server test authored not run",
+            "status": "completed",
+            "at": "2026-10-27T15:31:19+01:00",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_RESULT.json"
+            ],
+            "scope": "PFL-V1 revision 4 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-INGEST-IC01-TEST-BLOB-NONIDENTICAL",
+            "run_id": "PFL-INGEST-IC01",
+            "severity": "minor",
+            "status": "open",
+            "category": "reproducibility_limit",
+            "source": "agent",
+            "at": "2026-10-27T15:31:19+01:00",
+            "description": "Nine native redirect cases PASS on an isolated manual copy; executed ingest.py bytes match GitHub blob exactly but staged IC01 test fixture bytes do not match final test file blob. Run repo test natively in clean checkout before asserting exact test version acceptance."
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-INGEST-IC03-HTTP-INGEST-NOT-CONNECTED",
+            "run_id": "PFL-INGEST-IC03",
+            "severity": "major",
+            "status": "open",
+            "category": "integration_gap",
+            "source": "agent",
+            "at": "2026-10-27T15:31:19+01:00",
+            "description": "Pure local capture→schema validation→quarantine 6/6 native synthetic tests PASS. Existing HTTP server only serves read-only source stages and synthetic health; no HTTP capture, validation or quarantine ingestion endpoint. New loopback test authored and included in optional workflow but NOT executed this turn."
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-INGEST-REDIRECT-GUARD-20261027",
+            "title": "Control del host y cada salto de redirección antes de contactar destinos",
+            "kind": "finding",
+            "mode": "project",
+            "status": "answered",
+            "detail": "ingest.py ahora liga Congreso/Senado/BOE al hostname exacto por source, intercepta HTTPRedirectHandler para verificar cada Location antes de abrirla, rechaza cambios de editor y fuentes con credenciales/puertos/HTTP; nueve casos offline nativos PASS con caveat de test SHA, sin exploit HTTP público afirmado.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC01_RESULT.json",
+              "src/politics_fantasy/ingest.py",
+              "tests/test_ingest_redirect_security.py"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-INGEST-QUARANTINE-20261027",
+            "title": "Captura, auditoría estructural y cuarentena locales sin interfaz de ingesta HTTP",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "quarantine_ingest.py graba objeto SHA y manifiesto, verifica original fuente Congreso/Senado mediante módulos originales, deja incluso formato correcto en QUARANTINED_SCHEMA_PASSED (no release, no persona, no first_public_at). Seis tests de datos ficticios PASS. Endpoint HTTP de captura no existe; nueva prueba loopback no ejecutada. NO VOTAN interpretado operativamente, semántica institucional no acreditada.",
+            "sources": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC02_RESULT.json",
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/IC03_RESULT.json",
+              "src/politics_fantasy/quarantine_ingest.py",
+              "tests/test_quarantine_ingest.py",
+              "tests/test_ingest_http_boundary.py"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-INGEST-EDGE-1",
+          "from": "PFL-INGEST-REDIRECT-GUARD-20261027",
+          "to": "PFL-INGEST-QUARANTINE-20261027",
+          "relation": "supports"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-INGEST-EDGE-2",
+          "from": "PFL-B45-SOURCE-STAGES-HTTP",
+          "to": "PFL-INGEST-QUARANTINE-20261027",
+          "relation": "related_to"
+        }
+      ]
+    },
+    {
+      "file": "0018-pfl-ingest-ic01-sha-repair-20261027.json",
+      "source_git_blob": "b96f146a1159d70fb001dac8d376f990e6e39b72",
+      "batch_id": "0018-PFL-INGEST-IC01-SHA-REPAIR-20261027",
+      "parent_batch": "0017-PFL-INGEST-IC01-IC03-20261027",
+      "at": "2026-10-27T15:38:08+01:00",
+      "reason": "Maintenance only, not a fourth AB-H cycle: close IC01 fixture byte mismatch after exact GitHub test blob SHA and 15/15 native execution. Preserve original complaint as repaired and do not change product/sci gates.",
+      "ops": [
+        {
+          "op": "complaint.triage",
+          "id": "PFL-INGEST-IC01-TEST-BLOB-NONIDENTICAL",
+          "status": "repaired",
+          "reason": "Resolved with exact Git blob for tests/test_ingest_redirect_security.py sha 9dec4b4cc92d70712ce144f0a73c25a70fce59c0 (6654 bytes) and exact ingest source sha d4e7d62bdcbec58312336e40dab539b0ed23c3eb; native combined IC01+IC02 unittest 15/15 PASS with 0 external network calls. See research/ABH_INGEST_CONTINUATION_20261027/IC01_EXACT_REPLAY_FOLLOWUP.json."
+        }
+      ]
+    },
+    {
+      "file": "0019-pfl-checkout-4faf31a-qa-20261027.json",
+      "source_git_blob": "4f34cfd010013224f02dbe89609d4c5bcd431500",
+      "batch_id": "0019-PFL-CHECKOUT-4FAF31A-QA-20261027",
+      "parent_batch": "0018-PFL-INGEST-IC01-SHA-REPAIR-20261027",
+      "at": "2026-10-27T15:49:29Z",
+      "reason": "Post-hoc native verification receipt for user-provided integrated repo ZIP; not a new authorized AB-H cycle. Full local tests close IC03 HTTP-test-unrun part but NOT existence of HTTP ingestion; Chromium policy blocks UI navigation. V4 and gates unchanged.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-ZIP-4FAF31A-NATIVE-VERIFY",
+            "activity": "Posthoc verification of exact 4faf31a repository snapshot: Python full project + node + canonical Atlas Python + loopback HTTP; browser smoke V4 static repair only",
+            "status": "completed",
+            "at": "2026-10-27T15:49:29Z",
+            "evidence": [
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_PREREG.json",
+              "proyectos/politics-fantasy-league/research/ABH_INGEST_CONTINUATION_20261027/VERIF_ZIP_4FAF31A_RESULT.md",
+              "tests/test_ingest_http_boundary.py",
+              "tests/run_browser_smoke.py"
+            ],
+            "scope": "PFL-V1 rev4 unchanged; not an AB science cycle",
+            "method_version": "AB3.2.1 O7 AB-META verification",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-CHECKOUT-4FAF31A-CHROMIUM-LOCAL-ADMIN-BLOCK",
+            "run_id": "PFL-ZIP-4FAF31A-NATIVE-VERIFY",
+            "severity": "minor",
+            "status": "open",
+            "source": "agent",
+            "category": "execution_environment",
+            "at": "2026-10-27T15:49:29Z",
+            "description": "Playwright bundled browser absent; system Chromium executable starts via PF_CHROMIUM_EXECUTABLE but browser page.goto localhost fails net::ERR_BLOCKED_BY_ADMINISTRATOR in this sandbox. Browser UI E2E NOT certified. HTTP client loopback tests 20/20 pass; changed browser smoke V3 assertions to V4 36.9 and py_compile pass."
+          }
+        },
+        {
+          "op": "complaint.triage",
+          "id": "PFL-INGEST-IC03-HTTP-INGEST-NOT-CONNECTED",
+          "status": "triaged",
+          "reason": "On uploaded snapshot 4faf31a, Python project pytest 421/421 incl actual ephemeral loopback test_ingest_http_boundary.py with local host controls, GET /api/source-stages and absent ingester route 404. This resolves previously-unrun HTTP negative test; the architectural gap NO HTTP ingestion remains and needs separate authenticated design."
+        }
+      ]
+    },
+    {
+      "file": "0020-pfl-ingest-abh20-ic04-ic23-20261027.json",
+      "source_git_blob": "31d35d38aa8ac11e16094677e2ce9eb787650149",
+      "batch_id": "0020-PFL-INGEST-ABH20-IC04-IC23-20261027",
+      "parent_batch": "0019-PFL-CHECKOUT-4FAF31A-QA-20261027",
+      "at": "2026-10-27T18:10:30.801Z",
+      "reason": "Append exactly 20 human-authorized adaptive IC04-IC23 cycles after distinct ABH45/CDX/IC01-IC03 histories. at is registration time of this batch, not individual experiment or publisher publication time; no gate, scientific metric or global V4 promotion.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC04",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC04; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC04_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC04_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC05",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC05; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC05_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC05_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC06",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC06; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC06_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC06_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC07",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC07; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC07_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC07_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC08",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC08; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC08_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC08_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC09",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC09; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC09_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC09_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC10",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC10; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC10_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC10_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC11",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC11; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC11_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC11_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC12",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC12; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC12_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC12_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC13",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC13; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC13_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC13_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC14",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC14; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC14_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC14_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC15",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC15; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC15_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC15_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC16",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC16; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC16_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC16_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC17",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC17; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC17_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC17_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC18",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC18; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC18_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC18_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC19",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC19; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC19_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC19_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC20",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC20; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC20_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC20_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC21",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC21; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC21_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC21_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC22",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC22; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC22_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC22_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INGEST-ABH20-IC23",
+            "activity": "Adaptive AB-H capture integrity and operator audit cycle IC23; actual actions and limits documented in registered evidence",
+            "status": "completed",
+            "at": "2026-10-27T18:10:30.801Z",
+            "evidence": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC23_PREREG.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC23_RESULT.json"
+            ],
+            "scope": "PFL V4 36.90 unchanged",
+            "method_version": "AB3.2.1 O7 AB-H",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-INGEST-ABH20-IC09-WINDOWS-UNSUPPORTED",
+            "run_id": "PFL-INGEST-ABH20-IC09",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "verification_boundary",
+            "description": "Secure importer needs POSIX dirfd/O_NOFOLLOW. Windows native deliberately rejects SECURE_STORE_UNSUPPORTED_PLATFORM before opening a source. Game demo Windows remains separate. WSL advice is not native Windows certification.",
+            "at": "2026-10-27T18:10:30.801Z"
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-INGEST-ABH20-IC21-PYTEST-TIMEOUT",
+            "run_id": "PFL-INGEST-ABH20-IC21",
+            "severity": "major",
+            "status": "open",
+            "source": "agent",
+            "category": "verification_boundary",
+            "description": "Full Python suite reached about 58 percent then exceeded 120s local runtime; no full-suite PASS. Focused 67 Python plus 14 subtests and Node 110 pass. Optional workflow updated but CI not dispatched.",
+            "at": "2026-10-27T18:10:30.801Z"
+          }
+        },
+        {
+          "op": "complaint.add",
+          "complaint": {
+            "id": "PFL-INGEST-ABH20-IC22-REPLAY-NONIDENTICAL",
+            "run_id": "PFL-INGEST-ABH20-IC22",
+            "severity": "minor",
+            "status": "open",
+            "source": "agent",
+            "category": "verification_boundary",
+            "description": "Local native Atlas prior 19-batch preflight used a reconstructed semantically equivalent 0019, not byte-identical GitHub batch. Local SHA is not a canonical GitHub state hash; final batch requires independent checker on actual current branch.",
+            "at": "2026-10-27T18:10:30.801Z"
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-INGEST-ABH20-POSIX-RAW-STORE",
+            "title": "Local POSIX safe content-addressed raw storage and manifest",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "Dirfd/no-follow object storage, private permissions, symlink rejection, preflight, declared payload length and interrupt cleanup; Windows native unsupported and no public HTTP ingest.",
+            "sources": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC04_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC08_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC10_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC21_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-INGEST-ABH20-AUDIT-CLI",
+            "title": "Private aggregate-only audit CLI and per-capture review validation",
+            "kind": "deliverable",
+            "mode": "project",
+            "status": "active",
+            "detail": "Capture-specific IDs separate from SHA; read-only auditor checks digest+length, duplicate/orphan/legacy review and incomplete ledger, operator CLI emits only aggregate counters. Fictitious offline full path checked; no publication authority.",
+            "sources": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC11_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC14_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC18_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC19_RESULT.json"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "node.add",
+          "node": {
+            "id": "PFL-INGEST-ABH20-LIMITS",
+            "title": "Remaining ingress security and evidentiary blockers",
+            "kind": "blocker",
+            "mode": "project",
+            "status": "blocked",
+            "detail": "No authenticated HTTP capture, no full latest checkout Python green, secure Windows native unsupported, no institutional first_public_at or NO VOTAN semantic confirmation, original rights and person IDs unresolved. V4 36.90%, CT2 29, VSDS 1/3, gates 0/6.",
+            "sources": [
+              "research/ABH_INGEST_CONTINUATION_20261027/IC21_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/IC23_RESULT.json",
+              "research/ABH_INGEST_CONTINUATION_20261027/REPORT_IC04_IC23_FINAL.md"
+            ],
+            "phase": "verify",
+            "acceptance": {
+              "criteria": "",
+              "evidence": [],
+              "verified": false,
+              "verified_by": ""
+            }
+          }
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-INGEST-ABH20-EDGE1",
+          "from": "PFL-INGEST-QUARANTINE-20261027",
+          "to": "PFL-INGEST-ABH20-POSIX-RAW-STORE",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-INGEST-ABH20-EDGE2",
+          "from": "PFL-INGEST-ABH20-POSIX-RAW-STORE",
+          "to": "PFL-INGEST-ABH20-AUDIT-CLI",
+          "relation": "related_to"
+        },
+        {
+          "op": "edge.add",
+          "id": "PFL-INGEST-ABH20-EDGE3",
+          "from": "PFL-INGEST-ABH20-AUDIT-CLI",
+          "to": "PFL-INGEST-ABH20-LIMITS",
+          "relation": "related_to"
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}

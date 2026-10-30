@@ -1,0 +1,80 @@
+{
+  "schema": "pfl.prior.updates.v1",
+  "scope": "Native local integration and security audit, no novel sociological result",
+  "sources": [
+    {
+      "type": "private inherited GitHub source",
+      "ref": "PR #35 f60aebb9fae4bfa09bb642c68cdd072ab99583f6",
+      "verified_by": "GitHub connector and 5 exact Git blob hashes"
+    },
+    {
+      "type": "Institutional ethics source",
+      "url": "https://investigacion.usal.es/es/comite-bioetica",
+      "purpose": "CEI consultation channel and human research ethical scope"
+    },
+    {
+      "type": "AEPD consent",
+      "url": "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0211-segun-el-rgpd-como-debe-solicitarse-el-consentimiento-de-los-interesados-para-tratar-sus-datos-personales",
+      "purpose": "Consent must be affirmative and demonstrable where used as lawful basis"
+    },
+    {
+      "type": "AEPD legal basis",
+      "url": "https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/5-bases-legitimadoras-del-tratamiento/FAQ-0214-cuales-son-las-bases-de-legitimacion-para-el-tratamiento-de-datos",
+      "purpose": "Document GDPR basis"
+    },
+    {
+      "type": "AEPD anonymity",
+      "url": "https://www.aepd.es/preguntas-frecuentes/0-conceptos-basicos/FAQ-0005-sobre-los-datos-anonimizados",
+      "purpose": "Reidentification criterion"
+    }
+  ],
+  "priors": [
+    {
+      "id": "PF-NAT01",
+      "claim": "Prior 84 V8 checks cannot be reproduced in native Node",
+      "update": "DOWN_LOCAL_FALSE",
+      "evidence": "C01 5 exact SHA and Node 84/84, version v22.16.0",
+      "scope": "not full private checkout"
+    },
+    {
+      "id": "PF-NAT02",
+      "claim": "Old JS validators reject all political/identity fields including inherited and Symbol keys",
+      "update": "REJECTED",
+      "evidence": "C02 5 bypasses accepted before repair, rejected after strict own-key patch; regression 84/84",
+      "scope": "remaining complex JS object threats not exhaustively tested"
+    },
+    {
+      "id": "PF-NAT03",
+      "claim": "Mock ethics approval status validates research deployment",
+      "update": "REJECTED_STRONGLY",
+      "evidence": "C02 forged review passes by design; C03-C04 new public server has no intake route",
+      "scope": "must obtain real ethics & privacy approval"
+    },
+    {
+      "id": "PF-NAT04",
+      "claim": "Four-arm fictional UI can be delivered locally with key withheld",
+      "update": "SUPPORT_LOCAL_TECHNICAL",
+      "evidence": "C03 17/17 source checks and C04 15/15 native HTTP",
+      "scope": "no browser E2E; tutorials not time matched; no human assignment"
+    },
+    {
+      "id": "PF-NAT05",
+      "claim": "Atlas 0078 canonical CURRENT state verified",
+      "update": "NOT_SUPPORTED",
+      "evidence": "C05 0078 delta and five commit ancestry valid, but giant CURRENT.md inherited unsynced and native replay not run",
+      "scope": "0079 append only"
+    },
+    {
+      "id": "PF-NAT06",
+      "claim": "These local mechanics constitute original causal PFL sociology",
+      "update": "NOT_ESTABLISHED",
+      "evidence": "No participants, no independent data, ethics gate closed, R5",
+      "scope": "N1 N2 N3 stay zero"
+    }
+  ],
+  "CT2_previous_identity": 29,
+  "CT2_previous_mechanics": 20,
+  "CT2_prospective": 25,
+  "unique_N1": 0,
+  "external_replication": false
+}

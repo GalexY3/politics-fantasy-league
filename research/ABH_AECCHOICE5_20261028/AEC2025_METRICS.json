@@ -1,0 +1,342 @@
+{
+  "schema": "pfl.aecchoice5.metrics.v1",
+  "source": "AEC2025_DIVISION_PANEL.csv",
+  "n": 150,
+  "meta": {
+    "states": 8,
+    "demographic_types": 4,
+    "original_mirror_only": true,
+    "close_roll_feature_available_before_poll_by_definition": true,
+    "all_data_fetched_post_election": true,
+    "preexposed": [
+      "Calwell",
+      "Riverina"
+    ],
+    "national_informal_pct": 5.603449851880724,
+    "sums": {
+      "informal": 919512,
+      "total": 16409748,
+      "turnout": 16409748
+    }
+  },
+  "C02": {
+    "pearson": 0.5763872015150482,
+    "spearman": 0.6906766590097019,
+    "OLS_slope_per_candidate": 1.0017648843638316,
+    "OLS_R2": 0.3322222060703488,
+    "quartiles": [
+      {
+        "quartile": 1,
+        "n": 37,
+        "meanNominations": 5.54054054054054,
+        "meanInformal": 3.755945945945946
+      },
+      {
+        "quartile": 2,
+        "n": 38,
+        "meanNominations": 6.921052631578948,
+        "meanInformal": 4.535526315789474
+      },
+      {
+        "quartile": 3,
+        "n": 37,
+        "meanNominations": 8,
+        "meanInformal": 6.228918918918918
+      },
+      {
+        "quartile": 4,
+        "n": 38,
+        "meanNominations": 9.526315789473685,
+        "meanInformal": 7.763421052631578
+      }
+    ],
+    "preexposed_excluded_Pearson": 0.5459703058712341,
+    "preexposed_excluded_Spearman": 0.6798432529352152
+  },
+  "C03": {
+    "baseline_r2": 0.4685281653530431,
+    "with_nominations_r2": 0.6329173402649529,
+    "incremental_R2": 0.16438917491190985,
+    "candidate_coef_pp": 0.8382629663300967,
+    "candidate_HC3SE": 0.11153477968150467,
+    "candidate_ci95": [
+      0.6196547981543475,
+      1.056871134505846
+    ],
+    "features": [
+      "intercept",
+      "logEnrolment",
+      "nominations",
+      "state=NSW",
+      "state=NT",
+      "state=QLD",
+      "state=SA",
+      "state=TAS",
+      "state=VIC",
+      "state=WA",
+      "demographic=Outer Metropolitan",
+      "demographic=Provincial",
+      "demographic=Rural"
+    ]
+  },
+  "C04": {
+    "short_n": 40,
+    "long_n": 110,
+    "short_mean_informal": 3.6967499999999993,
+    "long_mean_informal": 6.263000000000001,
+    "difference_pp": 2.5662500000000015,
+    "short_median": 3.335,
+    "long_median": 5.675,
+    "outliers_excluded": {
+      "short_n": 40,
+      "long_n": 108,
+      "difference_pp": 2.4796388888888914
+    },
+    "within_states": [
+      {
+        "state": "ACT",
+        "n": 3,
+        "lowN": 3,
+        "highN": 0,
+        "lowMean": 2.4233333333333333,
+        "highMean": null,
+        "difference": null
+      },
+      {
+        "state": "NSW",
+        "n": 46,
+        "lowN": 10,
+        "highN": 36,
+        "lowMean": 5.571,
+        "highMean": 8.84611111111111,
+        "difference": 3.2751111111111104
+      },
+      {
+        "state": "NT",
+        "n": 2,
+        "lowN": 1,
+        "highN": 1,
+        "lowMean": 4.51,
+        "highMean": 3.59,
+        "difference": -0.9199999999999999
+      },
+      {
+        "state": "QLD",
+        "n": 30,
+        "lowN": 4,
+        "highN": 26,
+        "lowMean": 3.2224999999999997,
+        "highMean": 5.2069230769230765,
+        "difference": 1.9844230769230768
+      },
+      {
+        "state": "SA",
+        "n": 10,
+        "lowN": 1,
+        "highN": 9,
+        "lowMean": 2.58,
+        "highMean": 5.59,
+        "difference": 3.01
+      },
+      {
+        "state": "TAS",
+        "n": 5,
+        "lowN": 3,
+        "highN": 2,
+        "lowMean": 3.3066666666666666,
+        "highMean": 5.49,
+        "difference": 2.1833333333333336
+      },
+      {
+        "state": "VIC",
+        "n": 38,
+        "lowN": 11,
+        "highN": 27,
+        "lowMean": 3.2490909090909095,
+        "highMean": 4.665925925925927,
+        "difference": 1.4168350168350172
+      },
+      {
+        "state": "WA",
+        "n": 16,
+        "lowN": 7,
+        "highN": 9,
+        "lowMean": 2.7499999999999996,
+        "highMean": 4.914444444444445,
+        "difference": 2.1644444444444457
+      }
+    ]
+  },
+  "C05": {
+    "heldout": "one Australian state out, eight full groups",
+    "features_pre_event_only": true,
+    "models": {
+      "mean": {
+        "MAE": 2.484571164502258,
+        "RMSE": 3.2572509054553476
+      },
+      "demo": {
+        "MAE": 2.3957966323935422,
+        "RMSE": 3.2041854741264646
+      },
+      "choice": {
+        "MAE": 1.9800878516750648,
+        "RMSE": 2.8129842696056073
+      }
+    },
+    "per_state": [
+      {
+        "state": "ACT",
+        "n": 3,
+        "metrics": {
+          "mean": {
+            "MAE": 3.2197278911564626,
+            "RMSE": 3.227073480515496
+          },
+          "demo": {
+            "MAE": 1.8973701237381289,
+            "RMSE": 1.9061291784235272
+          },
+          "choice": {
+            "MAE": 1.0787321643934826,
+            "RMSE": 1.2154783309613688
+          }
+        }
+      },
+      {
+        "state": "NSW",
+        "n": 46,
+        "metrics": {
+          "mean": {
+            "MAE": 3.8180894648829447,
+            "RMSE": 4.894725331923897
+          },
+          "demo": {
+            "MAE": 3.7435861553670584,
+            "RMSE": 4.896361953920387
+          },
+          "choice": {
+            "MAE": 3.2436560160879835,
+            "RMSE": 4.376673983591869
+          }
+        }
+      },
+      {
+        "state": "NT",
+        "n": 2,
+        "metrics": {
+          "mean": {
+            "MAE": 1.5493243243243242,
+            "RMSE": 1.61617012159705
+          },
+          "demo": {
+            "MAE": 0.3570866683870886,
+            "RMSE": 0.3984578772028663
+          },
+          "choice": {
+            "MAE": 1.0553141838028819,
+            "RMSE": 1.216360696654095
+          }
+        }
+      },
+      {
+        "state": "QLD",
+        "n": 30,
+        "metrics": {
+          "mean": {
+            "MAE": 1.4235833333333332,
+            "RMSE": 1.7047694553321084
+          },
+          "demo": {
+            "MAE": 1.5480386848823222,
+            "RMSE": 1.8462485915375915
+          },
+          "choice": {
+            "MAE": 1.362619529935941,
+            "RMSE": 1.7984062069561657
+          }
+        }
+      },
+      {
+        "state": "SA",
+        "n": 10,
+        "metrics": {
+          "mean": {
+            "MAE": 1.7970000000000002,
+            "RMSE": 1.9387858458639649
+          },
+          "demo": {
+            "MAE": 1.6622398068929272,
+            "RMSE": 1.9884670273813556
+          },
+          "choice": {
+            "MAE": 1.2021827314994238,
+            "RMSE": 1.3090648270440464
+          }
+        }
+      },
+      {
+        "state": "TAS",
+        "n": 5,
+        "metrics": {
+          "mean": {
+            "MAE": 1.9641379310344829,
+            "RMSE": 2.1294951588090547
+          },
+          "demo": {
+            "MAE": 1.1374423523605803,
+            "RMSE": 1.2892228633579768
+          },
+          "choice": {
+            "MAE": 1.0450110201367955,
+            "RMSE": 1.182943594126761
+          }
+        }
+      },
+      {
+        "state": "VIC",
+        "n": 38,
+        "metrics": {
+          "mean": {
+            "MAE": 2.1422368421052624,
+            "RMSE": 2.413590563433395
+          },
+          "demo": {
+            "MAE": 2.0892122633170307,
+            "RMSE": 2.276837119059495
+          },
+          "choice": {
+            "MAE": 1.6650663021097627,
+            "RMSE": 1.9387922595595253
+          }
+        }
+      },
+      {
+        "state": "WA",
+        "n": 16,
+        "metrics": {
+          "mean": {
+            "MAE": 2.0245335820895525,
+            "RMSE": 2.2924779190796123
+          },
+          "demo": {
+            "MAE": 2.038588226306814,
+            "RMSE": 2.2203823066965125
+          },
+          "choice": {
+            "MAE": 1.3162617722811818,
+            "RMSE": 1.4662488441783936
+          }
+        }
+      }
+    ],
+    "incremental_MAE_pp": 0.4157087807184774,
+    "criterion_gain_0_25_pp": true
+  },
+  "limits": [
+    "All outcome data known in Oct 2026, prereg before reading full 150 values, except two known high-nomination/outcome areas",
+    "No original AEC bytes fetched; mirror exact source header and Git blob only",
+    "AEC 2025 summary and McGinn/Maruyama already discuss candidate count and informal ballots, so relationship not novel",
+    "Informal ballots mix deliberate blank and accidental ballot errors; no individual-level mechanisms determined"
+  ]
+}

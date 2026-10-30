@@ -1,0 +1,16 @@
+{
+  "id": "ABH30-P1-C19",
+  "status": "PREREGISTERED",
+  "A": "DOM textContent injection harmlessness for external text",
+  "B": "H0 mechanism does not survive reference/strong baseline; H1 anticipated bounded effect under stated assumptions",
+  "C": "Replace fictionalTransferItems only in isolated DOM harness with one item scenario containing literal <img src=x onerror=...> and check no image nodes, no executable element and literal text visible. Strong negative control insertion with innerHTML in isolated detached parent should create img (not execute on network). Original app unchanged.",
+  "D": "No remote HTTP browser test; source is original app with import adapted in harness.",
+  "E": "NOT_RUN_AT_PREREG",
+  "F": "Strong competitor/negative control explicit, no causal attribution",
+  "G": "No field validation, no independent sample",
+  "H": "Update priors after observation, separate toy math from real outcome",
+  "I": "0/3 scientific unless new independent evidence",
+  "J": "Decision STOP or repair/pivot with R5",
+  "CT2_before": 22,
+  "selection_exposure": "Previous source and client inspected; specific endpoints not measured before this commit"
+}

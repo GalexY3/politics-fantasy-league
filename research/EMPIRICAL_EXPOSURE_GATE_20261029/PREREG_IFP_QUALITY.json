@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-29",
+  "mode": "SOURCE_DATA_QUALITY_NOT_AB_CYCLE",
+  "dataset": "GJP Data doi:10.7910/DVN/BPCDH5 CC0 original ifps.csv",
+  "sha256_pinned": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",
+  "size_bytes": 1072153,
+  "unit": "one original IFP metadata row, NOT human forecast",
+  "pre_registered_endpoints": [
+    "total rows",
+    "unique ifp_id count and duplicate IDs",
+    "q_type and q_status aggregate frequency",
+    "date_start/date_closed parseability and availability",
+    "date_start <= date_closed valid chronology count",
+    "date_suspend coverage",
+    "days_open numeric coverage",
+    "count of resolved outcome nonblank",
+    "invalid rows"
+  ],
+  "controls": [
+    "abort on SHA mismatch",
+    "do not print question_text/short_title or individual rows",
+    "if q_type conditional question rows share ifp_id, report duplicates without deduplicating silently",
+    "date_closed timestamp may be missing for unresolved; classify not invalid blindly"
+  ],
+  "interpretation": "Feasibility of question-level availability calendar. Does NOT establish individual offer, actual display or randomized assignment; cannot label no forecast a personal failure.",
+  "expected_rights": "Dataset-specific CC0 previously confirmed",
+  "output": "Aggregates only, no human data or political scoring",
+  "AB_cycles_consumed": 0,
+  "CT2_unchanged": 22
+}

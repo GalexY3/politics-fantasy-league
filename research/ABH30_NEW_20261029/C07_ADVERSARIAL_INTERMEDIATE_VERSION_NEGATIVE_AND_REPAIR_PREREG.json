@@ -1,0 +1,23 @@
+{
+  "schema": "pfl.abh30.c07.adversarial_post_run_repair_plan_v1",
+  "date": "2026-10-29",
+  "original_prereg_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+  "first_repair_freeze_commit": "393d85c83420dc40d65ed753f7edc7c0dc03c880",
+  "initial_24_native_tests_passed": true,
+  "initial_8_native_cli_tests_passed": true,
+  "real_seven_original_blobs_rehashed": true,
+  "negative": "The first selectVintage implementation takes max commit among ONLY THREE PINNED snapshots, and falsely suggests this is the latest published version for arbitrary intermediate asof. Official original path has 16 revisions for Sep27 and Oct24 new source; e.g Oct20 cannot safely choose Oct07 as 'latest available'.",
+  "scope": "FIRST 3 frozen exact checkpoint contrasts Oct08 00:00Z, Oct24 00:00Z, Oct29 16:00Z are source-real, and results remain valid. But arbitrary times are underidentified without complete source history.",
+  "minimal_repair": "Restrict selectVintage to exactly the three pre-verified checkpoint instants; any older instant returns NO_VERIFIED_PUBLIC_VINTAGE; any other instant returns NO_VERIFIED_EXACT_CHECKPOINT. No fallback/last-known approximation. Preserve pinned exact source hashes, original input data, cohort eligibility, outcome results, and scientific score. Adapt only affected test assertions (Oct20, Oct29 precommit/exact, same-vintage) and add explicit negative tests, adjust CLI safe error category. DO NOT add dates or claim general historical coverage.",
+  "expected_unchanged_numbers": {
+    "oct08_sep27": 30,
+    "oct24_sep27": 46,
+    "oct24_oct11": 2,
+    "oct29_sep27": 52,
+    "oct29_oct11": 8
+  },
+  "reason": "R5 requires fail-closed source knowledge, not interpolation between documentary snapshots.",
+  "repair_precedes_code_edit": true,
+  "prior_run_preserved": true,
+  "not_an_extra_AB_cycle": true
+}

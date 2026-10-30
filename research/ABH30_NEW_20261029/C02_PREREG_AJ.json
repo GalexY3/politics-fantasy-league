@@ -1,0 +1,48 @@
+{
+  "schema": "pfl.abh30.c02.prereg.aj.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C02",
+  "mode": "AB-P",
+  "D": {
+    "source_path": "src/politics_fantasy/forecastbench_provenance.mjs",
+    "source_git_sha1": "f619ff589c935371c6fb15a7869efcff92e50fee",
+    "source_commit": "edbda19c7cd16909cf6639572a7442491e884aa4",
+    "test_path": "tests/test_forecastbench_provenance.mjs",
+    "test_git_sha1": "8bf6ebb2f4641dc6a7206b2b402b351c909f04a5",
+    "test_commit": "a639b12f26795da030c8137a090faef18ecf4476",
+    "runtime": "Node 22.16.0 local isolated, copy must match frozen remote Git blobs exactly before any native run",
+    "no_SHA256_claim_without_actual_hash": true
+  },
+  "campaign": {
+    "authorization": 30,
+    "previous_ABH30_valid_after_C01": 1,
+    "historical_2_unconsumed": true
+  },
+  "A": "Can the original ForecastBench public question+resolution files be checked byte-for-byte against immutable source Git blob identities, rather than trusting a caller-supplied verified flag or a downloaded JSON with matching filenames?",
+  "B": {
+    "H1": "Git blob byte identity verification prevents substitution, truncation, and extra or missing source file being labelled pinned original; it explicitly does not establish source rights or treatment exposure.",
+    "H0": "Byte-hash guard accepts mismatched or unexpected bytes, or presents source permission claim as attested.",
+    "strong_rival": "Using conventional Git blob SHA as provenance is established standard, not new mathematical discovery. The prior C05 gate only checked source GitHub metadata, not original raw data authenticity at runtime."
+  },
+  "C": {
+    "data": "Official upstream ForecastBench questions and resolutions; dataset CC BY-SA 4.0, no individual forecasts downloaded. Manifest pins four blobs as verified from original GitHub 027ba0b3017a60e0e64602d724284ac6b2d91134.",
+    "checks": 13,
+    "independent_known_digest": "git hash-object --stdin for literal three bytes 'abc': f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f",
+    "failure_modes": [
+      "substitution 'abc' vs 'abC'",
+      "malformed/uppercase digest",
+      "string/typed-array without exact Buffer",
+      "empty source, >5MB",
+      "missing/extra files",
+      "caller fake all 4 pinned bytes",
+      "no false human or rights attestation"
+    ],
+    "negative": "No local original raw source file available in locked-down runtime; positive end-to-end verification of the actual four original bytes may remain NOT_RUN. Explicitly record this; synthetic literal is only independent SHA1 algorithm check."
+  },
+  "E": "Run exactly staged 13 native tests, retain negative receipts and native output; fail closed without human or original source bytes. Only count if test passes and production module can be imported.",
+  "F": "A remote Git SHA verifies byte identity but SHA1 hash is not signed origin, legal permission, or ethics attestation. Caller-supplied authority and source URL alone cannot prove rights. No original raw files available in local container, do not claim actual positive whole-file test.",
+  "G": "Compare against original official SHA metadata already retrieved, known Git hash-object digest as independent algorithm, not external behavioral replication.",
+  "H": "No extra scientific prior for known SHA1 or source license. Add product QA ledger and dependencies only.",
+  "I": "0/3 science; CT2 20 unchanged, readiness gates 0/6. Not a new causal, participant or scoring result.",
+  "J": "If 13 native tests pass, one legitimate AB-P pinned provenance contract cycle, cumulative new authorized 2/30, 28 remaining; two historical separate and blocked."
+}

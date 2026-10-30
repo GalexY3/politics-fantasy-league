@@ -1,0 +1,52 @@
+{
+  "schema": "pfl.abh10.c33.original_python_canonical_atlas_prereg_AJ_SHA.v1",
+  "cycle": "ABH10-C33",
+  "mode": "AB-P_CANONICAL_NATIVE_PYTHON_ATLAS_VALIDATOR",
+  "drift_D": 2,
+  "base_PR": 73,
+  "prior_new_valid": 1,
+  "prior_new_remaining": 9,
+  "historical_2_STOP_R5": true,
+  "A": "Does exact repository Python ab_atlas/atlas_delta.py accept the 91 append-only batch delta files in current branch, calculate a reproducible state SHA256 and match brief summary? Unit batch and canonical graph, not people.",
+  "B": {
+    "H1": "Original canonical Python check and brief both succeed over all 91 deltas, validate exact head 0091, node count and equal digest.",
+    "H0": "At least one delta fails original schema/ops/graph validation or source SHA differs, or CI action does not run; retain negative and do not proclaim pass.",
+    "rivals": [
+      "A static chain-only C19 reading 89 files is weaker than original canonical algorithm.",
+      "A passing native graph does not prove individual research findings scientifically valid or causal."
+    ]
+  },
+  "C": {
+    "intervention": "One-shot bounded GitHub Actions runner using checkout and Python preinstalled, no pip, no build/test of unrelated code, 3 minute cap; trigger only workflow file path on dedicated research branch",
+    "controls": [
+      "git hash-object pin original atlas_delta.py,abmap.py,seed.json",
+      "compare check returned batches=91",
+      "brief state SHA256 exactly equals check digest",
+      "head_batch exact 0091",
+      "print all errors and process exit codes"
+    ],
+    "resources": "Maximum one 3-minute GitHub-hosted runner attempt, no expensive CI or main merge."
+  },
+  "D": {
+    "workflow": {
+      "path": ".github/workflows/pfl-abh10-atlas91-native-one-shot.yml",
+      "Git_blob_frozen_before_GitHub_upload": "4a1d69c1e986c7dd11704c4b71d7d229c3b082b3",
+      "SHA256_frozen": "e931482448ee23f6f84389ca42fb361c861d911414bcd8a7dbfb92526e649f65",
+      "local_source_bytes": 2868
+    },
+    "canonical_sources": {
+      "atlas_delta_py": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+      "abmap_py": "687449178deba84f77b6cc2df2c61cc36d9cf0cd",
+      "seed": "f503c3fe3432110de2edf3a3d7517ca344c40623"
+    },
+    "expected_head": "0091-PFL-ABH30-C20-C30-MULTIAXIS-ENGINEERING-20261029",
+    "source_check_command": "python ab_atlas/atlas_delta.py check --base proyectos/politics-fantasy-league/ab_atlas/seed.json --updates proyectos/politics-fantasy-league/ab_atlas/updates",
+    "script_was_created_and_sha_hashed_locally_before_this_prereg": true
+  },
+  "E": "After GitHub commit of this prereg, create exact frozen workflow in branch. Verify Git blob SHA, inspect workflow run once and read official job logs/steps. Treat skipped/no-run as NOT_EXECUTED. If Python fails, record negative and diagnose without mutating original historical batches.",
+  "F": "No assumption code/Atlas is correct before execution, no silent amendments, no expensive CI. If any invalid historical delta found, preserve originals and add append-only valid erratum after separate freeze.",
+  "G": "Competent original Python full replay versus earlier JS static 89/89; Native Python is first-class original authority.",
+  "H": "Update Atlas integrity prior and case-specific blocker only after actual run evidence, never human scientific prior.",
+  "I": "PFL scientific CT2 20/100 ordinal unchanged, N1-3=0, launch 0/6, no original people or political scoring.",
+  "J": "If actual original canonical Python 91 batch runner executes and produces useful success or new failure, count one bounded C33. If workflow permission/call fails without execution, leave slot unconsumed."
+}

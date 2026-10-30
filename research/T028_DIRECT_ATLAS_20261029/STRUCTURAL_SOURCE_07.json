@@ -1,0 +1,299 @@
+{
+  "group": 7,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0061-pfl-abh-main20b-c06-t008-provenance-20261028.json",
+      "source_git_blob": "696f0f0b39e5e0b4acf9f58a08db07cfb703fc0c",
+      "batch_id": "0061-PFL-ABH-MAIN20B-C06-T008-PROVENANCE-20261028",
+      "parent_batch": "0060-PFL-ABH-MAIN20B-C05-BOOTSTRAP-20261028",
+      "at": "2026-10-28T13:49:52.366Z",
+      "reason": "C06 prereg post-reconciliation SHA tree check: old original Codex T008 651 pass+28 subtests on b0344d1 and 35-lot Atlas check on 9d0ef84 safely imported into main as exact evidence only. Between pre-import main 894e1b7a and post-prereg head bab2dde, 7 existing docs modified, 6 new evidence/prereg files, no sources/tests/60 deltas overwritten. Current T009 full Linux suite and 60-lot canonical check pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C06-T008-PROVENANCE-CONTROL",
+            "activity": "AB-META post-prereg authenticated Git full-tree regression to verify provenance-only T008 historical reconciliation, 60 unchanged Atlas deltas and source/tests SHA stable; T009 pending.",
+            "status": "completed",
+            "at": "2026-10-28T13:49:52.366Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C06_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C06_RESULT.json",
+              "tareas_codex/T008_RECONCILIACION_MAIN_20261028.md",
+              "tareas_codex/T008_RESULTADO.md",
+              "tareas_codex/T009_MAIN_LINUX_ATLAS60.md"
+            ],
+            "scope": "Provenance of historical QA; no rerun of Linux or Atlas60, no scientific novelty or gate uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0062-pfl-abh-main20b-c07-tzdata-20261028.json",
+      "source_git_blob": "2bdd816463be118b90cd94671479f49c5a03f5ee",
+      "batch_id": "0062-PFL-ABH-MAIN20B-C07-TZDATA-20261028",
+      "parent_batch": "0061-PFL-ABH-MAIN20B-C06-T008-PROVENANCE-20261028",
+      "at": "2026-10-28T13:52:39.713Z",
+      "reason": "MAIN20B C07 AB-P prereg native Python zoneinfo resolving Europe/Madrid with PYTHONTZPATH empty via pip tzdata 2026.2, Linux fallback proven. pyproject optional test/research now requires tzdata all platforms (previously Windows-only). Historic T008 environment missing tzdata, no new clean Alpine QEMU or full suite replay.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C07-TZDATA-FALLBACK-EXTRA",
+            "activity": "Portable timezone dependency in Python test and research extras, native PYTHONTZPATH-empty Linux control; no changes to base deps, no main full suite claim.",
+            "status": "completed",
+            "at": "2026-10-28T13:52:39.713Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C07_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C07_RESULT.json",
+              "pyproject.toml",
+              "tareas_codex/T008_RESULTADO.md"
+            ],
+            "scope": "AB-P environment portability, not scientific claim or release promotion",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0063-pfl-abh-main20b-c08-event-metadata-20261028.json",
+      "source_git_blob": "a0e986abecff1d31c0883dfcc16f23534d587204",
+      "batch_id": "0063-PFL-ABH-MAIN20B-C08-EVENT-METADATA-20261028",
+      "parent_batch": "0062-PFL-ABH-MAIN20B-C07-TZDATA-20261028",
+      "at": "2026-10-28T14:21:10.737Z",
+      "reason": "C08 prereg immutable PoliticalEvent source negative: nested metadata mutable despite frozen dataclass; Python repro original alias changes, local defensive copy proof 5 checks; source update blocked by tool; no fix claimed.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C08-MUTABLE-EVENT-METADATA",
+            "activity": "Reproduced synthetic event metadata alias mutation and documented unmerged remediation; not an integrated fix nor full native test suite.",
+            "status": "completed",
+            "at": "2026-10-28T14:21:10.737Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C08_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C08_RESULT.json"
+            ],
+            "scope": "AB-P negative model integrity; code not changed; gates no uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0064-pfl-abh-main20b-c09-revision-20261028.json",
+      "source_git_blob": "352bc3ef63c0459bea30632fe0a3b14b97c6dccb",
+      "batch_id": "0064-PFL-ABH-MAIN20B-C09-REVISION-20261028",
+      "parent_batch": "0063-PFL-ABH-MAIN20B-C08-EVENT-METADATA-20261028",
+      "at": "2026-10-28T14:22:45.979Z",
+      "reason": "C09 prereg source revision number versus first public time: deliberately inconsistent chronology causes numeric revision2 selected although revision1 published later. Four isolated controls; no real issuer claims or code patch.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C09-REVISION-CLOCK",
+            "activity": "Synthetic revision/publication chronology contradiction, 4 selected Python logic checks; no production change without source issuer contract",
+            "status": "completed",
+            "at": "2026-10-28T14:22:45.979Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C09_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C09_RESULT.json"
+            ],
+            "scope": "AB-R documentary design negative; no science/launch uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0065-pfl-abh-main20b-c10-csv-lines-20261028.json",
+      "source_git_blob": "f35b034ee81f902460a945927506fdbb2f8f4fb1",
+      "batch_id": "0065-PFL-ABH-MAIN20B-C10-CSV-LINES-20261028",
+      "parent_batch": "0064-PFL-ABH-MAIN20B-C09-REVISION-20261028",
+      "at": "2026-10-28T14:25:05.060Z",
+      "reason": "C10 prereg CSV quoted multiline source_line mismatch: DictReader enumerate yields row2 logical3 vs physical4; patched physical ending line and wrote tests, no full pytest.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C10-CSV-LINES",
+            "activity": "Correct physical ending line provenance of multiline third-party CSV import; stdlib red control and post-patch SHA confirmed; full pytest pending.",
+            "status": "completed",
+            "at": "2026-10-28T14:25:05.060Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C10_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C10_RESULT.json",
+              "tests/test_field_physical_lines.py"
+            ],
+            "scope": "AB-P source parser audit, no individual scoring",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0066-pfl-abh-main20b-c11-event-immutability-20261028.json",
+      "source_git_blob": "0614627d38395fb81e3e70aaa4fc11cd7356a412",
+      "batch_id": "0066-PFL-ABH-MAIN20B-C11-EVENT-IMMUTABILITY-20261028",
+      "parent_batch": "0065-PFL-ABH-MAIN20B-C10-CSV-LINES-20261028",
+      "at": "2026-10-28T14:27:11.362Z",
+      "reason": "C11 prereg event metadata deep freeze from C08 counterexample; source patched, test file committed, 6/6 local reconstructed controls passed, full T009 pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C11-EVENT-DEEPFREEZE",
+            "activity": "Recursive immutable snapshot of JSON-like event metadata, preserving revision de-dup and rejecting mutable aliases; targeted tests not global.",
+            "status": "completed",
+            "at": "2026-10-28T14:27:11.362Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C11_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C11_RESULT.json",
+              "tests/test_event_metadata_immutability.py"
+            ],
+            "scope": "AB-P source event integrity; no real scoring",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0067-pfl-abh-main20b-c12-group-report-20261028.json",
+      "source_git_blob": "9ad464ca2bf0a8c826e8fc0d8749b2a3a9424ff3",
+      "batch_id": "0067-PFL-ABH-MAIN20B-C12-GROUP-REPORT-20261028",
+      "parent_batch": "0066-PFL-ABH-MAIN20B-C11-EVENT-IMMUTABILITY-20261028",
+      "at": "2026-10-28T14:30:51.516Z",
+      "reason": "C12 groupmetrics separate downstream group report previously labelled 4/9 modal nonmodal opposition as dissent_from_group_majority=5; strict_majority now controls disputed field, modal retained, tests committed, full project suite pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C12-GROUP-REPORT-STRICT",
+            "activity": "Group report data contract distinguishes modal dispersion from opposition to >50% expressed group majority, handles undefined strict majority.",
+            "status": "completed",
+            "at": "2026-10-28T14:30:51.516Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C12_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C12_RESULT.json",
+              "tests/test_group_report_strict_majority.py"
+            ],
+            "scope": "AB-R synthetic measurement report, no new politician discipline claim",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0068-pfl-abh-main20b-c13-partial-seed-20261028.json",
+      "source_git_blob": "55141dc88dc2dccd3ec37e711dcbc34f4bf0e9c2",
+      "batch_id": "0068-PFL-ABH-MAIN20B-C13-PARTIAL-SEED-20261028",
+      "parent_batch": "0067-PFL-ABH-MAIN20B-C12-GROUP-REPORT-20261028",
+      "at": "2026-10-28T14:33:01.222Z",
+      "reason": "C13 prereg partial demo database formerly returned early when any figure existed; new counts fail-close incomplete fixture, four SQLite focused predicate checks and regression tests; full T009 pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C13-SQLITE-PARTIAL-SEED",
+            "activity": "Protect fictional game fixture against silent partial initialization without auto wiping data; targeted checks, not full product suite.",
+            "status": "completed",
+            "at": "2026-10-28T14:33:01.222Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C13_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C13_RESULT.json",
+              "tests/test_partial_seed_guard.py"
+            ],
+            "scope": "AB-P local synthetic game data integrity, no real scoring",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0069-pfl-abh-main20b-c14-personids-20261028.json",
+      "source_git_blob": "863d42b0dd9ada6f7fcda8ace1f81b41d668259f",
+      "batch_id": "0069-PFL-ABH-MAIN20B-C14-PERSONIDS-20261028",
+      "parent_batch": "0068-PFL-ABH-MAIN20B-C13-PARTIAL-SEED-20261028",
+      "at": "2026-10-28T14:35:30.951Z",
+      "reason": "C14 new person_ids list-alias negative despite event frozen: after construction list append alters synthetic membership. Added validated tuple snapshot, 7 isolated constructor checks, full pytest pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C14-IMMUTABLE-PERSONIDS",
+            "activity": "Freeze source person identifier tuple to prevent caller mutation changing scoring membership after event snapshot; selected Python controls, not full suite.",
+            "status": "completed",
+            "at": "2026-10-28T14:35:30.951Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C14_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C14_RESULT.json",
+              "tests/test_event_person_ids_snapshot.py"
+            ],
+            "scope": "AB-P synthetic identity archive integrity",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0070-pfl-abh-main20b-c15-round-scope-20261028.json",
+      "source_git_blob": "238b352f862cd123bd398b963285f2de81345f7a",
+      "batch_id": "0070-PFL-ABH-MAIN20B-C15-ROUND-SCOPE-20261028",
+      "parent_batch": "0069-PFL-ABH-MAIN20B-C14-PERSONIDS-20261028",
+      "at": "2026-10-28T14:37:49.408Z",
+      "reason": "C15 prereg unrelated future malformed demo event poisoned past round scoring; targeted 3 red/green checks; patch restricts event construction to in-period rows, preserves strict non-fictional deny.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C15-ROUND-SCOPE",
+            "activity": "Round-scoped synthetic event parsing avoids malformed unrelated rows poisoning a valid past score; retained in-range non-synthetic denial.",
+            "status": "completed",
+            "at": "2026-10-28T14:37:49.408Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C15_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C15_RESULT.json",
+              "tests/test_round_scoring_interval_scope.py"
+            ],
+            "scope": "AB-P local fictional game only, no scoring real people",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}

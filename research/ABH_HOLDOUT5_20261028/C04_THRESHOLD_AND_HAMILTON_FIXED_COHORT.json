@@ -1,0 +1,122 @@
+{
+  "schema": "pfl.holdout5.three_election.threshold_vs_hamilton.v1",
+  "pre_registration": "C04_PREREG.json",
+  "cohort": [
+    "Navarra 2023 50 seats one district",
+    "Asturias 2023 45 seats in three districts 6/34/5",
+    "La Rioja 2023 33 seats one district"
+  ],
+  "total_seats": 128,
+  "independent_authority_count": 3,
+  "method": "Python fractions.Fraction exact D'Hondt legal threshold vs no-threshold counterfactual and Hamilton largest remainder, within each actual legal district; party rows from already-transcribed primary official sources, all losers included; not a predictive model",
+  "cases": [
+    {
+      "name": "Navarra",
+      "legal_threshold_pct": 3,
+      "districts": 1,
+      "seats": 50,
+      "legal": {
+        "UPN": 15,
+        "PSN-PSOE": 11,
+        "EH Bildu": 9,
+        "Geroa Bai": 7,
+        "PPN": 3,
+        "Contigo Zurekin": 3,
+        "Vox": 2
+      },
+      "no_threshold": {
+        "UPN": 15,
+        "PSN-PSOE": 11,
+        "EH Bildu": 9,
+        "Geroa Bai": 7,
+        "PPN": 3,
+        "Contigo Zurekin": 3,
+        "Vox": 2
+      },
+      "hamilton": {
+        "UPN": 14,
+        "PSN-PSOE": 11,
+        "EH Bildu": 9,
+        "Geroa Bai": 7,
+        "PPN": 4,
+        "Contigo Zurekin": 3,
+        "Vox": 2
+      },
+      "threshold_transfer": 0,
+      "hamilton_transfers": 1
+    },
+    {
+      "name": "Asturias",
+      "legal_threshold_pct": 3,
+      "districts": 3,
+      "seats": 45,
+      "legal": {
+        "PSOE": 19,
+        "PP": 17,
+        "VOX": 4,
+        "IU": 3,
+        "PODEMOS": 1,
+        "FORO": 1
+      },
+      "no_threshold": {
+        "PSOE": 19,
+        "PP": 17,
+        "VOX": 4,
+        "IU": 3,
+        "PODEMOS": 1,
+        "FORO": 1
+      },
+      "hamilton": {
+        "PSOE": 17,
+        "PP": 15,
+        "FORO": 2,
+        "VOX": 6,
+        "IU": 3,
+        "PODEMOS": 2
+      },
+      "threshold_transfer": 0,
+      "hamilton_transfers": 4,
+      "by_district_hamilton_transfers": [
+        2,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "La Rioja",
+      "legal_threshold_pct": 5,
+      "districts": 1,
+      "seats": 33,
+      "legal": {
+        "PP": 17,
+        "PSOE": 12,
+        "VOX": 2,
+        "PODEMOS_IU": 2
+      },
+      "no_threshold": {
+        "PP": 17,
+        "PSOE": 12,
+        "VOX": 2,
+        "PODEMOS_IU": 1,
+        "PR_E": 1
+      },
+      "hamilton": {
+        "PP": 16,
+        "PSOE": 12,
+        "VOX": 3,
+        "PODEMOS_IU": 2
+      },
+      "threshold_transfer": 1,
+      "hamilton_transfers": 1
+    }
+  ],
+  "total_threshold_transfers": 1,
+  "total_hamilton_district_transfers": 6,
+  "summary": "1 of 5 actual districts seat-sensitive to removing legal threshold, and differences versus Hamilton observed in all three elections; the prevalence is NOT a population estimate because three elections were selected deliberately",
+  "limitations": [
+    "A legal baseline replay on already observed results, not out-of-sample prediction of unknown outcomes",
+    "Both counterfactual methods are not actual law for corresponding election and produce descriptive hypothetical seat distributions, not party evaluations",
+    "Three cases selected before their own source results but cross-case hypothesis selected after observing their seat vote context",
+    "Archived official HTML/PDF text, no raw CSV/PDF hash nor first_public_at instants"
+  ]
+}

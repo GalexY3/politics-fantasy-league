@@ -1,0 +1,56 @@
+{
+  "id": "ABH30-P2-A05",
+  "phase": "AUTONOMY",
+  "status": "VALID_TECH_LIMIT_TEST",
+  "prereg_commit": "974e9d8bea13a4b85bf102a1d593d14e437c3627",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "files": [
+      {
+        "size_class": "small",
+        "git_blob": "5fd032d0df1eea0dc47880bb3c640e6f75ab7fcd",
+        "chars": 119971,
+        "json_complete": true
+      },
+      {
+        "size_class": "medium",
+        "git_blob": "ae7014c0e2bc0b2117b3b20efcb59c401e24976a",
+        "chars": 553367,
+        "json_complete": true
+      },
+      {
+        "size_class": "large",
+        "git_blob": "a05943ab157ece2a17d659627440136f56e65e6d",
+        "chars": 0,
+        "json_complete": false
+      }
+    ],
+    "line_ranges": {
+      "medium_1_20": 1356,
+      "large_1_20": 0
+    },
+    "raw_github_large": "HTTPError 400 unsupported or too large",
+    "outcome": "SMALL_AND_MEDIUM_PASS_LARGE_BLOCKED"
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "Connected GitHub does not provide every large JSON byte here. Do not infer SHA256 from Git blob alone or substitute empty response for data. Workaround requires authorized byte retrieval."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "Connected GitHub does not provide every large JSON byte here. Do not infer SHA256 from Git blob alone or substitute empty response for data. Workaround requires authorized byte retrieval."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}

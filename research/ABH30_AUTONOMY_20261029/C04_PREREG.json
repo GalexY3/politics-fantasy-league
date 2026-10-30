@@ -1,0 +1,15 @@
+{
+  "id": "ABH30-P1-C04",
+  "A": "How strongly does category choice (Dataset vs Market vs Overall) reorder public forecasting ranks for model entrants?",
+  "B": "H0 top-ten overlap ≥9 of 10 and Spearman ≥0.95 between category rankings; H1 notable reorder",
+  "C": "Exclude ForecastBench human comparison rows; define unique row ID as CSV row index; use 119 complete model rows; top10 intersection, Spearman rank correlation with midranks; no optimized threshold",
+  "D": "Public baseline leaderboard same blob fa76366b; quote-aware parser, complete values only",
+  "E": "Compute rank metrics and category score ranges",
+  "F": "R2 strong baseline is published Overall, not any category score; rank changes do not imply manipulation",
+  "G": "One cross-sectional table: not replication",
+  "H": "Interpret category dependence as guardrail for PFL scoreboard design",
+  "I": "0/3 scientific; no causal conclusion",
+  "J": "STOP or BRANCH if results expose substantive fairness problem",
+  "multiplicity": "One of several exploratory audits on same frozen table, non-independent",
+  "prereg": "committed before C04 file fetch"
+}

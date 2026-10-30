@@ -1,0 +1,31 @@
+{
+  "id": "ABH30-P1-C04",
+  "status": "VALID_BOUNDED_AB_R",
+  "A": "Sensitivity of rank to category",
+  "B": "Predicted top10 >=9 & rho>=.95 vs alternative",
+  "C": "Preregitred top10 / Spearman midrank",
+  "D": "119 model rows, complete quote-aware frozen CSV, row index not person",
+  "E": {
+    "blob": "fa76366ba425a0597d0af3c847197cd4be2d2fe7",
+    "n_model": 119,
+    "top10": {
+      "dataset_market": 0,
+      "dataset_overall": 2,
+      "market_overall": 8
+    },
+    "spearman_midrank": {
+      "dataset_market": 0.6635128192780713,
+      "dataset_overall": 0.8841604846056823,
+      "market_overall": 0.9206737370958403
+    },
+    "nonfinite": 0
+  },
+  "F": "Compare published Overall benchmark; participants answer heterogeneous sets, descriptive not randomized",
+  "G": "No external replication; same frozen leaderboard reused (multiplicity declared)",
+  "H": "No new theory; PFL should pre-specify category weights and avoid treating top10 as universally stable",
+  "I": "0/3; no causal, human outcomes, independent claim",
+  "J": "R5 no confirmation from same source; probe different evidence",
+  "prereg_commit": "13519407e324da7450706a44c89d65d19ca6a3df",
+  "CT2_before": 22,
+  "CT2_after": 22
+}

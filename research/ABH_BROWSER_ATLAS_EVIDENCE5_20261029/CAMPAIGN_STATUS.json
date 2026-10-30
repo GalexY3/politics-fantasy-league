@@ -1,0 +1,115 @@
+{
+  "campaign": "PFL-ABH-BROWSER-ATLAS-EVIDENCE5-20261029",
+  "branch": "research/pfl-abh5-browser-atlas-independent-20261029",
+  "base": {
+    "pr": 36,
+    "head": "9ce1ecbfe35038c4723f0765a1c6b817fa4ea5d6"
+  },
+  "state": "STOP_LOCAL_R5_DRAFT_PR37_2_VALID_1_INCOMPLETE_2_UNUSED",
+  "cycles": {
+    "granted": 5,
+    "valid": 2,
+    "invalid": 1,
+    "planning": 0,
+    "not_executed": 2,
+    "remaining_unused": 2
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-P",
+      "status": "VALID_BOUNDED_CHROMIUM_DOM_NO_HTTP",
+      "prereg": "C01_PREREG.json",
+      "result": "C01_RESULT.json",
+      "grade": "0/3",
+      "ct2": 25
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-META",
+      "status": "INCOMPLETE_NOT_COUNTED_CANONICAL_REPLAY",
+      "prereg": "C02_PREREG.json",
+      "evidence": "C02_INCOMPLETE.json",
+      "grade": "0/3",
+      "ct2": 25
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "status": "VALID_DOCUMENTARY_PRIOR_ART_NEGATIVE",
+      "prereg": "C03_PREREG.json",
+      "result": "C03_RESULT.json",
+      "grade": "0/3",
+      "ct2_before": 25,
+      "ct2_after": 22
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-P",
+      "status": "NOT_EXECUTED_NO_APPLICATION_DEFECT",
+      "prereg": "C04_PREREG.json",
+      "reason": "browser navigation blocked by administrator; existing DOM app logic passed 18/18; no app code repair justified"
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "status": "NOT_EXECUTED_NO_LICENSED_MICRODATA",
+      "prereg": "C05_PREREG.json",
+      "reason": "only public papers/data archive landing pages; no lawful independent data bytes, hashes or fields to preregister actual estimand"
+    }
+  ],
+  "browser": {
+    "chromium": "144.0.7559.96",
+    "source_git_blobs": [
+      "b66ca94ec3ec5b038116f4e53ddb122617f2c5d2",
+      "b0700bad57b25aaadd859919d5d1a11d06e930a8",
+      "8d876e0f41d9473f56307f7939545c6c0b00d509",
+      "eabb5485d7d6d9c78574993281e89e00069ff4a9",
+      "a23a8a9fddbd59a58633f049190e125100fbef50"
+    ],
+    "navigation": "BLOCKED_BY_ADMINISTRATOR local HTTP/data/file",
+    "DOM": "18/18 after two corrected harness expectations, inlined module import to run about:blank",
+    "native_http_prior": "15/15 Node reported in PR36; NOT rerun this cycle"
+  },
+  "atlas": {
+    "source_git_parser": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "json_batches_parse": 79,
+    "metadata_parent_links_checked": 79,
+    "found_broken_links": 0,
+    "canonical_python_replay": "NOT_RUN",
+    "canonical_state_sha256": "NOT_COMPUTED",
+    "previous_CURRENT_unsynced": true,
+    "appended_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+    "new_ops": 2
+  },
+  "independent_research": {
+    "novel_pfl_claims": 0,
+    "human_outcomes": 0,
+    "prior_art_2019_2025": true,
+    "microdata_legally_verified": false
+  },
+  "scientific": {
+    "CT2_identity": 29,
+    "CT2_synthetic_mechanics": 20,
+    "CT2_prospective_before": 25,
+    "CT2_prospective_after": 22,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "achievements": "2/90",
+    "launch_gates": "0/6",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "prohibitions": {
+    "ChatRelay": false,
+    "merged_main": false,
+    "CI_expensive": false,
+    "politician_person_scoring": false,
+    "personal_data_collected": false
+  },
+  "R5": "Stop after two meaningful bounded cycles, one incomplete Atlas native attempt and two unexecuted slots; require external authenticated checkout/Atlas parser and legally reusable independent tournament dataset before continuing.",
+  "pr": 37
+}

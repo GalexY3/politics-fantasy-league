@@ -1,0 +1,165 @@
+{
+  "cycle": "C05",
+  "mode": "AB-P",
+  "prereg_commit": "00fdadd477684603c79d730ec8049bfbb7831a52",
+  "source_commit": "55662d5ba62111c2abd052676ed81976f806bd8e",
+  "A": "Prespecified 2×2 descriptive factorial dryrun analyzer on synthetic fixtures only",
+  "B": [
+    "correctly returns transparent and leaderboard main contrasts",
+    "silently converts missing outcomes to zero",
+    "fake ITT label"
+  ],
+  "C": "Four arms, cell means, factorial equal-cell contrast, separate missingness; >=12 tests; no p-values for fixtures",
+  "D": "Pure JS committed before V8 assertions",
+  "E": {
+    "tests": [
+      {
+        "name": "all four cells",
+        "pass": true
+      },
+      {
+        "name": "means ctrl",
+        "pass": true
+      },
+      {
+        "name": "means transp",
+        "pass": true
+      },
+      {
+        "name": "means leaderboard",
+        "pass": true
+      },
+      {
+        "name": "means both",
+        "pass": true
+      },
+      {
+        "name": "main transparency",
+        "pass": true
+      },
+      {
+        "name": "main leaderboard",
+        "pass": true
+      },
+      {
+        "name": "interaction",
+        "pass": true
+      },
+      {
+        "name": "full observed tag",
+        "pass": true
+      },
+      {
+        "name": "source synthetic",
+        "pass": true
+      },
+      {
+        "name": "immutable cells",
+        "pass": true
+      },
+      {
+        "name": "immutable effects",
+        "pass": true
+      },
+      {
+        "name": "partial missing correctly marked",
+        "pass": true
+      },
+      {
+        "name": "empty observed arm effects null",
+        "pass": true
+      },
+      {
+        "name": "reject real source",
+        "pass": true
+      },
+      {
+        "name": "reject extra identity",
+        "pass": true
+      },
+      {
+        "name": "reject party",
+        "pass": true
+      },
+      {
+        "name": "reject ID metadata",
+        "pass": true
+      },
+      {
+        "name": "reject score 5",
+        "pass": true
+      },
+      {
+        "name": "reject fraction",
+        "pass": true
+      },
+      {
+        "name": "reject falsified missing",
+        "pass": true
+      },
+      {
+        "name": "reject missing arm",
+        "pass": true
+      },
+      {
+        "name": "reject invalid arm",
+        "pass": true
+      },
+      {
+        "name": "reject absent rows",
+        "pass": true
+      },
+      {
+        "name": "reject nonarray",
+        "pass": true
+      }
+    ],
+    "passed": 25,
+    "failed": 0,
+    "fixture": {
+      "schema": "pfl.pilot.analysis.dryrun.v1",
+      "source": "FICTIONAL_TEST_ONLY",
+      "estimand": "FULLY_OBSERVED_FACTORIAL",
+      "effects": {
+        "transparency": 1.5,
+        "leaderboard": -0.5,
+        "interaction": 1
+      },
+      "cells": {
+        "control": {
+          "assigned": 2,
+          "observed": 2,
+          "missing": 0,
+          "mean": 2
+        },
+        "transparency": {
+          "assigned": 2,
+          "observed": 2,
+          "missing": 0,
+          "mean": 3
+        },
+        "leaderboard": {
+          "assigned": 2,
+          "observed": 2,
+          "missing": 0,
+          "mean": 1
+        },
+        "both": {
+          "assigned": 2,
+          "observed": 2,
+          "missing": 0,
+          "mean": 3
+        }
+      },
+      "warning": "NO_PARTICIPANT_DATA"
+    }
+  },
+  "F": "Full-ITT label applies only when all synthetic records observed, no real randomization exists. Missing makes observed case analysis not ITT. In real trial use consented data, prereg missingness handling, SE/CI, power/cluster audits. No sample-size claim.",
+  "G": "No external/participant data, no valid human effect size",
+  "H": "Statistical source handling fail-closed; no publishable social evidence",
+  "I": {
+    "grade": "0/3",
+    "CT2_prospective": 25
+  },
+  "J": "ACCEPT_LOCAL_ABP_C05_STOP_HUMAN_GATE"
+}

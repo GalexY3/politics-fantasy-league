@@ -1,0 +1,28 @@
+{
+  "cycle": "C01",
+  "type": "AB-P",
+  "A": "Can exact original five GitHub modules be reproduced with matching Git blobs and audited natively in Node against the previous 84 assertions?",
+  "B": [
+    "native replay passes previous suite",
+    "V8-only false positives",
+    "source copy diverges"
+  ],
+  "C": {
+    "source": "Five PFL source blobs pinned to PR35 SHA, verified by Git blob SHA",
+    "acceptance": [
+      "5/5 Git blob SHA match",
+      "node --check all five",
+      "84/84 matched named V8 claims independently asserted native Node",
+      "record errors and HEAD"
+    ],
+    "falsifier": "Any original check fails, or source hashes mismatch"
+  },
+  "D": "No git network; source reconstructed exactly by fetching GitHub connector content and verified blob hashes locally before tests",
+  "E": "NOT_EXECUTED",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING",
+  "state": "FROZEN_BEFORE_EXECUTION"
+}

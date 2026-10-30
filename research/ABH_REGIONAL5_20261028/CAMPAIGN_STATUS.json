@@ -1,0 +1,125 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-REGIONAL5-20261028",
+  "branch": "research/pfl-abh5-regional-audit-20261028",
+  "base_branch": "research/pfl-abh5-originals-20261028",
+  "base_sha": "1249de3899ec36945e83052137bb46e4e21deea7",
+  "authorized": 5,
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "used": 5,
+    "remaining": 0,
+    "AB_R": 4,
+    "AB_P": 1
+  },
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "user_instruction": "All 5 without consultation; R5; prereg before execution; keep blockers for Codex; no ChatRelay or main merge",
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "D": 0.7,
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "f548464f166443b99fa684c9e6a5b62ec9377117",
+      "result": "C01_RESULT.json",
+      "result_commit": "bfe68f3de852146dd3b9e2d7b5569c04fbecded3",
+      "status": "VALID_BOUNDED_OFFICIAL_SOURCE_CONSISTENCY_ALERT",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "D": 0.8,
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "1692a9d727ce4cde2946a204a07e6c5997e80c02",
+      "result": "C02_RESULT.json",
+      "result_commit": "ce5c48ae9fdd20085760cf4e5552fb56abfede82",
+      "status": "VALID_BOUNDED_FOUR_PROVINCE_LEGAL_ALLOCATION_REPLAY",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "D": 0.9,
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "c7ee15c02516661a9a93247e5e2c3c9bc6add351",
+      "result": "C03_RESULT.json",
+      "result_commit": "ad805bcf88872ac553683efd7b6d7f7edc0ff00a",
+      "status": "VALID_BOUNDED_INDEPENDENT_ISSUER_PROVISIONAL_TURNOUT_SIGN_CONTRAST",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "D": 0.9,
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "7c0e88da57a28ad90ae62ebd26335ba634a6eae4",
+      "result": "C04_RESULT.json",
+      "result_commit": "9854a4d1c32e7034cb1d23ed431a255417e829ea",
+      "status": "VALID_BOUNDED_JEC_NATIONAL_SEAT_RECONSTRUCTION_WITH_LOSER_BOUND",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-P",
+      "D": 0.4,
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "1488ccdef5faccd0eb475ae3643b8b0f52750e97",
+      "result": "C05_RESULT.json",
+      "result_commit": "05db7a5b6e30d31da3a0f8194d6f968191d869e9",
+      "status": "VALID_BOUNDED_SOURCE_GRAIN_GUARD_LOCAL_UNIT_TESTS",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    }
+  ],
+  "technical": {
+    "new_source_native_python_tests_local_pass": 9,
+    "local_test_fail": 0,
+    "posthoc_permissive_control_fail": 7,
+    "local_python_test_code_not_bit_identical_to_GitHub": true,
+    "new_full_head_clean_suite": false,
+    "original_xml_csv_zip_bytes": 0,
+    "galicia_exact_integer_fraction_replay_local": true,
+    "eu_61_exact_fraction_replay_local": true,
+    "new_source_test_reproducer": "test_source_invariant_guard.py",
+    "galicia_reproducer": "replay_galicia.py",
+    "source_authentication_not_inferred": true
+  },
+  "blocked_for_executor": [
+    "tareas_codex/T011_FUENTE_PARIDAD_QA_SOURCE5_20261028.md",
+    "tareas_codex/T016_ORIGINALES_REGIONAL5_20261028.md"
+  ],
+  "scientific": {
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "V4_contractual_pct": 36.9,
+    "achievements_unlocked": 2,
+    "achievements_total": 90,
+    "gates_passed": 0,
+    "gates_total": 6,
+    "new_N1": 0,
+    "new_N2": 0,
+    "new_N3": 0,
+    "historical_1_3_not_reappraised": true,
+    "external_replication": false
+  },
+  "restrictions": {
+    "ChatRelay": "not used",
+    "merged_to_main": false,
+    "CI_expensive": false,
+    "personal_real_scores": false
+  },
+  "scope": "Four regional/national source investigations + one bounded guard; none establishes original raw XLSX/XML source, first_public_at, causal effects or novel predictive advantage",
+  "next": "Close, new authorization for more AB-H; T011/T016 executor requests independent and not executed."
+}

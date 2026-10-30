@@ -1,0 +1,66 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_SOURCE_GRAIN_GUARD_LOCAL_UNIT_TESTS",
+  "A": "Prevent inconsistent official ballot counts and national-versus-provincial seat conflation with an explicit source audit gate",
+  "B": {
+    "H1": "Coherent transcriptions pass, corrupted DOG 100-vote source and illegal EU scope fail closed",
+    "H0": "Validator accepts inconsistencies or rejects both coherent controls"
+  },
+  "C": {
+    "prereg_commit": "1488ccdef5faccd0eb475ae3643b8b0f52750e97",
+    "execution": "Python 3 unittest isolated local module /mnt/data/pfl_regional5/local on curated 2024 Xunta and JEC aggregate fixtures. 9/9 PASS. Afterwards ran intentionally permissive baseline stub in isolated red folder: 2 PASS 7 FAIL; red run was POST-IMPLEMENTATION sanity comparison, not pre-code behavioral red and not independently validated prospective experiment.",
+    "limitations": "Local files semantically mirror submitted GitHub files but code/test Git blob hashes differ due text/import layout; GitHub HEAD full suite not run. Do NOT claim 9/9 green on bitwise GitHub code until Codex reruns"
+  },
+  "D": {
+    "repo_module": "research/ABH_REGIONAL5_20261028/source_invariant_guard.py",
+    "module_git_blob": "4a1b798752ae2abc05cb95bed1c062847714ed4a",
+    "repo_tests": "research/ABH_REGIONAL5_20261028/test_source_invariant_guard.py",
+    "test_git_blob": "90d5df55c7a706e51317cfa723527a3bfb6c4e92",
+    "local_sha256_source": "dc80dc532c0401f77889a14b507c95420c8d5a20f824915752b5bbab5b3622d6",
+    "local_sha256_test": "242e20fe3c8b15015ce4d744c3b0cc8800e51087924426c2a880ebab0b4f288b",
+    "fixtures": [
+      "C01_GALICIA_SOURCE_RECONCILIATION.json",
+      "C02_GALICIA_FULL_PROVINCIAL_REPLAY.json",
+      "C04_EUROPE_2024_STATEWIDE_REPLAY.json"
+    ]
+  },
+  "E": {
+    "green_local_test_pass": 9,
+    "green_local_test_fail": 0,
+    "permissive_stub_test_pass": 2,
+    "permissive_stub_test_fail": 7,
+    "checks": [
+      "coherent Galicia provinces",
+      "coherent 2024 EU national ballots",
+      "original DOG +100 fail",
+      "province null tampering fail",
+      "duplicate province fail",
+      "incorrect Europe province scope fail",
+      "attach EU province seats fail",
+      "boolean null invalid",
+      "four province coverage mandatory"
+    ],
+    "real_original_bytes": 0,
+    "external_data_replication": false
+  },
+  "F": "A legal and accounting consistency check is necessary but not source authentication, publisher licensing or sociological replication; 2 correct fixtures were known ahead of tests and tests are not a blinded validation sample.",
+  "G": "Repo script currently not rerun as exact GitHub blob in clean checkout, no full Linux and no raw XML/ZIP download. Minimal schema supports only two named election types; production not validated.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0,
+    "grade_0_3": 0
+  },
+  "I": "No individual personal political data and no side effects on real gameplay",
+  "J": "Keep testable source guard candidate for Codex exact GitHub branch suite and extend typed provenance only after original datasets; campaign complete if all five A-J recorded."
+}

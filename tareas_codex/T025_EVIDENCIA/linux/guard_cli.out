@@ -1,0 +1,77 @@
+{
+  "schema": "pfl.release_assessment.v1",
+  "mode": "PUBLIC_NAMED_PERSON",
+  "ready": false,
+  "release_state": "BLOCKED",
+  "six_gates_passed": 0,
+  "gate_count": 6,
+  "scope_consistent": true,
+  "manifest_consistent": true,
+  "achievements_unlocked": 5,
+  "achievements_active": 90,
+  "milestones": 36,
+  "gates": [
+    {
+      "id": "G01_REGISTRY_RIGHTS",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:src.registry",
+        "MILESTONE:sec.rights",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    },
+    {
+      "id": "G02_REAL_IDENTITY",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:id.real",
+        "MILESTONE:id.temporal",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    },
+    {
+      "id": "G03_REAL_EVENTS",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:ev.person",
+        "MILESTONE:ev.extra",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    },
+    {
+      "id": "G04_MULTIUSER_AUTH",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:sec.auth",
+        "MILESTONE:sec.ops",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    },
+    {
+      "id": "G05_E2E_ACTUAL",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:qa.endtoend",
+        "MILESTONE:qa.independent",
+        "MILESTONE:ui.flow",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    },
+    {
+      "id": "G06_HOSTING_PILOT",
+      "passed": false,
+      "reasons": [
+        "MILESTONE:launch.hosted",
+        "MILESTONE:launch.pilot",
+        "NOT_PASS",
+        "MISSING_ATTESTATION_FIELDS"
+      ]
+    }
+  ],
+  "warning": "Structural check only. Verified evidence callback must be independently trusted. READY never substitutes legal/DPO release approval."
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "Navarra": "C01_NAVARRA_OFFICIAL_AGGREGATE.json",
+    "Asturias": "C02_ASTURIAS_COMPLETE_2023.json",
+    "Rioja": "C03_RIOJA_FINAL_VERSION_COMPARISON.json",
+    "source_status": "Original official publisher tables transcribed; no original binary hashes; independent across authorities, but each calculation in-sample mathematical and selected after known 2023 seat labels."
+  },
+  "A": "Across the three elections fixed before outcome lookup (Navarra 2023, Asturias 2023, La Rioja 2023), when does removing a legally required 3%/5% ballot threshold change a seat assignment, and how does an alternative proportional Hamilton baseline compare?",
+  "B": {
+    "H1": "Threshold removal differs by jurisdiction: at least one election changes allocated seats and others may remain invariant; Hamilton may differ despite same counts",
+    "H0": "Threshold removal never changes any seat in the fixed three-case cohort",
+    "H_alt": "A threshold can be mathematically irrelevant when strongest excluded list stays below last seat quotient; legal threshold still mandatory"
+  },
+  "C": "Predefine fixed 3-case cohort Navarra/Asturias/La Rioja (total 128 seats), use exact rational D'Hondt on ALL 11/15-per-district/10 party votes as recorded in C01–C03. For each election compute: legal threshold, no threshold, and legal eligible lists with Hamilton largest remainders; distinguish any-party mismatch and L1 seat transfers. Do not add or select cases after observing counterfactual, no tuning. Check source ballot conservation first.",
+  "E": "PENDING",
+  "F": "No-threshold and Hamilton not legally valid Spain rule and purely counterfactual; test threshold seat sensitivity not causal mechanism of individuals",
+  "G": "No prospective forecast, no research model superiority; 3 originally preselected sources but analysis posthoc",
+  "H": {
+    "CT2_before": 29,
+    "V4": 36.9
+  },
+  "I": "No individual scoring",
+  "J": "Publish fixed-table result whether changes 0 or positive. If missing list cannot be resolved, flag and omit unsupported comparison."
+}

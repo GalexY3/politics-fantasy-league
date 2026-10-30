@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": {
+    "train": "C01_2025_OFFICIAL_AGGREGATES.json",
+    "test": "C02_2026_OFFICIAL_AGGREGATES.json",
+    "exposure": "All training and test outcomes inspected before this prereg, therefore this is explicit RETROSPECTIVE postexposure baseline calculation, NOT prospective out-of-sample scientific validation",
+    "raw_originals": 0
+  },
+  "A": "How well can a conventional procedural category baseline trained on 2025 classify the subsequent 2026 *aggregate party majority agreement*, compared to the unconditional 2025 majority class?",
+  "estimand": "Out-of-period six 2026 votes, binary y = both major party yea majorities same vs opposed; unit vote, not individual person",
+  "B": {
+    "H1": "2025 training procedural rule: two-thirds suspension procedure predicts shared majority, all other listed procedures oppose; beat unconditional 2025 modal class",
+    "H0": "Procedural baseline no better than always-opposed baseline on 2026",
+    "Halt": "One 2025 suspension example and five 2026 suspension examples create one-issue/session cluster; observed target association cannot imply true forecasting nor representative precision"
+  },
+  "C": "FREEZE models before evaluation: A modal 2025 label 'opposed' on every 2026 roll; B procedural binary suspension vs other from training 2025 (suspension→shared, other→opposed) predict all six 2026. Primary accuracy plus Brier squared error, sensitivity removing preexposed roll 180 both years; benchmark trivial always-shared as auxiliary; NO individual predictions or p-values, note date cluster and both sources inspected before prereg C03 (post-discovery model evaluation).",
+  "E": "PENDING",
+  "F": "Year, amendment and agenda context confound; there is exactly one training suspension example; no evidence of learned causal effect",
+  "G": "No independent external model, same Congress and repeated correlated votes",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "Party-coordination as abstract vote outcome, not individuals",
+  "J": "Record baseline score and strict label leakage warning; do not award N1 or increase CT2 on in-sample postexposure."
+}

@@ -1,0 +1,39 @@
+{
+  "id": "ABH30-P1-C07",
+  "status": "VALID_AB_P_NEGATIVE_IDENTIFICATION",
+  "prereg_commit": "599e272984da5bd36d8355694a63bd77f19a82f0",
+  "A": "Read Cxx_PREREG for precommitted endpoint",
+  "B": "Falsifiable declared null vs mechanism",
+  "C": "Control and endpoint defined in precommit",
+  "D": "/mnt/data/pfl_native_qa local verified Git blob snapshot of PR37 pilot, Node v22.16.0, script pfl_abh30_native_probe.mjs; full transcript/JSON in current sandbox",
+  "E": {
+    "control_one_missing_of_two": true,
+    "analysis_estimand": "COMPLETE_CASE_NOT_ITT",
+    "complete_case_transparency_effect": 2,
+    "compatible_ITT_range": [
+      1.25,
+      2.25
+    ],
+    "all_missing_scores_0_to_4_tested": true
+  },
+  "F": {
+    "adversarial_limit": "One missing synthetic outcome makes ITT point effect nonidentifiable; tool correctly labels COMPLETE_CASE_NOT_ITT. No efficacy claim.",
+    "controls_measured": true
+  },
+  "G": "No human outcomes. Node local-only. No independent empirical replication.",
+  "H": {
+    "prior_update": "One missing synthetic outcome makes ITT point effect nonidentifiable; tool correctly labels COMPLETE_CASE_NOT_ITT. No efficacy claim."
+  },
+  "I": {
+    "internal_validity": "Local native Node QA with source snapshot; no full clean checkout",
+    "novelty": "technical local result not new science",
+    "grade": "0/3",
+    "ethics": "No human data"
+  },
+  "J": "STOP_LOCAL for this mechanism; pivot to different evidence",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0,
+  "executable_probe": "sandbox:/mnt/data/pfl_abh30_native_probe.mjs",
+  "verifiable_receipt": "sandbox:/mnt/data/pfl_abh30_native_probe_result.json"
+}

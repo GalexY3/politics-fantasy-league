@@ -1,0 +1,43 @@
+{
+  "schema": "ab.campaign.authorization.v1",
+  "campaign_id": "PFL-ABH-POSTT010-5-20261028",
+  "user_authorization": "Concedido, para SOLICITO BRANCHING AB-H DE 5 CICLOS en la conversación de 2026-10-28",
+  "granted": 5,
+  "range_for_future_blocks": {
+    "min": 5,
+    "max": 15
+  },
+  "chatrelay": "DISABLED_BY_USER_UNLESS_EXCEPTIONALLY_JUSTIFIED",
+  "separate_from": [
+    "PFL-ABH-ACH20-20261028",
+    "PFL-ABH-MAIN20B-20261028",
+    "historical ChatRelay 59e1f051 remaining 2"
+  ],
+  "branch": "research/pfl-abh5-postt010-20261028",
+  "base_commit": "ccafa33407d8806296881b89b927fe01bcfd4f8a",
+  "allowed": [
+    "bounded AB-R",
+    "bounded AB-P",
+    "A-J",
+    "prereg and adversarial negatives"
+  ],
+  "prohibited": [
+    "merge to main",
+    "release",
+    "real person scoring",
+    "costly CI",
+    "private nominal originals in Git",
+    "reassign ChatRelay old balance"
+  ],
+  "metrics_baseline": {
+    "CT2_identity_ordinal": 29,
+    "VSDS": "1/3",
+    "V4_contractual_percent": 36.9,
+    "gates_passed": 0,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  }
+}

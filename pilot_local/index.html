@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PFL — Demostración ficticia sin recogida</title>
+<link rel="stylesheet" href="/style.css">
+<script type="module" src="/app.mjs"></script>
+</head>
+<body>
+<main>
+<header>
+<p class="eyebrow">POLITICS FANTASY LEAGUE · DEMO LOCAL</p>
+<h1>Comprender una puntuación</h1>
+<p>Solo historias inventadas. No hay personas políticas reales, encuestas, puntuaciones de usuarios, cookies, solicitudes de información ni almacenamiento. <strong>No es un estudio autorizado con participantes.</strong></p>
+</header>
+<section aria-labelledby="mode-title">
+<h2 id="mode-title">Vista experimental ilustrativa</h2>
+<p>Selecciona una de las cuatro vistas manualmente. Esto <strong>no asigna participantes</strong> ni genera una muestra aleatoria.</p>
+<label for="arm">Condición ficticia</label>
+<select id="arm">
+<option value="control">Tutorial neutro · sin clasificación</option>
+<option value="transparency">Denominadores · sin clasificación</option>
+<option value="leaderboard">Tutorial neutro · clasificación de avatares</option>
+<option value="both">Denominadores · clasificación de avatares</option>
+</select>
+<div id="tutorial" class="panel" aria-live="polite"></div>
+<div id="competition" class="panel" aria-live="polite"></div>
+</section>
+<section aria-labelledby="quiz-title">
+<h2 id="quiz-title">Cuatro casos de transferencia</h2>
+<p>Las respuestas permanecen exclusivamente en esta pestaña mientras está abierta. <strong>No existe un botón de envío ni un resultado guardado.</strong></p>
+<div id="questions"></div>
+<p id="progress" role="status" aria-live="polite">Respuestas marcadas: 0 de 4.</p>
+<button type="button" id="reset">Borrar las selecciones</button>
+</section>
+<footer>Prototipo de desarrollo. Sin conectores, redes sociales, analytics ni claves de corrección disponibles en el cliente.</footer>
+</main>
+</body>
+</html>

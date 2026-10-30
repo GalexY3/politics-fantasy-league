@@ -1,0 +1,53 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_NATIVE_EXACT_BLOB_DIVISION_SCHEMA_TESTS",
+  "A": "Can a research-only source contract reject incompatible House vote categories, count IDs and unobserved proxies/temporal status?",
+  "B": {
+    "H1": "Good Commons/Lords source aggregate passes; known invalid source and source interpretation cases rejected",
+    "H0": "Source contract accepts invalid records, or legitimate records fail"
+  },
+  "C": {
+    "prereg_commit": "ffac099fb5b104fb01b231a5a6333d5b6209c034",
+    "procedure": "Authored research-only .mjs source + 14 node:test regressions. Native Node command in container executed and exited PASS 14/14. Exact GitHub blobs verified via fetch_file SHA and local git hash-object.",
+    "engine": "Node (local); no complete repository clean checkout or Linux integration"
+  },
+  "D": {
+    "module": "division_ontology_research.mjs",
+    "module_git_blob": "d209949e2c788691d6f0a4e0ccdef9f18e7fb0a7",
+    "tests": "test_division_ontology_research.mjs",
+    "test_git_blob": "17fd8c094768860d58180b6555262e3cea20e9b0",
+    "audit": "C05_NODE_TEST_AUDIT.json",
+    "empirical_source_fixtures": [
+      "C02_UK_DISTINCT_DIVISIONS_COLLISION.json",
+      "C04_UK_LORDS_SAME_BILL_AGGREGATES.json"
+    ]
+  },
+  "E": {
+    "native_tests_pass": 14,
+    "native_tests_fail": 0,
+    "exact_git_blob_match": true,
+    "original_JSON_bytes": 0,
+    "full_repo_suite_passed": false,
+    "negative_development_attempts": 1
+  },
+  "F": "Rejects tally vector as event ID, invalid legal chamber category, unsupported timestamp, absence/attendance inference. These are necessary but insufficient for verified original source semantics and do not authenticate source URL payload or first publication.",
+  "G": "Synthetic/derived fixtures known before implementation; no scientific comparator, external UK parliamentary API bytes or independent replay; Node code checked locally but integration remains pending",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "awards": 0
+  },
+  "I": "No partisan/person-level rankings or political forecasting",
+  "J": "Keep audit helper as research-only until Codex can fetch original official API JSON and execute complete suite, do not award QA medallions without full evidence."
+}

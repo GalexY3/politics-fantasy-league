@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-29",
+  "kind": "TECHNICAL_INDEPENDENT_AUDIT_NOT_AB_CYCLE",
+  "base_pr": 41,
+  "base_head": "d8c6f59f391fb16de1fa157a809b12de87cfaa58",
+  "question": "Is metadata-only 80/80 Atlas audit missing any invalid operation grammar, duplicate IDs, broken references or graph cycles after applying the original source ops?",
+  "hypotheses": [
+    "H0 JSON chain passes partial independent JS graph/invariant interpretation",
+    "H1 earliest error in op grammar, duplicate reference, graph invariant or time invalidity"
+  ],
+  "instrument": "Read private GitHub 80 immutable delta original blobs, seed.json, original Python atlas_delta.py and abmap.py as source of checking rules; implement independent JS reproduction of structural subset, not a native Python run.",
+  "precommitted_endpoints": [
+    "all 80 source file texts actually parsed (not just metadata)",
+    "80 batch schemas/ISO times and parent ids valid",
+    "operations allowed and mandatory fields passed",
+    "unique node/edge/run/complaint/gate IDs",
+    "referential integrity for edges and complaints",
+    "no cycles in depends_on and branches_from after each lot",
+    "gates passed require evidence; waived require rationale",
+    "node acceptance must be verified before status validated"
+  ],
+  "negative_control": "Generate an in-memory duplicate node ID or self-edge from original seed and confirm JS structural validator rejects it; do not alter remote source.",
+  "output_limits": "If any GitHub file content empty/too large or JS checker differs in logic from original, classify INCOMPLETE; even PASS independent JS checker does not replace python atlas_delta.py check/brief or canonical SHA256. No CURRENT update.",
+  "external_science": "None; no human predictions",
+  "CT2": 22,
+  "AB_slots_used": 0
+}

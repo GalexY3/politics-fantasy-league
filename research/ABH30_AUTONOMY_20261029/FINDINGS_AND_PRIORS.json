@@ -1,0 +1,108 @@
+{
+  "campaign": "PFL-ABH30-AUTONOMY-20261029",
+  "purpose": "Cumulative scientific and operational priors; distinguish evidence type and repeat sources",
+  "new_N1_graded": [],
+  "new_N2_graded": [],
+  "new_N3_graded": [],
+  "scientific_grades_0_to_3": "All 0/3 for novel PFL scientific discovery. A few useful engineering outputs are not substantive 1/3 scientific.",
+  "selection_exposure": "C02-C05 all use the same ForecastBench public leaderboard; multiple exploratory descriptive contrasts not independent replication",
+  "CT2_prospective_after": 22,
+  "entries": [
+    {
+      "id": "ABH30-P01",
+      "claim": "Sequential small mock assignment seeds do not introduce noticeable positional pattern",
+      "update": "REFUTED_ON_SEEDS_0_4095",
+      "source": "C06_RESULT.json",
+      "repair": "C06_REPAIR_RESULT.json",
+      "limits": "Repaired seed avalanche is deterministic and not secure human randomization. Future holdout required."
+    },
+    {
+      "id": "ABH30-P02",
+      "claim": "Complete-case factorial effect remains ITT when a fictional outcome missing",
+      "update": "REFUTED",
+      "source": "C07_RESULT.json",
+      "limits": "Synthetic bounds; no observed human outcomes."
+    },
+    {
+      "id": "ABH30-P03",
+      "claim": "Local mock status APPROVED_BY_HUMAN_REVIEW is proof of real ethical consent",
+      "update": "REFUTED_EXPECTED",
+      "source": "C09_RESULT.json",
+      "limits": "Demonstrated arbitrary review_ref accepted; never count as human approval."
+    },
+    {
+      "id": "ABH30-P04",
+      "claim": "Existing public forecasting leaderboard category rank is stable across categories",
+      "update": "REFUTED_DESCRIPTIVE",
+      "source": "C04_RESULT.json",
+      "limits": "One public aggregate table reused in multiple exploratory tests; categories represent different task types and samples."
+    },
+    {
+      "id": "ABH30-P05",
+      "claim": "Tournament leaderboard always improves education or participation",
+      "update": "REFUTED_GENERIC_CLAIM_BY_MIXED_EXTERNAL_LITERATURE",
+      "source": "C13_RESULT.json",
+      "limits": "External educational studies not PFL causal evidence."
+    },
+    {
+      "id": "ABH30-P06",
+      "claim": "Naive arithmetic mean of category Index scores equals published Overall Index in ForecastBench",
+      "update": "REFUTED_DESCRIPTIVE",
+      "source": "C03_RESULT.json",
+      "limits": "Aggregation transformation already published; not a new PFL method."
+    },
+    {
+      "id": "ABH30-P07",
+      "claim": "GitHub connector cannot inspect all Atlas update file metadata without full checkout",
+      "update": "REFUTED_FOR_METADATA_ONLY",
+      "source": "A04_RESULT.json",
+      "limits": "80 JSON parsed, 79 parent links valid; Python strict graph replay still absent."
+    },
+    {
+      "id": "ABH30-P08",
+      "claim": "HTTP server being accessible from Python/Playwright API means Chromium can navigate same localhost",
+      "update": "REFUTED_BY_BROWSER_ADMIN_POLICY",
+      "source": "A09_RESULT.json",
+      "limits": "Policy is environmental. No attempt to bypass."
+    },
+    {
+      "id": "ABH30-P09",
+      "claim": "Public question+resolution sets alone prove exposure of individual forecasters",
+      "update": "NOT_SUPPORTED",
+      "source": "C01_INCOMPLETE.json",
+      "limits": "2.7MB source input inaccessible; even full public question list is not person-specific visibility."
+    },
+    {
+      "id": "ABH30-P10",
+      "claim": "PFL has a new experimentally established human leaderboard effect",
+      "update": "NOT_SUPPORTED_NO_HUMAN_DATA",
+      "source": "C13_RESULT.json",
+      "limits": "0 independent PFL human results, no randomized allocation and no causal estimate."
+    }
+  ],
+  "external_replication_PFL": false,
+  "data_rights": "ForecastBench CC BY-SA 4.0 public aggregate data only; human individual files not inspected",
+  "next_discriminant_evidence": "Observable preregistered exposure/assignment data from ethically approved study or independently licensed experiment with matching estimand",
+  "decision": "STOP_R5",
+  "post_campaign_addenda": [
+    {
+      "id": "ABH30-POST-01",
+      "date": "2026-10-29",
+      "status": "POST_HOC_EXTERNAL_PRIOR_ART_NOT_CYCLE",
+      "prior_claim": "Public leaderboards always increase sequential contest effort and winner quality",
+      "update": "REFUTED_AS_UNIVERSAL_CLAIM",
+      "evidence": "Hudja, Roberson, Rosokha (Review of Economics and Statistics 107(2):555-569, 2025) laboratory experiment and finite-horizon sequential sampling theory find plausible conditions with fewer samples and lower-winning quality under public leaderboard, contrasting Lemus and Marshall (JPE 2021) average increase in different setting",
+      "doi": "https://doi.org/10.1162/rest_a_01259",
+      "author_page": "https://web.ics.purdue.edu/~yrosokha/research.html",
+      "limits": "No license to reuse underlying microdata verified; study did not test PFL; external published prior not new AB-R cycle",
+      "CT2_prospective_before": 22,
+      "CT2_prospective_after": 22,
+      "N1_N2_N3_new": [
+        0,
+        0,
+        0
+      ],
+      "memo": "../T028_INDEPENDENT_QA_20261029/REPORT.md"
+    }
+  ]
+}

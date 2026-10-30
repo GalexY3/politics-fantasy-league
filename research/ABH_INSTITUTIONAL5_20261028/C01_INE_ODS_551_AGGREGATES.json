@@ -1,0 +1,57 @@
+{
+  "schema": "pfl.ine.ods.551.exploratory.v1",
+  "year2025": "INE ODS 5.5.1 search index latest week (turn141124search0 and turn141124search1); not raw API/SDMX download",
+  "year2024": "INE ODS 5.5.1 open cached 1.1 years ago turn723109view0, document displays latest 2024",
+  "source_url": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+  "metadata": "Publisher INE; source at indicator level MIGD/Instituto de las Mujeres. Search and open caches inconsistent; later version should not replace earlier silently.",
+  "series": [
+    {
+      "office": "congreso",
+      "period2025": 43.68,
+      "base2015": 39.71,
+      "cached2024": 44.54,
+      "delta_2015_2025_pp": 3.97
+    },
+    {
+      "office": "senado",
+      "period2025": 42.31,
+      "base2015": 41.35,
+      "cached2024": 42.79,
+      "delta_2015_2025_pp": 0.96
+    },
+    {
+      "office": "consejerias",
+      "period2025": 45.1,
+      "base2015": 44.52,
+      "cached2024": 46.77,
+      "delta_2015_2025_pp": 0.58
+    },
+    {
+      "office": "alcaldias",
+      "period2025": 25.01,
+      "base2015": 19.09,
+      "cached2024": 24.77,
+      "delta_2015_2025_pp": 5.92
+    },
+    {
+      "office": "concejalias",
+      "period2025": 42.76,
+      "base2015": 35.57,
+      "cached2024": 42.8,
+      "delta_2015_2025_pp": 7.19
+    }
+  ],
+  "contrast": {
+    "mayors_2025": 25.01,
+    "councillors_2025": 42.76,
+    "gap_councillor_minus_mayor_2025_pp": 17.75,
+    "gap_councillor_minus_mayor_2024_pp": 18.03,
+    "gap_councillor_minus_mayor_2015_pp": 16.48
+  },
+  "limitations": [
+    "Both indicator search results reproduce SAME issuer metadata, not independent source validation",
+    "Portal open yielded stale cached 2024, so 2025 from search-index only pending live publisher fetch",
+    "Different offices and denominators: cannot infer mayor selection probability, causal hierarchy or individuals"
+  ],
+  "not_original_dataset": true
+}

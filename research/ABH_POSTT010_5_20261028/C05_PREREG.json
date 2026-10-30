@@ -1,0 +1,31 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C05",
+  "type": "AB-META",
+  "D": "Read-only analysis of docs then minimum changes on research branch; native Node targeted regression; no merge to main",
+  "parent": "C04",
+  "trigger": "User explicitly changed AB next-block size to 5..15 and suspended ChatRelay, while root AGENTS/README/O6 still say 20..45; avoid recurrent authorization errors",
+  "exposure": "Administrative contract discrepancy known before prereg; prospective source changes and mechanical consistency checks, not a discovery experiment",
+  "A": {
+    "question": "Will all active instructions for agents consistently enforce 5..15 cycle blocks and no default ChatRelay, without erasing historical authorizations or claiming scientific improvement?",
+    "estimand": "Prospective active rule consistency across AGENTS, root README, O6, PFL CURRENT supplemental note"
+  },
+  "B": {
+    "H1": "Explicit scoped changes bring active policy into agreement with latest user authorization",
+    "H0": "Older 20-45 directives remain contradictory",
+    "H_other": "Changes accidentally reinterpret historical campaigns or prohibit voluntary later reauthorization"
+  },
+  "C": {
+    "controls": "Before/after grep active instructions 20-45 and 5-15, inspect versioned diffs, preserve R5 and A-J, add explicit ChatRelay default exclusion; C08 four aggregate fixture regression under latest vote-key helper",
+    "falsifier": "Active instruction still demands 20..45, historic cycle counts changed, or Node regression breaks"
+  },
+  "E": "PENDING",
+  "F": "Track all active occurrences and historical exceptions",
+  "G": "No claim of evidence-based ChatRelay effectiveness; user preference governs",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "AB-META operational policy, not validation of AB",
+  "J": "Complete campaign with 5 actual A-J only if tested"
+}

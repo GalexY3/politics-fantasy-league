@@ -1,0 +1,23 @@
+{
+  "id": "ABH30-P1-C03",
+  "A": "Is naive arithmetic averaging of public per-category Brier Index scores an accurate substitute for published Overall?",
+  "B": [
+    "H0 Overall equals arithmetic average within 0.051 (rounding)",
+    "H1 nonlinear transform makes meaningful discrepancies"
+  ],
+  "C": {
+    "unit": "leaderboard row with 3 numeric Indices",
+    "endpoint": "count rows |Overall-(Dataset+Market)/2|>0.051 and max absolute deviation",
+    "prediction": "at least one discrepant row",
+    "baseline": "use published Overall (strong, authoritative) vs naive arithmetic alternative",
+    "negative_control": "check numeric formatting and 24-column CSV row widths"
+  },
+  "D": "UTF-8 CSV parse quote-aware, frozen Git SHA fa76366b; source published methodology explains transformation; exploratory retrospective",
+  "prereg": "BEFORE C03 CSV FETCH",
+  "selection_exposure": "C02 already counted N distribution, not examined score transformation",
+  "F": "Compare published notes with computed deviation; no claim that existing ForecastBench methodology is novel PFL",
+  "G": "not an independent dataset, no replication claim",
+  "H": "update generic index averaging prior negatively if discrepancies",
+  "I": "methodological validity only; no human data",
+  "J": "AB-P/R methods audit, keep R5"
+}

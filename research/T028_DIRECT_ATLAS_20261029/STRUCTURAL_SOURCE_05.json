@@ -1,0 +1,295 @@
+{
+  "group": 5,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0041-pfl-abh-b20-c06-pr11-20261028.json",
+      "source_git_blob": "ea2c99f3660deda331c3bba1ed08c5b5a2a23982",
+      "batch_id": "0041-PFL-ABH-BRANCH20-C06-PR11-20261028",
+      "parent_batch": "0040-PFL-ABH-BRANCH20-C05-ATLAS-AUDIT-20261028",
+      "at": "2026-10-28T12:33:23.689Z",
+      "reason": "C06 prereg code archaeology compared 8 historical PR11 main files; 5 exact Git blobs retained, other three retain markers, no mass merge or CI. Static inspection, no runtime certification.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C06-PR11-EQUIVALENCE",
+            "activity": "PR #11 critical fixes documentary SHA comparison with main; 5 exact blobs of 8 and remaining implementations differ without proven missing fixes; avoid mass merge.",
+            "status": "completed",
+            "at": "2026-10-28T12:33:23.689Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C06_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C06_RESULT.json"
+            ],
+            "scope": "PFL branch governance AB-P; no CT2 or release score changes",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0042-pfl-abh-b20-c07-group-majority-20261028.json",
+      "source_git_blob": "f290e2b88f582f363f70f51abe0c395cb8213e96",
+      "batch_id": "0042-PFL-ABH-BRANCH20-C07-GROUP-MAJORITY-20261028",
+      "parent_batch": "0041-PFL-ABH-BRANCH20-C06-PR11-20261028",
+      "at": "2026-10-28T12:36:42.917Z",
+      "reason": "C07 prereg group plurality vs >50% measurement identified legacy 4/9 modal YES; added separate strict group majority with denominator modes. Native isolated 4+11 checks; full suite T008 pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C07-ABSOLUTE-GROUP-MAJORITY",
+            "activity": "AB-R methodological group modal vs strictly >50%, expressed vs all recorded statuses, no inferred membership and no real-person scoring",
+            "status": "completed",
+            "at": "2026-10-28T12:36:42.917Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C07_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C07_RESULT.json",
+              "tests/test_group_majority_semantics.py"
+            ],
+            "scope": "Sociological measurement semantics only, no CT2 uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0043-pfl-abh-b20-c08-overview-20261028.json",
+      "source_git_blob": "efe898f73164683f1a91fc28cf55f792b0af7d7a",
+      "batch_id": "0043-PFL-ABH-BRANCH20-C08-OVERVIEW-20261028",
+      "parent_batch": "0042-PFL-ABH-BRANCH20-C07-GROUP-MAJORITY-20261028",
+      "at": "2026-10-28T12:39:49.945Z",
+      "reason": "C08 prereg documented hardcoded 3/5 production progress on overview despite no matching gates; patched exact GitHub UI to explicit not-verified and progress link, 6 static checks; browser/Node suite not executed.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C08-OVERVIEW-READINESS",
+            "activity": "Remove ungrounded three-of-five production stages in local demo overview; add explicit release disclaimer and progress link; static code checks only.",
+            "status": "completed",
+            "at": "2026-10-28T12:39:49.945Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C08_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C08_RESULT.json",
+              "tests/test_overview_readiness_copy.mjs"
+            ],
+            "scope": "UI claim honesty AB-P; no gates/progress uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0044-pfl-abh-b20-c09-forecast-20261028.json",
+      "source_git_blob": "2f98dc60deda93391a6159ef873e21e739aafbdc",
+      "batch_id": "0044-PFL-ABH-BRANCH20-C09-FORECAST-20261028",
+      "parent_batch": "0043-PFL-ABH-BRANCH20-C08-OVERVIEW-20261028",
+      "at": "2026-10-28T12:41:50.828Z",
+      "reason": "C09 prereg forecast expected count vs rate resolved by explicit future exposure projector, 7 isolated controls; full suite and predictive external validation NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C09-FUTURE-EXPOSURE",
+            "activity": "AB-R forecast metric scope: rate is not future count without specified opportunities; distinct helper, tests and no political prediction claims",
+            "status": "completed",
+            "at": "2026-10-28T12:41:50.828Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C09_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C09_RESULT.json",
+              "tests/test_forecast_future_exposure.py"
+            ],
+            "scope": "AB-R model estimand semantics; no progress and no science finding",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0045-pfl-abh-b20-c10-typedrefs-20261028.json",
+      "source_git_blob": "cb97baabe369b917a3c6debaefc6995bea1bf1b7",
+      "batch_id": "0045-PFL-ABH-BRANCH20-C10-TYPEDREFS-20261028",
+      "parent_batch": "0044-PFL-ABH-BRANCH20-C09-FORECAST-20261028",
+      "at": "2026-10-28T12:43:40.086Z",
+      "reason": "C10 port from historical divergent branch only independent pure typed refs module/test with two exact Git blobs and six original Python PASS, no direct scoring/person identity and no Atlas overwrite.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C10-TYPED-REFS",
+            "activity": "Selective historical typed institutional refs rescue, original Git blobs exact and six unittest PASS; not integrated into scoring or identity certification.",
+            "status": "completed",
+            "at": "2026-10-28T12:43:40.086Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C10_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C10_RESULT.json",
+              "src/politics_fantasy/typed_refs.py",
+              "tests/test_abh_branch20_typed_refs.py"
+            ],
+            "scope": "AB-H selective branch integration and data-contract, zero increase progress/gates",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0046-pfl-abh-b20-c11-daylevel-20261028.json",
+      "source_git_blob": "12f75d1a159d7686ccbddfbde22cf3c170cbe56b",
+      "batch_id": "0046-PFL-ABH-BRANCH20-C11-DAYLEVEL-20261028",
+      "parent_batch": "0045-PFL-ABH-BRANCH20-C10-TYPEDREFS-20261028",
+      "at": "2026-10-28T12:45:39.262Z",
+      "reason": "Prereg C11 exact historical source_time.py 5 native day-boundary checks; unlike main first_public_at requirement, historical prior-day safe-for-day-study has null timestamp; avoid weaker gate import. New science 0.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C11-DAYLEVEL-NONPORT",
+            "activity": "Historical day-level BOE 2023 one-document visibility guard tested exactly 5 cases. Reject as direct replacement for strictly attested first_public_at gate.",
+            "status": "completed",
+            "at": "2026-10-28T12:45:39.262Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C11_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C11_RESULT.json"
+            ],
+            "scope": "AB-R provenance boundary no port or gates uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0047-pfl-abh-b20-c12-dates-20261028.json",
+      "source_git_blob": "48745b145e80cda8fc98436e79d91510225a11d8",
+      "batch_id": "0047-PFL-ABH-BRANCH20-C12-CONGRESS-DATES-20261028",
+      "parent_batch": "0046-PFL-ABH-BRANCH20-C11-DAYLEVEL-20261028",
+      "at": "2026-10-28T12:47:19.355Z",
+      "reason": "C12 strict event date normalizer and exact original tests recovered by SHA from archival branch; 14 Python tests PASS, no first publication inference.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C12-EVENT-DATES",
+            "activity": "Port isolated historical Congreso local vote date normalizer and original 14 negative/positive pytest fixtures, source/test hashes exact. Not availability time.",
+            "status": "completed",
+            "at": "2026-10-28T12:47:19.355Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C12_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C12_RESULT.json",
+              "tests/test_congress_vote_dates.py"
+            ],
+            "scope": "AB-P event parser, no real scoring/gate promotion",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0048-pfl-abh-b20-c13-legacy-port-20261028.json",
+      "source_git_blob": "64ada011ddb351674a39ca2e6369c7d96ba4eb60",
+      "batch_id": "0048-PFL-ABH-BRANCH20-C13-LEGACY-PORT-20261028",
+      "parent_batch": "0047-PFL-ABH-BRANCH20-C12-CONGRESS-DATES-20261028",
+      "at": "2026-10-28T12:48:49.932Z",
+      "reason": "C13 prereg port-zero origin-shape counterexample in exact Git old source_guard.py; four original unittest PASS, extra synthetic :0 accepted. Reject port to main.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C13-LEGACY-PORT-ZERO",
+            "activity": "Old pinned-byte verifier explicitly port-zero URL accepted as same authority; SHA exact, 4 old tests + 1 new negative. DO NOT PORT weaker origin classifier.",
+            "status": "completed",
+            "at": "2026-10-28T12:48:49.932Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C13_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C13_RESULT.json"
+            ],
+            "scope": "AB-P security regressive branch prevented; no gate promotion",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0049-pfl-abh-b20-c14-release-20261028.json",
+      "source_git_blob": "614b2b1491adc363fcf991dbfee064b3b5d0b001",
+      "batch_id": "0049-PFL-ABH-BRANCH20-C14-RELEASE-20261028",
+      "parent_batch": "0048-PFL-ABH-BRANCH20-C13-LEGACY-PORT-20261028",
+      "at": "2026-10-28T12:50:11.314Z",
+      "reason": "C14 exact old release_gate.py and 6 original unit tests PASS; caller-controlled evidence plus trusted_receipts yields release/person scoring true in isolated function, violating stated server-owned trust assumption if imported naively. Do not port.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C14-RELEASE-GATE-TRUST",
+            "activity": "Old unmerged release helper forged receipt trust-boundary counterexample; reject importer without server-held proof; not a deployed exploit.",
+            "status": "completed",
+            "at": "2026-10-28T12:50:11.314Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C14_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C14_RESULT.json"
+            ],
+            "scope": "AB-P security research no current deployment/scoring",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0050-pfl-abh-b20-c15-member-projection-20261028.json",
+      "source_git_blob": "5cad6a70da951e42a2f06eabd39d5566d941c6a6",
+      "batch_id": "0050-PFL-ABH-BRANCH20-C15-MEMBER-PROJECTION-20261028",
+      "parent_batch": "0049-PFL-ABH-BRANCH20-C14-RELEASE-20261028",
+      "at": "2026-10-28T12:52:28.255Z",
+      "reason": "C15 original Congress member projection and test selectively restored from old branch, hashes exact and 11 Python original tests pass. Only synthetic fixture, no actual person source or scoring.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-BRANCH20-C15-MEMBER-PROJECTION",
+            "activity": "Isolated historical institutional projection whitelist: no biography, no legal RPP status, no scoring; 11 original tests pass SHA exact",
+            "status": "completed",
+            "at": "2026-10-28T12:52:28.255Z",
+            "evidence": [
+              "research/ABH_BRANCH20_20261028/C15_PREREG.json",
+              "research/ABH_BRANCH20_20261028/C15_RESULT.json",
+              "tests/test_congress_members.py"
+            ],
+            "scope": "AB-R descriptive research contract no release",
+            "method_version": "AB 3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}

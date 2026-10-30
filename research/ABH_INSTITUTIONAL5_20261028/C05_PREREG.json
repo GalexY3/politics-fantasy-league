@@ -1,0 +1,48 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "D": {
+    "preexposed": true,
+    "design": "EXPLORATORY retrospective source audit, not blinded prospective empirical test",
+    "INE": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+    "Mineco": "https://portal.mineco.gob.es/es-es/comunicacion/Paginas/MujeresYHombres_INE_poder_tomadecisiones_igualdad.aspx",
+    "year2024": [
+      44.54,
+      42.79,
+      46.77,
+      24.77,
+      42.8
+    ],
+    "year2025": [
+      43.68,
+      42.31,
+      45.1,
+      25.01,
+      42.76
+    ],
+    "labels": [
+      "congreso",
+      "senado",
+      "consejerias",
+      "alcaldias",
+      "concejalias"
+    ]
+  },
+  "A": "Does every one of five published INE measures of women's office occupancy rise from the 2024 version to the indexed 2025 version?",
+  "B": {
+    "H1": "Office-specific year-on-year movements have mixed signs, contradicting universal monotonic increase",
+    "H0": "All five increase",
+    "Halt": "Cache changes and publication revisions may break same-method comparison"
+  },
+  "C": "Pair official INE ODS same five subindicators from preserved 2024 cached HTML and 2025 indexed search, compute deltas exactly using decimals; cross-check separate ministerial release on party executive role 2024 vs 2025 as external adverse case. Keep baseline 2015 separate. Interpret descriptively only.",
+  "E": "PENDING",
+  "F": "Long-term increase 2015-to-2025 may coexist with year-on-year reversals; gender category/denominator consistency not independently verified",
+  "G": "No raw time series from INE SDMX or annual historical first-published snapshot",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No person-level claims",
+  "J": "If mixed signs, reject universal annual improvement while keeping long-run trend possible; no new N1 for arithmetic"
+}

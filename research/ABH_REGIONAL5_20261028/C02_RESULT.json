@@ -1,0 +1,74 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_FOUR_PROVINCE_LEGAL_ALLOCATION_REPLAY",
+  "A": "Does 2024 Galicia's 75-seat parliamentary composition require province-level D'Hondt and 5%-valid-vote threshold rather than treating Galicia as one seat-district?",
+  "B": {
+    "H1": "Provincial exact replay matches observed and pooled 75-seat counterfactual differs",
+    "H0": "One-region pooling yields same representation",
+    "H_other": "Incomplete parties, threshold or DOG inconsistency can defeat replay"
+  },
+  "C": {
+    "prereg_commit": "1692a9d727ce4cde2946a204a07e6c5997e80c02",
+    "method": "Python 3 stdlib fractions.Fraction exact D'Hondt on full 11-option manual DOG provincial votes; threshold 5% of valid votes for each constituency from Galicia 8/1985 art10; observed seats from named official elected roster aggregated without names. Separate counterfactual single region D'Hondt (75 seats) with and without 5% threshold.",
+    "native_run": "/mnt/data/pfl_regional5/seat_replay.py executed in local container (not a clean full project checkout); submitted reproducible script replay_galicia.py to branch, not claimed independently executed after commit"
+  },
+  "D": {
+    "primary": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+    "law": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-21380",
+    "fixture": "C02_GALICIA_FULL_PROVINCIAL_REPLAY.json",
+    "reproducer": "replay_galicia.py",
+    "original_bytes_sha": null
+  },
+  "E": {
+    "province_counts": 4,
+    "parties_total": 11,
+    "province_valid_votes": 1501757,
+    "province_candidate_votes": 1488705,
+    "legal_model": {
+      "PP": 40,
+      "BNG": 25,
+      "PSOE": 9,
+      "DO": 1
+    },
+    "official_results": {
+      "PP": 40,
+      "BNG": 25,
+      "PSOE": 9,
+      "DO": 1
+    },
+    "seat_errors": 0,
+    "invalid_region_75_with_5pct": {
+      "PP": 39,
+      "BNG": 25,
+      "PSOE": 11
+    },
+    "invalid_region_transfers": 2,
+    "invalid_region_no_threshold": {
+      "PP": 37,
+      "BNG": 25,
+      "PSOE": 11,
+      "VOX": 1,
+      "SUMAR": 1
+    },
+    "invalid_no_threshold_transfers": 4
+  },
+  "F": "Provincial boundary and threshold are legally essential. DO wins a seat in Ourense while missing the entire Galicia pooled 5%-threshold model. This is a retrospective mathematical identity on known results, not model forecasting superiority or novel sociological finding.",
+  "G": "Single 2024 election inspected after results; manually transcribed HTML; legal original DOG total +100 quarantined and not silently corrected; XML original hash absent. No out-of-sample predictive model, no treatment effects.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0
+  },
+  "I": "Aggregate party seats only, no individual scoring",
+  "J": "Keep provincially stratified allocation as competent baseline; any flat regional pooling must be explicitly rejected for PFL electoral modeling. Proceed to separate original archival provenance source."
+}

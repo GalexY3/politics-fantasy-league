@@ -1,0 +1,39 @@
+{
+  "id": "ABH30-P2-A09",
+  "phase": "AUTONOMY",
+  "status": "VALID_ENVIRONMENT_BOUNDARY_NEGATIVE",
+  "prereg_commit": "b704e445fc150560d0359c5243fa6a3c1f12aa50",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "playwright_api_request": {
+      "status": 200,
+      "bytes": 1982,
+      "csp_present": true
+    },
+    "default_chromium_launch": "MISSING_HEADLESS_SHELL",
+    "system_chromium_path": "/usr/bin/chromium",
+    "system_chromium_page_goto": "net::ERR_BLOCKED_BY_ADMINISTRATOR",
+    "real_browser_http_e2e": "BLOCKED_BY_ADMINISTRATOR"
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "The policy blocks browser network navigation even when browser launches. APIRequestContext is not equivalent to JS-module browser integration. No policy bypass or claims that T028 is resolved."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "The policy blocks browser network navigation even when browser launches. APIRequestContext is not equivalent to JS-module browser integration. No policy bypass or claims that T028 is resolved."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}

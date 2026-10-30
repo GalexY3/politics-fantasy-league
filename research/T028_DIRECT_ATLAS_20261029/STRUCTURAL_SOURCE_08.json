@@ -1,0 +1,595 @@
+{
+  "group": 8,
+  "files_examined": 10,
+  "errors": [],
+  "records": [
+    {
+      "file": "0071-pfl-abh-main20b-c16-http-json-20261028.json",
+      "source_git_blob": "6152255f759ad743ae942ef25bf7b408933d9714",
+      "batch_id": "0071-PFL-ABH-MAIN20B-C16-HTTP-JSON-20261028",
+      "parent_batch": "0070-PFL-ABH-MAIN20B-C15-ROUND-SCOPE-20261028",
+      "at": "2026-10-28T14:39:43.097Z",
+      "reason": "C16 prereg local HTTP POST accepted repeated JSON keys last-wins, including nested; added object_pairs_hook fail-close, 3 native isolated parser checks, HTTP regression created not executed.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C16-HTTP-JSON-DUPLICATES",
+            "activity": "Reject duplicate JSON keys at local mutating HTTP boundary before club/lineup dispatch; selected parser tests not full server tests.",
+            "status": "completed",
+            "at": "2026-10-28T14:39:43.097Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C16_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C16_RESULT.json",
+              "tests/test_http_duplicate_json_keys.py"
+            ],
+            "scope": "AB-P single machine fictional server integrity, no user authentication certification",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0072-pfl-abh-main20b-c17-manual-pilot-20261028.json",
+      "source_git_blob": "366af9f88ece8ccc4ae96bb2e04b23ec0868279f",
+      "batch_id": "0072-PFL-ABH-MAIN20B-C17-MANUAL-PILOT-20261028",
+      "parent_batch": "0071-PFL-ABH-MAIN20B-C16-HTTP-JSON-20261028",
+      "at": "2026-10-28T14:41:57.383Z",
+      "reason": "C17 prereg local manual aggregate corruption isolation; invalid CSV quarantined, focused 5 cases, full T009 pending.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C17-MANUAL-PILOT-FAILCLOSED",
+            "activity": "Protect local fiction game state from malformed manually transcribed aggregate CSV. No real data.",
+            "status": "completed",
+            "at": "2026-10-28T14:41:57.383Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C17_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C17_RESULT.json"
+            ],
+            "scope": "AB-P local pilot display, gates unchanged",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0073-pfl-abh-main20b-c18-release-gates-20261028.json",
+      "source_git_blob": "25f65d597da67dda7fb7206fe3ff3bfa1dc975be",
+      "batch_id": "0073-PFL-ABH-MAIN20B-C18-RELEASE-GATES-20261028",
+      "parent_batch": "0072-PFL-ABH-MAIN20B-C17-MANUAL-PILOT-20261028",
+      "at": "2026-10-28T14:43:36.608Z",
+      "reason": "C18 prereg independently inspected exact current Git source for server/product/source event registry/eligibility/readiness/progress API: no real-person scoring/release true, all source first-public unknown. Static scope only, no T009.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C18-REAL-SCORING-GATE",
+            "activity": "Batched current source audit of user-controlled source flags, official publication-time unknown and real score disable, six SHA-pinned modules, no runtime claim.",
+            "status": "completed",
+            "at": "2026-10-28T14:43:36.608Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C18_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C18_RESULT.json"
+            ],
+            "scope": "AB-P static release safety negative, gates 0/6",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0074-pfl-abh-main20b-c19-atlas-audit-20261028.json",
+      "source_git_blob": "9a611a48bbf8eb84a992e802f4846399517c398b",
+      "batch_id": "0074-PFL-ABH-MAIN20B-C19-ATLAS-AUDIT-20261028",
+      "parent_batch": "0073-PFL-ABH-MAIN20B-C18-RELEASE-GATES-20261028",
+      "at": "2026-10-28T14:47:19.970Z",
+      "reason": "C19 prereg all 73 GitHub Atlas JSON deltas independently inspected in six chunks, schema and parent chain intact, 414 op arithmetic = 63 nodes 81 edges 239 runs 48 complaints; original Python native Atlas checker and SHA NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C19-ATLAS-73-CHAIN-AUDIT",
+            "activity": "73 patch original GitHub archive schema and parent chain, derived counts checked in six chunks, no cross-chunk ID uniqueness or full native replay claimed.",
+            "status": "completed",
+            "at": "2026-10-28T14:47:19.970Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C19_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C19_RESULT.json"
+            ],
+            "scope": "AB-META documentary consistency only; no science or release uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0075-pfl-abh-main20b-c20-closure-20261028.json",
+      "source_git_blob": "4b18e80a1460937b7de6a104ee672ec2f1b52b31",
+      "batch_id": "0075-PFL-ABH-MAIN20B-C20-CLOSURE-20261028",
+      "parent_batch": "0074-PFL-ABH-MAIN20B-C19-ATLAS-AUDIT-20261028",
+      "at": "2026-10-28T14:50:10.114Z",
+      "reason": "Final C20 prereg audit 38 earlier A-J source files C01-C19 parsed and 5 commit chronology pairs verified; 20 valid 0 invalid campaign closure. Atlas now 75 documentary lots, 241 runs 48 complaints 416 ops; native checker and current full Linux suite NOT_RUN.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-MAIN20B-C20-CAMPAIGN-CLOSED",
+            "activity": "Final campaign source/authorization integrity review; 20 documented valid A–J, zero available. T009 current main Linux and native Atlas75 remain pending.",
+            "status": "completed",
+            "at": "2026-10-28T14:50:10.114Z",
+            "evidence": [
+              "research/ABH_MAIN20B_20261028/C20_PREREG.json",
+              "research/ABH_MAIN20B_20261028/C20_RESULT.json"
+            ],
+            "scope": "AB-META documentary accountability, no empirical/gate uplift",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0076-pfl-abh-forecast5-closure-20261029.json",
+      "source_git_blob": "c6c8009936748e2921f2ad421915525769245a6d",
+      "batch_id": "0076-PFL-ABH-FORECAST5-CLOSURE-20261029",
+      "parent_batch": "0075-PFL-ABH-MAIN20B-C20-CLOSURE-20261028",
+      "at": "2026-10-28T23:14:18.635Z",
+      "reason": "Close 5/5 bounded A-J cycles of forecast-incentives PFL stacked PR #33, preserve prior rights block, temporal opportunity evidence, non-person coverage guard, source errata and limits. Native replay and real-person scoring NOT EXECUTED.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-FORECAST5-C01-20261029",
+            "activity": "documentary novelty/rights STOP_LOCAL; continued other paths",
+            "status": "completed",
+            "at": "2026-10-28T23:14:18.635Z",
+            "evidence": [
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C01_PREREG.json",
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C01_RESULT.json"
+            ],
+            "scope": "AB-R bounded documentary/descriptive; no causal/predictive validation",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-FORECAST5-C02-20261029",
+            "activity": "UK 2025 322 unique Commons divisions; temporal opportunity audit",
+            "status": "completed",
+            "at": "2026-10-28T23:14:18.635Z",
+            "evidence": [
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C02_PREREG.json",
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C02_RESULT.json"
+            ],
+            "scope": "AB-R bounded documentary/descriptive; no causal/predictive validation",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-FORECAST5-C03-20261029",
+            "activity": "2026 Jan-Sep 195 unique Commons divisions; same-issuer temporal sensitivity",
+            "status": "completed",
+            "at": "2026-10-28T23:14:18.635Z",
+            "evidence": [
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C03_PREREG.json",
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C03_RESULT.json"
+            ],
+            "scope": "AB-R bounded documentary/descriptive; no causal/predictive validation",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-FORECAST5-C04-20261029",
+            "activity": "Aggregate coverage guard; 14 V8 adversarial checks PASS",
+            "status": "completed",
+            "at": "2026-10-28T23:14:18.635Z",
+            "evidence": [
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C04_PREREG.json",
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C04_RESULT.json"
+            ],
+            "scope": "AB-P bounded product V8 check; 14/14 PASS, native tests not run",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-FORECAST5-C05-20261029",
+            "activity": "US House 100 rollcall index versus 51 exact issue labels",
+            "status": "completed",
+            "at": "2026-10-28T23:14:18.635Z",
+            "evidence": [
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C05_PREREG.json",
+              "research/ABH_FORECAST_INCENTIVES5_20261028/C05_RESULT.json"
+            ],
+            "scope": "AB-R bounded documentary/descriptive; no causal/predictive validation",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0077-pfl-abh-incentives5-closure-20261029.json",
+      "source_git_blob": "87a8b6438a7a81cf38f2e353e1fcdc52da6d0c1a",
+      "batch_id": "0077-PFL-ABH-INCENTIVES5-CLOSURE-20261029",
+      "parent_batch": "0076-PFL-ABH-FORECAST5-CLOSURE-20261029",
+      "at": "2026-10-28T23:25:07.447Z",
+      "reason": "Five authorized cycles completed on branch from PR #33; 3 simulated mechanics experiments and 2 bounded source-safety engineering checks, C03 failed harness repaired without double counting. No human PFL evidence, N1=0, child CT2=20 ordinal distinct from parental CT2=29.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INCENTIVES5-C01-20261029",
+            "activity": "AB-R bounded synthetic: unequal opportunities, same latent success distributions; C01 engine 2 seeds ×600, Beta(2,2) lowers toy MAE versus rate and count.",
+            "status": "completed",
+            "at": "2026-10-28T23:25:07.447Z",
+            "evidence": [
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C01_PREREG.json",
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C01_RESULT.json"
+            ],
+            "scope": "AB-R simulation/formal experiment, no social evidence",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INCENTIVES5-C02-20261029",
+            "activity": "AB-R bounded formal incentive counterfactual: selective 4/20 improves observed-rate reward but reduces raw and scheduled-denominator reward by construction.",
+            "status": "completed",
+            "at": "2026-10-28T23:25:07.447Z",
+            "evidence": [
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C02_PREREG.json",
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C02_RESULT.json"
+            ],
+            "scope": "AB-R simulation/formal experiment, no social evidence",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INCENTIVES5-C03-20261029",
+            "activity": "AB-P guarded synthetic score; 18/18 V8 PASS after test harness repair; initial 14/18 attempt preserved, no field scoring.",
+            "status": "completed",
+            "at": "2026-10-28T23:25:07.447Z",
+            "evidence": [
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C03_PREREG.json",
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C03_RESULT.json"
+            ],
+            "scope": "AB-P V8 bounded product fixture tests, no native tests",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INCENTIVES5-C04-20261029",
+            "activity": "AB-R synthetic MCAR/MNAR missingness: naive bias and fail-closed coverage quantified under fabricated laws.",
+            "status": "completed",
+            "at": "2026-10-28T23:25:07.447Z",
+            "evidence": [
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C04_PREREG.json",
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C04_RESULT.json"
+            ],
+            "scope": "AB-R simulation/formal experiment, no social evidence",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-INCENTIVES5-C05-20261029",
+            "activity": "AB-P synthetic manifest canonical replay 18/18 V8 PASS; noncryptographic, not real publisher or person data.",
+            "status": "completed",
+            "at": "2026-10-28T23:25:07.447Z",
+            "evidence": [
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C05_PREREG.json",
+              "research/ABH_INCENTIVE_MECHANISMS5_20261029/C05_RESULT.json"
+            ],
+            "scope": "AB-P V8 bounded product fixture tests, no native tests",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0078-pfl-abh-prospective-pilot5-closure-20261029.json",
+      "source_git_blob": "6199aeb5518653115191c6a210e22c8179ca86b5",
+      "batch_id": "0078-PFL-ABH-PROSPECTIVE-PILOT5-CLOSURE-20261029",
+      "parent_batch": "0077-PFL-ABH-INCENTIVES5-CLOSURE-20261029",
+      "at": "2026-10-29T00:00:00Z",
+      "reason": "Five bounded A-J checks (one documentary, four AB-P local V8). Human recruitment and outcomes zero. No native tests or release approval.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PROSPECTIVE5-C01-20261029",
+            "at": "2026-10-29T00:00:00Z",
+            "status": "completed",
+            "activity": "Documentary study-design novelty and ethics gate; no participants.",
+            "evidence": [
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C01_PREREG.json",
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C01_RESULT.json"
+            ],
+            "scope": "AB-R documentary",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PROSPECTIVE5-C02-20261029",
+            "at": "2026-10-29T00:00:00Z",
+            "status": "completed",
+            "activity": "Offline fictional pilot component QA; no participants.",
+            "evidence": [
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C02_PREREG.json",
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C02_RESULT.json"
+            ],
+            "scope": "AB-P bounded V8 QA",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PROSPECTIVE5-C03-20261029",
+            "at": "2026-10-29T00:00:00Z",
+            "status": "completed",
+            "activity": "Offline fictional pilot component QA; no participants.",
+            "evidence": [
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C03_PREREG.json",
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C03_RESULT.json"
+            ],
+            "scope": "AB-P bounded V8 QA",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PROSPECTIVE5-C04-20261029",
+            "at": "2026-10-29T00:00:00Z",
+            "status": "completed",
+            "activity": "Offline fictional pilot component QA; no participants.",
+            "evidence": [
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C04_PREREG.json",
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C04_RESULT.json"
+            ],
+            "scope": "AB-P bounded V8 QA",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PROSPECTIVE5-C05-20261029",
+            "at": "2026-10-29T00:00:00Z",
+            "status": "completed",
+            "activity": "Offline fictional pilot component QA; no participants.",
+            "evidence": [
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C05_PREREG.json",
+              "research/ABH_PROSPECTIVE_PILOT5_20261029/C05_RESULT.json"
+            ],
+            "scope": "AB-P bounded V8 QA",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0079-pfl-abh-pilot-native5-closure-20261029.json",
+      "source_git_blob": "2f4fa0f47eca3a90b2548a467a4ab0b5fb723df5",
+      "batch_id": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+      "parent_batch": "0078-PFL-ABH-PROSPECTIVE-PILOT5-CLOSURE-20261029",
+      "at": "2026-10-29T01:00:00Z",
+      "reason": "5/5 authorized bounded engineering/ethics cycles executed; no human study, no scoring politicians; Atlas CURRENT canonical inherited unsynced. R5 stop.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PILOT-NATIVE5-C01-20261029",
+            "at": "2026-10-29T01:00:00Z",
+            "status": "completed",
+            "activity": "C01 isolated native Node 22.16.0 replay: all five original Git blobs match and prior 84 checks PASS (full repo NOT_RUN)",
+            "evidence": [
+              "research/ABH_PILOT_NATIVE5_20261029/C01_PREREG.json",
+              "research/ABH_PILOT_NATIVE5_20261029/C01_RESULT.json"
+            ],
+            "scope": "AB-P local Node/HTTP prototype, no live deployment",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PILOT-NATIVE5-C02-20261029",
+            "at": "2026-10-29T01:00:00Z",
+            "status": "completed",
+            "activity": "C02 adversarial schema audit: 5 inherited/Symbol metadata bypasses found, three validators hardened, 84/84 native regression; review mock remains forgeable",
+            "evidence": [
+              "research/ABH_PILOT_NATIVE5_20261029/C02_PREREG.json",
+              "research/ABH_PILOT_NATIVE5_20261029/C02_RESULT.json"
+            ],
+            "scope": "AB-R adversarial/documentary audit, no empirical social effects",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PILOT-NATIVE5-C03-20261029",
+            "at": "2026-10-29T01:00:00Z",
+            "status": "completed",
+            "activity": "C03 localhost four-arm fictional interface: same four source items; 17/17 source checks; no client key/answer storage; browser E2E timed out",
+            "evidence": [
+              "research/ABH_PILOT_NATIVE5_20261029/C03_PREREG.json",
+              "research/ABH_PILOT_NATIVE5_20261029/C03_RESULT.json"
+            ],
+            "scope": "AB-P local Node/HTTP prototype, no live deployment",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PILOT-NATIVE5-C04-20261029",
+            "at": "2026-10-29T01:00:00Z",
+            "status": "completed",
+            "activity": "C04 allowlist-only Node server on 127.0.0.1:8787: 15/15 native HTTP smoke cases, POST denied, answer key not served",
+            "evidence": [
+              "research/ABH_PILOT_NATIVE5_20261029/C04_PREREG.json",
+              "research/ABH_PILOT_NATIVE5_20261029/C04_RESULT.json"
+            ],
+            "scope": "AB-P local Node/HTTP prototype, no live deployment",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-PILOT-NATIVE5-C05-20261029",
+            "at": "2026-10-29T01:00:00Z",
+            "status": "completed",
+            "activity": "C05 parent PR35 five A-J ancestry comparisons ahead, Atlas 0078 5 run.add; official USAL/AEPD ethics gate reviewed; human participants 0",
+            "evidence": [
+              "research/ABH_PILOT_NATIVE5_20261029/C05_PREREG.json",
+              "research/ABH_PILOT_NATIVE5_20261029/C05_RESULT.json"
+            ],
+            "scope": "AB-R adversarial/documentary audit, no empirical social effects",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "0080-pfl-abh-browser-atlas-evidence-partial-20261029.json",
+      "source_git_blob": "e26ae1469846b2e57aa702503682ab50f95f500e",
+      "batch_id": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029",
+      "parent_batch": "0079-PFL-ABH-PILOT-NATIVE5-CLOSURE-20261029",
+      "at": "2026-10-29T00:26:37.468Z",
+      "reason": "Two bounded AB cycles executed, browser DOM and independent novelty source gate. C02 Atlas Python check incomplete NOT COUNTED, C04/C05 not executed. Parent 0079 has at=2026-10-29T01:00:00Z, which may postdate actual creation; retain authentic current timestamp and flag non-monotonic chronology rather than fabricating a future timestamp.",
+      "ops": [
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-ABH-BROWSER-EVIDENCE-C01-20261029",
+            "at": "2026-10-29T00:26:37.468Z",
+            "activity": "Chromium 144 DOM isolated 18/18 after test harness correction; administrator blocks browser HTTP navigation; no real participant data",
+            "status": "completed",
+            "evidence": [
+              "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C01_PREREG.json",
+              "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C01_RESULT.json"
+            ],
+            "scope": "AB-P bounded browser client test, not HTTP E2E",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        },
+        {
+          "op": "run.add",
+          "run": {
+            "id": "PFL-ABH-BROWSER-EVIDENCE-C03-20261029",
+            "at": "2026-10-29T00:26:37.468Z",
+            "activity": "Peer-reviewed prior art 2019–2025 falsifies generic novelty of correlated-event forecasting, leaderboard dynamics and political social signalling; legal independent microdata not obtained",
+            "status": "completed",
+            "evidence": [
+              "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C03_PREREG.json",
+              "research/ABH_BROWSER_ATLAS_EVIDENCE5_20261029/C03_RESULT.json"
+            ],
+            "scope": "AB-R documentary novelty gate; no independent experiment",
+            "method_version": "AB3.2.1 O7",
+            "cost": {
+              "github_actions_minutes": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source": "Original GitHub JSON ops mirror for JS structural audit only; no original Python replay"
+}

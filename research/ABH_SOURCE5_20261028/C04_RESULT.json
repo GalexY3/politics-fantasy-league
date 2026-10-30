@@ -1,0 +1,47 @@
+{
+  "cycle": "C04",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_TEMPORAL_ASOF_GUARD",
+  "A": "Exclude future/publication-unknown information from research as-of eligibility",
+  "B": {
+    "H1": "Attribution evidence required and unknown stays unknown",
+    "H0": "Capture/event time coerced to known public time"
+  },
+  "C": {
+    "prereg_commit": "6e5c973f221c96086b4a2468bf6e628fba5ff802",
+    "native_node_runtime": "v22.16.0",
+    "red": "ERR_MODULE_NOT_FOUND prior to new implementation; no behavior-level failing baseline",
+    "green": "6 named Node tests PASS in combined 13-test run"
+  },
+  "D": {
+    "code": "src/politics_fantasy/publication_asof_research.mjs",
+    "code_git_blob": "6a9359f4dfff62db9d16c7301f947cef2913ebaa",
+    "test": "tests/test_publication_asof_research.mjs",
+    "test_git_blob": "104617fdf271e39ec06eaf66628c4e0c961fd403",
+    "fixtures": "Synthetic cutoff UTC, absent attestation, impossible Gregorian date, captured-before-published and credential-bearing URL"
+  },
+  "E": {
+    "test_count": 6,
+    "final_pass": 6,
+    "fail": 0,
+    "ambiguous_status": "UNKNOWN_FIRST_PUBLIC_AT",
+    "provisional_positive_status": "ELIGIBLE_ON_ATTESTED_RECORD",
+    "actual_first_public_at_verified": 0
+  },
+  "F": "An evidence URL and reviewer string are not publisher authentication or independent verification. No claim of original availability. Hard-fail invalid dates/contradictory capture ordering.",
+  "G": "No integration in operational scoring; synthetic unit tests only; T011 required for actual published source timestamp",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievements_awarded": 0
+  },
+  "I": "Methodological guard against lookahead bias, not proof of sociological effect",
+  "J": "Keep as research-only component; reject as-of inclusion for UNKNOWN_FIRST_PUBLIC_AT. Continue C05 denominators."
+}

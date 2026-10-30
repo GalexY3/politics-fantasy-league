@@ -1,0 +1,32 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C04",
+  "type": "AB-P",
+  "D": "Node built-in tests on pinned source",
+  "parent": "C03",
+  "trigger": "C02-C03 hardening leaves String(row[k]) coercion and possible input values that aren't source identifiers",
+  "exposure": "Code read before prereg, no novelty claim; tests and patch prospective",
+  "A": {
+    "question": "Can untyped objects and numbers silently coerce into identical identifiers, and can non-row values trigger uncontrolled errors?",
+    "estimand": "Fail-closed typed input contract and backward-compatible strings"
+  },
+  "B": {
+    "H1": "Original helper accepts non-string object/numeric identity components and can conflate values",
+    "H0": "Existing check rejects non-string components",
+    "H_other": "Expediente type errors affect scope but not key"
+  },
+  "C": {
+    "red": "Synthetic object custom toString, legislature number, numeric expediente, null/array row, whitespace controls",
+    "green": "Reject non-string or padded identity components, reject invalid row; retain valid string and numeric observation_seq; rerun prior regressions",
+    "falsifier": "Coerced object or numeric identifier still accepted or existing valid strings broken"
+  },
+  "E": "PENDING",
+  "F": "Check forward-compatibility and avoid implicit String coercion",
+  "G": "No user records or live datasets",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "AB-P only",
+  "J": "REPAIR if regression; otherwise move to independent source evidence"
+}

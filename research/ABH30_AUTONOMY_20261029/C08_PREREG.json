@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P1-C08",
+  "status": "PREREGISTERED",
+  "A": "HTTP route parser adversarial mutation fuzz",
+  "B": "Null: asserted safety/fairness property does not hold; alternative: property survives declared control (or documented mock negative)",
+  "C": "Construct 240 deterministic non-allowlisted path variants (traversal, encoding, overlong slash/dot, query suffix, route casing) and 5 positive exact routes. Endpoint all 240 denied 404 and all 5 exact 200; baseline known smoke 15/15 is not repeated; test generated variants instead.",
+  "D": "Native Node fetch localhost already listening; 240 deterministic variants with exact allowlist control.",
+  "E": "NOT_RUN_AT_COMMIT",
+  "F": "Strong control or falsifier explicitly in C",
+  "G": "Local repeat/negative controls, not independent empirical replication",
+  "H": "Update priors according to observed result only",
+  "I": "grade scientific 0/3 unless independent evidence, product AB-P bounded",
+  "J": "STOP_LOCAL if no new evidence; never score real politicians",
+  "source_ref": "PFL PR37 source mirror /mnt/data/pfl_native_qa, Git blob hashes require verification",
+  "drift": "D0.5 QA mechanism variation",
+  "ct2_before": 22,
+  "multiplicity": "6 prespecified heterogeneous safety/identification tests; not six independent scientific findings"
+}

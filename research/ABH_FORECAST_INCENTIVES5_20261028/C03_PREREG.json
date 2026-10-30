@@ -1,0 +1,43 @@
+{
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "FROZEN_BEFORE_NEW_2026_DATA",
+  "parent": "C02",
+  "A": {
+    "question": "Does the 2025 British Commons opportunity clustering persist in a distinct later calendar window, Jan–Sep 2026, without selecting on the 2026 outcome?",
+    "unit": "weekly counts 2026 Jan1-Sept30",
+    "outcome": "division counts from published division IDs",
+    "estimand": "weekly dispersion index and fraction in most active quarter of observed weeks",
+    "interference": "bills and legislative calendars cluster votes"
+  },
+  "B": {
+    "H1": "Dispersion >2 and top-quartile share >0.45 on later 2026 sample",
+    "H2": "Source duplication/corrected dates inflate apparent concentration",
+    "H0": "The 2025 pattern does not meet both thresholds"
+  },
+  "C": {
+    "source": "mySociety voting-data monthly 2026-01..09, pinned GitHub commit before download",
+    "n_min": 80,
+    "metrics": [
+      "unique division ids",
+      "all weeks touched by 2026-01-01..09-30",
+      "dispersion population variance/mean",
+      "top ceil(weeks/4) share",
+      "zero weeks",
+      "mean active-day events"
+    ],
+    "controls": "Reproduce same calculation on already observed 2025 Jan-Sep months with proper calendar date filtering and deduplication; compare absolute shifts, not p-values",
+    "falsifier": "dispersion <=2 or top quartile share <=0.45; inconsistency with source month checks",
+    "limitations": "Post hoc campaign selection after 2025; not a preregistration from 2025 or an independent issuer, hence not external replication."
+  },
+  "D": {
+    "QA": "Source monthly sha per file; dedupe exact IDs and dates, all tallies nonnegative, no politicians' names stored",
+    "rights": "CC BY 4.0 intermediary plus OPL v3.0 original; do not reuse personal data"
+  },
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}

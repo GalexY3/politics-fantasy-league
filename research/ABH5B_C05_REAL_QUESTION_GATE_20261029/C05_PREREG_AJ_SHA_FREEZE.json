@@ -1,0 +1,91 @@
+{
+  "schema": "pfl.abh5b.c05.real_source.ab3.2.1.prereg.v1",
+  "date": "2026-10-29",
+  "status": "FROZEN_BEFORE_NATIVE_TESTS_AND_SEALED_COHORT_READ",
+  "parent": {
+    "pr": 52,
+    "commit": "e9c4c6010c831061e3d17cc10df9787cbc8ddc81",
+    "mode": "AB-H_BRANCHED_5",
+    "completed_new_before": 4,
+    "remaining_new_before": 1,
+    "historical_unchanged": 2
+  },
+  "cycle_id": "ABH5B-C05",
+  "type": "AB-P_REAL_EXTERNAL_QUESTION_DATA_PROVENANCE_GUARD",
+  "drift_D": 2,
+  "scientific_grade": "0/3",
+  "CT2_scientific_before": 20,
+  "A": {
+    "question": "Can a source-backed, license-verified public forecasting-question resolution feed be scored safely without silently interpreting raw event counts or financial numeric predictions as probabilities, dropping missing outcomes or reusing future information?",
+    "target": "PFL ingestion and evaluation data-quality prerequisite, NOT a claim of PFL user efficacy",
+    "estimand": "Share of external original question records with verified probability semantics, unique source+ID binary outcome, freeze-before-due-before-resolution chronology, and descriptive Brier on the filtered resolved subset; NOT an ITT or general-population forecast accuracy estimate.",
+    "unit": "public event-question and resolution records, not participants or predictions by any identified person"
+  },
+  "B": {
+    "H1": "Naive numeric-in-[0,1] across all source values yields semantic false positives; source allowlist, canonical composite key and freeze/due/resolution fail-closed guard prevent at least one class of invalid evaluation.",
+    "H0": "Every source's freeze_datetime_value is an independently valid probability and no event-time or duplicate-resolution anomaly is present; unit guard adds no protection.",
+    "adversarial_rivals": [
+      "ForecastBench original canonical benchmark methodology is prior art; this is local integration safety, not innovative calibration science.",
+      "Filtering to resolved outcomes is outcome-conditioned: scoring is only for published resolved subset, no participant ITT.",
+      "Market-frozen community values are strong external probability baselines already produced elsewhere, NOT own PFL predictions."
+    ],
+    "negative_result_policy": "If both untouched source cohorts contain no eligible resolved market questions or tests reveal an API/logic bug, preserve negative; do not assert product feature validated."
+  },
+  "C": {
+    "source": "Original ForecastBench 2025 ICLR benchmark, public GitHub Forecasting Research Institute data",
+    "license": "CC BY-SA 4.0 original repository LICENSE verified from https://api.github.com/repos/forecastingresearch/forecastbench-datasets/contents/LICENSE",
+    "upstream_repository": "https://github.com/forecastingresearch/forecastbench-datasets",
+    "upstream_HEAD_frozen": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "discovery_data": "2026-09-13-llm.json and its resolution set (already inspected, strictly excluded from confirmation): 500 questions, 719 resolution entries; 564 resolved binary entries matched; 137 pass naive [0,1] filter but source meaning not yet audited. ACLED numeric 1.166... and 158.5 observed; freeze fields semantically heterogeneous.",
+    "holdout_confirmatory_unseen_cohorts": [
+      {
+        "date": "2026-09-27",
+        "questions": "datasets/question_sets/2026-09-27-llm.json",
+        "question_blob_sha1": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+        "resolutions": "datasets/resolution_sets/2026-09-27_resolution_set.json",
+        "resolution_blob_sha1": "b2ee53f09407e2b555668f66e286073ace6d5fce"
+      },
+      {
+        "date": "2026-10-11",
+        "questions": "datasets/question_sets/2026-10-11-llm.json",
+        "question_blob_sha1": "fe9772f2275edcada671c4082cf9103185f1becf",
+        "resolutions": "datasets/resolution_sets/2026-10-11_resolution_set.json",
+        "resolution_blob_sha1": "d8416bccbfcd4736e9772748bb42fd4cc403db7e"
+      }
+    ],
+    "design": "Native Node 12 adversarial structural cases AND exact staged JavaScript code run against two untouched public original 500-question holdouts. Source keys source+id; prior no read of heldout row contents. Reject ALL nonprobability sources even if numeric forecast in [0,1]; market allowlist metaculus,manifold,kalshi,polymarket; reject duplicate question or resolution keys, nonbinary/unresolved, invalid/future date, empty/invalid numerical forecast.",
+    "predeclared_metrics": [
+      "total questions",
+      "resolution record count",
+      "accepted/rejected by reason",
+      "accepted per source",
+      "resolved positive count",
+      "mean market-frozen probability Brier on accepted resolved questions only",
+      "0.5 diagnostic Brier .25"
+    ],
+    "predeclared_expected": "At least one nonprobability source rejection in each independent cohort; accepted resolved subset may be zero and is reportable as null. No post-hoc threshold or winner claim.",
+    "negative_controls": [
+      "12 exact native tests before holdout access, including same numeric 0.6 non-market false positive, duplicate resolution, time leakage, missing outcomes and cross-source ID collision",
+      "Every original question either accepted or rejected exactly once",
+      "Cohort metadata forecast_due_date and question_set match; frozen original Git blob SHA and commit checked"
+    ]
+  },
+  "D": {
+    "original_code": "research/ABH5B_C05_REAL_QUESTION_GATE_20261029/forecastbench_gate.js",
+    "sha256": "cd89017bf27664fadd7d7b14d3f946fdd3a3e13bababd96e1f3a981c9c3ddc52",
+    "git_blob_sha1": "4ee6e376e0c471c0d976d3a8f7d9c8023d77e7db",
+    "committed_before_prereg": "fd0d2966f206c8d79c3d1299fef903e86bb2acd1",
+    "test_file": "research/ABH5B_C05_REAL_QUESTION_GATE_20261029/test_forecastbench_gate.js",
+    "test_sha256": "9886c11eaa57c501d73ac8c5730ab6395033e5dfc622daaf7acfcf7e823b7d2a",
+    "test_git_blob_sha1": "ae7e3dfba4f674c529c1160e8eeb6bbdb2999503",
+    "committed_tests_before_prereg": "8672f1efa2582592d02037fb4be9afe8d09d199a",
+    "code_local_and_Github_SHA1_match": true,
+    "runtime": "Local Node v22 stdlib offline for 12 tests; live GitHub connector fetch pinned ORIGINAL public question/resolution JSON read-only; execute exact code fetched by Git blob SHA (no internet from container, no original individual record)."
+  },
+  "E": "After A-J Git commit, execute frozen 12 tests and separately exactly frozen source logic over BOTH unseen external original cohort pairs; record source version, counts, negatives. Do not acquire individual forecast history or participant identifiers.",
+  "F": "Adversarial: prevent treating FRED/ACLED raw forecast numbers below 1 as probability; avoid join collisions and multiple outcomes; reject postdeadline freeze and resolution earlier than due; missing unresolved cannot be scored. Disclose Git SHA alone does not establish privacy of text. PFL objective forecasts are future/no human proof.",
+  "G": "This is a genuine live original source integration readiness audit (NOT independent causal science); original ForecastBench dataset institution already has public benchmark methods. Competent comparative benchmark is frozen external community probabilities, NOT artificial uninformative p=.5; scored .5 only an arithmetic sanity control. Publication source CC BY-SA 4.0 attribution.",
+  "H": "If tests pass, add new cumulative source/prior PF-BR43 about heterogeneous units and temporal provenance; new invalid cases preserved.",
+  "I": "No scientific novelty level, no own forecasts, no public politician rankings or human datasets, no microdata, no feature shipped to end users. CT2 stays 20/100, N1/2/3 remain 0 and launch 0/6.",
+  "J": "Count C05 as one materially distinct AB-P source-backed ingestion/provenance correctness cycle if tests and at least one cohort can be processed under source license; otherwise count incomplete/invalid honestly; historical 2 unspent. This exhausts new 5/5 only if valid; do not substitute simulated users or invent ethical approval."
+}

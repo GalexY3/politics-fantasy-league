@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-29",
+  "type": "INSTRUMENTATION_REPAIR_FOLLOWUP_NOT_AB_CYCLE",
+  "source_hash": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",
+  "format_discovery_run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809018691",
+  "known_formats": {
+    "date_start": "%m/%d/%y",
+    "date_to_close": "%m/%d/%y",
+    "date_closed": "%m/%d/%y",
+    "date_suspend": "%m/%d/%y %H:%M",
+    "missing": [
+      "NA",
+      "NULL"
+    ]
+  },
+  "frozen_counts": [
+    "parsed_nonmissing_start",
+    "parsed_nonmissing_suspend",
+    "parsed_nonmissing_to_close",
+    "parsed_nonmissing_closed",
+    "start_after_to_close",
+    "start_after_suspended",
+    "start_after_actual_closed",
+    "suspend_after_actual_closed",
+    "status closed with actual_closed_missing",
+    "status voided with actual_closed_present",
+    "median nominal duration days for all positive start/to_close pairs"
+  ],
+  "interpretation": "Original two-digit year US dates; nominal deadlines may change and early resolution is legitimate, so only start>closed/unavailability indicates quality concern. No person-level exposure inferred.",
+  "provenance": "First ISO parsing failure preserved; this is a posthoc repair within same metadata QA, not confirmatory new hypothesis",
+  "do_not_collect": [
+    "user_id",
+    "forecasts",
+    "question text",
+    "real politician scores"
+  ],
+  "AB_slots_used": 0,
+  "CT2": 22
+}

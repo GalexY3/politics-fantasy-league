@@ -1,0 +1,1332 @@
+{
+  "mode": "PFL AB-H 2026-10-29 browser/atlas/novelty branch",
+  "parent": "PR36",
+  "source_notes": [
+    {
+      "kind": "GitHub code",
+      "url": "https://github.com/GalexY3/Metodologia-AB/pull/36",
+      "verified": "HEAD and original blobs yes",
+      "limit": "container source is reconstructed from GitHub, not full repo"
+    },
+    {
+      "kind": "AAAI 2025",
+      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/33517",
+      "support": "block-correlated forecasting events prior art"
+    },
+    {
+      "kind": "AAAI 2025",
+      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/33533",
+      "support": "forecasting competition hedging prior art"
+    },
+    {
+      "kind": "RAND 2025",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1111/1756-2171.70019",
+      "support": "contingent prizes RCT/contest study; full page permission unavailable"
+    },
+    {
+      "kind": "JPE 2021",
+      "url": "https://www.journals.uchicago.edu/doi/10.1086/711762",
+      "support": "leaderboard experimental/structural study; archive landing present, rights for microdata unverified"
+    },
+    {
+      "kind": "JOP 2019",
+      "url": "https://www.journals.uchicago.edu/doi/pdfplus/10.1086/700199",
+      "support": "political-information signaling experiment, strong prior-art constraint"
+    },
+    {
+      "kind": "External CC BY-SA 4.0 datasets & strong baseline",
+      "url": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "support": "ForecastBench public repo main e1defb1a70d10311670b12701c837f712c672c03, verified license/README and immutable Git blob hashes for question sets, resolution metadata and model/team leaderboard CSV; methodology already provides difficulty-adjusted Brier",
+      "limitation": "No individual forecaster files inspected, no person-level exposure or randomized leaderboard treatment, no SHA-256 local checkout; no effect measured",
+      "memo": "FORECASTBENCH_EXTERNAL_DATA_GATE_20261029.md"
+    },
+    {
+      "kind": "PR41 T028 original Python and real browser native QA",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40805714464",
+      "second_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40806035386",
+      "support": "80 lots/63 nodes/81 edges same SHA256, 21/21 Playwright Chrome HTTP pilot checks",
+      "limit": "Technical pilot/Atlas QA only; readiness remains false"
+    },
+    {
+      "kind": "JDM 2017 IRT GJP prior art",
+      "url": "https://doi.org/10.1017/S1930297500005647",
+      "support": "Question difficulty/discrimination and non-random forecaster choice already studied",
+      "limit": "No raw microdata acquired or reanalysis done"
+    },
+    {
+      "kind": "Decision 2015 IRT item response prior art",
+      "url": "https://doi.org/10.1037/dec0000032",
+      "support": "Forecaster comparisons with changing question difficulty and timing, established baseline for novelty review",
+      "limit": "No human microdata downloaded and no PFL sample test"
+    },
+    {
+      "kind": "Original GJP Harvard Dataverse dataset-level license",
+      "url": "https://doi.org/10.7910/DVN/BPCDH5",
+      "support": "v1.0 CC0 1.0; 25 unrestrict; run 40807901958",
+      "limit": "Personal-data/ethics and data-specific variables still reviewed separately"
+    },
+    {
+      "kind": "Original GJP documentation and ifps.csv SHA256",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808128321",
+      "support": "Readmes and 617-question metadata original bytes hashed, conditions CTT decoded",
+      "limit": "No person-level forecasts obtained"
+    },
+    {
+      "kind": "Original GJP DDI forecast variables 2011/12–year4",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+      "support": "Year1 DDI 16 columns incl ctt/viewtime, metadata 308232 rows, no values",
+      "limit": "viewtime semantics unresolved, no nonforecast exposure event"
+    },
+    {
+      "kind": "Original GJP date quality repaired",
+      "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+      "support": "%m/%d/%y parse dates; 617 opens, 498 closed, 1 start>deadline anomaly",
+      "limit": "Question timing not personalized eligibility, 273 suspend after closed requires interpretation"
+    },
+    {
+      "kind": "GJ Open official Relative Brier participation weighted FAQ",
+      "url": "https://www.gjopen.com/faq",
+      "support": "Relative Brier score includes active-day participation rate and crowd median",
+      "limit": "Not same historical GJP competition scoring"
+    },
+    {
+      "kind": "Original 2026 randomized imitation study",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+      "support": "Signals versus same signals plus past action visibility; stronger originality rival",
+      "limit": "No human original data or processing rights verified"
+    },
+    {
+      "kind": "Original 2026 rank-reference-group RCT",
+      "url": "https://topcat.aeaweb.org/articles?id=10.1257%2Fapp.20240181",
+      "support": "Narrow comparator group stronger income satisfaction than national; replication package hyperlink",
+      "limit": "No exact package DOI/license or private admin data authorization verified"
+    },
+    {
+      "kind": "AEA 2026 data and code rights policy",
+      "url": "https://www.aeaweb.org/journals/data/data-code-policy",
+      "support": "Explicit non-public data exceptions; README and per-deposit license needed",
+      "limit": "General policy does not authorize individual human rows"
+    },
+    {
+      "kind": "Original public non-person forecasting source licensed CC BY-SA 4.0",
+      "url": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "support": "Immutable upstream original commit and four holdout blob SHA checks; 2×500 real event questions, 60 valid filtered market probabilities, 500 invalid semantic nonprobability question records",
+      "limit": "Source questions heterogeneous including raw count/numeric forecasts, public aggregate market p not PFL prediction; inherited rights for text must be checked before public reproduction."
+    }
+  ],
+  "priors": [
+    {
+      "id": "PF-BR01",
+      "claim": "Fictional UI cannot execute its four-arm switching in Chromium",
+      "update": "REJECTED_DOM_ONLY",
+      "evidence": "C01 18/18 DOM assertions after corrected harness, Chromium 144",
+      "limitation": "HTTP navigation unavailable due administrator policy; no CSP/browser server integration proof"
+    },
+    {
+      "id": "PF-BR02",
+      "claim": "Atlas 0078–0079 chain is missing or mal-parented",
+      "update": "WEAKENED",
+      "evidence": "All 79 JSON batch files parse and parent identifiers form contiguous chain",
+      "limitation": "Canonical Python replay and full graph semantic validation not executed; stale CURRENT remains"
+    },
+    {
+      "id": "PF-BR03",
+      "claim": "PFL correlated-event and scoring gaming mechanisms novel in general",
+      "update": "REJECTED_GENERIC_NOVELTY",
+      "evidence": "Frongillo 2025, Monroe 2025, Lemus 2025/2021 and Marshall 2019",
+      "limitation": "Exact PFL denominator transparency × leaderboard interaction is open, not empirically supported"
+    },
+    {
+      "id": "PF-BR04",
+      "claim": "Independent licensed microdata are ready for PFL incentives validation",
+      "update": "NOT_SUPPORTED",
+      "evidence": "Archive pages but no independent bytes+hash+license+variables",
+      "limitation": "C05 not executed"
+    },
+    {
+      "id": "PF-BR05",
+      "claim": "CT2 prospective expected 2/3 discovery defensible without approved field design",
+      "update": "DOWN_25_TO_22_ORDINAL",
+      "evidence": "Stronger relevant prior art, access gate unresolved and no human evidence",
+      "limitation": "Judgment is ordinal and provisional, not calibrated probability"
+    },
+    {
+      "id": "PF-BR06",
+      "claim": "Opportunity-heterogeneity adjustment in PFL automatically constitutes novel forecasting tournament mechanism",
+      "update": "GENERIC_NOVELTY_WEAKENED_BY_FORECASTBENCH_ICLR2025",
+      "evidence": "ForecastBench existing difficulty-adjusted Brier score compares forecasters over different question sets; public question sets, resolutions, N dataset/market and model leaderboards under CC BY-SA 4.0 at Git blob hashes in memo",
+      "limitations": "Difficulty adjustment not synonymous with human exposure/availability; PFL specific 2x2 transparency x leaderboard causal effect not tested; no scoring run",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "source": "https://www.forecastbench.org/docs/"
+    },
+    {
+      "id": "PF-BR07",
+      "claim": "PFL scoring based on forecaster skill corrected for event difficulty and self-selection constitutes new general statistical methodology",
+      "update": "GENERIC_NOVELTY_FURTHER_WEAKENED_BY_2017_GJP_IRT",
+      "source": "https://doi.org/10.1017/S1930297500005647",
+      "support": "Bo et al. 2017 already use item response theory on Good Judgment Project forecasts to handle question difficulty/discrimination and non-random question selection; different setup from PFL's causal leaderboard × transparency experiment",
+      "limits": "Published source comparison only, no legal person-level GJP file obtained, no PFL effect tested",
+      "grade": "0/3",
+      "ct2_after": 22
+    },
+    {
+      "id": "PF-BR08",
+      "claim": "Reproducing Atlas 0080 and performing actual Chromium localhost Playwright HTTP requires Codex",
+      "update": "REFUTED_FOR_TWO_BOUNDED_TECHNICAL_SUBTASKS",
+      "evidence": "Original Python atlas_delta.py check and brief on 80 lots pass on private GitHub hosted runner with canonical SHA256 e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f (run 40805714464); original pilot HTML/JS Playwright HTTP passes 21/21 on separate hosted runner (run 40806035386)",
+      "limits": "Not proof full product 6/6 gates, browser from administratively restricted local ChatGPT runtime or scientific effects; two short authorized jobs, not Codex",
+      "grade": "0/3",
+      "ct2_after": 22
+    },
+    {
+      "id": "PF-BR09",
+      "claim": "Public existence of a human forecasting archive implies ready-to-analyze individual exposure/eligibility records with unrestricted reuse",
+      "update": "NOT_SUPPORTED_RIGHTS_AND_EXPOSURE_GAP",
+      "support": "Good Judgment Project archive acknowledged by IARPA; Harvard Dataverse may use custom licences/Data Use Agreements; Metaculus API permissions and ToU must be individually respected",
+      "sources": [
+        "https://www.iarpa.gov/newsroom/article/iarpa-announces-publication-of-data-from-the-good-judgment-project",
+        "https://support.dataverse.harvard.edu/harvard-dataverse-general-terms-use",
+        "https://www.metaculus.com/api/"
+      ],
+      "limits": "No verified human bytes, SHA256, source-specific rights, pre-response exposure or randomised PFL leaderboard condition",
+      "grade": "0/3",
+      "ct2_after": 22
+    },
+    {
+      "id": "PF-BR10",
+      "claim": "General item-difficulty and prediction-time correction in geopolitical forecasting is unique to PFL",
+      "update": "FALSIFIED_BY_MERKLE_STEYVERS_MELLERS_TETLOCK_2015_IRT",
+      "source": "https://doi.org/10.1037/dec0000032",
+      "support": "2015 Decision IRT models compare forecasters facing different geopolitical questions and prediction times, with external validation of item estimates; predates Bo et al 2017 and ForecastBench updates",
+      "limits": "Model prior art, not data access or confirmation of PFL treatment effect; PFL needs pre-response exposure and randomized feedback to claim a distinctive new effect",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR11",
+      "claim": "Public GJP dataset is not verifiably lawfully reusable, so independent archival research is unavailable",
+      "update": "SPECIFIC_GJP_DATASET_COPYRIGHT_GATE_PASSED",
+      "support": "Harvard Dataverse official API dataset 2917327, DOI 10.7910/DVN/BPCDH5 v1.0 returns CC0-1.0, termsOfUse null, 25 files unrestricted; original four documentation/IFP SHA256 computed",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40807901958",
+      "limit": "CC0 copyright permission does not automatically authorize all pseudonymized personal-data processing; no human records downloaded; legal/ethics and pre-response exposure gates unverified",
+      "type": "SOURCE_RIGHTS_TECHNICAL",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR12",
+      "claim": "GJP Year1 assigned access to crowd opinions proves an original randomized leaderboard treatment with observable individual exposures",
+      "update": "PARTLY_SUPERSEDED_BY_EXACT_TREATMENT_DESCRIPTION",
+      "support": "Original GJP readme ctt 1a/1b/1c vs 2a/2b/2c could view crowd information; Mellers et al 2014 describes randomized 3 training x4 social influence design; DDI Year1 16 columns including ctt, viewtime, fcast_date",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+      "limit": "Crowd information availability is not public rank leaderboard. DDI viewtime has no operational pre-response definition and forecast-only rows cannot identify nonrespondent exposure, assignment roster not checked.",
+      "type": "EMPIRICAL_SOURCE_DESIGN_UNEXECUTED",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR13",
+      "claim": "Question calendar is missing or unparseable in source GJP dataset",
+      "update": "US_2_DIGIT_DATE_PARSER_REPAIRED_WITH_MEASUREMENT_RISKS",
+      "support": "IFPS original sha256 1f64e548... 617 distinct questions; 498 closed and 119 voided; all 617 start and intended deadlines parse %m/%d/%y; 582 suspend timestamps; 498 actual close; one start after deadline and 273 suspend after actual close",
+      "evidence": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40809208653",
+      "limit": "Initial ISO-only attempt yielded 0 parse and was preserved as failed instrumentation. Closing/suspension event semantics and one anomalous record require robust risk-set rules; availability of question is not person-specific visibility.",
+      "type": "DATA_QUALITY_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR14",
+      "claim": "Generic participation-weighted relative forecast scoring constitutes a novel PFL mechanism",
+      "update": "GENERIC_NOVELTY_NOT_SUPPORTED_GJ_OPEN_PARTICIPATION_WEIGHTING",
+      "support": "GJ Open official FAQ defines Relative Brier as daily Brier relative to crowd median multiplied by fraction of days with active forecast; unanswered questions score zero in its challenges.",
+      "source": "https://www.gjopen.com/faq",
+      "limit": "Modern GJ Open is distinct from GJP Year1 rules, does not solve logged person-question opportunity or causal leaderboard design. Comparators must match exact scoring and estimand.",
+      "type": "PRIOR_ART_NEGATIVE",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR15",
+      "claim": "A visible leaderboard alone produces a positive and durable causal effect on participation",
+      "update": "NOT_IDENTIFIED_BUNDLED_TREATMENT_RCT_2026",
+      "support": "Palikot, Agrawal, Kanodia and Athey (2026) randomized ~10,000 pupils in 138 schools: contest treatment included dedicated leaderboard, book prizes for top 1,000, in-app alerts and WhatsApp parent notifications; controls retained standard leaderboard. Authors report +0.96 stories (SE0.32) during contest and +0.301 (SE0.139) after 12 weeks.",
+      "source": "https://doi.org/10.1007/s11129-026-09311-3",
+      "limits": "Causal effect belongs to bundled contest intervention in education, not isolated leaderboard or adult political forecast decisions. No person-level data inspected.",
+      "type": "INDEPENDENT_RCT_PRIOR_ART",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "additional_verified_20261029": {
+        "design": "138 randomized schools, 9327 actually randomized students (figure 1 original paper); 50% assigned at school level",
+        "source": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+        "important_timing": "4-week active 9.6% treatment vs6.5% control; 12-week active 14.3% vs12.2%. Twelve-week story ITT +0.301 SE0.139 over control mean0.395 is NOT the same four-week participation window.",
+        "data_rights": "Official publisher section says 'Data will be provided in supplementary information files'; underlying person data not accessed.",
+        "mechanism": "Bundled trial school-wide contest + leaderboard + books + notifications; conditional-on-rank analyses posttreatment noncausal; active-user mean decomposition conditional only."
+      }
+    },
+    {
+      "id": "PF-BR16",
+      "claim": "More performance feedback universally increases contest entry",
+      "update": "CONTEXT_DEPENDENT_SIGN_FEEDBACK_MAY_REDUCE_EXCESS_ENTRY",
+      "support": "Erat, Somasundaram and Stouras 2026 working paper reports 511 subjects, 73 contests, 32 rounds each and 16,352 entry decisions; salient feedback lowers excessive entry relative to efficient benchmark under their treatments. Author webpage links OSF Data & Code and AsPredicted preregistration.",
+      "sources": [
+        "https://ssrn.com/abstract=6323919",
+        "https://www.stouras.com/",
+        "https://osf.io/5mpxs/?view_only=7047901f7b6d4f868182ee56fdd22024"
+      ],
+      "limits": "Working paper under review; no independent reproduction, OSF page inaccessible through current search and individual files/license not verified. Treatment feedback on earnings, not PFL public ranking; average fewer entries may improve welfare under excessive entry.",
+      "type": "INDEPENDENT_LAB_PRIOR_ART_ACCESS_GATE",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR17",
+      "claim": "Public report of 2,246 GJP participants proves an assigned nonresponse-complete accessible treatment roster",
+      "update": "SAMPLE_SIZE_ONLY_NO_ROSTER_MATCH",
+      "support": "Association for Psychological Science 2014 description of Mellers year1 reports starting 2,246 participants and randomization 3 × 4; cannot infer each assigned user_id and entry time from that aggregate count.",
+      "source": "https://www.psychologicalscience.org/publications/observer/obsonline/predicting-uncertain-events-on-a-global-scale.html",
+      "limits": "Original Dataverse DDI contains forecast event rows and field labels, not confirmed roster with zero-forecasters. No human bytes downloaded.",
+      "type": "DOCUMENTARY_GJP_ASSIGNMENT_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR18",
+      "claim": "Independent material suitable for sequential contest alternatives has no discoverable dataset",
+      "update": "CANDIDATE_LICENSED_ARCHIVE_NOT_YET_RIGHTS_ADJUDICATED_FOR_HUMANS",
+      "support": "Nelson & Ryvkin (2024) Mendeley Data DOI 10.17632/n6t49bxhh4.3 reports CC BY4, published experimental instructions, Stata files and code for four sequential-contest treatments.",
+      "source": "https://doi.org/10.17632/n6t49bxhh4.3",
+      "limits": "Separate sequential-contest question, not verified leaderboard visibility; no data downloaded, personal-data processing requires review. Novelty against original study unresolved.",
+      "type": "ALTERNATIVE_REPLICATION_CANDIDATE",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR19",
+      "claim": "A public ranking affects all participant ranks and anonymity settings uniformly",
+      "update": "PUBLISHED_HETEROGENEITY_AND_ANONYMITY_PRIOR_ART",
+      "support": "Felkey, Dziadula and Chiang (2023) randomly allocate 400 students into teams up to 10; paper reports high-rank motivation and lower-ranked male disengagement when usernames are non-anonymous. The AEA page links OpenICPSR replication E189681V1, whose public catalog shows 496.7KB Stata .dta and 6.7KB .do.",
+      "sources": [
+        "https://doi.org/10.1257/pandp.20231047",
+        "https://doi.org/10.3886/E189681V1",
+        "https://www.openicpsr.org/openicpsr/project/189681/version/V1/view?path=%2Fopenicpsr%2F189681%2Ffcr%3Aversions%2FV1%2Faeapandprogram2023.do&type=file"
+      ],
+      "limits": "Association of post-treatment rank with subsequent engagement is not randomized rank assignment. Source files not downloaded; user-level data rights, de-identification, assignment roster and eligibility still require review. Product avatar alias may not confer actual anonymity.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_PUBLISHED_PRIOR_AND_ACCESS_GATE"
+    },
+    {
+      "id": "PF-BR20",
+      "claim": "A smaller local leaderboard automatically eliminates ranking drawbacks and all welfare trade-offs",
+      "update": "LOCAL_LEAGUE_RANDOMIZED_COMPARISON_MIXED_OUTCOMES",
+      "support": "Chen, Dobrescu, Foster and Motta (2024), Labour Economics 90:102602, RCT of 890 students comparing local rank + goals versus goals/no feedback; local leagues groups up to 30 showed heterogeneous positive effort/grades and negative stress/wellbeing or grade trade-offs. Authors explicitly state no permission to share data.",
+      "source": "https://doi.org/10.1016/j.labeco.2024.102602",
+      "limits": "No original data access; published RCT in university classes not PFL. Local league is not a universal product-safe treatment; must define outcomes including unintended effort allocation.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_RCT_PRIOR_ART_NEGATIVE_DATA_ACCESS"
+    },
+    {
+      "id": "PF-BR21",
+      "claim": "Leaderboards uniquely increase app participation relative to other salient feedback",
+      "update": "SIX_ARM_RCT_RANK_V_PROGRESS_EXISTING_PRIOR_ART",
+      "support": "Karabiber & Gurol (2026), Acta Psychologica 266:106908, online experiment six conditions with N=219 analyzed participants. Authors report leaderboard and progress bar both improved weighted contributions versus no gamification; longer session duration only in leaderboard condition, no significant structure main effect/interaction.",
+      "source": "https://doi.org/10.1016/j.actpsy.2026.106908",
+      "limits": "Population ages 18–50 short-term app context not PFL, conditional analytic sample excludes <1 min sessions, 13 excluded arms not specified. Reported significance is authors' result, not reproduced. OSF data link noted but files not accessed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_EXPERIMENT_CONTRAST"
+    },
+    {
+      "id": "PF-BR22",
+      "claim": "5.6% overall short-session exclusions are by themselves sufficient to bound any per-arm retention difference near 5.6 percentage points",
+      "update": "FALSE_UNDER_UNREPORTED_ARM_ALLOCATION_SENSITIVITY",
+      "support": "Published Karabiber & Gurol 2026 includes arm sizes [36,37,36,36,37,37], total N219 and excludes 13 <1-min registrants; independent exact rational enumeration of C(18,5)=8568 possible six-arm allocations gives upper feasible retention difference 13/49=26.5306 percentage points if all 13 excluded had been allocated to a 36-person included arm, while pooled 13/232=5.60345%.",
+      "source": "https://doi.org/10.1016/j.actpsy.2026.106908",
+      "evidence": "research/ABH_BRANCHING5_INTERFERENCE_20261029/C04_RUN_RECEIPT.json",
+      "limits": "Conditional feasibility, NOT observed dropout pattern, causal bias, exclusion actual treatment assignment, effect on behavioral outcome, external verification or novel 1/3 discovery. If any excluded individuals were never assigned to an arm, 232 is not verified randomization population.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "PUBLISHED_AGGREGATE_ORIGINAL_SENSITIVITY_0OF3"
+    },
+    {
+      "id": "PF-BR23",
+      "claim": "Individual-level 2×2 factor contrasts are invariant to small-room versus large-room weighting and valid under mixed assignments within a shared ranking room",
+      "update": "SYNTHETIC_CLUSTER_INTERFERENCE_AND_TARGET_ESTIMAND_DIAGNOSTIC",
+      "support": "Pre-frozen eight group fixture 16 fictitious members in 4 arms: control 0/1 and 3/3 across room sizes 1,3; transparency 1/1 and 0/3; leaderboard 0/4; both 4/4. Equal-room transparency-factor contrast 0.5 vs person-weighted 0.25; tests fail closed on mixed treatment room and non-unique participants.",
+      "evidence": "research/ABH_BRANCHING5_INTERFERENCE_20261029/C03_RUN_RECEIPT.json",
+      "sources": [
+        "https://doi.org/10.1257/pandp.20231047",
+        "https://doi.org/10.1016/j.labeco.2024.102602"
+      ],
+      "limits": "Synthetic arithmetic only; estimands differ and neither is universally correct. Human interference exposure, cluster randomization, sample precision, legal/ethics and real-person response not observed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ENGINEERING_SYNTHETIC_ABP_0OF3"
+    },
+    {
+      "id": "PF-BR24",
+      "claim": "Gamification using points or visual theme necessarily reduces longitudinal study attrition",
+      "update": "FALSIFIED_AS_UNIVERSAL_EXPECTATION_BY_2017_INDEPENDENT_NULL_TRIAL",
+      "support": "Lumsden, Skinner, Coyle, Lawrence and Munafò (2017), randomized three Stop Signal Task variants (nongame/points/theme) among 482 registered; 265 completed mandatory four sessions and entered primary conforming analysis; six optional days yielded log-rank chi-square(2)=3.0 p=.22 and mean-session ANOVA F(2,262)=1.534 p=.21. Points rated more enjoyable but did not convincingly lower attrition.",
+      "source": "https://www.jmir.org/2017/11/e395/",
+      "additional_dataset_catalog": "https://doi.org/10.5523/bris.2lh5oz3p93q7p2uyx4w2h70a0v",
+      "limits": "No leaderboard or rank intervention: points/theme only. The main attrition contrast is on 265 conforming persons, not proof of effect in all 482 registrations; absence of statistical significance does not establish exact equality. Dataset catalog only, NO individual rows downloaded.",
+      "type": "INDEPENDENT_NEGATIVE_RCT_PRIOR_ART",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR25",
+      "claim": "As-of leaderboard membership may be reconstructed from the room visible at the end of observation regardless of transfers",
+      "update": "SYNTHETIC_TIME_VARYING_EXPOSURE_C05_REJECTS_RETROSPECTIVE_ROOM_LABELLING",
+      "support": "Frozen offline fixture: 3 fictitious subjects and 4 synthetic display events, member P0 switches A->B on 2026-01-04T00:00:00Z; 9/9 native Node tests require half-open historical membership to classify each event and reject stale room, overlap/gaps, different arms simultaneously assigned to a room and forged data labels.",
+      "evidence": "research/ABH_BRANCHING5_DYNAMIC_ROOM_20261029/C05_RUN_RECEIPT.json",
+      "prior_art": "https://doi.org/10.1016/j.labeco.2024.102602",
+      "limits": "Not independently observed event exposure or randomization, not a novel leaderboard effect, no identifiable human outcomes, no safety of real survey/participants proven.",
+      "type": "SYNTHETIC_PRODUCT_MEASUREMENT",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22
+    },
+    {
+      "id": "PF-BR26",
+      "claim": "Leaderboard ranking and trends have no published randomized direct evidence separating position feedback from true performance",
+      "update": "FALSE_ORIGINAL_PICKAL_2026_RANDOMIZED_FICTITIOUS_FEEDBACK_PREEXISTS_PFL",
+      "support": "Pickal et al 2026, five arms N427 (86 high/up,81 high/down,75 low/up,95 low/down,90 no feedback), random fictitious images unrelated to actual performance, outcome mean higher/up interest=3.37, no-feedback=3.00, higher/up competence=3.62, no-feedback=3.12. Authors report motivation main effect F4,340=3.18, p=.014; actual performance effects small/negligible. Motivation measured only once, preregistered longitudinal H5 could not be tested.",
+      "source": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+      "doi": "10.1016/j.lindif.2025.102836",
+      "license": "CC BY 4.0 original university repository",
+      "limits": "Original study is not PFL and uses fabricated rankings with debriefing; no actual real ranking dynamic, long-term retention, real person's political choices or platform adoption. OSF original record linked but inaccessible, no participant rows accessed.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "STRONG_ORIGINAL_HUMAN_RCT_PRIOR_ART"
+    },
+    {
+      "id": "PF-BR27",
+      "claim": "Published motivation group mean contrast is automatically identified for all 427 five-arm randomized sample in Pickal study",
+      "update": "NOT_IDENTIFIED_CONDITIONAL_345_CASE_ANOVA",
+      "support": "Published F(4,422) for initial accuracy =427; F(4,340) for motivation denotes 345 cases if standard 5-arm ANOVA; 82 present in five-arm reported total but not in that ANOVA. Published interest means 3.37 higher-up and 3.00 no feedback; over scale 1–5, if 82 outcomes have unknown arm distribution, exact worst-case bounds for full 427 are -1.889767 to +2.192222 under stated assumptions. Native test repaired after preserved initial 5/7, then 7/7 pass.",
+      "source": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+      "evidence": "../ABH5B_ORIGINAL_FEEDBACK_20261029/C01_RUN_RECEIPT.json",
+      "limits": "Conditional mathematical sensitivity with extreme unobserved scores and no arm-specific exclusions, not observed dropout, not an ITT estimate nor error in original complete-case analysis; published means rounded; 0/3 scientific novelty.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ORIGINAL_PUBLISHED_AGGREGATE_PARTIAL_ID"
+    },
+    {
+      "id": "PF-BR28",
+      "claim": "Palikot paper's 4-week active share 9.6/6.5 can be combined without qualification with 12-week story gain and interpreted as leaderboard mechanism",
+      "update": "TWO_DISTINCT_WINDOWS_AND_POSTTREATMENT_COMPONENTS",
+      "support": "Original paper section 3.1: 4wk stories control .146, ITT +.178; section 3.3: active treatment .096 vs control .065 (4wk). At 12wk stories control .395, ITT +.301, active .143 vs .122 (12wk). A pre-frozen exact Fraction decomposition of E[Y]=p*E[Y|A] gives conditional symmetric contributions extensive/intensive .08713/.09087 four-week and .08510/.21590 twelve-week, if active share corresponds to same positive completed-story metric.",
+      "source": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+      "evidence": "../ABH5B_ORIGINAL_FEEDBACK_20261029/C02_RUN_RECEIPT.json",
+      "limits": "Reported ITT adjusted for strata while public activity rates may be raw; rounded, window lengths differ, activity semantics not fully matched; post-treatment active selection prohibits causal component attribution, original effect is bundled competition, not PFL.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "INDEPENDENT_RCT_AGGREGATE_TWO_HORIZON_SENSITIVITY"
+    },
+    {
+      "id": "PF-BR29",
+      "claim": "Public CC BY data archive alone proves a legally and ethically sound PFL leaderboard replication dataset",
+      "update": "ARCHIVE_FOUND_OTHER_GAMIFICATION_MECHANISM_NOT_SUITABLE_WITHOUT_DESIGN_AND_ETHICS_GATE",
+      "support": "Regaco 2026 dataset for Matching-to-Sample learning and gamification on Mendeley Data V2 (21 Apr 2026), CC BY 4.0; index lists data_analysis.R, eval_data.csv and mts_data.csv, experiment behavioral psychology rather than confirmed randomized leaderboard assignment.",
+      "source": "https://doi.org/10.17632/3bhp6zd2cw.2",
+      "limits": "Only catalogue/rights metadata examined; no data rows downloaded, no match to PFL estimand, no participant-level privacy adjudication. No A–J opened, only new source candidate.",
+      "grade": "0/3",
+      "CT2_prospective_unchanged": 22,
+      "type": "ALTERNATIVE_SOURCE_CATALOG_GATE"
+    },
+    {
+      "id": "PF-BR30",
+      "claim": "A public leaderboard offered on its own reliably increases all-user platform engagement and has no strong original field experiment rival",
+      "update": "FALSE_STRONG_DIRECT_RANDOMIZED_OFFER_RIVAL",
+      "support": "Kloc, Belo & Li author working paper Oct2024: Dutch high-school exam-preparation app randomized leaderboard offer 2/3 vs none 1/3 at registration, 3,762 eligible users and 108,171 person-days in Table3. Direct offer coefficient for standardized daily active time +0.009(SE0.016), logins +0.008(SE0.006); no statistically discernible engagement effect on five outcomes. Leaderboard placement 3+ days later conditional on continued activity; no full all-registrant ITT verified. Treatment composition high/low similarity between peers was also randomized.",
+      "source": "https://rodrigobelo.com/assets/pdf/leaderboards.pdf",
+      "source_version": "Author-hosted working paper October 2024, NOT independently verified peer-reviewed final publication",
+      "type": "INDEPENDENT_ORIGINAL_FIELD_RANDOMIZATION_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Do not infer equality or all-user result, cannot re-estimate from person-time aggregates. Inside-board peer distance coefficients 0.092 (SE0.012) etc are post-allocation observational associations, not randomized board-offer effects. No participant data downloaded."
+    },
+    {
+      "id": "PF-BR31",
+      "claim": "Published individual time-of-use contrast +0.009(SE0.016) rules out +0.05SD effects robustly under any choice of a five-outcome inference family",
+      "update": "FALSE_MULTIPLICITY_AND_EXPLORATORY_THRESHOLD",
+      "support": "Native exact Git-source-matched Python code and 8/8 tests: point estimate +0.009 SE.016 => normal 95% [-.02235942,.04035942], but Bonferroni five simultaneous outcomes 95% [-.03221327,.05021327]; the illustrative +.05 SD threshold is outside first interval but inside second. All five ordinary 95% intervals cross zero.",
+      "source": "https://rodrigobelo.com/assets/pdf/leaderboards.pdf",
+      "evidence": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json",
+      "type": "ORIGINAL_PUBLISHED_AGGREGATE_REANALYSIS",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Post-source-knowledge chosen .05 SD is illustrative, not preregistered before source consultation or domain MCID. Normal/Bonferroni assumption, rounded original b and SE; correlated outcomes make Bonferroni conservative. It is not an equivalence test, new data, external causal replication or statistical power claim."
+    },
+    {
+      "id": "PF-BR32",
+      "claim": "Only leaderboards bundled with prizes provide published direct experiments on persistence and cognitive performance",
+      "update": "FALSE_EIGHT_ARM_5191_RCT_SEPARATES_PUBLIC_TOP10_AND_SUBJECTIVE_FEEDBACK",
+      "support": "Lovász et al. 2023, 5,191 individuals randomized into 8=2 leaderboard presence ×4 subjective feedback arms (none, supportive, praise, trash talk) in an online perceptual game. Published table A1 has 644 baseline players mean1.72 plays and 652 leaderboard-alone mean2.01. These are session-conditioned participants who clicked start, not an all-eligible uptake cohort. Study reports heterogeneous performance and persistence by feedback and subgroup. Original published article repository accessible without human microdata.",
+      "sources": [
+        "https://doi.org/10.1016/j.socec.2022.101954",
+        "https://real.mtak.hu/153707/"
+      ],
+      "type": "INDEPENDENT_2X4_RANDOMIZED_PRIOR_ART_DOCUMENTARY_GATE",
+      "grade": "0/3",
+      "CT2_prospective_after": 20,
+      "limits": "Do not compare study populations as direct replication of Kloc field cohort; no person-level rows inspected; differences in means without variance and full covariance are not inferential findings. No new A–J opened merely for extracting its existing published means."
+    },
+    {
+      "id": "PF-BR33",
+      "claim": "More activity or performance from full public rank unambiguously improves participant welfare",
+      "update": "FALSE_PUBLIC_RECOGNITION_WELFARE_TRADEOFF_ALREADY_PUBLISHED",
+      "support": "Zou & Gao (2023), J Econ Behavior & Organization 216:187–220, DOI 10.1016/j.jebo.2023.09.030. Controlled laboratory four-policy rank feedback: none, private rank, partial public top-third, full public. Authors find full public can increase performance while elicited unconditional WTP indicates a welfare cost relative to partial/no announcement; structural model ranks partial public + financial incentives as favorable under its assumptions. They report 47.1% judge full public recognition welfare worsening, but this is their laboratory measure, not an empirical estimate for PFL.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0167268123003517",
+      "type": "INDEPENDENT_2023_RCT_WELFARE_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "No person-level data accessed; task cognitive lab, not geopolitical probability forecasting. WTP elicitation and model are context dependent. A score from another task cannot be transported to PFL."
+    },
+    {
+      "id": "PF-BR34",
+      "claim": "Social information that increases mean crowd forecasting accuracy must also reduce aggregate risk",
+      "update": "FALSE_SCIENTIFIC_PRIOR_MEAN_ACCURACY_VS_CORRELATED_TAIL_RISK",
+      "support": "Adjodah, Leng, Chong, Krafft, Moro, Pentland (2021), Entropy 23(7):801, DOI 10.3390/e23070801: study of 2037 people, 4634 forecast sets in seven real financial asset rounds with pre/post information exposure, relating social belief updates to mean accuracy and aggregate predictive risk. Source describes a Pareto accuracy-risk frontier, and the Brexit round as contextual finding.",
+      "source": "https://www.mdpi.com/1099-4300/23/7/801",
+      "secondary_official": "https://www.media.mit.edu/publications/accuracy-risk-trade-off-due-to-social-learning-in-crowd-sourced-financial-predictions/",
+      "type": "INDEPENDENT_CROWD_FORECASTING_EXPERIMENT_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Not a specific randomized PFL rank intervention. Publisher article text says release data but PMC Data Availability Statement says Not applicable; licensing/rows not inspected. Even if paper open CC BY, no authority to process underlying human data inferred."
+    },
+    {
+      "id": "PF-BR35",
+      "claim": "A truthful Brier score necessarily elicits truthful beliefs even when only the highest-scoring forecaster wins",
+      "update": "FALSE_PROPER_SCORE_NOT_EQUAL_INDIVIDUAL_STRATEGY_PROOF_PRIZE_MECHANISM",
+      "support": "Witkowski, Freeman, Vaughan, Pennock, Krause, Incentive-Compatible Forecasting Competitions, Management Science (online 2022, volume 69 2023), DOI 10.1287/mnsc.2022.4410. Authors prove classic deterministic winner-take-all can incentivize exaggerated beliefs and introduce Event Lotteries Forecasting mechanism with scoped incentive-compatible selection. Our original frozen Fraction formal product audit C04 reproduces exact scoped counterexample: p=.55 rival=.6, report .61 increases deterministic win chance .45→.55 while a quadratic score-lottery has strictly best win chance at p under fixed rival q.",
+      "source": "https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4410",
+      "evidence": "../ABH5B_INCENTIVE_FORMAL_20261029/C04_RUN_RECEIPT.json",
+      "type": "ORIGINAL_THEORETICAL_PRIOR_AND_NEW_LOCAL_FORMAL_ABP",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "No novel theorem claimed; no existing PFL winner-take-all payout established; two forecasters/single binary event only, not dependent political elections. Product code is standalone audit, not deployed incentive scheme."
+    },
+    {
+      "id": "PF-BR36",
+      "claim": "Proper score + public ranked forecasting is an untested governance idea for long-term geopolitical tournament",
+      "update": "PRIOR_GJP_RANDOMIZED_TOURNAMENT_MARKET_V_POLL_2016",
+      "support": "Atanasov et al. (published online 2016, Management Science 63(3) 2017), DOI 10.1287/mnsc.2015.2374, 2400+ forecasters over 261 events and two seasons randomized into prediction markets ranked by earnings or prediction polls individually/in teams ranked by Brier. Carefully weighted/calibrated polls performed competitively with markets; study is not randomized public vs private rank visibility per se.",
+      "source": "https://pubsonline.informs.org/doi/10.1287/mnsc.2015.2374",
+      "type": "ORIGINAL_GEOPOLITICAL_FORECASTER_EXPERIMENT_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Rank based on Brier among poll arms does not isolate the social exposure or recognition treatment; published summaries only, microdata not accessed."
+    },
+    {
+      "id": "PF-BR37",
+      "claim": "Peer social information and team competitive ranking must be delivered as an inseparable treatment bundle",
+      "update": "ALREADY_SEPARATELY_RANDOMIZED_IN_FIELD_CONTEST",
+      "support": "Chen et al. (first online 2021, Journal Economics & Management Strategy 32(3) 2023) DOI 10.1111/jems.12459: Taiwan university electricity-saving group contest randomizes contest participation, group composition and competitive inter-team and social within-team information; study reports both information types changed relative rank beliefs and effort. Thus PFL must separate social-belief access from rank publicity for a novel causal mechanism claim.",
+      "source": "https://doi.org/10.1111/jems.12459",
+      "type": "INDEPENDENT_2023_FIELD_FEEDBACK_FACTOR_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Residential electricity room-hour outcomes are not probabilistic forecasts or direct prediction league engagement, no person-level source data permission inspected."
+    },
+    {
+      "id": "PF-BR38",
+      "claim": "Private vs public rank recognition is untested in real field settings",
+      "update": "KNOWN_TOEIC_PRIVATE_V_PUBLIC_RANK_RANDOMIZATION",
+      "support": "Rank as an inherent incentive: Evidence from a field experiment (2012), Journal of Public Economics, contrasts no rank vs privately informed ranking vs publicly posted ranking in language-course TOEIC prep. Published abstract reports initial balance and end-test means 604,656,680 respectively.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0047272712000436",
+      "type": "INDEPENDENT_ORIGINAL_FIELD_RANK_VISIBILITY_PRIOR",
+      "grade": "0/3",
+      "CT2_prospective": 20,
+      "limits": "Not forecasting or PFL, and not enough evidence to separate effects on public welfare or social learning in political questions."
+    },
+    {
+      "id": "PF-BR39",
+      "claim": "If raw signals are already visible, additionally displaying others' decisions cannot causally improve information aggregation",
+      "update": "CONTRADICTED_BY_INDEPENDENT_EXPERIMENTAL_DESIGN_AT_LEAST_IN_STUDIED_TASK",
+      "support": "Agranov, Lopez-Moctezuma, Strack and Tamuz (2026) JET 235:106203, RCT compared signals-only to same signals plus others' previous actions and reported improved optimal choices with action visibility. Manuscript originally available NBER 2022, trial registration AEARCTR-0003315 cited by authors.",
+      "source": "https://www.sciencedirect.com/science/article/pii/S0022053126000669",
+      "original_metadata": "https://authors.library.caltech.edu/records/e24t8-8p337",
+      "rights": "Original Caltech supplemental PDF 2.2MB, © Elsevier reserved; NBER data appendix listed but access failed; neither human level rights nor assignment/eligibility established.",
+      "limits": "The intervention is observing past binary decisions on a shared public-signal urn, NOT a rank display or geopolitical probability forecast. No PFL effect, no microdata retrieved, no novelty in 'see other's actions' alone.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_ORIGINAL_2026_RCT_NOVELTY_RIVAL"
+    },
+    {
+      "id": "PF-BR40",
+      "claim": "Changing a rank comparison group has no previous direct randomized evidence regarding welfare and reference groups",
+      "update": "FALSE_REFERENT_GROUP_RANDOMIZATION_WITH_WELFARE_OUTCOMES",
+      "support": "Xu et al (2026), AEJ Applied Economics 18(3):145–177, DOI 10.1257/app.20240181, randomized Finnish middle-aged subjects to receive relative income rank from distinct comparison groups; stronger income-satisfaction reaction in narrow references than national; life-satisfaction evidence weaker.",
+      "source": "https://topcat.aeaweb.org/articles?id=10.1257%2Fapp.20240181",
+      "independent_repository": "https://researchportal.tuni.fi/en/publications/which-reference-groups-matter-and-how-a-relative-income-informati/",
+      "rights": "AEA page lists replication package but exact DOI/readme/license not fetched, and administrative income/personal outcomes may be restricted. No human records read.",
+      "limits": "Income and subjective welfare, not forecasting leaderboard causal effect. Strong refutation of broad novelty claim only; direction/size do not transfer to PFL.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_ORIGINAL_2026_RCT_NOVELTY_RIVAL"
+    },
+    {
+      "id": "PF-BR41",
+      "claim": "A journal's replication-package hyperlink or article license automatically permits original participant-microdata processing",
+      "update": "FALSE_DATASET_AND_LICENSE_GATES_SEPARATE",
+      "support": "AEA Data and Code Availability Policy updated Feb2026 requires Data Availability Statement, instrument/code and licensing; explicitly allows exceptions for confidential individual data, with README documenting omissions. AEA Data Editor FAQ Aug2026 distinguishes migrated and newer deposits, and deposit-specific license.",
+      "source": "https://www.aeaweb.org/journals/data/data-code-policy",
+      "secondary": "https://aeadataeditor.github.io/aea-de-guidance/FAQ.html",
+      "limits": "This is source-use governance, NOT a novel scientific observation; dataset-specific privacy, IRB, GDPR and use permissions remain unverified until actual approved deposit is inspected.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "SOURCE_AND_ETHICS_ADVERSARIAL_GATE"
+    },
+    {
+      "id": "PF-BR42",
+      "claim": "Beating an uninformative prior is sufficient evidence of forecasting usefulness independent of simple benchmark models",
+      "update": "STRONG_KNOWN_BASELINE_COMPARATOR",
+      "support": "Forecasting Collaborative 2023 Nature Human Behaviour, DOI 10.1038/s41562-022-01517-1: social science forecasting tournaments 86 teams/359 forecasts, later 120 teams/546 forecasts; authors found mean expert forecasts no more accurate than historical means, random walks, linear models or public aggregate on their studied series.",
+      "source": "https://www.nature.com/articles/s41562-022-01517-1",
+      "limits": "Published paper is not a randomized public leaderboard effect; it's independent forecasting baseline prior. No original individual rows downloaded.",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "type": "INDEPENDENT_FORECASTING_COMPETENT_BASELINE"
+    },
+    {
+      "id": "PF-BR43",
+      "claim": "Published mixed-source forecasting question-set snapshots can be Brier-scored by interpreting any numeric freeze_datetime_value between 0 and 1 as a probability and matching only by question ID",
+      "update": "FALSE_REAL_ORIGINAL_QUESTION_SEMANTICS_AND_TIME_PROVENANCE_AUDIT",
+      "support": "Original ForecastBench ICLR 2025 official CC BY-SA repository, immutable Git source commit 027ba0b3017a60e0e64602d724284ac6b2d91134. Our AB-P pre-frozen code/test and post-prereg independent real public cohorts 2026-09-27 and 2026-10-11 each contain 500 actual questions. Exactly 250 per cohort come from non-probability raw-quantity source families, excluded even if numeric freeze value is <=1. Of 1000 original questions 60 meet source and outcome/date gates (52 Sep27,8 Oct11), with missing/unresolved others. Native Node 12/12 PASS after preregistered exact duplicate-row accounting repair; preserved first 8/12 crash. Source+ID join, strict freeze<due<resolution, disallow multiple resolution records, no imputation of unresolved outcomes. On selected resolved external market subset official frozen market aggregate Brier 0.1680 and 0.0707 respectively; these are NOT PFL forecasts nor population-wide evidence.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "pinned_upstream_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "license": "CC BY-SA 4.0 for repository question/outcome datasets, authors Forecasting Research Institute, Karger et al ICLR 2025",
+      "evidence": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/C05_RUN_RECEIPT.json",
+      "type": "VALID_ABP_SOURCE_BACKED_REAL_QUESTION_INGESTION_PROVENANCE_GUARD",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No original human forecast history, identification, rank exposure, users or personal data; source publisher/market texts not redistributed. Frozen aggregate market forecast provenance and event resolutions are observational among selected resolved cases. Do NOT claim statistical superiority vs naive p=.5 as a competent comparator; release gates remain 0/6."
+    },
+    {
+      "id": "PF-BR44",
+      "claim": "Strong Brier accuracy on the subset of questions that resolved by a fixed date guarantees a good mean Brier on all initially forecast market questions",
+      "update": "NOT_IDENTIFIED_WITH_ORIGINAL_FORECASTBENCH_MISSING_BINARY_OUTCOMES",
+      "support": "Original ForecastBench publicly licensed 2026-09-27 and 2026-10-11 LLM question cohorts (500 each), immutable Git original dataset version 027ba0b3017a60e0e64602d724284ac6b2d91134, market binary questions 250 per cohort. At as-of 2026-10-29 only 52/250 and 8/250 have unique observed eligible binary outcome. Frozen market/community p resolved-only means 0.1680145 and 0.07071875. Exact no-assumption binary missing-outcome partial bounds (all 250): 2026-09-27 [0.0970572,0.5194762], 2026-10-11 [0.0783934,0.5985091]. Both include 0.25 weak p=.5 comparator; therefore no full-cohort market superiority claim is identified without further outcomes/assumptions.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "source_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "evidence": "../ABH30_NEW_20261029/C03_RUN_RECEIPT.json",
+      "type": "ABR_PUBLIC_NONPERSON_ORIGINAL_QUESTION_PARTIAL_IDENTIFICATION",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Deterministic worst-case bounds NOT confidence intervals, source-author community p not PFL forecast, p=.5 weak comparator, data same platform/cohorts already analyzed in former C05 (not independent confirmation); unknown resolutions may not be simple missing-at-random; no human causal effect."
+    },
+    {
+      "id": "PF-BR45",
+      "claim": "A resolution_date earlier than the retrospective cutoff establishes that the result was in the public source data by the cutoff, even if the JSON version used was committed later",
+      "update": "FALSIFIED_FOR_ORIGINAL_FORECASTBENCH_GITHUB_FILE_AVAILABILITY",
+      "support": "Direct original public GitHub per-path commit history forecastingresearch/forecastbench-datasets: the Sep27 question_set was published Sep27 00:08:59Z, but no Sep27 resolution_set commit exists by Oct01 23:59:59Z or Oct06 23:59:59Z. The first resolution_set appears Oct07 07:19:29Z, original SHA 4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110, raw file Git blob SHA 0b67cfec67fad4b23899e8e48c6ca3a034344edc verified from 107,702 raw UTF8 source bytes. That first original snapshot Oct08 00:00Z has 500 questions, 441 resolution entries and 30 eligible market binary outcomes under pre-frozen source semantics. Prior ABH30 C01 claimed 10 Oct01 eligible outcomes by applying an Oct01 event-date filter to LATER Oct29 snapshot; those ten cannot be asserted available from this Git dataset Oct01. Later Oct29 original snapshot yields 52 eligible. No human or political actor data.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "first_commit_url": "https://github.com/forecastingresearch/forecastbench-datasets/commit/4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+      "evidence": "../ABH30_NEW_20261029/C05_RUN_RECEIPT.json",
+      "type": "ORIGINAL_GIT_SOURCE_PUBLICATION_HISTORY_ADVERSARIAL_FALSIFICATION",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Whole original Git repo file publication timing only, not all external third-party market or person-level first_public_at; Oct08 and Oct29 same institution not independent replication. 15 native Python tests of staged provenance guard, positive raw original ingestion of newly staged Python module not run locally; original data parsed with prior Git-frozen JS source guard. Not causal science."
+    },
+    {
+      "id": "PF-BR46",
+      "claim": "A fixed resolved-only public forecasting score and first published source snapshot remain equivalent across all later original repository versions, with no measurable source selection change",
+      "update": "FALSIFIED_FOR_COVERAGE; NO_OUTCOME_REVISIONS_DETECTED_IN_THE_TWO_PREDECLARED_SOURCE_COMPARISONS",
+      "support": "Original ForecastBench Git repo published three different source commits: Oct07 07:19:29Z, Oct23 06:53:25Z, Oct29 07:30:17Z, each with independent resolution-set Git blob SHA verified from seven original UTF-8 public files; exact postrepair preregistered replay on original question/outcome JSON. Sep27 first Oct08 30/250 binary market questions vs Oct24 46/250 vs Oct29 52/250; Oct11 first Oct24 2/250 vs Oct29 8/250. Oct08→Oct29 Sep27 newly known +22, retained30, removed0, flipped0. Oct24→Oct29 Sep27 newly known+6 retained46 removed0 flipped0; Oct11 newly known+6 retained2 removed0 flipped0. Coverage shifts on source publication without proving changes in original human predictions. Exact three source checkpoints only; no arbitrary date interpolation due missing intermediate vintage history. All 25 native core and 8 CLI adversarial tests pass following two transparent preregistered repairs.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C07_RUN_RECEIPT.json",
+      "type": "ORIGINAL_PUBLIC_EVENT_QUESTION_SOURCE_VINTAGE_PANEL_ABH",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No full offline original 7-blob CLI positive local run, V8 GitHub original source replay only. Public question-level original data do not contain participant/exposure/assignment, same publisher and original cohort questions, no full market forecast rival or causal science. Zero flipped outcomes in these selected source versions, not a general claim for all versions."
+    },
+    {
+      "id": "PF-BR47",
+      "claim": "The original 2026 randomized income rank-information experiment Xu et al has a replication package DOI demonstrating legally reusable original participant treatment/administrative microdata",
+      "update": "DOI_CODE_DEPOSIT_IDENTIFIED_BUT_HUMAN_DATA_RIGHTS_NOT_ESTABLISHED",
+      "support": "Original Tampere University institutional research data catalog links 'Code for: Which Reference Groups Matter and How? A Relative Income Information Experiment with Administrative Data' to DOI 10.3886/E227582, made available 7 July 2026, type Software, publisher ICPSR. Institutional record says researchers assist data access in collaboration with Statistics Finland. Article AEJ Applied Economics 2026 DOI 10.1257/app.20240181 randomized rank information across different reference groups, a strong social rank/welfare prior art rival. ICPSR standard terms limit redistribution and policy explicitly warns against sharing restricted data with LLMs. A code DOI does not establish user treatment assignment roster, full eligible nonresponse denominator, pre-response exposure, original individual data release rights or ethics approval for PFL.",
+      "source": "https://researchportal.tuni.fi/en/datasets/code-for-which-reference-groups-matter-and-how-a-relative-income-/",
+      "rights_policy": "https://www.icpsr.umich.edu/sites/icpsr/about/policies/redistribution",
+      "study_DOI": "10.1257/app.20240181",
+      "exact_code_DOI": "10.3886/E227582",
+      "evidence": "../ABH30_NEW_20261029/C07_HUMAN_DATA_ACCESS_GATE.json",
+      "type": "DOCUMENTARY_ORIGINAL_CODE_METADATA_AND_R5_LEGAL_GATE_NOT_NEW_HUMAN_CYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Institutional code record only; deposit README/license and original administrative rows not retrieved or inspected. No license accepted, no personal data downloaded and no human experiment executed."
+    },
+    {
+      "id": "PF-BR48",
+      "claim": "Original public resolution-set row counts will increase monotonically over repository versions if known binary outcomes accumulate, and non-monotone raw rows necessarily mean loss of eligible observed binary outcomes.",
+      "update": "FALSIFIED_FOR_RAW_ROW_COUNTS; MARKET_BINARY_ELIGIBLE_OUTCOMES_MONOTONE_IN_VERIFIED_16_PLUS_3_SOURCE_VINTAGES",
+      "support": "Complete original git commits?path history for forecastingresearch/forecastbench-datasets: Sep27 resolution_set has 16 original published Git blobs 7–29 Oct 2026; Oct11 has three 23/24/29 Oct, plus two unchanged original public question blobs. All 21 distinct full UTF-8 Git blob SHA1 independently verified, frozen code evaluated source-eligible market binary p/y at each version. Sep27 eligible 30→52, Oct11 2→8, 0 lost accepted keys or flipped Y among directly compared adjacent source versions; nevertheless source raw resolution record counts Sep27 441 at 7 Oct, 440 at 8 Oct, 427 at 12 Oct, 490 at 14 Oct, and 486 on 24 Oct; Oct11 441 23 Oct→438 24 Oct, showing non-monotone raw data maintenance not simple append-only row growth. This is a diagnostic about source version maintenance and selection, not causal ranking behavior or human prediction quality.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C08_RUN_RECEIPT.json",
+      "type": "ABH_ORIGINAL_PUBLIC_COMPLETE_GIT_VERSION_PROVENANCE_INTRA_SOURCE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Original same source vendor, two previously inspected cohorts, no independent scientific replication, not proof no outcome revisions outside public binary eligible subset or outside checked Git history. 27 V8 tests on frozen Git code (not native Node); original source data processed in connected V8 in overlapping version batches rather than native local source-file E2E."
+    },
+    {
+      "id": "PF-BR49",
+      "claim": "Original public ForecastBench resolution-set records are effectively append-only in source key and metadata, so source-version changes matter only when the eligible binary market outcome changes.",
+      "update": "REFUTED_FOR_RAW_SOURCE_ROWS: ORIGINAL_SOURCE_REMOVALS_AND_METADATA_VALUE_REVISIONS_PRESENT; PREVIOUS_BINARY_ELIGIBLE_SUBSET_ZERO_FLIPS_NOT CONTRADICTED",
+      "support": "After pre-registering 3 historical revision pairs (C10) and freezing prior C09 original code Git blob, connected GitHub fetched 6 complete public original resolution-set JSON files; independent Git blob SHA1 was recomputed on all full UTF8 bodies and matched original repository objects 6/6. Across Sep27 Oct07→Oct08 441→440 rows: removed1 added0 mutated219; Sep27 Oct11→Oct12 437→427: removed10 added0 mutated212; Oct11 Oct23→Oct24 441→438: removed5 added2 mutated240. All source+id unique and count identities hold. Separate posthoc field breakdown found resolution_date changes 214/212/239 and resolved_to changes 79/77/128; many continuous values not binary Y. Same cohort/source as C08; not new human science.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C10_RUN_RECEIPT.json",
+      "type": "ABH_ORIGINAL_PUBLIC_GIT_RAW_ROW_REVISION_SOURCE_QUALITY",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Three outcome-informed source pairs chosen because C08 had already found declining total rows; non-random selection and same public publisher. Field-level decomposition posthoc. Git version identity is not authoritative per-item first_public_at, no human microdata/exposure/causal effect, no full positive native source-file CLI. Counts of transitions are not unique changed events."
+    },
+    {
+      "id": "PF-BR50",
+      "claim": "Interim comparison feedback/rank in human forecasting is an untested or novel general PFL mechanism for increasing engagement.",
+      "update": "PRIOR_ART_DIRECT_RANDOMIZED_FOUR_ARM_2018_PUBLISHED_AAAI_2020; NOT_NOVEL_AS_GENERIC_CLAIM",
+      "support": "Independent original paper Mandal, Radanović & Parkes (AAAI 2020), DOI 10.1609/aaai.v34i02.5591, RCT four incentive treatments. 891 included selected workers of 945 enrolled, arms SR=207, PP=220, SR+PPRank=238, SR+PP=226. Rank condition daily **private quartile of peer prediction score**, not proven public all-player leaderboard. Authors report greater engagement with interim peer feedback and good aggregate accuracy for SR and SR+PPRank in subsets. Repo README Git SHA d4197dbdb69b6934b6ad565cfe070ae9009ee046 and analysis Rmd 9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c. No PFL human replication.",
+      "source": "https://github.com/debmandal/PP-MTurk-AAAI2020",
+      "doi": "10.1609/aaai.v34i02.5591",
+      "evidence": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json",
+      "type": "ABH_INDEPENDENT_PRIMARY_PRIOR_ART_RANDOMIZED_HUMAN_FEEDBACK_DESIGN",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "rights": "PUBLIC_README_AND_ANALYSIS_CODE_ONLY; participant files not downloaded; repository license NULL",
+      "limits": "External prior art about private quartile, not a PFL public leaderboard experiment. No comparable PFL human estimand. Conditioning on retained weekly workers and monetary package differences limit transport and interpretation."
+    },
+    {
+      "id": "PF-BR51",
+      "claim": "Published external longitudinal update/forecast-change analysis code can be assumed to align with its stated daily increments, without independent indexing audit.",
+      "update": "ORIGINAL_RMD_STATIC_CODE_COUNTEREXAMPLE_POSTHOC: OCT13 UPDATES CALL USES VAR2_5_MATCHING_OCT11_TO_OCT12_NOT_6; CHANGE13_EXCLUDED_FROM_CHANGE.oct",
+      "support": "Pinned independent Rmd 1169 lines blob SHA 9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c: CountUpdates var2=5 reads Oct11/Oct12 (lines 183-186); var2=6 reads Oct12/Oct13 (188-192); Updates13$updates calls var2=5 on line 222 (days 8-13 selectors [1,2,3,4,5,5]); Change.oct rbind lines 313-316 omits Change13. V8 static regex extracted original code with frozen document identity. Synthetic logic example cumulative Oct11=2 Oct12=4 Oct13=7: wrong source-tagged Oct13 increment 2 vs expected 3. Impact on final paper outcomes not measured, R not run.",
+      "source": "https://github.com/debmandal/PP-MTurk-AAAI2020/blob/a5ac7fcc0eec4325f603f0de9085e3021def9830/src/analysis.Rmd",
+      "evidence": "../ABH30_NEW_20261029/C12_RUN_RECEIPT.json",
+      "type": "ABH_INDEPENDENT_ORIGINAL_ANALYSIS_SCRIPT_POSTHOC_CODE_VALIDITY_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Post-hoc source-code issue, not preregistered directional outcome, no raw data or original R execution, can't infer published aggregate effects invalid/size. No participant identifiers processed."
+    },
+    {
+      "id": "PF-BR52",
+      "claim": "Given missing outcomes, analyzing four-arm PFL fictional pilots with only completer means and a COMPLETE_CASE_NOT_ITT warning is enough to know which sign of treatment effect is compatible with the assigned population.",
+      "update": "MATHEMATICAL_COUNTEREXAMPLE_PARTIAL_IDENTIFICATION_BOUNDS_DEPEND_ON_MISSINGNESS; SIGN_NOT_IDENTIFIED_IN_ADVERSARIAL_FIXTURE",
+      "support": "Native Node 22.16.0 first run 18/18 on frozen code commit 5c2b06558f7f497a4d21954467f48d95310247d7. For assigned N, observed n, observed normalized sum S, arm mean lies in [S/N,(S+N-n)/N] with only outcomes in [0,1]. In synthetic four-cell PFL case 10 assigned per arm, complete control/transparency/both means 0.6; leaderboard 4/10 observed sum 3.8 => complete-case mean 0.95, naive factorial leaderboard +0.175 while bounded effect [-0.11,+0.19] includes zero, interaction [-0.38,+0.22]. Mathematical partial identification not human causal effect. Existing pilot_analysis_dryrun.mjs flags incomplete cases but does not compute bounds.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C13_RUN_RECEIPT.json",
+      "type": "ABH_MATHEMATICAL_BOUNDED_SYNTHETIC_PRODUCT_IDENTIFICATION",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Standard worst-case outcome bounds, not original mathematical discovery; synthetic aggregate only, no human randomization/exposure, no interpolation to real-political social effects, no release gate passed."
+    },
+    {
+      "id": "PF-BR53",
+      "claim": "Directly comparing a private peer-rank quartile with a complete public league leaderboard isolates pure visibility of feedback for a PFL trial.",
+      "update": "REJECT_AS_BUNDLED_TREATMENT: rank granularity and audience vary together; propose explicit 2x2 self/room × quartile/full-order plus noncomparative own-score baseline. STATIC_FICTIONAL_CONTRACT_ONLY.",
+      "support": "ABH30-C14 native Node config-only tool verifies 5-arm fixed event frame hash string, schedule hash string, equal virtual Brier rewards and baseline own score, with 20/20 tests after a repair. Original first-run 18/18 was invalidated by a native counterexample: object with toString() returning 64 hex passed regex, then explicit typeof checks were frozen and retested 20/20. Supports only planned exposure parity, NOT human delivery, randomization, privacy approval or effects.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C14_RUN_RECEIPT.json",
+      "type": "ABH_FICTIONAL_RANK_EXPERIMENT_FACTORIAL_DESIGN_AND_NEGATIVE_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Factorial design of private/public × quartile/complete changes information content, not causal test. Peers visible in room create interference; hashes are input declarative strings, not actual source authentication. First attempt invalid preserved, no empirical PFL causal or launch evidence."
+    },
+    {
+      "id": "PF-BR54",
+      "claim": "Peer-rank league feedback in an otherwise controlled activity should unambiguously improve aggregate productivity, longer-run performance and wellbeing without effort-displacement costs.",
+      "update": "EXTERNAL_RCT_PRIOR_ART_COUNTEREXAMPLE_HETEROGENEOUS_EFFORT_REALLOCATION: local leaderboard feedback can raise ranked-task activity but shift attention and exam performance, subgroup effects differ; no PFL data",
+      "support": "Chen, Dobrescu, Foster & Motta, Labour Economics (2024), DOI 10.1016/j.labeco.2024.102602, open-access original RCT among 2018 Australian undergraduates. Social Goals dynamic local leagues up to 30 similarly scoring students vs Goals (milestones without social cues); reported 2.6% greater likelihood of overachieving ranked assignment at mid-semester and heterogeneous academic/wellbeing responses (~+0.27 SD low performers and -0.25 SD high performers on certain exams), with no durable course-final effects. Caveat: some subgroup analysis based on posttreatment scores and outcome selection. Data availability expressly: authors do not have permission to share data. This source was discovered/reviewed posthoc during C14 and is NOT a counted new AB cycle.",
+      "source": "https://doi.org/10.1016/j.labeco.2024.102602",
+      "evidence": "../ABH30_NEW_20261029/C14_POSTHOC_INDEPENDENT_RANK_RCT_NOTE.md",
+      "type": "EXTERNAL_OPEN_ACCESS_HUMAN_RCT_HETEROGENEOUS_LOCAL_LEAGUES_POSTHOC_BIBLIOGRAPHY_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "rights": "ARTICLE_OPEN_ACCESS_AGGREGATES_ONLY; authors explicitly do not have permission to share individual participant data",
+      "limits": "Not public vs private quartile factorial, not PFL users, some heterogeneity by post-treatment academic achievement, direct paper data unavailable. Pre-freeze results seen; no cycle spent, no new PFL causal finding. Source abstract % wording not interpreted as percentage points."
+    },
+    {
+      "id": "PF-BR55",
+      "claim": "A matching fictional design assignment or opportunity proves an individual viewed the assigned rank feedback; a missing display receipt can be encoded as no exposure.",
+      "update": "REJECT_AS_INSTRUMENTATION_ASSUMPTION: SYNTHETIC_ASSIGNMENT_OPPORTUNITY_RECEIPT_COUNTS_SEPARATED_AND_MISSING_NOT_ZERO",
+      "support": "ABH30-C15 prereg commit 582035ac5d18ddb1ce2504cf0dba044225f61e9a frozen code Git blob db4df150fa73d26ee3ec40965586e4f3ca3c790f and 20-case tests ff04ef970dca3e5f68c98aa7f5818e6022287b1b. Native Node v22.16.0 20/20 PASS. Five-arm synthetic assignment/opportunity/log mapping rejects changed rank granularity, audience, stale room, duplicate receipts, out-of-window renders, contaminated room arms. Absent receipts output UNKNOWN_EXPOSURE_NOT_ZERO. A literal 'INDEPENDENT_SYNTHETIC_RENDER_LOG' does not authenticate real renderer. No human data, causal evidence, or launch gate.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C15_RUN_RECEIPT.json",
+      "type": "ABH_SYNTHETIC_FIVE_ARM_EXPOSURE_OPPORTUNITY_PRODUCT_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Synthetic-only receipts are self-declared fixture records. No secure independent delivery, real exposure or allocation, opportunity frame completeness, no human ITT or effect sizes."
+    },
+    {
+      "id": "PF-BR56",
+      "claim": "A five-arm treatment configuration and matched synthetic receipt imply the view content was actually computed and displayed.",
+      "update": "DISTINGUISH_STATIC_CONFIG_SYNTHETIC_RECEIPT_FROM_EXECUTED_NODE_VIEW; STILL_NO_BROWSER_EXPOSURE",
+      "support": "C16 Node frozen prereg af6ee3f18d954dca3d1e6ed7d932ac630bc8872a, original source ee94c85dc66b81b933e6ef3359cfef889bd2cf8d, 15/15 native tests. Computes five-arm view content with private/public compartments and synthetic receipts internally. Not a DOM browser and not independently attested human receipt.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C16_RUN_RECEIPT.json",
+      "type": "ABH_PRODUCT_NATIVE_RENDER_COMPUTATION_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Node-only synthetic self-receipts cannot establish actual human display or effect, no authorized participants."
+    },
+    {
+      "id": "PF-BR57",
+      "claim": "Synthetic render receipts declared independent and integrity-proof can be treated as external human delivery.",
+      "update": "SOURCE_PROVENANCE_AND_DATA_INTEGRITY_ARE_DIFFERENT; NATIVE_HMAC_TAMPER_GUARD_PASSES_BUT_NO_TRUSTED_KEY_DOMAIN",
+      "support": "C17 frozen Git SHA32753527824a788b8b15ecebfa7320dca2e93517, native 16/16 Node tests, HMAC-SHA256 on exact synthetic receipt fields rejects tampering and replay; caller supplied key and verifier in same runtime cannot prove deployed renderer or human view.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C17_RUN_RECEIPT.json",
+      "type": "ABH_PRODUCT_CRYPTO_INTEGRITY_CONDITIONAL",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No independent trust root, key custody, real event provenance or participants; ordinary HMAC not novel mathematical discovery."
+    },
+    {
+      "id": "PF-BR58",
+      "claim": "Openly licensed original ForecastBench human individual forecasts are automatically accessible, deidentified and usable as PFL causal leaderboard exposure evidence.",
+      "update": "REFUTED_AS_CONJUNCTION: CC_BY_SA_4_0_LICENSE_CONFIRMED_BUT_RAW_SUPER_JSON_CONNECTOR_TRUNCATED_AND_PUBLIC_VIEWER_HAS_USER_ID_FREE_TEXT; NO_EXPOSURE_RCT",
+      "support": "Repo original ForecastBench commit 027ba0b3017a60e0e64602d724284ac6b2d91134, README blob 1edea28cb04516a41d3878860bfca905ee1fa094, LICENSE blob 4a771ccadef06d2509ca54ea80e8427a14e5c667, super individual file Git blob 583085efe4c752d4b9f6ab2c98ec8642fbc01bca. After prereg 9331e120b84844f94babcbfc25797e51cb24e4ad, one read-only original JSON attempt failed JSON.parse Unexpected end, no retry. HuggingFace public viewer inspected posthoc shows fields user_id and reasoning, so nonpublic research processing needs further privacy review. No participant raw rows stored, no actual PFL rank exposure.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH30_NEW_20261029/C18_RUN_RECEIPT.json",
+      "type": "ABH_PREREG_NEGATIVE_LICENSED_HUMAN_ORIGINAL_DATA_FEASIBILITY",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Copyright license is not legal/ethical basis for handling identifiers and free text. Source content unavailable in parser; field metadata inferred from public HF viewer posthoc. PFL causality untested."
+    },
+    {
+      "id": "PF-BR59",
+      "claim": "The Atlas 89-batch history cannot be checked end-to-end because of Github connector file-call limits, and the partial tail chain may contain unresolved parent breaks.",
+      "update": "SOURCE_BACKED_89_OF_89_STATIC_CHAIN_PARSED_NO_SCHEMA_OR_PARENT_BREAK; CANONICAL_PYTHON_AND_GRAPH_DIGEST_STILL_UNVERIFIED",
+      "support": "Preregister C19 commit 32e662ca2cd4395b133f379b746bfbca0d8d2e86, 8/8 native Node tests on frozen standalone JS structural checker. Actual connected GitHub 6 windows for all 89 source delta JSON, each Git blob SHA matched directory, 448 ops incl 273 run.add, no JSON parse/schema/parent link or numeric prefix failures. Python Atlas original code pins atlas_delta.py 32d25a0... and abmap.py 6874491... not run. Global ID duplicates across chunks not machine-certified.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C19_RUN_RECEIPT.json",
+      "type": "ABH_ORIGINAL_ATLAS_FULL_STATIC_CHAIN_PRODUCT_AUDIT",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Static source-chain audit is weaker than native Python full replay, graph validity/digest or independent scientific evidence; no rise CT2."
+    },
+    {
+      "id": "PF-BR60",
+      "claim": "Technical design risk in PFL: ranked_vs_unranked_effort_displacement",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_FROZEN_INITIAL_TWO_TESTS_PASS",
+      "support": "C20 original A–J prereg before native C20 2/2; Original frozen native 2/2 PASS. An increase in synthetic leaderboard task effort does not guarantee increase in total effort; separate nonranked effort can offset ranked-task gain. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR61",
+      "claim": "Technical design risk in PFL: pretreatment_strata_time_eligibility",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C21 original A–J prereg before native C21 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Subgroup membership must be measured before treatment; reject duplicate member baseline rows and postassignment baseline. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR62",
+      "claim": "Technical design risk in PFL: cross_arm_social_network_edges",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C22 original A–J prereg before native C22 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Room labels alone do not exclude spillovers: detect cross-arm edges and reject duplicate edges. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR63",
+      "claim": "Technical design risk in PFL: five_arm_room_block_allocation_rehearsal",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_FROZEN_INITIAL_TWO_TESTS_PASS",
+      "support": "C23 original A–J prereg before native C23 2/2; Original frozen native 2/2 PASS. 5-arm blocked room-level allocation rehearsal can be balanced yet is not secure or authenticated actual assignment. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR64",
+      "claim": "Technical design risk in PFL: retention_dropout_vs_admin_censoring",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C24 original A–J prereg before native C24 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Dropout, right censoring and empty risk sets must not be conflated. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR65",
+      "claim": "Technical design risk in PFL: public_alias_minimal_data",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C25 original A–J prereg before native C25 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Public room ranking payload must restrict to alias and numeric metric; unknown Symbol/accessor keys can leak information. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR66",
+      "claim": "Technical design risk in PFL: forecast_resolution_asof_gate",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C26 original A–J prereg before native C26 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Forecasts need first-public question clock before resolution first public clock, reject invalid calendar normalization. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR67",
+      "claim": "Technical design risk in PFL: versioned_institutional_rules_asof",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C27 original A–J prereg before native C27 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Rules require explicit version as of opportunity, reject retrospectively applying stale or future version. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR68",
+      "claim": "Technical design risk in PFL: strategic_abstention_vs_unknown_missingness",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_REPAIRED_AFTER_ADVERSARIAL_COUNTEREXAMPLE",
+      "support": "C28 original A–J prereg before native C28 2/2; the first suite was invalidated/incomplete by posthoc counterexample and R1 frozen with extra tests, then native 3/3 or 4/4 PASS. Abstention and missing record are separate unobserved processes; nonfinite outcome scores must be rejected before bounded arithmetic. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR69",
+      "claim": "Technical design risk in PFL: Holm_five_contrast_multiplicity",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_FROZEN_INITIAL_TWO_TESTS_PASS",
+      "support": "C29 original A–J prereg before native C29 2/2; Original frozen native 2/2 PASS. Five preregistered synthetic contrasts need familywise adjustment; Holm correction changes p-values without manufacturing human significance. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR70",
+      "claim": "Technical design risk in PFL: synthetic_launch_gate_noncertification",
+      "update": "SOURCE_CONDITIONED_SYNTHETIC_QA_FROZEN_INITIAL_TWO_TESTS_PASS",
+      "support": "C30 original A–J prereg before native C30 2/2; Original frozen native 2/2 PASS. All synthetic launch flags true cannot certify real product readiness or human research approval. Shared preplanned 11-mechanism synthetic source; full R1 regression 30/30 PASS.",
+      "source": "https://github.com/GalexY3/Metodologia-AB",
+      "evidence": "../ABH30_NEW_20261029/C20_C30_FINAL_RUN_MANIFEST.json",
+      "type": "ABH_PREPLANNED_SYNTHETIC_PRODUCT_MEASUREMENT_QA",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Not 11 independent human experiments; same authored JS module, preplanned suite, fixture-only data, no original social science/causal effect or release evidence. One bounded AB-P cycle per distinct engineering endpoint; repairs are not extra cycles."
+    },
+    {
+      "id": "PF-BR71",
+      "claim": "When the same forecasting model appears in two public leaderboard rankings, a change in position identifies a change in forecast quality.",
+      "update": "REJECT_UNMATCHED_RANK_DENOMINATORS: original CC-BY-SA model-level ForecastBench leaderboard baseline vs tournament, preregistered A-J first, only 11 unique comparable model keys N>=20 of 130 and 464 rows; every matched N equal, median Overall difference 0 and mean +0.336 units, yet mean rank shift +296. Ranking shift cannot be causal effect.",
+      "support": "C31 prereg Git commit 7d0d6f921ce093e5f9f92d8cc2ba8b35d463cec8, original V8 compiled exact frozen parser/test 11/11 pass and original pinned upstream Git blobs 9a6c441644b88fef649942dfb21dd2be5be759dc/63740de68261eeaddb24731df2d5b848049050e2; posthoc delta distribution audit no IDs. Only model aggregates, no participant-level data or new PFL randomization.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH10_NEW_20261030/C31_RUN_RECEIPT.json",
+      "type": "INDEPENDENT_PUBLISHED_LICENSED_EXTERNAL_MODEL_AGGREGATES_AB_R",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Competition question sets/vintage, relative denominator, and submission selection not equal; 'Overall' unit origin unverified, no identity return and no causal effect."
+    },
+    {
+      "id": "PF-BR72",
+      "claim": "Original Atlas 0091 may be structurally valid only under partial JS scans, and full canonical Python replay remains unknown.",
+      "update": "ACTUAL_ORIGINAL_PYTHON_ATLAS_91_PASS_SHA_CANONICAL",
+      "support": "Run #40978364554 original atlas_delta.py check/brief both rc0, 91 batches 63 nodes 81 edges, SHA e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4. Workflow exact Git SHA frozen before run.",
+      "source": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40978364554",
+      "evidence": "../ABH10_NEW_20261030/C33_RUN_RECEIPT.json",
+      "type": "ABH10_NATIVE_PRODUCT_ORIGINAL_EXECUTED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Technical storage validity not independent social scientific evidence, and digest applies to exact 91 before future new batches."
+    },
+    {
+      "id": "PF-BR73",
+      "claim": "C11 original-public-resolution CLI positive execution remains unverified and published source versions might be append-only.",
+      "update": "ORIGINAL_BYTES_NATIVE_POSITIVE_AND_TAMPER_NEGATIVE;_REVISION_NOT_APPEND_ONLY",
+      "support": "Run #40978771536, Node v22.23.4, original sha pinned sep11to12 437->427, removed 10, mutated 212, unchanged 215, added 0. A one-byte mutation rejected with rc1 and empty stdout. Previously pinned C11 sep07to08 after commit d354d26... is unavailable from original provider 422 (posthoc).",
+      "source": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40978771536",
+      "evidence": "../ABH10_NEW_20261030/C34_RUN_RECEIPT.json",
+      "type": "ABH10_NATIVE_PRODUCT_ORIGINAL_EXECUTED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Original Git SHA identifies bytes but not first-public per-event clock, raw question outcomes change legitimately or incorrectly not determined, no PFL causal effect."
+    },
+    {
+      "id": "PF-BR74",
+      "claim": "Computing five-arm fictional rank views in Node ensures real-browser module execution and real user exposure.",
+      "update": "ACTUAL_HEADLESS_CHROME_HTTP_DOM_10_VIEWS_PASS_BUT_NO_HUMAN_EXPOSURE",
+      "support": "Run #40979116918 preinstalled Chrome, local HTTP, ten real browser DOM sections two per five arms, ten synthetic self-generated receipts; controls restrict private/public fields. A-J and Git sha before run.",
+      "source": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40979116918",
+      "evidence": "../ABH10_NEW_20261030/C35_RUN_RECEIPT.json",
+      "type": "ABH10_NATIVE_PRODUCT_ORIGINAL_EXECUTED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Real headless DOM is not delivered human exposure, consent, or independent receipt authentication. Grade 0/3."
+    },
+    {
+      "id": "PF-BR75",
+      "claim": "A 2026 randomized no/private/public GOAL-rank study may identify a pure public-versus-private performance leaderboard effect transferable to PFL.",
+      "update": "EXTERNAL_SSRN_ABSTRACT_PRIOR_ONLY_POSTHOC_FULL_PDF_403",
+      "support": "Yan, Jing, Li 2026 SSRN 6006394, updated April 30, no/private/public rank of self-set goals, abstract claims public rank increases ambitions while reducing performance/earnings with heterogeneous responses. Full PDF HTTP403, cannot verify treatment parity, N/CI, reuse prohibited without permission. C32 not counted as cycle.",
+      "source": "https://ssrn.com/abstract=6006394",
+      "evidence": "../ABH10_NEW_20261030/C32_ACCESS_BLOCKED_NOT_COUNTED.md",
+      "type": "POSTHOC_EXTERNAL_HUMAN_PRIOR_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Title and treatment arms seen before prerreg; abstract outcome posthoc only, no PDF or raw people, cannot claim original efficacy or source code freeze."
+    },
+    {
+      "id": "PF-BR76",
+      "claim": "C34 original ForecastBench public resolution 212 row mutations might all be date-metadata changes with no underlying outcome fields modified.",
+      "update": "PROSPECTIVE_ORIGINAL_FIELD_CLASSIFICATION_77_OUTCOME_CHANGED_AND_135_DATE_ONLY",
+      "support": "C36 7/7 native Node tests after frozen A-J; GitHub original sep11to12 analyzed in V8 with exact source after freeze: all 212 changed resolution_date, 77 changed resolved_to, 1 changed resolved, 135 date-only, direction 0, 10 rows removed. No ID outputs.",
+      "source": "https://github.com/forecastingresearch/forecastbench-datasets",
+      "evidence": "../ABH10_NEW_20261030/C36_RUN_RECEIPT.json",
+      "type": "ABH10_ORIGINAL_EXTERNAL_PUBLIC_SOURCE_AB_R",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Cannot tell what event truth was first public when, and one publisher/one pair is not independent replication of causal outcomes; no PFL causal increase."
+    },
+    {
+      "id": "PF-BR77",
+      "claim": "Feedback group size is irrelevant to effects of rank presentation; a private-versus-public board can be evaluated without comparison group denominator.",
+      "update": "EXTERNAL_FIELD_RCT_PRIOR_SMALL_GROUP_N5_V_CLASS_RANK_POSTHOC",
+      "support": "Lou, Page, Xu 2025 Journal of Economic Behavior and Organization, DOI 10.1016/j.jebo.2025.107316, 2089 students randomized control no feedback vs classroom rank vs group-of-five rank. Published original article reports +0.257 SD class feedback vs control and +0.531 SD group-of-five vs control. Registered study AEARCTR-0013369 referenced in paper; linked registry could not be opened for original history check. Results were seen before any A-J prereg on this study, so non-cycle bibliographic source.",
+      "source": "https://doi.org/10.1016/j.jebo.2025.107316",
+      "evidence": null,
+      "type": "POSTHOC_EXTERNAL_HUMAN_PRIOR_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Posthoc prior not counted cycle, domain high-school memorization with no tangible rewards, not PFL forecasting or private/public leaderboard trial; no raw people or confirmed registry timing."
+    },
+    {
+      "id": "PF-BR78",
+      "claim": "Published 2018, 2022 and 2025 Ashraf rank-feedback factory results constitute separate independent RCT replications of private vs public leaderboard effects.",
+      "update": "REFUTED_MULTIPLE_PUBLICATIONS_SAME_RCT_POSTHOC_PRIOR_ONLY",
+      "support": "Primary public GOV.UK 2018 working paper Do Performance Ranks Increase Productivity (Bangladesh sweater factory 366 workers), CESifo 2022 working paper Performance Ranks Conformity and Cooperation, and Management Science 2025 DOI 10.1287/mnsc.2023.01381 report the same Ashraf experiment, AEARCTR-0000981, with evolved claims: 2018 private surprise heterogeneity and public lower vs private, 2022/2025 private zero on average, public lower, cooperation effect. Three paper vintages are NOT three independent randomized cohorts. Exact registry initial history not accessible in this session.",
+      "source": "https://doi.org/10.1287/mnsc.2023.01381",
+      "evidence": "../ABH10_NEW_20261030/C37_BLOCKED_NOT_COUNTED.md",
+      "type": "POSTHOC_PRIMARY_HUMAN_RCT_LITERATURE_PROVENANCE_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Outcomes visible before C37 prereg. No original AEARCTR-0000981 archived record inspected; 2025 final publisher supplemental microdata license not verified and none downloaded; no new PFL empirical causal effect."
+    },
+    {
+      "id": "PF-BR79",
+      "claim": "A relative-rank intervention has a context-independent behavioral effect transferable to PFL irrespective of reference-group definition.",
+      "update": "INDEPENDENT_2026_REFERENCE_GROUP_RANDOMIZATION_SUGGESTS_TRANSPORT_BOUNDARIES_BUT_ONLY_ABSTRACT_POSTHOC",
+      "support": "Published July 2026 American Economic Journal: Applied Economics trial Xu et al. Which Reference Groups Matter and How? A Relative Income Information Experiment with Administrative Data DOI 10.1257/app.20240181. Authors randomized personal income rank information across multiple reference groups among a Finnish middle-aged representative sample; abstract says strong income satisfaction effects for narrow groups and weak/inconclusive national rank, weaker life satisfaction. Independent human source but treatment is INCOME, not forecast rank, no person data/replication package accessed or recalculated; results seen before any dedicated prereg, not a cycle.",
+      "source": "https://doi.org/10.1257/app.20240181",
+      "evidence": null,
+      "type": "POSTHOC_INDEPENDENT_HUMAN_REFERENCE_GROUP_RCT_PRIOR_NONCYCLE",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No exposure logs or original PFL events, no licensed participant data verified/processed, source summary only, cannot claim causal effect size or PFL transport."
+    }
+  ],
+  "CT2_parent_unchanged": 29,
+  "CT2_prospective_now": 20,
+  "new_N1": 0,
+  "later_source_audit": {
+    "status": "POSTHOC_METADATA_ONLY_NOT_AB_CYCLE",
+    "date": "2026-10-29",
+    "remaining_AB_slots": 2,
+    "evidence_doc": "FORECASTBENCH_EXTERNAL_DATA_GATE_20261029.md",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "prior_CT2": 22,
+    "post_CT2": 22,
+    "security": "No human individual forecast sets loaded"
+  },
+  "latest_verified_qa": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-t028-atlas-direct-adversarial-20261029",
+    "atlas_check": "PASS_ORIGINAL_PYTHON",
+    "atlas_sha256": "e41270a7897817f626611208f4ec483318950af59d8d27f78c925d83a93eb54f",
+    "pilot_browser": "PASS_HTTP_CHROMIUM_21_OF_21",
+    "GJP_exposure_verified": false,
+    "CT2_prospective": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "legacy_AB_slots_unused": 2,
+    "report": "../T028_DIRECT_ATLAS_20261029/EXTERNAL_PRIOR_ART_AND_DATA_GATE.md"
+  },
+  "latest_empirical_gate": {
+    "date": "2026-10-29",
+    "root": "../EMPIRICAL_EXPOSURE_GATE_20261029/",
+    "status": "DATASET_CC0_AND_METADATA_PASS_STOP_R5_NO_INDIVIDUAL_TREATMENT_EXPOSURE",
+    "legacy_AB_remaining": 2,
+    "CT2_prospective": 22,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "GJP_documentation_SHA256_verified": true,
+    "forecast_rows_downloaded": false
+  },
+  "latest_branching5": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh-branching5-exposure-20261029",
+    "preregs": "../ABH_BRANCHING5_EXPOSURE_20261029/PREREG_FREEZE.json",
+    "source_status": "NEW_PRIOR_ART_AND_PRODUCT_SYNTHETIC_ONLY",
+    "CT2_prospective": 22,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "legacy_unused": 2,
+    "personal_rows_downloaded": 0
+  },
+  "latest_branching5_continuation": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-cluster-interference-20261029",
+    "science_ct2": 22,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "cyc3": "AB-P synthetic executed",
+    "cyc4": "AB-R aggregate sensitivity executed",
+    "cyc5": "STOP_R5_UNOPENED",
+    "old_legacy_slots": 2,
+    "new_slots_remaining": 1,
+    "individual_rows_retrieved": false
+  },
+  "latest_branching5_close": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-c05-dynamic-room-exposure-20261029",
+    "new_authorized": 5,
+    "new_valid": 5,
+    "new_remaining": 0,
+    "historical_unused": 2,
+    "science_CT2": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "human_microdata_downloaded": 0
+  },
+  "new_campaign_ABH5B": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5-original-feedback-sensitivity-20261029",
+    "authorized_new": 5,
+    "executed_valid_limited": 2,
+    "planned_or_blocked_unopened": 3,
+    "historical_slots_separate": 2,
+    "source_reuse_published_aggregates_only": true,
+    "CT2_scientific": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "codes": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/"
+  },
+  "latest_branching5b_c03": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c03-randomized-leaderboard-20261029",
+    "prior_pr": 49,
+    "new_granted": 5,
+    "new_completed_limited": 3,
+    "new_remaining": 2,
+    "historical_unused": 2,
+    "CT2_prospective_ordinal_before": 22,
+    "CT2_prospective_ordinal_after": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "reason": "Direct already-published leaderboard-only randomized assignment and full 2x4 factorial provide stronger novelty counterevidence, while access to causal microdata still blocked."
+  },
+  "latest_branching5b_c04": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-incentive-proof-r5-20261029",
+    "c04": "AB-P formal exact proof 8/8 valid, 0/3 scientific",
+    "new_completed": 4,
+    "new_remaining": 1,
+    "historical_untouched": 2,
+    "CT2_prospective_ordinal": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "c05": "NOT EXECUTED STOP_R5; conditional A–J causal fork",
+    "source_rights": "NO HUMAN ROWS OR PERSONAL DATA PERMISSION"
+  },
+  "latest_branching5b_c05_external_gate": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c05-external-identification-gate-20261029",
+    "head_base_pr": 51,
+    "c05_status": "PLANNING_ONLY_R5_NOT_EXECUTED",
+    "authorized_new": 5,
+    "valid_before": 4,
+    "valid_after": 4,
+    "new_remaining": 1,
+    "historical_remaining": 2,
+    "ct2_before": 20,
+    "ct2_after": 20,
+    "novel_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "new_prior_ids": [
+      "PF-BR39",
+      "PF-BR40",
+      "PF-BR41",
+      "PF-BR42"
+    ],
+    "no_human_rows": true,
+    "audit_file": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json"
+  },
+  "latest_branching5b_c05_real_source": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh5b-c05-real-forecastbench-safegate-20261029",
+    "previous_pr": 52,
+    "status": "AB-P VALID LIMITED ORIGINAL QUESTION DATA SOURCE AUDIT",
+    "new_granted": 5,
+    "new_completed": 5,
+    "new_remaining": 0,
+    "historical_remaining_unspent": 2,
+    "ct2_science_before": 20,
+    "ct2_science_after": 20,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "source_sha": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "original_questions": 1000,
+    "eligible_resolved_market_probabilities": 60,
+    "first_native_failed_attempt_preserved": true,
+    "final_native_tests": "12/12"
+  },
+  "latest_ABH30": {
+    "date": "2026-10-29",
+    "branch": "research/pfl-abh30-c20-c30-multiaxis-20261029",
+    "granted": 30,
+    "valid_limited": 30,
+    "new_remaining": 0,
+    "historical_remaining": 2,
+    "CT2_scientific_ordinal": 20,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "new_prior_ids": [
+      "PF-BR44",
+      "PF-BR45",
+      "PF-BR46",
+      "PF-BR47",
+      "PF-BR48",
+      "PF-BR49",
+      "PF-BR50",
+      "PF-BR51",
+      "PF-BR52",
+      "PF-BR53",
+      "PF-BR54",
+      "PF-BR55",
+      "PF-BR56",
+      "PF-BR57",
+      "PF-BR58",
+      "PF-BR59",
+      "PF-BR60",
+      "PF-BR61",
+      "PF-BR62",
+      "PF-BR63",
+      "PF-BR64",
+      "PF-BR65",
+      "PF-BR66",
+      "PF-BR67",
+      "PF-BR68",
+      "PF-BR69",
+      "PF-BR70"
+    ],
+    "science_result": "No all-question skill inference from selected resolved subset under no assumptions",
+    "product_results": "Importable as-of source guard native 15/15; original Git four pinned blob gate native 13/13",
+    "last_adversarial_correction": "Old ABH30 C01 2026-10-01 asof 10 derived from future 2026-10-29 published resolution snapshot; cannot establish source public availability. Original first resolution set 2026-10-07; corrected Oct08 source snapshot 30 eligible.",
+    "source_original_git_blobs": 7,
+    "source_vintage_checkpoints": 3,
+    "original_source_outcome_flips_observed": 0,
+    "source_coverage_updated": true,
+    "human_Causal_stop": "Original Xu 2026 ICPSR E227582 code-only and Statistics Finland human data blocked; Agranov AEARCTR-0003315 original human access not documented.",
+    "verified_original_public_git_blobs": 21,
+    "resolution_source_versions": 19,
+    "new_observation": "Original version pairs show 16 raw-row removals, 2 additions, 671 mutated row transitions (not unique outcomes), and many resolution_date / continuous resolved_to edits; market-binary eligible C08 results unchanged; V8 not native.",
+    "verified_original_public_git_blobs_in_C10": 6,
+    "raw_original_source_pair_audits": 3,
+    "product_latest": "C11 strict local CLI three C10 originals pinned Git SHA, Node 17/17 native synthetic fixture tests. Original local Git files NOT_AVAILABLE; positive original CLI NOT_EXECUTED; Atlas 0081 static parent+run checks only, not Python full replay.",
+    "independent_external_human_prior_art": "AAAI 2020 Mandal et al. four-arm randomized forecasting incentive experiment private quartile feedback; paper and original Rmd checked, no person data or license",
+    "new_code_issue": "Original Rmd Oct13 updates var2=5 vs expected 6; posthoc statically verified, impact unknown",
+    "positive_PFL_human_causal_evidence": false,
+    "new_product_mechanism": "C13 bounded [0,1] missingness interval 18/18 native Node on purely fictional 4-arm aggregate, sign ambiguity example, not causal",
+    "new_product": "C15 five-arm assignment/opportunity/receipt synthetic join Node 20/20 frozen; missing is unknown; real exposure attestation unverified",
+    "posthoc_non_cycle_source": "PF-BR54 open-access Chen et al. 2024 randomised local leaderboard rank/effort displacement; article primary data unavailable, no independent C15 prereg",
+    "multi_axis_family": "C20-C30 preplanned distinct technical 11 functions in shared source, native first 22/22 but 7 invalid/incomplete found, repaired to 30/30; no human science and no independent replication"
+  },
+  "latest_ABH10": {
+    "new_grant": 10,
+    "new_executed_valid_limited": 5,
+    "new_remaining_R5_unspent": 5,
+    "historical_two_STOP_R5": true,
+    "branch": "research/pfl-abh10-source-atlas-o7-20261030",
+    "CT2_scientific_ordinal": 20,
+    "latest_priors": [
+      "PF-BR71",
+      "PF-BR72",
+      "PF-BR73",
+      "PF-BR74",
+      "PF-BR75",
+      "PF-BR76",
+      "PF-BR77",
+      "PF-BR78",
+      "PF-BR79"
+    ],
+    "human_PFL_causal_results": 0,
+    "launch_gates": "0/6",
+    "decision": "STOP_R5_UNCONSUMED_FIVE_SLOTS_NO_INDEPENDENT_EXECUTABLE_SOURCE",
+    "C37": {
+      "status": "BLOCKED_NOT_COUNTED_PLANNING_ONLY",
+      "registry": "AEARCTR-0000981",
+      "freeze_commit": "2cc076a4fa2c6d9fa0233384b932483fefc0ed4d",
+      "records_inspected": false
+    }
+  }
+}

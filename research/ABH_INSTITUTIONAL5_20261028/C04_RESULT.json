@@ -1,0 +1,68 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_INDEPENDENT_LEGAL_OUTCOME_DUAL_MATCH",
+  "A": "Two separate Oct 2026 Congress ballots and independently attested derogation outcomes",
+  "B": {
+    "H1": "Official BOE legal publication confirms two distinct decree-law reversals seen in congressional vote catalog, but does not independently confirm numerical voting tallies",
+    "H0": "Catalog and legal status unmatched or unsupported",
+    "Halt": "Search index latest vs opened cached past page can fail to reflect 203 session at retrieval"
+  },
+  "C": {
+    "prereg_commit": "571f57a8a4da5e1de8f89db287ec35d83d990d4a",
+    "method": "Read 2026 Congress indexed catalog session203, discover both BOE references independently by exact legal identifiers, check yes+no+abstain each 350; compare same-session events and issuer independent legal outcome; record index cache disagreement"
+  },
+  "D": {
+    "congreso": "https://www.congreso.es/es/opendata/votaciones",
+    "source_index_web_ref": "turn890801search0",
+    "source_open_old_cache_web_ref": "turn890801view0",
+    "boe_26": "https://boe.es/diario_boe/txt.php?id=BOE-A-2026-20526",
+    "boe_27": "https://www.boe.es/eli/es/res/2026/10/02/(2)",
+    "artifact": "C04_CONGRESO_BOE_2026_DUAL_EVIDENCE.json"
+  },
+  "E": {
+    "observations": 2,
+    "date": "2026-10-02",
+    "votes": [
+      {
+        "expediente": "130/000055",
+        "yes": 172,
+        "no": 178,
+        "abstain": 0,
+        "total": 350,
+        "derogation_confirmed_BOE": true
+      },
+      {
+        "expediente": "130/000056",
+        "yes": 166,
+        "no": 184,
+        "abstain": 0,
+        "total": 350,
+        "derogation_confirmed_BOE": true
+      }
+    ],
+    "positive_outcome_crossissuer_matches": 2,
+    "numerical_tallies_crossissuer_matches": 0,
+    "original_nominal_bytes": 0,
+    "first_public_at": null,
+    "cache_disagreement": "Search latest session203, older open session193; preserve both snapshots"
+  },
+  "F": "Evidence strong enough for a pair of legal-event outcomes with issuer independence. No match of per-person vote outcomes, count rows or exact first publication. Adjacent decrees not independent treatment units for causal modeling.",
+  "G": "Selection restricted to two recent measures, no external recount; 350 denominator for votes reported only, could be source transformed",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "V4": 36.9,
+    "achievement_awards": 0
+  },
+  "I": "Distinct legislative events with verified BOE statuses; no political conduct ranking",
+  "J": "Accept limited event-outcome cross-source as useful for future real event ingestion but mark numerical votes and contemporaneous availability unverified; continue separate adverse trend test"
+}

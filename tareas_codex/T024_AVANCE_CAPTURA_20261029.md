@@ -1,0 +1,7 @@
+# T024 · Captura oficial y réplica retrospectiva
+
+**Estado: avance parcial, no cierre de T024.** Se descargaron los cuatro CSV desde el catálogo de la Australian Electoral Commission con TLS y HTTP 200; los cuatro blobs coinciden byte a byte con las copias utilizadas en AECCHOICE5. El [manifiesto de captura](T024_EVIDENCIA/MANIFEST.json) conserva URL, cabeceras y SHA-256. Los originales se guardaron fuera de Git en `C:\Github\Metodologia-AB\proyectos\politics-fantasy-league\data\raw\t024_20261029` y se verificaron los hashes tras copiar.
+
+El [control independiente de C01](T024_EVIDENCIA/C01_VERIFICATION.json) concuerda en archivos, encabezados y 150 IDs únicos por CSV; las tasas oficiales son compatibles con su redondeo. La [réplica](T024_EVIDENCIA/REPLICATION.json) reconstruye 150 divisiones y 14 campos del panel sin discrepancias, y reproduce 12 métricas dentro de tolerancia absoluta 1e-8. Scripts y versiones quedan junto a los resultados; se ejecutaron en Windows con Python 3.12.14, NumPy 2.5.4, SciPy 1.18.1 y statsmodels 0.15.0.
+
+La captura actual acredita coincidencia con los bytes de la fuente oficial hoy, no la fecha de primera publicación. El análisis se replica retrospectivamente con resultados conocidos: no prueba predicción prospectiva ni causalidad. La QA integral de la base exigida en la ficha y los demás criterios de T024 permanecen pendientes; no se modifican métricas de proyecto ni gates.

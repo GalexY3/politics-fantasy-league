@@ -1,0 +1,32 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "D": {
+    "official": "https://votes.parliament.uk/Votes/Commons?Fromdate=2026-10-21&ToDate=2026-10-21",
+    "prior_exposure": "Search already displayed pairs before prereg during exploratory C01, so observed duplication is PRE-EXPOSED; analytic scope tests an alternative identification rule, not blind hypothesis",
+    "identity_fields": [
+      "house",
+      "session/year",
+      "divisionId",
+      "date",
+      "title"
+    ],
+    "original_raw_available": false
+  },
+  "A": "Do four recorded Commons divisions on 2026-10-21 demonstrate that identical aggregate Aye/No totals can correspond to different motions, undermining a total-vector event identity key?",
+  "B": {
+    "H1": "At least one pair shares (Ayes,Noes) but has a different official division number and title",
+    "H0": "Every total vector uniquely identifies a different parliamentary decision in this date-window"
+  },
+  "C": "Read official UK Commons search for exact 2026-10-21; retain four division numbers, distinct motion titles and total pairs, compute duplicate-pair count and identity checks; compare serious baseline division stable ID vs naive aggregate count key. Do not infer same individuals or political intent from identical totals.",
+  "E": "PENDING",
+  "F": "Different titles may refer to related procedures; identical totals are not duplicates of vote records",
+  "G": "Single official issuer, no source crosscheck of individual voters",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No MP or party rating",
+  "J": "If found, establish checksum of aggregate counts NOT sufficient event identity; no scientific N1 for arithmetic."
+}

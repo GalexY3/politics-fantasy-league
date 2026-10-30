@@ -1,0 +1,56 @@
+{
+  "schema": "pfl.atlas.shadow.audit.v1",
+  "date": "2026-10-29",
+  "prereg_commit": "7fef973bb26e5ca97a3fe511ee6e0f1492e7aac1",
+  "status": "PASS_INDEPENDENT_JS_STRUCTURAL_PORT_NOT_NATIVE_PYTHON",
+  "project": "Politics Fantasy League",
+  "source_pr": 41,
+  "source_head": "d8c6f59f391fb16de1fa157a809b12de87cfaa58",
+  "source_seed_git_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+  "original_python_code_git_blobs": {
+    "atlas_delta": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "abmap": "687449178deba84f77b6cc2df2c61cc36d9cf0cd"
+  },
+  "source": "80 original JSON GitHub files recovered and mirrored by eight private STRUCTURAL_SOURCE_01–08.json receipts; original source contents and blobs verified on retrieval",
+  "method": "Independent JS reimplementation of original Python batch operation application and strict shape/referential/acyclic checks, not execution of ab_atlas/atlas_delta.py",
+  "metrics": {
+    "files": 80,
+    "applied_batches": 80,
+    "ops": 438,
+    "ops_by_type": {
+      "node.add": 49,
+      "node.set": 14,
+      "edge.add": 58,
+      "run.add": 263,
+      "complaint.add": 48,
+      "complaint.triage": 6
+    },
+    "final_nodes": 63,
+    "final_edges": 81,
+    "final_runs": 263,
+    "final_complaints": 48,
+    "final_gates": 6,
+    "final_events": 453,
+    "scope": "PFL-V1-20261026-r3",
+    "head_batch": "0080-PFL-ABH-BROWSER-ATLAS-EVIDENCE-PARTIAL-20261029"
+  },
+  "adversarial": {
+    "duplicates_rejected_by_validator_logic": true,
+    "edge_cycles_checked_after_each_batch": true,
+    "acceptance_and_release_gate_checks": true,
+    "all_ops_parsed_and_allowed": true,
+    "nonmonotonic_timestamps_lots_79_80": true,
+    "negative_mutation_control": "PENDING_DELIBERATE_TEST; not part of initial PASS, prereg gate partially unsatisfied"
+  },
+  "limits": {
+    "native_python_check": "NOT_RUN",
+    "python_abmap_require_valid": "NOT_RUN",
+    "canonical_sha256": "UNKNOWN",
+    "current_md_updated": false,
+    "exact_Python_event_payload_equivalence": "NOT_ASSERTED; port omits full payload content for state digest; do not compute hash from this shadow replay",
+    "clean_checkout": "NOT_VERIFIED",
+    "scientific_grade": "0/3",
+    "new_AB_cycles_consumed": 0
+  },
+  "decision": "Strong independent evidence of structural consistency, but T028 full check requires original native Python on an authorized full checkout; R5 stop treating shadow as certification."
+}

@@ -1,0 +1,126 @@
+{
+  "cycle": "C04",
+  "mode": "AB-R_SYNTHETIC",
+  "prereg_commit": "88947ac55dcb979f7ffac79067e9086d152485a6",
+  "engine_commit": "37f77293a96d784060d922215687ed17b4dec172",
+  "A": "Outcome-dependent loss of synthetic action observations and score bias vs complete-truth oracle",
+  "B": [
+    "MCAR nearly unbiased",
+    "MNAR success disproportionately omitted",
+    "fail-closed blocks incomplete but loses availability"
+  ],
+  "C": {
+    "seeds": [
+      42001,
+      43999
+    ],
+    "replications_per_seed": 600,
+    "n_events": 10,
+    "p_success": 0.6,
+    "missing_laws": {
+      "MCAR": 0.1,
+      "MNAR_success": 0.4,
+      "MNAR_failure": 0.05
+    },
+    "comparators": [
+      "complete oracle",
+      "naive observed-only rate",
+      "score only if all events verified"
+    ]
+  },
+  "D": "Deterministic JS V8 simulation, source committed pre-run; missingness mechanism explicitly constructed",
+  "E": {
+    "seeds": [
+      {
+        "seed": 42001,
+        "reps": 600,
+        "regimes": {
+          "MCAR_10pct": {
+            "naive_count": 600,
+            "naive_bias_sum": 0.10119047619047594,
+            "naive_mae_sum": 22.29404761904763,
+            "gate_available_count": 200,
+            "gate_bias_sum": 0,
+            "full_missing_count": 0,
+            "false_zero_count": 0,
+            "naive_bias_conditional": 0.00016865079365079323,
+            "naive_mae_conditional": 0.037156746031746055,
+            "gate_availability": 0.3333333333333333,
+            "gate_bias_when_available": 0,
+            "false_zero_fraction": 0
+          },
+          "MNAR_success40_failure5": {
+            "naive_count": 600,
+            "naive_bias_sum": -71.05198412698427,
+            "naive_mae_sum": 72.80674603174621,
+            "gate_available_count": 34,
+            "gate_bias_sum": 0,
+            "full_missing_count": 0,
+            "false_zero_count": 5,
+            "naive_bias_conditional": -0.11841997354497377,
+            "naive_mae_conditional": 0.12134457671957702,
+            "gate_availability": 0.056666666666666664,
+            "gate_bias_when_available": 0,
+            "false_zero_fraction": 0.008333333333333333
+          }
+        }
+      },
+      {
+        "seed": 43999,
+        "reps": 600,
+        "regimes": {
+          "MCAR_10pct": {
+            "naive_count": 600,
+            "naive_bias_sum": -0.7722222222222227,
+            "naive_mae_sum": 23.85793650793656,
+            "gate_available_count": 194,
+            "gate_bias_sum": 0,
+            "full_missing_count": 0,
+            "false_zero_count": 1,
+            "naive_bias_conditional": -0.001287037037037038,
+            "naive_mae_conditional": 0.039763227513227604,
+            "gate_availability": 0.3233333333333333,
+            "gate_bias_when_available": 0,
+            "false_zero_fraction": 0.0016666666666666668
+          },
+          "MNAR_success40_failure5": {
+            "naive_count": 600,
+            "naive_bias_sum": -66.19007936507948,
+            "naive_mae_sum": 69.49642857142871,
+            "gate_available_count": 36,
+            "gate_bias_sum": 0,
+            "full_missing_count": 0,
+            "false_zero_count": 11,
+            "naive_bias_conditional": -0.11031679894179915,
+            "naive_mae_conditional": 0.11582738095238118,
+            "gate_availability": 0.06,
+            "gate_bias_when_available": 0,
+            "false_zero_fraction": 0.018333333333333333
+          }
+        }
+      }
+    ],
+    "combined": {
+      "MCAR_10pct": {
+        "mean_naive_bias": -0.0005591931216931223,
+        "mean_MAE": 0.038459986772486826,
+        "mean_gate_available": 0.3283333333333333
+      },
+      "MNAR_success40_failure5": {
+        "mean_naive_bias": -0.11436838624338647,
+        "mean_MAE": 0.1185859788359791,
+        "mean_gate_available": 0.058333333333333334
+      }
+    }
+  },
+  "F": "Fail-closed guard prevents unverified score output but does not reconstruct missing successes; no guarantee of usability and a large coverage penalty. MNAR constructed to cause bias, not discovered in PFL users.",
+  "G": "No external empirical source and not independent social replication",
+  "H": "Missingness mechanism must be prospectively measured; do not silently classify failures as inactivity or claim normalization solves missingness.",
+  "I": {
+    "grade": "0/3",
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "scope": "Toy effect only; no politicians, people or election predictions"
+  },
+  "J": "CONTINUE_C05_PRODUCT_PROVENANCE_REPLAY"
+}

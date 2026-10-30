@@ -1,0 +1,41 @@
+{
+  "id": "ABH30-P1-C16",
+  "status": "VALID_BOUNDED_MATH_AB_R",
+  "prereg_commit": "c430b8e9f491e8d84f59686bcb080cf44467ec28",
+  "A": "See original Cxx_PREREG contract",
+  "B": "Rival null/competent baseline predeclared",
+  "C": "Endpoints, assumptions, falsifier frozen in prereg",
+  "D": {
+    "source_urls": [
+      "https://doi.org/10.1287/mnsc.2022.4410",
+      "https://ojs.aaai.org/index.php/AAAI/article/view/11471"
+    ],
+    "source_code": "Exact calculations, official published documentation"
+  },
+  "E": {
+    "belief_p": 0.6,
+    "competitor_q": 0.5,
+    "truthful_r": 0.6,
+    "aggressive_r": 0.99,
+    "expected_brier_truth": 0.24,
+    "expected_brier_aggressive": 0.3921,
+    "winner_probability_truth": 0.6,
+    "winner_probability_aggressive": 0.6
+  },
+  "F": {
+    "adversarial_limit": "Brier strict propriety prefers truthful report, while one-event winner-only prize is indifferent among reports above rival 0.5; not proof extreme always improves win probability, and fully documented in prior contest literature."
+  },
+  "G": "No external PFL human replication or novel scientific discovery",
+  "H": {
+    "prior_update": "Brier strict propriety prefers truthful report, while one-event winner-only prize is indifferent among reports above rival 0.5; not proof extreme always improves win probability, and fully documented in prior contest literature."
+  },
+  "I": {
+    "grade": "0/3",
+    "causality": "none for field; math conditional on exact assumptions",
+    "ethics": "No live people, real scoring or releases"
+  },
+  "J": "Conclude scoped mechanism, R5 transition to 10 autonomy probes; no more replicate synthetic generator",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}

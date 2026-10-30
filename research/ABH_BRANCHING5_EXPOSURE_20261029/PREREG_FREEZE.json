@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-10-29",
+  "method": "AB3.2.1-O1–O7",
+  "mode": "AB-H BRANCHING",
+  "authorized": 5,
+  "legacy_unused_preserved": 2,
+  "origin_pr": 43,
+  "origin_sha": "631aa015cc4696c557b92f8f2e76fa4de9d21261",
+  "run_status": "FROZEN_UNEXECUTED",
+  "no_person_records": true,
+  "no_politician_scoring": true,
+  "no_CI": true,
+  "source_file": "src/politics_fantasy/fictional_opportunity_audit.mjs",
+  "test_file": "src/politics_fantasy/test_fictional_opportunity_audit.mjs",
+  "frozen_code_sha256": "542a56984c83121a4b69e9225470f853568fae7399b18ec57ac034f6abdfef7d",
+  "frozen_test_sha256": "3c92a00c6d6daeb30d82f32451d9529e1e297a27929a291ae646709b1e5e897a",
+  "git_blobs": [
+    "b782c6bee611ea671a463c0a620f641f78a06963",
+    "81dafb2c5cfa54eec4cb918166747664d909b25e"
+  ],
+  "baseline": "Full-randomization roster and question availability cannot be reconstructed from responders only. Product checks are deterministic toy measurements, not human RCT.",
+  "r5": "Stop when no new discriminating evidence, never fill slots with QA repeats.",
+  "cycles": [
+    {
+      "id": "C01",
+      "type": "AB-P",
+      "status": "FROZEN_UNEXECUTED",
+      "A": "Audit full assigned fictional roster including zero responders and late registrants: outcome first answers/eligible person×question windows.",
+      "B": "Rivals: answered-only denominator; unconditional question-open denominator; null no distinction.",
+      "C": "Frozen 8 assigned in 4 arms, two questions, 12 person×question eligible, 4 first responses, uptake=1/3. Control 2/3, transparency 0/3; malformed roster/time fail.",
+      "D": "Code+test bytes SHA256 and Git commit frozen before execute, native Node22 environment.",
+      "E": "Run prewritten positive/negative test groups; record genuine exit and output.",
+      "F": "Duplicate actor, duplicate first, absent roster, out-of-window response, invalid time, extra personal field and getter.",
+      "G": "No human replication; independent science gate stays closed.",
+      "H": "Update AB-P measurement prior if pass; no human-ITT claim.",
+      "I": "Judge engineering correctness, leakage, privacy, novelty and reproducibility separately.",
+      "J": "CONTINUE if assertions pass; REPAIR/STOP otherwise."
+    },
+    {
+      "id": "C02",
+      "type": "AB-P",
+      "status": "FROZEN_UNEXECUTED",
+      "A": "Audit source meaning of impression vs forecast and missing impression in isolated fictional fixture.",
+      "B": "Rival: forecast implies exposure and absence of display log implies unseen; null: categories indistinguishable.",
+      "C": "Pre-register 1 pre-response, 1 post-response-only and 1 pre-response display without response; unknown when no log; fail if forged forecast-as-view.",
+      "D": "Same frozen implementation and tests; no observed humans or data collection.",
+      "E": "Execute adversarial semantic cases and order-invariance assertions.",
+      "F": "Counterfeit provenance, invalid display timestamp, extra fields, absent log; compare strongly against answered-only baseline.",
+      "G": "Not real independent impression log; no causal interpretation.",
+      "H": "Confirm that ability to distinguish simulated logs does not verify field semantics of GJP viewtime.",
+      "I": "Engineering-only passing tests, no N1 scientific.",
+      "J": "Stop without true independently sourced impressions/eligibility."
+    },
+    {
+      "id": "C03",
+      "type": "AB-R",
+      "status": "PLANNING_ONLY_UNEXECUTED",
+      "A": "Can original GJP year1 nonrespondent roster and eligibility be verified without human records?",
+      "B": "2,246 reported participants need not equal accessible full assignment roster.",
+      "C": "Locate exact roster file/metadata, assignments and registration dates independently.",
+      "D": "No person-level processing before explicit privacy decision.",
+      "E": "Documentary inspection only; never call a cycle executed just for browsing.",
+      "F": "Counter Mellers 2014 design/uptake prior art.",
+      "G": "No independent effect replication now.",
+      "H": "Priors about feasibility only.",
+      "I": "STOP_R5 until roster verified.",
+      "J": "STOP_R5."
+    },
+    {
+      "id": "C04",
+      "type": "AB-R",
+      "status": "PLANNING_ONLY_UNEXECUTED",
+      "A": "Does original 2026 feedback-and-entry research offer authorized individual decision opportunity data and distinct novelty?",
+      "B": "Erat et al 2026 already measure entry decisions; feedback may alter entry rather than always increase it.",
+      "C": "Inspect author OSF specific archive, licence, official prereg, outcome data provenance.",
+      "D": "No participant-row retrieval before privacy/ethics decision.",
+      "E": "Research access check only until evidence discriminant.",
+      "F": "Compare Palikot 2026 trial of combined leaderboard + incentives + notifications.",
+      "G": "No independently new effect estimated.",
+      "H": "Update rival-prior ledger.",
+      "I": "Not A–J experiment.",
+      "J": "STOP until rights and novelty."
+    },
+    {
+      "id": "C05",
+      "type": "AB-H",
+      "status": "RESERVED_UNOPENED",
+      "A": "New distinct discriminant, not QA repetition.",
+      "B": "Strong contemporary prior art required.",
+      "C": "Freeze exact test separately.",
+      "D": "Code hash first.",
+      "E": "No run authorized by prereg alone.",
+      "F": "Adversarial review.",
+      "G": "External evidence if research.",
+      "H": "Update only if new evidence.",
+      "I": "No automatic CT2 increase.",
+      "J": "STOP_R5 unless justified."
+    }
+  ],
+  "source_priors": [
+    {
+      "url": "https://doi.org/10.1007/s11129-026-09311-3",
+      "scope": "Palikot et al 2026 randomized school-level bundled contest, leaderboard, prizes and notifications: not isolated public ranking effect."
+    },
+    {
+      "url": "https://ssrn.com/abstract=6323919",
+      "scope": "Erat et al 2026 repeated entry experiment 511 subjects 16352 decisions. Salient feedback reduced excess entry in their contest, distinct from increased activity."
+    },
+    {
+      "url": "https://www.stouras.com/",
+      "scope": "Author page has pre-registration and Data & Code OSF link; file contents/reuse conditions not verified."
+    },
+    {
+      "url": "https://www.psychologicalscience.org/publications/observer/obsonline/predicting-uncertain-events-on-a-global-scale.html",
+      "scope": "GJP Year1 reports 2246 original participants; accessible full randomized roster not established."
+    }
+  ],
+  "ct2_before": 22,
+  "n1_n2_n3_before": [
+    0,
+    0,
+    0
+  ],
+  "executes_before_freeze": 0
+}

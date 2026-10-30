@@ -1,0 +1,51 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C05",
+  "type": "AB-R",
+  "D": {
+    "official_BOE": "https://www.boe.es/buscar/doc.php?id=BOE-A-2019-8070",
+    "source_lines": "151 and 328",
+    "result": "C05_2019_CANTABRIA_LEAVE_ONE_OUT.json"
+  },
+  "status": "VALID_BOUNDED_POST_HOC_EXPOSED_ABLATION_AND_NEW_SIX_WAY_AUDIT",
+  "A": "Does omission of 2019 Cantabria regional party change national-only D'Hondt seat assignment?",
+  "B": {
+    "H1": "Exclusion of PRC wrongly awards one seat to Vox",
+    "H0": "Exclusion does not change 5-seat allocation"
+  },
+  "C": {
+    "original_prereg": "C05_PREREG.json (XML route preknown unusable; original planned cycle NOT performed)",
+    "R5_pivot_prereg": "C05_PIVOT_PREREG.json",
+    "pivot_commit": "fd5215df58ad5643bfd7c87816c27a5fcab50049",
+    "truth": "The central PRC omission result was already computed exploratorily during C04, BEFORE C05 pivot prereg. Thus it is EXPOSED, not a new preregistered H1 test. After pivot prereg, an independent Python Fraction calculation audited all 6 leave-one-out scenarios, with exact quotients and controls.",
+    "runtime": "Local Python Fraction exact rational arithmetic, no whole-repo clean checkout"
+  },
+  "E": {
+    "full_reconstruction": "PSOE2 PP1 Cs1 PRC1 Vox0 UnidasPodemos0",
+    "without_PRC": "PSOE2 PP1 Cs1 Vox1 UnidasPodemos0",
+    "incorrectly_awarded_party": "Vox",
+    "incorrect_extra_seats": 1,
+    "leave_one_out_n": 6,
+    "leave_one_out_changed": 4,
+    "unchanged": 2,
+    "last_selected_full_quotient": 45267,
+    "first_not_selected_full_quotient": 40139
+  },
+  "F": "Ablation pinpoints omitted source party as systematic error. Four of six omissions alter party allocation, but all one-district synthetic deletions on SAME historic evidence; no real counterfactual election or population estimand.",
+  "G": "2019 source official HTML, no XML raw hash, manually transcribed; no baseline trained/held-out data or external replication; core hypothesis pre-exposed as noted.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "awards": 0
+  },
+  "I": "Political party-level aggregates only, no individuals scored",
+  "J": "Close cycle as bounded retrospective research audit, NOT independent new discovery; keep original missing-XML as queued Codex/T011 or analogous, no repeated failed download claim."
+}

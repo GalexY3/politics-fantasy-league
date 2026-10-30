@@ -1,0 +1,71 @@
+{
+  "schema": "pfl.abh5b.c02.prereg.v1",
+  "date": "2026-10-29",
+  "cycle": "C02",
+  "authorization": "5 new AB-H; C01 only new cycle executed after repair; historical two untouched",
+  "type": "AB-R_original_published_aggregate_noncausal",
+  "drift_D": 2,
+  "CT2_before": 22,
+  "grade_before": "0/3",
+  "A": "Do independent original RCT published aggregate stories and active shares demonstrate distinguishable extensive vs intensive components at 4 and 12 post-contest weeks, without overstating isolated leaderboard causality?",
+  "B": {
+    "rival1": "Contest full package (ranking+prize+notifications) ITT is causal as randomized at school level; conditional on active user intensity is post-treatment selected.",
+    "rival2": "Short abstract pair 9.6/6.5 and 0.301/0.395 are wrongly assumed same 12-week cohort period; actual 9.6/6.5 is 4-week, 12-week active 14.3/12.2.",
+    "null": "Reconstructed synthetic algebra will fail identity or no change between time windows.",
+    "alternative": "The active indicator could capture positive engagement beyond completed-story outcome; in that case conditional intensity decomposition is not identified and must remain a conditional sensitivity only."
+  },
+  "C": {
+    "source": "Palikot et al 2026 original published Springer page; 138 randomized schools and 9327 students in Fig1",
+    "original_values": {
+      "four_weeks": {
+        "control_stories": 0.146,
+        "ITT_bundle_increment": 0.178,
+        "p_control_active": 0.065,
+        "p_treated_active": 0.096
+      },
+      "twelve_weeks": {
+        "control_stories": 0.395,
+        "ITT_bundle_increment": 0.301,
+        "p_control_active": 0.122,
+        "p_treated_active": 0.143
+      }
+    },
+    "estimand": "Two-window descriptive decomposition of E[Y] into P(A)×E[Y|A], with symmetric Kitagawa/Shapley contributions if A is a matching Y>0 indicator.",
+    "formula": "DeltaY = (p1-p0)*(r0+r1)/2 + (r1-r0)*(p0+p1)/2; r_t=mu_t/p_t",
+    "predeclared_falsifiers": [
+      "Reconstruction means .324 vs .696",
+      "4-week +3.1pp and 12-week +2.1pp do not substitute each other",
+      "Exact algebra identity with fractions",
+      "Reject zero active denominator and malformed record",
+      "Warning that user intensity conditioned on treatment-induced active set is not causal",
+      "4wk and 12wk cumulative windows not a week-on-week trend"
+    ],
+    "multiplicity": "One identity and two periods already specified from original source; no scans/threshold optimization."
+  },
+  "D": {
+    "source_file": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/palikot_aggregate_margin.py",
+    "source_sha256": "ba5fc19630ba31cacd8ab4a9ffc8badc7e8fe798fb7396e6ef9d8839c817a2df",
+    "source_git_sha1": "d881445b907a5bf1d3466fa963b43fc7c70bbec5",
+    "source_commit": "9527984b3bff7fbfa9418ebf5b09c3f013347223",
+    "test_file": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/test_palikot_aggregate_margin.py",
+    "test_sha256": "82d954c5ae8ae5660240424b19c17a2f64d9c56a810d8a77b7b355da9516e0f2",
+    "test_git_sha1": "e82993b0af3f19459498755cc3df0ad0c155629a",
+    "test_commit": "b700772c2f7382e83d1e3a6ea4c239e3d3a55f12",
+    "execution": "Native Python stdlib after freeze, source and test byte identical to GitHub SHA; no network."
+  },
+  "E": "Run seven frozen unittest groups and exact Python analysis, preserve stdout/stderr, SHA, output.",
+  "F": "Check original different 4/12-week windows, selection into active, randomization school-level 138, sample 9327 rather than rhetorical 10000, control standard leaderboard, bundled treatment, rounding/strata adjusted means.",
+  "G": "Independent source from C01 Pickal 2026; however C02 is not a new experiment or independent replication of the Palikot causal claims.",
+  "H": "Update priors of original published evidence for different four/twelve-week active denominators and treatment bundle, no new scientific claims about PFL.",
+  "I": "No 'leaderboard alone did X', no mechanism attribution to extensive/intensive, use descriptive algebra with conditional assumptions and known publisher uncertainty.",
+  "J": "Count C02 as bounded AB-R source-backed aggregate analysis only if pre-frozen seven tests pass and no original individual rows processed; N1 0; CT2 22; R5 applies.",
+  "publication_url": "https://link.springer.com/article/10.1007/s11129-026-09311-3",
+  "exclusions": [
+    "No human microdata",
+    "No licenses accepted",
+    "No personal or politician scoring",
+    "No ChatRelay",
+    "No costly CI",
+    "No main merge"
+  ]
+}

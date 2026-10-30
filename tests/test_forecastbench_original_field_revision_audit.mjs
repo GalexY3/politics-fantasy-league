@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {auditPublicResolutionFieldRevisions as audit} from '../scripts/forecastbench_original_field_revision_audit.mjs';
+const make=(rows)=>({forecast_due_date:'2026-09-27',question_set:'2026-09-27-llm.json',resolutions:rows});
+const row=(id,fields={})=>({id,source:'fake_source',direction:'yes',resolution_date:'2026-10-11T00:00:00Z',resolved_to:1,resolved:true,...fields});
+test('C36 detects real outcome field change without outputting source ids',()=>{const a=audit(make([row('a')]),make([row('a',{resolved_to:0})]));assert.equal(a.mutated,1);assert.equal(a.outcome_changed,1);assert.equal(a.individual_source_ids_disclosed,false)});
+test('C36 separates date-only from outcome change',()=>{const a=audit(make([row('a')]),make([row('a',{resolution_date:'2026-10-12T00:00:00Z'})]));assert.equal(a.date_only,1);assert.equal(a.outcome_changed,0)});
+test('C36 counts joint date and outcome change once',()=>{const a=audit(make([row('a')]),make([row('a',{resolution_date:'2026-10-12T00:00:00Z',resolved_to:0})]));assert.equal(a.paired_outcome_date_change,1);assert.equal(a.mutated,1)});
+test('C36 rejects duplicate original source keys',()=>assert.throws(()=>audit(make([row('a'),row('a')]),make([row('a')])),/DUPLICATE_PUBLIC_KEY/));
+test('C36 refuses individual-person fields even in public fixture',()=>assert.throws(()=>audit(make([row('a',{user_id:'synthetic'})]),make([row('a')])),/INVALID_OR_UNEXPECTED_PUBLIC_FIELDS/));
+test('C36 refuses cross question-set versions',()=>assert.throws(()=>audit(make([row('a')]),{...make([row('a')]),question_set:'different'}),/CROSS_COHORT_OR_QUESTION_SET/));
+test('C36 validates row accounting with removals and additions',()=>{const a=audit(make([row('a'),row('b')]),make([row('b'),row('c')]));assert.equal(a.removed,1);assert.equal(a.added,1);assert.equal(a.unchanged,1);assert.equal(a.bookkeeping_identity,true)});

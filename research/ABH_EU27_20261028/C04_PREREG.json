@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "R1": "Unit: EU member country, n<=27. Turnout percent of eligible voters, women percentage of MEPs in constitutive EP 2024. No individual-level inference.",
+  "R2": "Statistical baseline Pearson and Spearman; rank/level, 2019 gender baseline and compulsory-voting sensitivity. No simplistic null-only comparator.",
+  "R3": "Pre-exposed 2024 turnout and 2019 gender tables; 2024 gender outcome was not read at prereg time; four post-hoc sensitivity operations, exploratory family, no confirmatory p-values or novelty.",
+  "R4": "Ablate compulsory-voting legal regime, geography/confounding where possible and large-country weight, and 2019 level.",
+  "R5": "Never repeat blocked binary fetch as scientific cycle; stop if full country gender not available; register missing data.",
+  "source": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "originals": "https://results.elections.europa.eu/en/tools/download-datasheets/",
+    "legal": "https://www.eeas.europa.eu/sites/default/files/documents/2023/European%20elections%202024%20-%20national%20rules.pdf"
+  },
+  "CT2_before": 29,
+  "grade_0_3": "PENDING",
+  "data_original_binary_status": "EP download page has signature links, but no actual raw files retrieved or signatures checked",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": 1.4,
+  "A": "Does 2019→2024 country change in turnout co-vary with change in women's percentage of MEPs, independently of persistent between-country levels?",
+  "B": {
+    "H1": "Change-on-change Spearman rho >0.2",
+    "H0": "No monotonic change association",
+    "H_other": "Different MEP seat counts in 2019 vs 2024, discontinuity and rounding may dominate"
+  },
+  "C": "Join 27 countries turnout 2019 and 2024, constitutive gender 2019/2024; derive change_pp each; Pearson/Spearman on 27 paired differences; report influential extreme-change countries; no causal/ecological individual claim. Missingness drop must be reported.",
+  "E": "PENDING",
+  "F": "2019 EP gender table might use pre-Brexit composition and 2024 after seats reapportioned; only same current EU27, no UK.",
+  "G": "Same publisher, no independent social theory validation",
+  "H": "No CT2 uplift",
+  "I": "No causal individual vote-gender inference",
+  "J": "If change relation vanishes, preserve negative regardless prior cross-sectional result"
+}

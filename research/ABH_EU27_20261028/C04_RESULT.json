@@ -1,0 +1,61 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "V4": 36.9,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "grade_0_3": 0,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "unit": "country",
+  "source_fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+  "original_EP_signed_CSV_bytes": 0,
+  "prospective_model_validation": false,
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_WEAK_CHANGE_ON_CHANGE_ASSOCIATION",
+  "A": "Do 2019→2024 country turnout percentage point changes align with changes in 2019/2024 female MEP share?",
+  "B": {
+    "H1": "Spearman of changes >0.2",
+    "H0": "Negligible change association",
+    "H_other": "Round-off, constituency size and seat reapportionment dominate"
+  },
+  "C": {
+    "prereg_commit": "5cfc111c99a102f631b53b861cad05cdde5ad287",
+    "execution": "Paired 27 same member-country changes; Pearson and Spearman of country deltas; complete-data panel, UK excluded, no difference-of-differences causal model; highlighted extreme turnover countries regardless gender outcome."
+  },
+  "D": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "metrics": "EU27_METRICS.json"
+  },
+  "E": {
+    "n": 27,
+    "pearson_delta": 0.1767437854650043,
+    "spearman_delta": 0.19111586240066708,
+    "predeclared_rho_gt_0_2": false,
+    "unweighted_mean_country_female_pct_delta": -3.059259259259259,
+    "extremes": {
+      "Lithuania_turnout_delta": -24.51,
+      "Lithuania_women_delta": -8.82,
+      "Hungary_turnout_delta": 16.1,
+      "Hungary_women_delta": 9.62,
+      "Slovenia_turnout_delta": 12.91,
+      "Slovenia_women_delta": -16.67
+    }
+  },
+  "F": "Predeclared rho >0.2 narrowly not met and estimates weak. Differences cannot identify whether turnout changed the slate of elected members; 2019 women's data rounded integers; seat totals and former UK composition differ.",
+  "G": "Both periods EP own publisher, no independent national register/CSV verification. EU aggregate 2019 women 40 vs 2024 38.53 is not average country change; do not conflate.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "I": "Country ecological only; no individual voter transitions.",
+  "J": "Retain negative; test alternative predictive baselines on same 27 country records."
+}

@@ -15,6 +15,7 @@ import pytest
 from politics_fantasy.product import (seed_demo, state, transfer, set_lineup, add_club,
                                      connect, GameError, LINEUP_SIZE)
 from politics_fantasy.server import handler_factory, PILOT
+import politics_fantasy.product as product_module
 from http.server import ThreadingHTTPServer
 
 @pytest.fixture
@@ -164,7 +165,11 @@ def test_http_api_buy_and_state(http_server):
     ('lineup', {'club_id': [], 'round_id': 'next', 'figures': ['F01','F02','F03']}),
     ('lineup', {'club_id': 'demo', 'round_id': {}, 'figures': ['F01','F02','F03']}),
 ])
-def test_http_invalid_identifiers_return_json_without_mutating_state(http_server, route, body):
+def test_http_invalid_identifiers_return_json_without_mutating_state(http_server, route, body, monkeypatch):
+    # State includes the current demo clock, so force it to advance between requests.
+    base = datetime.now(timezone.utc)
+    calls = iter(range(100))
+    monkeypatch.setattr(product_module, 'utc_now', lambda: base + timedelta(seconds=next(calls)))
     with urllib.request.urlopen(http_server+'/api/state') as resp:
         before = json.load(resp)
     req=urllib.request.Request(http_server+'/api/'+route,data=json.dumps(body).encode('utf-8'),
@@ -175,6 +180,9 @@ def test_http_invalid_identifiers_return_json_without_mutating_state(http_server
     assert json.load(err.value)['error'] == 'INVALID_ID'
     with urllib.request.urlopen(http_server+'/api/state') as resp:
         after = json.load(resp)
+    before_now = before['demo_clock'].pop('now')
+    after_now = after['demo_clock'].pop('now')
+    assert datetime.fromisoformat(after_now) > datetime.fromisoformat(before_now)
     assert after == before
 
 def test_http_rejects_bad_media_and_cross_origin(http_server):

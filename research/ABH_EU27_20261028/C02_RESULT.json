@@ -1,0 +1,56 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "V4": 36.9,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "grade_0_3": 0,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "unit": "country",
+  "source_fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+  "original_EP_signed_CSV_bytes": 0,
+  "prospective_model_validation": false,
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_NEAR_ZERO_CROSS_SECTION_ASSOCIATION",
+  "A": "Does higher 2024 EP turnout associate with greater 2024 female MEP share across all 27 EU countries?",
+  "B": {
+    "H1": "Spearman rho > 0.25",
+    "H0": "Near-zero or negative association",
+    "H_other": "Mandatory vote regime, list rules and seat magnitude confound ecological correlation"
+  },
+  "C": {
+    "prereg_commit": "05acd03cd2b5aa206a1b44e5c766dff65b58768b",
+    "execution": "Python scipy pearsonr/spearmanr and Theil-Sen on 27 complete country rows, plus 27 leave-one-country-out rho checks, full publisher table inspected after prereg of all five cycles."
+  },
+  "D": {
+    "data": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+    "source": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "metrics": "EU27_METRICS.json",
+    "script": "analyze_eu27.py"
+  },
+  "E": {
+    "n": 27,
+    "pearson_r": -0.02444189654151927,
+    "spearman_rho": 0.059893082383310654,
+    "theil_women_pp_per_10pp_turnout": 0.9605662285136494,
+    "loo_spearman_range": [
+      -0.005817935989001613,
+      0.16601073012010836
+    ]
+  },
+  "F": "Does not support predeclared monotonic rho>0.25; typical country-level association near 0. Theil-Sen positive tiny coefficient with wide sign-ambiguous slope, not causality or individual effect.",
+  "G": "Official country tables rendered, no signature original bytes or independent issuer. 2019/2024 gender definitions may differ.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "I": "Country ecological analysis; cannot infer women electors' behaviour.",
+  "J": "Retain meaningful negative local result; analyze compulsory voting sensitivity."
+}

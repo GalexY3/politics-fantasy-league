@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0089-PFL-ABH30-C18-HUMAN-FORECAST-ACCESS-RIGHTS-NEGATIVE-20261029",
+  "parent_batch": "0088-PFL-ABH30-C17-SYNTHETIC-HMAC-INTEGRITY-20261029",
+  "at": "2026-10-29T23:15:14Z",
+  "actor": "chatgpt",
+  "reason": "C18 preregistered read-only original licensed human forecast file feasibility failed JSON parser and demonstrated privacy gate; no actual participant rows used or PFL causal claims. Python original Atlas full replay still not run.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C18-ORIGINAL-HUMAN-DATA-FEASIBILITY-NEGATIVE-20261029",
+        "activity": "Official licensed ForecastBench human individual original source pinned and one attempt to parse JSON failed; posthoc viewer shows user_id and free text privacy risk, no person data retained, no PFL rank exposure.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C18_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C18_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C18_REPORT.md"
+        ],
+        "scope": "AB-R limited negative documentary source rights/access audit, not human experiment",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}

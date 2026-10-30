@@ -1,0 +1,40 @@
+{
+  "schema": "pfl.abh.branch5.repair.prereg.v1",
+  "date": "2026-10-29",
+  "related_cycles": [
+    "C01",
+    "C02"
+  ],
+  "parent_freeze_commit": "ebfba33a262cbc110b042170f4991604e18c0b22",
+  "original_code_sha256": "542a56984c83121a4b69e9225470f853568fae7399b18ec57ac034f6abdfef7d",
+  "original_test_sha256": "3c92a00c6d6daeb30d82f32451d9529e1e297a27929a291ae646709b1e5e897a",
+  "prior_run": {
+    "node": "v22.16.0",
+    "pass": 8,
+    "total": 8,
+    "exit": 0,
+    "source": "local exact Git blob checks"
+  },
+  "adversarial_failure": {
+    "unit": "synthetic one participant/question",
+    "answer_at": "2026-01-03T00:00:00Z",
+    "display_at": "2026-01-03T00:00:00Z",
+    "observed": "pre_response_displays=1",
+    "correct_interpretation": "ordering unknown at timestamp granularity; cannot claim pre-response"
+  },
+  "falsifier": "Any source classifying same-second impression as strictly pre-answer fails temporal semantic contract",
+  "repair_before_run": {
+    "new_source_sha256": "c631d35123798cae52953c8a673b8812dd1b930b14d108ae29e682acc75e19a3",
+    "new_test_sha256": "86b2040d87ddfa25a6bd895a0e6b5784e794b25c51557d0480517506f43c1a27",
+    "new_git_blobs": [
+      "ae0e23db4b5086fe4e0aec2b9f4a69394857b55c",
+      "d4c6978c37424ab10a95451a32570e04c1e3342a"
+    ],
+    "change": "Separate timestamp_tied_displays from pre_response_displays when view === first forecast time. Add exact negative tie test with expected count 1, pre count 0.",
+    "expected_test_groups": 9,
+    "negative_check": "No changes to 12 eligible opportunities, 4 responses or other 8 assertions."
+  },
+  "scientific_effect": "NONE; engineering defect and repair only",
+  "count_5slots": "Not a new third cycle; repair linked to C02.",
+  "gate": "Do not count prior 8/8 as complete semantic audit until this new test passes."
+}

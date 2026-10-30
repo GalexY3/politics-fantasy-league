@@ -1,0 +1,53 @@
+{
+  "cycle": "C02",
+  "type": "AB-R_SECURITY_ADVERSARIAL",
+  "prereg_commit": "b2c64b9787c7c80bf3ecf534799aebe740eca03e",
+  "A": "Prior mock approval and object-key validation vs adversarial nonenumerable/inherited metadata in a fictional-only dry-run",
+  "B": [
+    "old 84 V8 tests sufficient to ensure no metadata channels",
+    "symbol and inherited-key bypass",
+    "CSP source isolation critical beyond checking data shape"
+  ],
+  "C": {
+    "baseline": "Exact PR35 source blobs with Node v22.16.0; five adversarial weird input fixtures + forged approval",
+    "findings_before_fix": [
+      "original intake accepts Symbol('political_preference') metadata",
+      "original intake accepts prototype-inherited political_preference",
+      "original intake accepts Symbol in nested responses",
+      "original score key accepts Symbol('email')",
+      "original analyzer row accepts prototype-inherited political_party",
+      "forged mock review object accepted"
+    ],
+    "falsifier": "Counterexample not accepted before patch"
+  },
+  "D": {
+    "source_commit_sha": [
+      "b94607925a37b70d118195f0ee859e6082e0246d",
+      "94e8cd1b2d59f4257996273a294a3bedde3bf5df",
+      "e35e78aea6e02168ceec3f164ca1693cce0bfe5e"
+    ],
+    "patched_git_blobs": [
+      "f0959f4576d7e33aa2b756bdd353023d298c5ab2",
+      "34e7af21537997de70b010c3da820042de07b9fe",
+      "97dd19999bfa5520740139b397e16b2783592518"
+    ],
+    "remedy": "strict plain data object + Reflect.ownKeys + no getters, for entire response, input, analysis payload and row; no source names/parties/politicians"
+  },
+  "E": {
+    "before": "6/6 original adversarial probes ACCEPTED (5 bypasses + forgeable mock)",
+    "after": "5/5 metadata bypass probes REJECTED; mock still forgeable by design; 6/6 checks of expected safe/status outcomes",
+    "regression": "84/84 parent checks still PASS after patch in native Node 22.16.0, exactly SHA-matched copies of three patched files",
+    "native_patches_verified": true
+  },
+  "F": "No real approval verification. A mock can still be fabricated to pass (known and deliberately unresolvable without an approved ethics/identity infrastructure). Not a live input server; no human data. Reflect.ownKeys hardened data shape but objects can be complex and consumers may bypass it.",
+  "G": "Not field replication or external privacy/security certification; four new case classes from same local V8/Node sandbox",
+  "H": "Add prior: tests relying only Object.keys can miss inherited/Symbol properties; always treat fake review as dry-run marker, not authority",
+  "I": {
+    "grade": "0/3",
+    "CT2_parent": 29,
+    "CT2_prospective": 25,
+    "independent_real_data": false,
+    "ethics": "No external authorization, scoring of political actors prohibited"
+  },
+  "J": "ACCEPT_LOCAL_SECURITY_REPAIR; branch C03 UI no key/no intake endpoints and C04 deny-by-default HTTP"
+}

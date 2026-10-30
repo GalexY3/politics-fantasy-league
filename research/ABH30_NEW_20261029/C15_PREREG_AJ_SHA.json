@@ -1,0 +1,66 @@
+{
+  "schema": "pfl.abh30.c15.prereg_aj_sha.v1",
+  "cycle": "ABH30-C15",
+  "date": "2026-10-29",
+  "mode": "AB-P",
+  "drift_D": 1,
+  "parent_PR": 67,
+  "base_sha": "b36dc5706fb1a192c2f5815431b2c8e43ce14f01",
+  "branch": "research/pfl-abh30-c15-five-arm-receipt-riskset-20261029",
+  "authorization_before": {
+    "new_granted": 30,
+    "new_valid": 14,
+    "new_remaining": 16,
+    "historical_separate_STOP_R5": 2
+  },
+  "A": "Can PFL's five-arm frozen rank publicity×granularity design be linked to an offline fictional assignment/opportunity/render-receipt consistency audit which FAILS when rendered feedback differs from assigned treatment or risk set? Distinguish registration opportunity from display receipt and unknown missing.",
+  "B": {
+    "H1": "All valid synthetic receipt records map one-to-one to a registered time-bounded opportunity and assigned member/room/arm with matching rank signal and audience; missing receipt remains unknown, not zero delivered. A wrong treatment, room, date or duplicate must fail.",
+    "H0": "A stale/cross-arm/duplicate synthetic render could pass, or missing exposure is interpreted as absent outcome/participant.",
+    "rival": "A declared synthetic 'independent log' string does not prove a renderer or cryptographic attestation; cannot infer actual treatment exposure, allocation, integrity or human research validity."
+  },
+  "C": {
+    "unit": "nonpersonal synthetic (assignment, member×opportunity, optional renderer receipt) keyed by ID; five existing fictional C14 arms",
+    "tests": 20,
+    "adversaries": [
+      "mixed room arms",
+      "wrong audience",
+      "different granularity",
+      "duplicate receipt",
+      "replay under new receipt id",
+      "stale time",
+      "wrong opportunity",
+      "missing not zero",
+      "external source masquerade",
+      "invalid/unsafe schema",
+      "contract parity broken"
+    ],
+    "comparison": "C14 static plan and old 4-arm fictional_room_exposure.mjs; C15 new five-arm assigned opportunity/receipt join."
+  },
+  "D": {
+    "source": {
+      "path": "src/politics_fantasy/fictional_rank_delivery_audit.mjs",
+      "git_blob": "db4df150fa73d26ee3ec40965586e4f3ca3c790f",
+      "sha256": "953459a239d69b0f77b6cd6293b4f4c8265b635deebcba2fd69986eb5d7b8d85",
+      "staged_commit": "5ba4fcdd52aabc6c0b20d7060de8e9bc01537dd5"
+    },
+    "tests": {
+      "path": "tests/test_fictional_rank_delivery_audit.mjs",
+      "git_blob": "ff04ef970dca3e5f68c98aa7f5818e6022287b1b",
+      "sha256": "94d916229a192dd2b3fd9a8423c447e55908126c517dd5e8081a5d5f7678e8fd",
+      "staged_commit": "c909225c73499a370a02cb58181f99cb5373b3f4"
+    },
+    "dependency": {
+      "path": "src/politics_fantasy/fictional_rank_visibility_contract.mjs",
+      "git_blob": "cad226a589772de6c733929d32a527252d719ad6",
+      "sha256": "c007e0320e4ab5b4b2f1d3e7d37208828e70da253da47727547dff1f804f8c20"
+    },
+    "command": "node --test tests/test_fictional_rank_delivery_audit.mjs"
+  },
+  "E": "Native Node v22.16.0 20 tests with exact SHA prior check AFTER prereg committed. Log first test exit and failed tests. If unexpected then record invalid first attempt and freeze repair separately.",
+  "F": "Only synthetic sources, no person/politician names, no real user content, no actual renderer attestation, assignment concealment, or exposure certification. Missing receipts are UNKNOWN not zero.",
+  "G": "Use C14 config-only as baseline and old four-arm exposure proof as rival. Demonstrate value as 5-arm opportunity/render consistency with separate missingness.",
+  "H": "Record only engineering/measurement prior if actual tests pass; no human source claims or scientific priors about effectiveness.",
+  "I": "CT2 scientific remains 20/100 ordinal, N1–N3=0, gates 0/6, grade 0/3.",
+  "J": "If successfully run, count one bounded AB-P C15: 15/30 new valid and 15 remaining, historic 2 STOP_R5. Do not merge main, activate costly CI, use ChatRelay, process PII or score actual politicians."
+}

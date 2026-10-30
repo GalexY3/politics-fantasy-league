@@ -1,0 +1,82 @@
+{
+  "schema": "pfl.ab321.abh5.c03.freeze.v1",
+  "date": "2026-10-29",
+  "origin": "PR46",
+  "origin_sha": "e9c6a3f90fcd70e0fbddf6aaba27bf870ea73d23",
+  "branch": "research/pfl-abh5-cluster-interference-20261029",
+  "authorization": "Same five new cycles; two previously valid AB-P; C03 one of three residual new slots; 2 historical unchanged",
+  "type": "AB-P",
+  "scientific_evidence": "NONE",
+  "grade_prior": "0/3",
+  "CT2_scientific_before": 22,
+  "DRIFT": {
+    "score": 1,
+    "reason": "From verified synthetic opportunity/display observation to grouped ranking-room assignment and target-weighting changes; no new real empirical population."
+  },
+  "research_contract": {
+    "A": "Can a four-arm individual-level ranking comparison remain interpretable if peers in one shared room receive different treatment assignments, and do equal-cluster vs equal-person target contrasts agree with unequal room sizes?",
+    "B": {
+      "H1": "Treatment mixing inside shared leaderboard group is contamination/inconsistent cluster-level treatment; unequal room weights change estimates if estimand not specified.",
+      "H0": "No contamination and person-weighted and cluster-equal factorial contrasts remain equal in the fixed fixture.",
+      "rival": "Four independent arms assigned per individual may be legitimate only with exposure mapping and interference model; this diagnostic explicitly does not prove cluster randomization is the only defensible design."
+    },
+    "C": {
+      "unit": "Fictional participant within leaderboard room",
+      "arms": [
+        "control",
+        "transparency",
+        "leaderboard",
+        "both"
+      ],
+      "n": 16,
+      "rooms": 8,
+      "arms_each_2_rooms": true,
+      "each_arm_room_sizes": [
+        1,
+        3
+      ],
+      "pattern": "control 0/1 and 3/3; transparency 1/1 and 0/3; leaderboard 0/1 and 0/3; both 1/1 and 3/3",
+      "expected": {
+        "control_person": 0.75,
+        "control_cluster": 0.5,
+        "transparency_factor_person": 0.25,
+        "transparency_factor_cluster": 0.5,
+        "interaction_person": 1.5,
+        "interaction_cluster": 1
+      },
+      "negative_cases": [
+        "mixed arms within same leaderboard room",
+        "duplicate participant",
+        "unregistered fake arm",
+        "fake live study",
+        "empty and missing arms",
+        "extra PII fields",
+        "accessor getter"
+      ],
+      "determinism": "order invariant; 8 test groups"
+    },
+    "D": {
+      "environment": "Node v22.16.0 local isolated container; no requests or network",
+      "source": "src/politics_fantasy/fictional_cluster_gate.mjs",
+      "source_git_blob_sha1": "fa0b480ee2522bdd4f7aa2bd7757092bd8010515",
+      "source_sha256": "bb196e1dda902e76b6557f985e94038814a6a7f5600abed93a5ffd7debf9dbcf",
+      "test": "src/politics_fantasy/test_fictional_cluster_gate.mjs",
+      "test_git_blob_sha1": "ec1739f7db637a5bde3c147acd1f23684d68f78c",
+      "test_sha256": "d4cb5be09151c74ea37ad048483e90c3c970f836fdae1d40fa5e4ad8b9490126",
+      "source_commit": "8a1e5643b95512cf2d56fe8c6e27481911cfffc7",
+      "test_commit": "ead53eb392b7cc294e9742070c45d9efab829452"
+    },
+    "E": "Execute exact frozen test with node only after prereg commit; record stdout, stderr, exit status, sha256.",
+    "F": "Adversarial assess contamination, unequal-room weights, post-hoc reweighting, no independent exposure/authenticated randomization; classify all crafted success/negative appropriately.",
+    "G": "Check conceptual prior art independently using Felkey et al 2023 AEA (anonymity and rank), Chen et al 2024 Labour Economics (small leagues), Karabiber & Gurol 2026 Acta Psychologica (6 arm rank vs progress); no scientific replication.",
+    "H": "Record cumulative prior revision on interference and estimator target, without increasing N1/N2/N3.",
+    "I": "Engineering result only, not identification of real leaderboard effects, inferential precision, statistical significance or ethical clearance.",
+    "J": "Count C03 as 1 AB-P valid ONLY if all prereg groups pass exact Git-matched code. If failure preserve result and repair via separate freeze. C04/C05 remain reserved unless independently justified."
+  },
+  "stop_r5": true,
+  "no_person_data": true,
+  "no_political_ratings": true,
+  "no_CI_dispatch": true,
+  "no_chatrelay": true,
+  "no_merge_main": true
+}

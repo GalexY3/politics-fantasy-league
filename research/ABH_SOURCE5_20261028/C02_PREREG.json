@@ -1,0 +1,38 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "PREREG_BEFORE_DIRECT_FILE_DOWNLOAD",
+  "D": {
+    "source_catalog": "https://sede.interior.gob.es/portal/sede/informacion-general/catalogo-de-datos",
+    "catalog_evidence": "Web result enumerates Paridad Electoral created and last updated 2026-10-09; not evidence of downloaded original",
+    "pre_reg_exposure": "Catalog already searched before prereg; download not attempted",
+    "limits": "Do not publish nominal rows, no inferential individual political ratings, no claim of as-of until documented"
+  },
+  "parent": "C01_ACCESS_PROBE",
+  "trigger": "Repeated Congress raw JSON 403. Official Interior data catalog reveals a distinctly different institutional election parity dataset (catalog listing known before prereg).",
+  "A": {
+    "question": "Does the Interior official 2026 electoral parity distribution provide obtainable original bytes suitable for a bounded sociological study of candidate/elected representation?",
+    "estimand": "File accessibility, intact XLSX hash, declared population/columns and denominators of candidates vs elected, without individual scoring"
+  },
+  "B": {
+    "H1": "Official XLSX is retrievable as bytes and minimally parsable with verifiable coverage",
+    "H0": "Catalog URL exists but raw bytes blocked or unsuitable",
+    "H_other": "XLSX can be parsed but candidate/elected denominator is absent or institutional data not attributable by election"
+  },
+  "C": {
+    "treatment": "Exact source URL https://descargas.interior.gob.es/datasets/paridad_electoral/Paridad-cargos-electos.xlsx",
+    "baseline": "Previously available historical election output documented PFL, not a proven original current gender dataset",
+    "negative": "Reject HTML/error page masquerading as XLSX; test archive ZIP magic and hash and original content origin; no match from loose column names",
+    "falsifier": "No actual bytes / invalid workbook / no usable denominator"
+  },
+  "E": "PENDING",
+  "F": "Check false inference from metadata date to record first-public time, and distinguish sex/gender fields where not supplied",
+  "G": "Independent issuer and comparison required for broad claims; no holdout for source accessibility",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No real-person scoring; avoid nominal data in research repo",
+  "J": "On success, plan separate comparative evaluation; on blocked no pretend field corpus obtained"
+}

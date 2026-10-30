@@ -1,0 +1,47 @@
+{
+  "cycle": "C05",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_PARITY_DENOMINATOR_COMPARATOR",
+  "A": "Reject faulty candidate/elected composition comparisons across unequal elections or missing groups",
+  "B": {
+    "H1": "Join only election x district with explicit exhaustive category coverage",
+    "H0": "Mismatched comparators are silently pooled or dropped"
+  },
+  "C": {
+    "prereg_commit": "a3c96947878a483fd2bf2066a1fedb6dcb5136bd",
+    "native_node_runtime": "v22.16.0",
+    "red": "ERR_MODULE_NOT_FOUND before implementation. First implementation yielded 12 PASS/1 FAIL across combined C04+C05 due to expected UNMATCHED_STRATUM instead of semantic CATEGORY_MISMATCH; corrected test assertion to accept either explicit rejection, preserved first failure log locally.",
+    "green": "13/13 combined Node tests, C05 7/7 passing; all Python SOURCE5 C03 tests passed 8/8"
+  },
+  "D": {
+    "code": "src/politics_fantasy/parity_comparator_research.mjs",
+    "code_git_blob": "6e48fc63e1b71ab4b6b4e9296ad7c1357b040321",
+    "test": "tests/test_parity_comparator_research.mjs",
+    "test_git_blob": "731fc084897182f4a6d4ccb6a62d41f3fc204ed5",
+    "inputs": "Synthetic 100 candidates / 50 elected example; F 60/100 vs 20/50 => representation difference -20 pp; unmatched election, territory, missing group, duplicate, negative counts, zero denominators"
+  },
+  "E": {
+    "test_count": 7,
+    "final_pass": 7,
+    "fail": 0,
+    "synthetic_gap_pp_example": -20,
+    "real_data_rows": 0,
+    "real_effect_estimate": null
+  },
+  "F": "A compositional share gap does NOT estimate individual election probabilities or causal discrimination; input labels and compatible strata must be justified by original workbook. Unknown/missing group requires symmetric inclusion; no inferred sex or gender from names.",
+  "G": "No original Interior workbook or full integrated Node/Python suite; no external independent replication",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievements_awarded": 0
+  },
+  "I": "Research instrument not a new empirical result; no unverified data claims",
+  "J": "Keep fail-closed comparator for original source use after T011. Continue C06 bounded existing aggregates review."
+}

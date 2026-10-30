@@ -1,0 +1,75 @@
+{
+  "schema": "pfl.abh5b.c01.prereg.v1",
+  "date": "2026-10-29",
+  "parent_pr": 48,
+  "parent_head": "08deb85b00db09429a78c37383127e5eb9c8060f",
+  "authorization": {
+    "new_ABH_BRANCHING": 5,
+    "used_prior_to_this": 0,
+    "historical_ABH_unconsumed": 2
+  },
+  "type": "AB-R_AGGREGATE_ORIGINAL_PUBLISHED",
+  "grade_before": "0/3",
+  "ct2_before": 22,
+  "drift": 2,
+  "A": "Does published N=427 randomised five-arm leaderboard-feedback study identify its full-sample interest/enjoyment mean contrast, if motivation F(4,340) denotes 345 analysable cases?",
+  "B": {
+    "H1": "The reported positive complete-case contrast does not sign-identify full N=427 effect with arm-specific unrepresented outcomes unknown (1–5 scale).",
+    "H0": "Every feasible assignment of 82 unrepresented values across reported five arms preserves positive high-up vs no-feedback contrast.",
+    "rivals": [
+      "Reported original significant omnibus condition effect for respondents remains legitimate conditional evidence, distinct from ITT",
+      "Authors used complete-case/outlier exclusion; not necessarily attrition caused by intervention",
+      "It is possible the F denominator does not represent five-arm complete-case 345; bound is conditional on ordinary ANOVA interpretation"
+    ]
+  },
+  "C": {
+    "population": "Five randomized arms in Pickal et al (2026): 86 higher/up; 81 higher/down;75 lower/up;95 lower/down;90 no feedback.",
+    "outcome": "interest/enjoyment 1..5, original means high/up=3.37 and control=3.00 from original published paper section 3.4.",
+    "analysis_counts": "Initial performance F(4,422) implies 427, motivation F(4,340) implies 345, 82 not represented, assuming one-way five-group ANOVA.",
+    "estimand": "Difference of arm-wide means over the 427 five-arm sample, as conditional sensitivity target, not participant-level causal effect.",
+    "design": "Exhaustively enumerate missing counts in focal arms with residual assignable to other 3; treat unrepresented scores as extreme 1 and 5; each arm at least two observed.",
+    "negative_controls": [
+      "Exact five-arm n and degrees",
+      "Bounds include 0 or not",
+      "Witnesses feasible and sum 82",
+      "Competence contrast independent secondary",
+      "Reject arbitrary nonpublished type and impossible N"
+    ],
+    "multiplicity": "One primary interest contrast, one labeled secondary competence sensitivity. No significance testing or p-value hunting.",
+    "expected": "Observed high-up minus control +0.37; lower <0 and upper >0. Extreme allocation all 82 to one focal arm is feasible conditionally. If not, this AB cycle fails."
+  },
+  "D": {
+    "source": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/pickal_aggregate_bounds.py",
+    "sha256": "265f2d736982fb7f2d1aea29f81fa77bdd3c4acfde3b85c4dedd7a273165216e",
+    "git_blob_sha1": "ec5bf6b63699e78beb2880d0eaa82fa0a04911b1",
+    "source_commit": "7db370a68ff8e347c6c6531c321529d740d9894a",
+    "tests": "research/ABH5B_ORIGINAL_FEEDBACK_20261029/test_pickal_aggregate_bounds.py",
+    "test_sha256": "6439ca0ce743014927c44cf6a1a183036f4b7aaa9b0aae684b94b11fb2257ade",
+    "test_git_blob_sha1": "632f6f42f651107625b05e708dd466866c84f46b",
+    "test_commit": "5f6d7b77963b521a3afe090f9dc85966b89fc479",
+    "environment": "Local CPython stdlib, fixed files with exact Git SHA1 blob check; no internet needed for run"
+  },
+  "E": "Only after this prereg Git commit, execute python -m unittest -v test_pickal_aggregate_bounds.py and python pickal_aggregate_bounds.py; archive stdout/stderr and exact bounds.",
+  "F": "Look for ANOVA-case denominator ambiguity, reported participant exclusion, post-randomization conditioning, unreported arm counts, PII absence and method prior art (Manski).",
+  "G": "No external replication of source-level participant results; original published PDF and prereg OSF exists, no data/code downloaded. Strong published model and prior theoretical bounds.",
+  "H": "Update source and priors with new original study as negative novelty, and conditional partial-ID bound (not a scientific discovery).",
+  "I": "No correction of authors' claimed conditional means, no claims about dropout or treatment on all randomized participants, no full sample exactness when missing data allocation unknown.",
+  "J": "Count one AB-R methodological aggregate reanalysis if prereg tests pass. R5 stop replication claims, release gates 0/6; CT2 remain 22; grade 0/3 unless independent substantive confirmatory evidence obtained.",
+  "sources": [
+    {
+      "url": "https://opus.bibliothek.uni-augsburg.de/opus4/files/127063/127063.pdf",
+      "page": "5 participants, p9 table2, p10 motivation",
+      "license": "University original repository PDF CC BY 4.0",
+      "rows": "none"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.lindif.2025.102836",
+      "designation": "2026 published article, first online Dec 2025"
+    },
+    {
+      "url": "https://osf.io/f6dxq/?view_only=09e9393a77bf47fcb858683c325e5eaf",
+      "designation": "original authors' OSF link in paper; contents not accessed or accepted"
+    }
+  ],
+  "data_policy": "Do not download participants/forecast identifiers, accept licenses, recruit, score political actors, trigger CI, ChatRelay or main merge."
+}

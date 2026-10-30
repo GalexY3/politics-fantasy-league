@@ -1,0 +1,46 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C05",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_NATIVE_EXACT_BLOB_SOURCE_AND_LEAKAGE_GUARD",
+  "A": "Can an original-source-aware party-aggregate guard reject invalid count and pre-vote information leakage?",
+  "B": {
+    "H1": "Good examples pass and 13 malformed or leakage controls fail closed",
+    "H0": "Good fail or malformed pass"
+  },
+  "C": {
+    "prereg_commit": "81a4992b3835cc673f59e15be2d2fc322b0bf7a4",
+    "execution": "Created and ran local Python unittest on source and tests before GitHub commit, 15 PASS, 0 FAIL; then GitHub fetched file blobs matched local git hash-object exactly. No full repo checkout."
+  },
+  "D": {
+    "module": "research_only_house_groups.py",
+    "module_blob": "a8ff1dae5b4449a728d7e535bc86ab1947295eec",
+    "tests": "test_research_only_house_groups.py",
+    "test_blob": "04071e17eec565b9e03ade141266c98e327967cc",
+    "log": "C05_LOCAL_TEST_AUDIT.json"
+  },
+  "E": {
+    "native_pass": 15,
+    "native_fail": 0,
+    "raw_original_xml_bytes": 0,
+    "full_clean_repo_QA": false,
+    "pre_vote_leakage_controls": 2
+  },
+  "F": "This is a research-only type/ballot guard; a correctly shaped source forged with exact URL can pass, no public source authentication. Post-vote variables not legitimate real-time prediction inputs, and party-group majority is not a score of individuals.",
+  "G": "Only two already-exposed fixtures, all tests synthetic, no independently executed data pipeline or reliable prospective model experiment",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "newN": [
+      0,
+      0,
+      0
+    ],
+    "achievements": 0
+  },
+  "I": "Aggregate-level research only, do not score or forecast named officeholders",
+  "J": "Delegate authentic original XML capture and full clean suite T019, no use of ChatRelay and no main merge."
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "type": "AB-R",
+  "unit": "Australian 2025 federal House electoral division (n150)",
+  "source_tier": "Third-party GitHub mirror exact AEC-named June 16 2025 generated CSV header, primary catalogue verifies named files, no authenticated AEC download or first_public_at",
+  "metrics": "AEC2025_METRICS.json",
+  "panel": "AEC2025_DIVISION_PANEL.csv",
+  "baseline": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "source_prior": "McGinn & Maruyama Economic Record 2025 already documented causal effect candidates→informal in earlier periods; AEC 2025 review independently documented contemporary relation but case-selected on high informality. Our analysis confirms association, NOT novel science or replicated causal design.",
+  "restrictions": "No individual/party scoring, not actually a prospective frozen evaluation, ChatRelay off, no main merge.",
+  "cycle": "C03",
+  "status": "VALID_BOUNDED_POSITIVE_ASSOCIATION_ADJUSTED_NONCAUSAL",
+  "A": "Does candidate nomination count add descriptive fit after Australian states, AEC demographic classes and preelection census size?",
+  "B": {
+    "H1": "Positive candidate partial slope",
+    "H0": "Zero/negative after controls"
+  },
+  "C": {
+    "prereg_commit": "50246a43e5e6ce1efbb1d4f532222eb5febeade2",
+    "execution": "Ran actual 150-row OLS normal equation and HC3 sandwich covariance in V8, baseline log(close of rolls enrolment)+7 state FE+3 AEC demographic FE; then add nominations as extra feature, compare R2 and coefficient with 95% descriptive robust interval; no invented p-values."
+  },
+  "D": {
+    "metrics": "AEC2025_METRICS.json",
+    "source_meta": "C01_SOURCE_AUDIT.json"
+  },
+  "E": {
+    "n": 150,
+    "baseline_R2": 0.4685281653530431,
+    "plus_nominations_R2": 0.6329173402649529,
+    "increment_R2": 0.16438917491190985,
+    "coef_informal_pp_per_candidate": 0.8382629663300967,
+    "HC3_se": 0.11153477968150467,
+    "descriptive_95pct_CI": [
+      0.6196547981543475,
+      1.056871134505846
+    ]
+  },
+  "F": "Association remains positive, improvement large after basic controls, but country background English proficiency, ballot habits, education and state electoral rules unmeasured. No claim causal even if CI excludes zero; small ACT/NT and shared geographic errors impair classical independent inference.",
+  "G": "Statistically coherent contrast but only one 2025 election / same AEC mirror and strong previous literature.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No political group/party attribution",
+  "J": "Examine ballot threshold and preexposed exclusions."
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_OFFICIAL_SOURCE_CONSISTENCY_ALERT",
+  "A": "Do official Xunta DOG 2024 and executive overview reconcile on census, ballots, party and province grains?",
+  "B": {
+    "H1": "DOG and overview contain specific inconsistencies",
+    "H0": "All totals exact",
+    "H_other": "Official revision or data scope differences could explain changes, not proved"
+  },
+  "C": {
+    "prereg_commit": "f548464f166443b99fa684c9e6a5b62ec9377117",
+    "design": "Post-discovery prereg; transcribed province counts, 11 party general totals and DOG national totals; independently checked identities using JS integers. No prospective blind source test."
+  },
+  "D": {
+    "primary": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+    "source2": "https://conselleriadepresidencia.xunta.gal/es/relacions-institucionais-e-parlamentarias/informe-dos-resultados-electorais",
+    "fixture": "C01_GALICIA_SOURCE_RECONCILIATION.json"
+  },
+  "E": {
+    "DOG_general_candidates": 1488805,
+    "DOG_general_valid": 1501857,
+    "sum_4_provinces_candidates": 1488705,
+    "sum_11_party_candidates": 1488705,
+    "sum_4_provinces_valid": 1501757,
+    "excess_general_each": 100,
+    "voters_minus_DOG_general_valid_null": -100,
+    "voters_minus_province_valid_null": 0,
+    "overview_abstentions_published": 725229,
+    "overview_correct_subtraction": 1177872,
+    "overview_PSDEG_votes_published": 253750,
+    "DOG_votes_PSDEG": 211361,
+    "overview_PSDEG_seats_field": "211.361 (nonsensical for a 75-seat chamber)"
+  },
+  "F": "Both official issuers are Xunta family; mathematical consistency supports district and party votes over DOG general, but no authoritative corrigendum found. Do not silently edit original or attribute causes. The summary also has independent invalid fields; cannot simply declare the whole summary more authoritative.",
+  "G": "Manual HTML not raw XML hashed, source vintage and editorial error causes unknown. Cross-field arithmetic cannot alone establish legal canonical source revision.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0
+  },
+  "I": "Potentially high severity integrity issue for ingestion and research, not a novel peer-reviewed theory",
+  "J": "Enforce per-source provenance and contradictory-field quarantine; use reconciled province counts for limited downstream descriptive test, flagged as derived not replacement of DOG original."
+}

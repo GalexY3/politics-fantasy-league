@@ -1,0 +1,65 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_OFFICIAL_AGGREGATE_AND_STALE_CACHE_DISCRIMINATION",
+  "A": "2025 mayor-versus-councillor representation descriptive gap",
+  "B": {
+    "H1": "Municipal mayors materially less female represented than councillor seats",
+    "H0": "No materially negative representation gap",
+    "H_alt": "Institutional units differ; no direct promotions or causal pathway inferred"
+  },
+  "C": {
+    "pre_registration_commit": "eda32ba6c22faa5a9b3ec88478fb13ee97126069",
+    "method": "Read indexed 2025 official INE ODS 5.5.1 result twice, compared against cached open 2024 html and independently located 2025 government narrative; calculate pp manually/code; neither search indexing nor republication proves direct original latest API",
+    "discovery_exposure": "2025 source spotted before prereg, exploration not prospective blind test"
+  },
+  "D": {
+    "official_2025": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+    "web_ref_2025": "turn141124search0 and turn141124search1",
+    "web_ref_2024_crawl": "turn723109view0",
+    "independent_issuer": "https://portal.mineco.gob.es/es-es/comunicacion/Paginas/MujeresYHombres_INE_poder_tomadecisiones_igualdad.aspx",
+    "aggs": "C01_INE_ODS_551_AGGREGATES.json"
+  },
+  "E": {
+    "INE_2025_search": {
+      "mayors": 25.01,
+      "councillors": 42.76,
+      "congreso": 43.68,
+      "senado": 42.31,
+      "consejerias": 45.1
+    },
+    "contrast_councillor_minus_mayor_pp": 17.75,
+    "cached_2024": {
+      "mayors": 24.77,
+      "councillors": 42.8,
+      "gap_pp": 18.03
+    },
+    "year_2015": {
+      "mayors": 19.09,
+      "councillors": 35.57,
+      "gap_pp": 16.48
+    },
+    "source_freshness": "2025 search index (crawled last week) contradicts older cached page open reporting 2024 (crawled 1.1 years ago). Both values retained with different apparent cache versions.",
+    "real_rows": 0,
+    "original_SDmx_bytes": 0
+  },
+  "F": "Main rival: denominators are different offices; 17.75 pp is descriptive occupational share difference, not candidacy success nor mayoral conversion. Substantive new institutional source relative to prior PFL, but official aggregates long known, not novel scientific discovery.",
+  "G": "Two search outputs are not independent source replication. Mineco page covers 2025 but does not independently validate mayor value. Raw API/SDMX extraction pending.",
+  "H": {
+    "finding_grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "achievement_awards": 0
+  },
+  "I": "Avoid causal, person-level and gender-imputation claims; 2015 vs 2025 repeats same origin series",
+  "J": "Continue to explicit time comparison and independent reporting unit rather than inflate CT2; track source cache conflict for Codex verified endpoint retrieval"
+}

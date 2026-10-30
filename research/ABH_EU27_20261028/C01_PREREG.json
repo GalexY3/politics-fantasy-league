@@ -1,0 +1,35 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "R1": "Unit: EU member country, n<=27. Turnout percent of eligible voters, women percentage of MEPs in constitutive EP 2024. No individual-level inference.",
+  "R2": "Statistical baseline Pearson and Spearman; rank/level, 2019 gender baseline and compulsory-voting sensitivity. No simplistic null-only comparator.",
+  "R3": "Pre-exposed 2024 turnout and 2019 gender tables; 2024 gender outcome was not read at prereg time; four post-hoc sensitivity operations, exploratory family, no confirmatory p-values or novelty.",
+  "R4": "Ablate compulsory-voting legal regime, geography/confounding where possible and large-country weight, and 2019 level.",
+  "R5": "Never repeat blocked binary fetch as scientific cycle; stop if full country gender not available; register missing data.",
+  "source": {
+    "turnout": "https://results.elections.europa.eu/en/turnout/",
+    "gender2024": "https://results.elections.europa.eu/en/mep-gender-balance/2024-2029/",
+    "gender2019": "https://results.elections.europa.eu/en/mep-gender-balance/2019-2024/",
+    "originals": "https://results.elections.europa.eu/en/tools/download-datasheets/",
+    "legal": "https://www.eeas.europa.eu/sites/default/files/documents/2023/European%20elections%202024%20-%20national%20rules.pdf"
+  },
+  "CT2_before": 29,
+  "grade_0_3": "PENDING",
+  "data_original_binary_status": "EP download page has signature links, but no actual raw files retrieved or signatures checked",
+  "cycle": "C01",
+  "type": "AB-R",
+  "D": "Official EP site outcomes already known for turnout but 2024 women data not read",
+  "A": "Can we establish a 27-country 2024 EP turnout x women's representation panel from original publisher, with unmodified row-level shares and validated join coverage and provenance? Distinguish signed downloadable originals from publisher-rendered tables.",
+  "B": {
+    "H1": "27/27 country joins and valid share ranges, preserving EU aggregate separately",
+    "H0": "Source tables disagree/incomplete; no valid join",
+    "H_other": "Mixed outgoing vs constitutive session can invalidate entire comparison"
+  },
+  "C": "Before viewing 2024 gender outcomes, fix EU27 ISO code join, years 2024 EP turnout and 2024 constitutive session gender; exclude EU aggregate as observational country. Attempt raw CSV and digital signature, verify SHA/signature only if exact bytes acquired. If no original bytes, transcribe official published tables, mark 'official HTML rendering, unsigned local fixture' and do no original-authentication claim.",
+  "E": "PENDING",
+  "F": "Percent women rounded integer; many small-country MEP counts produce coarse shares; denominator/definitions may differ",
+  "G": "Both variables same EP website, no independent replication",
+  "H": "No CT2 increase for materialization",
+  "I": "Aggregate representation only; no personal grading",
+  "J": "If join passes, proceed correlation, otherwise stop/pivot"
+}

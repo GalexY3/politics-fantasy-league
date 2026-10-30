@@ -1,0 +1,54 @@
+{
+  "schema": "pfl.abh10.c36.original_field_revision_prereg_AJ_SHA.v1",
+  "cycle": "ABH10-C36",
+  "mode": "AB-R_ORIGINAL_PUBLIC_NONPERSON_FIELD_LEVEL_CHANGE_DECOMPOSITION",
+  "drift_D": 2,
+  "authorization_before": {
+    "granted_new": 10,
+    "valid_new": 4,
+    "new_remaining": 6,
+    "historical_STOP_R5": 2
+  },
+  "A": "C34 native original CLI found 212 mutations and 10 deletions in pinned ForecastBench non-person resolution records; do these 212 mutations concern actual resolution values (resolved_to/resolved) or only date/status metadata? Unit original public (source,id) record, not human. Avoid source-identifiers in output.",
+  "B": {
+    "H1": "At least one retained original resolution record changes truth outcome field (`resolved_to` or `resolved`), making raw source revision relevant to truth, not just date.",
+    "H0": "No retained original row changes outcome fields; the 212 modifications are solely non-outcome metadata/time/direction.",
+    "rivals": [
+      "Git commit timestamps are not each event's independently verified first_public_at.",
+      "Values may be publisher corrections, not real world event changes; do not claim direction or effect without event-level primary evidence."
+    ]
+  },
+  "C": {
+    "source": "forecastingresearch/forecastbench-datasets original pinned sep11to12 (C34), exact files `datasets/resolution_sets/2026-09-27_resolution_set.json`",
+    "source_pin": {
+      "before_commit": "3928408907498c991bc367c2d3493241aa19e516",
+      "before_blob": "424965825aae022f5861b69d17880665cd3026bb",
+      "after_commit": "d6dac818ec036aa8fa41dfc1fcb369d24ca81ce4",
+      "after_blob": "ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3",
+      "license": "CC-BY-SA-4.0"
+    },
+    "pre_freeze_known": "C34 before 437, after 427, 212 mutations and 10 removals; first original record *field names* id, source, direction, resolution_date, resolved_to, resolved read before freeze, but no row values or field-change counts viewed.",
+    "primary_endpoint": "outcome_changed count and field-specific change breakdown of 212 mutations, date-only count and overlapping date/outcome; no source ID emitted.",
+    "negative_controls": "reject duplicate keys, unrecognized personal fields, cross cohort, count identity, separated date-only vs outcome-change; 7 frozen tests"
+  },
+  "D": {
+    "code": {
+      "path": "scripts/forecastbench_original_field_revision_audit.mjs",
+      "git_blob": "68d04e3969218f4d1b0033c6ff1045225a9102fa",
+      "SHA256": "5938d85b69dc537f37d3019e8ec1a56078c9d3de1e889285ada4c2a2532b11cf",
+      "staging_commit": "1022fef81c2172955cea7df8e62ba65743ae071f"
+    },
+    "tests": {
+      "path": "tests/test_forecastbench_original_field_revision_audit.mjs",
+      "git_blob": "390569f896a1d719ef13e5f106484b8945f99418",
+      "staging_commit": "449a57533357716f0787d7164490cc97b0c824af"
+    },
+    "execution": "Native local Node exact tests after SHA checked; V8 GitHub connector original full raw non-person JSON only after freeze, instrument export stripped for V8, report actual not claimed native Node source."
+  },
+  "E": "Commit A-J before first unit test or original source row analysis; verify pinned Git blobs and compute only aggregate field-level results in isolated JS, no IDs. Preserve any failure; stop if schema differs.",
+  "F": "C34 212 number is prior-known pilot; new field-by-field count must be prospective; report any result even zero. Neither source mutation nor status change establishes real event truth first-public or score impact.",
+  "G": "C34 records aggregate mutation existence; C36 distinguishes truth-field changes from metadata-only with exact-key controls and competent positive-negative synthetic tests.",
+  "H": "Update PF-BR76 if independent original field attribution is meaningful; no scientific PFL promotion.",
+  "I": "PFL CT2 science 20/100 ordinal, N1/N2/N3 0, gates 0/6.",
+  "J": "Count one valid bounded AB-R C36 only if 7 native tests and prospective original full field breakdown actually run. Then 5/10, five remain; otherwise no count."
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "authorization": "5 cycles total (1 already executed, 4 remaining)",
+  "branch": "research/pfl-abh5-source-validation-20261028",
+  "pre_implementation": true,
+  "rights": "No real-person scoring, no original nominal data in Git, no CI, no merging.",
+  "CT2_before": 29,
+  "V4_before": 36.9,
+  "N1_before": 0,
+  "ChatRelay": "SUSPENDED",
+  "cycle": "C05",
+  "type": "AB-P",
+  "D": 0.5,
+  "A": "Can comparators between candidaturas and cargos electos report a representation gap without silently conflating unmatched elections, missing categories or turnout denominators?",
+  "B": {
+    "H1": "Structured paired aggregates reject incomplete unmatched strata and transparently report composition gap with explicit denominators",
+    "H0": "Naive ratio silently joins incompatible elections or drops unknown groups"
+  },
+  "C": "Native Node research-only paired synthetic aggregate contract; tests negative unmatched election, duplicate category, invalid counts and absent category; positive scenario where equal total but different shares, plus unknown explicitly",
+  "D_data": "Entirely synthetic candidate/elected rows; not Interior observations",
+  "E": "PENDING",
+  "F": "Compare strongest baseline: group-specific denominator matched at election x district (not party by inferred name); no population claims",
+  "G": "Actual XLSX schema, sampling, licenses remain unknown until T011",
+  "H": "No V4/CT2 uplift from instrument",
+  "I": "Cannot infer sex/gender from names or identify persons; aggregates only",
+  "J": "Keep the tool if it fails closed; stop external claims."
+}

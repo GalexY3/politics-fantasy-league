@@ -1,0 +1,49 @@
+{
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "FROZEN_BEFORE_OUTCOME",
+  "A": {
+    "question": "Are opportunities for PFL legislative-event scoring temporally concentrated beyond competent calendar-aware baselines, in UK House Commons divisions in calendar year 2025?",
+    "unit": "calendar ISO week and voting day",
+    "population": "UK Commons official recorded divisions dated 2025-01-01 to 2025-12-31",
+    "exposure": "Parliament division availability, no individual politician assessment",
+    "outcome": "number of divisions per week; per vote-day",
+    "estimand": "variance/mean of weekly counts, concentration top quartile weeks, and Poisson/negative-binomial versus baseline",
+    "interference": "divisions on same date are dependent and may concern same legislative matter"
+  },
+  "B": {
+    "h1": "Substantial clustering and concentration of weekly opportunities beyond equal-rate model",
+    "h2": "Clustering explained by parliamentary sitting calendar and number of vote days",
+    "h0": "No material excess heterogeneity over weekday opportunity baseline"
+  },
+  "C": {
+    "source": "https://commonsvotes-api.parliament.uk/data/divisions.json/search",
+    "filter": "2025 year, no member query, all pages",
+    "min_n": 80,
+    "completeness": "API total count; dedupe divisionId; verify years and dates and paging",
+    "baselines": [
+      "homogeneous weekly Poisson count with same mean",
+      "weekday-opportunity model with number of observed vote days (endogenous descriptive control)"
+    ],
+    "metrics": [
+      "count",
+      "weekly max/mean",
+      "variance/mean",
+      "top 13 weeks fraction",
+      "fraction of weeks zero",
+      "same-day repetition fraction"
+    ],
+    "guardrail": "No causal or person-activity inference; if truncated or inaccessible STOP_LOCAL",
+    "novelty": "PFL exposure calibration rather than claim of new institutional effect"
+  },
+  "D": {
+    "rights": "Open Parliament Licence v3 attributed; exclude personal data and names",
+    "qa": "original API JSON return preferred, store only aggregated dates, IDs, counts, source hashes where obtainable"
+  },
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}

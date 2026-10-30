@@ -1,0 +1,57 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PRESELECTED_NAVARRA_50_SEAT_REPLAY",
+  "A": "Out-of-earlier-case Navarra 2023 full-party 50-seat exact legal reconstruction with independent Navarra parliamentary publisher",
+  "B": {
+    "H1": "Full 11-list official aggregate and legal threshold produce all 50 observed seats",
+    "H0": "Incomplete/mismatched official data prevents verified 50-seat reconstruction",
+    "H_other": "3% threshold changes distribution versus no-threshold scenario"
+  },
+  "C": {
+    "prereg_commit": "d0c3f8976a4e816e58d86b298a05c70bb915227f",
+    "selection_timing": "Navarra election, date and expected 50 seats selected and prereg BEFORE web lookup outcomes",
+    "method": "Direct official Parliament HTML 11 lists, BOE Foral Law art 9/10 (3% valid) and D'Hondt fractions.Fraction in Python; two ballot identities and 50 seat checks; CSV original attempted via container.download and web; no source bytes obtained."
+  },
+  "D": {
+    "primary": "https://parlamentodenavarra.es/en/node/167978",
+    "law": "https://www.boe.es/buscar/act.php?id=BOE-A-1987-1255",
+    "catalogue": "https://datos.gob.es/es/catalogo/a15002917-resultados-de-las-elecciones-al-parlamento-de-navarra-agrupados-por-municipios1",
+    "fixture": "C01_NAVARRA_OFFICIAL_AGGREGATE.json"
+  },
+  "E": {
+    "total_lists": 11,
+    "valid": 329861,
+    "candidacy_sum": 324001,
+    "blank": 5860,
+    "null": 4632,
+    "voters": 334493,
+    "observed_seats": 50,
+    "dhondt_reconstruction_seats": 50,
+    "allocation_match": true,
+    "threshold_3_pct_votes": 9895.83,
+    "largest_excluded_party_votes": 1740,
+    "last_winning_quotient": "92392/15",
+    "threshold_binding_for_seats": false,
+    "original_csv_bytes": 0
+  },
+  "F": "The legally mandated 3% filter does not alter this particular allocation because all excluded vote totals are below the last seat quotient. This is the non-obvious negative contrast; it does not imply threshold universally irrelevant.",
+  "G": "Out-of-earlier-case selection achieved, but same official source table used for vote counts and published seats; arithmetic is legal formula not independent scientific replication. CSV at municipality grain inaccessible, no original binary hash, no heldout learning model.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "achievements": 0
+  },
+  "I": "Party-level aggregate, no scoring, no prospective forecast, no fabricated access",
+  "J": "Accept bounded procedural validation, decline N1/CT2 increase, move to a distinct preselected multi-district regional election."
+}

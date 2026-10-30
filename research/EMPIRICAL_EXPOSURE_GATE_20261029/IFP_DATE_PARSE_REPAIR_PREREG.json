@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-29",
+  "status": "PRE_REG_REPAIR_SAME_METADATA_TASK_NOT_NEW_AB_CYCLE",
+  "trigger": "First original IFP audit 40808853715 SHA matched, 617 distinct IDs, 498 closed outcomes and 119 voided, but none of date_start/date_closed parsed by ISO-only python.datetime.fromisoformat; cannot silently treat as missing.",
+  "original_error": "All 0 parseable for date_start/date_closed under inappropriate parser; date_suspend 617 nonempty may include NA sentinels. Original audit preserved.",
+  "source_sha256": "1f64e5483741e656ddc667b310799e9aec8a8c5dbb7e12f9af5c5a60fd146286",
+  "new_frozen_endpoints": [
+    "Print at most 4 sample values from date_start/date_closed/date_suspend/ date_to_close, no question texts",
+    "Aggregate type/signature patterns for the four date fields including sentinel NA/N/A/NULL/none/empty",
+    "Try fixed candidate parsers: ISO YYYY-MM-DD, YYYY-MM-DD HH:MM:SS, YYYY-MM-DDTHH:MM:SS, MM/DD/YYYY, MM/DD/YYYY HH:MM:SS, DD/MM/YYYY, YYYY/MM/DD, YYYY-MM-DD HH:MM, MM/DD/YY, YYYY-MM-DD HH:MM:SS.ffffff, and Excel numeric serial if explicitly numeric; report each parse success count",
+    "Do not choose ambiguous US vs EU date interpretation without source documentation; never impute dates",
+    "Only evaluate start<=close for comparable unambiguous records",
+    "Preserve original negative as instrumentation failure and show corrected source coverage"
+  ],
+  "no_human_rows": true,
+  "AB_slots_used": 0,
+  "CT2": 22
+}

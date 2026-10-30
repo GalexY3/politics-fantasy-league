@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "D": {
+    "prereg_exposure": "Both document URLs visible in initial search prior to prereg; this is a pre-specified audit of known sources, not blind source discovery",
+    "candidate_url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2023-15066",
+    "elected_url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "source_status": "Public BOE HTML texts; no raw PDF hash",
+    "first_public_at": "Do not infer earliest availability from document signing date"
+  },
+  "A": "Do published 2023 BOE candidate-proclamation and JEC elected-result instruments support a bounded lawful aggregate constituency-party comparison, or is candidate/elected semantic linkage unsupported?",
+  "B": {
+    "H1": "Independent BOE candidaturas proclamation (June 2023) and JEC elected results (August 2023) expose same election and constituency with party/coalition units but require normalizer and no name-only person join",
+    "H0": "Both sources already provide unambiguous complete candidate-to-elected group linkage",
+    "Halt": "Different issue dates and coalition naming defeat defensible joins"
+  },
+  "C": "Read original accessible BOE web text for BOE-A-2023-15066 and BOE-A-2023-18907, inspect one constituency where candidate-list and election-result seat party labels are visible, record named units only at aggregate political option level, no personal extraction; compare covered universe and dates. Negative controls party names not used as stable IDs and gender not inferred.",
+  "E": "PENDING",
+  "F": "Check whether claimed elected data are for same constituency, party and election, coalition labels non-unique and candidate substitutes non-identical to elected people",
+  "G": "No ground-truth nominative candidate-to-representative join without validated identifiers",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No gender prediction from person names; no political rating",
+  "J": "If no precise comparable link, classify as no-go and specify required join fields"
+}

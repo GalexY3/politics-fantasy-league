@@ -1,0 +1,115 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-ORIGINALS5-20261028",
+  "branch": "research/pfl-abh5-originals-20261028",
+  "base_branch": "research/pfl-abh5-institutional-20261028",
+  "base_sha": "4962376a8d84af9d0ca36a27bd80af12348c99e4",
+  "user_granted": 5,
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "used": 5,
+    "remaining": 0
+  },
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "count_rule": "C05 original XML prereg was not executed as a complete cycle; replaced prospectively by C05_PIVOT_PREREG after R5 decision. Exploratory ablation already observed before pivot; noted as post-hoc, six-option leave-one-out run subsequently.",
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "D": 0.3,
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "5117b9dbb7f9e2fdc5f4e1f9c3c17fdfe947d288",
+      "result": "C01_RESULT.json",
+      "result_commit": "5d7ca54bb5842fe6d183760cee1388ffbe6dc8c9",
+      "status": "VALID_BOUNDED_OFFICIAL_CORRECTION_LINEAGE",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "D": 0.4,
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "5b21b35f33079ae3fd66d33ce558d803ce7a76ba",
+      "result": "C02_RESULT.json",
+      "result_commit": "6cb394cda670ce18a6bb8f5c91794fdf2f2a74d3",
+      "status": "VALID_BOUNDED_GUADALAJARA_MATCHED_ELECTIONS",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "D": 0.4,
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "75be1b8d00946de4006b4140b29a3375022f7628",
+      "result": "C03_RESULT.json",
+      "result_commit": "fc4eaae7af824030476fa9cd64fb39de7541b394",
+      "status": "VALID_BOUNDED_CANTABRIA_REGION_PARTY_SEAT_BASELINE",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "D": 0.3,
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "e323e129fbfa3d79932f7425962f62fd5ac4be34",
+      "result": "C04_RESULT.json",
+      "result_commit": "c659c2f0c9e52dd803825d4b36153e4e65d81527",
+      "status": "VALID_BOUNDED_REAL_ELECTORAL_BASELINE_COMPARISON",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "D": 0.4,
+      "prereg": "C05_PIVOT_PREREG.json",
+      "prereg_commit": "fd5215df58ad5643bfd7c87816c27a5fcab50049",
+      "result": "C05_RESULT.json",
+      "result_commit": "e2cf222cce2ab6a46b9c677fbe337344e1d8a976",
+      "status": "VALID_BOUNDED_POST_HOC_EXPOSED_ABLATION_AND_NEW_SIX_WAY_AUDIT",
+      "grade": 0,
+      "CT2_before": 29,
+      "CT2_after": 29
+    }
+  ],
+  "evidence": {
+    "raw_BOE_XML_downloaded": false,
+    "official_BOE_HTML_inspected": true,
+    "local_arithmetic_execution": true,
+    "local_python_fraction_recomputation": true,
+    "full_clean_linux_repo_suite": false,
+    "external_independent_model_replication": false,
+    "ChatRelay_used": false
+  },
+  "metrics": {
+    "CT2_identity": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "achievements": "2/90",
+    "release_gates": "0/6",
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0
+  },
+  "blocked_for_codex": [
+    "Original JEC BOE XML/PDF byte downloads, SHA256 and live source timestamps",
+    "T011 full clean Linux Python/Node/Atlas and Interior parity Excel originals",
+    "Complete party universe of 2023 election with original total-vote denominators and machine-readable verified provenance",
+    "Independent prospective model & as-of source capture"
+  ],
+  "release": {
+    "no_merge_main": true,
+    "no_costly_CI": true,
+    "no_real_person_scoring": true
+  },
+  "next": "Closed; new 5-cycle grant only after user approval. Historical known XML failure not counted; no future work promised."
+}

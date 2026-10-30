@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "drift_D": 0.8,
+  "selection_before_source_result_lookup": true,
+  "A": "Does the official 2023 Principado de Asturias autonomous legislative election (45 seats, three geographic constituencies) admit a complete institutional replay without treating regional 45 as a single district?",
+  "B": {
+    "H1": "Complete BOPA 2023 results allow by-district D'Hondt seat replay and preserve party coverage",
+    "H0": "Only partial votes/seats (or no original machine source) prevent full reconstruction",
+    "H_other": "Seat counts vs actual circunscripción boundaries/threshold may be misidentified"
+  },
+  "C": "Preselect Asturias May 2023 before looking up outcomes; seek official BOPA electoral proclamation and/or Junta Electoral Asturias 3-district final counts, legal system and threshold. Verify coherent district ballot identities before any replay. Negative: do not infer missing parties from seat table. If originals unavailable record bounded access-negative, not fabricate 45-seat result.",
+  "D": {
+    "selection": "Principado de Asturias May 2023; cases not examined in prior PFL campaign",
+    "source_not_yet_read": true,
+    "original_data_priority": "Official BOPA and government electoral datastream, non-nominal aggregate; exact hash if possible"
+  },
+  "E": "PENDING",
+  "F": "Party lists may vary by district, missing party count can invalidate allocation; verify number of seats in each electorate.",
+  "G": "Single historical election noncausal; independent governmental publisher relative to Navarra",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No individual ratings",
+  "J": "If no full data, pivot R5 to unique alternative methodology rather than pretend results."
+}

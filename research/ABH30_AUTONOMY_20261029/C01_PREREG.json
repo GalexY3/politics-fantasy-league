@@ -1,0 +1,13 @@
+{
+  "id": "ABH30-P1-C01",
+  "status": "PREREGISTERED_BEFORE_INSPECTION",
+  "question": "Do publicly licensed ForecastBench question and resolution files support a deterministic non-personal join on (source,id), with nonzero resolved labels, without inferring per-person exposure?",
+  "data": "forecastingresearch/forecastbench-datasets public main, historical 2024-07-21 human question set and corresponding resolution set; GitHub connector",
+  "test": "Read two JSON files; compute counts, duplicate composite keys, matching keys, resolved labels and inconsistent IDs. No person-level forecast data.",
+  "strong_control": "negative test by joining on synthetic nonexistent source; assert zero matches",
+  "success": "schema consistent, positive overlap and >=1 resolved label; otherwise FAIL",
+  "interpretation": "Data engineering feasibility only; cannot prove novel opportunity adjustment or causal leaderboard effect",
+  "budget": "One phase I AB-R cycle only if A-J execution complete; no phase II started",
+  "ethics": "No individual human forecast files or real-politician scoring",
+  "R5": "Stop if data files unavailable or schema not reliable"
+}

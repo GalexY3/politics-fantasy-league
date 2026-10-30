@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P2-A10",
+  "phase": "AUTONOMY",
+  "status": "PREREGISTERED",
+  "A": "GitHub code-write to draft PR without Codex",
+  "B": "H0 requested substitute capability is unavailable or insufficient; H1 capability supports bounded task",
+  "C": "Create and subsequently read a small evidence receipt on the branch, check identical Git blob, verify PR40 draft and main unchanged. Probe `ollama`, `qwen`, `codex` executables local presence without installing or calling network; determine what is possible autonomously vs needs host/tool. Positive/negative controls: exact-path read works; untrusted nonexistent path 404. Produce execution matrix and bound checks.",
+  "D": "Use only currently available authenticated GitHub connector and local runtime. No credentials, network circumvention or changed admin policy.",
+  "E": "NOT_RUN_WHEN_PREREG_COMMITTED",
+  "F": "Adversarial limits: Proof of write is not an offline full checkout or power to merge; no CI or main changes.",
+  "G": "No PFL human replication; technical QA not scientific",
+  "H": "Update capability inventory based only on observed traces",
+  "I": "Science 0/3, classify operational feasibility by actual tool output",
+  "J": "Stop/R5 if feature absent; move to next distinct pathway",
+  "selection_exposure": "No C05/C10 output known before prereg; prior general environment limits disclosed",
+  "CT2_before": 22,
+  "CT2_after": 22
+}

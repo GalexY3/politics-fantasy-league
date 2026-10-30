@@ -1,0 +1,124 @@
+{
+  "schema": "pfl.abh30.c10.original_public_raw_git_revision_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C10",
+  "mode": "AB-H_AB-R_PUBLIC_SOURCE_AB-P_AUDITOR",
+  "prereg_commit": "1dd2ea52bcce8de76dc5b415592288295fce2dfe",
+  "source_repo": "forecastingresearch/forecastbench-datasets",
+  "original_source_rights_scope": "Public ForecastBench resolution_set metadata CC BY-SA 4.0 as recorded previously; not licenses for person-level forecasts",
+  "frozen_source": {
+    "path": "src/politics_fantasy/forecastbench_raw_revision_guard.mjs",
+    "Git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+    "sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9",
+    "from": "C09 before this study"
+  },
+  "executed": {
+    "location": "Connected GitHub connector read-only, V8 pure JS execution of exact frozen C09 source via Function; NO native file/disk original execution",
+    "original_full_public_resolution_JSON_files": 6,
+    "independent_recomputed_git_SHA1_full_UTF8": 6,
+    "GitHub_metadata_sha_matches": 6,
+    "git_sha_test_vector": "git hash-object abc = f2ba8f84ab5c1bce84a7b441cb1959cfc7093b7f PASS",
+    "native_original_Node_positive": "NOT_EXECUTED",
+    "prior_synthetic_native_Node": "C09 19/19 PASS; independently rerun in current session 19/19 PASS",
+    "IDs_or_question_text_persisted": false
+  },
+  "primary_outcomes": [
+    {
+      "cohort": "2026-09-27",
+      "from_git": "0b67cfec67fad4b23899e8e48c6ca3a034344edc",
+      "to_git": "2efa48b677c7c4e8a4827585d49c4f59393e233e",
+      "from_commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+      "to_commit": "d354d26d6f3feb03bacc363f6b346232645e8550",
+      "from_rows": 441,
+      "to_rows": 440,
+      "retained_unchanged": 221,
+      "removed": 1,
+      "added": 0,
+      "mutated": 219,
+      "count_identity": true
+    },
+    {
+      "cohort": "2026-09-27",
+      "from_git": "424965825aae022f5861b69d17880665cd3026bb",
+      "to_git": "ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3",
+      "from_commit": "3928408907498c991bc367c2d3493241aa19e516",
+      "to_commit": "d6dac818ec036aa8fa41dfc1fcb369d24ca81ce4",
+      "from_rows": 437,
+      "to_rows": 427,
+      "retained_unchanged": 215,
+      "removed": 10,
+      "added": 0,
+      "mutated": 212,
+      "count_identity": true
+    },
+    {
+      "cohort": "2026-10-11",
+      "from_git": "1556a17106131cf8a7d7cb3b33122d18c3b9ef6a",
+      "to_git": "0c535475a4037a47ecf009c933d635fd49f67e29",
+      "from_commit": "f3d8a4f83754f6c26990c67c69185f91f214c30c",
+      "to_commit": "420dc4f3a1e23774347da7b199c58592dce45448",
+      "from_rows": 441,
+      "to_rows": 438,
+      "retained_unchanged": 196,
+      "removed": 5,
+      "added": 2,
+      "mutated": 240,
+      "count_identity": true
+    }
+  ],
+  "total_transition_events": {
+    "removed": 16,
+    "added": 2,
+    "mutated": 671,
+    "NOT_unique_rows_across_pairs": true
+  },
+  "posthoc_field_classification_unfrozen_not_extra_cycle": [
+    {
+      "pair": 1,
+      "changed_resolution_date": 214,
+      "changed_resolved_to": 79,
+      "changed_resolved_flag": 0,
+      "metadata_only_changed": 140
+    },
+    {
+      "pair": 2,
+      "changed_resolution_date": 212,
+      "changed_resolved_to": 77,
+      "changed_resolved_flag": 1,
+      "metadata_only_changed": 135
+    },
+    {
+      "pair": 3,
+      "changed_resolution_date": 239,
+      "changed_resolved_to": 128,
+      "changed_resolved_flag": 0,
+      "metadata_only_changed": 112
+    }
+  ],
+  "adversarial": {
+    "all_three_unique_composite_key_source_ID_passed": true,
+    "all_three_source_row_count_identities_passed": true,
+    "some_raw_rows_removed": true,
+    "some_raw_field_values_mutated": true,
+    "raw_source_append_only_false": true,
+    "c08_eligible_market_binary_y_flips_prior_report": 0,
+    "raw_resolved_to_changes_are_not_all_binary": true
+  },
+  "limits": [
+    "Only 3 fixed pairs of 19 original resolution-file vintages, already related to C08; not representative of all historical updates nor independent source/publisher.",
+    "Git SHA1 authenticates git object identity relative to original upstream repository, NOT publisher content truth or cryptographic signing/rights to human data.",
+    "Public resolution_date changes do not prove first_public_at for underlying original market events.",
+    "No individual forecasts, assignment, exposure or human outcomes; 0/3 science and no launch gates.",
+    "Post-hoc field breakdown is descriptive; not preregistered endpoint and no additional AB cycle.",
+    "Original source bytes inspected in V8 via connector, not handed to local Node CLI; clean clone and positive native original file test not performed."
+  ],
+  "grade_science": "0/3",
+  "PFL_CT2": 20,
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "gates": "0/6",
+  "AB_decision": "C10 valid bounded original public source technical analysis, exactly one AB-H cycle; 10/30 new used, 20 new unspent, two historical STOP_R5; no merge main"
+}

@@ -1,0 +1,174 @@
+{
+  "cycle": "C03",
+  "mode": "AB-P",
+  "prereg_commit": "e7fe9c50a9dcd54e3daceae16f36a39489103e28",
+  "source_commit": "3c8a8f210cc1475dc9f2f4d54ed341c65ac3b220",
+  "A": "Synthetic-only coverage and opportunity scoring guard",
+  "B": "Bare rate vs explicit source completeness and synthetic schema",
+  "C": ">=12 checks; no person-level scoring; score null on unknown/empty",
+  "D": "Frozen .mjs module and V8 tests; no native Node or whole repo suite",
+  "E": {
+    "tests": [
+      {
+        "name": "expected rate",
+        "pass": true
+      },
+      {
+        "name": "scheduled denominator",
+        "pass": true
+      },
+      {
+        "name": "beta prior",
+        "pass": true
+      },
+      {
+        "name": "output frozen",
+        "pass": true
+      },
+      {
+        "name": "zero successes documented",
+        "pass": true
+      },
+      {
+        "name": "missing coverage null",
+        "pass": true
+      },
+      {
+        "name": "empty schedule null",
+        "pass": true
+      },
+      {
+        "name": "no attempts observed rate null",
+        "pass": true
+      },
+      {
+        "name": "reject person key",
+        "pass": true
+      },
+      {
+        "name": "reject party key",
+        "pass": true
+      },
+      {
+        "name": "reject real ids",
+        "pass": true
+      },
+      {
+        "name": "reject duplicate slots",
+        "pass": true
+      },
+      {
+        "name": "reject duplicate observed id",
+        "pass": true
+      },
+      {
+        "name": "reject incomplete vector",
+        "pass": true
+      },
+      {
+        "name": "reject missing evidence",
+        "pass": true
+      },
+      {
+        "name": "reject success on unattempted",
+        "pass": true
+      },
+      {
+        "name": "reject human round",
+        "pass": true
+      },
+      {
+        "name": "reject malformed event",
+        "pass": true
+      }
+    ],
+    "pass": 18,
+    "fail": 0,
+    "run_environment": "V8 functions isolate",
+    "initial_failed_harness": [
+      {
+        "name": "expected rate",
+        "passed": true
+      },
+      {
+        "name": "scheduled denominator",
+        "passed": true
+      },
+      {
+        "name": "beta prior",
+        "passed": true
+      },
+      {
+        "name": "output frozen",
+        "passed": true
+      },
+      {
+        "name": "zero successes is documented zero",
+        "passed": false
+      },
+      {
+        "name": "missing coverage null",
+        "passed": false
+      },
+      {
+        "name": "empty schedule null",
+        "passed": false
+      },
+      {
+        "name": "no attempts observed rate null",
+        "passed": false
+      },
+      {
+        "name": "reject person key",
+        "passed": true
+      },
+      {
+        "name": "reject party key",
+        "passed": true
+      },
+      {
+        "name": "reject real ids",
+        "passed": true
+      },
+      {
+        "name": "reject duplicate slots",
+        "passed": true
+      },
+      {
+        "name": "reject duplicate observed id",
+        "passed": true
+      },
+      {
+        "name": "reject incomplete vector",
+        "passed": true
+      },
+      {
+        "name": "reject missing evidence",
+        "passed": true
+      },
+      {
+        "name": "reject success on unattempted",
+        "passed": true
+      },
+      {
+        "name": "reject human round",
+        "passed": true
+      },
+      {
+        "name": "reject malformed event",
+        "passed": true
+      }
+    ],
+    "repair_note": "Initial 14/18 due to unsupported structuredClone in V8 harness; source exact match verified; 18/18 after cloning JSON fallback. No new cycle."
+  },
+  "F": "Scoring semantics protect missing vs zero but beta22 remains vulnerability to cherry-pick from C02. Input cannot be human political record under documented strict schema; does not prove external consumers cannot bypass.",
+  "G": "No deployment, native replay, users, legal signoff",
+  "H": "Add hypothetical synthetic contract only; no raise product readiness/gates",
+  "I": {
+    "grade": "0/3 scientific",
+    "product": "bounded test",
+    "CT2": 29,
+    "VSDS": "1/3 unchanged"
+  },
+  "J": "VALID_BOUNDED_ABP_AFTER_HARNESS_REPAIR"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "pfl.us.house.vote_mix_standardization.v1",
+  "sample": "fixed 2025 roll178-183 and 2026 roll178-183",
+  "source_2025": "C01_2025_OFFICIAL_AGGREGATES.json",
+  "source_2026": "C02_2026_OFFICIAL_AGGREGATES.json",
+  "type": "retrospective post-hoc on source-exposed labels",
+  "binary_target": "majority Republicans and majority Democrats same yea direction for a division",
+  "binary_stratum": "2/3 suspend-the-rules question vs all other vote questions",
+  "by_year": {
+    "year2025": {
+      "suspension": {
+        "rows": 1,
+        "shared": 1
+      },
+      "other": {
+        "rows": 5,
+        "shared": 0
+      },
+      "raw_shared_rate": 0.16666666666666666,
+      "sitting_dates": 3
+    },
+    "year2026": {
+      "suspension": {
+        "rows": 5,
+        "shared": 5
+      },
+      "other": {
+        "rows": 1,
+        "shared": 0
+      },
+      "raw_shared_rate": 0.8333333333333334,
+      "sitting_dates": 1
+    }
+  },
+  "crude_2026_minus_2025_pp": 66.66666666666667,
+  "common_rates": {
+    "suspension": {
+      "2025": 1,
+      "2026": 1
+    },
+    "other": {
+      "2025": 0,
+      "2026": 0
+    }
+  },
+  "standardized": {
+    "pooled_50_50_2025": 0.5,
+    "pooled_50_50_2026": 0.5,
+    "delta_pp": 0,
+    "weights2025_2025": 0.16666666666666666,
+    "weights2025_2026": 0.16666666666666666,
+    "weights2026_2025": 0.8333333333333334,
+    "weights2026_2026": 0.8333333333333334
+  },
+  "causal_claim": false,
+  "limits": [
+    "Source and outcome pre-exposed before exact C04 prereg",
+    "Vote type is agenda selection; stratification not randomly assigned",
+    "2026 all six votes on a single sitting 2026-05-20, pseudo-replication; 2025 observations over 3 sitting dates",
+    "Small groups 1/1 in minority strata, no meaningful uncertainty quantification; do not claim year-effect causal null globally",
+    "Same roll numbers different motions and years, not paired longitudinal events"
+  ]
+}

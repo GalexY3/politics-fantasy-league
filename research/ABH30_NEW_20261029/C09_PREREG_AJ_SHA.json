@@ -1,0 +1,57 @@
+{
+  "schema": "pfl.abh30.c09.prereg_AJ_sha.v1",
+  "date": "2026-10-29",
+  "campaign": "ABH30_NEW_20261029",
+  "cycle": "ABH30-C09",
+  "mode": "AB-P",
+  "D": "Code and test Git blob plus sha256 above are frozen; next operation native Node v22.16.0 execution with exact byte-equivalent local files. First failure preserved; repair requires new pre-execution freeze and errata.",
+  "parent_pr": 59,
+  "base_branch": "research/pfl-abh30-c08-full-vintage-history-20261029",
+  "authorized_new": 30,
+  "already_valid_before": 8,
+  "new_remaining_before": 22,
+  "historical_remaining_separate_stop_r5": 2,
+  "source_and_test_previously_staged_commits": [
+    "2a2753342da83a808ba8ed2281c159cdc9127721",
+    "e8504ef5a125bf3b53e060bc375a3ee0475582c1"
+  ],
+  "frozen_code": {
+    "path": "src/politics_fantasy/forecastbench_raw_revision_guard.mjs",
+    "git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+    "sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9"
+  },
+  "frozen_tests": {
+    "path": "tests/test_forecastbench_raw_revision_guard.mjs",
+    "git_blob": "b9edf86d4a0609b9e4bb542fe85221857460a12d",
+    "sha256": "7abf599d3f8cbe6b9312484d1944cd3b8039c7ee926c48172e473165bf2a34ed"
+  },
+  "A": "C08 found nonmonotonic ORIGINAL public resolution row counts while its 19-version eligible binary-market subset did not lose or flip Y. Implement a distinct raw-record audit to detect removals, added rows and ANY mutation in a single original-source revision. Unit: public source-row keyed by (source,id), NOT person.",
+  "B": {
+    "H1": "A full public row audit can detect raw deletion, replacement with equal counts, non-outcome correction and Y flip missed by monitoring only eligible binary-market outcomes.",
+    "H0": "All raw-source transition scenarios reduce to growth only or existing C08 eligible-subset audit; no additional meaningful coverage.",
+    "rival": "Simple per-version total-row comparison and C08 binary known-Y comparison may be enough. A source version history of ordinary database corrections is not a scientific novelty.",
+    "falsifiers": [
+      "same-count replace not detected",
+      "non-Y correction not detected",
+      "duplicate composite keys pass",
+      "source IDs emitted",
+      "noncanonical time or cross-cohort accepted"
+    ]
+  },
+  "C": "Pure importable source-audit module with public synthetic fixtures ONLY; 19 frozen adversarial native Node tests, no user/political inputs. Source provenance from PR59 original public ForecastBench, but C09 has NO independent original raw version execution.",
+  "E": "Run frozen 19-case node:test suite AFTER committing this prereg; record exact pass/fail and SHA comparison; no original external source replay implied.",
+  "F": "Reject duplicates, malformed identifiers, cross-cohort and temporal inversions, repeated source blobs, unsafe JSON key fields; emit counts only. Audit row removals even if total count unchanged; no source row IDs.",
+  "G": "Compare conceptually with count-only and C08 eligible binary subset, but no empirical performance gains or external independent replication; raw Git metadata is supplied, NOT authenticated by C09.",
+  "H": "No source-prior promotion or N1 update for software QA; retain PF-BR48 and prior negative source-version evidence. Report a product QA effect only if tests pass.",
+  "I": "CT2 scientific 20/100 ordinal, new N1/N2/N3 0, launch gates 0/6, scientific grade 0/3, no human behavior effects.",
+  "J": "If exact frozen Node tests actually pass, count ONE technically bounded AB-P cycle C09; 9/30 completed, 21 new unused. On failure repair or invalid instead. Preserve 2 historical STOP_R5. Do not merge main or activate ChatRelay/CI costosa or real-politician scores.",
+  "ethics": {
+    "person_level_rows": 0,
+    "accept_licenses": false,
+    "contact_authors": false,
+    "main_merge": false,
+    "chatrelay": false,
+    "costly_CI": false
+  },
+  "note": "C09 is a product guard for public metadata integrity; it does not claim original source bytes authenticated or native positive 21-source CLI E2E."
+}

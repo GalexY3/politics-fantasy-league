@@ -1,0 +1,36 @@
+{
+  "id": "ABH30-P1-C08",
+  "status": "VALID_AB_P_HTTP_ADVERSARIAL",
+  "prereg_commit": "e92fc86ff1f5f3204fc43c6ad626a51f9a97242c",
+  "A": "Read Cxx_PREREG for precommitted endpoint",
+  "B": "Falsifiable declared null vs mechanism",
+  "C": "Control and endpoint defined in precommit",
+  "D": "/mnt/data/pfl_native_qa local verified Git blob snapshot of PR37 pilot, Node v22.16.0, script pfl_abh30_native_probe.mjs; full transcript/JSON in current sandbox",
+  "E": {
+    "negative_urls": 240,
+    "negative_404": 240,
+    "positive_allowlist": 5,
+    "positive_200": 5,
+    "positive_csp": 5
+  },
+  "F": {
+    "adversarial_limit": "Novel route fuzz beyond old 15 fixed smoke tests found no bypass; loopback server, not external deployment.",
+    "controls_measured": true
+  },
+  "G": "No human outcomes. Node local-only. No independent empirical replication.",
+  "H": {
+    "prior_update": "Novel route fuzz beyond old 15 fixed smoke tests found no bypass; loopback server, not external deployment."
+  },
+  "I": {
+    "internal_validity": "Local native Node QA with source snapshot; no full clean checkout",
+    "novelty": "technical local result not new science",
+    "grade": "0/3",
+    "ethics": "No human data"
+  },
+  "J": "STOP_LOCAL for this mechanism; pivot to different evidence",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0,
+  "executable_probe": "sandbox:/mnt/data/pfl_abh30_native_probe.mjs",
+  "verifiable_receipt": "sandbox:/mnt/data/pfl_abh30_native_probe_result.json"
+}

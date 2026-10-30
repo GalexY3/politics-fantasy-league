@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "source2025": "C01_2025_OFFICIAL_AGGREGATES.json",
+    "source2026": "C02_2026_OFFICIAL_AGGREGATES.json",
+    "exposure": "All source rows and 2026 vote-type concentration are known before this prereg; explicitly post-hoc, not blinded design"
+  },
+  "A": "Is the unadjusted difference in cross-party group-majority agreement 2025→2026 a period effect after exact standardization on suspension-of-rules voting procedure?",
+  "estimand": "Descriptive standardized risk difference in shared party yea-majority: 2026 minus 2025 among fixed 6+6 roll calls; stratify two types suspension vs other",
+  "B": {
+    "H1": "Year difference entirely explained arithmetically by procedure mix in this fixed 12-roll sample; within each stratum both years same agreement rate",
+    "H0": "Year difference persists conditional on procedure",
+    "Halt": "Case mix and very small dates; within-year vote issues nonexchangeable, not causal mediation identification"
+  },
+  "C": "Compute raw 2025 and 2026 shared-majority proportions; two-by-two counts for suspension and other per year; direct-standardize each year to pooled 50/50 as well as 2025 and 2026 procedure weights; compare expected year difference; if no common support or stratum zero count mark invalid (both strata present here, observed before prereg), no p-value or individual association; report dates and number of independent calendar sessions.",
+  "E": "PENDING",
+  "F": "Procedural class is not randomized; direct standardization is a descriptive reweighting of recorded division-level outcomes, not evidence of a causal effect",
+  "G": "No independent US external source or prospective holdout; both years from one House",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No personal preference inference",
+  "J": "If attenuation complete, record an empirical local Simpson-style composition check (not claim of new sociology); proceed to source-backed reproducibility and date clustering robustness."
+}

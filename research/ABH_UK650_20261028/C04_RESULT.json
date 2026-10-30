@@ -1,0 +1,68 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-UK650-20261028",
+  "source": "House of Commons Library 2024 constituency + candidate named CSVs, read from emagar/caso-pc-oto2024 GitHub third-party copies",
+  "source_official_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_constituency_mirror_blob": "835aae9eb124e215b7f159b2db90fcc9b66416d8",
+  "source_candidate_mirror_blob": "dd4c81aee7ace632c1ffc75bd5518363a458f94c",
+  "original_official_bytes": 0,
+  "original_official_hash_verified": false,
+  "source_version_conflicts": "C01_VERSION_SENSITIVITY.json",
+  "in_sample_historical": true,
+  "scientific_level_0_3": 0,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "V4_pct": 36.9,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "individual_person_scores": false,
+  "cycle": "C04",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_GEOGRAPHIC_ATTENUATION_HETEROGENEITY",
+  "A": "Is raw margin-turnout relationship robust within UK regions/nations or a compositional artifact?",
+  "B": {
+    "H1": "OLS slope attenuation at least 30% after region fixed effects",
+    "H0": "No material attenuation",
+    "Halt": "Within-country signs differ markedly"
+  },
+  "C": {
+    "prereg_commit": "c7881a2777c060e937f47979bce3169a67cfc0a3",
+    "execution": "650 ONS constituencies into 12 regions/4 nations; simple OLS turnout~margin and then +region fixed effects and +ENP, HC3. Country-specific Spearman without dropping NI, Scotland or Wales; counts and strata logged. No causal p values."
+  },
+  "D": {
+    "data": "UK650_DERIVED_AGGREGATES.csv",
+    "metrics": "C04_METRICS.json"
+  },
+  "E": {
+    "regions": 12,
+    "countries": {
+      "England": 543,
+      "Northern Ireland": 18,
+      "Scotland": 57,
+      "Wales": 32
+    },
+    "OLS_margin_simple_beta": -0.16998549154781273,
+    "OLS_margin_region_beta": -0.11404152106704181,
+    "attenuation_pct": 32.91102668314211,
+    "R2_simple": 0.08212245756672243,
+    "R2_region": 0.25659016054038464,
+    "nation_spearman": {
+      "England": -0.29856754734268176,
+      "Northern Ireland": 0.23426212590299278,
+      "Scotland": 0.19108115115374644,
+      "Wales": -0.4959677419354839
+    }
+  },
+  "F": "Regional adjustment attenuates magnitude ~33%, but negative effect remains within England and Wales, whereas NI and Scotland sign positive; NI n=18. Do not label strong causal/individual effects or interpret regions as randomized units.",
+  "G": "Country subgroup 18/32/57, national politics differ, one election and boundary changes, no data on deprivation/class/education, no genuine external replicate.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "Aggregate only",
+  "J": "Evaluate region/country held-out diagnostics against a simple trained-mean and margin-only baseline."
+}

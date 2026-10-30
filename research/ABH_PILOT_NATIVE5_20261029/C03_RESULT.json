@@ -1,0 +1,51 @@
+{
+  "cycle": "C03",
+  "mode": "AB-P",
+  "prereg_commit": "3e276d56fecbcfcbf15ae53ba4d9a97e825ecb23",
+  "A": "Integrate four fictional PFL display conditions and four unchanged transfer items in a local browser-facing demo, with no collection, answer key or personal names",
+  "B": [
+    "static no-persistence UI sufficient to demonstrate four arms",
+    "treatment condition leakage or different case difficulty",
+    "client-side key leak"
+  ],
+  "C": {
+    "design": "Four manually selectable T×L views (control, transparency, leaderboard, both); all share same original fictionalTransferItems() from parent",
+    "comparators": "same 4 transfer items in each UI arm, only tutorial and status panel toggled; no promise of equal time/complexity",
+    "guard": "No client-side evaluation, no answer key, no query/POST, no analytics or persistence"
+  },
+  "D": {
+    "files": [
+      "pilot_local/server.mjs",
+      "pilot_local/index.html",
+      "pilot_local/app.mjs",
+      "pilot_local/style.css",
+      "pilot_local/README.md"
+    ],
+    "source_blobs": {
+      "server.mjs": "b66ca94ec3ec5b038116f4e53ddb122617f2c5d2",
+      "index.html": "b0700bad57b25aaadd859919d5d1a11d06e930a8",
+      "app.mjs": "8d876e0f41d9473f56307f7939545c6c0b00d509",
+      "style.css": "eabb5485d7d6d9c78574993281e89e00069ff4a9"
+    }
+  },
+  "E": {
+    "native_node_source_checks": {
+      "passed": 17,
+      "total": 17
+    },
+    "source_integrity": "4 Git blob SHA equality verified between isolated local test copy and GitHub source; original fictionalTransferItems source also SHA-matched",
+    "native_http_checks": "15/15 GET/HEAD and deny paths executed (recorded separately under C04)",
+    "browser": "ATTEMPTED_BUT_NOT_VERIFIED: Chromium headless --dump-dom timed out/no rendered DOM produced; NOT_RUN for successful E2E browser",
+    "human_study": "NOT_RUN"
+  },
+  "F": "T and L tutorial text not equal length and not validated for presentation duration; manual condition choice not randomized; no scores or outcomes; no human enrolment. No keyboard automation/visual sign-off without browser test.",
+  "G": "Native static and HTTP controls are engineering checks only; no independent social evidence",
+  "H": "Can visualize all four 2x2 cells on localhost without leaking answer key or collecting data. Do not equate this to a preregistered trial.",
+  "I": {
+    "grade": "0/3 scientific",
+    "VSDS": "1/3 unchanged",
+    "CT2_prospective": 25,
+    "privacy": "no collecting code endpoint; local users might still interact, not a sanctioned experiment"
+  },
+  "J": "ACCEPT_LOCAL_STATIC_UI_CONTRACT_NOT_RECRUITMENT_READY; continue C04 security-negative audit"
+}

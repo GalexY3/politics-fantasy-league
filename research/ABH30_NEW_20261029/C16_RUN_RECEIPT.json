@@ -1,0 +1,50 @@
+{
+  "schema": "pfl.abh30.c16.run_receipt.v1",
+  "cycle": "ABH30-C16",
+  "prereg_commit": "af6ee3f18d954dca3d1e6ed7d932ac630bc8872a",
+  "mode": "AB-P",
+  "status": "VALID_LIMITED_NATIVE_RENDER_FUNCTION",
+  "frozen_original_git": {
+    "code": "ee94c85dc66b81b933e6ef3359cfef889bd2cf8d",
+    "tests": "fb1e26bb62441a0c3daba9a6e801f7406caedef0"
+  },
+  "native_execution": {
+    "runtime": "Node v22.16.0",
+    "command": "node --test tests/test_fictional_rank_session_renderer.mjs",
+    "first_after_prereg": true,
+    "passed": 15,
+    "failed": 0,
+    "exit_code": 0,
+    "stdout_sha256": "daa5c463a0e41dc74d188eb039ac172eb8588df4f643276a5cd17dbc40daea68",
+    "code_sha256": "412f29a3952d57e01db6b6428278964282e7935ac899e939aa4e1c7853ba7e2a",
+    "tests_sha256": "2cd0031f48645f75c18e997c9780bc2f6589314e5d4aa7883a43c50d52e9ae96"
+  },
+  "observations": {
+    "views": 10,
+    "arms": 5,
+    "receipts_generated_by_executed_function": true,
+    "private_and_public_fields_separated": true,
+    "competition_ties_shared_rank": true,
+    "missing_scores_fail_closed": true,
+    "client_supplied_receipts_refused": true
+  },
+  "limitations": [
+    "NODE_FN_NOT_BROWSER",
+    "GENERATED_RECEIPTS_SELF_PRODUCED_NOT_INDEPENDENT",
+    "NO_HUMAN_DATA_OR_DELIVERY",
+    "NO_PFL_CAUSAL_EVIDENCE"
+  ],
+  "CT2_scientific_ordinal": 20,
+  "science_grade": "0/3",
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "budget_after": {
+    "valid": 16,
+    "remaining": 14,
+    "historical_r5": 2
+  }
+}

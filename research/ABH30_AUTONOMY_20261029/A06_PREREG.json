@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P2-A06",
+  "phase": "AUTONOMY",
+  "status": "PREREGISTERED",
+  "A": "Native local Python feasibility without full checkout",
+  "B": "H0 requested substitute capability is unavailable or insufficient; H1 capability supports bounded task",
+  "C": "Check `python --version`; verify imports json,hashlib,subprocess, pathlib and a deterministic tiny synthetic JSON fixture roundtrip/hashing; inspect presence of original `ab_atlas/atlas_delta.py` file in local snapshot; compare to source GitHub; classify canonical replay as NOT_EXECUTED if absent. Counterexample byte mutation changes SHA256.",
+  "D": "Use only currently available authenticated GitHub connector and local runtime. No credentials, network circumvention or changed admin policy.",
+  "E": "NOT_RUN_WHEN_PREREG_COMMITTED",
+  "F": "Adversarial limits: No claim that synthetic fixture proves canonical Atlas 0080.",
+  "G": "No PFL human replication; technical QA not scientific",
+  "H": "Update capability inventory based only on observed traces",
+  "I": "Science 0/3, classify operational feasibility by actual tool output",
+  "J": "Stop/R5 if feature absent; move to next distinct pathway",
+  "selection_exposure": "No C05/C10 output known before prereg; prior general environment limits disclosed",
+  "CT2_before": 22,
+  "CT2_after": 22
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "pfl.congreso.boe.vote.outcome.crossissuer.v1",
+  "date": "2026-10-02",
+  "source_vote_catalog": "https://www.congreso.es/es/opendata/votaciones",
+  "catalog_2026_snapshot": "Search index recency yesterday surfaced session203; open older cache retrieved session193. DO NOT treat older open as session203 direct verification; 203 count only index-level.",
+  "records": [
+    {
+      "session": "203",
+      "expediente": "130/000055",
+      "rdl": "26/2026",
+      "yes": 172,
+      "no": 178,
+      "abstain": 0,
+      "reported_total": 350,
+      "yes_pct": 49.142857,
+      "legal_outcome": "DEROGADO",
+      "boe_resolution": "BOE-A-2026-20526",
+      "boe_url": "https://boe.es/diario_boe/txt.php?id=BOE-A-2026-20526",
+      "rdl_publication": "2026-09-30",
+      "boe_resolution_published": "2026-10-02"
+    },
+    {
+      "session": "203",
+      "expediente": "130/000056",
+      "rdl": "27/2026",
+      "yes": 166,
+      "no": 184,
+      "abstain": 0,
+      "reported_total": 350,
+      "yes_pct": 47.428571,
+      "legal_outcome": "DEROGADO",
+      "boe_resolution": "BOE-A-2026-20527",
+      "boe_url": "https://boe.es/diario_boe/txt.php?id=BOE-A-2026-20527",
+      "rdl_publication": "2026-10-01",
+      "boe_resolution_published": "2026-10-02"
+    }
+  ],
+  "numerical_contrast": {
+    "yes_difference_votes": 6,
+    "yes_pct_difference_pp": 1.714286
+  },
+  "independent_verification": "Two BOE legal resolutions independently corroborate derogado for both legal instruments; they do not verify their nominal tallies or 172/178,166/184 exact split.",
+  "first_public_at": "UNKNOWN for original Congress source. BOE official publication DATE known but not exact time. Not equivalent to ballot publication timestamp.",
+  "cautions": [
+    "Explicit separate expedientes and legal instruments; cannot conflate due same session",
+    "Both totals 350 are counted votes in indexed source; source-index still not raw JSON/XML original",
+    "Cannot assert all members voting, attendance, gender or individual votes without nominal source",
+    "No sample inference from two hand-selected decisions"
+  ]
+}

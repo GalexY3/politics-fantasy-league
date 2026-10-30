@@ -1,0 +1,85 @@
+{
+  "schema": "pfl.source_prior_ledger.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "source_register": [
+    {
+      "id": "S01",
+      "origin": "UK Parliament API",
+      "url": "https://petition.parliament.uk/petitions.json",
+      "kind": "Primary publisher",
+      "status": "Public API index visible, but requested 700120+ original individual JSON many cache misses, 0 original bytes authenticated",
+      "rights": "UK official OGL v3.0 site"
+    },
+    {
+      "id": "S02",
+      "origin": "Jonty/uk_petitions_data",
+      "url": "https://github.com/Jonty/uk_petitions_data",
+      "kind": "Third-party public GitHub archive of first-party JSON",
+      "status": "66 valid JSON copies collected, each Git blob preserved; 114/180 IDs without archived copy, reason unknown. Not publisher hash.",
+      "rights": "Repository README says petition data under OGL; verify effective version on files before redistributing."
+    },
+    {
+      "id": "S03",
+      "origin": "Hansard original 2025-02-10 transcript",
+      "url": "https://hansard.parliament.uk/Commons/2025-02-10/debates/94821BE4-8215-4D8D-93E1-77F786B3ABD4/InheritanceTaxReliefFarms",
+      "kind": "Independent document service within same Parliament",
+      "status": "Original rendered HTML opened, explicit e-petition 700138 and date; no raw original SHA256"
+    },
+    {
+      "id": "S04",
+      "origin": "External academic 2015–2022 study",
+      "url": "https://czasopisma.ukw.edu.pl/index.php/sip/article/download/3109/3177/6071",
+      "kind": "Peer-reviewed/public research context",
+      "status": "Warns UK petition API historical archives may contain incomplete final state due closure/archival changes; independently supports provenance caution, not original 2024 cohort data"
+    }
+  ],
+  "prior_updates": [
+    {
+      "id": "P01",
+      "hypothesis": "Top-signature sampling strongly conditions analysis on observed participation success",
+      "before": "Citable existing PETITIONS5 top12 all >=100k",
+      "after": "ID band archive 66 includes 53 below 10k and 20 rejected; different observable target population. Archive selection 66/180 remains nonrandom.",
+      "decision": "Do not transfer rates from top12 to lower-signature petitions."
+    },
+    {
+      "id": "P02",
+      "hypothesis": "10k government-response metadata aligns with administrative eligibility",
+      "before": "Official 10k legal rule; no prior non-popularity sample",
+      "after": "Observed 13/13 response among >=10k and 0/53 below10k in 66 archived copies",
+      "decision": "Supports technical consistency, NOT causal estimate or novelty."
+    },
+    {
+      "id": "P03",
+      "hypothesis": "Exposure time variation explains signature accumulation",
+      "before": "Unknown in ID-based cohort",
+      "after": "Closed n46 open interval median 181.335 days, min181.164 max182.545, Spearman with log signatures +0.104",
+      "decision": "Weak/no support for simple duration-driven explanation, little contrast variation; avoid overfitting."
+    },
+    {
+      "id": "P04",
+      "hypothesis": "Archived JSON matches live publisher version byte-for-byte",
+      "before": "Unknown",
+      "after": "700143 signature count 3,084,712 in GitHub archive vs 3,084,713 from earlier primary site; original cohort endpoints inaccessible, at least one metadata time discrepancy 700189 and 700262",
+      "decision": "Reject verified live original status, leave version/date attribution unknown."
+    },
+    {
+      "id": "P05",
+      "hypothesis": "More complex supervised classification needed to capture observed response eligibility",
+      "before": "Administrative rule 10k available",
+      "after": "Leave-one-ID-out Brier 0 constant 0.1631, log sigs ridge logistic 0.0551, 10k rule 0.0, all retrospective",
+      "decision": "Strong baseline best; no claim of predictive/causal scientific gain."
+    },
+    {
+      "id": "P06",
+      "hypothesis": "Debate event can be independently corroborated for ID-cohort case",
+      "before": "Archive only",
+      "after": "Hansard 10 Feb 2025 contains e-petition 700138; original petition JSON still not authenticated",
+      "decision": "One documentary corroboration, not generalized 100k threshold guarantee."
+    }
+  ],
+  "avoid": [
+    "Do not treat 'not in archive' as absence of publication or zero votes",
+    "Do not use these final signature counts as before-event features",
+    "Do not claim policy outcome, voter individual preferences or actor ranking"
+  ]
+}

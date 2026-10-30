@@ -1,0 +1,145 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-PETITIONS5-20261028",
+  "branch": "research/pfl-abh5-petitions-20261028",
+  "base_branch": "research/pfl-abh5-ukconstituency-20261028",
+  "base_sha": "d4f80ba138ce9bf03f686b51e59849470814710c",
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "granted": 5,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "used": 5,
+    "remaining": 0,
+    "AB_R": 5,
+    "AB_P": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "91b99a1f1f721bc13a6a679e8ed1a83a4fc34b31",
+      "result": "C01_RESULT.json",
+      "result_commit": "d5cea956a6ae1aa53a8f024dff8488461352c15d",
+      "status": "VALID_BOUNDED_ORIGINAL_ISSUER_JSON_RENDERED_12_EVENT_PANEL",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "92f86098934618799e04bfed4db80bb75eb00166",
+      "result": "C02_RESULT.json",
+      "result_commit": "e7e57caceaadc48cdd219b00cfe0105b06300287",
+      "status": "VALID_BOUNDED_RESPONSE_LAG_H1_REJECTED_12",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "76c55e40ddb471726863e7621cd87d1ce0d5ff3f",
+      "result": "C03_RESULT.json",
+      "result_commit": "06c26a79f034f38ae67c876f0bf6d27a7dcbf428",
+      "status": "VALID_BOUNDED_ALL_TWELVE_SCHEDULED_H1_REJECTED",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "edd7267b6c07aa1aef2005ea7cd2bdbdd203ead3",
+      "result": "C04_RESULT.json",
+      "result_commit": "df83bdc133c76f7248d0ac67bc0a933a60163f91",
+      "status": "VALID_BOUNDED_WEAK_TIMING_ASSOCIATION_AND_METADATA_DISCREPANCY",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "95916835c6affcf6f7cb05617e2441e17e4d5186",
+      "result": "C05_RESULT.json",
+      "result_commit": "821fafece4f8aaed17f69c122a2a1294f49543ac",
+      "status": "VALID_BOUNDED_FIVE_HANSARD_DOCUMENT_CROSSCHECKS",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade_0_3": 0
+    }
+  ],
+  "evidence": {
+    "official_publisher": "UK Government and Parliament petitions service",
+    "source_url": "https://petition.parliament.uk/petitions.json",
+    "official_JSON_pages_web_opened": 12,
+    "official_API_binary_bytes_captured": 0,
+    "original_SHA256_verified": 0,
+    "source_grain": "petition event history",
+    "selection": "12 most signed CLOSED petitions (source top-ranked, as observed in 2026), not representative; first case previously visible",
+    "petitions_measured": 12,
+    "all_above_100k": true,
+    "hansard_dates_verified_5_of_5": true,
+    "remaining_hansard_not_checked": 7,
+    "web_crawl_temporal_lag": "API and page tool crawl two to five months old; user date 28-Oct-2026. observed source is not proven realtime source snapshot",
+    "response_fields_conflict_count": 4,
+    "large_response_publication_conflict_id": 730605,
+    "updated_after_closure": 12,
+    "claim_first_public_at": false,
+    "code": {
+      "V8_on_metadata_executed": true,
+      "Python_replay_in_git": true,
+      "Python_replay_executed": false,
+      "full_repo_suite_executed": false
+    }
+  },
+  "numbers": {
+    "median_response_to_10k_days": 16.457,
+    "median_to_scheduled_debate_days": 86.5775,
+    "response_over_30_days": 1,
+    "debate_over_90_days": 6,
+    "open_to_10k_vs_response_delay_spearman": 0.1958041958041958,
+    "response_public_date_median_days": 18.77372685185185
+  },
+  "scientific": {
+    "CT2": 29,
+    "VSDS": "1/3",
+    "V4_percent": 36.9,
+    "achievements": "2/90",
+    "release_gates": "0/6",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "causal_threshold_effect_identified": false,
+    "representative_sample": false,
+    "external_research_replication": false
+  },
+  "R5": "The 12-source dataset is strictly popular-selected and cannot discriminate threshold effects or represent all petitions; stop after first-party event-timing + independent record service checks rather than multiplying same 12 descriptives. Source raw and representative cohort delegated to T022.",
+  "backlog": [
+    "T011",
+    "T016",
+    "T017",
+    "T018",
+    "T019",
+    "T020",
+    "T021",
+    "tareas_codex/T022_PETICIONES_JSON_COHORTE_20261028.md"
+  ],
+  "safety": {
+    "no_ChatRelay": true,
+    "no_main_merge": true,
+    "no_expensive_CI": true,
+    "no_person_scoring": true
+  },
+  "next": "Close campaign with 5/5 genuine source-browser AB-R. Further scientifically discriminating work only with a representative source-validated petition cohort and genuine prospective sampling; request new grant."
+}

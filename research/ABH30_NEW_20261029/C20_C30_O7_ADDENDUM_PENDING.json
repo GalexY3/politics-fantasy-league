@@ -1,0 +1,153 @@
+{
+  "schema": "pfl.o7.graph.pending_addendum.v1",
+  "date": "2026-10-29",
+  "status": "PENDING_MAIN_GRAPH_MERGE_CONNECTOR_UPDATE_REJECTED",
+  "base_original_O7_not_modified": true,
+  "description": "11 preplanned bounded AB-P C20-C30 technical guards plus late C18 negative human source-feasibility O7 reconciliation; do not invent main graph edit or count as cycle",
+  "nodes": [
+    {
+      "id": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C26-FORECAST-ASOF",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C29-HOLM-FAMILY",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    },
+    {
+      "id": "PFL-ABH30-C30-LAUNCH-GATES",
+      "mode": "AB-P",
+      "type": "synthetic_product_guard",
+      "source": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "scientific_grade": "0/3"
+    }
+  ],
+  "late_reconciliation": {
+    "id": "PFL-ABH30-C18-LICENSED-HUMAN-SOURCE-NEGATIVE",
+    "source": "C18_RUN_RECEIPT.json",
+    "new_cycle": false
+  },
+  "links": [
+    {
+      "from": "PFL-ABH30-C20-EFFORT-DISPLACEMENT",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C21-PRETREATMENT-STRATA",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C22-NETWORK-INTERFERENCE",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C23-ROOM-BLOCK-ALLOCATION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C24-RETENTION-CENSORING",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C25-PUBLIC-ALIAS-PRIVACY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C26-FORECAST-ASOF",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C27-INSTITUTIONAL-RULE-EPOCHS",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C28-SELECTIVE-ABSTENTION",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C29-HOLM-FAMILY",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    },
+    {
+      "from": "PFL-ABH30-C30-LAUNCH-GATES",
+      "to": "PFL-ABH30-C13-MISSINGNESS-PARTIAL-ID-MATH",
+      "relation": "related_to"
+    }
+  ],
+  "CT2_science_ordinal": 20,
+  "new_valid_limited": 30,
+  "new_available": 0,
+  "historical_STOP_R5": 2,
+  "limitations": "Canonical O7 node count unchanged until an explicitly verified update succeeds, graph addendum is not the main O7 graph."
+}

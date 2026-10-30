@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-29",
+  "type": "BOUNDED_PRODUCT_QA_NOT_AB_CYCLE",
+  "question": "Can the original PFL fictional local HTTP app be navigated and operated with real Chromium via Playwright in an authorized GitHub hosted checkout, without bypassing administrator policy in ChatGPT's container?",
+  "treatment": "Use a single GitHub-hosted ubuntu-latest job, <=4min, read-only checkout, no apt browser install. Use preinstalled Google Chrome and pip install playwright Python; run localhost Node server and Playwright Chromium channel chrome. Never expose private server publicly.",
+  "preregistered_success_endpoints": [
+    "Playwright real page.goto 127.0.0.1:8787 status 200",
+    "4 fieldsets with 12 labeled radios",
+    "4 arms selectable with expected tutorial/leaderboard header and fixed questions",
+    "checking one radio increments progress and reset clears",
+    "HTTP /materials.mjs loads as real JS module",
+    "no page JS exceptions",
+    "network requests only same localhost origin and GET",
+    "CSP connect-src none and no-store/nosniff on navigation",
+    "GET secret resource 404 and POST 405",
+    "mobile viewport 375px no horizontal overflow"
+  ],
+  "negative_controls": [
+    "Unauthorized GET /fictional_transfer_key.mjs must be 404",
+    "POST / must be 405",
+    "No cookies or local storage saved"
+  ],
+  "limitations": "One chromium run on hosted GitHub Actions, not confirmation of complete webapp release or real users; no ethical approval. Environment policy in ChatGPT container remains blocked, and this authorized hosted runner is a separate environment, not circumvention.",
+  "cost_limit": {
+    "one_job": true,
+    "timeout_minutes": 4,
+    "no_playwright_browser_download": true,
+    "no_apt_install": true,
+    "no_broad_CI": true
+  },
+  "origin": "GitHub PR41 exact original code and native Atlas verified in bounded prior run",
+  "scientific_grade": "0/3",
+  "AB_cycles_consumed": 0,
+  "CT2_prospective": 22
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "pfl.abh30.c15.native_first_run_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C15",
+  "prereg_commit": "582035ac5d18ddb1ce2504cf0dba044225f61e9a",
+  "mode": "AB-P",
+  "status": "VALID_BOUNDED_NATIVE_SYNTHETIC_OPPORTUNITY_RECEIPT_CONSISTENCY",
+  "original_preflight": {
+    "new_source": {
+      "Git_blob": "db4df150fa73d26ee3ec40965586e4f3ca3c790f",
+      "sha256": "953459a239d69b0f77b6cd6293b4f4c8265b635deebcba2fd69986eb5d7b8d85"
+    },
+    "tests": {
+      "Git_blob": "ff04ef970dca3e5f68c98aa7f5818e6022287b1b",
+      "sha256": "94d916229a192dd2b3fd9a8423c447e55908126c517dd5e8081a5d5f7678e8fd"
+    },
+    "C14_dependency": {
+      "Git_blob": "cad226a589772de6c733929d32a527252d719ad6",
+      "sha256": "c007e0320e4ab5b4b2f1d3e7d37208828e70da253da47727547dff1f804f8c20"
+    },
+    "identical_to_GitHub": true
+  },
+  "actual_execution": {
+    "system": "local isolated Linux",
+    "node": "v22.16.0",
+    "command": "node --test tests/test_fictional_rank_delivery_audit.mjs",
+    "after_prereg_commit": true,
+    "first_run": {
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "output_sha256": "9614969cf829b77d8f90407d14622abfe3cdae2502de55fff558bc3d4472f0c4",
+      "duration_ms": 90.91896
+    }
+  },
+  "positive_fixture": {
+    "members": 5,
+    "arms": 5,
+    "opportunities": 5,
+    "receipts": 5,
+    "strictly_synthetic": true
+  },
+  "adversarial_results": [
+    "missing receipt => UNKNOWN",
+    "empty receipts => unknown",
+    "wrong granularity => rejected",
+    "wrong audience => rejected",
+    "duplicate/replay => rejected",
+    "out-of-window => rejected",
+    "cross-room/arm => rejected",
+    "mixed-room contamination => rejected",
+    "invalid provenance => rejected",
+    "PII property => rejected"
+  ],
+  "limits": [
+    "A string equal to INDEPENDENT_SYNTHETIC_RENDER_LOG is NOT independent attest of actual renderer; no cryptographic receipts nor human delivered exposure",
+    "No actual user allocation, randomization or observability audit",
+    "No non-participant original human data",
+    "Declared data/arm strict parity is not external validation or causal effect",
+    "Atlas Python 81+ still unvalidated",
+    "No launch gate closure"
+  ],
+  "scientific_CT2_ordinal": 20,
+  "science_grade": "0/3",
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": {
+    "passed": 0,
+    "total": 6
+  },
+  "authorization_after": {
+    "new_valid": 15,
+    "new_remaining": 15,
+    "historical_STOP_R5": 2
+  },
+  "decision": "One bounded native AB-P C15, not AB-R human science."
+}

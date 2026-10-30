@@ -1,0 +1,27 @@
+{
+  "campaign": "PFL-ABH-UK650-20261028",
+  "pre_reg_before_source_bytes": true,
+  "study": "UK House of Commons 2024 election official constituency-level results",
+  "source": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_original": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+  "source_candidates": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-candidate.csv",
+  "unit": "UK constituency; up to 650, 4 nations and English regions",
+  "prespecified_exclusions": "Only missing electorate/turnout or no winner-runner candidate votes for computation; report exclusions and special Speaker/NI observations; don't discard by result",
+  "classification": "All cycles exploratory until independently replicated; contemporaneous margins and vote shares are post-election, cannot be used in genuine pre-election prediction.",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": 1.3,
+  "A": "Does the raw competition–turnout association persist within UK nations/regions, or is it predominantly a geographic/compositional contrast?",
+  "B": {
+    "H1": "Absolute coefficient attenuates materially (>= 30%) after region effects",
+    "H0": "Comparable coefficient and sign remain",
+    "Halt": "Different signs by nation/region (ecological heterogeneity)."
+  },
+  "C": "Pre-register OLS without controls, OLS region/nation fixed effects, leave-one-UK-nation-out and regional Spearman; compare units pp/10pp margin and robust SE/CI, don't interpret 650 electoral seats as 650 independent randomized units.",
+  "E": "PENDING",
+  "F": "Geographical fixed effects cannot capture class/age/education or incumbency and NI party systems differ",
+  "G": "Single election; UK nations external strata internal to dataset.",
+  "H": "No CT2",
+  "I": "Aggregate only",
+  "J": "If effect changes sign present it prominently."
+}

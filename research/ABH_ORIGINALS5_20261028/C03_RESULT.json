@@ -1,0 +1,95 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": {
+    "source_2019": "https://www.boe.es/buscar/doc.php?id=BOE-A-2019-8070",
+    "source_2023": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "source_lines": [
+      "2019 151",
+      "2019 310-328 PRC continuation",
+      "2023 107"
+    ],
+    "source_original_xml": false
+  },
+  "status": "VALID_BOUNDED_CANTABRIA_REGION_PARTY_SEAT_BASELINE",
+  "A": "Can a national-party-only read of 2019 Cantabria recover the five seats and 2023 comparability?",
+  "B": {
+    "H1": "One 2019 seat belongs to PRC in another BOE table continuation, so simple national-only denominator is incomplete",
+    "H0": "All 2019 seats accounted for by the five named national parties in first table"
+  },
+  "C": {
+    "pre_commit": "75be1b8d00946de4006b4140b29a3375022f7628",
+    "method": "Read 2019 BOE Cuadro II first table Cantabria and its continuation for PRC; compare 2023 Cantabria 5-seat row, exact party votes and seats; maintain missing/unknown outcome separate from zero."
+  },
+  "E": {
+    "seats_each": 5,
+    "year2019": {
+      "PSOE": {
+        "votes": 90534,
+        "seats": 2
+      },
+      "PP": {
+        "votes": 77902,
+        "seats": 1
+      },
+      "Cs": {
+        "votes": 54361,
+        "seats": 1
+      },
+      "PRC": {
+        "votes": 52266,
+        "seats": 1
+      },
+      "Vox": {
+        "votes": 40139,
+        "seats": 0
+      },
+      "UnidasPodemos": {
+        "votes": 36784,
+        "seats": 0
+      }
+    },
+    "year2023": {
+      "PP": {
+        "votes": 147326,
+        "seats": 2
+      },
+      "PSOE": {
+        "votes": 116596,
+        "seats": 2
+      },
+      "Vox": {
+        "votes": 49243,
+        "seats": 1
+      },
+      "Sumar": {
+        "votes": 29713,
+        "seats": 0
+      }
+    },
+    "common_party_vote_deltas": {
+      "PP": 69424,
+      "PSOE": 26062,
+      "Vox": 9104
+    },
+    "accounted_2019_seats_with_prc": 5,
+    "accounted_2019_without_prc": 4
+  },
+  "F": "A fully captured party universe matters for district allocation; C04 D'Hondt ablation could explicitly quantify omitted-region error. No claims about PRC 2023 outcome from missing first table.",
+  "G": "No causal inference 2019→2023; stable seats not stable electorate denominator, campaign exposure, or party identity. Three party vote changes cannot be cast as all-vote shares.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "Aggregates only; no individual nomination/score",
+  "J": "Retain PRC as explicit comparator and never silently merge parties; proceed computational D'Hondt baseline."
+}

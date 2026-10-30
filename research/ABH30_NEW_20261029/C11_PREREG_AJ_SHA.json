@@ -1,0 +1,61 @@
+{
+  "schema": "pfl.abh30.c11.prereg_AJ_sha.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C11",
+  "mode": "AB-P_ORIGINAL_PUBLIC_SOURCE_CLI",
+  "drift_D": 1,
+  "parent_pr": 61,
+  "parent_sha": "f0d72603643e0564c48303b3626e693f0b793a00",
+  "working_branch": "research/pfl-abh30-c11-pinned-original-cli-20261029",
+  "pre_execution_authorization": {
+    "new_granted": 30,
+    "new_valid": 10,
+    "new_available": 20,
+    "historical_separate_STOP_R5": 2
+  },
+  "A": "Can a user run the already verified C09 source-row revision detector through a real offline Node CLI with fixed original Git pairs, mandatory local original-file Git-byte matching, fail-closed behavior and aggregate-only output? Outcome is product functionality and security, not human forecasting research.",
+  "B": {
+    "H1": "Only full byte-exact pinned original files can reach source comparison via local CLI, otherwise nonzero return with no source content in stdout/stderr; direct pure JS adapter can distinguish synthetic source mutations when supplied matching synthetic pinned bytes.",
+    "H0": "CLI may accidentally accept wrong source bytes, expose source IDs/filesystem paths, use fabricated user-supplied Git pin metadata, follow symlinks, or break raw C09 checks. Rival: this is redundant to the existing source guard C09/ source publication CLI and may add no material integration benefit.",
+    "falsifiers": [
+      "wrong hash accepted",
+      "path or row ID exposed",
+      "symlink accepted",
+      "nonmonotone source timestamp accepted",
+      "valid synthetic in-memory pair unexpectedly rejected",
+      "no ability to invoke CLI subprocess"
+    ]
+  },
+  "C": {
+    "tests_frozen": 17,
+    "fixture": "synthetic public non-person metadata; negative CLI subprocess with synthetic file under immutable original pinned source Git hashes, positive pure adapter for synthetics only",
+    "strong_controls": "Direct Git hash of buffers, synthetic SHA mismatch, schema and duplicate key validation, time inversion, symlink, invalid CLI invocation and lack of stderr path leakage.",
+    "native_original_source_positive": "NOT_ATTEMPTED because original full files not present on disk and container DNS blocked; success is NOT claimed for this gate."
+  },
+  "D": {
+    "staged_code_commit": "c4b3b4d0448734514b0363f3afe11a7b428ce639",
+    "staged_test_commit": "c4ec39183639e84896265e5fbee4a362f248c693",
+    "source": {
+      "path": "scripts/offline_forecastbench_revision_audit.mjs",
+      "git_blob": "2b6e910c998f99de121050badfab83adaf345220",
+      "sha256": "1ad4adc05680c5dcfe6b5eb3d5ce25575fcf4c3b2a36f8e8e59e6a140b7154cc"
+    },
+    "test": {
+      "path": "tests/test_offline_forecastbench_revision_audit.mjs",
+      "git_blob": "d81e5197104bbd0dad287cd3519950a5dad1f196",
+      "sha256": "17e39790c88d66f50935dc76b1032fbe1439776f8021d39af741b6f6e4c4af2b"
+    },
+    "dependency": {
+      "path": "src/politics_fantasy/forecastbench_raw_revision_guard.mjs",
+      "git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+      "sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9"
+    },
+    "command": "node --test tests/test_offline_forecastbench_revision_audit.mjs"
+  },
+  "E": "ONLY after this pre-execution prereg is committed, independently compute local Git blobs and SHA256 vs frozen Github blobs; run native Node v22.16.0 tests and record actual output, exact count and first failures (no silent discard).",
+  "F": "Audit claims vs scope: original source is public event metadata only, no participants, no uploaded original content, no actual local original positive. Unit tests of a pure buffer adapter are NOT proof of a positive CLI with genuine original files. Git SHA1 checks relative to previously pinned objects are not publisher authenticity or a verified event first_public_at.",
+  "G": "Existing C09 function had no local file/hash CLI; existing offline_forecastbench_audit.mjs gates current question-level snapshots but not raw historical pair mutations. Baseline is manual C10 V8 original comparison and C09 pure synthetic tests; no external causal comparison.",
+  "H": "No new documentary/source priors if no new original external data; retain PF-BR49, product code evidence only and add O7 product node. CT2 scientific unchanged 20.",
+  "I": "One valid technically bounded AB-P if 17 frozen native tests all pass with byte-equivalent files, otherwise INVALID/REPAIR; no 1/3 claim, science 0/3, gates 0/6.",
+  "J": "Count one C11 only if native executable CLI/adapter tests and hash authenticity pass; then 11/30, 19 unspent, two historical STOP_R5. No merge main, expensive CI, ChatRelay, personal data/rights acceptance, author contact or real politician scoring."
+}

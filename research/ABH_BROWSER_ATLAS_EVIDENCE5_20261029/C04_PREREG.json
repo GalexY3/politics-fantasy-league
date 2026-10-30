@@ -1,0 +1,25 @@
+{
+  "cycle": "C04",
+  "type": "AB-P",
+  "A": "If C01/C02 identify a critical reproducible defect, can minimal patch and independent regression tests show repair without altering toy questionnaire or making server public?",
+  "B": [
+    "Patch fixes problem",
+    "patch regresses no-data guarantee",
+    "no bug, stop cycle unspent"
+  ],
+  "C": {
+    "acceptance": [
+      "Prereg amendment before patch if an actual C01/02 defect exists",
+      "fresh browser + native smoke replay",
+      "capture hashes and rollback"
+    ],
+    "falsifier": "No distinct real defect; mark NOT_EXECUTED, not cycle"
+  },
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED",
+  "status": "PREREG_BEFORE_EXECUTION"
+}

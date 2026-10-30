@@ -1,0 +1,58 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "source_type": "UK Parliament first-party official JSON endpoint observed through web text rendering; original bytes not downloaded or SHA256 authenticated",
+  "n": 12,
+  "unit": "petition-level event history",
+  "bias": "Top 12 CLOSED petitions by signature totals, not random or representative. Individual people may sign multiple petitions.",
+  "data": "PETITIONS12_EVENT_PANEL.json",
+  "metrics": "EVENT_METRICS.json",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "no_personal_political_ratings": true,
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_RESPONSE_LAG_H1_REJECTED_12",
+  "A": "Among 12 highly signed closed petitions how long elapsed from reaching 10k to government response, relative to 30-day benchmark?",
+  "B": {
+    "H1": "median >30 calendar days",
+    "H0": "median <=30"
+  },
+  "C": {
+    "prereg_commit": "92f86098934618799e04bfed4db80bb75eb00166",
+    "execution": "Computed exact UTC day differences (response API timestamp minus 10k timestamp) for all 12, sorted median/mean/min/max, counted >30 and >60; first 700143 pre-exposed excluded in sensitivity. Alternative published response calendar-date fields analyzed C04. 30-day baseline is arbitrary descriptive not law."
+  },
+  "D": {
+    "panel": "PETITIONS12_EVENT_PANEL.json",
+    "metrics": "EVENT_METRICS.json",
+    "source_docs": "https://petition.parliament.uk/help"
+  },
+  "E": {
+    "n": 12,
+    "median_days": 16.457,
+    "mean_days": 27.473083333333335,
+    "min_days": 12.814,
+    "max_days": 128.013,
+    "over30": 1,
+    "over60": 1,
+    "median_excluding_preexposed_first": 16.688
+  },
+  "F": "H1 median >30 is rejected. One 128-day outlier raises mean to 27.47 despite median 16.46; not evidence of legal breach or quality. Alternative published calendar date changes median to 18.77, count >30 from 1 to 2, revealing metadata ambiguity.",
+  "G": "Selected for top signatures only; no observation of modest-signature petitions nor true policy impact. Source date public may refer published text rather than first created response.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "No judgment on positions or departments",
+  "J": "Preserve one long-delay outlier, measure separate debate timeline."
+}

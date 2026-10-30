@@ -1,0 +1,31 @@
+{
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "schema": "ab.prereg.v1",
+  "type": "AB-R",
+  "source_primary": "https://petition.parliament.uk/petitions?state=closed",
+  "source_json": "https://petition.parliament.uk/petitions.json",
+  "study": "UK Parliament 2024–2026 petitions, administrative threshold event histories",
+  "fixed_selection": "First 12 links with IDs 17–28 on official archived closed petitions page sorted by signature_count descending as crawled 2026-08, with no random inclusion. Freeze before opening individual JSON; top sample is LEFT-TRUNCATED BY OUTCOME, cannot estimate probabilities for all petitions or threshold causal effects.",
+  "selection_preexposure": "Titles and counts of top 12 CLOSED petitions already viewed via official list; timelines and discussion outcomes of all except first one NOT yet read, first id 700143 response+debate timeline preexposed in official API feasibility.",
+  "R1": "Unit petition, not signature=unique eligible individual; signatures may be repeated across petitions. Event timestamps are not first-public dataset times.",
+  "R2": "Appropriate institutional baseline: legal response threshold 10,000 and consideration-for-debate 100,000; not guaranteed instant debate nor threshold is measure of quality.",
+  "R3": "Top-signed selection, no random sampling, first petition already source-exposed; exploratory all 5 and report uncertainty, no confirmatory p values.",
+  "R4": "Compare creation→opening vs threshold→response and debate; test censoring and scheduled-vs-completed statuses; do not transform legal guarantee into causal identification.",
+  "R5": "Download original JSON if possible, HTML official index as fallback with explicit provenance. Never spend cycles on inaccessible binary retries.",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No political endorsement/stance, scores or individual petition signatory records",
+  "cycle": "C01",
+  "D": 1,
+  "A": "Do 12 preselected top closed petitions provide verified API event timestamps and count fields with valid temporal invariants, and does metadata provenance permit raw-byte authenticity?",
+  "B": {
+    "H1": "12/12 public JSON records with timestamps open, reached 10k, government response, 100k and scheduled debate; negative time-order checks may exist",
+    "H0": "Some lacking timestamps, source ambiguity, or JSON inaccessible"
+  },
+  "C": "Click and record 12 top closed petition links 17..28 from original official closed list. Parse timestamps and state fields from HTML/JSON source; verify total signatures>=100k. Record exact source accessibility, no raw original bytes=not byte authenticated, signature count can change after closings only with documented reason. Prohibit name publication.",
+  "E": "PENDING",
+  "F": "Top-12 sorted by post-event final count; completion and selection biases",
+  "G": "Single administrative issuer; second publisher Hansard only where debate linked",
+  "J": "Accept factual event-stage coverage or invalid/partial accordingly."
+}

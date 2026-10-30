@@ -1,0 +1,44 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PREEXPOSED_SAME_BILL_STAGE_HETEROGENEITY",
+  "A": "Can five separate procedural votes be safely collapsed into one total supporting a bill?",
+  "B": {
+    "H1": "Yes-share differs >15pp within five official votes",
+    "H0": "All similar enough as count key"
+  },
+  "C": {
+    "prereg_commit": "2c0c28815acccccdee137357b4cd05aaacfa1446",
+    "method": "Official public Parliament search-indexed Oct20 2026 divisions 96..100, JS integer per-division denominators and range. Values in search index surfaced before prereg; post-exposure exploratory comparison not blinded."
+  },
+  "D": {
+    "source": "https://votes.parliament.uk/Votes/Commons",
+    "source_ref": "turn452750search3",
+    "fixture": "C03_UK_BILL_STAGES_20261020.json"
+  },
+  "E": {
+    "five_divisions": true,
+    "ayes_share_min_pct": 26.1161,
+    "ayes_share_max_pct": 64.9606,
+    "range_pp": 38.8445,
+    "naive_sum_recorded_across_motions": 2490,
+    "actual_unique_person_count_unknown": true
+  },
+  "F": "Aye on amendment, new clause, third reading has different procedural meaning; no equivalence of votes on different questions. Changes in votes share do not indicate same individuals changed mind. Naive 2490 is not chamber participants, as repeated member votes.",
+  "G": "One bill, one day, official indexed aggregate not original XML/JSON; no causal modelling or out-of-sample validation",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "I": "No MP ratings or political recommendation",
+  "J": "Enforce procedural stage and division identifiers in any political event model; next cycle cross House record ontology."
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "pfl.abh30.multi_axis.prereg_AJ_SHA.v1",
+  "cycle": "ABH30-C23",
+  "mode": "AB-P_DISTINCT_PRODUCT_MEASUREMENT",
+  "branch": "research/pfl-abh30-c20-c30-multiaxis-20261029",
+  "date": "2026-10-29",
+  "drift_D": 1,
+  "A": "Question: Provide deterministic balanced offline rehearsal of five arms at ROOM unit, and explicitly deny secure concealment. Unit: typed fictional product observations, not real participants; direct human causal estimand absent.",
+  "B": {
+    "H1": "Provide deterministic balanced offline rehearsal of five arms at ROOM unit, and explicitly deny secure concealment.",
+    "H0": "Individual sequential assignments may vary arm counts and contaminate rooms.",
+    "H_other": [
+      "The apparent improvement may be a definitional identity or designed guard, not external data.",
+      "A declared fixture cannot establish true exposure, randomization, consent or scientific novelty."
+    ]
+  },
+  "C": {
+    "frozen_positive_negative_tests": 2,
+    "exact_test_name_prefix": "C23 ",
+    "primary_discriminant": "Verify 5 arms once per block and reject duplicated/unbalanced room frame.",
+    "baseline": "Existing four-arm individual seed allocator.",
+    "code_preplanned_with_all_C20_C30": true
+  },
+  "D": {
+    "source": {
+      "path": "src/politics_fantasy/fictional_pfl_impact_suite.mjs",
+      "Git_blob": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+      "sha256": "a736c7b480909fe1eba1d597075672eb39eae7956e58f9bdd9ac83b8bdb7208f"
+    },
+    "tests": {
+      "path": "tests/test_fictional_pfl_impact_suite.mjs",
+      "Git_blob": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+      "sha256": "5073564c97205eababd490ac3916206ae2a122c5f226b7b92e0730e35e1cad69"
+    },
+    "code_commit": "b90e5958905940a322ffe63e15a9445ab253920d",
+    "tests_commit": "f9f1c68358f09ee7bf35802d8066bd522592a817",
+    "command": "node --test --test-name-pattern='C23 ' tests/test_fictional_pfl_impact_suite.mjs"
+  },
+  "E": "Execute exactly the two cycle-specific tests after this prereg is frozen; retain original TAP output digest and exit status. Stop/repair on failure; no cycles counted for merely planning.",
+  "F": "Audit against competent baseline plus an expected negative case. Record when a guard is purely mathematical or synthetic, and reject any assertion of human validity.",
+  "G": "Competent comparator: Existing four-arm individual seed allocator.. No outcome sample from real PFL users or independent publisher in these fixtures.",
+  "H": "After execution update product QA prior, not human causal prior; classify CLUSTER_ALLOCATION_REHEARSAL and note limitations.",
+  "I": {
+    "science_grade": "0/3",
+    "CT2_ordinal": 20,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "release_gates": "0/6",
+    "external_replication": "NOT_AVAILABLE"
+  },
+  "J": "If actual native 2/2 PASS and substantive distinct functionality is supported, count at most one bounded AB-P C23; otherwise mark INVALID/STOP, preserve remaining authorized slots. Do not merge to main or claim human effects.",
+  "preregistered_family_size": 11,
+  "unit_tests_total_frozen": 22,
+  "user_authorization": "15 new remaining at start, 2 historical STOP_R5 separate",
+  "kind": "CLUSTER_ALLOCATION_REHEARSAL"
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "primary": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13092",
+    "discovery_before_prereg": true,
+    "original_type": "official legal HTML full tables, no raw XML hash",
+    "source_2024_europe": "EU Parliament national Spanish 61, 9 June 2024"
+  },
+  "A": "Do original JEC 2024 European election results support national-only 61-seat D'Hondt and disallow fictitious province-level seat assignment, unlike Galicia/Spain Congress districts?",
+  "B": {
+    "H1": "BOE records one state-wide 61-seat assignment; per-province only vote counts, and exact national d'Hondt reproduces all 61 with all winning party votes",
+    "H0": "Province-level seats listed as allocable independently, or national 9 winner votes do not yield awarded seats",
+    "H_alt": "Missing losing lists may exceed cutoff and spoil winner-only replay"
+  },
+  "C": "Use BOE-A-2024-13092 Cuadros I II III: verify 17,652,007 voters, valid candidate blank null identities, all nine elected-list national vote totals and seats, maximum nonwinner list total; execute exact rational D'Hondt nationally over winning parties and verify last winner quotient higher than any losing list's votes. Do NOT allocate national 61 seats to provinces, compare same source territorial grain with 2024 Galicia provincial law. No personal data.",
+  "E": "PENDING",
+  "F": "Negative: provincial cells have blank seat entries, continue national column; need verify nonwinner maxima and total-61 winner list",
+  "G": "One issuer/no prospectively blinded test, purely statutory explanation",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No personal voting patterns",
+  "J": "If verified, keep EU national-district source-grain as separate schema to prevent cross-system joins; otherwise do not claim exact allocation."
+}

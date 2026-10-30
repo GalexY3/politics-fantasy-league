@@ -1,0 +1,56 @@
+Reconstruido: C:\Users\Nitropc\AppData\Local\Temp\tmpt5p4frua\state.json
+OK 81 lotes 63 nodos SHA256 ae363aff1be0bbe6e9f7873a7cbfd1c68c0db50d239f94987b7df120caac29c1
+
+
+{
+  "batch_count": 81,
+  "campaign_runs": 20,
+  "nodes": 63,
+  "runs": 283,
+  "complaints": 51,
+  "gates": [
+    {
+      "id": "data_registry",
+      "label": "Fuente original suficiente del Registro de Partidos y candidaturas",
+      "status": "blocked",
+      "critical": true,
+      "evidence": []
+    },
+    {
+      "id": "identity",
+      "label": "Identidad individual multifuente con vigencia temporal",
+      "status": "blocked",
+      "critical": true,
+      "evidence": []
+    },
+    {
+      "id": "events",
+      "label": "Eventos verificables por persona y fecha",
+      "status": "blocked",
+      "critical": true,
+      "evidence": []
+    },
+    {
+      "id": "authentication",
+      "label": "Autenticaci\u00f3n y autorizaci\u00f3n multiusuario",
+      "status": "pending",
+      "critical": true,
+      "evidence": []
+    },
+    {
+      "id": "e2e",
+      "label": "E2E completo m\u00e1s all\u00e1 del smoke local",
+      "status": "pending",
+      "critical": true,
+      "evidence": []
+    },
+    {
+      "id": "deployment",
+      "label": "Despliegue p\u00fablico seguro",
+      "status": "pending",
+      "critical": true,
+      "evidence": []
+    }
+  ],
+  "gate_promotions_in_new_batch": false
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-HOLDOUT5-20261028",
+  "branch": "research/pfl-abh5-holdout-20261028",
+  "base_branch": "research/pfl-abh5-regional-audit-20261028",
+  "base_commit": "a3795f19c7347014724fc43f966dcd7f86cde19b",
+  "grant": 5,
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "used": 5,
+    "remaining": 0,
+    "AB_R": 5,
+    "AB_P": 0
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "status": "VALID_BOUNDED_PRESELECTED_NAVARRA_50_SEAT_REPLAY",
+      "prereg": "C01_PREREG.json",
+      "prereg_commit": "d0c3f8976a4e816e58d86b298a05c70bb915227f",
+      "result": "C01_RESULT.json",
+      "result_commit": "16afc361d62256a6ebdefd895434dd6860c6c4e0",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade": 0
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "status": "VALID_BOUNDED_PRESELECTED_ASTURIAS_45_3DISTRICT",
+      "prereg": "C02_PREREG.json",
+      "prereg_commit": "6751061781faa063cbbb6af0b2d8ad194d9d3399",
+      "result": "C02_RESULT.json",
+      "result_commit": "a7cdb0ae4cf465a98cbd809d6fcb91e245597482",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade": 0
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-R",
+      "status": "VALID_BOUNDED_PRESELECTED_RIOJA_FINAL_VS_EARLY_SOURCE",
+      "prereg": "C03_PREREG.json",
+      "prereg_commit": "b753c45a72581c1013b62234906f1c61ac2aa73f",
+      "result": "C03_RESULT.json",
+      "result_commit": "babd3b51233689689cc91f336a2c87a699ba1939",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade": 0
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "status": "VALID_BOUNDED_FIXED_COHORT_RULE_ABLATION",
+      "prereg": "C04_PREREG.json",
+      "prereg_commit": "665ec0c4a11bff880819deccabccd52245f35f9b",
+      "result": "C04_RESULT.json",
+      "result_commit": "6638c6c245a1bf27c40544a577f929f3eaf3220a",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade": 0
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-R",
+      "status": "VALID_BOUNDED_THREE_CASE_SOURCE_VINTAGE_NEGATIVE",
+      "prereg": "C05_PREREG.json",
+      "prereg_commit": "a88458e3e2dad28537ef2c117e28af0692662d07",
+      "result": "C05_RESULT.json",
+      "result_commit": "6d59de7c09d00256fa20e88a39b5f5911ccd7438",
+      "CT2_before": 29,
+      "CT2_after": 29,
+      "grade": 0
+    }
+  ],
+  "counts_reproducibility": {
+    "historical_seats_reconstructed": 128,
+    "actual_separate_constituencies": 5,
+    "elections": 3,
+    "governmental_primary_issuers": 3,
+    "original_binary_downloaded": 0,
+    "first_public_at_attested": 0,
+    "replay_script_git_blob": "3eff56d742fd43956af88f0860c5c5f4b12457aa",
+    "native_python_exact_same_blob_executed": true,
+    "original_csv_navarra_download_attempted_failed": true,
+    "asturias_pdf_visual_screenshot_attempted_failed_cache_miss": true,
+    "rioja_pdf_visual_screenshot_attempted_failed_cache_miss": true,
+    "full_repo_linux_suite_run": false,
+    "external_predictive_validation": false
+  },
+  "baselines": {
+    "V4": 36.9,
+    "CT2": 29,
+    "VSDS": "1/3",
+    "achievements": "2/90",
+    "gates": "0/6",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "R5": "No repeat previously explored Galicia, Cantabria, Guadalajara, Alicante or European case. Fixed election years/places before looking up their results; C04/C05 retrospective source hypotheses declared not blinded. Do not confuse statistical reconstruction with a predictive holdout; explicit risk of selection on already published outcomes.",
+  "executor_tasks": [
+    "tareas_codex/T011_FUENTE_PARIDAD_QA_SOURCE5_20261028.md",
+    "tareas_codex/T016_ORIGINALES_REGIONAL5_20261028.md",
+    "tareas_codex/T017_HOLDOUT_ORIGINALES_20261028.md"
+  ],
+  "prohibitions_respected": {
+    "ChatRelay": "NOT_USED",
+    "main_merge": false,
+    "paid_CI": false,
+    "real_person_scores": false
+  },
+  "next": "Five cycles closed. No further AB-H budget without new user grant; Codex original acquisition and clean full suite remain not executed."
+}

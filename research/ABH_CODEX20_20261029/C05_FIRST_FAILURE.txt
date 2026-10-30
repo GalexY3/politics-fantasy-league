@@ -1,0 +1,43 @@
+PASS 1 synthetic exact four-file hash produces aggregate only, never personal or authenticated
+PASS 2 earlier as-of excludes future outcome in both cohorts
+PASS 3 published pinned four original hashes cannot be defeated with fake fixture
+PASS 4 mutating a value after computing the manifest rejects entire record
+PASS 5 partial file set or extra file rejected before audit
+PASS 6 invalid JSON rejected after matching exact bytes without echoing source
+PASS 7 no supplied source path fails closed
+PASS 8 real Node file IO refuses four raw files with wrong original SHA, no silent fallback
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1 !== 2
+
+    at file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:62:10
+    at check (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:9:36)
+    at file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:60:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.16.0
+✖ proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (148.3487ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 154.134
+
+✖ failing tests:
+
+test at proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs:1:1
+✖ proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (148.3487ms)
+  'test failed'

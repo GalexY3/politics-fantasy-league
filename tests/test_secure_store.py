@@ -96,6 +96,47 @@ def test_parallel_same_hash_writers_dont_clobber(tmp_path):
     assert [p.name for p in shard.iterdir()] == [DIGEST]
 
 
+@pytest.mark.parametrize('peer_kind', ['valid', 'corrupt', 'symlink'])
+def test_peer_creation_after_missing_probe_is_verified(tmp_path, monkeypatch, peer_kind):
+    """Deterministically occupy the ENOENT-to-creation window, without timing luck."""
+    import politics_fantasy.secure_store as module
+    original = module._verify_object
+    injected = False
+    outside = tmp_path.parent / (tmp_path.name + '_peer_target')
+    outside.write_bytes(b'outside must remain unchanged')
+    def verify_with_peer(folder, name, data):
+        nonlocal injected
+        if injected:
+            return original(folder, name, data)
+        try:
+            return original(folder, name, data)
+        except ValueError as exc:
+            assert isinstance(exc.__cause__, FileNotFoundError)
+            injected = True
+            if peer_kind == 'symlink':
+                os.symlink(str(outside), name, dir_fd=folder)
+            else:
+                fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                             0o600, dir_fd=folder)
+                try:
+                    os.write(fd, data if peer_kind == 'valid' else b'corrupt peer data')
+                    os.fsync(fd)
+                finally:
+                    os.close(fd)
+            raise
+    monkeypatch.setattr(module, '_verify_object', verify_with_peer)
+    if peer_kind == 'valid':
+        relative = module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+        assert (tmp_path / relative).read_bytes() == PAYLOAD
+    else:
+        error = 'UNSAFE_EXISTING_OBJECT' if peer_kind == 'symlink' else 'SHA_COLLISION_OR_CORRUPTED_STORE'
+        with pytest.raises(ValueError, match=error):
+            module.store_bytes(tmp_path, PAYLOAD, DIGEST)
+    assert outside.read_bytes() == b'outside must remain unchanged'
+    shard = tmp_path / 'objects' / DIGEST[:2]
+    assert [path.name for path in shard.iterdir()] == [DIGEST]
+
+
 def test_preflight_denies_bad_manifest_before_contact(tmp_path):
     outside=tmp_path.parent / (tmp_path.name+"_outside_preflight")
     outside.write_bytes(b"outside")

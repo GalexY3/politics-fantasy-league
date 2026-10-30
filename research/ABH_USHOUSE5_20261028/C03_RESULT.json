@@ -1,0 +1,45 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_POSTEXPOSED_BASELINE_COMPARISON",
+  "A": "Can a procedure-aware 2025 rule outperform unconditional majority class in 2026 group-majority agreement?",
+  "B": {
+    "H1": "Yes, rule mapped suspension→shared, non-susp→opposed",
+    "H0": "No stronger than unconditional 'opposed'"
+  },
+  "C": {
+    "prereg_commit": "86d56fc2246100973f0c6d1f48478d6fbff3d2b7",
+    "execution": "Computed fixed two baseline predictions in functions JS from stored rows and compared 2026 labels; 2025/2026 outcomes had already been exposed before C03 prereg, so this is retrospective POST_HOC_AUDIT, not confirmation."
+  },
+  "D": {
+    "train": "C01_2025_OFFICIAL_AGGREGATES.json",
+    "test": "C02_2026_OFFICIAL_AGGREGATES.json",
+    "calc": "C03_RETROSPECTIVE_PROCEDURE_BASELINE.json"
+  },
+  "E": {
+    "eval_n": 6,
+    "modal_correct": 1,
+    "procedure_correct": 6,
+    "always_shared_correct": 5,
+    "sensitivity_excl_preexposed_roll_180_n": 5,
+    "modal_correct_excl": 1,
+    "procedure_correct_excl": 5
+  },
+  "F": "No evidence of actual transport because 2026 outcomes pre-exposed and 5 suspension votes from one date; party-majority agreement is not an individual person's prediction. Don't use 100% figure as forecast claim.",
+  "G": "Same publisher, no independent 3rd sample, no prospective code freeze, no confidence intervals interpreted as independent",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "V4": 36.9
+  },
+  "I": "No political individual assessment",
+  "J": "Next audit confounding by procedural composition to test whether year difference persists within strata."
+}

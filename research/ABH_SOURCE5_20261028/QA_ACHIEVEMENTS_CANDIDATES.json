@@ -1,0 +1,30 @@
+{
+  "schema": "pfl.qa.achievements.candidate.audit.v1",
+  "campaign": "PFL-ABH-SOURCE5-20261028",
+  "baseline_registry_version": 3,
+  "baseline_unlocked": [
+    "PFL-GAME-01",
+    "PFL-SECURITY-01"
+  ],
+  "candidate_assessments": [
+    {
+      "id": "PFL-QA-01",
+      "criterion": "Complete Python and Node suites in clean checkout, logs and reproducible hashes",
+      "positive": "T010 final executor report records Linux 770 Python +28 subtests and 144 Node PASS with original manifest and Git stored outputs at code commit c2ff338; earlier first run failures explicitly retained.",
+      "negative": "SOURCE5 HEAD adds 4 new research modules and 4 new test files (8+6 Python and 6+7 Node targeted PASS) and has NOT undergone a clean full Linux suite; T010 evidence cannot certify its new HEAD.",
+      "decision": "NOT_AWARDED_CURRENT_HEAD",
+      "Codex_requirement": "T011 clean full suite + provenance hashes, review criteria at resulting commit"
+    },
+    {
+      "id": "PFL-QA-02",
+      "criterion": "Complete Atlas canonical replay with SHA, no corruption or invalid refs; prerequisite QA-01",
+      "positive": "T010 final executor outputs show 75 batches and canonical SHA 118e95d9f34fcace52e21a6b92e09eac7a62ffc92ae6c20ac62512bb7d9d9692",
+      "negative": "SOURCE5 new HEAD not rerun end-to-end, and prerequisite QA-01 remains locked.",
+      "decision": "NOT_AWARDED_PREREQUISITE_AND_CURRENT_HEAD",
+      "Codex_requirement": "T011 verify checker and replay with HEAD, hash results and ensure QA-01 awarded first"
+    }
+  ],
+  "result": "Keep 2/90 official unlocks and 36.90% V4. 4/90 is only a conditional forecast, not an achieved state.",
+  "external_experimental_test": false,
+  "not_a_counted_AB_cycle": true
+}

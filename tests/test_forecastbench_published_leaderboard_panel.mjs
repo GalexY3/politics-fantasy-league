@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {inspectAggregateLeaderboard,comparePublishedAggregateLeaderboards as compare} from '../scripts/forecastbench_published_leaderboard_panel.mjs';
+const H='Rank,Team,Model Organization,Model,Dataset,N dataset,Market,N market,Overall,N,Brier Dataset,Brier Market,Brier Overall';
+const line=(rank,model,overall,n=25)=>[rank,'FictionalTeam','FictionalOrg',model,0.2,n,0.3,n,overall,n,0.22,0.25,0.23].join(',');
+const base=H+'\n'+line(1,'ModelA',0.2)+'\n'+line(2,'ModelB',0.3);
+const alt=H+'\n'+line(2,'ModelA',0.25)+'\n'+line(1,'ModelB',0.29);
+test('positive published aggregate CSV cross-panel keyed comparison, only aggregate summaries',()=>{const v=compare(base,alt);assert.equal(v.eligible_matched_models,2);assert.equal(v.identities_returned,false);assert.equal(v.causal_effect,false);assert.equal(v.mean_delta_N,0);assert.ok(Math.abs(v.mean_delta_reported_Overall-0.02)<1e-9)});
+test('rejects missing mandatory aggregate columns',()=>assert.throws(()=>compare('Rank,Model\n1,a',alt),/MISSING_PUBLIC_AGGREGATE_COLUMN/));
+test('rejects duplicate headers',()=>assert.throws(()=>compare(H+',N\n'+line(1,'X',0.2)+',25',alt),/DUPLICATE_COLUMN/));
+test('unmatched models do not become fake paired units',()=>{const v=compare(H+'\n'+line(1,'OnlyBase',0.2),H+'\n'+line(1,'OnlyOther',0.1));assert.equal(v.eligible_matched_models,0);assert.equal(v.mean_delta_reported_Overall,null)});
+test('duplicate model keys fail out of matched comparability',()=>{const v=compare(base+'\n'+line(3,'ModelA',0.9),alt);assert.equal(v.baseline_duplicate_keys,1);assert.equal(v.eligible_matched_models,1)});
+test('minimum common N threshold applies to both datasets',()=>{const v=compare(base,H+'\n'+line(1,'ModelA',0.2,9)+'\n'+line(2,'ModelB',0.3));assert.equal(v.eligible_matched_models,1)});
+test('reject malformed quoted row, do not quietly reshape',()=>assert.throws(()=>inspectAggregateLeaderboard(H+'\n1,"bad,broken'),/UNTERMINATED_CSV_QUOTE/));
+test('unclosed or extra columns rejected',()=>assert.throws(()=>inspectAggregateLeaderboard(base+'\n'+line(3,'C',0.4)+',extra'),/CSV_WIDTH_MISMATCH/));
+test('quoted commas in model names parse as a single model identity',()=>{const aa=H+'\n1,FictionalTeam,FictionalOrg,"Model,A",0.2,25,0.3,25,0.2,25,0.2,0.3,0.23';assert.equal(inspectAggregateLeaderboard(aa).parseable_records,1)});
+test('negative and noninteger aggregate N are rejected',()=>{const x=line(1,'A',0.3).split(',');x[9]='-10';assert.throws(()=>inspectAggregateLeaderboard(H+'\n'+x.join(',')),/INVALID_AGGREGATE_SAMPLE_COUNT/)});
+test('paired rank is descriptive, not common-trial inference',()=>{const v=compare(base,alt);assert.equal(v.benchmark_populations_same_proven,false);assert.equal(v.unit,'public_model_level_aggregates_not_people')});

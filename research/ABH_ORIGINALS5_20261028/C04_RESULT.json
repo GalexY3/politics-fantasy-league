@@ -1,0 +1,65 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C04",
+  "type": "AB-R",
+  "D": {
+    "publisher": "JEC/BOE",
+    "source": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "source_lines": "95,107,116",
+    "fixture": "C04_DHONDT_VS_HAMILTON_2023.json",
+    "original_XML_bytes": 0
+  },
+  "status": "VALID_BOUNDED_REAL_ELECTORAL_BASELINE_COMPARISON",
+  "A": "Can in-sample four-party D'Hondt replicate 2023 district seats more faithfully than Hamilton?",
+  "B": {
+    "H1": "D'Hondt matches named observed seat allocations; Hamilton can deviate in selected seats",
+    "H0": "Two procedures are indistinguishable in all selected cases"
+  },
+  "C": {
+    "prereg_commit": "e323e129fbfa3d79932f7425962f62fd5ac4be34",
+    "execution": "V8 exact numeric quotient ranking with d=1..M, fixed named parties and Hamilton largest remainders. Computed before result file; no formal preregistered holdout."
+  },
+  "E": {
+    "districts": [
+      "Guadalajara",
+      "Cantabria",
+      "Alicante"
+    ],
+    "seat_magnitudes": [
+      3,
+      5,
+      12
+    ],
+    "total_seats": 20,
+    "dhondt_mismatch_seats": 0,
+    "hamilton_mismatch_seats": 1,
+    "hamilton_alicante": {
+      "PP": 4,
+      "PSOE": 4,
+      "Vox": 2,
+      "Sumar": 2
+    },
+    "observed_alicante": {
+      "PP": 5,
+      "PSOE": 4,
+      "Vox": 2,
+      "Sumar": 1
+    }
+  },
+  "F": "D'Hondt is a statutory allocation rule, not a new predictor. Case selection required exact four national parties accounting for all awarded seats. Hamilton uses only those parties and is an intentionally competent but different formula; no comparison to an adaptive learned model.",
+  "G": "Regional lists excluded from vote shares, no full source dataset, no replication independent of source transcriptions, no prospectively heldout election, no voter turnout or causality.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "Only aggregate parties, no scores for real elected persons.",
+  "J": "Use D'Hondt as explicit legal baseline, not performance claim, and perform sensitivity to omitted regional parties under a distinct pre-registered pivot."
+}

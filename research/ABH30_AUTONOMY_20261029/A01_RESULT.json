@@ -1,0 +1,30 @@
+{
+  "id": "ABH30-P2-A01",
+  "status": "VALID_TECHNICAL_CAPABILITY_NEGATIVE_BOUNDARY",
+  "prereg": "0d71cc8afe53f28468625ae72276b69b955db1d3",
+  "A": "Can the assistant read private GitHub current sources and PR without Codex?",
+  "B": "Available authenticated connector vs presumed no access",
+  "C": "Read PR40, T028, AGENTS, main branch and verify state",
+  "D": "Live GitHub connector authorized context",
+  "E": {
+    "pr": 40,
+    "draft": true,
+    "state": "open",
+    "head_sha": "f01aa445560812eea8083f0f2bdddb2b93b2676d",
+    "branch": "research/pfl-abh30-autonomy-research-20261029",
+    "base": "research/pfl-forecastbench-discriminant-gate-20261029",
+    "main_sha": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "agents_blob": "fd67825dc86f965d0e87df0f19c47e0ebb061098",
+    "new_cycle_range_mentioned": true,
+    "T028_blob": "a6e352087e45edc092acfe07184ca75158442217",
+    "T028_pending": true,
+    "native_python_replay": "NOT_RUN_BY_GITHUB_FETCH"
+  },
+  "F": "Private repository read is possible, does not grant command shell or merge; main SHA read-only",
+  "G": "Not evidence of native suite execution",
+  "H": "Update executor matrix: GitHub read available",
+  "I": "bounded technical, 0/3 science",
+  "J": "Move to integrity cross-check",
+  "CT2_before": 22,
+  "CT2_after": 22
+}

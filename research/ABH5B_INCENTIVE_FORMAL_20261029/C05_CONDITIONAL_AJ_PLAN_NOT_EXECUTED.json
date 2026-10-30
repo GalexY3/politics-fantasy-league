@@ -1,0 +1,107 @@
+{
+  "schema": "pfl.abh5b.c05.planning.ab3.2.1.v1",
+  "date": "2026-10-29",
+  "id": "ABH5B-C05",
+  "mode": "PLANNING_AB_ONLY_STOP_R5_NOT_EXECUTED",
+  "counts_as_valid_cycle": false,
+  "authorization": "One unconsumed new 5-block slot remains; two historical distinct and unchanged",
+  "parent": "C04 incentive mechanism proof, C03 Kloc leaderboard offer RCT",
+  "drift": {
+    "D": 2,
+    "reason": "Same PFL forecasting domain, expands estimand from activity to scoring accuracy, error covariance and public-recognition welfare; different causal treatments, target and evidence requirements."
+  },
+  "A": {
+    "question": "Can assignment to public relative rank, holding social forecast information separately randomized, raise opportunity-normalized participation while degrading population forecast quality, causing correlated forecast errors, or reducing welfare? Which combinations (not single aggregate KPI) Pareto-dominate?",
+    "unit": "preassigned fictional participant × preannounced, unresolved factual question, clustered by leaderboard room",
+    "population": "only future consenting eligible participants in an expressly authorized pilot, NOT public politicians nor people in historical source files",
+    "treatments": [
+      "R: private rank vs public rank recognition",
+      "S: social forecast information withheld vs displayed, within ethical constraints"
+    ],
+    "comparator": "competent two-factor 2×2 cluster randomized control with shared identical question calendar, incentives, UI time and feedback frequency",
+    "primary": "assigned roster normalized first forecast uptake; policy forecast Brier improvement vs frozen ex ante independent baseline for all eligible question opportunities, no forecast leaves baseline in place",
+    "harm": "private welfare/opt-out decisions, exposure-triggered discomfort and forecast-error covariance as separate guardrails; absence of response is not an imputed personal prediction"
+  },
+  "B": {
+    "H_R": "Public recognition may raise uptake but lower willingness to be ranked and increase churn among low rank; rival Zou & Gao 2023 suggests performance gain with welfare loss.",
+    "H_S": "Seeing others' forecasts may improve mean forecast accuracy but correlate errors, potentially increasing tail risk, as Adjodah et al. 2021 studied.",
+    "H_interaction": "Joint public rank and social-belief access may change strategic extremization; rival Witkowski et al. 2023 shows winner-take-all proper score is not sufficient truthfulness.",
+    "H0": "No identifiable interaction or joint trade-off after strong controls; all apparent effects explained by post-treatment exposure selection, room mix or timing.",
+    "strong_existing_rivals": [
+      "Kloc, Belo, Li 2024 real offer/no board",
+      "Lovász et al. 2023 leaderboard × subjective feedback 2×4",
+      "Zou & Gao 2023 private/partial/full public recognition with WTP",
+      "Atanasov et al. 2016/17 randomized geopolitical prediction market vs prediction polls",
+      "Adjodah et al. 2021 social information and crowd accuracy-risk",
+      "Witkowski et al. 2023 proper prize ranking mechanism",
+      "Chen et al. 2023 randomized contest social versus competitive information"
+    ]
+  },
+  "C": {
+    "preregister_future_population_and_exposure": "complete random assignment list including 0 responders; question release/close, signup, actual independent pre-answer impressions, rank visibility, missed display logs UNKNOWN, not known zero",
+    "assignment": "predefine clusters at room level and possible cross-room interaction; if unbounded spillovers, redesign units or interference mapping rather than call individual SUTVA",
+    "causal_estimands": "ITT for assignment Z_R/Z_S and their interaction on all-eligible uptake and policy forecast score; conditional exposed analysis only secondary under additional identification assumptions",
+    "policy_scoring": "Freeze independent baseline p0_q for each question before treatment. For a consenting nonrespondent leave policy forecast p0_q unchanged; any first user response is policy update p_iq. Score outcomes only when objectively resolved, compared to predeclared baseline. This estimates policy utility not latent forecasting skill or true belief.",
+    "risk": "cross-participant correlated signed errors and worst-quantile aggregate loss on held-out questions, NOT only mean individual Brier",
+    "welfare": "ethics-cleared optional opt-out and at most minimal privacy intrusions; voluntary WTP elicitation only if specifically reviewed",
+    "falsifiers": [
+      "No increase in assignment-based coverage despite apparent respondent-only activity rise",
+      "Mean Brier improves but worst-quantile social forecasts deteriorate (risk hidden by mean)",
+      "Reported desire for private scoring even if public display improves activity",
+      "No benefit survives prior-art competent comparator, heterogeneity and interference-aware inference"
+    ],
+    "holdout": "prospective distinct future questions and newly enrolled authorized participants; no reuse of earlier outcome-conditioned records",
+    "multiplicity": "co-primary families and harm guardrails must be frozen before access; no informal threshold choice from observed data",
+    "power": "not specified without feasible user recruitment/ethics/pilot budget; NOT a preregistered executable study"
+  },
+  "D": {
+    "sources_status": "Only publicly available paper/abstract texts and citations inspected; no original participant rows",
+    "source_rights_gate": "Before running require documented origin, permitted data processing, participant privacy/consent and source reuse for this specific analysis",
+    "code_version": "NONE_UNEXECUTED",
+    "git_sha": "NONE_UNEXECUTED",
+    "run_environment": "NONE",
+    "recruitment_authorized": false
+  },
+  "E": {
+    "execution": "NOT_STARTED",
+    "reason": "No consent/ethics clearance, randomized exposure instrumentation, eligible complete roster, holdout, legal access or powered sample available."
+  },
+  "F": {
+    "adversarial": [
+      "Brier incentive not equivalent to truthful competitive report; winner-take-all can distort forecasts",
+      "Public rank not same as social forecast access or rank position",
+      "Never condition ITT on recipients who stayed active 3 days",
+      "Question-level missingness and opt-out cannot be swept under carpet",
+      "Avoid inventing interventions (real politician ranking, money prize) not confirmed within PFL scope",
+      "Multiple possible mediators and transport across financial/educational vs political forecasting"
+    ],
+    "status": "NOT_EXECUTED"
+  },
+  "G": {
+    "independent_evidence": "Strong existing randomized/field/lab studies oppose novelty; no joint external replication on this PFL policy estimand verified",
+    "status": "MISSING"
+  },
+  "H": {
+    "priors": "Cumulative PF-BR33+; separate engagement, predictive calibration, social-information risk, welfare, strategy-proofness",
+    "CT2_status": "Hold 20/100 ordinal absent new empirical outcome or clearer novelty test"
+  },
+  "I": {
+    "grade": "0/3_NO_RESULT",
+    "source_reliability": "Multiple independent publications, but transfer to intended product not established",
+    "methodological_value": "Conditional protocol, not experiment",
+    "product_release": "0/6 critical gates",
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "J": {
+    "decision": "STOP_R5",
+    "slot_consumed": false,
+    "trigger_to_reopen": "Legally and ethically permitted full assignment data with controlled independent exposures and novel precommitted interaction/harm outcome, or authorized prospective human pilot with rights and validity cleared",
+    "alternative": "If no access, do not consume slot or run synthetic seed variants",
+    "remaining_new": 1,
+    "remaining_legacy": 2
+  }
+}

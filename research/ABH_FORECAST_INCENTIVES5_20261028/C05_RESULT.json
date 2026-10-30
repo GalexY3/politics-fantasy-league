@@ -1,0 +1,84 @@
+{
+  "cycle": "C05",
+  "type": "AB-R",
+  "prereg_commit": "74f86e8d340393e9ca729a698a404bb4a4523d29",
+  "status": "VALID_BOUNDED_OFFICIAL_HTML_MANUAL_TRANSCRIPTION",
+  "A": "100 official 2025 US House rollcalls (200–299) versus distinct Issue labels as PFL opportunity measurement",
+  "B": [
+    "repeated Issue labels >15%",
+    "distinct votes on same bill not interchangeable",
+    "null low repetition"
+  ],
+  "C": {
+    "n_preregistered": 100,
+    "segment": "roll 200–299",
+    "predicted_threshold": 0.15,
+    "controls": [
+      "one-per-roll",
+      "one-per-distinct Issue sensitivity only"
+    ]
+  },
+  "D": {
+    "source": "https://clerk.house.gov/evs/2025/ROLL_200.asp",
+    "evidence": "Official Clerk HTML text manually transcribed to 100-row aggregate panel; no original HTML bytes SHA256",
+    "qa": {
+      "n": 100,
+      "range_complete": true,
+      "source_date_known": true,
+      "distinct_issues": 51,
+      "transcription_erratum": "C05_ERRATA.json: roll 203 17-Jul -> 18-Jul, endpoints unchanged",
+      "dates_source_rechecked": true
+    }
+  },
+  "E": {
+    "runtime": "V8 arithmetic on manually transcribed full official index",
+    "n_rolls": 100,
+    "distinct_issue_labels": 51,
+    "rolls_in_repeated_issues": 62,
+    "share_rolls_with_repeated_issue": 0.62,
+    "one_per_issue_vs_one_per_roll_ratio": 0.51,
+    "top_issue": [
+      [
+        "H R 3838",
+        19
+      ],
+      [
+        "H R 4553",
+        13
+      ],
+      [
+        "H R 4016",
+        9
+      ],
+      [
+        "H R 5371",
+        3
+      ],
+      [
+        "H RES 590",
+        2
+      ]
+    ],
+    "selected_question_counts": {
+      "OTHER_OR_NOT_CLASSIFIED": 54,
+      "ON_ORDERING_PREVIOUS_QUESTION": 7,
+      "ON_AGREEING_TO_AMENDMENT": 35,
+      "ON_MOTION_TO_RECOMMIT": 4
+    },
+    "threshold_H1_met": true
+  },
+  "F": "Alternative event units differ: amendments and recommit motions are distinct parliamentary votes; collapsing by bill is not substantively neutral. Single contiguous segment nonrandom; no score/person merits. Source lacks cryptographically authenticated bytes.",
+  "G": "Independent legislature (US vs UK) but entirely different estimand from C02/C03; independent contextual evidence only, not external confirmatory replication",
+  "H": "Operational PFL event identity must distinguish rollcall, issue and procedure; multiplicity of agenda matters, cannot rank people by raw count",
+  "I": {
+    "validity": "source-based descriptive, manual transcription unreviewed independently",
+    "causality": "none",
+    "novelty": "institutional phenomenon already known; no N1",
+    "reproducibility": "100-row transcribed official index; original raw HTML not authenticated; corrected roll 203 date with separate errata",
+    "ethics": "aggregate issues only, no names tracked or rated"
+  },
+  "J": "STOP_LOCAL_R5_COMPLETE_AUTHORIZED_FIVE",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "grade": "0/3"
+}

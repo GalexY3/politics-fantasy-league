@@ -1,0 +1,55 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "D": {
+    "source_initial": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-18907",
+    "source_correction": "https://www.boe.es/buscar/doc.php?id=BOE-A-2023-19537",
+    "boe_original_pub": "2023-09-01",
+    "boe_correction_pub": "2023-09-16",
+    "web_refs": [
+      "turn273305view0",
+      "turn411901view1"
+    ],
+    "original_xml_bytes": 0,
+    "hash": null
+  },
+  "status": "VALID_BOUNDED_OFFICIAL_CORRECTION_LINEAGE",
+  "A": "Whether an official 2023 election-results record can be assumed never corrected",
+  "B": {
+    "H1": "BOE-A-2023-19537 corrects September 1 publication at later September 16 publication date",
+    "H0": "No later amendment"
+  },
+  "C": {
+    "pre_commit": "5117b9dbb7f9e2fdc5f4e1f9c3c17fdfe947d288",
+    "method": "Read BOE 2023 original and JEC corrigendum, classify changed datum as Madrid Senate unelected candidate vote count and compare publication dates; no person names stored."
+  },
+  "E": {
+    "correction_count_in_inspected_notice": 1,
+    "chamber": "Senado",
+    "district": "Madrid",
+    "scope": "candidato no electo",
+    "old_original_literal": "1.007.32",
+    "new_corrected_integer": 1007322,
+    "source_publication_days_apart": 15,
+    "time_cutoff_before_2023_09_16": "do not backdate corrected number as publisher-known",
+    "date_only_not_first_public_exact_timestamp": true,
+    "congreso_cuadroII_unaffected_by_this_notice": true
+  },
+  "F": "Shows append-only correction is necessary and setting first_public_at to original election day would leak a postdated correction. HTML explicit old string is malformed ambiguous, NOT safe to parse as alternative numeric tally.",
+  "G": "Same issuing authority, one issue and not a machine-readable XML original; no independent proof of exact publication hours.",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No complete temporal pipeline or identity evidence; retains source lineage without candidate name.",
+  "J": "Accept bounded source-correction counterexample, leave XML original hash to Codex; proceed different district panel."
+}

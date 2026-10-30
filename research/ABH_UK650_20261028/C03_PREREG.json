@@ -1,0 +1,27 @@
+{
+  "campaign": "PFL-ABH-UK650-20261028",
+  "pre_reg_before_source_bytes": true,
+  "study": "UK House of Commons 2024 election official constituency-level results",
+  "source": "https://commonslibrary.parliament.uk/research-briefings/cbp-10009/",
+  "source_original": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-constituency.csv",
+  "source_candidates": "https://researchbriefings.files.parliament.uk/documents/CBP-10009/HoC-GE2024-results-by-candidate.csv",
+  "unit": "UK constituency; up to 650, 4 nations and English regions",
+  "prespecified_exclusions": "Only missing electorate/turnout or no winner-runner candidate votes for computation; report exclusions and special Speaker/NI observations; don't discard by result",
+  "classification": "All cycles exploratory until independently replicated; contemporaneous margins and vote shares are post-election, cannot be used in genuine pre-election prediction.",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": 1.2,
+  "A": "Does electoral fragmentation (effective number of vote-getting candidates) add association with turnout beyond the winner margin in the same 2024 UK constituencies?",
+  "B": {
+    "H1": "Fragmentation positive partial effect conditional on margin",
+    "H0": "No incremental effect or weaker than simple regional baseline",
+    "Halt": "Higher fragmentation dilutes winner vote shares but ecological differences dominate."
+  },
+  "C": "From every constituency candidate record calculate ENP=1/sum((candidate_votes/valid_votes)^2), verify candidate totals against original constituency CSV; Spearman ENP vs turnout, OLS turnout~margin + ENP + nation fixed effects with robust SE; compare with margin-only, describe all missingness.",
+  "E": "PENDING",
+  "F": "ENP and margin both constructed from final vote counts, high collinearity/endogeneity; coefficient not causal.",
+  "G": "Candidate CSV shares publisher and election; no genuine source independence.",
+  "H": "No CT2 uplift",
+  "I": "Do not score named candidates or parties",
+  "J": "If candidate original inaccessible mark blocked/not executed, use different new source; do not invent ENP."
+}

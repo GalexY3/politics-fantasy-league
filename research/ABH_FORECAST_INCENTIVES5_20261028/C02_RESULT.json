@@ -1,0 +1,108 @@
+{
+  "cycle": "C02",
+  "type": "AB-R",
+  "prereg_commit": "5eb8cd6320176b75addb8ed7089badf87e04ff0d",
+  "status": "VALID_BOUNDED_REAL_ARCHIVE_AGGREGATE",
+  "A": "UK Commons 2025 division timing as PFL opportunity denominator, not political person score",
+  "B": [
+    "calendar-week clustering",
+    "sitting-day opportunity explains much of clustering",
+    "null homogeneous rate"
+  ],
+  "C": "Prospective design for analyses frozen before retrieving 2025 monthly archive; source GitHub public copy, 2025 date window",
+  "D": {
+    "source_audit": "C02_SOURCE_AUDIT.json",
+    "weekly_panel": "C02_UK2025_WEEKLY.csv",
+    "qa": {
+      "count_raw": 326,
+      "count_distinct": 322,
+      "duplicate_ids": [
+        {
+          "id": 1993,
+          "identical": true,
+          "files": [
+            "data/raw/months/2025-03.json",
+            "data/raw/months/2025-04.json"
+          ]
+        },
+        {
+          "id": 1992,
+          "identical": true,
+          "files": [
+            "data/raw/months/2025-03.json",
+            "data/raw/months/2025-04.json"
+          ]
+        },
+        {
+          "id": 2074,
+          "identical": true,
+          "files": [
+            "data/raw/months/2025-06.json",
+            "data/raw/months/2025-07.json"
+          ]
+        },
+        {
+          "id": 2073,
+          "identical": true,
+          "files": [
+            "data/raw/months/2025-06.json",
+            "data/raw/months/2025-07.json"
+          ]
+        }
+      ],
+      "all_exact_duplicates": true,
+      "invalid_years": 0,
+      "bad_vote_tallies": 0,
+      "source_month_mismatch": 4,
+      "week_count": 53,
+      "observed_vote_days": 90,
+      "zero_weeks": 17,
+      "mean_per_week": 6.0754716981132075,
+      "variance_population_per_week": 31.16411534353862,
+      "dispersion": 5.12949724598617,
+      "max_per_week": 18,
+      "top_quartile_n_weeks": 14,
+      "top_quartile_share": 0.593167701863354,
+      "per_vote_day_dispersion": 1.45327812284334,
+      "mean_per_vote_day": 3.577777777777778,
+      "MAE_uniform_week": 4.875044499822001,
+      "MAE_observed_active_vote_days_ex_post": 2.1509433962264155,
+      "monthly_counts": {
+        "2025-01": 22,
+        "2025-02": 13,
+        "2025-04": 21,
+        "2025-03": 57,
+        "2025-05": 20,
+        "2025-07": 25,
+        "2025-06": 40,
+        "2025-09": 36,
+        "2025-10": 29,
+        "2025-11": 33,
+        "2025-12": 26
+      },
+      "source_commit": "fafb0659a80a96e3d01c1a48e03a2d4a68fbf337"
+    }
+  },
+  "E": "Executed in V8 over twelve raw monthly JSON arrays (fixed mySociety commit); n=322 unique divisions and 53 ISO weeks",
+  "F": {
+    "control": "observed vote-day exposure descriptive, not available ex ante",
+    "mae_uniform": 4.875044499822001,
+    "mae_vote_days": 2.1509433962264155,
+    "duplicate_source_correction": 4,
+    "interpretation": "High weekly concentration is predominantly opportunity-calendar structure; no attribution to politicians and no causal effect."
+  },
+  "G": "No independent confirmation beyond same archival source; C03 may check independent chronological year with new prerereg.",
+  "H": "Opportunity must be explicit in PFL reward denominators. Do not conflate vote count with merit, productivity, or absence.",
+  "I": {
+    "validity": "descriptive annual coverage of a public third-party cache; official raw not authenticated",
+    "causality": "none",
+    "novelty": "no claimed theoretical novelty",
+    "transferability": "not established",
+    "reproducibility": "pinned Git blobs and weekly panel",
+    "ethics": "no named persons scored"
+  },
+  "J": "BRANCH_C03_TEMPORAL_OUT_OF_YEAR",
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "grade": "0/3"
+}

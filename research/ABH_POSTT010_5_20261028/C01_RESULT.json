@@ -1,0 +1,59 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C01",
+  "type": "AB-P",
+  "status": "VALID_BOUNDED_PR_SCOPE_AUDIT",
+  "prereg_commit": "1064dc35908e22f76771349ae9ad9197947116de",
+  "A": "Audit GitHub T010 branch versus current main at pinned SHAs for unexpected production changes",
+  "B": {
+    "H1": "Limited code/test repair",
+    "H0": "Hidden unrelated production changes",
+    "H_other": "Logs and evidence artifacts account for large changed-file total"
+  },
+  "C": {
+    "baseline": "main 968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "treatment": "fix/pfl-t010-atlas-http-20261028 ccafa33407d8806296881b89b927fe01bcfd4f8a",
+    "method": "GitHub compare 110 changed paths, fetch and count exact duplicate definitions of Atlas, inspect HTTP test and date tests, read T010_RESULTADO evidence statement"
+  },
+  "D": {
+    "method": "GitHub read-only inspection, no local full suite",
+    "repo_at_check": "GalexY3/Metodologia-AB"
+  },
+  "E": {
+    "compared_files": 110,
+    "changed_code_paths": [
+      "ab_atlas/atlas_delta.py",
+      "ab_atlas/tests/test_delta_timestamps.py",
+      "proyectos/politics-fantasy-league/tests/test_http_duplicate_json_keys.py"
+    ],
+    "atlas_main_batch_check_count": 3,
+    "atlas_fix_batch_check_count": 1,
+    "atlas_main_cli_count": 3,
+    "atlas_fix_cli_count": 1,
+    "server_source_changed": false,
+    "remaining_paths": "mostly logs, historic evidence receipts, reports, backlog and CURRENT",
+    "independent_suite_executed": false,
+    "executor_report": "770 Python +28 subtests, 144 Node, 38 Atlas +86 subtests; unreplicated in this audit"
+  },
+  "F": "Not equivalent to byte-for-byte validation of every artifact or Linux rerun; PR open, human review needed; user-facing prior T010 pending in main remains historical",
+  "G": "NOT_REPLICATED_INDEPENDENTLY",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "VSDS": "1/3",
+    "V4": 36.9,
+    "gates": 0,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": {
+    "validity": "bounded repository diff audit",
+    "sociological": "none",
+    "ethics": "no nominal data read or scored"
+  },
+  "J": "CONTINUE to independent hardening of experimental vote identifiers; do not merge PR18"
+}

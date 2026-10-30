@@ -1,0 +1,51 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PREEXPOSED_AGGREGATE_KEY_COLLISION",
+  "A": "Can aggregate voting totals uniquely identify distinct parliamentary motions?",
+  "B": {
+    "H1": "At least one exact total-vector collision",
+    "H0": "All four 2026-10-21 tally pairs unique"
+  },
+  "C": {
+    "prereg_commit": "de06948ae16ca51871f331c49f28126685ab29a4",
+    "method": "Official Commons search index 2026-10-21 four division entries; compute (aye,no) and compare titles/number in JS, reference exact row source. Source index counts already visible before prereg => pre-exposed post hoc quality check, no new blind discovery."
+  },
+  "D": {
+    "url": "https://votes.parliament.uk/Votes/Commons?Fromdate=2026-10-21&ToDate=2026-10-21",
+    "source_ref": "turn452750search0",
+    "fixture": "C02_UK_DISTINCT_DIVISIONS_COLLISION.json",
+    "original_binary_bytes": 0
+  },
+  "E": {
+    "record_count": 4,
+    "distinct_pair_count": 3,
+    "collisions": 1,
+    "collision": {
+      "division_numbers": [
+        101,
+        103
+      ],
+      "aye": 345,
+      "no": 108
+    },
+    "total_recorded_votes_sum": 1648
+  },
+  "F": "Distinct official motions have identical tally vectors; hash(total_yes,total_no) cannot substitute official divisionId+parliament/session. No proof of same individuals, party votes or content; repeated results are not repeated identity.",
+  "G": "One official indexed source not full original API or independent replica, known outcome before prereg, search document open cache miss, no timestamp.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "V4": 36.9,
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No political actor profile",
+  "J": "Reject using headline tally vector as stable parliament event key; independently examine within-bill stage grain."
+}

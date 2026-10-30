@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>PFL 5-arm synthetic browser smoke</title></head>
+<body><main id="rendered"><h1>Fictional five-arm rank display</h1></main><pre id="report">NOT_RENDERED</pre>
+<script type="module">
+import {renderFictionalRankSession} from '../src/politics_fantasy/fictional_rank_session_renderer.mjs';
+const arms=['own_only','private_quartile','public_quartile','private_order','public_order'];
+const fb=['own_only','rank_quartile','rank_quartile','rank_full_order','rank_full_order'];
+const aud=['self','self','room','self','room'];
+const contract={fixture:'SYNTHETIC_RANK_DESIGN_ONLY',arms:Object.fromEntries(arms.map((arm,i)=>[arm,{feedback:fb[i],audience:aud[i],alias_mode:aud[i]==='room'?'fictional_alias':'none',reward:'VIRTUAL_SAME_BRIER',event_frame:'a'.repeat(64),schedule:'b'.repeat(64),show_own_score:true}]))};
+const assignments=arms.flatMap((arm,i)=>[0,1].map(j=>({member_id:'fake'+i+j,room_id:'room'+i,arm})));
+const opportunities=assignments.map((a,i)=>({opportunity_id:'opp'+i,member_id:a.member_id,room_id:a.room_id,opens_at:'2026-10-29T12:00:00Z',closes_at:'2026-10-29T13:00:00Z'}));
+const scores=assignments.map((a,i)=>({member_id:a.member_id,score:i%2?0.2:0.8}));
+try{
+ const result=renderFictionalRankSession({fixture:'SYNTHETIC_RENDER_SESSION_ONLY',contract,assignments,opportunities,scores});
+ for(const item of result.views){const section=document.createElement('section');section.setAttribute('data-arm',item.arm);section.textContent=JSON.stringify(item.shown);document.querySelector('#rendered').append(section);}
+ document.querySelector('#report').textContent=JSON.stringify({status:'DOM_RENDERED_SYNTHETIC_ONLY',cards:document.querySelectorAll('section[data-arm]').length,arms:Object.fromEntries(arms.map(arm=>[arm,document.querySelectorAll('section[data-arm="'+arm+'"]').length])),receipts:result.receipt_audit.observed_receipts,real_human_exposure:false});
+}catch(err){document.querySelector('#report').textContent=JSON.stringify({status:'ERROR',reason:String(err).slice(0,100)});}
+</script></body></html>

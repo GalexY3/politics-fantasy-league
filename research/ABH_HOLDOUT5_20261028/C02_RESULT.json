@@ -1,0 +1,57 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "cycle": "C02",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_PRESELECTED_ASTURIAS_45_3DISTRICT",
+  "A": "Can 2023 Asturias 45 seats be reconstructed from a new independently published complete 15-party by 3-district source?",
+  "B": {
+    "H1": "Original full source complete; legal per-district D'Hondt reconstructs 45",
+    "H0": "Incomplete input or mismatched county/tally leaves gaps",
+    "H_other": "PDF text extraction errors impact counts"
+  },
+  "C": {
+    "prereg_commit": "6751061781faa063cbbb6af0b2d8ad194d9d3399",
+    "selected_before_source": "Asturias 2023 election and 45 seats fixed before outcome lookup",
+    "method": "Read complete JGPA original published PDF tabulated results and JEC official election page plus BOE law article 13; attempted required screenshot (cache miss), attempted container.download of PDF (failed). Manually transcribed 15 party columns for three districts, executed Python 3 stdlib fractions.Fraction D'Hondt 3% votes valid per district; 3/3 candidacy/ballot identities and seat totals matched."
+  },
+  "D": {
+    "primary": "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+    "law": "https://boe.es/buscar/act.php?id=BOE-A-1987-3910",
+    "JEC": "https://www.juntaelectoralcentral.es/cs/jec/elecciones/Asturias-mayo2023",
+    "fixture": "C02_ASTURIAS_COMPLETE_2023.json"
+  },
+  "E": {
+    "districts": 3,
+    "parties": 15,
+    "voters": 545002,
+    "valid": 537023,
+    "candidacy": 527500,
+    "abstentions_computable": 413656,
+    "seats": 45,
+    "mismatched_districts": 0,
+    "seat_replay": {
+      "Occidente": 6,
+      "Centro": 34,
+      "Oriente": 5
+    },
+    "seat_disagreement": 0,
+    "original_PDF_bytes": 0
+  },
+  "F": "Full 3-circ constituency and legal 3% enough to reproduce known seats; this is mathematical reconstruction not new prediction. PDF screenshot unavailable and byte hash missing; extra JEC page verifies source existence but not independent numerical counts.",
+  "G": "No heldout learned baseline, only separate post-prereg case selection; not a prospective election or model validation",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "awards": 0
+  },
+  "I": "Aggregate party votes only; no scoring political actor, no individual preferences",
+  "J": "Use separately as out-of-earlier-case regression fixture. Explore different mechanism/case next, not five repetitions of the same legal formula."
+}

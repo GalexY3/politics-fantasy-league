@@ -1,0 +1,55 @@
+{
+  "schema": "pfl.abh30.c07.final_failclosed_sha256_freeze.v1",
+  "date": "2026-10-29",
+  "initial_prereg": "346abafbbbb13601b91640bf78d714b43f171c6e",
+  "initial_negative_and_repair": "db3dcf89bdfa9cfae7c6002c01ec3dff8d334bfa",
+  "postrun_intermediate_gap_negative_and_repair": "0376bd8ff14a24e1e98bdcdd6cf47cb4896d2cb3",
+  "repaired_core_commit": "8ab940bcbfeab59ada97d8bc316740ca78eac8f5",
+  "repaired_tests_commit": "960f6494f094fe242a68c50416278d2e62f441ad",
+  "repaired_cli_commit": "c3d23fd2c1cb40c7555dafe1bdf3882a276b909c",
+  "frozen_source_and_tests": [
+    {
+      "path": "src/politics_fantasy/forecastbench_vintage_replay.mjs",
+      "git_blob_sha1": "a209206f0678673cebecc97408d3eb8bfce3bad1",
+      "sha256": "f35e26efbabcd94edeb9cc475ed44c6d35382014462b34d67e5566d5644bb8b3"
+    },
+    {
+      "path": "tests/test_forecastbench_vintage_replay.mjs",
+      "git_blob_sha1": "c5c7f917c8a18de7bbc80757d85ec78cd4633e73",
+      "sha256": "09e55664a984a8bcbeda2afca1d376c9f897dfd268cfc9d862efa16adb9efc14"
+    },
+    {
+      "path": "scripts/replay_forecastbench_vintages.mjs",
+      "git_blob_sha1": "3b9e8bb784ff499fdabb47257c31a671da4c65a9",
+      "sha256": "a2269df5394a9206bc56525ace5f272142e336964978d6a10d3fbb8ba6eedf7c"
+    },
+    {
+      "path": "tests/test_forecastbench_vintage_cli.mjs",
+      "git_blob_sha1": "29bc64c591dcd23c1b6585f2a710d2ada3deec73",
+      "sha256": "d640b0972f773da614b7f6323de929c34ad1a363e3d787c79d6cfc89e54f3ff3"
+    }
+  ],
+  "local_git_and_sha256_equal_frozen_GitHub": true,
+  "predeclared_exact_checkpoints": [
+    "2026-10-08T00:00:00Z",
+    "2026-10-24T00:00:00Z",
+    "2026-10-29T16:00:00Z"
+  ],
+  "unknown_times_rejected": "NO_VERIFIED_EXACT_CHECKPOINT",
+  "original_public_data_results_before_this_repair": {
+    "sep27_oct08": 30,
+    "sep27_oct24": 46,
+    "oct11_oct24": 2,
+    "sep27_oct29": 52,
+    "oct11_oct29": 8
+  },
+  "source_data_not_changed": true,
+  "tests_planned_after_repair": {
+    "pure_native": 25,
+    "cli_native": 8
+  },
+  "retest_after_this_commit": true,
+  "results_equal_original_expected": true,
+  "failed_attempts_preserved": true,
+  "extra_cycles": 0
+}

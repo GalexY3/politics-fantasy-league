@@ -1,0 +1,29 @@
+{
+  "cycle": "C03",
+  "type": "AB-P",
+  "A": "Can offline same-stimulus four-arm fictional prototype be integrated without shipping answers and without remote storage?",
+  "B": [
+    "minimal UI with no data collection sufficient",
+    "client-side key leak",
+    "different arms get unequal content"
+  ],
+  "C": {
+    "acceptance": [
+      "four arms, same fixed fictional events",
+      "no key module or scoring in client",
+      "CSP default-src self, no network third party",
+      "no POST or storage",
+      "a11y labels/keyboard",
+      "native HTTP tests and optional Chromium visual"
+    ],
+    "falsifier": "key leaks to browser or endpoint accepts data"
+  },
+  "D": "GitHub source frozen before running independent Node/Chromium tests",
+  "E": "NOT_EXECUTED",
+  "F": "PENDING",
+  "G": "PENDING",
+  "H": "PENDING",
+  "I": "PENDING",
+  "J": "PENDING",
+  "state": "FROZEN_BEFORE_EXECUTION"
+}

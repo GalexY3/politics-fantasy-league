@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P2-A05",
+  "phase": "AUTONOMY",
+  "status": "PREREGISTERED",
+  "A": "Size limits and chunking of GitHub connector",
+  "B": "H0 requested substitute capability is unavailable or insufficient; H1 capability supports bounded task",
+  "C": "Compare pinned public GitHub files of three sizes (~120k, 553k, 2.7MB): fetch_file full vs line-range 1..20 vs REST raw; record response lengths and JSON parsability; deliberately test source 2024 resolution known blocked. Control small file must parse. No original full human records downloaded beyond allowed question file; metadata only.",
+  "D": "Use only currently available authenticated GitHub connector and local runtime. No credentials, network circumvention or changed admin policy.",
+  "E": "NOT_RUN_WHEN_PREREG_COMMITTED",
+  "F": "Adversarial limits: If >1MB cannot be fetched, mark blocked and do not fabricate SHA256 bytes.",
+  "G": "No PFL human replication; technical QA not scientific",
+  "H": "Update capability inventory based only on observed traces",
+  "I": "Science 0/3, classify operational feasibility by actual tool output",
+  "J": "Stop/R5 if feature absent; move to next distinct pathway",
+  "selection_exposure": "No C05/C10 output known before prereg; prior general environment limits disclosed",
+  "CT2_before": 22,
+  "CT2_after": 22
+}

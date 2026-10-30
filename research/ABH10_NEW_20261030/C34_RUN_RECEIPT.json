@@ -1,0 +1,70 @@
+{
+  "schema": "pfl.abh10.c34.native_public_original_cli_receipt.v1",
+  "cycle": "ABH10-C34",
+  "status": "VALID_BOUNDED_ORIGINAL_PUBLIC_DATA_NATIVE_POSITIVE_AND_NEGATIVE",
+  "prereg_commit": "35f088c5dfbfd9e9e9a478a4b47052482a42c332",
+  "workflow_git_blob": "7d9a1ceaf415fc18358a56e4d2432bb6c1c4769a",
+  "workflow_sha256": "f53f589fe13e740466caf079a06e24654edd569bfb7643ce0b1a701ec1fa7a5e",
+  "code_original_git": "2b6e910c998f99de121050badfab83adaf345220",
+  "dependency_original_git": "2e1ed7f5e23bbad79c81013505882830907cb258",
+  "original_public_source": {
+    "repo": "forecastingresearch/forecastbench-datasets",
+    "path": "datasets/resolution_sets/2026-09-27_resolution_set.json",
+    "before_commit": "3928408907498c991bc367c2d3493241aa19e516",
+    "before_blob": "424965825aae022f5861b69d17880665cd3026bb",
+    "after_commit": "d6dac818ec036aa8fa41dfc1fcb369d24ca81ce4",
+    "after_blob": "ea2f96ee0b30f248f3b9d1b61bd63fa03e938ec3",
+    "license": "CC-BY-SA-4.0"
+  },
+  "actual_execution": {
+    "platform": "GitHub Actions stock Ubuntu",
+    "workflow_run_id": 40978771536,
+    "job_id": 123813259061,
+    "run_url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40978771536",
+    "head_sha": "1d02774195cd407aa1a317124c5a7e769d8850d8",
+    "run_attempt": 1,
+    "conclusion": "success",
+    "node_version": "v22.23.4",
+    "time_budget_minutes": 3,
+    "library_original_files": true,
+    "git_byte_sha_verified": true,
+    "CLI_original_real_data_positive": true
+  },
+  "outcome": {
+    "before_rows": 437,
+    "after_rows": 427,
+    "removed": 10,
+    "mutated": 212,
+    "retained_unchanged": 215,
+    "added": 0,
+    "identity": true,
+    "raw_append_only_consistent": false,
+    "manual_review_required": true,
+    "source_personal_rows_processed": false
+  },
+  "adversarial_negative": {
+    "injected_change": "One trailing whitespace byte added only to before-file copy",
+    "exit_code": 1,
+    "stdout_bytes": 0,
+    "stderr_code": "PINNED_PUBLIC_GIT_BLOB_MISMATCH",
+    "passed": true
+  },
+  "limitations": [
+    "Published original Git files are source snapshots, not independent per-event first-public-at times",
+    "No participant IDs or private records, no scoring people or politicians",
+    "Source changed and removed rows: no unqualified append-only assumption",
+    "No causal PFL experimental effect"
+  ],
+  "PFL_CT2_science_ordinal": 20,
+  "novel_PFL_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "grant_after": {
+    "valid_new": 3,
+    "new_remaining": 7,
+    "historical_STOP_R5": 2
+  }
+}

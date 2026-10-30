@@ -1,0 +1,49 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONCOHORT5-20261028",
+  "cycle": "C06",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_INDEPENDENT_HANSARD_DEBATE_DOCUMENT_CROSSCHECK",
+  "A": "Does another UK Parliament records service actually document a 10 Feb 2025 parliamentary debate corresponding to petition 700138, a new 100k+ petition in ID-selected archive?",
+  "B": {
+    "H1": "Hansard transcript explicitly identifies e-petition 700138 and same date",
+    "H0": "Missing, mismatched, or merely a URL with no evidence of content"
+  },
+  "C": {
+    "prereg_commit": "4ad048571386c266bbd8d38c02ccbac2f11c47e0",
+    "execution": "Fetched 700138 GitHub archived JSON transcript URL and opened exact original Hansard page, whose header states Monday 10 Feb 2025 and body explicitly mentions e-petition 700138. Tried opening primary official petition JSON 700138 directly; fetch failed, so no original raw bytes. Compared previously exposed primary 700143 signature total 3,084,713 to archive 3,084,712, recording 1-count version mismatch without attributing cause."
+  },
+  "D": {
+    "mirror_archive": "https://github.com/Jonty/uk_petitions_data/blob/master/petitions/2024-_Labour_government/700138.json",
+    "mirror_blob": "b3e0ad4a2cec2629099bfcb7ed8d6c53f30d800c",
+    "Hansard": "https://hansard.parliament.uk/Commons/2025-02-10/debates/94821BE4-8215-4D8D-93E1-77F786B3ABD4/InheritanceTaxReliefFarms",
+    "Hansard_web_ref": "turn543013view1",
+    "official_700143": "https://petition.parliament.uk/petitions/700143.json",
+    "official_700143_web_ref": "turn546739view0"
+  },
+  "E": {
+    "petition_id": 700138,
+    "archive_debated_on": "2025-02-10",
+    "Hansard_date_verified": "2025-02-10",
+    "Hansard_explicit_petition_id": 700138,
+    "first_party_700138_JSON_available": false,
+    "archive_700143_signatures": 3084712,
+    "prior_official_700143_signatures": 3084713,
+    "one_signature_snapshot_difference": 1,
+    "raw_Hansard_bytes_SHA256": false
+  },
+  "F": "Hansard transcript verifies event without validating original petition JSON byte provenance, original publishing date, effect of signatures on policy or true unique participants. 700143 comparison already preexposed; cannot infer correction timing or cause for one extra signature.",
+  "G": "Hansard and petitions are different records systems of the same UK Parliament; documentary corroboration yes, independently replicated causal sociology no.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0,
+    "newN": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "No person/party scoring or political stance categorization",
+  "J": "R5 terminate at verified source event and no first-party raw; queue original JSON provenance and full cohort search to Codex."
+}

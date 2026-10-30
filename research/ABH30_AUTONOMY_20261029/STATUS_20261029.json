@@ -1,0 +1,72 @@
+{
+  "campaign": "PFL-ABH30-AUTONOMY-20261029",
+  "state": "CAMPAIGN_CLOSED_30_ATTEMPTED_29_VALID_1_INCOMPLETE_STOP_R5",
+  "date": "2026-10-29",
+  "note": "Supersedes early interim status. Previous history preserved in GitHub blob 8db5a0d8fe6ed08cedc3ad28806ba0c01c7d5abb",
+  "PR": 40,
+  "phase1": {
+    "authorized": 20,
+    "attempted": 20,
+    "valid": 19,
+    "incomplete": 1,
+    "not_attempted": 0,
+    "results": "C02–C20 valid bounded A-J, C01 incomplete original ForecastBench 2024 2.7 MB resolution set; no replacement post hoc"
+  },
+  "phase2": {
+    "authorized": 10,
+    "attempted": 10,
+    "valid": 10,
+    "incomplete_current": 0,
+    "not_attempted": 0,
+    "results": "A01–A10 valid bounded tool-execution checks; A04 original incomplete retained, same-cycle repair A04_RESULT with 80/80 original batch JSON and 79/79 parent links checked"
+  },
+  "combined": {
+    "authorized": 30,
+    "attempted": 30,
+    "valid": 29,
+    "incomplete": 1,
+    "invalid": 0,
+    "planning": 0,
+    "not_attempted": 0
+  },
+  "prior_campaign": {
+    "authorized": 5,
+    "valid": 2,
+    "incomplete": 1,
+    "unused": 2,
+    "unchanged": true
+  },
+  "scientific": {
+    "N1_new": 0,
+    "N2_new": 0,
+    "N3_new": 0,
+    "CT2_prospective_before": 22,
+    "CT2_prospective_after": 22,
+    "CT2_kind": "ordinal internal judgment not calibrated probability",
+    "no_human_outcomes": true,
+    "no_replicated_scientific_discovery": true
+  },
+  "product": {
+    "C06_serial_seed_bias_found": true,
+    "C06_repair_passed_4096_seeds": true,
+    "Node_regression_84_of_84": true,
+    "Atlas_metadata_80_of_80": true,
+    "Atlas_semantic_python_replay": "NOT_RUN",
+    "Browser_HTTP_EndToEnd": "BLOCKED_BY_ADMINISTRATOR",
+    "T028": "NOT_COMPLETED"
+  },
+  "ethics": {
+    "no_real_politicians_scored": true,
+    "no_human_recruitment": true,
+    "no_CI_expensive": true,
+    "ChatRelay": false,
+    "main_unmodified": true
+  },
+  "limitations": [
+    "C01 source too large for authorized connector; bounded failed input, NOT VALID",
+    "A04 metadata audit does not satisfy T028 native canonical state verification; CURRENT.md remains unchanged",
+    "Browser native APIRequest reaches local HTTP but real Chromium page.goto is administratively blocked",
+    "Different A-J cycles on the same public leaderboard are exploratory and not independent scientific confirmations"
+  ],
+  "decision": "STOP_R5 campaign; next dependency native Atlas checker in authorized checkout and/or lawful individual exposure dataset"
+}

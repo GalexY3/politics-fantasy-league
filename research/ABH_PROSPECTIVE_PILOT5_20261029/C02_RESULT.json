@@ -1,0 +1,105 @@
+{
+  "cycle": "C02",
+  "mode": "AB-P",
+  "prereg_commit": "b643c4555999bcf5e687d16934a29a06d14c775a",
+  "engine_commit": "a710fc92de51c0e0643d11000e58a6e0e4a277bc",
+  "A": "Offline reproducible 2x2 block assignment engine, without participant records",
+  "B": [
+    "equal arm count balanced",
+    "seed PRNG modulo mechanism",
+    "not secured clinical randomization"
+  ],
+  "C": "exact 4n blockwise balance, seed reproducible; reject invalid inputs; >=12 tests",
+  "D": "Pure module committed before tests in GitHub; deterministic V8 isolation",
+  "E": {
+    "executed_tests": [
+      {
+        "name": "four arms 4",
+        "pass": true
+      },
+      {
+        "name": "balanced 8",
+        "pass": true
+      },
+      {
+        "name": "balanced 120",
+        "pass": true
+      },
+      {
+        "name": "blockwise balance",
+        "pass": true
+      },
+      {
+        "name": "reproducible",
+        "pass": true
+      },
+      {
+        "name": "different seed different order",
+        "pass": true
+      },
+      {
+        "name": "valid extremes n=10000",
+        "pass": true
+      },
+      {
+        "name": "no extra metadata",
+        "pass": true
+      },
+      {
+        "name": "frozen output",
+        "pass": true
+      },
+      {
+        "name": "reject small",
+        "pass": true
+      },
+      {
+        "name": "reject odd",
+        "pass": true
+      },
+      {
+        "name": "reject n fractional",
+        "pass": true
+      },
+      {
+        "name": "reject n too high",
+        "pass": true
+      },
+      {
+        "name": "reject seed decimal",
+        "pass": true
+      },
+      {
+        "name": "reject seed negative",
+        "pass": true
+      },
+      {
+        "name": "reject seed >u32",
+        "pass": true
+      },
+      {
+        "name": "zero-seed determinism",
+        "pass": true
+      }
+    ],
+    "p_total": 17,
+    "fail": 0,
+    "fixture_arm_counts": {
+      "control": 30,
+      "transparency": 30,
+      "leaderboard": 30,
+      "both": 30
+    },
+    "environment": "V8 isolate; not native Node"
+  },
+  "F": "Deterministic seed must be hidden until recruitment ends to avoid assignment prediction; modulo-prng not cryptographic and order may be foreseeable; no personal encryption, session identifiers or allocation concealment claims",
+  "G": "No live users, prospective trial, institutional ethics or independent runtime",
+  "H": "Feasible offline allocation rehearsal; production needs secure, auditable concealed allocation",
+  "I": {
+    "grade": "0/3 science",
+    "CT2_prospective": 25,
+    "product": "bounded AB-P test only",
+    "risk": "no real participants or political profiles"
+  },
+  "J": "ACCEPT_LOCAL_ABP_C02"
+}

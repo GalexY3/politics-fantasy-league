@@ -151,12 +151,12 @@ def store_bytes(root: Path, data: bytes, digest: str) -> str:
                 except ValueError as exc:
                     if str(exc) != "UNSAFE_EXISTING_OBJECT":
                         raise
-                    # Differentiate nonexisting from an unsafe existing inode.
-                    try:
-                        os.stat(digest, dir_fd=folder, follow_symlinks=False)
-                    except FileNotFoundError:
-                        pass
-                    else:
+                    # Inspect the failed open itself: a peer may install a
+                    # valid object between that ENOENT and a second stat.
+                    # Only an actually missing object may enter creation;
+                    # ELOOP/devices/permissions still fail closed. The link
+                    # below is exclusive and verifies any winning peer inode.
+                    if not isinstance(exc.__cause__, FileNotFoundError):
                         raise
                 temp = "." + digest + "." + secrets.token_hex(12) + ".tmp"
                 fd = os.open(temp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,

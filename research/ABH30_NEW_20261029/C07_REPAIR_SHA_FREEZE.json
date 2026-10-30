@@ -1,0 +1,33 @@
+{
+  "schema": "pfl.abh30.c07.postrepair_sha256_freeze_v1",
+  "date": "2026-10-29",
+  "original_AJ_prereg_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+  "failed_compile_repair_prereg_commit": "db3dcf89bdfa9cfae7c6002c01ec3dff8d334bfa",
+  "minimal_repair_commit": "7dce3aab7231621e23f84bebe95a17f0a4eeef21",
+  "source": {
+    "path": "src/politics_fantasy/forecastbench_vintage_replay.mjs",
+    "repaired_git_sha1": "b5b6170e6f501bbcd4a25b7cc544c36174fa7875",
+    "repaired_sha256": "11c5145d1295969993077c23a04781a3adba95b12392cb153c33459ef46d68ff"
+  },
+  "tests": {
+    "file": "tests/test_forecastbench_vintage_replay.mjs",
+    "git_blob_sha1": "74fc5e74cc79d7bd05d90314e01b6b8a454ef6ea",
+    "sha256": "92ec669c443db7914a8227b875ab0c658344817451a97d743cb4ba3127499c9a",
+    "unchanged": true
+  },
+  "cli": {
+    "file": "scripts/replay_forecastbench_vintages.mjs",
+    "git_blob_sha1": "f3262aefe603443add2ad5edc45b183c6b4701e8",
+    "sha256": "de9c1acb894d2b50d4b189a80d31e12321f0a61e37a892629313a0d450a350f6"
+  },
+  "cli_tests": {
+    "file": "tests/test_forecastbench_vintage_cli.mjs",
+    "git_blob_sha1": "29bc64c591dcd23c1b6585f2a710d2ada3deec73",
+    "sha256": "d640b0972f773da614b7f6323de929c34ad1a363e3d787c79d6cfc89e54f3ff3"
+  },
+  "only_change": "Insert one missing right brace closing third source vintage object. No other code/test/source/estimate changes.",
+  "test_plan_unchanged": true,
+  "original_oct23_raw_resolution_contents_not_read_yet": true,
+  "first_compile_failure_preserved": true,
+  "freeze_before_retest": true
+}

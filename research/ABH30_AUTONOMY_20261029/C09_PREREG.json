@@ -1,0 +1,18 @@
+{
+  "id": "ABH30-P1-C09",
+  "status": "PREREGISTERED",
+  "A": "Mock approval cannot be mistaken for verified ethics",
+  "B": "Null: asserted safety/fairness property does not hold; alternative: property survives declared control (or documented mock negative)",
+  "C": "Craft counterfeit approval with status APPROVED_BY_HUMAN_REVIEW and arbitrary review_ref, then feed synthetic fixture and inspect accepted result. Predict accepted because purely local mock (negative for any claim gate proves ethics), while null/wrong status rejected. Do not submit humans.",
+  "D": "Native Node validatePilotIntake; offline synthetic with expected counterexample; not a live ethical approval.",
+  "E": "NOT_RUN_AT_COMMIT",
+  "F": "Strong control or falsifier explicitly in C",
+  "G": "Local repeat/negative controls, not independent empirical replication",
+  "H": "Update priors according to observed result only",
+  "I": "grade scientific 0/3 unless independent evidence, product AB-P bounded",
+  "J": "STOP_LOCAL if no new evidence; never score real politicians",
+  "source_ref": "PFL PR37 source mirror /mnt/data/pfl_native_qa, Git blob hashes require verification",
+  "drift": "D0.5 QA mechanism variation",
+  "ct2_before": 22,
+  "multiplicity": "6 prespecified heterogeneous safety/identification tests; not six independent scientific findings"
+}

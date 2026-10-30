@@ -1,0 +1,63 @@
+{
+  "schema": "pfl.abh30.c05.original.publication.prereg.v1",
+  "date": "2026-10-29",
+  "cycle_id": "ABH30-C05",
+  "mode": "AB-R_ORIGINAL_REPOSITORY_SOURCE_PUBLICATION_NEGATIVE_WITH_ABP_CODE_FIX",
+  "D": {
+    "source_path": "src/politics_fantasy/forecastbench_publication.py",
+    "source_git_blob": "91119f6c42f1a4a1ac4126de9ea249d538f862c2",
+    "source_last_stage_commit": "78aa5d7b3421470ef93dd2adca89565b861d5d77",
+    "test_path": "tests/test_forecastbench_publication.py",
+    "test_git_blob": "9d1a1afd0a08a4dc010d47f963b9a76ae116dedc",
+    "test_commit": "92db83d7404b43984e2b4e44e60a3c809f7b6b0f",
+    "runtime": "Native Python 3 standard library offline on exact matched source + tests; public GitHub connector read only for source original metadata and exact source version contents. No CI."
+  },
+  "authorization": {
+    "granted_new": 30,
+    "executed_before": 4,
+    "remaining_before": 26,
+    "historical_two_separate": 2
+  },
+  "A": "Does an as-of backtest on ForecastBench September 27 public event-question snapshot leak future DATA PUBLICATION when its resolution_date precedes the cutoff but the actual resolution_set file was not in the upstream public Git repository until after the cutoff?",
+  "estimand": "Source verifiable availability of entire official resolution dataset at cutoff (positive public Git blob and commit) and number of binary market questions admissible in the first published snapshot on an independently fixed Oct08 cutoff. No claim about individual per-event first publication, humans or PFL scores.",
+  "B": {
+    "H1": "Previously claimed ten resolvable Sep27 market questions as_of Oct1 are not source-proven because no repository resolution set existed through Oct6; first Oct07 Git publish. New code fails closed on Oct1 and explicitly distinguishes event time from data publication time.",
+    "H0": "Official original Git history includes the exact Sep27 resolution set publicly before Oct1, or new code accepts a prepublication cutoff. This would refute negative claim.",
+    "strong_rival": "A market or dataset may publish actual outcomes elsewhere earlier; Git repository absence does not prove real-world unavailability on all venues. Git file snapshot publication is necessary for this SPECIFIC Git source backtest, not a universal causal first_public_at.",
+    "falsifiers": [
+      "Git commits?path&until=2026-10-01T23:59:59Z returns original resolution_set commit",
+      "Oct8 original first snapshot cannot be retrieved or real bytes cannot match pin",
+      "native 15 test groups fail",
+      "source fake with claimed commit bypasses verified SHA"
+    ]
+  },
+  "C": {
+    "original_source": "forecastingresearch/forecastbench-datasets, public CC BY-SA 4.0, original event-question and resolution_set Git publication history, no individual forecasts",
+    "cohort": "2026-09-27",
+    "frozen_public_facts_before_execution": {
+      "question_set_commit": "1c1ed16c8d0a1b14e548336b9c4ff91c80809acd",
+      "question_set_commit_at": "2026-09-27T00:08:59Z",
+      "resolution_set_absent_asof": "2026-10-06T23:59:59Z",
+      "first_resolution_set_commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+      "first_commit_at": "2026-10-07T07:19:29Z",
+      "first_resolution_blob_sha": "0b67cfec67fad4b23899e8e48c6ca3a034344edc",
+      "question_blob_sha": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+      "Oct29_original_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "Oct29_original_commit_at": "2026-10-29T07:30:17Z",
+      "Oct29_resolution_sha": "b2ee53f09407e2b555668f66e286073ace6d5fce"
+    },
+    "predeclared_two_exact_checkpoints": [
+      "2026-10-08T00:00:00Z",
+      "2026-10-29T16:00:00Z"
+    ],
+    "counting_policy": "Only count binary market questions from source-specific original SHA matches; no independent per-item first_public_at. Unknown asof checkpoints remain unverified, not zero real outcomes.",
+    "test_groups": 15,
+    "predeclared_primary": "Oct1 has no original public resolution file; first legitimate repository snapshot is Oct07; source-backed counts at Oct08 and Oct29 should differ or at least be compatible with no earlier public source."
+  },
+  "E": "Execute 15 native predeclared tests after this A–J commit and source/test SHA256 freeze, without changing the code or outcome selected from GitHub. Then check original Oct07 first source data; preserve failures, no post hoc changes without separate repair prereg.",
+  "F": "Adversarial: as-of date is outcome EVENT date not information first_public_at; first Git commit can follow event; whole-file commit not per-question publication; repo Git absent does not imply absence at external prediction market; no participant exposure inference; avoid source-time lookahead.",
+  "G": "Original git commits independently retrieved from upstream (source separate from user's private repo); two snapshots are same institution not independent experimental study, and no causality about humans is identified.",
+  "H": "Update prior PF-BR45 if documentation confirmed: event resolution calendar != original data version publication; correct earlier source C01 interpretation and keep original error on record rather than rewrite historical receipts.",
+  "I": "Scientific PFL CT2 remains 20/100 0/3 N1/2/3. This is original-source provenance falsification, not validation of leaderboard effects or release readiness. Product release gates stay 0/6.",
+  "J": "Count 1 AB-R bounded source-publication falsification + product guard only if 15 tests and original Git first-snapshot checks genuinely run; then authorized new completed 5/30, remaining 25, historical 2. Otherwise remain 4/30 with planning/failure explicitly. No main merge, costly CI, ChatRelay, personal rows, license acceptance or real politician scores."
+}

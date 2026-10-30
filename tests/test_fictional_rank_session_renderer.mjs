@@ -1,0 +1,23 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {renderFictionalRankSession as render} from '../src/politics_fantasy/fictional_rank_session_renderer.mjs';
+const names=['own_only','private_quartile','public_quartile','private_order','public_order'];
+const fs=['own_only','rank_quartile','rank_quartile','rank_full_order','rank_full_order'];
+const audiences=['self','self','room','self','room'];
+const C=()=>({fixture:'SYNTHETIC_RANK_DESIGN_ONLY',arms:Object.fromEntries(names.map((n,i)=>[n,{feedback:fs[i],audience:audiences[i],alias_mode:audiences[i]==='room'?'fictional_alias':'none',reward:'VIRTUAL_SAME_BRIER',event_frame:'a'.repeat(64),schedule:'b'.repeat(64),show_own_score:true}]))});
+function F(){const assignments=names.flatMap((arm,i)=>[0,1].map(j=>({member_id:'fake'+i+j,room_id:'room'+i,arm}))),opportunities=assignments.map((a,i)=>({opportunity_id:'opp'+i,member_id:a.member_id,room_id:a.room_id,opens_at:'2026-10-29T12:00:00Z',closes_at:'2026-10-29T13:00:00Z'})),scores=assignments.map((a,i)=>({member_id:a.member_id,score:i%2?0.2:0.8}));return {fixture:'SYNTHETIC_RENDER_SESSION_ONLY',contract:C(),assignments,opportunities,scores}}
+const err=(p,s)=>assert.throws(()=>render(p),new RegExp(s));
+test('executes ten independent synthetic renders and generates receipts internally',()=>{const a=render(F());assert.equal(a.views.length,10);assert.equal(a.receipt_audit.observed_receipts,10);assert.equal(a.real_browser_presentation,false)});
+test('own only has no comparative signal',()=>{const a=render(F());assert.deepEqual(Object.keys(a.views[0].shown),['own_score'])});
+test('private quartile contains no room aliases',()=>{const a=render(F());assert.deepEqual(Object.keys(a.views[2].shown),['own_score','own_quartile'])});
+test('public quartile has room ranks but no precise full order',()=>{const x=render(F()).views[4].shown;assert.equal(x.room_quartiles.length,2);assert.equal(Object.hasOwn(x,'room_order'),false)});
+test('private order has rank but no peers',()=>{const x=render(F()).views[6].shown;assert.equal(x.own_rank,1);assert.equal(Object.hasOwn(x,'room_order'),false)});
+test('public order displays pseudonymous room order',()=>{const x=render(F()).views[8].shown;assert.equal(x.room_order.length,2);assert.equal(x.room_order[0].rank,1)});
+test('equal scores tie at best rank consistently',()=>{const p=F();p.scores.forEach(s=>s.score=0.5);const x=render(p).views[8].shown;assert.equal(x.room_order[0].rank,1);assert.equal(x.room_order[1].rank,1)});
+test('invalid score >1 rejected',()=>{const p=F();p.scores[0].score=2;err(p,'INVALID_SYNTHETIC_SCORE')});
+test('duplicate synthetic score rejected',()=>{const p=F();p.scores[1].member_id=p.scores[0].member_id;err(p,'INVALID_SYNTHETIC_SCORE')});
+test('missing score rejected',()=>{const p=F();p.scores.pop();err(p,'INCOMPLETE_SYNTHETIC_SCORE_FRAME')});
+test('injecting receipt field rejected',()=>err({...F(),receipts:[]},'SYNTHETIC_RENDER_ONLY'));
+test('cross-arm opportunity rejected by independent auditor',()=>{const p=F();p.opportunities[0].room_id='room4';err(p,'OPPORTUNITY_NOT_IN_ASSIGNED_ROOM')});
+test('same room cannot host conflicting arms',()=>{const p=F();p.assignments[4].room_id='room0';p.opportunities[4].room_id='room0';err(p,'ROOM_ARM_CONTAMINATION')});
+test('non-finite synthetic score rejected',()=>{const p=F();p.scores[1].score=NaN;err(p,'INVALID_SYNTHETIC_SCORE')});
+test('renderer not certified as actual human exposure or browser delivery',()=>{const a=render(F());assert.equal(a.real_renderer_attested,false);assert.equal(a.causal_claim,false);assert.equal(a.privacy_cleared,false)});

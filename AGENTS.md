@@ -1,0 +1,15 @@
+# Instrucciones de continuidad de Politics Fantasy
+
+Leer primero [START_HERE.md](START_HERE.md) y [PROJECT_STATE.json](PROJECT_STATE.json). Las instrucciones explícitas del usuario prevalecen. Estas reglas prospectivas se aplican solo a PFL; no reescriben campañas históricas ni prueban eficacia de AB.
+
+- Trabajar con dos líneas separadas: producto utilizable e investigación social/institucional. Un hito activo por línea. La integración puede ocupar temporalmente el hito de producto.
+- Entregar y validar el resultado pequeño autorizado. Mantenimiento, QA, consolidación y traspaso de contexto no se fuerzan a convertirse en ciclos AB ni consumen automáticamente una autorización de investigación.
+- Para investigación sustantiva, aplicar A–J, rivales, evidencia, controles y R5. Para QA usar el nivel de registro necesario para reproducir la corrección; no crear campañas para completar tareas rutinarias.
+- La antigua obligación O6 de pedir 5–30 ciclos en cada cierre queda sustituida **en PFL** por: recomendar siguiente acción solo si tiene resultado discriminante o una capacidad concreta; pedir presupuesto de ciclos únicamente cuando sea necesario y no haya saldo aplicable. No pedir por fórmula ni confundir saldo con deber de gastarlo.
+- Una rama conceptual no obliga a crear rama Git. Consultar `BRANCHES.json` antes de crear una rama técnica; usar una por hito y devolverla a `integration/pfl`. Conservar historias de pruebas y referencias a commits.
+- Ningún hito pasa a `DONE` por cantidad de ciclos, porcentaje, documento redactado o aprobación propia del código. Exigir su criterio de aceptación y evidencia del commit/entorno relevante. Separar `READY_REVIEW`, `IN_PROGRESS`, `BLOCKED`, `PARKED` y `DONE`.
+- Tras dos intentos bloqueados del mismo mecanismo/fuente sin observación discriminante nueva, aparcarlo con condición de reapertura. Los intentos históricos ya conocidos cuentan para decidir si se está repitiendo. No volver a gastar una sesión en búsquedas genéricas equivalentes. Se puede reabrir con un artefacto nuevo o una instrucción explícita, preservando los negativos.
+- Al elegir una nueva pregunta, presentar tres rutas de mecanismos, fuentes o poblaciones distintos y su falsador. No prometer novedad ni confirmar con los datos que inspiraron la pregunta. Registrar exploración, deducción y confirmación por separado.
+- Actualizar el estado compacto y el handoff al cerrar. La memoria del chat y los títulos de PR son índices, no la autoridad del estado.
+- Usar `PROJECT_MAP.md` para localizar responsabilidades y `project_index.py find` para buscar. El catálogo solo indexa archivos versionados; no incorpora datos locales privados. Preparar los cambios en Git y regenerar el índice cuando se añadan, retiren o renombren rutas. Conservar las rutas de evidencias históricas; organización nueva no implica reescribir recibos.
+- No modificar otros proyectos del monorepo, borrar ramas, publicar originales personales, puntuar políticos reales, desplegar ni fusionar `main` por arrastre de esta política. Una integración revisable conserva los gates actuales.

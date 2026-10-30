@@ -1,0 +1,45 @@
+{
+  "id": "ABH30-P2-A07",
+  "phase": "AUTONOMY",
+  "status": "VALID_LOCAL_NODE_SUBSET",
+  "prereg_commit": "ee14e8ce16b883133188616782ee32250541f28d",
+  "A": "Capability named in the prior prereg file",
+  "B": "H0 unavailable/insufficient vs H1 usable under defined scope",
+  "C": "Executed precommitted positive and negative controls",
+  "D": "Local Python/Node/Playwright and authorized GitHub connector; exact stdout/error retained in conversation + current report",
+  "E": {
+    "node": "v22.16.0",
+    "replay84": {
+      "pass": 84,
+      "total": 84,
+      "failed": 0
+    },
+    "seed_probe": {
+      "status": "PASS",
+      "n_seeds": 4096,
+      "max_relative_deviation": 0.0634765625,
+      "threshold": 0.08
+    },
+    "patched_source_local_git_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+    "patched_source_remote_git_blob": "44e194c7d52826e4adcf8c966060734ade6956cb",
+    "native_full_repo_suite": "NOT_RUN"
+  },
+  "F": {
+    "strong_control": "The test distinguishes positive capability from material missing ability",
+    "adversarial_limit": "The 84 locally reconstructed original checks can run and match Git source, but full repository Node/Python suites and Atlas remain unexecuted; no new scientific finding."
+  },
+  "G": "No scientific human data, no replication of PFL mechanism",
+  "H": {
+    "operational_prior_update": "The 84 locally reconstructed original checks can run and match Git source, but full repository Node/Python suites and Atlas remain unexecuted; no new scientific finding."
+  },
+  "I": {
+    "technical_feasibility": "Verified only within E",
+    "causal_inference": "NONE",
+    "scientific_grade": "0/3",
+    "privacy": "No personal records used"
+  },
+  "J": "Route remains scoped to tested subtask; T028 unsatisfied for native Atlas plus real browser; R5 stop overclaim",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}

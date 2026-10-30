@@ -1,0 +1,140 @@
+{
+  "scope": "Full PFL forecast-incentives and legislative opportunity campaign C01–C05",
+  "sources": [
+    {
+      "url": "https://www.metaculus.com/api/",
+      "kind": "official provider policy",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false,
+      "verification_note": "Exact API permissions, historical access and version NOT independently verified (C01_ERRATA)."
+    },
+    {
+      "url": "https://www.metaculus.com/terms-of-use/",
+      "kind": "official provider policy",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false,
+      "verification_note": "Terms of Use last modified 2025-06-13 (as displayed by provider), not September 2026."
+    },
+    {
+      "url": "https://doi.org/10.1609/aaai.v32i1.11471",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.2022.4410",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://doi.org/10.1086/711762",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://doi.org/10.1016/j.ijforecast.2023.12.009",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://doi.org/10.1145/3715928.3737483",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://doi.org/10.1073/pnas.2615627123",
+      "kind": "published literature",
+      "verified_via": "public source retrieved 2026-10-28",
+      "data_downloaded": false
+    },
+    {
+      "url": "https://github.com/mysociety/voting-data/tree/fafb0659a80a96e3d01c1a48e03a2d4a68fbf337/data/raw/months",
+      "kind": "public third-party archive of original UK Commons Votes API data",
+      "license": "CC BY 4.0 mySociety; OPL v3.0 source attribution",
+      "raw_issuer_bytes_authenticated": false,
+      "git_ref": "fafb0659a80a96e3d01c1a48e03a2d4a68fbf337",
+      "verification": "C02_SOURCE_AUDIT.json (12 monthly sha) and C03_UK2026_SOURCE_MANIFEST.json (9 monthly sha)",
+      "no_person_data_used": true
+    },
+    {
+      "url": "https://pages.mysociety.org/voting-data/datasets/commons_votes/latest",
+      "kind": "mySociety versioned dataset/licence directory",
+      "license": "CC BY 4.0 stated",
+      "used_for": "provenance and terms"
+    },
+    {
+      "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
+      "kind": "official original issuer licence",
+      "license": "Open Parliament Licence v3.0, personal data excluded"
+    },
+    {
+      "url": "https://clerk.house.gov/evs/2025/ROLL_200.asp",
+      "kind": "US House Clerk official HTML first-party",
+      "source_bytes_saved": false,
+      "original_SHA256_verified": false,
+      "method": "manual complete 100-row issue/date transcription, one corrected errata",
+      "panel": "C05_USHOUSE_200_299.csv"
+    }
+  ],
+  "priors": [
+    {
+      "claim": "Generic leaderboards and tournament incentives constitute novel PFL mechanism",
+      "update": "DOWN",
+      "reason": "Prior causal/theoretical work predates campaign; Lemus and Marshall; Witkowski et al."
+    },
+    {
+      "claim": "Game incentives can improve political forecast accuracy beyond strong baselines",
+      "update": "UNTESTED",
+      "reason": "No rights-cleared temporally frozen comparable panel"
+    },
+    {
+      "claim": "PFL-specific mechanism not studied elsewhere",
+      "update": "UNVERIFIED",
+      "reason": "Exploratory literature search insufficient to establish absence"
+    },
+    {
+      "id": "PF-FI01",
+      "claim": "Weekly recorded Commons divisions in 2025 are unevenly exposed over time",
+      "update": "SUPPORT_DESCRIPTIVE",
+      "evidence": "C02_RESULT.json, n322 unique, dispersion 5.1295 in 53 ISO weeks",
+      "counter": "Voting calendar/observed vote days account for much of variation; simple phenomenon known, not causal effect or N1",
+      "status": "BOUNDED_2025_ARCHIVAL_AGGREGATE"
+    },
+    {
+      "id": "PF-FI02",
+      "claim": "Opportunity concentration persists in a later calendar slice of same institution",
+      "update": "SUPPORT_SENSITIVITY_ONLY",
+      "evidence": "C03_RESULT.json Jan-Sept 2026 n195, dispersion 6.2378; 2025 seasonal n234, dispersion 5.962",
+      "counter": "Same data aggregator/issuer; 2025 earlier outcomes exposed; not independent prospective validation",
+      "status": "TEMPORAL_NONINDEPENDENT"
+    },
+    {
+      "id": "PF-FI03",
+      "claim": "Missing exposure is distinct from zero in PFL observatory",
+      "update": "INSTRUMENTED_SYNTHETIC_TEST",
+      "evidence": "C04_RESULT.json V8 14/14 checks; module src/politics_fantasy/opportunity_coverage.mjs",
+      "counter": "No real-person scoring or native full-suite run; logical QA only",
+      "status": "ABP_VERIFIED_LOCAL"
+    },
+    {
+      "id": "PF-FI04",
+      "claim": "One legislative issue can produce multiple recorded rollcalls affecting naive fantasy scoring opportunities",
+      "update": "SUPPORT_DESCRIPTIVE",
+      "evidence": "C05_RESULT.json official House Clerk rows 200–299 in 2025, 51 issues, 62 rollcalls share repeated issue label",
+      "counter": "Each amendment/procedure is substantively distinct; issue capping is arbitrary; contiguous nonrandom segment; manual transcription corrected with errata",
+      "status": "BOUNDED_ISSUE_CONCENTRATION"
+    },
+    {
+      "id": "PF-FI05",
+      "claim": "PFL-specific new scientific law established in this block",
+      "update": "REJECT",
+      "evidence": "No identification of incentive effects, no experiment with fantasy gamers, no independent prospective comparison, published prior art",
+      "status": "NONE_N1_N2_N3"
+    }
+  ],
+  "CT2": 29
+}

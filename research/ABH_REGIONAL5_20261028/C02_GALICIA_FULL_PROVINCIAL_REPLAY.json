@@ -1,0 +1,183 @@
+{
+  "schema": "pfl.regional.election.replay.v1",
+  "institution": "Junta Electoral de Galicia, DOG",
+  "url": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+  "law": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-21380",
+  "date": "2024-02-18",
+  "grain": "province x candidature with published valid votes and legally assigned seats",
+  "raw_xml_hash": null,
+  "origin": "official HTML manual transcription and official elected roster counts; source global DOG aggregate has separate +100 anomaly, quarantined",
+  "provinces": [
+    {
+      "id": "A Coruña",
+      "seats": 25,
+      "valid": 614123,
+      "candidacy": 608185,
+      "votes": {
+        "PP": 292651,
+        "BNG": 199462,
+        "PSOE": 79804,
+        "VOX": 15399,
+        "SUMAR": 14014,
+        "PACMA": 2551,
+        "PODEMOS": 1999,
+        "ESCANOS": 1170,
+        "PUMJ": 694,
+        "ECG": 441
+      },
+      "observed": {
+        "PP": 13,
+        "BNG": 9,
+        "PSOE": 3
+      }
+    },
+    {
+      "id": "Lugo",
+      "seats": 14,
+      "valid": 187733,
+      "candidacy": 186070,
+      "votes": {
+        "PP": 100123,
+        "BNG": 46940,
+        "PSOE": 32403,
+        "VOX": 3517,
+        "SUMAR": 1198,
+        "ESCANOS": 577,
+        "PACMA": 499,
+        "PODEMOS": 381,
+        "ECG": 256,
+        "PUMJ": 176
+      },
+      "observed": {
+        "PP": 8,
+        "BNG": 4,
+        "PSOE": 2
+      }
+    },
+    {
+      "id": "Ourense",
+      "seats": 14,
+      "valid": 177127,
+      "candidacy": 176022,
+      "votes": {
+        "PP": 88694,
+        "BNG": 44222,
+        "PSOE": 22042,
+        "DO": 15442,
+        "VOX": 2961,
+        "SUMAR": 979,
+        "ECG": 560,
+        "PACMA": 478,
+        "PODEMOS": 309,
+        "ESCANOS": 175,
+        "PUMJ": 160
+      },
+      "observed": {
+        "PP": 8,
+        "BNG": 4,
+        "PSOE": 1,
+        "DO": 1
+      }
+    },
+    {
+      "id": "Pontevedra",
+      "seats": 22,
+      "valid": 522774,
+      "candidacy": 518428,
+      "votes": {
+        "PP": 230245,
+        "BNG": 180068,
+        "PSOE": 77112,
+        "SUMAR": 12818,
+        "VOX": 12168,
+        "PACMA": 2404,
+        "PODEMOS": 1731,
+        "ESCANOS": 962,
+        "PUMJ": 542,
+        "ECG": 378
+      },
+      "observed": {
+        "PP": 11,
+        "BNG": 8,
+        "PSOE": 3
+      }
+    }
+  ],
+  "algorithm": "D'Hondt rational quotients q=partyVotes/divisor d=1..M, select M highest after excluding party <5% of each province's valid votes per Ley 8/1985 art 10; no tied seat boundary observed",
+  "expected": {
+    "provincial_mechanical": [
+      {
+        "province": "A Coruña",
+        "seats": {
+          "PP": 13,
+          "BNG": 9,
+          "PSOE": 3
+        },
+        "cutoff": "199462/9",
+        "next": "292651/14"
+      },
+      {
+        "province": "Lugo",
+        "seats": {
+          "PP": 8,
+          "BNG": 4,
+          "PSOE": 2
+        },
+        "cutoff": "11735",
+        "next": "100123/9"
+      },
+      {
+        "province": "Ourense",
+        "seats": {
+          "PP": 8,
+          "BNG": 4,
+          "PSOE": 1,
+          "DO": 1
+        },
+        "cutoff": "22111/2",
+        "next": "11021"
+      },
+      {
+        "province": "Pontevedra",
+        "seats": {
+          "PP": 11,
+          "BNG": 8,
+          "PSOE": 3
+        },
+        "cutoff": "230245/11",
+        "next": "180068/9"
+      }
+    ],
+    "aggregate_observed": {
+      "PP": 40,
+      "BNG": 25,
+      "PSOE": 9,
+      "DO": 1
+    },
+    "regional_single_district_75_with_barrier_5pct": {
+      "PP": 39,
+      "BNG": 25,
+      "PSOE": 11
+    },
+    "regional_single_district_75_no_barrier": {
+      "PP": 37,
+      "BNG": 25,
+      "PSOE": 11,
+      "VOX": 1,
+      "SUMAR": 1
+    }
+  },
+  "comparison": {
+    "provincial_seat_errors": 0,
+    "pooled_75_seat_aggregate_error_L1": 4,
+    "pooled_75_seat_transfers": 2,
+    "no_barrier_aggregate_error_L1": 8,
+    "no_barrier_transfers": 4
+  },
+  "limits": [
+    "In-sample mathematical reproduction of known statutory formula, not scientific novelty/prediction",
+    "An alternate single Galicia-wide 75 seat district is legally invalid and used only as an adversarial contrast",
+    "DOG global vote total +100 inconsistent; use province counts with provenance, not claim published DOG general corrected",
+    "No XML originals captured, no person scoring"
+  ]
+}

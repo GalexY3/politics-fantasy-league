@@ -1,0 +1,30 @@
+{
+  "schema": "pfl.legal.exposure.loreq2024.v1",
+  "official_law": "BOE-A-2024-15936",
+  "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2024-15936",
+  "published": "2024-08-02",
+  "effective": "2024-08-22",
+  "reform": "LO 2/2024 amends LOREG 44bis and 187(2) with alternate-sex candidate lists for covered elections; applies to elections called after law effective date",
+  "prior": "LO 3/2007 BOE-A-2007-6115 already required 40/60 candidate sex composition with conditions; not baseline 'no regulation'",
+  "municipal_population_bands": [
+    {
+      "population": "<=3000",
+      "requirement": "Article 44bis alternation is not required under art 187(2) exception",
+      "precise_treatment": "may have other preexisting/general election requirements; do not assert no law at all"
+    },
+    {
+      "population": ">3000 and <=5000",
+      "requirement": "40/60 sex composition on municipal candidacy; alternation under 44bis not required",
+      "precise_treatment": "lower bound >3000 inferred from overriding explicit <=3000 case"
+    },
+    {
+      "population": ">5000",
+      "requirement": "covered Article 44bis alternating-sex lists",
+      "precise_treatment": "not claim realised compliance without actual candidates"
+    }
+  ],
+  "transition": "Electoral processes called after 2024-08-22",
+  "outcomes": "Mayor selection is not directly candidate-list parity. INE mayor vs councillor 2025 occupancy cannot be causally attributed to this reform absent post-treatment election, official population per municipal constituency and confounder controls.",
+  "design_candidate": "RD/event-study only for future called elections and carefully defined population thresholds; examine manipulation/size, migration and election timing; no claim RD executed",
+  "additional_2025_jec": "BOE-A-2025-22665 Instrucción 3/2025 clarifies 44bis and 187(2) exceptions, but is a separate later interpretive text, not identical legal enactment."
+}

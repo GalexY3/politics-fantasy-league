@@ -1,0 +1,56 @@
+{
+  "schema": "pfl.vote.sensitivity.v1",
+  "source": "research/ABH_ACH20_20261028/C08_CONGRESO_AGGREGATE_SAMPLE.json",
+  "source_git_blob": "4ac62d2f8accc751d46c4d9fd4b3f5efed8e9afd",
+  "source_type": "2026-07-23 Congress session 193 HTML tallies manually transcribed in earlier ACH20 C08; not nominal original nor independent capture",
+  "method": "For each of four votes, yes_share_pct=100*yes/(yes+no+abstain); compare separate per-vote shares with total-weighted pooling by expediente. Each ballot denominator is counted categories only, not all MPs.",
+  "first_public_at": null,
+  "observed_ballots": 4,
+  "distinct_expedientes": 2,
+  "expedientes": [
+    {
+      "expediente": "130/000049",
+      "ballots": 2,
+      "per_ballot": [
+        {
+          "vote": "convalidación",
+          "yes_pct": 50.287356,
+          "total": 348
+        },
+        {
+          "vote": "urgencia",
+          "yes_pct": 100,
+          "total": 344
+        }
+      ],
+      "range_pp": 49.712644,
+      "naive_collapsed_yes_pct": 75,
+      "naive_collapsed_total": 692
+    },
+    {
+      "expediente": "130/000050",
+      "ballots": 2,
+      "per_ballot": [
+        {
+          "vote": "convalidación",
+          "yes_pct": 47.988506,
+          "total": 348
+        },
+        {
+          "vote": "urgencia",
+          "yes_pct": 100,
+          "total": 347
+        }
+      ],
+      "range_pp": 52.011494,
+      "naive_collapsed_yes_pct": 73.956835,
+      "naive_collapsed_total": 695
+    }
+  ],
+  "limitations": [
+    "All four records were previously exposed in ACH20 C08; not a new source or a scientific novelty grade",
+    "As-of and original nominal JSON/XML bytes unavailable, first public timestamp unknown",
+    "Observations are not a random cohort; no causal inference, no confidence interval, no generalization",
+    "A single expediente is NOT a single vote; pooled counted ballots are not unique individuals"
+  ]
+}

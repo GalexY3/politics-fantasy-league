@@ -1,0 +1,74 @@
+{
+  "schema": "pfl.navarra.2023.parliament.aggregate.v1",
+  "campaign": "PFL-ABH-HOLDOUT5-20261028",
+  "selection": "Single-district Navarra 2023 selected and preregistered before election-result lookup",
+  "source": {
+    "publisher": "Parlamento de Navarra",
+    "url": "https://parlamentodenavarra.es/en/node/167978",
+    "kind": "primary official HTML full aggregate",
+    "scope": "XI Legislatura; 2023-05-28 election",
+    "source_original_bytes_downloaded": false,
+    "original_file_hash": null
+  },
+  "legal": {
+    "publisher": "BOE",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1987-1255",
+    "art": "1,9,10",
+    "scope": "one Navarra-wide 50-seat constituency, 3% threshold of valid votes, D'Hondt"
+  },
+  "summary": {
+    "registered": 518998,
+    "voters": 334493,
+    "abstention": 184505,
+    "null": 4632,
+    "blank": 5860,
+    "valid": 329861,
+    "candidacy_sum": 324001
+  },
+  "list_votes": {
+    "UPN": 92392,
+    "PSN-PSOE": 68247,
+    "EH Bildu": 56535,
+    "Geroa Bai": 43660,
+    "PPN": 24019,
+    "Contigo Zurekin": 20095,
+    "Vox": 14197,
+    "Por un mundo más justo": 1740,
+    "Ciudadanos": 1273,
+    "Eguzkilore": 1261,
+    "Voluntad Foral": 582
+  },
+  "published_seats": {
+    "UPN": 15,
+    "PSN-PSOE": 11,
+    "EH Bildu": 9,
+    "Geroa Bai": 7,
+    "PPN": 3,
+    "Contigo Zurekin": 3,
+    "Vox": 2,
+    "Por un mundo más justo": 0,
+    "Ciudadanos": 0,
+    "Eguzkilore": 0,
+    "Voluntad Foral": 0
+  },
+  "computational": {
+    "formula": "exact fractions.Fraction of votes/d; 50 highest quotients; threshold v*100>=valid*3",
+    "selected_seats": 50,
+    "published_match": 50,
+    "all_11_voters_sum": 324001,
+    "total_plus_blank": 329861,
+    "valid_plus_null": 334493,
+    "last_awarded_quotient": "92392/15",
+    "first_unawarded_quotient": "24019/4",
+    "threshold_cutoff_real": 9895.83,
+    "largest_ineligible_list_votes": 1740,
+    "nonbinding_threshold_same_50_seats": true
+  },
+  "CSV_catalogue": {
+    "url": "https://datos.gob.es/es/catalogo/a15002917-resultados-de-las-elecciones-al-parlamento-de-navarra-agrupados-por-municipios1",
+    "original_download": "https://datosabiertos.navarra.es/dataset/fa95fdf0-4aa1-4194-84b3-2779c9bc8e5e/resource/f555f0ff-a6f1-420b-bd25-caf979f26d86/download/escrutinio_parlamento_2023.csv",
+    "status": "container.download failed; web opens returns 400 unsupported content-type text/csv; 0 original bytes, do not claim municipality-level checks",
+    "licence_metadata": "CC BY 4.0 per datos.gob.es catalogue; rights and source transformation need verification before use"
+  },
+  "negative_control": "Threshold 3% legally required but non-binding for seat allocation on this specific 2023 complete case, because 1740 max excluded < 92392/15 last winning quotient."
+}

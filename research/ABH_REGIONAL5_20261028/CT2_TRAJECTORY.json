@@ -1,0 +1,46 @@
+{
+  "schema": "ab.ct2.trajectory.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "branch": "research/pfl-abh5-regional-audit-20261028",
+  "scope": "PFL identity scientific line — not software quality, regional election accuracy or release readiness",
+  "scale": "ordinal 1..100; not probability",
+  "points": [
+    {
+      "cycle": "BASE",
+      "CT2": 29,
+      "reason": "Inherited source-verification bottleneck"
+    },
+    {
+      "cycle": "C01",
+      "CT2": 29,
+      "reason": "Detected official inconsistency; quality negative not model validation"
+    },
+    {
+      "cycle": "C02",
+      "CT2": 29,
+      "reason": "Statutory D'Hondt in-sample mathematical replay"
+    },
+    {
+      "cycle": "C03",
+      "CT2": 29,
+      "reason": "Provisional Basque 2020-24 descriptive contrast, not individual longitudinal evidence"
+    },
+    {
+      "cycle": "C04",
+      "CT2": 29,
+      "reason": "Original 2024 JEC national EU aggregate replay, not prediction"
+    },
+    {
+      "cycle": "C05",
+      "CT2": 29,
+      "reason": "Isolated source validation tests, no external model replication"
+    }
+  ],
+  "updated_after_each_valid_cycle": true,
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "cause": "No new independently validated person-level pipeline, first_public_at, scientific novelty, out-of-sample outcome or credible model superiority; ordinal CT2 does not rise by cycle count."
+}

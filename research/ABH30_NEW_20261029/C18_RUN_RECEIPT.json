@@ -1,0 +1,61 @@
+{
+  "schema": "pfl.abh30.c18.original_human_data_rights_feasibility_receipt.v1",
+  "cycle": "ABH30-C18",
+  "date": "2026-10-29",
+  "status": "VALID_LIMITED_NEGATIVE_AB_R_SOURCE_ACCESS_AND_PRIVACY_GATE",
+  "prereg_commit": "9331e120b84844f94babcbfc25797e51cb24e4ad",
+  "primary_pinned": {
+    "upstream": "forecastingresearch/forecastbench-datasets",
+    "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+    "README_git_blob": "1edea28cb04516a41d3878860bfca905ee1fa094",
+    "LICENSE_git_blob": "4a771ccadef06d2509ca54ea80e8427a14e5c667",
+    "super_original_git_blob": "583085efe4c752d4b9f6ab2c98ec8642fbc01bca",
+    "public_original_lfs_pointer_blob": "5653e59c09daa14b0a203a23d2bd0193e836b43b",
+    "license": "CC-BY-SA-4.0"
+  },
+  "pre_prereg_known": [
+    "License and original data path and large sizes",
+    "Public original Git LFS pointer and 4.595MB super file",
+    "File pin from original GitHub repository"
+  ],
+  "after_prereg_attempt": {
+    "tool": "Connected Github fetch_file immutable original super individual file exactly once",
+    "result": "JSON_PARSE_FAILED_UNEXPECTED_END_OF_INPUT",
+    "full_raw_json_parsed": false,
+    "individual_rows_loaded": false,
+    "persisted_identifiers": false,
+    "attempts": 1,
+    "no_retry": true
+  },
+  "posthoc_public_viewer_metadata": {
+    "origin": "https://huggingface.co/datasets/forecastingresearch/forecastbench-datasets/viewer",
+    "structure": "forecast entries include user_id and free-text reasoning, forecast probability, question id; values not copied or retained",
+    "classification": "POST_HOC_STRUCTURAL_PRIVACY_RISK_NOT_PREREGISTERED_CONFIRMATION"
+  },
+  "rights_findings": [
+    "Explicit CC BY-SA dataset license verified, but does not grant privacy/ethics authorization for processing pseudonymous individual forecasting data",
+    "No original participant identifiers, free-text or records copied, quoted or stored in PFL",
+    "The source is a 2024 historical observational survey, no randomization of PFL private-vs-public rank, no PFL exposure logs"
+  ],
+  "outcome": "H1_SAFE_DIRECT_JSON_AGGREGATION_NOT_ESTABLISHED; H0_ACCESS_AND_PRIVACY_LIMITATIONS_CONFIRMED",
+  "not_performed": [
+    "native JSON full original positive",
+    "individual scoring",
+    "human causal modeling",
+    "participant-level analysis"
+  ],
+  "science_grade": "0/3",
+  "CT2": 20,
+  "N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "authorization_after": {
+    "valid_limited": 18,
+    "new_remaining": 12,
+    "historical_STOP_R5": 2
+  },
+  "decision": "Count one preregistered executed negative AB-R source-feasibility audit, not empirical research effect; seek independently licensed aggregated deidentified forecasts or explicit ethics/data permissions; do not retry exhausted source."
+}

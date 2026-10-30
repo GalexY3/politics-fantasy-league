@@ -1,0 +1,38 @@
+{
+  "cycle": "C04",
+  "type": "AB-P",
+  "status": "PREREGISTERED_PRODUCT_BEFORE_CODE",
+  "parent": "C02/C03 source QA",
+  "A": {
+    "objective": "Implement a non-personal opportunity coverage audit for PFL that distinguishes zero observed parliamentary events from unknown/incomplete coverage and forbids duplicate event IDs.",
+    "users": "research and local fictional-game developers",
+    "scope": "pure aggregate event registry and weekly coverage states, not real-person score or UI product launch"
+  },
+  "B": {
+    "alternatives": [
+      "Existing function that treats missing data as 0 is adequate for synthetic fixtures but not evidence-based imports",
+      "Tri-state aggregate coverage prevents false-zero and double-count exposure",
+      "Null rule rejects valid zero observations too often"
+    ]
+  },
+  "C": {
+    "acceptance": [
+      "strict ISO week and unique division IDs",
+      "duplicate ID error even across week",
+      "UNKNOWN when coverage not verified",
+      "zero with verified complete coverage = documented zero, without completeness unknown",
+      "count only supplied unique IDs, not names",
+      "frozen immutable output",
+      "at least 8 distinct adversarial assertions run in V8",
+      "optional 2025 and 2026 panel consistency"
+    ],
+    "guardrail": "no scoring/ranking of named politicians or parties; V4/gates unchanged"
+  },
+  "D": "Pure JS module, no dependencies, test in same V8 execution and commit exact function definition",
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "source_type": "UK Parliament first-party official JSON endpoint observed through web text rendering; original bytes not downloaded or SHA256 authenticated",
+  "n": 12,
+  "unit": "petition-level event history",
+  "bias": "Top 12 CLOSED petitions by signature totals, not random or representative. Individual people may sign multiple petitions.",
+  "data": "PETITIONS12_EVENT_PANEL.json",
+  "metrics": "EVENT_METRICS.json",
+  "scientific": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0
+  },
+  "no_personal_political_ratings": true,
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_ORIGINAL_ISSUER_JSON_RENDERED_12_EVENT_PANEL",
+  "A": "Can twelve preselected top closed petitions be inspected as primary institution event histories with coherent threshold dates and legal state without claiming raw binary authentication?",
+  "B": {
+    "H1": "12/12 official metadata fields and time ordering valid",
+    "H0": "Missing/contradictory fields prevent a panel"
+  },
+  "C": {
+    "prereg_commit": "91b99a1f1f721bc13a6a679e8ed1a83a4fc34b31",
+    "execution": "Fixed list links 17–28 before opening individual pages; opened twelve original official JSON endpoints, extracted scalar timestamp fields only, parsed 12 petition histories, computed chronological invariants. Original link 700143 timeline pre-exposed before prereg, and top signature rankings were visible; selection not blind. Direct download using container failed, local requests DNS failed; no first-party file bytes hash."
+  },
+  "D": {
+    "publisher_index": "https://petition.parliament.uk/petitions?state=closed",
+    "official_API": "https://petition.parliament.uk/petitions.json",
+    "sample_ids": [
+      700143,
+      730194,
+      727309,
+      737105,
+      722903,
+      705383,
+      702844,
+      730605,
+      705384,
+      718406,
+      746363,
+      700824
+    ],
+    "data": "PETITIONS12_EVENT_PANEL.json"
+  },
+  "E": {
+    "petitions": 12,
+    "all_above_100000": true,
+    "chronology_open_response_threshold_debate_threshold_valid": 12,
+    "source_data_bytes_saved_from_primary": 0,
+    "raw_sha256_verified": 0,
+    "updated_after_closure": 12,
+    "metadata_public_response_same_day": 8
+  },
+  "F": "Some official response and outcome timestamps differ from displayed response date or debate date; don't confuse updated_at/debate_outcome_at with the action date, document mismatches C04. Top-popularity sample eliminates below-threshold observation so cannot identify a policy causal discontinuity or even typical petition response rate.",
+  "G": "Raw JSON was visible in official browser display but exact first-public and source hash unavailable. Other service Hansard later crosschecks only five records. No prospective science test.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29
+  },
+  "I": "Do not publish petitioner names or political actor scores",
+  "J": "Use this fixed panel for factual interval estimates and adversarial temporal checks, not electoral preference inference."
+}

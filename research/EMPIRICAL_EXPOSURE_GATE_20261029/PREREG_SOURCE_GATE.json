@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-29",
+  "kind": "PRE_REGISTERED_SOURCE_GATE_NOT_AB_CYCLE",
+  "parent_pr": 42,
+  "parent_sha": "3d3a1eda1dc51f74bc9cdef50afacc4d27f6e8a5",
+  "purpose": "Check specific original data license, accessible files and pre-response exposure/feedback variables before obtaining person-level datasets",
+  "sources": [
+    {
+      "name": "GJP Dataverse",
+      "doi": "10.7910/DVN/BPCDH5",
+      "specific_license_before_check": "UNKNOWN"
+    },
+    {
+      "name": "Hudja et al 2025",
+      "doi": "10.1162/rest_a_01259",
+      "license": "UNKNOWN"
+    },
+    {
+      "name": "Lemus Marshall 2021",
+      "doi": "10.1086/711762",
+      "license": "UNKNOWN"
+    }
+  ],
+  "test": "One read-only GitHub hosted runner, max 3 minutes; retrieve Dataverse API metadata only. Return license, dataset version and file names/sizes/restriction flags; never download identifiable forecasts, even if CC0. Optionally fetch only an unrestricted README <=256 KiB under verified CC0 and compute full-byte SHA256.",
+  "negative_controls": [
+    "Missing or customized license blocks reuse",
+    "Restricted files block download",
+    "No URL access workaround or CAPTCHA bypass",
+    "No personal records in logs or repo"
+  ],
+  "scientific_gate": {
+    "estimand": "Effect of assigned leaderboard visibility on attempts per logged person-question opportunity; accuracy separate",
+    "treatment": "Randomized or plausibly identified feedback assignment before responding",
+    "denominator": "Pre-response opportunity exposure E_iqt must be independently observed; posted question != visible to person",
+    "baseline": [
+      "Merkle 2015",
+      "Merkle 2017 question choice MNAR",
+      "Bo 2017 IRT",
+      "ForecastBench difficulty Brier",
+      "Hudja 2025",
+      "Lemus/Marshall 2021/2025"
+    ],
+    "minimum_variables": [
+      "pseudonym",
+      "question_id",
+      "pre-response E_iqt event",
+      "assigned feedback",
+      "response timestamp",
+      "forecast",
+      "resolution",
+      "dates and competing incentives"
+    ],
+    "decision": "STOP_R5 and keep both AB-H legacy slots if rights, exposure or discriminating contrast missing"
+  },
+  "starting_CT2": 22,
+  "new_AB_cycles_approved_but_unspent": 2
+}

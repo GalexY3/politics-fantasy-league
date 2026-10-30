@@ -1,0 +1,32 @@
+{
+  "campaign": "PFL-ABH-PETITIONS5-20261028",
+  "schema": "ab.prereg.v1",
+  "type": "AB-R",
+  "source_primary": "https://petition.parliament.uk/petitions?state=closed",
+  "source_json": "https://petition.parliament.uk/petitions.json",
+  "study": "UK Parliament 2024–2026 petitions, administrative threshold event histories",
+  "fixed_selection": "First 12 links with IDs 17–28 on official archived closed petitions page sorted by signature_count descending as crawled 2026-08, with no random inclusion. Freeze before opening individual JSON; top sample is LEFT-TRUNCATED BY OUTCOME, cannot estimate probabilities for all petitions or threshold causal effects.",
+  "selection_preexposure": "Titles and counts of top 12 CLOSED petitions already viewed via official list; timelines and discussion outcomes of all except first one NOT yet read, first id 700143 response+debate timeline preexposed in official API feasibility.",
+  "R1": "Unit petition, not signature=unique eligible individual; signatures may be repeated across petitions. Event timestamps are not first-public dataset times.",
+  "R2": "Appropriate institutional baseline: legal response threshold 10,000 and consideration-for-debate 100,000; not guaranteed instant debate nor threshold is measure of quality.",
+  "R3": "Top-signed selection, no random sampling, first petition already source-exposed; exploratory all 5 and report uncertainty, no confirmatory p values.",
+  "R4": "Compare creation→opening vs threshold→response and debate; test censoring and scheduled-vs-completed statuses; do not transform legal guarantee into causal identification.",
+  "R5": "Download original JSON if possible, HTML official index as fallback with explicit provenance. Never spend cycles on inaccessible binary retries.",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "No political endorsement/stance, scores or individual petition signatory records",
+  "cycle": "C04",
+  "D": 0.7,
+  "A": "Does time from petition publication to crossing 10k predict administrative response delay once threshold is reached, or can apparent relationship reflect signature/popularity selection?",
+  "B": {
+    "H1": "Earlier 10k crossing negatively correlates with response delay among observed top petitions",
+    "H0": "No consistent monotone relationship",
+    "Halt": "Top-signature selection, moderation preopened, and different departments make this nonidentifiable"
+  },
+  "C": "Compute opening→10k days and 10k→response days on same verified records; Spearman with n, exclude any negative chronological anomaly, leave first observed-outlier and bootstrap descriptive ranges if >=8, no p-value, compare baseline fixed constant response delay.",
+  "E": "PENDING",
+  "F": "This is purely ecological petition-level process timing, no users or positions, threshold timing endogenous to campaign exposure",
+  "G": "Cannot infer institutional impartiality, petition quality, causal impact",
+  "J": "Report null and confounding transparently."
+}

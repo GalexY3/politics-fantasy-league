@@ -1,0 +1,76 @@
+{
+  "schema": "pfl.ine.ods551.negative.v1",
+  "data_sources": [
+    {
+      "date": "2024",
+      "publisher": "INE",
+      "url": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+      "ref": "turn723109view0",
+      "note": "Older cached open page"
+    },
+    {
+      "date": "2025",
+      "publisher": "INE",
+      "url": "https://www.ine.es/dyngs/ODS/indicador.htm?id=4990",
+      "ref": "turn141124search0",
+      "note": "Fresh indexed public result, not raw original dataset"
+    }
+  ],
+  "rows": [
+    {
+      "office": "congreso",
+      "year2015_pct": 39.71,
+      "year2024_pct": 44.54,
+      "year2025_pct": 43.68,
+      "delta24to25pp": -0.86,
+      "delta15to25pp": 3.97
+    },
+    {
+      "office": "senado",
+      "year2015_pct": 41.35,
+      "year2024_pct": 42.79,
+      "year2025_pct": 42.31,
+      "delta24to25pp": -0.48,
+      "delta15to25pp": 0.96
+    },
+    {
+      "office": "consejerias",
+      "year2015_pct": 44.52,
+      "year2024_pct": 46.77,
+      "year2025_pct": 45.1,
+      "delta24to25pp": -1.67,
+      "delta15to25pp": 0.58
+    },
+    {
+      "office": "alcaldias",
+      "year2015_pct": 19.09,
+      "year2024_pct": 24.77,
+      "year2025_pct": 25.01,
+      "delta24to25pp": 0.24,
+      "delta15to25pp": 5.92
+    },
+    {
+      "office": "concejalias",
+      "year2015_pct": 35.57,
+      "year2024_pct": 42.8,
+      "year2025_pct": 42.76,
+      "delta24to25pp": -0.04,
+      "delta15to25pp": 7.19
+    }
+  ],
+  "declines": 4,
+  "increases": 1,
+  "external_ministry": {
+    "url": "https://portal.mineco.gob.es/es-es/comunicacion/Paginas/MujeresYHombres_INE_poder_tomadecisiones_igualdad.aspx",
+    "party_exec_2024": 49.5,
+    "party_exec_2025": 47.4,
+    "change_pp": -2.1,
+    "different_denominator": true
+  },
+  "limits": [
+    "Indexed page versions differ; raw SDMX not retrieved",
+    "Office universe and observation dates may vary",
+    "Annual change does not imply individual career transitions or policy effect",
+    "Long-run base 2015 to 2025 positive for all five, despite one-year declines"
+  ]
+}

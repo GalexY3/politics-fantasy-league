@@ -1,0 +1,55 @@
+{
+  "schema": "ab.result.v1",
+  "campaign": "PFL-ABH-DIVISIONS5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_NEW_INDEPENDENT_ISSUER_SOURCE_ACCESS_NEGATIVE",
+  "A": "Can the newly documented official UK Commons Votes API deliver byte-authenticated divisions in Oct20-27 2026 from this runtime?",
+  "B": {
+    "H1": "Official native JSON downloadable and hashable",
+    "H0": "HTML public, but JSON/CSV raw bytes unavailable"
+  },
+  "C": {
+    "prereg_commit": "4742b03826128d816cff5a1a87375112882bf1b8",
+    "operations": "Read official API documentation, attempt web.open two documented JSON search endpoint forms; attempted container download after source endpoint web-open and official CSV link from 15 July 2026, both failed. Contrast public official HTML division 2411 including labels 'Proxy' and 'deferred'. Search indexes October 2026 divisions but opened home page returned July 2026 stale crawl."
+  },
+  "D": {
+    "docs": "https://commonsvotes-api.parliament.uk/swagger/ui/index",
+    "official_home": "https://votes.parliament.uk",
+    "specific_html": "https://votes.parliament.uk/votes/commons/division/2411",
+    "recent_index": "https://votes.parliament.uk/Votes/Commons",
+    "web_refs": [
+      "turn546306search1",
+      "turn723309view0",
+      "turn452750search3"
+    ],
+    "source_date_window": "2026-10-20 to 2026-10-27"
+  },
+  "E": {
+    "JSON_bytes": 0,
+    "CSV_bytes": 0,
+    "verified_SHA256": null,
+    "division_id_of_html": 2411,
+    "html_deferred": true,
+    "html_proxy_markers_present": true,
+    "latest_index_available_through": "2026-10-27",
+    "open_home_page_cached_through": "2026-07-15"
+  },
+  "F": "Endpoint documentation ≠ successful endpoint invocation; official HTML ≠ downloadable original JSON. Stale cache and source date must remain provenance attributes. A recorded proxy vote cannot automatically support physical-attendance inference.",
+  "G": "Separate institution and documented API from Spain, but no native access or actual new model validation",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "N1_N2_N3_new": [
+      0,
+      0,
+      0
+    ],
+    "grade_0_3": 0,
+    "achievements": 0
+  },
+  "I": "No political actor scores, no individual records archived",
+  "J": "R5 STOP retrying blocked JSON in this environment; proceed with official HTML aggregate and source-level comparators only."
+}

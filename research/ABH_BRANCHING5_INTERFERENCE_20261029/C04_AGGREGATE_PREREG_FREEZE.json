@@ -1,0 +1,77 @@
+{
+  "schema": "pfl.ab321.abh5.c04.freeze.v1",
+  "date": "2026-10-29",
+  "branch": "research/pfl-abh5-cluster-interference-20261029",
+  "origin_pr": 46,
+  "origin_sha": "e9c6a3f90fcd70e0fbddf6aaba27bf870ea73d23",
+  "cycle": "C04",
+  "mode": "AB-R_AGGREGATE_SENSITIVITY",
+  "grade_before": "0/3",
+  "CT2_before": 22,
+  "remaining_new_before": 2,
+  "historical_untouched": 2,
+  "source": {
+    "publication": "Hulusi Karabiber and Yonca Deniz Gurol (2026). Feedback, competition, and cooperation. Acta Psychologica 266, 106908",
+    "doi": "https://doi.org/10.1016/j.actpsy.2026.106908",
+    "evidence": "Primary paper sections 4.2 and Table 2 as indexed by ScienceDirect",
+    "reported_included_arms": [
+      36,
+      37,
+      36,
+      36,
+      37,
+      37
+    ],
+    "included_sum": 219,
+    "excluded_under_one_minute": 13,
+    "excluded_arm_assignment": "NOT_REPORTED",
+    "rights": "Use published aggregate counts only; no personal rows, OSF access or individual source retrieval."
+  },
+  "A": "Does aggregate overall exclusion 13/232 guarantee negligible per-arm retention differences between 6 experimental arms, given only included counts?",
+  "B": {
+    "H1": "Exclusions can be unevenly concentrated and leave wide retention imbalance despite low pooled exclusion share.",
+    "H0": "Every feasible nonnegative allocation of 13 exclusions across six arms yields arm retention range <= 13/232.",
+    "rival": "The article's published outcome comparisons concern the explicitly retained >=1-minute sample; this may be a valid conditional estimand without claiming all randomized subjects."
+  },
+  "C": {
+    "estimand": "Upper feasible difference in inclusion/retention shares across arms, conditional on excluded registrants having belonged to exactly one of six arms.",
+    "formula": "max_over_allocations [max_j n_j/(n_j+e_j) - min_j n_j/(n_j+e_j)] where sum e_j=13, e_j integer>=0",
+    "expected": {
+      "weak_allocations": 8568,
+      "overall_conditional_registration": 232,
+      "pooled_exclusion_fraction": "13/232",
+      "maximum_retention_range": "13/49",
+      "one_witness": "13 excluded in any arm with 36 included, all other arms 0",
+      "published_outcome_analysis": "NOT_RECOMPUTED"
+    },
+    "comparators": [
+      "pooled exclusion 13/232 naive arm proxy",
+      "exact closed form 13/(36+13)",
+      "exhaustive integer enumeration"
+    ],
+    "multiplicity": "Single preselected bound; no scan of unreported outcome measures.",
+    "negative_controls": [
+      "reject changed arm sample counts",
+      "reject unbounded enumerations",
+      "witness totals remain 13",
+      "all 8568 allocations traversed exactly"
+    ]
+  },
+  "D": {
+    "python": "Python 3.13.5 local stdlib",
+    "source": "research/ABH_BRANCHING5_INTERFERENCE_20261029/published_attrition_bounds.py",
+    "source_sha256": "4fc060733744af727562d20ca51bd6e953eb79d27098f7820dc4631a4bd06d97",
+    "source_git_blob_sha1": "d41947bce09a9c3a6c513134b096e4d39ff5341f",
+    "tests": "research/ABH_BRANCHING5_INTERFERENCE_20261029/test_published_attrition_bounds.py",
+    "test_sha256": "8de28081fd0a5ca396e16cf87014758e5ba98c2864fcecbdee1cabafb1bfc89d",
+    "test_git_blob_sha1": "92a922b1bd7742bc429f72bb1226c5f572d74f38",
+    "source_commit": "185677cc0e6992068b5eac552863fb8f020a1815",
+    "test_commit": "6fe2966e9ce685c0cc9d228fa53438ae3945386a"
+  },
+  "E": "After freezing this JSON: execute exact matched code and seven standard-library tests; capture stdout, exit, SHA and result.",
+  "F": "Distinguish feasibility bound from measured attrition imbalance, true treatment effect, bias or p-value. Excluded unassigned group unknown. If any excluded were not assigned to a condition, interpretation is conditional only. No original individual data.",
+  "G": "Independent comparison of source published count with total and future possible report; no external replication at this stage.",
+  "H": "Update prior: low overall exclusions do NOT by themselves bound arm-specific selection when their allocation is unknown. No inference to PFL actual effects.",
+  "I": "Bound as pure arithmetical methodological sensitivity, not novelty scientific 1/3 absent independent test and prior-art review. CT2 stays 22.",
+  "J": "If native tests pass classify C04 valid limited AB-R published-aggregate reanalysis 0/3; maintain remaining C05 unopened unless genuinely new opportunity."
+}

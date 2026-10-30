@@ -1,0 +1,135 @@
+{
+  "schema": "ab.campaign.status.v1",
+  "campaign_id": "PFL-ABH-INCENTIVE-MECHANISMS5-20261029",
+  "branch": "research/pfl-abh5-incentive-mechanisms-20261029",
+  "parent_branch": "research/pfl-abh5-forecast-incentives-20261028",
+  "parent_sha": "a19b50b0f0576fd2a4ab0b69e24657102e75c7da",
+  "state": "CLOSED_BOUNDED_5_OF_5",
+  "cycles": {
+    "granted": 5,
+    "valid": 5,
+    "invalid": 0,
+    "planning": 0,
+    "AB_R": 3,
+    "AB_P": 2,
+    "remaining": 0,
+    "attempts_failed_uncredited": 1,
+    "repaired_same_cycle": 1
+  },
+  "entries": [
+    {
+      "cycle": "C01",
+      "type": "AB-R",
+      "prereg_commit": "66d99e656b1b8d5a28ad6ef1a827003ba820c77c",
+      "result_commit": "851635fb131850e64b2673e697689c562512f9b5",
+      "status": "VALID_BOUNDED_2SEED_SIMULATED_OPPORTUNITY_FAIRNESS",
+      "grade_0_3": "0/3",
+      "N1_counted": false,
+      "CT2_parent_identity": 29,
+      "CT2_child_mechanisms": 20,
+      "independent_empirical_replication": false,
+      "source": "Synthetic mechanisms engine/tests only; see C01_RESULT.json"
+    },
+    {
+      "cycle": "C02",
+      "type": "AB-R",
+      "prereg_commit": "56957b5ab74b24edaa9519ec21328091d9a86105",
+      "result_commit": "c2261a89b73b86844848c214fb31053303001c66",
+      "status": "VALID_BOUNDED_INCENTIVE_POLICY_COUNTERFACTUAL",
+      "grade_0_3": "0/3",
+      "N1_counted": false,
+      "CT2_parent_identity": 29,
+      "CT2_child_mechanisms": 20,
+      "independent_empirical_replication": false,
+      "source": "Synthetic mechanisms engine/tests only; see C02_RESULT.json"
+    },
+    {
+      "cycle": "C03",
+      "type": "AB-P",
+      "prereg_commit": "e7fe9c50a9dcd54e3daceae16f36a39489103e28",
+      "result_commit": "1804b9bc4409318a8c2b87f5e0c21b425f94491f",
+      "status": "VALID_BOUNDED_AFTER_HARNESS_REPAIR_18_OF_18",
+      "grade_0_3": "0/3",
+      "N1_counted": false,
+      "CT2_parent_identity": 29,
+      "CT2_child_mechanisms": 20,
+      "independent_empirical_replication": false,
+      "source": "Synthetic mechanisms engine/tests only; see C03_RESULT.json"
+    },
+    {
+      "cycle": "C04",
+      "type": "AB-R",
+      "prereg_commit": "88947ac55dcb979f7ffac79067e9086d152485a6",
+      "result_commit": "04398f40e1e047ff80f36ce6eb49c63d65858cb7",
+      "status": "VALID_BOUNDED_SYNTHETIC_MCAR_MNAR_SENSITIVITY",
+      "grade_0_3": "0/3",
+      "N1_counted": false,
+      "CT2_parent_identity": 29,
+      "CT2_child_mechanisms": 20,
+      "independent_empirical_replication": false,
+      "source": "Synthetic mechanisms engine/tests only; see C04_RESULT.json"
+    },
+    {
+      "cycle": "C05",
+      "type": "AB-P",
+      "prereg_commit": "601c30f87cbca4a3c7f4eaab253ce8aeb31225cf",
+      "result_commit": "cc00ae5ffb75b48f4921bdd71cf52c6759c621b7",
+      "status": "VALID_BOUNDED_SYNTHETIC_MANIFEST_18_OF_18",
+      "grade_0_3": "0/3",
+      "N1_counted": false,
+      "CT2_parent_identity": 29,
+      "CT2_child_mechanisms": 20,
+      "independent_empirical_replication": false,
+      "source": "Synthetic mechanisms engine/tests only; see C05_RESULT.json"
+    }
+  ],
+  "C03_errata": "C03_ERRATA_AND_REPAIR.json: 14/18 initial harness due V8 structuredClone missing; rerun same 18 tests with cloned fixture via JSON 18/18; count once",
+  "prior_art_gate": [
+    "https://doi.org/10.1609/aaai.v32i1.11471",
+    "https://doi.org/10.1287/mnsc.2022.4410",
+    "https://doi.org/10.3102/10769986014001029",
+    "https://doi.org/10.1080/15309576.2020.1749092",
+    "https://doi.org/10.1086/711762"
+  ],
+  "scientific": {
+    "CT2_parent_identity_ordinal": 29,
+    "CT2_child_mechanisms_ordinal": 20,
+    "CT2_child_confidence": "low",
+    "reason": "mechanisms isolated in synthetic generator only, no independent player or historical game dataset, strong prior art",
+    "VSDS": "1/3",
+    "V4_contractual": 36.9,
+    "awards": "2/90",
+    "release_gates": "0/6",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "human_causal_evidence": false,
+    "prospective_human_trial": false,
+    "novel_scientific_contribution": false
+  },
+  "execution": {
+    "V8_synthetic_experiments": [
+      "C01",
+      "C02",
+      "C04"
+    ],
+    "V8_product_checks": {
+      "C03": "18/18 after harness repair",
+      "C05": "18/18"
+    },
+    "native_node": false,
+    "native_python": false,
+    "full_repository_CI": false,
+    "user_study": false
+  },
+  "prohibitions": {
+    "ChatRelay_used": false,
+    "merged_main": false,
+    "expensive_CI": false,
+    "real_political_person_scores": false
+  },
+  "next_evidence": "pre-registered consented human game experiment using fictional actors and randomized scoring, or independent licensed tournament behavioral data",
+  "R5": "STOP additional synthetic variants as the incentives and missingness effects are largely imposed by the toy utility/generative laws, not evidence of a novel sociological phenomenon."
+}

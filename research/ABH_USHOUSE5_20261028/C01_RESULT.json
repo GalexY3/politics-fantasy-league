@@ -1,0 +1,73 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-USHOUSE5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_FIXED_2025_PARTY_COHESION_AGGREGATES",
+  "A": "Do vote margins alone identify partisan split versus cooperation in preselected six consecutive US House decisions, 2025 178-183?",
+  "B": {
+    "H1": "Procedure and party alignment vary and cannot be inferred solely from top-line margin",
+    "H0": "All decisions consistently split along party majorities",
+    "Halt": "Small, same-week sample; selection and issue confounding; no causal effect"
+  },
+  "C": {
+    "prereg_commit": "99c9a1cc9fe2121bb07b776adc4cabc8f11e9b95",
+    "selection": "Six consecutive roll calls fixed before results except 180 pre-exposed",
+    "execution": "Opened each official US Clerk HTML page; copied only party-level two-party vote tallies and recorded counts, computed by exact JS algebra, no names. XML raw access failed earlier, not retried. Check party and overall totals each row."
+  },
+  "D": {
+    "source_template": "https://clerk.house.gov/Votes/2025{roll}",
+    "rolls": [
+      178,
+      179,
+      180,
+      181,
+      182,
+      183
+    ],
+    "source_ref": [
+      "turn587732view0",
+      "turn587732view1",
+      "turn882934view0",
+      "turn587732view2",
+      "turn790012view0",
+      "turn790012view1"
+    ],
+    "fixture": "C01_2025_OFFICIAL_AGGREGATES.json"
+  },
+  "E": {
+    "rolls": 6,
+    "cross_party_opposed_majorities": 5,
+    "shared_majorities": 1,
+    "suspension_motions": 1,
+    "suspension_shared_yea_majority": 1,
+    "low_margin_votes_with_abs_margin_le22": 4,
+    "low_margin_opposed_majority": 4,
+    "max_abs_margin": 424,
+    "party_yea_gap_pp_per_roll": [
+      95.5,
+      0,
+      95.748,
+      100,
+      99.038,
+      81.218
+    ],
+    "raw_xml_bytes": 0
+  },
+  "F": "2025 179 424–0 cross-party unity, while 181 208–216 party-perfect opposition; close aggregate result can arise from polarized party majorities. But this single week cannot identify the effect of procedure or future party behaviour; issue selection confounds.",
+  "G": "No independent validation or prospective intervention; 2025 180 pre-exposed, so sensitivity excluding still 4/5 opposed vs 1/5 unity",
+  "H": {
+    "grade_0_3": 0,
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "V4": 36.9,
+    "VSDS": "1/3",
+    "newN": [
+      0,
+      0,
+      0
+    ]
+  },
+  "I": "Descriptive party-group measurements, no individual scoring",
+  "J": "Proceed to 2026 178-183 fixed *prior to outcome fetch* for out-of-period replication and label preservation."
+}

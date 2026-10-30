@@ -1,0 +1,28 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0084-PFL-ABH30-C13-SYNTHETIC-MISSINGNESS-BOUND-20261029",
+  "parent_batch": "0083-PFL-ABH30-C12-INDEPENDENT-RANK-RCT-20261029",
+  "at": "2026-10-29T21:37:45.272Z",
+  "actor": "chatgpt",
+  "reason": "C13 local native Node 18/18 frozen A-J mathematical missing-outcome bound checks, 4-arm fictional aggregate only, no human exposure or real politician data, CT2 unchanged. No original Atlas Python full checker after batch 0080. Previous batch timestamps preserved.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH30-C13-MANSKI-SYNTHETIC-BOUNDS-20261029",
+        "activity": "C13 frozen original JavaScript tool and 18 node:test cases run natively PASS. Mathematical worst-case [0,1] missing outcome partial identification, leader complete-case positive +0.175 but interval [-0.11,+0.19] includes zero; synthetic aggregates only, no causal effect or human rows.",
+        "status": "completed",
+        "evidence": [
+          "research/ABH30_NEW_20261029/C13_PREREG_AJ_SHA.json",
+          "research/ABH30_NEW_20261029/C13_RUN_RECEIPT.json",
+          "research/ABH30_NEW_20261029/C13_REPORT.md"
+        ],
+        "scope": "AB-P synthetic bounded inference, mathematical known result, PFL human 0/3",
+        "method_version": "AB3.2.1 O7",
+        "cost": {
+          "github_actions_minutes": 0
+        }
+      }
+    }
+  ]
+}

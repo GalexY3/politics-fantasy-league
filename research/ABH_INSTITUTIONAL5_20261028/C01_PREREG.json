@@ -1,0 +1,28 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-INSTITUTIONAL5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "A": "Is the institutional descriptive representation gap larger for mayors than national/regional seats in official 2025 Spanish public statistics?",
+  "B": {
+    "H1": "2025 female municipal mayor percentage substantially below councillor percentage; observable office-selection disparity",
+    "H0": "No directional disparity in same 2025 official statistics",
+    "Halt": "Institutional definitional/denominator differences invalidate inference of advancement"
+  },
+  "C": "Read directly INE ODS 5.5.1 public subindicator page, transcribe five published 2025 aggregate percentages and denominator labels, calculate mayor vs councillor and parliament contrast; fail closed on missing year/date; no person profiling",
+  "D": {
+    "discovery_exposure": "INE indicator page https://www.ine.es/dyngs/ODS/indicador.htm?id=4990 was seen in initial search before prereg, hence source selection is exploratory; not an independent preregistered dataset",
+    "independent_primary": "INE ODS official",
+    "unit": "Office occupied at stated observation year, percentage of seats/offices; not candidacies/election rates"
+  },
+  "E": "PENDING",
+  "F": "Check different reference populations and reporting units; do not infer candidate success, gender identity from names, causality",
+  "G": "No independent source replication merely by two copies of same INE indicator",
+  "H": {
+    "CT2_before": 29,
+    "grade": "pending",
+    "V4_before": 36.9
+  },
+  "I": "Aggregate descriptive study, not personal scoring",
+  "J": "If full official 2025 entries verified, retain empirical aggregate and prepare further independent baseline. Else stop without inventing."
+}

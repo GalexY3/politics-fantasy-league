@@ -1,0 +1,48 @@
+{
+  "id": "ABH30-P1-C15",
+  "status": "VALID_AB_P_ACCESSIBILITY_SEMANTICS",
+  "prereg_commit": "545a6c93340f2f4646a599a3d0f5e6156f3f73da",
+  "A": "Static DOM accessibility labeling audit with W3C primary",
+  "B": "Null: generic novelty/benefit/conformance expectation; competing alternative tested",
+  "C": "See prereg precommitted criterion and stated selection exposure",
+  "D": {
+    "source_urls": [
+      "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+      "https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
+    ],
+    "source_type": "Verified local pilot + primary W3C",
+    "licence": "Public references, not assumed reuse of copyrighted full text"
+  },
+  "E": {
+    "chromium": "about:blank with exact source DOM + inline module, not HTTP server integration",
+    "radio_count": 12,
+    "radio_label_count": 12,
+    "unique_radio_ids": 12,
+    "fieldset_count": 4,
+    "nonempty_legends": 4,
+    "arm_select_count": 1,
+    "arm_label_count": 1,
+    "reset_button_count": 1,
+    "status_aria_live_count": 1,
+    "submit_button_count": 0
+  },
+  "F": {
+    "adversarial_controls": "Strong alternatives explicitly compared; self-reported products and journal abstract vs independent product use distinguished",
+    "material_limit": "Labels and legends structural checks pass; no exhaustive WCAG2.2 conformance, keyboard trap, contrast, screen reader or HTTP CSP proven."
+  },
+  "G": "No own human experiment, no external replication of PFL treatment",
+  "H": {
+    "prior_update": "Labels and legends structural checks pass; no exhaustive WCAG2.2 conformance, keyboard trap, contrast, screen reader or HTTP CSP proven."
+  },
+  "I": {
+    "scientific_grade": "0/3",
+    "internal_validity": "Limited static DOM verified",
+    "novelty": "No novel causal PFL finding",
+    "ethics": "No personal data or profiling"
+  },
+  "J": "STOP_LOCAL on this source class; pivot for new independent evidence",
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "N1_new": 0
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "pfl.t016.capture.v1",
+  "sources": [
+    {
+      "source": "dog_galicia",
+      "url_requested": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+      "url_effective": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+      "status": 200,
+      "started_utc": "2026-10-29T10:54:33.096224+00:00",
+      "ended_utc": "2026-10-29T10:54:35.158638+00:00",
+      "sha256": "0f87ec4d7495a1d7d12d2b0acf4890291dec6fbae33cb9afe1646517a9801d6d",
+      "size_bytes": 31887,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": "Tue, 05 Mar 2024 23:00:15 GMT",
+      "tls": "verified system trust",
+      "first_public_at": "UNKNOWN",
+      "local_original": "C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-t016-originals-20261029\\private_raw\\dog_galicia.html"
+    },
+    {
+      "source": "dog_catalogue",
+      "url_requested": "https://datos.gob.es/es/catalogo/a12002994-elecciones-al-parlamento-de-galicia-resultados-2024",
+      "url_effective": "https://datos.gob.es/es/catalogo/a12002994-elecciones-al-parlamento-de-galicia-resultados-2024",
+      "status": 200,
+      "started_utc": "2026-10-29T10:54:35.158638+00:00",
+      "ended_utc": "2026-10-29T10:54:36.922192+00:00",
+      "sha256": "aa9bdd9808c2377affaefa4942e179bde4888c8d150df21dcd0370b850e6a7f0",
+      "size_bytes": 218760,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "tls": "verified system trust",
+      "first_public_at": "UNKNOWN",
+      "local_original": "C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-t016-originals-20261029\\private_raw\\dog_catalogue.html"
+    },
+    {
+      "source": "boe_europeas",
+      "url_requested": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13092",
+      "url_effective": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13092",
+      "status": 200,
+      "started_utc": "2026-10-29T10:54:36.922192+00:00",
+      "ended_utc": "2026-10-29T10:54:38.472106+00:00",
+      "sha256": "ade9ce4516e7714e0d907f0076aaf06b97670e7b86ede26c675b57e531a7afbe",
+      "size_bytes": 195381,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "tls": "verified system trust",
+      "first_public_at": "UNKNOWN",
+      "local_original": "C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-t016-originals-20261029\\private_raw\\boe_europeas.html"
+    },
+    {
+      "source": "euskadi_definitive_notice",
+      "url_requested": "https://www.euskadi.eus/gobierno-vasco/-/noticia/2024/publicados-resultados-definitivos-elecciones-al-parlamento-vasco-del-21-abril/",
+      "started_utc": "2026-10-29T10:54:38.472106+00:00",
+      "ended_utc": "2026-10-29T10:54:38.728630+00:00",
+      "error": "URLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1010)'))",
+      "first_public_at": "UNKNOWN"
+    }
+  ],
+  "note": "HTML originals can contain personal names; do not commit originals. Rights, first_public_at and full QA not verified. Euskadi ZIP separately failed TLS and was not retried."
+}

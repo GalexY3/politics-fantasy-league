@@ -1,0 +1,66 @@
+{
+  "schema": "pfl.abh30.c13.manski_native_first_run_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C13",
+  "status": "VALID_BOUNDED_NATIVE_MATHEMATICAL_PRODUCT",
+  "mode": "AB-H_AB-P_INFERENCE_SAFETY_MATHEMATICAL",
+  "prereg_commit": "5c2b06558f7f497a4d21954467f48d95310247d7",
+  "environment": "ChatGPT local isolated Linux",
+  "runtime": "Node.js v22.16.0",
+  "frozen_code": {
+    "path": "src/politics_fantasy/fictional_missingness_bounds.mjs",
+    "Git_blob": "93f18028fba28e9a4ee2b71183ca5a9a6825fde6",
+    "sha256": "fec140b8f467be3c8514661ba697b669cb0a43342864e8ddf13122004df5c584"
+  },
+  "frozen_test": {
+    "path": "tests/test_fictional_missingness_bounds.mjs",
+    "Git_blob": "eedf1b826914ffae4634216107fa090be0d3910c",
+    "sha256": "6cd78e9fe28215570688197e19135370db874f9f17009a1a9cd7873adcf2d3ad"
+  },
+  "native_node": {
+    "command": "cd /mnt/data/pfl_c13 && node --test tests/test_fictional_missingness_bounds.mjs",
+    "first_execution_after_freeze": true,
+    "exit_code": 0,
+    "tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "tap_file_sha256": "79c6901be66bc47e324ccb032ae0d6f93965cd1ea57d6f714c37b35d8ccada96"
+  },
+  "comparison_to_existing": "Existing src/politics_fantasy/pilot_analysis_dryrun.mjs warns COMPLETE_CASE_NOT_ITT when missing; new code computes sharp worst-case [0,1] missing-outcome arm-mean bounds and 2x2 factorial contrast bounds.",
+  "native_executed_synthetic_fixture": {
+    "description": "four arms, each 10 synthetic assigned; control/transparency/both have 10 observed and total normalized score 6; leaderboard has 4 observed sum 3.8, 6 missing.",
+    "leaderboard_cell": {
+      "complete_case_mean": 0.95,
+      "lower": 0.38,
+      "upper": 0.98
+    },
+    "control_mean": 0.6,
+    "complete_case_leaderboard_factorial": 0.175,
+    "leaderboard_factorial_lower": -0.11,
+    "leaderboard_factorial_upper": 0.19,
+    "interaction_lower": -0.38,
+    "interaction_upper": 0.22,
+    "sign_identified": false,
+    "baseline_naive_misinterpretation": "false positive appearance from posttreatment completers; no evidence actual missing scores distribution"
+  },
+  "scope": "No raw human individual rows, no individual IDs, no real politicians, no actual treatment delivery, no causal or statistical experimental estimation.",
+  "original_external_human_rct": "C12 documentation only, 945/891 source sample not reused as synthetic count fixture.",
+  "unverified": [
+    "No browser integration",
+    "No full repo clean-clone suite",
+    "No independent participant randomization/exposure nor human outcome rights",
+    "No Atlas Python canonical replay for 81–83 or later"
+  ],
+  "science_grade": "0/3",
+  "CT2_science_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates_passed": 0,
+  "historical_STOP_R5": 2,
+  "decision": "Count exactly one new mathematically bounded AB-P C13, 13/30, 17 new remaining, 2 historical STOP_R5, no scientific promotion"
+}

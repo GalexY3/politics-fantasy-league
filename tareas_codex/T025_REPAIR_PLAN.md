@@ -1,0 +1,7 @@
+# T025 · Reparación técnica congelada antes de editar la vista
+
+Base `853bd666190dca0fa2d200671bc009c9e079c95e`, rama ejecutora `exec/pfl-t025-releasepath-qa-20261028`. La tarea T025 pide contrastar el registro v6, el guard y las suites. No se abre ni se consume un ciclo AB.
+
+Resultado inicial nativo Windows: validador de logros v6 5/90 y seis eventos, exit 0; nueve tests del guard aprobados; CLI exit 3 esperado y `ready=false`, 0/6. La suite Node completa, incluyendo `.mjs` y `.cjs`, da **176 aprobados y 1 fallo**: `test_achievements_atlas.mjs` comprueba igualdad del registro vigente con el JSON embebido en el HTML; la vista conserva v3 mientras la fuente está en v6. El navegador general de la demo pasa, pero no cubre esa vista de logros abierta sin HTTP.
+
+Contraste y reparación previstos: sustituir exclusivamente el bloque JSON embebido por el registro v6 exacto y actualizar su nota de estado, conservando el registro y su historial sin cambios. No cambiar guard, callback, gates ni niveles V4. La copia anterior permanece en Git. No debilitar la igualdad exigida por el test. Ejecutar de nuevo el test y la suite Node, y verificar en Chromium que la vista `file://` y la vista HTTP muestran 5/90 sin errores. Revalidar Python/Atlas y todas las suites en Linux sobre un commit limpio identificado. Conservar stdout/stderr y código de salida de cada comprobación, incluidos los negativos.

@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C03",
+  "type": "AB-R",
+  "D": {
+    "public_publisher": "Gobierno Vasco Seguridad",
+    "report": "https://www.euskadi.eus/contenidos/informacion/w_in_24_pv_resultados/es_def/adjuntos/informe-elecciones-parlamento-vasco_2024.pdf",
+    "source_evidence": "turn419264view0 PDF text; screenshot web attempts returned cache miss (record limitation)",
+    "final_announcement": "https://www.euskadi.eus/gobierno-vasco/-/noticia/2024/publicados-resultados-definitivos-elecciones-al-parlamento-vasco-del-21-abril/",
+    "archive": "https://www.euskadi.eus/gobierno-vasco/-/informacion/descargas-de-ficheros-de-resultados-de-elecciones/",
+    "discovery_exposed": true,
+    "CSV_ZIP_download": "Known unsupported original archive, not in-hand corpus"
+  },
+  "A": "Can 'PNV lost votes 2020–2024 in Euskadi' be disproved by independent original provisional electoral report despite falling vote share and seats? What is the time/coverage limit?",
+  "B": {
+    "H1": "PNV absolute count rose but percentage and seats fell as total turnout increased; inference from share to absolute votes invalid",
+    "H0": "Absolute votes, share and seats all decline",
+    "H_alt": "Official 2024 report is provisional, not final; CERA tally and final corrections may affect precise counts"
+  },
+  "C": "Read official Basque Government bilingual 2024 provisional report comparison 2020/24, extract original figures for electorate, votes, candidate total, PNV EH Bildu, seats; independently find dated official final bulletin announcement and archive catalog P24/P20 CSV accessibility. Calculate exact percentage-point and count changes, preserve preliminary/final status. No person-level interpretation.",
+  "E": "PENDING",
+  "F": "Avoid mixing share of votes to candidacies with share of electors; distinguish preliminary and definitive and coalition change, 2020 PP+Cs label not stable",
+  "G": "Official issuer same dataset; no independent original CSV data retrieved",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "Political parties aggregates only",
+  "J": "Retain matched original-institution candidate party changes with provisional caveat and Codex P24 original task, if figures checked."
+}

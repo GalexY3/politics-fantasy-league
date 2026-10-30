@@ -1,0 +1,42 @@
+PASS 1 synthetic exact four-file hash produces aggregate only, never personal or authenticated
+PASS 2 earlier as-of excludes future outcome in both cohorts
+PASS 3 published pinned four original hashes cannot be defeated with fake fixture
+PASS 4 mutating a value after computing the manifest rejects entire record
+PASS 5 partial file set or extra file rejected before audit
+PASS 6 invalid JSON rejected after matching exact bytes without echoing source
+PASS 7 no supplied source path fails closed
+PASS 8 real Node file IO refuses four raw files with wrong original SHA, no silent fallback
+PASS 9 CLI never emits question text or path on invalid source, nonzero exit
+PASS 10 CLI rejects argument shape before file IO
+node:internal/fs/promises:1002
+  return await PromisePrototypeThen(
+         ^
+
+Error: EPERM: operation not permitted, symlink 'C:\Users\Nitropc\AppData\Local\Temp\pfl-offline-audit-D6gNZ1\resolution_sets\2026-10-11_resolution_set.json' -> 'C:\Users\Nitropc\AppData\Local\Temp\pfl-offline-audit-D6gNZ1\question_sets\2026-09-27-llm.json'
+    at async symlink (node:internal/fs/promises:1002:10)
+    at async file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:73:3
+    at async check (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:11:30)
+    at async file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_offline_forecastbench_audit.mjs:71:2 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'symlink',
+  path: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-offline-audit-D6gNZ1\\resolution_sets\\2026-10-11_resolution_set.json',
+  dest: 'C:\\Users\\Nitropc\\AppData\\Local\\Temp\\pfl-offline-audit-D6gNZ1\\question_sets\\2026-09-27-llm.json'
+}
+
+Node.js v24.16.0
+✖ proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (221.9379ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 227.331
+
+✖ failing tests:
+
+test at proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs:1:1
+✖ proyectos\politics-fantasy-league\tests\test_offline_forecastbench_audit.mjs (221.9379ms)
+  'test failed'

@@ -1,0 +1,27 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-REGIONAL5-20261028",
+  "cycle": "C01",
+  "type": "AB-R",
+  "D": {
+    "official_primary": "https://www.xunta.gal/dog/Publicados/2024/20240306/AnuncioG2453-050324-1_es.html",
+    "official_summary": "https://conselleriadepresidencia.xunta.gal/es/relacions-institucionais-e-parlamentarias/informe-dos-resultados-electorais",
+    "discovery_before_prereg": true,
+    "design": "Post-discovery prereg exploratory quality audit, not independent blind confirmation",
+    "original_bytes": false,
+    "readable_HTML": true
+  },
+  "A": "Do original Xunta electoral notice 2024 and executive summary reconcile arithmetically at voters-valid-nulls, province and party grain, and which claims fail?",
+  "B": {
+    "H1": "DOG national aggregate values and Xunta overview differ from reconciled province and candidate sums; source-level quality alert",
+    "H0": "All official totals and overview fields reconcile within same election",
+    "Halt": "Differences arise from unlabelled denominator or different revision and need provenance classification"
+  },
+  "C": "Use DOG 2024 original HTML sections I and II to extract all provincial voting totals and nationally listed party votes; independently calculate identities voters=valid+null; valid=candidaturas+blank; sum four provinces; sum 11 party counts; compare executive summary. Negative control must preserve correct fields, no patching official original.",
+  "E": "PENDING",
+  "F": "Check different years/office contexts, total vote subtraction, 2024 summary reused 2020 figures, never silently correct raw document",
+  "G": "Both from Xunta institutional family, arithmetic is independent of source fields but not external independent publisher",
+  "H": "CT2=29, no uplift for detected clerical defect",
+  "I": "No personal records",
+  "J": "Retain exact discrepancies, severity, and proposed source precedence instead of guessed repaired official source"
+}

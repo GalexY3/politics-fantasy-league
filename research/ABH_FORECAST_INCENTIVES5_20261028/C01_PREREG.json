@@ -1,0 +1,46 @@
+{
+  "cycle": "C01",
+  "type": "AB-R",
+  "status": "PREREGISTERED_BEFORE_FURTHER_SOURCE_INSPECTION",
+  "drift": "D3.0 tentative: from electoral aggregates to fantasy incentive mechanisms and collective forecasting",
+  "A": {
+    "question": "Is there a legally reusable, timestamped independent dataset containing forecast histories, resolutions, and varying game-like scoring incentives allowing an observable PFL-specific mechanism test?",
+    "unit": "forecast question × forecast time × platform / tournament",
+    "population": "public political forecasting competitions/platforms",
+    "exposure": "prospective game scoring/reputation incentive vs comparable no-scoring regime",
+    "true_outcome": "out-of-sample forecast quality and participation diversity",
+    "proxies": [
+      "Brier",
+      "log loss",
+      "forecast count"
+    ],
+    "interference": "social feedback and leaderboard changes peer behavior"
+  },
+  "B": {
+    "rivals": [
+      "Incentive/reputational feedback improves timely information aggregation",
+      "incentives increase herding/selection and do not improve accuracy",
+      "null: no separable effect"
+    ]
+  },
+  "C": {
+    "design": "Public-source rights and scientific-priority gate before touching any question-level outcomes; require documented license permitting analysis, historical prediction snapshots, resolution, timestamp and comparable incentive variation. If any missing, STOP_LOCAL.",
+    "controls": [
+      "poll aggregation",
+      "forecast market or expert-pool benchmark at identical timestamps",
+      "simple historical base-rate model"
+    ],
+    "falsator": "Unavailable rights/history or only published established effect",
+    "no_power_claim": true
+  },
+  "D": {
+    "instrumentation": "Read official API terms, academic priority literature, dataset download feasibility; record URLs/access and avoid storing personal forecaster profiles",
+    "QA": "distinguish platform access vs rights to analyze/model; no missing=zero"
+  },
+  "E": "NOT_YET_EXECUTED",
+  "F": "NOT_YET_EXECUTED",
+  "G": "NOT_YET_EXECUTED",
+  "H": "NOT_YET_EXECUTED",
+  "I": "NOT_YET_EXECUTED",
+  "J": "NOT_YET_EXECUTED"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "pfl.abh5.legacy_two_r5_status.v1",
+  "date": "2026-10-29",
+  "base_document": "../EMPIRICAL_EXPOSURE_GATE_20261029/EVIDENCE_AND_R5_GATE.json",
+  "new_campaign": {
+    "granted": 5,
+    "completed_valid_limited": 5,
+    "remaining": 0
+  },
+  "historical": {
+    "granted_residual": 2,
+    "completed_this_continuation": 0,
+    "remaining": 2,
+    "classification": "UNCONSUMED_NOT_FAILED_EXPERIMENTS"
+  },
+  "historical_positions": [
+    {
+      "id": "LEGACY-01",
+      "mode": "AB-H / AB-R",
+      "status": "NOT_EXECUTED_STOP_R5",
+      "specific_gate": "GJP Year1 original randomized roster must include zero-forecast assigned members, their registration times and question-level eligibility; forecast-only rows are outcome-conditioned.",
+      "why_not_executed": "Publisher aggregate 2246 participants does not verify complete roster; no original roster or independent display log for nonrespondents. No person-level dataset access without legal and ethics review.",
+      "falsifier": "Independent official assignment and eligibility metadata plus reuse clearance provide a real discriminating estimand; source-specific and legal verification are required."
+    },
+    {
+      "id": "LEGACY-02",
+      "mode": "AB-H / AB-R",
+      "status": "NOT_EXECUTED_STOP_R5",
+      "specific_gate": "A distinct randomized public leaderboard-visible vs no-leaderboard design and independently logged pre-response personal exposure, with original human source, rights, novelty, and a competent comparator.",
+      "why_not_executed": "GJP 2a-c public crowd distribution is not PFL leaderboard. Felkey 2023 source data files could be identified but not downloaded or ethics-approved; Chen et al 2024 researchers report cannot share original data; Lumsden 2017 points/theme not public ranking.",
+      "falsifier": "Public original metadata/code demonstrate design, independently auditable assignment/denominators and rights for this estimand, or a legally authorized prospective intervention with measured peer spillovers."
+    }
+  ],
+  "science": {
+    "CT2_prospective_ordinal": 22,
+    "N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "launch_gates_passed": 0,
+    "total_launch_gates": 6
+  },
+  "policy": {
+    "no_person_rows_processed": true,
+    "no_licence_accepted": true,
+    "no_authors_contacted": true,
+    "no_public_person_ranking": true,
+    "no_ci_dispatched": true,
+    "no_main_merge": true
+  },
+  "decision": "RETAIN_TWO_HISTORICAL_AUTHORIZATIONS; STOP_R5_UNTIL_MATERIAL_NEW_SOURCE. Do not relabel planning/access checks as completed cycles."
+}

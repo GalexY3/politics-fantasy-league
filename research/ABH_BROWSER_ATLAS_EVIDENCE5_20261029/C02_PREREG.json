@@ -1,0 +1,28 @@
+{
+  "cycle": "C02",
+  "type": "AB-META",
+  "A": "Can Atlas 0078–0079, previously unsynced, be independently replayed using actual canonical parser and seed plus full historical update chain?",
+  "B": [
+    "Pure delta chain valid and can update CURRENT",
+    "Malformed parent/history causes CHECK fail",
+    "Atlas state lacks expected receipts even if files exist"
+  ],
+  "C": {
+    "acceptance": [
+      "Reconstruct source seed and all 0078–0079 deps under commit SHA",
+      "Run native atlas_delta.py check",
+      "Compare event count and run IDs and business gates to ledger",
+      "Repair if local and safe; record blocker if no full history"
+    ],
+    "controls": "Baseline unchanged 0077; authoritative Python parser; no fabricated 3rd-party data",
+    "falsifier": "Missing parent or duplicate ID or schema violation"
+  },
+  "D": "One fixed previous HEAD; source manifests and hashes verified; CURRENT generated only from verified replay",
+  "E": "NOT_EXECUTED",
+  "F": "NOT_EXECUTED",
+  "G": "NOT_EXECUTED",
+  "H": "NOT_EXECUTED",
+  "I": "NOT_EXECUTED",
+  "J": "NOT_EXECUTED",
+  "status": "PREREG_BEFORE_EXECUTION"
+}

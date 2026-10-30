@@ -1,0 +1,37 @@
+{
+  "id": "C01",
+  "mode": "AB-P",
+  "A": "Does a supported-looking but unimplemented scoring rule version receive an ordinary score?",
+  "B": [
+    "Unknown versions rejected",
+    "Any syntactic version accepted with v1 formulas",
+    "Other runtime failure"
+  ],
+  "C": "Probe synthetic-v1, synthetic-v2, synthetic-v999 with otherwise identical fixture; baseline is explicit allowlist of implemented version v1. Reject unsupported versions before output.",
+  "D": "Node native, exact commit and script frozen before run",
+  "E": {
+    "before": "C01_BEFORE.json",
+    "after": "C01_AFTER.json",
+    "node_tests": 308,
+    "failed": 0
+  },
+  "F": "Unsupported syntactic versions received v1 scores. Repaired both scorer and independent manifest validator; all legacy and adversarial tests pass.",
+  "G": "Internal regression only; no independent external replication",
+  "H": "Reject syntax-as-implementation equivalence. Next hypothesis: other source metadata may similarly confuse format validation with factual validity.",
+  "I": {
+    "internal_validity": "reproduced",
+    "scientific_novelty": "NOT_CLAIMED",
+    "transport": "synthetic modules only",
+    "CT2_before": 22,
+    "CT2_after": 22,
+    "reason": "Engineering repair does not remove empirical identification bottleneck",
+    "grade_0_3": 0
+  },
+  "J": "CONTINUE_WITH_DISTINCT_QUESTION",
+  "DRIFT": 0,
+  "grade_0_3": 0,
+  "exposure": "Existing source inspected; behavioral result not yet executed",
+  "status": "RUN_REPAIRED",
+  "prereg_commit": "77b76264",
+  "result_commit": "recorded by containing Git commit"
+}

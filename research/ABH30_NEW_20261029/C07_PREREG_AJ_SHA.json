@@ -1,0 +1,153 @@
+{
+  "schema": "pfl.abh30.c07.prereg_AJ_SHA_v1",
+  "date": "2026-10-29",
+  "parent": {
+    "pr": 57,
+    "head": "bcb4503695950e93e06c6b2c00ad9520b33d7774",
+    "branch": "research/pfl-abh30-c06-source-publication-cli-20261029"
+  },
+  "authorization": {
+    "granted_new": 30,
+    "executed_before": 6,
+    "new_remaining_before": 24,
+    "historical_unused_separate": 2
+  },
+  "cycle_id": "ABH30-C07",
+  "mode": "AB-H_BRANCHING_AB-P_PLUS_NONHUMAN_AB-R",
+  "D": {
+    "code_sha_git": [
+      {
+        "file": "src/politics_fantasy/forecastbench_vintage_replay.mjs",
+        "git_blob_sha1": "7cf7585b7310f495dcfdd56b9adf4cd5514c8ef3",
+        "sha256": "383bd43add9daa11d0010f8f43561fdc051d6a4b7fc7df0c880caf18e180729b"
+      },
+      {
+        "file": "tests/test_forecastbench_vintage_replay.mjs",
+        "git_blob_sha1": "74fc5e74cc79d7bd05d90314e01b6b8a454ef6ea",
+        "sha256": "92ec669c443db7914a8227b875ab0c658344817451a97d743cb4ba3127499c9a"
+      },
+      {
+        "file": "scripts/replay_forecastbench_vintages.mjs",
+        "git_blob_sha1": "f3262aefe603443add2ad5edc45b183c6b4701e8",
+        "sha256": "de9c1acb894d2b50d4b189a80d31e12321f0a61e37a892629313a0d450a350f6"
+      },
+      {
+        "file": "tests/test_forecastbench_vintage_cli.mjs",
+        "git_blob_sha1": "29bc64c591dcd23c1b6585f2a710d2ada3deec73",
+        "sha256": "d640b0972f773da614b7f6323de929c34ad1a363e3d787c79d6cfc89e54f3ff3"
+      }
+    ],
+    "all_local_sha256_computed_from_exact_Github_files_before_prereg": true,
+    "native_test_plan": {
+      "pure": 24,
+      "cli": 8
+    },
+    "runtime": "GitHub-connected original public JSON with exact pre-frozen core in V8; native Node 22 local ESM tests if matching code is transferable; synthetic fixture tests have NO source authenticity standing."
+  },
+  "scientific_grade_provisional": "0/3",
+  "A": {
+    "problem": "Current C06 CLI correctly rejects retrospective Oct29 source; however, it cannot replay ACTUAL historically available earlier original versions. Build real as-of source selection and quantify how successive published original Git snapshots change eligible opportunity counts and any previously known binary outcomes.",
+    "estimand": "Across original publicly published cohorts: counts of accepted resolved binary public market-question opportunities at each original version as of its as_of instant, retained, newly valid, lost, flipped known outcomes. NOT a human participant or PFL forecast effect.",
+    "population": "original non-person public event-questions in ForecastBench snapshot directories, not forecast_sets or user predictions"
+  },
+  "B": {
+    "H1": "Using the latest Oct29 resolution_set for an Oct8 or Oct24 retrospective evaluation gives different available-outcome selection relative to selecting the original commit available by that earlier time; evaluate known-set retention/new/lost/flip explicitly. No required claim of an outcome flip.",
+    "H0": "After identical event-date eligibility, all original versions yield equal counts and no loss/revisions; then publication provenance adds governance but no discriminant drift for measured snapshots.",
+    "strong_rivals": [
+      "Original ForecastBench benchmark already performs dynamic-source source/version evaluation: no novel general method claimed.",
+      "A resolution record can originate earlier on a different market: Git commit only certifies first dataset file availability, not first per-event publication.",
+      "Any change in retrospective availability may be ordinary resolution accumulation, not correction or cause of participant behavior."
+    ],
+    "falsifiers": [
+      "Published original file SHA/version metadata differs from preregistered manifest",
+      "C07 fails original Git content audit or native adversarial cases",
+      "Previously reported Oct8 30/500 not reproduced from Oct07 source",
+      "All from/to cohorts yield zero new and zero lost known information (report negative, do not invent)."
+    ]
+  },
+  "C": {
+    "original_source": "ForecastBench original public Git repo forecastingresearch/forecastbench-datasets, ICLR 2025, public CC BY-SA 4.0. No human forecast rows.",
+    "original_source_git_versions": [
+      {
+        "at": "2026-10-07T07:19:29Z",
+        "commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+        "sep27_resolution_blob": "0b67cfec67fad4b23899e8e48c6ca3a034344edc"
+      },
+      {
+        "at": "2026-10-23T06:53:25Z",
+        "commit": "f3d8a4f83754f6c26990c67c69185f91f214c30c",
+        "sep27_resolution_blob": "9d17e5f8487ae2cad9c9d3130c3006cd1cc5d880",
+        "oct11_resolution_blob": "1556a17106131cf8a7d7cb3b33122d18c3b9ef6a"
+      },
+      {
+        "at": "2026-10-29T07:30:17Z",
+        "commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+        "sep27_resolution_blob": "b2ee53f09407e2b555668f66e286073ace6d5fce",
+        "oct11_resolution_blob": "d8416bccbfcd4736e9772748bb42fd4cc403db7e"
+      }
+    ],
+    "question_sha_sep27": "d4c7e1286d76fbaa1c9911ffb0b97cbcc16440c0",
+    "question_sha_oct11": "fe9772f2275edcada671c4082cf9103185f1becf",
+    "asof_instants": [
+      "2026-10-08T00:00:00Z",
+      "2026-10-24T00:00:00Z",
+      "2026-10-29T16:00:00Z"
+    ],
+    "planned_contrasts": [
+      "Oct08→Oct29: Sep27 common cohort and Oct11 unavailable at first, not zero",
+      "Oct24→Oct29: both cohorts, same question blobs, variation from original resolution-set versions",
+      "Novice Oct29-last-vintage-asof-Oct08 is explicitly NOT a valid replay or competitive comparator"
+    ],
+    "outcomes_predeclared": [
+      "question count per cohort",
+      "resolution row count per vintage",
+      "accepted vs not accepted at as-of",
+      "retained and newly accepted",
+      "previously accepted then lost and positive binary flips",
+      "eligible first and later resolved-only Brier descriptive, not causal"
+    ],
+    "limits": "Two cohorts of same original institution; not independent human replicates. Initial source Oct07 (Sept27) already observed in C05, Oct23 original resolution sets only metadata inspected, not body; Oct29 original observed earlier. Run after freeze.",
+    "no_personal_data": true
+  },
+  "E": {
+    "execution": "AFTER this Git commit freeze, run 24 pure and 8 CLI adversarial tests (native when available), then READ Oct23 original public file bodies and compare preregistered snapshots using identical frozen logic. Explicit no use of all-Oct29 future source for earlier cutoffs.",
+    "report": "Record initial failures, repair prereg if needed; never count a failed attempt as another cycle."
+  },
+  "F": {
+    "threats": [
+      "versioning when original Git force-pushed? verify commit immutability and blob ids",
+      "same question id but source differs join collision",
+      "duplicate original resolutions",
+      "event resolution_date predates Git source publication",
+      "future outcomes",
+      "missing cohort is unavailable not 0",
+      "full first publication of each event not established",
+      "baseline source already benchmarks this and own new scientific mechanism remains zero"
+    ],
+    "negative_policy": "Any outcome flips or regression errors are preserved; none required to count a legitimate safety/data replay."
+  },
+  "G": {
+    "independence": "Data original and public external to PFL repo. Two cohorts from SAME upstream repo, NOT independent scientific validation, no human causal assignments.",
+    "strong_baseline": "Original frozen source-by-commit historical event availability; naive future last-version audit serves as diagnostic invalid method, never a competent forecast baseline."
+  },
+  "H": {
+    "prior_update": "Only new PF-BR46 if Oct23 original published source information reveals distinct negative or interpretive change beyond PF-BR45. Do not duplicate citation merely for hashes.",
+    "graph": "O7 adds C07 product vintage replay and evidentiary limitations."
+  },
+  "I": {
+    "CT2_before": 20,
+    "CT2_after_expected": 20,
+    "ordinal": true,
+    "new_n1_n2_n3": [
+      0,
+      0,
+      0
+    ],
+    "launch_gates_passed": 0,
+    "launch_total": 6,
+    "no_scientific_novelty_claim": true
+  },
+  "J": {
+    "decision": "If pre-frozen executable core/CLI tests pass and real Oct23 original source versions produce verified source-specific aggregate comparison, count exactly ONE ABH30-C07 bounded hybrid research/product cycle. New 7/30, remaining 23; historical 2 untouched STOP_R5. Otherwise leave 6/30 plus incomplete/invalid explicitly; no merge/main/CI cost, no ChatRelay, licenses, authors, personal data or real-politician scoring."
+  }
+}

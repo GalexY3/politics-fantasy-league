@@ -1,0 +1,80 @@
+✔ strict validator behavior is explicitly versioned (1.167ms)
+✔ reject inherited person metadata in scorer (0.3079ms)
+✔ reject symbol property in scorer (0.1169ms)
+✔ reject non-enumerable metadata in scorer (0.0917ms)
+✔ reject getters in scorer (0.096ms)
+✔ reject symbol property in event (0.1512ms)
+✔ reject symbol property in snapshot (0.347ms)
+✔ reject inherited person metadata in snapshot (0.1408ms)
+✔ reject non-enumerable metadata in snapshot (0.1266ms)
+✖ reject a non-string rule version without coercing it (0.5586ms)
+✔ reject non-finite and unsafe counts (0.2508ms)
+✔ unknown coverage produces no scores (0.0743ms)
+✔ score is independent of later input mutation (0.069ms)
+✔ forged previous manifest with matching cleartext is accepted, proving it is not authentication (0.0949ms)
+✖ reject arrays whose iterator hides scheduled events (0.1431ms)
+✖ reject array accessors before invoking them (0.1623ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 13
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.1603
+
+✖ failing tests:
+
+test at proyectos\politics-fantasy-league\tests\test_t025_synthetic_adversarial.mjs:15:1
+✖ reject a non-string rule version without coercing it (0.5586ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:15:206)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /SYNTHETIC_ONLY/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at proyectos\politics-fantasy-league\tests\test_t025_synthetic_adversarial.mjs:21:1
+✖ reject arrays whose iterator hides scheduled events (0.1431ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:21:169)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at proyectos\politics-fantasy-league\tests\test_t025_synthetic_adversarial.mjs:22:1
+✖ reject array accessors before invoking them (0.1623ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///C:/Github/Politics-Fantasy-Codex/proyectos/politics-fantasy-league/tests/test_t025_synthetic_adversarial.mjs:22:210)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,0 +1,53 @@
+{
+  "schema": "pfl.abh10.c33.native_python_canonical_atlas_run_receipt.v1",
+  "cycle": "ABH10-C33",
+  "mode": "AB-P",
+  "status": "VALID_BOUNDED_NATIVE_CANONICAL_91",
+  "prereg_commit": "23b596600007337fe2892bda8836c0d68c1cd998",
+  "workflow_Git_blob": "4a1d69c1e986c7dd11704c4b71d7d229c3b082b3",
+  "workflow_SHA256": "e931482448ee23f6f84389ca42fb361c861d911414bcd8a7dbfb92526e649f65",
+  "github_actions": {
+    "run_id": 40978364554,
+    "job_id": 123811914544,
+    "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40978364554",
+    "trigger": "push",
+    "head_sha": "df39779fed8b075bc99a05ee5d9cade4c6d0dd14",
+    "conclusion": "success",
+    "attempt": 1,
+    "budget_timeout_minutes": 3,
+    "requires": "Only actions/checkout@v4, stock Python; no package installs",
+    "run_was_actually_executed": true
+  },
+  "native_outputs": {
+    "canonical_check_returncode": 0,
+    "stdout": "OK 91 lotes 63 nodos SHA256 e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4",
+    "brief_returncode": 0,
+    "brief_node_count": 63,
+    "brief_edge_count": 81,
+    "brief_state_sha256": "e67d7fe6a414a273811178e3810b67b67897b5722719fa25d7b1f51a6caf84a4",
+    "head_batch": "0091-PFL-ABH30-C20-C30-MULTIAXIS-ENGINEERING-20261029",
+    "exact_source_git_blobs_verified": true,
+    "original_Python_ATLAS_delta_py": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "original_Python_abmap_py": "687449178deba84f77b6cc2df2c61cc36d9cf0cd",
+    "seed_git_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623"
+  },
+  "limits": [
+    "Canonical Atlas 91 batch is valid as of workflow HEAD, but not scientific validation of all constituent reports.",
+    "Atlas state 63 nodes/81 edges is NOT the separate O7 causal graph 49 nodes/69 edges.",
+    "C33 flow was triggered by one GitHub push and is intentionally bounded, no expensive CI.",
+    "Future Atlas 0092 and beyond must be checked afresh; this digest applies to exactly 91."
+  ],
+  "PFL_science_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6",
+  "new_grant_after": {
+    "approved": 10,
+    "valid": 2,
+    "remaining": 8,
+    "historical_STOP_R5": 2
+  }
+}

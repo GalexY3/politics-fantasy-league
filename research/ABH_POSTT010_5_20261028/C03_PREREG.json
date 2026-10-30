@@ -1,0 +1,32 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-POSTT010-5-20261028",
+  "cycle": "C03",
+  "type": "AB-P",
+  "D": "Run same exact source blob C02 baseline in Node; freeze tests before patch",
+  "parent": "C02",
+  "trigger": "After C02, residual defect accepts ISO-shaped impossible dates",
+  "exposure": "Known before prereg from T010 and locally observed negative; confirm fix prospectively, not discovery claim",
+  "A": {
+    "question": "Does date-only regex allow nonexistent session calendar dates and distort temporal joins?",
+    "estimand": "Acceptance iff calendar-valid ISO YYYY-MM-DD"
+  },
+  "B": {
+    "H1": "Regex alone accepts invalid Gregorian dates",
+    "H0": "Existing parser rejects malformed days",
+    "H_other": "Date time zone conversion can create unrelated date shifts"
+  },
+  "C": {
+    "red": "Node negative controls 2026-02-31, 2025-02-29, 2026-13-10 and valid leap 2024-02-29; require exact date unchanged",
+    "green": "Independent integer calendar-length and Gregorian leap-year check; no local-time conversion",
+    "falsifier": "Any invalid Gregorian date accepted or valid leap day rejected"
+  },
+  "E": "PENDING",
+  "F": "Check Gregorian leap-century exception, no timezone inference",
+  "G": "No source first-public date evidence provided",
+  "H": {
+    "CT2_before": 29
+  },
+  "I": "AB-P not temporal availability certification",
+  "J": "REPAIR or continue if verified"
+}

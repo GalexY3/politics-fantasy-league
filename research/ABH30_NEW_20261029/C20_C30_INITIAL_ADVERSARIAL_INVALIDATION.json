@@ -1,0 +1,68 @@
+{
+  "schema": "pfl.abh30.c20_c30.initial_posthoc_adversarial_audit.v1",
+  "date": "2026-10-29",
+  "before_repair_original_source_git": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+  "before_repair_original_test_git": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+  "prereg_commits_frozen_before_first_test": "C20 d61b67b; C21 0161629; C22 6f9bfd3; C23 149f252; C24 9194b99; C25 a07719f; C26 d96d728; C27 1fafc54; C28 477fa37; C29 278f242; C30 bccddbf",
+  "initial_native_runs": "Each C20-C30 frozen 2/2 tests PASS, total 22/22, but posthoc independent adverse checks uncovered genuine code holes.",
+  "posthoc_native_counterexamples": [
+    {
+      "cycle": "C21",
+      "input": "same synthetic member appears twice",
+      "observed": "ACCEPTED n=2",
+      "expected": "REJECT_DUPLICATE_MEMBER",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    },
+    {
+      "cycle": "C22",
+      "input": "duplicated directed edge",
+      "observed": "ACCEPTED 2 crossing exposures",
+      "expected": "REJECT_DUPLICATE_EDGE",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    },
+    {
+      "cycle": "C24",
+      "input": "empty retention risk set",
+      "observed": "ACCEPTED at_risk=0 and event_fraction=0",
+      "expected": "REJECT_EMPTY_RISKSET",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    },
+    {
+      "cycle": "C25",
+      "input": "public alias object has hidden Symbol property with private synthetic content",
+      "observed": "ACCEPTED and marked no identifiers",
+      "expected": "REJECT_UNREGISTERED_HIDDEN_FIELD",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    },
+    {
+      "cycle": "C26",
+      "input": "noncanonical 2026-02-30 date",
+      "observed": "ACCEPTED via Date.parse normalization",
+      "expected": "REJECT_NONCANONICAL_TIME",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    },
+    {
+      "cycle": "C27",
+      "input": "two successive versions of one institutional rule for a room",
+      "observed": "REJECTED_INVALID_RULE, cannot model revision as intended",
+      "expected": "ACCEPT_IF_EXPLICIT_VERSION_AND_EFFECTIVE_ASOF",
+      "classification": "INCOMPLETE_INITIAL_INSTRUMENT"
+    },
+    {
+      "cycle": "C28",
+      "input": "NaN forecast outcome score",
+      "observed": "ACCEPTED and JSON bounds null",
+      "expected": "REJECT_NONFINITE_SCORE",
+      "classification": "INVALID_INITIAL_ATTEMPT"
+    }
+  ],
+  "unaffected_original_cycles": [
+    "C20",
+    "C23",
+    "C29",
+    "C30"
+  ],
+  "counting": "Do not count any of C21/C22/C24/C25/C26/C27/C28 until repaired A-J frozen again before new tests. All old results remain historical. No new external human evidence. Synthetic score and IDs only.",
+  "repair": "Explicit duplicate/empty/private-keys/canonical time/finite checks, versioned institutional rules with before-opportunity timing, and 7 new positive/negative tests, then new prereg commit and native rerun",
+  "scientific_CT2_ordinal": 20
+}

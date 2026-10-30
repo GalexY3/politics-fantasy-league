@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-29",
+  "kind": "SOURCE_METADATA_RESULT_NOT_AB_CYCLE",
+  "status": "FAIL_TO_ESTABLISH_INDEPENDENT_EXPOSURE",
+  "prereg": "PREREG_VIEWTIME_SEMANTIC_GATE.json",
+  "run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808668080",
+  "job_id": 123233555624,
+  "source": {
+    "doi": "10.7910/DVN/BPCDH5",
+    "file_id": 2917351,
+    "metadata_kind": "Harvard Dataverse DDI XML",
+    "ddi_sha256": "519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063"
+  },
+  "fields_inspected": [
+    "ctt",
+    "cond",
+    "training",
+    "fcast_date",
+    "viewtime",
+    "timestamp"
+  ],
+  "observed": {
+    "viewtime": {
+      "type": "numeric",
+      "label": "viewtime",
+      "notes": "UNF only, no definition of event semantics"
+    },
+    "ctt": {
+      "type": "character",
+      "label": "ctt",
+      "notes": "UNF only; separate original readme describes assignment to condition"
+    },
+    "other_fields": "Only type/name/UNF, no operational semantics"
+  },
+  "decision": "No evidence that viewtime was logged before forecasting, nor for person×IFP nonrespondents. Cannot identify real exposure E_iqt or construct unanswered-as-unseen denominator. Do not treat variable presence as a valid experiment.",
+  "no_participant_rows_downloaded": true,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "legacy_AB_slots_unchanged": 2
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "pfl.european.2024.official_national_replay.v1",
+  "publisher": "JEC / BOE",
+  "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-13092",
+  "event": "Elecciones al Parlamento Europeo 2024-06-09",
+  "published": "2024-06-28",
+  "unit": "Spain-wide 61-seat national constituency; province rows are territorial vote breakdown only and contain NO province seat allocations",
+  "totals": {
+    "registered": 38050286,
+    "voters": 17652007,
+    "valid": 17527438,
+    "candidacy_votes": 17402783,
+    "blank": 124655,
+    "null": 124569
+  },
+  "winning_lists": {
+    "PP": {
+      "votes": 5996627,
+      "seats": 22
+    },
+    "PSOE": {
+      "votes": 5290945,
+      "seats": 20
+    },
+    "VOX": {
+      "votes": 1688255,
+      "seats": 6
+    },
+    "AHORA_REPUBLICAS": {
+      "votes": 860660,
+      "seats": 3
+    },
+    "SUMAR": {
+      "votes": 818015,
+      "seats": 3
+    },
+    "SALF": {
+      "votes": 803545,
+      "seats": 3
+    },
+    "PODEMOS": {
+      "votes": 578007,
+      "seats": 2
+    },
+    "JUNTS": {
+      "votes": 442297,
+      "seats": 1
+    },
+    "CEUS": {
+      "votes": 284888,
+      "seats": 1
+    }
+  },
+  "nonwinners": {
+    "maximum_single_list_votes": 135691,
+    "candidate_label": "PACMA",
+    "BOE_cuadro": "III, total nacional (five first losing groups listed)"
+  },
+  "verification": {
+    "winners_votes_sum": 16763239,
+    "nonwinners_total_by_difference": 639544,
+    "allocated_seats": 61,
+    "exact_rational_61st_quotient": "5290945/20 = 264547.25 (PSOE seat 20)",
+    "exact_rational_next_quotient": "5996627/23 = 260722.9130434783 (PP seat 23)",
+    "nonwinner_max_vs_cutoff": "135691 < 264547.25; no losing list could displace observed 61st winner",
+    "national_dhondt_seat_error": 0,
+    "valid_plus_null_minus_voters": 0,
+    "candidacies_plus_blanks_minus_valid": 0
+  },
+  "source_limitations": [
+    "Manual official BOE HTML aggregate transcription, no downloaded original XML/PDF byte hash",
+    "All losers in Cuadro III interpreted as total state lists; largest published 135691; exact remaining totals not exhaustively transcribed",
+    "No national seats by province, so regional/district seat model inapplicable",
+    "In-sample legal formula, not forecasting/personal score"
+  ],
+  "pseudocheck": "D'Hondt exact rational over all nine winner totals; each first loser vote total < 61st quotient (potential divisor1), so omitting loser lists is mathematically certified harmless only in this national case"
+}

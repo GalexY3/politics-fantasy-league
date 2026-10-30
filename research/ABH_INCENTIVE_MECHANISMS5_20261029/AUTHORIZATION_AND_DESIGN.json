@@ -1,0 +1,57 @@
+{
+  "schema": "ab.campaign.v1",
+  "id": "PFL-ABH-INCENTIVE-MECHANISMS5-20261029",
+  "parent": {
+    "branch": "research/pfl-abh5-forecast-incentives-20261028",
+    "sha": "a19b50b0f0576fd2a4ab0b69e24657102e75c7da",
+    "pr": 33
+  },
+  "branch": "research/pfl-abh5-incentive-mechanisms-20261029",
+  "granted": 5,
+  "remaining": 5,
+  "prereg_at": "2026-10-29",
+  "design": "Full predeclared finite sequence; sources: synthetic controlled trials + non-person aggregate prior source; no extrapolation to voters, politicians or human game players",
+  "seeds": {
+    "C01": [
+      12001,
+      13999
+    ],
+    "C02": [
+      22001,
+      23999
+    ],
+    "C04": [
+      42001,
+      43999
+    ]
+  },
+  "method": "AB 3.2.1 O1–O7 R1–R5; strict A–J; only executed counts",
+  "drift": {
+    "parent_domain": "descriptive parliamentary opportunity and source quality",
+    "child_domain": "synthetic counterfactual game-incentive mechanics and fail-closed product infrastructure",
+    "D_score": 2.2,
+    "changes": [
+      "unit now synthetic anonymous agent/event",
+      "estimand becomes scoring bias and strategic selection",
+      "source shifts to seeded synthetic experimental engine"
+    ],
+    "transfers": [
+      "missing is not zero gate",
+      "2025-2026 institutional heterogeneity motivates scenarios"
+    ],
+    "prior_art": [
+      "Witkowski et al. AAAI 2018 DOI 10.1609/aaai.v32i1.11471",
+      "Laird & Louis 1989 DOI 10.3102/10769986014001029",
+      "Hood & Piotrowska 2021 DOI 10.1080/15309576.2020.1749092"
+    ],
+    "originality_claim": "NONE"
+  },
+  "prohibitions": [
+    "No real-person political scoring",
+    "No ChatRelay",
+    "No main merge",
+    "No expensive CI",
+    "No public deployment"
+  ],
+  "gate": "Simulation shows mechanism behavior only, no social causal inference. New 2/3 requires independent empirical player outcomes."
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-29",
+  "kind": "DATA_ENGINEERING_GATE_NOT_AB_CYCLE",
+  "registered_before": "Original GJP readme files and question bytes downloaded",
+  "source": "doi:10.7910/DVN/BPCDH5 Harvard Dataverse v1.0",
+  "source_license": "CC0 1.0 SPECIFIC DATASET VERIFIED IN PREVIOUS API JOB",
+  "endpoints": [
+    {
+      "file_id": 2917338,
+      "name": "readme.txt",
+      "max_bytes": 10000,
+      "kind": "documentation, no individual records"
+    },
+    {
+      "file_id": 2917350,
+      "name": "readme.txt",
+      "max_bytes": 10000,
+      "kind": "documentation, no individual records"
+    },
+    {
+      "file_id": 2917330,
+      "name": "ifps.csv",
+      "max_bytes": 1300000,
+      "kind": "question metadata only"
+    }
+  ],
+  "measures": [
+    "SHA256 of exact original bytes",
+    "question table header field names, number of rows and field count distribution",
+    "readme documentation semantic descriptions of group assignment and question choice",
+    "whether original question metadata includes availability dates or logged user-level exposure",
+    "no raw respondent rows, no personal identifiers, no score computation"
+  ],
+  "blocking": [
+    "If datafile fetch non200 or license surprise, record blocked",
+    "Do not infer seen from question-open; no person-specific E_iqt claims",
+    "Do not consume legacy AB-H slots for this metadata probe"
+  ],
+  "runner": "single GitHub Actions job <=3min, no dependencies, no checkout needed",
+  "CT2": 22
+}

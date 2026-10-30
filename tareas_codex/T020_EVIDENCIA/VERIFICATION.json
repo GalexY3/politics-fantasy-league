@@ -1,0 +1,115 @@
+{
+  "scope": "OFFICIAL_SIGNED_CURRENT_FILES_VS_PREVIOUS_TRANSCRIPTION_NO_INDEPENDENT_CAUSAL_CONFIRMATION",
+  "commands": {
+    "version": {
+      "args": [
+        "version"
+      ],
+      "exit_code": 0,
+      "stdout": "OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)\n",
+      "stderr": ""
+    },
+    "certificate": {
+      "args": [
+        "x509",
+        "-in",
+        "certificate.crt",
+        "-noout",
+        "-subject",
+        "-issuer",
+        "-dates",
+        "-fingerprint",
+        "-sha256"
+      ],
+      "exit_code": 0,
+      "stdout": "subject=O=European Parliament, OU=ITEC, CN=datasheets.elections.europa.eu\nissuer=O=European Parliament, CN=EP Applications CA\nnotBefore=Jan 13 12:45:08 2025 GMT\nnotAfter=Jan 13 12:45:08 2027 GMT\nsha256 Fingerprint=1B:A2:46:3B:55:22:2E:83:86:E9:F5:C0:05:46:8D:C9:63:50:4C:D5:F3:85:D1:E1:33:A5:2D:F2:DC:F1:90:98\n",
+      "stderr": ""
+    },
+    "chain": {
+      "args": [
+        "verify",
+        "-CAfile",
+        "certchain.crt",
+        "certificate.crt"
+      ],
+      "exit_code": 0,
+      "stdout": "certificate.crt: OK\n",
+      "stderr": ""
+    },
+    "public_key": {
+      "args": [
+        "x509",
+        "-in",
+        "certificate.crt",
+        "-pubkey",
+        "-noout",
+        "-out",
+        "public_key.pem"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "turnout": {
+      "args": [
+        "dgst",
+        "-sha256",
+        "-verify",
+        "public_key.pem",
+        "-signature",
+        "turnout.sig",
+        "turnout.csv"
+      ],
+      "exit_code": 0,
+      "stdout": "Verified OK\n",
+      "stderr": ""
+    },
+    "gender_2019": {
+      "args": [
+        "dgst",
+        "-sha256",
+        "-verify",
+        "public_key.pem",
+        "-signature",
+        "gender_2019.sig",
+        "gender_2019.csv"
+      ],
+      "exit_code": 0,
+      "stdout": "Verified OK\n",
+      "stderr": ""
+    },
+    "gender_2024": {
+      "args": [
+        "dgst",
+        "-sha256",
+        "-verify",
+        "public_key.pem",
+        "-signature",
+        "gender_2024.sig",
+        "gender_2024.csv"
+      ],
+      "exit_code": 0,
+      "stdout": "Verified OK\n",
+      "stderr": ""
+    },
+    "negative_control": {
+      "args": [
+        "dgst",
+        "-sha256",
+        "-verify",
+        "public_key.pem",
+        "-signature",
+        "turnout.sig",
+        "tampered_control.tmp"
+      ],
+      "exit_code": 1,
+      "stdout": "Verification failure\n",
+      "stderr": "58760000:error:02000068:rsa routines:ossl_rsa_verify:bad signature:../openssl-3.6.1/crypto/rsa/rsa_sign.c:441:\n58760000:error:1C880004:Provider routines:rsa_verify_directly:RSA lib:providers/implementations/signature/rsa_sig.c:1038:\n"
+    }
+  },
+  "panel_rows": 27,
+  "missing": [],
+  "differences": [],
+  "fields_compared": 108,
+  "trust_limit": "Certificate and chain downloaded via TLS from official links, openssl verify uses supplied chain as trust anchor; no separate independent root trust validation claimed."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "pfl.abh5b.c05.repaired.code.freeze.v1",
+  "date": "2026-10-29",
+  "initial_AJ_commit": "c945b3190e8598e684a138c5ee64c83013ff494e",
+  "initial_failed_test_and_repair_plan_commit": "be1c3bcbf3ba880d05dcb7c3c3b1b5f8eaeb1f9d",
+  "original_code_sha256": "cd89017bf27664fadd7d7b14d3f946fdd3a3e13bababd96e1f3a981c9c3ddc52",
+  "repaired_code_sha256": "0bfb5b5f1fce00de4147a87b91b9c37358203a9462d1bbaf20bdfba3bb6d8eff",
+  "repaired_code_blob_sha1": "b1e2910d1ae7f7e778e1cf8cb8b5e7cd5ba77e71",
+  "repaired_code_commit": "fc3d7a71fd3f533ae09a010466ce1a97074f4c55",
+  "unchanged_test_sha256": "9886c11eaa57c501d73ac8c5730ab6395033e5dfc622daaf7acfcf7e823b7d2a",
+  "unchanged_test_blob_sha1": "ae7e3dfba4f674c529c1160e8eeb6bbdb2999503",
+  "exact_repair": "One per-extra duplicate question reject(\"duplicate_question_record_extra\") during map insertion, preserving unique-key reject in main scan and 1:1 count of all rows",
+  "frozen_before_rerun": true,
+  "frozen_before_original_holdout_data_read": true,
+  "holdouts_immutable_upstream_git_head": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+  "expected_tests": 12,
+  "no_other_changes": true,
+  "run_gate": "Only if 12/12 native tests pass, evaluate exact GitHub blob code in two held-out public original ForecastBench cohorts.",
+  "truthfulness": "First failed run must be retained; repaired run not a new separate AB cycle."
+}

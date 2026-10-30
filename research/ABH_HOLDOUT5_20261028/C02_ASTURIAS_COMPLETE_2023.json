@@ -1,0 +1,174 @@
+{
+  "schema": "pfl.asturias.2023.complete.official.r1",
+  "selected_pre_result": true,
+  "source": {
+    "publisher": "Junta General del Principado de Asturias",
+    "title": "Resultados Electorales 2023 XII Legislatura",
+    "url": "https://www.jgpa.es/documents/11156/18491/Resultados%2Belectorales%2B2023%2B%28XII%2BLegislatura%29/79394093-f262-4829-845a-faf8cc85fe30",
+    "type": "original institutional PDF text extracted by web; screenshot attempted and failed cache miss",
+    "source_pdf_bytes_captured": 0,
+    "sha256": null
+  },
+  "cross_source": {
+    "publisher": "Junta Electoral Central",
+    "url": "https://www.juntaelectoralcentral.es/cs/jec/elecciones/Asturias-mayo2023",
+    "result_reference": "BOPA 119, June 22 2023 official proclamation",
+    "legal": "https://boe.es/buscar/act.php?id=BOE-A-1987-3910",
+    "legal_article": "13.1(a) 3 percent votes valid within EACH district, D'Hondt"
+  },
+  "parties": [
+    "PSOE",
+    "PP",
+    "FORO",
+    "VOX",
+    "IU",
+    "SOS",
+    "PODEMOS",
+    "CIUDADANOS",
+    "PACMA",
+    "PCTE",
+    "SUMA",
+    "ANDECHA",
+    "PUMJ",
+    "VERDES",
+    "PUEDE"
+  ],
+  "constituencies": [
+    {
+      "id": "Occidente",
+      "magnitude": 6,
+      "registered": 115005,
+      "voters": 61652,
+      "null": 969,
+      "blank": 1113,
+      "valid": 60683,
+      "candidacy": 59570,
+      "votes": [
+        22482,
+        21236,
+        4049,
+        3950,
+        3278,
+        2574,
+        1063,
+        315,
+        281,
+        126,
+        93,
+        79,
+        44,
+        0,
+        0
+      ],
+      "observed_seats": {
+        "PSOE": 3,
+        "PP": 3
+      },
+      "dhondt_seats": {
+        "PSOE": 3,
+        "PP": 3
+      },
+      "last_quotient": "21236/3",
+      "next_quotient": "22482/4"
+    },
+    {
+      "id": "Centro",
+      "magnitude": 34,
+      "registered": 757249,
+      "voters": 441558,
+      "null": 6083,
+      "blank": 7579,
+      "valid": 435475,
+      "candidacy": 427896,
+      "votes": [
+        157852,
+        139012,
+        14022,
+        46452,
+        35588,
+        2848,
+        18937,
+        4333,
+        2990,
+        1197,
+        981,
+        1066,
+        665,
+        1717,
+        236
+      ],
+      "observed_seats": {
+        "PSOE": 13,
+        "PP": 12,
+        "VOX": 4,
+        "IU": 3,
+        "PODEMOS": 1,
+        "FORO": 1
+      },
+      "dhondt_seats": {
+        "PSOE": 13,
+        "PP": 12,
+        "VOX": 4,
+        "IU": 3,
+        "PODEMOS": 1,
+        "FORO": 1
+      },
+      "last_quotient": "139012/12",
+      "next_quotient": "157852/14"
+    },
+    {
+      "id": "Oriente",
+      "magnitude": 5,
+      "registered": 86404,
+      "voters": 41792,
+      "null": 927,
+      "blank": 831,
+      "valid": 40865,
+      "candidacy": 40034,
+      "votes": [
+        15665,
+        14883,
+        1581,
+        3871,
+        1908,
+        416,
+        1052,
+        326,
+        0,
+        78,
+        74,
+        100,
+        80,
+        0,
+        0
+      ],
+      "observed_seats": {
+        "PSOE": 3,
+        "PP": 2
+      },
+      "dhondt_seats": {
+        "PSOE": 3,
+        "PP": 2
+      },
+      "last_quotient": "15665/3",
+      "next_quotient": "14883/3"
+    }
+  ],
+  "reconciliation": {
+    "registered": 958658,
+    "voters": 545002,
+    "null": 7979,
+    "blank": 9523,
+    "valid": 537023,
+    "candidacy": 527500,
+    "total_seats": 45,
+    "all_15_party_rows_per_district_sum_exact": true,
+    "dhondt_45_45": true
+  },
+  "limitations": [
+    "PDF screenshot cache miss despite request, textual PDF extraction and official JEC link independent corroboration but raw bytes absent",
+    "2023 JGPA PDF claims official JEP source, not new direct BOPA raw data proof",
+    "Full 15-party list in PDF and district labels crosschecked to source text, no nominative material saved",
+    "No person-level causal claims"
+  ]
+}

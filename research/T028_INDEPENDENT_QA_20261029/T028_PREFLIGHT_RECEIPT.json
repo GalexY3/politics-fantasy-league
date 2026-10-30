@@ -1,0 +1,73 @@
+{
+  "schema": "pfl.t028.selftest.receipt.v1",
+  "date": "2026-10-29",
+  "scope": "VERIFIED_PARTIAL_MIRROR_NOT_FULL_PRIVATE_CHECKOUT",
+  "status": "PARTIAL_PASS_AND_ENVIRONMENT_BLOCK",
+  "preflight_script_repo": "proyectos/politics-fantasy-league/tareas_codex/T028_NATIVE_PREFLIGHT.py",
+  "preflight_git_blob": "cd25a202a209eb08cbc377c756e0c4556b17849c",
+  "tested_local_equivalent_sha256": "29107dab8c5ef65bfda3bdb1eefdb3ba0972fc5b975d540e1d3a4c0b005701da",
+  "note": "The portable GitHub script was transcribed from the same tested local implementation, but the exact GitHub blob has NOT been natively executed; only the locally tested equivalent is evidenced.",
+  "environment": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "chromium": "/usr/bin/chromium",
+    "host": "isolated execution container",
+    "server": "127.0.0.1:8787 local-only"
+  },
+  "atlas": {
+    "status": "NOT_RUN_MISSING_SOURCE",
+    "missing": [
+      "ab_atlas/atlas_delta.py",
+      "ab_atlas/abmap.py",
+      "ab_atlas/seed.json",
+      "ab_atlas/updates"
+    ],
+    "reason": "partial local pilot mirror does not contain canonical parser and 80 immutable delta files; metadata-only 80/80 checked in ABH30",
+    "canonical_sha256": "UNKNOWN",
+    "CURRENT_updated": false
+  },
+  "pilot": {
+    "existing_smoke": {
+      "status": "PASS",
+      "checks": 15,
+      "total": 15
+    },
+    "additional_direct_http": {
+      "status": "PASS",
+      "checks": 9,
+      "total": 9,
+      "positive": [
+        "/",
+        "/index.html",
+        "/app.mjs",
+        "/style.css",
+        "/materials.mjs",
+        "HEAD /"
+      ],
+      "negative": [
+        "/fictional_transfer_key.mjs 404",
+        "POST / 405",
+        "/nonexistent 404"
+      ],
+      "all_checked_csp_no_store_nosniff_no_cookies": true
+    },
+    "browser": {
+      "api_request_get_status": 200,
+      "real_chromium_http": "BLOCKED_BY_ADMINISTRATOR",
+      "error_code": "net::ERR_BLOCKED_BY_ADMINISTRATOR",
+      "browser_e2e_verified": false
+    }
+  },
+  "side_effects": {
+    "only_known_previous_mirror_server_pid_1201_stopped_before_test": true,
+    "test_spawned_and_terminated_own_server": true,
+    "main_merged": false,
+    "CI_triggered": false,
+    "human_recruitment": false,
+    "politician_scoring": false
+  },
+  "classification": "QA_AFTER_30_NOT_NEW_AB_CYCLE",
+  "legacy_AB_slots_remaining": 2,
+  "CT2_prospective_unchanged": 22,
+  "T028_completion": "NOT_COMPLETE"
+}

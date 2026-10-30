@@ -1,0 +1,30 @@
+{
+  "schema": "ab.prereg.v1",
+  "campaign": "PFL-ABH-ORIGINALS5-20261028",
+  "branch": "research/pfl-abh5-originals-20261028",
+  "method": "A-J complete; R1-R5; preexecute; bounded source evidence; no real-person scoring",
+  "baseline": {
+    "CT2": 29,
+    "V4": 36.9,
+    "achievements": "2/90",
+    "VSDS": "1/3",
+    "gates": "0/6"
+  },
+  "initial_evidence": "Official BOE original HTML 2019 and 2023 found; XML download unavailable; exploratory source selection, NOT blind.",
+  "cycle": "C01",
+  "type": "AB-R",
+  "A": "Does a later BOE election-result correction refute an immutable 2023 source snapshot, and what is knowable at each official publication date?",
+  "B": {
+    "H1": "Document 2023-19537 modifies a specific Senate non-elected candidate vote tally in 2023-18907 after 2023-09-01",
+    "H0": "No correction or correction coincides with original publication"
+  },
+  "C": "Read original JEC 2023 BOE report and official corrigendum; record changed field, old/new literal, effective publication date, two time-slice interpretations, reject original as unchanged and reject event-day as first publication.",
+  "D": "BOE-A-2023-18907 and BOE-A-2023-19537 official HTML; original XML/PDF not downloaded",
+  "E": "PENDING",
+  "F": "Check whether field concerns Senate, Madrid and unelected category; avoid changing Congress aggregates or first_public_at timestamp",
+  "G": "Issuer same; publication two documents not independent sociological replication",
+  "H": "CT2 identity 29 until data-model discriminant",
+  "I": "Do not save names from corrections, only fact of institutional field",
+  "J": "If verified, produce versioned source-change fixture and return only bounded reliability conclusion",
+  "D_score": 0.3
+}

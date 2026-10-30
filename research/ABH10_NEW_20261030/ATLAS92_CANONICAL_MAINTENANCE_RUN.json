@@ -1,0 +1,47 @@
+{
+  "schema": "pfl.abh10.atlas92.canonical_maintenance_receipt.v1",
+  "status": "CANONICAL_NATIVE_PASS",
+  "classified_as_cycle": false,
+  "reason": "Revalidation of append-only Atlas after five already executed ABH10 cycles, no new scientific or product research cycle",
+  "freeze_commit": "603266163d482ed6e09b20de43b25c373067f23d",
+  "workflow_git_blob": "f8761ecacf14ea1211b8af566e883f27923b28a3",
+  "workflow_sha256": "eb5e679c7243ce5a3ebce024a170b8616c59127c4192a94516265e84927fb5c6",
+  "GitHubActions": {
+    "run_id": 40979995476,
+    "job_id": 123817397893,
+    "head_sha": "e1966665901243d37b17022377dc45a7169c3a77",
+    "url": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40979995476",
+    "conclusion": "success",
+    "attempt": 1,
+    "one_shot_timeout_minutes": 3,
+    "package_installs": 0
+  },
+  "original_python": {
+    "script": "ab_atlas/atlas_delta.py",
+    "script_git_blob": "32d25a0eb5d11eeedd788aa0b5336e0d75f8f6b7",
+    "abmap_git_blob": "687449178deba84f77b6cc2df2c61cc36d9cf0cd",
+    "seed_git_blob": "f503c3fe3432110de2edf3a3d7517ca344c40623",
+    "check_exit_code": 0,
+    "brief_exit_code": 0,
+    "batches": 92,
+    "nodes": 63,
+    "edges": 81,
+    "state_sha256": "a8b77478962627b3be78023a34ef20b075537a6b7eab0b90a98dab8018deb9fb",
+    "head_batch": "0092-PFL-ABH10-C31-C33-C34-C35-C36-20261030",
+    "check_and_brief_SHA_match": true
+  },
+  "distinct_from_O7_causal_graph": "O7 currently 53 nodes/73 edges, validated references statically; not the Atlas reconstructed 63/81",
+  "counting": {
+    "ABH10_authorized": 10,
+    "valid_new": 5,
+    "remaining_new_R5": 5,
+    "historical_STOP_R5": 2
+  },
+  "PFL_science_CT2_ordinal": 20,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6"
+}

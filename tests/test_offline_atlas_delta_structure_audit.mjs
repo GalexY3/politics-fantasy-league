@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {auditAtlasDeltaChunk as audit} from '../scripts/offline_atlas_delta_structure_audit.mjs';
+const one=(n,parent)=>({name:String(n).padStart(4,'0')+'-test.json',delta:{schema:'ab.atlas.delta.v1',batch_id:String(n).padStart(4,'0')+'-TEST',parent_batch:parent,at:'2026-10-29T00:00:00Z',ops:[{op:'run.add',run:{id:'r'+n}}]}});
+test('parented two-batch chunk passes with runs and no canonical claim',()=>{const x=audit([one(1,''),one(2,'0001-TEST')]);assert.equal(x.errors.length,0);assert.equal(x.next_parent,'0002-TEST');assert.equal(x.canonical_Python_executed,false)});
+test('parent mismatch is explicitly fatal diagnostic',()=>{const x=audit([one(1,''),one(2,'WRONG')]);assert.equal(x.errors[0].kind,'BAD_PARENT')});
+test('prior seed allows independent chunks',()=>assert.equal(audit([one(2,'0001-TEST')],'0001-TEST').errors.length,0));
+test('bad schema flagged',()=>{const x=one(1,'');x.delta.schema='wrong';assert.equal(audit([x]).errors[0].kind,'BAD_SCHEMA')});
+test('missing ops flagged',()=>{const x=one(1,'');x.delta.ops=[];assert.equal(audit([x]).errors[0].kind,'EMPTY_OPS')});
+test('duplicate run ids in chunk flagged',()=>{const a=one(1,''),b=one(2,'0001-TEST');b.delta.ops[0].run.id='r1';assert.equal(audit([a,b]).errors[0].kind,'DUPLICATE_RUN_ID')});
+test('invalid seed rejected',()=>assert.throws(()=>audit([one(1,'')],''),/BAD_PARENT_SEED/));
+test('empty selection rejected',()=>assert.throws(()=>audit([]),/EMPTY_BATCH/));

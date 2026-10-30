@@ -1,0 +1,101 @@
+{
+  "schema": "pfl.abh30.c12.independent_rank_rct_documentary_receipt.v1",
+  "date": "2026-10-29",
+  "cycle": "ABH30-C12",
+  "status": "VALID_LIMITED_PRIMARY_DOCUMENTARY_AUDIT_NO_PERSON_RECORDS",
+  "mode": "AB-R_PRIMARY_INDEPENDENT_PREEXISTING_HUMAN_EXPERIMENT",
+  "prereg_commit": "eec8c9ce4bdc847c6b30f8527a5e14d0cc55cd68",
+  "primary_sources": {
+    "upstream_repo": "debmandal/PP-MTurk-AAAI2020",
+    "original_git_commit": "a5ac7fcc0eec4325f603f0de9085e3021def9830",
+    "original_git_docs_verified": [
+      {
+        "path": "README.md",
+        "sha": "d4197dbdb69b6934b6ad565cfe070ae9009ee046"
+      },
+      {
+        "path": "src/analysis.Rmd",
+        "sha": "9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c"
+      }
+    ],
+    "AAAI_DOI": "10.1609/aaai.v34i02.5591",
+    "AAAI_article_URL": "https://ojs.aaai.org/index.php/AAAI/article/view/5591",
+    "paper_available_on_Harvard": "https://econcs.seas.harvard.edu/files/econcs/files/mandal_aaai20.pdf",
+    "upstream_explicit_repository_license": null,
+    "read_only_access": true,
+    "raw_worker_csv_downloads": 0,
+    "participant_ID_values_read_or_saved": 0
+  },
+  "prior_pilot_seen_before_prereg": [
+    "AAAI abstract and README state four arms and ~900 analyzed workers",
+    "Rmd initial section referenced worker IDs and treatment",
+    "GitHub repo license null"
+  ],
+  "after_prereg_verified": {
+    "paper_treatment_arms": [
+      "SR delayed Brier",
+      "PP immediate peer score monetary",
+      "SR+PPRank delayed Brier plus daily private quartile ordinal peer feedback",
+      "SR+PP delayed Brier plus peer monetary payments"
+    ],
+    "participants_reported": {
+      "recruitment_respondents": 1400,
+      "joined_forecasting_HIT": 945,
+      "analysis_selected": 891,
+      "SR": 207,
+      "PP": 220,
+      "SR_PPRank": 238,
+      "SR_PP": 226
+    },
+    "endpoints": "engagement measured by returns, update frequencies and forecast changes; accuracy via Brier-style scores and aggregators, 18 questions, 7-day forecasting HIT Oct7–13 2018",
+    "treatment_feedback_not_equivalent_to_public_leaderboard": true,
+    "assignment_stated_random_in_README": true,
+    "after_randomization_selection_to_891_possible_bias": "54 of 945 excluded based on join/presence; cannot establish differential missingness/ITT without raw process",
+    "individual_delivery_exposure_logs_in_readme_or_Rmd": "NOT_FOUND_NOT_PROOF_NONEXISTENCE",
+    "predictive_accuracy_claim_cannot_generalize_directly": "not independent PFL game sample; monetary differences and forecaster population differ"
+  },
+  "source_code_static_audit": {
+    "execution": "Connected Github source Rmd read-only, 1169 source lines, metadata Git SHA1 matched, V8 extraction of update selector assignments; NO original R script run",
+    "updates_days_8_to_13": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      5
+    ],
+    "expected_last_selector": 6,
+    "case6_original_Rmd_line": 188,
+    "wrong_oct13_selector_line": 222,
+    "posthoc_not_preregistered_bug_search": true,
+    "oct13_change_avg_assigned": false,
+    "Change_oCT_rbind_last": "Change12 not Change13, Rmd lines 313–316",
+    "counterexample_synthetic_counts": {
+      "oct11": 2,
+      "oct12": 4,
+      "oct13": 7,
+      "wrong_selected_oct13_interday_updates": 2,
+      "intended_oct13_interday_updates": 3
+    },
+    "claim_limit": "Static source code misindexing in original public analysis.Rmd, not verified impact on published figures or paper-level inferential estimates; Rscript absent, original worker rows not run."
+  },
+  "scientific_result": {
+    "new_original_PFL_human_effect": false,
+    "independent_prior_art_yes": true,
+    "scientific_novelty_PFL": "0/3",
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "CT2_ordinal": 20
+  },
+  "risk_and_rights": [
+    "No license in GitHub API repo metadata, public visibility and citation request are not consent or license for participant microdata processing.",
+    "README identifies workers.csv as workers' MTurk IDs, do not fetch even if publicly accessible.",
+    "Ordinal private quartile feedback is not verified exposure to a public social leaderboard or group/network identities.",
+    "Post-treatment selection restricts the causal estimand; original paper itself randomized but PFL would need its own intention-to-treat records.",
+    "Findings from authors are published prior evidence; PFL has no replication or independent causal estimate."
+  ],
+  "decision": "Count exactly one independent documentary AB-R C12 only; 12/30 new cycles used, 18 new unused, 2 historical STOP_R5, PFL scientific CT2 remains 20, no launch gate changes. Do not download person-level files or claim published paper error quantified."
+}

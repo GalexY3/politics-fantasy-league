@@ -1,0 +1,12 @@
+{
+  "id": "ABH30-P1-C02",
+  "status": "PREREGISTERED",
+  "question": "Does public ForecastBench baseline leaderboard exhibit heterogeneity of evaluated question counts across model rows, making naive Brier comparison across unequal N problematic?",
+  "source": "forecastingresearch/forecastbench-datasets leaderboards/csv/leaderboard_baseline.csv blob fa76366ba425a0597d0af3c847197cd4be2d2fe7",
+  "plan": "Parse full CSV with quote-aware parser; calculate min/max distinct positive N dataset and N market for non-reference model rows, missingness and N sum check. Negative control: verify N overall equals N dataset+N market for each complete row. Do not compute novel score or causal effect.",
+  "threshold": "At least two distinct positive N dataset values and >=1 valid complete row; otherwise falsified",
+  "interpretation": "Descriptive audit only; difficulty-adjusted Brier is prior art, not new invention",
+  "ethics": "Aggregated public model leaderboard only; no individual human data",
+  "R5": "STOP if connector returns truncated CSV or rows invalid; record failure",
+  "budget": "One phase I cycle if A-J completed"
+}

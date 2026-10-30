@@ -1,0 +1,716 @@
+{"test_files":51,"scope":["tests","src/politics_fantasy"],"archives_excluded":true}
+PASS 16 participants, 8 groups, 4 arms including non-completion
+PASS cluster-equal vs person-weighted change transparency contrast
+PASS stable across row order and fresh clones
+PASS refuse contamination within a ranking room
+PASS refuse duplicated participant and fabricated arm
+PASS refuse fake study type and empty or incomplete frame
+PASS refuse extra personal fields and getters
+PASS no causal claims even with a well-formed synthetic cluster partition
+{"passed":8,"total":8,"real_people":0,"context":"PFL_ABH5_C03_OFFLINE_CLUSTER_GATE"}
+✔ /tmp/repo/proyectos/politics-fantasy-league/src/politics_fantasy/test_fictional_cluster_gate.mjs (1243.944674ms)
+PASS full roster includes people with no response and late registrants
+PASS pre-response vs post-response and unknown display are distinct
+PASS order invariant and deterministic
+PASS reject missing roster/guarded fixture
+PASS reject duplicates and invalid time
+PASS reject fabricated exposure from response or unknown provenance
+PASS reject answer without eligibility and duplicate first forecast
+PASS guard prototype getters and nested extra fields
+PASS timestamp tie cannot attest pre-response display order
+{"schema":"pfl.synthetic.opportunity.tests.v2","pass":9,"total":9,"context":"SYNTHETIC_ONLY_NO_PEOPLE"}
+✔ /tmp/repo/proyectos/politics-fantasy-league/src/politics_fantasy/test_fictional_opportunity_audit.mjs (770.825654ms)
+PASS initial room and new room both valid in half-open membership history
+PASS old room after switch rejected
+PASS switch boundary belongs to new room, not previous room
+PASS overlapping and missing time-dependent membership rejected
+PASS mixed arms inside a shared room at display time rejected
+PASS untrusted label, duplicate event and missing question rejected
+PASS future display outside closing window rejected
+PASS reject personal fields, getters, real-study fixture and noncanonical time
+PASS no real exposure or causal inference inferred
+{"schema":"pfl.synthetic.room.exposure.tests.v1","pass":9,"total":9,"person_level_human_records":0}
+✔ /tmp/repo/proyectos/politics-fantasy-league/src/politics_fantasy/test_fictional_room_exposure.mjs (680.636254ms)
+✔ versioned registry has exactly nine V4 weighted branches and 90 independently named achievements (48.92774ms)
+✔ V4 contract preserved and achievement progress never replaces existing metrics (3.194928ms)
+✔ audit chain and no automatically conferred achievements (2.52344ms)
+✔ Atlas contains a reachable achievements tab and same-folder iframe (5.832934ms)
+✔ Achievements UI script parses as JavaScript and embeds exact initial registry (49.406305ms)
+✔ Achievement UI offers evidence, reversible retirement and audited JSON export (5.349292ms)
+{
+  "campaign": "PF-BR8N",
+  "scope": "ALBACETE_CANDIDACY_VS_NATIONAL_2023_SECONDARY_TOTALS",
+  "original_boe_sha256": "d1c179fcfab9889df272753ad3d44513f86cec703805219834b7d048ef0eda20",
+  "joined_rows": [
+    {
+      "acronym": "PSOE",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_002",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 7821718,
+      "national_seats_secondary": 121,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "FO",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_014",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 46274,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PP",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_001",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 8160837,
+      "national_seats_secondary": 137,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PACMA",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_012",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 169237,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "PUM+J",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_018",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 23290,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "SUMAR",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_004",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 3044996,
+      "national_seats_secondary": 31,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "VOX",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_003",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 3057000,
+      "national_seats_secondary": 33,
+      "has_national_congress_seat_in_secondary_dataset": true,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    },
+    {
+      "acronym": "RECORTES CERO",
+      "status": "UNIQUE_EXACT_ACRONYM_SAME_ELECTION",
+      "source_atlas_id": "202307_label_017",
+      "source_official_document": "BOE-A-2023-15066",
+      "national_votes_secondary": 23421,
+      "national_seats_secondary": 0,
+      "has_national_congress_seat_in_secondary_dataset": false,
+      "legal_party_identity_resolved": false,
+      "person_identity_resolved": false
+    }
+  ],
+  "exact_unique_matches": 8,
+  "no_seat_labels_with_candidacy": 4,
+  "ambiguities": 0,
+  "legal_parties_validated": 0,
+  "people_joined": 0,
+  "disclaimer": "Link is an exact acronym across two electoral datasets. National total votes/seats, NOT Albacete-only totals and NOT parties' legal identities; never infer political influence."
+}
+✔ all eight Albacete original BOE labels have a unique exact secondary election label (27.506822ms)
+✔ at least four options with original proclaimed list had no seats in this historical election (22.026794ms)
+✔ ambiguous acronym does not silently resolve legal identity (8.980456ms)
+✔ reject false original-source declaration (7.737463ms)
+✔ 28 distinct numbered effects emitted (32.735388ms)
+✔ synthetic cross-option miss counter preserves total (2.140822ms)
+✔ C13 identifies one strict reversal only in close margins (8.259926ms)
+✔ C14 conservative certification has no false sign proof (1.440921ms)
+✔ C29 no false group count mismatch in complete fixture (1.481312ms)
+✔ C30 does not claim official certification even with complete fixtures (3.742382ms)
+✔ future-derived prediction is declared retrospective (4.188347ms)
+✔ Orphan claim source and subject are reported by warehouse audit (35.319461ms)
+✔ Empty warehouse audit is referentially valid but NOT source-ready (2.33877ms)
+✔ Forecast and identity CT2 are separate dated ordinal measures (20.765121ms)
+✔ real CLI processes fictional actor bundle without exposing personal names (831.620265ms)
+✔ CLI fails closed on unsupported class or invalid first-public evidence (727.228637ms)
+✔ CLI recomputes SHA256 on local input bytes; rejects deliberately wrong hash (1518.07891ms)
+✔ CLI rejects raw attachment that escapes bundle directory (696.620069ms)
+✔ nested event participant politically-sensitive guess is rejected (37.121895ms)
+✔ nested role payload with private contact key rejected (13.575922ms)
+✔ nested source with personal political profile rejected (2.749972ms)
+✔ JSON prototype pollution key rejected even when nested (4.016266ms)
+✔ cyclic untrusted payload rejected deterministically (2.791006ms)
+✔ legitimate public event still accepted with documented roles (35.178012ms)
+✔ PF-BR30J-S01: Registry metadata has no actual captured raw parties (36.326931ms)
+✔ PF-BR30J-S02: Interior elected officials catalogue is not an ingested roster (2.494535ms)
+✔ PF-BR30J-S03: JEC candidates are separate from juridical party registration (3.392368ms)
+✔ PF-BR30J-S04: At least one official municipal source other than national Congress (5.016097ms)
+✔ PF-BR30J-S05: RAW source fails without recomputed SHA256 (11.847257ms)
+✔ PF-BR30J-S06: Catalog-only source cannot back a political actor (9.867794ms)
+✔ PF-BR30J-S07: Unknown rights do not pass reuse gate (7.331231ms)
+✔ PF-BR30J-S08: Source revisions retained under distinct IDs, duplicates rejected (3.754141ms)
+✔ PF-BR30J-I09: Stable name-independent exact namespace ID resolution (25.470619ms)
+✔ PF-BR30J-I10: Homonym names remain unresolved without external ID (14.929864ms)
+✔ PF-BR30J-I11: Coalition only has members when an explicit role is sourced (28.44826ms)
+✔ PF-BR30J-I12: Candidacy does not silently create party membership (13.452766ms)
+✔ PF-BR30J-I13: Effective intervals exclude expired spokesperson role (12.323062ms)
+✔ PF-BR30J-I14: Seat status is unknown without official dated claim (14.599141ms)
+✔ PF-BR30J-E15: Non-parliament public debate with documented participants (9.789358ms)
+✔ PF-BR30J-E16: As-of excludes even published fact if source observed later (20.87257ms)
+✔ PF-BR30J-E17: No numeric influence scoring accepted (5.258599ms)
+✔ PF-BR30J-E18: Civic platform may organize events without parliamentary seat (4.213697ms)
+✔ PF-BR30J-E19: Public event corrections retain both versions (7.124635ms)
+✔ PF-BR30J-E20: External IDs require review only when shared by the same source (11.477919ms)
+✔ PF-BR30J-E21: Ordinary private person records rejected (3.300993ms)
+✔ PF-BR30J-M22: Coverage denominator remains unknown (8.103322ms)
+✔ PF-BR30J-M23: Coverage stratified by actor and source type, without ranking (5.053398ms)
+✔ PF-BR30J-M24: Absent office claims not inferred from public events (3.04049ms)
+✔ PF-BR30J-M25: No longitudinal forecasting without timestamped primary field data (2.85595ms)
+✔ PF-BR30J-M26: Conflicting dated office claims produce review status (2.918118ms)
+✔ PF-BR30J-P27: Fictional bundle integrity reports only source-scoped event collisions (7.765386ms)
+✔ PF-BR30J-P28: Demo exposes aggregate readiness but not personal labels (1.778164ms)
+✔ PF-BR30J-P29: 30 test cases are registered for standalone Node, with errors reported (1.591854ms)
+✔ PF-BR30J-P30: Conservative readiness reports no real people verified (6.057641ms)
+✔ fully observed synthetic outcomes produce zero effect and collapsed bounds (35.830981ms)
+✔ known factorial differences are point identified in fully observed synthetic four arms (3.999836ms)
+✔ completer advantage can reverse after worst-case missingness (4.167943ms)
+✔ all-missing arm returns finite [0,1] without fictional zero outcomes (3.393894ms)
+✔ extra missingness can only widen when observed sum and assigned stay fixed (2.765114ms)
+✔ positive interaction can be sign-identified with fully observed extreme cells (4.722978ms)
+✔ negative interaction can be sign-identified with fully observed extreme cells (2.517939ms)
+✔ missing effects cannot be interpreted as authenticated causal ITT (4.349003ms)
+✔ input forbids identities and individual rows (8.541511ms)
+✔ rejects extra unregistered arm (15.635502ms)
+✔ rejects negative scores (5.634749ms)
+✔ rejects sum exceeding observed successes (4.251365ms)
+✔ rejects missing fraction masquerading as zero assigned (5.205383ms)
+✔ rejects observed greater than assigned (8.147006ms)
+✔ rejects floating assigned counts (4.494437ms)
+✔ rejects non-finite score (10.985999ms)
+✔ rejects all-missing with nonzero observed score (3.779927ms)
+✔ rejects inherited prototype payload (9.769167ms)
+✔ C20 records ranked effort gains and unranked displacement separately (30.366359ms)
+✔ C20 refuses negative or implausible effort (4.783367ms)
+✔ C21 uses baseline before allocation for stratification (29.027074ms)
+✔ C21 rejects baseline measured after assignment (16.253335ms)
+✔ C22 counts cross-arm edges without implying no interference (3.808853ms)
+✔ C22 rejects unknown graph nodes (3.802209ms)
+✔ C23 five-room blocks distribute exactly one each (3.881224ms)
+✔ C23 duplicate rooms and unbalanced five-blocks rejected (13.827366ms)
+✔ C24 differentiates dropout from administrative censor (19.880103ms)
+✔ C24 forbids event after cutoff coded as observed (12.869485ms)
+✔ C25 public pseudonyms admit metric only (8.653064ms)
+✔ C25 rejects identifying free-text fields (4.019063ms)
+✔ C26 requires publication-time eligibility before scored outcome (2.756807ms)
+✔ C26 rejects future-outcome leakage (3.824034ms)
+✔ C27 checks rules effective before opportunities (4.179843ms)
+✔ C27 rejects retroactive rule (3.835594ms)
+✔ C28 separates voluntary abstention from unseen results (17.460454ms)
+✔ C28 rejects score in an abstention (2.928313ms)
+✔ C29 Holm family-adjustment monotone sorted p-values (4.536065ms)
+✔ C29 rejects unregistered sixth comparison (1.969738ms)
+✔ C30 cannot certify launch even with all synthetic flags true (2.969505ms)
+✔ C30 missing essential gate is rejected not silently defaulted (1.343664ms)
+✔ C21 refuses duplicate member baseline records (1.756937ms)
+✔ C22 rejects duplicate directed network ties (1.512181ms)
+✔ C24 empty risk set must fail closed (1.839941ms)
+✔ C25 hidden Symbol identifier is forbidden (1.619943ms)
+✔ C26 invalid calendar normalization is rejected (2.385067ms)
+✔ C27 chronological rule revision selects newest active version (2.491261ms)
+✔ C27 stale previous rule after revision is rejected (2.25964ms)
+✔ C28 NaN scored outcome cannot make null numerical bounds (2.030879ms)
+✔ positive full five-arm synthetic receipt audit (58.221141ms)
+✔ missing render is UNKNOWN not evidence of zero receipt delivery (7.228769ms)
+✔ empty set of receipts is permitted as unknown not successful exposure (8.234206ms)
+✔ public quartile cannot masquerade as public full ordering (8.752815ms)
+✔ private full order cannot be delivered to room (3.523086ms)
+✔ replayed duplicate receipt ID rejected (7.431721ms)
+✔ distinct receipt ID cannot double-count same opportunity (15.451529ms)
+✔ room change without assignment is rejected (2.598105ms)
+✔ arm substitution at render time rejected (8.260204ms)
+✔ render before opportunity opens rejected (14.794407ms)
+✔ render at end of half-open opportunity rejected (7.757039ms)
+✔ mixed arms in same room rejected (11.784739ms)
+✔ unassigned opportunity rejected (8.335417ms)
+✔ wrong receipt provenance rejected (2.646166ms)
+✔ real participant fields forbidden (6.300633ms)
+✔ prototype pollution or accessors rejected (5.504704ms)
+✔ noncanonical UTC rejected (4.624764ms)
+✔ invalid opportunity interval rejected (6.210846ms)
+✔ no opportunities rejected, not invented as zero (2.277694ms)
+✔ configured contract failing parity prevents any synthetic receipt scoring (2.660835ms)
+✔ executes ten independent synthetic renders and generates receipts internally (71.494873ms)
+✔ own only has no comparative signal (30.487181ms)
+✔ private quartile contains no room aliases (21.425741ms)
+✔ public quartile has room ranks but no precise full order (17.584188ms)
+✔ private order has rank but no peers (6.14265ms)
+✔ public order displays pseudonymous room order (6.994642ms)
+✔ equal scores tie at best rank consistently (124.866207ms)
+✔ invalid score >1 rejected (10.296338ms)
+✔ duplicate synthetic score rejected (6.171748ms)
+✔ missing score rejected (15.467153ms)
+✔ injecting receipt field rejected (5.618294ms)
+✔ cross-arm opportunity rejected by independent auditor (3.667449ms)
+✔ same room cannot host conflicting arms (4.047448ms)
+✔ non-finite synthetic score rejected (6.236449ms)
+✔ renderer not certified as actual human exposure or browser delivery (8.908097ms)
+✔ five valid synthetic arms and four factorial cells produce planned contrasts (35.426013ms)
+✔ never treats contract parity as delivered exposure (3.959377ms)
+✔ public full-order vs private quartile is a bundled contrast, not main publicness effect (3.459557ms)
+✔ public quartile cannot silently become full ordered leaderboard (10.266941ms)
+✔ private full order cannot silently become a room display (2.645876ms)
+✔ public room feedback cannot remove fictional aliases (6.114434ms)
+✔ cannot send real participant identities (3.871791ms)
+✔ all arms retain own score (2.82673ms)
+✔ virtual scoring rule cannot drift to real monetary incentives (5.961116ms)
+✔ same game events required across arms (18.844969ms)
+✔ common schedule must not vary by arm (7.310263ms)
+✔ malformed event hash rejected (7.592086ms)
+✔ extra participant rows never accepted (12.28012ms)
+✔ missing control invalidates the entire contract (1.776267ms)
+✔ cannot add unsupported sixth treatment (3.161306ms)
+✔ rejects inherited prototype input (6.393387ms)
+✔ rejects unexpected per-arm exposure claims (5.94181ms)
+✔ rejects malicious symbol property (3.121196ms)
+✔ fake event hash object with coercible toString rejected (2.386282ms)
+✔ fake schedule hash object with coercible toString rejected (1.866424ms)
+✔ valid HMAC and chain of distinct synthetic events (56.028112ms)
+✔ signatures are not fake real renderer attestation (5.579921ms)
+✔ wrong key fails signature (5.334997ms)
+✔ mutating arm fails cryptographic check (6.466188ms)
+✔ mutating feedback fails (2.700765ms)
+✔ mutating audience fails (3.871933ms)
+✔ mutating time fails (6.816236ms)
+✔ replaying same receipt fails chain (9.470038ms)
+✔ same opportunity with other receipt id fails chain (10.135533ms)
+✔ empty chain is not proof of zero exposure (13.016317ms)
+✔ short key rejected (6.292192ms)
+✔ key must be Buffer not coerced (3.247984ms)
+✔ unexpected personal fields rejected (2.225471ms)
+✔ invalid arm rejected (9.105456ms)
+✔ noncanonical ISO rejected (2.227385ms)
+✔ tampered hex rejected (4.082227ms)
+PASS 1 complete Sep27 path has 16 original unique versions
+PASS 2 complete Oct11 path has 3 original unique versions
+PASS 3 commit times monotonically ordered per path
+PASS 4 question original SHAs immutable
+PASS 5 prior Sep27 question first public returns unavailable
+PASS 6 Sep27 public question with no public resolution file yields unavailable
+PASS 7 Oct11 question first available but resolution data absent
+PASS 8 Oct08 midnight still Oct07 published original file
+PASS 9 Oct08 after 07:01 published new source version selected
+PASS 10 Oct10 version selected rather than Oct07 sparse shortcut
+PASS 11 Oct20 uses last Oct19 source not outdated Oct07
+PASS 12 Oct25 uses Oct24 original source not Oct23 shortcut
+PASS 13 Oct11 before Oct23 first resolution still absent even with questions
+PASS 14 Oct11 Oct23 original resolution source becomes eligible
+PASS 15 Oct11 Oct25 chooses actual Oct24 updated source
+PASS 16 Oct29 last verified checkpoint as of 16 UTC permitted
+PASS 17 any future source date beyond observed Git verification refused
+PASS 18 noncanonical dates and offsets denied
+PASS 19 unsupported cohort rejected
+PASS 20 false empty original resolution source cannot masquerade as known value
+PASS 21 same outcome retained across complete source history
+PASS 22 one newly known outcome added when the 9th source version arrives
+PASS 23 real per-source original outcome flip detected rather than erased
+PASS 24 source outcome disappearing is preserved explicitly
+PASS 25 missing original version source file fails closed, never filled from future version
+PASS 26 all summary outputs omit source market question IDs
+PASS 27 source full time-line cannot be passed through unrecognized cohort
+PFL full original Git source history 27/27 PASS
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_forecastbench_full_history.mjs (764.197387ms)
+✔ C36 detects real outcome field change without outputting source ids (22.002301ms)
+✔ C36 separates date-only from outcome change (2.829804ms)
+✔ C36 counts joint date and outcome change once (9.754791ms)
+✔ C36 rejects duplicate original source keys (7.559404ms)
+✔ C36 refuses individual-person fields even in public fixture (2.953883ms)
+✔ C36 refuses cross question-set versions (2.767116ms)
+✔ C36 validates row accounting with removals and additions (2.34833ms)
+PFL original source byte gate 13/13 PASS
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_forecastbench_provenance.mjs (711.894168ms)
+✔ positive published aggregate CSV cross-panel keyed comparison, only aggregate summaries (44.740996ms)
+✔ rejects missing mandatory aggregate columns (7.909038ms)
+✔ rejects duplicate headers (4.204351ms)
+✔ unmatched models do not become fake paired units (18.121148ms)
+✔ duplicate model keys fail out of matched comparability (7.278727ms)
+✔ minimum common N threshold applies to both datasets (9.16644ms)
+✔ reject malformed quoted row, do not quietly reshape (6.808907ms)
+✔ unclosed or extra columns rejected (4.064007ms)
+✔ quoted commas in model names parse as a single model identity (6.010784ms)
+✔ negative and noninteger aggregate N are rejected (15.027286ms)
+✔ paired rank is descriptive, not common-trial inference (22.357822ms)
+✔ C09 genuine original-scope adversarial fixture: missing one raw row is visible (58.046697ms)
+✔ raw removal is not concealed by addition of another row at constant count (4.978531ms)
+✔ outcome flip for same composite key is a mutation, not a new event (8.648765ms)
+✔ non-Y metadata correction also detected (6.050688ms)
+✔ object property insertion order does not create false mutations (8.107614ms)
+✔ safely isolates source plus id, rather than id alone (15.262377ms)
+✔ new event row is counted without pretending first-public-at is known (6.345315ms)
+✔ duplicate source id fails closed (6.987569ms)
+✔ bad key fails closed (8.803905ms)
+✔ schema mismatch fails closed (16.073181ms)
+✔ cross cohort fails closed (6.739476ms)
+✔ future-to-past / equal time prohibited (6.983055ms)
+✔ equal source blob prohibited even if commits differ (5.159347ms)
+✔ invalid UTC or source hashes rejected (2.993853ms)
+✔ no public question IDs or source text in output (5.588241ms)
+✔ chain of three snapshots finds changes in each transition (16.579338ms)
+✔ chain refuses fewer than two snapshots (4.197597ms)
+✔ malicious special property in source record is not permitted (6.875649ms)
+✔ no personal source semantics are claimed by results (1.721376ms)
+PFL source as-of safety 16/16 PASS
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_forecastbench_source_guard.mjs (559.187805ms)
+PASS 1 published source version plan has three distinct original SHA sets
+PASS 2 missing directory rejected before reading
+PASS 3 prepublication source failure occurs without file IO
+PASS 4 reverse-ordered snapshots rejected before file IO
+PASS 5 file from correctly named original commit rejected if byte hash wrong
+PASS 6 CLI error never prints raw question, local path or file contents
+PASS 7 CLI bad args do not open source paths
+PASS 8 CLI before first source commit rejects non-existent directory before IO
+PFL public original bitemporal CLI 8/8 PASS
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_forecastbench_vintage_cli.mjs (3320.267489ms)
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_forecastbench_vintage_replay.mjs (319.446368ms)
+✔ BOE Table I transcribed 52 provinces and 6 official totals (46.333506ms)
+✔ JEC transcription rejects altered count even if line algebra remains valid (16.745016ms)
+✔ JEC rejects a duplicate district row (5.570022ms)
+✔ Five official BOE Table III options without seats match secondary atlas (16.274185ms)
+✔ Coalitions are typed distinct from parties and Senate-only not matched as Congress (41.954272ms)
+✔ Original verification and as-of disabled unless evidence exists (2.108549ms)
+✔ Initial selected section is exposed semantically (28.526768ms)
+✔ Dynamic navigation updates and removes the selected-state attribute (7.463459ms)
+✔ parented two-batch chunk passes with runs and no canonical claim (23.801016ms)
+✔ parent mismatch is explicitly fatal diagnostic (2.169175ms)
+✔ prior seed allows independent chunks (21.633211ms)
+✔ bad schema flagged (4.738448ms)
+✔ missing ops flagged (3.685606ms)
+✔ duplicate run ids in chunk flagged (3.77171ms)
+✔ invalid seed rejected (5.00801ms)
+✔ empty selection rejected (3.05261ms)
+PASS 1 synthetic exact four-file hash produces aggregate only, never personal or authenticated
+PASS 2 past source snapshot denied even when event would already be resolved
+PASS 3 published pinned four original hashes cannot be defeated with fake fixture
+PASS 4 mutating a value after computing the manifest rejects entire record
+PASS 5 partial file set or extra file rejected before audit
+PASS 6 invalid JSON rejected after matching exact bytes without echoing source
+PASS 7 no supplied source path fails closed
+PASS 8 real Node file IO refuses four raw files with wrong original SHA, no silent fallback
+PASS 9 CLI never emits question text or path on invalid source, nonzero exit
+PASS 10 CLI rejects argument shape before file IO
+✔ symlink final component never accepted as authoritative source (73.810792ms)
+PFL offline public audit 10 custom checks PASS; symlink control reported separately
+✔ Git SHA-1 known abc object (34.843204ms)
+✔ three real public C10 pairs pinned in source, not user manifest (13.120016ms)
+✔ pure positive synthetic buffers distinguish mutation and addition (32.679473ms)
+✔ reject corrupted bytes before JSON parsing (6.774649ms)
+✔ reject forged expected source digest (2.332661ms)
+✔ reject missing pin contract (5.42864ms)
+✔ reject duplicate (source,id) keys in source (9.334485ms)
+✔ reject schema mismatch despite correct original byte SHA (8.490705ms)
+✔ reject backwards Git commit time with correct bytes (7.772345ms)
+✔ reject cross cohort even if Git SHA matches (12.992786ms)
+✔ CLI no arguments fails closed with empty stdout (698.171705ms)
+✔ CLI refuses unknown source pair and never prints path (713.838154ms)
+✔ CLI rejects synthetic source bytes against its immutable original Git pins (738.305226ms)
+✔ CLI rejects missing source file without disclosing filesystem path (693.206431ms)
+✔ reject symlink before opening contents (13.806326ms)
+✔ reject empty source input before hashing (5.381049ms)
+✔ reject path and resolution row identifiers from CLI error output (705.140415ms)
+✔ overview must not invent a three-of-five production-readiness indicator (20.241823ms)
+✔ overview directs user to documented progress, not implied release readiness (12.702229ms)
+✔ paired complete strata return shares and representation gap, not election probability (24.265513ms)
+✔ different distribution represented without inferring identity (3.393419ms)
+✔ mismatched election or territory rejected (31.651899ms)
+✔ missing category, unknown category asymmetry rejected, never silently discarded (4.867303ms)
+✔ zero denominators and duplicate category rejected (3.406019ms)
+✔ bad types and impossible elected count within a stratum rejected (4.223219ms)
+✔ empty/array malformed input rejected (3.710977ms)
+✔ PF-BR20H-C01 (58.911295ms)
+✔ PF-BR20H-C02 (3.804979ms)
+✔ PF-BR20H-C03 (7.466444ms)
+✔ PF-BR20H-C04 (10.601817ms)
+✔ PF-BR20H-C05 (5.641563ms)
+✔ PF-BR20H-C06 (6.768286ms)
+✔ PF-BR20H-C07 (27.497663ms)
+✔ PF-BR20H-C08 (4.581151ms)
+✔ PF-BR20H-C09 (5.797765ms)
+✔ PF-BR20H-C10 (22.5242ms)
+✔ PF-BR20H-C11 (10.421219ms)
+✔ PF-BR20H-C12 (12.945953ms)
+✔ PF-BR20H-C13 (3.073353ms)
+✔ PF-BR20H-C14 (2.986656ms)
+✔ PF-BR20H-C15 (11.238274ms)
+✔ PF-BR20H-C16 (6.487676ms)
+✔ PF-BR20H-C17 (13.025214ms)
+✔ PF-BR20H-C18 (7.45595ms)
+✔ PF-BR20H-C19 (1.991666ms)
+✔ PF-BR20H-C20 (8.6924ms)
+✔ missing critical release milestones block all six gates (26.670822ms)
+✔ only V1 scope family is supported (9.41537ms)
+✔ missing track name is invalid (1.638743ms)
+✔ malformed milestone id is invalid (1.929444ms)
+✔ malformed milestone name is invalid (1.609869ms)
+✔ malformed milestone why is invalid (5.204836ms)
+✔ malformed milestone evidence_ref is invalid (3.95836ms)
+✔ malformed milestone size is invalid (2.535918ms)
+✔ malformed milestone size is invalid (6.792642ms)
+✔ native V3 and V4 evaluate and compare the full snapshots (104.122161ms)
+✔ a missing critical milestone remains a blocker (8.007141ms)
+✔ NaN is rejected rather than accepted as a numeric size (8.433771ms)
+✔ different families report lineage mismatch; unsupported matching families still fail validation (7.142581ms)
+✔ nine tracks 36 milestones (44.775488ms)
+✔ baseline completion 33.725 percent (8.812965ms)
+✔ report one decimal 33.7 (2.710871ms)
+✔ per track contributions sum global (8.394736ms)
+✔ release blockers stop public launch (4.614939ms)
+✔ maturity histogram covers 36 (5.839201ms)
+✔ duplicate milestone rejected (4.700763ms)
+✔ source without evidence rejected (11.626617ms)
+✔ invalid weight sum rejected (10.147409ms)
+✔ invalid maturity rejected (15.168759ms)
+✔ version bump requires reason (8.131603ms)
+✔ scope expansion lowers progress by 1.395 points (21.246207ms)
+✔ new evidence raises score without scope effect (6.377641ms)
+✔ scope plus work decompose exactly (4.839101ms)
+✔ wrong scope identity cannot be compared (6.711011ms)
+✔ wrong revision direction cannot compare (5.795104ms)
+✔ revised scope does not mutate baseline (13.269922ms)
+✔ unknown milestone update rejected (3.920427ms)
+✔ unknown track is rejected (3.82304ms)
+✔ reintroducing same task rejected (5.981855ms)
+✔ V2 work improvement is +1.725 pp with unchanged V1 scope (48.527056ms)
+✔ 9 tracks 36 milestones and six release blocks remain (5.746142ms)
+✔ Only evidence-backed source and QA maturities change (19.328444ms)
+✔ V1 snapshot never overwritten and hypothetical V2 isn't silently adopted (2.354031ms)
+✔ V3 is 36.35%: +0.90 pp verified browser activity, unchanged scope (62.213018ms)
+✔ only frontend and E2E QA milestones are upgraded (17.256174ms)
+✔ 36 tasks, nine lines and all six production safeguards remain (5.304332ms)
+✔ V4 is 36.90% with +0.55 pp only work, unchanged scope (54.105656ms)
+✔ only id.real and ev.person specified at level 1 (14.236619ms)
+✔ V4 preserves 9 tracks, 36 milestones, six gates and no scores (4.652592ms)
+✔ unknown first publication never inherits event or capture time (40.502827ms)
+✔ attested publication included only at or after cutoff (4.492196ms)
+✔ incomplete attestation remains unknown (4.100116ms)
+✔ reject impossible calendar and non-UTC timestamps (23.781095ms)
+✔ reject contradictory capture before published time (2.347112ms)
+✔ reject credential-bearing or non-https proof URL (7.09736ms)
+PASS 1 source commit date is the published original GitHub snapshot
+PASS 2 Oct01 prior retrospective day always rejects the Oct29 source
+PASS 3 Oct08 prior snapshot still cannot use Oct29 source
+PASS 4 just before publish is not allowed
+PASS 5 exact published second is allowed with source-only caveats
+PASS 6 valid later as-of maintains explicit source timestamp
+PASS 7 non UTC, date-only, invalid calendar and fractional times denied
+PASS 8 unrecognized source commit denied, even if date later
+PASS 9 old date-only API cannot silently default to later instant
+PASS 10 integrated pure audit rejects future published original before parsing
+PASS 11 test fixture can be counted only with explicit untrusted-manifest flag
+PASS 12 same fake bytes cannot impersonate the real four pinned source files
+PASS 13 missing file rejected for supported as-of
+PASS 14 native disk reader refuses historical source before any disk read
+PASS 15 native CLI refuses Oct01 time without reading data and leaks no path
+PASS 16 native CLI refuses legacy --as-of-date argument rather than silently leak
+PASS 17 native CLI with correct time and synthetic bytes fails original hashes
+PASS 18 native CLI with malformed time rejects before source bytes
+PFL bitemporal publication CLI 18/18 PASS
+✔ /tmp/repo/proyectos/politics-fantasy-league/tests/test_publication_integrated.mjs (4117.126731ms)
+✔ V4 real baseline is 0/6 with five currently admitted achievements (59.3979ms)
+✔ invented 100% V4 and 90 badges cannot make release ready (12.635748ms)
+✔ forged PASS labels and attestation fields do not verify themselves (20.659187ms)
+✔ negative external review keeps release blocked (6.044707ms)
+✔ scope revision must remain current V4 (7.095435ms)
+✔ missing one of six gates fails shut (13.811646ms)
+✔ duplicate gate cannot silently override evidence (11.555124ms)
+✔ missing core registry milestone blocks the release (8.772246ms)
+✔ positive trust-boundary injection proves control flow only, NOT authentication (14.098774ms)
+✔ Same external vote ID in different independent sources is not silently merged (30.481176ms)
+✔ Same source and external ID still prompts manual duplicate review (3.356952ms)
+✔ Absent external reference cannot certify duplicates (1.590044ms)
+✔ source URL with embedded credentials is rejected even if HTTPS (27.261061ms)
+✔ plain HTTPS fixture remains syntactically permitted, not authenticated (4.965014ms)
+✔ plain HTTP and escaped source authority rejected (4.576964ms)
+✔ C01 frozen engine reproduces all recorded seed outputs (2321.885441ms)
+✔ C02 frozen engine reproduces all recorded seed outputs (214.896246ms)
+✔ C04 frozen engine reproduces all recorded seed outputs (354.483317ms)
+✔ strict validator behavior is explicitly versioned (33.987464ms)
+✔ reject inherited person metadata in scorer (5.203114ms)
+✔ reject symbol property in scorer (3.76371ms)
+✔ reject non-enumerable metadata in scorer (2.666279ms)
+✔ reject getters in scorer (2.021712ms)
+✔ reject symbol property in event (6.294795ms)
+✔ reject symbol property in snapshot (9.663594ms)
+✔ reject inherited person metadata in snapshot (4.377786ms)
+✔ reject non-enumerable metadata in snapshot (6.109814ms)
+✔ reject a non-string rule version without coercing it (17.578385ms)
+✔ reject non-finite and unsafe counts (12.496187ms)
+✔ unknown coverage produces no scores (3.363612ms)
+✔ score is independent of later input mutation (2.931221ms)
+✔ forged previous manifest with matching cleartext is accepted, proving it is not authentication (8.870377ms)
+✔ reject arrays whose iterator hides scheduled events (2.35777ms)
+✔ reject array accessors before invoking them (5.958222ms)
+✔ reject unimplemented scoring rules in scorer and manifest (3.395877ms)
+✔ C03 expected rate (50.031317ms)
+✔ C03 scheduled denominator (4.115406ms)
+✔ C03 beta prior (1.624659ms)
+✔ C03 output frozen (2.375053ms)
+✔ C03 zero successes documented (5.688067ms)
+✔ C03 missing coverage null (4.676805ms)
+✔ C03 empty schedule null (7.66191ms)
+✔ C03 no attempts observed rate null (7.141655ms)
+✔ C03 reject person key (9.20465ms)
+✔ C03 reject party key (23.259913ms)
+✔ C03 reject real ids (5.918994ms)
+✔ C03 reject duplicate slots (5.379638ms)
+✔ C03 reject duplicate observed id (4.622453ms)
+✔ C03 reject incomplete vector (2.564489ms)
+✔ C03 reject missing evidence (2.652808ms)
+✔ C03 reject success on unattempted (2.025674ms)
+✔ C03 reject human round (1.769556ms)
+✔ C03 reject malformed event (3.478946ms)
+✔ C05 basic manifest (5.575744ms)
+✔ C05 canonical deterministic (1.983603ms)
+✔ C05 idempotent replay (2.088227ms)
+✔ C05 immutable (1.240233ms)
+✔ C05 unknown no score (1.648551ms)
+✔ C05 empty verified (2.382499ms)
+✔ C05 reject person key (2.28307ms)
+✔ C05 reject political party (1.956534ms)
+✔ C05 reject real round (1.843223ms)
+✔ C05 reject missing evidence (1.471547ms)
+✔ C05 reject fake zero when unknown (1.923332ms)
+✔ C05 reject invalid denominator (1.700319ms)
+✔ C05 reject fake score (1.546265ms)
+✔ C05 reject silent changed rule version (4.917313ms)
+✔ C05 reject silent changed evidence (5.549358ms)
+✔ C05 reject cross round replay (5.226333ms)
+✔ C05 reject unsupported status (3.068411ms)
+✔ C05 reject bad previous (2.47206ms)
+✔ C02 four arms 4 (88.921981ms)
+✔ C02 balanced 8 (2.705606ms)
+✔ C02 balanced 120 (8.180871ms)
+✔ C02 blockwise balance (4.350927ms)
+✔ C02 reproducible (4.925061ms)
+✔ C02 different seed different order (4.81714ms)
+✔ C02 valid extremes n=10000 (87.259636ms)
+✔ C02 no extra metadata (11.751959ms)
+✔ C02 frozen output (8.838726ms)
+✔ C02 reject small (38.01883ms)
+✔ C02 reject odd (6.621438ms)
+✔ C02 reject n fractional (2.88884ms)
+✔ C02 reject n too high (1.579405ms)
+✔ C02 reject seed decimal (1.518922ms)
+✔ C02 reject seed negative (1.616081ms)
+✔ C02 reject seed >u32 (1.607584ms)
+✔ C02 zero-seed determinism (2.186267ms)
+✔ C03 four items (3.333464ms)
+✔ C03 four constructs (1.8594ms)
+✔ C03 unique IDs (2.215468ms)
+✔ C03 three options each (1.401028ms)
+✔ C03 fiction no parties (2.445999ms)
+✔ C03 immutable top (1.486329ms)
+✔ C03 immutable item (1.436098ms)
+✔ C03 immutable options (1.460473ms)
+✔ C03 perfect score (4.287079ms)
+✔ C03 zero score (3.535979ms)
+✔ C03 partial score (1.410909ms)
+✔ C03 score frozen (1.642202ms)
+✔ C03 reject absent (3.388764ms)
+✔ C03 reject extra metadata (1.835466ms)
+✔ C03 reject invalid option (3.406204ms)
+✔ C03 reject lowercase (3.321312ms)
+✔ C03 reject array (1.555302ms)
+✔ C03 reject null (2.179276ms)
+✔ C03 round denominator factual (2.305286ms)
+✔ C03 coverage unknown case (1.789616ms)
+✔ C04 valid mock (12.075301ms)
+✔ C04 both artifacts frozen (2.786824ms)
+✔ C04 response snapshot frozen (1.30956ms)
+✔ C04 receipt separate (1.689017ms)
+✔ C04 fixture-only output (1.109644ms)
+✔ C04 accept partial (1.840261ms)
+✔ C04 requires review (1.811621ms)
+✔ C04 requires long ref (1.108872ms)
+✔ C04 reject missing consent (1.930945ms)
+✔ C04 reject missing adult (6.148907ms)
+✔ C04 reject real fixture (1.23252ms)
+✔ C04 reject name (1.08068ms)
+✔ C04 reject email (1.34955ms)
+✔ C04 reject political opinion (1.033279ms)
+✔ C04 reject IP (0.947608ms)
+✔ C04 reject extra timestamp (0.906119ms)
+✔ C04 reject unknown arm (1.239872ms)
+✔ C04 reject incomplete disguised (1.97699ms)
+✔ C04 reject unknown answer (1.580286ms)
+✔ C04 reject missing response field (3.723949ms)
+✔ C04 reject missing required (1.037414ms)
+✔ C04 review mock no data persistence (1.800261ms)
+✔ C05 all four cells (4.964799ms)
+✔ C05 means ctrl (1.421054ms)
+✔ C05 means transp (2.452907ms)
+✔ C05 means leaderboard (3.731887ms)
+✔ C05 means both (3.330471ms)
+✔ C05 main transparency (8.097964ms)
+✔ C05 main leaderboard (1.424218ms)
+✔ C05 interaction (1.866959ms)
+✔ C05 full observed tag (1.699688ms)
+✔ C05 source synthetic (2.549794ms)
+✔ C05 immutable cells (1.751239ms)
+✔ C05 immutable effects (1.041004ms)
+✔ C05 partial missing correctly marked (1.793748ms)
+✔ C05 empty observed arm effects null (1.644517ms)
+✔ C05 reject real source (1.704714ms)
+✔ C05 reject extra identity (1.559588ms)
+✔ C05 reject party (1.250151ms)
+✔ C05 reject ID metadata (1.37276ms)
+✔ C05 reject score 5 (1.504007ms)
+✔ C05 reject fraction (1.520968ms)
+✔ C05 reject falsified missing (1.327728ms)
+✔ C05 reject missing arm (1.559958ms)
+✔ C05 reject invalid arm (1.430657ms)
+✔ C05 reject absent rows (1.038648ms)
+✔ C05 reject nonarray (1.005001ms)
+✔ unsafe or deceptive source URLs cannot become links in either BOE panel (124.330945ms)
+✔ an official HTTPS BOE source stays clickable in both panels (10.360302ms)
+✔ vote bars retain all vote proportions without inline styles under strict CSP (38.317416ms)
+✔ zero votes do not create NaN geometry or lose the accessible total (16.372647ms)
+✔ all page renderers avoid style attributes blocked by the server CSP (2.560652ms)
+✔ C02 reject ambiguous separator in identity component (38.555396ms)
+✔ C02 reject separator in expediente scope (3.728408ms)
+✔ C02 unchanged key for canonical existing inputs (2.734364ms)
+✔ C02 duplicates inside same vote remain fail-closed (13.470374ms)
+✔ C02 distinct observations in one expediente remain distinct (4.013995ms)
+✔ C03 reject impossible and non-Gregorian calendar days (10.120695ms)
+✔ C03 allow real leap day without timezone reinterpretation (4.6243ms)
+✔ C04 reject object-to-string alias and numeric legislature (4.399224ms)
+✔ C04 reject untyped expediente and padded text (8.59525ms)
+✔ C04 reject null/array input in controlled form (16.431339ms)
+✔ C05 bounded aggregate sample has four distinct ballots in two expedientes (21.44091ms)
+ℹ tests 508
+ℹ suites 0
+ℹ pass 508
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80871.822332

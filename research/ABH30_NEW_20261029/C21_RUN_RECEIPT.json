@@ -1,0 +1,25 @@
+{
+  "schema": "pfl.abh30.cycle_native_execution_receipt.v1",
+  "cycle": "ABH30-C21",
+  "mode": "AB-P",
+  "prereg_commit": "016162991a6d9aa0a9ec08f8ed880abde1a62d02",
+  "source_Git": "30ad118ad2ce286a302ebfbf64c6108a6fce4b38",
+  "tests_Git": "dfcf2ccf5d062b3823216446cf30aa20eb26d466",
+  "node": "v22.16.0",
+  "native": {
+    "command": "node --test --test-name-pattern='C21 ' tests/test_fictional_pfl_impact_suite.mjs",
+    "pass": 2,
+    "fail": 0,
+    "exit": 0,
+    "TAP_sha256": "59bf2ef2fb28059a238dfe652d700bed75764e1f1d033cd32b0ee0b1ddc9bf31"
+  },
+  "observed": {
+    "baseline_first": true,
+    "posttreatment_stratification_blocked": true,
+    "sample": "SYNTHETIC"
+  },
+  "novel_product_capability": "Time-order eligibility of baseline strata before assignment to prevent post-treatment subgroup bias",
+  "grade": "0/3",
+  "CT2_scientific_ordinal": 20,
+  "decision": "VALID_LIMITED_AB_P_C21; proceed to C22 network-edge cross-arm interference diagnostic instead of more baseline variants."
+}

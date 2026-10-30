@@ -1,0 +1,115 @@
+{
+  "schema": "pfl.abh.branch5.campaign.v1",
+  "date": "2026-10-29",
+  "mode": "AB-H_BRANCHED_5",
+  "authorized_new": 5,
+  "base_pr": 43,
+  "base_head": "631aa015cc4696c557b92f8f2e76fa4de9d21261",
+  "branch": "research/pfl-abh-branching5-exposure-20261029",
+  "cycles": [
+    {
+      "id": "C01",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "result": "full assigned synthetic roster incl 0 responses, 12 eligible units and 4 initial responses; 8/8 initial then 9/9 final suite, no human inference",
+      "grade": "0/3",
+      "D": 0
+    },
+    {
+      "id": "C02",
+      "type": "AB-P",
+      "status": "VALID_AFTER_PREREG_REPAIR_LIMITED_SYNTHETIC",
+      "result": "strict separation of earlier vs later vs equal-time vs undocumented display; initial adversarial bug reproduced and fixed with 9/9 checks",
+      "grade": "0/3",
+      "D": 1
+    },
+    {
+      "id": "C03",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "D": 1,
+      "grade": "0/3",
+      "result": "New distinct assignment interference and room weighting diagnostic: 8/8 Node tests, 16 synthetic actors in 8 rooms; transparency factorial contrast equal person 0.25 versus equal room 0.5; room mixing fails closed.",
+      "prereg_commit": "b6409e2c7715f5f1bc6bcab572c3945860248e2e",
+      "result_record": "../ABH_BRANCHING5_INTERFERENCE_20261029/C03_RUN_RECEIPT.json",
+      "superseded_unexecuted_plan": {
+        "id": "C03",
+        "type": "AB-R",
+        "status": "PLANNING_ONLY_STOP_R5",
+        "result": "GJP original 2246 count does not furnish full assigned roster including nonrespondents; no human rows examined",
+        "grade": "0/3",
+        "D": 0
+      }
+    },
+    {
+      "id": "C04",
+      "type": "AB-R",
+      "status": "VALID_LIMITED_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "D": 2,
+      "grade": "0/3",
+      "result": "Source-backed aggregate analysis Karabiber & Gurol 2026, N219 included, 13 <1min excluded; 8568 allocations examined, max feasible six-arm retention gap 13/49 versus pooled excluded 13/232. Non-causal conditional bound.",
+      "prereg_commit": "9d0a42fa573c7a6fe05b790a4bc944e6894f6e8d",
+      "result_record": "../ABH_BRANCHING5_INTERFERENCE_20261029/C04_RUN_RECEIPT.json",
+      "superseded_unexecuted_plan": {
+        "id": "C04",
+        "type": "AB-R",
+        "status": "PLANNING_ONLY_STOP_R5",
+        "result": "Erat et al author links OSF data/code; OSF contents/license unverified. Palikot 2026 supplies competing composite treatment with existing control leaderboard.",
+        "grade": "0/3",
+        "D": 2
+      }
+    },
+    {
+      "id": "C05",
+      "type": "AB-P",
+      "status": "VALID_LIMITED_SYNTHETIC",
+      "result": "Time-varying leaderboard room membership proof obligation under as-of exposure witness: 3 synthetic members, 1 switch, 4 impressions, 9/9 Node positive and adversarial tests. Strict half-open assignment history and room arm consistency; no observed humans.",
+      "grade": "0/3",
+      "D": 1.2,
+      "prereg_commit": "cf075afa73994987492b8d683d80776ad4bb5148",
+      "result_record": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/C05_RUN_RECEIPT.json"
+    }
+  ],
+  "counts": {
+    "valid": 5,
+    "valid_scientific_0of3": 1,
+    "valid_product_synthetic_0of3": 4,
+    "invalid_cycles_final": 0,
+    "invalid_attempts": 1,
+    "planning_active": 0,
+    "planning_historical_superseded": 2,
+    "unopened": 0,
+    "remaining_new": 0,
+    "remaining_legacy_separate": 2
+  },
+  "CT2": {
+    "branch": "PFL_V1_prospective_science",
+    "before": 22,
+    "after": 22,
+    "scale": [
+      1,
+      100
+    ],
+    "ordinal_not_probability": true
+  },
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "pilot_launch_gates_passed": 0,
+  "total_launch_gates": 6,
+  "decision": "NEW_FIVE_COMPLETE_5OF5; HISTORICAL_TWO_UNCONSUMED_R5_EXTERNAL_DATA_AND_ETHICS_GATE",
+  "no_main_merge": true,
+  "no_chatrelay": true,
+  "no_expensive_CI": true,
+  "personal_records_downloaded": 0,
+  "source_prior_update": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+  "receipts": [
+    "PREREG_FREEZE.json",
+    "TIMESTAMP_TIE_REPAIR_PREREG.json",
+    "RUN_RECEIPT.json"
+  ],
+  "latest_branch": "research/pfl-abh5-c05-dynamic-room-exposure-20261029",
+  "canonical_report": "../ABH_BRANCHING5_DYNAMIC_ROOM_20261029/FINAL_REPORT.md"
+}

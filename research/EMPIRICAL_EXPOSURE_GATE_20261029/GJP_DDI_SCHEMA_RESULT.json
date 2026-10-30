@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-29",
+  "status": "PASS_DDI_SCHEMA_METADATA_ONLY",
+  "kind": "SOURCE_DOCUMENTATION_NOT_AB_CYCLE",
+  "prereg_commit": "969ab85e2f6b360ce0e5f8966192f9c3a004ee8a",
+  "run": "https://github.com/GalexY3/Metodologia-AB/actions/runs/40808323354",
+  "run_id": 40808323354,
+  "job_id": 123232452434,
+  "metadata_endpoint_pattern": "https://dataverse.harvard.edu/api/access/datafile/{id}/metadata/ddi",
+  "license": "CC0 1.0 original GJP dataset, from independent previous API run",
+  "files": [
+    {
+      "id": 2917351,
+      "file": "survey_fcasts.yr1.tab",
+      "ddi_sha256": "519bf2701bf994c63ec267cd45e2c4ee89b0d8984f258403ac2c9ee58f67e063",
+      "ddi_bytes": 7749,
+      "observations": 308232,
+      "variable_names": [
+        "ifp_id",
+        "ctt",
+        "cond",
+        "training",
+        "team",
+        "user_id",
+        "forecast_id",
+        "fcast_type",
+        "answer_option",
+        "value",
+        "fcast_date",
+        "expertise",
+        "q_status",
+        "viewtime",
+        "year",
+        "timestamp"
+      ]
+    },
+    {
+      "id": 2917352,
+      "file": "survey_fcasts.yr2.tab",
+      "ddi_sha256": "e07a4fb62f4fceabff595474bcc29efb174836f97534993bc6bd923156ac963c",
+      "ddi_bytes": 7740,
+      "observations": 435624,
+      "variable_names": [
+        "ifp_id",
+        "ctt",
+        "cond",
+        "training",
+        "team",
+        "user_id",
+        "forecast_id",
+        "fcast_type",
+        "answer_option",
+        "value",
+        "fcast_date",
+        "expertise",
+        "q_status",
+        "viewtime",
+        "year",
+        "timestamp"
+      ]
+    },
+    {
+      "id": 2917354,
+      "file": "survey_fcasts.yr4.tab",
+      "ddi_sha256": "807d3b97e1e2393afb320cd9150367b37195480946fc0c4161fd1393e1ab78be",
+      "ddi_bytes": 7762,
+      "observations": 1685784,
+      "variable_names": [
+        "ifp_id",
+        "ctt",
+        "cond",
+        "training",
+        "team",
+        "user_id",
+        "forecast_id",
+        "fcast_type",
+        "answer_option",
+        "value",
+        "fcast_date",
+        "expertise",
+        "q_status",
+        "viewtime",
+        "year",
+        "timestamp"
+      ]
+    }
+  ],
+  "market_files": [
+    {
+      "id": 2917341,
+      "name": "pm_transactions.control.yr4.csv",
+      "status": "DDI_UNAVAILABLE_HTTP_400"
+    },
+    {
+      "id": 2917348,
+      "name": "pm_transactions.supers.yr4.csv",
+      "status": "DDI_UNAVAILABLE_HTTP_400"
+    }
+  ],
+  "field_semantics": {
+    "ctt": "Readme states condition assignment; 2a/2b/2c allow crowd info in year1; 1a/1b/1c individual",
+    "viewtime": "UNVERIFIED_MEANING; field present in forecast table; not evidence of events for unresponded questions",
+    "forecast_date": "Within forecast rows, not proof of pre-response display",
+    "ifp_id": "Question joins to original ifps.csv",
+    "user_id": "Human pseudonym, GDPR/ethics controls retained",
+    "q_status": "Question status at forecast row"
+  },
+  "exposure_columns_named_seen_or_display": [
+    "viewtime"
+  ],
+  "explicit_per_user_question_impression_log_available": false,
+  "random_assignment_proven": false,
+  "individual_rows_downloaded": false,
+  "privacy": "DDI includes metadata descriptions, no person rows downloaded.",
+  "discriminant_gate": "GJP ctt crowd info is not necessarily leaderboard; event log E_iqt and assignment validity needed before causal analysis.",
+  "CT2_unchanged": 22,
+  "legacy_AB_unspent": 2
+}

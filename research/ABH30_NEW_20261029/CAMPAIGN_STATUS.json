@@ -1,0 +1,803 @@
+{
+  "schema": "pfl.abh30.campaign.status.v1",
+  "date": "2026-10-29",
+  "branch": "research/pfl-abh30-c10-original-raw-revisions-20261029",
+  "parent_pr": 59,
+  "parent_sha": "59c00952547b53c91e05e3173495d5902c4528e0",
+  "mode": "AB-H_BRANCHED_30",
+  "authorization": {
+    "new_granted": 30,
+    "new_completed": 30,
+    "new_remaining": 0,
+    "prior_grant_completed": 5,
+    "prior_grant_remaining": 0,
+    "historical_legacy_approved_remaining": 2,
+    "legacy_separate": true
+  },
+  "cycles": [
+    {
+      "id": "ABH30-C01",
+      "mode": "AB-P",
+      "D": 1,
+      "status": "VALID_LIMITED_REAL_SOURCE_REGRESSION_IMPORTABLE_ASOF_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "ee37d75c6ffb61a0a5da6c54cd6fe1930f31d0c9",
+      "result": "C01_RUN_RECEIPT.json",
+      "verified": {
+        "V8_tests": "15/15",
+        "existing_original_public_question_cohorts": 2,
+        "questions": 1000,
+        "cohort_regression_date_effect": "2026-09-27 changes accepted 10→52 between as_of 2026-10-01 and 2026-10-29"
+      },
+      "limitations": "V8 exact tests and native Node module tests 15/15; not full production HTTP end-to-end. existing cohort regression not new independent confirmation, no real human effect.",
+      "native_additional_confirmation": {
+        "tests": "15/15",
+        "runtime": "Node v22.16.0",
+        "prereg_SHA_commit": "7d78ee6745fc7ad52e7dad96874c1e0a6c5cd528",
+        "same_cycle": true
+      },
+      "adversarial_source_retraction": {
+        "status": "AS_OF_DATE_ONLY_NOT_PUBLICATION_HISTORIC",
+        "correction_source": "C05_RUN_RECEIPT.json",
+        "prior_conclusion": "Prior C01 10 apparently available as-of Oct01 was calculated from Oct29 repository snapshot, NOT original Oct01 public data",
+        "corrected": "No public Sep27 resolution_set file in this upstream Git history by Oct01; first at Oct07 07:19Z",
+        "tests_status": "C01 15/15 native time filtering not invalidated, but historical availability interpretation is invalid",
+        "cycle_invalidated": false
+      }
+    },
+    {
+      "id": "ABH30-C02",
+      "mode": "AB-P",
+      "D": 2,
+      "status": "VALID_LIMITED_ORIGINAL_SOURCE_GIT_BLOB_IDENTITY_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "912361cbf7266c1e9f2175fb08b2d3e9118a3b6e",
+      "sha_freeze_commit": "01fd351e062781078163fbffabc66ff4bc3caf20",
+      "result": "C02_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "13/13",
+        "known_git_hash_vector": true,
+        "real_upstream_four_file_sha_metadata_earlier_confirmed": true
+      },
+      "limitations": "Positive four original raw source files hashing not performed because unavailable offline; byte digest not source signature or data/license permission."
+    },
+    {
+      "id": "ABH30-C03",
+      "mode": "AB-R",
+      "D": 2,
+      "status": "VALID_LIMITED_PUBLIC_NONPERSON_REAL_MARKET_PARTIAL_IDENTIFICATION",
+      "grade_science": "0/3",
+      "prereg_commit": "9488a557ec45cf4fc45c0327402ab9d9d7be092d",
+      "sha256_freeze_commit": "f9198da1f27560f31449eb2c650a8b6cb9990306",
+      "result": "C03_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "15/15",
+        "real_original_public_500_question_cohorts": 2,
+        "market_questions_per_cohort": 250,
+        "known_asof": [
+          52,
+          8
+        ],
+        "partial_bounds": [
+          [
+            0.09705719762176714,
+            0.5194762392408311
+          ],
+          [
+            0.07839344737261655,
+            0.5985090687999615
+          ]
+        ]
+      },
+      "limits": "Existing original public cohorts, NOT independent new data or human rankings. Deterministic unidentified full mean, weak p=.5 is not competent baseline."
+    },
+    {
+      "id": "ABH30-C04",
+      "mode": "AB-P",
+      "D": 2,
+      "status": "VALID_TECHNICALLY_BOUNDED_OFFLINE_PUBLIC_SOURCE_IO_CLI",
+      "grade_science": "0/3",
+      "prereg_commit": "17559aa255434ef125f7cbe792c08544caa81721",
+      "result": "C04_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_tests": "11/11",
+        "github_and_local_git_blobs_match": true,
+        "native_filesystem_and_process_e2e_negative": true,
+        "positive_four_real_raw_files_e2e": false
+      },
+      "limits": "Runnable offline source audit CLI requires all four original public raw file hashes before JSON scoring; positive four-file original full-source pipeline NOT RUN; no human data or claim of public release."
+    },
+    {
+      "id": "ABH30-C05",
+      "mode": "AB-R",
+      "D": 2,
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLICATION_PROVENANCE_FALSIFICATION",
+      "grade_science": "0/3",
+      "prereg_commit": "16b505b9ed91c429724f08bfe5fa6761118c80e5",
+      "native_freeze_commit": "c117b7d0c8d9c1c29aa04aa9c82a7912f1e8781f",
+      "result": "C05_RUN_RECEIPT.json",
+      "verified": {
+        "native_Python_tests": "15/15",
+        "original_first_public_resolution_set_git_commit": "4eafa5cdda4d9fbf3542ea9f5f71050b9dd89110",
+        "original_first_published_at": "2026-10-07T07:19:29Z",
+        "first_Git_blob_sha_match": true,
+        "Oct08_first_original_snapshot_eligible": 30,
+        "Oct29_later_original_snapshot_eligible": 52,
+        "Oct01_public_Git_resolution_set_present": false
+      },
+      "limits": "Git repository whole-file publication only; no per-event first_public_at and no original human causal data. New Python full positive E2E raw-source local run NOT performed."
+    },
+    {
+      "id": "ABH30-C06",
+      "mode": "AB-P",
+      "D": 2,
+      "status": "VALID_LIMITED_NATIVE_OFFLINE_CLI_PUBLICATION_TIME_GATE",
+      "grade_science": "0/3",
+      "prereg_commit": "938f28ca7a6057aa89bff406765a5e5cf1d4b346",
+      "result": "C06_RUN_RECEIPT.json",
+      "native_test_results": {
+        "new": "18/18",
+        "migrated": "11/11",
+        "total": "29/29",
+        "node": "v22.16.0",
+        "source_git_byte_hashes_matched": true
+      },
+      "original_source_commit": "027ba0b3017a60e0e64602d724284ac6b2d91134",
+      "original_source_committed_at": "2026-10-29T07:30:17Z",
+      "fix": "C04 offline CLI now rejects Oct29 source at Oct01/Oct08 historical cutoff, forces exact UTC second as-of instant before disk IO; reports Git publication metadata only, no first_public_at of individual records.",
+      "limitations": "Actual original four-file positive CLI disk run NOT executed; only unit/native integration with local public-like synthetic fixtures, unchanged original public Git hashes and original commit metadata. No human causal evidence, no launch gate."
+    },
+    {
+      "id": "ABH30-C07",
+      "mode": "AB-H_AB-P_AB-R_PUBLIC_NONPERSON",
+      "D": 2,
+      "status": "VALID_BOUNDED_PUBLISHED_GIT_VINTAGE_ORIGINAL_SOURCE_REPLAY_PLUS_NATIVE_CLI_TESTS",
+      "grade_science": "0/3",
+      "prereg_commit": "346abafbbbb13601b91640bf78d714b43f171c6e",
+      "final_repair_sha_freeze": "4388c76e409854d6ca2667a177b46bc754e5926f",
+      "receipt": "C07_RUN_RECEIPT.json",
+      "legal_gate": "C07_HUMAN_DATA_ACCESS_GATE.json",
+      "verified": {
+        "original_public_git_blobs_raw_sha1": 7,
+        "source_checkpoints": 3,
+        "source_cohorts": 2,
+        "replay_asof": [
+          "2026-10-08T00:00:00Z",
+          "2026-10-24T00:00:00Z",
+          "2026-10-29T16:00:00Z"
+        ],
+        "native_Node_source_tests": "25/25",
+        "native_Node_cli_tests": "8/8",
+        "total_native": "33/33",
+        "counts": {
+          "2026-09-27": [
+            30,
+            46,
+            52
+          ],
+          "2026-10-11": [
+            null,
+            2,
+            8
+          ]
+        },
+        "revisions_known_outcome_flips": 0,
+        "previously_known_lost": 0,
+        "per_source_new_known": [
+          22,
+          6,
+          6
+        ]
+      },
+      "limits": "Exact three verified source checkpoints only. Some intermediate original Git versions exist and are deliberately rejected. Original Git blobs SHA verified in V8/GitHub and original replay executed on exact frozen code; full positive native CLI with all seven original files on local disk NOT run. No personal human data, causal PFL ranking science or new independent institution."
+    },
+    {
+      "id": "ABH30-C08",
+      "mode": "AB-H_AB-P_PLUS_AB-R_PUBLIC_EVENT_SOURCE",
+      "D": 2,
+      "status": "VALID_LIMITED_FULL_ORIGINAL_GIT_PATH_HISTORY_PUBLIC_SOURCE_EXECUTED_V8_NOT_NATIVE_FILE_E2E",
+      "grade_science": "0/3",
+      "prereg_commit": "eb6fae1336ff734c13d975aae4c1c9d83157ee1d",
+      "run_receipt": "C08_RUN_RECEIPT.json",
+      "verified": {
+        "original_public_git_resolution_versions": 19,
+        "original_unique_public_full_git_blobs_sha1_verified": 21,
+        "source_history_complete_in_checked_window": true,
+        "original_question_cohorts": 2,
+        "frozen_code_V8_test_groups": "27/27",
+        "native_Node_source_tests": "NOT_EXECUTED",
+        "complete_local_original_cli_positive": "NOT_EXECUTED",
+        "sep27_eligible_first_last": [
+          30,
+          52
+        ],
+        "oct11_eligible_first_last": [
+          2,
+          8
+        ],
+        "previously_eligible_binary_y_lost": 0,
+        "previously_eligible_binary_y_flipped": 0,
+        "raw_source_row_counts_nonmonotone": true
+      },
+      "limits": "Complete source PATH publication revisions within checked window, not complete third-party event first publication. Public original data analyzed by exact code in V8 over batched full Git blobs; no positive native Node full-source file E2E, no human participant causal effect."
+    },
+    {
+      "id": "ABH30-C09",
+      "mode": "AB-P",
+      "D": 1,
+      "status": "VALID_LIMITED_NATIVE_SYNTHETIC_RAW_REVISION_GUARD",
+      "grade_science": "0/3",
+      "prereg_commit": "464b56c0f78416701b015dff4467912bd7cb97b5",
+      "result": "C09_RUN_RECEIPT.json",
+      "verified": {
+        "github_frozen_code_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+        "github_frozen_test_blob": "b9edf86d4a0609b9e4bb542fe85221857460a12d",
+        "local_code_sha256": "21882420a2713ee8490d819d9936d33a5123f6869d4b97e3c244098908653ee9",
+        "local_test_sha256": "7abf599d3f8cbe6b9312484d1944cd3b8039c7ee926c48172e473165bf2a34ed",
+        "native_Node_version": "v22.16.0",
+        "native_Node_tests": "19/19_PASS",
+        "exit_code": 0,
+        "original_public_21_blob_positive_rerun": "NOT_EXECUTED"
+      },
+      "limits": "New read-only component tests synthetic public source revisions, detects raw record deletion/replacement/mutation not covered by C08 binary subset; source Git blob authenticity must be performed upstream. No original source execution in C09, deployment, human trial or scientific discovery."
+    },
+    {
+      "id": "ABH30-C10",
+      "mode": "AB-H_AB-R_PUBLIC_SOURCE_AB-P_SOURCE_QA",
+      "D": 1,
+      "status": "VALID_BOUNDED_ORIGINAL_6_BLOBS_RAW_ROW_REVISION_V8",
+      "grade_science": "0/3",
+      "prereg_commit": "1dd2ea52bcce8de76dc5b415592288295fce2dfe",
+      "run_receipt": "C10_RUN_RECEIPT.json",
+      "verified": {
+        "original_public_Git_SHA1_recomputed_full_blob": "6/6",
+        "frozen_Code_Git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+        "original_Git_revision_pairs": 3,
+        "raw_row_removed_transition_events": 16,
+        "raw_row_added_transition_events": 2,
+        "raw_row_mutated_transition_events": 671,
+        "composite_key_unique_and_count_identities": "3/3_PASS",
+        "actual_original_code_execution": "V8_on_original_full_GitHub_JSON",
+        "original_native_local_file_execution": "NOT_EXECUTED",
+        "posthoc_date_field_changes": [
+          214,
+          212,
+          239
+        ],
+        "posthoc_resolved_to_changes": [
+          79,
+          77,
+          128
+        ]
+      },
+      "limits": "Three selected source-revision contrasts from two already inspected cohorts; posthoc field decomposition; values are continuous for many noneligible sources. Not proof of binary event outcome flips, original market first_public_at, independent human research, production E2E, rights to personal rows."
+    },
+    {
+      "id": "ABH30-C11",
+      "mode": "AB-P_LOCAL_ORIGINAL_PUBLIC_PINNED_REVISION_CLI",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_17_OF_17_CLI_WITH_SYNTHETIC_FIXTURES",
+      "grade_science": "0/3",
+      "prereg_commit": "5d386f40ade3148296c30780af15f9ef72cefcc3",
+      "run_receipt": "C11_RUN_RECEIPT.json",
+      "verified": {
+        "native_node_version": "v22.16.0",
+        "native_frozen_tests": "17/17_PASS",
+        "CLI_source": "scripts/offline_forecastbench_revision_audit.mjs",
+        "code_git_blob": "2b6e910c998f99de121050badfab83adaf345220",
+        "test_git_blob": "d81e5197104bbd0dad287cd3519950a5dad1f196",
+        "dependency_original_C09_git_blob": "2e1ed7f5e23bbad79c81013505882830907cb258",
+        "synthetic_positive_buffer_adaptor": "PASS",
+        "pinned_original_CLI_negative_wrong_bytes": "PASS_FAIL_CLOSED",
+        "original_full_source_positive_native": "NOT_EXECUTED",
+        "atlas_0081_batch_static_check": "PASS",
+        "atlas_0081_native_python_full_replay": "NOT_EXECUTED"
+      },
+      "limits": "17 synthetic/local CLI tests only; no genuine original local file E2E, no clean clone, no new publisher or human data, no causal evidence. Existing read-only CLI supplements but does not supersede original C04/C06 question audit."
+    },
+    {
+      "id": "ABH30-C12",
+      "mode": "AB-R_INDEPENDENT_PRIMARY_HUMAN_RANDOMIZED_FORECAST_INCENTIVES_DOCS",
+      "D": 2,
+      "status": "VALID_LIMITED_PRIMARY_AAAI_CODE_AND_METHOD_DOCUMENTARY_NO_PERSON_DATA",
+      "grade_science": "0/3",
+      "prereg_commit": "eec8c9ce4bdc847c6b30f8527a5e14d0cc55cd68",
+      "run_receipt": "C12_RUN_RECEIPT.json",
+      "verified": {
+        "independent_published_RCT": true,
+        "paper_DOI": "10.1609/aaai.v34i02.5591",
+        "external_readme_SHA": "d4197dbdb69b6934b6ad565cfe070ae9009ee046",
+        "original_analysis_Rmd_SHA": "9ec6e3cd0cdc10bc7cbf1a590c643a01575ef07c",
+        "treated_forecasters_in_paper": 891,
+        "arms": 4,
+        "private_daily_quartile_feedback_not_public_leaderboard": true,
+        "original_Rmd_Oct13_update_selector_bug": "POST_HOC_STATIC_SOURCE_VALIDATED",
+        "Rmd_last_day_change_missing": "POST_HOC_STATIC_SOURCE_VALIDATED",
+        "person_level_downloads": 0,
+        "repo_license_declared": null,
+        "original_R_script_native": "NOT_EXECUTED",
+        "PFL_human_experiment": "NOT_EXECUTED"
+      },
+      "limits": "Independent published human RCT is prior art, not new PFL result or direct replicated estimand. 54/945 inclusion selection may affect ITT, no attrition arm data; private quartile not public league. Rmd original code defects posthoc; impact on published results not established. Public repo no declared license, no participant rows accessed."
+    },
+    {
+      "id": "ABH30-C13",
+      "mode": "AB-H_AB-P_MATHEMATICAL_PARTIAL_ID_SYNTHETIC_AGGREGATES",
+      "D": 2,
+      "status": "VALID_LIMITED_NATIVE_MANSKI_BOUNDS_18_OF_18_NO_HUMAN_DATA",
+      "grade_science": "0/3",
+      "prereg_commit": "5c2b06558f7f497a4d21954467f48d95310247d7",
+      "run_receipt": "C13_RUN_RECEIPT.json",
+      "verified": {
+        "native_Node_version": "v22.16.0",
+        "native_tests_first_execution": "18/18_PASS",
+        "native_git_blob_source": "93f18028fba28e9a4ee2b71183ca5a9a6825fde6",
+        "native_git_blob_tests": "eedf1b826914ffae4634216107fa090be0d3910c",
+        "original_synthetic_factorial_complete_case_leaderboard": 0.175,
+        "mathematical_identification_bounds_leaderboard": [
+          -0.11,
+          0.19
+        ],
+        "interaction_bounds": [
+          -0.38,
+          0.22
+        ],
+        "human_rows_processed": 0,
+        "actual_randomization_or_exposure": "NOT_VERIFIED",
+        "positive_production_integration": "NOT_EXECUTED"
+      },
+      "limits": "Standard mathematical partial identification applied to entirely synthetic four-arm aggregate, not novel social science or a human ITT estimate. Assumption normalized outcomes in [0,1]. Can bound but cannot identify sign under MNAR. No full product rollout."
+    },
+    {
+      "id": "ABH30-C14",
+      "mode": "AB-H_AB-P_FIVE_ARM_RANK_VISIBILITY_X_GRANULARITY_DESIGN",
+      "D": 2,
+      "status": "VALID_REPAIRED_BOUNDED_NATIVE_20_OF_20_WITH_PRESERVED_INITIAL_INVALID_ATTEMPT",
+      "grade_science": "0/3",
+      "prereg_commit": "cb50ce4a84ebfdf98829b9d93fa3eafb945e331e",
+      "initial_prereg_commit": "cb6b06a69e813a54b610e062cbad2e6035ebfe7c",
+      "initial_invalid_attempt": "C14_INITIAL_INVALID_ATTEMPT.json",
+      "run_receipt": "C14_RUN_RECEIPT.json",
+      "verified": {
+        "repair_source_Git_blob": "cad226a589772de6c733929d32a527252d719ad6",
+        "repair_tests_Git_blob": "cbbbfc6556502494c4d49ef6d3ee1d85abe87c55",
+        "runtime": "Node v22.16.0",
+        "native_tests_first_frozen": "18/18_PASS_BUT_LATER_ADVERSARIAL_DEFECT_INVALIDATED",
+        "adversarial_negative": "Nonstring hash object toString accepted; preserved",
+        "native_tests_after_new_R1_freeze": "20/20_PASS",
+        "same_Brier_and_event_schedule_string_declared_parity": true,
+        "planned_rank_factorial_arm_count": 5,
+        "actual_human_randomization": "NOT_EXECUTED",
+        "display_delivery_exposure": "NOT_EXECUTED",
+        "human_rows": 0
+      },
+      "limits": "Design contract and static peer visibility/granularity orthogonality only, neither outcomes nor delivered stimulus nor allocation, no person data. Historical four-arm pilot not replaced. Initial invalid attempt registered separately without consumption."
+    },
+    {
+      "id": "ABH30-C15",
+      "mode": "AB-P_FIVE_ARM_SYNTHETIC_OPPORTUNITY_RENDER_RECEIPT_AUDIT",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_FROZEN_20_OF_20_SYNTHETIC",
+      "grade_science": "0/3",
+      "prereg_commit": "582035ac5d18ddb1ce2504cf0dba044225f61e9a",
+      "run_receipt": "C15_RUN_RECEIPT.json",
+      "verified": {
+        "node_version": "v22.16.0",
+        "first_native_run": "20/20_PASS",
+        "source_Git_blob": "db4df150fa73d26ee3ec40965586e4f3ca3c790f",
+        "tests_Git_blob": "ff04ef970dca3e5f68c98aa7f5818e6022287b1b",
+        "original_C14_dep_blob": "cad226a589772de6c733929d32a527252d719ad6",
+        "synthetic_fixture_five_arms": true,
+        "same_opportunity_duplicate_rejected": true,
+        "wrong_arm_granularity_publicity_rejected": true,
+        "missing_exposure": "UNKNOWN_NOT_ZERO",
+        "real_renderer_delivered_receipt": "NOT_AUTHENTICATED",
+        "original_human_rows": 0,
+        "actual_human_RCT": "NOT_EXECUTED"
+      },
+      "limits": "Only synthetically declared renderer receipts and synthetic opportunity frame. No authenticator/renderer integration and no signed human exposure, so user-facing causal and launch remain blocked."
+    },
+    {
+      "id": "ABH30-C16",
+      "mode": "AB-P_NATIVE_NODE_SYNTHETIC_FIVE_ARM_VIEW_RENDER",
+      "D": 1,
+      "status": "VALID_LIMITED_FROZEN_NATIVE_15_OF_15",
+      "grade_science": "0/3",
+      "prereg_commit": "af6ee3f18d954dca3d1e6ed7d932ac630bc8872a",
+      "run_receipt": "C16_RUN_RECEIPT.json",
+      "verified": {
+        "native_tests": "15/15",
+        "real_browser": false,
+        "real_receipt": false,
+        "causal": false
+      },
+      "limits": "Node renders real fixture-dependent computed views but no real browser or attested human exposure"
+    },
+    {
+      "id": "ABH30-C17",
+      "mode": "AB-P_HMAC_INTEGRITY_SYNTHETIC_RECEIPTS",
+      "D": 1,
+      "status": "VALID_BOUNDED_NATIVE_16_OF_16",
+      "grade_science": "0/3",
+      "prereg_commit": "cff57d7abc625576a49554e243d33c6bad5d7312",
+      "run_receipt": "C17_RUN_RECEIPT.json",
+      "verified": {
+        "tests": "16/16_PASS",
+        "source_Git": "32753527824a788b8b15ecebfa7320dca2e93517",
+        "real_key_trust_root": false,
+        "actual_browser": false
+      },
+      "limits": "HMAC with synthetic caller-supplied key only, no real provenance or exposure."
+    },
+    {
+      "id": "ABH30-C18",
+      "mode": "AB-R_ORIGINAL_LICENSED_HUMAN_FORECAST_SOURCE_FEASIBILITY_NEGATIVE",
+      "D": 3,
+      "status": "VALID_LIMITED_PREREGISTERED_NEGATIVE_SOURCE_ACCESS_NO_HUMAN_ROWS",
+      "grade_science": "0/3",
+      "prereg_commit": "9331e120b84844f94babcbfc25797e51cb24e4ad",
+      "run_receipt": "C18_RUN_RECEIPT.json",
+      "verified": {
+        "original_license": "CC-BY-SA-4.0",
+        "original_superforecast_file_exists": true,
+        "pinned_source_git": "583085efe4c752d4b9f6ab2c98ec8642fbc01bca",
+        "original_full_JSON_parse": "FAILED_UNEXPECTED_END",
+        "raw_person_rows_read": 0,
+        "source_structure_identifiers": "POSTHOC_HF_VIEWER_USER_ID_AND_REASONING"
+      },
+      "limits": "Original 4.6MB human individual JSON cannot parse through connector; user_id/reasoning present in public viewer, copyright license not privacy clearance. Stop raw extraction; no human science or original PFL treatment observations."
+    },
+    {
+      "id": "ABH30-C19",
+      "mode": "AB-P_FULL_89_BATCH_STATIC_GITHUB_ATLAS_STRUCTURE",
+      "D": 2,
+      "status": "VALID_LIMITED_NATIVE_8_TESTS_AND_FULL_89_GITHUB_STATIC_NO_PYTHON",
+      "grade_science": "0/3",
+      "prereg_commit": "32e662ca2cd4395b133f379b746bfbca0d8d2e86",
+      "run_receipt": "C19_RUN_RECEIPT.json",
+      "verified": {
+        "source_batches_read": "89/89",
+        "operations": 448,
+        "run_adds": 273,
+        "static_parent_failures": 0,
+        "git_blobs_match": true,
+        "native_local_tests": "8/8_PASS",
+        "full_original_Python_replay": "NOT_EXECUTED"
+      },
+      "limits": "No canonical Python replay, no graph digest, global duplicate ids not machine verified, structural checks do not certify research claims"
+    },
+    {
+      "id": "ABH30-C20",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_2_PASS",
+      "grade_science": "0/3",
+      "prereg_commit": "d61b67bbb7ec287b081de432a28e95a00739819e",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": null,
+      "initial_invalid_attempt": null,
+      "verified": {
+        "subject": "Ranked vs non-ranked effort displacement",
+        "first_native": "2/2_PASS",
+        "final_native": "2/2_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C21",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "016162991a6d9aa0a9ec08f8ed880abde1a62d02",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C21_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Pre-treatment stratification",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C22",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 2,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "6f9bfd346a4040db1f169a68641ca2c2a6221fe3",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C22_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Cross-arm social graph spillover",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C23",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_2_PASS",
+      "grade_science": "0/3",
+      "prereg_commit": "149f252d3f72e84df80ce7be07cd0d60cc5cef67",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": null,
+      "initial_invalid_attempt": null,
+      "verified": {
+        "subject": "Five-arm blocked room assignment rehearsal",
+        "first_native": "2/2_PASS",
+        "final_native": "2/2_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C24",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 2,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "9194b99eb4184ca3b53961dfe324fff2665fa7d5",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C24_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Dropout vs censoring risk set",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C25",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "a07719fb5a8c6aa25f15ca4ef076c87f50a3a03d",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C25_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Public display alias privacy",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C26",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "d96d72890a3d949625e049f61c0d5e27d641910b",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C26_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Question and resolution as-of temporal gate",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C27",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 2,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_4_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "1fafc549248b675fc678d2eddbe0b6964c4893dd",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C27_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Institutional rule version epoch as-of",
+        "first_native": "2/2_PASS",
+        "final_native": "4/4_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C28",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_3_PASS_AFTER_R1_REPAIR",
+      "grade_science": "0/3",
+      "prereg_commit": "477fa374ead5a6a930db8137187b367127ef0b68",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": "C28_REPAIR_R1_PREREG_AJ_SHA.json",
+      "initial_invalid_attempt": "C20_C30_INITIAL_ADVERSARIAL_INVALIDATION.json",
+      "verified": {
+        "subject": "Strategic abstention vs unknown missingness",
+        "first_native": "2/2_PASS",
+        "final_native": "3/3_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C29",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_2_PASS",
+      "grade_science": "0/3",
+      "prereg_commit": "278f2423797c64618676535eef6c3ffe1df245b6",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": null,
+      "initial_invalid_attempt": null,
+      "verified": {
+        "subject": "Five-contrast Holm multiplicity",
+        "first_native": "2/2_PASS",
+        "final_native": "2/2_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    },
+    {
+      "id": "ABH30-C30",
+      "mode": "AB-P_DISTINCT_PREPLANNED_SYNTHETIC_PRODUCT_QA",
+      "D": 1,
+      "status": "VALID_LIMITED_SEQUENTIAL_NATIVE_2_PASS",
+      "grade_science": "0/3",
+      "prereg_commit": "bccddbf611d4c131d0a24327e21c093d625099db",
+      "run_receipt": "C20_C30_FINAL_RUN_MANIFEST.json",
+      "repair_prereg": null,
+      "initial_invalid_attempt": null,
+      "verified": {
+        "subject": "Synthetic release gates fail-closed",
+        "first_native": "2/2_PASS",
+        "final_native": "2/2_PASS",
+        "full_suite": "30/30_PASS",
+        "independent_human_data": 0
+      },
+      "limits": "Synthetic programmed guards. Family preplanned and one source file; NOT separate independent experiments. No causal effect, real exposure or release gate."
+    }
+  ],
+  "counting": {
+    "valid_limited": 30,
+    "invalid_cycles": 0,
+    "invalid_attempts": 10,
+    "planning_only_unconsumed": 0,
+    "unopened_authorized": 0,
+    "new_remaining": 0,
+    "historical_remaining": 2
+  },
+  "science": {
+    "CT2_line": "PFL_V1_prospective_science",
+    "CT2_before": 20,
+    "CT2_after": 20,
+    "CT2_ordinal_not_probability": true,
+    "new_N1_N2_N3": [
+      0,
+      0,
+      0
+    ],
+    "novel_human_effects": 0
+  },
+  "product": {
+    "progress_scope_v4_unchanged": true,
+    "readiness_gates_passed": 0,
+    "readiness_gates_total": 6,
+    "code_in_product_src": true,
+    "deployed_to_user": false,
+    "real_source_full_file_positive_e2e": false,
+    "raw_public_revision_guard": {
+      "code_in_product_src": true,
+      "native_synthetic_tests": "19/19_PASS",
+      "wired_into_offline_public_source_CLI": false,
+      "original_public_bodies_verified_by_C09": false,
+      "release_gate_changed": false
+    },
+    "original_public_raw_revision_comparison": {
+      "completed": "three specific original source pairs",
+      "SHA_verified_full_public_blobs": 6,
+      "performed_in": "V8_on_GitHub_full_original_JSON",
+      "native_original_files_in_container": false,
+      "integration_with_offline_cli": false,
+      "release_gate_changed": false
+    },
+    "pinned_public_raw_revision_cli": {
+      "status": "NATIVE_SYNTHETIC_17_OF_17_PASS",
+      "code_in_repo_scripts": true,
+      "pair_count": 3,
+      "public_source_original_file_positive": "NOT_EXECUTED",
+      "CLI_rejects_synthetic_if_original_Git_pins": "PASS",
+      "release_gate_changed": false,
+      "main_integration": false
+    },
+    "independent_rank_feedback_published_prior": {
+      "source": "AAAI-2020-Mandal-Radanovic-Parkes",
+      "verified_design_and_Rmd": true,
+      "translates_to_product_hypothesis": "DIFFERENTIAL_PFL_PRIVATE_QUARTILE_VS_PUBLIC_LEADERBOARD_UNTESTED",
+      "new_release_gate_passed": false,
+      "personal_microdata_allowed": false
+    },
+    "fictional_missingness_partial_identification": {
+      "native_mathematical_tests": "18/18_PASS",
+      "source": "src/politics_fantasy/fictional_missingness_bounds.mjs",
+      "originality": "STANDARD_MANSKI_BOUNDS_NOT_NOVEL_MATH",
+      "human_data_used": false,
+      "release_gate_changed": false
+    },
+    "fictional_rank_visibility_factorial": {
+      "status": "NATIVE_REPAIRED_20_OF_20_PASS",
+      "armed_conditions": 5,
+      "private_quartile_vs_public_quartile": "PLANNED_ONLY",
+      "private_order_vs_public_order": "PLANNED_ONLY",
+      "genuine_human_effect": "NOT_ESTIMATED",
+      "release_gate_changed": false
+    },
+    "fictional_rank_receipt_riskset": {
+      "status": "NATIVE_SYNTHETIC_20_OF_20_PASS",
+      "path": "src/politics_fantasy/fictional_rank_delivery_audit.mjs",
+      "opportunity_missingness_separated": true,
+      "real_renderer_integrated": false,
+      "release_gate_changed": false
+    },
+    "multi_axis_risk_controls": {
+      "preplanned_family": 11,
+      "executed_sequentially": true,
+      "native_first_suite": "22/22_PASS_WITH_POSTHOC_SEVEN_COUNTEREXAMPLES",
+      "R1_repaired": 7,
+      "R1_final_suite": "30/30_PASS",
+      "human_effects": false,
+      "release_ready": false
+    }
+  },
+  "negative_results": [
+    "All raw numerical values are not event probabilities; guard restricts original source semantics, duplicate question/outcome IDs and time cutoffs",
+    "Original Sep27 resolved-subset count 10 with as_of Oct 1 vs 52 with Oct 29: retrospective resolution leakage is material",
+    "Only existing original public cohort regression reused; no new scientific independent replication",
+    "No four-file positive raw-content digest verification locally; source integrity pin still requires external byte-level acceptance",
+    "No original complete human assignment roster, independent pre-response rank exposure nor privacy use clearance, historic two R5 unchanged",
+    "C03 original public market 250-question cohort Brier broad missing-outcome bounds include p=.5 weak reference in both periods, despite low resolved-subset mean; no all-question superiority can be inferred.",
+    "C04 local Node 11/11 native test passes real FS and CLI fail-closed, but no positive original complete 4-file input verification (network blocked). This is a bounded technical product integration, not authenticated deployment or human causal study.",
+    "C05 authoritative original public Git history falsifies stronger interpretation of C01 as-of source availability: Sep27 resolution set first published Oct07, not by Oct01, even though Oct29 snapshot with resolution_date filter yields 10 apparently earlier outcomes. Do not erase C01 tests or claim data absence from other original external markets.",
+    "C05 first 2026-10-07 published original JSON 441 resolution rows yields 30 eligible on 2026-10-08 snapshot; latest Oct29 JSON 642 resolution rows yields 52 eligible, same original cohort; this is source version change, not independent replication.",
+    "C06 previous C04 offline CLI accepted --as-of-date to score data published after the requested cutoff. It is intentionally backward-incompatible: dates alone and precommit historical cutoffs now fail before reading source; rerun and migrate invocations to --as-of-instant.",
+    "C06 29 native Node tests pass, but positive complete original four-file local disk audit not run; earlier C04 original 4/4 full blobs were verified via GitHub connector and must not be presented as CLI E2E.",
+    "C07 first frozen JavaScript code compilation failed Unexpected token ']' due missing third source vintage object closure; minimal one-brace repair preregistered and SHA re-frozen; not a separate cycle.",
+    "C07 after first 24/24 + 8/8 pass, adversarial audit found sparse 3-version manifest falsely claimed latest Git source for intermediate dates (Oct20/Oct25). Preplanned repair restricts source selection to 3 EXACT verified checkpoints, all other intermediate dates fail closed. Final native Node 25/25 + 8/8 pass; preserve initial attempt without counting duplicate cycles.",
+    "C07 original public versions show Sep27 30→46→52 and Oct11 (unavailable)→2→8 eligible market questions, 0 observed flipped or lost among retained known outcomes; this does not prove all historical versions stable or human accuracy.",
+    "C07 new institutional DOI Xu 2026 ICPSR 10.3886/E227582 identifies code/software deposit, not legally accessible human administrative participant records; Statistics Finland data access unverified and historical two AB-H slots remain STOP_R5.",
+    "C08 original Sep27 and Oct11 raw Git resolution record counts decreased on several published updates (e.g. Sept 441 Oct7 to 440 Oct8; Oct11 441 Oct23 to 438 Oct24), although all 16+3 inspected eligible binary market outcomes were retained and no Y flipped. Never infer append-only raw data rows from a monotone accepted subset.",
+    "C08 original 21 distinct public Git blobs were retrieved and SHA1 checked via connected GitHub V8 in separate overlapping batches; local runtime DNS could not access original content. Native positive multi-source CLI E2E NOT performed, and 27 tests ran in V8 rather than Node: do not call them native tests.",
+    "C09 new AB-P raw-record revision guard 19 native Node adversarial tests pass only on synthetic public-like fixtures. Without authenticated original resolution source bodies in local Node, no empirical deletion rates or source QA effectiveness in vivo can be claimed. Git identifiers supplied by caller are not authenticated in this pure module.",
+    "C10 original public data row counts 441→440, 437→427, 441→438 reflected genuine source key removals and many field mutations (16 removals, 2 added, 671 modified transition events). Posthoc review: changes in resolution_date and nonbinary continuous resolved_to dominate; C08 eligible binary Y stability remains scoped and NOT independently rechecked here. No causal/personal forecasts."
+  ],
+  "ethics": {
+    "person_forecast_rows_downloaded": 0,
+    "licenses_accepted": 0,
+    "authors_contacted": 0,
+    "real_politician_scored": 0,
+    "CI_costly_triggered": 0,
+    "main_merge": false,
+    "chatrelay": false
+  },
+  "decision": "ABH30_30_OF_30_NEW_BOUNDED_NATIVE_C20_C30_REPAIRED_7_INVALID_ATTEMPTS_PRESERVED;0_NEW_REMAIN;2_HISTORIC_STOP_R5;CT2_20_NO_HUMAN_CAUSAL_OR_RELEASE",
+  "last_branch": "research/pfl-abh30-c20-c30-multiaxis-20261029",
+  "last_documentary_source_prior": "PF-BR52"
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "ab.cycle.result.v1",
+  "campaign": "PFL-ABH-EU27-20261028",
+  "V4": 36.9,
+  "CT2_before": 29,
+  "CT2_after": 29,
+  "VSDS": "1/3",
+  "grade_0_3": 0,
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "unit": "country",
+  "source_fixture": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+  "original_EP_signed_CSV_bytes": 0,
+  "prospective_model_validation": false,
+  "cycle": "C05",
+  "type": "AB-R",
+  "status": "VALID_BOUNDED_LOOCV_STRONG_BASELINE_BEATS_TURNOUT",
+  "A": "Does 2024 turnout improve predicting 2024 country share of female MEPs beyond own 2019 female share under leave-one-country-out OLS?",
+  "B": {
+    "H1": "2019 female baseline outperforms 2024 turnout-only and constant mean",
+    "H0": "Turnout adds predictive benefit vs 2019 baseline",
+    "H_other": "All models weak, country sampling and seat coarseness dominate"
+  },
+  "C": {
+    "prereg_commit": "974b49ffdf0b07823dd0747121637ef9e4002029",
+    "execution": "Python sklearn LinearRegression intercept, 27 LOOCV train 26/test 1, MAE and RMSE for M0 training mean, M1 2019 women%, M2 2024 turnout%, M3 both, no outcome usage in feature list. Both years' results had been inspected by the time of benchmark execution: not a prospective, temporally held-out forecast."
+  },
+  "D": {
+    "data": "EU27_OFFICIAL_HTML_TRANSCRIPTION.csv",
+    "metrics": "EU27_METRICS.json",
+    "code": "analyze_eu27.py"
+  },
+  "E": {
+    "n": 27,
+    "MAE_pp": {
+      "mean": 11.178062678062677,
+      "prior_2019_women": 10.089573201461949,
+      "turnout_2024_only": 11.55027472775084,
+      "both": 10.523444308079322
+    },
+    "RMSE_pp": {
+      "mean": 14.178519422624897,
+      "prior_2019_women": 12.696276696031505,
+      "turnout_2024_only": 14.546142837815001,
+      "both": 13.055481677745677
+    },
+    "best_baseline": "2019 female share",
+    "both_minus_2019_MAE_pp": 0.4338711066173733
+  },
+  "F": "Adding contemporaneous turnout makes LOOCV MAE worse by +0.434 pp relative to competent historical women's share; no demonstrated added signal for this target/sample. Level 2024 turnout was observed after election and cannot be forecast feature for an early fantasy deadline; no claim that women representability is caused by previous balance.",
+  "G": "LOOCV internal only across dependent countries, single 2024 period and binary source unavailable, no real future-outcome or independent original validation.",
+  "H": {
+    "CT2_before": 29,
+    "CT2_after": 29,
+    "grade_0_3": 0
+  },
+  "I": "Only country-level descriptive targets, no scoring of people.",
+  "J": "Classify no incremental value of turnout and reject scientific promotion; record Codex original validation task and close grant."
+}

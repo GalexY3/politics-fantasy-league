@@ -1,0 +1,112 @@
+{
+  "schema": "pfl.aecchoice5.source_manifest.v1",
+  "campaign": "PFL-ABH-AECCHOICE5-20261028",
+  "publisher": "Australian Electoral Commission; 2025 election Tally Room",
+  "publisher_URL": "https://results.aec.gov.au/31496/Website/HouseDownloadsMenu-31496-Csv.htm",
+  "mirror": "rNLKJA/public-services-open-source-data",
+  "mirror_url": "https://github.com/rNLKJA/public-services-open-source-data/tree/main/original/datasets/au-federal-election-results/raw",
+  "sourceFiles": [
+    {
+      "name": "HouseNominationsByDivisionDownload-31496.csv",
+      "git_blob_sha": "aef89aafac5cea807c38159abcc841b9ad82046a",
+      "bytes_utf8": 8021,
+      "header_line": "2025 Federal Election House Nominations by Division [Event:31496 Phase:FinalResults Generated:2025-06-16T10:39:09 Cycle:194a421d-c559-4a18-a78a-90c7cf2acb4e Created:2025-06-16T10:36:42 Environment:PROD Site:CANBERRA Server:Internal Version:10.11.386.0]",
+      "columns": [
+        "TransactionId",
+        "DivisionId",
+        "StateAb",
+        "DivisionNm",
+        "DivisionAb",
+        "Enrolment",
+        "Demographic",
+        "Nominations"
+      ],
+      "rows": 150
+    },
+    {
+      "name": "GeneralEnrolmentByDivisionDownload-31496.csv",
+      "git_blob_sha": "4b7962ef4fc1eebde9961ba5d662da6699dcb3d7",
+      "bytes_utf8": 7027,
+      "header_line": "2025 Federal Election Enrolment By Division [Event:31496 Phase:FinalResults Generated:2025-06-16T10:39:14 Cycle:194a421d-c559-4a18-a78a-90c7cf2acb4e Created:2025-06-16T10:36:42 Environment:PROD Site:CANBERRA Server:Internal Version:10.11.386.0]",
+      "columns": [
+        "DivisionID",
+        "DivisionNm",
+        "StateAb",
+        "CloseOfRollsEnrolment",
+        "NotebookRollAdditions",
+        "NotebookRollDeletions",
+        "ReinstatementsPostal",
+        "ReinstatementsPrePoll",
+        "ReinstatementsAbsent",
+        "ReinstatementsProvisional",
+        "Enrolment"
+      ],
+      "rows": 150
+    },
+    {
+      "name": "HouseInformalByDivisionDownload-31496.csv",
+      "git_blob_sha": "bacba88b544695c25e1178546355f19c04d2b915",
+      "bytes_utf8": 7229,
+      "header_line": "2025 Federal Election House of Representatives Informal Votes By Division [Event:31496 Phase:FinalResults Generated:2025-06-16T10:38:39 Cycle:194a421d-c559-4a18-a78a-90c7cf2acb4e Created:2025-06-16T10:36:42 Environment:PROD Site:CANBERRA Server:Internal Version:10.11.386.0]",
+      "columns": [
+        "DivisionID",
+        "DivisionNm",
+        "StateAb",
+        "FormalVotes",
+        "InformalVotes",
+        "TotalVotes",
+        "InformalPercent",
+        "InformalSwing"
+      ],
+      "rows": 150
+    },
+    {
+      "name": "HouseTurnoutByDivisionDownload-31496.csv",
+      "git_blob_sha": "9849657147267214f28d091a83c03cede6bc2c67",
+      "bytes_utf8": 6565,
+      "header_line": "2025 Federal Election House of Representatives Turnout By Division [Event:31496 Phase:FinalResults Generated:2025-06-16T10:38:38 Cycle:194a421d-c559-4a18-a78a-90c7cf2acb4e Created:2025-06-16T10:36:42 Environment:PROD Site:CANBERRA Server:Internal Version:10.11.386.0]",
+      "columns": [
+        "DivisionID",
+        "DivisionNm",
+        "StateAb",
+        "Enrolment",
+        "Turnout",
+        "TurnoutPercentage",
+        "TurnoutSwing"
+      ],
+      "rows": 150
+    }
+  ],
+  "download_tier": "AEC-named CSV GitHub public mirror only, NOT directly downloaded from AEC; raw AEC sha256 NOT VERIFIED",
+  "direct_source_access": "Web HTML official AEC catalog displays file names, CSV click cache miss, container network DNS failure",
+  "parse": "CSV first line is generated AEC metadata, second line actual headers",
+  "n": 150,
+  "missing": [],
+  "duplicates": 0,
+  "quality": {
+    "names": [],
+    "enrolment": [],
+    "turnoutPct": [],
+    "informalPct": [],
+    "totalMoreTurnout": []
+  },
+  "states": {
+    "ACT": 3,
+    "NSW": 46,
+    "NT": 2,
+    "QLD": 30,
+    "SA": 10,
+    "TAS": 5,
+    "VIC": 38,
+    "WA": 16
+  },
+  "demographic": {
+    "Inner Metropolitan": 43,
+    "Outer Metropolitan": 45,
+    "Provincial": 24,
+    "Rural": 38
+  },
+  "preexposed": "AEC participation report explicitly names Calwell and Riverina, both 13 candidates and high informal; records previously observed at summary level. Also two 2025 turnout sample rows Adelaide/Aston inspected during schema discovery.",
+  "temporal": "Nominations and close-of-rolls enrolment historically known before May 3 2025 poll date, but this particular AEC mirror file was generated June 16 2025, not a captured pre-poll snapshot; this is retrospective feature-validity logic, not proof of pre-publication timestamp",
+  "originals_sha_authenticated": false
+}

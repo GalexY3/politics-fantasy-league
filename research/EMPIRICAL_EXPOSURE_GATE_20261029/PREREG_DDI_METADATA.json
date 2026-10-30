@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-29",
+  "type": "PRE_REGISTERED_METADATA_AUDIT_NOT_AB_CYCLE",
+  "source": "GJP Dataverse doi:10.7910/DVN/BPCDH5 v1.0 CC0 1.0",
+  "readme_hashes": {
+    "pm": "7f66c343e910ca1a2b7262f708a3e73f275e8f3e283072428001a25292214737",
+    "survey": "adfc00ea8255a14542a6a2128e67b9902d182d7ec53b701d1343c9a6eb61c2b1"
+  },
+  "design_relevant_readme": "ctt 2a/2b/2c assigned access to crowd information year1; 1a/1b/1c individual; IFP date_start/suspend/closed and forecast type categories",
+  "instrument": "Official Dataverse DDI XML metadata API only, do not download microdata rows or demographics distributions",
+  "files": [
+    {
+      "id": 2917351,
+      "name": "survey_fcasts.yr1.tab"
+    },
+    {
+      "id": 2917352,
+      "name": "survey_fcasts.yr2.tab"
+    },
+    {
+      "id": 2917354,
+      "name": "survey_fcasts.yr4.tab"
+    },
+    {
+      "id": 2917341,
+      "name": "pm_transactions.control.yr4.csv"
+    },
+    {
+      "id": 2917348,
+      "name": "pm_transactions.supers.yr4.csv"
+    }
+  ],
+  "measure": [
+    "DDI response code, SHA256 of metadata bytes, variable names only, number of observations if available",
+    "presence of ctt, user_id, ifp_id, forecast time, outcome, visibility/view/page impression, feedback assignment names",
+    "do not infer ctt randomization from label",
+    "do not print raw values of any person",
+    "control file with no DDI should return not available, not a success"
+  ],
+  "outcome_gate": "If no independent per-person pre-response visibility events, STOP_R5 for target causal effect; no legacy AB-H consumption",
+  "runner_limits": {
+    "jobs": 1,
+    "minutes": 3,
+    "network": "official Dataverse HTTPS only, no authentication"
+  },
+  "CT2": 22
+}

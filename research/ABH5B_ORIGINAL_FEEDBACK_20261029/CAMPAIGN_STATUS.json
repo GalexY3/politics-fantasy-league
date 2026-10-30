@@ -1,0 +1,183 @@
+{
+  "schema": "pfl.abh5b.campaign.status.v1",
+  "date": "2026-10-29",
+  "mode": "AB-H BRANCHING",
+  "source_pr": 48,
+  "source_sha": "08deb85b00db09429a78c37383127e5eb9c8060f",
+  "branch": "research/pfl-abh5-original-feedback-sensitivity-20261029",
+  "authorization": {
+    "new_granted": 5,
+    "prior_new_complete": 5,
+    "prior_new_remaining": 0,
+    "older_legacy_granted_unused": 2,
+    "separated": true
+  },
+  "cycles": [
+    {
+      "id": "ABH5B-C01",
+      "mode": "AB-R",
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "b120259533672e2a05293eecb586b3c204ddb596",
+      "repair_commit": "eeb2e4f54c19b42671b5c2129c5d0ea0d90a4803",
+      "repair_hash_freeze_commit": "95ff3dba28ecbd650163f605defa2d02fd3cb2bc",
+      "result": "C01_RUN_RECEIPT.json",
+      "valid_after_repair": true,
+      "negative_run_preserved": true,
+      "kind": "One independent published RCT Pickal 2026, 427 five-arm sample vs 345 motivation cases, 82 not in ANOVA. Unidentified full-arm contrast bounds conditional, not causal novelty."
+    },
+    {
+      "id": "ABH5B-C02",
+      "mode": "AB-R",
+      "status": "VALID_BOUNDED_ORIGINAL_PUBLISHED_AGGREGATE_SENSITIVITY",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "b40d4bae29c443c07d29dc29862818ab49ef77da",
+      "result": "C02_RUN_RECEIPT.json",
+      "kind": "Palikot 2026 randomized school bundled treatment; 4 vs 12 week original published aggregate activity/volume decomposition, no post-treatment causal mechanism claims."
+    },
+    {
+      "id": "ABH5B-C03",
+      "mode": "AB-R",
+      "status": "VALID_BOUNDED_DIRECT_RANDOMIZED_PUBLISHED_AGGREGATE",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "db06458f74dc77c6990971d58ff4486431d07c0b",
+      "result": "../ABH5B_KLOC_RANDOMIZED_LEADERBOARD_20261029/C03_RUN_RECEIPT.json",
+      "kind": "Direct independent 2024 randomized offer of leaderboard versus none; N3762 eligible, five outcome B/SE table; 8/8 tests show single vs 5-family CI discrepancy at illustrative 0.05 SD; post-allocation dispersion not causal.",
+      "superseded_unexecuted_plan": {
+        "id": "ABH5B-C03",
+        "mode": "AB-R",
+        "status": "PLANNING_ONLY_R5_NO_CYCLE",
+        "D": 2,
+        "grade": "0/3",
+        "kind": "Original Pickal OSF prereg/data/code linked in paper but web OSF inaccessible; no human rows or license/ethics attestation, cannot reanalyse exposures or missingness mechanism."
+      }
+    },
+    {
+      "id": "ABH5B-C04",
+      "mode": "AB-P",
+      "status": "VALID_BOUNDED_EXACT_MECHANISM_FORMAL_AUDIT",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "f00d936343fecd74da0e98069b78152fe34056c7",
+      "result": "../ABH5B_INCENTIVE_FORMAL_20261029/C04_RUN_RECEIPT.json",
+      "summary": "Exact rational, no simulation or humans: Brier-score deterministic winner-take-all can reward strategic report .61 vs subjective belief .55 against rival .60, increasing chance of winning .45→.55; symmetric quadratic lottery is proper in the two-player one-event case. 8/8 Python Fraction tests, known Witkowski et al theory, hypothetical not implemented product.",
+      "superseded_unexecuted_plan": {
+        "id": "ABH5B-C04",
+        "mode": "AB-R",
+        "status": "PLANNING_ONLY_R5_NO_CYCLE",
+        "D": 2,
+        "grade": "0/3",
+        "kind": "Regaco 2026 original Mendeley archive CC BY and analysis R code publicly catalogued. Matching-to-sample psychology does not establish PFL leaderboard randomization or eligibility/assignment; no human data accessed."
+      }
+    },
+    {
+      "id": "ABH5B-C05",
+      "mode": "AB-P",
+      "status": "VALID_BOUNDED_REAL_ORIGINAL_QUESTION_PROVENANCE_GUARD",
+      "grade": "0/3",
+      "D": 2,
+      "prereg_commit": "c945b3190e8598e684a138c5ee64c83013ff494e",
+      "test_failure_prereg_commit": "be1c3bcbf3ba880d05dcb7c3c3b1b5f8eaeb1f9d",
+      "repair_sha_freeze_commit": "a6b5f0dbb973271fd3efb98fa6c21417c7bcf0af",
+      "result": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/C05_RUN_RECEIPT.json",
+      "kind": "2 independent sealed real public original ForecastBench 2026-09-27 and 2026-10-11 cohorts: 2×500 questions, 12/12 native tests, 60 eligible probability+resolved event records; 250 per cohort semantic non-probability units filtered and prospective time leakage checked. Native 8/12 failure fixed under prereg; aggregate official frozen market Brier only, not human causal/own efficacy.",
+      "superseded_unexecuted_scientific_plan": {
+        "id": "ABH5B-C05",
+        "mode": "AB-R",
+        "status": "PLANNING_ONLY_STOP_R5_NO_CYCLE",
+        "grade": "0/3",
+        "D": 2,
+        "summary": "Prospective joint public/private rank × social-forecast exposure causal fork with assigned roster denominator, baseline policy Brier score, tail risk, welfare and interference. Literature establishes components, originality not proven; no consent/recruitment/source rights and no data. Not executed.",
+        "plan": "../ABH5B_INCENTIVE_FORMAL_20261029/C05_CONDITIONAL_AJ_PLAN_NOT_EXECUTED.json",
+        "superseded_unexecuted_reservation": {
+          "id": "ABH5B-C05",
+          "mode": "AB-H",
+          "status": "UNOPENED_R5",
+          "D": null,
+          "grade": "0/3",
+          "kind": "No distinct discriminating legal and ethical source with novelty beyond Pickal, Palikot, Felkey, Chen, Lumsden, GJP, and original forecasting evidence."
+        },
+        "last_review": "2026-10-29",
+        "last_audit": "../ABH5B_C05_EXTERNAL_GATE_20261029/EXTERNAL_SOURCE_RIGHTS_AUDIT.json",
+        "last_decision": "../ABH5B_C05_EXTERNAL_GATE_20261029/C05_R5_DECISION.json",
+        "novelty_competitors_added": [
+          "PF-BR39 Agranov et al. 2026 raw signal v action visibility",
+          "PF-BR40 Xu et al. 2026 randomized rank comparison group",
+          "PF-BR42 Forecasting Collaborative 2023 strong naive forecasts baseline"
+        ],
+        "source_and_rights_unresolved": [
+          "Caltech original supplement reserved © Elsevier and NBER data appendix not opened",
+          "AEA linked replication package DOI/readme/license unavailable; personal income records protected",
+          "No joint public rank x action visibility within PFL, no complete assignment roster including nonrespondents, no independent exposure log, no ethics clearance"
+        ]
+      }
+    }
+  ],
+  "counting": {
+    "valid_limited": 5,
+    "invalid_cycles_final": 0,
+    "invalid_attempts": 2,
+    "planning_not_consumed": 0,
+    "unopened": 0,
+    "new_remaining": 0,
+    "historical_unused": 2,
+    "valid_product_formal": 1,
+    "valid_research_published_aggregate": 3,
+    "source_qa_activities_this_turn": 0,
+    "additional_valid_cycles_this_turn": 1,
+    "additional_invalid_cycles_this_turn": 0,
+    "additional_planning_cycles_this_turn": 0,
+    "valid_product_real_source": 1
+  },
+  "CT2": {
+    "line": "PFL_V1_prospective_science",
+    "before": 22,
+    "after": 20,
+    "ordinal_not_probability": true,
+    "reason": "C05 source-backed nonpersonal real question ingestion gate passed but does not test PFL human causal hypotheses or novelty. Prior rank/social learning mechanism rivals remain; score stays ordinal 20/100."
+  },
+  "N1_N2_N3_new": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": {
+    "passed": 0,
+    "total": 6
+  },
+  "negative_results": [
+    "C01 original 5/7 suite invalid due Fraction harness; rerun after frozen repair 7/7 PASS",
+    "Wide 1..5 full-sample Pickal motivation bounds cross zero under unknown 82-case missing allocation",
+    "Palikot exact post-treatment decomposition cannot assign causal effects to intensity or public ranking component",
+    "OSF access blocked; Mendeley catalogue alone does not imply a valid research estimand",
+    "C03 original Kloc randomized direct leaderboard offer reported no statistically discernible five-engagement benefit; 95% CI upper +.040 SD, conservative 5-endpoint familywise upper +.0502 SD exceeds illustrative 0.05 benchmark; cannot assert equivalence or positive effect.",
+    "Kloc paper's intra-board dispersion association is not identical to random offer effect; 3,762 eligible ≠ verified all-registrant ITT.",
+    "C04 deterministic winner-take-all quadratic ranking not incentive-compatible in exact p=.55 q=.60 case: rational r=.61 improves win probability by .10 despite worse expected quadratic score.",
+    "C05 STOP_R5: strong existing original prior art on public rank welfare, social-learning accuracy-risk, GJP ranking and strategy-proof forecast prizes. Neither consent/ethics nor legal access to eligible full randomized human roster available.",
+    "New 2026 original Agranov RCT already isolates others' actions from common public raw signals: social-action visibility not an original untested mechanism; observed positive task effect does not generalize to PFL.",
+    "New 2026 original Xu randomized relative-rank reference group: comparison-group welfare heterogeneity not original; actual replication package rights and admin person rows not verified.",
+    "AEA Feb 2026 policy allows non-public confidential replication data. A 'replication package' label cannot authorize access nor prove assignment/eligibility/exposure records.",
+    "C05 initial native Node test 8/12 then fail on duplicate-question accounting, before holdouts. Repair separately preregistered and frozen; final 12/12 PASS. Not a second cycle.",
+    "Original ForecastBench 2×500 public real questions have 250 nonprobability raw-quantity source records per cohort, despite numeric scalar freeze values sometimes within [0,1]; forbids naive Brier across all sources.",
+    "Original 2026-09-27 and 10-11 cohorts only yield 52+8 qualifying resolved market questions, so descriptive market Brier scores are subject to resolution selection and cannot be attributed to PFL."
+  ],
+  "ethics": {
+    "human_person_records_downloaded": 0,
+    "original_person_forecasts_downloaded": 0,
+    "licenses_accepted": 0,
+    "authors_contacted": 0,
+    "public_political_scoring": 0,
+    "ci_costly_triggered": 0,
+    "main_merge": false,
+    "chatrelay": false
+  },
+  "decision": "NEW_ABH5B_GRANT_5OF5_VALID_LIMITED; HISTORICAL_TWO_SEPARATE_STOP_R5; CT2_PFL20_NO_HUMAN_CAUSAL_ORIGINAL_RESULT",
+  "sources_and_priors": "../ABH_BROWSER_ATLAS_EVIDENCE5_20261029/SOURCES_AND_PRIORS.json",
+  "latest_branch": "research/pfl-abh5b-c05-real-forecastbench-safegate-20261029",
+  "canonical_report": "../ABH5B_C05_REAL_QUESTION_GATE_20261029/FINAL_REPORT.md",
+  "last_documentary_gate_date": "2026-10-29",
+  "last_documentary_gate_branch": "research/pfl-abh5b-c05-external-identification-gate-20261029"
+}

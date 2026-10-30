@@ -1,0 +1,26 @@
+{
+  "id": "C10",
+  "type": "AB-P",
+  "status": "PREREGISTERED",
+  "timestamp_utc": "2026-10-29T16:05:54.179428+00:00",
+  "source_commit": "2ebb5a8aee945317a00430610a18c9b8ebcef8f4",
+  "A": "Do published-aggregate attrition bounds distinguish assumption-driven effects from identified ones?",
+  "B": [
+    "Contract holds under the stated control",
+    "A concrete counterexample violates it",
+    "Evidence insufficient or environment blocked"
+  ],
+  "C": {
+    "method": "Run analytic bound tests and inspect declared assumptions and missingness support.",
+    "acceptance": "Bounds cover worst-case missing outcomes and disclose unidentified effects rather than impute success.",
+    "baseline": "Existing documented project contract; no claim of scientific novelty"
+  },
+  "D": "Preserve stdout, stderr, command, exit and hashes. Freeze this file on GitHub before execution.",
+  "F": "Try ordinary and hostile/negative conditions; preserve failures and distinguish runtime limitations.",
+  "G": "Internal software/document audit only. No external causal confirmation.",
+  "selection_exposure": "C09 changes unit of randomization; noncompletion may independently change estimand.",
+  "DRIFT": 0,
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "grade_0_3": 0
+}

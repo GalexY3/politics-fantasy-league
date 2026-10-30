@@ -1,0 +1,57 @@
+{
+  "schema": "pfl.ab321.abh5.c03.run.v1",
+  "prereg_commit": "b6409e2c7715f5f1bc6bcab572c3945860248e2e",
+  "mode": "AB-P",
+  "execution": "Node v22.16.0, local container, no network",
+  "command": "node test_fictional_cluster_gate.mjs",
+  "source_sha256": "bb196e1dda902e76b6557f985e94038814a6a7f5600abed93a5ffd7debf9dbcf",
+  "test_sha256": "d4cb5be09151c74ea37ad048483e90c3c970f836fdae1d40fa5e4ad8b9490126",
+  "git_sha1_blobs": [
+    "fa0b480ee2522bdd4f7aa2bd7757092bd8010515",
+    "ec1739f7db637a5bde3c147acd1f23684d68f78c"
+  ],
+  "native_test_groups": 8,
+  "passed": 8,
+  "exit_code": 0,
+  "observed": {
+    "people": 16,
+    "rooms": 8,
+    "arms": 4,
+    "control": {
+      "person_weighted": 0.75,
+      "cluster_equal": 0.5
+    },
+    "transparency_factor": {
+      "person_weighted": 0.25,
+      "cluster_equal": 0.5
+    },
+    "interaction": {
+      "person_weighted": 1.5,
+      "cluster_equal": 1
+    }
+  },
+  "adversarial_cases": [
+    "contamination within a leaderboard room rejected",
+    "duplicate person rejected",
+    "unrecognized arm rejected",
+    "fake real-study fixture rejected",
+    "empty or missing treatment groups rejected",
+    "PII field and accessor getter rejected",
+    "order invariance"
+  ],
+  "interpretation": "Difference between two explicitly different targets under unequal room size; does NOT prove either target universally preferable",
+  "scientific_grade": "0/3",
+  "new_N1_N2_N3": [
+    0,
+    0,
+    0
+  ],
+  "CT2_before": 22,
+  "CT2_after": 22,
+  "status": "VALID_ABP_LIMITED_SYNTHETIC",
+  "external_replication": "NONE",
+  "clean_clone": "NOT_VERIFIED",
+  "real_participants": 0,
+  "privacy_review": "NOT_REQUESTED_OR_GRANTED",
+  "no_network": true
+}
