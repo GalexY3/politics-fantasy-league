@@ -291,6 +291,14 @@
       "state": "answered",
       "summary": "C19 all 89 original Atlas delta JSON sourced from connected GitHub in six windows: SHA matched listing, 448 ops, 273 runs, no parent/schema errors, 8/8 Node unit tests. Canonical Python not run, no full graph digest.",
       "source": "../ABH30_NEW_20261029/C19_RUN_RECEIPT.json"
+    },
+    {
+      "id": "PFL-ABH30-C18-LICENSED-HUMAN-SOURCE-NEGATIVE",
+      "type": "source_feasibility_negative",
+      "mode": "AB-R",
+      "state": "answered",
+      "summary": "C18 independent human forecasting source published under CC-BY-SA; original file access limited and individual records not processed, no rank causal evidence. Late reconciliation after connector rejection; same C18 no new cycle.",
+      "source": "../ABH30_NEW_20261029/C18_RUN_RECEIPT.json"
     }
   ],
   "edges": [
@@ -629,6 +637,12 @@
       "to": "PFL-ABH30-C16-NATIVE-SYNTHETIC-VIEW-RENDER",
       "relation": "audits",
       "interpretation": "C19 checks append-only source chain including recorded C16 source contribution; not scientific causality."
+    },
+    {
+      "from": "PFL-ABH30-C18-LICENSED-HUMAN-SOURCE-NEGATIVE",
+      "to": "PFL-ABH30-C12-INDEPENDENT-HUMAN-RANK-RCT-PRIOR",
+      "relation": "related_to",
+      "interpretation": "Human observational forecast source availability does not prove experimental PFL rank effects."
     }
   ],
   "rules": {
