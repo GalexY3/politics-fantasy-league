@@ -121,6 +121,19 @@ def publication_observation(verified_commit):
             'scope': 'NO_LOCAL_MAIN_REF'}
 
 
+def validate_allocation(allocation):
+    keys = ('user_authorized_total_units', 'review_units_allocated',
+            'review_units_completed', 'substantive_units_allocated',
+            'valid_scientific_cycles_executed', 'substantive_units_remaining')
+    if any(type(allocation.get(k)) is not int or allocation[k] < 0 for k in keys):
+        return ['INCONSISTENT_CONTINUATION_ALLOCATION']
+    if (allocation['user_authorized_total_units'] != allocation['review_units_allocated'] + allocation['substantive_units_allocated']
+            or allocation['review_units_completed'] > allocation['review_units_allocated']
+            or allocation['substantive_units_allocated'] != allocation['valid_scientific_cycles_executed'] + allocation['substantive_units_remaining']):
+        return ['INCONSISTENT_CONTINUATION_ALLOCATION']
+    return []
+
+
 def derive():
     state = load(PROJECT / 'PROJECT_STATE.json')
     doc, batches = atlas_delta.replay(PROJECT / 'ab_atlas/seed.json', PROJECT / 'ab_atlas/updates')
@@ -146,6 +159,10 @@ def derive():
                 for k in ('authorized', 'executed', 'remaining'))
                 or additional['authorized'] != additional['executed'] + additional['remaining']):
             errors.append('INCONSISTENT_ADDITIONAL_GRANT')
+    allocation = None
+    if state.get('continuation_allocation_ledger'):
+        allocation = load(PROJECT / state['continuation_allocation_ledger'])
+        errors.extend(validate_allocation(allocation))
     catalogue = subprocess.run([sys.executable, str(PROJECT / 'scripts/project_index.py'), 'check'],
                                cwd=ROOT, capture_output=True)
     if catalogue.returncode:
@@ -156,7 +173,8 @@ def derive():
     for name in sorted(n for n in names if n and (ROOT / n).is_file()):
         digest.update(name.encode()); digest.update(b'\0'); digest.update((ROOT / name).read_bytes())
     return state, {'branch': git('branch', '--show-current'), 'head': git('rev-parse', 'HEAD'),
-                   'atlas': atlas, 'authorization': budget, 'additional_authorization': additional, 'code_fingerprint': digest.hexdigest(),
+                   'atlas': atlas, 'authorization': budget, 'additional_authorization': additional,
+                   'continuation_allocation': allocation, 'code_fingerprint': digest.hexdigest(),
                    'publication': publication_observation(state['latest_validation'].get('verified_commit', 'HEAD')),
                    'errors': errors, 'note': 'Metadata consistency only; does not execute product tests, validate rights, or authorize release.'}
 
@@ -182,6 +200,14 @@ def brief(state, observed):
                      f"{extra['executed']}/{extra['authorized']} ejecutados; "
                      f"{extra['remaining']} disponibles. No reasignar saldo ABH10.")
         lines.append('')
+    if observed.get('continuation_allocation'):
+        a = observed['continuation_allocation']
+        lines += ['## Concesión de continuación: lectura y trabajo sustantivo',
+                  f"{a['user_authorized_total_units']} unidades totales: "
+                  f"{a['review_units_completed']}/{a['review_units_allocated']} revisiones documentales; "
+                  f"{a['valid_scientific_cycles_executed']} ciclos científicos válidos nuevos; "
+                  f"{a['substantive_units_remaining']} unidades sustantivas disponibles. "
+                  'Las revisiones y el mantenimiento no son experimentos; no sumar otra vez esta concesión.', '']
     for lane in ('product', 'research'):
         lines.append(f'## {lane}')
         for m in state['milestones']:

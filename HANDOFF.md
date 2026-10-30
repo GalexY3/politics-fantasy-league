@@ -1,6 +1,6 @@
 # PFL · briefing derivado
 
-Rama: `codex/pfl-pr2-review`; HEAD: `9d5603ea1cb023f1c7edd6f1036cc2b8a731cd8e`.
+Rama: `codex/pfl-pr2-review`; HEAD: `7de66007ac24c383f0433680b1e2edb3eb96462b`.
 Estado rev. 9; publicación declarada: PR2_REVIEW_ON_CURRENT_MAIN.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
@@ -15,6 +15,9 @@ Pruebas históricas de AB; no sustituyen QA sobre el nuevo commit.
 DRAFT_PENDING_INDEPENDENT_LINUX_QA; origen: PR #81 (d725a8dff37429a035b6e1ffb27c3568e51322ce); rama de revisión: migration/pfl-final-cutover-20261030. Consultar status del traslado y recibo de incorporación antes de continuar.
 
 Concesión nueva INDEPENDIENTE PFL-GRANT-20261030-INTEGRATION10: 0/10 ejecutados; 10 disponibles. No reasignar saldo ABH10.
+
+## Concesión de continuación: lectura y trabajo sustantivo
+20 unidades totales: 5/5 revisiones documentales; 0 ciclos científicos válidos nuevos; 15 unidades sustantivas disponibles. Las revisiones y el mantenimiento no son experimentos; no sumar otra vez esta concesión.
 
 ## product
 - P0-INTEGRATION [DONE]: Una base técnica y de evidencia reunida y revisable. Siguiente: Integración incorporada; el siguiente hito de producto es P1-ACCOUNTS con datos ficticios
@@ -36,5 +39,5 @@ Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, c
 Este briefing consulta el árbol local y el ledger; hacer fetch/resolver HEAD remoto antes de usarlo para continuar. Un resultado histórico no verifica otro commit.
 
 Consistencia: PASS
-Huella código/tests: `6389f0bc8dff3da59c951766d1d10a2cd385e69f468f18cb4a2d6809f4fcbd8f`.
+Huella código/tests: `5e7d3c287e1e8e67f2dc2e8e230ddc9cb40cd88143779d3ca3f0fc45c3e42b31`.
 No pedir ciclos por fórmula. Aparcar bloqueos sin observación nueva. Actualizar PROJECT_STATE y este handoff al cerrar.
