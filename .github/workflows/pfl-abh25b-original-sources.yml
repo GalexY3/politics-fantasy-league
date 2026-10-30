@@ -1,9 +1,7 @@
 name: PFL ABH25B two independent original institution audits
 # Explicit first PR-run after frozen source parsers and controls.
 on:
-  pull_request:
-    paths:
-      - .github/workflows/pfl-abh25b-original-sources.yml
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
