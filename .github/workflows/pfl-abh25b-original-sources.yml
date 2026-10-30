@@ -1,0 +1,48 @@
+name: PFL ABH25B two independent original institution audits
+on:
+  push:
+    branches:
+      - research/pfl-ab-h25-v2-source-provenance-playability-20261030
+    paths:
+      - .github/workflows/pfl-abh25b-original-sources.yml
+permissions:
+  contents: read
+jobs:
+  adversarial-parsers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Synthetic only: source parsers and negative controls
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_public_source_parsers.py -v
+  uk-lag-audit:
+    needs: adversarial-parsers
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Preregistered four nonadjacent UK source pages
+        run: python research/ABH25B_20261030/c01_uk_response_latency.py
+  canada-schema-audit:
+    needs: adversarial-parsers
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Preregistered Canadian petition XML structure
+        run: python research/ABH25B_20261030/c02_canada_schema.py
