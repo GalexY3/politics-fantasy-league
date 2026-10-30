@@ -21,7 +21,7 @@ def inspect_xml(raw):
     sample=raw[:256].lstrip().lower()
     if b"<html" in sample or b"<!doctype html" in sample:
         raise ValueError("HTML_NOT_XML")
-    if b"<!doctype" in raw.upper() or b"<!ENTITY" in raw.upper():
+    if b"<!DOCTYPE" in raw.upper() or b"<!ENTITY" in raw.upper():
         raise ValueError("DOCTYPE_OR_ENTITY_NOT_ALLOWED")
     root=ET.fromstring(raw)
     tags=Counter(local(e.tag) for e in root.iter())
