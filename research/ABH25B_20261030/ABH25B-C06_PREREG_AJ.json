@@ -1,0 +1,25 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.v1",
+  "cycle": "ABH25B-C06",
+  "mode": "AB-R",
+  "status": "FROZEN_BEFORE_PAGE9_OUTCOMES",
+  "A": "For 15 closed petitions on fixed Scottish Parliament page9, what are elapsed calendar days from opened_at to closed_at, and can current JSON support a lifetime measure without inventing missingness? Unit petition closure, only if both dated fields.",
+  "B": {
+    "H1": "Open→closed duration is observable and nonnegative in all selected records",
+    "H0": "Dates absent, ambiguous, reversed or affected by incomplete historical reconstruction",
+    "rivals": [
+      "Closed-petition sampling mechanically excludes still-open cases",
+      "Session and time ordering/ranking confound duration",
+      "No signature threshold: not comparable to Westminster 10k policy"
+    ]
+  },
+  "C": "One fixed official JSON page9 closed, no adaptive page replacement, bounded 1MB; count statuses, paired timestamps, duration quantiles and negatives; do not collect IDs/titles/person names.",
+  "D": "Freeze Python parser, mock negatives and A-J first; source raw SHA256 and row count, source URL, no full original export.",
+  "E": "One read-only CI job with adversarial parser tests then original. No retries of same success to spend cycles.",
+  "F": "Censoring identified: results conditional on CLOSED; no inferred transition probabilities or impact of signatures.",
+  "G": "Compare schema of earlier independently seen page4 C05 but do not reread original; separate page and question. Competing risks not identifiable.",
+  "H": "Update bounded descriptive Scottish timing prior only. Null ≠ zero.",
+  "I": "CT2 20, N1/2/3 0, no launch gates.",
+  "J": "Only one AB-R cycle if genuine new page timing data and all controls execute; else block without charging.",
+  "exposure": "C05 already saw page4 schema with opened_at/closed_at on 15 closed; page9 NOT inspected before prereg."
+}
