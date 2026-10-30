@@ -45,3 +45,7 @@ La nueva prueba del almacén se ejecutó primero contra el código anterior `ed3
 Logs/entorno/comandos y manifiestos originales en `research/MAIN_REVIEW_20261030/linux_first/` y `linux_final/`. Todos los archivos recuperados se contrastaron con sus hashes del invitado. La VM se apagó; no se usó CI remota. Los cambios posteriores a ese commit solo registran evidencia y organización generada; no cambian código ni tests.
 
 La decisión autoriza incorporar la base mantenible a main por delegación del usuario. Autenticación, T005 y los gates de lanzamiento siguen pendientes; no son capacidades adquiridas por esta revisión.
+
+## Incorporación observada
+
+GitHub confirmó la fusión de [PR80](https://github.com/GalexY3/Metodologia-AB/pull/80) con cabeza esperada `825bbef8acf0b568178b4aaed5f15d3eea792f4f` y commit de merge **`0ff160f301eb2b200f24e4335f962c42ece61268`**. Se verificó por fetch que origin/main apunta a ese merge. El código probado es `074f72e19b522e7a507045e3738609fa5f6139cc`; las actualizaciones posteriores registran estos hechos y regeneran el catálogo, sin alterar código ni tests.

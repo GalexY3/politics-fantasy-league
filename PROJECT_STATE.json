@@ -1,11 +1,11 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 4,
+  "revision": 5,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
   "operational_branch": "integration/pfl",
   "publication_branch": "main",
-  "publication_status": "CODE_REVIEW_APPROVED_PENDING_MERGE",
+  "publication_status": "MERGED_PR80",
   "entry_url": "https://github.com/GalexY3/Metodologia-AB/blob/integration/pfl/proyectos/politics-fantasy-league/START_HERE.md",
   "source_heads": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
@@ -48,17 +48,17 @@
     {
       "id": "P0-INTEGRATION",
       "lane": "product",
-      "status": "READY_REVIEW",
+      "status": "DONE",
       "outcome": "Una base técnica y de evidencia reunida y revisable",
       "acceptance": "Revisión de código delegada a Codex por el usuario, correcciones, suites completas y decisión de incorporación a main",
-      "next_action": "Incorporar PR80 a main con comprobación del SHA aprobado",
+      "next_action": "Integración incorporada; el siguiente hito de producto es P1-ACCOUNTS con datos ficticios",
       "dependencies": [],
       "evidence": [
+        "research/MAIN_REVIEW_20261030/MERGE_RECEIPT.json",
         "docs/MAIN_REVIEW_20261030.md",
-        "research/MAIN_REVIEW_20261030/DECISION.json",
         "research/MAIN_REVIEW_20261030/linux_final/MANIFEST.json"
       ],
-      "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc"
+      "verified_commit": "0ff160f301eb2b200f24e4335f962c42ece61268"
     },
     {
       "id": "P1-ACCOUNTS",
@@ -186,5 +186,17 @@
     "no_promotion_from_this_maintenance": true
   },
   "closure_rule": "Guardar estado compacto + briefing/handoff + evidencia observada; no pedir ciclos por fórmula; no consumir saldo por mantenimiento.",
-  "integration_pr": "https://github.com/GalexY3/Metodologia-AB/pull/80"
+  "integration_pr": "https://github.com/GalexY3/Metodologia-AB/pull/80",
+  "publication_observed": {
+    "pr": 80,
+    "url": "https://github.com/GalexY3/Metodologia-AB/pull/80",
+    "merged": true,
+    "merge_commit": "0ff160f301eb2b200f24e4335f962c42ece61268",
+    "approved_head": "825bbef8acf0b568178b4aaed5f15d3eea792f4f",
+    "reviewed_code_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
+    "previous_main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
+    "method": "merge",
+    "source": "Observed GitHub merge tool response; expected head SHA enforced",
+    "new_ab_cycles": 0
+  }
 }

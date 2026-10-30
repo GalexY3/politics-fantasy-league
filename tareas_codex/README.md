@@ -2,7 +2,7 @@
 
 **Entrada de continuidad:** [START_HERE](../START_HERE.md). Los objetivos y siguientes acciones de producto e investigación se mantienen en [PROJECT_STATE.json](../PROJECT_STATE.json); este índice conserva los expedientes históricos.
 
-Las PR44, PR45, PR75 y PR79 se han reunido en `integration/pfl`, pendiente de revisión para main. Los informes parciales recuperados están de nuevo presentes. T025 mecanismos y T025 RELEASEPATH son expedientes distintos. **No hay ciclos nuevos por esta consolidación.** Se mantienen 5 plazas ABH10 y 2 históricas separadas bajo R5.
+Las líneas PR44, PR45, PR75 y PR79 se reunieron en `integration/pfl` y se incorporaron a `main` mediante PR80 tras revisión delegada del código y QA íntegro. Los informes parciales recuperados están de nuevo presentes. T025 mecanismos y T025 RELEASEPATH son expedientes distintos. **No hay ciclos nuevos por esta consolidación.** Se mantienen 5 plazas ABH10 y 2 históricas separadas bajo R5.
 
 | Expediente | Estado del alcance documentado | Evidencia |
 | --- | --- | --- |

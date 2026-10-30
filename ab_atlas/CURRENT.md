@@ -1,3 +1,11 @@
+# Incorporado a main · revisión delegada · 30/10/2026
+
+La [PR80](https://github.com/GalexY3/Metodologia-AB/pull/80) está **fusionada** tras revisión del código y corrección de tres fallos. [Recibo GitHub](../research/MAIN_REVIEW_20261030/MERGE_RECEIPT.json). QA Linux final: **820 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS**, sin fallos/omisiones. La regresión determinista del almacén falla en la base y pasa corregida.
+
+La entrada sigue siendo [START_HERE](../START_HERE.md), con [mapa por tareas](../PROJECT_MAP.md), [catálogo](../PROJECT_INDEX.json) y [estado vivo](../PROJECT_STATE.json). Atlas93 conserva su SHA y los gates siguen 0/6. Se mantienen 5 plazas ABH10 y 2 históricas separadas; no se ejecutaron ciclos AB por la revisión.
+
+---
+
 # Integración vigente de PFL · 30/10/2026
 
 **Leer primero [START_HERE](../START_HERE.md) y [PROJECT_STATE](../PROJECT_STATE.json).** `integration/pfl` reúne las líneas PR44/45/75/79 como candidato revisable, no fusionado a main. Se conservan las ramas antiguas.

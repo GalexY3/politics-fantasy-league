@@ -1,14 +1,14 @@
 # PFL · briefing derivado
 
-Rama: `integration/pfl`; HEAD: `074f72e19b522e7a507045e3738609fa5f6139cc`.
-Estado rev. 4; publicación declarada: CODE_REVIEW_APPROVED_PENDING_MERGE.
-Código revisado incluido en refs/remotes/origin/main: False (referencia local; hacer fetch).
+Rama: `integration/pfl`; HEAD: `0ff160f301eb2b200f24e4335f962c42ece61268`.
+Estado rev. 5; publicación declarada: MERGED_PR80.
+Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
 Atlas: 93 lotes; SHA `7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d`; gates 0/6.
 Autorización ABH10: 5/10 ejecutados; 5 disponibles, preservados bajo R5. Históricos separados: 2.
 
 ## product
-- P0-INTEGRATION [READY_REVIEW]: Una base técnica y de evidencia reunida y revisable. Siguiente: Incorporar PR80 a main con comprobación del SHA aprobado
+- P0-INTEGRATION [DONE]: Una base técnica y de evidencia reunida y revisable. Siguiente: Integración incorporada; el siguiente hito de producto es P1-ACCOUNTS con datos ficticios
 - P1-ACCOUNTS [QUEUED]: Usuarios y permisos aislados en el prototipo ficticio. Siguiente: Definir y ejecutar una implementación local mínima con pruebas de aislamiento, sin personas políticas reales
 - P2-PLAYABLE-FLOW [QUEUED]: Flujo ficticio completo usable y persistente. Siguiente: Tras P1, verificar un recorrido de usuario completo y corregir fricciones observadas
 - P-CONTINUITY [DONE]: Continuidad verificable entre conversaciones sin copiar un resumen que caduque. Siguiente: Cada nueva sesión lee START_HERE y cada cierre guarda estado y handoff

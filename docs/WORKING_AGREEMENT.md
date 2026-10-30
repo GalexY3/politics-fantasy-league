@@ -18,7 +18,7 @@ Hay una tensión documental: AB 3.2.1 R5 dice que el cupo es un límite y J cond
 
 ## Ruta inmediata por línea
 
-**Producto:** terminar esta integración, validar todo el árbol y revisar el resultado. Después, acceso multiusuario de la demo ficticia con pruebas de aislamiento de clubes y persistencia; luego flujo completo de jornada. La autenticación no requiere resolver T005.
+**Producto:** integración validada e incorporada mediante PR80. El siguiente hito es acceso multiusuario de la demo ficticia con pruebas de aislamiento de clubes y persistencia; luego flujo completo de jornada. La autenticación no requiere resolver T005.
 
 **Investigación:** aparcar la insistencia en el registro AEA/C37 y T005 hasta nueva evidencia. Seleccionar una pregunta sociológica concreta y factible; primero contrastar antecedentes y acceso real a la observación. Tres rutas iniciales para comparar: feedback de rango y participación humana con datos explícitamente utilizables; respuesta institucional a peticiones con cronología original y análisis observacional; mecanismos de incentivos con contraste formal/simulado etiquetado como condicionado al modelo. No asumir que una fuente existe, que es reutilizable o que esas preguntas son nuevas. El criterio de selección es qué hipótesis rival podría distinguirse con observaciones accesibles, no qué vía produce más tests.
 

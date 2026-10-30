@@ -14,7 +14,7 @@ Este enlace es estable. **El estado se consulta en Git; no se copia de una conve
 
 ## Autoridad y ramas
 
-- **`integration/pfl` es el punto de reunión operativo y la referencia estable de continuidad.** Contiene una propuesta de integración revisable; eso no significa que esté fusionada o publicada en `main`.
+- **`integration/pfl` es el punto de reunión operativo y la referencia estable de continuidad.** La base reunida se incorporó a `main` mediante [PR80](https://github.com/GalexY3/Metodologia-AB/pull/80), después de revisión y QA. Cada cambio posterior debe comprobar su propia incorporación; consultar `PROJECT_STATE.json` y Git.
 - `main` es la rama de publicación/integración final. Su estado real se consulta en GitHub; no se presume actualizado.
 - [Inventario de ramas](BRANCHES.json): indica qué cabezas se integraron y qué alternativas antiguas quedan archivadas para revisión. Una PR abierta de un ancestro no implica trabajo faltante.
 - Para trabajo corto, una rama de cambio por hito, basada en `integration/pfl`, y una PR contra esa misma rama. **Una conversación o un ciclo AB no necesita su propia rama Git.** La rama conceptual de una hipótesis se identifica dentro del ledger.
