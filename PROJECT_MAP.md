@@ -32,7 +32,7 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 
 | Categoría | Archivos | Uso |
 | --- | ---: | --- |
-| `archive` | 5 | Documentación histórica conservada |
+| `archive` | 6 | Documentación histórica conservada |
 | `atlas` | 106 | Grafo Atlas, logros y sincronización |
 | `continuity` | 7 | Estado vigente, objetivos e inicio de conversación |
 | `data` | 10 | Datos/fixtures versionados y metadatos; no datos locales privados |

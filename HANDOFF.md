@@ -1,6 +1,6 @@
 # PFL · briefing derivado
 
-Rama: `integration/pfl`; HEAD: `0ff160f301eb2b200f24e4335f962c42ece61268`.
+Rama: `integration/pfl`; HEAD: `a9ab7d7328cd92a5d82f7f9ccfc3553f793edbe4`.
 Estado rev. 5; publicación declarada: MERGED_PR80.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).
 
