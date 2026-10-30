@@ -12,8 +12,8 @@
   "scope": {
     "atlas_lots": 93,
     "canonical_atlas": "PASS_93_LOTS_SHA256_7edd32ca6872071bd34de668c96a75f07b686a3cd4f676ca2237d5e1fde2227d",
-    "full_repo_python": "LINUX_820_PASS_32_SUBTESTS_COMMIT_074f72e19b522e7a507045e3738609fa5f6139cc",
-    "full_repo_node": "LINUX_511_PASS_COMMIT_074f72e19b522e7a507045e3738609fa5f6139cc",
+    "full_repo_python": "LINUX_822_PASS_32_SUBTESTS_COMMIT_3d66e813a422572b2a2ce7a3155df8dac667e224",
+    "full_repo_node": "LINUX_511_PASS_COMMIT_3d66e813a422572b2a2ce7a3155df8dac667e224",
     "release_gates_passed": 0,
     "ct2_identity_ordinal": 29,
     "progress_contractual_percent": 36.9,
@@ -521,5 +521,12 @@
     "method_reference": "../METHOD_REFERENCE.json",
     "commit_map": "../docs/migration/COMMIT_MAP.tsv",
     "qa": "PENDING_STANDALONE"
+  },
+  "standalone_validation": {
+    "status": "STANDALONE_REVIEW_PASS",
+    "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224",
+    "summary": "Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, cero fallos/skips. Instalación .[test], catálogo, continuidad, logros y replay PASS. Atlas93 sin cambios.",
+    "evidence": "docs/migration/linux/MANIFEST.json",
+    "scope_note": "QA de la extracción; no añade evidencia científica ni supera gates de lanzamiento."
   }
 }

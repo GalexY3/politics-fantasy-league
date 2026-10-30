@@ -22,6 +22,8 @@ Los documentos operativos apuntan al repositorio nuevo. Los informes históricos
 
 ## Verificación y corte
 
-La migración todavía requiere QA íntegro sobre el commit adaptado, integridad del Atlas, catálogo, autorización y estado. Se registrarán sus resultados y el corte efectivo antes de retirar la copia activa de AB. No se ejecutan nuevos ciclos AB por esta operación, ni se infieren concesiones de otros chats que no consten en el ledger migrado.
+QA íntegro sobre `3d66e813a422572b2a2ce7a3155df8dac667e224`: **822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS**, cero fallos/skips. Instalación desde `.[test]`, catálogo, continuidad, logros y replay PASS. [Resultados y hashes](linux/MANIFEST.json), [comandos](check.sh), [preparación Linux](bootstrap.sh), [adaptación de código/configuración](PORT_CODE.patch). Linux Alpine 3.24, Python 3.14 y Node 24; UID sin privilegios, red externa desactivada durante pruebas. La instalación genera `build/` y `*.egg-info/` en el entorno efímero; no cambia archivos versionados.
+
+El corte de AB queda pendiente hasta verificar la publicación del destino. No se ejecutan nuevos ciclos AB por esta operación, ni se infieren concesiones de otros chats que no consten en el ledger migrado.
 
 La CI remota queda manual. Datos raw/private/local_field no versionados y credenciales no forman parte de la extracción.

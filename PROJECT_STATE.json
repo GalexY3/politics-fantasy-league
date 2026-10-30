@@ -1,11 +1,11 @@
 {
   "schema": "pfl.project_state.v1",
-  "revision": 6,
+  "revision": 7,
   "updated_on": "2026-10-30",
   "user_priority": "Producto e investigación, con objetivos y progreso separados",
   "operational_branch": "main",
   "publication_branch": "main",
-  "publication_status": "STANDALONE_MIGRATION_QA_IN_PROGRESS",
+  "publication_status": "STANDALONE_QA_PASS_CUTOVER_PENDING",
   "entry_url": "https://github.com/GalexY3/politics-fantasy-league/blob/main/START_HERE.md",
   "source_heads": {
     "main": "968f2b1723bd7961a6fe08d003b165d6a9e93c81",
@@ -173,24 +173,27 @@
     {
       "id": "P-MIGRATION",
       "lane": "product",
-      "status": "IN_PROGRESS",
+      "status": "READY_REVIEW",
       "outcome": "Proyecto independiente de AB con historia y herramientas reproducibles",
       "acceptance": "Identidad de archivos importados, mapa de commits, rutas corregidas, QA completo y una única autoridad publicada; entradas AB redirigen después de verificar destino",
-      "next_action": "Completar QA y publicar destino antes del corte de AB",
+      "next_action": "Publicar y comprobar destino; retirar copia activa de AB con redirecciones",
       "dependencies": [
         "P0-INTEGRATION"
       ],
       "evidence": [
-        "docs/migration/SOURCE_TREE.json"
-      ]
+        "docs/migration/SOURCE_TREE.json",
+        "docs/migration/linux/MANIFEST.json",
+        "docs/migration/PORT_CODE.patch"
+      ],
+      "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224"
     }
   ],
   "latest_validation": {
-    "status": "MIGRATION_QA_IN_PROGRESS",
-    "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
-    "summary": "Baseline AB: 820 Python/511 Node/38 Atlas PASS. Standalone paths, commit resolution and declared dependencies changed; complete standalone QA is pending.",
-    "evidence": "docs/migration/README.md",
-    "scope_note": "Old results do not automatically certify the extracted repository."
+    "status": "STANDALONE_REVIEW_PASS",
+    "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224",
+    "summary": "Linux limpio: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS, cero fallos/skips. Instalación .[test], catálogo, continuidad, logros y replay PASS. Atlas93 sin cambios.",
+    "evidence": "docs/migration/linux/MANIFEST.json",
+    "scope_note": "QA de la extracción; no añade evidencia científica ni supera gates de lanzamiento."
   },
   "scientific_status": {
     "prospective_CT2_ordinal": 20,

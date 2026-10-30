@@ -1,6 +1,6 @@
 # Repositorio independiente · 30/10/2026
 
-PFL se migra a [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league). Consultar [START_HERE](../START_HERE.md), [METHOD_REFERENCE](../METHOD_REFERENCE.json) y [la procedencia](../docs/migration/README.md). Los datos Atlas93 y su SHA se conservan; no se ejecutaron nuevos ciclos. La QA independiente del destino se registra antes del corte.
+PFL se migra a [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league). Consultar [START_HERE](../START_HERE.md), [METHOD_REFERENCE](../METHOD_REFERENCE.json) y [la procedencia](../docs/migration/README.md). Los datos Atlas93 y su SHA se conservan; no se ejecutaron nuevos ciclos. QA independiente: 822 Python +32 subtests, 511 Node y 38 Atlas +104 subtests PASS; [evidencia](../docs/migration/linux/MANIFEST.json). El corte de AB se registra tras verificar publicación.
 
 ---
 

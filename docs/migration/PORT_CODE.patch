@@ -1,0 +1,235 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 26ddf2d..05a1ad9 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -1,24 +1,31 @@
+-name: Python and JavaScript checks
++name: Manual PFL verification
+ on:
+-  push:
+-    branches: [main]
+-  pull_request:
+-
++  workflow_dispatch:
++permissions:
++  contents: read
+ jobs:
+   tests:
+     runs-on: ubuntu-latest
+-    strategy:
+-      fail-fast: false
+-      matrix:
+-        python-version: ['3.10', '3.13']
++    timeout-minutes: 15
+     steps:
+       - uses: actions/checkout@v4
++        with:
++          fetch-depth: 0
+       - uses: actions/setup-python@v5
+         with:
+-          python-version: ${{ matrix.python-version }}
+-      - name: Install test dependencies
+-        run: python -m pip install pytest
+-      - name: Python tests
+-        run: PYTHONPATH=src python -m pytest -q
+-      - name: JavaScript syntax
+-        run: node --check src/politics_fantasy/web/app.js
++          python-version: '3.14'
++      - uses: actions/setup-node@v4
++        with:
++          node-version: '24'
++      - name: Install declared test dependencies
++        run: python -m pip install '.[test]'
++      - name: Catalogue and continuity
++        run: |
++          python scripts/project_index.py check
++          python scripts/project_status.py check
++      - name: Python and Atlas
++        run: |
++          PYTHONPATH=src python -m pytest -q -rs
++          python -m pytest -q -rs tools/ab_atlas/tests
++      - name: JavaScript
++        run: node scripts/run_node_tests.mjs
+diff --git a/pyproject.toml b/pyproject.toml
+index f57c124..b15da35 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -12,7 +12,7 @@ authors = []
+ dependencies = []
+ 
+ [project.optional-dependencies]
+-test = ["pytest>=7", "numpy>=1.24", "tzdata>=2024.1"]
++test = ["pytest>=7", "pytest-subtests>=0.14", "numpy>=1.24", "tzdata>=2024.1"]
+ plots = ["matplotlib>=3.6"]
+ research = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.6", "tzdata>=2024.1"]
+ 
+diff --git a/scripts/project_index.py b/scripts/project_index.py
+index 2a18a44..ff15e55 100644
+--- a/scripts/project_index.py
++++ b/scripts/project_index.py
+@@ -8,7 +8,7 @@ import subprocess
+ import sys
+ 
+ PROJECT = Path(__file__).resolve().parents[1]
+-ROOT = PROJECT.parents[1]
++ROOT = PROJECT
+ OUTPUTS = {'PROJECT_INDEX.json', 'PROJECT_MAP.md', 'research/INDEX.md'}
+ CATEGORIES = {
+     'continuity': 'Estado vigente, objetivos e inicio de conversación',
+@@ -18,6 +18,7 @@ CATEGORIES = {
+     'research': 'Preguntas, campañas, análisis y resultados de investigación',
+     'evidence': 'Recibos, originales conservados y copias históricas; no código activo',
+     'atlas': 'Grafo Atlas, logros y sincronización',
++    'atlas_engine': 'Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json',
+     'reference': 'Manuales, contratos y referencias',
+     'data': 'Datos/fixtures versionados y metadatos; no datos locales privados',
+     'task_queue': 'Expedientes y resultados de ejecución',
+@@ -30,6 +31,7 @@ ROLES = {
+     'HANDOFF.md': 'Último briefing guardado; comprobar frescura con Git',
+     'BRANCHES.json': 'Inventario de ramas integradas y alternativas históricas',
+     'NEW_CHAT_PROMPT.md': 'Prompt reutilizable que apunta al estado vivo',
++    'METHOD_REFERENCE.json': 'Versión de AB adoptada y enlaces al método en su repositorio',
+     'src/politics_fantasy/server.py': 'Servidor HTTP de la demo local; rutas API y cabeceras',
+     'src/politics_fantasy/product.py': 'Clubes, mercado, alineación, jornadas y persistencia',
+     'src/politics_fantasy/scoring.py': 'Reglas de puntuación del prototipo',
+@@ -61,6 +63,8 @@ def classify(path):
+         return 'evidence'
+     if path.startswith('ab_atlas/'):
+         return 'atlas'
++    if path.startswith('tools/ab_atlas/'):
++        return 'atlas_engine'
+     if path.startswith('tests/') or p.name.startswith('test_') and path.startswith('src/'):
+         return 'verification'
+     if path.startswith('src/'):
+@@ -95,8 +99,8 @@ def make_catalogue(paths):
+ 
+ 
+ def tracked_paths():
+-    prefix = PROJECT.relative_to(ROOT).as_posix() + '/'
+-    raw = subprocess.check_output(['git', 'ls-files', '-z', '--', prefix], cwd=ROOT).decode('utf-8')
++    prefix = '' if PROJECT == ROOT else PROJECT.relative_to(ROOT).as_posix() + '/'
++    raw = subprocess.check_output(['git', 'ls-files', '-z', '--', prefix or '.'], cwd=ROOT).decode('utf-8')
+     return [p[len(prefix):] for p in raw.split('\0') if p.startswith(prefix) and (ROOT / p).is_file()]
+ 
+ 
+diff --git a/scripts/project_status.py b/scripts/project_status.py
+index e5d11ec..3d9bc93 100644
+--- a/scripts/project_status.py
++++ b/scripts/project_status.py
+@@ -10,8 +10,8 @@ import subprocess
+ import sys
+ 
+ PROJECT = Path(__file__).resolve().parents[1]
+-ROOT = PROJECT.parents[1]
+-sys.path.insert(0, str(ROOT / 'ab_atlas'))
++ROOT = PROJECT
++sys.path.insert(0, str(ROOT / 'tools' / 'ab_atlas'))
+ import atlas_delta
+ 
+ 
+@@ -23,6 +23,24 @@ def load(path):
+     return json.loads(Path(path).read_text(encoding='utf-8'))
+ 
+ 
++def resolve_commit(commit):
++    """Resolve a retained original AB SHA through the documented extraction map."""
++    if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit):
++        return None
++    def exists(value):
++        return subprocess.run(['git','cat-file','-e',value+'^{commit}'],cwd=ROOT,
++                              stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode == 0
++    if exists(commit):
++        return commit
++    mapping = PROJECT / 'docs/migration/COMMIT_MAP.tsv'
++    if mapping.is_file():
++        for line in mapping.read_text(encoding='utf-8').splitlines()[1:]:
++            old, new = line.split()
++            if old == commit and new != '0'*40 and exists(new):
++                return new
++    return None
++
++
+ def validate_state(state, observed_atlas, observed_budget, project=PROJECT):
+     errors = []
+     if state.get('schema') != 'pfl.project_state.v1':
+@@ -68,10 +86,7 @@ def validate_state(state, observed_atlas, observed_budget, project=PROJECT):
+             if not evidence or not m.get('verified_commit'):
+                 errors.append(f'Unsubstantiated completion: {m.get("id")}')
+             commit = m.get('verified_commit', '')
+-            if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit) or subprocess.run(
+-                ['git', 'cat-file', '-e', commit + '^{commit}'], cwd=ROOT,
+-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+-            ).returncode:
++            if resolve_commit(commit) is None:
+                 errors.append(f'Unknown completion commit: {m.get("id")}')
+             for ref in evidence:
+                 if ref.startswith('https://'):
+@@ -97,8 +112,9 @@ def publication_observation(verified_commit):
+     for ref in ('refs/remotes/origin/main', 'refs/heads/main'):
+         result = subprocess.run(['git', 'rev-parse', '--verify', ref], cwd=ROOT, capture_output=True)
+         if result.returncode == 0:
+-            included = subprocess.run(['git', 'merge-base', '--is-ancestor', verified_commit, ref],
+-                                      cwd=ROOT, capture_output=True).returncode == 0
++            resolved = resolve_commit(verified_commit)
++            included = bool(resolved) and subprocess.run(['git', 'merge-base', '--is-ancestor', resolved, ref],
++                                                         cwd=ROOT, capture_output=True).returncode == 0
+             return {'main_ref': ref, 'main_head': result.stdout.decode().strip(),
+                     'reviewed_commit_in_main': included, 'scope': 'LOCAL_GIT_REF_FETCH_REQUIRED'}
+     return {'main_ref': None, 'main_head': None, 'reviewed_commit_in_main': None,
+@@ -121,9 +137,7 @@ def derive():
+                                cwd=ROOT, capture_output=True)
+     if catalogue.returncode:
+         errors.append('STALE_PROJECT_INDEX: stage intended files and rebuild the project catalogue')
+-    code_paths = ['ab_atlas', 'proyectos/politics-fantasy-league/src',
+-                  'proyectos/politics-fantasy-league/tests', 'proyectos/politics-fantasy-league/scripts',
+-                  'proyectos/politics-fantasy-league/pyproject.toml']
++    code_paths = ['tools/ab_atlas', 'src', 'tests', 'scripts', 'pyproject.toml']
+     names = subprocess.check_output(['git', 'ls-files', '-z', '--', *code_paths], cwd=ROOT).decode().split('\0')
+     digest = hashlib.sha256()
+     for name in sorted(n for n in names if n and (ROOT / n).is_file()):
+diff --git a/tests/test_project_continuity.py b/tests/test_project_continuity.py
+index d593aae..793158f 100644
+--- a/tests/test_project_continuity.py
++++ b/tests/test_project_continuity.py
+@@ -54,6 +54,11 @@ class ContinuityTests(unittest.TestCase):
+         self.state['milestones'][0].update(status='DONE', evidence=['START_HERE.md'], verified_commit='a'*40)
+         self.assertTrue(any('Unknown completion commit' in e for e in self.errors()))
+ 
++    def test_original_ab_evidence_commit_resolves_through_extraction_map(self):
++        resolved = status.resolve_commit('074f72e19b522e7a507045e3738609fa5f6139cc')
++        self.assertIsNotNone(resolved)
++        self.assertNotEqual(resolved, '074f72e19b522e7a507045e3738609fa5f6139cc')
++
+     def test_matching_but_impossible_budget_still_fails(self):
+         self.budget['remaining'] = -1
+         self.state['authorization_snapshot'] = copy.deepcopy(self.budget)
+diff --git a/tests/test_project_index.py b/tests/test_project_index.py
+index d4708f6..b66319b 100644
+--- a/tests/test_project_index.py
++++ b/tests/test_project_index.py
+@@ -38,6 +38,10 @@ class IndexTests(unittest.TestCase):
+         self.assertEqual(len(data['files']), 1)
+         self.assertNotIn('status', data['files'][0])
+ 
++    def test_repository_root_and_vendored_engine_are_indexed(self):
++        self.assertEqual(index.ROOT, PROJECT)
++        self.assertEqual(index.classify('tools/ab_atlas/atlas_delta.py'), 'atlas_engine')
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
+diff --git a/tools/ab_atlas/tests/test_delta_timestamps.py b/tools/ab_atlas/tests/test_delta_timestamps.py
+index 8645247..078b972 100644
+--- a/tools/ab_atlas/tests/test_delta_timestamps.py
++++ b/tools/ab_atlas/tests/test_delta_timestamps.py
+@@ -45,8 +45,8 @@ class BatchTimestampTests(unittest.TestCase):
+                 delta.batch_check(self.sample(at))
+ 
+     def test_all_committed_atlas_batch_timestamps_are_backward_compatible(self):
+-        root = Path(__file__).resolve().parents[2]
+-        folder = root / "proyectos" / "politics-fantasy-league" / "ab_atlas" / "updates"
++        root = Path(__file__).resolve().parents[3]
++        folder = root / "ab_atlas" / "updates"
+         files = sorted(folder.glob("*.json"))
+         self.assertGreaterEqual(len(files), 55)
+         for file in files:
