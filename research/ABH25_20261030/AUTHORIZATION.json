@@ -4,10 +4,10 @@
   "authorized_by": "user",
   "authorized_at": "2026-10-30",
   "new_granted": 25,
-  "valid_executed": 0,
+  "valid_executed": 1,
   "invalid_attempts": 0,
   "planning_only": 0,
-  "remaining": 25,
+  "remaining": 24,
   "base_repository": "GalexY3/politics-fantasy-league",
   "base_main_sha": "653604358183b59e8c0446497f47ff4a3769134f",
   "work_branch": "research/pfl-abh25-evidence-and-product-20261030",
@@ -38,8 +38,19 @@
     "No real-politician scoring, real-person microdata, unsolicited contact or license acceptance",
     "Do not merge main, deploy, or claim human P1 acceptance"
   ],
-  "cycle_register": [],
-  "latest_decision": "OPEN_BUDGET_NOT_EXECUTED",
+  "cycle_register": [
+    {
+      "cycle": "ABH25-C01",
+      "mode": "AB-R",
+      "status": "VALID_LIMITED_ORIGINAL_EXTERNAL_CODE_AUDIT",
+      "prereg_commit": "a3a8e405b1e586ef0c3c568961955c8bbdb40e7a",
+      "source_commit": "a627cc26f255231d67faebb14e265523e46c0a66",
+      "result": "C01_RUN_RECEIPT.json",
+      "novelty": "not claimed",
+      "grade": "0/3"
+    }
+  ],
+  "latest_decision": "STOP_LOCAL_SOURCE_FILE_AUDIT_C01; OTHER_PATHS_CONDITIONAL_R5",
   "scientific_unchanged": {
     "CT2_ordinal": 20,
     "N1_N2_N3": [
