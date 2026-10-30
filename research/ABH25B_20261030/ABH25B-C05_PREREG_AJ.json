@@ -1,0 +1,25 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.v1",
+  "cycle": "ABH25B-C05",
+  "mode": "AB-R_ORIGINAL_SCOTTISH_PETITION_SOURCE",
+  "status": "PREREG_BEFORE_FIXED_PAGE",
+  "A": "For the Scottish Parliament closed-petition JSON API, does the page provide a first-public timestamp or an explicit government-response event distinct from closure, rather than only committee workflow metadata? Unit: unique official petition records in frozen closed page 4.",
+  "B": {
+    "H1": "Official JSON exposes direct government-response event with dated fields",
+    "H0": "Only stage, closure, opening, updated timestamps; response requires separate publications",
+    "rivals": [
+      "Scottish petitions committee differs institutionally from Westminster government response thresholds",
+      "2016+ historical archive and current session may have distinct fields",
+      "API page query might not be exact state filter"
+    ]
+  },
+  "C": "Exactly one official https://petitions.parliament.scot/petitions.json?state=closed&page=4 request, max 1MB; unique petition IDs checked in memory, aggregates status and date-field presence; no titles, names, petition numbers or individual URLs exported.",
+  "D": "Freeze parser + synthetic adversarial controls on GitHub before HTTP; no page replacement, no adaptive sampling or assumption 'null response = no action'.",
+  "E": "Read-only Linux Actions with recorded raw SHA256 and stable page selection.",
+  "F": "Reject HTML, wrong host, malformed rows and duplicate IDs; distinguish workflow timestamps and public response; do not treat updated_at as publication evidence.",
+  "G": "Compare descriptive schema against UK/CAN/French institutions as measurement design, not outcome rates.",
+  "H": "New source-prior if distinct original data; no grade promotion without independent event history.",
+  "I": "CT2 remains 20/100 ordinal; no real politicians scored.",
+  "J": "One valid limited AB-R if original JSON read and adversarial controls pass; else record blocked.",
+  "exposure": "Public API schema of unrelated Scottish open page seen in external search, including petitioner fields; page4 closed result not examined before prereg."
+}
