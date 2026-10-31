@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -28,14 +28,14 @@ async function call(route, body){
 async function refresh(){
  const endpoints=['state','lab','field','electoral-atlas','evidence-readiness',
   'progress','verified-candidacies','official-nominations','scientific-sources',
-  'spanish-process-cohorts','procedural-coverage','siap-index-coverage','procedural-population-readiness'];
+  'spanish-process-cohorts','procedural-coverage','siap-index-coverage','procedural-population-readiness','institutional-lineage-lab'];
  const responses=await Promise.all(endpoints.map(id=>fetch('/api/'+id,{cache:'no-store'})));
  if(!responses[0].ok||!responses[1].ok||!responses[2].ok)throw new Error('Servicio no disponible');
  const results=await Promise.all(responses.map(async(r,i)=>
   r.ok?await r.json():{ok:false,error:'UNAVAILABLE_'+endpoints[i].toUpperCase()}));
  [ui.state,ui.lab,ui.field,ui.atlas,ui.evidence,ui.progress,ui.candidacies,
   ui.nominations,ui.scientificSources,ui.parcanCohorts,ui.proceduralCoverage,
-  ui.siapCoverage,ui.populationReadiness]=results;
+  ui.siapCoverage,ui.populationReadiness,ui.institutionalLineage]=results;
  if(!ui.state.clubs.some(c=>c.id===ui.club))ui.club=ui.state.clubs[0]?.id;
  draw();
 }
@@ -395,10 +395,45 @@ function populationReadinessPanel(){
  +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
  +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';
 }
+function institutionalLineagePanel(){
+ const p=ui.institutionalLineage||{};
+ if(p.schema!=='pfl.synthetic_institutional_lineage.v1'
+    ||p.evidence_class!=='SYNTHETIC_LAB_ONLY'
+    ||p.legal_identity_authenticated!==false
+    ||p.registered_at_risk_certified!==false
+    ||p.source_reuse_rights_verified!==false
+    ||p.scientific_AB_cycles!==0)
+  return '<section class="card"><h2>C15 · identidad institucional</h2><p class="warning">El laboratorio local de identidad no ha superado sus contratos. No se muestran identidades, enlaces ni inferencias.</p></section>';
+ const ready=p.status==='SYNTHETIC_LINEAGE_DOCUMENTARY_ONLY';
+ const g=ready?p.stage_graph:null;
+ const classes=ready&&p.link_classes&&typeof p.link_classes==='object'?p.link_classes:{};
+ const fmt=n=>Number.isInteger(n)&&n>=0?count(n):'Desconocido';
+ const jsonLink=(cut)=>'/api/institutional-lineage-lab?cut_on=2023-12-31&amp;as_of='+esc(encodeURIComponent(cut));
+ const safeStatus=ready?'Coherencia del fixture comprobada':p.status==='SYNTHETIC_IDENTITY_CONFLICT_QUARANTINED'?'Conflicto documental en cuarentena':'Sin afirmaciones disponibles';
+ const figures=ready
+   ?'<div class="metrics">'+stat('Claves jurídicas activas alegadas',fmt(p.distinct_active_legal_key_claims),'No son entidades reales')
+    +stat('Aristas institucionales expresas',fmt(p.complete_explicit_lineage_links),'Alegaciones, no autenticaciones')
+    +stat('Registros procesales documentales',fmt(g?.visible_stages?.REGISTRATION),'No es el denominador de entradas')+'</div>'
+   :'<p class="warning">El número de identidades, enlaces y etapas se oculta al entrar en cuarentena. Ningún enlace incierto se convierte en negativo ni en decisión.</p>';
+ const details=ready?'<details><summary>Separación de cambios institucionales y procedencia</summary><div class="tablewrap"><table><thead><tr><th>Clase alegada</th><th>Enlaces ficticios</th><th>Lectura admisible</th></tr></thead><tbody>'
+   +'<tr><td>Renombre, misma clave jurídica</td><td>'+fmt(classes.LEGAL_RENAME_SAME_KEY)+'</td><td>Continuidad jurídica no autenticada</td></tr>'
+   +'<tr><td>Fusión (N:1)</td><td>'+fmt(classes.MERGER_PREDECESSOR)+'</td><td>Predecesores distintos, no duplicar entradas</td></tr>'
+   +'<tr><td>Escisión (1:N)</td><td>'+fmt(classes.SPLIT_SUCCESSOR)+'</td><td>Sucesores distintos, no inferir causalidad</td></tr>'
+   +'<tr><td>Traslado competencial/jurisdiccional</td><td>'+fmt((classes.COMPETENCE_TRANSFER??0)+(classes.JURISDICTION_TRANSFER??0))+'</td><td>No equivale a identidad jurídica</td></tr>'
+   +'<tr><td>Referencia puramente documental</td><td>'+fmt(classes.DOCUMENTARY_REFERENCE)+'</td><td>No se promueve por coincidencia nominal</td></tr>'
+   +'</tbody></table></div><p class="help">Grupos de reorganización incompletos: '+fmt(p.incomplete_reorganization_groups)+'. Enlaces procesales tipados y exactos: '+fmt(g?.visible_claimed_edges)+'. Dos nombres iguales no crean puente jurídico ni funcional; cualquier conflicto de fuente o cardinalidad se pone en cuarentena.</p></details>':'';
+ return '<section class="card" aria-label="Identidad institucional temporal, únicamente sintética">'
+   +'<div class="section-title"><h2>C15 · identidad institucional y cambios de competencia</h2><span>LABORATORIO SINTÉTICO · R5 STOP</span></div>'
+   +'<p class="help">'+esc(safeStatus)+'. Este panel es un ensayo local de identidad documental, jurídica y funcional, separado del observatorio de fuentes reales. Sus entidades, fechas y enlaces son inventados; no autentica continuidad, reproducción ni autorregulación política.</p>'
+   +'<p class="footnote">Modo '+esc(p.snapshot_mode)+' · corte jurídico '+esc(p.cut_on)+' · conocimiento '+esc(p.as_of)+' · calendario '+esc(p.legal_calendar_zone)+'. CURRENT designa la consulta de este ensayo, no una fotografía histórica de una fuente externa.</p>'
+   +figures+details
+   +'<p class="help">Comparaciones cerradas del mismo fixture: <a href="'+jsonLink('2026-04-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">antes del puente documental tardío</a> y <a href="'+jsonLink('2026-08-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">después de la constatación local</a>. No contienen registros auténticos.</p>'
+   +'<p class="warning">No existe denominador independiente, permiso de distribución, primera publicación histórica certificada, pendientes/censura observados ni A–J admitido. R5 STOP; 0 AB científicos. Los informes de Luhmann, Easton y Deutsch siguen hipótesis rivales, no resultados.</p></section>';
+}
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
-return populationReadinessPanel()+spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
+return populationReadinessPanel()+institutionalLineagePanel()+spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
 <p class="help">Partidos, coaliciones, agrupaciones, plataformas y personas con roles públicos documentados no necesitan escaños para ser representables. Datos actuales: solo fixtures del laboratorio.</p>
 ${stat('Entidades de ejemplo',count(x.entities||0),'Ficticias')}${stat('Eventos de ejemplo',count(x.events||0),'No son influencia')}
 <p class="help">${groups||'Sin registro de entidades verificable'}</p>

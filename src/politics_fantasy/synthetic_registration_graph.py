@@ -115,6 +115,10 @@ class TypedStageEdge:
     original_sha_claim: str
     independently_authenticated: bool = False
     first_public_at: None = None
+    # Explicit namespace semantics: default remains fail-closed GLOBAL, so
+    # existing source claims are never silently relabelled as issuer-local.
+    # Local reuse is allowed only by an explicit synthetic producer contract.
+    edge_id_scope: str = "GLOBAL_SYNTHETIC"
 
     def __post_init__(self) -> None:
         if (not _id(self.edge_id)
@@ -123,7 +127,9 @@ class TypedStageEdge:
                 or not isinstance(self.original_sha_claim,str)
                 or not SHA.fullmatch(self.original_sha_claim)
                 or self.independently_authenticated is not False
-                or self.first_public_at is not None):
+                or self.first_public_at is not None
+                or type(self.edge_id_scope) is not str
+                or self.edge_id_scope not in {"GLOBAL_SYNTHETIC", "ISSUER_FRAME_LOCAL"}):
             raise GateError("SYNTHETIC_STAGE_EDGE_ONLY")
         if self.relation == "EXPLICIT_TRANSFER_WITH_DUAL_OFFICIAL_IDS":
             if (self.origin.stage!="FILE" or self.destination.stage!="FILE"
@@ -225,13 +231,18 @@ def audit_graph(
     # cut_on vanishes before conflict detection and its obsolete link survives.
     known_edges=[e for e in edges if e.safe_by() is not None
                  and e.safe_by()<=a]
-    seen_ids: dict[str, TypedStageEdge]={}
+    # Official IDs may be local to the issuing institution/regime/family.
+    # Never treat equal local numbers in distinct frames as one official edge;
+    # never silently convert an unscoped/global legacy ID to local semantics.
+    seen_ids: dict[tuple[object,...], TypedStageEdge]={}
     duplicate_document=set()
     for e in known_edges:
-        if e.edge_id in seen_ids and seen_ids[e.edge_id]!=e:
+        scoped_key = (("GLOBAL",e.edge_id) if e.edge_id_scope=="GLOBAL_SYNTHETIC"
+                      else ("ISSUER",*e.origin.frame(),e.edge_id))
+        if scoped_key in seen_ids and seen_ids[scoped_key]!=e:
             return {**base,**no_data,
                     "status":"VISIBLE_CONFLICTING_EDGE_CLAIM_QUARANTINED"}
-        seen_ids[e.edge_id]=e
+        seen_ids[scoped_key]=e
     edge_candidates=[e for e in seen_ids.values()
                      if day(e.document_on)<=c]
     by_document: set[tuple[OfficialStageKey,OfficialStageKey,str,str]]=set()

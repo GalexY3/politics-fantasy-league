@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 33,
+    "data": 34,
     "evidence": 378,
-    "experimental_code": 35,
+    "experimental_code": 37,
     "operations": 103,
-    "reference": 88,
-    "research": 1983,
+    "reference": 89,
+    "research": 1985,
     "runtime": 108,
     "task_queue": 120,
-    "verification": 248
+    "verification": 251
   },
   "files": [
     {
@@ -884,6 +884,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r21_aepd_cdc_preaccess_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1145,6 +1150,11 @@
     },
     {
       "path": "docs/R19_OBLIGACIONES_INSTITUCIONALES_SELECCION_Y_TEMPORALIDAD_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R21_IDENTIDAD_INSTITUCIONAL_REPRODUCCION_Y_REGLAS_DE_RECEPCION_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11624,6 +11634,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/R21_CODE_SHA256.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT10_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11675,6 +11690,11 @@
     },
     {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT20_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT21_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -12795,6 +12815,16 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_competing_risks_equivalence.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_institutional_demo.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_institutional_lineage.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15795,6 +15825,21 @@
     },
     {
       "path": "tests/test_r20_edge_conflict_knowledge_cut.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r21_institutional_lineage.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r21_institutional_lineage_http.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r21_institutional_lineage_ui.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

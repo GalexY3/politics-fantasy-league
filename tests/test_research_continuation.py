@@ -29,9 +29,9 @@ def test_twenty_independent_candidate_routes_are_not_spent_cycles():
     assert not report["real_outcomes_authorized"]
     assert report["candidate_statuses"]["BLOCKED_R5"] == 1
     assert report["candidate_statuses"]["PARKED"] == 9
-    assert report["candidate_statuses"]["QUEUED"] == 6
-    assert report["candidate_statuses"]["COMPLETED_NONCYCLE"] == 4
-    assert report["next_candidate"] == "R18-C15"
+    assert report["candidate_statuses"]["QUEUED"] == 5
+    assert report["candidate_statuses"]["COMPLETED_NONCYCLE"] == 5
+    assert report["next_candidate"] == "R18-C16"
 
 
 def test_status_never_changes_the_ledger_or_eligible_work():
@@ -60,9 +60,9 @@ def test_blocked_stops_are_local_and_queued_product_or_lab_continues():
     report = continuation_status(program)
     assert "R18-C01" not in report["remaining_candidate_ids"]
     assert "R18-C02" not in report["remaining_candidate_ids"]
-    assert {"R18-C15", "R18-C19"}.issubset(
+    assert {"R18-C16", "R18-C19"}.issubset(
         report["remaining_candidate_ids"])
-    assert {"R18-C03", "R18-C04", "R18-C13", "R18-C14"}.isdisjoint(report["remaining_candidate_ids"])
+    assert {"R18-C03", "R18-C04", "R18-C13", "R18-C14", "R18-C15"}.isdisjoint(report["remaining_candidate_ids"])
     assert report["local_stop_does_not_stop_other_work"] is True
 
 
@@ -102,12 +102,12 @@ def test_duplicate_json_key_fails_closed_even_when_python_dict_would_hide_it(tmp
 
 def test_noncyle_closure_does_not_autocharge_abh_grant():
     program = copy.deepcopy(load_program(PROGRAM))
-    program["candidates"][14]["status"] = "COMPLETED_NONCYCLE"
+    program["candidates"][15]["status"] = "COMPLETED_NONCYCLE"
     report = continuation_status(program)
     assert report["grant"]["available"] == 20
     assert report["grant"]["valid"] == 0
-    assert report["next_candidate"] == "R18-C16"
-    assert report["candidate_statuses"]["COMPLETED_NONCYCLE"] == 5
+    assert report["next_candidate"] == "R18-C17"
+    assert report["candidate_statuses"]["COMPLETED_NONCYCLE"] == 6
 
 
 def test_all_routes_locally_blocked_never_coerce_an_abh_cycle():

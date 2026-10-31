@@ -222,3 +222,45 @@ def test_same_day_legal_cut_requires_day_to_have_finished():
     assert completed["status"]=="SYNTHETIC_DOCUMENTARY_GRAPH_ONLY"
     assert completed["visible_stages"]["REGISTRATION"]==1
     assert completed["independent_all_received_denominator"] is None
+
+
+def test_r21_explicit_issuer_local_edge_ids_are_not_global_identity():
+    north_reg=key("REGISTRATION","N_IN",inst="SYNTHETIC:NORTH")
+    north_file=key("FILE","N_FILE",inst="SYNTHETIC:NORTH")
+    south_reg=key("REGISTRATION","S_IN",inst="SYNTHETIC:SOUTH")
+    south_file=key("FILE","S_FILE",inst="SYNTHETIC:SOUTH")
+    n=replace(edge(north_reg,north_file,name="LOCAL_1"),
+              edge_id_scope="ISSUER_FRAME_LOCAL")
+    s=replace(edge(south_reg,south_file,name="LOCAL_1"),
+              edge_id_scope="ISSUER_FRAME_LOCAL")
+    nodes=[record(k) for k in (north_reg,north_file,south_reg,south_file)]
+    scoped=audit(nodes,[n,s])
+    assert scoped["status"]=="SYNTHETIC_DOCUMENTARY_GRAPH_ONLY"
+    assert scoped["visible_claimed_edges"]==2
+    assert scoped["visible_stages"]["REGISTRATION"]==2
+    assert scoped["independent_all_received_denominator"] is None
+    assert scoped["official_cross_institution_links_authenticated"] is False
+    # No silent downgrade of unscoped legacy claims: global ID collision
+    # remains quarantined unless a producer explicitly declares local scope.
+    unscoped=audit(nodes,[replace(n,edge_id_scope="GLOBAL_SYNTHETIC"),
+                          replace(s,edge_id_scope="GLOBAL_SYNTHETIC")])
+    assert unscoped["status"]=="VISIBLE_CONFLICTING_EDGE_CLAIM_QUARANTINED"
+
+
+def test_r21_issuer_local_conflict_within_same_frame_still_quarantines():
+    a=key("REGISTRATION","A")
+    b=key("FILE","B")
+    c=key("FILE","C")
+    old=replace(edge(a,b,name="LOCAL_1"),edge_id_scope="ISSUER_FRAME_LOCAL")
+    conflict=replace(edge(a,c,name="LOCAL_1"),edge_id_scope="ISSUER_FRAME_LOCAL")
+    x=audit([record(a),record(b),record(c)],[old,conflict])
+    assert x["status"]=="VISIBLE_CONFLICTING_EDGE_CLAIM_QUARANTINED"
+    assert x["visible_claimed_edges"] is None
+
+
+def test_r21_edge_namespace_must_be_explicitly_supported():
+    a,b=key("REGISTRATION","A"),key("FILE","B")
+    with pytest.raises(GateError,match="SYNTHETIC_STAGE_EDGE_ONLY"):
+        replace(edge(a,b),edge_id_scope="FUZZY_ALIAS_NAMESPACE")
+    with pytest.raises(GateError,match="SYNTHETIC_STAGE_EDGE_ONLY"):
+        replace(edge(a,b),edge_id_scope=[])
