@@ -194,14 +194,15 @@ def audit_graph(
         "unlinked_visible_registrations": None, "orphan_claims_at_cut": None,
         "revision_keys": None,
     }
-    # Filter on *per-version* knowledge before examining conflicts.
-    visible = [r for r in records
-               if r.safe_by() is not None and r.safe_by()<=a
-               and day(r.event_on)<=c]
-    if not visible:
+    # First establish which revisions were known. Cutting on event date here
+    # would discard a newly known correction moving an event out of the legal
+    # window, leaving a superseded old revision falsely visible at that cut.
+    known = [r for r in records
+             if r.safe_by() is not None and r.safe_by() <= a]
+    if not known:
         return {**base,**no_data,"status":"NO_SYNTHETIC_GRAPH_KNOWN_AT_CUT"}
     by_revision: dict[tuple[OfficialStageKey,str],StageVersion]={}
-    for r in visible:
+    for r in known:
         key=(r.key,r.revision)
         if key in by_revision and by_revision[key]!=r:
             return {**base,**no_data,
@@ -215,6 +216,10 @@ def audit_graph(
         if (old is None or
                 (r.safe_by(),r.revision)>(old.safe_by(),old.revision)):
             by_key[r.key]=r
+    # Only the effective version at as_of determines event-time membership.
+    # A known revision can remove an earlier documentary vertex from cut_on,
+    # but an unseen future revision cannot rewrite an earlier as_of snapshot.
+    by_key={k:r for k,r in by_key.items() if day(r.event_on)<=c}
     visible_edges=[e for e in edges if e.safe_by() is not None
                    and e.safe_by()<=a and day(e.document_on)<=c]
     seen_ids: dict[str, TypedStageEdge]={}

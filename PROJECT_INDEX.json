@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 32,
+    "data": 33,
     "evidence": 378,
-    "experimental_code": 34,
+    "experimental_code": 35,
     "operations": 103,
-    "reference": 87,
-    "research": 1981,
+    "reference": 88,
+    "research": 1982,
     "runtime": 108,
     "task_queue": 120,
-    "verification": 245
+    "verification": 247
   },
   "files": [
     {
@@ -879,6 +879,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r19_local_accounts_obligation_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1135,6 +1140,11 @@
     },
     {
       "path": "docs/R18_REANUDACION_POST_STOP_CALENDARIO_JURIDICO_Y_ILP_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R19_OBLIGACIONES_INSTITUCIONALES_SELECCION_Y_TEMPORALIDAD_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11659,6 +11669,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT19_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12780,6 +12795,11 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_observation_equivalence.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_regime_capture_sensitivity.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15755,6 +15775,16 @@
     },
     {
       "path": "tests/test_r18_scoped_offset.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r19_regime_capture_sensitivity.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r19_temporal_precision_and_revision.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

@@ -36,6 +36,11 @@ class GateError(ValueError):
 def utc(stamp: str) -> datetime:
     if not isinstance(stamp, str) or "T" not in stamp or len(stamp) > 42:
         raise GateError("INVALID_TIMESTAMP")
+    # Python datetimes only retain microseconds. fromisoformat silently
+    # truncates 7+ fractional digits, potentially exposing material captured
+    # nanoseconds *after* a retrospective as_of. Reject rather than round.
+    if any(len(m.group(1)) > 6 for m in re.finditer(r"[.,](\d+)", stamp)):
+        raise GateError("UNSUPPORTED_SUBMICROSECOND_TIMESTAMP")
     try:
         dt = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
     except ValueError as exc:
