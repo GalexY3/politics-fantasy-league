@@ -1,5 +1,5 @@
 {
-  "schema": "pfl.public_policy_source_gate.v0",
+  "schema": "pfl.public_policy_source_gate.v1",
   "generated_on": "2026-10-31",
   "scope": "Spanish public policies, pre-access metadata and normative planning pilot",
   "evidence_class": "PUBLIC_DOCUMENTATION_ONLY_NO_ORIGINAL_OUTCOMES",
@@ -17,9 +17,35 @@
     "status": "DOCUMENTED_PREACCESS_BLOCKED_R5",
     "unit_proposed": "plan_edition x planned_item x target_year",
     "not_equivalent_to": ["all_policies", "all_legislative_proposals", "all_consultations", "all_government_actions"],
-    "possible_pair": {"plan_year": 2024, "evaluation_report_year": 2025, "relationship": "prior_year_plan_as_described_in_legal_rule", "verified_individual_crosswalk": false},
+    "possible_pair": {
+      "plan_year": 2024,
+      "report_label_year": 2024,
+      "activity_evaluated_year": 2024,
+      "report_approval_year": 2025,
+      "report_approval_on": "2025-04-15",
+      "relationship": "explicit_Council_agreement_identifies_2024_PAN_in_IAEN2024",
+      "verified_individual_crosswalk": false,
+      "editorial_confirmation_url": "https://www.lamoncloa.gob.es/consejodeministros/referencias/paginas/2025/250415-referencia-del-consejo-de-ministros.aspx"
+    },
     "plan_page": "https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2024",
-    "report_listing_page": "https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2025",
+    "report_listing_page": "https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2024",
+    "another_confirmed_pair": {
+      "plan_year": 2025,
+      "report_label_year": 2025,
+      "activity_evaluated_year": 2025,
+      "report_approval_year": 2026,
+      "report_approval_on": "2026-05-05",
+      "editorial_confirmation_url": "https://www.lamoncloa.gob.es/consejodeministros/referencias/Paginas/2026/20260505-referencia-rueda-de-prensa-ministros.aspx",
+      "report_listing_page": "https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2025",
+      "verified_individual_crosswalk": false
+    },
+    "prior_incorrect_pairing": "PAN2024_TO_IAEN_LABEL2025_REJECTED; confuses label-year with 2025 approval-year",
+    "index_update_date_is_not_report_approval_or_first_public_at": true,
+    "exposure_notice": {
+      "2024": {"aggregate_outcome_snippet_seen": true, "confirmatory_holdout_unexposed": false},
+      "2025": {"aggregate_outcome_snippet_seen": true, "confirmatory_holdout_unexposed": false},
+      "interpretation": "Two annual aggregate outcomes appeared in indexed La Moncloa search results during metadata verification; neither period is a blinded confirmatory outcome sample. No originals or individual case rows examined."
+    },
     "legal_basis": ["https://www.boe.es/buscar/act.php?id=BOE-A-1997-25336", "https://boe.es/buscar/act.php?id=BOE-A-2017-3415"],
     "rights_page": "https://transparencia.gob.es/utilidades/aviso-legal/reutilizacion",
     "rights_general_terms_bind_by_use": true,
@@ -28,18 +54,38 @@
     "original_plan_bytes_read": false,
     "original_report_bytes_read": false,
     "individual_items_read": false,
-    "outcomes_read": false,
+    "individual_outcome_rows_read": false,
     "independent_denominator": null,
     "first_public_at_per_item": null,
     "historical_vintages_verified": false,
     "negative_pending_unplanned_coverage_verified": false,
     "crosswalk_verified": false,
-    "reopen_when": "Human-reviewed exact-asset rights and permitted original versions, bounded plan-item frame, explicit matching to the next annual report with unplanned and multiyear items separated, and historical availability proof",
+    "reopen_when": "Human-reviewed exact-asset rights and permitted original versions; bounded plan-item frame; exact same-label-year IAEN approved in following year with unplanned and multiyear items separated; historical availability and independent denominator proof",
     "falsifier": "Report rows from unplanned/multiyear items wrongly become planned-item outcomes, or plan titles match multiple norms without direct verified official reference"
   },
   "alternatives": [
     {"id": "CONGRESS_121_122", "status": "PARKED_PREVIOUS_R5_R18", "unit": "legislature x procedure_family x entry_id", "required_new_evidence": "independent admitted-first register, negative/pending cases, dated public vintages and asset rights"},
     {"id": "PLACSP_BDNS_IMPLEMENTATION", "status": "PARKED_PREVIOUS_R11_R18", "unit": "one chosen procedural type only, no automatic grant-contract-policy identity", "required_new_evidence": "new lawful full entry register, explicit crosswalk and timestamped coverage including cancelled/pending cases"}
+  ],
+  "regional_documentary_alternatives": [
+    {
+      "id": "ANDALUSIA_PAN2018_CSV",
+      "exact_asset_catalog_url": "https://www.juntadeandalucia.es/datosabiertos/portal/dataset/plan-anual-normativo-2018/resource/a0b01500-ca68-4eea-8ebb-55cdfa36cf34",
+      "catalog_claimed_license": "CC BY 4.0 per indicated resource",
+      "use_by_access_conditions_reported": true,
+      "source_rights_and_terms_human_approved": false,
+      "original_opened": false,
+      "status": "PREACCESS_STOP"
+    },
+    {
+      "id": "ARAGON_PAN_CATALOG",
+      "dataset_catalog_url": "https://opendata.aragon.es/datos/catalogo/dataset/plan-anual-normativo",
+      "catalog_claimed_license": "CC BY 4.0 at dataset level; exact distribution unverified",
+      "use_by_access_conditions_reported": true,
+      "source_rights_and_terms_human_approved": false,
+      "original_opened": false,
+      "status": "PREACCESS_STOP"
+    }
   ],
   "next_admissible_action": "Review source-specific legal terms and exact document-version metadata without opening outcomes; request explicit user approval before any access treated as accepting terms",
   "do_not": ["download_originals", "accept_licenses_or_terms", "read_outcomes", "create_scientific_cycles", "score_real_persons", "deploy", "merge_main"]

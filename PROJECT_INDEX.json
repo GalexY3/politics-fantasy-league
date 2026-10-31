@@ -10,12 +10,12 @@
     "data": 34,
     "evidence": 378,
     "experimental_code": 39,
-    "operations": 105,
-    "reference": 94,
-    "research": 1990,
-    "runtime": 108,
+    "operations": 106,
+    "reference": 95,
+    "research": 1991,
+    "runtime": 109,
     "task_queue": 120,
-    "verification": 256
+    "verification": 258
   },
   "files": [
     {
@@ -1085,6 +1085,11 @@
     },
     {
       "path": "docs/POLITICAS_PUBLICAS_PROGRAMA_DIVIDIDO_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/PP03_CONTRATO_ADMISIBILIDAD_PAN_IAEN_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11364,6 +11369,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_POLICY_PUBLICAS_20261031/PP03_REPORT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_POLICY_PUBLICAS_20261031/SOURCE_DECISION_GATE.json",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12124,6 +12134,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/check_pan_iaen_source_gate.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/compare_original_vote.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12585,6 +12600,11 @@
     },
     {
       "path": "src/politics_fantasy/ops.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/pan_iaen_preaccess_gate.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -15620,6 +15640,16 @@
     },
     {
       "path": "tests/test_package_release.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pan_iaen_manifest_gate.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pan_iaen_preaccess_gate.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
