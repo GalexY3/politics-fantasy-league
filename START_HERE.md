@@ -12,6 +12,8 @@
 
 ## Dónde está todo
 
+**Visión y preguntas aún abiertas:** [Banco de ideas científicas de PFL (31/10/2026)](docs/BANCO_DE_IDEAS_CIENTIFICAS_PFL_20261031.md). Recoge expresamente política española, grandes empresas, poder económico, transparencia, promesas, implementación, efectos de políticas y dos finalidades complementarias: explicar y evaluar. **No sustituye el scope adoptado ni constituye resultados científicos.** Leerlo antes de redefinir el proyecto.
+
 [Mapa por tareas](PROJECT_MAP.md) · [Catálogo buscable](PROJECT_INDEX.json) · [Investigaciones](research/INDEX.md) · [Handoff](HANDOFF.md) · [Cola técnica](tareas_codex/README.md).
 
 `src/` contiene código; `tests/` pruebas; `research/` contratos, análisis y evidencia; `ab_atlas/` los lotes del proyecto; `tools/ab_atlas/` el motor fijado. Las copias archivadas no son código activo y el catálogo no certifica resultados.
