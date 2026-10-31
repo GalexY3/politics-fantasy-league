@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 20,
+    "data": 22,
     "evidence": 378,
     "experimental_code": 28,
     "operations": 97,
-    "reference": 77,
-    "research": 1969,
-    "runtime": 88,
+    "reference": 78,
+    "research": 1970,
+    "runtime": 91,
     "task_queue": 120,
-    "verification": 209
+    "verification": 212
   },
   "files": [
     {
@@ -844,6 +844,16 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/r8_regional_documentary_matrix_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/spanish_procedural_candidates_r5_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -950,6 +960,11 @@
     },
     {
       "path": "docs/FUENTES_Y_LICENCIAS.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/IDENTIFICABILIDAD_REGISTROS_Y_SELECCION_R8_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11529,6 +11544,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT8_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12344,12 +12364,27 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r8.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_index_contract.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_official_links.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_population_readiness.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/procedural_selection_bounds.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -15224,7 +15259,17 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r8.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_index_contract.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_procedural_official_links.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
@@ -15235,6 +15280,11 @@
     },
     {
       "path": "tests/test_procedural_population_readiness_panel.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_procedural_selection_bounds.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

@@ -82,3 +82,54 @@ test('candidate source text cannot inject active markup',()=>{
  assert.match(html,/&lt;script/);
  assert.doesNotMatch(html,/<img|<script/);
 });
+
+test('methodology panel explains unidentifiable selection rather than zero outcomes',()=>{
+ const data=sample();
+ data.linkage_and_identification={
+   event_by_cut_status:'NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES',
+   register_to_expediente:'NOT_ATTESTED_WITH_OFFICIAL_DUAL_ID_AND_RAW_RECEIPT'
+ };
+ const html=render(data);
+ assert.match(html,/Identificabilidad de entradas y sesgo de selección/);
+ assert.match(html,/no se consideran inadmitidos/);
+ assert.match(html,/exclusivamente sintéticas/);
+ assert.doesNotMatch(html,/éxito 0%|rechazadas 0/);
+});
+
+test('linkage text is escaped to prevent HTML injection',()=>{
+ const data=sample();
+ data.linkage_and_identification={
+  event_by_cut_status:'NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES',
+  register_to_expediente:'<img src=x onerror=alert(1)>'
+ };
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.doesNotMatch(html,/<img/);
+});
+
+test('R8 separated documentary regions and advisory consultations cannot become case totals',()=>{
+ const data=sample();
+ data.r8_documentary_status='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION';
+ data.r8_audit_safe_by='2026-11-01T00:00:00+00:00';
+ data.r8_regional_routes=[{institution:'Parlament de les Illes Balears',asset:'WebGTP manual',limitation:'Only previously processed entries'}];
+ data.r8_national_core_routes=[{institution:'Consejo de Estado',unit:'YEARLY_PUBLICATION_INDEX',limitation:'Historical annual report only'}];
+ const html=render(data);
+ assert.match(html,/R8 · nuevas fuentes regionales/);
+ assert.match(html,/Parlament de les Illes Balears/);
+ assert.match(html,/Consejo de Estado/);
+ assert.match(html,/una población distinta/);
+ assert.doesNotMatch(html,/2027 consultas/);
+});
+
+test('R8 hides blocked unrecognized source state and escapes names',()=>{
+ const data=sample();
+ data.r8_documentary_status='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION';
+ data.r8_regional_routes=[{institution:'<svg onload=alert(1)>',asset:'<img src=x>',limitation:'<script>alert(1)</script>'}];
+ data.r8_national_core_routes=[];
+ const html=render(data);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<svg|<script|<img/);
+ data.r8_documentary_status='R8_NOT_KNOWN_AT_CUT';
+ assert.doesNotMatch(render(data),/&lt;svg/);
+});

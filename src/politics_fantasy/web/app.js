@@ -218,10 +218,31 @@ function populationReadinessPanel(){
     +candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.catalogue_asset)+'</td><td>'+esc(s.access_gate)+'</td></tr>').join('')
     +'</tbody></table></div></details>'
    :'';
+ const methods=p.linkage_and_identification||{};
+ const selectionPanel=methods.event_by_cut_status==='NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES'
+  ?'<details><summary>Identificabilidad de entradas y sesgo de selección</summary>'
+    +'<p class="help">Todavía no se ha acreditado un enlace asiento de Registro General → expediente con testigo documental oficial y bytes originales cotejados. Los expedientes sin vínculo no se consideran inadmitidos, y las publicaciones no definen todas las oportunidades de entrada.</p>'
+    +'<p class="help">Sin denominador registral independiente, ni estados/eventos completos en un mismo corte, no son identificables tasas ni intervalos numéricos de los desenlaces. Las pruebas de límites existentes son exclusivamente sintéticas, no estimaciones de la política española.</p>'
+    +'<p class="footnote">Estado: '+esc(methods.event_by_cut_status)+' · enlace: '+esc(methods.register_to_expediente)+'</p></details>'
+  :'';
+ const newRegions=p.r8_documentary_status==='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION'&&Array.isArray(p.r8_regional_routes)
+  ?p.r8_regional_routes:[];
+ const newNational=p.r8_documentary_status==='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION'&&Array.isArray(p.r8_national_core_routes)
+  ?p.r8_national_core_routes:[];
+ const r8Panel=(newRegions.length||newNational.length)
+  ?'<details><summary>R8 · nuevas fuentes regionales y consultas del Consejo de Estado</summary>'
+    +'<p class="help">Son descripciones documentales, no originales adquiridos ni registros de iniciativas. Las entradas anuales al Consejo de Estado son una población distinta; dictámenes aprobados y asuntos despachados no son el libro completo de consultas recibidas.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Recurso</th><th>Bloqueo de cobertura</th></tr></thead><tbody>'
+    +newRegions.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.asset)+'</td><td>'+esc(s.limitation)+'</td></tr>').join('')
+    +newNational.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+esc(s.limitation)+'</td></tr>').join('')
+    +'</tbody></table></div><p class="footnote">Sin permisos automáticos de descarga, sin denominador independiente, sin eventos ni primera publicación certificada. Corte documental seguro: '+esc(p.r8_audit_safe_by)+'</p></details>'
+  :'';
  return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
  +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
  +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad observada</th><th>Registros visibles</th><th>Procedencia</th><th>Elegibilidad</th></tr></thead><tbody>'+sources+'</tbody></table></div>'
  +candidatePanel
+ +r8Panel
+ +selectionPanel
  +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
  +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';
 }

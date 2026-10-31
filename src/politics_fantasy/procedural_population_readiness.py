@@ -11,6 +11,7 @@ from .parcan_cohort_status import status as canarian_status
 from .procedural_coverage import coverage_status
 from .siap_coverage import status as siap_status
 from .procedural_discovery_r7 import status as discovery_status
+from .procedural_discovery_r8 import status as discovery_r8_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -31,6 +32,7 @@ def report(*, as_of: str | None = None) -> dict:
     editorial = coverage_status(as_of=as_of)
     siap = siap_status(as_of=as_of)
     discovery = discovery_status(as_of=as_of)
+    discovery_r8 = discovery_r8_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -96,9 +98,27 @@ def report(*, as_of: str | None = None) -> dict:
         "documentary_catalogue_safe_by": discovery.get("local_audit_safe_by"),
         "documentary_candidates_are_not_registered_processes": True,
         "documentary_source_direct_bulk_download_permitted": False,
+        "r8_documentary_status": discovery_r8.get("status"),
+        "r8_regional_routes": discovery_r8.get("regional_routes", []),
+        "r8_national_core_routes": discovery_r8.get("national_core_routes", []),
+        "r8_regional_source_count": discovery_r8.get("regional_source_count"),
+        "r8_national_documentary_assets_count": discovery_r8.get("national_documentary_assets_count"),
+        "r8_audit_safe_by": discovery_r8.get("local_audit_safe_by"),
+        "r8_sources_are_not_entry_records": True,
+        "r8_consejo_de_estado_is_not_congreso_risk_set": True,
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",
+        "linkage_and_identification": {
+            "register_to_expediente": "NOT_ATTESTED_WITH_OFFICIAL_DUAL_ID_AND_RAW_RECEIPT",
+            "independent_register_denominator": None,
+            "event_by_cut_bounds": None,
+            "event_by_cut_status": "NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES",
+            "selection_bias_unresolved": True,
+            "synthetic_tools_are_not_observations": True,
+            "unlinked_records_are_not_rejections": True,
+            "missing_outcomes_are_not_zero": True,
+        },
         "coverage_gates": [{"gate": k, "scientific_admission": "NOT_ATTESTED"} for k in GATES],
         "observed_metadata_cannot_be_added_across_institutions": True,
         "current_capture_not_historical_publication": True,

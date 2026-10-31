@@ -28,8 +28,17 @@ def test_current_sources_have_distinct_grains_and_no_survival_denominator():
     assert result["terminal_events_observed_for_scientific_use"] is None
     assert result["dated_transitions_observed_for_scientific_use"] is None
     assert not result["reusable_scientific_cohort"]
+    linkage=result["linkage_and_identification"]
+    assert linkage["independent_register_denominator"] is None
+    assert linkage["event_by_cut_bounds"] is None
+    assert linkage["event_by_cut_status"]=="NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES"
+    assert linkage["unlinked_records_are_not_rejections"]
     assert not result["cross_institution_joins_admitted"]
     assert result["scientific_cycles"]==0
+    assert result["r8_documentary_status"]=="R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION"
+    assert result["r8_regional_source_count"]==6
+    assert result["r8_national_documentary_assets_count"]==10
+    assert result["r8_consejo_de_estado_is_not_congreso_risk_set"]
     assert "source_process_id" not in json.dumps(result)
     assert "TIPO_FINALIZACION" not in json.dumps(result)
 
@@ -43,6 +52,9 @@ def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     assert b["index_pages_required"] is None
     as_text=json.dumps(prior)
     assert "1754" not in as_text and "3846b9fec" not in as_text
+    assert prior["r8_regional_source_count"] is None
+    assert prior["r8_regional_routes"]==[]
+    assert prior["r8_audit_safe_by"] is None
     middle=report(as_of="2026-10-31T05:20:00Z")
     assert middle["institutional_sources"][0]["observed_metadata_rows"]==1211
     assert middle["institutional_sources"][1]["observed_metadata_rows"] is None

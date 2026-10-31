@@ -1,5 +1,5 @@
 {
-  "revision": 25,
+  "revision": 26,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -188,7 +188,7 @@
       "status": "IN_PROGRESS",
       "outcome": "Primera base historica espanola admisible para el estudio de reproduccion/autorregulacion politica y acoplamientos, separando registros electorales y expedientes en riesgo",
       "acceptance": "Fuente primaria y derechos por distribucion; universo y definiciones verificables; identidades/eventos y fechas as-of; enlace legal y cientificamente defendible; baseline/rivales preregistrados antes de outcomes",
-      "next_action": "R7: Asamblea Madrid ExpedientesAsambleaMadrid es catalogo abierto con condiciones vinculantes por mero uso, NO descargado; CEPC INICPAR curado por interes, Senado APCA temporalmente inoperativo, Navarra indice sin censo. Manifiesto R7 SHA y matriz del observatorio, contrato de intervalos documentales+replay as-of SIAP. Faltan fuente ALL_RECEIVED legal por familia, denominador independiente, transiciones completas, vintages de publicacion y censura; pliego de factibilidad institucional NO enviado. Solo A-J remoto pre-outcomes al superar R5. SYSTEM20 20/20.",
+      "next_action": "R8: seis rutas regionales auditadas, incluidas Baleares WebGTP filtrada y Cantabria pliego S.I.P. no implantacion probada, mas 10 activos nacionales de Consejo de Estado/BOE. Memorias de CONSULTAS no equivalen a congreso ni a dictamenes emitidos; no raw ni censo acreditado. Dos matrices SHA en Git, doble ID registral y limites sinteticos de seleccion, gate R8 as-of en observatorio. Solicitud institucional NO enviada. Sin fuente all-received y vintages/eventos/censura, R5 bloquea AB-H; SYSTEM20 20/20.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -205,10 +205,17 @@
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT5_20261031.md",
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT6_20261031.md",
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT7_20261031.md",
+        "research/PFL_SYSTEM20_20261031/ROUND_REPORT8_20261031.md",
         "data/source_manifests/catalunya_siap_page1_20261031.json",
         "data/source_manifests/spanish_procedural_candidates_r5_20261031.json",
         "data/source_manifests/spanish_procedural_candidates_r6_20261031.json",
         "data/source_manifests/spanish_procedural_candidates_r7_20261031.json",
+        "data/source_manifests/r8_regional_documentary_matrix_20261031.json",
+        "data/source_manifests/r8_national_documentary_matrix_20261031.json",
+        "docs/IDENTIFICABILIDAD_REGISTROS_Y_SELECCION_R8_20261031.md",
+        "src/politics_fantasy/procedural_official_links.py",
+        "src/politics_fantasy/procedural_selection_bounds.py",
+        "src/politics_fantasy/procedural_discovery_r8.py",
         "docs/SOLICITUD_COBERTURA_REGISTRAL_PFL_BORRADOR_20261031.md",
         "src/politics_fantasy/documentary_availability_intervals.py",
         "src/politics_fantasy/procedural_discovery_r7.py",
@@ -540,6 +547,26 @@
     "round7_agents_revival_blocked_by_prime_transfer": true,
     "round7_new_real_dated_transition_events_admitted": 0,
     "round7_new_ABH_valid_cycles": 0,
+    "round8_regional_documentary_matrix": "data/source_manifests/r8_regional_documentary_matrix_20261031.json",
+    "round8_regional_documentary_matrix_sha256": "fbc6f74cb522295dc551b86d64caeec470bd9d65b11a36c4719f0919ee8daa8a",
+    "round8_national_documentary_matrix": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
+    "round8_national_documentary_matrix_sha256": "c400427e0fb753496016500ff5411618f27e186f5ab5f14278d862691d841ec3",
+    "round8_regional_agent_receipt_sha256": "544d02ae174fd7b334c3306488cb6b24ced6a7c98c79ddd4aabdb607b8d090e4",
+    "round8_national_agent_delivery_sha256": "e58538c304ca5124eabd1c58928173a4e3907eacc0aef91da79ac99fec8a067a",
+    "round8_regional_documentary_sources": 6,
+    "round8_national_documentary_assets": 10,
+    "round8_national_negative_findings": 8,
+    "round8_council_state_consultations_different_population_from_congress": true,
+    "round8_council_2024_reported_2027_consultations_original_sha_verified": false,
+    "round8_real_original_downloads": 0,
+    "round8_real_terminal_outcomes_admitted": 0,
+    "round8_first_public_historical_verified": false,
+    "round8_registral_double_id_contract": "src/politics_fantasy/procedural_official_links.py",
+    "round8_selection_bounds_synthetic_only": "src/politics_fantasy/procedural_selection_bounds.py",
+    "round8_documentary_gate_sha_locked": "src/politics_fantasy/procedural_discovery_r8.py",
+    "round8_research_scope_and_identifiability": "docs/IDENTIFICABILIDAD_REGISTROS_Y_SELECCION_R8_20261031.md",
+    "round8_local_observatory_asof_safe_from": "2026-11-01T00:00:00+00:00",
+    "round8_new_ABH_valid_cycles": 0,
     "canarian_complete_risk_population_verified": false,
     "canarian_outcome_columns_substantively_analyzed": false,
     "canarian_exact_historical_first_public_at_verified": false,
@@ -550,6 +577,6 @@
     "new_ABH_valid_cycles_this_round": 0,
     "new_ABH_invalid_cycles_this_round": 0,
     "new_ABH_planning_cycles_this_round": 0,
-    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT7_20261031.md"
+    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT8_20261031.md"
   }
 }
