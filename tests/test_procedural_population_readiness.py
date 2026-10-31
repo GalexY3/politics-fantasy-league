@@ -39,6 +39,14 @@ def test_current_sources_have_distinct_grains_and_no_survival_denominator():
     assert result["r8_regional_source_count"]==6
     assert result["r8_national_documentary_assets_count"]==10
     assert result["r8_consejo_de_estado_is_not_congreso_risk_set"]
+    assert result["retained_original_integrity"]["official_originals_byte_checked"]==5
+    assert result["retained_original_integrity"]["private_derivatives_byte_checked"]==2
+    assert not result["retained_original_integrity"]["actual_source_census_verified"]
+    assert result["r9_documentary_status"]=="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED"
+    assert result["r9_regional_sources_documented"]==8
+    assert result["r9_national_assets_documented"]==11
+    assert result["r9_pre_AJ_outcome_header_exposure"]
+    assert result["r9_no_independent_national_or_regional_denominator"] is True
     assert "source_process_id" not in json.dumps(result)
     assert "TIPO_FINALIZACION" not in json.dumps(result)
 
@@ -55,6 +63,12 @@ def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     assert prior["r8_regional_source_count"] is None
     assert prior["r8_regional_routes"]==[]
     assert prior["r8_audit_safe_by"] is None
+    assert prior["retained_original_integrity"]["official_originals_byte_checked"] is None
+    assert prior["retained_original_integrity"]["local_audit_safe_by"] is None
+    assert prior["r9_regional_sources_documented"] is None
+    assert prior["r9_national_highlights"]==[]
+    assert prior["r9_pre_AJ_outcome_header_exposure"] is None
+    assert prior["r9_no_independent_national_or_regional_denominator"] is None
     middle=report(as_of="2026-10-31T05:20:00Z")
     assert middle["institutional_sources"][0]["observed_metadata_rows"]==1211
     assert middle["institutional_sources"][1]["observed_metadata_rows"] is None

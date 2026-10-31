@@ -237,11 +237,36 @@ function populationReadinessPanel(){
     +newNational.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+esc(s.limitation)+'</td></tr>').join('')
     +'</tbody></table></div><p class="footnote">Sin permisos automáticos de descarga, sin denominador independiente, sin eventos ni primera publicación certificada. Corte documental seguro: '+esc(p.r8_audit_safe_by)+'</p></details>'
   :'';
+ const integrity=p.retained_original_integrity||{};
+ const integrityPanel=integrity.status==='PAST_LOCAL_BINARY_INTEGRITY_CONFIRMED'
+  ?'<details><summary>R9 · integridad de originales y derivados conservados</summary>'
+    +'<p class="help">Comprobación binaria local anterior: '+count(integrity.official_originals_byte_checked)+' originales capturados y '+count(integrity.private_derivatives_byte_checked)+' derivados privados coincidían por tamaño y SHA-256. No se decodificaron sus registros durante esta auditoría.</p>'
+    +'<p class="help">Esto NO acredita censo completo, derechos para nuevos usos, primera disponibilidad histórica ni secuencias de decisiones. La integridad refleja un único control anterior, no una monitorización permanente.</p>'
+    +'<p class="footnote">Corte seguro de auditoría local: '+esc(integrity.local_audit_safe_by)+' · API /api/retained-source-integrity?as_of=</p></details>'
+  :integrity.status==='INTEGRITY_RECEIPT_QUARANTINED'
+   ?'<p class="warning">Recibo de integridad en cuarentena: no se presentan comprobaciones ni conteos.</p>'
+   :'';
+ const r9Regions=p.r9_documentary_status==='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED'
+  &&Array.isArray(p.r9_regional_highlights)?p.r9_regional_highlights:[];
+ const r9National=p.r9_documentary_status==='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED'
+  &&Array.isArray(p.r9_national_highlights)?p.r9_national_highlights:[];
+ const r9Panel=(r9Regions.length||r9National.length)
+  ?'<details><summary>R9 · Galicia, ILP autonómicas y otros registros institucionales</summary>'
+    +'<p class="help">Nuevas fuentes documentales candidatas con límites de cobertura. Las memorias retrospectivas no representan versiones públicas contemporáneas; los asuntos jurisdiccionales, escritos de registro, quejas y acuerdos pertenecen a poblaciones distintas. Ningún nuevo original admitido.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad o problema</th><th>Estado</th></tr></thead><tbody>'
+    +r9Regions.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_limit)+'</td><td>Solo índice editorial</td></tr>').join('')
+    +r9National.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_unit)+'</td><td>Derechos y censo no verificados</td></tr>').join('')
+    +'</tbody></table></div>'
+    +'<p class="warning">El índice de Galicia presenta encabezados de categorías procesales conocidos antes de congelar A–J. Su reutilización como confirmación de una hipótesis formulada después quedaría contaminada.</p>'
+    +'<p class="footnote">Metadatos R9 visibles localmente desde '+esc(p.r9_documentary_safe_by)+'. Sin identificación causal, sin censos independientes y sin identificadores fuente-local publicados.</p></details>'
+  :'';
  return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
  +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
  +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad observada</th><th>Registros visibles</th><th>Procedencia</th><th>Elegibilidad</th></tr></thead><tbody>'+sources+'</tbody></table></div>'
  +candidatePanel
  +r8Panel
+ +r9Panel
+ +integrityPanel
  +selectionPanel
  +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
  +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';

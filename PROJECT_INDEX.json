@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 22,
+    "data": 25,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 97,
+    "operations": 99,
     "reference": 78,
-    "research": 1970,
-    "runtime": 91,
+    "research": 1971,
+    "runtime": 94,
     "task_queue": 120,
-    "verification": 212
+    "verification": 217
   },
   "files": [
     {
@@ -850,6 +850,21 @@
     },
     {
       "path": "data/source_manifests/r8_regional_documentary_matrix_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/r9_national_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/r9_regional_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/r9_retained_sources_integrity_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
@@ -11549,6 +11564,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT9_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11774,6 +11794,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/attest_retained_sources.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/audit_ab30d.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -11975,6 +12000,11 @@
     },
     {
       "path": "scripts/reconcile_parcan_source_local.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "scripts/redact_r9_documentary_sources.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -12369,6 +12399,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r9.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_index_contract.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12437,6 +12472,16 @@
       "path": "src/politics_fantasy/release_guard.cjs",
       "category": "runtime",
       "purpose": "Seis requisitos de lanzamiento; falla cerrado por defecto"
+    },
+    {
+      "path": "src/politics_fantasy/retained_integrity_status.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/retained_source_integrity.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
       "path": "src/politics_fantasy/rollcall.py",
@@ -15264,6 +15309,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r9.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_index_contract.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15404,12 +15454,32 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_redact_r9_documentary_sources.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_redirect_guard_isolated.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
       "path": "tests/test_release_guard.cjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_retained_integrity_http.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_retained_integrity_status.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_retained_source_integrity.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

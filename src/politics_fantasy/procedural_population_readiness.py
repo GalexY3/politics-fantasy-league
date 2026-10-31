@@ -12,6 +12,8 @@ from .procedural_coverage import coverage_status
 from .siap_coverage import status as siap_status
 from .procedural_discovery_r7 import status as discovery_status
 from .procedural_discovery_r8 import status as discovery_r8_status
+from .retained_integrity_status import status as integrity_status
+from .procedural_discovery_r9 import status as discovery_r9_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -33,6 +35,8 @@ def report(*, as_of: str | None = None) -> dict:
     siap = siap_status(as_of=as_of)
     discovery = discovery_status(as_of=as_of)
     discovery_r8 = discovery_r8_status(as_of=as_of)
+    integrity = integrity_status(as_of=as_of)
+    discovery_r9 = discovery_r9_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -106,6 +110,25 @@ def report(*, as_of: str | None = None) -> dict:
         "r8_audit_safe_by": discovery_r8.get("local_audit_safe_by"),
         "r8_sources_are_not_entry_records": True,
         "r8_consejo_de_estado_is_not_congreso_risk_set": True,
+        "retained_original_integrity": {
+            "status": integrity["status"],
+            "official_originals_byte_checked": integrity.get("originals_verified"),
+            "private_derivatives_byte_checked": integrity.get("private_derivatives_verified"),
+            "local_audit_safe_by": integrity.get("local_audit_safe_by"),
+            "actual_source_census_verified": False,
+            "additional_processing_rights_granted": False,
+            "historical_first_publication_derived": False,
+        },
+        "r9_documentary_status": discovery_r9["status"],
+        "r9_regional_sources_documented": discovery_r9.get("regional_source_count"),
+        "r9_national_assets_documented": discovery_r9.get("national_source_count"),
+        "r9_regional_highlights": discovery_r9.get("regional_highlights",[]),
+        "r9_national_highlights": discovery_r9.get("national_highlights",[]),
+        "r9_documentary_safe_by": discovery_r9.get("source_metadata_safe_by"),
+        "r9_pre_AJ_outcome_header_exposure": discovery_r9.get("pre_registration_outcome_header_exposure"),
+        "r9_no_independent_national_or_regional_denominator": (
+            True if discovery_r9["status"]=="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED"
+            else None),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

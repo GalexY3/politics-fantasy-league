@@ -133,3 +133,62 @@ test('R8 hides blocked unrecognized source state and escapes names',()=>{
  data.r8_documentary_status='R8_NOT_KNOWN_AT_CUT';
  assert.doesNotMatch(render(data),/&lt;svg/);
 });
+
+test('R9 source integrity audit is shown only as prior byte validation, not institutional census',()=>{
+ const data=sample();
+ data.retained_original_integrity={
+   status:'PAST_LOCAL_BINARY_INTEGRITY_CONFIRMED',
+   official_originals_byte_checked:5,
+   private_derivatives_byte_checked:2,
+   local_audit_safe_by:'2026-10-31T07:08:42+00:00'
+ };
+ const html=render(data);
+ assert.match(html,/R9 · integridad de originales/);
+ assert.match(html,/5 originales capturados y 2 derivados privados/);
+ assert.match(html,/NO acredita censo completo/);
+ assert.match(html,/no una monitorización permanente/);
+});
+
+test('R9 does not reveal future counts or injection in receipt clock',()=>{
+ const data=sample();
+ data.retained_original_integrity={
+  status:'INTEGRITY_AUDIT_NOT_KNOWN_AT_CUT',official_originals_byte_checked:null,
+  private_derivatives_byte_checked:null,local_audit_safe_by:null
+ };
+ assert.doesNotMatch(render(data),/R9 · integridad de originales/);
+ data.retained_original_integrity.status='PAST_LOCAL_BINARY_INTEGRITY_CONFIRMED';
+ data.retained_original_integrity.official_originals_byte_checked=5;
+ data.retained_original_integrity.private_derivatives_byte_checked=2;
+ data.retained_original_integrity.local_audit_safe_by='<img src=x onerror=alert(1)>';
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.doesNotMatch(html,/<img/);
+});
+
+test('R9 documentary highlights distinguish units and prereg outcome exposure',()=>{
+ const data=sample();
+ data.r9_documentary_status='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED';
+ data.r9_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r9_regional_highlights=[{institution:'Parlamento de Galicia',documentary_limit:'CONTRADICTORY_EDITORIAL_HEADING_AND_ENNUMERATION'}];
+ data.r9_national_highlights=[{institution:'TRIBUNAL_CONSTITUCIONAL',documentary_unit:'TC_INITIAL_PROCEDURAL_DOCUMENTS_RECEIVED'}];
+ const html=render(data);
+ assert.match(html,/R9 · Galicia/);
+ assert.match(html,/TRIBUNAL_CONSTITUCIONAL/);
+ assert.match(html,/quedaría contaminada/);
+ assert.match(html,/Sin identificación causal/);
+ assert.doesNotMatch(html,/9155|9160|PPLI-000/);
+});
+
+test('R9 hidden at earlier cut, and escaped if source string malicious',()=>{
+ const data=sample();
+ data.r9_documentary_status='R9_DISCOVERY_NOT_KNOWN_AT_CUT';
+ data.r9_regional_highlights=[{institution:'SENSITIVE',documentary_limit:'MORE'}];
+ assert.doesNotMatch(render(data),/SENSITIVE/);
+ data.r9_documentary_status='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED';
+ data.r9_documentary_safe_by='2026-11-01T00:00:00Z';
+ data.r9_regional_highlights=[{institution:'<svg onload=alert(1)>',documentary_limit:'<script>alert(1)</script>'}];
+ const html=render(data);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<svg|<script/);
+});
