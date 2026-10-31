@@ -62,6 +62,17 @@
     "corrected_private_items_jsonl_sha256": "c5bb5feba316c77c827bf60e912074ebc2ab56fd2be0489122116c30a78d86bf",
     "title_heading_fix_source_local_ordinal": 81,
     "independent_text_extractor_title_prefix_parity_after_fix": "198/198 first four normalized words; not visual transcription or identity verification",
+    "full_first_line_and_page_crossengine_audit": {
+      "source_sha256": "49de70b656da1b9ed9c68f552eafe743bede253e5b7a725d5eb615db1b61b4c5",
+      "engines": ["pypdf plain", "Poppler pdftotext -raw"],
+      "items_compared": 198,
+      "fields_compared_per_item": 6,
+      "disagreements": 0,
+      "field_set": ["normative_class", "title_pdf_page", "objective_pdf_page", "ministry_pdf_page", "title_first_line_normalized", "ministry_first_line_normalized"],
+      "same_original_not_independent_census": true,
+      "visual_full_entry_certification": false,
+      "original_intro_199_vs_main_and_body_198_unresolved": true
+    },
     "derived_records_published": false,
     "reference_to_IAEN_by_item_verified": false,
     "nonmentioned_item_outcome": "UNKNOWN",
