@@ -1,5 +1,5 @@
 {
-  "revision": 16,
+  "revision": 17,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -17,6 +17,7 @@
     "research/CONTINUATION20_20261030/AUTHORIZATION.json",
     "research/ABH25_20261030/AUTHORIZATION.json",
     "research/ABH25B_20261030/AUTHORIZATION.json"
+    ,"research/PFL_SYSTEM20_20261031/AUTHORIZATION.json"
   ],
   "additional_authorization_snapshot": {
     "id": "PFL-GRANT-20261030-INTEGRATION10",
@@ -306,7 +307,7 @@
     "linux_qa_workflow": ".github/workflows/pfl-cutover-linux-qa.yml"
   },
   "publication_status": "MAIN_PR2_MERGED_CODE_REVIEW_PASS",
-  "updated_on": "2026-10-30",
+  "updated_on": "2026-10-31",
   "source_validation": {
     "status": "REVIEW_APPROVED",
     "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
@@ -315,12 +316,12 @@
     "scope_note": "Incorporación a main aprobada por Codex delegado; gates 0/6."
   },
   "atlas_snapshot": {
-    "batches": 98,
+    "batches": 99,
     "nodes": 63,
     "edges": 81,
-    "runs": 355,
+    "runs": 362,
     "complaints": 51,
-    "state_sha256": "ca0bae27ec478a8a204a2bc3469540f806a8cdc4af36dba59c8d568cb6d4de75",
+    "state_sha256": "bc4c7b094df4cb95f073a3d41f18c5c362bea80ca6b3ce275ed07593571c46e9",
     "passed_gates": 0
   },
   "method_reference": "METHOD_REFERENCE.json",
@@ -352,6 +353,14 @@
     "scientific_discoveries": 0
   },
   "abh25b_authorization_ledger": "research/ABH25B_20261030/AUTHORIZATION.json",
+  "system20_authorization_ledger": "research/PFL_SYSTEM20_20261031/AUTHORIZATION.json",
+  "system20_authorization_snapshot": {
+    "authorized": 20,
+    "executed_valid": 0,
+    "remaining": 20,
+    "scope": "political-system-reproduction; environmental-couplings; Spanish primary-source feasibility",
+    "no_change_to_prior_grants": true
+  },
   "abh25b_authorization_snapshot": {
     "authorized": 25,
     "executed_limited": 25,

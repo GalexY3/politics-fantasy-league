@@ -1,0 +1,22 @@
+{
+  "schema": "pfl.authorization.v1",
+  "id": "PFL-SYSTEM20-20261031",
+  "authorized_by": "user",
+  "date": "2026-10-31",
+  "authorized": 20,
+  "executed_valid": 0,
+  "invalid": 0,
+  "planning_only": 0,
+  "remaining": 20,
+  "objective_document": "docs/OBJETIVO_COS_PFL_SYSTEM20_20261031.md",
+  "base_commit": "24f4fea79a9eb09445d6c62479e66f677070ebc9",
+  "work_branch": "research/pfl-system-core-source-pilot-20261031",
+  "separate_from_prior_grants": true,
+  "cycles": [],
+  "noncycle_work": [
+    {"type":"MAINTENANCE","artifact":"research/PFL_SYSTEM20_20261031/ATLAS99_REPAIR_RECEIPT.md","cycles_charged":0},
+    {"type":"DOCUMENTARY_SOURCE_AUDIT","artifact":"research/PFL_SYSTEM20_20261031/FUENTES_ESPANA_PREINGESTA.md","cycles_charged":0},
+    {"type":"SCOPE_MODEL_DRAFT","artifact":"docs/SISTEMA_POLITICO_ESPAÑOL_DELIMITACION_V0_20261031.md","cycles_charged":0}
+  ],
+  "constraints": ["A-J and remote code SHA before outcome access", "AB-R and AB-P separated", "no cycles for maintenance or repeated tests", "R5 per route", "no real-person scores or deployment", "no license acceptance, public PR merge or expensive CI"]
+}
