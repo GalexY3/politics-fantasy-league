@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 13,
+    "data": 15,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 94,
-    "reference": 74,
-    "research": 1965,
+    "operations": 95,
+    "reference": 75,
+    "research": 1966,
     "runtime": 82,
     "task_queue": 120,
-    "verification": 197
+    "verification": 198
   },
   "files": [
     {
@@ -819,7 +819,17 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/parcan_editorial_crossview_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/parcan_pe2025_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/parcan_source_local_months_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
@@ -875,6 +885,11 @@
     },
     {
       "path": "docs/CONTINUIDAD_CHATGPT_20261027.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/CONTRATO_ONTOLOGICO_SISTEMICO_TEMPORAL_PFL_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11459,6 +11474,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT4_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11877,6 +11897,11 @@
       "path": "scripts/project_status.py",
       "category": "operations",
       "purpose": "Derivar y validar estado, Atlas, presupuesto y handoff"
+    },
+    {
+      "path": "scripts/reconcile_parcan_source_local.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
     },
     {
       "path": "scripts/replay_forecastbench_vintages.mjs",
@@ -15195,6 +15220,11 @@
     },
     {
       "path": "tests/test_reconcile.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_reconcile_parcan_source_local.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

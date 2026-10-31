@@ -153,10 +153,19 @@ function spanishProcessesPanel(){
  const rows=(c.source_cohorts||[]).map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.initiative_type)+'</td><td>'+esc(s.legislature)+'</td><td>'+esc(s.year)+'</td><td>'+count(s.rows_in_captured_distribution)+'</td><td>'+esc(s.capture_sha256.slice(0,16))+'…</td></tr>').join('');
  const sourceCount=(c.source_cohorts||[]).length;
  const peYears=(c.source_cohorts||[]).filter(s=>s.initiative_type==='PE').map(s=>s.year).sort((a,b)=>a-b);
+ const monthRows=(c.creation_monthly_status==='SOURCE_CREATION_MONTHS_AUDITED_ONLY'&&Array.isArray(c.creation_monthly_observed_entries))?c.creation_monthly_observed_entries:[];
+ const monthTable=monthRows.length
+   ?'<details><summary>Meses con registros observados en las cuatro distribuciones ('+count(monthRows.length)+')</summary>'
+    +'<p class="help">Mes de creación declarado en la fotografía actual de origen; no acredita primera publicación histórica. Los meses sin filas no se convierten en meses sin iniciativas, y el recuento no es la población elegible certificada.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Estrato fuente</th><th>Mes indicado</th><th>Filas observadas</th></tr></thead><tbody>'
+    +monthRows.map(m=>'<tr><td>'+esc(m.scope)+'</td><td>'+esc(m.source_reported_created_month)+'</td><td>'+count(m.observed_entries)+'</td></tr>').join('')
+    +'</tbody></table></div></details>'
+   :'';
  return '<section class="card" aria-label="Cohortes documentales de iniciativas autonómicas"><div class="section-title"><h2>Iniciativas parlamentarias · fuentes originales</h2><span>METADATOS REALES · SIN OUTCOMES ADMITIDOS</span></div>'
  +'<div class="metrics">'+stat('Filas capturadas',count(c.observed_rows),sourceCount+' distribuciones observadas, no un censo de la Cámara')+stat('Población elegible','SIN CERTIFICAR','Exhaustividad y estados finales pendientes')+'</div>'
  +'<p class="help">Distribuciones del <a href="https://datos.parcan.es/" target="_blank" rel="noopener noreferrer">Parlamento de Canarias</a>, licencia de catálogo Open Data Commons PDDL. PPL: proposiciones de ley; PE: preguntas con respuesta escrita. Años PE documentados en este corte: '+esc(peYears.join(', ')||'ninguno')+'. Esta sucesión de ficheros no demuestra cobertura exhaustiva, ni publicaciones históricas as-of.</p>'
  +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Clase</th><th>Leg.</th><th>Año</th><th>Filas</th><th>SHA-256 (prefijo)</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+ +monthTable
  +'<p class="footnote">Fecha de la auditoría local: '+esc(c.local_snapshot_audited_at)+'. La API local /api/spanish-process-cohorts?as_of= permite consultar qué estaba documentado por este observatorio en un corte temporal dado. No reconstruye la fecha de primera publicación de cada expediente.</p>'
  +'<div class="warning">No se admitieron estados de aprobación, rechazo o contestación, ni trazas de transiciones fechadas. Fechas de creación no son fechas de primera publicación. Ausencia de una distribución o respuesta no equivale a cero ni a fracaso, y ningún registro puede puntuar a personas reales.</div></section>';
 }

@@ -56,6 +56,24 @@ test('new PE/2025 capture appears only in later audit snapshot without census cl
   assert.doesNotMatch(html,/conclusión causal|aprobadas: 543/i);
 });
 
+test('month observations appear only with audited derivative, never zeros or outcomes',()=>{
+  const later=sample();
+  later.observed_rows=1754;
+  later.creation_monthly_status='SOURCE_CREATION_MONTHS_AUDITED_ONLY';
+  later.creation_monthly_observed_entries=[
+    {scope:'PARCAN:LEG11:PE:YEAR2024',source_reported_created_month:'2024-02',observed_entries:100}
+  ];
+  const html=render(later);
+  assert.match(html,/Meses con registros observados/);
+  assert.match(html,/2024-02/);
+  assert.match(html,/no acredita primera publicación histórica/);
+  assert.match(html,/meses sin filas no se convierten en meses sin iniciativas/i);
+  assert.doesNotMatch(html,/2024-08/);
+  later.creation_monthly_status='MONTHLY_DERIVATIVE_QUARANTINED';
+  const quarantined=render(later);
+  assert.doesNotMatch(quarantined,/2024-02|Meses con registros observados/);
+});
+
 test('source quarantine refuses synthetic fallback', () => {
   assert.match(render({ok:false,source_cohorts:[],observed_rows:9999}),/no genera cifras sustitutivas/i);
   assert.doesNotMatch(render({ok:false,source_cohorts:[],observed_rows:9999}),/9999/);

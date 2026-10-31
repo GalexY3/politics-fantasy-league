@@ -1,5 +1,5 @@
 {
-  "revision": 21,
+  "revision": 22,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -188,7 +188,7 @@
       "status": "IN_PROGRESS",
       "outcome": "Primera base historica espanola admisible para el estudio de reproduccion/autorregulacion politica y acoplamientos, separando registros electorales y expedientes en riesgo",
       "acceptance": "Fuente primaria y derechos por distribucion; universo y definiciones verificables; identidades/eventos y fechas as-of; enlace legal y cientificamente defendible; baseline/rivales preregistrados antes de outcomes",
-      "next_action": "Auditar totales y versiones fechadas de la poblaci?n de iniciativas PE de Canarias o desbloquear legalmente el Congreso; 2025 PE sin fuente verificada y estados de 2024/2026 sin first_public_at. Antes de outcomes, congelar A-J, baseline y SHA remotos. No inferir survival de capturas actuales.",
+      "next_action": "Cotejo editorial oficial Canarias PE/2024-26 encontrado: 686+543+524=1753, coincide con CSV pero no es fuente independiente de base de datos, ni prueba vintages. Nuevo derivado de 34 meses de creacion solo local; buscar enumeracion de expedientes con estados y transiciones historicas verificables o marco nacional. Congreso memorias IX/X solo denominadores agregados retrospectivos; antes de outcomes congelar A-J y SHA remotos.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -201,6 +201,10 @@
         "data/source_manifests/parcan_20261031.json",
         "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/EVIDENCE_REPORT.md",
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
+        "research/PFL_SYSTEM20_20261031/ROUND_REPORT4_20261031.md",
+        "data/source_manifests/parcan_editorial_crossview_20261031.json",
+        "data/source_manifests/parcan_source_local_months_20261031.json",
+        "docs/CONTRATO_ONTOLOGICO_SISTEMICO_TEMPORAL_PFL_20261031.md",
         "src/politics_fantasy/parcan_cohort_status.py",
         "src/politics_fantasy/official_temporal_links.py"
       ]
@@ -445,6 +449,25 @@
     "canarian_pe_2025_xi_normalized_jsonl_sha256": "88041ac88a6dcb6e8b5c20ca89ae07fcdb6f95548a209042b4d6dd06aaec2bcc",
     "canarian_observatory_latest_metadata_rows_four_source_distributions": 1754,
     "canarian_observatory_retains_older_snapshot_at_local_asof": true,
+    "canarian_editorial_crossview_manifest": "data/source_manifests/parcan_editorial_crossview_20261031.json",
+    "canarian_pe_three_year_editorial_count": 1753,
+    "canarian_pe_three_year_editorial_count_matches_csv": true,
+    "canarian_editorial_html_original_sha256_available": false,
+    "canarian_editorial_crossview_independent_database_verified": false,
+    "canarian_editorial_crossview_historical_vintage_verified": false,
+    "canarian_source_local_monthly_manifest": "data/source_manifests/parcan_source_local_months_20261031.json",
+    "canarian_source_local_monthly_manifest_sha256": "c86e3d8f6d889bede76f2c215e61e9bea880c3fabc3db40c97317ccd6fc5927f",
+    "canarian_source_local_positive_creation_month_cells": 34,
+    "canarian_source_local_monthly_local_safe_by": "2026-10-31T05:49:51+00:00",
+    "canarian_creation_date_is_first_public_at": false,
+    "congress_historical_memories_ix_proposiciones": 356,
+    "congress_historical_memories_ix_proyectos": 147,
+    "congress_historical_memories_x_proposiciones": 278,
+    "congress_historical_memories_x_proyectos": 163,
+    "congress_historical_memo_pdf_originals_captured": false,
+    "congress_historical_memo_reuse_rights_adjudicated": false,
+    "congress_historical_memo_per_exp_matches_or_asof_verified": false,
+    "systemic_ontology_proposal": "docs/CONTRATO_ONTOLOGICO_SISTEMICO_TEMPORAL_PFL_20261031.md",
     "canarian_complete_risk_population_verified": false,
     "canarian_outcome_columns_substantively_analyzed": false,
     "canarian_exact_historical_first_public_at_verified": false,
@@ -455,6 +478,6 @@
     "new_ABH_valid_cycles_this_round": 0,
     "new_ABH_invalid_cycles_this_round": 0,
     "new_ABH_planning_cycles_this_round": 0,
-    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT3_20261031.md"
+    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT4_20261031.md"
   }
 }
