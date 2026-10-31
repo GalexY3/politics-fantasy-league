@@ -85,6 +85,21 @@ def test_old_cut_does_not_disclose_whether_future_r10_source_exists(local):
     assert "CTBG" not in str(a[1])
 
 
+def test_r14_future_source_query_is_indistinguishable_from_unknown(local):
+    old="/api/denominator-evidence?as_of=2026-10-31T23%3A59%3A59Z&source_id="
+    a=get(local,old+"CLM_GENERAL_ACCESS_STATISTICS")
+    b=get(local,old+"SOURCE_UNDOCUMENTED")
+    assert a==b
+    assert a[1]["reported_sources"]==[]
+    new="/api/denominator-evidence?as_of=2026-11-01T00%3A00%3A00Z&source_id="
+    code,post=get(local,new+"CLM_GENERAL_ACCESS_STATISTICS")
+    assert code==200
+    assert post["source_groups_visible"]==1
+    assert post["reported_sources"][0]["observed_source_local_items"] is None
+    assert post["reported_sources"][0]["known_terminal_case_count"] is None
+    assert post["eligible_risk_denominator"] is None
+
+
 @pytest.mark.parametrize("suffix",[
     "?source_id=",
     "?source_id=PARCAN_SOURCE_LOCAL&source_id=R10_A_CTBG_APPEALS",

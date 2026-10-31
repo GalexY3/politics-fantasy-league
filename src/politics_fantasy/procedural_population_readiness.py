@@ -19,6 +19,7 @@ from .procedural_discovery_r10 import status as discovery_r10_status
 from .procedural_discovery_r11 import status as discovery_r11_status
 from .procedural_discovery_r12 import status as discovery_r12_status
 from .procedural_discovery_r13 import status as discovery_r13_status
+from .procedural_discovery_r14 import status as discovery_r14_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -46,6 +47,7 @@ def report(*, as_of: str | None = None) -> dict:
     discovery_r11 = discovery_r11_status(as_of=as_of)
     discovery_r12 = discovery_r12_status(as_of=as_of)
     discovery_r13 = discovery_r13_status(as_of=as_of)
+    discovery_r14 = discovery_r14_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -181,6 +183,12 @@ def report(*, as_of: str | None = None) -> dict:
             "SYNTHETIC_REGISTRATION_AT_CUT_PENDENCY_WITH_POSITIVE_WITNESS_NOT_REAL_CENSUS"
             if discovery_r13["status"]=="R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED"
             else None),
+        "r14_documentary_status": discovery_r14["status"],
+        "r14_new_documentary_routes_count": discovery_r14.get("new_documentary_routes_count"),
+        "r14_documentary_routes": discovery_r14.get("source_rows",[]),
+        "r14_documentary_safe_by": discovery_r14.get("documentary_safe_by"),
+        "r14_saip_enrichment_not_additive": discovery_r14.get("existing_saip_enrichment"),
+        "r14_documentary_manifest_sha256": discovery_r14.get("manifest_sha256"),
         "denominator_evidence": derive_denominator_evidence(
             real_sources=source_rows,
             r9_documentary_status=discovery_r9["status"],
@@ -194,7 +202,9 @@ def report(*, as_of: str | None = None) -> dict:
             r12_documentary_status=discovery_r12["status"],
             r12_documentary_routes=discovery_r12.get("source_routes",[]),
             r13_documentary_status=discovery_r13["status"],
-            r13_documentary_routes=discovery_r13.get("source_rows",[])),
+            r13_documentary_routes=discovery_r13.get("source_rows",[]),
+            r14_documentary_status=discovery_r14["status"],
+            r14_documentary_routes=discovery_r14.get("source_rows",[])),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

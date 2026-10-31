@@ -400,3 +400,41 @@ test('R13 before archive cut hides sources and returned strings are escaped',()=
  assert.match(html,/&lt;script/);
  assert.doesNotMatch(html,/<svg|<img|<script/);
 });
+
+test('R14 documents SAIP enhancement once and four disjoint non-censal routes',()=>{
+ const data=sample();
+ data.r14_documentary_status='R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r14_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r14_saip_enrichment_not_additive={
+   source_declared_columns:35,column_names_visible_in_index:15,
+   column_names_not_verified:20,restore_point_metadata_entries_visible:2,
+   original_snapshots_compared:0
+ };
+ data.r14_documentary_routes=[{source_id:'ARAGON_GENERAL_ACCESS_STATISTICS',
+   documentary_unit:'ACCESS_REQUEST_REGISTER_LEGAL_RULE_AND_AGGREGATES',
+   limitation:'STATUTORY_REGISTER_NOT_PUBLIC_COMPLETE_CASE_DISTRIBUTION',
+   rights_scope:'OPEN_DATA_TERMS_BIND_ON_ACCESS_PDF_ASSET_RIGHTS_UNVERIFIED'}];
+ const html=render(data);
+ assert.match(html,/R14 · SAIP y registros autonómicos/);
+ assert.match(html,/Aragón: registro descrito normativamente/);
+ assert.match(html,/15 nombres visibles y 20 desconocidos/);
+ assert.match(html,/NO son dos archivos históricos originales/);
+ assert.match(html,/OPEN_DATA_TERMS_BIND_ON_ACCESS/);
+});
+
+test('R14 future assets hidden and labels escaped against XSS',()=>{
+ const data=sample();
+ data.r14_documentary_status='R14_NOT_KNOWN_AT_CUT';
+ data.r14_documentary_routes=[{source_id:'FUTURE_CLM'}];
+ assert.doesNotMatch(render(data),/FUTURE_CLM/);
+ data.r14_documentary_status='R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r14_documentary_safe_by='<svg onload=alert(1)>';
+ data.r14_documentary_routes=[{source_id:'<img src=x onerror=alert(1)>',
+   documentary_unit:'<script>bad()</script>',limitation:'SCOPED',
+   rights_scope:'NO_DATASET_LICENSE'}];
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;script/);
+ assert.match(html,/&lt;svg/);
+ assert.doesNotMatch(html,/<img|<script|<svg/);
+});

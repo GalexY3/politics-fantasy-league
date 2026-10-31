@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 29,
+    "data": 30,
     "evidence": 378,
     "experimental_code": 30,
     "operations": 103,
-    "reference": 82,
-    "research": 1975,
-    "runtime": 102,
+    "reference": 83,
+    "research": 1976,
+    "runtime": 104,
     "task_queue": 120,
-    "verification": 232
+    "verification": 234
   },
   "files": [
     {
@@ -864,6 +864,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r14_scoped_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1095,6 +1100,11 @@
     },
     {
       "path": "docs/R13_COHORTES_PETICIONES_RECLAMACIONES_Y_TESTIGOS_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R14_VINTAGES_SAIP_Y_COHORTES_MUNICIPALES_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11589,6 +11599,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT14_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12499,6 +12514,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r14.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_discovery_r7.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12572,6 +12592,11 @@
       "path": "src/politics_fantasy/quarantine_ingest.py",
       "category": "runtime",
       "purpose": "Validación y cuarentena de capturas"
+    },
+    {
+      "path": "src/politics_fantasy/r14_documentary_frame_gate.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
       "path": "src/politics_fantasy/readiness.py",
@@ -15464,6 +15489,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r14.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_discovery_r7.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15600,6 +15630,11 @@
     },
     {
       "path": "tests/test_quarantine_ingest.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r14_documentary_frame_gate.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

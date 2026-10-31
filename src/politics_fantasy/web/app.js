@@ -309,6 +309,25 @@ function populationReadinessPanel(){
    +'</tbody></table></div>'
    +'<p class="footnote">Dos fechas de acontecimiento y una sola captura de conocimiento no certifican stock real; sin testigo positivo contemporáneo pendiente significa desconocido. Auditoría documental R13 solo desde '+esc(p.r13_documentary_safe_by)+', no fecha de primera publicación del caso. Ensayo stock/flujo únicamente sintético, R5 bloqueado.</p></details>'
   :'';
+ const r14Candidates=(p.r14_documentary_status==='R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r14_documentary_routes))?p.r14_documentary_routes:[];
+ const r14Saip=(r14Candidates.length&&p.r14_saip_enrichment_not_additive)
+   ?p.r14_saip_enrichment_not_additive:null;
+ const r14Panel=r14Candidates.length
+  ?'<details><summary>R14 · SAIP y registros autonómicos: derechos, vintages y sesgo de selección</summary>'
+   +'<p class="help">SAIP Generalitat yjpn-vcw8 ya estaba en R13: R14 añade documentación, NO una segunda cohorte. La interfaz editorial declara 35 columnas y sólo 15 nombres confirmados mediante índice; el total aproximado de 23,4 mil filas no es un censo externo. Restore points del catálogo NO son dos archivos históricos originales y la licencia general catalana puede vincular por mero acceso, sin permiso de cada distribución acreditado.</p>'
+   +(r14Saip?'<p class="help">SAIP enriquecida: '+esc(r14Saip.source_declared_columns)+' columnas anunciadas, '
+     +esc(r14Saip.column_names_visible_in_index)+' nombres visibles y '
+     +esc(r14Saip.column_names_not_verified)+' desconocidos. Versiones editoriales anunciadas: '
+     +esc(r14Saip.restore_point_metadata_entries_visible)+'. Originales cotejados: '
+     +esc(r14Saip.original_snapshots_compared)+'. Este último cero documenta una ausencia de adquisición, NO ausencia de expedientes.</p>':'')
+   +'<p class="help">Ciudad Real: asiento municipal general no identifica una iniciativa política ni acredita el puente hacia expediente. Castilla-La Mancha: estadísticas de acceso general y ambiental, dos familias jurídicas diferentes. Aragón: registro descrito normativamente, contador e informes, pero sin libro individual reutilizable. Un historial de revisiones de catálogo no certifica instantáneas históricas de los originales.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta documental adicional</th><th>Unidad</th><th>Bloqueo de población</th><th>Derechos</th></tr></thead><tbody>'
+   +r14Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+     +'</td><td>'+esc(s.limitation)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Relojes separados: fecha jurídica, fecha de edición, conocimiento local y primera disponibilidad pública acreditada. Gate documental desde '
+   +esc(p.r14_documentary_safe_by)+'. Pendientes, decisiones y denominador real desconocidos; sin acceso a casos ni ciclos AB.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
@@ -333,6 +352,7 @@ function populationReadinessPanel(){
  +r11Panel
  +r12Panel
  +r13Panel
+ +r14Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

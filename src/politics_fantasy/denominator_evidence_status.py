@@ -44,7 +44,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r12_documentary_status:str="R12_NOT_KNOWN_AT_CUT",
                                 r12_documentary_routes:list[dict]|None=None,
                                 r13_documentary_status:str="R13_NOT_KNOWN_AT_CUT",
-                                r13_documentary_routes:list[dict]|None=None) -> dict:
+                                r13_documentary_routes:list[dict]|None=None,
+                                r14_documentary_status:str="R14_NOT_KNOWN_AT_CUT",
+                                r14_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -162,6 +164,23 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                 row["identification_limit"]))
     elif r13_documentary_status not in {"R13_NOT_KNOWN_AT_CUT","R13_SOURCE_QUARANTINED"}:
         raise GateError("R13_DOCUMENTARY_STATUS_INVALID")
+    if r14_documentary_status=="R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED":
+        if type(r14_documentary_routes) is not list or len(r14_documentary_routes)!=4:
+            raise GateError("R14_EXPECTED_FOUR_NEW_DOCUMENTARY_ROUTES")
+        for row in r14_documentary_routes:
+            if (row.get("source_originals_acquired") != 0
+                    or row.get("independent_entry_denominator") is not None
+                    or row.get("real_terminal_decisions") is not None
+                    or row.get("real_pending_or_censored") is not None
+                    or row.get("first_public_at") is not None):
+                raise GateError("R14_DOCUMENTARY_SOURCE_OUTCOME_PROMOTION")
+            groups.append(_candidate(
+                row["source_id"],row["institution"],row["documentary_unit"],
+                "DOCUMENTARY_METADATA_ONLY_NO_AUTHORIZED_ORIGINAL",None,
+                "SAIP_SCOPE_MUNICIPAL_REGISTER_OR_AGGREGATES_NOT_ADDITIVE",
+                row["limitation"]))
+    elif r14_documentary_status not in {"R14_NOT_KNOWN_AT_CUT","R14_SOURCE_QUARANTINED"}:
+        raise GateError("R14_DOCUMENTARY_STATUS_INVALID")
     return {
         "schema":"pfl.denominator_evidence_nonadditive.v1",
         "eligible_risk_denominator":None,

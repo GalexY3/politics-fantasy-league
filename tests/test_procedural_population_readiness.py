@@ -68,6 +68,11 @@ def test_current_sources_have_distinct_grains_and_no_survival_denominator():
     assert result["r13_senate_report_not_petition_count"] is True
     assert result["r13_saip_not_gaip_denominator"] is True
     assert result["r13_restore_points_are_not_two_originals"] is True
+    assert result["r14_documentary_status"] in {
+        "R14_NOT_KNOWN_AT_CUT", "R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED"}
+    assert result["r14_new_documentary_routes_count"] in {None,4}
+    assert result["r14_saip_enrichment_not_additive"] is None or (
+        result["r14_saip_enrichment_not_additive"]["original_snapshots_compared"] == 0)
     assert result["r10_registration_channel_break"]["is_observed_change_in_political_behavior"] is False
     assert result["r9_no_independent_national_or_regional_denominator"] is True
     assert "source_process_id" not in json.dumps(result)
@@ -108,6 +113,11 @@ def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     assert prior["r13_documentary_sources"]==[]
     assert prior["r13_senate_report_not_petition_count"] is None
     assert prior["r13_restore_points_are_not_two_originals"] is None
+    assert prior["r14_documentary_status"]=="R14_NOT_KNOWN_AT_CUT"
+    assert prior["r14_new_documentary_routes_count"] is None
+    assert prior["r14_documentary_routes"]==[]
+    assert prior["r14_saip_enrichment_not_additive"] is None
+    assert prior["r14_documentary_manifest_sha256"] is None
     assert prior["r9_no_independent_national_or_regional_denominator"] is None
     middle=report(as_of="2026-10-31T05:20:00Z")
     assert middle["institutional_sources"][0]["observed_metadata_rows"]==1211
