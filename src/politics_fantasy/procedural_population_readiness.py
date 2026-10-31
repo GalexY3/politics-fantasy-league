@@ -17,6 +17,7 @@ from .procedural_discovery_r9 import status as discovery_r9_status
 from .denominator_evidence_status import derive_denominator_evidence
 from .procedural_discovery_r10 import status as discovery_r10_status
 from .procedural_discovery_r11 import status as discovery_r11_status
+from .procedural_discovery_r12 import status as discovery_r12_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -42,6 +43,7 @@ def report(*, as_of: str | None = None) -> dict:
     discovery_r9 = discovery_r9_status(as_of=as_of)
     discovery_r10 = discovery_r10_status(as_of=as_of)
     discovery_r11 = discovery_r11_status(as_of=as_of)
+    discovery_r12 = discovery_r12_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -150,6 +152,19 @@ def report(*, as_of: str | None = None) -> dict:
         "r11_documentary_safe_by": discovery_r11.get("local_audit_safe_by"),
         "r11_rights_by_use_block": discovery_r11.get("rights_by_mere_use_block"),
         "r11_2026_procurement_feed_gap_documented": discovery_r11.get("publisher_2026_feed_gap_known"),
+        "r12_documentary_status": discovery_r12["status"],
+        "r12_documentary_routes_count": discovery_r12.get("source_count"),
+        "r12_normative_route_count": discovery_r12.get("normative_route_count"),
+        "r12_appeal_route_count": discovery_r12.get("appeals_route_count"),
+        "r12_documentary_routes": discovery_r12.get("source_routes",[]),
+        "r12_documentary_safe_by": discovery_r12.get("source_documentary_safe_by"),
+        "r12_outcome_selected_csv_not_all_resources": discovery_r12.get("licensed_tarcja_csv_does_not_license_intake"),
+        "r12_pan_is_not_incoming_case_register": discovery_r12.get("pan_is_not_intake_denominator"),
+        "r12_no_case_vintage_pairs": discovery_r12.get("historical_original_case_vintage_pairs_verified"),
+        "r12_revision_instrument_scope": (
+            "SYNTHETIC_CAPTURE_AWARE_ROLE_SEPARATE_REPLAY_NOT_REAL_HISTORICAL_WITNESS"
+            if discovery_r12["status"]=="R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION"
+            else None),
         "denominator_evidence": derive_denominator_evidence(
             real_sources=source_rows,
             r9_documentary_status=discovery_r9["status"],
@@ -159,7 +174,9 @@ def report(*, as_of: str | None = None) -> dict:
             r10_regional_routes=discovery_r10.get("regional_routes",[]),
             r10_national_routes=discovery_r10.get("national_routes",[]),
             r11_documentary_status=discovery_r11["status"],
-            r11_documentary_routes=discovery_r11.get("source_routes",[])),
+            r11_documentary_routes=discovery_r11.get("source_routes",[]),
+            r12_documentary_status=discovery_r12["status"],
+            r12_documentary_routes=discovery_r12.get("source_routes",[])),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

@@ -322,3 +322,42 @@ test('R11 hidden before source time and malicious names cannot execute HTML',()=
  assert.match(html,/&lt;script/);
  assert.doesNotMatch(html,/<svg|<img|<script/);
 });
+
+test('R12 normative planned output and administrative appeals are not the same at-risk cohort',()=>{
+ const data=sample();
+ data.r12_documentary_status='R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION';
+ data.r12_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r12_documentary_routes=[
+  {source_id:'AGE_PAN_2026',documentary_unit:'PLANNED_NORMATIVE_INSTRUMENT',
+   risk_frame_limitation:'YEAR_AGENDA_NOT_ALL_SUBMITTED_CONSULTATIONS',
+   specific_rights_scope:'GENERAL_REUSE_CONDITIONS_NO_ASSET_RIGHTS_CERTIFICATION'},
+  {source_id:'TARCJA_PUBLIC_RESOLUTIONS',documentary_unit:'PUBLISHED_APPEALS_DECISION',
+   risk_frame_limitation:'OUTCOME_SELECTED_CSV_NOT_REGISTERED_APPEAL_DENOMINATOR',
+   specific_rights_scope:'CC_BY_4_CSV_ONLY_NOT_EDITORIAL_REPORT_OR_FILINGS'}
+ ];
+ const html=render(data);
+ assert.match(html,/R12 · producción normativa y recursos/);
+ assert.match(html,/YEAR_AGENDA_NOT_ALL_SUBMITTED_CONSULTATIONS/);
+ assert.match(html,/OUTCOME_SELECTED_CSV_NOT_REGISTERED_APPEAL_DENOMINATOR/);
+ assert.match(html,/recurso presentado y la resolución publicada no tienen correspondencia uno a uno/);
+ assert.match(html,/primera disponibilidad pública acreditada NO son equivalentes/);
+});
+
+test('R12 future metadata not shown; potentially malicious source fields escaped',()=>{
+ const data=sample();
+ data.r12_documentary_status='R12_NOT_KNOWN_AT_CUT';
+ data.r12_documentary_routes=[{source_id:'FUTURE_TARCJA'}];
+ assert.doesNotMatch(render(data),/FUTURE_TARCJA/);
+ data.r12_documentary_status='R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION';
+ data.r12_documentary_safe_by='<img src=x onerror=alert(1)>';
+ data.r12_documentary_routes=[
+  {source_id:'<svg onload=alert(1)>',
+   documentary_unit:'<script>mal()</script>',
+   risk_frame_limitation:'UNVERIFIED',specific_rights_scope:'LICENSE_UNKNOWN'}
+ ];
+ const html=render(data);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;script/);
+ assert.match(html,/&lt;img/);
+ assert.doesNotMatch(html,/<svg|<script|<img/);
+});

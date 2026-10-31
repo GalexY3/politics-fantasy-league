@@ -286,6 +286,17 @@ function populationReadinessPanel(){
    +'</tbody></table></div>'
    +'<p class="footnote">Documentación R11 conocida en el archivo local solo desde '+esc(p.r11_documentary_safe_by)+'. Sin censos independientes, sin outcomes examinados, sin first_public_at ni uso de personas identificables. Instrumentos de contabilidad de etapas y reintroducción: solo QA sintética.</p></details>'
   :'';
+ const r12Candidates=(p.r12_documentary_status==='R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION'
+   &&Array.isArray(p.r12_documentary_routes))?p.r12_documentary_routes:[];
+ const r12Panel=r12Candidates.length
+  ?'<details><summary>R12 · producción normativa y recursos de contratación</summary>'
+   +'<p class="help">Plan Anual Normativo: agenda de instrumentos previstos, no todas las consultas ni actos presentados. Consulta previa y audiencia son etapas distintas; las excepciones legales pueden omitir convocatorias sin que exista un rechazo. Normas en tramitación: índice editorial seleccionado después de entrar en una fase concreta.</p>'
+   +'<p class="help">TACRC: el recurso presentado y la resolución publicada no tienen correspondencia uno a uno; resoluciones pueden acumular recursos de otros años. TARCJA: la licencia CC BY 4.0 del CSV de resoluciones no proporciona un libro de recursos recibidos, y no se extiende al PDF de memoria. TEA: la selección doctrinal no equivale a todos los recursos tributarios.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente</th><th>Unidad documental</th><th>Fallo de marco registral</th><th>Permiso</th></tr></thead><tbody>'
+   +r12Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+      +'</td><td>'+esc(s.risk_frame_limitation)+'</td><td>'+esc(s.specific_rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Relojes: acto, documento, captura de cada revisión y primera disponibilidad pública acreditada NO son equivalentes. El replay de revisiones R12 solo utiliza fuentes ficticias y no verifica vintages de casos reales. Corte documental seguro: '+esc(p.r12_documentary_safe_by)+'.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
@@ -308,6 +319,7 @@ function populationReadinessPanel(){
  +r9Panel
  +r10Panel
  +r11Panel
+ +r12Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

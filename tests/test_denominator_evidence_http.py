@@ -34,7 +34,7 @@ def test_denominator_http_real_and_historical_scope(local):
     code,payload=get(local,"/api/denominator-evidence")
     assert code==200
     assert payload["eligible_risk_denominator"] is None
-    assert payload["source_groups_visible"]==23
+    assert payload["source_groups_visible"]==29
     assert payload["source_groups_additive"] is False
     assert payload["real_case_outcomes_observed_for_analysis"] is None
     assert payload["case_level_right_censoring_observed_for_analysis"] is None

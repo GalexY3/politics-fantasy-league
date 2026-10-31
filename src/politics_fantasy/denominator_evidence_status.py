@@ -40,7 +40,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r10_regional_routes:list[dict]|None=None,
                                 r10_national_routes:list[dict]|None=None,
                                 r11_documentary_status:str="R11_DOCUMENTARY_NOT_KNOWN_AT_CUT",
-                                r11_documentary_routes:list[dict]|None=None) -> dict:
+                                r11_documentary_routes:list[dict]|None=None,
+                                r12_documentary_status:str="R12_NOT_KNOWN_AT_CUT",
+                                r12_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -125,6 +127,22 @@ def derive_denominator_evidence(*, real_sources:list[dict],
     elif r11_documentary_status not in {
             "R11_DOCUMENTARY_NOT_KNOWN_AT_CUT","R11_DOCUMENTARY_QUARANTINED"}:
         raise GateError("R11_DOCUMENTARY_STATUS_INVALID")
+    if r12_documentary_status=="R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION":
+        if type(r12_documentary_routes) is not list or len(r12_documentary_routes)!=6:
+            raise GateError("R12_DOCUMENTARY_EXPECTED_SIX_DISTINCT_SOURCES")
+        for row in r12_documentary_routes:
+            if (row.get("original_available") is not False
+                    or row.get("independent_entry_denominator") is not None
+                    or row.get("terminal_case_count") is not None
+                    or row.get("first_public_at") is not None):
+                raise GateError("R12_DOCUMENTARY_CANNOT_BECOME_RISK_FRAME")
+            groups.append(_candidate(
+                row["source_id"],row["source_id"],row["documentary_unit"],
+                "DOCUMENTARY_SCOPE_ONLY_NO_CASE_OR_ARCHIVAL_ORIGINAL",None,
+                "PLANNED_INVITATION_SELECTED_STAGE_OR_APPEAL_DECISION",
+                row["risk_frame_limitation"]))
+    elif r12_documentary_status not in {"R12_NOT_KNOWN_AT_CUT","R12_SOURCE_QUARANTINED"}:
+        raise GateError("R12_DOCUMENTARY_STATUS_INVALID")
     return {
         "schema":"pfl.denominator_evidence_nonadditive.v1",
         "eligible_risk_denominator":None,

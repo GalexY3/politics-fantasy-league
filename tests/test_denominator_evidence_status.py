@@ -13,7 +13,7 @@ def test_actual_metadata_returns_frames_not_inferred_denominators():
     assert not d["source_groups_additive"]
     assert d["eligible_risk_denominator"] is None
     assert d["case_level_right_censoring_observed_for_analysis"] is None
-    assert len(d["reported_sources"])==23
+    assert len(d["reported_sources"])==29
     assert [s["observed_source_local_items"] for s in d["reported_sources"][:2]]==[1754,20]
     assert d["index_discovery_without_original_not_counted_as_frame"]
     assert all(s["eligible_all_received_denominator"] is None for s in d["reported_sources"])
@@ -31,7 +31,7 @@ def test_prior_cut_not_leak_r9_catalogue_or_local_source_counts():
     assert "CONGRESO_XV" not in str(d)
     assert d["eligible_risk_denominator"] is None
     d=report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"]
-    assert d["source_groups_visible"]==23
+    assert d["source_groups_visible"]==29
 
 
 def test_source_scope_mutations_do_not_self_attest_census():
