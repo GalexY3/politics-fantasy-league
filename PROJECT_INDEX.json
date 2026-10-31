@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 28,
+    "data": 29,
     "evidence": 378,
-    "experimental_code": 29,
-    "operations": 102,
-    "reference": 81,
-    "research": 1974,
-    "runtime": 101,
+    "experimental_code": 30,
+    "operations": 103,
+    "reference": 82,
+    "research": 1975,
+    "runtime": 102,
     "task_queue": 120,
-    "verification": 229
+    "verification": 232
   },
   "files": [
     {
@@ -859,6 +859,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r13_petition_transparency_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1085,6 +1090,11 @@
     },
     {
       "path": "docs/R12_IDENTIFICACION_NORMAS_Y_CONTROL_ADMINISTRATIVO_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R13_COHORTES_PETICIONES_RECLAMACIONES_Y_TESTIGOS_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11574,6 +11584,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT13_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12064,6 +12079,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/redact_r13_petition_transparency_sources.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/redact_r9_documentary_sources.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12474,6 +12494,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r13.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_discovery_r7.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12642,6 +12667,11 @@
       "path": "src/politics_fantasy/structural.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_cohort_conservation.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
     {
       "path": "src/politics_fantasy/synthetic_revision_replay.py",
@@ -15429,6 +15459,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r13.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_discovery_r7.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15604,6 +15639,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_redact_r13_petition_transparency_sources.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_redact_r9_documentary_sources.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15775,6 +15815,11 @@
     },
     {
       "path": "tests/test_structural.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_synthetic_cohort_conservation.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

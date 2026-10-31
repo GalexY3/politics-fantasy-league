@@ -42,7 +42,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r11_documentary_status:str="R11_DOCUMENTARY_NOT_KNOWN_AT_CUT",
                                 r11_documentary_routes:list[dict]|None=None,
                                 r12_documentary_status:str="R12_NOT_KNOWN_AT_CUT",
-                                r12_documentary_routes:list[dict]|None=None) -> dict:
+                                r12_documentary_routes:list[dict]|None=None,
+                                r13_documentary_status:str="R13_NOT_KNOWN_AT_CUT",
+                                r13_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -143,6 +145,23 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                 row["risk_frame_limitation"]))
     elif r12_documentary_status not in {"R12_NOT_KNOWN_AT_CUT","R12_SOURCE_QUARANTINED"}:
         raise GateError("R12_DOCUMENTARY_STATUS_INVALID")
+    if r13_documentary_status=="R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED":
+        if type(r13_documentary_routes) is not list or len(r13_documentary_routes)!=8:
+            raise GateError("R13_EIGHT_DOCUMENTARY_LEADS_NOT_CASE_COUNTS")
+        for row in r13_documentary_routes:
+            if (row.get("source_originals_acquired")!=0
+                    or row.get("complete_registered_risk_denominator") is not None
+                    or row.get("pending_or_censored_cases") is not None
+                    or row.get("terminal_outcomes") is not None
+                    or row.get("historical_first_public_at") is not None):
+                raise GateError("R13_DOCUMENTARY_SOURCE_OUTCOME_PROMOTION")
+            groups.append(_candidate(
+                row["source_id"],row["source_id"],row["unit"],
+                "DOCUMENTARY_DISCOVERY_ONLY_NO_ADMISSIBLE_ORIGINAL",None,
+                "PETITION_REPORT_SAIP_FILING_OR_SELECTED_REVIEW_NOT_ADDITIVE",
+                row["identification_limit"]))
+    elif r13_documentary_status not in {"R13_NOT_KNOWN_AT_CUT","R13_SOURCE_QUARANTINED"}:
+        raise GateError("R13_DOCUMENTARY_STATUS_INVALID")
     return {
         "schema":"pfl.denominator_evidence_nonadditive.v1",
         "eligible_risk_denominator":None,

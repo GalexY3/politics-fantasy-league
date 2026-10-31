@@ -297,6 +297,18 @@ function populationReadinessPanel(){
       +'</td><td>'+esc(s.risk_frame_limitation)+'</td><td>'+esc(s.specific_rights_scope)+'</td></tr>').join('')
    +'</tbody></table></div><p class="footnote">Relojes: acto, documento, captura de cada revisión y primera disponibilidad pública acreditada NO son equivalentes. El replay de revisiones R12 solo utiliza fuentes ficticias y no verifica vintages de casos reales. Corte documental seguro: '+esc(p.r12_documentary_safe_by)+'.</p></details>'
   :'';
+ const r13Candidates=(p.r13_documentary_status==='R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r13_documentary_sources))?p.r13_documentary_sources:[];
+ const r13Panel=r13Candidates.length
+  ?'<details><summary>R13 · peticiones Senado, solicitudes SAIP y revisión GAIP</summary>'
+   +'<p class="help">Senado: petición firmada registrada, expediente 870, informe de la Comisión 871 y dictamen admitido son unidades y etapas distintas; los informes no son peticiones recibidas. No existe un libro íntegro reutilizable de entradas preclasificación acreditado. El registro de peticiones generales AGE es otra institución.</p>'
+   +'<p class="help">Catalunya: las solicitudes iniciales SAIP de Generalitat y su sector público (yjpn-vcw8) no son todas las reclamaciones GAIP. El dataset GAIP mpbu-t5zh contiene resoluciones que finalizan reclamaciones y sus actas son reuniones de Pleno, no recursos de entrada. La ficha SAIP anuncia versiones anteriores pero NO hay dos originales capturados legalmente y comparados. Navarra es otra cohorte jurídica y editorial.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta documental</th><th>Unidad</th><th>Selección/incompletitud</th><th>Derechos</th></tr></thead><tbody>'
+   +r13Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.unit)
+      +'</td><td>'+esc(s.identification_limit)+'</td><td>'+esc(s.rights_gate)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Dos fechas de acontecimiento y una sola captura de conocimiento no certifican stock real; sin testigo positivo contemporáneo pendiente significa desconocido. Auditoría documental R13 solo desde '+esc(p.r13_documentary_safe_by)+', no fecha de primera publicación del caso. Ensayo stock/flujo únicamente sintético, R5 bloqueado.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
@@ -320,6 +332,7 @@ function populationReadinessPanel(){
  +r10Panel
  +r11Panel
  +r12Panel
+ +r13Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

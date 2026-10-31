@@ -361,3 +361,42 @@ test('R12 future metadata not shown; potentially malicious source fields escaped
  assert.match(html,/&lt;img/);
  assert.doesNotMatch(html,/<svg|<script|<img/);
 });
+
+test('R13 senate 870 reports 871 and GAIP final resolution are not denominators',()=>{
+ const data=sample();
+ data.r13_documentary_status='R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r13_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r13_documentary_sources=[
+  {source_id:'SENATE_PETITIONS_PERIODIC_REPORTS',unit:'COMMISSION_PERIOD_REPORT_871',
+   identification_limit:'ADMITTED_DICTAMENS_AND_REPORTS_NOT_PRECLASSIFICATION_SEATS',
+   rights_gate:'GENERAL_NOTICE_CANNOT_LICENSE_PETITION_REGISTER'},
+  {source_id:'GENCAT_SAIP_INITIAL_FILINGS',unit:'INITIAL_REQUEST_FOR_ACCESS_TO_INFORMATION',
+   identification_limit:'GENCAT_ADMINISTRATION_ONLY_NOT_ALL_GAIP_APPEALS',
+   rights_gate:'GENERAL_LICENSE_BY_ACCESS_DISTRIBUTION_RIGHTS_UNCONFIRMED'}
+ ];
+ const html=render(data);
+ assert.match(html,/R13 · peticiones Senado/);
+ assert.match(html,/COMMISSION_PERIOD_REPORT_871/);
+ assert.match(html,/GENCAT_ADMINISTRATION_ONLY_NOT_ALL_GAIP_APPEALS/);
+ assert.match(html,/NO hay dos originales capturados legalmente y comparados/);
+ assert.match(html,/sin testigo positivo contemporáneo pendiente significa desconocido/);
+});
+
+test('R13 before archive cut hides sources and returned strings are escaped',()=>{
+ const data=sample();
+ data.r13_documentary_status='R13_NOT_KNOWN_AT_CUT';
+ data.r13_documentary_sources=[{source_id:'FUTURE_SENATE'}];
+ assert.doesNotMatch(render(data),/FUTURE_SENATE/);
+ data.r13_documentary_status='R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r13_documentary_safe_by='<svg onload=alert(1)>';
+ data.r13_documentary_sources=[{
+  source_id:'<img onerror=alert(1)>',
+  unit:'<script>bad()</script>',
+  identification_limit:'INCOMPLETE',rights_gate:'NO_RIGHTS'
+ }];
+ const html=render(data);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<svg|<img|<script/);
+});
