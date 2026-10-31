@@ -1,0 +1,46 @@
+# PP-04 · Primer corpus primario de iniciativas normativas españolas (AGE, 2024)
+
+**Fecha:** 31/10/2026. **Objeto:** Plan Anual Normativo 2024 (PAN) e Informe Anual de Evaluación Normativa 2024 (IAEN), dos ediciones originales oficiales, bajo autorización humana expresa para consulta y procesamiento académico local **sin redistribución**. `NONCYCLE`, **R5 STOP**. La extracción reproducible de fuentes primarias **no equivale** a reconstrucción causal ni a estudio confirmatorio.
+
+## 1. Adquisición y procedencia
+
+La [ficha oficial de Transparencia PAN 2024](https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2024) enlaza los dos activos exactos:
+
+| Activo | URL original oficial | SHA-256 de bytes descargados | Páginas PDF |
+| --- | --- | --- | ---: |
+| **PAN 2024** | <https://transparencia.gob.es/content/dam/transparencia_home/publicidadactiva/normativa/pan2024/PAN_2024.pdf> | `49de70b656da1b9ed9c68f552eafe743bede253e5b7a725d5eb615db1b61b4c5` | 117 |
+| **IAEN 2024** | <https://transparencia.gob.es/content/dam/transparencia_home/publicidadactiva/normativa/pan2024/IAEN2024PT.pdf> | `7c77a73480f3f039d8ba069e12301b7a4c7ad0eeec85934ec84721526cb88aa2` | 126 |
+
+**Almacén privado en el ordenador, deliberadamente fuera de los repositorios:** carpeta hermana independiente `PFL-PRIVATE-ORIGINALS-PP04-20261031/` en el espacio local de trabajo CoS. Contiene los dos PDF, `ACQUISITION_RECEIPT.json`, texto extraído, capturas locales de cuatro páginas para verificación de maquetación y dos ejecuciones versionadas de inventarios por filas. **Ninguna copia PDF, captura de página, volcado textual, título de iniciativa ni fila original se añade a Git.** El permiso expresamente concedido para acceder a esos dos activos no concede automáticamente derechos de redistribución, de consulta a otros activos o de levantamiento de R5. Se respetan condiciones generales del portal en su utilización académica local.
+
+Propiedades internas declaradas por los PDF: PAN creado el 02/04/2024 y modificado el mismo día; IAEN creado el 15/04/2025. Esas **fechas declaradas de creación del archivo** no prueban primera publicación, fecha de cada fila ni disponibilidad para usuarios en un pasado dado. La captura local es el 31/10/2026. El Consejo de Ministros aprobó el IAEN 2024 el 15/04/2025; nombre nominal 2024 significa **ejercicio evaluado**, no año de aprobación. La ficha web tiene una fecha de actualización global incompatible con asumirla como `first_public_at` del documento.
+
+## 2. Reconstrucción de ambos listados completos por testigos internos
+
+`scripts/pp04_extract_authorized_local_originals.py` verifica SHA exacto antes de leer, exige páginas 117/126, analiza sólo archivos locales y **se niega a escribir resultados dentro del repositorio**. Emite inventarios individualizados **sólo en almacenamiento privado**, sin inferir identidades equivalentes. Sus partes reutilizables y falsadores puramente sintéticos están en `src/politics_fantasy/pan_iaen_original_frame.py` y `tests/test_pan_iaen_original_frame.py`.
+
+**PAN (edición concreta):** en las páginas PDF 37–117 del cuerpo «Plan Anual Normativo» se detectan exactamente 198 campos `Objetivo:` y 198 campos `Ministerio:` emparejados en orden de aparición. Se producen 198 **bloques candidatos** con página fuente, ordinal local, propuesta de título, objetivo y mención ministerial. No son identificadores estables de origen ni claves para otras ediciones. El recuento por comienzo de título da **6 leyes orgánicas, 43 leyes y 149 reales decretos**, exactamente el desglose de «Principales datos» del PAN, página PDF 14.
+
+**IAEN (secciones ministeriales):** el apartado 4 contiene 22 encabezados `4.n.1`, pero **sólo 4.1.1–4.21.1** corresponden a «Iniciativas normativas incluidas en el PAN 2024». El **4.22.1** de Vivienda se titula «normas aprobadas no incluidas» y se excluye, a pesar de la semejanza de su numeración. En las 21 subsecciones de iniciativas planificadas aparecen **198 entradas enumeradas**: 89 bajo «Aprobadas» y 109 bajo «Pendientes de aprobación». Los 89 primeros se subdividen en **1 ley orgánica, 17 leyes, 71 reales decretos**, reproduciendo exactamente la tabla del IAEN, página PDF 11. Se mantienen **109 pendientes de aprobación sin desagregar**; la lista no justifica reasignar automáticamente cada caso a «sin iniciar», «en tramitación» o «desistida». Las cifras globales 37,88 %, 15,66 % y 1,52 % corresponden a un resumen distinto, no a un etiquetado individual derivado de esas viñetas.
+
+**Control de integridad:** dos recuentos independientes dentro de la misma pareja documental dan 198; los recuentos por rango dan 6+43+149 y 1+17+71. Constituyen **concordancias estructurales internas** de la fuente, no un censo externo ni la demostración de una función biyectiva `PAN_ITEM ↔ IAEN_ROW`. En particular, el mismo título puede editarse entre plan e informe; se requiere un testigo explícito o adjudicación documental trazable para una unión. En esta fase `item_crosswalk_verified=false`, `join_cardinality=UNKNOWN`, `first_public_at=null`, `eligible_scientific_R5=false`.
+
+## 3. Dos anomalías de la fuente que no deben corregirse por conveniencia
+
+**Inconsistencia de cardinalidad editorial del PAN.** La introducción, página PDF 9, afirma «hasta 199» normas proyectadas; otras secciones de introducción y «Principales datos», página PDF 14, establecen 198. Los 198 bloques extraídos y el IAEN concuerdan con el segundo valor. **Se registra 199 como discrepancia, no se borra** ni se convierte en un 199.º caso inventado. Para una cohorte real es imprescindible declarar qué edición, nivel de agregación y versión exactos se usan.
+
+**Leakage por resultados aprobados en el año siguiente.** La sección 4.2.1 del IAEN incorpora entre las propuestas planificadas y «aprobadas» el **Real Decreto 188/2025, de 11 de marzo**. Por tanto **89/198 es el estado comunicado al aprobar el IAEN en abril de 2025**, no una tasa de aprobación con corte al 31/12/2024. Además, la sección 4.1.2 «normas no incluidas» enumera **Ley 1/2025, de 1 de abril**; por consiguiente no se debe confundir la cifra agregada de 259 normas del apartado 3.4 —que se enuncia para el ejercicio 2024 bajo su propio criterio— con un censo de todas las filas de los apartados ministeriales `.2`, que pueden contener actos posteriores. Para cualquier investigación longitudinal, el modelo debe separar `plan_year`, `report_approval_on`, `norm_approved_on`, `document_created_on`, `first_public_at` y `captured_at`, sin reconstruir predicciones ex post.
+
+**Calidad de texto:** lectura por `pypdf` sin OCR. Los encabezados, viñetas y marcas de campo reconcilian; sin embargo, títulos largos, columnas de gráficos y guiones de maquetación pueden contaminar títulos individuales. La extracción marca automáticamente títulos largos para cotejo visual (más de 400 caracteres), y **todas** las correspondencias entre documentos requieren revisión humana o fuente original que las pruebe. Conservar siempre la página PDF, el ordinal y el SHA del activo al auditar.
+
+## 4. Contrato de uso: qué está validado y qué no
+
+**Validado a nivel de bytes y estructura local:** procedencia documentada mediante enlaces oficiales (no firma criptográfica del editor), SHA-256 de los bytes adquiridos, 117+126 páginas, recuentos internos 198/198, subtotales 89/109 y por rango; separación de 4.22.1 no incluido; vista renderizada de tablas de páginas PAN 14 e IAEN 11; inventario individual **local** de los dos listados. La lectura textual marca **7 títulos PAN y 14 IAEN** largos para inspección visual focal y no los trata como identidad confirmada.
+
+**No validado:** identificadores oficiales de iniciativa, coincidencia uno a uno entre PAN e IAEN, estados detallados de las 109 entradas sin aprobación, censo independiente de todas las iniciativas presentadas en España, cobertura de ediciones o correcciones históricas, `first_public_at` por fila, identidad jurídica de las disposiciones finales/BOE, licencias de redistribución, estimando causal, predicción de verdaderos nuevos resultados, holdout ciego 2024/2025 y admisión científica R5. No generar correlaciones, puntuar cargos, entrenar predictor de cumplimiento, desplegar API de datos reales ni publicar filas desde estos dos PDF por el mero resultado positivo de los controles.
+
+## 5. Próximo trabajo secuenciado
+
+El paso PP-05 debe preparar una tabla de adjudicación documental controlada: la propuesta original PAN y la lista IAEN pueden examinarse localmente, pero se asignará enlace sólo si existe evidencia explícita, incluida edición, institución competente y referencia normativa inequívoca, con registro de incertidumbre y discrepancias. El portal BOE, ELI u otros registros **no se descargan por ampliación tácita** de esta autorización de dos documentos; cualquier uso adicional requiere una evaluación específica de condiciones y justificación. Antes de una estimación longitudinal habrá que reconstruir fechas de cada norma y de cada publicación, separar el estado al corte y resolver derechos, población/negativos/pendientes y el gate R5.
+
+Esta pieza es un **primer corpus documental español local reproducible**, no un descubrimiento de efecto de política, una confirmación de modelo ni una puntuación electoral.
