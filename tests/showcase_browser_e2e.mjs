@@ -96,12 +96,19 @@ try{
     width:1440,height:950,deviceScaleFactor:1,mobile:false});
   await cdp('Page.navigate',{url:pathToFileURL(html).href});
   await ready();
-  check((await evaluate("document.body.innerText")).includes('La política también'),'showcase home renders with real JS');
+  check((await evaluate("document.body.innerText")).includes('El país cambia.'),'showcase home renders with real JS');
+  check((await evaluate("document.body.dataset.theme"))==='dark','graphite dark is the first-run theme');
+  check((await evaluate("document.querySelectorAll('.event-card').length"))>=1,'fictional event dossier appears on home');
+  check((await evaluate("document.querySelectorAll('.real-briefing .real-metric').length"))===2,'real INE snapshot on home distinctly labelled');
   check((await evaluate("document.querySelectorAll('.nav-link').length"))===8,'eight navigation routes');
   await snapshot('browser-desktop-home');
 
   await click('.nav-link[data-page="mercado"]');
   check((await evaluate("document.querySelectorAll('.character-card').length"))===18,'all eighteen cards render');
+  check((await evaluate("document.querySelectorAll('.char-cover img').length"))===18,'all fictional characters have local illustration assets');
+  const portraitLoaded=await waitFor(()=>evaluate("document.querySelector('.char-cover img')?.naturalWidth>0"),6500);
+  check(portraitLoaded===true,'portrait SVG decodes in Chrome');
+  await snapshot('browser-desktop-market');
   await click('button[data-action="buy"][data-id="c02"]');
   const afterBuy=await evaluate("JSON.parse(localStorage.getItem('pfl-showcase-edition-zero-v1'))");
   check(afterBuy.budget===60&&afterBuy.roster.includes('c02'),'purchase subtracts 34 CR and persists');
@@ -114,7 +121,26 @@ try{
   await click('button[data-action="round"]');
   const afterRound=await evaluate("JSON.parse(localStorage.getItem('pfl-showcase-edition-zero-v1'))");
   check(afterRound.week===2&&afterRound.rounds.length===1&&afterRound.points>0,'round completed deterministically in browser');
+  check(afterRound.rounds[0].eventId==='demo-01','round is attributable to explicit fictional event');
   check((await evaluate("document.body.innerText")).includes('Última sesión'),'round breakdown renders');
+  await click('.nav-link[data-page="laboratorio"]');
+  check((await evaluate("document.querySelectorAll('.lab-tab').length"))===6,'six observatory modes render');
+  check((await evaluate("document.querySelectorAll('.trend-chart').length"))===1,'synthetic trend has real SVG nodes');
+  await snapshot('browser-desktop-laboratory');
+  await click('.lab-tab[data-id="economia"]');
+  check((await evaluate("document.querySelectorAll('.real-metric').length"))===3,'official 2026 economy snapshot renders separately');
+  check((await evaluate("document.querySelectorAll('.history-bar').length"))===10,'real EPA historic quarter changes chart renders');
+  check((await evaluate("document.body.innerText")).includes('4,9 %'),'verified INE IPC advance is visible');
+  await snapshot('browser-desktop-economy');
+  await click('.lab-tab[data-id="territorios"]');
+  check((await evaluate("document.querySelectorAll('.territory-tile').length"))===19,'nineteen territorial scenario cells render');
+  await click('.territory-tile[data-id="Galicia"]');
+  check((await evaluate("document.querySelector('.chart-panel')?.textContent.includes('Galicia')"))===true,'territory selection changes the chart');
+  await click('.lab-tab[data-id="politicas"]');
+  check((await evaluate("document.querySelectorAll('.event-card').length"))===8,'policy and participation event records render');
+  await click('.lab-tab[data-id="fuentes"]');
+  check((await evaluate("document.querySelectorAll('.source-card').length"))===6,'official source register renders with no ingestion');
+  check((await evaluate("document.body.innerText")).includes('Sin canal en directo habilitado'),'no fake realtime claim');
 
   await click('.nav-link[data-page="partidos"]');
   check((await evaluate("document.querySelectorAll('.party-row').length"))>=100,'parties, coalitions and historical names render');
@@ -130,13 +156,21 @@ try{
   await snapshot('browser-desktop-parties');
 
   await click('#theme-toggle');
-  check((await evaluate("document.body.dataset.theme"))==='dark','dark mode updates presentation');
+  check((await evaluate("document.body.dataset.theme"))==='light','theme toggle changes graphite to light');
   await click('.nav-link[data-page="perfil"]');
+  await click('button[data-action="symbol"][data-id="scale"]');
+  await click('button[data-action="palette"][data-id="blue"]');
+  await click('button[data-action="save-heraldry"]');
+  check((await evaluate("JSON.parse(localStorage.getItem('pfl-showcase-edition-zero-v1')).heraldry.length"))===4,'four symbols persist');
+  check((await evaluate("document.body.dataset.palette"))==='blue','palette changes on save');
+  await click('button[data-action="set-theme"][data-id="dark"]');
+  await snapshot('browser-desktop-profile');
   const nameSet=await evaluate("(function(){let n=document.getElementById('profile-name');n.value='Club del Público';document.getElementById('profile-form').requestSubmit();return document.getElementById('top-club').textContent})()");
   check(nameSet==='Club del Público','profile form updates and persists');
 
   await cdp('Page.reload',{ignoreCache:true});await ready();
   check((await evaluate("document.body.dataset.theme"))==='dark','dark theme survives reload');
+  check((await evaluate("document.body.dataset.palette"))==='blue','selected palette survives reload');
   check((await evaluate("document.getElementById('top-club').textContent"))==='Club del Público','club name survives reload');
 
   await cdp('Emulation.setDeviceMetricsOverride',{
@@ -148,6 +182,11 @@ try{
   await snapshot('browser-mobile-home');
   await click('.nav-link[data-page="mercado"]');
   check((await evaluate("document.querySelectorAll('.character-card').length"))===18,'market also renders at mobile width');
+  await click('.nav-link[data-page="laboratorio"]');
+  await click('.lab-tab[data-id="territorios"]');
+  const mobileLab=await evaluate("({root:document.documentElement.scrollWidth,body:document.body.scrollWidth})");
+  check(mobileLab.root<=390&&mobileLab.body<=390,'lab territorial mode has no horizontal mobile overflow');
+  await snapshot('browser-mobile-laboratory');
   process.stdout.write('SHOWCASE_BROWSER_E2E_PASS\n');
 } catch(err) {
   process.stderr.write('SHOWCASE_BROWSER_E2E_FAIL '+(err?.stack||String(err))+'\n');
