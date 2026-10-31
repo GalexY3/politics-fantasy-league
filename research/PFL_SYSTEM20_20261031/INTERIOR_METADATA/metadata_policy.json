@@ -1,0 +1,20 @@
+{
+  "schema": "INTERIOR_METADATA_ONLY_V1",
+  "description": "Policy defined after Phase 1 header review, before Phase 2. Select only dates, election codes/types and non-person provincial geography. Electoral outcomes, candidacies, party labels and seats are excluded.",
+  "sources": {
+    "Elecciones-Congreso-cargos-electos.xlsx": {
+      "sheet": "Congreso cargos electos",
+      "columns": ["A", "B", "C", "D", "E"],
+      "year": "A",
+      "dedup_key": ["A", "B", "D", "E"],
+      "dedup_caveat": "This is a geographic-date key, not a candidate or elected-office record key. Repeats are expected and cannot be adjudicated as row duplicates."
+    },
+    "Elecciones-Congreso.xlsx": {
+      "sheet": "Congreso",
+      "columns": ["A", "B", "C"],
+      "year": "A",
+      "dedup_key": [],
+      "dedup_caveat": "No safe unique key for each outcome metric row using metadata-only columns. Duplicate row counts must remain unknown."
+    }
+  }
+}

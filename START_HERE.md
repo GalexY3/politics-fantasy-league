@@ -14,6 +14,10 @@
 
 **Visión y preguntas aún abiertas:** [Banco de ideas científicas de PFL (31/10/2026)](docs/BANCO_DE_IDEAS_CIENTIFICAS_PFL_20261031.md). Recoge expresamente política española, grandes empresas, poder económico, transparencia, promesas, implementación, efectos de políticas y dos finalidades complementarias: explicar y evaluar. **No sustituye el scope adoptado ni constituye resultados científicos.** Leerlo antes de redefinir el proyecto.
 
+**Mandato de alcance científico amplio:** [Visión española y TFM](docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md) — recuperada de PR #5 y preservada en esta rama, con integridad SHA-256 comprobada. PFL es una infraestructura real española multiactor y bitemporal, no un juego ficticio como objetivo final. El estudio parlamentario, la monitorización BOE y la contratación pública son pilotos candidatos, no sustitutos del universo. La delimitación de los límites del sistema y su entorno sigue en [propuesta V0](docs/SISTEMA_POLITICO_ESPAÑOL_DELIMITACION_V0_20261031.md).
+
+**Nueva orientación operativa, sin cierre académico (31/10/2026):** [Objetivo CoS de 20 ciclos](docs/OBJETIVO_COS_PFL_SYSTEM20_20261031.md) y [delimitación V0 del sistema político español](docs/SISTEMA_POLITICO_ESPAÑOL_DELIMITACION_V0_20261031.md). La prioridad teórica declarada es reproducción/autorregulación del sistema político; sus acoplamientos económicos, jurídicos y sociales mantienen peso sustantivo. El objeto específico del TFM sigue abierto. Concesión independiente en `research/PFL_SYSTEM20_20261031/AUTHORIZATION.json`; no inferir ciclos ejecutados por existir el objetivo.
+
 [Mapa por tareas](PROJECT_MAP.md) · [Catálogo buscable](PROJECT_INDEX.json) · [Investigaciones](research/INDEX.md) · [Handoff](HANDOFF.md) · [Cola técnica](tareas_codex/README.md).
 
 `src/` contiene código; `tests/` pruebas; `research/` contratos, análisis y evidencia; `ab_atlas/` los lotes del proyecto; `tools/ab_atlas/` el motor fijado. Las copias archivadas no son código activo y el catálogo no certifica resultados.

@@ -1,0 +1,53 @@
+{
+  "schema": "pfl.source_capture_manifest.v1",
+  "captured_on": "2026-10-31",
+  "capture_mode": "ONE_DIRECT_PUBLIC_HTTPS_GET_PER_DISTRIBUTION",
+  "capture_environment": "USER_AUTHORIZED_LOCAL_PC",
+  "publisher": "Ministerio del Interior",
+  "official_catalogue": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales",
+  "catalogue_licence_ref": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0",
+  "reuse_warning": "CC BY 4.0 attribution applies to identified distributions; this manifest is not certification that every individual field has been adjudicated for redistribution or scoring.",
+  "first_public_at": null,
+  "first_public_at_status": "NOT_ESTABLISHED_FROM_HTTP_LAST_MODIFIED",
+  "original_storage": "LOCAL_EXCLUDED_FROM_GIT",
+  "rights_form_accepted": false,
+  "row_count_verified": null,
+  "distribution": [
+    {
+      "id": "INTERIOR_CONGRESO_ELECTED",
+      "filename": "Elecciones-Congreso-cargos-electos.xlsx",
+      "official_url": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso-cargos-electos.xlsx",
+      "http_status": 200,
+      "effective_url": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso-cargos-electos.xlsx",
+      "last_modified_http": "Fri, 26 Jun 2026 05:50:13 GMT",
+      "observed_utc": "2026-10-31T04:47:50.4860987Z",
+      "byte_length": 326847,
+      "sha256": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+      "prior_independent_capture_digest_identical": true,
+      "prior_receipt_reference": "docs/CATALOGO_FUENTES.md",
+      "scope": "electoral elected-candidate records, not effective parliamentary mandate or full person identity",
+      "field_level_validation": "PENDING"
+    },
+    {
+      "id": "INTERIOR_CONGRESO_RESULTS",
+      "filename": "Elecciones-Congreso.xlsx",
+      "official_url": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso.xlsx",
+      "http_status": 200,
+      "effective_url": "https://descargas.interior.gob.es/datasets/resultados_electorales/Elecciones-Congreso.xlsx",
+      "last_modified_http": "Fri, 26 Jun 2026 05:50:08 GMT",
+      "observed_utc": "2026-10-31T04:48:38.4980983Z",
+      "byte_length": 1151199,
+      "sha256": "dba3394f1812f338067231bce68acf56af1e13ddf8cfb709a814bcc46357ebc2",
+      "prior_independent_capture_digest_identical": null,
+      "scope": "historical Congress election result publication, not parliamentary initiatives",
+      "field_level_validation": "PENDING"
+    }
+  ],
+  "scientific_limits": [
+    "Downloaded bytes and HTTP response attest only this local capture, not census completeness or historical release time.",
+    "The two XLSX have not been transformed into a validated row-level corpus in this capture.",
+    "Election outcome is not legislative success and elected candidate is not proof of assuming a parliamentary seat.",
+    "The source cannot replace the full population of initiatives, including failed and pending proposals.",
+    "No models or political-person ratings were produced and no AB-H cycle is charged."
+  ]
+}
