@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 12,
+    "data": 13,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 93,
+    "operations": 94,
     "reference": 74,
-    "research": 1960,
+    "research": 1965,
     "runtime": 82,
     "task_queue": 120,
-    "verification": 196
+    "verification": 197
   },
   "files": [
     {
@@ -815,6 +815,11 @@
     },
     {
       "path": "data/source_manifests/parcan_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/parcan_pe2025_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
@@ -11349,7 +11354,22 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/PE2025_METADATA_ONLY_RECEIPT.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/PE2025_PRECAPTURE_FREEZE.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/capture_parcan.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/capture_pe_2025.py",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -11419,12 +11439,22 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/test_capture_pe_2025.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/test_coverage_only.py",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT3_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -11745,6 +11775,11 @@
     },
     {
       "path": "scripts/build_parcan_local_processes.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "scripts/build_parcan_pe2025_local.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -14580,6 +14615,11 @@
     },
     {
       "path": "tests/test_br30g_audit.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_build_parcan_pe2025_local.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

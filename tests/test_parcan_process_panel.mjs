@@ -31,10 +31,29 @@ test('displays three real *metadata* strata without inventing full censes or tem
   assert.match(html,/1211/);
   assert.match(html,/686/);
   assert.match(html,/524/);
+  assert.match(html,/3 distribuciones observadas/);
   assert.match(html,/sin OUTCOMES/i);
   assert.match(html,/no son fechas de primera publicación/i);
-  assert.match(html,/2025/);
+  assert.match(html,/2024, 2026/);
+  assert.doesNotMatch(html,/2025/);
   assert.doesNotMatch(html,/probabilidad de aprobar|calificación de políticos/i);
+});
+
+test('new PE/2025 capture appears only in later audit snapshot without census claim',()=>{
+  const later=sample();
+  later.observed_rows=1754;
+  later.local_snapshot_audited_at='2026-10-31T05:34:51Z';
+  later.source_cohorts.splice(2,0,{
+    institution:'Parlamento de Canarias',initiative_type:'PE',legislature:11,
+    year:2025,rows_in_captured_distribution:543,capture_sha256:'d'.repeat(64)
+  });
+  const html=render(later);
+  assert.match(html,/1754/);
+  assert.match(html,/543/);
+  assert.match(html,/4 distribuciones observadas/);
+  assert.match(html,/2024, 2025, 2026/);
+  assert.match(html,/no demuestra cobertura exhaustiva/i);
+  assert.doesNotMatch(html,/conclusión causal|aprobadas: 543/i);
 });
 
 test('source quarantine refuses synthetic fallback', () => {
