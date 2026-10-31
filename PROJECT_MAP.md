@@ -7,6 +7,7 @@ Mapa generado por `python scripts/project_index.py build`. El índice es navegac
 | Quiero… | Entrada |
 | --- | --- |
 | Continuar o empezar otro chat | [START_HERE](START_HERE.md), [prompt](NEW_CHAT_PROMPT.md) |
+| Recuperar contexto verificable de TODO el árbol versionado | [Protocolo T0–T5](docs/SESSION_CONTEXT_PROTOCOL.md), [auditoría SHA íntegra](scripts/session_context.py) |
 | Saber qué falta y qué sigue | [Estado e hitos](PROJECT_STATE.json), [handoff](HANDOFF.md) |
 | Entender el juego local | [Servidor](src/politics_fantasy/server.py), [lógica y BD](src/politics_fantasy/product.py), [interfaz](src/politics_fantasy/web/app.js) |
 | Revisar datos, identidades y cuarentena | [Ingesta](src/politics_fantasy/ingest.py), [almacén](src/politics_fantasy/secure_store.py), [cuarentena](src/politics_fantasy/quarantine_ingest.py) |
@@ -36,15 +37,15 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `atlas` | 112 | Grafo Atlas, logros y sincronización |
 | `atlas_engine` | 12 | Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json |
 | `continuity` | 8 | Estado vigente, objetivos e inicio de conversación |
-| `data` | 11 | Datos/fixtures versionados y metadatos; no datos locales privados |
+| `data` | 34 | Datos/fixtures versionados y metadatos; no datos locales privados |
 | `evidence` | 378 | Recibos, originales conservados y copias históricas; no código activo |
-| `experimental_code` | 28 | Instrumentos experimentales; su presencia no prueba integración en el juego |
-| `operations` | 92 | Herramientas, configuración y operación local |
-| `reference` | 73 | Manuales, contratos y referencias |
-| `research` | 1934 | Preguntas, campañas, análisis y resultados de investigación |
-| `runtime` | 80 | Aplicación, reglas y almacenamiento del prototipo |
+| `experimental_code` | 37 | Instrumentos experimentales; su presencia no prueba integración en el juego |
+| `operations` | 105 | Herramientas, configuración y operación local |
+| `reference` | 91 | Manuales, contratos y referencias |
+| `research` | 1986 | Preguntas, campañas, análisis y resultados de investigación |
+| `runtime` | 108 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 120 | Expedientes y resultados de ejecución |
-| `verification` | 191 | Pruebas y ejecutores de comprobación |
+| `verification` | 254 | Pruebas y ejecutores de comprobación |
 
 ## Dónde guardar trabajo nuevo
 

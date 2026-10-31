@@ -11,7 +11,7 @@ import mimetypes
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from .product import GameError, add_club, seed_demo, set_lineup, simulate_round, state, transfer
 from . import accounts
@@ -26,6 +26,13 @@ from .nomination_atlas import status as nomination_atlas_status
 from .source_eligibility import policy_status
 from .source_event_registry import public_stage_catalog
 from .official_source_status import published_sources
+from .parcan_cohort_status import status as parcan_status
+from .procedural_coverage import coverage_status
+from .siap_coverage import status as siap_status
+from .procedural_population_readiness import report as population_readiness_report
+from .retained_integrity_status import status as retained_integrity_status
+from .registration_readiness_query import registration_readiness
+from .synthetic_institutional_demo import report as institutional_lineage_demo
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -134,6 +141,96 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,evidence_status())
             if route == '/api/scientific-sources':
                 return self.reply(200,published_sources())
+            if route == '/api/spanish-process-cohorts':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True, max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    payload = parcan_status(as_of=parsed.get('as_of', [None])[0])
+                    return self.reply(200,payload)
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/procedural-coverage':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,coverage_status(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/siap-index-coverage':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,siap_status(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/procedural-population-readiness':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,population_readiness_report(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/retained-source-integrity':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v)!=1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,retained_integrity_status(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/denominator-evidence':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query,keep_blank_values=True,strict_parsing=True,
+                                      max_num_fields=2)
+                    if not set(parsed).issubset({'as_of','source_id'}) or any(len(v)!=1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    result=population_readiness_report(as_of=parsed.get('as_of',[None])[0])
+                    from .source_scope_query import filter_denominator_source
+                    return self.reply(200,filter_denominator_source(
+                        result['denominator_evidence'],parsed.get('source_id',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/registration-readiness':
+                query=urlsplit(self.path).query
+                try:
+                    parsed=parse_qs(query,keep_blank_values=True,strict_parsing=True,
+                                    max_num_fields=2)
+                    if (not set(parsed).issubset({'as_of','source_id'})
+                            or any(len(v)!=1 for v in parsed.values())
+                            or 'source_id' not in parsed):
+                        raise ValueError('SOURCE_REQUIRED')
+                    r=population_readiness_report(as_of=parsed.get('as_of',[None])[0])
+                    return self.reply(200,registration_readiness(
+                        readiness=r,source_id=parsed['source_id'][0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_SOURCE_OR_QUERY'})
+            if route == '/api/institutional-lineage-lab':
+                query=urlsplit(self.path).query
+                try:
+                    parsed=parse_qs(query,keep_blank_values=True,strict_parsing=True,
+                                    max_num_fields=2)
+                    if (not set(parsed).issubset({'as_of','cut_on'})
+                            or any(len(v)!=1 for v in parsed.values())):
+                        raise ValueError('UNSUPPORTED_INSTITUTIONAL_LAB_QUERY')
+                    return self.reply(200,institutional_lineage_demo(
+                        as_of=parsed.get('as_of',[None])[0],
+                        cut_on=parsed.get('cut_on',['2023-12-31'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_LINEAGE_CUT'})
             if route == '/api/official-nominations':
                 return self.reply(200,nomination_atlas_status())
             if route == '/api/verified-candidacies':

@@ -126,6 +126,28 @@ class TemporalTests(unittest.TestCase):
         self.assertEqual(snap.blocked_unknown_publication, 1)
         self.assertEqual(snap.state_of("ENTITY", "TEST", "A"), "NOT_OBSERVED")
 
+    def test_future_unknown_revision_neither_leaks_diagnostics_nor_embargoes_past(self):
+        previous=self.registry.snapshot(as_of=T1)
+        self.registry.add(self.make(revision="v2", first_public_at=None,
+                                    recorded_at=T4, value="future_revision"))
+        earlier=self.registry.snapshot(as_of=T1)
+        self.assertEqual(earlier,previous)
+        self.assertEqual(earlier.blocked_unknown_publication,0)
+        self.assertEqual(earlier.blocked_unadjudicated_source,0)
+
+    def test_captured_unknown_revision_blocks_older_public_version_only_from_knowledge_cut(self):
+        self.registry.add(self.make(revision="v1",first_public_at=T1))
+        self.registry.add(self.make(revision="v2",first_public_at=None,
+                                    recorded_at=T3,value="uncertain_new_revision"))
+        old=self.registry.snapshot(as_of=T2)
+        self.assertEqual(len(old.records),1)
+        self.assertEqual(old.records[0].revision,"v1")
+        self.assertEqual(old.blocked_unknown_publication,0)
+        later=self.registry.snapshot(as_of=T4)
+        self.assertEqual(len(later.records),0)
+        self.assertEqual(later.blocked_unknown_publication,1)
+        self.assertEqual(later.state_of("ENTITY","TEST","A"),"NOT_OBSERVED")
+
     def test_revision_chronology_not_lexicographic(self):
         self.registry.add(self.make(revision="z-old", first_public_at=T1, recorded_at=T3))
         self.registry.add(self.make(revision="a-new", first_public_at=T2, recorded_at=T2,

@@ -325,21 +325,33 @@ class TemporalLedger:
 
         candidates: dict[tuple[str, str, str], list[TemporalRecord]] = {}
         unknown, barred = 0, 0
+        # The existence of a not-yet-captured record, including a blocked
+        # source, cannot influence a historical diagnosis or a visible count.
+        unresolved_revision_keys: set[tuple[str, str, str]] = set()
         for row in self._records.values():
             receipt = self._sources[(row.source_id, row.source_sha256)]
+            if (_utc(receipt.captured_at, "CAPTURED_AT") > t
+                    or _utc(row.recorded_at, "RECORDED_AT") > t):
+                continue
             if not receipt.query_admitted:
                 barred += 1
                 continue
             if row.first_public_at is None:
                 unknown += 1
+                unresolved_revision_keys.add(row.logical_key)
                 continue
-            if _utc(row.first_public_at, "FIRST_PUBLIC_AT") <= t and _utc(row.recorded_at, "RECORDED_AT") <= t:
+            if _utc(row.first_public_at, "FIRST_PUBLIC_AT") <= t:
                 candidates.setdefault(row.logical_key, []).append(row)
 
         # Choose the latest SOURCE-PUBLISHED revision *before* valid-time and
-        # window filtering. A later backfill of an older revision cannot override.
+        # window filtering. If an already captured revision has no independently
+        # established publication time, quarantine the *logical identity*, not
+        # just the revision: selecting v1 could misrepresent the latest state.
+        # A future captured revision cannot impose this quarantine retroactively.
         selected: list[TemporalRecord] = []
         for key, rows in sorted(candidates.items()):
+            if key in unresolved_revision_keys:
+                continue
             last_publication = max(_utc(x.first_public_at, "FIRST_PUBLIC_AT") for x in rows)
             last = [x for x in rows if _utc(x.first_public_at, "FIRST_PUBLIC_AT") == last_publication]
             if len(last) != 1:

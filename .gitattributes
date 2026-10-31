@@ -1,2 +1,5 @@
 # Preserve the original bytes used by evidence hashes on Windows checkouts too.
 * text=auto eol=lf
+# Immutable pre-capture receipt SHA includes its original Windows CRLF bytes.
+# Store this one evidentiary JSON byte-for-byte; do not silently renormalize.
+research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/PE2025_PRECAPTURE_FREEZE.json -text -eol -diff

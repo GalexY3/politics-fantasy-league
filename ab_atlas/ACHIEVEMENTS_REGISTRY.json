@@ -1,7 +1,7 @@
 {
   "schema": "pfl.achievements.v1",
   "registry_id": "PFL-ACHIEVEMENTS-20261028",
-  "version": 6,
+  "version": 7,
   "created_at": "2026-10-28",
   "project": "Politics Fantasy League",
   "v4_baseline": {
@@ -11,7 +11,7 @@
   },
   "policy": {
     "baseline_status": "All LOCKED until audited. Existing maturity evidence is NOT automatically mapped to achievement unlocks.",
-    "symbolic": "90/90 signifies substantial maturity against current scope, but never automatically gives project 100% or overrides release gates.",
+    "symbolic": "All active achievements unlocked signifies substantial maturity against current scope, but never automatically gives project 100% or overrides release gates.",
     "dynamic": "Changes to status/title/criteria and create/retire require evidence and append-only change log. Local browser edits are drafts until exported and committed in Git.",
     "retirement": "Soft-retire with tombstone; never reuse IDs; revised versions retain previous records in audit log.",
     "unlock": "Unlock only with objective criteria, verifier, at least one evidence link, and all named prerequisites unlocked. No automated fake unlock.",
@@ -1518,6 +1518,24 @@
       "retirement_reason": null
     },
     {
+      "id": "PFL-QA-11",
+      "track_id": "qa",
+      "ordinal": 11,
+      "title": "Relevo verificable",
+      "criteria": "Dos sesiones o revisores independientes, desde checkout limpio y sin contexto conversacional previo, recuperan el mismo HEAD, mapa Atlas, estado, autorizaciones, R5, puertas y límites; conservan inventario SHA de todos los archivos versionados, acreditan qué leyeron semánticamente y detectan al menos un handoff o índice adversarial desactualizado con pruebas reproducibles.",
+      "rarity": "oro",
+      "status": "locked",
+      "evidence": [],
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-10-31",
+      "updated_at": "2026-10-31",
+      "prerequisites": [
+        "PFL-QA-02"
+      ],
+      "retirement_reason": null
+    },
+    {
       "id": "PFL-LAUNCH-01",
       "track_id": "launch",
       "ordinal": 1,
@@ -1841,7 +1859,16 @@
       "achievement_id": "PFL-SECURITY-02",
       "reason": "New THREAT_MODEL_STRIDE_PUBLIC_RELEASE_20261028.md enumerates all six STRIDE classes, concrete trust boundaries, attacks on local server/source/person scoring, reputation and moderation abuse, severity, residual gaps, and negative acceptance tests. DOCUMENTED ONLY, not penetration-tested or approved for release.",
       "registry_version": 6
+    },
+    {
+      "seq": 7,
+      "date": "2026-10-31",
+      "actor": "ChatGPT-COS-context-governance-20261031",
+      "type": "achievement.created",
+      "achievement_id": "PFL-QA-11",
+      "reason": "Nueva capacidad auditable de transferencia entre chats sin asumir comprensión de todos los archivos. Requiere dos receptores/ejecuciones independientes y falsadores de continuidad; queda BLOQUEADO y sujeto a QA-02. Usuario autorizó mantener y evolucionar la lista de logros; no se retiró ningún objetivo sin evidencia de obsolescencia.",
+      "registry_version": 7
     }
   ],
-  "updated_at": "2026-10-28"
+  "updated_at": "2026-10-31"
 }

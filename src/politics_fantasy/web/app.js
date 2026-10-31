@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -25,7 +25,20 @@ async function call(route, body){
  if(!response.ok)throw new Error(result.message||result.error||'Error');
  return result.result;
 }
-async function refresh(){ const [response,labResponse,fieldResponse,atlasResponse,evidenceResponse,progressResponse,candidacyResponse,nominationsResponse,sourcesResponse]=await Promise.all([fetch('/api/state',{cache:'no-store'}),fetch('/api/lab',{cache:'no-store'}),fetch('/api/field',{cache:'no-store'}),fetch('/api/electoral-atlas',{cache:'no-store'}),fetch('/api/evidence-readiness',{cache:'no-store'}),fetch('/api/progress',{cache:'no-store'}),fetch('/api/verified-candidacies',{cache:'no-store'}),fetch('/api/official-nominations',{cache:'no-store'}),fetch('/api/scientific-sources',{cache:'no-store'})]); if(!response.ok||!labResponse.ok||!fieldResponse.ok)throw new Error('Servicio no disponible'); ui.state=await response.json();ui.lab=await labResponse.json();ui.field=await fieldResponse.json();ui.atlas=await atlasResponse.json();ui.candidacies=candidacyResponse.ok?await candidacyResponse.json():{ok:false,error:'CANDIDACY_ORIGINAL_UNAVAILABLE'};ui.nominations=nominationsResponse.ok?await nominationsResponse.json():{ok:false,error:'MULTIPROVINCE_SOURCE_UNAVAILABLE'};ui.evidence=evidenceResponse.ok?await evidenceResponse.json():{ok:false,error:'READINESS_UNAVAILABLE'};ui.scientificSources=sourcesResponse.ok?await sourcesResponse.json():{ok:false,error:'SOURCE_METADATA_UNAVAILABLE'};ui.progress=progressResponse.ok?await progressResponse.json():{ok:false,error:'PROGRESS_UNAVAILABLE'};if(!ui.state.clubs.some(c=>c.id===ui.club)) ui.club=ui.state.clubs[0]?.id; draw(); }
+async function refresh(){
+ const endpoints=['state','lab','field','electoral-atlas','evidence-readiness',
+  'progress','verified-candidacies','official-nominations','scientific-sources',
+  'spanish-process-cohorts','procedural-coverage','siap-index-coverage','procedural-population-readiness','institutional-lineage-lab'];
+ const responses=await Promise.all(endpoints.map(id=>fetch('/api/'+id,{cache:'no-store'})));
+ if(!responses[0].ok||!responses[1].ok||!responses[2].ok)throw new Error('Servicio no disponible');
+ const results=await Promise.all(responses.map(async(r,i)=>
+  r.ok?await r.json():{ok:false,error:'UNAVAILABLE_'+endpoints[i].toUpperCase()}));
+ [ui.state,ui.lab,ui.field,ui.atlas,ui.evidence,ui.progress,ui.candidacies,
+  ui.nominations,ui.scientificSources,ui.parcanCohorts,ui.proceduralCoverage,
+  ui.siapCoverage,ui.populationReadiness,ui.institutionalLineage]=results;
+ if(!ui.state.clubs.some(c=>c.id===ui.club))ui.club=ui.state.clubs[0]?.id;
+ draw();
+}
 function selected(){return ui.state.clubs.find(x=>x.id===ui.club);}
 function own(){return ui.state.figures.filter(x=>x.owner_id===ui.club);}
 function available(){return ui.state.figures.filter(x=>!x.owner_id);}
@@ -36,7 +49,7 @@ function avatar(f){return `<span class="avatar ${f.id.charCodeAt(2)%3===0?'gold'
 function stat(title,value,explanation){return `<article class="card metric"><label>${esc(title)}</label><strong>${esc(value)}</strong><small>${esc(explanation)}</small></article>`;}
 function heading(kicker,title,desc){return `<header class="head"><div><p class="eyebrow">${esc(kicker)}</p><h1>${esc(title)}</h1><p>${esc(desc)}</p></div></header>`;}
 function row(f,act){return `<div class="listrow">${avatar(f)}<div class="identity"><strong>${esc(f.display_name)}</strong><small>${esc(f.role)} · ${esc(f.group_name)}</small></div><div class="amount">${money(f.price)}</div>${act||''}</div>`;}
-function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Todas las figuras, transacciones, eventos y puntuaciones del fantasy son ficticios. Los recuentos parlamentarios del observatorio son una transcripción manual exploratoria y no se atribuyen a figuras.</div>`;}
+function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Las figuras, transacciones y puntuaciones de fantasy son ficticias. El piloto de votaciones manuales es exploratorio; los CSV de iniciativas oficiales únicamente acreditan metadatos capturados, no resultados históricos ni puntuaciones de personas.</div>`;}
 function voteBar(r,i){
  const label=`Votación ${i+1}: sí ${r.yes}, no ${r.no}, abstención ${r.abstain}. Total ${r.total}.`;
  const pct=n=>r.total>0?100*n/r.total:0;
@@ -126,17 +139,301 @@ ${evidencePanel()}
 function scientificSourcesPanel(){
  const x=ui.scientificSources||{};
  if(!x.ok)return '<section class="card"><h2>Fuentes históricas españolas</h2><p class="warning">El manifiesto de fuentes no está disponible o no supera el control; no se sustituye con datos sintéticos.</p></section>';
- const items=(x.source_data||[]).map(s=>'<tr><td>'+esc(s.id)+'</td><td>'+count(s.bytes)+'</td><td><code>'+esc(s.sha256.slice(0,16))+'…</code></td><td>Sin censo certificado</td></tr>').join('');
+ const items=(x.source_data||[]).map(s=>'<tr><td>'+esc(s.id)+'</td><td>'+count(s.bytes)+'</td><td><code>'+esc(s.sha256.slice(0,16))+'…</code></td><td>'+((s.metadata_audit||{}).rows_in_document===undefined?'Sin auditoría de filas':count(s.metadata_audit.rows_in_document)+' filas administrativas')+'</td></tr>').join('');
+ const sources=x.source_data||[];
+ const elected=sources.find(s=>s.id==='INTERIOR_CONGRESO_ELECTED')?.metadata_audit||{};
+ const results=sources.find(s=>s.id==='INTERIOR_CONGRESO_RESULTS')?.metadata_audit||{};
+ const years=Object.keys(elected.rows_by_year||{}).sort();
+ const yearsTable=x.source_aggregate_metadata_reproduced&&years.length
+ ? '<details><summary>Explorar cobertura documental por año (1977–2023)</summary>'
+   +'<p class="footnote">Son frecuencias de filas, no elecciones únicas ni escaños. Los dos ficheros tienen granos diferentes y no deben sumarse como una población política.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Año</th><th>Filas de cargos</th><th>Filas de resultados</th></tr></thead><tbody>'
+   +years.map(y=>'<tr><td>'+esc(y)+'</td><td>'+count(elected.rows_by_year[y])+'</td><td>'+count(results.rows_by_year?.[y]??0)+'</td></tr>').join('')
+   +'</tbody></table></div></details>'
+ : '<p class="warning">La auditoría agregada de cobertura no está disponible o su hash no coincide con el recibo. No se utilizan cifras sustitutas.</p>';
  return '<section class="card" aria-label="Fuentes oficiales con metadatos de captura"><div class="section-title"><h2>Fuentes históricas españolas · captura real</h2><span>NO ADMITIDAS PARA INFERENCIA NOMINAL</span></div>'
- +'<div class="metrics">'+stat('Distribuciones capturadas',count(x.distribution_count),'Originales fuera de Git')+stat('Iniciativas elegibles','DESCONOCIDAS','La fuente electoral no sustituye al Congreso')+'</div>'
+ +'<div class="metrics">'+stat('Distribuciones capturadas',count(x.distribution_count),'Originales fuera de Git')+stat('Filas de metadatos',x.source_aggregate_metadata_reproduced?count(x.metadata_rows_scanned):'NO VALIDADO','Dos ficheros: conteos por separado, no personas únicas')+stat('Iniciativas elegibles','DESCONOCIDAS','La fuente electoral no sustituye al Congreso')+'</div>'
  +'<div class="tablewrap"><table><thead><tr><th>Distribución</th><th>Bytes</th><th>SHA-256 (prefijo)</th><th>Estado</th></tr></thead><tbody>'+items+'</tbody></table></div>'
+ +yearsTable
  +'<p class="help">Origen: <a href="https://datos.gob.es/es/catalogo/e00003801-resultados-electorales" target="_blank" rel="noopener noreferrer">Ministerio del Interior / datos.gob.es</a>. Capturas del 31/10/2026; bytes reproducidos. El catálogo indica CC BY 4.0. Las filas individuales, los mandatos y las fechas as-of siguen sin validar.</p>'
  +'<div class="warning"><strong>CONTROL CIENTÍFICO.</strong> Los datos electorales no equivalen al universo de procesos políticos. Falta el censo completo de expedientes del Congreso; la fecha HTTP no prueba primera publicación, ni la captura autoriza puntuaciones de políticos reales.</div></section>';
+}
+function spanishProcessesPanel(){
+ const c=ui.parcanCohorts||{};
+ if(!c.ok||c.status!=='AUDITED_METADATA_CURRENT_CAPTURE'){
+   return '<section class="card"><h2>Procesos políticos · Canarias</h2><p class="warning">Los metadatos de expedientes no están admitidos o su recibo original es distinto del auditado. El observatorio no genera cifras sustitutivas.</p></section>';
+ }
+ const rows=(c.source_cohorts||[]).map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.initiative_type)+'</td><td>'+esc(s.legislature)+'</td><td>'+esc(s.year)+'</td><td>'+count(s.rows_in_captured_distribution)+'</td><td>'+esc(s.capture_sha256.slice(0,16))+'…</td></tr>').join('');
+ const sourceCount=(c.source_cohorts||[]).length;
+ const peYears=(c.source_cohorts||[]).filter(s=>s.initiative_type==='PE').map(s=>s.year).sort((a,b)=>a-b);
+ const monthRows=(c.creation_monthly_status==='SOURCE_CREATION_MONTHS_AUDITED_ONLY'&&Array.isArray(c.creation_monthly_observed_entries))?c.creation_monthly_observed_entries:[];
+ const monthTable=monthRows.length
+   ?'<details><summary>Meses con registros observados en las cuatro distribuciones ('+count(monthRows.length)+')</summary>'
+    +'<p class="help">Mes de creación declarado en la fotografía actual de origen; no acredita primera publicación histórica. Los meses sin filas no se convierten en meses sin iniciativas, y el recuento no es la población elegible certificada.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Estrato fuente</th><th>Mes indicado</th><th>Filas observadas</th></tr></thead><tbody>'
+    +monthRows.map(m=>'<tr><td>'+esc(m.scope)+'</td><td>'+esc(m.source_reported_created_month)+'</td><td>'+count(m.observed_entries)+'</td></tr>').join('')
+    +'</tbody></table></div></details>'
+   :'';
+ const w=ui.proceduralCoverage||{};
+ const crossview=w.status==='CONCORDANT_SOURCE_COUNTERS_NOT_CENSUS'
+   ?'<details><summary>Comprobación editorial de preguntas escritas: '+count(w.editorial_count_total)+' observadas</summary>'
+    +'<p class="help">El Árbol oficial de iniciativas y tres CSV del Parlamento de Canarias coinciden en recuentos para 2024, 2025 y 2026, pero podrían usar la misma base de datos. No se verificó un censo independiente, transiciones ni versiones históricas. La auditoría solo tiene fecha de observación de día; su corte seguro es el día siguiente, no una primera publicación.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Año</th><th>Árbol</th><th>CSV</th><th>Conclusión</th></tr></thead><tbody>'
+    +w.source_strata.map(s=>'<tr><td>'+esc(s.year)+'</td><td>'+count(s.publisher_editorial_count)+'</td><td>'+count(s.local_original_rows)+'</td><td>Coinciden; integridad longitudinal no certificada</td></tr>').join('')
+    +'</tbody></table></div><p class="footnote">Puertas pendientes: '+esc((w.missing_for_survival||[]).join(' · '))+'. Denominador de riesgo: desconocido.</p></details>'
+   :'<p class="footnote">Cotejo editorial independiente del CSV no disponible en este corte o en cuarentena; no se inventan denominadores.</p>';
+ return '<section class="card" aria-label="Cohortes documentales de iniciativas autonómicas"><div class="section-title"><h2>Iniciativas parlamentarias · fuentes originales</h2><span>METADATOS REALES · SIN OUTCOMES ADMITIDOS</span></div>'
+ +'<div class="metrics">'+stat('Filas capturadas',count(c.observed_rows),sourceCount+' distribuciones observadas, no un censo de la Cámara')+stat('Población elegible','SIN CERTIFICAR','Exhaustividad y estados finales pendientes')+'</div>'
+ +'<p class="help">Distribuciones del <a href="https://datos.parcan.es/" target="_blank" rel="noopener noreferrer">Parlamento de Canarias</a>, licencia de catálogo Open Data Commons PDDL. PPL: proposiciones de ley; PE: preguntas con respuesta escrita. Años PE documentados en este corte: '+esc(peYears.join(', ')||'ninguno')+'. Esta sucesión de ficheros no demuestra cobertura exhaustiva, ni publicaciones históricas as-of.</p>'
+ +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Clase</th><th>Leg.</th><th>Año</th><th>Filas</th><th>SHA-256 (prefijo)</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+ +monthTable
+ +crossview
+ +'<p class="footnote">Fecha de la auditoría local: '+esc(c.local_snapshot_audited_at)+'. La API local /api/spanish-process-cohorts?as_of= permite consultar qué estaba documentado por este observatorio en un corte temporal dado. No reconstruye la fecha de primera publicación de cada expediente.</p>'
+ +'<div class="warning">No se admitieron estados de aprobación, rechazo o contestación, ni trazas de transiciones fechadas. Fechas de creación no son fechas de primera publicación. Ausencia de una distribución o respuesta no equivale a cero ni a fracaso, y ningún registro puede puntuar a personas reales.</div></section>';
+}
+function siapIndexPanel(){
+ const s=ui.siapCoverage||{};
+ if(s.status!=='ONE_INDEX_PAGE_OF_UNCERTIFIED_POPULATION')
+  return '<section class="card"><h2>Parlament de Catalunya · índice SIAP</h2><p class="help">Sin metadatos de captura admisibles en el corte solicitado. No se crea una población ficticia de expedientes.</p></section>';
+ return '<section class="card" aria-label="Índice legislativo catalán capturado localmente"><div class="section-title"><h2>Parlament de Catalunya · índice SIAP</h2><span>FUENTE REAL · UNA PÁGINA</span></div>'
+ +'<div class="metrics">'+stat('Índice capturado',count(s.source_pages_captured)+' / '+count(s.source_index_pages),'Páginas oficiales indexadas en la captura')+stat('Enlaces observados',count(s.observed_links),'Solo primera página; no expedientes censados')+stat('Denominador longitudinal','DESCONOCIDO','Preadmisión, censura, estados y 43 páginas sin verificar')+'</div>'
+ +'<p class="help">Página de <a href="https://www.parlament.cat/web/activitat-parlamentaria/iniciatives-legislatives/proposicions-llei/index.html" target="_blank" rel="noopener noreferrer">proposiciones de ley (SIAP)</a>; índice HTML original preservado exclusivamente fuera de Git. SHA-256 prefijo: '+esc(s.original_sha256.slice(0,16))+'… . Conservación: '+esc(s.safe_local_observation_by)+'. Esa fecha es de observación local, nunca primera publicación histórica.</p>'
+ +'<div class="warning">No hay historial longitudinal ni desenlaces admitidos. No se fusiona esta familia catalana con las preguntas escritas de Canarias, ni se infieren estados no visibles o permisos de tratamiento personal.</div></section>';
+}
+function populationReadinessPanel(){
+ const p=ui.populationReadiness||{};
+ if(p.schema!=='pfl.spanish_procedural_population_readiness.v1'
+    ||p.reusable_scientific_cohort!==false||!Array.isArray(p.coverage_gates)
+    ||!Array.isArray(p.institutional_sources)){
+   return '<section class="card"><h2>Admisión de poblaciones longitudinales</h2><p class="warning">No se dispone de un informe de procedencia admisible. No se inventan expedientes ni transiciones.</p></section>';
+ }
+ const sources=p.institutional_sources.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+(s.observed_metadata_rows===null||s.observed_metadata_rows===undefined?'Desconocido':count(s.observed_metadata_rows))+'</td><td>'+esc(s.provenance_status)+'</td><td>Sin denominador certificado</td></tr>').join('');
+ const gates=p.coverage_gates.map(g=>'<tr><td>'+esc(g.gate)+'</td><td>'+esc(g.scientific_admission)+'</td></tr>').join('');
+ const candidates=(Array.isArray(p.documentary_candidate_sources)&&p.documentary_candidate_status==='DOCUMENTARY_CANDIDATES_BLOCKED_FROM_SOURCE_ADMISSION')
+   ?p.documentary_candidate_sources:[];
+ const candidatePanel=candidates.length
+   ?'<details><summary>Nuevas rutas documentales sin captura autorizada ('+count(candidates.length)+')</summary>'
+    +'<p class="help">El catálogo de estas fuentes no es una población de entradas. No se han aceptado sus términos de uso ni descargado sus ficheros originales. No se presentan recuentos de expedientes ni estados políticos.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Activo editorial</th><th>Derechos/acceso</th></tr></thead><tbody>'
+    +candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.catalogue_asset)+'</td><td>'+esc(s.access_gate)+'</td></tr>').join('')
+    +'</tbody></table></div></details>'
+   :'';
+ const methods=p.linkage_and_identification||{};
+ const selectionPanel=methods.event_by_cut_status==='NOT_IDENTIFIABLE_ON_CURRENT_REAL_SOURCES'
+  ?'<details><summary>Identificabilidad de entradas y sesgo de selección</summary>'
+    +'<p class="help">Todavía no se ha acreditado un enlace asiento de Registro General → expediente con testigo documental oficial y bytes originales cotejados. Los expedientes sin vínculo no se consideran inadmitidos, y las publicaciones no definen todas las oportunidades de entrada.</p>'
+    +'<p class="help">Sin denominador registral independiente, ni estados/eventos completos en un mismo corte, no son identificables tasas ni intervalos numéricos de los desenlaces. Las pruebas de límites existentes son exclusivamente sintéticas, no estimaciones de la política española.</p>'
+    +'<p class="footnote">Estado: '+esc(methods.event_by_cut_status)+' · enlace: '+esc(methods.register_to_expediente)+'</p></details>'
+  :'';
+ const newRegions=p.r8_documentary_status==='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION'&&Array.isArray(p.r8_regional_routes)
+  ?p.r8_regional_routes:[];
+ const newNational=p.r8_documentary_status==='R8_DOCUMENTARY_ONLY_NO_SOURCE_ADMISSION'&&Array.isArray(p.r8_national_core_routes)
+  ?p.r8_national_core_routes:[];
+ const r8Panel=(newRegions.length||newNational.length)
+  ?'<details><summary>R8 · nuevas fuentes regionales y consultas del Consejo de Estado</summary>'
+    +'<p class="help">Son descripciones documentales, no originales adquiridos ni registros de iniciativas. Las entradas anuales al Consejo de Estado son una población distinta; dictámenes aprobados y asuntos despachados no son el libro completo de consultas recibidas.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Recurso</th><th>Bloqueo de cobertura</th></tr></thead><tbody>'
+    +newRegions.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.asset)+'</td><td>'+esc(s.limitation)+'</td></tr>').join('')
+    +newNational.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+esc(s.limitation)+'</td></tr>').join('')
+    +'</tbody></table></div><p class="footnote">Sin permisos automáticos de descarga, sin denominador independiente, sin eventos ni primera publicación certificada. Corte documental seguro: '+esc(p.r8_audit_safe_by)+'</p></details>'
+  :'';
+ const integrity=p.retained_original_integrity||{};
+ const integrityPanel=integrity.status==='PAST_LOCAL_BINARY_INTEGRITY_CONFIRMED'
+  ?'<details><summary>R9 · integridad de originales y derivados conservados</summary>'
+    +'<p class="help">Comprobación binaria local anterior: '+count(integrity.official_originals_byte_checked)+' originales capturados y '+count(integrity.private_derivatives_byte_checked)+' derivados privados coincidían por tamaño y SHA-256. No se decodificaron sus registros durante esta auditoría.</p>'
+    +'<p class="help">Esto NO acredita censo completo, derechos para nuevos usos, primera disponibilidad histórica ni secuencias de decisiones. La integridad refleja un único control anterior, no una monitorización permanente.</p>'
+    +'<p class="footnote">Corte seguro de auditoría local: '+esc(integrity.local_audit_safe_by)+' · API /api/retained-source-integrity?as_of=</p></details>'
+  :integrity.status==='INTEGRITY_RECEIPT_QUARANTINED'
+   ?'<p class="warning">Recibo de integridad en cuarentena: no se presentan comprobaciones ni conteos.</p>'
+   :'';
+ const r9Regions=p.r9_documentary_status==='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED'
+  &&Array.isArray(p.r9_regional_highlights)?p.r9_regional_highlights:[];
+ const r9National=p.r9_documentary_status==='R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED'
+  &&Array.isArray(p.r9_national_highlights)?p.r9_national_highlights:[];
+ const r9Panel=(r9Regions.length||r9National.length)
+  ?'<details><summary>R9 · Galicia, ILP autonómicas y otros registros institucionales</summary>'
+    +'<p class="help">Nuevas fuentes documentales candidatas con límites de cobertura. Las memorias retrospectivas no representan versiones públicas contemporáneas; los asuntos jurisdiccionales, escritos de registro, quejas y acuerdos pertenecen a poblaciones distintas. Ningún nuevo original admitido.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad o problema</th><th>Estado</th></tr></thead><tbody>'
+    +r9Regions.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_limit)+'</td><td>Solo índice editorial</td></tr>').join('')
+    +r9National.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_unit)+'</td><td>Derechos y censo no verificados</td></tr>').join('')
+    +'</tbody></table></div>'
+    +'<p class="warning">El índice de Galicia presenta encabezados de categorías procesales conocidos antes de congelar A–J. Su reutilización como confirmación de una hipótesis formulada después quedaría contaminada.</p>'
+    +'<p class="footnote">Metadatos R9 visibles localmente desde '+esc(p.r9_documentary_safe_by)+'. Sin identificación causal, sin censos independientes y sin identificadores fuente-local publicados.</p></details>'
+  :'';
+ const r10Regions=p.r10_documentary_status==='R10_DOCUMENTARY_ONLY_NO_RISK_FRAME'
+  &&Array.isArray(p.r10_regional_highlights)?p.r10_regional_highlights:[];
+ const r10National=p.r10_documentary_status==='R10_DOCUMENTARY_ONLY_NO_RISK_FRAME'
+  &&Array.isArray(p.r10_national_highlights)?p.r10_national_highlights:[];
+ const r10Panel=(r10Regions.length||r10National.length)
+  ?'<details><summary>R10 · fases ILP, discontinuidades de registro y consultas</summary>'
+    +'<p class="help">Andalucía: las ILP remitidas a la Junta Electoral están condicionadas a una actuación previa de Mesa; no abarcan todas las entradas. Castilla y León: pendientes a la disolución son una fotografía seleccionada de supervivientes, no una cohorte de todas las iniciativas anteriores.</p>'
+    +'<p class="help">Cambio administrativo declarado de canal aGruPa en marzo de 2026: fecha normativa conocida por índice, no verificada mediante replay original. La coexistencia transitoria de registro electrónico y papel es un riesgo de medición, no un efecto político demostrado.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad o problema</th><th>Bloqueo documental</th></tr></thead><tbody>'
+    +r10Regions.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.source_id)+'</td><td>'+esc(s.scope_failure)+'</td></tr>').join('')
+    +r10National.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.entry_unit)+'</td><td>'+esc(s.scope_failure)+'</td></tr>').join('')
+    +'</tbody></table></div>'
+    +'<p class="footnote">CTBG: resolución no necesariamente equivale a reclamación individual; CNMC: documento publicado no equivale a aportación recibida. Derechos y registros originales pendientes. Corte documental seguro: '+esc(p.r10_asof_safe_by)+'.</p></details>'
+  :'';
+ const r11Candidates=(p.r11_documentary_status==='R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED'
+   &&Array.isArray(p.r11_documentary_routes))?p.r11_documentary_routes:[];
+ const r11Panel=r11Candidates.length
+  ?'<details><summary>R11 · registros municipales, contratación y subvenciones</summary>'
+   +'<p class="help">Madrid AIP: el registro público de solicitudes de información y sus agregados históricos son del mismo editor, no dos denominadores independientes. El catálogo declara CC BY 4.0, pero las condiciones generales vinculan por mero uso: no se han aceptado ni descargado originales. Decide Madrid y Canòdrom son ámbitos y permisos distintos.</p>'
+   +'<p class="help">Contratación estatal: una revisión ATOM no es una licitación adicional; hay incidencias editoriales de cobertura/actualización documentadas en 2026 que requieren cotejo de origen. BDNS: convocatoria, extracto BOE y concesión son etapas/unidades distintas. Convenios Rioja: varias filas por partes firmantes pueden referirse a un mismo convenio.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente</th><th>Unidad formal</th><th>Problema de delimitación</th><th>Derechos</th></tr></thead><tbody>'
+   +r11Candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.institutional_entry_unit)
+      +'</td><td>'+esc(s.classification)+'</td><td>'+esc(s.rights_gate)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Documentación R11 conocida en el archivo local solo desde '+esc(p.r11_documentary_safe_by)+'. Sin censos independientes, sin outcomes examinados, sin first_public_at ni uso de personas identificables. Instrumentos de contabilidad de etapas y reintroducción: solo QA sintética.</p></details>'
+  :'';
+ const r12Candidates=(p.r12_documentary_status==='R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION'
+   &&Array.isArray(p.r12_documentary_routes))?p.r12_documentary_routes:[];
+ const r12Panel=r12Candidates.length
+  ?'<details><summary>R12 · producción normativa y recursos de contratación</summary>'
+   +'<p class="help">Plan Anual Normativo: agenda de instrumentos previstos, no todas las consultas ni actos presentados. Consulta previa y audiencia son etapas distintas; las excepciones legales pueden omitir convocatorias sin que exista un rechazo. Normas en tramitación: índice editorial seleccionado después de entrar en una fase concreta.</p>'
+   +'<p class="help">TACRC: el recurso presentado y la resolución publicada no tienen correspondencia uno a uno; resoluciones pueden acumular recursos de otros años. TARCJA: la licencia CC BY 4.0 del CSV de resoluciones no proporciona un libro de recursos recibidos, y no se extiende al PDF de memoria. TEA: la selección doctrinal no equivale a todos los recursos tributarios.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente</th><th>Unidad documental</th><th>Fallo de marco registral</th><th>Permiso</th></tr></thead><tbody>'
+   +r12Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+      +'</td><td>'+esc(s.risk_frame_limitation)+'</td><td>'+esc(s.specific_rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Relojes: acto, documento, captura de cada revisión y primera disponibilidad pública acreditada NO son equivalentes. El replay de revisiones R12 solo utiliza fuentes ficticias y no verifica vintages de casos reales. Corte documental seguro: '+esc(p.r12_documentary_safe_by)+'.</p></details>'
+  :'';
+ const r13Candidates=(p.r13_documentary_status==='R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r13_documentary_sources))?p.r13_documentary_sources:[];
+ const r13Panel=r13Candidates.length
+  ?'<details><summary>R13 · peticiones Senado, solicitudes SAIP y revisión GAIP</summary>'
+   +'<p class="help">Senado: petición firmada registrada, expediente 870, informe de la Comisión 871 y dictamen admitido son unidades y etapas distintas; los informes no son peticiones recibidas. No existe un libro íntegro reutilizable de entradas preclasificación acreditado. El registro de peticiones generales AGE es otra institución.</p>'
+   +'<p class="help">Catalunya: las solicitudes iniciales SAIP de Generalitat y su sector público (yjpn-vcw8) no son todas las reclamaciones GAIP. El dataset GAIP mpbu-t5zh contiene resoluciones que finalizan reclamaciones y sus actas son reuniones de Pleno, no recursos de entrada. La ficha SAIP anuncia versiones anteriores pero NO hay dos originales capturados legalmente y comparados. Navarra es otra cohorte jurídica y editorial.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta documental</th><th>Unidad</th><th>Selección/incompletitud</th><th>Derechos</th></tr></thead><tbody>'
+   +r13Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.unit)
+      +'</td><td>'+esc(s.identification_limit)+'</td><td>'+esc(s.rights_gate)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Dos fechas de acontecimiento y una sola captura de conocimiento no certifican stock real; sin testigo positivo contemporáneo pendiente significa desconocido. Auditoría documental R13 solo desde '+esc(p.r13_documentary_safe_by)+', no fecha de primera publicación del caso. Ensayo stock/flujo únicamente sintético, R5 bloqueado.</p></details>'
+  :'';
+ const r14Candidates=(p.r14_documentary_status==='R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r14_documentary_routes))?p.r14_documentary_routes:[];
+ const r14Saip=(r14Candidates.length&&p.r14_saip_enrichment_not_additive)
+   ?p.r14_saip_enrichment_not_additive:null;
+ const r14Panel=r14Candidates.length
+  ?'<details><summary>R14 · SAIP y registros autonómicos: derechos, vintages y sesgo de selección</summary>'
+   +'<p class="help">SAIP Generalitat yjpn-vcw8 ya estaba en R13: R14 añade documentación, NO una segunda cohorte. La interfaz editorial declara 35 columnas y sólo 15 nombres confirmados mediante índice; el total aproximado de 23,4 mil filas no es un censo externo. Restore points del catálogo NO son dos archivos históricos originales y la licencia general catalana puede vincular por mero acceso, sin permiso de cada distribución acreditado.</p>'
+   +(r14Saip?'<p class="help">SAIP enriquecida: '+esc(r14Saip.source_declared_columns)+' columnas anunciadas, '
+     +esc(r14Saip.column_names_visible_in_index)+' nombres visibles y '
+     +esc(r14Saip.column_names_not_verified)+' desconocidos. Versiones editoriales anunciadas: '
+     +esc(r14Saip.restore_point_metadata_entries_visible)+'. Originales cotejados: '
+     +esc(r14Saip.original_snapshots_compared)+'. Este último cero documenta una ausencia de adquisición, NO ausencia de expedientes.</p>':'')
+   +'<p class="help">Ciudad Real: asiento municipal general no identifica una iniciativa política ni acredita el puente hacia expediente. Castilla-La Mancha: estadísticas de acceso general y ambiental, dos familias jurídicas diferentes. Aragón: registro descrito normativamente, contador e informes, pero sin libro individual reutilizable. Un historial de revisiones de catálogo no certifica instantáneas históricas de los originales.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta documental adicional</th><th>Unidad</th><th>Bloqueo de población</th><th>Derechos</th></tr></thead><tbody>'
+   +r14Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+     +'</td><td>'+esc(s.limitation)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Relojes separados: fecha jurídica, fecha de edición, conocimiento local y primera disponibilidad pública acreditada. Gate documental desde '
+   +esc(p.r14_documentary_safe_by)+'. Pendientes, decisiones y denominador real desconocidos; sin acceso a casos ni ciclos AB.</p></details>'
+  :'';
+ const r16Candidates=(p.r16_documentary_status==='R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r16_documentary_routes))?p.r16_documentary_routes:[];
+ const r16Panel=r16Candidates.length
+  ?'<details><summary>R16 · registro, admisión y revisión: tres familias documentales nuevas</summary>'
+   +'<p class="help">Las solicitudes iniciales, las quejas recibidas, los expedientes admitidos y las resoluciones seleccionadas no son el mismo universo. El Síndic valenciano distingue registro y admisión, pero dos instrucciones oficiales discrepan sobre los días de acuse y el momento de asignación del número. CTCyL registra reclamaciones posteriores a la solicitud inicial. CTPDA publica resoluciones seleccionadas de diversas familias, no un padrón de entrada.</p>'
+   +'<p class="help">CTPDA anuncia CC BY 4.0 en la ficha de determinadas resoluciones y metadatos de recursos; esta etiqueta NO certifica derechos por cada archivo CSV/ODS/XLS/XML, tratamientos personales ni condiciones de mero uso. Las tres rutas carecen de originales individuales, denominadores independientes, testigos de pendientes y dos vintages auténticos del mismo activo.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta oficial</th><th>Unidad / selección</th><th>Conflicto o límite</th><th>Derechos</th></tr></thead><tbody>'
+   +r16Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+      +'</td><td>'+esc(s.editorial_conflict)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Conocimiento local de esta auditoría desde '+esc(p.r16_documentary_safe_by)+
+     '. Sin identificación de fuente futura antes de ese corte, sin testigos externos de publicación histórica y sin nuevos ciclos empíricos AB.</p></details>'
+  :'';
+ const r17Candidates=(p.r17_documentary_status==='R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT'
+   &&Array.isArray(p.r17_documentary_routes))?p.r17_documentary_routes:[];
+ const r17Panel=r17Candidates.length
+  ?'<details><summary>R17 · protección del informante: registro obligatorio no es registro público</summary>'
+   +'<p class="help">OAAF Andalucía está obligada jurídicamente a registrar las denuncias externas recibidas, pero ese libro es confidencial y no está disponible como población reutilizable. AIPI registra comunicaciones del canal externo antes de la admisión y asigna un código de seguimiento; no se ha probado su equivalencia con el asiento o el expediente. AVAF recibe denuncias por diversos canales, mientras que la investigación se abre posteriormente de oficio.</p>'
+   +'<p class="help">AIPI presenta condiciones de reutilización y aceptación vinculada al mero uso según aviso indexado: no se aceptaron términos ni se accedió a casos. La reforma valenciana de junio de 2025 y el funcionamiento parcial estatal en 2025 rompen comparaciones ingenuas de series. Ningún conjunto aporta N externo de entradas, originales históricos, negativas/pending/censura, derechos por distribución o vínculos oficiales verificados. Las tres rutas son evidencia documental no aditiva, no tres cohortes adicionales.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente documental</th><th>Unidad jurídica</th><th>Bloqueo</th><th>Derechos</th></tr></thead><tbody>'
+   +r17Candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_unit)
+     +'</td><td>'+esc(s.limitation)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Conocimiento documental conservador desde '+esc(p.r17_documentary_safe_by)
+   +'. El contraejemplo de selección R17 es exclusivamente sintético; no demuestra persistencia o retroalimentación causal en España. R5 continúa STOP.</p></details>'
+  :'';
+ const den=p.denominator_evidence||{};
+ const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
+ // A valid historical response may preserve an ISO timezone offset (+01:00)
+ // rather than normalize it to Z. Never turn a malformed *historical* cut into
+ // an unscoped CURRENT link: that would silently reveal a different snapshot.
+ const historicalCut=p.as_of!==null&&p.as_of!==undefined;
+ const validCut=(typeof p.as_of==='string'&&p.as_of.length<=42
+   &&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-](?:(?:0\d|1[0-3]):[0-5]\d|14:00))$/.test(p.as_of)
+   &&Number.isFinite(Date.parse(p.as_of)));
+ const scopedCut=!historicalCut?'':validCut?'&amp;as_of='+encodeURIComponent(p.as_of):null;
+ const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
+  ?'<details><summary>R10 · comparación de denominadores y censura no observada</summary>'
+   +'<p class="help">La coincidencia entre filas y contador editorial NO certifica todas las entradas. Dos contadores del mismo organismo o base pueden ser reiteraciones; registros, expedientes, dictámenes, acuerdos y escritos no comparten automáticamente unidad de riesgo.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente verificable</th><th>Institución</th><th>Unidad capturada o descrita</th><th>Observaciones locales</th><th>Bloqueo identificable</th></tr></thead><tbody>'
+   +denRows.map(s=>'<tr><td>'+(typeof s.source_id==='string'&&/^[A-Za-z0-9_.:/-]{1,160}$/.test(s.source_id)
+      ?scopedCut===null?esc(s.source_id)+' (corte no válido)'
+       :'<a href="/api/registration-readiness?source_id='+encodeURIComponent(s.source_id)+scopedCut+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
+      :'Identificador no disponible')+'</td><td>'+esc(s.institution)+'</td><td>'+esc(s.observable_unit)+'</td><td>'
+      +(s.observed_source_local_items===null?'Desconocidas':esc(count(s.observed_source_local_items)))+'</td><td>'
+      +esc(s.principal_identification_block)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">N independiente: desconocido · Terminales: desconocidos · Pendientes: desconocidos · Censurados: desconocidos. Ninguna fila se suma entre instituciones. En cada enlace: /api/registration-readiness?source_id=...&amp;as_of=... reúne registro, estados, derechos por activo, relojes, denominador y enlaces oficiales; conserva el corte as_of de esta vista y no revela fuentes futuras.</p></details>'
+  :'';
+ return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
+ +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
+ +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad observada</th><th>Registros visibles</th><th>Procedencia</th><th>Elegibilidad</th></tr></thead><tbody>'+sources+'</tbody></table></div>'
+ +candidatePanel
+ +r8Panel
+ +r9Panel
+ +r10Panel
+ +r11Panel
+ +r12Panel
+ +r13Panel
+ +r14Panel
+  +r16Panel
+	 +r17Panel
+ +denomPanel
+ +integrityPanel
+ +selectionPanel
+ +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
+ +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';
+}
+function institutionalLineagePanel(){
+ const p=ui.institutionalLineage||{};
+ if(p.schema!=='pfl.synthetic_institutional_lineage.v1'
+    ||p.evidence_class!=='SYNTHETIC_LAB_ONLY'
+    ||p.legal_identity_authenticated!==false
+    ||p.registered_at_risk_certified!==false
+    ||p.source_reuse_rights_verified!==false
+    ||p.scientific_AB_cycles!==0)
+  return '<section class="card"><h2>C15 · identidad institucional</h2><p class="warning">El laboratorio local de identidad no ha superado sus contratos. No se muestran identidades, enlaces ni inferencias.</p></section>';
+ const ready=p.status==='SYNTHETIC_LINEAGE_DOCUMENTARY_ONLY';
+ const g=ready?p.stage_graph:null;
+ const classes=ready&&p.link_classes&&typeof p.link_classes==='object'?p.link_classes:{};
+ const fmt=n=>Number.isInteger(n)&&n>=0?count(n):'Desconocido';
+ const jsonLink=(cut)=>'/api/institutional-lineage-lab?cut_on=2023-12-31&amp;as_of='+esc(encodeURIComponent(cut));
+ const safeStatus=ready?'Coherencia del fixture comprobada':p.status==='SYNTHETIC_IDENTITY_CONFLICT_QUARANTINED'?'Conflicto documental en cuarentena':'Sin afirmaciones disponibles';
+ const figures=ready
+   ?'<div class="metrics">'+stat('Claves jurídicas activas alegadas',fmt(p.distinct_active_legal_key_claims),'No son entidades reales')
+    +stat('Aristas institucionales expresas',fmt(p.complete_explicit_lineage_links),'Alegaciones, no autenticaciones')
+    +stat('Registros procesales documentales',fmt(g?.visible_stages?.REGISTRATION),'No es el denominador de entradas')+'</div>'
+   :'<p class="warning">El número de identidades, enlaces y etapas se oculta al entrar en cuarentena. Ningún enlace incierto se convierte en negativo ni en decisión.</p>';
+ const details=ready?'<details><summary>Separación de cambios institucionales y procedencia</summary><div class="tablewrap"><table><thead><tr><th>Clase alegada</th><th>Enlaces ficticios</th><th>Lectura admisible</th></tr></thead><tbody>'
+   +'<tr><td>Renombre, misma clave jurídica</td><td>'+fmt(classes.LEGAL_RENAME_SAME_KEY)+'</td><td>Continuidad jurídica no autenticada</td></tr>'
+   +'<tr><td>Fusión (N:1)</td><td>'+fmt(classes.MERGER_PREDECESSOR)+'</td><td>Predecesores distintos, no duplicar entradas</td></tr>'
+   +'<tr><td>Escisión (1:N)</td><td>'+fmt(classes.SPLIT_SUCCESSOR)+'</td><td>Sucesores distintos, no inferir causalidad</td></tr>'
+   +'<tr><td>Traslado competencial/jurisdiccional</td><td>'+fmt((classes.COMPETENCE_TRANSFER??0)+(classes.JURISDICTION_TRANSFER??0))+'</td><td>No equivale a identidad jurídica</td></tr>'
+   +'<tr><td>Referencia puramente documental</td><td>'+fmt(classes.DOCUMENTARY_REFERENCE)+'</td><td>No se promueve por coincidencia nominal</td></tr>'
+   +'</tbody></table></div><p class="help">Grupos de reorganización incompletos: '+fmt(p.incomplete_reorganization_groups)+'. Enlaces procesales tipados y exactos: '+fmt(g?.visible_claimed_edges)+'. Dos nombres iguales no crean puente jurídico ni funcional; cualquier conflicto de fuente o cardinalidad se pone en cuarentena.</p></details>':'';
+ return '<section class="card" aria-label="Identidad institucional temporal, únicamente sintética">'
+   +'<div class="section-title"><h2>C15 · identidad institucional y cambios de competencia</h2><span>LABORATORIO SINTÉTICO · R5 STOP</span></div>'
+   +'<p class="help">'+esc(safeStatus)+'. Este panel es un ensayo local de identidad documental, jurídica y funcional, separado del observatorio de fuentes reales. Sus entidades, fechas y enlaces son inventados; no autentica continuidad, reproducción ni autorregulación política.</p>'
+   +'<p class="footnote">Modo '+esc(p.snapshot_mode)+' · corte jurídico '+esc(p.cut_on)+' · conocimiento '+esc(p.as_of)+' · calendario '+esc(p.legal_calendar_zone)+'. CURRENT designa la consulta de este ensayo, no una fotografía histórica de una fuente externa.</p>'
+   +figures+details
+   +'<p class="help">Comparaciones cerradas del mismo fixture: <a href="'+jsonLink('2026-04-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">antes del puente documental tardío</a> y <a href="'+jsonLink('2026-08-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">después de la constatación local</a>. No contienen registros auténticos.</p>'
+   +'<p class="warning">No existe denominador independiente, permiso de distribución, primera publicación histórica certificada, pendientes/censura observados ni A–J admitido. R5 STOP; 0 AB científicos. Los informes de Luhmann, Easton y Deutsch siguen hipótesis rivales, no resultados.</p></section>';
 }
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
-return scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
+return populationReadinessPanel()+institutionalLineagePanel()+spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
 <p class="help">Partidos, coaliciones, agrupaciones, plataformas y personas con roles públicos documentados no necesitan escaños para ser representables. Datos actuales: solo fixtures del laboratorio.</p>
 ${stat('Entidades de ejemplo',count(x.entities||0),'Ficticias')}${stat('Eventos de ejemplo',count(x.events||0),'No son influencia')}
 <p class="help">${groups||'Sin registro de entidades verificable'}</p>

@@ -1,0 +1,183 @@
+"""Conservative cross-source denominator lineage checks.
+
+Editorial count agreement is not independent population confirmation.
+The comparison accepts untrusted documentary claims, and has no API that
+promotes them into an authenticated risk set. It needs a separate trusted
+server-side registry of complete originals, rights and population rules.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+from .procedural_index_contract import GateError, NAMESPACE, ID, SHA, day, utc, LEGAL_CIVIL_ZONES
+
+ENTRY_RULES={"ALL_RECEIVED_REGISTRATION","PRESENTATION_FIRST","ADMISSION_FIRST"}
+UNIT_KINDS={
+    "REGISTRY_INITIAL_WRITING","JURISDICTIONAL_MATTER","PARLIAMENTARY_INITIATIVE",
+    "PUBLISHED_EXPEDIENTE","OFFICIAL_AGREEMENT","INSTITUTIONAL_CONSULTATION",
+    "INDIVIDUAL_COMPLAINT","SOURCE_INDEX_LINK",
+}
+CLAIM_BASES={"EDITORIAL_PAGE_COUNT","CATALOGUE_REPORTED_COUNT",
+             "RETROSPECTIVE_SUMMARY","REGISTRY_PUBLISHED_TOTAL"}
+
+
+@dataclass(frozen=True)
+class PopulationTarget:
+    institution: str
+    family: str
+    legislature_or_regime: str
+    entry_rule: str
+    unit: str
+    window_first_day: str
+    window_last_day: str
+    # Reporting one period/organ does not reconcile competence, geography or
+    # reception channels. These descriptors are *scope claims*, not verified
+    # equivalences. Explicit disagreement must block frame comparison.
+    jurisdiction: str | None = None
+    channel_scope: str | None = None
+    # Required for event-day analysis, optional for documentary-only counts.
+    # Spain's peninsular and Canarian legal days are not always the UTC day.
+    legal_calendar_zone: str | None = None
+
+    def __post_init__(self):
+        if (not isinstance(self.institution,str) or not NAMESPACE.fullmatch(self.institution)
+                or not isinstance(self.family,str) or not NAMESPACE.fullmatch(self.family)
+                or not isinstance(self.legislature_or_regime,str)
+                or not ID.fullmatch(self.legislature_or_regime)
+                or self.entry_rule not in ENTRY_RULES or self.unit not in UNIT_KINDS
+                or day(self.window_first_day) > day(self.window_last_day)
+                or any(v is not None and
+                       (not isinstance(v,str) or not NAMESPACE.fullmatch(v))
+                       for v in (self.jurisdiction,self.channel_scope))
+                or (self.legal_calendar_zone is not None and
+                    (type(self.legal_calendar_zone) is not str or
+                     self.legal_calendar_zone not in LEGAL_CIVIL_ZONES))):
+            raise GateError("INVALID_POPULATION_TARGET")
+
+
+@dataclass(frozen=True)
+class SourceTotalClaim:
+    source_id: str
+    target: PopulationTarget
+    reported_count: int
+    reporting_issuer: str
+    backend_lineage: str | None
+    claim_basis: str
+    original_sha256_claim: str | None = None
+    historical_first_public_at: None = None
+    # Per-claim *local knowledge*, never the editor's date or first-public.
+    # A shared caller-provided global envelope cannot substitute this.
+    locally_documented_safe_by: str | None = None
+
+    def __post_init__(self):
+        if (not isinstance(self.source_id,str) or not ID.fullmatch(self.source_id)
+                or not isinstance(self.target,PopulationTarget)
+                or type(self.reported_count) is not int
+                or not 0 <= self.reported_count <= 10_000_000
+                or not isinstance(self.reporting_issuer,str)
+                or not NAMESPACE.fullmatch(self.reporting_issuer)
+                or (self.backend_lineage is not None
+                    and (not isinstance(self.backend_lineage,str)
+                         or not NAMESPACE.fullmatch(self.backend_lineage)))
+                or self.claim_basis not in CLAIM_BASES
+                or (self.original_sha256_claim is not None
+                    and (not isinstance(self.original_sha256_claim,str)
+                         or not SHA.fullmatch(self.original_sha256_claim)))
+                or self.historical_first_public_at is not None):
+            raise GateError("INVALID_OR_PROMOTED_SOURCE_TOTAL_CLAIM")
+        if self.locally_documented_safe_by is not None:
+            utc(self.locally_documented_safe_by)
+
+
+def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
+                         query_as_of: str | None = None,
+                         locally_known_safe_by: str | None = None) -> dict:
+    """Compare claims only; not a certificate of independent coverage.
+
+    Even two publishers that claim distinct backend lineages are NOT
+    authenticated, and equal numbers prove neither eligibility nor rights.
+    """
+    if not isinstance(first,SourceTotalClaim) or not isinstance(second,SourceTotalClaim):
+        raise GateError("COMPARISON_REQUIRES_TWO_SOURCE_CLAIMS")
+    if first.source_id == second.source_id:
+        raise GateError("SELF_WITNESS_REPLAY")
+    if (query_as_of is None) != (locally_known_safe_by is None):
+        raise GateError("INCOMPLETE_TIME_ENVELOPE")
+    # With per-claim discovery dates, a missing requested cut must never
+    # silently mean that an arbitrary future count is visible 'now'. Keep
+    # legacy undated pairwise structural comparisons explicitly unbounded
+    # and documentary; never promote such claims as an as-of result.
+    if query_as_of is None and (first.locally_documented_safe_by is not None
+                                or second.locally_documented_safe_by is not None):
+        return {
+            "schema":"pfl.denominator_independence_comparison.v1",
+            "status":"HISTORICAL_AS_OF_REQUIRED_FOR_DATED_CLAIMS",
+            "frame_compatible":None,"editorial_counts_equal":None,
+            "source_claims_visible":False,
+            "counter_claims":None,"backend_relation":None,
+            "independent_denominator_certified":False,
+            "eligible_risk_population":None,
+            "first_public_at":None,"scientific_cycles":0,
+        }
+    if query_as_of is not None:
+        cut=utc(query_as_of)
+        # Treat undocumented per-claim discovery as *unknown*, rather than
+        # projecting a shared earlier safe-by across both sources. A nominal
+        # revision timestamp is not admissible evidence of having known a
+        # document at that earlier date.
+        claims_have_own_clocks=(first.locally_documented_safe_by is not None
+                               and second.locally_documented_safe_by is not None)
+        before_either=(not claims_have_own_clocks or
+                       any(cut < utc(c.locally_documented_safe_by)
+                           for c in (first,second)))
+        before_global=(cut < utc(locally_known_safe_by))
+        if before_either or before_global:
+            return {
+                "schema":"pfl.denominator_independence_comparison.v1",
+                "status":"SOURCE_CLAIMS_NOT_KNOWN_AT_CUT",
+                "frame_compatible":None,"editorial_counts_equal":None,
+                "source_claims_visible":False,
+                "counter_claims":None,"backend_relation":None,
+                "independent_denominator_certified":False,
+                "eligible_risk_population":None,
+                "first_public_at":None,"scientific_cycles":0,
+            }
+    compatible=first.target==second.target
+    if not compatible:
+        verdict="INCOMPATIBLE_UNITS_SCOPE_OR_ENTRY_RULE"
+        lineage=None
+    elif first.reporting_issuer==second.reporting_issuer:
+        verdict="SAME_ISSUER_NOT_EXTERNAL_CORROBORATION"
+        lineage="SAME_REPORTING_ISSUER"
+    elif first.backend_lineage is None or second.backend_lineage is None:
+        verdict="UNKNOWN_BACKEND_DEPENDENCE"
+        lineage="UNATTESTED"
+    elif first.backend_lineage==second.backend_lineage:
+        verdict="SAME_BACKEND_RESTATEMENT"
+        lineage="SHARED_EDITORIAL_ROOT"
+    else:
+        verdict="DIFFERENT_DECLARED_SYSTEMS_STILL_UNCERTIFIED"
+        lineage="SEPARATION_CLAIM_NOT_AUTHENTICATED"
+    return {
+        "schema":"pfl.denominator_independence_comparison.v1",
+        "status":verdict,
+        "frame_compatible":compatible,
+        "jurisdiction_and_channel_declared_for_both":all(
+            v is not None for v in (
+                first.target.jurisdiction,first.target.channel_scope,
+                second.target.jurisdiction,second.target.channel_scope)),
+        "jurisdiction_and_channel_independently_verified":False,
+        "editorial_counts_equal":first.reported_count==second.reported_count,
+        "source_claims_visible":True,
+        "historical_query_attested":query_as_of is not None,
+        "counter_claims":(first.reported_count,second.reported_count),
+        "backend_relation":lineage,
+        "independent_denominator_certified":False,
+        "eligible_risk_population":None,
+        "verified_case_level_linkage":False,
+        "historical_publication_verified":False,
+        "rights_to_use_cases_verified":False,
+        "first_public_at":None,
+        "scientific_cycles":0,
+        "note":"Count concordance or provenance labels are not independent registry evidence.",
+    }

@@ -1,0 +1,135 @@
+{
+  "schema": "pfl.spanish_procedural_candidates.r6_documentary_audit.v1",
+  "documentary_audit_date": "2026-10-31",
+  "status": "OFFICIAL_INDEX_AND_NORMATIVE_SOURCE_FEASIBILITY_ONLY",
+  "complete_congress_initial_registration_population_certified": false,
+  "complete_regional_entry_population_certified": false,
+  "official_originals_downloaded_in_r6": 0,
+  "new_real_procedural_case_rows_captured": 0,
+  "outcome_values_analyzed": false,
+  "historical_first_public_at_verified": false,
+  "AB_scientific_cycles_executed": 0,
+  "terms_or_licences_accepted_for_user": false,
+  "blocked_congress_api_retried": false,
+  "rights": "Rights are source/asset-specific; public indexing or software licences do not establish permission to download a whole parliamentary register",
+  "provable_scratch_receipts": [
+    {
+      "agent": "REGIONAL_REGISTRATION_AND_EVENT_GATES",
+      "path_outside_git": "../PFL-scratch-congreso2-20261031/ronda6/RECEIPT.json",
+      "receipt_sha256": "8da8dcc0e2d22efdc56e0b192ece1de585ce4f1f4fae2e88cda3d9c6e0976264",
+      "synthetic_tests_passed": 23,
+      "source_raw_downloads": 0,
+      "technical_freeze_sha256": "bd0a5bfed3e735b7c889fa348b2c719ac64df65f3c554cc11ea874868e7a9242",
+      "independent_entry_population_eligible": false
+    },
+    {
+      "agent": "NATIONAL_COVERAGE_AND_TERMS_GATE",
+      "path_outside_git": "../PFL-scratch-links2-20261031/ronda6/RUN_RECEIPT.json",
+      "receipt_sha256": "6925519613e3668eff42e3cb8db54d631ab4102acc798c08fb40270f3423e024",
+      "source_matrix_path_outside_git": "../PFL-scratch-links2-20261031/ronda6/OFFICIAL_SOURCE_MATRIX.json",
+      "source_matrix_sha256": "d3761898ed0f4df0f29981244024f8d84d3d29d516b5ba69692fefc63ee139d2",
+      "delivery_sha256": "890c1f225bb83d2bec41f528dffb94be43b0e0ec2a78fbbb20eda2cd02f22040",
+      "indexed_official_and_related_sources": 17,
+      "documented_negative_findings": 8,
+      "synthetic_tests_passed": 46,
+      "source_raw_downloads": 0,
+      "independent_entry_population_eligible": false
+    }
+  ],
+  "primary_documentary_facts": [
+    {
+      "key": "BASQUE_ILP_LAW_REGISTER_BEFORE_MESA",
+      "institution": "Parlamento Vasco",
+      "source_url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2016-6996",
+      "article": "5",
+      "family": "ILP_IN_BASQUE_JURISDICTION_ONLY",
+      "documentary_support": "General Registry assignment of entry number precedes Mesa admissibility decision; publication of registered proposal and inadmissions is regulated",
+      "inferences_not_supported": ["ALL_SPANISH_PARLIAMENTS_SAME_LAW", "PUBLIC_DOWNLOADABLE_REGISTRY", "HISTORICAL_REGISTRY_FIRST_PUBLIC_AT"],
+      "original_bytes_downloaded": false,
+      "original_sha256": null
+    },
+    {
+      "key": "CONGRESO_BOCG_XIV_D637_PENDING_QUALIFICATION_AT_DISSOLUTION",
+      "institution": "Congreso de los Diputados",
+      "source_url": "https://www.congreso.es/es/busqueda-de-publicaciones?_publicaciones_id_texto=%28BOCG-14-D-637.CODI.%29&_publicaciones_legislatura=XIV&_publicaciones_mode=mostrarTextoIntegro&_publicaciones_template=PUWTZDTS.fmt&p_p_id=publicaciones&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal",
+      "documentary_support": "Official published index distinguishes qualified-and-expired, pending-qualification-and-expired, and carried-to-next-legislature cases at dissolution",
+      "unit": "DISSOLUTION_SELECTED_CLOSURE_CATEGORIES_NOT_FULL_ENTRY_REGISTRY",
+      "original_bytes_downloaded": false,
+      "original_sha256": null,
+      "case_level_outcomes_analyzed": false
+    },
+    {
+      "key": "CATALAN_PARLIAMENT_SIAP_PUBLICATION_RSS",
+      "institution": "Parlament de Catalunya",
+      "official_index_url": "https://www.parlament.cat/web/participacio/subscripcio-sindicacio/rss/index.html",
+      "propositions_rss": "https://www.parlament.cat/rss/RSS1_EXP_PROPOSIC_LLEI.XML",
+      "projects_rss": "https://www.parlament.cat/rss/RSS1_EXP_PROJECTES_LLEI.XML",
+      "bulletin_rss": "https://www.parlament.cat/rss/RSS1_PUB_BOPC.XML",
+      "unit": "OFFICIAL_SYNDICATED_PUBLICATIONS_NOT_GENERAL_ENTRY_REGISTER",
+      "xml_originals_downloaded": false,
+      "pagination_and_historical_retention_verified": false,
+      "original_sha256": null,
+      "first_public_at_of_individual_registered_initiatives": null
+    },
+    {
+      "key": "MPR_ANSWERED_OR_DEBATED_SELECTION",
+      "institution": "Ministerio de la Presidencia, Justicia y Relaciones con las Cortes",
+      "source_url": "https://datos.gob.es/es/catalogo/e05228601-actividad-parlamentaria-por-legislaturas",
+      "unit": "PARLIAMENTARY_INITIATIVES_ANSWERED_OR_DEBATED_ONLY",
+      "risk_population_from_all_received": false,
+      "rights_of_specific_distribution_adjudicated": false,
+      "original_sha256": null
+    },
+    {
+      "key": "AGE_CORTESIA_ASSIGNED_MINISTERIAL_WORK_QUEUE",
+      "institution": "Administración General del Estado",
+      "source_url": "https://administracionelectronica.gob.es/ctt/wspresidencia",
+      "technical_description_url": "https://administracionelectronica.gob.es/ctt/wspresidencia/infoadicional",
+      "unit": "ASSIGNMENTS_FROM_PRESIDENCY_TO_SPECIFIC_MINISTRIES_NOT_ALL_CONGRESS_ENTRIES",
+      "system": "Cortesí@",
+      "source_database_reuse_license_adjudicated": false,
+      "internal_authentication_required": true,
+      "public_API_or_WSDL_usable_verified": false,
+      "raw_originals_downloaded": false,
+      "original_sha256": null
+    },
+    {
+      "key": "CATALAN_GOVERNMENT_SIIP_SEPARATE_UNIVERSE",
+      "institution": "Generalitat de Catalunya",
+      "catalogue_url": "https://datos.gob.es/es/catalogo/a09002970-sistema-de-informacion-de-las-iniciativas-parlamentarias",
+      "unit": "PARLIAMENTARY_INITIATIVES_DIRECTED_TO_CATALAN_GOVERNMENT_NOT_ALL_SIAP_ENTRIES",
+      "formats_catalogued": ["CSV", "JSON", "XML", "RDF_XML"],
+      "reuse_notice": "https://web.gencat.cat/ca/generalitat/dades-indicadors/dades-obertes/llicencies",
+      "conditions_attach_to_access": true,
+      "terms_accepted_or_original_downloaded": false,
+      "original_sha256": null
+    },
+    {
+      "key": "CCYL_PARLIAMENTARY_CASE_REGISTER_PRIVACY",
+      "institution": "Cortes de Castilla y León",
+      "source_url": "https://www.ccyl.es/Transparencia/RegistroActividadesTratamiento",
+      "unit": "DATA_PROCESSING_REGISTRY_METADATA_NOT_PUBLIC_CASE_DATASET",
+      "privacy_issue": "Case processing registry includes personal identifiers and sensitive ideology or affiliation categories",
+      "full_case_register_and_licence_verified": false,
+      "original_sha256": null
+    },
+    {
+      "key": "CATALAN_MUNICIPAL_ELECTORAL_RESTORE_POINTS",
+      "institution": "Generalitat de Catalunya",
+      "source_url": "https://analisi.transparenciacatalunya.cat/es/Sector-P-blic/Eleccions-municipals-Vots/vq27-2ky2",
+      "unit": "MUNICIPAL_ELECTORAL_VOTES_NOT_PARLIAMENTARY_PROCEDURES",
+      "restore_points_described": true,
+      "restored_version_originals_downloaded": false,
+      "historical_first_public_at_certified": false,
+      "original_sha256": null
+    }
+  ],
+  "inference_blockers": [
+    "NO_ENTRY_REGISTER_ALL_RECEIVED_WITH_RIGHTS_AND_INDEPENDENT_TOTAL",
+    "NO_DOCUMENTED_COMPLETE_REGISTER_TO_EXPEDIENTE_CROSSWALK",
+    "NO_DATED_TRANSITION_SEQUENCE_WITH_SOURCE_VINTAGES",
+    "NO_JOINT_PENDING_FAILED_WITHDRAWN_TERMINAL_CENSORING_UNIVERSE",
+    "NO_HISTORICAL_FIRST_PUBLIC_AT_BY_REVISION",
+    "NO_REMOTE_A_J_AND_INSTRUMENT_PRE_OUTCOME_FREEZE"
+  ]
+}

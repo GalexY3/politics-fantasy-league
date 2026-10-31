@@ -1,0 +1,160 @@
+{
+  "schema": "pfl.scratch.congreso2.execution_ledger.v1",
+  "date": "2026-10-31",
+  "scratch_root": "/cos-prueba/PFL-scratch-congreso2-20261031",
+  "task": "Legal primary-source alternatives for transverse parliamentary-initiative cohorts",
+  "source_publisher": "Parlamento de Canarias",
+  "source_specific_license": "https://opendefinition.org/licenses/odc-pddl/",
+  "user_conditions": {
+    "not_accept_terms": true,
+    "did_not_click_acceptance": true,
+    "not_revisit_congreso_403": true,
+    "not_download_senate": true,
+    "not_download_gencat": true,
+    "not_modify_pfl_trabajo_or_git": true
+  },
+  "http_requests": [
+    {
+      "kind": "GET",
+      "source": "Canarias PPL 2023/X",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2023/10/PPL?format=csv",
+      "status": 301,
+      "http_date": "Sat, 31 Oct 2026 05:13:00 GMT",
+      "bytes_stored": 0,
+      "receipt_path": "runs/2026-10-31/capture_receipt.json",
+      "receipt_sha256": "69313c8408875dc2a11e57256ce5ad7b0db4d7ced32dbc0fcd81201c74d4e012"
+    },
+    {
+      "kind": "HEAD",
+      "source": "Canarias PPL 2023/X",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2023/10/PPL?format=csv",
+      "status": 301,
+      "location": "/api/iniciativas/2023/10/PPL/?format=csv",
+      "http_date": null,
+      "bytes_stored": 0
+    },
+    {
+      "kind": "GET",
+      "source": "Canarias PPL 2023/X",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2023/10/PPL/?format=csv",
+      "status": 200,
+      "http_date": "Sat, 31 Oct 2026 05:13:44 GMT",
+      "bytes_stored": 285,
+      "original_path": "runs/2026-10-31/parcan_2023_X_PPL_original.csv",
+      "original_sha256": "c426afb56f8b5c51f84afeeadb281a340cf46ccc268f218b2d5841961bd9b095",
+      "receipt_path": "runs/2026-10-31/canonical_receipt.json",
+      "receipt_sha256": "b7d6316c7ad64e78f5339909de7bbaae827051d1f8ab99bf9b19ee29d534d22f"
+    },
+    {
+      "kind": "HEAD",
+      "source": "Canarias PPLM 2024/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2024/11/PPLM?format=csv",
+      "status": 301,
+      "location": "/api/iniciativas/2024/11/PPLM/?format=csv",
+      "http_date": null,
+      "bytes_stored": 0
+    },
+    {
+      "kind": "GET",
+      "source": "Canarias PPLM 2024/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2024/11/PPLM/?format=csv",
+      "status": 200,
+      "http_date": "Sat, 31 Oct 2026 05:15:28 GMT",
+      "bytes_stored": 0,
+      "state": "BLOCKED_NETWORK_OR_CONTENT",
+      "error": "CSV_TOO_LARGE_EMPTY_OR_HTML",
+      "note": "Body not saved; exact failure subtype not discriminated; does not imply an empty parliamentary cohort",
+      "receipt_path": "runs/2026-10-31/pplm_2024_receipt.json",
+      "receipt_sha256": "a18a730ffc7d6589d5b23f6b5bdf683c716abcc8903e6019e6a15ef1f737fe1b"
+    },
+    {
+      "kind": "HEAD",
+      "source": "Canarias PE 2026/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2026/11/PE?format=csv",
+      "status": 301,
+      "location": "/api/iniciativas/2026/11/PE/?format=csv",
+      "http_date": null,
+      "bytes_stored": 0
+    },
+    {
+      "kind": "GET",
+      "source": "Canarias PE 2026/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2026/11/PE/?format=csv",
+      "status": 200,
+      "http_date": "Sat, 31 Oct 2026 05:16:14 GMT",
+      "bytes_stored": 169570,
+      "original_path": "runs/2026-10-31/parcan_2026_XI_PE_original.csv",
+      "original_sha256": "fe51a78cc89a9549b9e0232c27b638b6fd4fa0c1aefec2ce89ddb7455312dad2",
+      "receipt_path": "runs/2026-10-31/pe_2026_receipt.json",
+      "receipt_sha256": "c5d98edd073b07d5056860de4c489fd2cb059f5061ba9d10353d519cdf056fe2"
+    },
+    {
+      "kind": "HEAD",
+      "source": "Canarias PE 2024/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2024/11/PE?format=csv",
+      "status": 301,
+      "location": "/api/iniciativas/2024/11/PE/?format=csv",
+      "http_date": null,
+      "bytes_stored": 0
+    },
+    {
+      "kind": "GET",
+      "source": "Canarias PE 2024/XI",
+      "requested_url": "https://www.parcan.es/api/iniciativas/2024/11/PE/?format=csv",
+      "status": 200,
+      "http_date": "Sat, 31 Oct 2026 05:17:39 GMT",
+      "bytes_stored": 203545,
+      "original_path": "runs/2026-10-31/parcan_2024_XI_PE_original.csv",
+      "original_sha256": "9ee6895522725f29cdf977ac0dd6da0490ad27c4128dea5fc2d0d7f48bf0e19c",
+      "receipt_path": "runs/2026-10-31/pe_2024_receipt.json",
+      "receipt_sha256": "e0a7d6c672109f472c635ea577b17218ca9cadaae44b9a723d06ad3e2ca96dac"
+    }
+  ],
+  "synthetic_verification": {
+    "command": "python -m unittest -v test_coverage_only.py",
+    "passed": 10,
+    "failures": 0,
+    "executed_before_metadata_coverage": true,
+    "test_log_path": "runs/2026-10-31/tests_log.txt",
+    "test_log_sha256": "6e92a9be8ef102a327d7725c7af2f04060380b1264d37c83056ed37ca4d41de7"
+  },
+  "code_freeze": {
+    "utc": "2026-10-31T05:19:18Z",
+    "path": "runs/2026-10-31/frozen_code.json",
+    "sha256": "8826bdc998c1912f627f4baffb14753f99927aa8594ebb7c3d084c9cd5bfb8fc",
+    "coverage_only_py_sha256": "d355459715958ed0ede833238ea30955602a36afbff047e4f735c4e1356a6f40",
+    "tests_py_sha256": "9ae51d5cefd20d8a4738badabc7ce1b57df1fed9c5b4b0f6a727aec389e48fbe",
+    "capture_code_not_frozen_before_network": true,
+    "coverage_code_frozen_before_real_metadata_aggregation": true
+  },
+  "metadata_coverage": {
+    "path": "runs/2026-10-31/metadata_only_coverage.json",
+    "sha256": "72f4c0a66c80a032c108b70a6051fe79f9916e12bf202a6720a5968785328b64",
+    "rows": {
+      "ppl_2023_X": 1,
+      "pe_2024_XI": 686,
+      "pe_2026_XI": 524
+    },
+    "primary_key_missing_rows": 0,
+    "duplicate_key_rows_within_each_stratum": 0,
+    "creation_date_missing_rows": 0,
+    "historical_first_public_at_verified": 0,
+    "outcome_typed_cells_decoded_by_structural_csv_parser": true,
+    "outcome_cell_values_inspected_or_aggregated": false,
+    "longitudinal_same_type_cohorts_only": ["PE/2024/XI", "PE/2026/XI"],
+    "missing_2025_comparable_distribution": true,
+    "full_parliament_or_congress_population_verified": false,
+    "outcomes_analyzed": false,
+    "confirmed_ABH_cycles": 0
+  },
+  "blocked_alternative_sources": {
+    "congreso_opendata_iniciativas": "historic HTTP 403, NOT retried",
+    "senate": "terms require acceptance by use; no data retrieval",
+    "generalitat_siip": "reuse conditions bind upon obtaining or accessing; no data retrieval",
+    "ccyl": "publication XML useful for contextual links, full initiative population not validated"
+  },
+  "no_rows_published": true,
+  "no_git_or_remote_repository_changes": true,
+  "terms_accepted_on_user_behalf": false,
+  "causal_or_predictive_conclusions": false
+}

@@ -1,0 +1,30 @@
+# PFL · Pliego documental de factibilidad registral para una investigación
+
+**Estado:** borrador operativo no enviado, no autorizaciones aceptadas, no solicitud dirigida a una persona determinada. **Finalidad:** identificar fuentes institucionales que permitan reconstruir una cohorte de procedimientos políticos españoles sin sesgo de aprobación/publicación y con límites legales claros. No constituye una solicitud formal ya presentada ni una obligación de la institución destinataria. Requiere revisar cada ley y reglamento parlamentario antes de seleccionar una institución.
+
+## Cuestión registral previa al estimando
+
+La documentación de la [Asamblea de Madrid sobre datos abiertos](https://ctyp.asambleamadrid.es/web/guest/servicios/datos-abiertos) nombra una vista de archivo de expedientes, pero sus términos generales indican aceptación por mero uso de los documentos: la presente campaña **no la descargó ni aceptó esas condiciones**. El [CEPC mantiene INICPAR](https://www.cepc.gob.es/documentacion/inicpar) con cobertura definida en parte por interés informativo/documental; tampoco demuestra por sí mismo la población de todas las entradas. Por su parte, la [Ley 10/2016 vasca, artículo 5](https://www.boe.es/buscar/doc.php?id=BOE-A-2016-6996), para la ILP de esa comunidad, prueba que el asiento del Registro General y la decisión de la Mesa pueden ser operaciones jurídicamente diferentes.
+
+La petición a la institución no presupone la existencia de un endpoint público ni el derecho a recibir microdatos sin condiciones. Se pide inicialmente **documentación no personal de cobertura y estructura**, con autorización ulterior específica si existe una distribución adecuada.
+
+## Cuestionario mínimo, preparado para adaptar a un órgano concreto
+
+1. **Unidad y universo de entradas:** ¿existe para la clase procedimental y legislatura elegidas un libro de asientos que recoja todos los escritos presentados/registrados, incluidos pendientes de calificación, inadmisiones, retiradas, caducidades y escritos que no dieron lugar a expediente? Precisar qué casos excluye ese libro (errores, duplicados, intentos incompletos, comunicaciones a otros órganos).
+2. **Denominador y conciliación:** facilitar, si existe, un total oficial independiente por legislatura, familia y año/mes del **acto inicial escogido**, con reglas de duplicación/rectificación y definiciones de las categorías; distinguir ese total de resultados de buscadores y de documentos publicados en boletín.
+3. **Claves de vinculación:** ¿el número de asiento tiene relación estable y documentada con un identificador de expediente? ¿Se conservan registros de fusiones, desdoblamientos, acumulaciones, remisiones al Senado, cambios de legislatura y de una misma propuesta presentada varias veces? No solicitar nombres, DNI, afiliación, voto ni otras variables personales en esta fase.
+4. **Secuencia de operaciones:** ¿existe una exportación completa de actuaciones, con ID de acontecimiento, categoría institucional y tiempo de ocurrencia, estado anterior/posterior, órgano y referencia oficial? Solicitar diccionario de valores y normas de competencias por periodo. Distinguir resolución, publicación, efecto jurídico, corrección y anotación registral.
+5. **Tiempo de publicidad y versiones:** ¿se conservan originales históricos o snapshots públicos firmados/fechados de cada expediente o actuación? Distinguir fecha de hecho, fecha de documento, fecha de primera disponibilidad pública acreditada, última modificación, rectificación y captura por investigador. Preguntar por logs de migraciones retrospectivas y posible disponibilidad mediante archivo institucional.
+6. **Derechos y minimización:** ¿qué licencia o condiciones exactas se aplican al recurso, preservación de originales y uso académico reproducible de metadatos no personales? ¿Hay cláusulas vinculantes por acceso/descarga o restricciones a automatización? Solicitar una versión anonimizada o solo IDs/tiempos institucionales si hay datos personales sensibles.
+7. **Exhaustividad técnica:** si existe feed CSV/JSON/XML/API, solicitar URL **oficial documentada** de distribución, paginación, cursores y total, actualizaciones y límites de uso, sin adivinar rutas ni eludir bloqueos. Si no existe exportación pública, pedir un procedimiento institucional autorizado de consulta documental y sus condiciones, sin asumir acceso automático.
+8. **Censura y regímenes:** ¿cómo se anotan legislaturas disueltas, caducidad de tramitación, prórrogas, pendientes al final del periodo, asuntos remitidos, causas de terminación y periodos de interrupción informativa? Distinguir faltante de expediente y ausencia de resultado.
+
+## Criterio de avance
+
+La recepción de un enlace o de una muestra de expedientes **no supera** el gate. Para declarar G1 de un estimando concreto se requeriría un universo predefinido, población completa respecto del acto de inicio, totales respaldados y conciliados, pruebas de claves y pérdidas, derechos específicos, versiones y QA. Si solo se acreditan los **expedientes admitidos**, debe reformularse el estimando condicionado a admisión. Una población de aprobados, debatidos, contestados, sindicados o mencionados en BOE no recupera retrospectivamente los no publicados.
+
+Se preservará un **registro de respuestas negativas** con institución, fecha, documento/acuse, especificación de motivo, condición de reapertura y limitaciones de inferencia. No se convertirán solicitudes sin respuesta en evidencia de inexistencia de archivos, incumplimiento, opacidad o conducta política.
+
+## Uso científico posterior, no activado
+
+Los candidatos al programa AB-H son modelos de riesgos competitivos por etapa (persistencia, rechazo, retirada, caducidad), reintroducción entre legislaturas y modelos de respuesta institucional a perturbaciones. Cada uno exige contrato A–J, código y SHA remotos, rivales competentes, censura, controles negativos, cambios de régimen y evaluación temporal externa **antes de acceder a variables de desenlace con propósito confirmatorio**. En R7 no se ha activado un contraste ni formalizado esta petición ante institución alguna.
