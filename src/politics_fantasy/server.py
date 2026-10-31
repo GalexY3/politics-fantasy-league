@@ -29,6 +29,7 @@ from .official_source_status import published_sources
 from .parcan_cohort_status import status as parcan_status
 from .procedural_coverage import coverage_status
 from .siap_coverage import status as siap_status
+from .procedural_population_readiness import report as population_readiness_report
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -165,6 +166,16 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                     if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
                         raise ValueError('INVALID_QUERY')
                     return self.reply(200,siap_status(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/procedural-population-readiness':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,population_readiness_report(as_of=parsed.get('as_of',[None])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
             if route == '/api/official-nominations':

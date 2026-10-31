@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 17,
+    "data": 19,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 96,
-    "reference": 75,
-    "research": 1967,
-    "runtime": 84,
+    "operations": 97,
+    "reference": 76,
+    "research": 1968,
+    "runtime": 86,
     "task_queue": 120,
-    "verification": 202
+    "verification": 206
   },
   "files": [
     {
@@ -809,6 +809,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/basque_ilp_entry_rule_2016.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/catalunya_siap_page1_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -840,6 +845,11 @@
     },
     {
       "path": "data/source_manifests/spanish_procedural_candidates_r5_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/spanish_procedural_candidates_r6_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
@@ -900,6 +910,11 @@
     },
     {
       "path": "docs/CONTRATO_ONTOLOGICO_SISTEMICO_TEMPORAL_PFL_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/CONTRATO_RIESGO_REGISTRO_Y_TEMPORALIDAD_PFL_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11494,6 +11509,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT6_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11964,6 +11984,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/verify_siap_page1_offline.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "sql/schema.sql",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12290,6 +12315,16 @@
     },
     {
       "path": "src/politics_fantasy/procedural_coverage.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/procedural_index_contract.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/procedural_population_readiness.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -15154,6 +15189,21 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_index_contract.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_procedural_population_readiness.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_procedural_population_readiness_panel.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_product.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15465,6 +15515,11 @@
     },
     {
       "path": "tests/test_verify_interior_originals.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_verify_siap_page1_offline.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

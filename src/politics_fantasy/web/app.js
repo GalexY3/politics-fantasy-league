@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, progress:null, picks:null, message:'', session:null, csrf:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -28,14 +28,14 @@ async function call(route, body){
 async function refresh(){
  const endpoints=['state','lab','field','electoral-atlas','evidence-readiness',
   'progress','verified-candidacies','official-nominations','scientific-sources',
-  'spanish-process-cohorts','procedural-coverage','siap-index-coverage'];
+  'spanish-process-cohorts','procedural-coverage','siap-index-coverage','procedural-population-readiness'];
  const responses=await Promise.all(endpoints.map(id=>fetch('/api/'+id,{cache:'no-store'})));
  if(!responses[0].ok||!responses[1].ok||!responses[2].ok)throw new Error('Servicio no disponible');
  const results=await Promise.all(responses.map(async(r,i)=>
   r.ok?await r.json():{ok:false,error:'UNAVAILABLE_'+endpoints[i].toUpperCase()}));
  [ui.state,ui.lab,ui.field,ui.atlas,ui.evidence,ui.progress,ui.candidacies,
   ui.nominations,ui.scientificSources,ui.parcanCohorts,ui.proceduralCoverage,
-  ui.siapCoverage]=results;
+  ui.siapCoverage,ui.populationReadiness]=results;
  if(!ui.state.clubs.some(c=>c.id===ui.club))ui.club=ui.state.clubs[0]?.id;
  draw();
 }
@@ -200,10 +200,25 @@ function siapIndexPanel(){
  +'<p class="help">Página de <a href="https://www.parlament.cat/web/activitat-parlamentaria/iniciatives-legislatives/proposicions-llei/index.html" target="_blank" rel="noopener noreferrer">proposiciones de ley (SIAP)</a>; índice HTML original preservado exclusivamente fuera de Git. SHA-256 prefijo: '+esc(s.original_sha256.slice(0,16))+'… . Conservación: '+esc(s.safe_local_observation_by)+'. Esa fecha es de observación local, nunca primera publicación histórica.</p>'
  +'<div class="warning">No hay historial longitudinal ni desenlaces admitidos. No se fusiona esta familia catalana con las preguntas escritas de Canarias, ni se infieren estados no visibles o permisos de tratamiento personal.</div></section>';
 }
+function populationReadinessPanel(){
+ const p=ui.populationReadiness||{};
+ if(p.schema!=='pfl.spanish_procedural_population_readiness.v1'
+    ||p.reusable_scientific_cohort!==false||!Array.isArray(p.coverage_gates)
+    ||!Array.isArray(p.institutional_sources)){
+   return '<section class="card"><h2>Admisión de poblaciones longitudinales</h2><p class="warning">No se dispone de un informe de procedencia admisible. No se inventan expedientes ni transiciones.</p></section>';
+ }
+ const sources=p.institutional_sources.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+(s.observed_metadata_rows===null||s.observed_metadata_rows===undefined?'Desconocido':count(s.observed_metadata_rows))+'</td><td>'+esc(s.provenance_status)+'</td><td>Sin denominador certificado</td></tr>').join('');
+ const gates=p.coverage_gates.map(g=>'<tr><td>'+esc(g.gate)+'</td><td>'+esc(g.scientific_admission)+'</td></tr>').join('');
+ return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
+ +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
+ +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad observada</th><th>Registros visibles</th><th>Procedencia</th><th>Elegibilidad</th></tr></thead><tbody>'+sources+'</tbody></table></div>'
+ +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
+ +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';
+}
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
-return spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
+return populationReadinessPanel()+spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
 <p class="help">Partidos, coaliciones, agrupaciones, plataformas y personas con roles públicos documentados no necesitan escaños para ser representables. Datos actuales: solo fixtures del laboratorio.</p>
 ${stat('Entidades de ejemplo',count(x.entities||0),'Ficticias')}${stat('Eventos de ejemplo',count(x.events||0),'No son influencia')}
 <p class="help">${groups||'Sin registro de entidades verificable'}</p>

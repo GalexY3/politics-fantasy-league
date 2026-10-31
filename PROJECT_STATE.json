@@ -1,5 +1,5 @@
 {
-  "revision": 23,
+  "revision": 24,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -188,7 +188,7 @@
       "status": "IN_PROGRESS",
       "outcome": "Primera base historica espanola admisible para el estudio de reproduccion/autorregulacion politica y acoplamientos, separando registros electorales y expedientes en riesgo",
       "acceptance": "Fuente primaria y derechos por distribucion; universo y definiciones verificables; identidades/eventos y fechas as-of; enlace legal y cientificamente defendible; baseline/rivales preregistrados antes de outcomes",
-      "next_action": "Nueva fuente Parlament de Catalunya SIAP: pagina 1/44 de proposiciones de ley archivada solo local (20 enlaces, sin outcomes, SHA y derechos generales documentados), 43 paginas/no admitidas sin comprobar. Indices Congreso XV 121=115 y 122=369, NO denominadores elegibles, CSV tercero HEAD404, sin reintento del 403. Priorizar acreditacion del universo de TODAS las entradas con eventos fechados, vintages historicos y censura por familia/legislatura; congelar A-J y SHA remotos antes de outcomes. 20/20 SYSTEM20 conservados.",
+      "next_action": "R6 identifica frontera preadmisión: Ley vasca 10/2016 art.5 (ILP regional) separa registro de entrada y resolución Mesa; BOCG XIV D637 al cierre incluye pendientes de calificación, no censo inicial. Rutas MPR contestadas/debatidas, Cortesia asignaciones ministeriales y RSS SIAP son otras subpoblaciones. Contratos registration-first y replay independiente SIAP 1/44 con 20 IDs verificados offline, pero SIN registro completo, outcomes ni first_public_at. Priorizar fuente ALL_RECEIVED legal por familia e institución, vínculos acreditados y vintages; solo entonces A-J remoto pre-outcome. SYSTEM20 20/20 conservados.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -203,8 +203,14 @@
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT4_20261031.md",
         "research/PFL_SYSTEM20_20261031/ROUND_REPORT5_20261031.md",
+        "research/PFL_SYSTEM20_20261031/ROUND_REPORT6_20261031.md",
         "data/source_manifests/catalunya_siap_page1_20261031.json",
         "data/source_manifests/spanish_procedural_candidates_r5_20261031.json",
+        "data/source_manifests/spanish_procedural_candidates_r6_20261031.json",
+        "data/source_manifests/basque_ilp_entry_rule_2016.json",
+        "docs/CONTRATO_RIESGO_REGISTRO_Y_TEMPORALIDAD_PFL_20261031.md",
+        "src/politics_fantasy/procedural_index_contract.py",
+        "src/politics_fantasy/procedural_population_readiness.py",
         "data/source_manifests/parcan_editorial_crossview_20261031.json",
         "data/source_manifests/parcan_source_local_months_20261031.json",
         "docs/CONTRATO_ONTOLOGICO_SISTEMICO_TEMPORAL_PFL_20261031.md",
@@ -493,6 +499,25 @@
     "source_index_observatory_coverage_endpoint": "/api/procedural-coverage",
     "catalunya_siap_observatory_coverage_endpoint": "/api/siap-index-coverage",
     "new_linux_qa_executed_this_round": false,
+    "round6_primary_registration_before_admission_normative_scope": "ILP_PAIS_VASCO_LEY_10_2016_ART_5_NOT_ALL_SPAIN",
+    "round6_congress_xiv_d637_pending_qualification_at_dissolution_indexed": true,
+    "round6_bocg_xiv_d637_original_bytes_and_sha_verified": false,
+    "round6_congress_general_entry_registry_full_population_verified": false,
+    "round6_siap_20_page1_source_ids_independently_replayed_offline": true,
+    "round6_siap_independent_replay_tool": "scripts/verify_siap_page1_offline.py",
+    "round6_new_real_source_original_get_requests": 0,
+    "round6_new_real_procedural_originals_downloaded": 0,
+    "round6_national_metadata_sources_inspected": 17,
+    "round6_national_metadata_negative_findings": 8,
+    "round6_national_source_matrix_sha256": "d3761898ed0f4df0f29981244024f8d84d3d29d516b5ba69692fefc63ee139d2",
+    "round6_regional_agent_receipt_sha256": "8da8dcc0e2d22efdc56e0b192ece1de585ce4f1f4fae2e88cda3d9c6e0976264",
+    "round6_national_agent_receipt_sha256": "6925519613e3668eff42e3cb8db54d631ab4102acc798c08fb40270f3423e024",
+    "round6_procedural_entry_and_pagination_contract": "src/politics_fantasy/procedural_index_contract.py",
+    "round6_population_readiness_endpoint": "/api/procedural-population-readiness",
+    "round6_institution_wide_entry_denominators_eligible": 0,
+    "round6_historical_case_terminal_outcomes_admitted": 0,
+    "round6_congress_boe_crossjoins_admitted": 0,
+    "round6_new_theoretical_proposals": "docs/CONTRATO_RIESGO_REGISTRO_Y_TEMPORALIDAD_PFL_20261031.md",
     "canarian_complete_risk_population_verified": false,
     "canarian_outcome_columns_substantively_analyzed": false,
     "canarian_exact_historical_first_public_at_verified": false,
@@ -503,6 +528,6 @@
     "new_ABH_valid_cycles_this_round": 0,
     "new_ABH_invalid_cycles_this_round": 0,
     "new_ABH_planning_cycles_this_round": 0,
-    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT5_20261031.md"
+    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT6_20261031.md"
   }
 }
