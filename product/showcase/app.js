@@ -3,12 +3,14 @@
   'use strict';
   const E=window.PFLDemoEngine, PARTIES=window.PFL_PARTIES, W=window.PFLDemoWorld;
   const STORAGE='pfl-showcase-edition-zero-v1';
-  const PAGES={inicio:'Inicio',mercado:'Mercado',plantilla:'Mi equipo',jornadas:'Jornadas',
-    liga:'Clasificación',partidos:'Formaciones españolas',laboratorio:'Observatorio · Laboratorio',perfil:'Mi perfil'};
+  const PAGES={inicio:'Inicio',actualidad:'Agenda política',mercado:'Mercado',
+    plantilla:'Mi equipo',jornadas:'Jornadas',liga:'Clasificación',
+    partidos:'Formaciones españolas',laboratorio:'Observatorio · Laboratorio',perfil:'Mi perfil'};
   const ui={page:PAGES[location.hash.slice(1)]?location.hash.slice(1):'inicio',
     marketQuery:'',marketRole:'Todas',marketSort:'orden',partyQuery:'',scope:'Todas',
     kind:'Todas',favouritesOnly:false,badge:null,labView:'panorama',
-    region:'Castilla y León',indicator:'participacion',symbols:null,palette:null};
+    region:'Castilla y León',indicator:'participacion',symbols:null,palette:null,
+    agendaWeek:null};
   const $=id=>document.getElementById(id);
   const normal=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
   const number=n=>new Intl.NumberFormat('es-ES').format(n);
@@ -113,6 +115,94 @@
         div('event-meta',span('tag',event.territory),span('tag',event.stage),span('tag','Recepción ficticia '+event.reception+'/100'))),
     ]);
   }
+  function agendaLimit(){return Math.min(state.week,E.MAX_WEEKS);}
+  function agendaIndex(){
+    if(ui.agendaWeek===null)ui.agendaWeek=agendaLimit();
+    ui.agendaWeek=Math.max(1,Math.min(agendaLimit(),ui.agendaWeek));
+    return ui.agendaWeek;
+  }
+  function advanceAgenda(delta){
+    const next=Math.max(1,Math.min(agendaLimit(),agendaIndex()+delta));
+    if(next!==ui.agendaWeek){ui.agendaWeek=next;render();}
+  }
+  function scoutingPanel(){
+    const scout=E.scouting(state);
+    if(scout.finished)return section('panel scout-panel',
+      sectionHeading('Temporada completada','REVISIÓN'),
+      para('footer-caption','Ya se han celebrado las ocho jornadas. Puedes revisar cada acta o iniciar una nueva temporada.'));
+    const event=W.weekEvent(scout.week);
+    const max=Math.max(1,...scout.cards.map(c=>c.eventBonus));
+    return section('panel scout-panel',
+      sectionHeading('Mesa de análisis de la jornada','PREVISUALIZACIÓN DEL ESCENARIO FICTICIO'),
+      div('scout-heading',div('',
+        label('ANTES DE JUGAR · J'+scout.week),
+        heading(3,'',event.title),
+        para('footer-caption','La agenda modifica las cartas según su especialidad. Estas bonificaciones se conocen de antemano; no se muestran las puntuaciones finales de la jornada.')),
+        span('scout-total','+'+scout.eventBonus+' · BONIFICACIÓN DE ESCENARIO')),
+      div('scout-rows',...scout.cards.map(c=>
+        div('scout-row',span('scout-mark',E.card(c.id).symbol),
+          div('scout-person',e('strong','',c.name),span('',c.role+(c.captain?' · CAPITÁN':''))),
+          div('scout-meter',e('div','scout-fill',null,
+            {style:'width:'+(Math.max(0,c.eventBonus)/max*100)+'%'})),
+          e('strong','scout-value','+'+c.eventBonus)))),
+      sectionHeading('Ensaya tu táctica','COMPARADOR SIN CONSUMIR LA JORNADA'),
+      div('scout-tactics',...scout.tactics.map(t=>
+        e('button','scout-tactic'+(scout.chosenTactic===t.id?' active':''),[
+          e('strong','',t.name),
+          span('',t.matched+' cartas afines · +'+t.tacticBaseBonus+' base'),
+          span('scout-choice',scout.chosenTactic===t.id?'ACTIVA':'ELEGIR')
+        ],{type:'button',dataset:{action:'tactic',id:t.id},
+          'aria-pressed':String(scout.chosenTactic===t.id)}))),
+      para('footer-caption','Cálculo íntegramente sintético y determinista. El marcador final añade habilidad base, variación de juego y capitanía. Cambiar de táctica no consume una jornada ni modifica los datos de España.'));
+  }
+  function agenda(){
+    const idx=agendaIndex(),event=W.weekEvent(idx),max=agendaLimit();
+    const stateWord=idx<state.week?'ACTA DISPONIBLE':'PRÓXIMA JORNADA';
+    return div('agenda-page',
+      pageHeader('AGENDA / SIMULACIÓN EDITORIAL','La política está en movimiento.',
+        'Explora acontecimientos inventados que conectan sociedad, territorios e instituciones. Avanza por la cronología mediante botones, teclado o desplazamiento lateral en el móvil.'),
+      section('source-note',e('strong','','Ocho escenarios ficticios. '),
+        'No son noticias reales. Las próximas jornadas permanecen ocultas hasta ser la siguiente jornada del juego. Los valores de recepción son convenciones simuladas, no encuestas.'),
+      div('agenda-progress',label('CRONOLOGÍA DESBLOQUEADA'),
+        div('agenda-week-list',...W.EVENTS.map(ev=>
+          e('button','agenda-week'+(ev.week===idx?' active':'')+
+            (ev.week>max?' locked':''),['J'+String(ev.week).padStart(2,'0'),
+              span('agenda-week-status',ev.week>max?'BLOQUEADA':ev.week<state.week?'ARCHIVADA':'EN CURSO')],
+            {type:'button',disabled:ev.week>max,
+              'aria-label':'Jornada '+ev.week+(ev.week>max?', todavía bloqueada':''),
+              'aria-pressed':String(ev.week===idx),
+              dataset:{action:'agenda-week',id:String(ev.week)}})))),
+      section('agenda-carousel',
+        div('agenda-control',label(stateWord),
+          div('agenda-actions',action('← Anterior','agenda-prev','','secondary',idx<=1),
+            span('agenda-counter',idx+' / '+E.MAX_WEEKS),
+            action('Siguiente →','agenda-next','','secondary',idx>=max))),
+        e('div','agenda-gesture',[
+          eventCard(event),
+          div('agenda-detail',
+            div('agenda-tagline',span('tag warm',event.stage),span('tag',event.territory)),
+            heading(3,'','¿Qué se registra en el escenario?'),
+            para('',event.actor+' interviene en un episodio ficticio de '+event.sector.toLowerCase()+'. Su presencia tiene interés cívico, pero no implica resultados políticos reales.'),
+            div('agenda-facts',
+              div('',label('TIPO DE ACONTECIMIENTO'),e('strong','',event.type)),
+              div('',label('RECEPCIÓN INVENTADA'),e('strong','',event.reception+' / 100')),
+              div('',label('COMPETENCIA FAVORECIDA'),e('strong','',event.role))),
+            para('footer-caption','La simulación vincula tipo, fase y habilidades ficticias a la puntuación. La aceptación de una política no se deduce de manifestaciones ni de su aprobación legislativa.'))
+        ],{id:'agenda-gesture',tabindex:'0',
+          'aria-roledescription':'carrusel','aria-label':'Escenario J'+idx+
+          '. Flechas izquierda y derecha para navegar por jornadas disponibles',
+          dataset:{agendaCarousel:'true'}}),
+        para('agenda-hint','En móvil: desliza lateralmente sobre la ficha. También puedes utilizar los botones de navegación.')),
+      idx===state.week&&state.week<=E.MAX_WEEKS?
+        div('',scoutingPanel(),div('agenda-next-cta',navigate('Preparar titulares','plantilla','secondary'),
+          navigate('Jugar jornada','jornadas',''))):
+        section('panel',sectionHeading('Escenario ya jugado','ACTA RETROSPECTIVA'),
+          para('footer-caption','El acta histórica conserva los puntos obtenidos al celebrar esta jornada. No se recalcula a partir de tu plantilla actual.'),
+          navigate('Consultar actas','jornadas','secondary')),
+      section('panel',sectionHeading('La actualidad real exige otras fuentes','INFRAESTRUCTURA FUTURA'),
+        para('footer-caption','Para alimentar esta agenda desde fuentes oficiales faltan identificación de actores y estados, permisos de reutilización por distribución, versiones históricas, primera publicidad, casos negativos y controles independientes de población. El enlace a una institución no demuestra que un evento haya ocurrido.'),
+        navigate('Ir al Observatorio','laboratorio','secondary')));
+  }
   let state;
   try {const saved=JSON.parse(localStorage.getItem(STORAGE));state=E.validState(saved)?saved:E.newGame();}
   catch(_){state=E.newGame();}
@@ -187,7 +277,7 @@
       ]));
     const steps=section('panel',sectionHeading('El bucle de la liga','ACTUALIDAD → ESTRATEGIA → CONSECUENCIAS'),
       div('quest-list',
-        div('quest',span('quest-symbol','01'),div('quest-copy',e('strong','','Lee los acontecimientos'),para('','Observa el escenario ficticio y anticipa qué competencias importan.')),navigate('Ver','jornadas')),
+        div('quest',span('quest-symbol','01'),div('quest-copy',e('strong','','Lee los acontecimientos'),para('','Observa el escenario ficticio y anticipa qué competencias importan.')),navigate('Abrir agenda','actualidad')),
         div('quest',span('quest-symbol','02'),div('quest-copy',e('strong','','Ficha y organiza'),para('','Elige hasta cinco titulares, un capitán y una táctica.')),navigate('Equipo','plantilla')),
         div('quest',span('quest-symbol','03'),div('quest-copy',e('strong','','Celebra, comprende y reacciona'),para('','Sigue cada evento, su repercusión y los puntos que genera.')),navigate('Jugar','jornadas'))));
     const diary=e('section','panel',[
@@ -197,7 +287,7 @@
       para('footer-caption','La partida se guarda solo en este navegador. Puedes exportarla desde tu perfil.')
     ]);
     return div('',hero,div('news-ticker',span('ticker-indicator','DOSSIER · FICCIÓN'),span('ticker-copy',upcoming.title),
-      navigate('Examinar acontecimiento','jornadas','secondary')),
+      navigate('Examinar acontecimiento','actualidad','secondary')),
       stats(),sectionHeading('En el foco','ACONTECIMIENTO DE LA PRÓXIMA JORNADA'),eventCard(upcoming),
       div('two-columns',steps,diary),div('leadline'),
       div('two-columns',
@@ -296,7 +386,8 @@
         section('panel',sectionHeading('Plan de juego','BONIFICACIONES'),tactics(),
           div('detail-block',label('REGLAS TRANSPARENTES'),
             para('footer-caption','Las habilidades aportan una base ficticia; la táctica suma 4 puntos a una especialidad y el capitán añade el 50 % de su subtotal.')),
-          navigate('Comparar estrategias','laboratorio'))));
+          navigate('Comparar estrategias','laboratorio'))),
+      scoutingPanel());
   }
   function dataTable(headers,rows){
     const table=e('table','',[
@@ -341,7 +432,9 @@
     return div('',pageHeader('CALENDARIO / OCHO SESIONES','Lo que ocurre importa.',
       'Cada jornada combina capacidades ficticias y un acontecimiento simulado. Participación, cooperación, implementación y recepción modifican el resultado de manera transparente.'),
       sectionHeading('Dossier de la jornada','HIPÓTESIS DE JUEGO · NO NOTICIA REAL'),eventCard(current),
-      feature,history);
+      div('tag-group agenda-inline-links',navigate('Explorar agenda','actualidad','secondary'),
+        navigate('Ajustar titulares','plantilla','secondary')),
+      finished?null:scoutingPanel(),feature,history);
   }
   function league(){
     const standings=E.leaderboard(state);
@@ -584,7 +677,7 @@
           div('leadline'),sectionHeading('Colección de insignias','LOGROS POR ACCIONES'),
           achievementList(E.ACHIEVEMENTS.length))));
   }
-  const views={inicio:home,mercado:market,plantilla:team,jornadas:rounds,
+  const views={inicio:home,actualidad:agenda,mercado:market,plantilla:team,jornadas:rounds,
     liga:league,partidos:parties,laboratorio:lab,perfil:profile};
   function render(){
     if(!E.validState(state)){state=E.newGame();persist();}
@@ -596,6 +689,11 @@
     $('page-title').textContent=PAGES[ui.page];
     document.querySelectorAll('.nav-link').forEach(n=>{
       const active=n.dataset.page===ui.page;n.classList.toggle('active',active);
+      if(active)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('.dock-link').forEach(n=>{
+      const active=n.dataset.page===ui.page;
+      n.classList.toggle('active',active);
       if(active)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');
     });
     $('page-content').replaceChildren(views[ui.page]());
@@ -631,6 +729,16 @@
         lineup:'Alineación guardada',captain:'Capitanía actualizada',
         tactic:'Táctica seleccionada',favorite:'Favoritos actualizados',
         round:'Jornada completada'})[op]);
+      if(op==='round')ui.agendaWeek=agendaLimit();
+    }else if(op==='agenda-prev'){
+      advanceAgenda(-1);
+    }else if(op==='agenda-next'){
+      advanceAgenda(1);
+    }else if(op==='agenda-week'){
+      const week=Number(id);
+      if(Number.isInteger(week)&&week>=1&&week<=agendaLimit()){
+        ui.agendaWeek=week;render();
+      }
     }else if(op==='labtab'){
       if(['panorama','territorios','economia','politicas','fuentes','fantasy'].includes(id)){
         ui.labView=id;render();
@@ -715,8 +823,26 @@
     if(ev.target.id==='dialog-backdrop')closeDialog();
   });
   document.addEventListener('keydown',ev=>{
+    if(ui.page==='actualidad'&&ev.target.closest?.('[data-agenda-carousel]')&&
+        ['ArrowLeft','ArrowRight'].includes(ev.key)){
+      ev.preventDefault();advanceAgenda(ev.key==='ArrowLeft'?-1:1);return;
+    }
     if(ev.key==='Escape'&&!$('dialog-backdrop').hidden)closeDialog();
   });
+  let touchOrigin=null;
+  document.addEventListener('touchstart',ev=>{
+    const target=ev.target.closest?.('[data-agenda-carousel]');
+    const touch=ev.touches[0];
+    touchOrigin=ui.page==='actualidad'&&target&&touch?
+      {x:touch.clientX,y:touch.clientY}:null;
+  },{passive:true});
+  document.addEventListener('touchend',ev=>{
+    const touch=ev.changedTouches[0],start=touchOrigin;touchOrigin=null;
+    if(!start||!touch||ui.page!=='actualidad')return;
+    const dx=touch.clientX-start.x,dy=touch.clientY-start.y;
+    if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy)*1.4)
+      advanceAgenda(dx<0?1:-1);
+  },{passive:true});
   window.addEventListener('hashchange',()=>{
     if(PAGES[location.hash.slice(1)])go(location.hash.slice(1));
   });

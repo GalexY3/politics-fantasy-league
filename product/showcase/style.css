@@ -236,3 +236,87 @@ td{font-size:12px;border-bottom:1px solid var(--line);padding:14px 13px}tbody tr
 @media(max-width:750px){.real-metrics,.real-briefing .real-metrics{grid-template-columns:1fr}}
 @media(max-width:1100px){.lab-topic-grid,.territory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-hero-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.event-card{grid-template-columns:68px minmax(0,1fr);padding:12px;gap:10px}.event-art{min-height:70px}.event-art span{font-size:35px}.event-copy h3{font-size:19px}.event-meta .tag{font-size:8px}.lab-topic-grid,.events-grid,.source-grid,.policy-steps{grid-template-columns:1fr}.lab-tabs{gap:2px}.lab-tab{padding:10px}.heraldry-editor{grid-template-columns:1fr}.heraldry-display{margin:auto}.news-ticker .button{width:100%}.hero-main .hero-illustration{right:-65px;bottom:-20px;opacity:.17}}
+
+/* V0.3 — mobile interaction + transparent event scouting (fiction only). */
+.agenda-progress{border:1px solid var(--line);background:var(--surface);padding:22px;margin-bottom:18px}
+.agenda-week-list{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;margin-top:15px}
+.agenda-week{min-width:0;display:grid;gap:7px;justify-items:start;text-align:left;
+  padding:12px 9px;border:1px solid var(--line-2);background:var(--surface-2);
+  color:var(--ink);font-weight:800;font-size:12px}
+.agenda-week-status{font-size:8px;color:var(--muted);font-weight:700;letter-spacing:.03em}
+.agenda-week.active{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent)}
+.agenda-week.locked{opacity:.38;filter:grayscale(.5)}
+.agenda-carousel{margin-bottom:24px}
+.agenda-control{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.agenda-actions{display:flex;align-items:center;gap:9px}
+.agenda-counter{font-family:Georgia,serif;font-size:16px;color:var(--accent);white-space:nowrap}
+.agenda-gesture{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(260px,.82fr);
+  border:1px solid var(--line);background:var(--surface);min-width:0;touch-action:pan-y;outline-offset:4px}
+.agenda-gesture .event-card{border:0;box-shadow:none;min-width:0;margin:0}
+.agenda-detail{border-left:1px solid var(--line);padding:30px;display:flex;flex-direction:column;gap:12px}
+.agenda-detail h3{font:400 27px/1.2 Georgia,serif;margin:6px 0}
+.agenda-detail>p{font-size:12px;line-height:1.7;color:var(--ink-2)}
+.agenda-tagline{display:flex;flex-wrap:wrap;gap:5px}
+.agenda-facts{display:grid;gap:11px;margin-top:5px}
+.agenda-facts>div{border-top:1px solid var(--line);padding-top:11px;display:grid;gap:5px}
+.agenda-facts strong{font-size:13px}
+.agenda-hint{color:var(--muted);font-size:11px;margin:10px 0}
+.agenda-next-cta{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 25px}
+.agenda-inline-links{margin:-5px 0 24px}
+.scout-panel{margin:24px 0}
+.scout-heading{display:flex;gap:18px;justify-content:space-between;align-items:center;margin:13px 0 21px}
+.scout-heading h3{font:400 26px Georgia,serif;margin:11px 0}
+.scout-heading .footer-caption{margin:0;max-width:680px}
+.scout-total{border:1px solid var(--line-2);color:var(--accent);padding:10px 12px;
+  font-size:11px;font-weight:800;max-width:210px;flex-shrink:0}
+.scout-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.scout-row{display:grid;grid-template-columns:30px minmax(0,1fr) 65px 40px;gap:9px;
+  align-items:center;border:1px solid var(--line);background:var(--surface-2);padding:12px}
+.scout-mark{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line-2);
+  color:var(--accent);font:400 19px Georgia,serif}
+.scout-person strong,.scout-person span{display:block;line-height:1.4}
+.scout-person strong{font-size:11px}.scout-person span{font-size:9px;color:var(--muted)}
+.scout-meter{height:5px;background:var(--line);width:100%}
+.scout-fill{height:100%;background:var(--accent)}
+.scout-value{font:400 19px Georgia,serif;color:var(--accent);text-align:right}
+.scout-tactics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:18px}
+.scout-tactic{border:1px solid var(--line-2);padding:15px 13px;background:var(--surface-2);
+  color:var(--ink);text-align:left;display:grid;gap:7px}
+.scout-tactic strong{font-size:12px}.scout-tactic>span{font-size:10px;color:var(--muted)}
+.scout-tactic .scout-choice{font-size:9px;color:var(--accent);font-weight:800;letter-spacing:.06em}
+.scout-tactic.active{border-color:var(--accent);background:var(--accent-soft)}
+.mobile-dock{display:none}
+@media(max-width:1060px){
+ .agenda-week-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .agenda-gesture{grid-template-columns:1fr}
+ .agenda-detail{border-left:0;border-top:1px solid var(--line)}
+ .scout-rows{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ .app-shell{grid-template-columns:minmax(0,1fr)}
+ .sidebar{min-width:0;max-width:100%;overflow:hidden}
+ .sidebar .nav-list{min-width:0;max-width:100%;overflow-x:auto}
+ .app-shell{padding-bottom:calc(73px + env(safe-area-inset-bottom,0px))}
+ .mobile-dock{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;
+   bottom:0;left:0;right:0;z-index:49;min-height:64px;
+   padding:5px max(5px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px));
+   background:var(--nav);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.16)}
+ .dock-link{color:var(--ink-2);border:0;border-radius:4px;background:transparent;
+   display:grid;justify-items:center;align-content:center;gap:1px;font-size:10px;font-weight:700;min-height:49px}
+ .dock-link span{font-size:20px;line-height:1.2}
+ .dock-link.active{color:var(--accent);background:var(--accent-soft)}
+ .agenda-week-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .agenda-progress{padding:14px}.agenda-week{min-height:54px;padding:10px 7px}
+ .agenda-control{display:grid}.agenda-actions{justify-content:space-between}
+ .agenda-gesture .event-card{grid-template-columns:1fr;padding:0}
+ .agenda-gesture .event-art{min-height:160px}.agenda-gesture .event-art img{max-height:190px}
+ .agenda-gesture .event-copy{padding:18px}.agenda-detail{padding:18px}
+ .scout-panel{padding:17px}.scout-heading{display:grid;gap:11px}
+ .scout-total{max-width:none;text-align:center}
+ .scout-tactics{grid-template-columns:1fr}
+ .scout-row{grid-template-columns:28px minmax(0,1fr) 50px 34px}
+ .agenda-next-cta .button{flex:1}
+}
+@media(prefers-reduced-motion:reduce){
+ .agenda-gesture,.agenda-week,.scout-tactic,.dock-link{transition:none!important}
+}

@@ -1,4 +1,14 @@
-# Política Fantasy España · Edición de muestra v0.2 — verificación y relevo
+# Política Fantasy España · Edición de muestra v0.3 — verificación y relevo
+
+## Adenda v0.3 — interacción móvil y scouting ficticio
+
+Checkout separado basado en la PR #15 DRAFT y sin reemplazo de v0.2 ni escritura en el repositorio protegido. Se añadió la novena ruta Agenda, con cronología de ocho escenarios inventados, bloqueo visible de episodios futuros, navegación de ratón, botones, teclado y gesto horizontal de pantalla táctil. Incluye un menú fijo de cinco accesos rápidos para móvil. La nueva función pura del motor scouting(state) compara afinidades tácticas y bonificación de evento de los titulares y permite cambiar táctica sin consumir una ronda. El programa no muestra un marcador total de futuro, y la bonificación de evento es comprobable a posteriori en el acta. Los favoritos políticos nunca alteran resultados.
+
+**Validación focal:** 21/21 pruebas Node PASS, incluido test_showcase_scout.mjs (cinco nuevos tests) y la suite previa de 16; JavaScript sintaxis PASS; Chrome/CDP E2E completo SHOWCASE_BROWSER_E2E_PASS con nueve secciones, visibilidad de bloqueo, desbloqueo de J2 al celebrar J1, vuelta atrás sin recálculo, swipe sintético en dispositivo emulado, menú inferior, y 390 CSS px sin desbordamiento de página en Inicio/Agenda/Laboratorio. Se detectó y corrigió primero un mínimo de ancho de la navegación expandida de nueve rutas; la última ejecución posterior ya pasa. Capturas de pantalla en el directorio QA local externo PFL-showcase-v03-qa-20261031, incluidas browser-desktop-agenda.png y browser-mobile-agenda.png, inspeccionadas visualmente.
+
+**Límites:** los acontecimientos, actores, recepciones y bonificaciones son íntegramente ficticios; la agenda NO es un feed informativo ni representa resultados sociológicos. El módulo INE real sigue siendo una captura documental manual fechada, no actualización en tiempo real. Sin ligas multijugador, sesiones remotas, puntuaciones de personas o políticos reales, lectura de originales privados, despliegue ni aceptación de usuarios externos. El estudio de datos y de R5 sigue una rama metodológica independiente. No se contabiliza este trabajo de producto como ciclo científico AB.
+
+---
 
 **31 de octubre de 2026.** Tipo: frontend autónomo para enseñar el producto, no despliegue público ni validación científica.
 

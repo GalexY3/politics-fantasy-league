@@ -42,9 +42,9 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `operations` | 71 | Herramientas, configuración y operación local |
 | `reference` | 70 | Manuales, contratos y referencias |
 | `research` | 1826 | Preguntas, campañas, análisis y resultados de investigación |
-| `runtime` | 114 | Aplicación, reglas y almacenamiento del prototipo |
+| `runtime` | 115 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 119 | Expedientes y resultados de ejecución |
-| `verification` | 170 | Pruebas y ejecutores de comprobación |
+| `verification` | 171 | Pruebas y ejecutores de comprobación |
 
 ## Dónde guardar trabajo nuevo
 
