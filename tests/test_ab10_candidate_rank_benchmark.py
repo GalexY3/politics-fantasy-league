@@ -105,3 +105,12 @@ def test_stratum_loss_and_any_missing_holdout_force_failure():
     assert decision(rows)["h1_predeclared_threshold_met"] is False
     with pytest.raises(BenchmarkError, match="CONFIRMATION_SEEDS_INVALID"):
         decision(rows[:2])
+
+
+def test_repaired_absolute_stratum_floor_blocks_concentrated_success():
+    previous = {"reordered": 0.0, "abbreviated": 0.0, "stable": 1.0}
+    improved = {"reordered": 0.0, "abbreviated": 0.0, "stable": 1.0}
+    rows = tuple(_fake(s, 0.0, 0.60, 0.55, previous, improved)
+                 for s in CONFIRMATION_SEEDS)
+    assert decision(rows)["per_seed_per_stratum_absolute_floor"] is False
+    assert decision(rows)["h1_predeclared_threshold_met"] is False

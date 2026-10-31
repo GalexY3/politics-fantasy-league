@@ -128,6 +128,21 @@ def weighted_jaccard(a: frozenset[str], b: frozenset[str],
     return numerator / denominator
 
 
+def rare_token_score(query: frozenset[str], candidate: frozenset[str],
+                     weights: dict[str, float]) -> float:
+    """Prospective post-exploration PIVOT: reward rare shared terms.
+
+    Uses candidate-corpus document frequency only; never true pair IDs, rank,
+    ministry/outcome, or future labels. The fallback is fixed before holdout.
+    """
+    rare = {word: value for word, value in weights.items() if value >= 2.0}
+    if not rare:
+        rare = weights
+    q = frozenset(word for word in query if word in rare)
+    c = frozenset(word for word in candidate if word in rare)
+    return weighted_jaccard(q, c, rare)
+
+
 def rank_three(title: str, candidate_titles: tuple[str, ...],
                *, algorithm: str) -> tuple[int, ...]:
     if (type(candidate_titles) is not tuple
@@ -149,7 +164,7 @@ def rank_three(title: str, candidate_titles: tuple[str, ...],
         if algorithm == "B0_SEQUENCE":
             score = seq
         elif algorithm == "B1_IDF":
-            score = 0.9 * weighted_jaccard(query_tokens, tokens, weights) + 0.1 * seq
+            score = 0.95 * rare_token_score(query_tokens, tokens, weights) + 0.05 * seq
         else:
             score = weighted_jaccard(query_tokens, tokens, weights)
         scoring.append((score, j))
@@ -226,8 +241,14 @@ def decision(rows: tuple[dict, ...]) -> dict:
         >= x["results"]["B0_SEQUENCE"]["by_stratum_recall_at_3"][key] - 0.10
         for x in rows for key in strata
     )
+    absolute_stratum_floor = all(
+        x["results"]["B1_IDF"]["by_stratum_recall_at_3"][key] >= 0.55
+        for x in rows for key in strata
+    )
     avg = lambda xs: sum(xs) / len(xs)
-    h1 = avg(b1) - avg(b0) >= 0.05 and avg(b1) >= avg(b2) - 0.02 and stratum_ok
+    h1 = (avg(b1) - avg(b0) >= 0.05
+          and avg(b1) >= avg(b2) - 0.02
+          and stratum_ok and absolute_stratum_floor)
     return {
         "confirmatory_seeds": list(CONFIRMATION_SEEDS),
         "baseline_mean_recall_at_3": avg(b0),
@@ -235,6 +256,7 @@ def decision(rows: tuple[dict, ...]) -> dict:
         "unweighted_mean_recall_at_3": avg(b2),
         "weighted_minus_sequence": avg(b1) - avg(b0),
         "strata_noninferiority": stratum_ok,
+        "per_seed_per_stratum_absolute_floor": absolute_stratum_floor,
         "h1_predeclared_threshold_met": h1,
         "AB_decide": "READY_REVIEW_SYNTHETIC_PRODUCT_ONLY" if h1 else "STOP_OR_PIVOT",
         "external_replication_verified": False, "R5": "STOP",
