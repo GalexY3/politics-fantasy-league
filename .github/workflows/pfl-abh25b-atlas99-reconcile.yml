@@ -1,0 +1,25 @@
+name: PFL ABH25B Atlas99 append-only reconciliation digest
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-atlas99-reconcile.yml
+permissions:
+  contents: read
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Replay canonical Atlas99 (including seven backfilled receipts)
+        run: |
+          python tools/ab_atlas/atlas_delta.py check --base ab_atlas/seed.json --updates ab_atlas/updates
+          python tools/ab_atlas/atlas_delta.py brief --base ab_atlas/seed.json --updates ab_atlas/updates --limit 1
+      - name: Check generated canonical catalogue
+        run: python scripts/project_index.py check

@@ -1,0 +1,123 @@
+{
+  "schema": "pfl.abh25b.product_insights_run_receipt.v1",
+  "campaign": "ABH25B",
+  "mode": "AB-P",
+  "status": "TEN_DISTINCT_NEW_FICTIONAL_USER_VISIBLE_CAPABILITIES_EXECUTED",
+  "prereg": {
+    "path": "research/ABH25B_20261030/C17_C26_PREREG_AJ.json",
+    "commit": "beb9881f500d2d782e31689e11861cac9a8fc437"
+  },
+  "code": {
+    "insights_module": "src/politics_fantasy/insights.py",
+    "module_frozen_commit": "7db0f5cd6a9e0628deeda84caa52395c8bb363d8",
+    "integration_commit": "eb8eba19d981e3aa7218e913827da0f57f74611a",
+    "frontend_commit": "ddc7fd7515894a127ed02ac17a8089fd05cbf7be",
+    "tests_commit": "9392367ffb8cfda5a70512d91f276dd6a79eb6ad",
+    "ui_tests_commit": "c6f1a3e90280e5e775c2ad329d199e3b3fe17100"
+  },
+  "run": {
+    "url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41105541770",
+    "id": 41105541770,
+    "job_id": 124234234568,
+    "conclusion": "success",
+    "python_new_tests": 10,
+    "node_new_ui_tests": 2,
+    "node_old_ui_regressions": 2,
+    "frontend_syntax": "PASS"
+  },
+  "cycles": [
+    {
+      "cycle": "ABH25B-C17",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c17_*",
+      "description": "Cash plus fictional holdings at fixed prices; no currency conversion or asset appreciation",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C18",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c18_*",
+      "description": "Available affordable acquisition set under credits, ownership and 5-figure roster limit",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C19",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c19_*",
+      "description": "Normalized Shannon diversity of fictional roles with empty/single-role controls",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C20",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c20_*",
+      "description": "HHI concentration of assigned fictional groups, not actual elite influence",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C21",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c21_*",
+      "description": "Saved starter price vs bench book value, not predicted points",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C22",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c22_*",
+      "description": "Signed bounded observed trade cash flow, no reconstructed initial wallet",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C23",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c23_*",
+      "description": "Repeated trading of the same fictional asset within a capped ledger, not all-time turnover",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C24",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c24_*",
+      "description": "Lineup readiness from current locked/pending round and exactly three owned starters",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C25",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c25_*",
+      "description": "Mean among settled scored rounds only; unknown/null excluded rather than zero-imputed",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    },
+    {
+      "cycle": "ABH25B-C26",
+      "status": "VALID_LIMITED_NEW_PRODUCT_CAPABILITY",
+      "test": "test_c26_*",
+      "description": "Concentration HHI among frozen per-figure settled point receipts, unavailable without provenance",
+      "science_grade": "0/3",
+      "human_acceptance": false
+    }
+  ],
+  "limits": [
+    "All data synthetic fictional; no real politician or institutional event scored",
+    "The ten metrics are arithmetic views of one existing fictional dataset, not ten new empirical studies",
+    "Single account state is already auth-scoped and only accessed in authenticated session (existing server test coverage); new tests compare fabricated fixtures",
+    "No human browser acceptance, product deployment or usability validation",
+    "No scientific CT2 promotion; 0/6 launch gates"
+  ],
+  "scientific_CT2_ordinal": 20,
+  "N1N2N3": [
+    0,
+    0,
+    0
+  ]
+}

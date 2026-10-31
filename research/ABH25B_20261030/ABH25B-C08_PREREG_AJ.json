@@ -1,0 +1,16 @@
+{
+  "cycle": "C08",
+  "mode": "AB-R",
+  "A": "In a prespecified page of currently under-consideration Scottish petitions, do opening and consideration timestamps enable positive lower bounds on still-open case ages without implying closure?",
+  "B": "H1: open dates are present and ages nonnegative at frozen as-of cutoff; H0: missing/implausible/changed schema; rival: state filtering may not preserve under_consideration.",
+  "C": "One fixed `state=under_consideration&page=5` Scottish official JSON request, 1MB max; aggregate date presence and age at 2026-10-30T00:00:00Z. No person details.",
+  "D": "A-J and Python code + 4 synthetic guards frozen before page; no adaptively changing page.",
+  "E": "One original read in GitHub CI, SHA256 receipt, page count.",
+  "F": "This is right-censored; lower-bound age not observed closure duration. Negative future and date-null cases explicit.",
+  "G": "Compare conceptually closed C06 selection only, cannot estimate population hazard or use as independent randomly sampled cohorts.",
+  "H": "Prior about right censoring and per-source lifecycle, 0/3.",
+  "I": "CT2 unchanged, no causal/generalizable rates.",
+  "J": "Count one bounded original source cycle only after guarded successful read.",
+  "status": "PRE_OUTCOME_PRE_CODE",
+  "authorization": "PFL-ABH25B-20261030"
+}

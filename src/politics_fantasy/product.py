@@ -80,6 +80,12 @@ CREATE TABLE IF NOT EXISTS round_settlement_score(
   round_id TEXT NOT NULL REFERENCES round_settlement(round_id),
   club_id TEXT NOT NULL REFERENCES club(id), score REAL,
   PRIMARY KEY(round_id,club_id));
+CREATE TABLE IF NOT EXISTS round_settlement_component(
+  round_id TEXT NOT NULL REFERENCES round_settlement(round_id),
+  club_id TEXT NOT NULL REFERENCES club(id),
+  figure_id TEXT NOT NULL REFERENCES figure(id),
+  points REAL NOT NULL CHECK(points>=0),
+  PRIMARY KEY(round_id,club_id,figure_id));
 """
 
 
@@ -335,12 +341,30 @@ def simulate_round(path: Path, *, round_id: str, when: datetime | None = None) -
             db.execute('INSERT INTO round_settlement VALUES(?,?,?,?)',
                        (round_id, next_id, stamp(cutoff), DEMO_RULE.version))
             updated = _get(db, 'fantasy_round', round_id)
+            # Existing account stores lack this table; create it only during
+            # explicit settlement, never during GET/state reads.
+            db.execute("""CREATE TABLE IF NOT EXISTS round_settlement_component(
+                round_id TEXT NOT NULL REFERENCES round_settlement(round_id),
+                club_id TEXT NOT NULL REFERENCES club(id),
+                figure_id TEXT NOT NULL REFERENCES figure(id),
+                points REAL NOT NULL CHECK(points>=0),
+                PRIMARY KEY(round_id,club_id,figure_id))""")
             for club in db.execute('SELECT id FROM club').fetchall():
                 figures = [row[0] for row in db.execute(
                     'SELECT figure_id FROM lineup WHERE round_id=? AND club_id=? ORDER BY figure_id',
                     (round_id, club['id']))]
                 score = _round_score(db, updated, figures, now=cutoff) if len(figures) == LINEUP_SIZE else None
                 db.execute('INSERT INTO round_settlement_score VALUES(?,?,?)', (round_id, club['id'], score))
+                if score is not None:
+                    components = [(fig, _round_score(db, updated, [fig], now=cutoff)) for fig in figures]
+                    if (any(points is None for _, points in components)
+                            or not math.isclose(sum(points for _, points in components),
+                                                score, abs_tol=1e-9)):
+                        raise GameError('SCORE_COMPONENT_MISMATCH',
+                                        'Desglose ficticio inconsistente; no cerrar.', 409)
+                    db.executemany(
+                        'INSERT INTO round_settlement_component VALUES(?,?,?,?)',
+                        [(round_id, club['id'], fig, points) for fig, points in components])
             db.execute('COMMIT')
             return {'round_id': round_id, 'next_round_id': next_id, 'settled_at': stamp(cutoff),
                     'already_settled': False}
@@ -356,10 +380,16 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
         figures=[dict(x) for x in db.execute('SELECT f.*,o.club_id AS owner_id FROM figure f LEFT JOIN ownership o ON o.figure_id=f.id ORDER BY f.id')]
         clubs=[dict(c) for c in db.execute('SELECT * FROM club ORDER BY name')]
         rounds=[]
+        has_components = bool(db.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='round_settlement_component'"
+        ).fetchone())
         for r in db.execute('SELECT * FROM fantasy_round ORDER BY starts_at'):
             rr=dict(r)
             rr['lineups']={}
             rr['scores']={}
+            rr['score_details']={}
+            rr['is_settled'] = bool(db.execute(
+                'SELECT 1 FROM round_settlement WHERE round_id=?', (r['id'],)).fetchone())
             for club in clubs:
                 selection=[x[0] for x in db.execute('SELECT figure_id FROM lineup WHERE club_id=? AND round_id=? ORDER BY figure_id',(club['id'],r['id']))]
                 rr['lineups'][club['id']]=selection
@@ -368,8 +398,62 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
                 settled = db.execute('SELECT 1 FROM round_settlement WHERE round_id=?', (r['id'],)).fetchone()
                 rr['scores'][club['id']] = (frozen['score'] if frozen else None) if settled else (
                     _round_score(db,r,selection,now=now) if len(selection)==LINEUP_SIZE else None)
+                detail = {'status':'NOT_SETTLED', 'components':[]}
+                if settled:
+                    if frozen is None or frozen['score'] is None:
+                        detail['status'] = 'NO_VALID_LINEUP'
+                    elif not has_components:
+                        detail['status'] = 'LEGACY_UNAVAILABLE'
+                    else:
+                        parts = [dict(x) for x in db.execute(
+                            'SELECT figure_id,points FROM round_settlement_component '
+                            'WHERE round_id=? AND club_id=? ORDER BY figure_id',
+                            (r['id'], club['id']))]
+                        if not parts:
+                            detail['status'] = 'LEGACY_UNAVAILABLE'
+                        elif (len(parts) != LINEUP_SIZE or
+                              not math.isclose(sum(p['points'] for p in parts),
+                                               frozen['score'], abs_tol=1e-9)):
+                            raise GameError('SCORE_COMPONENT_INTEGRITY',
+                                            'Desglose ficticio almacenado inconsistente.', 500)
+                        else:
+                            detail = {'status':'FROZEN_COMPONENTS', 'components':parts,
+                                      'rule_version': db.execute(
+                                          'SELECT rule_version FROM round_settlement WHERE round_id=?',
+                                          (r['id'],)).fetchone()[0]}
+                rr['score_details'][club['id']] = detail
             rr['is_locked']=now >= as_utc(r['lock_at'])
             rounds.append(rr)
+        # Season classifications use only frozen, settled scores. Historical
+        # fixtures and missing lineups never become implicit zeros.
+        settled_rounds = [round_info for round_info in rounds if round_info['is_settled']]
+        season_standings = []
+        for club in clubs:
+            observations = [round_info['scores'][club['id']] for round_info in settled_rounds]
+            valid = [points for points in observations if points is not None]
+            missing = len(observations) - len(valid)
+            status = ('NO_SETTLED_ROUNDS' if not observations else
+                      'INCOMPLETE_COVERAGE' if missing else 'RANKED')
+            season_standings.append({
+                'club_id':club['id'], 'club_name':club['name'],
+                'total_points':sum(valid) if status=='RANKED' else None,
+                'observed_points_lower_bound':sum(valid),
+                'rounds_scored':len(valid),'rounds_unknown':missing,
+                'rounds_settled':len(observations),
+                'status':status,'rank':None})
+        season_standings.sort(key=lambda row:(
+            row['status']!='RANKED',
+            -(row['total_points'] if row['total_points'] is not None else -1),
+            row['club_name'].casefold(),row['club_id']))
+        previous_points = None
+        previous_rank = 0
+        for position,entry in enumerate(season_standings,1):
+            if entry['status']!='RANKED':
+                break
+            if previous_points is None or entry['total_points'] != previous_points:
+                previous_rank = position
+            entry['rank'] = previous_rank
+            previous_points = entry['total_points']
         trades=[dict(x) for x in db.execute('SELECT * FROM trade ORDER BY id DESC LIMIT 40')]
     observatory={'status':'SOURCE_NOT_LOADED','votes':[], 'provenance':None}
     if pilot_csv and pilot_csv.is_file():
@@ -395,11 +479,14 @@ def state(path: Path, *, pilot_csv: Path | None = None, when: datetime | None = 
                          'provenance':'Congreso, sesión plenaria 193 (2026-07-23); transcripción manual de recuentos; SIN DETALLE NOMINAL'}
         except (OSError, UnicodeError, ValueError, TypeError, KeyError, csv.Error):
             observatory={'status':'MANUAL_AGGREGATE_INVALID','votes':[], 'provenance':None}
-    return {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
+    result = {'app':'Politics Fantasy League','version':'0.2.0-product-demo',
             'mode':DATA_PROVENANCE, 'authentication':'NONE_LOCAL_LOOPBACK_ONLY',
             'scoring_rule':DEMO_RULE.version,'roster_limit':MAX_OWNED,'lineup_size':LINEUP_SIZE,
-            'figures':figures,'clubs':clubs,'rounds':rounds,'trades':trades,
+            'figures':figures,'clubs':clubs,'rounds':rounds,'season_standings':season_standings,'trades':trades,
             'demo_clock': {'now':stamp(now), 'offset_seconds':clock_offset[0] if clock_offset else 0,
                            'simulated':bool(clock_offset and clock_offset[0])},
             'observatory':observatory,
             'research_status':'NO_REAL_INDIVIDUAL_PLAYER_SCORING_OR_PREDICTIONS'}
+    from .insights import derive_all
+    result['insights'] = derive_all(result)
+    return result

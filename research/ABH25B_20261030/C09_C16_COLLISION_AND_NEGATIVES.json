@@ -1,0 +1,41 @@
+{
+  "schema": "pfl.abh25b.id_collision_adjudication.v1",
+  "status": "RECONCILED_WITHOUT_OVERWRITING_PRIOR_EVIDENCE",
+  "details": "Preexisting C10 and C11 contracts and valid UK original runs had not been registered in campaign ledger, but their original receipts were already present. New batch C09–C16 independently froze Welsh C10/C11 questions before results and produced original pages. Those are renamed C10W and C11W for the ledger (only the identifiers change after results; hypotheses, URLs and code were not changed). C13 and C16 new pages repeat the previously executed UK C11 debate and C10 rejected mechanisms: retain original hashes in a supplemental noncycle audit, DO NOT charge them again.",
+  "verified_preexisting": {
+    "C10": {
+      "focus": "UK rejected: rejection is not governmental response",
+      "run_id": 41087910108,
+      "original_receipt": "C10_RUN_RECEIPT.json"
+    },
+    "C11": {
+      "focus": "UK 100k eligibility not same as debate outcome",
+      "run_id": 41087910108,
+      "original_receipt": "C11_RUN_RECEIPT.json"
+    }
+  },
+  "new_frozen_batch": {
+    "prereg_commit": "48c183dcee3d1a2fec30c6733f4ff76ee6d263c0",
+    "source_commit": "42e6b300f64480de71e845027eb63064d44bd488",
+    "run_id": 41104809526
+  },
+  "noncycle_supporting_original_pages": {
+    "C13": {
+      "source_sha256": "5705f5d81c9aeb93ad420f18b72d96a96d606646beb173603151e6f2ae792e5b",
+      "n": 25,
+      "reason": "Same 100k debate contrast as preexisting C11; overlap same page3"
+    },
+    "C16": {
+      "source_sha256": "94cdd93e926a5929032365e8d888d314b49dc7aed04061e430234922156ca0f1",
+      "n": 25,
+      "reason": "Same UK rejection vs response contrast as preexisting C10; another page not independent new mechanism"
+    }
+  },
+  "additional_noncycle": {
+    "C14": {
+      "source": "Scottish under_consideration page12",
+      "status": "EMPTY_OR_OVERSIZED_PAGE",
+      "reason": "No original eligible rows; pivot to geographically distinct C14B"
+    }
+  }
+}

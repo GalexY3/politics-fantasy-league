@@ -1,3 +1,23 @@
+# PFL · continuidad ABH25B, 30/10/2026
+
+**IDEAS ABIERTAS DEL PROMOTOR (31/10/2026):** [Banco de ideas científicas](docs/BANCO_DE_IDEAS_CIENTIFICAS_PFL_20261031.md). Prioridad dual: explicar mecanismos de la política española y evaluar transparencia, rendición de cuentas y resultados; ampliar a grandes empresas y relaciones político-económicas. Estado: propuesta, no scope aprobado, no evidencia científica ni ciclos AB. No olvidar al planificar el TFM o futuros pivotes.
+
+**Estado canónico de esta rama:** `PROJECT_STATE.json` rev. 16; [PR #4](https://github.com/GalexY3/politics-fantasy-league/pull/4) en borrador, apilada sobre [PR #3](https://github.com/GalexY3/politics-fantasy-league/pull/3), ambas SIN fusionar a main. Base principal al comenzar: `653604358183b59e8c0446497f47ff4a3769134f`. Trabajar desde SHA remoto actual, no desde esta nota.
+
+**Autorización independiente ABH25B:** 25/25 ejecuciones de alcance limitado, 0 restantes, 2 pruebas previas inválidas y una vía de planificación bloqueada; ledger [AUTHORIZATION.json](research/ABH25B_20261030/AUTHORIZATION.json), informe [FINAL_REPORT.md](research/ABH25B_20261030/FINAL_REPORT.md). **No hay 25 descubrimientos empíricos**. Históricos ABH25 (25/25), READ5-CONTINUE15 (15 restantes), ABH10 (4), INTEGRATION10 (10), STOP_R5 histórico (2) separados e intactos. Se reconciliaron C10/C11 originales previamente ejecutados y C10W/C11W galeses; páginas redundantes C13/C16 NO contadas. C02 Canadá HTML no válido; C14 Escocia página vacía, reemplazada por C14B espacial.
+
+**AB-R (12):** registros originales UK/Wales/Scotland sobre moderación, umbrales, remisión, respuesta, debate, duración y censura; la distribución territorial de una única petición es agregado por circunscripción, NO apoyo de diputados ni tasa de población. No hay causalidad, estimación nacional representativa ni publicación primera fecha auditada. Priors PF-BR85–88 y O7 actualizados.
+
+**AB-P (13):** desglose congelado, clasificación acumulada, historial de transacciones y 10 indicadores nuevos de economía/plantilla ficticias visibles en la UI; [Actions #41105541770](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41105541770) 10 Python +2 Node nuevos PASS. P1 sigue READY_REVIEW, aceptación humana pendiente. No puntuar políticos reales ni publicar servicio.
+
+**Atlas:** lote 0098, 98 lotes, 63 nodos, 81 aristas, 355 ejecuciones, 51 complaints; SHA `ca0bae27ec478a8a204a2bc3469540f806a8cdc4af36dba59c8d568cb6d4de75`, reproducido en [Actions #41107410073](https://github.com/GalexY3/politics-fantasy-league/actions/runs/41107410073) junto con índice de **2997** archivos. CT2 científico 20/100 ordinal, N1/N2/N3 cero, 0/6 puertas de lanzamiento. **Suite completa de nueva rama aún pendiente**: no extrapolar la suite verde de la anterior PR #3.
+
+**Siguiente tarea concreta:** [revisión humana de P1 y nueva prueba de fuentes institucionales](tareas_codex/TASK_PFL_ABH25B_REVIEW_20261030.md). Exigir marco de muestreo con capturas versionadas y resultados diferenciables; no repetir exploraciones de páginas por agotamiento de cupo.
+
+---
+
+## Archivo del handoff anterior ABH25
+
 # PFL · handoff de cierre ABH25 · 30/10/2026
 
 Repositorio independiente: `GalexY3/politics-fantasy-league`. Rama: `research/pfl-abh25-evidence-and-product-20261030`, [PR #3](https://github.com/GalexY3/politics-fantasy-league/pull/3), **draft, no fusionada**. Base canónica de `main` al inicio: `653604358183b59e8c0446497f47ff4a3769134f`. El HEAD cambia con nuevas revisiones: comprobarlo directamente.

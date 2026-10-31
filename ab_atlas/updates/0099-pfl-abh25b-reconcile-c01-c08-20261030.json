@@ -1,0 +1,122 @@
+{
+  "schema": "ab.atlas.delta.v1",
+  "batch_id": "0099-PFL-ABH25B-RECONCILE-C01-C08-20261030",
+  "parent_batch": "0098-PFL-ABH25B-C09-C26-20261030",
+  "at": "2026-10-30T18:36:27.846Z",
+  "actor": "chatgpt",
+  "reason": "BACKFILL EXPLICIT: first seven ABH25B executed cycles C01,C03-C08 were preserved in source and grant ledger but omitted from Atlas0098. Append-only reconciliation, NOT new executions or new cycle charges, no re-run, no causal promotion.",
+  "ops": [
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C01-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C01, recorded in original immutable receipt before Atlas0099. UK original 4 frozen pages 100 closed, 25 response pairs, descriptive sample",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C01_RUN_RECEIPT.json"
+        ],
+        "scope": "Limited original external institutional descriptive evidence, not causal nor representative",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C03-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C03, recorded in original immutable receipt before Atlas0099. New transactionally frozen fictional per-figure scorecard and UI",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C03_RUN_RECEIPT.json"
+        ],
+        "scope": "New fictional product functionality validated by Linux tests, not social science",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C04-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C04, recorded in original immutable receipt before Atlas0099. New cumulative settled-only ranks with incomplete-score protection",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C04_RUN_RECEIPT.json"
+        ],
+        "scope": "New fictional product functionality validated by Linux tests, not social science",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C05-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C05, recorded in original immutable receipt before Atlas0099. Scottish original closed page4 schema 15 records, response keys absent in page",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C05_RUN_RECEIPT.json"
+        ],
+        "scope": "Limited original external institutional descriptive evidence, not causal nor representative",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C06-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C06, recorded in original immutable receipt before Atlas0099. Original Scottish page9 closed-only opening-to-closure dates; 15 records, censored population cannot be inferred",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C06_RUN_RECEIPT.json"
+        ],
+        "scope": "Limited original external institutional descriptive evidence, not causal nor representative",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C07-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C07, recorded in original immutable receipt before Atlas0099. New filtered and persistent fictional transaction history shown in market",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C07_RUN_RECEIPT.json"
+        ],
+        "scope": "New fictional product functionality validated by Linux tests, not social science",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    },
+    {
+      "op": "run.add",
+      "run": {
+        "id": "PFL-ABH25B-C08-20261030",
+        "at": "2026-10-30T18:36:27.846Z",
+        "activity": "RETROSPECTIVE ATLAS RECONCILIATION — original bounded execution ABH25B-C08, recorded in original immutable receipt before Atlas0099. Scottish official under-consideration page5: 15 open cases, right-censored ages, median 127.57d",
+        "status": "completed",
+        "evidence": [
+          "research/ABH25B_20261030/C08_RUN_RECEIPT.json"
+        ],
+        "scope": "Limited original external institutional descriptive evidence, not causal nor representative",
+        "method_version": "AB3.2.1 O1–O7",
+        "scientific_grade": "0/3",
+        "release_gate_changes": 0
+      }
+    }
+  ]
+}

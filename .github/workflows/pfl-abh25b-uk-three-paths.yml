@@ -1,0 +1,39 @@
+name: PFL ABH25B three original UK institutional pathways
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_uk_lifecycle.py -v
+  official-open:
+    needs: synthetic-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: python research/ABH25B_20261030/c09_c11_uk_lifecycle.py 9
+  official-rejected:
+    needs: synthetic-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: python research/ABH25B_20261030/c09_c11_uk_lifecycle.py 10
+  official-debate:
+    needs: synthetic-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - run: python research/ABH25B_20261030/c09_c11_uk_lifecycle.py 11

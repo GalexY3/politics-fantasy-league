@@ -1,0 +1,39 @@
+{
+  "schema": "pfl.abh25b.uk_original_lifecycle_receipt.v1",
+  "cycle": "ABH25B-C10",
+  "mode": "AB-R",
+  "status": "VALID_LIMITED_ORIGINAL_UK_INSTITUTIONAL_MEASUREMENT",
+  "focus": "REJECTED_PETITION_ADMISSIBILITY_IS_NOT_GOVERNMENT_RESPONSE",
+  "prereg_commit": "356e3a1a1f417bb044e2a69f2775e0aaefc1ecd1",
+  "instrument_commit": "8a0c91a1a981f91b3af7c55d8c92922ce7614db9",
+  "controls_commit": "b413d768d463c26c8deee3a2ddecd7849149b658",
+  "run_id": 41087910108,
+  "job_id": 124173911051,
+  "selected_original_pages": [
+    {
+      "page": 4,
+      "sha": "996d51d31788307e29b6c3e5616642e7ea274471a86a6ae8bbe1cd0b3d2c3f76"
+    },
+    {
+      "page": 16,
+      "sha": "291a299d9296aa31a4351e06697e45fd077648284d6c2b659564391381b48ace"
+    }
+  ],
+  "aggregates": {
+    "n": 50,
+    "rejected_at": 50,
+    "rejection_object": 50,
+    "response_at": 0,
+    "petition_threshold_at": 0,
+    "closed_at": 0
+  },
+  "limitations": [
+    "Two fixed nonrandom sorted public API pages, no representative rate",
+    "Raw published field date not independently source-versioned",
+    "A missing timestamp is not proof the institution never acted",
+    "No causal or value judgement about persons, no identity/title export"
+  ],
+  "grade": "0/3",
+  "ct2_science": 20,
+  "launch_gates": "0/6"
+}

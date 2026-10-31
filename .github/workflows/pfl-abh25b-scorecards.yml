@@ -1,0 +1,51 @@
+name: PFL ABH25B empirical sources and product scorecards
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  product-scorecards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: C03 new transactional scorecard tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25b_scorecard.py -v
+      - name: New scorecard UI and escaping
+        run: node --test tests/test_abh25b_scorecard_ui.mjs
+      - name: CSP and frontend syntax regressions
+        run: |
+          node --check src/politics_fantasy/web/app.js
+          node --test tests/test_ui_vote_bars.mjs
+  official-uk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Six adversarial controls before original download
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_public_source_parsers.py -v
+      - name: Prospective fixed UK page sample, aggregate metadata only
+        run: python research/ABH25B_20261030/c01_uk_response_latency.py
+  official-canada:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Six adversarial controls before original download
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_public_source_parsers.py -v
+      - name: First official Canadian Commons petition XML read
+        run: python research/ABH25B_20261030/c02_canada_schema.py

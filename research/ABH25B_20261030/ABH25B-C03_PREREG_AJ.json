@@ -1,0 +1,23 @@
+{
+  "schema": "pfl.ab3.2.1.aj",
+  "cycle": "ABH25B-C03",
+  "status": "PRE_IMPLEMENTATION_PRE_OUTCOME",
+  "mode": "AB-P_NEW_PRODUCT_CAPABILITY",
+  "A": "Can a fictional league user inspect a durable per-figure contribution statement for every newly settled round, with exact score conservation, account isolation and explicit absence for legacy round data?",
+  "B": {
+    "H1": "After settlement, persisted detail sum equals frozen club score and remains stable across restart; legacy rounds explicitly no breakdown",
+    "H0": "Missing components, inconsistent totals, post-settlement recalculation drift, cross-account leak or misleading zero/unknown equivalence",
+    "rivals": [
+      "Existing total score state provides only numbers, no explanation",
+      "Recomputation after settlement can differ if rules/events mutate"
+    ]
+  },
+  "C": "New transactional component storage generated atomically at fictional settlement, state read-only breakdown; tests for exact scores, restart, no-lineup null, legacy without fabricated reconstruction and per-account isolation; UI renders only genuine components with synthetic caveat.",
+  "D": "Freeze Git implementation and tests before GitHub Actions outcomes; no real political data, no data export.",
+  "E": "CI Python whole focused suite + strict CSP Node checks, optionally full Linux after changes. Capture commit SHAs and results.",
+  "F": "Check deterministic per-round score preservation and missingness, unauthorized data inaccessible, no writing on GET.",
+  "G": "Compare against current round_settlement_score as frozen authority; if mismatch, fail closed rather than cosmetically matching.",
+  "H": "Product capability only, not social empirical discovery or release.",
+  "I": "P1 remains READY_REVIEW human; CT2 20, N1 N2 N3 0, release 0/6.",
+  "J": "Count bounded AB-P cycle only after new feature actually executes across endpoints and UI and adversarial controls. CI tests alone on existing unchanged code do not suffice."
+}

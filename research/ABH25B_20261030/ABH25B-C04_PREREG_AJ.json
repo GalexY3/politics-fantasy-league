@@ -1,0 +1,19 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.v1",
+  "cycle": "ABH25B-C04",
+  "mode": "AB-P_NEW_PRODUCT_CAPABILITY",
+  "status": "PRE_IMPLEMENTATION",
+  "A": "Can fictional clubs obtain a cumulative season classification built solely from atomically settled round scores, excluding unclosed and legacy recalculated scores, while showing incomplete participation as unknown rather than zero?",
+  "B": {
+    "H1": "Ranking gives stable tie ranks among clubs with equal complete settled coverage and does not rank missing-score clubs.",
+    "H0": "Pending/legacy scores, missing lineup or name ordering silently distort standings; restart recomputation changes results."
+  },
+  "C": "Add season_standings read-only API projection to per-account state; count settled, scored and unknown rounds, stable competition ranking; integrate competition UI; test no settlement, one incomplete, tie, multiple rounds and persistence.",
+  "D": "Freeze this A–J before modification, freeze source and tests before run. Only fictional accounts and data.",
+  "E": "GitHub Actions Python and Node focused tests, record SHA; full regression later.",
+  "F": "Null score != 0; no real politician ranking; tie deterministic and no account cross-data.",
+  "G": "Compare existing per-round scoreboard to cumulative new ranking; no inferred social participation.",
+  "H": "Product capability only.",
+  "I": "P1 still READY_REVIEW, no external/scientific grade improvement.",
+  "J": "Count only if new endpoint property, UI and negative controls execute successfully in CI."
+}

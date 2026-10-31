@@ -1,0 +1,24 @@
+name: PFL ABH25B original institution pages C09-C16
+on:
+  pull_request:
+    paths:
+      - .github/workflows/pfl-abh25b-c09-c16.yml
+permissions:
+  contents: read
+jobs:
+  site-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Four synthetic adversarial controls before original source reads
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_c09_c16_source_guards.py -v
+      - name: Exact eight preregistered page source requests and isolated negative results
+        run: PYTHONPATH=. python research/ABH25B_20261030/c09_c16_institutional_pages.py
+
+# Pre-source malformed fixture corrected; original fetch remains unopened.

@@ -1,0 +1,40 @@
+{
+  "schema": "pfl.abh25b.uk_original_lifecycle_receipt.v1",
+  "cycle": "ABH25B-C11",
+  "mode": "AB-R",
+  "status": "VALID_LIMITED_ORIGINAL_UK_INSTITUTIONAL_MEASUREMENT",
+  "focus": "100K_CONSIDERED_FOR_DEBATE_NOT_EQUAL_DOCUMENTED_DEBATE",
+  "prereg_commit": "8e8f38625fddf0993adfaa7a729022fb4e3691a6",
+  "instrument_commit": "8a0c91a1a981f91b3af7c55d8c92922ce7614db9",
+  "controls_commit": "b413d768d463c26c8deee3a2ddecd7849149b658",
+  "run_id": 41087910108,
+  "job_id": 124173910939,
+  "selected_original_pages": [
+    {
+      "page": 3,
+      "sha": "5705f5d81c9aeb93ad420f18b72d96a96d606646beb173603151e6f2ae792e5b"
+    },
+    {
+      "page": 5,
+      "sha": "f38e988d1d973d4a0f77d2fb98f4c7691b42cd0f4361fa08c78526088077a921"
+    }
+  ],
+  "aggregates": {
+    "n": 50,
+    "eligible_100k": 25,
+    "eligible_with_debate_outcome": 21,
+    "eligible_with_debate_schedule": 23,
+    "eligible_with_response_at": 25,
+    "eligible_without_outcome_date": 4,
+    "sub100k_with_debate": 0
+  },
+  "limitations": [
+    "Two fixed nonrandom sorted public API pages, no representative rate",
+    "Raw published field date not independently source-versioned",
+    "A missing timestamp is not proof the institution never acted",
+    "No causal or value judgement about persons, no identity/title export"
+  ],
+  "grade": "0/3",
+  "ct2_science": 20,
+  "launch_gates": "0/6"
+}

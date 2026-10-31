@@ -112,6 +112,24 @@
       "url": "https://github.com/forecastingresearch/forecastbench-datasets",
       "support": "Immutable upstream original commit and four holdout blob SHA checks; 2×500 real event questions, 60 valid filtered market probabilities, 500 invalid semantic nonprobability question records",
       "limit": "Source questions heterogeneous including raw count/numeric forecasts, public aggregate market p not PFL prediction; inherited rights for text must be checked before public reproduction."
+    },
+    {
+      "kind": "Original Welsh Senedd petitions JSON with distinct state and referral events",
+      "url": "https://petitions.senedd.wales/petitions.json?state=all&page=1",
+      "support": "Official JSON sourced in GitHub Actions #41104809526, 50 petition records on fixed all-state page; SHA256 3d786d49536bd81acf82b6eacc406fbaf8ff98b14c085295f39aff5acfc7b9ba; other stage-filtered pages frozen, hashes in original receipts.",
+      "limit": "Nonrandom page and separate filter/status; no causal or universal stage rates, no personally identifying petition data copied."
+    },
+    {
+      "kind": "Original UK Parliament petition detail per constituency",
+      "url": "https://petition.parliament.uk/petitions.json?state=closed&page=3",
+      "support": "Single petition selected by minimum numeric ID on frozen closed page, detail source SHA256 8be907d3b58250c6f9b5db17f506b79316bc302b85b5f92ad1a473d437baf166, 650 constituency aggregate records.",
+      "limit": "One selected petition, 108206 constituency-assigned signatures vs 110519 total; no denominator by constituency, cannot infer named MP support or individual signatories. Existing spatial petition research precedent."
+    },
+    {
+      "kind": "Original UK rejected/100k debate stage separate official API pages",
+      "url": "https://petition.parliament.uk/petitions.json?state=rejected&page=4",
+      "support": "Two previously frozen UK contrasts C10/C11 (Actions #41087910108) distinguish rejected moderation from government response and debate eligibility from held debate; retroactive ledger inclusion without rewriting original receipts.",
+      "limit": "Two fixed sorted pages per contrast, not representative; no original publication verification, no causal claim."
     }
   ],
   "priors": [
@@ -1106,6 +1124,54 @@
       "grade": "0/3",
       "CT2_prospective_ordinal": 20,
       "limits": "No causal inference, independent sociological data, production safety, original discovery, or human UX acceptance; source modules previously tested, novelty not claimed."
+    },
+    {
+      "id": "PF-BR85",
+      "claim": "Institutional status, moderation, threshold and government response can be represented by one homogeneous petition outcome field across UK and Wales.",
+      "update": "REJECT_HOMOGENEOUS_OUTCOME: UK rejected/response and high-signature/debate are separate, Wales referral cohort may have closed current state, completion is not policy adoption.",
+      "support": "Original UK C10+C11 receipts from run 41087910108; Wales C09, C10W, C11W, C15 original pages from run 41104809526. Wales referred filter page1 31 records with state 'closed'; 29 completed-state records; 50 open-state page records. Nonrandom filters.",
+      "source": "https://petitions.senedd.wales/petitions.json?state=referred&page=1",
+      "evidence": "../ABH25B_20261030/C09_C16_COLLISION_AND_NEGATIVES.json",
+      "type": "ORIGINAL_CROSS_INSTITUTIONAL_MEASUREMENT_LIMITED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Wales referred filter semantics inferred from URL plus actual returned state; cannot independently verify exact committee referral act from this single field. No causal cross-national comparison or population inference."
+    },
+    {
+      "id": "PF-BR86",
+      "claim": "A non-null/unknown response or debate field must be imputed as an institutional rejection or absence of debate.",
+      "update": "REJECT_NULL_AS_ZERO: UK open page12 25 petitions are open and below response threshold in selected sample; UK closed page3 21/25 record debate outcome but 4 without date; absence cannot be equated to no discussion elsewhere.",
+      "support": "Official original C12 (open), existing C11 (high-signature) receipts, and redundant C13 documented as supplemental rather than another cycle.",
+      "source": "https://petition.parliament.uk/petitions.json?state=closed&page=3",
+      "evidence": "../ABH25B_20261030/C12_RUN_RECEIPT.json",
+      "type": "ORIGINAL_INSTITUTIONAL_MISSINGNESS_LIMITED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Open/closed filters nonprobability; debate date not a causal effect; original first publication not verified."
+    },
+    {
+      "id": "PF-BR87",
+      "claim": "Constituency-level petition signature counts measure support by the elected MP or can be compared across regions without denominators.",
+      "update": "REJECT_PERSON_INFERENCE_AND_UNADJUSTED_RATE: one original UK petition has 650 constituency counts HHI 0.0021127; these are aggregate signers by constituency, not MPs and not electorate-normalized.",
+      "support": "One prospectively selected detail under C14B, run 41105857051; 108206 constituency-assigned signatures, 110519 total, 2313 difference cause unverified; original detail SHA 8be907d3b58250c6f9b5db17f506b79316bc302b85b5f92ad1a473d437baf166.",
+      "source": "https://petition.parliament.uk/petitions.json?state=closed&page=3",
+      "evidence": "../ABH25B_20261030/C14B_RUN_RECEIPT.json",
+      "type": "ORIGINAL_AGGREGATE_SPATIAL_DESCRIPTIVE_LIMITED",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "Single selected petition. Literature already studies geographic signature patterns; HHI of unadjusted counts is not political representation/influence or spatial participation."
+    },
+    {
+      "id": "PF-BR88",
+      "claim": "New game portfolio/diversity/score indicators on fictional fixture establish sociological representativeness of political actors.",
+      "update": "NO_EMPIRICAL_VALIDATION: ten new account-local fictional dashboard metrics C17-C26 tested; no real actor data or novel social generalization.",
+      "support": "Actions #41105541770: 10 Python checks and 2 Node new UI checks PASS. Source code frozen in insights.py, product.state includes derived account-local metrics, no real politics scoring. Metrics include book values, affordability, role entropy, group HHI, roster/bench value, bounded transaction summaries, lineup readiness, settled mean and frozen score contributions.",
+      "source": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41105541770",
+      "evidence": "../ABH25B_20261030/C17_C26_RUN_RECEIPT.json",
+      "type": "FICTIONAL_PRODUCT_CAPABILITY_QA_ONLY",
+      "grade": "0/3",
+      "CT2_prospective_ordinal": 20,
+      "limits": "No user acceptance or deployment, no causal or sociological validity. Fictional group labels cannot be mapped to ideological diversity of real people."
     }
   ],
   "CT2_parent_unchanged": 29,

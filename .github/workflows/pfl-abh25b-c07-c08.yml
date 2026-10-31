@@ -1,0 +1,29 @@
+name: PFL ABH25B C07 transfer audit and C08 open petitions
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transfer-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: PYTHONPATH=src python -m unittest discover -s tests -p test_abh25b_trade_history.py -v
+      - run: node --test tests/test_abh25b_trades_ui.mjs
+      - run: node --check src/politics_fantasy/web/app.js
+  scotland-censoring:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_scotland_open.py -v
+      - run: python research/ABH25B_20261030/c08_scotland_open_age.py

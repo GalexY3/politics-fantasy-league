@@ -1,0 +1,25 @@
+{
+  "schema": "pfl.ab3.2.1.AJ.v1",
+  "cycle": "ABH25B-C14B",
+  "replacement_for_blocked": "ABH25B-C14",
+  "status": "FROZEN_PRE_GEOGRAPHIC_DATA",
+  "mode": "AB-R",
+  "A": "For the petition with minimum numeric petition ID among the fixed 25-record UK closed page3, how concentrated are aggregate constituency-level signatures in the official individual-petition JSON?",
+  "B": {
+    "H1": "Official individual source contains location-normalized counts permitting a descriptive within-petition HHI",
+    "H0": "No complete constituency breakdown, missing numeric counts, or incompatible aggregation; fail closed",
+    "rivals": [
+      "Geographic signature distribution is NOT MP support or voter preferences",
+      "Regional population differences make raw signature shares non-comparable without denominators",
+      "2017 EPJ Data Science study and public tools already analyze petition constituency distribution; no novelty claim"
+    ]
+  },
+  "C": "Read fixed page3 already inspected previously for response outcomes but not IDs; choose minimum integer ID BEFORE inspecting any individual detail; fetch exactly one official individual JSON, max 2MB. Return source SHA256, n constituencies, count sum, HHI, top-ten count share, missing delta. No identifier, constituency name or petition title stored.",
+  "D": "Frozen selection algorithm, code SHA and A-J Git commits before detail content. Reject redirect/host spoof; no adaptive second ID if malformed.",
+  "E": "One bounded GitHub Actions invocation with minimal network. Source receipts. Synthetic counterexamples first.",
+  "F": "If signatures_by_constituency missing/empty mark blocked; never infer named MPs signed. Count by constituency only.",
+  "G": "Compare to equiprobability 1/n only as mathematical reference; not a social explanatory null or population-normalized rate.",
+  "H": "Methodological geographic descriptive prior, if successful; zero discovery grade due existing research.",
+  "I": "CT2 20 ordinal, N1/2/3 0, gates 0/6.",
+  "J": "Count one limited AB-R on genuine original detailed source with hash and controls; otherwise park and pivot. C14 remains blocked noncycle."
+}

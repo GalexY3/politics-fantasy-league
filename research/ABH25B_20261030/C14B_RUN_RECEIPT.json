@@ -1,0 +1,44 @@
+{
+  "schema": "pfl.abh25b.original_geography_receipt.v1",
+  "cycle": "ABH25B-C14B",
+  "mode": "AB-R",
+  "status": "VALID_LIMITED_ORIGINAL_AGGREGATE_GEOGRAPHY",
+  "replacement_of_blocked_noncycle": "ABH25B-C14",
+  "prereg_commit": "f7b1cfb9f06816b59671a6faad268d425c9536df",
+  "source_code_commit": "897068321c6368c8d0be1665493c9b5b47863552",
+  "negative_controls_commit": "9526998cbc3b5f84ec3e47baba7a3763eb72c277",
+  "run_id": 41105857051,
+  "job_id": 124235361213,
+  "run_url": "https://github.com/GalexY3/politics-fantasy-league/actions/runs/41105857051",
+  "selection": "Minimum numeric petition ID in frozen 25-record closed page3; ONE detail fetched; no content/topic or geography selection.",
+  "sources": {
+    "page_sha256": "5705f5d81c9aeb93ad420f18b72d96a96d606646beb173603151e6f2ae792e5b",
+    "detail_sha256": "8be907d3b58250c6f9b5db17f506b79316bc302b85b5f92ad1a473d437baf166",
+    "detail_bytes": 72446
+  },
+  "original_observations": {
+    "constituency_records": 650,
+    "signatures_in_constituency_breakdown": 108206,
+    "overall_petition_signatures": 110519,
+    "unallocated_or_non_constituency_total": 2313,
+    "hhi_raw_signature_shares": 0.002112701780432538,
+    "effective_equally_weighted_constituencies": 473.32757006304405,
+    "uniform_hhi_reference": 0.0015384615384615385,
+    "top_ten_raw_share": 0.05069959151987875
+  },
+  "limitations": [
+    "Single selected petition, not representative",
+    "Aggregate constituency counts are NOT signatures by named MPs or proof of their support",
+    "Unknown why 2313 total signatures are not in constituency breakdown; cannot attribute to any cause",
+    "Constituency population, electorate and baseline engagement absent: raw share HHI is not a participation rate",
+    "Prior literature and tools already study geographic petition patterns; novelty not claimed"
+  ],
+  "scientific_grade": "0/3",
+  "CT2_ordinal": 20,
+  "N1N2N3": [
+    0,
+    0,
+    0
+  ],
+  "release_gates": "0/6"
+}

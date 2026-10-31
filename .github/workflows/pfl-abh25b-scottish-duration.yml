@@ -1,0 +1,18 @@
+name: PFL ABH25B C06 Scottish petition closure intervals
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bounded:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - name: Four synthetic duration and missingness guards
+        run: PYTHONPATH=.:src python -m unittest discover -s tests -p test_abh25b_scottish_duration.py -v
+      - name: One fixed new official Scottish closed page9
+        run: python research/ABH25B_20261030/c06_scottish_closed_duration.py
