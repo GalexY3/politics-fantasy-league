@@ -20,7 +20,8 @@ def frame(**values):
     d=dict(institution="SYNTHETIC_SENATE",family="PETITIONS",
            legislature_or_regime="X",entry_rule="ALL_RECEIVED_REGISTRATION",
            unit="INDIVIDUAL_COMPLAINT",
-           window_first_day="2020-01-01",window_last_day="2020-12-31")
+           window_first_day="2020-01-01",window_last_day="2020-12-31",
+           legal_calendar_zone="UTC")
     d.update(values)
     return PopulationTarget(**d)
 
@@ -32,15 +33,15 @@ def case(name="ONE",*,entry="2020-01-01",acts=(),pending=(),captured=CAP,
 
 
 def act(state,when,observed=CAP):
-    return StageAct(state,when,when,observed,HASH)
+    return StageAct(state,when,when,observed,HASH,"UTC")
 
 
 def pend(when,observed=CAP):
-    return PendingWitness(when,observed,HASH)
+    return PendingWitness(when,observed,HASH,"UTC")
 
 
 def cuts(first="2020-03-01",second="2020-06-01",asof=KNOW):
-    return CohortCut(first,asof),CohortCut(second,asof)
+    return CohortCut(first,asof,"UTC"),CohortCut(second,asof,"UTC")
 
 
 def check(cases,*,first="2020-03-01",second="2020-06-01",asof=KNOW,links=()):
@@ -151,8 +152,8 @@ def test_wrong_direction_reintroduction_fails():
 
 def test_day_level_cut_cannot_be_reconstructed_before_end_of_day():
     with pytest.raises(GateError,match="COHORT_CUT_EVENT_DAY_NOT_COMPLETED"):
-        CohortCut("2026-11-01","2026-11-01T00:00:01Z")
-    assert CohortCut("2026-10-31","2026-11-01T00:00:00Z").cut_on=="2026-10-31"
+        CohortCut("2026-11-01","2026-11-01T00:00:01Z","UTC")
+    assert CohortCut("2026-10-31","2026-11-01T00:00:00Z","UTC").cut_on=="2026-10-31"
 
 
 def test_future_capture_conceals_even_rows_for_old_dates():
@@ -173,8 +174,8 @@ def test_partial_future_capture_is_not_stated_as_all_received():
 
 
 def test_two_asof_times_cannot_be_compared_as_same_reporting_panel():
-    early=CohortCut("2020-03-01","2026-11-01T00:00:00Z")
-    late=CohortCut("2020-06-01",KNOW)
+    early=CohortCut("2020-03-01","2026-11-01T00:00:00Z","UTC")
+    late=CohortCut("2020-06-01",KNOW,"UTC")
     with pytest.raises(GateError,match="SYNTHETIC_STOCK_FLOW_SCOPE"):
         audit_cuts(frame=frame(),episodes=(case(),),early=early,late=late)
 
@@ -188,7 +189,7 @@ def test_reversed_or_identical_event_cuts_fail():
 
 def test_event_time_after_capture_invalid():
     with pytest.raises(GateError,match="COHORT_CUT_EVENT_TIME_AFTER_CAPTURE"):
-        CohortCut("2027-01-01","2026-10-31T00:00:00Z")
+        CohortCut("2027-01-01","2026-10-31T00:00:00Z","UTC")
 
 
 def test_mixing_real_scope_or_family_refused():

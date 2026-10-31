@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .procedural_index_contract import GateError, NAMESPACE, ID, SHA, day, utc
+from .procedural_index_contract import GateError, NAMESPACE, ID, SHA, day, utc, LEGAL_CIVIL_ZONES
 
 ENTRY_RULES={"ALL_RECEIVED_REGISTRATION","PRESENTATION_FIRST","ADMISSION_FIRST"}
 UNIT_KINDS={
@@ -35,6 +35,9 @@ class PopulationTarget:
     # equivalences. Explicit disagreement must block frame comparison.
     jurisdiction: str | None = None
     channel_scope: str | None = None
+    # Required for event-day analysis, optional for documentary-only counts.
+    # Spain's peninsular and Canarian legal days are not always the UTC day.
+    legal_calendar_zone: str | None = None
 
     def __post_init__(self):
         if (not isinstance(self.institution,str) or not NAMESPACE.fullmatch(self.institution)
@@ -45,7 +48,10 @@ class PopulationTarget:
                 or day(self.window_first_day) > day(self.window_last_day)
                 or any(v is not None and
                        (not isinstance(v,str) or not NAMESPACE.fullmatch(v))
-                       for v in (self.jurisdiction,self.channel_scope))):
+                       for v in (self.jurisdiction,self.channel_scope))
+                or (self.legal_calendar_zone is not None and
+                    (type(self.legal_calendar_zone) is not str or
+                     self.legal_calendar_zone not in LEGAL_CIVIL_ZONES))):
             raise GateError("INVALID_POPULATION_TARGET")
 
 

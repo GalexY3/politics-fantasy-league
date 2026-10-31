@@ -9,13 +9,13 @@
     "continuity": 8,
     "data": 32,
     "evidence": 378,
-    "experimental_code": 33,
+    "experimental_code": 34,
     "operations": 103,
-    "reference": 86,
-    "research": 1979,
-    "runtime": 107,
+    "reference": 87,
+    "research": 1981,
+    "runtime": 108,
     "task_queue": 120,
-    "verification": 241
+    "verification": 245
   },
   "files": [
     {
@@ -1130,6 +1130,11 @@
     },
     {
       "path": "docs/R17_IDENTIFICACION_REGISTROS_CONFIDENCIALES_Y_OBSERVACION_SELECTIVA_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R18_REANUDACION_POST_STOP_CALENDARIO_JURIDICO_Y_ILP_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11604,6 +11609,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/R18_CONTINUATION_QUEUE.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT10_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11640,6 +11650,11 @@
     },
     {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT17_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT18_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -12669,6 +12684,11 @@
       "purpose": "Seis requisitos de lanzamiento; falla cerrado por defecto"
     },
     {
+      "path": "src/politics_fantasy/research_continuation.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/retained_integrity_status.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12750,6 +12770,11 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_cohort_conservation.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_competing_risks_equivalence.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15719,6 +15744,21 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_r18_competing_risks_equivalence.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r18_legal_civil_calendar.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_r18_scoped_offset.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_rc07_provenance_claim_gate.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15780,6 +15820,11 @@
     },
     {
       "path": "tests/test_release_guard.cjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_research_continuation.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

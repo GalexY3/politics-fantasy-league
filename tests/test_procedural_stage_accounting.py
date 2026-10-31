@@ -16,7 +16,8 @@ def scope(**kw):
     s={"institution":"SYNTHETIC_CHAMBER","family":"ILP",
        "legislature_or_regime":"XI","entry_rule":"ALL_RECEIVED_REGISTRATION",
        "unit":"PARLIAMENTARY_INITIATIVE",
-       "window_first_day":"2020-01-01","window_last_day":"2020-12-31"}
+       "window_first_day":"2020-01-01","window_last_day":"2020-12-31",
+       "legal_calendar_zone":"UTC"}
     s.update(kw)
     return PopulationTarget(**s)
 
@@ -27,11 +28,11 @@ def episode(name="SYNTHETIC:ONE",*,frame=None,acts=(),pending=(),channel="PAPER"
 
 
 def stage(kind,*,date="2020-02-01",document="2020-02-02",capture=EARLY):
-    return StageAct(kind,date,document,capture,SHA)
+    return StageAct(kind,date,document,capture,SHA,"UTC")
 
 
 def pending(*,date="2020-03-01",capture=EARLY):
-    return PendingWitness(date,capture,SHA)
+    return PendingWitness(date,capture,SHA,"UTC")
 
 
 def test_unknown_without_pending_witness_is_not_right_censored():

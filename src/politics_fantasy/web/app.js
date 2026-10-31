@@ -355,15 +355,21 @@ function populationReadinessPanel(){
   :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
- const scopedCut=(typeof p.as_of==='string'&&p.as_of.length<50
-   &&/^\d{4}-\d\d-\d\dT[^<>]*Z$/.test(p.as_of))
-   ?'&amp;as_of='+encodeURIComponent(p.as_of):'';
+ // A valid historical response may preserve an ISO timezone offset (+01:00)
+ // rather than normalize it to Z. Never turn a malformed *historical* cut into
+ // an unscoped CURRENT link: that would silently reveal a different snapshot.
+ const historicalCut=p.as_of!==null&&p.as_of!==undefined;
+ const validCut=(typeof p.as_of==='string'&&p.as_of.length<=42
+   &&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-](?:(?:0\d|1[0-3]):[0-5]\d|14:00))$/.test(p.as_of)
+   &&Number.isFinite(Date.parse(p.as_of)));
+ const scopedCut=!historicalCut?'':validCut?'&amp;as_of='+encodeURIComponent(p.as_of):null;
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
   ?'<details><summary>R10 · comparación de denominadores y censura no observada</summary>'
    +'<p class="help">La coincidencia entre filas y contador editorial NO certifica todas las entradas. Dos contadores del mismo organismo o base pueden ser reiteraciones; registros, expedientes, dictámenes, acuerdos y escritos no comparten automáticamente unidad de riesgo.</p>'
    +'<div class="tablewrap"><table><thead><tr><th>Fuente verificable</th><th>Institución</th><th>Unidad capturada o descrita</th><th>Observaciones locales</th><th>Bloqueo identificable</th></tr></thead><tbody>'
    +denRows.map(s=>'<tr><td>'+(typeof s.source_id==='string'&&/^[A-Za-z0-9_.:/-]{1,160}$/.test(s.source_id)
-      ?'<a href="/api/registration-readiness?source_id='+encodeURIComponent(s.source_id)+scopedCut+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
+      ?scopedCut===null?esc(s.source_id)+' (corte no válido)'
+       :'<a href="/api/registration-readiness?source_id='+encodeURIComponent(s.source_id)+scopedCut+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
       :'Identificador no disponible')+'</td><td>'+esc(s.institution)+'</td><td>'+esc(s.observable_unit)+'</td><td>'
       +(s.observed_source_local_items===null?'Desconocidas':esc(count(s.observed_source_local_items)))+'</td><td>'
       +esc(s.principal_identification_block)+'</td></tr>').join('')

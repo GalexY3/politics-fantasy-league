@@ -1,0 +1,168 @@
+{
+  "schema": "pfl.research_continuation.v1",
+  "grant": {"authorized": 20, "valid": 0, "invalid": 0, "planning_only": 0, "available": 20},
+  "r5_status": "STOP_R5",
+  "policy": "LOCAL_STOP_ROUTE_ONWARD_WITHOUT_AB_PROMOTION",
+  "candidates": [
+    {
+      "id": "R18-C01", "track": "AB_R_CANDIDATE", "status": "BLOCKED_R5", "domain": "Congreso ILP tipo 120",
+      "research_question": "¿Todas las iniciativas populares nacionales anteriores a admisión están censadas con registro independiente de JEC?",
+      "required_new_evidence": "Padrón completo pre-Mesa, negativos y pendientes, correspondencia JEC y permisos exactos de cada distribución.",
+      "falsifier": "Casos inadmitidos o subsanados que faltan del universo o total producido por la misma base seleccionada.",
+      "stop_reason": "El filtro documental tipo 120 y las iniciativas admitidas por JEC no acreditan N preadmisión independiente.",
+      "reopen_when": "Certificado registral anterior a Mesa, censo exhaustivo con unidades y estados y licencia evaluada por distribución."
+    },
+    {
+      "id": "R18-C02", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Congreso familia 121 122",
+      "research_question": "¿Una familia parlamentaria admitida puede constituir cohorte completa con testigo externo y versiones históricas?",
+      "required_new_evidence": "Listado íntegro admitidas-first e identificadores con datos de primer registro, negativos, censura y fechas.",
+      "falsifier": "Selección exclusivamente por tramitación resuelta o por publicación BOE posterior a la entrada.",
+      "stop_reason": "R5-R17 revisaron este corpus; faltan denominador externo, derechos por activo y first-public histórico.",
+      "reopen_when": "Aparezca un padrón firmado o una pareja de originales históricos fechados no investigados."
+    },
+    {
+      "id": "R18-C03", "track": "NONCYCLE_RESEARCH", "status": "COMPLETED_NONCYCLE", "domain": "Interfaz observatorio temporal",
+      "research_question": "¿Los enlaces de la interfaz conservan los cortes con desplazamiento horario ISO 8601 sin regresar a CURRENT?",
+      "required_new_evidence": "Reproducción sintética en código real y prueba funcional de ida y vuelta entre consulta HTTP e interfaz.",
+      "falsifier": "Cualquier enlace CURRENT construido desde respuesta histórica con offset explícito.",
+      "stop_reason": null,
+      "reopen_when": "Nueva ruta de interfaz, parámetro de corte o formato ISO no cubierto por la QA existente."
+    },
+    {
+      "id": "R18-C04", "track": "NONCYCLE_RESEARCH", "status": "COMPLETED_NONCYCLE", "domain": "Cortes de fecha civil jurídica",
+      "research_question": "¿Las fechas civiles locales y las marcas UTC distinguen adecuadamente el cierre de periodos sintéticos?",
+      "required_new_evidence": "Fixture con zona de competencia explícita, cambio de día UTC y comparación de equivalencia jurídica.",
+      "falsifier": "Un evento que ya ocurrió localmente aparece como futuro solo por conversión a UTC.date().",
+      "stop_reason": null,
+      "reopen_when": "Estudio futuro con un calendario local de competencia o norma de fecha aplicable."
+    },
+    {
+      "id": "R18-C05", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Parlamento Canarias PE",
+      "research_question": "¿Los ficheros PDDL por año son todas las preguntas ingresadas o solo registros de una fase editorial?",
+      "required_new_evidence": "Denominador firmado independiente por cohorte y primera publicación histórica de originales autorizados.",
+      "falsifier": "Recuento fuente-local concordante que sigue omitiendo el registro de las preguntas no publicadas.",
+      "stop_reason": "Cuatro capturas locales 1754 filas no son censo independiente y no hay dos vintages originales.",
+      "reopen_when": "Segunda versión histórica y padrón institucional de entrada independiente del catálogo PDDL."
+    },
+    {
+      "id": "R18-C06", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "SIAP Catalunya actuaciones",
+      "research_question": "¿El índice SIAP puede enlazarse con registro inicial y censura sin seleccionar solo actuaciones indexadas?",
+      "required_new_evidence": "Paginación íntegra con licencias válidas y comprobación independiente del registro anterior a clasificación.",
+      "falsifier": "Páginas faltantes y episodios previos a indexación ausentes de la población de riesgo.",
+      "stop_reason": "Solo una página de 44 estaba capturada; no se acreditó el registro ni la licencia del corpus.",
+      "reopen_when": "Permiso específico y registro inicial exhaustivo con crosswalk institucional independiente."
+    },
+    {
+      "id": "R18-C07", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "SAIP Generalitat entradas",
+      "research_question": "¿El catálogo de solicitudes de acceso permite una cohorte inicial completa sin aceptar condiciones nuevas?",
+      "required_new_evidence": "Permiso jurídico por activo, esquema original con 35 columnas y denominador externo de todas las entradas.",
+      "falsifier": "Restauraciones editoriales no equivalen a dos originales históricos ni a entrada completa.",
+      "stop_reason": "R13-R15 documentaron restricciones por mero acceso y ausencia de originales/denominador independiente.",
+      "reopen_when": "Licencia y términos revisados por humano y originales históricos legalmente reutilizables."
+    },
+    {
+      "id": "R18-C08", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Recursos TACRC administración",
+      "research_question": "¿Los recursos presentados permiten una cohorte de entradas y desenlaces competidores homogéneos?",
+      "required_new_evidence": "Microserie con asiento y fecha, estado pendiente positivo y correspondencia N:M recursos-resoluciones.",
+      "falsifier": "Número de resoluciones sumado a recursos de cohortes pasadas o expedientes reagrupados.",
+      "stop_reason": "Las cifras oficiales de recursos y resoluciones tienen granos y años de corte diferentes.",
+      "reopen_when": "Enlace oficial por recurso admitido con negativos y pendientes y permiso por activo."
+    },
+    {
+      "id": "R18-C09", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Licitaciones PLACSP",
+      "research_question": "¿Los feeds de licitaciones contienen todas las aperturas y revisiones sin perder episodios?",
+      "required_new_evidence": "Prueba de reconstrucción independiente en años afectados por incidencias y licencias por distribución.",
+      "falsifier": "Entradas omitidas durante incidencia o duplicadas como casos nuevos por actualización ATOM.",
+      "stop_reason": "R11 registró incidencias de cobertura y condiciones de uso; no hay corpus original admitido.",
+      "reopen_when": "Cierre oficial de incidentes, backfill independiente y licencia de distribución revisada."
+    },
+    {
+      "id": "R18-C10", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "BDNS convocatoria subvención",
+      "research_question": "¿Convocatorias y concesiones de BDNS pueden separarse como riesgos distintos sin confundir solicitantes?",
+      "required_new_evidence": "Denominador de solicitudes presentadas o estimando explícito de convocatorias y derechos por activo.",
+      "falsifier": "Tomar las últimas diez mil entradas visibles como censo o mezclar concesión con solicitud.",
+      "stop_reason": "R11 distinguió convocatoria, extracto BOE y concesión con restricciones y retenciones.",
+      "reopen_when": "Fuente de recepción de solicitudes y serie histórica por convocatoria, con permisos verificables."
+    },
+    {
+      "id": "R18-C11", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Denuncias confidenciales antifraude",
+      "research_question": "¿Puede estudiarse reproducción de actuaciones sin divulgar denuncias o datos protegidos?",
+      "required_new_evidence": "Solo agregados independientes realmente completos con desglose de pendientes y secreto preservado.",
+      "falsifier": "Norma de registro confidencial interpretada como conjunto de datos públicamente reutilizable.",
+      "stop_reason": "OAAF, AIPI y AVAF exigen separación entre registro interno y corpus públicamente accesible.",
+      "reopen_when": "Base legal específica y agregados auditables con certificado independiente, sin casos identificables."
+    },
+    {
+      "id": "R18-C12", "track": "AB_R_CANDIDATE", "status": "PARKED", "domain": "Peticiones ciudadanas Senado",
+      "research_question": "¿El registro general de peticiones permite unir solicitud, expediente 870 e informe 871?",
+      "required_new_evidence": "Padrón inicial de asientos y respuestas tanto admitidas como inadmitidas y periodos históricos.",
+      "falsifier": "Informes periódicos 871 contados como número de peticiones 870 o asientos iniciales.",
+      "stop_reason": "R13 mostró que 870 y 871 son granos diferentes, sin libro completo de entrada público.",
+      "reopen_when": "Un crosswalk autorizado entre asiento, expediente e informe con negativos y pendientes."
+    },
+    {
+      "id": "R18-C13", "track": "NONCYCLE_RESEARCH", "status": "COMPLETED_NONCYCLE", "domain": "Prueba sintética de riesgos competitivos",
+      "research_question": "¿Una selección del archivo puede ocultar tanto incidencias por causa como stocks sin alterar lo publicado?",
+      "required_new_evidence": "Demostración adversarial con dos mundos sintéticos y proyección documental indistinguible.",
+      "falsifier": "Misma proyección con eventos completos y conocidos que identifica por construcción los riesgos.",
+      "stop_reason": null,
+      "reopen_when": "Identificación real con fuente independiente y estados históricos por causa."
+    },
+    {
+      "id": "R18-C14", "track": "NONCYCLE_RESEARCH", "status": "QUEUED", "domain": "Regímenes jurídicos variables",
+      "research_question": "¿Cambios institucionales de competencia y canal se confunden con variación en la actividad política?",
+      "required_new_evidence": "Instrumento sintético con régimen y canal, más caso adversarial de falsa continuidad en riesgo.",
+      "falsifier": "Un simple cambio de régimen produce falsa diferencia causal sin cambio de eventos subyacentes.",
+      "stop_reason": null,
+      "reopen_when": "Fuente nueva con fechas de cambio y antecedentes legales contrastables."
+    },
+    {
+      "id": "R18-C15", "track": "NONCYCLE_RESEARCH", "status": "QUEUED", "domain": "Graficación tipada de procedimientos",
+      "research_question": "¿Los puentes N:M y los alias conservan las unidades de registro sin elevar un denominador artificial?",
+      "required_new_evidence": "Test adversarial nuevo de colisión de autoridades y cambios de jurisdicción de un mismo proceso.",
+      "falsifier": "Dos autoridades distintas unidas por nombre o tema sin identificador oficial explícito.",
+      "stop_reason": null,
+      "reopen_when": "Referencia cruzada oficial auditada o nueva clase de colisión no cubierta por R17."
+    },
+    {
+      "id": "R18-C16", "track": "AB_P_CANDIDATE", "status": "QUEUED", "domain": "Panel de bloqueo explicativo",
+      "research_question": "¿El observatorio separa los motivos de STOP sin ocultar los avances científicos y técnicos conseguidos?",
+      "required_new_evidence": "Necesidad de usuario, contrato funcional A-J y comparación de flujos sintéticos antes de marcar AB-P.",
+      "falsifier": "La interfaz sugiere validación empírica por 100 por ciento de tests técnicos superados.",
+      "stop_reason": null,
+      "reopen_when": "Nueva decisión de despliegue o contrato de evaluación de usabilidad independiente."
+    },
+    {
+      "id": "R18-C17", "track": "NONCYCLE_RESEARCH", "status": "QUEUED", "domain": "Bloqueos dependientes de derechos",
+      "research_question": "¿Pueden las etiquetas de licencia de catálogo elevar por error permiso de distribución específico?",
+      "required_new_evidence": "Mutaciones sintéticas de licencia, finalidad, condiciones por mero acceso y estatus histórico.",
+      "falsifier": "Una licencia general heredada que concede permiso de reproducción personal sin aval por activo.",
+      "stop_reason": null,
+      "reopen_when": "Revisión jurídica del régimen de distribución para la fuente elegida."
+    },
+    {
+      "id": "R18-C18", "track": "NONCYCLE_RESEARCH", "status": "QUEUED", "domain": "Reproducibilidad y hashes de origen",
+      "research_question": "¿Se detecta una modificación posterior al SHA congelado sin recalcular falsamente la historia?",
+      "required_new_evidence": "Recibo congelado antes de QA y comparación de mutación sintética posterior al corte.",
+      "falsifier": "Cambio de bytes o esquema que pasa sin ser registrado como deriva de original/código.",
+      "stop_reason": null,
+      "reopen_when": "Nueva distribución permitida y testigo externo de conservación de versiones."
+    },
+    {
+      "id": "R18-C19", "track": "AB_P_CANDIDATE", "status": "QUEUED", "domain": "Exportación reproducible del observatorio",
+      "research_question": "¿Se pueden exportar únicamente manifiestos públicos saneados sin fuentes originales ni casos personales?",
+      "required_new_evidence": "Contrato de privacidad funcional y evaluación comparativa de una exportación íntegramente sintética.",
+      "falsifier": "Una exportación incluye claves privadas, entradas futuras o desenlaces no autorizados.",
+      "stop_reason": null,
+      "reopen_when": "Aprobación humana de publicación y revisión legal externa para una distribución real."
+    },
+    {
+      "id": "R18-C20", "track": "NONCYCLE_RESEARCH", "status": "QUEUED", "domain": "Identificabilidad de mecanismos rivales",
+      "research_question": "¿Los mecanismos de reproducción, contexto y selección tienen predicciones divergentes sin leakage?",
+      "required_new_evidence": "Matriz teórica con B0 calendario, B1 competencia institucional y B2 memoria acoplada predefinidas.",
+      "falsifier": "Los tres modelos generan predicciones observables idénticas o dependen de resultados futuros.",
+      "stop_reason": null,
+      "reopen_when": "Población real R5 con origen, competencia y periodos con first-public autenticado."
+    }
+  ]
+}

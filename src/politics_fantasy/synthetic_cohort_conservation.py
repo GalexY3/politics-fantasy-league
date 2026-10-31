@@ -11,7 +11,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .denominator_lineage_contract import PopulationTarget
-from .procedural_index_contract import GateError, day, utc
+from .procedural_index_contract import (
+    GateError, day, utc, legal_civil_date, legal_day_completed,
+)
 from .procedural_stage_accounting import (
     EntryEpisode, ReintroductionClaim, TERMINAL, safe,
 )
@@ -24,14 +26,15 @@ MAX_LINKS=500
 class CohortCut:
     cut_on:str
     as_of:str
+    legal_calendar_zone:str
 
     def __post_init__(self):
-        # Event dates are day-precision. A cut on the observer's current day
-        # cannot be considered a completed DAY of exposure at 00:00:01. The
-        # next UTC midnight is the earliest conservative *completed* day.
-        if day(self.cut_on)>utc(self.as_of).date():
+        # The *next jurisdictional midnight*, not UTC midnight, completes a
+        # legal event date. The jurisdiction is explicit and timezone-aware.
+        if day(self.cut_on)>legal_civil_date(self.as_of,self.legal_calendar_zone):
             raise GateError("COHORT_CUT_EVENT_TIME_AFTER_CAPTURE")
-        if day(self.cut_on)==utc(self.as_of).date():
+        if not legal_day_completed(cut_on=self.cut_on,as_of=self.as_of,
+                                   legal_calendar_zone=self.legal_calendar_zone):
             raise GateError("COHORT_CUT_EVENT_DAY_NOT_COMPLETED_AT_KNOWLEDGE")
 
 
@@ -74,6 +77,8 @@ def audit_cuts(*,frame:PopulationTarget,
             or type(episodes) is not tuple or len(episodes)>MAX_EPISODES
             or type(reintroductions) is not tuple or len(reintroductions)>MAX_LINKS
             or not isinstance(early,CohortCut) or not isinstance(late,CohortCut)
+            or frame.legal_calendar_zone != early.legal_calendar_zone
+            or frame.legal_calendar_zone != late.legal_calendar_zone
             or day(early.cut_on)>=day(late.cut_on)
             or utc(early.as_of)!=utc(late.as_of)
             or any(not isinstance(e,EntryEpisode) or e.frame!=frame for e in episodes)
@@ -90,7 +95,7 @@ def audit_cuts(*,frame:PopulationTarget,
                 day(emap[link.later_episode].entry_on)):
             raise GateError("REINTRODUCTION_NOT_FORWARD_IN_EVENT_TIME")
         if (link.locally_observed_at is not None and
-                utc(link.locally_observed_at).date() <
+                legal_civil_date(link.locally_observed_at,frame.legal_calendar_zone) <
                 day(emap[link.later_episode].entry_on)):
             raise GateError("REINTRODUCTION_DOCUMENTED_BEFORE_LATER_ENTRY")
     base={

@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import timedelta
 from .denominator_lineage_contract import PopulationTarget
-from .procedural_index_contract import GateError, ID, SHA, day, utc
+from .procedural_index_contract import GateError, ID, SHA, day, utc, legal_civil_date
 
 TERMINAL=frozenset({"INADMITTED","WITHDRAWN","LAPSED","APPROVED","REJECTED","TRANSFERRED_OUT"})
 STAGES=TERMINAL|{"ADMITTED","HEARD","REQUESTED_CORRECTION","RESUBMITTED"}
@@ -24,13 +24,15 @@ class StageAct:
     documented_on:str
     observed_at:str
     document_sha_claim:str
+    legal_calendar_zone:str
     first_public_at:None=None
     def __post_init__(self):
         if self.stage not in STAGES or self.first_public_at is not None:
             raise GateError("STAGE_OR_PUBLICATION_PROMOTION")
         if not isinstance(self.document_sha_claim,str) or not SHA.fullmatch(self.document_sha_claim):
             raise GateError("STAGE_SHA_CLAIM_INVALID")
-        if not day(self.occurred_on)<=day(self.documented_on)<=utc(self.observed_at).date():
+        if not day(self.occurred_on)<=day(self.documented_on)<=legal_civil_date(
+                self.observed_at,self.legal_calendar_zone):
             raise GateError("STAGE_DATE_AFTER_DOCUMENT_OR_CAPTURE")
 
 @dataclass(frozen=True)
@@ -38,9 +40,11 @@ class PendingWitness:
     pending_on:str
     observed_at:str
     document_sha_claim:str
+    legal_calendar_zone:str
     first_public_at:None=None
     def __post_init__(self):
-        if self.first_public_at is not None or day(self.pending_on)>utc(self.observed_at).date():
+        if self.first_public_at is not None or day(self.pending_on)>legal_civil_date(
+                self.observed_at,self.legal_calendar_zone):
             raise GateError("PENDING_DATE_OR_PUBLICATION_INVALID")
         if not isinstance(self.document_sha_claim,str) or not SHA.fullmatch(self.document_sha_claim):
             raise GateError("PENDING_SHA_CLAIM_INVALID")
@@ -66,7 +70,9 @@ class EntryEpisode:
         if self.channel not in CHANNELS or not isinstance(self.entry_sha_claim,str) or not SHA.fullmatch(self.entry_sha_claim):
             raise GateError("BAD_CHANNEL_OR_ENTRY_SHA")
         t=day(self.entry_on)
-        if t<day(self.frame.window_first_day) or t>day(self.frame.window_last_day) or t>utc(self.entry_observed_at).date():
+        zone=self.frame.legal_calendar_zone
+        if (t<day(self.frame.window_first_day) or t>day(self.frame.window_last_day)
+                or t>legal_civil_date(self.entry_observed_at,zone)):
             raise GateError("ENTRY_NOT_IN_RISK_WINDOW_OR_CAPTURE")
         if (type(self.acts) is not tuple or len(self.acts)>40
                 or type(self.pending) is not tuple or len(self.pending)>40):
@@ -76,6 +82,8 @@ class EntryEpisode:
         for act in self.acts:
             if not isinstance(act,StageAct):
                 raise GateError("BAD_STAGE_ACT")
+            if act.legal_calendar_zone != zone:
+                raise GateError("STAGE_LEGAL_CALENDAR_MISMATCH")
             at=day(act.occurred_on)
             if at<prior or terminal is not None:
                 raise GateError("BACKDATED_OR_POST_TERMINAL_ACT")
@@ -87,6 +95,8 @@ class EntryEpisode:
         for witness in self.pending:
             if not isinstance(witness,PendingWitness):
                 raise GateError("BAD_PENDING_WITNESS")
+            if witness.legal_calendar_zone != zone:
+                raise GateError("PENDING_LEGAL_CALENDAR_MISMATCH")
             pt=day(witness.pending_on)
             if pt<t or (terminal is not None and pt>=terminal):
                 raise GateError("PENDING_WITNESS_CONTRADICTS_EVENT_HISTORY")
@@ -128,7 +138,7 @@ def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
                 or day(records[link.earlier_episode].entry_on)>=day(records[link.later_episode].entry_on)):
             raise GateError("UNTRUSTED_REINTRODUCTION_LINK")
         if (link.locally_observed_at is not None
-                and utc(link.locally_observed_at).date() <
+                and legal_civil_date(link.locally_observed_at,frame.legal_calendar_zone) <
                     day(records[link.later_episode].entry_on)):
             raise GateError("REINTRODUCTION_CLAIM_SEEN_BEFORE_LATER_ENTRY")
     visible=[e for e in episodes if safe(e.entry_observed_at)<=t]
@@ -149,7 +159,8 @@ def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
         end=next((a.stage for a in steps if a.stage in TERMINAL),None)
         if end is not None:
             endings[end]+=1
-        elif any(safe(p.observed_at)<=t and day(p.pending_on)<=t.date() for p in e.pending):
+        elif any(safe(p.observed_at)<=t and day(p.pending_on)<=legal_civil_date(
+                as_of,frame.legal_calendar_zone) for p in e.pending):
             observed_pending+=1
         else:
             unknown+=1

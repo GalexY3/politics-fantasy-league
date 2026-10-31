@@ -12,12 +12,13 @@ registry outside this module before public or scientific admission.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from hashlib import sha256
 import json
 import re
 from typing import Iterable
 from urllib.parse import urlsplit
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 SHA = re.compile(r"[0-9a-f]{64}\Z")
 NAMESPACE = re.compile(r"[A-Z][A-Z0-9_]{2,50}\Z")
@@ -25,6 +26,7 @@ ID = re.compile(r"[A-Za-z0-9_.:/-]{1,160}\Z")
 MAX_PAGES = 600
 MAX_CASES = 150_000
 MAX_SPAN_SECONDS = 3600
+LEGAL_CIVIL_ZONES = frozenset({"UTC", "Europe/Madrid", "Atlantic/Canary"})
 
 
 class GateError(ValueError):
@@ -53,6 +55,34 @@ def day(stamp: str) -> date:
     if parsed.isoformat() != stamp:
         raise GateError("NONCANONICAL_EVENT_DATE")
     return parsed
+
+
+def legal_civil_date(stamp: str, legal_calendar_zone: str) -> date:
+    """Civil day in a *declared* legal jurisdiction, never UTC.date by default.
+
+    This calendar contract is synthetic tooling: it does not authenticate the
+    jurisdiction or convert a legal day into historical publication evidence.
+    """
+    if type(legal_calendar_zone) is not str or legal_calendar_zone not in LEGAL_CIVIL_ZONES:
+        raise GateError("LEGAL_CALENDAR_ZONE_REQUIRED")
+    try:
+        return utc(stamp).astimezone(ZoneInfo(legal_calendar_zone)).date()
+    except ZoneInfoNotFoundError as exc:
+        raise GateError("LEGAL_CALENDAR_TZDATA_UNAVAILABLE") from exc
+
+
+def legal_day_completed(*, cut_on: str, as_of: str, legal_calendar_zone: str) -> bool:
+    """True only after the NEXT local midnight (DST-aware) has been reached."""
+    cut = day(cut_on)
+    legal_civil_date(as_of, legal_calendar_zone)  # validate both clock and zone
+    try:
+        next_midnight = datetime.combine(
+            cut + timedelta(days=1), time.min,
+            tzinfo=ZoneInfo(legal_calendar_zone)
+        ).astimezone(timezone.utc)
+    except (OverflowError, ZoneInfoNotFoundError) as exc:
+        raise GateError("LEGAL_CIVIL_BOUNDARY_UNAVAILABLE") from exc
+    return utc(as_of) >= next_midnight
 
 
 @dataclass(frozen=True)
