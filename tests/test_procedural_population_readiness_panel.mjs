@@ -269,6 +269,24 @@ test('R10 future documentary names are hidden; source strings escaped',()=>{
  assert.doesNotMatch(html,/<img|<script|<svg/);
 });
 
+test('source-scoped navigation preserves as_of instead of silently jumping to now',()=>{
+ const data=sample();
+ data.as_of='2026-10-31T05:20:00Z';
+ data.denominator_evidence={
+   schema:'pfl.denominator_evidence_nonadditive.v1',
+   reported_sources:[{source_id:'PARCAN_SOURCE_LOCAL',institution:'Canarias',
+     observable_unit:'INDEX',observed_source_local_items:1211,
+     principal_identification_block:'NO_EXTERNAL_DENOMINATOR'}]
+ };
+ const html=render(data);
+ assert.match(html,/api\/registration-readiness\?source_id=PARCAN_SOURCE_LOCAL&amp;as_of=2026-10-31T05%3A20%3A00Z/);
+ assert.doesNotMatch(html,/api\/denominator-evidence\?source_id=PARCAN_SOURCE_LOCAL/);
+ data.as_of='<img src=x onerror=alert(1)>';
+ const malicious=render(data);
+ assert.doesNotMatch(malicious,/<img|onerror=alert/);
+ assert.doesNotMatch(malicious,/&as_of=%3C/);
+});
+
 test('R11 source-scoped audit links point to local JSON and do not allow unsafe IDs',()=>{
  const data=sample();
  data.denominator_evidence={schema:'pfl.denominator_evidence_nonadditive.v1',reported_sources:[
@@ -278,7 +296,7 @@ test('R11 source-scoped audit links point to local JSON and do not allow unsafe 
    observed_source_local_items:null,principal_identification_block:'UNVERIFIED'}
  ]};
  const html=render(data);
- assert.match(html,/api\/denominator-evidence\?source_id=PARCAN_SOURCE_LOCAL/);
+ assert.match(html,/api\/registration-readiness\?source_id=PARCAN_SOURCE_LOCAL/);
  assert.match(html,/Fuente verificable/);
  assert.match(html,/Identificador no disponible/);
  assert.doesNotMatch(html,/href="[^"]*source_id=X&amp;/);

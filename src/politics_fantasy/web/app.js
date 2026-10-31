@@ -330,17 +330,20 @@ function populationReadinessPanel(){
   :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
+ const scopedCut=(typeof p.as_of==='string'&&p.as_of.length<50
+   &&/^\d{4}-\d\d-\d\dT[^<>]*Z$/.test(p.as_of))
+   ?'&amp;as_of='+encodeURIComponent(p.as_of):'';
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
   ?'<details><summary>R10 · comparación de denominadores y censura no observada</summary>'
    +'<p class="help">La coincidencia entre filas y contador editorial NO certifica todas las entradas. Dos contadores del mismo organismo o base pueden ser reiteraciones; registros, expedientes, dictámenes, acuerdos y escritos no comparten automáticamente unidad de riesgo.</p>'
    +'<div class="tablewrap"><table><thead><tr><th>Fuente verificable</th><th>Institución</th><th>Unidad capturada o descrita</th><th>Observaciones locales</th><th>Bloqueo identificable</th></tr></thead><tbody>'
    +denRows.map(s=>'<tr><td>'+(typeof s.source_id==='string'&&/^[A-Za-z0-9_.:/-]{1,160}$/.test(s.source_id)
-      ?'<a href="/api/denominator-evidence?source_id='+encodeURIComponent(s.source_id)+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
+      ?'<a href="/api/registration-readiness?source_id='+encodeURIComponent(s.source_id)+scopedCut+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
       :'Identificador no disponible')+'</td><td>'+esc(s.institution)+'</td><td>'+esc(s.observable_unit)+'</td><td>'
       +(s.observed_source_local_items===null?'Desconocidas':esc(count(s.observed_source_local_items)))+'</td><td>'
       +esc(s.principal_identification_block)+'</td></tr>').join('')
    +'</tbody></table></div>'
-   +'<p class="footnote">N independiente: desconocido · Terminales: desconocidos · Pendientes: desconocidos · Censurados: desconocidos. Ninguna fila se suma entre instituciones. Para una fuente y corte: /api/denominator-evidence?source_id=...&amp;as_of=...; una fuente futura no es revelada.</p></details>'
+   +'<p class="footnote">N independiente: desconocido · Terminales: desconocidos · Pendientes: desconocidos · Censurados: desconocidos. Ninguna fila se suma entre instituciones. En cada enlace: /api/registration-readiness?source_id=...&amp;as_of=... reúne registro, estados, derechos por activo, relojes, denominador y enlaces oficiales; conserva el corte as_of de esta vista y no revela fuentes futuras.</p></details>'
   :'';
  return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
  +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'

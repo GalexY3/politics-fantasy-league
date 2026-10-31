@@ -98,6 +98,7 @@ class ReintroductionClaim:
     document_sha_claim:str
     basis:str="CLAIMED_OFFICIAL_CROSS_EPISODE_REFERENCE"
     independent_authority_verified:bool=False
+    locally_observed_at:str|None=None
     def __post_init__(self):
         if (not all(isinstance(x,str) and x.startswith("SYNTHETIC:") and ID.fullmatch(x)
                     for x in (self.earlier_episode,self.later_episode))
@@ -106,6 +107,8 @@ class ReintroductionClaim:
                 or self.basis!="CLAIMED_OFFICIAL_CROSS_EPISODE_REFERENCE"
                 or self.independent_authority_verified is not False):
             raise GateError("REINTRODUCTION_REQUIRES_UNVERIFIED_EXPLICIT_DUAL_IDS")
+        if self.locally_observed_at is not None:
+            utc(self.locally_observed_at)
 
 def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
               as_of:str,claims:tuple[ReintroductionClaim,...]=())->dict:
@@ -124,6 +127,10 @@ def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
         if (link.earlier_episode not in records or link.later_episode not in records
                 or day(records[link.earlier_episode].entry_on)>=day(records[link.later_episode].entry_on)):
             raise GateError("UNTRUSTED_REINTRODUCTION_LINK")
+        if (link.locally_observed_at is not None
+                and utc(link.locally_observed_at).date() <
+                    day(records[link.later_episode].entry_on)):
+            raise GateError("REINTRODUCTION_CLAIM_SEEN_BEFORE_LATER_ENTRY")
     visible=[e for e in episodes if safe(e.entry_observed_at)<=t]
     base={"schema":"pfl.synthetic_procedural_stage_audit.v1",
           "scientific_cycles":0,"real_outcomes_analyzed":False,
@@ -152,6 +159,10 @@ def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
             "terminal_by_cause":endings,
             "observed_pending_at_last_witness":observed_pending,
             "unknown_followup":unknown,
-            "reintroduction_claims_visible":sum(l.earlier_episode in ids and l.later_episode in ids for l in claims),
+            "reintroduction_claims_visible":sum(
+                l.earlier_episode in ids and l.later_episode in ids
+                and l.locally_observed_at is not None
+                and safe(l.locally_observed_at)<=t for l in claims),
+            "reintroduction_without_observation_is_unknown":True,
             "later_pending_status_not_inferred":True,
             "reintroduction_claim_is_not_verified_identity":True}

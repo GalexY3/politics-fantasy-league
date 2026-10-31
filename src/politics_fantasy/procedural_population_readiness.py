@@ -102,11 +102,23 @@ def report(*, as_of: str | None = None) -> dict:
             "first_public_at_attested": False,
         },
     ]
+    # Internal *registry slots* are not the same as information available to
+    # a historical observer. Keep three internal slots for the denominator
+    # validator (which never promotes a census), but disclose only sources
+    # that had affirmative metadata evidence at the requested cut. In
+    # particular, the XV Congress placeholder must not appear in 2010.
+    visible_source_rows = [
+        s for s in source_rows
+        if ((s["source_id"] == "PARCAN_SOURCE_LOCAL" and local_parcan is not None)
+            or (s["source_id"] == "PARLAMENT_CATALUNYA_SIAP" and local_siap is not None)
+            or (s["source_id"] == "CONGRESO_XV_CANDIDATE_INDICES" and
+                discovery["status"] == "DOCUMENTARY_CANDIDATES_BLOCKED_FROM_SOURCE_ADMISSION"))
+    ]
     return {
         "schema": "pfl.spanish_procedural_population_readiness.v1",
         "as_of": as_of,
-        "institutional_sources": source_rows,
-        "source_groups": len(source_rows),
+        "institutional_sources": visible_source_rows,
+        "source_groups": len(visible_source_rows),
         "documentary_candidate_sources": discovery.get("candidate_sources", []),
         "documentary_candidate_sources_count": discovery.get("documentary_sources_count"),
         "documentary_candidate_status": discovery.get("status"),

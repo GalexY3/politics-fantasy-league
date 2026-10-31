@@ -16,9 +16,11 @@ def frame(**kw):
     return PopulationTarget(**p)
 
 
-def claim(name,*,target=None,n=10,issuer="SYNTHETIC_ISSUER",backend=None):
+def claim(name,*,target=None,n=10,issuer="SYNTHETIC_ISSUER",backend=None,
+          documented=None):
     return SourceTotalClaim(name,target or frame(),n,issuer,backend,
-                            "EDITORIAL_PAGE_COUNT")
+                            "EDITORIAL_PAGE_COUNT",
+                            locally_documented_safe_by=documented)
 
 
 def test_same_publisher_equal_counts_not_independent():
@@ -47,6 +49,30 @@ def test_unknown_and_different_declared_lineages_never_authenticated():
     assert not d["independent_denominator_certified"]
 
 
+def test_geography_and_channel_mismatch_is_not_equivalent_risk_frame():
+    a=claim("AREA_A",target=frame(
+        jurisdiction="SYNTHETIC_REGION_A",channel_scope="ELECTRONIC_CHANNEL"))
+    for b in (
+        claim("AREA_B",target=frame(jurisdiction="SYNTHETIC_REGION_B",
+                                   channel_scope="ELECTRONIC_CHANNEL")),
+        claim("PAPER",target=frame(jurisdiction="SYNTHETIC_REGION_A",
+                                  channel_scope="PAPER_CHANNEL")),
+        claim("UNVERIFIED",target=frame(jurisdiction=None,
+                                       channel_scope="ELECTRONIC_CHANNEL")),
+    ):
+        x=compare_total_claims(first=a,second=b)
+        assert x["status"]=="INCOMPATIBLE_UNITS_SCOPE_OR_ENTRY_RULE"
+        assert x["frame_compatible"] is False
+        assert x["eligible_risk_population"] is None
+    same=claim("AREA_SAME",target=frame(jurisdiction="SYNTHETIC_REGION_A",
+                                        channel_scope="ELECTRONIC_CHANNEL"))
+    x=compare_total_claims(first=a,second=same)
+    assert x["frame_compatible"] is True
+    assert x["jurisdiction_and_channel_declared_for_both"] is True
+    assert x["jurisdiction_and_channel_independently_verified"] is False
+    assert not x["independent_denominator_certified"]
+
+
 @pytest.mark.parametrize("override",[
     {"unit":"REGISTRY_INITIAL_WRITING"},
     {"entry_rule":"ADMISSION_FIRST"},
@@ -71,6 +97,39 @@ def test_future_source_counts_and_diagnostics_redacted():
     assert x["backend_relation"] is None
     assert x["counter_claims"] is None
     assert x["eligible_risk_population"] is None
+
+
+def test_individual_late_claim_not_unmasked_by_global_early_safe_by():
+    first=claim("ONE",n=42,issuer="INSTITUTION_A",
+                documented="2026-10-01T00:00:00Z")
+    second=claim("TWO",n=42,issuer="INSTITUTION_B",
+                 documented="2026-11-01T00:00:00Z")
+    early=compare_total_claims(first=first,second=second,
+        query_as_of="2026-10-11T00:00:00Z",
+        locally_known_safe_by="2026-10-02T00:00:00Z")
+    assert early["status"]=="SOURCE_CLAIMS_NOT_KNOWN_AT_CUT"
+    assert early["counter_claims"] is None
+    assert early["editorial_counts_equal"] is None
+    assert early["backend_relation"] is None
+    assert early["frame_compatible"] is None
+    late=compare_total_claims(first=first,second=second,
+        query_as_of="2026-11-01T00:00:00Z",
+        locally_known_safe_by="2026-10-02T00:00:00Z")
+    assert late["source_claims_visible"]
+    assert late["independent_denominator_certified"] is False
+    assert late["first_public_at"] is None
+
+
+def test_missing_claim_specific_clock_fails_closed_for_historical_replay():
+    one=claim("ONE",documented="2026-10-01T00:00:00Z")
+    unknown=claim("TWO")
+    old=compare_total_claims(first=one,second=unknown,
+        query_as_of="2026-12-01T00:00:00Z",
+        locally_known_safe_by="2026-10-01T00:00:00Z")
+    assert not old["source_claims_visible"]
+    assert old["counter_claims"] is None
+    with pytest.raises(GateError):
+        claim("BAD",documented="2026-10-31")
 
 
 def test_self_witness_replay_not_external_evidence():

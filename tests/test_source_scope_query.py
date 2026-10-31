@@ -73,3 +73,44 @@ def test_no_select_is_existing_aggregate_not_new_risk_set():
 def test_bad_input_is_rejected():
     with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_AGGREGATE"):
         filter_denominator_source({"schema":"bad"},"PARCAN_SOURCE_LOCAL")
+
+
+def test_unrequested_extraneous_fields_cannot_ride_along_in_full_projection():
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["reported_sources"][1]["mock_later_decision"]="SYNTHETIC:OUTCOME"
+    for choice in (None,"PARCAN_SOURCE_LOCAL"):
+        with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_SOURCE_FIELDS"):
+            filter_denominator_source(d,choice)
+
+
+@pytest.mark.parametrize("key,value",[
+    ("eligible_all_received_denominator",999),
+    ("known_pending_case_count",0),
+    ("right_censored_case_count",3),
+    ("known_terminal_case_count",100),
+    ("official_cross_institution_links_admitted",True),
+])
+def test_outcome_or_census_promotions_cannot_pass_projection(key,value):
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["reported_sources"][0][key]=value
+    with pytest.raises(GateError,match="UNATTESTED_DENOMINATOR_SOURCE_PROMOTION"):
+        filter_denominator_source(d,"R13_A")
+
+
+def test_duplicate_elsewhere_does_not_pass_full_or_other_source_query():
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["reported_sources"].append(d["reported_sources"][-1])
+    for choice in (None,"PARCAN_SOURCE_LOCAL"):
+        with pytest.raises(GateError,match="DUPLICATE_INSTITUTIONAL_SOURCE_ID"):
+            filter_denominator_source(d,choice)
+
+
+def test_inconsistent_aggregate_count_or_top_level_extra_data_rejected():
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["source_groups_visible"]+=1
+    with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_SOURCE_ROWS"):
+        filter_denominator_source(d,None)
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["future_sensitive_hash"]="syntheticprivate"
+    with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_AGGREGATE"):
+        filter_denominator_source(d,None)

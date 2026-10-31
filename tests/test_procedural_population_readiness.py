@@ -12,7 +12,7 @@ from politics_fantasy.server import handler_factory
 
 
 def test_current_sources_have_distinct_grains_and_no_survival_denominator():
-    result=report()
+    result=report(as_of="2026-11-01T00:00:00Z")
     assert result["schema"]=="pfl.spanish_procedural_population_readiness.v1"
     assert result["source_groups"]==3
     can,cat,congress=result["institutional_sources"]
@@ -81,11 +81,8 @@ def test_current_sources_have_distinct_grains_and_no_survival_denominator():
 
 def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     prior=report(as_of="2026-10-30T00:00:00Z")
-    a,b,_=prior["institutional_sources"]
-    assert a["observed_metadata_rows"] is None
-    assert b["observed_metadata_rows"] is None
-    assert a["source_distributions_visible"] is None
-    assert b["index_pages_required"] is None
+    assert prior["institutional_sources"]==[]
+    assert prior["source_groups"]==0
     as_text=json.dumps(prior)
     assert "1754" not in as_text and "3846b9fec" not in as_text
     assert prior["r8_regional_source_count"] is None
@@ -121,7 +118,7 @@ def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     assert prior["r9_no_independent_national_or_regional_denominator"] is None
     middle=report(as_of="2026-10-31T05:20:00Z")
     assert middle["institutional_sources"][0]["observed_metadata_rows"]==1211
-    assert middle["institutional_sources"][1]["observed_metadata_rows"] is None
+    assert len(middle["institutional_sources"])==1
     later=report(as_of="2026-10-31T06:02:49Z")
     assert later["institutional_sources"][0]["observed_metadata_rows"]==1754
     assert later["institutional_sources"][1]["observed_metadata_rows"]==20
@@ -148,7 +145,7 @@ def test_http_status_historical_cut_and_duplicate_query(tmp_path: Path):
             c.close()
             return status,payload
         status,old=get("/api/procedural-population-readiness?as_of=2026-10-30T00%3A00%3A00Z")
-        assert status==200 and old["institutional_sources"][0]["observed_metadata_rows"] is None
+        assert status==200 and old["institutional_sources"]==[]
         status,current=get("/api/procedural-population-readiness")
         assert status==200 and current["institutional_sources"][1]["observed_metadata_rows"]==20
         for uri in (

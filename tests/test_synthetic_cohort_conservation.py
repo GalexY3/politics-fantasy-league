@@ -116,11 +116,19 @@ def test_newly_registered_and_closed_within_interval_not_mixed_with_old_stock():
 def test_reintroduction_requires_explicit_distinct_episodes():
     earlier=case("A")
     later=case("B",entry="2020-05-01")
-    link=ReintroductionClaim(earlier.episode_id,later.episode_id,HASH)
+    link=ReintroductionClaim(earlier.episode_id,later.episode_id,HASH,
+                             locally_observed_at="2026-10-30T09:00:00Z")
     x=check((earlier,later),links=(link,))
     assert x["reintroduction_claims_known_at_later_cut"]==1
     assert x["late"]["registered_episodes_visible"]==2
     assert x["right_censored_real_cases"] is None
+    x_future=check((earlier,later),links=(ReintroductionClaim(
+        earlier.episode_id,later.episode_id,HASH,
+        locally_observed_at="2026-11-04T00:00:00Z"),))
+    assert x_future["reintroduction_claims_known_at_later_cut"]==0
+    x_unobserved=check((earlier,later),links=(ReintroductionClaim(
+        earlier.episode_id,later.episode_id,HASH),))
+    assert x_unobserved["reintroduction_claims_known_at_later_cut"]==0
     with pytest.raises(GateError,match="REINTRODUCTION_REFERENCES"):
         check((earlier,),links=(link,))
 

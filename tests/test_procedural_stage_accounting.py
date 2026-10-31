@@ -123,11 +123,21 @@ def test_entry_channels_different_but_not_inferred_new_intake():
 def test_reintroduction_must_refer_to_two_explicit_distinct_episodes():
     a=episode("SYNTHETIC:A")
     b=episode("SYNTHETIC:B",date="2020-02-01")
-    link=ReintroductionClaim(a.episode_id,b.episode_id,SHA)
+    link=ReintroductionClaim(a.episode_id,b.episode_id,SHA,
+                             locally_observed_at="2026-10-30T09:00:00Z")
     r=audit_lab(frame=scope(),episodes=(a,b),claims=(link,),
                 as_of="2026-11-01T00:00:00Z")
     assert r["reintroduction_claims_visible"]==1
     assert r["reintroduction_claim_is_not_verified_identity"]
+    unobserved=ReintroductionClaim(a.episode_id,b.episode_id,SHA)
+    r_unknown=audit_lab(frame=scope(),episodes=(a,b),claims=(unobserved,),
+                        as_of="2026-11-01T00:00:00Z")
+    assert r_unknown["reintroduction_claims_visible"]==0
+    r_future=audit_lab(frame=scope(),episodes=(a,b),claims=(
+        ReintroductionClaim(a.episode_id,b.episode_id,SHA,
+                            locally_observed_at="2026-11-04T00:00:00Z"),),
+        as_of="2026-11-01T00:00:00Z")
+    assert r_future["reintroduction_claims_visible"]==0
     with pytest.raises(GateError):
         ReintroductionClaim(a.episode_id,a.episode_id,SHA)
     with pytest.raises(GateError):

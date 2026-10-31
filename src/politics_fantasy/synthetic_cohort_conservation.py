@@ -84,6 +84,10 @@ def audit_cuts(*,frame:PopulationTarget,
         if (day(emap[link.earlier_episode].entry_on)>=
                 day(emap[link.later_episode].entry_on)):
             raise GateError("REINTRODUCTION_NOT_FORWARD_IN_EVENT_TIME")
+        if (link.locally_observed_at is not None and
+                utc(link.locally_observed_at).date() <
+                day(emap[link.later_episode].entry_on)):
+            raise GateError("REINTRODUCTION_DOCUMENTED_BEFORE_LATER_ENTRY")
     base={
         "schema":"pfl.synthetic_cohort_stock_flow.v1",
         "mode":"SYNTHETIC_ONLY_NO_REAL_CASES",
@@ -142,6 +146,8 @@ def audit_cuts(*,frame:PopulationTarget,
     if any(s0.get(key) in TERMINAL and s0[key]!=s1.get(key) for key in s0):
         raise GateError("TERMINAL_EVENT_REVERSED_BETWEEN_CUTS")
     claims=sum(link.earlier_episode in s1 and link.later_episode in s1
+               and link.locally_observed_at is not None
+               and safe(link.locally_observed_at)<=utc(late.as_of)
                for link in reintroductions)
     return {**base,"status":"SYNTHETIC_DOCUMENTARY_STOCK_FLOW_ONLY",
             "early":first,"late":second,
@@ -150,6 +156,7 @@ def audit_cuts(*,frame:PopulationTarget,
             "terminal_claims_among_newly_registered":new_same_interval_terminals,
             "terminal_transitions_counted_only_for_earlier_registered":True,
             "reintroduction_claims_known_at_later_cut":claims,
+            "reintroduction_claim_requires_own_observation_clock":True,
             "same_episode_only_once_per_cut":True,
             "terminal_state_not_inferred_from_absence":True,
             "old_pending_not_carried_forward_to_later_cut":True,

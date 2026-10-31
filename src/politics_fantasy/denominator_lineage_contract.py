@@ -30,6 +30,11 @@ class PopulationTarget:
     unit: str
     window_first_day: str
     window_last_day: str
+    # Reporting one period/organ does not reconcile competence, geography or
+    # reception channels. These descriptors are *scope claims*, not verified
+    # equivalences. Explicit disagreement must block frame comparison.
+    jurisdiction: str | None = None
+    channel_scope: str | None = None
 
     def __post_init__(self):
         if (not isinstance(self.institution,str) or not NAMESPACE.fullmatch(self.institution)
@@ -37,7 +42,10 @@ class PopulationTarget:
                 or not isinstance(self.legislature_or_regime,str)
                 or not ID.fullmatch(self.legislature_or_regime)
                 or self.entry_rule not in ENTRY_RULES or self.unit not in UNIT_KINDS
-                or day(self.window_first_day) > day(self.window_last_day)):
+                or day(self.window_first_day) > day(self.window_last_day)
+                or any(v is not None and
+                       (not isinstance(v,str) or not NAMESPACE.fullmatch(v))
+                       for v in (self.jurisdiction,self.channel_scope))):
             raise GateError("INVALID_POPULATION_TARGET")
 
 
@@ -51,6 +59,9 @@ class SourceTotalClaim:
     claim_basis: str
     original_sha256_claim: str | None = None
     historical_first_public_at: None = None
+    # Per-claim *local knowledge*, never the editor's date or first-public.
+    # A shared caller-provided global envelope cannot substitute this.
+    locally_documented_safe_by: str | None = None
 
     def __post_init__(self):
         if (not isinstance(self.source_id,str) or not ID.fullmatch(self.source_id)
@@ -68,6 +79,8 @@ class SourceTotalClaim:
                          or not SHA.fullmatch(self.original_sha256_claim)))
                 or self.historical_first_public_at is not None):
             raise GateError("INVALID_OR_PROMOTED_SOURCE_TOTAL_CLAIM")
+        if self.locally_documented_safe_by is not None:
+            utc(self.locally_documented_safe_by)
 
 
 def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
@@ -86,8 +99,17 @@ def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
         raise GateError("INCOMPLETE_TIME_ENVELOPE")
     if query_as_of is not None:
         cut=utc(query_as_of)
-        earliest=utc(locally_known_safe_by)
-        if cut<earliest:
+        # Treat undocumented per-claim discovery as *unknown*, rather than
+        # projecting a shared earlier safe-by across both sources. A nominal
+        # revision timestamp is not admissible evidence of having known a
+        # document at that earlier date.
+        claims_have_own_clocks=(first.locally_documented_safe_by is not None
+                               and second.locally_documented_safe_by is not None)
+        before_either=(not claims_have_own_clocks or
+                       any(cut < utc(c.locally_documented_safe_by)
+                           for c in (first,second)))
+        before_global=(cut < utc(locally_known_safe_by))
+        if before_either or before_global:
             return {
                 "schema":"pfl.denominator_independence_comparison.v1",
                 "status":"SOURCE_CLAIMS_NOT_KNOWN_AT_CUT",
@@ -118,6 +140,11 @@ def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
         "schema":"pfl.denominator_independence_comparison.v1",
         "status":verdict,
         "frame_compatible":compatible,
+        "jurisdiction_and_channel_declared_for_both":all(
+            v is not None for v in (
+                first.target.jurisdiction,first.target.channel_scope,
+                second.target.jurisdiction,second.target.channel_scope)),
+        "jurisdiction_and_channel_independently_verified":False,
         "editorial_counts_equal":first.reported_count==second.reported_count,
         "source_claims_visible":True,
         "counter_claims":(first.reported_count,second.reported_count),

@@ -23,7 +23,7 @@ def frame(**changes):
 
 def source(**changes):
     args=dict(source_id=SRC,publisher_id="SYNTHETIC:PUBLISHER_GENCAT",
-              backend_id="SYNTHETIC:SAME_BACKEND",frame=frame(),
+              backend_id="SYNTHETIC:SAME_BACKEND",dataset_id=DATASET,frame=frame(),
               role="INITIAL_INTAKE",rights="GENERAL_TERMS_BIND_ON_ACCESS",
               locally_known_on="2026-10-31")
     args.update(changes)
@@ -66,7 +66,8 @@ class R14DocumentaryGateTests(unittest.TestCase):
         late=audit(entry=source(),comparator=c,hints=(hint(),),
                    as_of="2026-11-04T00:00:00Z")
         self.assertTrue(late["comparator_same_frame"])
-        self.assertTrue(late["comparator_independent_backend"])
+        self.assertIsNone(late["comparator_independent_backend"])
+        self.assertTrue(late["comparator_declared_backend_ids_differ"])
         self.assertIsNone(late["independent_denominator"])
 
     def test_invalid_or_backdated_documentary_audit_rejected(self):
@@ -100,6 +101,7 @@ class R14DocumentaryGateTests(unittest.TestCase):
         self.assertIsNone(r["listed_restore_hints"])
         self.assertIsNone(r["comparator_same_frame"])
         self.assertIsNone(r["comparator_independent_backend"])
+        self.assertIsNone(r["comparator_declared_backend_ids_differ"])
         self.assertIsNone(r["asset_license_sufficient"])
         self.assertNotIn(SRC,str(r))
 
@@ -107,14 +109,16 @@ class R14DocumentaryGateTests(unittest.TestCase):
         c=source(source_id="SYNTHETIC:COUNTER_A",role="CASE_FILE")
         r=audit(entry=source(),comparator=c,hints=(hint(),),as_of=ASOF)
         self.assertTrue(r["comparator_same_frame"])
-        self.assertFalse(r["comparator_independent_backend"])
+        self.assertIsNone(r["comparator_independent_backend"])
+        self.assertFalse(r["comparator_declared_backend_ids_differ"])
         self.assertTrue(r["publisher_claim_not_independent_total"])
 
     def test_same_publisher_not_independent_even_if_backend_text_differs(self):
         c=source(source_id="SYNTHETIC:COUNTER_B",role="CASE_FILE",
                  backend_id="SYNTHETIC:OTHER_BACKEND")
         r=audit(entry=source(),comparator=c,hints=(hint(),),as_of=ASOF)
-        self.assertFalse(r["comparator_independent_backend"])
+        self.assertIsNone(r["comparator_independent_backend"])
+        self.assertFalse(r["comparator_declared_backend_ids_differ"])
 
     def test_unrelated_institution_does_not_create_matching_frame(self):
         other=source(source_id="SYNTHETIC:CITYREAL_REGISTER",
@@ -123,7 +127,8 @@ class R14DocumentaryGateTests(unittest.TestCase):
                      frame=frame(institution="SYNTHETIC_CIUDADREAL"),role="CASE_FILE")
         r=audit(entry=source(),comparator=other,hints=(hint(),),as_of=ASOF)
         self.assertFalse(r["comparator_same_frame"])
-        self.assertTrue(r["comparator_independent_backend"])
+        self.assertIsNone(r["comparator_independent_backend"])
+        self.assertTrue(r["comparator_declared_backend_ids_differ"])
         self.assertIsNone(r["independent_denominator"])
 
     def test_claimed_asset_rights_still_need_external_legal_and_R5_review(self):
@@ -143,8 +148,17 @@ class R14DocumentaryGateTests(unittest.TestCase):
         a=hint()
         b=hint(dataset_id="SYNTHETIC:DIFFERENT_SAIP",
                described_at="2026-10-10T13:00:00Z")
-        r=audit(entry=source(),comparator=None,hints=(a,b),as_of=ASOF)
-        self.assertFalse(r["same_dataset_restore_hints"])
+        with self.assertRaisesRegex(ProbeError,"MIXED_DATASET_ARCHIVE_HINTS"):
+            audit(entry=source(),comparator=None,hints=(a,b),as_of=ASOF)
+
+    def test_single_unrelated_restore_cannot_fake_asset_vintage(self):
+        with self.assertRaisesRegex(ProbeError,"MIXED_DATASET_ARCHIVE_HINTS"):
+            audit(entry=source(),comparator=None,
+                  hints=(hint(dataset_id="SYNTHETIC:OTHER_DATASET"),),as_of=ASOF)
+
+    def test_identical_restore_entries_do_not_count_twice(self):
+        with self.assertRaisesRegex(ProbeError,"DUPLICATE_EDITORIAL_RESTORE_HINT"):
+            audit(entry=source(),comparator=None,hints=(hint(),hint()),as_of=ASOF)
 
     def test_mixed_source_hints_are_rejected_not_fuzzy_merged(self):
         with self.assertRaisesRegex(ProbeError,"MIXED_SOURCE_ARCHIVE_HINTS"):

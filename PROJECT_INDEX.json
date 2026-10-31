@@ -9,13 +9,13 @@
     "continuity": 8,
     "data": 30,
     "evidence": 378,
-    "experimental_code": 30,
+    "experimental_code": 31,
     "operations": 103,
-    "reference": 83,
-    "research": 1976,
-    "runtime": 104,
+    "reference": 84,
+    "research": 1977,
+    "runtime": 105,
     "task_queue": 120,
-    "verification": 234
+    "verification": 237
   },
   "files": [
     {
@@ -1105,6 +1105,11 @@
     },
     {
       "path": "docs/R14_VINTAGES_SAIP_Y_COHORTES_MUNICIPALES_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R15_MODELO_REGISTRAL_MULTIRRELOJ_Y_FALSACION_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11604,6 +11609,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT15_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12609,6 +12619,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/registration_readiness_query.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/release_guard.cjs",
       "category": "runtime",
       "purpose": "Seis requisitos de lanzamiento; falla cerrado por defecto"
@@ -12710,6 +12725,11 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_round_score.mjs",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_temporal_witness.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15689,6 +15709,16 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_registration_readiness_http.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_registration_readiness_query.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_release_guard.cjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15865,6 +15895,11 @@
     },
     {
       "path": "tests/test_synthetic_rounds.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_synthetic_temporal_witness.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

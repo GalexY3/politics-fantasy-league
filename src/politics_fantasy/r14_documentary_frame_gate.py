@@ -70,6 +70,7 @@ class Asset:
     source_id: str
     publisher_id: str
     backend_id: str
+    dataset_id: str
     frame: Frame
     role: str
     rights: str
@@ -82,7 +83,8 @@ class Asset:
     def __post_init__(self):
         _local_safe_by(self.locally_known_on)
         if (not all(isinstance(v, str) and ID.fullmatch(v)
-                    for v in (self.source_id, self.publisher_id, self.backend_id))
+                    for v in (self.source_id, self.publisher_id, self.backend_id,
+                              self.dataset_id))
                 or not isinstance(self.frame, Frame)
                 or self.role not in ROLES or self.rights not in RIGHTS
                 or (self.original_sha256 is not None and
@@ -152,6 +154,7 @@ def audit(*, entry: Asset, comparator: Asset | None,
                 "same_dataset_restore_hints": None,
                 "comparator_same_frame": None,
                 "comparator_independent_backend": None,
+                "comparator_declared_backend_ids_differ": None,
                 "asset_license_sufficient": None}
     visible = tuple(h for h in hints if _local_safe_by(h.locally_known_on) <= t)
     if not visible:
@@ -160,10 +163,19 @@ def audit(*, entry: Asset, comparator: Asset | None,
                 "same_dataset_restore_hints": None,
                 "comparator_same_frame": None,
                 "comparator_independent_backend": None,
+                "comparator_declared_backend_ids_differ": None,
                 "asset_license_sufficient": None}
     if any(h.source_id != entry.source_id for h in visible):
         raise ProbeError("MIXED_SOURCE_ARCHIVE_HINTS")
-    same_dataset = len({h.dataset_id for h in visible}) == 1
+    # The fact that a single unrelated dataset is internally consistent does
+    # not prove it is a version of the *entry's* asset.
+    if any(h.dataset_id != entry.dataset_id for h in visible):
+        raise ProbeError("MIXED_DATASET_ARCHIVE_HINTS")
+    # Multiple identical restore buttons are one catalogue entry, not two
+    # historical versions. Reject rather than inflating the displayed count.
+    if len({(h.source_id, h.dataset_id, h.described_at) for h in visible}) != len(visible):
+        raise ProbeError("DUPLICATE_EDITORIAL_RESTORE_HINT")
+    same_dataset = True
     seen_comparator = (comparator if comparator is not None
                        and _local_safe_by(comparator.locally_known_on) <= t else None)
     return {**base,
@@ -172,7 +184,10 @@ def audit(*, entry: Asset, comparator: Asset | None,
         "same_dataset_restore_hints": same_dataset,
         "comparator_same_frame": (seen_comparator.frame == entry.frame
                                   if seen_comparator is not None else None),
-        "comparator_independent_backend": (
+        # Different user-declared strings cannot certify actual independent
+        # systems or an independent denominator. Keep the old key null.
+        "comparator_independent_backend": None,
+        "comparator_declared_backend_ids_differ": (
             seen_comparator.publisher_id != entry.publisher_id
             and seen_comparator.backend_id != entry.backend_id
             if seen_comparator is not None else None),

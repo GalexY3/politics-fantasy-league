@@ -38,7 +38,7 @@ def test_prior_cut_not_leak_r9_catalogue_or_local_source_counts():
 
 
 def test_source_scope_mutations_do_not_self_attest_census():
-    x=report()
+    x=report(as_of="2026-11-01T00:00:00Z")
     sources=x["institutional_sources"]
     sources[0]["observed_metadata_rows"]=-1
     with pytest.raises(GateError,match="BAD_OBSERVED_COUNT"):
@@ -49,7 +49,7 @@ def test_source_scope_mutations_do_not_self_attest_census():
 
 
 def test_bad_source_registry_and_claimed_r9_promotion_rejected():
-    x=report()
+    x=report(as_of="2026-11-01T00:00:00Z")
     with pytest.raises(GateError,match="REAL_SOURCE_REGISTRY"):
         derive_denominator_evidence(real_sources=x["institutional_sources"][:2],
             r9_documentary_status="R9_DISCOVERY_NOT_KNOWN_AT_CUT",
