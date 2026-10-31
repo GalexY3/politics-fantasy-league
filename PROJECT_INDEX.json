@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 10,
+    "data": 11,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 90,
-    "reference": 71,
-    "research": 1912,
-    "runtime": 78,
+    "operations": 91,
+    "reference": 73,
+    "research": 1921,
+    "runtime": 80,
     "task_queue": 120,
-    "verification": 187
+    "verification": 190
   },
   "files": [
     {
@@ -809,9 +809,19 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/interior_congreso_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/upstream_curated_7/derived_anonymous_counts.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "docs/AB_O1_O7_RFC_PFL_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
     },
     {
       "path": "docs/ALMACEN_BITEMPORAL.md",
@@ -1000,6 +1010,11 @@
     },
     {
       "path": "docs/VALIDACION_ETICA.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11164,12 +11179,57 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/CAPTURE_AND_SCIENCE_GATES_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/CONGRESO_AJ_DRAFT.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/.gitignore",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/README.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/SOURCE_AUDIT.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/congreso_adapter.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/fixtures/page_1.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/fixtures/page_2.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/CONGRESO_PREP/test_congreso_adapter.py",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/FUENTES_ESPANA_PREINGESTA.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_SYSTEM20_20261031/TEMPORAL_SYNTHETIC_SMOKE_RECEIPT.json",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
@@ -11604,6 +11664,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/verify_interior_originals.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "sql/schema.sql",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -11854,6 +11919,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/official_source_status.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/opportunity_coverage.mjs",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12032,6 +12102,11 @@
       "path": "src/politics_fantasy/synthetic_round_score.mjs",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/temporal_evidence.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
       "path": "src/politics_fantasy/test_fictional_cluster_gate.mjs",
@@ -14639,6 +14714,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_official_source_status.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_offline_atlas_delta_structure_audit.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -14989,6 +15069,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_temporal_evidence_pfl.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_ui_source_links.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15000,6 +15085,11 @@
     },
     {
       "path": "tests/test_verify_boe_table_pdf.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_verify_interior_originals.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

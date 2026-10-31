@@ -1,0 +1,65 @@
+{
+  "schema": "pfl.scratch.temporal_smoke.v1",
+  "spanish_versioned_sources": [
+    {
+      "filename": "boe_2023_albacete_verified.json",
+      "first_public_at_verified": false,
+      "historical_asof_ready": false,
+      "local_file_bytes": 2696,
+      "local_json_schema_label": "OFFICIAL_2023_SINGLE_PROVINCE_CANDIDACY_LIST_LABELS",
+      "local_versioned_file_sha256": "e8e6bf9e569bda162bc302e65d66c6f39ae89a17b9b7a7773e700a9f4006a430",
+      "persons_exported": 0,
+      "real_person_scoring": false,
+      "reason": "REAL_SOURCE_REQUIRES_INDEPENDENT_RIGHTS_PROVENANCE_AND_ASOF_GATE",
+      "records_imported": 0,
+      "release_grade": false,
+      "rights_state": "RIGHTS_PENDING_REVIEW",
+      "source_id": "BOE_ALBACETE_DERIVATIVE",
+      "status": "BLOCKED_REAL_INGEST"
+    },
+    {
+      "filename": "interior_congreso_source_version_receipt_20261028.json",
+      "first_public_at_verified": false,
+      "historical_asof_ready": false,
+      "local_file_bytes": 1337,
+      "local_json_schema_label": "UNLABELLED_OR_INVALID_SCHEMA",
+      "local_versioned_file_sha256": "c45ec0e0cfaaba3fe3cde951b3fb556418185f3c945f12b435ca30242e7fdf76",
+      "persons_exported": 0,
+      "real_person_scoring": false,
+      "reason": "REAL_SOURCE_REQUIRES_INDEPENDENT_RIGHTS_PROVENANCE_AND_ASOF_GATE",
+      "records_imported": 0,
+      "release_grade": false,
+      "rights_state": "CATALOG_LICENSE_ONLY",
+      "source_id": "INTERIOR_XLSX_CATALOG_RECEIPT",
+      "status": "BLOCKED_REAL_INGEST"
+    }
+  ],
+  "synthetic": {
+    "manifest": {
+      "canonical_contract_sha256": "0b1f6adb2fcdcd54fbd972e7e3d0f24f528906add4c1de6ebd5ad09a34397f4b",
+      "complete_population": false,
+      "historical_publication_authenticated": false,
+      "real_person_scoring": false,
+      "real_source_ingest_admitted": false,
+      "record_revision_count": 3,
+      "release_grade": false,
+      "schema": "pfl.scratch.temporal_evidence.v1",
+      "source_receipt_count": 1,
+      "source_receipts": [
+        {
+          "bytes": 206,
+          "captured_at": "2026-10-30T16:00:00Z",
+          "origin": "SYNTHETIC",
+          "rights_state": "SYNTHETIC",
+          "sha256": "3221d33290f56e293895621f3b4c6fee07200b27cb9a74baef08473d69d82914",
+          "source_id": "SYNTH"
+        }
+      ]
+    },
+    "real_person_scoring": false,
+    "records_visible_after_capture": 3,
+    "records_visible_before_local_capture": 0,
+    "source_local_id_only": true,
+    "status": "SYNTHETIC_SMOKE_PASS"
+  }
+}

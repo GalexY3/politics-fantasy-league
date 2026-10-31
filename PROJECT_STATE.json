@@ -1,5 +1,5 @@
 {
-  "revision": 17,
+  "revision": 18,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -16,8 +16,9 @@
     "tools/ab_atlas/UPSTREAM.json",
     "research/CONTINUATION20_20261030/AUTHORIZATION.json",
     "research/ABH25_20261030/AUTHORIZATION.json",
-    "research/ABH25B_20261030/AUTHORIZATION.json"
-    ,"research/PFL_SYSTEM20_20261031/AUTHORIZATION.json"
+    "research/ABH25B_20261030/AUTHORIZATION.json",
+    "research/PFL_SYSTEM20_20261031/AUTHORIZATION.json",
+    "docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md"
   ],
   "additional_authorization_snapshot": {
     "id": "PFL-GRANT-20261030-INTEGRATION10",
@@ -180,6 +181,24 @@
         "docs/migration/PUBLICATION_RECEIPT.json"
       ],
       "verified_commit": "3d66e813a422572b2a2ce7a3155df8dac667e224"
+    },
+    {
+      "id": "R-SPAIN-SYSTEMIC-CORPUS",
+      "lane": "research",
+      "status": "IN_PROGRESS",
+      "outcome": "Primera base historica espanola admisible para el estudio de reproduccion/autorregulacion politica y acoplamientos, separando registros electorales y expedientes en riesgo",
+      "acceptance": "Fuente primaria y derechos por distribucion; universo y definiciones verificables; identidades/eventos y fechas as-of; enlace legal y cientificamente defendible; baseline/rivales preregistrados antes de outcomes",
+      "next_action": "Primero auditar cobertura del XLSX Interior sin exponer microdatos; aparte lograr enumeracion de iniciativas Congreso con paginacion y denominador. No reemplazar ese universo por normas BOE ni resultados electorales",
+      "dependencies": [
+        "R0-FEASIBLE-QUESTION"
+      ],
+      "evidence": [
+        "docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md",
+        "docs/SISTEMA_POLITICO_ESPA?OL_DELIMITACION_V0_20261031.md",
+        "data/source_manifests/interior_congreso_20261031.json",
+        "research/PFL_SYSTEM20_20261031/CAPTURE_AND_SCIENCE_GATES_20261031.md",
+        "research/PFL_SYSTEM20_20261031/CONGRESO_AJ_DRAFT.md"
+      ]
     }
   ],
   "source_heads": {
@@ -373,5 +392,21 @@
       "AB-P": 13
     },
     "separate_from_earlier_grants": true
+  },
+  "scientific_infrastructure_checkpoint": {
+    "scope": "Spanish political system with reproduction/autorregulation main and economic/legal/media/social couplings major complementary",
+    "tfm_final_question_adopted": false,
+    "electoral_original_distributions_captured": 2,
+    "electoral_originals_git_tracked": false,
+    "original_bytes_replayed_with_sha256": true,
+    "congress_initiative_universe_complete": false,
+    "boe_initiative_denominator_valid": false,
+    "historical_first_public_at_adjudicated": false,
+    "real_person_scoring_allowed": false,
+    "source_capture_manifest": "data/source_manifests/interior_congreso_20261031.json",
+    "instrumentation": "src/politics_fantasy/temporal_evidence.py",
+    "observatory_source_api": "/api/scientific-sources",
+    "science_grade_promotion": false,
+    "system20_grant_cycles_spent_this_checkpoint": 0
   }
 }

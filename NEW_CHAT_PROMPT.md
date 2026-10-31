@@ -1,5 +1,7 @@
 Continúa Politics Fantasy League con producto e investigación sociológica separados.
 
+El núcleo científico es el sistema político español real, su reproducción y autorregulación, y sus acoplamientos con otros sistemas; fantasy es una aplicación. Antes de priorizar, leer docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md y docs/SISTEMA_POLITICO_ESPAÑOL_DELIMITACION_V0_20261031.md. La pregunta final del TFM permanece abierta; no confundir pilotos acotados con el alcance integral.
+
 Lee primero la entrada ACTUAL y sigue sus enlaces:
 https://github.com/GalexY3/politics-fantasy-league/blob/main/START_HERE.md
 

@@ -36,7 +36,7 @@ Unidad persona-semana, emparejamiento de periodo/fuente y código congelado ante
 
 ## Decisión de alcance
 
-[Inferencia] Elegir A para un TFM de ciencia de datos con opción de B como capítulo metodológico y el fantasy como demostrador. Posponer C hasta disponer de una base operacional consistente.
+**DECISIÓN NO ADOPTADA — propuesta histórica:** La anterior inferencia de elegir A para un TFM de ciencia de datos (y B como capítulo metodológico, con fantasy como demostrador) no constituye una elección del promotor. Tras la [visión científica española](VISION_CIENTIFICA_Y_ALCANCE_PFL.md) y la [delimitación sistémica abierta](SISTEMA_POLITICO_ESPAÑOL_DELIMITACION_V0_20261031.md), el **TFM sigue sin pregunta central, unidad ni corpus definitivos**. A, B y C quedan como rutas comparables; pueden contrastarse además con persistencia institucional, feedback político-económico y calidad de observabilidad documental, sin preseleccionar una técnica por prestigio. El proyecto integral PFL no se reduce a ninguno de esos pilotos.
 
 ## Etapas con puertas de evidencia
 
