@@ -40,8 +40,8 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `evidence` | 378 | Recibos, originales conservados y copias históricas; no código activo |
 | `experimental_code` | 28 | Instrumentos experimentales; su presencia no prueba integración en el juego |
 | `operations` | 90 | Herramientas, configuración y operación local |
-| `reference` | 69 | Manuales, contratos y referencias |
-| `research` | 1902 | Preguntas, campañas, análisis y resultados de investigación |
+| `reference` | 71 | Manuales, contratos y referencias |
+| `research` | 1905 | Preguntas, campañas, análisis y resultados de investigación |
 | `runtime` | 78 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 120 | Expedientes y resultados de ejecución |
 | `verification` | 187 | Pruebas y ejecutores de comprobación |
