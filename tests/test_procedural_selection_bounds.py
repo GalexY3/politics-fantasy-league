@@ -7,6 +7,7 @@ from politics_fantasy.procedural_selection_bounds import SyntheticEventCut
 
 def scenario(**overrides):
     d=dict(as_of="2024-12-31T23:59:59Z",
+           cut_on="2024-12-30",
            synthetic_frame_id="SYNTHETIC:PARLAMENT",
            observed_source_local_cases=70,attested_event_by_cut=12,
            attested_no_event_by_cut=38,
@@ -16,6 +17,8 @@ def scenario(**overrides):
 
 def test_exact_worst_case_bounds_with_missing_and_unresolved_cases():
     r=scenario().report()
+    assert r["cut_on"]=="2024-12-30"
+    assert r["individual_event_time_witnesses_verified"] is False
     assert (r["lower_rate"],r["upper_rate"])==(0.12,0.62)
     assert r["unobserved_frame_cases"]==30
     assert r["unresolved_observed"]==20
@@ -49,6 +52,8 @@ def test_known_no_event_by_cut_distinct_from_unknown_or_pending():
     ({"synthetic_frame_id":"CONGRESO_XV"},"REAL_COUNTS_NOT_ADMITTED_TO_SYNTHETIC_BOUNDS"),
     ({"evidence_class":"REAL_OFFICIAL"},"REAL_COUNTS_NOT_ADMITTED_TO_SYNTHETIC_BOUNDS"),
     ({"as_of":"2024-12-31"},"INVALID_TIMESTAMP"),
+    ({"cut_on":"2024-12-31"},"COMPLETE_SYNTHETIC_EVENT_CUT_REQUIRED"),
+    ({"cut_on":"2025-01-01"},"COMPLETE_SYNTHETIC_EVENT_CUT_REQUIRED"),
 ])
 def test_adversarial_gate(change,code):
     with pytest.raises(GateError,match=code):

@@ -116,6 +116,20 @@ def test_r16_future_source_not_enumerated_as_http_denominator(local):
     assert doc["reported_sources"][0]["known_terminal_case_count"] is None
 
 
+def test_r17_confidential_register_and_unknown_identical_before_cut(local):
+    base="/api/denominator-evidence?as_of=2026-10-31T23%3A59%3A59Z&source_id="
+    a=get(local,base+"R17_OAAF_ANDALUCIA_EXTERNAL_FRAUD")
+    b=get(local,base+"UNKNOWN_R17")
+    assert a==b and a[0]==200
+    assert "OAAF" not in json.dumps(a[1])
+    later="/api/denominator-evidence?as_of=2026-11-01T00%3A00%3A00Z&source_id="
+    code,visible=get(local,later+"R17_OAAF_ANDALUCIA_EXTERNAL_FRAUD")
+    assert code==200 and visible["source_groups_visible"]==1
+    assert visible["reported_sources"][0]["observed_source_local_items"] is None
+    assert visible["eligible_risk_denominator"] is None
+    assert visible["reported_sources"][0]["known_terminal_case_count"] is None
+
+
 @pytest.mark.parametrize("suffix",[
     "?source_id=",
     "?source_id=PARCAN_SOURCE_LOCAL&source_id=R10_A_CTBG_APPEALS",

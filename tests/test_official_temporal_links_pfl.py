@@ -150,6 +150,21 @@ class LinksTests(unittest.TestCase):
         self.assertEqual(coverage["registered_processes_without_linked_boe_semantics"],
                          "NOT_OBSERVED_NOT_ZERO")
 
+    def test_two_documentary_alias_nodes_same_process_key_are_not_two_procedures(self):
+        self.g.add(self.process())
+        alternate=Ref("CONGRESO", "EXPEDIENTE", "XV:121/000001-ALIAS")
+        self.g.add(self.process(ref=alternate, local_event_id="alias-of-initiative-1"))
+        self.g.add(self.stage())
+        self.g.add(self.step_link())
+        observed=self.g.snapshot(T4).coverage()
+        self.assertEqual(observed["visible_source_local_process_nodes"],2)
+        self.assertEqual(observed["visible_documentary_processes"],1)
+        self.assertEqual(observed["registered_processes_missing_observed_step"],0)
+        self.assertEqual(observed["registered_processes_without_linked_boe"],1)
+        self.assertEqual(observed["multiple_refs_for_same_claimed_process_key"],1)
+        self.assertIsNone(observed["unverified_congress_eligibility_denominator"])
+        self.assertTrue(observed["matching_claimed_key_does_not_verify_official_identity"])
+
     def test_no_automatic_join_based_on_title_or_date(self):
         self.g.add(self.process())
         self.g.add(self.document())

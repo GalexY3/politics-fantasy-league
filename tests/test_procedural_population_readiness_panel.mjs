@@ -501,3 +501,46 @@ test('R16 future sources hidden and unsafe source fields escaped against XSS',()
  assert.match(html,/&lt;script/);
  assert.doesNotMatch(html,/<img|<svg|<script/);
 });
+
+test('R17 confidential legal registration is distinct from public reusable case population',()=>{
+ const data=sample();
+ data.r17_documentary_status='R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT';
+ data.r17_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r17_documentary_routes=[
+   {institution:'Oficina Andaluza contra el Fraude y la Corrupción',
+    documentary_unit:'EXTERNAL_COMPLAINT_RECEIVED_BEFORE_ADMISSION',
+    limitation:'CONFIDENTIAL_ALL_RECEIVED_INTERNAL_REGISTER_MANDATED_NOT_PUBLIC_REGISTER',
+    rights_scope:'CONFIDENTIAL_CASE_RIGHTS_UNKNOWN'},
+   {institution:'Autoridad Independiente de Protección del Informante',
+    documentary_unit:'REGISTERED_COMMUNICATION_BEFORE_ADMISSION',
+    limitation:'TRACKING_CODE_NOT_SEAT_ID',rights_scope:'TERMS_BIND_ON_MERE_USE'},
+   {institution:'Agencia Valenciana Antifraude',
+    documentary_unit:'MULTICHANNEL_COMPLAINT',
+    limitation:'INVESTIGATION_STARTS_EX_OFFICIO',rights_scope:'NO_CASE_LICENSE'},
+ ];
+ const html=render(data);
+ assert.match(html,/R17 · protección del informante/);
+ assert.match(html,/OAAF Andalucía/);
+ assert.match(html,/CONFIDENTIAL_ALL_RECEIVED_INTERNAL_REGISTER_MANDATED_NOT_PUBLIC_REGISTER/);
+ assert.match(html,/TERMS_BIND_ON_MERE_USE/);
+ assert.match(html,/INVESTIGATION_STARTS_EX_OFFICIO/);
+ assert.match(html,/no tres cohortes adicionales/);
+ assert.match(html,/R5 continúa STOP/);
+});
+
+test('R17 future documentary metadata suppressed and visible strings escaped',()=>{
+ const data=sample();
+ data.r17_documentary_status='R17_NOT_KNOWN_AT_CUT';
+ data.r17_documentary_routes=[{institution:'SECRET_FUTURE_AIPI'}];
+ assert.doesNotMatch(render(data),/SECRET_FUTURE_AIPI/);
+ data.r17_documentary_status='R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT';
+ data.r17_documentary_safe_by='<svg onload=alert(1)>';
+ data.r17_documentary_routes=[{institution:'<img onerror=alert(1)>',
+   documentary_unit:'<script>bad()</script>',
+   limitation:'<svg onload=alert(1)>',rights_scope:'RIGHTS_UNKNOWN'}];
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<img|<svg|<script/);
+});

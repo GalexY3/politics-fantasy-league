@@ -94,3 +94,22 @@ def test_r16_sources_hidden_pre_cut_and_visible_only_as_uncertified_documentary(
                ct["rights"]["by_distribution"].values())
     assert ct["states"]["terminal_known"] is None
     assert ct["states"]["right_censored_known"] is None
+
+
+def test_r17_http_confidential_all_received_normative_not_public_census(local):
+    before="&as_of=2026-10-31T23%3A59%3A59Z"
+    a=fetch(local,"?source_id=R17_AIPI_NATIONAL_EXTERNAL_CHANNEL"+before)
+    b=fetch(local,"?source_id=UNSEEN_SOURCE"+before)
+    assert a[:2]==b[:2] and a[0]==200
+    assert a[1]["rights"] is None
+    after="&as_of=2026-11-01T00%3A00%3A00Z"
+    code,doc,_=fetch(local,"?source_id=R17_AIPI_NATIONAL_EXTERNAL_CHANNEL"+after)
+    assert code==200
+    assert doc["status"]=="SOURCE_VISIBLE_WITHOUT_CERTIFIED_REGISTRATION_POPULATION"
+    assert doc["clocks"]["first_public_at"] is None
+    assert doc["population"]["independent_all_received_denominator"] is None
+    assert doc["clocks"]["r17_terms_by_mere_access_status"].startswith("INDEXED_PORTAL_NOTICE")
+    assert doc["rights"]["by_distribution"]["CONFIDENTIAL_CASE_REGISTER"]=="NO_PUBLIC_ORIGINAL_OR_DISTRIBUTION_PERMISSION"
+    assert doc["states"]["pending_known"] is None
+    assert doc["states"]["right_censored_known"] is None
+    assert doc["official_links"]["confirmed_dual_id_edges"] is None

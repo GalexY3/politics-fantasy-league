@@ -341,6 +341,18 @@ function populationReadinessPanel(){
    +'<p class="footnote">Conocimiento local de esta auditoría desde '+esc(p.r16_documentary_safe_by)+
      '. Sin identificación de fuente futura antes de ese corte, sin testigos externos de publicación histórica y sin nuevos ciclos empíricos AB.</p></details>'
   :'';
+ const r17Candidates=(p.r17_documentary_status==='R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT'
+   &&Array.isArray(p.r17_documentary_routes))?p.r17_documentary_routes:[];
+ const r17Panel=r17Candidates.length
+  ?'<details><summary>R17 · protección del informante: registro obligatorio no es registro público</summary>'
+   +'<p class="help">OAAF Andalucía está obligada jurídicamente a registrar las denuncias externas recibidas, pero ese libro es confidencial y no está disponible como población reutilizable. AIPI registra comunicaciones del canal externo antes de la admisión y asigna un código de seguimiento; no se ha probado su equivalencia con el asiento o el expediente. AVAF recibe denuncias por diversos canales, mientras que la investigación se abre posteriormente de oficio.</p>'
+   +'<p class="help">AIPI presenta condiciones de reutilización y aceptación vinculada al mero uso según aviso indexado: no se aceptaron términos ni se accedió a casos. La reforma valenciana de junio de 2025 y el funcionamiento parcial estatal en 2025 rompen comparaciones ingenuas de series. Ningún conjunto aporta N externo de entradas, originales históricos, negativas/pending/censura, derechos por distribución o vínculos oficiales verificados. Las tres rutas son evidencia documental no aditiva, no tres cohortes adicionales.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente documental</th><th>Unidad jurídica</th><th>Bloqueo</th><th>Derechos</th></tr></thead><tbody>'
+   +r17Candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.documentary_unit)
+     +'</td><td>'+esc(s.limitation)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div><p class="footnote">Conocimiento documental conservador desde '+esc(p.r17_documentary_safe_by)
+   +'. El contraejemplo de selección R17 es exclusivamente sintético; no demuestra persistencia o retroalimentación causal en España. R5 continúa STOP.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const scopedCut=(typeof p.as_of==='string'&&p.as_of.length<50
@@ -370,6 +382,7 @@ function populationReadinessPanel(){
  +r13Panel
  +r14Panel
   +r16Panel
+	 +r17Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

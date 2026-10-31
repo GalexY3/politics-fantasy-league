@@ -53,9 +53,9 @@ def test_future_manifest_sources_rights_and_sha_hidden_at_earlier_cut(cut):
 def test_new_leads_add_three_documentary_groups_not_case_denominators():
     p=report(as_of="2026-11-01T00:00:00Z")
     d=p["denominator_evidence"]
-    assert d["source_groups_visible"]==44
-    assert len({r["source_id"] for r in d["reported_sources"]})==44
-    assert set(r["source_id"] for r in d["reported_sources"][-3:])=={
+    assert d["source_groups_visible"]==47
+    assert len({r["source_id"] for r in d["reported_sources"]})==47
+    assert set(r["source_id"] for r in d["reported_sources"][-6:-3])=={
         "SINDIC_CV_COMPLAINT_REGISTRATION",
         "CTCYL_POST_REQUEST_ACCESS_COMPLAINTS",
         "CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS",
@@ -64,7 +64,7 @@ def test_new_leads_add_three_documentary_groups_not_case_denominators():
     assert all(r["observed_source_local_items"] is None
                and r["known_pending_case_count"] is None
                and r["eligible_all_received_denominator"] is None
-               for r in d["reported_sources"][-3:])
+               for r in d["reported_sources"][-6:-3])
     x=registration_readiness(readiness=p,
         source_id="CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS")
     assert set(x["rights"]["by_distribution"])=={"CSV","ODS","XLS","XML"}

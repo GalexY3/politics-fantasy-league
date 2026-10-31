@@ -31,7 +31,7 @@ def test_prior_cut_not_leak_r9_catalogue_or_local_source_counts():
     assert "CONGRESO_XV" not in str(d)
     assert d["eligible_risk_denominator"] is None
     d=report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"]
-    assert d["source_groups_visible"]==44
+    assert d["source_groups_visible"]==47
     assert all(s["eligible_all_received_denominator"] is None for s in d["reported_sources"][-4:])
     assert len({s["source_id"] for s in d["reported_sources"][-4:]})==4
     assert all(s["observed_source_local_items"] is None for s in d["reported_sources"][-4:])

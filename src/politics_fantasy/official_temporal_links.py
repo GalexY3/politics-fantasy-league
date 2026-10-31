@@ -277,6 +277,13 @@ class Snapshot:
         """The denominator is merely the documents in this constructed snapshot."""
         nodes = (*self.confirmed_nodes, *self.bounded_nodes)
         processes = [n for n in nodes if n.node_class == "PROCESS"]
+        # Different documentary Ref aliases of the *same asserted* typed
+        # CongressProcess are not independent institutional procedures. This
+        # deduplication is within the SYNTHETIC graph only: the typed keys are
+        # still unverified claims, not a signed register or true denominator.
+        process_refs: dict[CongressProcess, set[Ref]] = {}
+        for n in processes:
+            process_refs.setdefault(n.process, set()).add(n.ref)
         step_links = [l for l in (*self.confirmed_links, *self.bounded_links)
                       if l.predicate in {"PROCEDURE_STEP", "DECISION_STEP"}]
         published = [l for l in (*self.confirmed_links, *self.bounded_links)
@@ -284,12 +291,16 @@ class Snapshot:
         with_step = {x.subject for x in step_links}
         with_boe = {x.subject for x in published}
         return {
-            "visible_documentary_processes": len(processes),
+            "visible_documentary_processes": len(process_refs),
+            "visible_source_local_process_nodes": len(processes),
+            "multiple_refs_for_same_claimed_process_key": sum(
+                len(refs)>1 for refs in process_refs.values()),
             "registered_processes_missing_observed_step": sum(
-                n.ref not in with_step for n in processes),
+                not (refs & with_step) for refs in process_refs.values()),
             "registered_processes_without_linked_boe": sum(
-                n.ref not in with_boe for n in processes),
+                not (refs & with_boe) for refs in process_refs.values()),
             "registered_processes_without_linked_boe_semantics": "NOT_OBSERVED_NOT_ZERO",
+            "matching_claimed_key_does_not_verify_official_identity": True,
             "confirmed_visible_nodes": len(self.confirmed_nodes),
             "bounded_visible_nodes": len(self.bounded_nodes),
             "confirmed_visible_links": len(self.confirmed_links),

@@ -15,6 +15,7 @@ from .procedural_discovery_r12 import SAFE_BY as R12_SAFE
 from .procedural_discovery_r13 import SAFE_BY as R13_SAFE
 from .procedural_discovery_r14 import SAFE_BY as R14_SAFE
 from .procedural_discovery_r16 import SAFE_BY as R16_SAFE
+from .procedural_discovery_r17 import SAFE_BY as R17_SAFE
 
 
 def _candidate(identifier:str, institution:str, unit:str, source_status:str,
@@ -57,7 +58,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r14_documentary_status:str="R14_NOT_KNOWN_AT_CUT",
                                 r14_documentary_routes:list[dict]|None=None,
                                 r16_documentary_status:str="R16_NOT_KNOWN_AT_CUT",
-                                r16_documentary_routes:list[dict]|None=None) -> dict:
+                                r16_documentary_routes:list[dict]|None=None,
+                                r17_documentary_status:str="R17_NOT_KNOWN_AT_CUT",
+                                r17_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -211,6 +214,27 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                 row["limitation"]))
     elif r16_documentary_status not in {"R16_NOT_KNOWN_AT_CUT","R16_MANIFEST_QUARANTINED"}:
         raise GateError("R16_DOCUMENTARY_STATUS_INVALID")
+    if r17_documentary_status=="R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT":
+        if type(r17_documentary_routes) is not list or len(r17_documentary_routes)!=3:
+            raise GateError("R17_EXPECTED_THREE_NONADDITIVE_CONFIDENTIAL_ROUTES")
+        for row in r17_documentary_routes:
+            if (row.get("source_originals_acquired")!=0
+                    or row.get("public_registry_available") is not False
+                    or row.get("distribution_rights_certified") is not False
+                    or row.get("independent_entry_denominator") is not None
+                    or row.get("real_terminal_decisions") is not None
+                    or row.get("real_pending_or_censored") is not None
+                    or row.get("first_public_at") is not None
+                    or row.get("official_dual_id_crosswalk") is not None
+                    or row.get("source_role_is_not_a_homogeneous_risk_set") is not True):
+                raise GateError("R17_CONFIDENTIAL_REGISTER_NOT_PUBLIC_CENSUS")
+            groups.append(_candidate(
+                row["source_id"],row["institution"],row["documentary_unit"],
+                "DOCUMENTARY_ONLY_CONFIDENTIAL_REGISTRATION_NO_RAW",None,
+                "CONFIDENTIAL_EXTERNAL_RECEIPT_NOT_PUBLIC_CASE_FRAME",
+                row["limitation"]))
+    elif r17_documentary_status not in {"R17_NOT_KNOWN_AT_CUT","R17_MANIFEST_QUARANTINED"}:
+        raise GateError("R17_DOCUMENTARY_STATUS_INVALID")
     # Re-evaluate documentary availability independently of the caller's
     # source-status flags. The source gate owns safe_by; a forged status or a
     # missed as_of argument cannot enumerate a future publisher catalogue.
@@ -222,6 +246,7 @@ def derive_denominator_evidence(*, real_sources:list[dict],
         (r13_documentary_status=="R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R13_SAFE),
         (r14_documentary_status=="R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R14_SAFE),
         (r16_documentary_status=="R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R16_SAFE),
+        (r17_documentary_status=="R17_DOCUMENTARY_ONLY_CONFIDENTIAL_NO_CASE_COHORT",R17_SAFE),
     )
     cut=utc(as_of) if as_of is not None else None
     # The live observatory can expressly render its CURRENT catalogue. That

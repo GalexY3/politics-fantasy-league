@@ -15,12 +15,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 
-from .procedural_index_contract import GateError, utc
+from .procedural_index_contract import GateError, utc, day
 
 
 @dataclass(frozen=True)
 class SyntheticEventCut:
     as_of: str
+    cut_on: str
     synthetic_frame_id: str
     observed_source_local_cases: int
     attested_event_by_cut: int
@@ -31,7 +32,9 @@ class SyntheticEventCut:
     evidence_class: str = "SYNTHETIC_LAB_ONLY"
 
     def __post_init__(self) -> None:
-        utc(self.as_of)
+        knowledge=utc(self.as_of)
+        if day(self.cut_on)>=knowledge.date():
+            raise GateError("COMPLETE_SYNTHETIC_EVENT_CUT_REQUIRED")
         if (self.evidence_class != "SYNTHETIC_LAB_ONLY"
                 or not isinstance(self.synthetic_frame_id, str)
                 or not self.synthetic_frame_id.startswith("SYNTHETIC:")):
@@ -58,6 +61,9 @@ class SyntheticEventCut:
             "evidence_class": self.evidence_class,
             "synthetic_frame_id": self.synthetic_frame_id,
             "as_of": self.as_of,
+            "cut_on": self.cut_on,
+            "individual_event_time_witnesses_verified": False,
+            "event_by_cut_labels_are_synthetic_fixture_assumptions": True,
             "observed_source_local_cases": self.observed_source_local_cases,
             "attested_event_by_cut": self.attested_event_by_cut,
             "attested_no_event_by_cut": self.attested_no_event_by_cut,
