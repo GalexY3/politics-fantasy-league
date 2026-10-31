@@ -41,6 +41,24 @@ def test_three_source_local_entries_preserve_types_pages_and_unknown_outcomes():
     assert len({x["source_local_id"] for x in rows}) == 3
 
 
+def test_nested_reference_to_another_law_inside_the_title_is_not_title_start():
+    """A long title may continue with 'LEY N/AAAA' on its second line.
+
+    The anchor must be the first legal heading of this one initiative, not
+    the last internal citation to an amended law. Synthetic only.
+    """
+    pages = ((37,
+              "LEY POR LA QUE SE MODIFICAN LA LEY 11/1988, DE 3 DE MAYO, Y LA\n"
+              "LEY 17/2001, DE MARCAS, Y LA LEY 20/2003, DE PATENTES\n"
+              "Objetivo: modificar una regulacion sintetica.\n"
+              "Ministerio: MINISTERIO FICTICIO\n"),)
+    rows = mod.identify_plan_items(pages)
+    assert len(rows) == 1
+    assert rows[0]["title_first_line_unverified"].startswith(
+        "LEY POR LA QUE SE MODIFICAN LA LEY 11/1988")
+    assert rows[0]["normative_class"] == "LAW"
+
+
 def test_aggregate_counts_are_source_local_not_independent_denominator():
     result = mod.audit_source_local_counts(
         mod.identify_plan_items(synthetics()),

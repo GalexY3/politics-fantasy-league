@@ -76,7 +76,12 @@ def identify_plan_items(page_texts: tuple[tuple[int, str], ...]) -> tuple[dict, 
                             if preceding_ministry_end <= t.start() < objective.start()]
         if not candidate_titles:
             raise CohortGateError("PAN_ENTRY_WITHOUT_TITLE_ANCHOR")
-        anchor = candidate_titles[-1]
+        # The heading may itself span several lines containing references to
+        # other laws ("LEY 17/2001 ..."). Such a continuation is NOT a new
+        # planned item. Choose the first title anchor after the preceding
+        # item's Ministry witness; the order guard below still controls each
+        # Objective -> Ministry pairing.
+        anchor = candidate_titles[0]
         line = anchor.group().strip()
         kind = ("ORGANIC_LAW" if line.startswith("LEY ORG") else
                 "ROYAL_DECREE" if line.startswith("REAL DECRETO") else "LAW")
