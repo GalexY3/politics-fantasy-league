@@ -1,5 +1,7 @@
 # PP-01/02: preflight español y QA falsadora de trazabilidad documental
 
+> **Fe de erratas material, PP-03 (31/10/2026):** la pareja consignada abajo `PAN-2024/IAEN-2025` **es errónea y está RETIRADA**. El índice PAN 2024 enlaza **IAEN 2024**, aprobado por el Consejo de Ministros el **15/04/2025**; el índice PAN 2025 enlaza **IAEN 2025**, aprobado el **05/05/2026**. El año en el **nombre** del IAEN identifica el ejercicio evaluado; el año siguiente es el de su **aprobación**. Este documento conserva la formulación anterior como historial de error, no como fuente actual de decisiones. El contrato corregido vive en `SOURCE_DECISION_GATE.json` v1 y el programa PP-03 actualizado. Los dos ejercicios ya tienen resúmenes agregados de resultados vistos incidentalmente por búsqueda indexada: no servirán como holdouts ciegos.
+
 **31/10/2026. Estado:** trabajo documentado y técnico `NONCYCLE`, **revisión independiente pendiente**, `STOP_R5`, ningún original/outcome consultado, ningún ciclo AB contabilizado. Este informe pertenece a una **rama candidata independiente**, no modifica `main`, R5, CT2, Atlas, presupuesto ni los hitos científicos canónicos.
 
 ## 1. Procedencia comprobable
@@ -12,7 +14,7 @@
 ## 2. PP-01/02: división del trabajo y primer gate documental
 
 - `docs/POLITICAS_PUBLICAS_PROGRAMA_DIVIDIDO_20261031.md` fija PP-01–PP-08 con dependencia, aceptación, falsador y estado. Contiene tres rutas distintas (agenda PAN, tramitación Congreso y ejecución/financiación PLACSP/BDNS) sin fingir que están abiertas: R11/R12/R18 ya documentaron límites y STOP locales.
-- `SOURCE_DECISION_GATE.json` registra la ruta concreta PAN-2024/IAEN-2025 como **emparejamiento jurídico candidato**, no como correspondencia individual demostrada. La Ley 50/1997 art.28 y RD 286/2017 art.4 establecen informe anual sobre plan del año anterior, e incluyen iniciativas **no previstas** y evaluaciones plurianuales. Es imprescindible separar `plan_year`, año evaluado, año de informe y año de norma ex post; ausencia de informe individual no es rechazo.
+- **[HISTÓRICO INCORRECTO, RETIRADO POR FE DE ERRATAS SUPERIOR]** `SOURCE_DECISION_GATE.json` v0 registró PAN-2024/IAEN-2025 como emparejamiento candidato por confundir año nominal del informe con año de aprobación. El contrato v1 corrige la pareja a PAN-2024/IAEN-2024 (aprobación 2025); registra también PAN-2025/IAEN-2025 (aprobación 2026), derechos pendientes y exposición de resultados agregados. La Ley 50/1997 art.28 y RD 286/2017 art.4 establecen informe anual aprobado posteriormente y separan iniciativas previstas, no previstas y evaluaciones plurianuales. La ausencia de informe individual no es rechazo.
 - Página de condiciones generales del Portal de Transparencia declara efectos por mero uso. No se abrieron ni descargaron originales PDF, no se aceptaron términos, no hay capturas SHA de esas distribuciones ni autorización nueva para adquisición. Las normas BOE consolidadas tampoco constituyen un universo de iniciativas previas ni hechos jurídicos causales.
 
 ## 3. Reproducción de dos falsadores sintéticos de la rama antecedente
