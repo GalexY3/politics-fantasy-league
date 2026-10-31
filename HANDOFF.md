@@ -1,5 +1,7 @@
 # PFL · briefing derivado
 
+**31/10/2026 · NUEVO SHOWCASE FANTASY (rama separada desde main):** producto autónomo de exhibición editorial inspirado conceptualmente en LessWrong y opción institucional, claro/oscuro, únicamente en product/showcase. Entrada sin cuenta ni backend, ocho secciones, 18 cartas ficticias, mercado, fichajes/ventas, alineación, capitanía, ocho jornadas deterministas, clasificación de cinco clubes inventados, nueve logros, XP, perfil editable y guardado/exportación/importación local. Directorio de **117 referencias políticas españolas en 18 territorios**, partidos/coaliciones/candidaturas/históricos sin identidad registral o vigencia certificadas. **QA: 12/12 Node, 8/8 rutas Chrome, E2E real Chrome/CDP clics/persistencia/filtros/tema y emulación 390 px sin overflow PASS.** Ver product/showcase/QA_AND_HANDOFF.md y docs/SHOWCASE_VISUAL_SYSTEM_20261031.md. Capturas privadas offGit. No se altera la aplicación estable, cuentas P1, motor P2, investigación R5, Atlas, logros, main ni PFL-trabajo. Revisión humana necesaria antes de integrar o publicar un servicio. Rama original clonada desde main HEAD 653604358183b59e8c0446497f47ff4a3769134f; comparar PR HEAD remoto al cierre.
+
 Rama: `main`; HEAD: `35e9ebe409d6b37d7409b42ba610283901cda8ba`.
 Estado rev. 11; publicación declarada: MAIN_PR2_MERGED_CODE_REVIEW_PASS.
 Código revisado incluido en refs/remotes/origin/main: True (referencia local; hacer fetch).

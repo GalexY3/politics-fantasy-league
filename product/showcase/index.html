@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Politics Fantasy League: una demostración interactiva de estrategia, instituciones y ciencia de datos políticos.">
+  <title>Politics Fantasy League · Edición de muestra</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./parties.js" defer></script>
+  <script src="./engine.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body data-theme="light">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="Politics Fantasy League, inicio">
+        <span class="brand-symbol" aria-hidden="true"><span class="symbol-dot"></span><span class="symbol-column"></span><span class="symbol-bar"></span></span>
+        <span class="brand-type"><strong>POLITICS</strong><span>FANTASY LEAGUE</span><small>ESTUDIO · TEMPORADA CERO</small></span>
+      </a>
+      <div class="side-label">EL JUEGO</div>
+      <nav id="main-nav" class="nav-list" aria-label="Juego">
+        <button type="button" data-page="inicio" class="nav-link active" aria-current="page"><span class="nav-ico" aria-hidden="true">⌂</span> Inicio</button>
+        <button type="button" data-page="mercado" class="nav-link"><span class="nav-ico" aria-hidden="true">◇</span> Mercado <small class="nav-trail">18</small></button>
+        <button type="button" data-page="plantilla" class="nav-link"><span class="nav-ico" aria-hidden="true">▦</span> Mi equipo</button>
+        <button type="button" data-page="jornadas" class="nav-link"><span class="nav-ico" aria-hidden="true">◷</span> Jornadas</button>
+        <button type="button" data-page="liga" class="nav-link"><span class="nav-ico" aria-hidden="true">≋</span> Clasificación</button>
+      </nav>
+      <div class="side-label side-label-secondary">EXPLORAR</div>
+      <nav class="nav-list" aria-label="Exploración">
+        <button type="button" data-page="partidos" class="nav-link"><span class="nav-ico" aria-hidden="true">◎</span> Partidos españoles</button>
+        <button type="button" data-page="laboratorio" class="nav-link"><span class="nav-ico" aria-hidden="true">⌘</span> Laboratorio</button>
+        <button type="button" data-page="perfil" class="nav-link"><span class="nav-ico" aria-hidden="true">◉</span> Mi perfil</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="foot-indicator"><i aria-hidden="true"></i> MODO DEMOSTRACIÓN</span>
+        <p>Cartas, resultados y créditos completamente ficticios. Ninguna puntuación representa a personas o formaciones reales.</p>
+        <span class="sidebar-version">PFL / SHOWCASE 0.1</span>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-location"><span class="topbar-prefix">LA LIGA</span><span class="topbar-divider">/</span><strong id="page-title">Inicio</strong></div>
+        <div class="topbar-actions">
+          <span class="season-pill">TEMPORADA CERO <span class="season-dot"></span> JORNADA <b id="top-week">01</b></span>
+          <button id="theme-toggle" class="icon-button" type="button" title="Alternar entre modo claro y oscuro" aria-label="Activar modo oscuro"><span aria-hidden="true">◐</span></button>
+          <button id="profile-trigger" data-page="perfil" class="profile-shortcut" type="button"><span class="profile-monogram" id="top-monogram">H</span><span id="top-club">Club Horizonte</span><span class="shortcut-chevron" aria-hidden="true">⌄</span></button>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <div id="page-content" aria-live="polite"></div>
+      </main>
+      <footer class="main-footer">
+        <span>POLITICS FANTASY LEAGUE <span aria-hidden="true">·</span> EDICIÓN DE MUESTRA</span>
+        <span>UNA APLICACIÓN DE UNA INFRAESTRUCTURA DE CIENCIA DE DATOS POLÍTICOS</span>
+      </footer>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="dialog-backdrop" class="dialog-backdrop" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button type="button" id="dialog-close" class="dialog-close" aria-label="Cerrar ventana">×</button>
+      <div id="dialog-body"></div>
+    </section>
+  </div>
+</body>
+</html>

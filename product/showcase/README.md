@@ -1,0 +1,58 @@
+# Politics Fantasy League — Showcase v0.1
+
+**Prototipo de presentación, no lanzamiento público ni indicador científico.** Esta interfaz editorial y lúdica se desarrolla separadamente del backend de PFL para que pueda abrirse inmediatamente sin registro, instalación, servidor ni dependencias.
+
+![Vista previa editorial del prototipo Politics Fantasy League](preview.png)
+
+*Captura de la propia interfaz ejecutada localmente en Chrome, no imagen conceptual ni representación de resultados políticos reales.*
+
+## Abrir
+
+**Acceso más fácil en Windows:** hacer doble clic en ABRIR_DEMO.cmd dentro de esta carpeta; abre index.html en el navegador predeterminado. El archivo HTML también puede abrirse directamente. Para compartirlo, comprime los ficheros de esta carpeta en un ZIP (no contiene tu partida personal).
+
+En Windows, abrir `product/showcase/index.html` con doble clic (Chrome, Edge o Firefox). Si se prefiere un servidor local:
+
+```powershell
+cd product/showcase
+py -3 -m http.server 8765 --bind 127.0.0.1
+# Abrir http://127.0.0.1:8765/
+```
+
+**No hay publicación web ni acceso remoto configurado.** La aplicación funciona con HTML/CSS/JS local y `localStorage` del navegador. El modo invitado utiliza un club ficticio preconfigurado; no recoge contraseñas, correos electrónicos ni datos personales.
+
+## Funciones implementadas
+
+- Inicio editorial responsive con guía de entrada inmediata, misiones y progreso de temporada.
+- Mercado de 18 cartas de **roles/personajes enteramente ficticios** con precios, atributos declaradamente sintéticos, fichajes/ventas y filtros.
+- Plantilla de hasta 8 cartas; hasta 5 titulares, elección de capitán y táctica. Acciones persistentes localmente.
+- Simulación local determinista de jornadas, resultados explicables por carta/táctica, créditos, experiencia y clasificación **de clubes ficticios**.
+- Catálogo amplio, exploratorio y NO exhaustivo de formaciones, coaliciones y agrupaciones españolas con búsqueda, filtros y favoritos cosméticos. **No es copia autenticada del Registro de Partidos Políticos** y no certifica su vigencia, inscripción, afiliación, representatividad ni cambios de denominación.
+- Perfil editable (nombre del club, insignia), estadísticas, insignias por acciones realmente realizadas, contraste claro/oscuro y exportación/importación local para continuar en otro navegador.
+- Laboratorio que diferencia mecanismos de reglas ficticias, cobertura documental conocida y ambiciones científicas todavía pendientes.
+
+## Procedencia y alcance
+
+Las denominaciones del catálogo utilizan referencias documentales como la [composición inicial del Congreso en 2023](https://www.congreso.es/backoffice_doc/prensa/notas_prensa/99427_1692877250184.pdf) y los [resultados de las europeas 2024](https://results.elections.europa.eu/es/resultados-nacionales/espana/2024-2029/), junto a nombres editoriales no autenticados individualmente. El [Ministerio del Interior](https://sede.interior.gob.es/portal/sede/tramites) mantiene un Registro de Partidos Políticos que requiere un proceso registral aparte para acreditar identidades y estados. No se afirma exhaustividad ni vigencia a 2026.
+
+Ningún personaje del mercado es un político real. Sus atributos, rendimientos, los resultados de jornadas y la clasificación se producen exclusivamente por reglas de demostración y **no evalúan actividad, ideología, legitimidad ni rendimiento de partidos o personas reales**. Elegir como favorito un partido es una preferencia cosmética, no un compromiso o adscripción institucional. No existen pagos, pujas multijugador, sincronización entre dispositivos ni puntuación alimentada por eventos reales; estas funciones requieren desarrollos y autorizaciones adicionales.
+
+## Validación
+
+La batería focal pasó 12/12 pruebas Node y un ensayo de extremo a extremo real Chrome/CDP con ocho rutas, compras, capitanía, jornada, filtros, perfil, persistencia y viewport móvil verdadero de 390 píxeles, sin overflow. El registro detallado es QA_AND_HANDOFF.md; no constituye aceptación humana ni despliegue público.
+
+El ensayo real de navegador usa Chrome local y ningún paquete npm adicional:
+
+    node tests/showcase_browser_e2e.mjs
+
+```powershell
+node --test tests/test_showcase_engine.mjs
+node --check product/showcase/app.js
+node --check product/showcase/engine.js
+node --check product/showcase/parties.js
+```
+
+Se recomienda una revisión visual humana en navegadores de escritorio y móvil antes de considerar la demostración preparada para asistentes. Las pruebas de lógica no equivalen a pruebas integrales de navegación o accesibilidad.
+
+## Arquitectura y continuidad
+
+Este **showcase** se entrega en rama/PR de borrador separada. No sustituye `src/politics_fantasy/web`, las cuentas P1, el motor P2, los contratos documentales ni el observatorio. Tampoco levanta R5, modifica logros/Atlas, publica datos privados ni toca `main`. Las mejoras que se quieran integrar en la aplicación real requieren revisión y aceptación del producto.
