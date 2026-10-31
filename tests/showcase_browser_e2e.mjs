@@ -100,8 +100,22 @@ try{
   check((await evaluate("document.body.dataset.theme"))==='dark','graphite dark is the first-run theme');
   check((await evaluate("document.querySelectorAll('.event-card').length"))>=1,'fictional event dossier appears on home');
   check((await evaluate("document.querySelectorAll('.real-briefing .real-metric').length"))===2,'real INE snapshot on home distinctly labelled');
-  check((await evaluate("document.querySelectorAll('.nav-link').length"))===8,'eight navigation routes');
+  check((await evaluate("document.querySelectorAll('.nav-link').length"))===9,'nine navigation routes');
   await snapshot('browser-desktop-home');
+
+  await click('.nav-link[data-page="actualidad"]');
+  check((await evaluate("document.querySelectorAll('.agenda-week').length"))===8,
+    'agenda timeline contains all eight synthetic episodes');
+  check((await evaluate("document.querySelectorAll('.agenda-week:disabled').length"))===7,
+    'future scenarios remain hidden until they enter the next playable week');
+  check((await evaluate("document.querySelectorAll('.scout-row').length"))===3,
+    'the initial lineup has a non-scoring scouting preview');
+  await click('.scout-tactic[data-id="alianzas"]');
+  const afterScout=await evaluate("JSON.parse(localStorage.getItem('pfl-showcase-edition-zero-v1'))");
+  check(afterScout.tactic==='alianzas'&&afterScout.rounds.length===0,
+    'choosing a scouting tactic changes strategy without simulating the round');
+  await click('.scout-tactic[data-id="datos"]');
+  await snapshot('browser-desktop-agenda');
 
   await click('.nav-link[data-page="mercado"]');
   check((await evaluate("document.querySelectorAll('.character-card').length"))===18,'all eighteen cards render');
@@ -123,6 +137,15 @@ try{
   check(afterRound.week===2&&afterRound.rounds.length===1&&afterRound.points>0,'round completed deterministically in browser');
   check(afterRound.rounds[0].eventId==='demo-01','round is attributable to explicit fictional event');
   check((await evaluate("document.body.innerText")).includes('Última sesión'),'round breakdown renders');
+  await click('.nav-link[data-page="actualidad"]');
+  check((await evaluate("document.querySelectorAll('.agenda-week:not(:disabled)').length"))===2,
+    'completing a round unlocks the next editorial episode');
+  await click('button[data-action="agenda-prev"]');
+  check((await evaluate("document.querySelector('#agenda-gesture')?.getAttribute('aria-label')?.includes('J1')"))===true,
+    'past event is accessible without recomputing past points');
+  await click('button[data-action="agenda-next"]');
+  check((await evaluate("document.querySelector('#agenda-gesture')?.getAttribute('aria-label')?.includes('J2')"))===true,
+    'agenda advances within already unlocked episodes');
   await click('.nav-link[data-page="laboratorio"]');
   check((await evaluate("document.querySelectorAll('.lab-tab').length"))===6,'six observatory modes render');
   check((await evaluate("document.querySelectorAll('.trend-chart').length"))===1,'synthetic trend has real SVG nodes');
@@ -180,6 +203,17 @@ try{
   check(measured.inner===390,'genuine mobile viewport of 390 CSS pixels');
   check(measured.root<=390&&measured.body<=390,'mobile layout has no horizontal overflow');
   await snapshot('browser-mobile-home');
+  check((await evaluate("getComputedStyle(document.querySelector('.mobile-dock')).display"))==='grid',
+    'mobile fixed dock is visible');
+  await click('.dock-link[data-page="actualidad"]');
+  check((await evaluate("document.querySelector('.dock-link[data-page=actualidad]')?.getAttribute('aria-current')"))==='page',
+    'mobile dock follows the selected section');
+  await click('button[data-action="agenda-prev"]');
+  const swipe=await evaluate("(function(){const n=document.getElementById('agenda-gesture');const s=new Touch({identifier:11,target:n,clientX:330,clientY:240});const e=new Touch({identifier:11,target:n,clientX:110,clientY:245});n.dispatchEvent(new TouchEvent('touchstart',{touches:[s],changedTouches:[s],bubbles:true}));n.dispatchEvent(new TouchEvent('touchend',{touches:[],changedTouches:[e],bubbles:true}));return document.querySelector('#agenda-gesture')?.getAttribute('aria-label')})()");
+  check(swipe?.includes('J2'),'a touch swipe changes the mobile agenda episode');
+  const agendaMobile=await evaluate("({w:window.innerWidth,root:document.documentElement.scrollWidth})");
+  check(agendaMobile.root<=agendaMobile.w,'mobile agenda has no page-wide horizontal overflow');
+  await snapshot('browser-mobile-agenda');
   await click('.nav-link[data-page="mercado"]');
   check((await evaluate("document.querySelectorAll('.character-card').length"))===18,'market also renders at mobile width');
   await click('.nav-link[data-page="laboratorio"]');

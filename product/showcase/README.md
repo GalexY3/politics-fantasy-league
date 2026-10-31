@@ -1,4 +1,4 @@
-# Política Fantasy España — Showcase v0.2 (Politics Fantasy League)
+# Política Fantasy España — Showcase v0.3 (Politics Fantasy League)
 
 **Prototipo de presentación, no lanzamiento público ni validación científica.** «Política Fantasy España» es un nombre visual provisional, no un cambio del repositorio. Esta interfaz editorial y lúdica es independiente del backend de PFL y abre sin registro, servidor ni dependencias.
 
@@ -41,6 +41,20 @@ py -3 -m http.server 8765 --bind 127.0.0.1
 
 Las diferencias entre las fuentes oficiales, las mediciones reales disponibles, los escenarios inventados y las aspiraciones de investigación se desarrollan en el contrato metodológico: docs/SHOWCASE_V02_PRODUCT_AND_DATA_CONTRACT_20261031.md.
 
+## Incremento v0.3: interacción y anticipación
+
+![Captura real de Chrome de la nueva agenda interactiva del fantasy, con escenarios ficticios](preview-agenda.png)
+
+*La captura procede de la ejecución real en Chrome; muestra una pantalla de la simulación, no una noticia española ni una visualización de acontecimientos reales.*
+
+- Nueva novena ruta **Agenda política** con carrusel accesible mediante botones, flechas de teclado y desplazamiento horizontal táctil en teléfonos. Las ocho escenas son ficticias y permanecen bloqueadas hasta la jornada correspondiente.
+- Barra inferior fija en móvil con cinco acciones: Inicio, Agenda, Equipo, Jugar y Datos. Conservar la navegación superior permite seguir entrando en las restantes áreas.
+- **Análisis de la próxima jornada**, disponible desde Agenda, Mi equipo y Jornadas. Presenta bonificaciones sintéticas por carta según el acontecimiento actual y afinidad de las tres tácticas. Cambiar táctica no celebra la jornada ni muestra el resultado final futuro.
+- El análisis se obtiene mediante una función pura de motor, no altera puntos, plantilla ni historial. Los desgloses de eventos pueden confrontarse con el acta tras celebrar la jornada.
+- La vista en móvil de 390 px no presenta desbordamiento de página en Inicio, Agenda ni Laboratorio territorial según el ensayo CDP. No constituye aún una prueba de accesibilidad integral ni ensayo en teléfono físico.
+
+El contrato de producto v0.2 sigue siendo aplicable. La ampliación no añade noticias reales, ingestión automática, fuentes oficiales nuevas ni puntuaciones de políticos; la economía real continúa siendo una instantánea INE fechada y separada del juego.
+
 ## Procedencia y alcance
 
 Las denominaciones del catálogo utilizan referencias documentales como la [composición inicial del Congreso en 2023](https://www.congreso.es/backoffice_doc/prensa/notas_prensa/99427_1692877250184.pdf) y los [resultados de las europeas 2024](https://results.elections.europa.eu/es/resultados-nacionales/espana/2024-2029/), junto a nombres editoriales no autenticados individualmente. El [Ministerio del Interior](https://sede.interior.gob.es/portal/sede/tramites) mantiene un Registro de Partidos Políticos que requiere un proceso registral aparte para acreditar identidades y estados. No se afirma exhaustividad ni vigencia a 2026.
@@ -51,14 +65,14 @@ Ningún personaje del mercado es un político real. Sus atributos, rendimientos,
 
 ## Validación
 
-La batería focal v0.2 pasó **16/16 pruebas Node** y un ensayo extremo a extremo real Chrome/CDP con ocho rutas, seis vistas del Laboratorio, datos reales y sintéticos separados, imágenes locales, compras, capitanía, eventos y actas, filtros, perfil, heráldica, persistencia y viewport móvil de 390 píxeles sin overflow en las pantallas comprobadas. El registro detallado es QA_AND_HANDOFF.md; no constituye aceptación humana ni despliegue público.
+La batería focal v0.3 pasó **21/21 pruebas Node** y un ensayo extremo a extremo real Chrome/CDP con nueve rutas, seis vistas del Laboratorio, agenda ficticia bloqueada por jornada, scouting, cambios de táctica sin consumir turno, gestos táctiles, barra inferior móvil, datos reales y sintéticos separados, imágenes locales, compras, capitanía, eventos, filtros, perfil, heráldica, persistencia y viewport móvil de 390 píxeles sin desbordamiento en las pantallas comprobadas. El registro detallado es QA_AND_HANDOFF.md; no constituye aceptación humana ni despliegue público.
 
 El ensayo real de navegador usa Chrome local y ningún paquete npm adicional:
 
     node tests/showcase_browser_e2e.mjs
 
 ```powershell
-node --test tests/test_showcase_engine.mjs
+node --test tests/test_showcase_engine.mjs tests/test_showcase_scout.mjs
 node --check product/showcase/app.js
 node --check product/showcase/engine.js
 node --check product/showcase/world.js

@@ -1,5 +1,7 @@
 # Política Fantasy España — Contrato de producto y datos v0.2
 
+**Adenda prospectiva v0.3:** La agenda incorporada permite consultar solo el episodio ficticio actual y los ya completados. Los bloqueos de episodios futuros son una mecánica de juego; no deben confundirse con confidencialidad legal de expedientes reales. El scouting calcula bonificaciones sintéticas de evento y afinidad táctica sin atribución empírica ni acceso a información nueva. La instantánea INE sigue fijada a su fecha documental sin actualización automática, y el fantasy y el Laboratorio siguen sin aprobar R5. La prueba de swipe y barra inferior en Chrome emulado valida controles concretos, no usabilidad humana.
+
 Fecha de corte: **31/10/2026**. Estado: SHOWCASE sintético con una pequeña instantánea real del INE. No autoriza investigación R5, integración a main, despliegue público ni puntuación de personas reales.
 
 ## Identidad y arquitectura

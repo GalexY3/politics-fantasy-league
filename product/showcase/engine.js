@@ -203,11 +203,30 @@
       points:state.points,isUser:true});
     return others.sort((a,b)=>b.points-a.points||a.name.localeCompare(b.name,'es'));
   }
+  function scouting(state) {
+    assert(validState(state),'Estado inválido.');
+    if(state.week>MAX_WEEKS)return Object.freeze({finished:true,week:null,eventId:null,
+      cards:[],tactics:[],eventBonus:0,chosenTactic:state.tactic});
+    const event=WORLD.weekEvent(state.week);
+    const cards=state.starters.map(id=>{
+      const c=card(id);
+      return Object.freeze({id,role:c.role,name:c.name,
+        eventBonus:WORLD.eventScore(c,event),captain:state.captain===id});
+    });
+    const tactics=TACTICS.map(t=>Object.freeze({
+      id:t.id,name:t.name,matched:cards.filter(c=>c.role===t.role).length,
+      tacticBaseBonus:cards.filter(c=>c.role===t.role).length*4
+    }));
+    return Object.freeze({finished:false,week:state.week,eventId:event.id,
+      cards:Object.freeze(cards),tactics:Object.freeze(tactics),
+      eventBonus:cards.reduce((a,c)=>a+c.eventBonus,0),
+      chosenTactic:state.tactic});
+  }
   function achievements(s){return ACHIEVEMENTS.map(a=>({...a,unlocked:!!a.check(s)}));}
   function level(s){return Math.floor(s.xp/100)+1;}
   return Object.freeze({
     VERSION,MAX_WEEKS,MAX_ROSTER,MAX_STARTERS,
     CARDS,TACTICS,WEEK_TITLES,RIVALS,ACHIEVEMENTS,
-    newGame,validState,card,change,hash,leaderboard,achievements,level
+    newGame,validState,card,change,hash,leaderboard,scouting,achievements,level
   });
 });
