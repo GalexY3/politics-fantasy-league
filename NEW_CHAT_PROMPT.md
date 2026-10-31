@@ -1,4 +1,4 @@
-Continúa Politics Fantasy League con producto e investigación sociológica separados.
+Continúa Politics Fantasy League con producto e investigación sociológica separados. Antes de elegir nuevas prioridades, lee el [alcance científico expresado por el promotor](docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md): política española real e histórica, instituciones, políticas públicas, análisis y simulaciones, con Fantasy League como caso de uso del mismo TFM. No sustituirlo por ficción ni peticiones extranjeras auxiliares.
 
 Lee primero la entrada ACTUAL y sigue sus enlaces:
 https://github.com/GalexY3/politics-fantasy-league/blob/main/START_HERE.md

@@ -1,5 +1,9 @@
 # Politics Fantasy: empezar o continuar
 
+## Visión vinculante del proyecto (leer antes de escoger una línea de trabajo)
+
+**[Visión científica y alcance de PFL](docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md)**. PFL tiene como núcleo una infraestructura histórico-relacional y de ciencia de datos sobre **la política española real**, sus actores públicos, instituciones y políticas públicas, con predicciones, modelos y simulaciones sometidos a evaluación. La liga fantasy es **un caso de uso** del núcleo científico; el propio sistema PFL es el TFM DaSoc. Una demo ficticia o una investigación extranjera auxiliar no sustituyen el alcance español. Las puertas de seguridad, datos, derechos y validación permanecen activas. La visión expresa intención del promotor; PROJECT_STATE.json continúa reflejando el estado empírico y de ingeniería, no se actualiza por la mera declaración.
+
 **Repositorio canónico: [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league).** PFL utiliza AB, pero su producto, investigación, pruebas, estado y decisiones viven aquí. No continuar escribiendo PFL dentro del repositorio del método.
 
 ## Recuperación breve
