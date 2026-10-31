@@ -1,5 +1,7 @@
 # Diseño preliminar de un TFM con contribución falsable
 
+> **Aviso de precedencia de alcance (31-10-2026).** Este documento conserva tres **opciones científicas preliminares**, no la definición definitiva del proyecto. La voluntad expresada después por el promotor está fijada en [VISION_CIENTIFICA_Y_ALCANCE_PFL.md](VISION_CIENTIFICA_Y_ALCANCE_PFL.md): **el TFM es Politics Fantasy League como infraestructura científico-computacional de política española real**, con análisis, predicción y simulación; la liga fantasy es una aplicación y caso de uso. La línea parlamentaria A puede ser el primer corpus demostrable, pero NO redefine el alcance total ni hace al juego un accesorio de un TFM distinto. Toda selección experimental continúa sometida a evidencia, AB-H y R5.
+
 ## Título provisional (opción A)
 
 **Predicción y evaluación de la actividad parlamentaria española mediante datos longitudinales y redes institucionales: diseño reproducible de un observatorio computacional.**
