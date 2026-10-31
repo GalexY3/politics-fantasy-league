@@ -7,11 +7,11 @@ const js = readFileSync(new URL('../src/politics_fantasy/web/app.js', import.met
 const match = js.match(/function spanishProcessesPanel\(\)\{[\s\S]*?\n\}/);
 assert.ok(match, 'Canary cohort panel must exist');
 
-function render(c) {
+function render(c,proceduralCoverage=null) {
   const esc = s => String(s ?? '').replace(/[&<>"']/g,
     t => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t]));
   return runInNewContext(match[0] + '\nspanishProcessesPanel', {
-    ui: {parcanCohorts:c}, esc, count:n=>String(n),
+    ui: {parcanCohorts:c,proceduralCoverage}, esc, count:n=>String(n),
     stat:(n,v,c)=>'<div>'+esc(n)+':'+esc(v)+'('+esc(c)+')</div>',
   })();
 }
@@ -72,6 +72,29 @@ test('month observations appear only with audited derivative, never zeros or out
   later.creation_monthly_status='MONTHLY_DERIVATIVE_QUARANTINED';
   const quarantined=render(later);
   assert.doesNotMatch(quarantined,/2024-02|Meses con registros observados/);
+});
+
+test('second editorial view is separately gated, never a risk-set denominator',()=>{
+ const c=sample();
+ const witness={
+  status:'CONCORDANT_SOURCE_COUNTERS_NOT_CENSUS',
+  editorial_count_total:1753,
+  source_strata:[
+   {year:2024,publisher_editorial_count:686,local_original_rows:686},
+   {year:2025,publisher_editorial_count:543,local_original_rows:543},
+   {year:2026,publisher_editorial_count:524,local_original_rows:524},
+  ],
+  missing_for_survival:['EXHAUSTIVE_ENTRY_CENSUS','DATED_PROCEDURAL_TRANSITIONS'],
+ };
+ const html=render(c,witness);
+ assert.match(html,/Comprobación editorial de preguntas escritas: 1753 observadas/);
+ assert.match(html,/misma base de datos/);
+ assert.match(html,/Denominador de riesgo: desconocido/);
+ assert.match(html,/EXHAUSTIVE_ENTRY_CENSUS/);
+ assert.doesNotMatch(html,/1\.753 expedientes cerrados|probabilidad de éxito/);
+ witness.status='CROSSVIEW_QUARANTINED';
+ const quarantine=render(c,witness);
+ assert.doesNotMatch(quarantine,/1753|EXHAUSTIVE_ENTRY_CENSUS/);
 });
 
 test('source quarantine refuses synthetic fallback', () => {

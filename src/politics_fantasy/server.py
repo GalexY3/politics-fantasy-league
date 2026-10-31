@@ -27,6 +27,8 @@ from .source_eligibility import policy_status
 from .source_event_registry import public_stage_catalog
 from .official_source_status import published_sources
 from .parcan_cohort_status import status as parcan_status
+from .procedural_coverage import coverage_status
+from .siap_coverage import status as siap_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -143,6 +145,26 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                         raise ValueError('INVALID_QUERY')
                     payload = parcan_status(as_of=parsed.get('as_of', [None])[0])
                     return self.reply(200,payload)
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/procedural-coverage':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,coverage_status(as_of=parsed.get('as_of',[None])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/siap-index-coverage':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    return self.reply(200,siap_status(as_of=parsed.get('as_of',[None])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
             if route == '/api/official-nominations':

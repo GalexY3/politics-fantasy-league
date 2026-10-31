@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, progress:null, picks:null, message:'', session:null, csrf:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -25,7 +25,20 @@ async function call(route, body){
  if(!response.ok)throw new Error(result.message||result.error||'Error');
  return result.result;
 }
-async function refresh(){ const [response,labResponse,fieldResponse,atlasResponse,evidenceResponse,progressResponse,candidacyResponse,nominationsResponse,sourcesResponse,parcanResponse]=await Promise.all([fetch('/api/state',{cache:'no-store'}),fetch('/api/lab',{cache:'no-store'}),fetch('/api/field',{cache:'no-store'}),fetch('/api/electoral-atlas',{cache:'no-store'}),fetch('/api/evidence-readiness',{cache:'no-store'}),fetch('/api/progress',{cache:'no-store'}),fetch('/api/verified-candidacies',{cache:'no-store'}),fetch('/api/official-nominations',{cache:'no-store'}),fetch('/api/scientific-sources',{cache:'no-store'}),fetch('/api/spanish-process-cohorts',{cache:'no-store'})]); if(!response.ok||!labResponse.ok||!fieldResponse.ok)throw new Error('Servicio no disponible'); ui.state=await response.json();ui.lab=await labResponse.json();ui.field=await fieldResponse.json();ui.atlas=await atlasResponse.json();ui.candidacies=candidacyResponse.ok?await candidacyResponse.json():{ok:false,error:'CANDIDACY_ORIGINAL_UNAVAILABLE'};ui.nominations=nominationsResponse.ok?await nominationsResponse.json():{ok:false,error:'MULTIPROVINCE_SOURCE_UNAVAILABLE'};ui.evidence=evidenceResponse.ok?await evidenceResponse.json():{ok:false,error:'READINESS_UNAVAILABLE'};ui.scientificSources=sourcesResponse.ok?await sourcesResponse.json():{ok:false,error:'SOURCE_METADATA_UNAVAILABLE'};ui.parcanCohorts=parcanResponse.ok?await parcanResponse.json():{ok:false,error:'CANARIAS_METADATA_UNAVAILABLE'};ui.progress=progressResponse.ok?await progressResponse.json():{ok:false,error:'PROGRESS_UNAVAILABLE'};if(!ui.state.clubs.some(c=>c.id===ui.club)) ui.club=ui.state.clubs[0]?.id; draw(); }
+async function refresh(){
+ const endpoints=['state','lab','field','electoral-atlas','evidence-readiness',
+  'progress','verified-candidacies','official-nominations','scientific-sources',
+  'spanish-process-cohorts','procedural-coverage','siap-index-coverage'];
+ const responses=await Promise.all(endpoints.map(id=>fetch('/api/'+id,{cache:'no-store'})));
+ if(!responses[0].ok||!responses[1].ok||!responses[2].ok)throw new Error('Servicio no disponible');
+ const results=await Promise.all(responses.map(async(r,i)=>
+  r.ok?await r.json():{ok:false,error:'UNAVAILABLE_'+endpoints[i].toUpperCase()}));
+ [ui.state,ui.lab,ui.field,ui.atlas,ui.evidence,ui.progress,ui.candidacies,
+  ui.nominations,ui.scientificSources,ui.parcanCohorts,ui.proceduralCoverage,
+  ui.siapCoverage]=results;
+ if(!ui.state.clubs.some(c=>c.id===ui.club))ui.club=ui.state.clubs[0]?.id;
+ draw();
+}
 function selected(){return ui.state.clubs.find(x=>x.id===ui.club);}
 function own(){return ui.state.figures.filter(x=>x.owner_id===ui.club);}
 function available(){return ui.state.figures.filter(x=>!x.owner_id);}
@@ -36,7 +49,7 @@ function avatar(f){return `<span class="avatar ${f.id.charCodeAt(2)%3===0?'gold'
 function stat(title,value,explanation){return `<article class="card metric"><label>${esc(title)}</label><strong>${esc(value)}</strong><small>${esc(explanation)}</small></article>`;}
 function heading(kicker,title,desc){return `<header class="head"><div><p class="eyebrow">${esc(kicker)}</p><h1>${esc(title)}</h1><p>${esc(desc)}</p></div></header>`;}
 function row(f,act){return `<div class="listrow">${avatar(f)}<div class="identity"><strong>${esc(f.display_name)}</strong><small>${esc(f.role)} · ${esc(f.group_name)}</small></div><div class="amount">${money(f.price)}</div>${act||''}</div>`;}
-function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Todas las figuras, transacciones, eventos y puntuaciones del fantasy son ficticios. Los recuentos parlamentarios del observatorio son una transcripción manual exploratoria y no se atribuyen a figuras.</div>`;}
+function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Las figuras, transacciones y puntuaciones de fantasy son ficticias. El piloto de votaciones manuales es exploratorio; los CSV de iniciativas oficiales únicamente acreditan metadatos capturados, no resultados históricos ni puntuaciones de personas.</div>`;}
 function voteBar(r,i){
  const label=`Votación ${i+1}: sí ${r.yes}, no ${r.no}, abstención ${r.abstain}. Total ${r.total}.`;
  const pct=n=>r.total>0?100*n/r.total:0;
@@ -161,18 +174,36 @@ function spanishProcessesPanel(){
     +monthRows.map(m=>'<tr><td>'+esc(m.scope)+'</td><td>'+esc(m.source_reported_created_month)+'</td><td>'+count(m.observed_entries)+'</td></tr>').join('')
     +'</tbody></table></div></details>'
    :'';
+ const w=ui.proceduralCoverage||{};
+ const crossview=w.status==='CONCORDANT_SOURCE_COUNTERS_NOT_CENSUS'
+   ?'<details><summary>Comprobación editorial de preguntas escritas: '+count(w.editorial_count_total)+' observadas</summary>'
+    +'<p class="help">El Árbol oficial de iniciativas y tres CSV del Parlamento de Canarias coinciden en recuentos para 2024, 2025 y 2026, pero podrían usar la misma base de datos. No se verificó un censo independiente, transiciones ni versiones históricas. La auditoría solo tiene fecha de observación de día; su corte seguro es el día siguiente, no una primera publicación.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Año</th><th>Árbol</th><th>CSV</th><th>Conclusión</th></tr></thead><tbody>'
+    +w.source_strata.map(s=>'<tr><td>'+esc(s.year)+'</td><td>'+count(s.publisher_editorial_count)+'</td><td>'+count(s.local_original_rows)+'</td><td>Coinciden; integridad longitudinal no certificada</td></tr>').join('')
+    +'</tbody></table></div><p class="footnote">Puertas pendientes: '+esc((w.missing_for_survival||[]).join(' · '))+'. Denominador de riesgo: desconocido.</p></details>'
+   :'<p class="footnote">Cotejo editorial independiente del CSV no disponible en este corte o en cuarentena; no se inventan denominadores.</p>';
  return '<section class="card" aria-label="Cohortes documentales de iniciativas autonómicas"><div class="section-title"><h2>Iniciativas parlamentarias · fuentes originales</h2><span>METADATOS REALES · SIN OUTCOMES ADMITIDOS</span></div>'
  +'<div class="metrics">'+stat('Filas capturadas',count(c.observed_rows),sourceCount+' distribuciones observadas, no un censo de la Cámara')+stat('Población elegible','SIN CERTIFICAR','Exhaustividad y estados finales pendientes')+'</div>'
  +'<p class="help">Distribuciones del <a href="https://datos.parcan.es/" target="_blank" rel="noopener noreferrer">Parlamento de Canarias</a>, licencia de catálogo Open Data Commons PDDL. PPL: proposiciones de ley; PE: preguntas con respuesta escrita. Años PE documentados en este corte: '+esc(peYears.join(', ')||'ninguno')+'. Esta sucesión de ficheros no demuestra cobertura exhaustiva, ni publicaciones históricas as-of.</p>'
  +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Clase</th><th>Leg.</th><th>Año</th><th>Filas</th><th>SHA-256 (prefijo)</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
  +monthTable
+ +crossview
  +'<p class="footnote">Fecha de la auditoría local: '+esc(c.local_snapshot_audited_at)+'. La API local /api/spanish-process-cohorts?as_of= permite consultar qué estaba documentado por este observatorio en un corte temporal dado. No reconstruye la fecha de primera publicación de cada expediente.</p>'
  +'<div class="warning">No se admitieron estados de aprobación, rechazo o contestación, ni trazas de transiciones fechadas. Fechas de creación no son fechas de primera publicación. Ausencia de una distribución o respuesta no equivale a cero ni a fracaso, y ningún registro puede puntuar a personas reales.</div></section>';
+}
+function siapIndexPanel(){
+ const s=ui.siapCoverage||{};
+ if(s.status!=='ONE_INDEX_PAGE_OF_UNCERTIFIED_POPULATION')
+  return '<section class="card"><h2>Parlament de Catalunya · índice SIAP</h2><p class="help">Sin metadatos de captura admisibles en el corte solicitado. No se crea una población ficticia de expedientes.</p></section>';
+ return '<section class="card" aria-label="Índice legislativo catalán capturado localmente"><div class="section-title"><h2>Parlament de Catalunya · índice SIAP</h2><span>FUENTE REAL · UNA PÁGINA</span></div>'
+ +'<div class="metrics">'+stat('Índice capturado',count(s.source_pages_captured)+' / '+count(s.source_index_pages),'Páginas oficiales indexadas en la captura')+stat('Enlaces observados',count(s.observed_links),'Solo primera página; no expedientes censados')+stat('Denominador longitudinal','DESCONOCIDO','Preadmisión, censura, estados y 43 páginas sin verificar')+'</div>'
+ +'<p class="help">Página de <a href="https://www.parlament.cat/web/activitat-parlamentaria/iniciatives-legislatives/proposicions-llei/index.html" target="_blank" rel="noopener noreferrer">proposiciones de ley (SIAP)</a>; índice HTML original preservado exclusivamente fuera de Git. SHA-256 prefijo: '+esc(s.original_sha256.slice(0,16))+'… . Conservación: '+esc(s.safe_local_observation_by)+'. Esa fecha es de observación local, nunca primera publicación histórica.</p>'
+ +'<div class="warning">No hay historial longitudinal ni desenlaces admitidos. No se fusiona esta familia catalana con las preguntas escritas de Canarias, ni se infieren estados no visibles o permisos de tratamiento personal.</div></section>';
 }
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
-return spanishProcessesPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
+return spanishProcessesPanel()+siapIndexPanel()+scientificSourcesPanel()+`<section class="card"><div class="section-title"><h2>Universo político ampliado</h2><span>FUENTE NO CERTIFICADA</span></div>
 <p class="help">Partidos, coaliciones, agrupaciones, plataformas y personas con roles públicos documentados no necesitan escaños para ser representables. Datos actuales: solo fixtures del laboratorio.</p>
 ${stat('Entidades de ejemplo',count(x.entities||0),'Ficticias')}${stat('Eventos de ejemplo',count(x.events||0),'No son influencia')}
 <p class="help">${groups||'Sin registro de entidades verificable'}</p>

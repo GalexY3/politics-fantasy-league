@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 15,
+    "data": 17,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 95,
+    "operations": 96,
     "reference": 75,
-    "research": 1966,
-    "runtime": 82,
+    "research": 1967,
+    "runtime": 84,
     "task_queue": 120,
-    "verification": 198
+    "verification": 202
   },
   "files": [
     {
@@ -809,6 +809,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/catalunya_siap_page1_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/interior_congreso_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -830,6 +835,11 @@
     },
     {
       "path": "data/source_manifests/parcan_source_local_months_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
+      "path": "data/source_manifests/spanish_procedural_candidates_r5_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
@@ -11479,6 +11489,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT5_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -11810,6 +11825,11 @@
     },
     {
       "path": "scripts/compare_original_vote.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "scripts/diff_parcan_capture_vintages.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -12269,6 +12289,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_coverage.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/product.py",
       "category": "runtime",
       "purpose": "Clubes, mercado, alineación, jornadas y persistencia"
@@ -12337,6 +12362,11 @@
       "path": "src/politics_fantasy/server.py",
       "category": "runtime",
       "purpose": "Servidor HTTP de la demo local; rutas API y cabeceras"
+    },
+    {
+      "path": "src/politics_fantasy/siap_coverage.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
       "path": "src/politics_fantasy/simulation.py",
@@ -14704,6 +14734,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_diff_parcan_capture_vintages.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_evaluation.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15114,6 +15149,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_coverage.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_product.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15270,6 +15310,16 @@
     },
     {
       "path": "tests/test_senate_vote_consistency.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_siap_coverage.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_siap_index_panel.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
