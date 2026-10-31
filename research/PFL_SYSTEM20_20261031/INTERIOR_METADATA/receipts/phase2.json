@@ -1,0 +1,98 @@
+{
+  "causal_or_abh_conclusions": false,
+  "download_requests": 0,
+  "executed_utc": "2026-10-31T05:02:00+00:00",
+  "frozen_code_sha256": {
+    "test_xlsx_reader.py": "35d681e6100e21c6562f846e6ff3836d23622115ffc6eb967afe09ac7c5f618a",
+    "xlsx_reader.py": "7f773959121dc0e039a71fb90ca5be08e54c6e4c0c252a017bf638013ed71f8b"
+  },
+  "licence_ref": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0",
+  "original_manifest_sha256": "ce5172fe9e8a7f3b8bd97c6bc9b7c51218aa623f72a58de37cf6ed31315cefea",
+  "outputs": [
+    {
+      "duplicate_claim": "NONE: collisions in selected non-person metadata are not duplicated original rows",
+      "filename": "Elecciones-Congreso-cargos-electos.xlsx",
+      "invalid_or_missing_year_rows": 0,
+      "metadata_columns_by_letter": {
+        "A": "Fecha",
+        "B": "Código elección",
+        "C": "Tipo elección",
+        "D": "Código Provincia",
+        "E": "Provincia"
+      },
+      "metadata_key_collision_rows": 4768,
+      "metadata_key_missing_rows": 0,
+      "metadata_key_names": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "metadata_key_unique_nonmissing": 832,
+      "missingness_counts": {},
+      "person_rows_or_outcome_values_exported": false,
+      "rows_scanned": 5600,
+      "sheet": "Congreso cargos electos",
+      "status": "AGGREGATE_EXPLORATORY_ONLY",
+      "valid_year_rows": 5600,
+      "year_counts": {
+        "1977": 350,
+        "1979": 350,
+        "1982": 350,
+        "1986": 350,
+        "1989": 350,
+        "1993": 350,
+        "1996": 350,
+        "2000": 350,
+        "2004": 350,
+        "2008": 350,
+        "2011": 350,
+        "2015": 350,
+        "2016": 350,
+        "2019": 700,
+        "2023": 350
+      }
+    },
+    {
+      "duplicate_claim": "NOT_TESTABLE: no safe natural key among selected metadata",
+      "filename": "Elecciones-Congreso.xlsx",
+      "invalid_or_missing_year_rows": 0,
+      "metadata_columns_by_letter": {
+        "A": "Fecha",
+        "B": "Código Elección",
+        "C": "Tipo Elección"
+      },
+      "metadata_key_collision_rows": 0,
+      "metadata_key_missing_rows": 0,
+      "metadata_key_names": [],
+      "metadata_key_unique_nonmissing": 0,
+      "missingness_counts": {},
+      "person_rows_or_outcome_values_exported": false,
+      "rows_scanned": 6203,
+      "sheet": "Congreso",
+      "status": "AGGREGATE_EXPLORATORY_ONLY",
+      "valid_year_rows": 6203,
+      "year_counts": {
+        "1977": 192,
+        "1979": 144,
+        "1982": 180,
+        "1986": 197,
+        "1989": 314,
+        "1993": 461,
+        "1996": 350,
+        "2000": 464,
+        "2004": 425,
+        "2008": 701,
+        "2011": 395,
+        "2015": 1226,
+        "2016": 257,
+        "2019": 631,
+        "2023": 266
+      }
+    }
+  ],
+  "phase": "PHASE2_AGGREGATE_NON_OUTCOME",
+  "policy_sha256": "bfb0548942cf0f6f03336d0a4eb86c0d7408118bb9594abbe4975217b2e7e929",
+  "raw_originals_recaptured": false,
+  "source_first_public_at": null
+}

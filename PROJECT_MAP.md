@@ -39,12 +39,12 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `data` | 11 | Datos/fixtures versionados y metadatos; no datos locales privados |
 | `evidence` | 378 | Recibos, originales conservados y copias históricas; no código activo |
 | `experimental_code` | 28 | Instrumentos experimentales; su presencia no prueba integración en el juego |
-| `operations` | 91 | Herramientas, configuración y operación local |
+| `operations` | 92 | Herramientas, configuración y operación local |
 | `reference` | 73 | Manuales, contratos y referencias |
-| `research` | 1921 | Preguntas, campañas, análisis y resultados de investigación |
+| `research` | 1934 | Preguntas, campañas, análisis y resultados de investigación |
 | `runtime` | 80 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 120 | Expedientes y resultados de ejecución |
-| `verification` | 190 | Pruebas y ejecutores de comprobación |
+| `verification` | 191 | Pruebas y ejecutores de comprobación |
 
 ## Dónde guardar trabajo nuevo
 

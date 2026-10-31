@@ -1,0 +1,92 @@
+{
+  "schema": "pfl.scratch.interior.execution_ledger.v1",
+  "task": "XLSX ZIP/XML metadata-only engineering audit",
+  "scope": "isolated scratch workspace; local originals read-only; no network",
+  "observed_original_files": {
+    "Elecciones-Congreso-cargos-electos.xlsx": {
+      "bytes": 326847,
+      "sha256": "cafc4e0f3fc53f01d1370dd47ac841c6cad43a5394e8a8d1afe2495897fbdad4",
+      "manifest_match": true
+    },
+    "Elecciones-Congreso.xlsx": {
+      "bytes": 1151199,
+      "sha256": "dba3394f1812f338067231bce68acf56af1e13ddf8cfb709a814bcc46357ebc2",
+      "manifest_match": true
+    }
+  },
+  "original_source_manifest_sha256": "ce5172fe9e8a7f3b8bd97c6bc9b7c51218aa623f72a58de37cf6ed31315cefea",
+  "executions": [
+    {
+      "kind": "phase1_preliminary_probe",
+      "observed_utc": "2026-10-31T04:58:00Z",
+      "file": "runs/2026-10-31/phase1.json",
+      "sha256": "1d110ca33a7116fcbd531af3479240699304981efce0ec0299f99e053a2a0d78",
+      "interpretation": "Initial physical row empty; no data-row claims"
+    },
+    {
+      "kind": "phase1_preliminary_probe",
+      "observed_utc": "2026-10-31T04:58:29Z",
+      "file": "runs/2026-10-31/phase1_corrected.json",
+      "sha256": "f1902d5e41e53dce9c52f843ceb055e38ac498d6e9fe34403f3130f24db9c67d",
+      "interpretation": "Single-cell title row mistaken for header; retained as superseded provisional schema probe"
+    },
+    {
+      "kind": "phase1_preliminary_probe",
+      "observed_utc": "2026-10-31T04:58:54Z",
+      "file": "runs/2026-10-31/phase1_verified.json",
+      "sha256": "3c3dce25165f8ca65c9599765d3042cf91d775598b3fd4b0dd23fca861bed8b3",
+      "interpretation": "Dense header row at row 4 identified; prior to final date-system metadata addition"
+    },
+    {
+      "kind": "phase1_final",
+      "observed_utc": "2026-10-31T05:00:43Z",
+      "file": "runs/2026-10-31/phase1_final.json",
+      "sha256": "d19878f709adf1273aa215e9c468c7865ac55ee902327f13a68c438142fa2252",
+      "interpretation": "Final schema probe: header row 4, 8 and 57 columns, datesystem and ZIP metadata; no outcome values"
+    },
+    {
+      "kind": "synthetic_tests_and_freeze",
+      "observed_utc": "2026-10-31T05:01:45Z",
+      "file": "runs/2026-10-31/tests_receipt.json",
+      "sha256": "443f08a3e9898141144a7c8e82c63a50420ab7f29886ec141c64954a76b136a6",
+      "tests": 14,
+      "exit_code": 0,
+      "test_output_digest": "86e4d4efecf8bc262d84591abd0aca02254917f5f54f4f90e41c4428c98763d"
+    },
+    {
+      "kind": "code_freeze",
+      "observed_utc": "2026-10-31T05:01:45Z",
+      "file": "runs/2026-10-31/frozen_code.json",
+      "sha256": "2bd4640cc7058de66c391d8655459f8c02d98fe4a1939568998752bb4accb17b",
+      "code_sha256": "7f773959121dc0e039a71fb90ca5be08e54c6e4c0c252a017bf638013ed71f8b",
+      "tests_sha256": "35d681e6100e21c6562f846e6ff3836d23622115ffc6eb967afe09ac7c5f618a"
+    },
+    {
+      "kind": "phase2_metadata_only",
+      "observed_utc": "2026-10-31T05:02:00Z",
+      "file": "runs/2026-10-31/phase2.json",
+      "sha256": "e2128f79c6bb06ca51953d99746a5c0267fcb5fc89f4a119356fa2c344d04207",
+      "metadata_policy_sha256": "bfb0548942cf0f6f03336d0a4eb86c0d7408118bb9594abbe4975217b2e7e929",
+      "rows_scanned_by_file": [5600, 6203],
+      "download_requests": 0,
+      "raw_person_or_outcome_rows_exported": 0
+    }
+  ],
+  "additional_validation_notes": [
+    "A preliminary unit-test run reported one failed assertion for the string year 2027; extract_year was corrected, after which the 12-test and 13-test provisional suites passed. These early test commands did not have durable timestamps or logs; no false timestamps are assigned.",
+    "14 final synthetic tests rerun automatically by freeze with exit code 0 and SHA-256 of combined test output.",
+    "PowerShell Get-FileHash after Phase 2 matched both frozen code file digests.",
+    "No rerun of Phase 2, no overwrite of prior phase reports, no new downloads."
+  ],
+  "results_status": "EXPLORATORY_ENGINEERING_ONLY",
+  "abh_valid_cycles": 0,
+  "abh_planning_cycles": 0,
+  "causal_claims": 0,
+  "first_public_at_verified": 0,
+  "rights": {
+    "catalogue_reference": "https://datos.gob.es/es/catalogo/e00003801-resultados-electorales",
+    "licence": "CC BY 4.0 as declared by catalogue manifest; individual-field downstream reuse not adjudicated",
+    "originals_redistributed": false,
+    "terms_accepted_in_this_task": false
+  }
+}
