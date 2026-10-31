@@ -1,0 +1,36 @@
+# PP-04B · Contabilidad de secciones previstas/no previstas de IAEN 2024
+
+**31 de octubre de 2026 — trabajo técnico documental, sin ciclo AB.**
+
+Este complemento **no sustituye ni repite como descubrimiento** PR #10 (`research/pfl-pan-iaen-pp04-originals-metadata-20261031` @ `9c3b8faac74f839f7e6c800677223d7d3d7a202e`), que adquirió bajo autorización del usuario los dos originales del Portal de Transparencia y auditó 198 ítems fuente-local del PAN 2024. PP-04B hereda sus SHA, límites de uso y origen, pero estudia expresamente las **dos poblaciones documentales del IAEN 2024** y las anomalías de extracción. Los registros individuales derivados no se publican, la base protegida y `main` no se editan, y esta rama apilada solo queda candidata a revisión.
+
+## Proveniencia y dos pasadas localmente reproducibles
+
+Origen: *Portal de la Transparencia de la Administración General del Estado*; [índice PAN/IAEN 2024](https://transparencia.gob.es/publicidad-activa/por-materias/normativa-otras-disposiciones/plan-anual/plan-anual-2024) y [condiciones de reutilización](https://transparencia.gob.es/utilidades/aviso-legal/reutilizacion). Autorización humana: consulta y descarga de los dos PDF oficiales para investigación **académica local, sin redistribuir originales**. La autorización no cubre otros activos, bases privadas ni publicación de datos a nivel de fila.
+
+El almacén offGit contiene `PAN_2024.pdf` (SHA256 `49de70b656da1b9ed9c68f552eafe743bede253e5b7a725d5eb615db1b61b4c5`, 117 páginas) y `IAEN2024PT.pdf` (SHA256 `7c77a73480f3f039d8ba069e12301b7a4c7ad0eeec85934ec84721526cb88aa2`, 126 páginas). Fueron contrastados contra dos respuestas HTTP 200 de las URL oficiales sin overwrite. La fecha `Last-Modified` HTTP era 22/09/2025 para ambas: es información del servidor, **no primera publicación histórica probada**. El documento PAN declara creación interna 02/04/2024; IAEN, 15/04/2025. No hay capturas públicas contemporáneas que acrediten el primer instante de disponibilidad de cada versión y renglón.
+
+`scripts/audit_pan_iaen_2024_offline.py` lee **únicamente los dos PDF con SHA pin** y aísla todas las salidas en un subdirectorio nuevo privado, nunca en Git ni en una ruta que atraviese `.git`. La ejecución independiente inicial y una segunda ejecución desde el checkout apilado sobre PR #10 produjeron idénticos JSONL:
+
+| Archivo de anclas **solo privado** | Filas | SHA256 de ambas ejecuciones |
+| --- | ---: | --- |
+| `PRIVATE_PAN2024_OBJECTIVE_ANCHORS.jsonl` | 198 | `5e613d506438ee70c05ae807eaec521540b31f04f1d93883bc4cfaaacdc3f37c` |
+| `PRIVATE_IAEN2024_SECTION_ANCHORS.jsonl` | 457 | `db21a56f8ad69f3466f5a08799dd6b903d1c6de3afa2a1384cbca364e9e55131` |
+
+La primera ejecución se conserva en `_pp04_frame_audit_verified`, y la segunda en `_pp04b_crosscheck_verified` dentro de `PFL-raw-primary/pan_iaen_2024_20261031`. Los números de página e inicio de línea y hashes de marcadores de texto permiten seleccionar después una revisión visual sobre los PDF exactos. El recibo original de derivados quedó congelado fuera de Git, hash `1bacd3c98fb11827050feac784b401f523e7c88c9a0fed3172b9a9e8faea70fb`. Los valores agregados mostrados aquí no reemplazan la auditoría visual integral de 655 anclas.
+
+## Hallazgos documentales y falsadores
+
+**PAN 2024:** cuerpo principal 198 pares secuenciales `Objetivo:` + `Ministerio:` desde PDF página 37; `Coproponentes` no multiplica iniciativas. Una aparición adicional de `Ministerio:` en una tabla previa demuestra por qué contar todo el texto sin restricción de sección daría 199 ministros, no 199 ítems. En la introducción aparece «hasta 199 normas proyectadas», mientras la tabla principal y otros pasajes indican 198 = 6 leyes orgánicas + 43 leyes + 149 reales decretos. **No se conoce por qué hay discrepancia** y no se ha corregido el texto oficial ni atribuido un proyecto ficticio al hueco. Este parser es una segunda comprobación estructural, no un reemplazo del inventario PAN de PR #10.
+
+**IAEN 2024:** el apartado 4 por ministerios contiene **198 entradas bajo el encabezado `INCLUIDAS`**, de las cuales 89 se hallan bajo *Aprobadas* y 109 bajo *Pendientes de aprobación*. Contiene además **259 entradas bajo `NO INCLUIDAS`**, separadas del denominador PAN. El apartado `4.22.1` se titula *Normas aprobadas no incluidas* y suma 3 entradas, aunque las secciones `4.1.1` a `4.21.1` sí representan previstas: un clasificador por sufijo `.1` asignaría incorrectamente 201 previstas y 256 no previstas. El código usa semántica del encabezado y no el número de subsección. Los agregados extraídos 198, 89 y 259 coinciden con las cifras expresas del IAEN (§3.2 y §3.4).
+
+El informe, aprobado **15/04/2025**, es fuente **posterior** al periodo PAN2024; contiene renglones *Publicado como* de 2025 y ejemplos *no previstos* de 2025 aunque su apartado 3.4 presenta una cifra para 2024. Eso obliga a distinguir la interpretación editorial/fecha de observación del evento legislativo, sin corregirlo por heurística. Los 109 renglones pendientes **no** permiten adjudicar individualmente las subclases que aparecen en el gráfico agregado: *pendiente de tramitación*, *en tramitación* y *desistida*. Se devuelve solo `PENDING_UNSPECIFIED_AS_OF_REPORT` para cada uno de esos renglones; no es fracaso, ni resultado a comienzo de 2024.
+
+**Integridad de inferencia:** los dos recuentos 198 PAN y 198 IAEN previstos no equivalen a un **crosswalk 1:1 autenticado**. Los local keys de anclas son creados por el extractor y no son identificadores oficiales. No hay unión por título, nombres, orden, similitud, ministerio o pertenencia temática. Cada `authenticated_pan_item_link` permanece `null`, y `first_public_at` y `status_known_in_2024` de las filas IAEN permanecen `null`. Los agregados de 2024 y 2025 ya expuestos en fase PP03 y estos renglones consultados durante PP04B no pueden utilizarse como prueba confirmatoria ciega con hipótesis seleccionadas después de observarlos.
+
+## QA y condición de continuación
+
+Pruebas sintéticas nuevas: 8 controles de segmentación (pares partidos entre páginas, ministerios/copropuestas, encabezados inciertos, `4.22.1`, títulos idénticos que no crean joins, retroproyección de clasificación, orden de secciones) y 3 controles del driver (no salida dentro de Git, SHA incorrecto, no sobreescritura). Compatibilidad con nueve tests PAN de PR #10 y los tests de PP03/seguimiento temporal ya existentes: **108/108 Python focal PASS**. El mismo programa corrió sobre ambos PDF auténticos y devolvió 198/198/89/109/259 sin importar filas a Git. `compileall`/JSON validaron; estado/index/Atlas/registro de logros deben citarse solamente cuando se comprueben en esta rama.
+
+**Límites no resueltos:** ningún padrón all-received/admitted-first independiente, versiones históricas de ambas fuentes, inspección visual íntegra ni vinculación documental oficial entre los 198 ítems. `first_public_at` por línea no está certificado, el denominador 199/198 no se ha explicado y los rótulos retrospectivos no constituyen efectos causalmente identificados. **0 ciclos AB-R, sin TFM empírico confirmatorio, R5 STOP**. Próximo trabajo: PP-04C crosswalk *candidato* con trazabilidad a las dos páginas/ediciones, doble revisión y categoría `UNKNOWN` obligatoria si no hay testigo documental explícito. No fusionar ni otorgar logros científicos por una extracción.
