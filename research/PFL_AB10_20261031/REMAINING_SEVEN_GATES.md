@@ -4,7 +4,7 @@
 
 | Ruta candidata | Estado | Valor posible y falsador verificable | Nueva condición necesaria |
 | --- | --- | --- | --- |
-| P04 · Concordancia de extractores IAEN PR11/12 | NONCYCLE_QA primero | Mismo PDF SHA con 198/259 bloques pero divergencia de páginas/ítems/saltos. Falsador: ancla de una edición produce campos incompatibles entre dos parsers | Auditar line-by-line en privado, seleccionar contrato sin borrado de negativos ni autoenlace PAN–IAEN |
+| P04 · Concordancia de extractores IAEN PR11/12 | NONCYCLE_QA_COMPLETED_PARTIAL | Dos parsers del mismo PDF: 198/198 ordinal, página, sección y estado; **197/198 prefijos de cuatro palabras**, discrepancia localizada en ordinal 79 por arrastre de texto. Ver acta PP04_IAEN_TWO_PARSER_PARITY_REPORT.md | Cotejo visual focal y elección de contrato de texto sin promover unión PAN–IAEN ni gastar ciclo |
 | P05 · Cronología de propuesta a disposición | STOP_R5 | Separar acto normativo, publicación y knowledge as-of; falsador: acto aprobado en 2025 etiquetado como observable en 2024 | Identidad oficial comprobable, derecho de nuevos activos y dos vintages auténticos |
 | P06 · Aceptación humana de P1 multiusuario | READY_REVIEW_PRODUCT | Falsador: la UI expone estado cruzado de cuentas o no permite completar el viaje, pese a HTTP QA positivo | Sesión de aceptación del producto y testigos browser reales, sin desplegar |
 | P07 · Identidad del revisor de PP04C | PARKED_DATA_AUTHN | Falsador: un mismo humano controla dos ranuras pese a pseudónimos distintos; P02 solo comprueba actor declarado sintético | Mecanismo real de asignación/authN y evaluación de privacidad antes de usar personas |
