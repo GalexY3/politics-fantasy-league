@@ -1,5 +1,7 @@
 # Instrucciones de continuidad de Politics Fantasy
 
+**Alcance del promotor:** leer primero [la visión científico-académica española de PFL](docs/VISION_CIENTIFICA_Y_ALCANCE_PFL.md), además de START_HERE y el estado. La infraestructura histórica y analítica de la **política española real**, con actores extraparlamentarios, políticas públicas, modelización y simulación, es el proyecto central y su TFM DaSoc; el fantasy es un caso de uso del mismo sistema. No convertir una demo sintética o una investigación británica/francesa auxiliar en el objetivo del proyecto. Esta regla orienta las prioridades, sin abrir los gates de fuentes, identidad, derechos, puntuación nominal, seguridad o validación ni adjudicar DONE.
+
 Leer primero [START_HERE.md](START_HERE.md), [PROJECT_STATE.json](PROJECT_STATE.json) y [METHOD_REFERENCE.json](METHOD_REFERENCE.json). El método AB vive en su repositorio y revisión fijada; antes de investigación sustantiva consultar los documentos adoptados. Las instrucciones explícitas del usuario prevalecen. Estas reglas prospectivas se aplican solo a PFL; no reescriben campañas históricas ni prueban eficacia de AB.
 
 - Trabajar con dos líneas separadas: producto utilizable e investigación social/institucional. Un hito activo por línea. La integración puede ocupar temporalmente el hito de producto.
