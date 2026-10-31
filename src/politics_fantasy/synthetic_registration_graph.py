@@ -15,7 +15,7 @@ from datetime import datetime
 from typing import Iterable
 import re
 
-from .procedural_index_contract import GateError, day, utc
+from .procedural_index_contract import GateError, day, utc, legal_day_completed, LEGAL_CIVIL_ZONES
 from .synthetic_temporal_witness import KnowledgeInterval
 
 SYNTHETIC_ID = re.compile(r"SYNTHETIC:[A-Z0-9_:-]{1,100}\Z")
@@ -159,6 +159,7 @@ def audit_graph(
     *, records: tuple[StageVersion,...],
     edges: tuple[TypedStageEdge,...],
     cut_on: str, as_of: str,
+    legal_calendar_zone: str = "UTC",
 ) -> dict:
     """Non-additive, ID-redacted, temporally conservative synthetic inventory.
 
@@ -169,12 +170,22 @@ def audit_graph(
     """
     c = day(cut_on)
     a = utc(as_of)
-    if c>a.date():
-        raise GateError("LEGAL_EVENT_CUT_AFTER_KNOWLEDGE")
-    # Event-time cut_on covers an entire civil day. A same-day observation,
-    # even one second after midnight, is not a completed-day risk horizon.
-    # This is distinct from whether individual documentary nodes were seen.
-    if c==a.date():
+    if (type(legal_calendar_zone) is not str
+            or legal_calendar_zone not in LEGAL_CIVIL_ZONES):
+        raise GateError("LEGAL_CALENDAR_ZONE_REQUIRED")
+    if legal_calendar_zone == "UTC":
+        # Backward-compatible default for legacy synthetic graphs that have
+        # not declared a jurisdictional calendar. Preserve both error kinds.
+        if c>a.date():
+            raise GateError("LEGAL_EVENT_CUT_AFTER_KNOWLEDGE")
+        if c==a.date():
+            raise GateError("LEGAL_EVENT_DAY_NOT_COMPLETED_AT_KNOWLEDGE")
+    elif not legal_day_completed(
+            cut_on=cut_on, as_of=as_of,
+            legal_calendar_zone=legal_calendar_zone):
+        # A local legal day can end before the corresponding UTC date ends.
+        # A caller that explicitly declares the legal IANA zone must not be
+        # rejected solely because the UTC calendar is still on that day.
         raise GateError("LEGAL_EVENT_DAY_NOT_COMPLETED_AT_KNOWLEDGE")
     if (type(records) is not tuple or type(edges) is not tuple
             or len(records)>MAX_RECORDS or len(edges)>MAX_EDGES

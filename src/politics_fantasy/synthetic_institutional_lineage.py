@@ -321,7 +321,8 @@ def audit_institutional_lineage(
     selected_edges = tuple(e for e in stage_edges
                            if e.origin in stage_binding and e.destination in stage_binding)
     graph = audit_graph(records=selected_stages, edges=selected_edges,
-                        cut_on=cut_on, as_of=as_of)
+                        cut_on=cut_on, as_of=as_of,
+                        legal_calendar_zone=legal_calendar_zone)
     return {
         **_base(as_of, cut_on, legal_calendar_zone),
         "status": "SYNTHETIC_LINEAGE_DOCUMENTARY_ONLY",
