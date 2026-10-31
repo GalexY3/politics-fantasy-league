@@ -1,5 +1,7 @@
 # PFL · continuidad ABH25B, 30/10/2026
 
+**IDEAS ABIERTAS DEL PROMOTOR (31/10/2026):** [Banco de ideas científicas](docs/BANCO_DE_IDEAS_CIENTIFICAS_PFL_20261031.md). Prioridad dual: explicar mecanismos de la política española y evaluar transparencia, rendición de cuentas y resultados; ampliar a grandes empresas y relaciones político-económicas. Estado: propuesta, no scope aprobado, no evidencia científica ni ciclos AB. No olvidar al planificar el TFM o futuros pivotes.
+
 **Estado canónico de esta rama:** `PROJECT_STATE.json` rev. 16; [PR #4](https://github.com/GalexY3/politics-fantasy-league/pull/4) en borrador, apilada sobre [PR #3](https://github.com/GalexY3/politics-fantasy-league/pull/3), ambas SIN fusionar a main. Base principal al comenzar: `653604358183b59e8c0446497f47ff4a3769134f`. Trabajar desde SHA remoto actual, no desde esta nota.
 
 **Autorización independiente ABH25B:** 25/25 ejecuciones de alcance limitado, 0 restantes, 2 pruebas previas inválidas y una vía de planificación bloqueada; ledger [AUTHORIZATION.json](research/ABH25B_20261030/AUTHORIZATION.json), informe [FINAL_REPORT.md](research/ABH25B_20261030/FINAL_REPORT.md). **No hay 25 descubrimientos empíricos**. Históricos ABH25 (25/25), READ5-CONTINUE15 (15 restantes), ABH10 (4), INTEGRATION10 (10), STOP_R5 histórico (2) separados e intactos. Se reconciliaron C10/C11 originales previamente ejecutados y C10W/C11W galeses; páginas redundantes C13/C16 NO contadas. C02 Canadá HTML no válido; C14 Escocia página vacía, reemplazada por C14B espacial.
