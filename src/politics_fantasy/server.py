@@ -11,7 +11,7 @@ import mimetypes
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from .product import GameError, add_club, seed_demo, set_lineup, simulate_round, state, transfer
 from . import accounts
@@ -26,6 +26,7 @@ from .nomination_atlas import status as nomination_atlas_status
 from .source_eligibility import policy_status
 from .source_event_registry import public_stage_catalog
 from .official_source_status import published_sources
+from .parcan_cohort_status import status as parcan_status
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -134,6 +135,16 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,evidence_status())
             if route == '/api/scientific-sources':
                 return self.reply(200,published_sources())
+            if route == '/api/spanish-process-cohorts':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query, keep_blank_values=True, strict_parsing=True, max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v) != 1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    payload = parcan_status(as_of=parsed.get('as_of', [None])[0])
+                    return self.reply(200,payload)
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
             if route == '/api/official-nominations':
                 return self.reply(200,nomination_atlas_status())
             if route == '/api/verified-candidacies':

@@ -36,15 +36,15 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `atlas` | 112 | Grafo Atlas, logros y sincronización |
 | `atlas_engine` | 12 | Motor Atlas fijado y sus pruebas; procedencia en UPSTREAM.json |
 | `continuity` | 8 | Estado vigente, objetivos e inicio de conversación |
-| `data` | 11 | Datos/fixtures versionados y metadatos; no datos locales privados |
+| `data` | 12 | Datos/fixtures versionados y metadatos; no datos locales privados |
 | `evidence` | 378 | Recibos, originales conservados y copias históricas; no código activo |
 | `experimental_code` | 28 | Instrumentos experimentales; su presencia no prueba integración en el juego |
-| `operations` | 92 | Herramientas, configuración y operación local |
-| `reference` | 73 | Manuales, contratos y referencias |
-| `research` | 1934 | Preguntas, campañas, análisis y resultados de investigación |
-| `runtime` | 80 | Aplicación, reglas y almacenamiento del prototipo |
+| `operations` | 93 | Herramientas, configuración y operación local |
+| `reference` | 74 | Manuales, contratos y referencias |
+| `research` | 1960 | Preguntas, campañas, análisis y resultados de investigación |
+| `runtime` | 82 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 120 | Expedientes y resultados de ejecución |
-| `verification` | 191 | Pruebas y ejecutores de comprobación |
+| `verification` | 196 | Pruebas y ejecutores de comprobación |
 
 ## Dónde guardar trabajo nuevo
 

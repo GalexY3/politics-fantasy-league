@@ -1,5 +1,5 @@
 {
-  "revision": 19,
+  "revision": 20,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -188,7 +188,7 @@
       "status": "IN_PROGRESS",
       "outcome": "Primera base historica espanola admisible para el estudio de reproduccion/autorregulacion politica y acoplamientos, separando registros electorales y expedientes en riesgo",
       "acceptance": "Fuente primaria y derechos por distribucion; universo y definiciones verificables; identidades/eventos y fechas as-of; enlace legal y cientificamente defendible; baseline/rivales preregistrados antes de outcomes",
-      "next_action": "Primero auditar cobertura del XLSX Interior sin exponer microdatos; aparte lograr enumeracion de iniciativas Congreso con paginacion y denominador. No reemplazar ese universo por normas BOE ni resultados electorales",
+      "next_action": "Auditar totales y versiones fechadas de la poblaci?n de iniciativas PE de Canarias o desbloquear legalmente el Congreso; 2025 PE sin fuente verificada y estados de 2024/2026 sin first_public_at. Antes de outcomes, congelar A-J, baseline y SHA remotos. No inferir survival de capturas actuales.",
       "dependencies": [
         "R0-FEASIBLE-QUESTION"
       ],
@@ -197,7 +197,12 @@
         "docs/SISTEMA_POLITICO_ESPA?OL_DELIMITACION_V0_20261031.md",
         "data/source_manifests/interior_congreso_20261031.json",
         "research/PFL_SYSTEM20_20261031/CAPTURE_AND_SCIENCE_GATES_20261031.md",
-        "research/PFL_SYSTEM20_20261031/CONGRESO_AJ_DRAFT.md"
+        "research/PFL_SYSTEM20_20261031/CONGRESO_AJ_DRAFT.md",
+        "data/source_manifests/parcan_20261031.json",
+        "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/EVIDENCE_REPORT.md",
+        "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
+        "src/politics_fantasy/parcan_cohort_status.py",
+        "src/politics_fantasy/official_temporal_links.py"
       ]
     }
   ],
@@ -422,6 +427,27 @@
     "source_real_rows_exported": false,
     "interior_metadata_replay_equal": true,
     "source_has_complete_historical_versions": false,
-    "scientific_claim_on_self_reproduction_validated": false
+    "scientific_claim_on_self_reproduction_validated": false,
+    "canarian_pddl_distributions_captured": 3,
+    "canarian_pddl_raw_originals_git_tracked": false,
+    "canarian_pddl_metadata_source_receipt": "data/source_manifests/parcan_20261031.json",
+    "canarian_pddl_source_scoped_process_ids_normalized_local": 1211,
+    "canarian_pddl_normalized_sha256": "7ed31c97be3928e306749972f5b3d746ca0c20a961818674ff0626e9c6679463",
+    "canarian_normalized_local_only": true,
+    "canarian_pe_2024_xi_records": 686,
+    "canarian_pe_2026_xi_records": 524,
+    "canarian_ppl_2023_x_records": 1,
+    "canarian_pe_2025_xi_distribution_attested": false,
+    "canarian_complete_risk_population_verified": false,
+    "canarian_outcome_columns_substantively_analyzed": false,
+    "canarian_exact_historical_first_public_at_verified": false,
+    "canarian_temporal_graph_real_records_admitted": 0,
+    "canarian_observatory_api": "/api/spanish-process-cohorts",
+    "theoretical_system_interactions_validated": false,
+    "scientific_differences_between_rivals_confirmed": 0,
+    "new_ABH_valid_cycles_this_round": 0,
+    "new_ABH_invalid_cycles_this_round": 0,
+    "new_ABH_planning_cycles_this_round": 0,
+    "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md"
   }
 }

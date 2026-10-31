@@ -1,0 +1,101 @@
+{
+  "schema": "pfl.canarian_parliament_metadata_capture.v1",
+  "captured_on": "2026-10-31",
+  "publisher": "Parlamento de Canarias",
+  "catalogue_root": "https://datos.parcan.es/",
+  "rights_by_distribution": "Open Data Commons Public Domain Dedication and Licence (PDDL), as declared by each official dataset catalogue",
+  "legal_notice": "https://sede.parcan.es/sede/es/component/content/article/8-estatico/608-reutilizacion-de-la-informacion-y-derechos-de-propiedad-intelectual?Itemid=280",
+  "interactive_terms_accepted": false,
+  "credentials_or_cookies_used": false,
+  "raw_storage": "LOCAL_EXCLUDED_FROM_GIT",
+  "original_receipt_ledger": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/EXECUTION_LEDGER.json",
+  "metadata_only_receipt": "research/PFL_SYSTEM20_20261031/PARCAN_COHORTS/receipts/metadata_only_coverage.json",
+  "metadata_only_receipt_sha256": "72f4c0a66c80a032c108b70a6051fe79f9916e12bf202a6720a5968785328b64",
+  "normalized_local_records": 1211,
+  "normalized_local_jsonl_sha256": "7ed31c97be3928e306749972f5b3d746ca0c20a961818674ff0626e9c6679463",
+  "normalized_at": "2026-10-31T05:24:04+00:00",
+  "normalizer": "scripts/build_parcan_local_processes.py",
+  "normalization_stage": "SOURCE_LOCAL_METADATA_ONLY_NOT_HISTORICAL_SOURCE_CERTIFIED",
+  "distribution": [
+    {
+      "id": "PARCAN_LEG10_PPL_2023",
+      "catalogue": "https://datos.parcan.es/dataset/iniciativas_tipoppl_anio2023_xlegislatura/resource/dd23200f-d3df-4360-92d9-45807ba5da87",
+      "downloaded_canonical_url": "https://www.parcan.es/api/iniciativas/2023/10/PPL/?format=csv",
+      "filename_local_only": "parcan_2023_X_PPL_original.csv",
+      "http_status": 200,
+      "bytes": 285,
+      "sha256": "c426afb56f8b5c51f84afeeadb281a340cf46ccc268f218b2d5841961bd9b095",
+      "records_in_distribution": 1,
+      "records_with_id_legislature_creation_date": 1,
+      "initiative_type": "PPL",
+      "legislature": 10,
+      "year": 2023,
+      "first_public_at": null
+    },
+    {
+      "id": "PARCAN_LEG11_PE_2024",
+      "catalogue": "https://datos.parcan.es/dataset/iniciativas_tipope_anio2024_xilegislatura",
+      "downloaded_canonical_url": "https://www.parcan.es/api/iniciativas/2024/11/PE/?format=csv",
+      "filename_local_only": "parcan_2024_XI_PE_original.csv",
+      "http_status": 200,
+      "bytes": 203545,
+      "sha256": "9ee6895522725f29cdf977ac0dd6da0490ad27c4128dea5fc2d0d7f48bf0e19c",
+      "records_in_distribution": 686,
+      "records_with_id_legislature_creation_date": 686,
+      "initiative_type": "PE",
+      "legislature": 11,
+      "year": 2024,
+      "first_public_at": null
+    },
+    {
+      "id": "PARCAN_LEG11_PE_2026",
+      "catalogue": "https://datos.parcan.es/dataset/iniciativas_tipope_anio2026_xilegislatura",
+      "downloaded_canonical_url": "https://www.parcan.es/api/iniciativas/2026/11/PE/?format=csv",
+      "filename_local_only": "parcan_2026_XI_PE_original.csv",
+      "http_status": 200,
+      "bytes": 169570,
+      "sha256": "fe51a78cc89a9549b9e0232c27b638b6fd4fa0c1aefec2ce89ddb7455312dad2",
+      "records_in_distribution": 524,
+      "records_with_id_legislature_creation_date": 524,
+      "initiative_type": "PE",
+      "legislature": 11,
+      "year": 2026,
+      "first_public_at": null
+    }
+  ],
+  "failed_or_excluded": [
+    {
+      "source": "Congreso de los Diputados initiatives export",
+      "status": "PRIOR_403_NOT_RETRIED",
+      "retry": false
+    },
+    {
+      "source": "Senado legislative initiatives XML",
+      "status": "NO_DOWNLOAD_DUE_TO_ACCEPTANCE_BY_USE_RESTRICTION",
+      "retry": false
+    },
+    {
+      "source": "Canarias PPLM XI 2024",
+      "status": "HTTP_200_BODY_REJECTED_EMPTY_OVERSIZED_OR_HTML",
+      "retry": false
+    },
+    {
+      "source": "Canarias PE XI 2025",
+      "status": "NO_VERIFIED_DISTRIBUTION",
+      "retry": false
+    }
+  ],
+  "scientific_limits": {
+    "source_population_complete": false,
+    "congress_population_covered": false,
+    "publisher_total_reconciled": false,
+    "historical_first_public_at": false,
+    "historical_outcome_vintages": false,
+    "outcome_fields_analyzed": false,
+    "transitions_derived": false,
+    "causal_effects_claimed": false,
+    "real_person_scoring": false,
+    "abh_cycles_charged": 0,
+    "interpretation": "Three independently listed source distributions, not the Parliament's complete eligible universe. Captured current CSV contains outcome columns that have not been inspected for substantive results. Metadata normalization does not certify a past opportunity census."
+  }
+}
