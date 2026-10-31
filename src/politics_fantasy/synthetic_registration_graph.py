@@ -220,16 +220,20 @@ def audit_graph(
     # A known revision can remove an earlier documentary vertex from cut_on,
     # but an unseen future revision cannot rewrite an earlier as_of snapshot.
     by_key={k:r for k,r in by_key.items() if day(r.event_on)<=c}
-    visible_edges=[e for e in edges if e.safe_by() is not None
-                   and e.safe_by()<=a and day(e.document_on)<=c]
+    # Resolve conflicts in *known* claims by edge identity before the legal
+    # document cut. Otherwise a newer, known incompatible claim dated outside
+    # cut_on vanishes before conflict detection and its obsolete link survives.
+    known_edges=[e for e in edges if e.safe_by() is not None
+                 and e.safe_by()<=a]
     seen_ids: dict[str, TypedStageEdge]={}
     duplicate_document=set()
-    for e in visible_edges:
+    for e in known_edges:
         if e.edge_id in seen_ids and seen_ids[e.edge_id]!=e:
             return {**base,**no_data,
                     "status":"VISIBLE_CONFLICTING_EDGE_CLAIM_QUARANTINED"}
         seen_ids[e.edge_id]=e
-    edge_candidates=list(seen_ids.values())
+    edge_candidates=[e for e in seen_ids.values()
+                     if day(e.document_on)<=c]
     by_document: set[tuple[OfficialStageKey,OfficialStageKey,str,str]]=set()
     for e in edge_candidates:
         d=(e.origin,e.destination,e.relation,e.original_sha_claim)
