@@ -15,6 +15,7 @@ from __future__ import annotations
 from collections import Counter
 from hashlib import sha256
 import re
+import unicodedata
 from typing import Sequence
 
 
@@ -30,6 +31,10 @@ _DEPARTMENT = re.compile(r"^\s*4\.(\d{1,2})\.-\s*(.*)")
 _SUBSECTION = re.compile(r"^\s*4\.(\d{1,2})\.(\d+)\.-\s*(.*)")
 _ROMAN_STATUS = re.compile(r"^\s*[IVX]+\.\s+(.+)", flags=re.I)
 _BULLET = re.compile(r"^\s*-\s+\S")
+_NORMATIVE_ENTRY = re.compile(
+    r"^\s*-\s+(?:Real\s+Decreto(?:[- ]Ley)?|Ley|RD|Orden|Decreto|"
+    r"Resoluci[oó]n|Acuerdo|Proyecto|Anteproyecto)\b", re.I,
+)
 _END_REPORT = re.compile(r"^\s*5\.\s*REALES\s+DECRETOS\s*[- ]\s*LEYES", re.I)
 
 
@@ -106,10 +111,12 @@ def _heading_status(line: str) -> str | None:
     m = _ROMAN_STATUS.match(line)
     if not m:
         return None
-    compact = re.sub(r"\s+", "", m.group(1)).upper()
-    if "PENDIENTESDEAPROBACI" in compact:
+    decomposed = unicodedata.normalize("NFKD", m.group(1))
+    unaccented = "".join(ch for ch in decomposed if not unicodedata.combining(ch))
+    compact = re.sub(r"[^A-Z0-9]", "", unaccented.upper())
+    if compact == "PENDIENTESDEAPROBACION":
         return "PENDING_UNSPECIFIED_AS_OF_REPORT"
-    if "APROBADAS" in compact:
+    if compact == "APROBADAS":
         return "APPROVED_AS_OF_REPORT"
     return None
 
@@ -164,9 +171,18 @@ def parse_iaen_ministry_bullets(
                     unplanned_number_anomalies.add(section_id)
                 continue
             header_status = _heading_status(line)
-            if header_status is not None and population == "PLANNED":
+            if population == "PLANNED" and _ROMAN_STATUS.match(line):
+                # An unsupported stage heading must reset/stop classification,
+                # not inherit the preceding "Aprobadas" status for new bullets.
+                if header_status is None:
+                    raise FrameParseError("IAEN_UNSUPPORTED_PLANNED_STATUS_HEADING")
                 status = header_status
             if _BULLET.match(line) and population is not None:
+                # The source's ordinary bullet syntax is not a legal-act
+                # identity. Unknown prefixes require manual inspection;
+                # counting notes as "unplanned" would corrupt the frame.
+                if not _NORMATIVE_ENTRY.match(line):
+                    raise FrameParseError("IAEN_UNSUPPORTED_ENTRY_TYPE")
                 if len(rows) >= MAX_ROWS:
                     raise FrameParseError("IAEN_TOO_MANY_DOCUMENTARY_ENTRIES")
                 if population == "PLANNED" and status is None:
@@ -224,3 +240,18 @@ def summarise_local_frame(plan: list[dict], report: dict) -> dict:
         "R5": "STOP",
         "scientific_AB_cycles": 0,
     }
+
+
+# Source-local block parser from PP04 PR #11, retained as a separate
+# documentary interpretation. Both public APIs must coexist when PP04B #12
+# is integrated; importing either is not evidence of a verified item join.
+from .pan_iaen_source_block_parser import (  # noqa: E402
+    PAN_SOURCE_SHA256,
+    IAEN_SOURCE_SHA256,
+    parse_plan_candidate_blocks,
+    parse_report_ministry_listings,
+    reconcile_counts_without_crosswalk,
+    rank_counts,
+    verify_exact_original_sha256,
+    require_private_output_directory,
+)
