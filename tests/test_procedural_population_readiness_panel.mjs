@@ -192,3 +192,79 @@ test('R9 hidden at earlier cut, and escaped if source string malicious',()=>{
  assert.match(html,/&lt;script/);
  assert.doesNotMatch(html,/<svg|<script/);
 });
+
+test('R10 denominators show source local counts but never invent pending or censor counts',()=>{
+ const data=sample();
+ data.denominator_evidence={
+  schema:'pfl.denominator_evidence_nonadditive.v1',
+  eligible_risk_denominator:null,
+  reported_sources:[
+   {institution:'Parlamento de Canarias',observable_unit:'SOURCE_LOCAL',
+    observed_source_local_items:1754,principal_identification_block:'NO_INDEPENDENT_ALL_RECEIVED_FRAME'},
+   {institution:'TRIBUNAL_CONSTITUCIONAL',observable_unit:'REGISTRY_INITIAL_WRITING',
+    observed_source_local_items:null,principal_identification_block:'INCOMPATIBLE_GRANULARITY'}
+  ]
+ };
+ const html=render(data);
+ assert.match(html,/R10 · comparación de denominadores/);
+ assert.match(html,/1754/);
+ assert.match(html,/REGISTRY_INITIAL_WRITING/);
+ assert.match(html,/Censurados: desconocidos/);
+ assert.match(html,/N independiente: desconocido/);
+ assert.doesNotMatch(html,/1774 casos|5 rechazos|0 pendientes/);
+});
+
+test('R10 no table without trusted source shape; supplied labels escaped',()=>{
+ const data=sample();
+ data.denominator_evidence={schema:'other',reported_sources:[{institution:'SECRET'}]};
+ assert.doesNotMatch(render(data),/SECRET/);
+ data.denominator_evidence={
+  schema:'pfl.denominator_evidence_nonadditive.v1',
+  reported_sources:[{institution:'<img src=x onerror=alert(1)>',
+   observable_unit:'<script>bad()</script>',observed_source_local_items:null,
+   principal_identification_block:'NO_RIGHTS'}]
+ };
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<img|<script/);
+});
+
+test('R10 official documentary routes present stage selection, not a political change estimate',()=>{
+ const data=sample();
+ data.r10_documentary_status='R10_DOCUMENTARY_ONLY_NO_RISK_FRAME';
+ data.r10_asof_safe_by='2026-11-01T00:00:00+00:00';
+ data.r10_regional_highlights=[
+  {source_id:'andalucia_ilpa_xii_jea',institution:'Junta Electoral de Andalucía',
+   scope_failure:'POST_MESA_REFERRED_ONLY_NOT_ALL_RECEIVED'},
+  {source_id:'castilla_y_leon_xi_dissolution_feb2026',institution:'Cortes de Castilla y León',
+   scope_failure:'PENDING_AT_DISSOLUTION_IS_SURVIVOR_SELECTED_STOCK'}];
+ data.r10_national_highlights=[
+  {institution:'Consejo de Transparencia y Buen Gobierno',entry_unit:'RECLAMACION_RECIBIDA',
+   scope_failure:'APPEALS_RECEIVED_DISTINCT_FROM_RESOLUTIONS_AND_INITIAL_REQUESTS'}];
+ const html=render(data);
+ assert.match(html,/R10 · fases ILP/);
+ assert.match(html,/Junta Electoral de Andalucía/);
+ assert.match(html,/POST_MESA_REFERRED_ONLY_NOT_ALL_RECEIVED/);
+ assert.match(html,/una fotografía seleccionada de supervivientes/);
+ assert.match(html,/riesgo de medición, no un efecto político demostrado/);
+ assert.match(html,/resolución no necesariamente equivale a reclamación/);
+});
+
+test('R10 future documentary names are hidden; source strings escaped',()=>{
+ const data=sample();
+ data.r10_documentary_status='R10_DOCUMENTARY_NOT_KNOWN_AT_CUT';
+ data.r10_regional_highlights=[{institution:'FUTURE_ANDALUCIA',source_id:'hi',scope_failure:'foo'}];
+ assert.doesNotMatch(render(data),/FUTURE_ANDALUCIA/);
+ data.r10_documentary_status='R10_DOCUMENTARY_ONLY_NO_RISK_FRAME';
+ data.r10_asof_safe_by='<svg onload=alert(1)>';
+ data.r10_regional_highlights=[{
+  institution:'<img src=x onerror=alert(1)>',
+  source_id:'source',scope_failure:'<script>danger()</script>'}];
+ data.r10_national_highlights=[];
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;script/);
+ assert.match(html,/&lt;svg/);
+ assert.doesNotMatch(html,/<img|<script|<svg/);
+});

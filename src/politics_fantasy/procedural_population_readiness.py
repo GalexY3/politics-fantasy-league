@@ -14,6 +14,8 @@ from .procedural_discovery_r7 import status as discovery_status
 from .procedural_discovery_r8 import status as discovery_r8_status
 from .retained_integrity_status import status as integrity_status
 from .procedural_discovery_r9 import status as discovery_r9_status
+from .denominator_evidence_status import derive_denominator_evidence
+from .procedural_discovery_r10 import status as discovery_r10_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -37,6 +39,7 @@ def report(*, as_of: str | None = None) -> dict:
     discovery_r8 = discovery_r8_status(as_of=as_of)
     integrity = integrity_status(as_of=as_of)
     discovery_r9 = discovery_r9_status(as_of=as_of)
+    discovery_r10 = discovery_r10_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -129,6 +132,22 @@ def report(*, as_of: str | None = None) -> dict:
         "r9_no_independent_national_or_regional_denominator": (
             True if discovery_r9["status"]=="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED"
             else None),
+        "r10_documentary_status": discovery_r10["status"],
+        "r10_regional_documentary_assets": discovery_r10.get("regional_total"),
+        "r10_national_documentary_routes": discovery_r10.get("national_routes_total"),
+        "r10_regional_highlights": discovery_r10.get("regional_routes",[]),
+        "r10_national_highlights": discovery_r10.get("national_routes",[]),
+        "r10_asof_safe_by": discovery_r10.get("local_documentary_safe_by"),
+        "r10_registration_channel_break": discovery_r10.get("administrative_register_regime_change"),
+        "r10_pre_AJ_outcome_category_exposure": discovery_r10.get("outcome_headings_seen_before_AJ"),
+        "denominator_evidence": derive_denominator_evidence(
+            real_sources=source_rows,
+            r9_documentary_status=discovery_r9["status"],
+            r9_regional_highlights=discovery_r9.get("regional_highlights",[]),
+            r9_national_highlights=discovery_r9.get("national_highlights",[]),
+            r10_documentary_status=discovery_r10["status"],
+            r10_regional_routes=discovery_r10.get("regional_routes",[]),
+            r10_national_routes=discovery_r10.get("national_routes",[])),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

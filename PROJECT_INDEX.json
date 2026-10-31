@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 25,
+    "data": 26,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 99,
-    "reference": 78,
-    "research": 1971,
-    "runtime": 94,
+    "operations": 100,
+    "reference": 79,
+    "research": 1972,
+    "runtime": 97,
     "task_queue": 120,
-    "verification": 217
+    "verification": 222
   },
   "files": [
     {
@@ -844,6 +844,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r10_documentary_constraints_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1035,6 +1040,11 @@
     },
     {
       "path": "docs/PROGRAMA_COMPARATIVO_SISTEMA_POLITICO_ABH_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/PROGRAMA_IDENTIFICACION_R10_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11529,6 +11539,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT10_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12004,6 +12019,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/redact_r10_documentary_sources.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/redact_r9_documentary_sources.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12100,6 +12120,16 @@
     },
     {
       "path": "src/politics_fantasy/congress_vote_dates.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/denominator_evidence_status.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/denominator_lineage_contract.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -12385,6 +12415,11 @@
     },
     {
       "path": "src/politics_fantasy/procedural_coverage.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/procedural_discovery_r10.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -14874,6 +14909,21 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_denominator_evidence_http.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_denominator_evidence_status.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_denominator_lineage_contract.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_diff_parcan_capture_vintages.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15299,6 +15349,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r10.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_discovery_r7.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15450,6 +15505,11 @@
     },
     {
       "path": "tests/test_reconcile_parcan_source_local.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_redact_r10_documentary_sources.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

@@ -189,6 +189,17 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                     return self.reply(200,retained_integrity_status(as_of=parsed.get('as_of',[None])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
+            if route == '/api/denominator-evidence':
+                query = urlsplit(self.path).query
+                try:
+                    parsed = parse_qs(query,keep_blank_values=True,strict_parsing=True,
+                                      max_num_fields=1)
+                    if not set(parsed).issubset({'as_of'}) or any(len(v)!=1 for v in parsed.values()):
+                        raise ValueError('INVALID_QUERY')
+                    result=population_readiness_report(as_of=parsed.get('as_of',[None])[0])
+                    return self.reply(200,result['denominator_evidence'])
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
             if route == '/api/official-nominations':
                 return self.reply(200,nomination_atlas_status())
             if route == '/api/verified-candidacies':

@@ -1,0 +1,126 @@
+"""Non-additive, provenance-aware population evidence for the local observatory.
+
+Works only with already SHA-checked, cutoff-gated PFL readiness source rows.
+No outcome file is opened. Missing institutional denominators, unresolved
+pending states and censoring are NULL, never zero. The entries are distinct
+objects; a source-local count is NOT a denominator of all registered cases.
+"""
+from __future__ import annotations
+
+from .procedural_index_contract import GateError
+
+
+def _candidate(identifier:str, institution:str, unit:str, source_status:str,
+               observed:int|None, entry_rule:str, failure:str):
+    if observed is not None and (type(observed) is not int or observed<0):
+        raise GateError("BAD_OBSERVED_COUNT_NOT_CENSUS")
+    return {
+        "source_id":identifier,"institution":institution,"observable_unit":unit,
+        "source_status":source_status,
+        "observed_source_local_items":observed,
+        "eligible_all_received_denominator":None,
+        "register_completeness_independently_verified":False,
+        "entry_rule_status":entry_rule,
+        "principal_identification_block":failure,
+        "known_terminal_case_count":None,
+        "known_pending_case_count":None,
+        "right_censored_case_count":None,
+        "case_level_competing_risks_admitted":False,
+        "date_of_first_publication_verified":False,
+        "official_cross_institution_links_admitted":False,
+        "source_count_not_eligible_risk_population":True,
+    }
+
+
+def derive_denominator_evidence(*, real_sources:list[dict],
+                                r9_documentary_status:str,
+                                r9_regional_highlights:list[dict],
+                                r9_national_highlights:list[dict],
+                                r10_documentary_status:str="R10_DOCUMENTARY_NOT_KNOWN_AT_CUT",
+                                r10_regional_routes:list[dict]|None=None,
+                                r10_national_routes:list[dict]|None=None) -> dict:
+    if (not isinstance(real_sources,list) or len(real_sources)!=3
+            or [x.get("source_id") for x in real_sources]!=[
+                "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
+                "CONGRESO_XV_CANDIDATE_INDICES"]):
+        raise GateError("REAL_SOURCE_REGISTRY_UNRECOGNIZED")
+    a,b,_=real_sources
+    # Even the *reason* for exclusion and the count of source catalogues can
+    # reveal knowledge obtained at a later capture. Do not output a document
+    # at an old cut merely because its source name is hard-coded in Python.
+    groups=[]
+    if a["observed_metadata_rows"] is not None:
+        groups.append(_candidate("PARCAN_SOURCE_LOCAL",a["institution"],a["unit"],
+                       a["provenance_status"],a["observed_metadata_rows"],
+                       "F_CREACION_IS_NOT_PUBLICATION_OR_PRE_MESA_REGISTRATION",
+                       "NO_INDEPENDENT_ALL_RECEIVED_FRAME_OR_OUTCOMES"))
+    if b["observed_metadata_rows"] is not None:
+        groups.append(_candidate("PARLAMENT_CATALUNYA_SIAP",b["institution"],b["unit"],
+                       b["provenance_status"],b["observed_metadata_rows"],
+                       "INDEX_LINK_NOT_REGISTERED_INTAKE",
+                       "ONLY_ONE_OF_44_PAGES_AND_NO_ENTRY_BOOK"))
+    # A Congress discovery without any admitted original is not even a
+    # source-local frame, so it must not be counted in this table.
+    if r9_documentary_status=="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED":
+        if not isinstance(r9_regional_highlights,list) or not isinstance(r9_national_highlights,list):
+            raise GateError("R9_SOURCE_DOCUMENTARY_SCOPE_UNEXPECTED")
+        for e in r9_regional_highlights:
+            if not e.get("documentary_only") or e.get("source_eligible") is not False:
+                raise GateError("R9_SOURCE_SCOPING_PROMOTION")
+            groups.append(_candidate(e["source_id"],e["institution"],
+                e["documentary_limit"],"DOCUMENTARY_ONLY_NO_RAW",None,
+                "REGISTRATION_OR_ADMISSION_ENTRY_RULE_UNATTESTED",
+                "LICENCE_REGISTRY_TOTAL_OR_VINTAGES_UNVERIFIED"))
+        for e in r9_national_highlights:
+            if e.get("source_eligible") is not False:
+                raise GateError("R9_NATIONAL_SOURCE_PROMOTION")
+            groups.append(_candidate(e["source_id"],e["institution"],
+                e["documentary_unit"],"DOCUMENTARY_ONLY_NO_RAW",None,
+                "INSTITUTIONAL_INTAKE_GRAIN_DISTINCT",
+                "NO_CROSS_INSTITUTION_OR_SAME_PUBLISHER_INDEPENDENT_CENSUS"))
+    elif r9_documentary_status not in {
+            "R9_DISCOVERY_NOT_KNOWN_AT_CUT","R9_DOCUMENTARY_SOURCE_QUARANTINED"}:
+        raise GateError("UNKNOWN_R9_DISCOVERY_STATUS")
+    if r10_documentary_status=="R10_DOCUMENTARY_ONLY_NO_RISK_FRAME":
+        if (not isinstance(r10_regional_routes,list) or len(r10_regional_routes)!=3
+                or not isinstance(r10_national_routes,list) or len(r10_national_routes)!=3):
+            raise GateError("R10_DOCUMENTARY_ROUTE_SCOPE_INVALID")
+        for e in r10_regional_routes:
+            if (e.get("original_acquired") is not False
+                    or e.get("licence_verified") is not False
+                    or e.get("all_received_denominator") is not None):
+                raise GateError("R10_DOCUMENTARY_CANNOT_PROMOTE_SOURCE")
+            groups.append(_candidate(e["source_id"],e["institution"],
+                e["scope_failure"],"DOCUMENTARY_ONLY_NO_RAW",None,
+                "ENTRY_STAGE_OR_REGIME_DEPENDENT",
+                "NO_INDEPENDENT_REGISTER_TOTAL_OR_HISTORICAL_ORIGINALS"))
+        for e in r10_national_routes:
+            if (e.get("original_acquired") is not False
+                    or e.get("licence_verified") is not False
+                    or e.get("all_received_denominator") is not None):
+                raise GateError("R10_DOCUMENTARY_CANNOT_PROMOTE_SOURCE")
+            groups.append(_candidate(e["source_id"],e["institution"],
+                e["entry_unit"],"DOCUMENTARY_ONLY_NO_RAW",None,
+                "INSTITUTIONAL_UNIT_DISTINCT_FROM_PARLIAMENTARY_REGISTRATION",
+                "REUSE_OR_COMPLETE_ENTRY_POPULATION_NOT_CERTIFIED"))
+    elif r10_documentary_status not in {
+            "R10_DOCUMENTARY_NOT_KNOWN_AT_CUT","R10_DOCUMENTARY_QUARANTINED"}:
+        raise GateError("R10_DOCUMENTARY_STATUS_INVALID")
+    return {
+        "schema":"pfl.denominator_evidence_nonadditive.v1",
+        "eligible_risk_denominator":None,
+        "reported_sources":groups,
+        "source_groups_visible":len(groups),
+        "source_groups_additive":False,
+        "index_discovery_without_original_not_counted_as_frame":True,
+        "real_case_outcomes_observed_for_analysis":None,
+        "case_level_right_censoring_observed_for_analysis":None,
+        "risk_by_institution_estimable":False,
+        "post_admission_selection_is_not_pre_mesa_rejection":True,
+        "independent_count_not_derived_from_same_backend":None,
+        "editorial_total_equals_rows_proves_census":False,
+        "boe_only_approved_laws_not_full_intake":True,
+        "first_public_at_historical":None,
+        "synthetic_denominator_comparisons_are_not_empirical":True,
+        "scientific_cycles":0,
+    }
