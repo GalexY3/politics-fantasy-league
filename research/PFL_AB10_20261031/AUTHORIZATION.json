@@ -4,16 +4,36 @@
   "date": "2026-10-31",
   "authorization_source": "Explicit user request in the current conversation to use the ten available cycles",
   "authorized": 10,
-  "executed_product": 0,
+  "executed_product": 2,
   "executed_research": 0,
   "invalid_experiments": 0,
   "planning_only": 0,
-  "remaining": 10,
+  "remaining": 8,
   "source_branch_sha": "c9352ec90da275814523e60fc55384cdf7f37a7b",
   "method": "AB 3.2.1 + O1-O7",
   "method_sha": "69ed402dd4a3f25207d9e620ede568b5e92ad8af",
   "research_R5": "STOP",
   "separate_from_grants": ["PFL-SYSTEM20-20261031", "PFL-BRANCHING10-20261031", "PFL-GRANT-20261030-INTEGRATION10"],
-  "cycles": [],
+  "cycles": [
+    {
+      "id": "P01",
+      "track": "AB-P",
+      "prereg": "P01_CANDIDATE_RANKING_AJ_PREREG.md",
+      "instrument_freeze": "1886e32308db07ad5b0dea48fc73b54bc296879b",
+      "prospective_repair_before_holdout": "68c3159ef51c983072a0d23165d3715d22bd831a",
+      "result": "results/P01_RANKING_AGGREGATE.json",
+      "status": "EXECUTED_CONDITIONAL_SYNTHETIC_RESULT_NOT_ACCEPTED",
+      "scientific_grade": 0
+    },
+    {
+      "id": "P02",
+      "track": "AB-P",
+      "prereg": "P02_REVIEW_ATTESTATION_AJ_PREREG.md",
+      "instrument_freeze": "1886e32308db07ad5b0dea48fc73b54bc296879b",
+      "result": "results/P02_REVIEW_ATTESTATION.json",
+      "status": "EXECUTED_READY_REVIEW_NOT_ACCEPTED",
+      "scientific_grade": 0
+    }
+  ],
   "scope": "At most ten distinct AB-P product or AB-R scientific cycles. No QA, maintenance, documentation or repeats charged. A-J and remote freeze before outcomes. Scientific R5 remains STOP. No PII, extra sources or real-person scoring."
 }

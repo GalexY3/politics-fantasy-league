@@ -1,0 +1,47 @@
+{
+  "schema": "pfl.ab10.p01.synthetic_result.v1",
+  "prereg_initial_commit": "4ed083aa5848e1b21a98b604077fefdf6f871441",
+  "first_instrument_commit": "1886e32308db07ad5b0dea48fc73b54bc296879b",
+  "repair_preconfirmation_commit": "68c3159ef51c983072a0d23165d3715d22bd831a",
+  "synthetic_proposals_per_seed": 198,
+  "synthetic_reports_per_seed": 253,
+  "top_k": 3,
+  "exploration": {
+    "seed": 4711,
+    "original_B1_recall_at_3": 0.3333333333333333,
+    "original_B1_reordered_recall_at_3": 0.0,
+    "original_B1_abbreviated_recall_at_3": 0.0,
+    "file_sha256_private": "ab2b7e63ba88381e322f72ca838064555513bab23bc7205b8f37c4d6158538de"
+  },
+  "confirmation": {
+    "seeds": [991, 992, 993],
+    "mean_recall_at_3": {
+      "B0_SEQUENCE": 0.0033670033670033673,
+      "B1_RARE_IDF": 0.9983164983164983,
+      "B2_UNWEIGHTED_JACCARD": 0.3333333333333333,
+      "BM25_POSTHOC": 0.9983164983164983
+    },
+    "rare_idf_recall_at_3_by_seed": [1.0, 0.9949494949494949, 1.0],
+    "bm25_posthoc_recall_at_3_by_seed": [1.0, 0.9949494949494949, 1.0],
+    "repaired_H1_preregistered_threshold_met": true,
+    "minimum_repaired_method_stratum_across_seeds": 0.9848484848484849,
+    "holdouts_from_same_generator_not_external_replication": true,
+    "posthoc_BM25_is_not_confirmatory": true,
+    "script_and_outputs_private_local_hash_receipts": true,
+    "private_confirm_output_sha256_by_seed": {
+      "991": "e5b904f50d3448fe63f15485b7121050ef8f30a6283b614c46c6dde4575243f7",
+      "992": "a8f2cc8a71c472d1dbfbf9d21483a9e4c55ec016a1e5adc2c690dcfed9470b58",
+      "993": "fd228be1237c46b5cbf8d511ffdc3f193234d9e6098fff6d55422658ebc1d0c1"
+    }
+  },
+  "source_type": "FULLY_SYNTHETIC",
+  "spanish_policy_individuals_read": 0,
+  "verified_real_pan_iaen_links": 0,
+  "source_rights_granted_by_test": false,
+  "new_algorithmic_novelty_accredited": false,
+  "AB_cycle_track": "AB-P",
+  "AB_cycle_status": "EXECUTED_CONDITIONAL_SYNTHETIC_RESULT_NOT_ACCEPTED",
+  "scientific_grade_0_3": 0,
+  "external_replication": "NOT_VERIFIED",
+  "R5": "STOP"
+}

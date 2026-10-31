@@ -9,13 +9,13 @@
     "continuity": 8,
     "data": 34,
     "evidence": 378,
-    "experimental_code": 39,
-    "operations": 109,
+    "experimental_code": 40,
+    "operations": 110,
     "reference": 95,
-    "research": 1995,
+    "research": 2003,
     "runtime": 109,
     "task_queue": 120,
-    "verification": 261
+    "verification": 263
   },
   "files": [
     {
@@ -11364,6 +11364,46 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_AB10_20261031/AUTHORIZATION.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/P01_CANDIDATE_RANKING_AJ_PREREG.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/P01_EXPLORATION_NEGATIVE_AND_AMENDMENT_PRECONFIRM.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/P01_P02_AJ_FINAL_RESULTS.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/P02_REVIEW_ATTESTATION_AJ_PREREG.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/P03_MEMORY_AUTHORITY_AJ_PREREG.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/results/P01_RANKING_AGGREGATE.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
+      "path": "research/PFL_AB10_20261031/results/P02_REVIEW_ATTESTATION.json",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_POLICY_PUBLICAS_20261031/EXECUTION_REPORT.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12010,6 +12050,11 @@
     },
     {
       "path": "scripts/HELP_PUBLISH.md",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "scripts/ab10_candidate_rank_benchmark.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -12965,6 +13010,11 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_registration_graph.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_review_assignment.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15060,6 +15110,16 @@
     },
     {
       "path": "tests/run_playable_smoke.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_ab10_candidate_rank_benchmark.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_ab10_synthetic_review_assignment.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
