@@ -12,17 +12,24 @@ const registry=JSON.parse(readFileSync(join(parent,'ACHIEVEMENTS_REGISTRY.json')
 const page=readFileSync(join(parent,'ACHIEVEMENTS_Atlas_Politics_Fantasy.html'),'utf8');
 const atlas=readFileSync(join(parent,'AB_Atlas_Politics_Fantasy.html'),'utf8');
 
-test('versioned registry has exactly nine V4 weighted branches and 90 independently named achievements',()=>{
+test('versioned registry preserves original 90 IDs and supports audited new goals',()=>{
   assert.equal(registry.schema,'pfl.achievements.v1');
   assert.ok(registry.version>=1);
   assert.equal(registry.tracks.length,9);
   assert.equal(registry.tracks.reduce((n,t)=>n+t.weight,0),100);
-  assert.equal(registry.achievements.length,90);
+  const originalIds=new Set(registry.change_log[0].affected_ids);
+  assert.equal(originalIds.size,90);
+  assert.ok(registry.achievements.length>=90);
   const ids=new Set(registry.achievements.map(a=>a.id));
-  assert.equal(ids.size,90);
+  assert.equal(ids.size,registry.achievements.length);
+  for(const id of originalIds)assert.ok(ids.has(id),'Missing historical ID: '+id);
+  for(const id of ids){
+    if(originalIds.has(id))continue;
+    assert.ok(registry.change_log.some(e=>e.type==='achievement.created'&&e.achievement_id===id),id);
+  }
   for(const section of registry.tracks){
     const group=registry.achievements.filter(a=>a.track_id===section.id);
-    assert.equal(group.length,10,section.id);
+    assert.ok(group.length>=10,section.id);
     for(const a of group){
       assert.ok(a.title.length>=8,a.id);
       assert.ok(a.criteria.length>=45,a.id);

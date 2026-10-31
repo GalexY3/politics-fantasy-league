@@ -2,12 +2,14 @@
 
 **Repositorio canónico: [GalexY3/politics-fantasy-league](https://github.com/GalexY3/politics-fantasy-league).** PFL utiliza AB, pero su producto, investigación, pruebas, estado y decisiones viven aquí. No continuar escribiendo PFL dentro del repositorio del método.
 
+**NUEVA REGLA DE ACCESO A TODO EL PROYECTO (31/10/2026):** seguir el [protocolo de contexto integral y verificable](docs/SESSION_CONTEXT_PROTOCOL.md) y ejecutar `python scripts/session_context.py audit` para recorrer con SHA-256 **cada archivo Git** y comparar el índice. El informe de cobertura distingue inventario/hashes de documentos realmente leídos. Ningún chat conserva literalmente todos los 3.000+ archivos en su ventana; debe recuperar los módulos y antecedentes necesarios antes de decidir. **No usar `main` automáticamente cuando la rama de investigación vigente esté en PR abiertas.** El estado del Atlas de logros es dinámico: [registro canónico](ab_atlas/ACHIEVEMENTS_REGISTRY.json) y [reglas](ab_atlas/ACHIEVEMENTS_README.md); añadir/retirar solo con auditoría, nunca por subir porcentajes.
+
 ## Recuperación breve
 
-1. Leer este archivo, [AGENTS.md](AGENTS.md), [PROJECT_STATE.json](PROJECT_STATE.json) y [la versión de AB adoptada](METHOD_REFERENCE.json).
-2. Resolver el HEAD remoto actual de `main`, comprobar cambios locales y hacer fetch antes de continuar. No reconstruir el estado desde el chat anterior ni desde títulos de PR.
-3. Ejecutar cuando sea posible `python scripts/project_status.py brief` y `python scripts/project_status.py check`. Sin ejecución, declarar qué solo se leyó y qué no se verificó.
-4. Resumir el hito activo de producto, el de investigación, saldo verificado y siguiente acción. Leer solo las fuentes pertinentes; el historial completo es archivo consultable.
+1. Leer este archivo, [AGENTS.md](AGENTS.md), [el contrato de sesión](docs/SESSION_CONTEXT_PROTOCOL.md), [PROJECT_STATE.json](PROJECT_STATE.json), la visión científica y [la versión de AB adoptada](METHOD_REFERENCE.json). La lectura del índice de método no implica haber leído los ocho textos del método remoto.
+2. Resolver el HEAD remoto de la **rama de trabajo y PR activa**, además de `main`, comprobar cambios locales y hacer fetch cuando esté permitido antes de continuar. No reconstruir el estado desde el chat anterior ni desde títulos de PR.
+3. Ejecutar cuando sea posible `python scripts/session_context.py audit`, `python scripts/project_index.py check`, `python scripts/project_status.py brief|check`, el replay Atlas y validador de logros. Si falta acceso, declarar qué se leyó, qué se inventarió y qué no se verificó.
+4. Inventariar el repositorio completo y luego leer semánticamente T0–T2 y **todo el conjunto de archivos pertinentes** T3–T5, además de antecedentes negativos; distinguir lo revisado de lo pendiente. Resumir hitos de producto e investigación, saldo verificado, gates y siguiente acción. El historial profundo sigue consultable.
 5. Si la rama remota avanzó, reconciliar antes de escribir. Nunca sobrescribir trabajo concurrente ni afirmar que se incorporó sin comprobarlo.
 
 ## Dónde está todo

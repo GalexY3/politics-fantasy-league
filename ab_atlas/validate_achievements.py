@@ -91,6 +91,32 @@ def validate(doc: dict, *, original: bool = False) -> list[str]:
     for n, event in enumerate(log, start=1):
         if not isinstance(event, dict) or event.get("seq") != n or event.get("registry_version") != n:
             issues.append(f"Audit event sequence {n} is incomplete")
+        elif not str(event.get("type", "")).strip() or not str(event.get("reason", "")).strip():
+            issues.append(f"Audit event sequence {n} lacks a type or reason")
+    if log and isinstance(log[0], dict):
+        founding = log[0].get("affected_ids", [])
+        if log[0].get("type") != "registry.created" or not isinstance(founding, list) or len(founding) != 90:
+            issues.append("Original 90-ID register origin missing")
+        else:
+            for aid in founding:
+                if aid not in by_id:
+                    issues.append(f"HISTORICAL_ACHIEVEMENT_DELETED: {aid}; soft-retire instead")
+            newly_created = set(by_id).difference(founding)
+            for aid in sorted(newly_created):
+                if not any(isinstance(e, dict) and e.get("type") == "achievement.created"
+                           and e.get("achievement_id") == aid for e in log[1:]):
+                    issues.append(f"NEW_ACHIEVEMENT_WITHOUT_AUDIT_EVENT: {aid}")
+    for aid, a in by_id.items():
+        histories = [e for e in log[1:] if isinstance(e, dict) and e.get("achievement_id") == aid]
+        latest = histories[-1].get("type") if histories else "registry.created"
+        if a.get("status") == "unlocked" and latest != "achievement.unlocked":
+            issues.append(f"{aid}: unlocked status contradicts last audit event")
+        if a.get("status") == "retired" and latest != "achievement.retired":
+            issues.append(f"{aid}: retired without final audit event")
+        if a.get("status") == "retired" and not str(a.get("retirement_reason", "")).strip():
+            issues.append(f"{aid}: retired without explicit reason")
+        if a.get("status") == "locked" and latest in {"achievement.unlocked", "achievement.retired"}:
+            issues.append(f"{aid}: locked status contradicts last audit event")
     if original and (len(items) != 90 or any(counts[t] != 10 for t in EXPECTED_TRACKS)):
         issues.append("Initial registry requires exactly 10 active achievements per branch, 90 total")
     if original and any(a.get("status") != "locked" for a in items):

@@ -4,7 +4,7 @@ Prototipo fantasy con datos ficticios e investigación sociológica/instituciona
 
 ## Por dónde empezar
 
-- **[Continuar el proyecto o empezar un chat](START_HERE.md)**
+- **[Continuar el proyecto o empezar un chat](START_HERE.md)** · [Protocolo verificable de contexto integral](docs/SESSION_CONTEXT_PROTOCOL.md)
 - [Mapa: dónde está cada cosa](PROJECT_MAP.md) · [Índice de investigación](research/INDEX.md)
 - [Estado e hitos actuales](PROJECT_STATE.json) · [Último handoff](HANDOFF.md)
 - [Prompt reutilizable](NEW_CHAT_PROMPT.md) · [Cola técnica](tareas_codex/README.md)
