@@ -209,9 +209,19 @@ function populationReadinessPanel(){
  }
  const sources=p.institutional_sources.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.unit)+'</td><td>'+(s.observed_metadata_rows===null||s.observed_metadata_rows===undefined?'Desconocido':count(s.observed_metadata_rows))+'</td><td>'+esc(s.provenance_status)+'</td><td>Sin denominador certificado</td></tr>').join('');
  const gates=p.coverage_gates.map(g=>'<tr><td>'+esc(g.gate)+'</td><td>'+esc(g.scientific_admission)+'</td></tr>').join('');
+ const candidates=(Array.isArray(p.documentary_candidate_sources)&&p.documentary_candidate_status==='DOCUMENTARY_CANDIDATES_BLOCKED_FROM_SOURCE_ADMISSION')
+   ?p.documentary_candidate_sources:[];
+ const candidatePanel=candidates.length
+   ?'<details><summary>Nuevas rutas documentales sin captura autorizada ('+count(candidates.length)+')</summary>'
+    +'<p class="help">El catálogo de estas fuentes no es una población de entradas. No se han aceptado sus términos de uso ni descargado sus ficheros originales. No se presentan recuentos de expedientes ni estados políticos.</p>'
+    +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Activo editorial</th><th>Derechos/acceso</th></tr></thead><tbody>'
+    +candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.catalogue_asset)+'</td><td>'+esc(s.access_gate)+'</td></tr>').join('')
+    +'</tbody></table></div></details>'
+   :'';
  return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
  +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
  +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad observada</th><th>Registros visibles</th><th>Procedencia</th><th>Elegibilidad</th></tr></thead><tbody>'+sources+'</tbody></table></div>'
+ +candidatePanel
  +'<details><summary>Requisitos para estimar persistencia, riesgos competitivos y censura ('+count(p.coverage_gates.length)+')</summary><div class="tablewrap"><table><thead><tr><th>Puerta</th><th>Estado</th></tr></thead><tbody>'+gates+'</tbody></table></div></details>'
  +'<p class="footnote">API local /api/procedural-population-readiness?as_of=. El corte indica conocimiento documentado del observatorio, no una primera publicación histórica. Denominador de riesgo desconocido; sin datos personales ni desenlaces admitidos.</p></section>';
 }

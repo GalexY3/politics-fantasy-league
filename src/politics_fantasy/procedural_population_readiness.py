@@ -10,6 +10,7 @@ from __future__ import annotations
 from .parcan_cohort_status import status as canarian_status
 from .procedural_coverage import coverage_status
 from .siap_coverage import status as siap_status
+from .procedural_discovery_r7 import status as discovery_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -29,6 +30,7 @@ def report(*, as_of: str | None = None) -> dict:
     parcan = canarian_status(as_of=as_of)
     editorial = coverage_status(as_of=as_of)
     siap = siap_status(as_of=as_of)
+    discovery = discovery_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -88,6 +90,12 @@ def report(*, as_of: str | None = None) -> dict:
         "as_of": as_of,
         "institutional_sources": source_rows,
         "source_groups": len(source_rows),
+        "documentary_candidate_sources": discovery.get("candidate_sources", []),
+        "documentary_candidate_sources_count": discovery.get("documentary_sources_count"),
+        "documentary_candidate_status": discovery.get("status"),
+        "documentary_catalogue_safe_by": discovery.get("local_audit_safe_by"),
+        "documentary_candidates_are_not_registered_processes": True,
+        "documentary_source_direct_bulk_download_permitted": False,
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",
