@@ -59,8 +59,13 @@ def registration_readiness(*, readiness: dict, source_id: str) -> dict:
         x.get("source_id"): x for x in readiness.get("r14_documentary_routes", [])
         if type(x) is dict
     } if readiness.get("r14_documentary_status") == "R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED" else {}
+    r16_ids = {
+        x.get("source_id"): x for x in readiness.get("r16_documentary_routes", [])
+        if type(x) is dict
+    } if readiness.get("r16_documentary_status") == "R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED" else {}
     rights_scope = (
         r14_ids[source_id]["rights_scope"] if source_id in r14_ids
+        else r16_ids[source_id]["rights_scope"] if source_id in r16_ids
         else "GENERAL_TERMS_BIND_ON_ACCESS_ASSET_RIGHTS_UNVERIFIED"
         if source_id == "GENCAT_SAIP_INITIAL_FILINGS" and enrichment is not None
         else "ASSET_LEVEL_RIGHTS_NOT_INDEPENDENTLY_CERTIFIED"
@@ -69,15 +74,27 @@ def registration_readiness(*, readiness: dict, source_id: str) -> dict:
         if (r14_ids[source_id].get("source_originals_acquired") != 0
                 or r14_ids[source_id].get("independent_entry_denominator") is not None):
             raise GateError("R14_ASSET_SOURCE_PROMOTION")
+    if source_id in r16_ids:
+        if (r16_ids[source_id].get("source_originals_acquired")!=0
+                or r16_ids[source_id].get("distribution_rights_certified") is not False
+                or r16_ids[source_id].get("independent_entry_denominator") is not None
+                or r16_ids[source_id].get("real_terminal_decisions") is not None):
+            raise GateError("R16_ASSET_SOURCE_PROMOTION")
     # No asset is made legally acquired by an editorial catalogue licence.
     asset_status = (
         {fmt: "UNVERIFIED_BY_DISTRIBUTION_NO_ORIGINAL_GET"
          for fmt in ("CSV", "JSON", "XML", "RESTORE")}
-        if enrichment is not None else {}
+        if enrichment is not None else
+        {fmt: "CATALOGUE_LICENSE_CLAIM_NOT_EXACT_CASE_DISTRIBUTION_PERMISSION"
+         for fmt in ("CSV","ODS","XLS","XML")}
+        if source_id == "CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS"
+           and source_id in r16_ids else {}
     )
     safe_by = (
         readiness.get("r14_documentary_safe_by")
-        if (enrichment is not None or source_id in r14_ids) else None
+        if (enrichment is not None or source_id in r14_ids)
+        else readiness.get("r16_documentary_safe_by")
+        if source_id in r16_ids else None
     )
     # Importantly, this is a documentary *knowledge* cutoff, never public
     # first availability of an individual case or a historic source vintage.
@@ -134,6 +151,9 @@ def registration_readiness(*, readiness: dict, source_id: str) -> dict:
                 "editorial_restore_entries": enrichment["restore_point_metadata_entries_visible"],
                 "original_restore_pairs": enrichment["original_snapshots_compared"],
             } if enrichment is not None else None),
+            "r16_procedural_editorial_conflict": (
+                r16_ids[source_id]["editorial_conflict"]
+                if source_id in r16_ids else None),
         },
         "official_links": {
             "confirmed_dual_id_edges": None,

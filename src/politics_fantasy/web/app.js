@@ -328,6 +328,19 @@ function populationReadinessPanel(){
    +'</tbody></table></div><p class="footnote">Relojes separados: fecha jurídica, fecha de edición, conocimiento local y primera disponibilidad pública acreditada. Gate documental desde '
    +esc(p.r14_documentary_safe_by)+'. Pendientes, decisiones y denominador real desconocidos; sin acceso a casos ni ciclos AB.</p></details>'
   :'';
+ const r16Candidates=(p.r16_documentary_status==='R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED'
+   &&Array.isArray(p.r16_documentary_routes))?p.r16_documentary_routes:[];
+ const r16Panel=r16Candidates.length
+  ?'<details><summary>R16 · registro, admisión y revisión: tres familias documentales nuevas</summary>'
+   +'<p class="help">Las solicitudes iniciales, las quejas recibidas, los expedientes admitidos y las resoluciones seleccionadas no son el mismo universo. El Síndic valenciano distingue registro y admisión, pero dos instrucciones oficiales discrepan sobre los días de acuse y el momento de asignación del número. CTCyL registra reclamaciones posteriores a la solicitud inicial. CTPDA publica resoluciones seleccionadas de diversas familias, no un padrón de entrada.</p>'
+   +'<p class="help">CTPDA anuncia CC BY 4.0 en la ficha de determinadas resoluciones y metadatos de recursos; esta etiqueta NO certifica derechos por cada archivo CSV/ODS/XLS/XML, tratamientos personales ni condiciones de mero uso. Las tres rutas carecen de originales individuales, denominadores independientes, testigos de pendientes y dos vintages auténticos del mismo activo.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Ruta oficial</th><th>Unidad / selección</th><th>Conflicto o límite</th><th>Derechos</th></tr></thead><tbody>'
+   +r16Candidates.map(s=>'<tr><td>'+esc(s.source_id)+'</td><td>'+esc(s.documentary_unit)
+      +'</td><td>'+esc(s.editorial_conflict)+'</td><td>'+esc(s.rights_scope)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Conocimiento local de esta auditoría desde '+esc(p.r16_documentary_safe_by)+
+     '. Sin identificación de fuente futura antes de ese corte, sin testigos externos de publicación histórica y sin nuevos ciclos empíricos AB.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const scopedCut=(typeof p.as_of==='string'&&p.as_of.length<50
@@ -356,6 +369,7 @@ function populationReadinessPanel(){
  +r12Panel
  +r13Panel
  +r14Panel
+  +r16Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

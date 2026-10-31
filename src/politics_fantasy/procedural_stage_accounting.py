@@ -159,10 +159,12 @@ def audit_lab(*,frame:PopulationTarget,episodes:tuple[EntryEpisode,...],
             "terminal_by_cause":endings,
             "observed_pending_at_last_witness":observed_pending,
             "unknown_followup":unknown,
-            "reintroduction_claims_visible":sum(
-                l.earlier_episode in ids and l.later_episode in ids
+            "reintroduction_claims_visible":len({
+                (l.earlier_episode,l.later_episode) for l in claims
+                if l.earlier_episode in ids and l.later_episode in ids
                 and l.locally_observed_at is not None
-                and safe(l.locally_observed_at)<=t for l in claims),
+                and safe(l.locally_observed_at)<=t}),
+            "replayed_or_multiple_documents_are_one_claimed_relation":True,
             "reintroduction_without_observation_is_unknown":True,
             "later_pending_status_not_inferred":True,
             "reintroduction_claim_is_not_verified_identity":True}

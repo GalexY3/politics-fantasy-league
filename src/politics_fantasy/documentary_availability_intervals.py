@@ -56,6 +56,12 @@ class RevisionWitness:
             day(self.claimed_event_on)
         if self.documentary_date is not None:
             day(self.documentary_date)
+        # A capture cannot contain a document or recorded event that did not
+        # yet exist even at the coarsest date resolution.  A same-day event is
+        # NOT automatically safe as a *historical* predictor at 00:00.
+        if any(day(x)>cutoff.date() for x in (
+                self.claimed_event_on,self.documentary_date) if x is not None):
+            raise GateError("SOURCE_CONTAINS_FUTURE_DATED_EVENT_OR_DOCUMENT")
         if self.positive_basis not in {
             "TRUSTED_ARCHIVE_REVISION_WITNESS", "LOCAL_VERIFIED_CAPTURE"
         }:
@@ -72,6 +78,15 @@ class RevisionWitness:
                 raise GateError("ARCHIVAL_WITNESS_MISSING_DATE")
             if utc(self.witnessed_public_by) > cutoff:
                 raise GateError("WITNESS_POSTDATES_ITS_CAPTURE")
+            # With DATE precision for event/document, the entire date must
+            # have elapsed before claiming positive historical availability.
+            # A witnessed version with a 2025 event cannot be used in 2021
+            # merely because its claimed edition or index date says 2020.
+            public_cut=utc(self.witnessed_public_by)
+            for event_date in (self.claimed_event_on,self.documentary_date):
+                if (event_date is not None
+                        and day(event_date)>=public_cut.date()):
+                    raise GateError("PUBLIC_WITNESS_PRECEDES_DATED_CONTENT")
         if self.witnessed_not_public_before is not None:
             if (self.negative_basis != "TRUSTED_PREVIOUS_COMPLETE_INDEX_NEGATIVE_WITNESS"
                     or not self.independently_reviewed):

@@ -20,6 +20,7 @@ from .procedural_discovery_r11 import status as discovery_r11_status
 from .procedural_discovery_r12 import status as discovery_r12_status
 from .procedural_discovery_r13 import status as discovery_r13_status
 from .procedural_discovery_r14 import status as discovery_r14_status
+from .procedural_discovery_r16 import status as discovery_r16_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -48,6 +49,7 @@ def report(*, as_of: str | None = None) -> dict:
     discovery_r12 = discovery_r12_status(as_of=as_of)
     discovery_r13 = discovery_r13_status(as_of=as_of)
     discovery_r14 = discovery_r14_status(as_of=as_of)
+    discovery_r16 = discovery_r16_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -201,8 +203,15 @@ def report(*, as_of: str | None = None) -> dict:
         "r14_documentary_safe_by": discovery_r14.get("documentary_safe_by"),
         "r14_saip_enrichment_not_additive": discovery_r14.get("existing_saip_enrichment"),
         "r14_documentary_manifest_sha256": discovery_r14.get("manifest_sha256"),
+        "r16_documentary_status": discovery_r16["status"],
+        "r16_documentary_sources_count": discovery_r16.get("documentary_source_count"),
+        "r16_documentary_routes": discovery_r16.get("source_rows",[]),
+        "r16_documentary_safe_by": discovery_r16.get("documentary_safe_by"),
+        "r16_documentary_manifest_sha256": discovery_r16.get("manifest_sha256"),
+        "r16_source_groups_are_not_entry_population": True,
         "denominator_evidence": derive_denominator_evidence(
             real_sources=source_rows,
+            as_of=as_of, explicit_current_mode=(as_of is None),
             r9_documentary_status=discovery_r9["status"],
             r9_regional_highlights=discovery_r9.get("regional_highlights",[]),
             r9_national_highlights=discovery_r9.get("national_highlights",[]),
@@ -216,7 +225,9 @@ def report(*, as_of: str | None = None) -> dict:
             r13_documentary_status=discovery_r13["status"],
             r13_documentary_routes=discovery_r13.get("source_rows",[]),
             r14_documentary_status=discovery_r14["status"],
-            r14_documentary_routes=discovery_r14.get("source_rows",[])),
+            r14_documentary_routes=discovery_r14.get("source_rows",[]),
+            r16_documentary_status=discovery_r16["status"],
+            r16_documentary_routes=discovery_r16.get("source_rows",[])),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

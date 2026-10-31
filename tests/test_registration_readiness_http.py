@@ -69,3 +69,28 @@ def test_queries_cannot_access_cases_or_bypass_cut(local,query):
 def test_http_wrong_host_rejected(local):
     assert fetch(local,"?source_id=GENCAT_SAIP_INITIAL_FILINGS",
                  host="evil.example")[0]==403
+
+
+def test_r16_sources_hidden_pre_cut_and_visible_only_as_uncertified_documentary(local):
+    before="&as_of=2026-10-31T23%3A59%3A59Z"
+    unknown=fetch(local,"?source_id=DOES_NOT_EXIST"+before)
+    r16=fetch(local,"?source_id=SINDIC_CV_COMPLAINT_REGISTRATION"+before)
+    assert r16[:2]==unknown[:2]
+    assert r16[0]==200
+    assert "SINDIC" not in json.dumps(r16[1])
+    after="&as_of=2026-11-01T00%3A00%3A00Z"
+    code,sind,_=fetch(local,"?source_id=SINDIC_CV_COMPLAINT_REGISTRATION"+after)
+    assert code==200
+    assert sind["source"]["source_id"]=="SINDIC_CV_COMPLAINT_REGISTRATION"
+    assert sind["population"]["independent_all_received_denominator"] is None
+    assert "RECEIPT_3_VS_5_DAYS" in sind["clocks"]["r16_procedural_editorial_conflict"]
+    assert sind["clocks"]["first_public_at"] is None
+    assert not sind["rights"]["real_original_ingestion_authorized"]
+    code,ct,_=fetch(local,
+        "?source_id=CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS"+after)
+    assert code==200
+    assert set(ct["rights"]["by_distribution"])=={"CSV","ODS","XLS","XML"}
+    assert all("NOT_EXACT_CASE" in label for label in
+               ct["rights"]["by_distribution"].values())
+    assert ct["states"]["terminal_known"] is None
+    assert ct["states"]["right_censored_known"] is None

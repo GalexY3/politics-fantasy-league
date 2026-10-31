@@ -7,7 +7,14 @@ objects; a source-local count is NOT a denominator of all registered cases.
 """
 from __future__ import annotations
 
-from .procedural_index_contract import GateError
+from .procedural_index_contract import GateError, utc
+from .procedural_discovery_r9 import SAFE_BY as R9_SAFE
+from .procedural_discovery_r10 import SAFE_BY as R10_SAFE
+from .procedural_discovery_r11 import SAFE_BY as R11_SAFE
+from .procedural_discovery_r12 import SAFE_BY as R12_SAFE
+from .procedural_discovery_r13 import SAFE_BY as R13_SAFE
+from .procedural_discovery_r14 import SAFE_BY as R14_SAFE
+from .procedural_discovery_r16 import SAFE_BY as R16_SAFE
 
 
 def _candidate(identifier:str, institution:str, unit:str, source_status:str,
@@ -36,6 +43,8 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r9_documentary_status:str,
                                 r9_regional_highlights:list[dict],
                                 r9_national_highlights:list[dict],
+                                as_of:str|None=None,
+                                explicit_current_mode:bool=False,
                                 r10_documentary_status:str="R10_DOCUMENTARY_NOT_KNOWN_AT_CUT",
                                 r10_regional_routes:list[dict]|None=None,
                                 r10_national_routes:list[dict]|None=None,
@@ -46,7 +55,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r13_documentary_status:str="R13_NOT_KNOWN_AT_CUT",
                                 r13_documentary_routes:list[dict]|None=None,
                                 r14_documentary_status:str="R14_NOT_KNOWN_AT_CUT",
-                                r14_documentary_routes:list[dict]|None=None) -> dict:
+                                r14_documentary_routes:list[dict]|None=None,
+                                r16_documentary_status:str="R16_NOT_KNOWN_AT_CUT",
+                                r16_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -181,6 +192,49 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                 row["limitation"]))
     elif r14_documentary_status not in {"R14_NOT_KNOWN_AT_CUT","R14_SOURCE_QUARANTINED"}:
         raise GateError("R14_DOCUMENTARY_STATUS_INVALID")
+    if r16_documentary_status=="R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED":
+        if type(r16_documentary_routes) is not list or len(r16_documentary_routes)!=3:
+            raise GateError("R16_EXPECTED_THREE_SEPARATE_DOCUMENTARY_ROUTES")
+        for row in r16_documentary_routes:
+            if (row.get("source_originals_acquired") != 0
+                    or row.get("distribution_rights_certified") is not False
+                    or row.get("independent_entry_denominator") is not None
+                    or row.get("real_terminal_decisions") is not None
+                    or row.get("real_pending_or_censored") is not None
+                    or row.get("first_public_at") is not None
+                    or row.get("source_role_is_not_a_homogeneous_risk_set") is not True):
+                raise GateError("R16_DOCUMENTARY_SOURCE_PROMOTION")
+            groups.append(_candidate(
+                row["source_id"],row["institution"],row["documentary_unit"],
+                "DOCUMENTARY_PROCESS_GUIDE_OR_SELECTED_RESOLUTION_ONLY",None,
+                "REGISTRATION_ADMISSION_REVIEW_OR_RESOLUTION_NOT_SAME_ENTRY_UNIT",
+                row["limitation"]))
+    elif r16_documentary_status not in {"R16_NOT_KNOWN_AT_CUT","R16_MANIFEST_QUARANTINED"}:
+        raise GateError("R16_DOCUMENTARY_STATUS_INVALID")
+    # Re-evaluate documentary availability independently of the caller's
+    # source-status flags. The source gate owns safe_by; a forged status or a
+    # missed as_of argument cannot enumerate a future publisher catalogue.
+    active=(
+        (r9_documentary_status=="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED",R9_SAFE),
+        (r10_documentary_status=="R10_DOCUMENTARY_ONLY_NO_RISK_FRAME",R10_SAFE),
+        (r11_documentary_status=="R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED",R11_SAFE),
+        (r12_documentary_status=="R12_DOCUMENTARY_ONLY_NO_ADMISSIBLE_POPULATION",R12_SAFE),
+        (r13_documentary_status=="R13_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R13_SAFE),
+        (r14_documentary_status=="R14_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R14_SAFE),
+        (r16_documentary_status=="R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED",R16_SAFE),
+    )
+    cut=utc(as_of) if as_of is not None else None
+    # The live observatory can expressly render its CURRENT catalogue. That
+    # is a distinct, nonhistorical mode. Direct helper calls that simply
+    # forget as_of fail closed unless the caller explicitly chooses CURRENT.
+    if (type(explicit_current_mode) is not bool
+            or (explicit_current_mode and cut is not None)):
+        raise GateError("MIXED_HISTORICAL_AND_CURRENT_KNOWLEDGE_MODE")
+    if any(enabled and
+           ((cut is None and not explicit_current_mode)
+            or (cut is not None and cut<safe_by))
+           for enabled,safe_by in active):
+        raise GateError("DOCUMENTARY_SOURCE_NOT_IN_KNOWLEDGE_AT_CUT")
     return {
         "schema":"pfl.denominator_evidence_nonadditive.v1",
         "eligible_risk_denominator":None,

@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 30,
+    "data": 31,
     "evidence": 378,
-    "experimental_code": 31,
+    "experimental_code": 32,
     "operations": 103,
-    "reference": 84,
-    "research": 1977,
-    "runtime": 105,
+    "reference": 85,
+    "research": 1978,
+    "runtime": 106,
     "task_queue": 120,
-    "verification": 237
+    "verification": 239
   },
   "files": [
     {
@@ -869,6 +869,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r16_official_intake_rights_documentary_redacted_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1110,6 +1115,11 @@
     },
     {
       "path": "docs/R15_MODELO_REGISTRAL_MULTIRRELOJ_Y_FALSACION_20261031.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R16_REGISTROS_QUEJAS_RECLAMACIONES_Y_RETROCAUSALIDAD_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11614,6 +11624,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT16_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12529,6 +12544,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r16.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_discovery_r7.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12710,6 +12730,11 @@
     },
     {
       "path": "src/politics_fantasy/synthetic_cohort_conservation.py",
+      "category": "experimental_code",
+      "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
+    },
+    {
+      "path": "src/politics_fantasy/synthetic_registration_graph.py",
       "category": "experimental_code",
       "purpose": "Instrumentos experimentales; su presencia no prueba integración en el juego"
     },
@@ -15514,6 +15539,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r16.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_discovery_r7.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15885,6 +15915,11 @@
     },
     {
       "path": "tests/test_synthetic_cohort_conservation.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_synthetic_registration_graph.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

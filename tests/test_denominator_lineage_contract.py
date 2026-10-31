@@ -132,6 +132,19 @@ def test_missing_claim_specific_clock_fails_closed_for_historical_replay():
         claim("BAD",documented="2026-10-31")
 
 
+def test_future_claim_with_own_clock_never_defaults_to_present_when_cut_missing():
+    a=claim("ONE",n=2,documented="2099-01-01T00:00:00Z")
+    b=claim("TWO",n=4,documented="2099-01-02T00:00:00Z")
+    r=compare_total_claims(first=a,second=b)
+    assert r["status"]=="HISTORICAL_AS_OF_REQUIRED_FOR_DATED_CLAIMS"
+    assert r["editorial_counts_equal"] is None
+    assert r["counter_claims"] is None
+    assert r["backend_relation"] is None
+    assert r["frame_compatible"] is None
+    assert not r["source_claims_visible"]
+    assert r["first_public_at"] is None
+
+
 def test_self_witness_replay_not_external_evidence():
     a=claim("PAGE_A")
     with pytest.raises(GateError,match="SELF_WITNESS_REPLAY"):

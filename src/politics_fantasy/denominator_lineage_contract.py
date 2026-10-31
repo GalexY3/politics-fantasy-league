@@ -97,6 +97,22 @@ def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
         raise GateError("SELF_WITNESS_REPLAY")
     if (query_as_of is None) != (locally_known_safe_by is None):
         raise GateError("INCOMPLETE_TIME_ENVELOPE")
+    # With per-claim discovery dates, a missing requested cut must never
+    # silently mean that an arbitrary future count is visible 'now'. Keep
+    # legacy undated pairwise structural comparisons explicitly unbounded
+    # and documentary; never promote such claims as an as-of result.
+    if query_as_of is None and (first.locally_documented_safe_by is not None
+                                or second.locally_documented_safe_by is not None):
+        return {
+            "schema":"pfl.denominator_independence_comparison.v1",
+            "status":"HISTORICAL_AS_OF_REQUIRED_FOR_DATED_CLAIMS",
+            "frame_compatible":None,"editorial_counts_equal":None,
+            "source_claims_visible":False,
+            "counter_claims":None,"backend_relation":None,
+            "independent_denominator_certified":False,
+            "eligible_risk_population":None,
+            "first_public_at":None,"scientific_cycles":0,
+        }
     if query_as_of is not None:
         cut=utc(query_as_of)
         # Treat undocumented per-claim discovery as *unknown*, rather than
@@ -147,6 +163,7 @@ def compare_total_claims(*, first: SourceTotalClaim, second: SourceTotalClaim,
         "jurisdiction_and_channel_independently_verified":False,
         "editorial_counts_equal":first.reported_count==second.reported_count,
         "source_claims_visible":True,
+        "historical_query_attested":query_as_of is not None,
         "counter_claims":(first.reported_count,second.reported_count),
         "backend_relation":lineage,
         "independent_denominator_certified":False,

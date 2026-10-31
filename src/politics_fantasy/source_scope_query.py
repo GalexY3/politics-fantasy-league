@@ -29,6 +29,29 @@ AGG_FIELDS={
     "boe_only_approved_laws_not_full_intake","first_public_at_historical",
     "synthetic_denominator_comparisons_are_not_empirical","scientific_cycles",
 }
+SOURCE_STATUSES=frozenset({
+    "AUDITED_METADATA_CURRENT_CAPTURE",
+    "ONE_INDEX_PAGE_OF_UNCERTIFIED_POPULATION",
+    "DOCUMENTARY_ONLY_NO_RAW",
+    "DOCUMENTARY_ONLY_NO_ORIGINAL_OR_ACCEPTED_TERMS",
+    "DOCUMENTARY_SCOPE_ONLY_NO_CASE_OR_ARCHIVAL_ORIGINAL",
+    "DOCUMENTARY_DISCOVERY_ONLY_NO_ADMISSIBLE_ORIGINAL",
+    "DOCUMENTARY_METADATA_ONLY_NO_AUTHORIZED_ORIGINAL",
+    "DOCUMENTARY_PROCESS_GUIDE_OR_SELECTED_RESOLUTION_ONLY",
+})
+ENTRY_RULES=frozenset({
+    "F_CREACION_IS_NOT_PUBLICATION_OR_PRE_MESA_REGISTRATION",
+    "INDEX_LINK_NOT_REGISTERED_INTAKE",
+    "REGISTRATION_OR_ADMISSION_ENTRY_RULE_UNATTESTED",
+    "INSTITUTIONAL_INTAKE_GRAIN_DISTINCT",
+    "ENTRY_STAGE_OR_REGIME_DEPENDENT",
+    "INSTITUTIONAL_UNIT_DISTINCT_FROM_PARLIAMENTARY_REGISTRATION",
+    "REPORTED_PUBLISHER_FRAME_ONLY",
+    "PLANNED_INVITATION_SELECTED_STAGE_OR_APPEAL_DECISION",
+    "PETITION_REPORT_SAIP_FILING_OR_SELECTED_REVIEW_NOT_ADDITIVE",
+    "SAIP_SCOPE_MUNICIPAL_REGISTER_OR_AGGREGATES_NOT_ADDITIVE",
+    "REGISTRATION_ADMISSION_REVIEW_OR_RESOLUTION_NOT_SAME_ENTRY_UNIT",
+})
 
 
 def _validate(aggregate: dict) -> list[dict]:
@@ -49,7 +72,12 @@ def _validate(aggregate: dict) -> list[dict]:
             raise GateError("UNATTESTED_DENOMINATOR_AGGREGATE_PROMOTION")
     if (aggregate["scientific_cycles"]!=0
             or aggregate["source_groups_additive"] is not False
-            or aggregate["risk_by_institution_estimable"] is not False):
+            or aggregate["risk_by_institution_estimable"] is not False
+            or aggregate["index_discovery_without_original_not_counted_as_frame"] is not True
+            or aggregate["post_admission_selection_is_not_pre_mesa_rejection"] is not True
+            or aggregate["editorial_total_equals_rows_proves_census"] is not False
+            or aggregate["boe_only_approved_laws_not_full_intake"] is not True
+            or aggregate["synthetic_denominator_comparisons_are_not_empirical"] is not True):
         raise GateError("UNATTESTED_DENOMINATOR_AGGREGATE_PROMOTION")
     ids=set()
     for row in rows:
@@ -64,6 +92,14 @@ def _validate(aggregate: dict) -> list[dict]:
         observed=row["observed_source_local_items"]
         if observed is not None and (type(observed) is not int or observed<0):
             raise GateError("BAD_SOURCE_LOCAL_OBSERVATION")
+        if (row["source_status"] not in SOURCE_STATUSES
+                or row["entry_rule_status"] not in ENTRY_RULES
+                or type(row["institution"]) is not str
+                or type(row["observable_unit"]) is not str
+                or type(row["principal_identification_block"]) is not str
+                or any(len(row[x])>3000 for x in (
+                    "institution","observable_unit","principal_identification_block"))):
+            raise GateError("UNTRUSTED_DENOMINATOR_SOURCE_CLASSIFICATION")
         if (any(row[k] is not None for k in (
                 "eligible_all_received_denominator","known_terminal_case_count",
                 "known_pending_case_count","right_censored_case_count"))

@@ -129,6 +129,9 @@ def test_reintroduction_must_refer_to_two_explicit_distinct_episodes():
                 as_of="2026-11-01T00:00:00Z")
     assert r["reintroduction_claims_visible"]==1
     assert r["reintroduction_claim_is_not_verified_identity"]
+    duplicated=audit_lab(frame=scope(),episodes=(a,b),claims=(link,link),
+                         as_of="2026-11-01T00:00:00Z")
+    assert duplicated["reintroduction_claims_visible"]==1
     unobserved=ReintroductionClaim(a.episode_id,b.episode_id,SHA)
     r_unknown=audit_lab(frame=scope(),episodes=(a,b),claims=(unobserved,),
                         as_of="2026-11-01T00:00:00Z")

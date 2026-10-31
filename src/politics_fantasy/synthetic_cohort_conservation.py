@@ -26,8 +26,13 @@ class CohortCut:
     as_of:str
 
     def __post_init__(self):
+        # Event dates are day-precision. A cut on the observer's current day
+        # cannot be considered a completed DAY of exposure at 00:00:01. The
+        # next UTC midnight is the earliest conservative *completed* day.
         if day(self.cut_on)>utc(self.as_of).date():
             raise GateError("COHORT_CUT_EVENT_TIME_AFTER_CAPTURE")
+        if day(self.cut_on)==utc(self.as_of).date():
+            raise GateError("COHORT_CUT_EVENT_DAY_NOT_COMPLETED_AT_KNOWLEDGE")
 
 
 def _status(episode:EntryEpisode,*,cut:CohortCut):
@@ -145,10 +150,13 @@ def audit_cuts(*,frame:PopulationTarget,
     }
     if any(s0.get(key) in TERMINAL and s0[key]!=s1.get(key) for key in s0):
         raise GateError("TERMINAL_EVENT_REVERSED_BETWEEN_CUTS")
-    claims=sum(link.earlier_episode in s1 and link.later_episode in s1
-               and link.locally_observed_at is not None
-               and safe(link.locally_observed_at)<=utc(late.as_of)
-               for link in reintroductions)
+    claims=len({
+        (link.earlier_episode,link.later_episode)
+        for link in reintroductions
+        if link.earlier_episode in s1 and link.later_episode in s1
+        and link.locally_observed_at is not None
+        and safe(link.locally_observed_at)<=utc(late.as_of)
+    })
     return {**base,"status":"SYNTHETIC_DOCUMENTARY_STOCK_FLOW_ONLY",
             "early":first,"late":second,
             "newly_registered_between_cuts":len(arrivals),
@@ -156,6 +164,7 @@ def audit_cuts(*,frame:PopulationTarget,
             "terminal_claims_among_newly_registered":new_same_interval_terminals,
             "terminal_transitions_counted_only_for_earlier_registered":True,
             "reintroduction_claims_known_at_later_cut":claims,
+            "replayed_or_multiple_documents_are_one_claimed_relation":True,
             "reintroduction_claim_requires_own_observation_clock":True,
             "same_episode_only_once_per_cut":True,
             "terminal_state_not_inferred_from_absence":True,

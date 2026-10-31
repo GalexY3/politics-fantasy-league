@@ -114,3 +114,30 @@ def test_inconsistent_aggregate_count_or_top_level_extra_data_rejected():
     d["future_sensitive_hash"]="syntheticprivate"
     with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_AGGREGATE"):
         filter_denominator_source(d,None)
+
+
+@pytest.mark.parametrize("field,value",[
+    ("editorial_total_equals_rows_proves_census",True),
+    ("source_groups_additive",True),
+    ("index_discovery_without_original_not_counted_as_frame",False),
+    ("boe_only_approved_laws_not_full_intake",False),
+    ("synthetic_denominator_comparisons_are_not_empirical",False),
+    ("post_admission_selection_is_not_pre_mesa_rejection",False),
+])
+def test_flags_cannot_be_changed_into_census_by_pass_through(field,value):
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d[field]=value
+    with pytest.raises(GateError,match="UNATTESTED_DENOMINATOR_AGGREGATE_PROMOTION"):
+        filter_denominator_source(d,"PARCAN_SOURCE_LOCAL")
+
+
+@pytest.mark.parametrize("field,value",[
+    ("source_status","CERTIFIED_ALL_RECEIVED_REGISTER"),
+    ("entry_rule_status","REGISTERED_ALL_CHANNELS_INCLUSIVE"),
+    ("institution",3),
+])
+def test_synthetic_caller_cannot_forge_entry_classification(field,value):
+    d=deepcopy(report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"])
+    d["reported_sources"][0][field]=value
+    with pytest.raises(GateError,match="UNTRUSTED_DENOMINATOR_SOURCE_CLASSIFICATION"):
+        filter_denominator_source(d,None)

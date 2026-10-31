@@ -115,3 +115,36 @@ def test_real_historical_archival_witness_cannot_self_authorize():
                 independently_reviewed=True)
     with pytest.raises(GateError,match="SYNTHETIC_WITNESS_NEEDS_LAB_NAMESPACE"):
         witness(revision_id="PARLIAMENT_REAL_01")
+
+
+def test_fictional_archive_witness_must_not_backdate_future_event_or_document():
+    # R16 counterexample: revision claimed public in 2020, yet the *same*
+    # purported original describes a later registration and document in 2025.
+    for future in ({"claimed_event_on":"2025-02-01"},
+                   {"documentary_date":"2025-02-10"}):
+        with pytest.raises(GateError,match="PUBLIC_WITNESS_PRECEDES_DATED_CONTENT"):
+            witness(positive_basis="TRUSTED_ARCHIVE_REVISION_WITNESS",
+                    independently_reviewed=True,
+                    witnessed_public_by="2020-10-01T12:00:00Z",**future)
+
+
+def test_public_witness_at_start_of_same_day_is_not_positive_day_witness():
+    with pytest.raises(GateError,match="PUBLIC_WITNESS_PRECEDES_DATED_CONTENT"):
+        witness(positive_basis="TRUSTED_ARCHIVE_REVISION_WITNESS",
+                independently_reviewed=True,
+                claimed_event_on="2023-01-01",
+                witnessed_public_by="2023-01-01T00:01:00Z")
+    valid=witness(positive_basis="TRUSTED_ARCHIVE_REVISION_WITNESS",
+                  independently_reviewed=True,claimed_event_on="2023-01-01",
+                  documentary_date="2023-01-01",
+                  witnessed_public_by="2023-01-02T00:00:00Z")
+    assert valid.temporal_report(as_of="2023-01-02T00:00:00Z",
+                                 purpose="HISTORICAL_PUBLIC_PREDICTOR")[
+                                     "public_revision_usable"] is True
+
+
+def test_local_capture_cannot_claim_future_dated_source_content():
+    with pytest.raises(GateError,match="SOURCE_CONTAINS_FUTURE_DATED_EVENT_OR_DOCUMENT"):
+        witness(claimed_event_on="2027-01-01")
+    with pytest.raises(GateError,match="SOURCE_CONTAINS_FUTURE_DATED_EVENT_OR_DOCUMENT"):
+        witness(documentary_date="2027-01-01")

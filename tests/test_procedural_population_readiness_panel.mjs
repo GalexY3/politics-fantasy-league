@@ -456,3 +456,48 @@ test('R14 future assets hidden and labels escaped against XSS',()=>{
  assert.match(html,/&lt;svg/);
  assert.doesNotMatch(html,/<img|<script|<svg/);
 });
+
+test('R16 procedural sources remain distinct and disclaimed, never denominators',()=>{
+ const data=sample();
+ data.r16_documentary_status='R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r16_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r16_documentary_routes=[{
+   source_id:'SINDIC_CV_COMPLAINT_REGISTRATION',
+   documentary_unit:'REGISTERED_COMPLAINT_BEFORE_ADMISSION_VERSUS_POST_ADMISSION_FILE_NUMBER',
+   editorial_conflict:'RECEIPT_3_VS_5_DAYS_AND_CASE_NUMBER_STAGE_CONFLICT',
+   rights_scope:'NO_CASE_DISTRIBUTION_LICENSE'
+ },{
+   source_id:'CTCYL_POST_REQUEST_ACCESS_COMPLAINTS',
+   documentary_unit:'TRANSPARENCY_COMPLAINT_AFTER_INITIAL_ACCESS_REQUEST',
+   editorial_conflict:'POST_REQUEST_ONLY',rights_scope:'RIGHTS_UNKNOWN'
+ },{
+   source_id:'CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS',
+   documentary_unit:'EDITORIAL_PUBLIC_RESOLUTIONS',
+   editorial_conflict:'NO_REGISTER',rights_scope:'CATALOGUE_CC_BY4_NOT_CASE_RIGHTS'
+ }];
+ const html=render(data);
+ assert.match(html,/R16 · registro, admisión y revisión/);
+ assert.match(html,/RECEIPT_3_VS_5_DAYS_AND_CASE_NUMBER_STAGE_CONFLICT/);
+ assert.match(html,/CTCYL_POST_REQUEST_ACCESS_COMPLAINTS/);
+ assert.match(html,/CATALOGUE_CC_BY4_NOT_CASE_RIGHTS/);
+ assert.match(html,/NO certifica derechos por cada archivo/);
+ assert.doesNotMatch(html,/censo certificado/);
+});
+
+test('R16 future sources hidden and unsafe source fields escaped against XSS',()=>{
+ const data=sample();
+ data.r16_documentary_status='R16_NOT_KNOWN_AT_CUT';
+ data.r16_documentary_routes=[{source_id:'SECRET_FUTURE_CTPDA'}];
+ assert.doesNotMatch(render(data),/SECRET_FUTURE_CTPDA/);
+ data.r16_documentary_status='R16_DOCUMENTARY_ONLY_NO_COHORT_CERTIFIED';
+ data.r16_documentary_safe_by='<script>alert(1)</script>';
+ data.r16_documentary_routes=[{source_id:'<img onerror=alert(1)>',
+   documentary_unit:'<svg onload=alert(1)>',
+   editorial_conflict:'<script>bad()</script>',
+   rights_scope:'RIGHTS_UNKNOWN'}];
+ const html=render(data);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<img|<svg|<script/);
+});

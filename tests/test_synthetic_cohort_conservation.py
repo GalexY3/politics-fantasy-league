@@ -129,6 +129,14 @@ def test_reintroduction_requires_explicit_distinct_episodes():
     x_unobserved=check((earlier,later),links=(ReintroductionClaim(
         earlier.episode_id,later.episode_id,HASH),))
     assert x_unobserved["reintroduction_claims_known_at_later_cut"]==0
+    # A replay, or two documentary SHA claims for the same explicit pair,
+    # are not two independent reintroductions.
+    repeated=check((earlier,later),links=(link,link))
+    assert repeated["reintroduction_claims_known_at_later_cut"]==1
+    different_sha=ReintroductionClaim(earlier.episode_id,later.episode_id,
+                         "e"*64,locally_observed_at="2026-10-30T10:00:00Z")
+    doubled=check((earlier,later),links=(link,different_sha))
+    assert doubled["reintroduction_claims_known_at_later_cut"]==1
     with pytest.raises(GateError,match="REINTRODUCTION_REFERENCES"):
         check((earlier,),links=(link,))
 
@@ -139,6 +147,12 @@ def test_wrong_direction_reintroduction_fails():
     link=ReintroductionClaim(later.episode_id,earlier.episode_id,HASH)
     with pytest.raises(GateError,match="REINTRODUCTION_NOT_FORWARD"):
         check((earlier,later),links=(link,))
+
+
+def test_day_level_cut_cannot_be_reconstructed_before_end_of_day():
+    with pytest.raises(GateError,match="COHORT_CUT_EVENT_DAY_NOT_COMPLETED"):
+        CohortCut("2026-11-01","2026-11-01T00:00:01Z")
+    assert CohortCut("2026-10-31","2026-11-01T00:00:00Z").cut_on=="2026-10-31"
 
 
 def test_future_capture_conceals_even_rows_for_old_dates():

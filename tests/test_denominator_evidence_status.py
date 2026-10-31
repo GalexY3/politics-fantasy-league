@@ -31,7 +31,7 @@ def test_prior_cut_not_leak_r9_catalogue_or_local_source_counts():
     assert "CONGRESO_XV" not in str(d)
     assert d["eligible_risk_denominator"] is None
     d=report(as_of="2026-11-01T00:00:00Z")["denominator_evidence"]
-    assert d["source_groups_visible"]==41
+    assert d["source_groups_visible"]==44
     assert all(s["eligible_all_received_denominator"] is None for s in d["reported_sources"][-4:])
     assert len({s["source_id"] for s in d["reported_sources"][-4:]})==4
     assert all(s["observed_source_local_items"] is None for s in d["reported_sources"][-4:])
@@ -61,3 +61,24 @@ def test_bad_source_registry_and_claimed_r9_promotion_rejected():
             r9_documentary_status="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED",
             r9_regional_highlights=regions,
             r9_national_highlights=x["r9_national_highlights"])
+
+
+def test_documentary_denominator_assembler_needs_real_source_owned_asof():
+    p=report(as_of="2026-11-01T00:00:00Z")
+    kwargs=dict(real_sources=p["institutional_sources"],
+                r9_documentary_status="R9_DISCOVERY_ONLY_RIGHTS_AND_DENOMINATORS_BLOCKED",
+                r9_regional_highlights=p["r9_regional_highlights"],
+                r9_national_highlights=p["r9_national_highlights"])
+    with pytest.raises(GateError,match="DOCUMENTARY_SOURCE_NOT_IN_KNOWLEDGE_AT_CUT"):
+        derive_denominator_evidence(as_of="2010-01-01T00:00:00Z",**kwargs)
+    with pytest.raises(GateError,match="DOCUMENTARY_SOURCE_NOT_IN_KNOWLEDGE_AT_CUT"):
+        derive_denominator_evidence(**kwargs)
+    with pytest.raises(GateError,match="MIXED_HISTORICAL_AND_CURRENT_KNOWLEDGE_MODE"):
+        derive_denominator_evidence(as_of="2026-11-01T00:00:00Z",
+            explicit_current_mode=True,**kwargs)
+    current=derive_denominator_evidence(explicit_current_mode=True,**kwargs)
+    assert current["source_groups_visible"]>2
+    assert current["eligible_risk_denominator"] is None
+    visible=derive_denominator_evidence(as_of="2026-11-01T00:00:00Z",**kwargs)
+    assert visible["source_groups_visible"]>2
+    assert visible["eligible_risk_denominator"] is None

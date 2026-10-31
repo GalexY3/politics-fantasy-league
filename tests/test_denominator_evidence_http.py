@@ -100,6 +100,22 @@ def test_r14_future_source_query_is_indistinguishable_from_unknown(local):
     assert post["eligible_risk_denominator"] is None
 
 
+def test_r16_future_source_not_enumerated_as_http_denominator(local):
+    old="/api/denominator-evidence?as_of=2026-10-31T23%3A59%3A59Z&source_id="
+    a=get(local,old+"CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS")
+    b=get(local,old+"UNKNOWN_R16_SOURCE")
+    assert a==b and a[0]==200
+    assert a[1]["source_groups_visible"]==0
+    assert "CTPDA" not in json.dumps(a[1])
+    after="/api/denominator-evidence?as_of=2026-11-01T00%3A00%3A00Z&source_id="
+    code,doc=get(local,after+"CTPDA_ANDALUCIA_SELECTED_REVIEW_RESOLUTIONS")
+    assert code==200
+    assert doc["source_groups_visible"]==1
+    assert doc["eligible_risk_denominator"] is None
+    assert doc["reported_sources"][0]["observed_source_local_items"] is None
+    assert doc["reported_sources"][0]["known_terminal_case_count"] is None
+
+
 @pytest.mark.parametrize("suffix",[
     "?source_id=",
     "?source_id=PARCAN_SOURCE_LOCAL&source_id=R10_A_CTBG_APPEALS",
