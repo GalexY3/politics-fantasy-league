@@ -268,3 +268,57 @@ test('R10 future documentary names are hidden; source strings escaped',()=>{
  assert.match(html,/&lt;svg/);
  assert.doesNotMatch(html,/<img|<script|<svg/);
 });
+
+test('R11 source-scoped audit links point to local JSON and do not allow unsafe IDs',()=>{
+ const data=sample();
+ data.denominator_evidence={schema:'pfl.denominator_evidence_nonadditive.v1',reported_sources:[
+  {source_id:'PARCAN_SOURCE_LOCAL',institution:'Canarias',observable_unit:'METADATA',
+   observed_source_local_items:1754,principal_identification_block:'NOT_CENSUS'},
+  {source_id:'X&source_id=Y',institution:'Unsafe',observable_unit:'OTHER',
+   observed_source_local_items:null,principal_identification_block:'UNVERIFIED'}
+ ]};
+ const html=render(data);
+ assert.match(html,/api\/denominator-evidence\?source_id=PARCAN_SOURCE_LOCAL/);
+ assert.match(html,/Fuente verificable/);
+ assert.match(html,/Identificador no disponible/);
+ assert.doesNotMatch(html,/href="[^"]*source_id=X&amp;/);
+});
+
+test('R11 source discovery separates Madrid AIP from economic and rights restrictions',()=>{
+ const data=sample();
+ data.r11_documentary_status='R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED';
+ data.r11_documentary_safe_by='2026-11-01T00:00:00+00:00';
+ data.r11_documentary_routes=[
+  {institution:'Ayuntamiento de Madrid',institutional_entry_unit:'FORMAL_ACCESS_REQUEST_CASE',
+   classification:'ALL_RECEIVED_CLAIM_NOT_INDEPENDENTLY_RECONCILED',
+   rights_gate:'CC_BY_4_CATALOGUE_WITH_BINDING_PORTAL_TERMS'},
+  {institution:'Ministerio de Hacienda',institutional_entry_unit:'PUBLIC_TENDER_REVISION',
+   classification:'REPEATED_ATOM_VERSIONS_AND_2026_COVERAGE_OUTAGE',
+   rights_gate:'MINISTRY_REUSE_TERMS_BY_USE'}
+ ];
+ const html=render(data);
+ assert.match(html,/R11 · registros municipales/);
+ assert.match(html,/FORMAL_ACCESS_REQUEST_CASE/);
+ assert.match(html,/REPEATED_ATOM_VERSIONS_AND_2026_COVERAGE_OUTAGE/);
+ assert.match(html,/las condiciones generales vinculan por mero uso/);
+ assert.match(html,/sin outcomes examinados, sin first_public_at/);
+});
+
+test('R11 hidden before source time and malicious names cannot execute HTML',()=>{
+ const data=sample();
+ data.r11_documentary_status='R11_DOCUMENTARY_NOT_KNOWN_AT_CUT';
+ data.r11_documentary_routes=[{institution:'FUTURE_MADRID'}];
+ assert.doesNotMatch(render(data),/FUTURE_MADRID/);
+ data.r11_documentary_status='R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED';
+ data.r11_documentary_safe_by='<svg onload=alert(1)>';
+ data.r11_documentary_routes=[
+  {institution:'<img src=x onerror=alert(1)>',
+   institutional_entry_unit:'<script>x()</script>',
+   classification:'UNVERIFIED',rights_gate:'LEGAL_LIMIT'}
+ ];
+ const html=render(data);
+ assert.match(html,/&lt;svg/);
+ assert.match(html,/&lt;img/);
+ assert.match(html,/&lt;script/);
+ assert.doesNotMatch(html,/<svg|<img|<script/);
+});

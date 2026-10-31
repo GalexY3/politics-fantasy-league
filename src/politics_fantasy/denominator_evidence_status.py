@@ -38,7 +38,9 @@ def derive_denominator_evidence(*, real_sources:list[dict],
                                 r9_national_highlights:list[dict],
                                 r10_documentary_status:str="R10_DOCUMENTARY_NOT_KNOWN_AT_CUT",
                                 r10_regional_routes:list[dict]|None=None,
-                                r10_national_routes:list[dict]|None=None) -> dict:
+                                r10_national_routes:list[dict]|None=None,
+                                r11_documentary_status:str="R11_DOCUMENTARY_NOT_KNOWN_AT_CUT",
+                                r11_documentary_routes:list[dict]|None=None) -> dict:
     if (not isinstance(real_sources,list) or len(real_sources)!=3
             or [x.get("source_id") for x in real_sources]!=[
                 "PARCAN_SOURCE_LOCAL","PARLAMENT_CATALUNYA_SIAP",
@@ -106,6 +108,23 @@ def derive_denominator_evidence(*, real_sources:list[dict],
     elif r10_documentary_status not in {
             "R10_DOCUMENTARY_NOT_KNOWN_AT_CUT","R10_DOCUMENTARY_QUARANTINED"}:
         raise GateError("R10_DOCUMENTARY_STATUS_INVALID")
+    if r11_documentary_status=="R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED":
+        if not isinstance(r11_documentary_routes,list) or len(r11_documentary_routes)!=7:
+            raise GateError("R11_SOURCE_ROUTE_COUNT_MISMATCH")
+        for row in r11_documentary_routes:
+            if (row.get("dataset_acquired") is not False
+                    or row.get("independent_denominator") is not None
+                    or row.get("terminal_case_count") is not None
+                    or row.get("first_public_at") is not None):
+                raise GateError("R11_SOURCE_PROMOTION_FORBIDDEN")
+            groups.append(_candidate(
+                row["route_id"],row["institution"],row["institutional_entry_unit"],
+                "DOCUMENTARY_ONLY_NO_ORIGINAL_OR_ACCEPTED_TERMS",None,
+                "REPORTED_PUBLISHER_FRAME_ONLY",
+                row["classification"]))
+    elif r11_documentary_status not in {
+            "R11_DOCUMENTARY_NOT_KNOWN_AT_CUT","R11_DOCUMENTARY_QUARANTINED"}:
+        raise GateError("R11_DOCUMENTARY_STATUS_INVALID")
     return {
         "schema":"pfl.denominator_evidence_nonadditive.v1",
         "eligible_risk_denominator":None,

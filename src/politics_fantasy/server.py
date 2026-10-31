@@ -193,11 +193,13 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 query = urlsplit(self.path).query
                 try:
                     parsed = parse_qs(query,keep_blank_values=True,strict_parsing=True,
-                                      max_num_fields=1)
-                    if not set(parsed).issubset({'as_of'}) or any(len(v)!=1 for v in parsed.values()):
+                                      max_num_fields=2)
+                    if not set(parsed).issubset({'as_of','source_id'}) or any(len(v)!=1 for v in parsed.values()):
                         raise ValueError('INVALID_QUERY')
                     result=population_readiness_report(as_of=parsed.get('as_of',[None])[0])
-                    return self.reply(200,result['denominator_evidence'])
+                    from .source_scope_query import filter_denominator_source
+                    return self.reply(200,filter_denominator_source(
+                        result['denominator_evidence'],parsed.get('source_id',[None])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_AS_OF_OR_QUERY'})
             if route == '/api/official-nominations':

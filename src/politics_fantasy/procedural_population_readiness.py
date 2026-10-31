@@ -16,6 +16,7 @@ from .retained_integrity_status import status as integrity_status
 from .procedural_discovery_r9 import status as discovery_r9_status
 from .denominator_evidence_status import derive_denominator_evidence
 from .procedural_discovery_r10 import status as discovery_r10_status
+from .procedural_discovery_r11 import status as discovery_r11_status
 
 GATES = (
     "ASSET_RIGHTS_AND_ORIGINAL_HASH",
@@ -40,6 +41,7 @@ def report(*, as_of: str | None = None) -> dict:
     integrity = integrity_status(as_of=as_of)
     discovery_r9 = discovery_r9_status(as_of=as_of)
     discovery_r10 = discovery_r10_status(as_of=as_of)
+    discovery_r11 = discovery_r11_status(as_of=as_of)
     local_parcan = parcan.get("observed_rows") if parcan.get("ok") else None
     local_siap = siap.get("observed_links")
     # We do not expose future hashes, counts or missing receipts in earlier
@@ -140,6 +142,14 @@ def report(*, as_of: str | None = None) -> dict:
         "r10_asof_safe_by": discovery_r10.get("local_documentary_safe_by"),
         "r10_registration_channel_break": discovery_r10.get("administrative_register_regime_change"),
         "r10_pre_AJ_outcome_category_exposure": discovery_r10.get("outcome_headings_seen_before_AJ"),
+        "r11_documentary_status": discovery_r11["status"],
+        "r11_documentary_source_count": discovery_r11.get("documentary_source_count"),
+        "r11_municipal_documentary_routes": discovery_r11.get("municipal_source_count"),
+        "r11_economic_documentary_routes": discovery_r11.get("economic_source_count"),
+        "r11_documentary_routes": discovery_r11.get("source_routes",[]),
+        "r11_documentary_safe_by": discovery_r11.get("local_audit_safe_by"),
+        "r11_rights_by_use_block": discovery_r11.get("rights_by_mere_use_block"),
+        "r11_2026_procurement_feed_gap_documented": discovery_r11.get("publisher_2026_feed_gap_known"),
         "denominator_evidence": derive_denominator_evidence(
             real_sources=source_rows,
             r9_documentary_status=discovery_r9["status"],
@@ -147,7 +157,9 @@ def report(*, as_of: str | None = None) -> dict:
             r9_national_highlights=discovery_r9.get("national_highlights",[]),
             r10_documentary_status=discovery_r10["status"],
             r10_regional_routes=discovery_r10.get("regional_routes",[]),
-            r10_national_routes=discovery_r10.get("national_routes",[])),
+            r10_national_routes=discovery_r10.get("national_routes",[]),
+            r11_documentary_status=discovery_r11["status"],
+            r11_documentary_routes=discovery_r11.get("source_routes",[])),
         "risk_set_denominator": None,
         "reusable_scientific_cohort": False,
         "stage": "DISCOVERY_AND_PROVENANCE_ONLY",

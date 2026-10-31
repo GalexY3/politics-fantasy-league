@@ -274,17 +274,31 @@ function populationReadinessPanel(){
     +'</tbody></table></div>'
     +'<p class="footnote">CTBG: resolución no necesariamente equivale a reclamación individual; CNMC: documento publicado no equivale a aportación recibida. Derechos y registros originales pendientes. Corte documental seguro: '+esc(p.r10_asof_safe_by)+'.</p></details>'
   :'';
+ const r11Candidates=(p.r11_documentary_status==='R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED'
+   &&Array.isArray(p.r11_documentary_routes))?p.r11_documentary_routes:[];
+ const r11Panel=r11Candidates.length
+  ?'<details><summary>R11 · registros municipales, contratación y subvenciones</summary>'
+   +'<p class="help">Madrid AIP: el registro público de solicitudes de información y sus agregados históricos son del mismo editor, no dos denominadores independientes. El catálogo declara CC BY 4.0, pero las condiciones generales vinculan por mero uso: no se han aceptado ni descargado originales. Decide Madrid y Canòdrom son ámbitos y permisos distintos.</p>'
+   +'<p class="help">Contratación estatal: una revisión ATOM no es una licitación adicional; hay incidencias editoriales de cobertura/actualización documentadas en 2026 que requieren cotejo de origen. BDNS: convocatoria, extracto BOE y concesión son etapas/unidades distintas. Convenios Rioja: varias filas por partes firmantes pueden referirse a un mismo convenio.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente</th><th>Unidad formal</th><th>Problema de delimitación</th><th>Derechos</th></tr></thead><tbody>'
+   +r11Candidates.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.institutional_entry_unit)
+      +'</td><td>'+esc(s.classification)+'</td><td>'+esc(s.rights_gate)+'</td></tr>').join('')
+   +'</tbody></table></div>'
+   +'<p class="footnote">Documentación R11 conocida en el archivo local solo desde '+esc(p.r11_documentary_safe_by)+'. Sin censos independientes, sin outcomes examinados, sin first_public_at ni uso de personas identificables. Instrumentos de contabilidad de etapas y reintroducción: solo QA sintética.</p></details>'
+  :'';
  const den=p.denominator_evidence||{};
  const denRows=Array.isArray(den.reported_sources)?den.reported_sources:[];
  const denomPanel=den.schema==='pfl.denominator_evidence_nonadditive.v1'
   ?'<details><summary>R10 · comparación de denominadores y censura no observada</summary>'
    +'<p class="help">La coincidencia entre filas y contador editorial NO certifica todas las entradas. Dos contadores del mismo organismo o base pueden ser reiteraciones; registros, expedientes, dictámenes, acuerdos y escritos no comparten automáticamente unidad de riesgo.</p>'
-   +'<div class="tablewrap"><table><thead><tr><th>Institución</th><th>Unidad capturada o descrita</th><th>Observaciones locales</th><th>Bloqueo identificable</th></tr></thead><tbody>'
-   +denRows.map(s=>'<tr><td>'+esc(s.institution)+'</td><td>'+esc(s.observable_unit)+'</td><td>'
+   +'<div class="tablewrap"><table><thead><tr><th>Fuente verificable</th><th>Institución</th><th>Unidad capturada o descrita</th><th>Observaciones locales</th><th>Bloqueo identificable</th></tr></thead><tbody>'
+   +denRows.map(s=>'<tr><td>'+(typeof s.source_id==='string'&&/^[A-Za-z0-9_.:/-]{1,160}$/.test(s.source_id)
+      ?'<a href="/api/denominator-evidence?source_id='+encodeURIComponent(s.source_id)+'" target="_blank" rel="noopener noreferrer">'+esc(s.source_id)+'</a>'
+      :'Identificador no disponible')+'</td><td>'+esc(s.institution)+'</td><td>'+esc(s.observable_unit)+'</td><td>'
       +(s.observed_source_local_items===null?'Desconocidas':esc(count(s.observed_source_local_items)))+'</td><td>'
       +esc(s.principal_identification_block)+'</td></tr>').join('')
    +'</tbody></table></div>'
-   +'<p class="footnote">N independiente: desconocido · Terminales: desconocidos · Pendientes: desconocidos · Censurados: desconocidos. Ninguna fila se suma entre instituciones. API local /api/denominator-evidence?as_of=.</p></details>'
+   +'<p class="footnote">N independiente: desconocido · Terminales: desconocidos · Pendientes: desconocidos · Censurados: desconocidos. Ninguna fila se suma entre instituciones. Para una fuente y corte: /api/denominator-evidence?source_id=...&amp;as_of=...; una fuente futura no es revelada.</p></details>'
   :'';
  return '<section class="card" aria-label="Puertas científicas de población longitudinal"><div class="section-title"><h2>Población longitudinal · admisión científica</h2><span>NO CERTIFICADA</span></div>'
  +'<p class="help">La consistencia de un índice documental, incluso con paginación completa, no prueba que estén presentes todas las iniciativas registradas. Las cifras pertenecen a familias e instituciones diferentes; no deben sumarse.</p>'
@@ -293,6 +307,7 @@ function populationReadinessPanel(){
  +r8Panel
  +r9Panel
  +r10Panel
+ +r11Panel
  +denomPanel
  +integrityPanel
  +selectionPanel

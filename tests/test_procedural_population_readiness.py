@@ -50,6 +50,11 @@ def test_current_sources_have_distinct_grains_and_no_survival_denominator():
     assert result["r10_regional_documentary_assets"]==6
     assert result["r10_national_documentary_routes"]==3
     assert result["r10_pre_AJ_outcome_category_exposure"] is True
+    assert result["r11_documentary_status"]=="R11_DOCUMENTARY_RIGHTS_AND_RISK_FRAME_BLOCKED"
+    assert result["r11_documentary_source_count"]==7
+    assert result["r11_municipal_documentary_routes"]==4
+    assert result["r11_economic_documentary_routes"]==3
+    assert result["r11_rights_by_use_block"] is True
     assert result["r10_registration_channel_break"]["is_observed_change_in_political_behavior"] is False
     assert result["r9_no_independent_national_or_regional_denominator"] is True
     assert "source_process_id" not in json.dumps(result)
@@ -77,6 +82,10 @@ def test_historical_snapshot_no_future_count_or_external_sha_disclosed():
     assert prior["r10_national_highlights"]==[]
     assert prior["r10_registration_channel_break"] is None
     assert prior["r10_pre_AJ_outcome_category_exposure"] is None
+    assert prior["r11_documentary_status"]=="R11_DOCUMENTARY_NOT_KNOWN_AT_CUT"
+    assert prior["r11_documentary_source_count"] is None
+    assert prior["r11_documentary_routes"]==[]
+    assert prior["r11_rights_by_use_block"] is None
     assert prior["r9_no_independent_national_or_regional_denominator"] is None
     middle=report(as_of="2026-10-31T05:20:00Z")
     assert middle["institutional_sources"][0]["observed_metadata_rows"]==1211

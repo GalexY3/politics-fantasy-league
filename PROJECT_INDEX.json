@@ -7,15 +7,15 @@
     "atlas": 112,
     "atlas_engine": 12,
     "continuity": 8,
-    "data": 26,
+    "data": 27,
     "evidence": 378,
     "experimental_code": 28,
-    "operations": 100,
-    "reference": 79,
-    "research": 1972,
-    "runtime": 97,
+    "operations": 101,
+    "reference": 80,
+    "research": 1973,
+    "runtime": 100,
     "task_queue": 120,
-    "verification": 222
+    "verification": 226
   },
   "files": [
     {
@@ -849,6 +849,11 @@
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
     },
     {
+      "path": "data/source_manifests/r11_scoped_documentary_gates_20261031.json",
+      "category": "data",
+      "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
+    },
+    {
       "path": "data/source_manifests/r8_national_documentary_matrix_20261031.json",
       "category": "data",
       "purpose": "Datos/fixtures versionados y metadatos; no datos locales privados"
@@ -1065,6 +1070,11 @@
     },
     {
       "path": "docs/PROGRESO_Y_ALCANCE_v4.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/R11_REGLAS_FLUJOS_Y_TESTIGOS_20261031.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -11544,6 +11554,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT11_20261031.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_SYSTEM20_20261031/ROUND_REPORT2_20261031.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12024,6 +12039,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/redact_r11_source_gates.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/redact_r9_documentary_sources.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12424,6 +12444,11 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/procedural_discovery_r11.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/procedural_discovery_r7.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
@@ -12455,6 +12480,11 @@
     },
     {
       "path": "src/politics_fantasy/procedural_selection_bounds.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/procedural_stage_accounting.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -12575,6 +12605,11 @@
     },
     {
       "path": "src/politics_fantasy/source_original_senate_qa.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/source_scope_query.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -15354,6 +15389,11 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_procedural_discovery_r11.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_procedural_discovery_r7.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
@@ -15390,6 +15430,11 @@
     },
     {
       "path": "tests/test_procedural_selection_bounds.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_procedural_stage_accounting.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
@@ -15510,6 +15555,11 @@
     },
     {
       "path": "tests/test_redact_r10_documentary_sources.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_redact_r11_source_gates.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
@@ -15645,6 +15695,11 @@
     },
     {
       "path": "tests/test_source_original_senate_qa.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_source_scope_query.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

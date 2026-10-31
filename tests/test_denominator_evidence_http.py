@@ -34,7 +34,7 @@ def test_denominator_http_real_and_historical_scope(local):
     code,payload=get(local,"/api/denominator-evidence")
     assert code==200
     assert payload["eligible_risk_denominator"] is None
-    assert payload["source_groups_visible"]==16
+    assert payload["source_groups_visible"]==23
     assert payload["source_groups_additive"] is False
     assert payload["real_case_outcomes_observed_for_analysis"] is None
     assert payload["case_level_right_censoring_observed_for_analysis"] is None
@@ -54,3 +54,43 @@ def test_denominator_http_does_not_accept_case_filters(local,q):
 
 def test_denominator_http_wrong_host_rejected(local):
     assert get(local,"/api/denominator-evidence",host="evil.invalid")[0]==403
+
+
+def test_single_source_query_returns_only_source_scope_never_total(local):
+    code,x=get(local,"/api/denominator-evidence?source_id=PARCAN_SOURCE_LOCAL")
+    assert code==200 and x["source_groups_visible"]==1
+    assert x["reported_sources"][0]["observed_source_local_items"]==1754
+    assert x["eligible_risk_denominator"] is None
+    assert x["reported_sources"][0]["known_terminal_case_count"] is None
+
+
+def test_madrid_source_has_no_census_and_no_original_case_ids(local):
+    code,x=get(local,"/api/denominator-evidence?source_id=R11-A")
+    assert code==200
+    assert x["source_groups_visible"]==1
+    assert x["reported_sources"][0]["source_id"]=="R11-A"
+    assert x["reported_sources"][0]["observed_source_local_items"] is None
+    assert x["reported_sources"][0]["known_pending_case_count"] is None
+    assert x["eligible_risk_denominator"] is None
+
+
+def test_old_cut_does_not_disclose_whether_future_r10_source_exists(local):
+    p="/api/denominator-evidence?as_of=2024-01-01T00%3A00%3A00Z&source_id="
+    a=get(local,p+"R10_A_CTBG_APPEALS")
+    b=get(local,p+"UNKNOWN_FUTURE")
+    assert a==b
+    assert a[0]==200
+    assert a[1]["source_groups_visible"]==0
+    assert a[1]["reported_sources"]==[]
+    assert "CTBG" not in str(a[1])
+
+
+@pytest.mark.parametrize("suffix",[
+    "?source_id=",
+    "?source_id=PARCAN_SOURCE_LOCAL&source_id=R10_A_CTBG_APPEALS",
+    "?source_id=PARCAN_SOURCE_LOCAL&as_of=bad",
+    "?source_id=%3Cscript%3E",
+    "?source_id=PARCAN_SOURCE_LOCAL&include_rows=true",
+])
+def test_source_specific_query_rejects_ambiguous_or_unsafe_params(local,suffix):
+    assert get(local,"/api/denominator-evidence"+suffix)[0]==400
