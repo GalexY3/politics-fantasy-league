@@ -7,6 +7,7 @@
   root.PFLDemoEngine = engine;
 })(typeof window !== 'undefined' ? window : globalThis, function () {
   'use strict';
+  const WORLD=typeof window!=='undefined'?window.PFLDemoWorld:require('./world.js');
   const VERSION = 1;
   const MAX_WEEKS = 8, MAX_ROSTER = 8, MAX_STARTERS = 5;
   const TACTICS = Object.freeze([
@@ -64,7 +65,8 @@
 
   function newGame() {
     return {
-      version: VERSION, club:'Club Horizonte',badge:'H',theme:'light',
+      version: VERSION, club:'Club Horizonte',badge:'H',theme:'dark',
+      palette:'copper',heraldry:['tower','star','waves'],
       budget:94,roster:['c01','c04','c09'],starters:['c01','c04','c09'],
       captain:'c01',tactic:'datos',week:1,points:0,xp:0,
       rounds:[],transfers:0,captainChanges:0,favorites:[],
@@ -80,6 +82,8 @@
     if(!s||typeof s!=='object'||Array.isArray(s)||s.version!==VERSION) return false;
     if(typeof s.club!=='string'||!s.club.trim()||s.club.length>28) return false;
     if(typeof s.badge!=='string'||!['H','C','L','A','D','M','V','P'].includes(s.badge)) return false;
+    if(s.palette!==undefined&&!['copper','blue','violet','silver'].includes(s.palette))return false;
+    if(s.heraldry!==undefined&&(!Array.isArray(s.heraldry)||s.heraldry.length<1||s.heraldry.length>4||!unique(s.heraldry)||!s.heraldry.every(x=>['tower','star','waves','scale','sun','leaf','bridge','spark'].includes(x))))return false;
     if(!['light','dark'].includes(s.theme)||!TACTICS.some(t=>t.id===s.tactic)) return false;
     if(!Number.isSafeInteger(s.budget)||s.budget<0||s.budget>2000) return false;
     if(!Number.isSafeInteger(s.week)||s.week<1||s.week>MAX_WEEKS+1) return false;
@@ -151,6 +155,12 @@
     } else if(operation==='theme'){
       assert(['dark','light'].includes(id),'Tema desconocido.');
       next.theme=id;
+    } else if(operation==='customize'){
+      const palette=String(params.palette||'');
+      const heraldry=params.heraldry;
+      assert(['copper','blue','violet','silver'].includes(palette),'Paleta no reconocida.');
+      assert(Array.isArray(heraldry)&&heraldry.length>=1&&heraldry.length<=4&&unique(heraldry)&&heraldry.every(x=>['tower','star','waves','scale','sun','leaf','bridge','spark'].includes(x)),'La heráldica admite de uno a cuatro símbolos distintos.');
+      next.palette=palette;next.heraldry=[...heraldry];log(next,'Heráldica del club rediseñada.');
     } else if(operation==='round'){
       assert(next.week<=MAX_WEEKS,'La temporada ha terminado.');
       assert(next.starters.length>=3,'Necesitas al menos tres titulares.');
@@ -160,13 +170,15 @@
         const tactic=TACTICS.find(t=>t.id===next.tactic);
         const boosted=c.role===tactic.role?4:0;
         const variance=hash(c.id+'|'+next.week)%8;
-        const subtotal=base+boosted+variance;
+        const event=WORLD.weekEvent(next.week);
+        const eventPoints=WORLD.eventScore(c,event);
+        const subtotal=base+boosted+variance+eventPoints;
         const captain=c.id===next.captain?Math.round(subtotal*.5):0;
-        return {id:c.id,base,boosted,variance,captain,points:subtotal+captain};
+        return {id:c.id,base,boosted,variance,event:eventPoints,eventId:event.id,captain,points:subtotal+captain};
       });
       const points=breakdown.reduce((sum,x)=>sum+x.points,0);
       next.rounds.push({week:next.week,title:WEEK_TITLES[next.week-1],points,
-        tactic:next.tactic,captain:next.captain,breakdown});
+        eventId:WORLD.weekEvent(next.week).id,tactic:next.tactic,captain:next.captain,breakdown});
       next.points+=points;next.budget+=14;next.xp+=30;
       log(next,'Jornada '+next.week+' completada · +'+points+' puntos · +14 CR.');
       next.week++;

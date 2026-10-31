@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 const require=createRequire(import.meta.url);
 const root=path.dirname(fileURLToPath(import.meta.url));
 const E=require('../product/showcase/engine.js');
+const W=require('../product/showcase/world.js');
 require('../product/showcase/parties.js');
 const parties=globalThis.PFL_PARTIES;
 
@@ -18,6 +19,9 @@ test('la sesión inicial es autónoma, local y coherente',()=>{
   assert.equal(s.week,1);
   assert.equal(E.CARDS.length,18);
   assert.equal(E.MAX_WEEKS,8);
+  assert.equal(s.theme,'dark');
+  assert.equal(s.palette,'copper');
+  assert.equal(s.heraldry.length,3);
 });
 test('el catálogo incluye más de cien referencias sin fingir el registro oficial',()=>{
   assert.ok(parties.length>=100);
@@ -77,6 +81,8 @@ test('la simulación es determinista y registra desglose íntegro',()=>{
   assert.equal(a.rounds[0].points,a.rounds[0].breakdown.reduce((sum,r)=>sum+r.points,0));
   assert.equal(a.budget,E.newGame().budget+14);
   assert.equal(a.xp,30);
+  assert.equal(a.rounds[0].eventId,'demo-01');
+  assert.ok(a.rounds[0].breakdown.every(x=>Number.isInteger(x.event)&&x.eventId==='demo-01'));
 });
 test('tácticas producen comparaciones sin modificar el estado base',()=>{
   const s=E.newGame();
@@ -115,10 +121,59 @@ test('importación de estado malformado falla cerrada',()=>{
     assert.equal(E.validState({...s,[key]:value}),false,key);
   }
   assert.throws(()=>E.change(s,'op-inventada'),/no reconocida/);
+  assert.equal(E.validState({...s,palette:'unknown'}),false);
+  assert.equal(E.validState({...s,heraldry:['tower','tower']}),false);
+});
+test('heráldica compuesta y paletas, sin tocar puntos ni partidos',()=>{
+  const s=E.newGame();
+  const next=E.change(s,'customize',{palette:'blue',heraldry:['scale','star','bridge','leaf']});
+  assert.equal(next.palette,'blue');
+  assert.deepEqual(next.heraldry,['scale','star','bridge','leaf']);
+  assert.equal(E.change(s,'round').points,E.change(next,'round').points);
+  assert.throws(()=>E.change(s,'customize',{palette:'blue',heraldry:['tower','tower']}),/heráldica/);
+  assert.throws(()=>E.change(s,'customize',{palette:'unknown',heraldry:['star']}),/Paleta/);
+});
+test('eventos sociales ficticios: ocho hitos deterministas y sin atribuciones reales',()=>{
+  assert.equal(W.EVENTS.length,8);
+  assert.equal(new Set(W.EVENTS.map(x=>x.id)).size,8);
+  assert.ok(W.EVENTS.some(x=>x.type==='Movilización'));
+  assert.ok(W.EVENTS.some(x=>x.type==='Implementación'));
+  assert.ok(W.EVENTS.some(x=>x.type==='Fiscalización'));
+  assert.equal(W.REGIONS.length,19);
+  assert.equal(W.SOURCES.length,6);
+  assert.ok(W.SOURCES.every(x=>x.url.startsWith('https://')&&!x.status.toLowerCase().includes('conectado')));
+  for(let week=1;week<=8;week++){
+    assert.equal(W.weekEvent(week).week,week);
+    for(const c of E.CARDS)assert.ok(Number.isSafeInteger(W.eventScore(c,W.weekEvent(week))));
+  }
+  assert.equal(W.weekEvent(9),null);
+});
+test('series territoriales sintéticas: aislamiento y límites',()=>{
+  const v=W.series('participacion','Castilla y León');
+  assert.equal(v.length,8);
+  assert.deepEqual(v,W.series('participacion','Castilla y León'));
+  assert.ok(v.every(x=>Number.isInteger(x)&&x>=0&&x<=100));
+  assert.throws(()=>W.series('presupuestos_reales','Castilla y León'),/Serie/);
+  assert.throws(()=>W.series('participacion','Lugar inventado'),/Serie/);
+});
+test('estadísticas reales solo como instantánea oficial fechada, sin contaminar la simulación',()=>{
+  const s=W.REAL_SNAPSHOT;
+  assert.equal(s.refresh,'manual');
+  assert.equal(s.asOf,'2026-10-31');
+  assert.equal(s.metrics[0].value,'4,9 %');
+  assert.equal(s.metrics[1].value,'10,18 %');
+  assert.equal(s.metrics[2].value,'22.852.600');
+  assert.ok(s.metrics.every(x=>x.source.includes('ine.es')&&x.published<='2026-10-31'));
+  assert.equal(s.epaQ3Change.years.length,10);
+  assert.equal(s.epaQ3Change.thousands.length,10);
+  assert.equal(s.epaQ3Change.thousands.at(-1),73.6);
+  const game=E.change(E.newGame(),'round');
+  assert.equal(game.rounds[0].eventId,'demo-01');
 });
 test('puede ejecutarse con doble clic: todos los scripts son rutas locales',()=>{
   const html=fs.readFileSync(path.join(root,'../product/showcase/index.html'),'utf8');
-  for(const file of ['parties.js','engine.js','app.js','style.css'])assert.ok(html.includes('./'+file));
+  for(const file of ['parties.js','world.js','engine.js','app.js','style.css'])assert.ok(html.includes('./'+file));
+  assert.ok(fs.readFileSync(path.join(root,'../product/showcase/app.js'),'utf8').includes('./hemicycle.svg'));
   assert.ok(!/src="https:/.test(html));
   assert.ok(html.includes('id="party-list"')===false); // DOM se crea desde JS.
 });

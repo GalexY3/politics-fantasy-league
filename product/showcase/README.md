@@ -1,6 +1,6 @@
-# Politics Fantasy League — Showcase v0.1
+# Política Fantasy España — Showcase v0.2 (Politics Fantasy League)
 
-**Prototipo de presentación, no lanzamiento público ni indicador científico.** Esta interfaz editorial y lúdica se desarrolla separadamente del backend de PFL para que pueda abrirse inmediatamente sin registro, instalación, servidor ni dependencias.
+**Prototipo de presentación, no lanzamiento público ni validación científica.** «Política Fantasy España» es un nombre visual provisional, no un cambio del repositorio. Esta interfaz editorial y lúdica es independiente del backend de PFL y abre sin registro, servidor ni dependencias.
 
 ![Vista previa editorial del prototipo Politics Fantasy League](preview.png)
 
@@ -8,7 +8,7 @@
 
 ## Abrir
 
-**Acceso más fácil en Windows:** hacer doble clic en ABRIR_DEMO.cmd dentro de esta carpeta; abre index.html en el navegador predeterminado. El archivo HTML también puede abrirse directamente. Para compartirlo, comprime los ficheros de esta carpeta en un ZIP (no contiene tu partida personal).
+**Acceso más fácil en Windows:** hacer doble clic en ABRIR_DEMO.cmd dentro de esta carpeta; abre index.html en el navegador predeterminado. El archivo HTML también puede abrirse directamente. Para compartirlo, comprime los ficheros de esta carpeta, **incluida artwork/**, en un ZIP (no contiene tu partida personal).
 
 En Windows, abrir `product/showcase/index.html` con doble clic (Chrome, Edge o Firefox). Si se prefiere un servidor local:
 
@@ -30,15 +30,28 @@ py -3 -m http.server 8765 --bind 127.0.0.1
 - Perfil editable (nombre del club, insignia), estadísticas, insignias por acciones realmente realizadas, contraste claro/oscuro y exportación/importación local para continuar en otro navegador.
 - Laboratorio que diferencia mecanismos de reglas ficticias, cobertura documental conocida y ambiciones científicas todavía pendientes.
 
+## Cambios en la v0.2
+
+- Diseño oscuro grafito predeterminado y modo claro alternativo, cuatro paletas elegibles y logo provisional geométrico conservado.
+- Taller de heráldica: escudo generado por geometría SVG a partir de 1–4 símbolos distintos y paleta elegida, persistentes localmente.
+- Veintiséis ilustraciones SVG originales generadas de forma determinista con Python (18 personajes y ocho escenas de eventos). También hay una ilustración vectorial propia de hemiciclo en la portada.
+- Bucle de juego más claro: dossier de un acontecimiento ficticio, plantilla, táctica, jornada, acta con contribución por evento y progreso.
+- Observatorio/Laboratorio con seis vistas: Panorama, Territorios, Economía real, Políticas y sociedad, Fuentes oficiales y Motor fantasy. Los índices territoriales (19 unidades, cuatro indicadores, ocho periodos) son **simulados**, nunca datos reales de España.
+- En Economía real se muestra una **instantánea manual fechada** del INE a 31/10/2026: IPC anual adelantado octubre 2026 4,9 %, tasa de paro EPA 3T 2026 10,18 %, ocupados 22.852.600, más una serie histórica de cambios de ocupación del segundo al tercer trimestre (2017–2026) según la misma nota oficial. Los valores están citados y separados de las simulaciones. **No existe canal de actualización automática ni se ingieren microdatos.**
+
+Las diferencias entre las fuentes oficiales, las mediciones reales disponibles, los escenarios inventados y las aspiraciones de investigación se desarrollan en el contrato metodológico: docs/SHOWCASE_V02_PRODUCT_AND_DATA_CONTRACT_20261031.md.
+
 ## Procedencia y alcance
 
 Las denominaciones del catálogo utilizan referencias documentales como la [composición inicial del Congreso en 2023](https://www.congreso.es/backoffice_doc/prensa/notas_prensa/99427_1692877250184.pdf) y los [resultados de las europeas 2024](https://results.elections.europa.eu/es/resultados-nacionales/espana/2024-2029/), junto a nombres editoriales no autenticados individualmente. El [Ministerio del Interior](https://sede.interior.gob.es/portal/sede/tramites) mantiene un Registro de Partidos Políticos que requiere un proceso registral aparte para acreditar identidades y estados. No se afirma exhaustividad ni vigencia a 2026.
+
+Las cifras reales del apartado Economía proceden exclusivamente de las notas oficiales [INE · EPA 3T 2026](https://www.ine.es/dyngs/Prensa/es/EPA3T26.htm), publicada el 27/10/2026, e [INE · IPC adelantado octubre 2026](https://ine.es/dyngs/Prensa/es/adIPC1026.htm), publicada el 30/10/2026. No se trasladan al sistema de puntuación. Las referencias al tiempo real son objetivos de desarrollo, no capacidades de esta versión.
 
 Ningún personaje del mercado es un político real. Sus atributos, rendimientos, los resultados de jornadas y la clasificación se producen exclusivamente por reglas de demostración y **no evalúan actividad, ideología, legitimidad ni rendimiento de partidos o personas reales**. Elegir como favorito un partido es una preferencia cosmética, no un compromiso o adscripción institucional. No existen pagos, pujas multijugador, sincronización entre dispositivos ni puntuación alimentada por eventos reales; estas funciones requieren desarrollos y autorizaciones adicionales.
 
 ## Validación
 
-La batería focal pasó 12/12 pruebas Node y un ensayo de extremo a extremo real Chrome/CDP con ocho rutas, compras, capitanía, jornada, filtros, perfil, persistencia y viewport móvil verdadero de 390 píxeles, sin overflow. El registro detallado es QA_AND_HANDOFF.md; no constituye aceptación humana ni despliegue público.
+La batería focal v0.2 pasó **16/16 pruebas Node** y un ensayo extremo a extremo real Chrome/CDP con ocho rutas, seis vistas del Laboratorio, datos reales y sintéticos separados, imágenes locales, compras, capitanía, eventos y actas, filtros, perfil, heráldica, persistencia y viewport móvil de 390 píxeles sin overflow en las pantallas comprobadas. El registro detallado es QA_AND_HANDOFF.md; no constituye aceptación humana ni despliegue público.
 
 El ensayo real de navegador usa Chrome local y ningún paquete npm adicional:
 
@@ -48,6 +61,7 @@ El ensayo real de navegador usa Chrome local y ningún paquete npm adicional:
 node --test tests/test_showcase_engine.mjs
 node --check product/showcase/app.js
 node --check product/showcase/engine.js
+node --check product/showcase/world.js
 node --check product/showcase/parties.js
 ```
 
