@@ -150,6 +150,36 @@ def test_a_claimed_edge_cannot_link_backwards_in_event_time():
         audit(nodes=(*n[:-1], retro), links=e)
 
 
+def test_citation_cannot_precede_the_cited_document_creation_day():
+    """A prior event does not make its future source document citable.
+
+    The source act happened on 1 January but its only declared document was
+    created on 30 January; the destination's 3 January document cannot cite
+    that specific later document, even when all items are captured in February.
+    """
+    n, e = fixture()
+    future_source_document = replace(n[0], document_on="2026-01-30")
+    with pytest.raises(GateError, match="UNSUPPORTED_EXPLICIT_REFERENCE"):
+        audit(nodes=(future_source_document, *n[1:]), links=e)
+    # Independent control: the original dated source precedes its citation.
+    assert audit(nodes=n, links=e)["complete_explicit_documentary_links"] == 6
+
+
+def test_same_issuer_and_document_cannot_claim_a_documentary_self_citation():
+    """Two synthetic stage IDs must not turn one document into its own source."""
+    n, e = fixture()
+    duplicate = replace(n[1], issuer_namespace=n[0].issuer_namespace,
+                        source_document_id=n[0].source_document_id,
+                        source_sha256_claim=n[0].source_sha256_claim)
+    self_citation = replace(e[0],
+                            asserting_document_id=n[0].source_document_id,
+                            asserting_sha256_claim=n[0].source_sha256_claim)
+    with pytest.raises(GateError, match="UNSUPPORTED_EXPLICIT_REFERENCE"):
+        # Isolate the link: later fixture edges would independently reject
+        # our replacement and mask a false-positive test of self-citation.
+        audit(nodes=(n[0], duplicate), links=(self_citation,))
+
+
 def test_missing_endpoint_is_unknown_not_implicit_join():
     n, e = fixture()
     altered = replace(e[-1], destination_id="SYNTHETIC:UNKNOWN")

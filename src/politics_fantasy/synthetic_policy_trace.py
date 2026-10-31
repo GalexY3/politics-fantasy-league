@@ -183,7 +183,15 @@ def audit_synthetic_policy_trace(
                 or e.asserting_document_id != b.source_document_id
                 or e.origin_sha256_claim != a.source_sha256_claim
                 or e.asserting_sha256_claim != b.source_sha256_claim
+                # Distinct stage IDs do not make an immutable source document
+                # capable of citing itself under the same issuing authority.
+                or (a.issuer_namespace == b.issuer_namespace
+                    and a.source_document_id == b.source_document_id
+                    and a.source_sha256_claim == b.source_sha256_claim)
                 or day(a.event_on) > day(b.event_on)
+                # An earlier act does not make a document created later
+                # available for citation in a preceding document.
+                or day(a.document_on) > day(b.document_on)
                 or day(e.document_on) < day(b.document_on)):
             raise GateError("POLICY_TRACE_UNSUPPORTED_EXPLICIT_REFERENCE")
         adjacency[a.node_id].add(b.node_id)
