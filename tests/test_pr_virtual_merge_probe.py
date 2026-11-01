@@ -54,3 +54,52 @@ def test_probe_requires_exact_hashes_and_runs_git_with_argument_list(monkeypatch
     assert calls == [["git", "merge-tree", "--write-tree", "--name-only", SHA_A, SHA_B]]
     with pytest.raises(ProbeError):
         probe_pair("HEAD; echo secret", SHA_B, repo_dir=tmp_path)
+
+
+def test_nested_protected_worktree_path_cannot_mutate_shared_git_objects(monkeypatch, tmp_path):
+    protected = tmp_path / "PFL-trabajo"
+    nested = protected / "src" / "politics_fantasy"
+    nested.mkdir(parents=True)
+    calls = []
+
+    def forbid_git(*args, **kwargs):
+        calls.append(args)
+        raise AssertionError("Git must never execute within protected subtree")
+
+    monkeypatch.setattr(subprocess, "run", forbid_git)
+    with pytest.raises(ProbeError, match="PROTECTED_READONLY_CHECKOUT_FORBIDDEN"):
+        probe_pair(SHA_A, SHA_B, repo_dir=nested)
+    assert calls == []
+
+
+def test_linked_worktree_gitdir_into_protected_repository_is_rejected(monkeypatch, tmp_path):
+    protected = tmp_path / "PFL-trabajo"
+    gitdir = protected / ".git" / "worktrees" / "linked"
+    gitdir.mkdir(parents=True)
+    linked = tmp_path / "linked-worktree"
+    linked.mkdir()
+    (linked / ".git").write_text(f"gitdir: {gitdir}\n", encoding="utf-8")
+    calls = []
+
+    def forbid_git(*args, **kwargs):
+        calls.append(args)
+        raise AssertionError("shared object database was reached")
+
+    monkeypatch.setattr(subprocess, "run", forbid_git)
+    with pytest.raises(ProbeError, match="PROTECTED_READONLY_CHECKOUT_FORBIDDEN"):
+        probe_pair(SHA_A, SHA_B, repo_dir=linked)
+    assert calls == []
+
+
+def test_git_env_override_cannot_redirect_object_writes(monkeypatch, tmp_path):
+    calls = []
+    monkeypatch.setenv("GIT_OBJECT_DIRECTORY", str(tmp_path / "PFL-trabajo" / ".git" / "objects"))
+
+    def forbid_git(*args, **kwargs):
+        calls.append(args)
+        raise AssertionError("Git object directory override reached")
+
+    monkeypatch.setattr(subprocess, "run", forbid_git)
+    with pytest.raises(ProbeError, match="GIT_ENV_OVERRIDE_NOT_ALLOWED"):
+        probe_pair(SHA_A, SHA_B, repo_dir=tmp_path)
+    assert calls == []

@@ -105,3 +105,44 @@ deberá exigir vínculo explícito de `source_id`, SHA, finalidad, fecha legal,
 `first_public_at`, jurisdicción, población y negatives/censura, con test
 prepatch que demuestre su comportamiento propio. **R5 STOP, 0 AB, 0
 originales/PII, 0 gates y ninguna fusión a main.**
+
+### Red-team de seguridad de escritura del propio auditor (continuación)
+
+Se localizó una **incompatibilidad material nueva** entre el contrato
+`STRICT READONLY /cos-prueba/PFL-trabajo` y el guard inicial del auditor de
+árboles. `probe_pair()` rechazaba un `cwd` cuyo último nombre fuese
+`PFL-trabajo`, pero no `PFL-trabajo/src/...`. Como Git localiza el repositorio
+ascendiendo directorios, una ejecución desde una subcarpeta podría escribir
+objetos temporales en el repositorio protegido. Este riesgo es alcanzable por
+la CLI publicada, aunque no consta que hubiera ocurrido con datos reales.
+
+Falsador PREPATCH: `test_nested_protected_worktree_path_cannot_mutate_shared_git_objects`
+usa solo una jerarquía de directorios ficticia bajo `tmp_path`, monkeypatch
+de `subprocess.run` que falla si es invocado, y dos SHA inventados. Primera
+ejecución: **1 FAIL esperado** por llamada efectiva al subprocess; código SHA
+`5dc29cdd375242458b7d299897cac4c3f7d3e83d4a9af95c8f521a46d805e8b2`,
+test SHA `61a2ba105b3b683751c26d24082d21993942f1e5ff769cf58c2a9f051738c2a2`.
+La corrección recorre `root` y todos los ascendientes resueltos, deteniéndose
+antes de invocar Git si cualquiera se denomina `PFL-trabajo`.
+
+Un segundo falsador descubierto tras ese primer ajuste demuestra otra vía:
+un checkout enlazado *fuera* del directorio protegido puede tener fichero
+`.git` con `gitdir:` apuntando al almacén Git común de `PFL-trabajo`. En
+esa situación un test sintético adicional volvió a fallar **1 FAIL esperado**
+antes de la corrección definitiva; su código PREPATCH tenía SHA
+`3ffa85f58b2214030b3eb7e3204409f8f82e859ab1815c593d3c7e2eadaab8fd`
+y el test SHA `f1fcffa4964e6e6d9a544a6484ea0ab857c9aee064f3a3042609fe310a133ee8`.
+Se añadió resolución del `gitdir:` de worktree y rechazo de destinos que
+pertenezcan al repositorio protegido. Las variables de entorno que pueden
+redirigir objetos o el repositorio Git (`GIT_DIR`, `GIT_COMMON_DIR`,
+`GIT_WORK_TREE`, `GIT_OBJECT_DIRECTORY`, `GIT_ALTERNATE_OBJECT_DIRECTORIES`)
+ahora causan rechazo previo a cualquier ejecución; se cubren por un tercer
+test sintético negativo.
+
+QA POSTPATCH: **15/15 Python PASS**, compilación de script PASS; código SHA
+`97e8755ada6cae0b4406a0f37b823ac02bd17ceea5308931ee69fe0e971830fa`,
+test SHA `b6d4497438f4bd3514811ffff94eb5c87f87fb83e8106b26fd2adf4476c09821`.
+No se usó el checkout protegido, originales, PII, endpoints ni consultas a
+fuentes. El probe **no** es sandbox universal ni autorizador de Git; la
+protección robusta sigue requiriendo revisar el checkout de ejecución. El
+resultado es corrección de ingeniería, **0 AB y R5 STOP**.

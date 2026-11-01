@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -78,8 +79,36 @@ def probe_pair(left: str, right: str, *, repo_dir: Path) -> dict:
             or left == right):
         raise ProbeError("EXACT_DISTINCT_COMMIT_SHA_REQUIRED")
     root = Path(repo_dir).resolve()
-    if root.name.casefold() == "pfl-trabajo":
+    # Git may write objects outside cwd. Reject nested protected paths AND
+    # linked worktrees whose .git *file* points into the protected repository.
+    # Environment-based overrides could redirect git object writes as well.
+    def protected(path: Path) -> bool:
+        resolved = path.resolve()
+        return any(p.name.casefold() == "pfl-trabajo"
+                   for p in (resolved, *resolved.parents))
+
+    if protected(root):
         raise ProbeError("PROTECTED_READONLY_CHECKOUT_FORBIDDEN")
+    for name in ("GIT_DIR", "GIT_COMMON_DIR", "GIT_WORK_TREE",
+                 "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES"):
+        if os.environ.get(name):
+            raise ProbeError("GIT_ENV_OVERRIDE_NOT_ALLOWED")
+    for parent in (root, *root.parents):
+        marker = parent / ".git"
+        if marker.is_dir():
+            if protected(marker):
+                raise ProbeError("PROTECTED_READONLY_CHECKOUT_FORBIDDEN")
+            break
+        if marker.is_file():
+            pointer = marker.read_text(encoding="utf-8-sig")[:2048].strip()
+            if not pointer.lower().startswith("gitdir: "):
+                raise ProbeError("INVALID_WORKTREE_GITDIR")
+            gitdir = Path(pointer[8:])
+            if not gitdir.is_absolute():
+                gitdir = parent / gitdir
+            if protected(gitdir):
+                raise ProbeError("PROTECTED_READONLY_CHECKOUT_FORBIDDEN")
+            break
     try:
         proc = subprocess.run(
             ["git", "merge-tree", "--write-tree", "--name-only", left, right],
