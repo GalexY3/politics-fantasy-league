@@ -683,3 +683,55 @@ tests
 `9a71e0b900e09326a21cf6f3f3eddc4e7ccc279483f3682cabff66b9fbef94d3`.
 Estos hashes corroboran el código local probado, **no** autenticidad de
 originales ni suficiencia científica.
+
+## PR22 · corrección diferencial: tipos JSON del oráculo S3 al cruzar IPC/HTTP
+
+**Un fallo nuevo y alcanzable, no modificación de la matemática S3.** La
+frontera Python del consumidor comparaba con igualdad ordinaria de diccionarios
+el oráculo S3 producido por Node y el oráculo propio. En Python
+`False == 0` y `0 == False`, aunque en JSON son tipos diferentes. Por ello,
+una respuesta auténtica del proceso Node cuya salida se alteraba **después**
+de su ejecución podía convertir un contador de censura ficticia `0` en el
+booleano `false`, o la declaración de derechos `false` en el número `0`, y
+seguir atravesando el comparador; la ruta HTTP devolvía **200** con un
+oráculo formalmente inválido. No se demostró una promoción de permisos a
+`true` ni un ataque remoto sin controlar previamente el IPC.
+
+**Falsador PREPATCH real:** se añadió el test parametrizado
+`test_s3_node_ipc_boolean_integer_type_confusion_must_fail_closed_prepatch`
+en el archivo existente `tests/test_synthetic_scientific_integration_lab.py`.
+Primero ejecuta el proceso Node genuino con los fixtures exclusivamente
+sintéticos; modifica **solo uno** de los dos tipos en su salida JSON;
+finalmente consulta por HTTP local la ruta original con `cut=late`.
+El oráculo exige `503`, `Cache-Control: no-store` y error
+`SYNTHETIC_BRIDGE_UNAVAILABLE`. Se congelaron los SHA anteriores al parche:
+Python `26aed3e87e69f7da7524d34a056de17480b27744a4b390170c0da4db48877aab`
+y test añadido
+`c2000dca548008614e78f90094a56d098805720cf8f055a83d82f65b787d0c86`.
+La ejecución **PREPATCH 2/2 FAIL** observó en ambos casos **HTTP 200**, no
+503; 65 pruebas existentes se deseleccionaron.
+
+**Corrección mínima:** en el `expected_keys`/contrato existente de
+`_node_warehouse` se conserva el esquema y se sustituye únicamente la
+comparación del suboráculo S3 por comparación de **JSON canónico**
+(`json.dumps` con `sort_keys=True` y separadores estables). A diferencia
+de la igualdad de diccionarios Python, los tokens JSON `false` y `0`
+permanecen distintos, al igual que `true` y `1`; el orden de propiedades
+no influye. Se mantiene la doble comprobación completa antes y después
+del IPC, sin cambiar fracciones, referencias, cortes temporales o Node.
+
+**POSTPATCH:** exclusivamente esos dos nuevos oráculos **2/2 PASS**
+(65 deseleccionados), con proceso Node genuino mutado y rechazo HTTP 503;
+smoke positivo adicional sobre Node/Python auténticos `early=null`,
+`late.change_bounds=[-11/52,47/119]`, tipo entero real en cero testigos,
+`rights_independently_verified=false`; `node --check`, `py_compile`
+y `git diff --check` PASS. No se reejecutaron 35 pruebas S3 anteriores,
+11 bitemporales, 109 PP04 ni 41 Node históricos. **R5 STOP, 0/6 gates,
+0 AB científicos, cero datos reales/PII y sin CI, main ni despliegue.**
+
+**Recibos POSTPATCH SHA-256:** Python
+`3374ca2cc1fc088546e69f68e2cd9499923453f9fdde48fb6e3a53188b214182`,
+prueba focal
+`c2000dca548008614e78f90094a56d098805720cf8f055a83d82f65b787d0c86`.
+Node no se modificó y conserva
+`fed4254a121484e6426ff69e434cfbc1b54ae92a87d19901767502dde7446799`.

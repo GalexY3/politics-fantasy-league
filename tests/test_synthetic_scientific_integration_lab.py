@@ -981,3 +981,53 @@ def test_s3_ratio_math_drift_from_real_node_forces_http_503(tmp_path,monkeypatch
             503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+@pytest.mark.parametrize("corrupted_field,wrong_value", [
+    ("censor_count", False),
+    ("rights_boolean", 0),
+])
+def test_s3_node_ipc_boolean_integer_type_confusion_must_fail_closed_prepatch(
+        tmp_path, monkeypatch, corrupted_field, wrong_value):
+    """New genuine Node→HTTP falsifier: JSON 0 and false are distinct types.
+
+    Python dict equality treats bool as int, so an untrusted Node oracle can
+    otherwise pass its exact-value comparison while breaking the wire schema.
+    These are two variants of ONE IPC type-confusion defect, not two new bugs.
+    """
+    from politics_fantasy import scientific_integration_lab as lab
+    real_node = lab.subprocess.run
+
+    def alter_stdout_after_real_node(*args, **kwargs):
+        result = real_node(*args, **kwargs)
+        assert result.returncode == 0, result.stderr
+        payload = json.loads(result.stdout)
+        s3 = payload["partial_identification_oracle"]
+        assert s3 is not None
+        if corrupted_field == "censor_count":
+            assert s3["documented_censor_witnesses"]["before"] == 0
+            s3["documented_censor_witnesses"]["before"] = wrong_value
+        else:
+            assert s3["rights_independently_verified"] is False
+            s3["rights_independently_verified"] = wrong_value
+        return subprocess.CompletedProcess(args[0], 0,
+                                           stdout=json.dumps(payload),
+                                           stderr=result.stderr)
+
+    monkeypatch.setattr(lab.subprocess, "run", alter_stdout_after_real_node)
+    server = ThreadingHTTPServer(("127.0.0.1", 0), handler_factory(
+        tmp_path / "synthetic-demo.sqlite", None, None))
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", server.server_port, timeout=5)
+        conn.request("GET", "/api/scientific-integration-lab?cut=late")
+        response = conn.getresponse()
+        status = response.status
+        cache = response.getheader("Cache-Control")
+        body = json.loads(response.read())
+        conn.close()
+        assert (status, cache, body) == (
+            503, "no-store", {"error": "SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown(); server.server_close(); thread.join(timeout=5)

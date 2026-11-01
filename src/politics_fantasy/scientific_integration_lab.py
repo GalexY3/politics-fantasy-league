@@ -746,9 +746,15 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                    "real_causal_effect_identified":False,
                    "empirical_estimand_admitted":False,
                })
-            or data.get("partial_identification_oracle") !=
-               (None if cut == "early" else
-                _partial_identification(partial_identification))):
+            # Python equality conflates JSON booleans with integers:
+            # False == 0 and True == 1. Compare canonical JSON instead so
+            # an IPC drift (censor count 0 -> false, rights false -> 0)
+            # cannot escape into HTTP as a type-invalid scientific oracle.
+            or json.dumps(data.get("partial_identification_oracle"),
+                          sort_keys=True, separators=(",", ":")) !=
+               json.dumps((None if cut == "early" else
+                           _partial_identification(partial_identification)),
+                          sort_keys=True, separators=(",", ":"))):
         raise RuntimeError("CROSS_LANGUAGE_CONTRACT_DIVERGENCE")
     # SHA/identity details are checked SERVER-SIDE but must not be exposed at
     # an earlier knowledge cut. The bridge is never a second source witness.
