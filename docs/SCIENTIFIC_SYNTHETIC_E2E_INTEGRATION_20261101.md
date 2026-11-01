@@ -182,3 +182,81 @@ no asegura población de todas las entradas, cadena CSV/XML anual no demuestra
 vintages auténticas de una misma edición y licencia declarada en `datos.gob.es`
 no adjudica condiciones del editor por uso/activo. Frente a Madrid R11/R26,
 Córdoba R27 y otros R5, es nuevo índice, no nueva cohorte científica.
+
+## Continuación de revisión E2E · vínculo de censura + recibo SHA (NONCYCLE)
+
+**Incidencia nueva y alcanzable:** el consumidor `report()` emitía por una
+rama `temporal.synthetic_followup_end_witnesses=1`, y por otra
+`procedure.unknown_followup=1` en el corte tardío. Ambos datos estaban
+individualmente bien definidos, pero no se reconciliaban por *identidad de
+episodio*; la coincidencia de los escalares `1` no podía demostrar censura
+observada siquiera dentro del fixture. Una reducción de cada módulo a
+agregados descarta el vínculo que debe contrastarse.
+
+**PREPATCH 1**, test `test_join_stage_episode_and_temporal_followup_by_exact_id_at_asof`:
+Python código SHA `027b586387a892ff2f7c86a34080fe5799f423cec40d0fb7db9d0c230d3ce335`,
+test SHA `4b3672ff0b7789bae15cec287c06a2398b7aac631c73585a53ec37805f1c2114`;
+**1 FAIL** con `KeyError: followup_reconciliation`. Distinguir: el fallo
+demuestra capacidad ausente, no un falso negativo previo del contrato
+de estados de entrada. Se implementó dentro del MISMO consumidor, sin nuevo
+módulo ni nuevo estimador, una vista derivada que mantiene internamente
+el `TemporalLedger.snapshot`, su lista de `FileReceipt` y los
+`EntryEpisode` antes de agregarlos.
+
+**Identidad explícita del fixture, no heurística:**
+`(source_id=SYNTHETIC_PROCESS, family=PROCESS, local_id=ENTRY4,
+source_record_id=FOLLOWUP_END_FOR_ENTRY4)` se enlaza mediante
+`SYNTHETIC_FOLLOWUP_CROSSWALK` server-owned exactamente a
+`episode_id=SYNTHETIC:ENTRY4`. Ambos SHA **no son iguales**: el testigo
+de fin de observación usa el contenido inventado `SYNTHETIC_PROCESS_v2`,
+la entrada tenía un `entry_sha_claim` distinto para
+`SYNTHETIC_STAGE_DOCUMENT`. El puente no los confunde; valida el SHA
+temporal contra **su propio** `FileReceipt` y su captura, y rechaza
+identidades de episodios ausentes, pendientes o terminados por una decisión.
+`audit_lab` permanece intacto: su `unknown_followup` tardío sigue siendo
+1; la vista nueva documenta un testigo de censura ficticia y resta ese
+uno solo del subconjunto de pendientes de seguimiento sin testigo.
+
+**PREPATCH 2** detectó que el nuevo campo `source_receipt_checked=True`
+era demasiado amplio: también se mostraba en el corte temprano sin ningún
+testigo de censura visible, y podía parecer que se autenticaba el SHA de
+las etapas administrativas. Código SHA
+`18392b331838233dffd8fbc606f6bbbfc36e38817e7227144f2da2df22c6d5ab`,
+test SHA `1af069ef761337f1d7818f95c84cbc44351c1b633745d402fe480b6ebce00fed`:
+**1 FAIL** semántico. Se sustituye por
+`temporal_witness_fixture_receipt_checked` (false temprano, true tardío)
+y `stage_documents_authenticated=false` en ambos; ni un SHA local ni un
+testigo inventado certifican el original administrativo.
+
+**PREPATCH 3**, falsador `test_fake_censor_witness_cannot_join_pending_case_or_wrong_digest`:
+SHA previo Python `28c5244f05b7af00ef2ea135aa68f7c67c7969c820a894e6785442dc279a9cd9`,
+test SHA `ae13cf836b012d22c1fd43277509b0cad77f95fc31108da1aca036fa2fcd063a`;
+la primera ejecución falló por **ausencia del tercer valor de retorno**
+(`ValueError: not enough values to unpack`), no porque un SHA falso
+atravesara ya el algoritmo. Tras incorporar el mapa inmutable de recibos,
+se valida efectivamente con dos mutaciones sintéticas: un testigo
+reapuntado a la entrada 5 PENDIENTE y un SHA de testigo que no casa con su
+propio recibo. Ambos son rechazados por errores distintos,
+`CENSOR_WITNESS_EPISODE_LINK_INVALID` y
+`CENSOR_SOURCE_RECEIPT_BINDING_MISMATCH`. No hay joins a casos reales ni
+fuentes empíricas, la respuesta JSON presenta solo sumas sintéticas.
+
+| Vista derivada; exclusivamente ficticia | Corte `early` | Corte `late` |
+| --- | ---: | ---: |
+| Fin de observación enlazado por ID, revisión y recibo | 0 | 1 |
+| Seguimiento desconocido **sin** tal testigo | 4 | 0 |
+| Pendiente probado, **no** censura | 1 | 2 |
+| Inadmitido, **no** censura | 0 | 1 |
+| Derechos autentificados para registrar casos reales | No | No |
+
+El hecho de que `unknown_without_censor_witness=0` tardío en el ejemplo
+no implica ausencia de ignorancia sobre la población real. La
+clasificación es de **un fixture con cinco entradas deliberadamente
+construidas**, no una tasa de riesgo ni población española. En ambos cortes
+`right_censoring_independently_attested=false`, `R5=STOP_R5`, 0/6 gates.
+
+**Nueva pista R29, sin acceso a distribuciones:**
+[Asturias SAIP — estadísticas mensuales](../research/PFL_SYSTEM20_20261031/ROUND_REPORT29_ASTURIAS_SAIP_PREACCESS_20261101.md),
+ficha oficial de datos.gob.es con cinco formatos, no cinco vintages ni
+registro inicial independiente. `NEW_CATALOG_METADATA_ONLY_STOP_LOCAL_R5`.
+Comparada con R11/R13/R14/R26/R27/R28; no GET de editor ni originales.

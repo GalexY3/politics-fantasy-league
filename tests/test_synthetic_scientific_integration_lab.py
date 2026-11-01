@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 from threading import Thread
+from dataclasses import replace
 
 import pytest
 
@@ -63,6 +64,52 @@ def test_invented_followup_end_witness_is_temporal_not_rejection_or_zero():
     assert new["procedure"]["unknown_followup"]==1
     assert new["right_censoring_independently_attested"] is False
     assert new["independent_all_received_denominator"] is None
+
+
+def test_join_stage_episode_and_temporal_followup_by_exact_id_at_asof():
+    """New E2E falsifier: two valid outputs were not actually reconciled."""
+    early=report(cut="early")
+    late=report(cut="late")
+    assert early["followup_reconciliation"] == {
+        "schema":"pfl.synthetic_followup_reconciliation.v1",
+        "explicit_censor_witnesses":0,"unknown_without_censor_witness":4,
+        "pending_not_censoring":1,"negative_outcomes_not_censoring":0,
+        "temporal_witness_fixture_receipt_checked":False,
+        "stage_documents_authenticated":False,"real_censoring_attested":False,
+    }
+    assert late["followup_reconciliation"] == {
+        "schema":"pfl.synthetic_followup_reconciliation.v1",
+        "explicit_censor_witnesses":1,"unknown_without_censor_witness":0,
+        "pending_not_censoring":2,"negative_outcomes_not_censoring":1,
+        "temporal_witness_fixture_receipt_checked":True,
+        "stage_documents_authenticated":False,"real_censoring_attested":False,
+    }
+    assert late["procedure"]["unknown_followup"]==1  # original contract immutable
+    assert late["right_censoring_independently_attested"] is False
+
+
+def test_fake_censor_witness_cannot_join_pending_case_or_wrong_digest():
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_temporal,_procedural,_reconcile_followup,CUTS,
+    )
+    from politics_fantasy.temporal_evidence import SourceRef
+    at=CUTS["late"]
+    temporal,snapshot,receipts=_temporal(_assets(),at=at)
+    stage,episodes=_procedural(at)
+    real_event=next(r for r in snapshot.records
+                    if r.predicate=="OBSERVATION_WINDOW_ENDED_WITHOUT_DECISION")
+    wrong_episode=replace(real_event,
+        source_record_id="FOLLOWUP_END_FOR_ENTRY5",
+        subject=SourceRef("SYNTHETIC_PROCESS","PROCESS","ENTRY5"))
+    with pytest.raises(RuntimeError,match="CENSOR_WITNESS_EPISODE_LINK_INVALID"):
+        _reconcile_followup(snapshot=replace(snapshot,records=tuple(
+            wrong_episode if r==real_event else r for r in snapshot.records)),
+            episodes=episodes,procedural=stage,receipts=receipts)
+    wrong_sha=replace(real_event,source_sha256="0"*64)
+    with pytest.raises(RuntimeError,match="CENSOR_SOURCE_RECEIPT_BINDING_MISMATCH"):
+        _reconcile_followup(snapshot=replace(snapshot,records=tuple(
+            wrong_sha if r==real_event else r for r in snapshot.records)),
+            episodes=episodes,procedural=stage,receipts=receipts)
 
 
 def test_early_http_aggregate_must_not_reveal_later_asset_hashes_or_ids():
@@ -179,6 +226,9 @@ def test_real_http_consumer_local_host_cache_and_query_gates(tmp_path):
         ok, cache, body = request("/api/scientific-integration-lab?cut=early")
         assert ok == 200 and cache == "no-store"
         assert body["warehouse"]["roles_visible_as_of"] == 1
+        assert body["followup_reconciliation"]["explicit_censor_witnesses"] == 0
+        assert body["followup_reconciliation"]["real_censoring_attested"] is False
+        assert "SYNTHETIC:ENTRY4" not in json.dumps(body)
         for path in ("/api/scientific-integration-lab?cut=early&cut=late",
                      "/api/scientific-integration-lab?url=https%3A%2F%2Fexample.invalid",
                      "/api/scientific-integration-lab?scenario=real_asset_ingest"):

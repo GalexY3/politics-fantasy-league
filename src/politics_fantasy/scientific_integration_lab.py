@@ -29,7 +29,7 @@ from .synthetic_institutional_demo import report as institutional_report
 from .synthetic_regime_capture_sensitivity import (
     FictionalCaptureStratum, audit_regime_capture, compare_capture_hypotheses,
 )
-from .temporal_evidence import FileReceipt, SourceRef, TemporalLedger, TemporalRecord
+from .temporal_evidence import FileReceipt, SourceRef, Snapshot, TemporalLedger, TemporalRecord
 
 
 CUTS = {
@@ -37,6 +37,12 @@ CUTS = {
     "late": "2026-11-01T12:00:00Z",
 }
 SCENARIOS = frozenset({"baseline", "rights_spoof", "privacy_probe"})
+SYNTHETIC_FOLLOWUP_CROSSWALK = {
+    # Exact, server-owned demonstration of a 1:1 documentary link. In a
+    # real corpus this requires independently authenticated official IDs.
+    ("SYNTHETIC_PROCESS", "PROCESS", "ENTRY4", "FOLLOWUP_END_FOR_ENTRY4"):
+        "SYNTHETIC:ENTRY4",
+}
 EARLY_CAPTURE = "2026-09-20T12:00:00Z"
 LATE_CAPTURE = "2026-10-31T12:00:00Z"
 LATE_PUBLIC = "2026-10-30T12:00:00Z"  # INVENTED first publication
@@ -109,17 +115,21 @@ def _rights(assets: list[dict], *, at: str) -> dict:
             "independent_attestation": False}
 
 
-def _temporal(assets: list[dict], *, at: str) -> dict:
+def _temporal(assets: list[dict], *, at: str
+              ) -> tuple[dict, Snapshot, dict[tuple[str,str], FileReceipt]]:
     ledger = TemporalLedger()
+    receipts = {}
     for asset in assets:
         # The original source namespace is valid in TemporalLedger. Rewriting
         # punctuation would manufacture an unauthenticated source-id crosswalk.
         source_id = asset["id"]
         # SHA of the SAME exact synthetic bytes compared by the two PP04
         # parsers and again by Node. This is a local binding, not authenticity.
-        ledger.register_source(FileReceipt(source_id, asset["sha256"],
+        receipt=FileReceipt(source_id, asset["sha256"],
             len(asset["text"].encode("utf-8")), LATE_CAPTURE,
-            "SYNTHETIC", "SYNTHETIC"))
+            "SYNTHETIC", "SYNTHETIC")
+        ledger.register_source(receipt)
+        receipts[(receipt.source_id,receipt.sha256)] = receipt
         ledger.add(TemporalRecord(
             kind="ENTITY", source_id=source_id,
             source_record_id="DOCUMENTARY_FRAME", revision="v1",
@@ -136,8 +146,10 @@ def _temporal(assets: list[dict], *, at: str) -> dict:
     ):
         body = f"SYNTHETIC_PROCESS_{revision}\n".encode("utf-8")
         digest = _sha(body)
-        ledger.register_source(FileReceipt("SYNTHETIC_PROCESS",digest,
-            len(body),captured,"SYNTHETIC","SYNTHETIC"))
+        receipt=FileReceipt("SYNTHETIC_PROCESS",digest,
+            len(body),captured,"SYNTHETIC","SYNTHETIC")
+        ledger.register_source(receipt)
+        receipts[(receipt.source_id,receipt.sha256)] = receipt
         ledger.add(TemporalRecord(kind="ENTITY",source_id="SYNTHETIC_PROCESS",
             source_record_id="INSTITUTIONAL_STATUS",revision=revision,
             source_sha256=digest,subject=subject,predicate="ADMINISTRATIVE_REVISION",
@@ -184,7 +196,7 @@ def _temporal(assets: list[dict], *, at: str) -> dict:
             "unknown_publication_blocked":snapshot.blocked_unknown_publication,
             "unadjudicated_real_blocked":snapshot.blocked_unadjudicated_source,
             "scientific_grade":snapshot.scientific_grade,
-            "real_person_scoring":snapshot.real_person_scoring}
+            "real_person_scoring":snapshot.real_person_scoring}, snapshot, receipts
 
 
 def _population_target(*, unit: str) -> PopulationTarget:
@@ -196,7 +208,7 @@ def _population_target(*, unit: str) -> PopulationTarget:
         legal_calendar_zone="Europe/Madrid")
 
 
-def _procedural(at: str) -> dict:
+def _procedural(at: str) -> tuple[dict, tuple[EntryEpisode, ...]]:
     frame = _population_target(unit="REGISTRY_INITIAL_WRITING")
     sha = _sha(b"SYNTHETIC_STAGE_DOCUMENT\n")
     def ep(n: int, channel: str, *, acts: tuple = (), pending: tuple = ()):
@@ -216,7 +228,69 @@ def _procedural(at: str) -> dict:
               ep(3,"PAPER",pending=(pend(EARLY_CAPTURE),)),
               ep(4,"ELECTRONIC"),
               ep(5,"PAPER",pending=(pend(LATE_CAPTURE),)))
-    return audit_lab(frame=frame,episodes=episodes,as_of=at)
+    return audit_lab(frame=frame,episodes=episodes,as_of=at), episodes
+
+
+def _reconcile_followup(*, snapshot: Snapshot,
+                        episodes: tuple[EntryEpisode, ...],
+                        procedural: dict,
+                        receipts: dict[tuple[str,str],FileReceipt]) -> dict:
+    """Join only exact fixture episode IDs to RECEIPT-BOUND temporal events.
+
+    A termination of observation is NOT an unsuccessful administrative
+    decision. TemporalLedger has already checked source+SHA+capture for each
+    visible event; audit_lab independently preserves its original unknowns.
+    This additional derived view never changes that source-local audit.
+    """
+    if not isinstance(snapshot, Snapshot) or not isinstance(procedural, dict):
+        raise RuntimeError("SYNTHETIC_FOLLOWUP_CONTRACT_REQUIRED")
+    frame_ids = {e.episode_id for e in episodes}
+    if len(frame_ids) != len(episodes) or not frame_ids:
+        raise RuntimeError("DUPLICATE_OR_EMPTY_SYNTHETIC_EPISODE_FRAME")
+    claims = [r for r in snapshot.records
+              if r.predicate == "OBSERVATION_WINDOW_ENDED_WITHOUT_DECISION"]
+    seen = set()
+    for claim in claims:
+        receipt=receipts.get((claim.source_id,claim.source_sha256))
+        if (not isinstance(receipt,FileReceipt)
+                or receipt.origin!="SYNTHETIC"
+                or receipt.rights_state!="SYNTHETIC"):
+            raise RuntimeError("CENSOR_SOURCE_RECEIPT_BINDING_MISMATCH")
+        if (claim.kind != "EVENT" or claim.source_id != "SYNTHETIC_PROCESS"
+                or claim.subject.authority != "SYNTHETIC_PROCESS"
+                or claim.subject.family != "PROCESS"
+                or claim.observation_state != "OBSERVED"
+                or claim.value != "CENSORED_IN_SYNTHETIC_FIXTURE"
+                or claim.first_public_at is None):
+            raise RuntimeError("UNATTESTED_OR_UNBOUND_SYNTHETIC_CENSOR_CLAIM")
+        # No heuristic stripping of prefixes or coincident ID suffixes.
+        episode_id = SYNTHETIC_FOLLOWUP_CROSSWALK.get((
+            claim.subject.authority,claim.subject.family,
+            claim.subject.local_id,claim.source_record_id))
+        episode = next((e for e in episodes if e.episode_id == episode_id), None)
+        if (episode_id in seen or episode is None
+                or claim.valid_from[:10] < episode.entry_on
+                or episode.acts or episode.pending):
+            raise RuntimeError("CENSOR_WITNESS_EPISODE_LINK_INVALID")
+        seen.add(episode_id)
+    unknown = procedural.get("unknown_followup")
+    if (type(unknown) is not int or unknown < len(seen)
+            or procedural.get("all_received_denominator") is not None):
+        raise RuntimeError("INCOMPATIBLE_OR_PROMOTED_PROCEDURAL_COUNTS")
+    negatives = procedural.get("terminal_by_cause") or {}
+    return {
+        "schema": "pfl.synthetic_followup_reconciliation.v1",
+        "explicit_censor_witnesses": len(seen),
+        "unknown_without_censor_witness": unknown - len(seen),
+        "pending_not_censoring": procedural["observed_pending_at_last_witness"],
+        "negative_outcomes_not_censoring": negatives.get("INADMITTED", 0),
+        # Only the temporal event's *fictional* FileReceipt was checked by
+        # TemporalLedger. The stage acts contain mere SHA claims: do not
+        # describe them as independently authenticated evidence.
+        "temporal_witness_fixture_receipt_checked": bool(seen),
+        "stage_documents_authenticated": False,
+        "real_censoring_attested": False,
+    }
 
 
 def _denominator(at: str) -> dict:
@@ -329,8 +403,11 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
         "reuse_admitted":False,"real_originals_approved":False,
         "purpose":"PUBLIC_AGGREGATE_DISPLAY","per_asset":{},
         "independent_attestation":False})
-    temporal=_temporal(assets,at=at)
-    procedure=_procedural(at)
+    temporal, temporal_snapshot, receipts=_temporal(assets,at=at)
+    procedure, episodes=_procedural(at)
+    followup=_reconcile_followup(snapshot=temporal_snapshot,
+                                 episodes=episodes,procedural=procedure,
+                                 receipts=receipts)
     denominator=_denominator(at)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets)
     if temporal["pp04_asset_receipts_visible"]==2:
@@ -358,6 +435,7 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
             {"id":a["id"],"sha256":a["sha256"]} for a in assets
         ] if cut=="late" else []),
         "temporal":temporal,"procedure":procedure,
+        "followup_reconciliation":followup,
         "denominator_comparison":denominator,"capture_models":rivals,
         "institutional_graph":{
             "legal_identity_authenticated":lineage["legal_identity_authenticated"],
