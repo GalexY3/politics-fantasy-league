@@ -657,3 +657,152 @@ def test_controlled_observational_equivalence_reaches_http_and_fails_closed(
         assert ipc_drift[2]=={"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"}
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _bitemporal_actor_event_node(wire,cut="late"):
+    """Invoke the existing actual JS warehouse CLI with Python fixture bytes."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_capture_rivals,_sha,FAKE_PARITY,CUTS,
+    )
+    runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    experiment=_capture_rivals(CUTS["late"])[1] if cut=="late" else None
+    return subprocess.run(["node",str(runner)],input=json.dumps({
+        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),"experiment":experiment,"timeline":wire,
+    }),text=True,capture_output=True,timeout=5)
+
+
+def test_bitemporal_actor_event_same_fixture_python_node_two_knowledge_cuts():
+    """New capability, NOT a PREPATCH bug: identical source bytes and typed revisions."""
+    from politics_fantasy.scientific_integration_lab import (
+        _bitemporal_fixture,_bitemporal_actor_event,CUTS,_sha,
+    )
+    wire=_bitemporal_fixture()
+    assert [s["sha256"] for s in wire["sources"]]==[
+        _sha(s["text"]) for s in wire["sources"]]
+    assert wire["events"][1]["amendment_of"]==wire["events"][0]["id"]
+    assert wire["events"][0]["typed_key"]==wire["events"][1]["typed_key"]
+    for cut in ("early","late"):
+        python_result,_=_bitemporal_actor_event(at=CUTS[cut],wire=wire)
+        node_result=_bitemporal_actor_event_node(wire,cut=cut)
+        assert node_result.returncode==0,node_result.stderr
+        node=json.loads(node_result.stdout)["bitemporal_actor_event_equivalence"]
+        assert node==python_result
+        api=report(cut=cut)
+        assert api["warehouse"]["bitemporal_actor_event_equivalence"]==python_result
+        assert api["R5"]=="STOP_R5"
+        assert api["independent_all_received_denominator"] is None
+        for key,expected in (("first_public_at_real",None),
+                             ("rights_independently_verified",False),
+                             ("source_crosswalk_certified",False),
+                             ("independent_denominator",None),
+                             ("real_actor_identity_verified",False),
+                             ("empirical_event_count_admitted",False)):
+            assert python_result[key] is expected
+
+
+def test_bitemporal_actor_event_anti_lookahead_revision_and_validity_independent():
+    early=report(cut="early")["warehouse"]["bitemporal_actor_event_equivalence"]
+    late=report(cut="late")["warehouse"]["bitemporal_actor_event_equivalence"]
+    assert (early["visible_source_receipts"],late["visible_source_receipts"])==(1,2)
+    before,after="2026-09-15","2026-10-10"
+    assert [early["views_by_valid_day"][d]["role_assertions_visible_at_valid_day"] for d in (before,after)]==[1,0]
+    assert [late["views_by_valid_day"][d]["role_assertions_visible_at_valid_day"] for d in (before,after)]==[1,1]
+    assert early["views_by_valid_day"][after]["role_observation_state"]=="NOT_OBSERVED"
+    assert late["views_by_valid_day"][after]["role_observation_state"]=="OBSERVED"
+    assert [early["views_by_valid_day"][d]["selected_revision"] for d in (before,after)]==["v1","v1"]
+    assert [late["views_by_valid_day"][d]["selected_revision"] for d in (before,after)]==["v2","v2"]
+    assert [early["views_by_valid_day"][d]["event_documentary_revisions_known"] for d in (before,after)]==[1,1]
+    assert [late["views_by_valid_day"][d]["event_documentary_revisions_known"] for d in (before,after)]==[2,2]
+    assert all(early["views_by_valid_day"][d]["actor_source_local_identity_count"]==1 and
+               late["views_by_valid_day"][d]["actor_source_local_identity_count"]==1 and
+               early["views_by_valid_day"][d]["logical_events_after_typed_amendment"]==1 and
+               late["views_by_valid_day"][d]["logical_events_after_typed_amendment"]==1
+               for d in (before,after))
+
+
+@pytest.mark.parametrize("tamper,error",[
+    ("sha_spoof","BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH"),
+    ("issuer_spoof","BITEMPORAL_UNATTESTED_IDENTITY_OR_GATE"),
+    ("source_id_spoof","BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH"),
+    ("capture_in_future","BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH"),
+    ("first_public_missing","BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH"),
+    ("typed_key_missing","BITEMPORAL_TYPED_AMENDMENT_CROSSWALK_MISMATCH"),
+    ("amendment_missing","BITEMPORAL_TYPED_AMENDMENT_CROSSWALK_MISMATCH"),
+    ("fake_crosswalk_certified","BITEMPORAL_UNATTESTED_IDENTITY_OR_GATE"),
+])
+def test_bitemporal_actor_event_rejects_spoof_in_actual_node_and_python(tamper,error):
+    from politics_fantasy.scientific_integration_lab import (
+        _bitemporal_fixture,_bitemporal_actor_event,CUTS,
+    )
+    wire=json.loads(json.dumps(_bitemporal_fixture()))
+    if tamper=="sha_spoof":
+        wire["sources"][1]["sha256"]="0"*64
+    elif tamper=="issuer_spoof":
+        wire["issuer"]="SYN:OTHER_ISSUER"
+    elif tamper=="source_id_spoof":
+        wire["sources"][1]["source_id"]="SYN:WRONG_SOURCE"
+    elif tamper=="capture_in_future":
+        wire["sources"][1]["captured_at"]="2026-11-03T12:00:00Z"
+    elif tamper=="first_public_missing":
+        wire["sources"][1]["first_public_at"]=None
+    elif tamper=="typed_key_missing":
+        del wire["events"][1]["typed_key"]
+    elif tamper=="amendment_missing":
+        wire["events"][1]["amendment_of"]=None
+    else:
+        wire["source_crosswalk_certified"]=True
+    with pytest.raises(RuntimeError,match=error):
+        _bitemporal_actor_event(at=CUTS["late"],wire=wire)
+    if shutil.which("node") is None:
+        pytest.skip("Node not installed")
+    observed=_bitemporal_actor_event_node(wire)
+    assert observed.returncode!=0
+    assert error in observed.stderr
+    assert observed.stdout==""
+
+
+def test_bitemporal_actor_event_http_aggregates_redacted_and_ipc_503(tmp_path,monkeypatch):
+    """Real server -> Python TemporalLedger -> genuine Node -> redacted HTTP."""
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def request(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            res=conn.getresponse()
+            status,cache=res.status,res.getheader("Cache-Control")
+            body=json.loads(res.read());conn.close()
+            return status,cache,body
+        for cut in ("early","late"):
+            status,cache,payload=request(cut)
+            assert (status,cache)==(200,"no-store")
+            summary=payload["warehouse"]["bitemporal_actor_event_equivalence"]
+            assert summary["visible_source_receipts"]==(1 if cut=="early" else 2)
+            assert summary["first_public_at_real"] is None
+            assert summary["independent_denominator"] is None
+            assert payload["R5"]=="STOP_R5"
+            raw=json.dumps(payload)
+            assert "SYN:CHRONICLE" not in raw
+            assert "SYNTHETIC BITEMPORAL FIXTURE" not in raw
+            for source in lab._bitemporal_fixture()["sources"]:
+                assert source["sha256"] not in raw
+        # Falsifier 1: real Node executes, but IPC stdout silently inflates
+        # active roles for a given historical validity day. HTTP must be 503.
+        genuine=lab.subprocess.run
+        def mutated_node(*args,**kwargs):
+            proc=genuine(*args,**kwargs)
+            assert proc.returncode==0
+            rows=json.loads(proc.stdout)
+            rows["bitemporal_actor_event_equivalence"]["views_by_valid_day"][
+                "2026-10-10"]["role_assertions_visible_at_valid_day"]=2
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(rows),stderr=proc.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",mutated_node)
+        assert request("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)

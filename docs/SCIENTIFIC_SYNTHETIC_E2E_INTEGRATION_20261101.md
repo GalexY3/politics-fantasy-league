@@ -496,3 +496,93 @@ ficticios, **NONCYCLE**, sin atestación de primera publicidad, sin fuente
 de derechos, sin denominador de todas las entradas, sin estimando empírico,
 sin scoring y sin promoción de los sistemas externos. **R5 STOP,
 0/6 gates, 0 AB científicos; no main, CI ni despliegue.**
+
+## PR22 · equivalencia bitemporal de actor, rol y evento entre Python y Node (NONCYCLE)
+
+**Nueva capacidad autorizada, no reparación de un defecto PREPATCH.** El
+consumidor fijo `GET /api/scientific-integration-lab?cut=early|late`
+contrasta ahora dos vistas independientes de las **mismas ediciones de un
+expediente completamente ficticio**. Se reutilizaron
+`TemporalLedger`/`FileReceipt` de Python, `evidence_warehouse.mjs` de Node,
+el bridge ya presente y el endpoint HTTP; no existe módulo, ruta ni PR nueva.
+No se ha usado material PAN/IAEN, originales, personas ni casos políticos.
+
+**Custodia de dos ediciones:** `SYN:CHRONICLE_V1` y `SYN:CHRONICLE_V2`
+pertenecen al emisor ficticio `SYN:CHRONICLE`. Las dos cadenas UTF-8 se
+construyen en el fixture Python, con **78 y 86 bytes respectivamente**.
+Sus SHA256 recomputados y comprobados también por el bridge Node frente a un
+manifiesto sintético inmutable son:
+
+| Edición | SHA256 de bytes ficticios | Captura local declarada | Primera publicación ficticia |
+| --- | --- | --- | --- |
+| V1 | `d652283f6dd552283d6187d03b255d1cde281ae7375697953e886ffe3cbaa245` | 20/09/2026 12:00Z | 19/09/2026 12:00Z |
+| V2 | `40458358e15b6e354541cf88d238e95894bac8b2bd93bff33c91530c7c3d0836` | 31/10/2026 12:00Z | 30/10/2026 12:00Z |
+
+Estos SHA acreditan integridad de **los bytes del fixture almacenados en este
+proyecto**, no autenticidad de un editor, vigencia jurídica, derechos,
+`first_public_at` real, ni pruebas de que los metadatos fueron emitidos por
+una fuente administrativa. Python registra los recibos mediante
+`FileReceipt(source_id,sha256,bytes,captured_at)` y Node verifica **los mismos
+bytes, SHA e identificadores** antes de crear `W.source`, `W.entity`,
+`W.role` y `W.event`.
+
+**Identidad tipada declarada:** las dos versiones de evento usan
+`(issuer='SYN:CHRONICLE', family='INITIATIVE', local_id='FILE_1')`,
+con `revision=v1|v2`, `amendment_of` de V2 a V1 y fuentes/recibos
+independientes. El contrato `TemporalLedger` valida conocimiento,
+vigencia, SHA y referencias fuente-local de cada edición; el adaptador
+resuelve la cadena `amendment_of` **solo porque la relación está escrita
+explícitamente en el fixture**, no mediante nombre, fecha o SHA parecidos.
+Node consume la misma cadena en `W.event` y la valida de nuevo.
+La entidad del actor ficticio tiene **un solo ID fuente-local estable**;
+los dos roles poseen intervalos disjuntos `01/09–01/10` y `01/10+`.
+No se infieren equivalencias entre fuentes distintas del ejercicio.
+
+**Matriz de observabilidad (`as_of` × `valid_at`)**, calculada por ambos
+runtimes y comparada por igualdad estricta antes del HTTP:
+
+| Corte de conocimiento | Tiempo de validez | Afirmaciones de rol visibles y vigentes | Revisiones documentales del evento conocidas | Evento lógico del fixture |
+| --- | --- | ---: | ---: | ---: |
+| 15/10/2026 (`early`) | 15/09/2026 | 1 (V1) | 1 (V1) | 1 |
+| 15/10/2026 (`early`) | 10/10/2026 | 0 observadas | 1 (V1) | 1 |
+| 01/11/2026 (`late`) | 15/09/2026 | 1 (V1) | 2 (V1 y V2) | 1 |
+| 01/11/2026 (`late`) | 10/10/2026 | 1 (V2) | 2 (V1 y V2) | 1 |
+
+**Cero afirmaciones visibles no significa ausencia de cargo.** Para el corte
+temprano y vigencia 10/10, el oráculo emite
+`role_observation_state=NOT_OBSERVED`, no «cargo inexistente»; la edición
+correspondiente todavía no había sido capturada. El corte tardío conoce
+la revisión V2 de un solo evento: **dos documentos no se convierten en dos
+decisiones**. `valid_at` se consulta por dos fechas fijas sin habilitar
+parámetros HTTP arbitrarios. El pipeline entrega solamente agregados
+de observabilidad, versión `v1|v2` y advertencias de no certificación;
+**no expone source_id, SHA ni bytes de este fixture por HTTP**, en especial
+la edición futura en el corte temprano.
+
+**Falsadores de capacidad, sin inventar rojo PREPATCH:** once pruebas nuevas
+ejecutan el mismo protocolo Python y Node, el anti-lookahead, la sustitución
+de revisión por `amendment_of`, los dos relojes, ocho alteraciones
+adversariales (SHA, issuer, source_id, captura futura, publicación desconocida,
+typed key ausente, amendment faltante y falsa certificación de crosswalk)
+y la ruta HTTP real en loopback. En la prueba de divergencia, un proceso Node
+auténtico devuelve un agregado deliberadamente adulterado en stdout;
+Python detecta la discrepancia frente a su `TemporalLedger` y responde HTTP
+**503** con `Cache-Control: no-store`, en vez de publicar el agregado
+incorrecto. Los cuerpos HTTP se examinan también para comprobar que no
+contienen los SHA, IDs o textos del fixture de cronología.
+
+**Validación focal nueva:**
+`PYTHONPATH=src python -m pytest -q tests/test_synthetic_scientific_integration_lab.py -k bitemporal_actor_event`
+→ **11 PASS, 41 deseleccionadas**. Dos negativas previas del bridge de SHA,
+seleccionadas individualmente como comprobación de compatibilidad tras
+ampliar la frontera IPC, también PASS; no se han repetido las suites
+históricas de Node ni las 109 PP04.
+
+**Interpretación:** misma edición, bytes y referencias tipadas en dos motores,
+pero ninguna autenticación real del emisor, derechos, versión oficial,
+`first_public_at` histórico o censo independiente. Los indicadores
+`first_public_at_real=null`, `rights_independently_verified=false`,
+`source_crosswalk_certified=false`, `independent_denominator=null` y
+`real_actor_identity_verified=false` son invariantes del nuevo oráculo.
+**R5 STOP, 0/6 gates, 0 AB empíricos, sin scoring, originales, PII,
+main, CI ni despliegue.**

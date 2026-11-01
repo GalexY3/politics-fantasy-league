@@ -114,9 +114,114 @@ function checkSyntheticRivals(experiment,cut){
   real_causal_effect_identified:false,empirical_estimand_admitted:false};
 }
 
+function replayBitemporal(timeline,cut){
+ if(!exactKeys(timeline,['schema','issuer','sources','actor_id','institution_id',
+   'roles','events','first_public_at_real','source_crosswalk_certified',
+   'independent_denominator','rights_independently_verified'])||
+   timeline.schema!=='pfl.synthetic_bitemporal_actor_event_wire.v1'||
+   timeline.issuer!=='SYN:CHRONICLE'||
+   timeline.actor_id!=='SYN:CHRONICLE_ACTOR'||
+   timeline.institution_id!=='SYN:CHRONICLE_OFFICE'||
+   timeline.first_public_at_real!==null||
+   timeline.source_crosswalk_certified!==false||
+   timeline.independent_denominator!==null||
+   timeline.rights_independently_verified!==false)
+  fail('BITEMPORAL_UNATTESTED_IDENTITY_OR_GATE');
+ const bodies=[
+  'SYNTHETIC BITEMPORAL FIXTURE\nISSUER:SYN:CHRONICLE\nEDITION:V1\nACTOR:A\nEVENT:E1\n',
+  'SYNTHETIC BITEMPORAL FIXTURE\nISSUER:SYN:CHRONICLE\nEDITION:V2\nACTOR:A\nEVENT:E1_REVISED\n'];
+ const digests=[
+  'd652283f6dd552283d6187d03b255d1cde281ae7375697953e886ffe3cbaa245',
+  '40458358e15b6e354541cf88d238e95894bac8b2bd93bff33c91530c7c3d0836'];
+ const captures=['2026-09-20T12:00:00Z','2026-10-31T12:00:00Z'];
+ const publications=['2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'];
+ if(!Array.isArray(timeline.sources)||timeline.sources.length!==2||
+    !Array.isArray(timeline.roles)||timeline.roles.length!==2||
+    !Array.isArray(timeline.events)||timeline.events.length!==2)
+  fail('BITEMPORAL_TWO_REVISIONS_REQUIRED');
+ const tReg=W.empty();
+ for(let i=0;i<2;i++){
+  const s=timeline.sources[i];
+  if(!exactKeys(s,['source_id','text','sha256','captured_at','first_public_at'])||
+     s.source_id!==`SYN:CHRONICLE_V${i+1}`||
+     s.text!==bodies[i]||
+     s.sha256!==digests[i]||
+     s.sha256!==createHash('sha256').update(Buffer.from(s.text,'utf8')).digest('hex')||
+     s.captured_at!==captures[i]||s.first_public_at!==publications[i])
+   fail('BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH');
+  W.source(tReg,{id:s.source_id,kind:'SYNTHETIC',state:'TEST_FIXTURE',
+   url:'https://example.invalid/synthetic-bitemporal-no-external-source',
+   observed_at:s.captured_at,first_public_at:s.first_public_at,rights:'SYNTHETIC'});
+ }
+ W.entity(tReg,{id:timeline.actor_id,type:'PERSON_PUBLIC',
+  name:'Invented Public Actor',public_role_documented:true,
+  source_id:timeline.sources[0].source_id});
+ W.entity(tReg,{id:timeline.institution_id,type:'PUBLIC_BODY',
+  name:'Invented Public Institution',source_id:timeline.sources[0].source_id});
+ const expRole=[
+  {id:'SYN:CHRONICLE_ROLE_V1',source_id:'SYN:CHRONICLE_V1',
+   revision:'v1',valid_from:'2026-09-01',valid_to:'2026-10-01',amendment_of:null},
+  {id:'SYN:CHRONICLE_ROLE_V2',source_id:'SYN:CHRONICLE_V2',
+   revision:'v2',valid_from:'2026-10-01',valid_to:null,
+   amendment_of:'SYN:CHRONICLE_ROLE_V1'}];
+ const expEvent=[
+  {id:'SYN:CHRONICLE_EVENT_V1',source_id:'SYN:CHRONICLE_V1',
+   revision:'v1',occurred_on:'2026-09-10',
+   typed_key:['SYN:CHRONICLE','INITIATIVE','FILE_1'],amendment_of:null},
+  {id:'SYN:CHRONICLE_EVENT_V2',source_id:'SYN:CHRONICLE_V2',
+   revision:'v2',occurred_on:'2026-09-10',
+   typed_key:['SYN:CHRONICLE','INITIATIVE','FILE_1'],
+   amendment_of:'SYN:CHRONICLE_EVENT_V1'}];
+ for(let i=0;i<2;i++){
+  const role=timeline.roles[i],ev=timeline.events[i];
+  if(!exactKeys(role,Object.keys(expRole[i]))||
+     Object.keys(expRole[i]).some(k=>role[k]!==expRole[i][k])||
+     !exactKeys(ev,Object.keys(expEvent[i]))||
+     Object.keys(expEvent[i]).some(k=>k!=='typed_key'&&ev[k]!==expEvent[i][k])||
+     JSON.stringify(ev.typed_key)!==JSON.stringify(expEvent[i].typed_key))
+   fail('BITEMPORAL_TYPED_AMENDMENT_CROSSWALK_MISMATCH');
+  const s=timeline.sources[i];
+  W.role(tReg,{id:role.id,type:'PUBLIC_SPOKESPERSON',
+   subject_id:timeline.actor_id,object_id:timeline.institution_id,
+   source_id:role.source_id,valid_from:role.valid_from,valid_to:role.valid_to,
+   observed_at:s.captured_at,first_public_at:s.first_public_at});
+  W.event(tReg,{id:ev.id,type:'OFFICIAL_INITIATIVE',
+   occurred_on:ev.occurred_on,source_id:ev.source_id,
+   observed_at:s.captured_at,first_public_at:s.first_public_at,
+   participants:[{actor_id:timeline.actor_id,role:'SPEAKER'}],
+   amendment_of:ev.amendment_of});
+ }
+ if(!W.auditBundle(tReg).ok)fail('BITEMPORAL_REFERENTIAL_INTEGRITY_FAILED');
+ const visible=W.asOf(tReg,cuts[cut]);
+ const views={};
+ for(const day of ['2026-09-15','2026-10-10']){
+  const known=visible.events.filter(e=>e.occurred_on<=day);
+  if(known.length<1||known.length>2||known[0].id!==expEvent[0].id||
+     (known.length===2&&(known[1].id!==expEvent[1].id||
+       known[1].amendment_of!==known[0].id)))
+   fail('BITEMPORAL_AMENDMENT_CHAIN_DIVERGENCE');
+  views[day]={
+   actor_source_local_identity_count:visible.source_count>0?1:0,
+   role_assertions_visible_at_valid_day:W.rolesAt(tReg,timeline.actor_id,day,cuts[cut]).length,
+   role_observation_state:W.rolesAt(tReg,timeline.actor_id,day,cuts[cut]).length>0?
+    'OBSERVED':'NOT_OBSERVED',
+   event_documentary_revisions_known:known.length,
+   logical_events_after_typed_amendment:1,
+   selected_revision:known.length===2?'v2':'v1'};
+ }
+ return {schema:'pfl.synthetic_bitemporal_actor_event_oracle.v1',
+  views_by_valid_day:views,visible_source_receipts:visible.source_count,
+  fixture_source_sha_checked:true,typed_amendment_fixture_checked:true,
+  first_public_at_real:null,rights_independently_verified:false,
+  source_crosswalk_certified:false,independent_denominator:null,
+  real_actor_identity_verified:false,empirical_event_count_admitted:false};
+}
+
 function run(v){
  if(!v||Array.isArray(v)||typeof v!=='object'||
-    !['assets,cut,experiment,scenario,sha256','assets,cut,scenario,sha256']
+    !['assets,cut,experiment,scenario,sha256,timeline',
+      'assets,cut,experiment,scenario,sha256',
+      'assets,cut,scenario,sha256']
       .includes(Object.keys(v).sort().join(',')) ||
     !Object.hasOwn(cuts,v.cut)||!scenarios.has(v.scenario))fail('SYNTHETIC_INPUT_ONLY');
  if(v.sha256!==ownSha)fail('SYNTHETIC_SHA_MISMATCH');
@@ -137,6 +242,8 @@ function run(v){
   fail('DUPLICATE_OR_MISSING_ASSET_ROLE');
  if(!Object.hasOwn(v,'experiment'))fail('SYNTHETIC_RIVAL_WIRE_REQUIRED');
  const observationalEquivalence=checkSyntheticRivals(v.experiment??null,v.cut);
+ if(!Object.hasOwn(v,'timeline'))fail('BITEMPORAL_WIRE_REQUIRED');
+ const bitemporal=replayBitemporal(v.timeline,v.cut);
  const reg=W.empty();
  const base={kind:'SYNTHETIC',state:'TEST_FIXTURE',rights:'SYNTHETIC',
   url:'https://example.invalid/pfl-synthetic-no-external-source'};
@@ -212,13 +319,14 @@ function run(v){
   raw_rights_blocker:v.scenario==='rights_spoof'&&
    audit.gate.blockers.includes('RIGHTS_NOT_VERIFIED_FOR_REDISTRIBUTION'),
   observational_equivalence_experiment:observationalEquivalence,
+  bitemporal_actor_event_equivalence:bitemporal,
   real_denominator:null,first_public_at_real:null,
   publisher_authenticated:false,source_identity_crosswalk_certified:false};
 }
 
 let data='';
 try{
- for await(const part of stdin){data+=part;if(data.length>4096)fail('SYNTHETIC_INPUT_TOO_LARGE');}
+ for await(const part of stdin){data+=part;if(data.length>8192)fail('SYNTHETIC_INPUT_TOO_LARGE');}
  const payload=JSON.parse(data);
  stdout.write(JSON.stringify(run(payload))+'\n');
 }catch(e){

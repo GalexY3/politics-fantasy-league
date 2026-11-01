@@ -48,6 +48,13 @@ EARLY_CAPTURE = "2026-09-20T12:00:00Z"
 LATE_CAPTURE = "2026-10-31T12:00:00Z"
 LATE_PUBLIC = "2026-10-30T12:00:00Z"  # INVENTED first publication
 FAKE_PARITY = b"PFL_SYNTHETIC_SCIENTIFIC_INTEGRATION_V1\n"
+BITEMPORAL_VALID_DAYS = ("2026-09-15", "2026-10-10")
+BITEMPORAL_BYTES = (
+    "SYNTHETIC BITEMPORAL FIXTURE\nISSUER:SYN:CHRONICLE\n"
+    "EDITION:V1\nACTOR:A\nEVENT:E1\n",
+    "SYNTHETIC BITEMPORAL FIXTURE\nISSUER:SYN:CHRONICLE\n"
+    "EDITION:V2\nACTOR:A\nEVENT:E1_REVISED\n",
+)
 
 PAN_TEXT = (
     "SYNTHETIC DOCUMENT FIXTURE\n"
@@ -79,6 +86,163 @@ def _assets() -> list[dict]:
         {"id": "SYNTHETIC:PAN24", "text": PAN_TEXT, "sha256": _sha(PAN_TEXT)},
         {"id": "SYNTHETIC:IAEN24", "text": IAEN_TEXT, "sha256": _sha(IAEN_TEXT)},
     ]
+
+
+def _bitemporal_fixture() -> dict:
+    """Two *invented* issuer editions; no joins to PP04 or real actors.
+
+    Amendment identity is declared as fixture metadata, not inferred from
+    name or a matching SHA. Each edition has its OWN immutable bytes/receipt.
+    """
+    sources=[{
+        "source_id":f"SYN:CHRONICLE_V{i}", "text":body,
+        "sha256":_sha(body), "captured_at":captured,
+        "first_public_at":published,
+    } for i,(body,captured,published) in enumerate(zip(
+        BITEMPORAL_BYTES,(EARLY_CAPTURE,LATE_CAPTURE),
+        ("2026-09-19T12:00:00Z",LATE_PUBLIC)),start=1)]
+    return {
+        "schema":"pfl.synthetic_bitemporal_actor_event_wire.v1",
+        "issuer":"SYN:CHRONICLE", "sources":sources,
+        "actor_id":"SYN:CHRONICLE_ACTOR",
+        "institution_id":"SYN:CHRONICLE_OFFICE",
+        "roles":[
+            {"id":"SYN:CHRONICLE_ROLE_V1","source_id":sources[0]["source_id"],
+             "revision":"v1","valid_from":"2026-09-01",
+             "valid_to":"2026-10-01","amendment_of":None},
+            {"id":"SYN:CHRONICLE_ROLE_V2","source_id":sources[1]["source_id"],
+             "revision":"v2","valid_from":"2026-10-01",
+             "valid_to":None,"amendment_of":"SYN:CHRONICLE_ROLE_V1"},
+        ],
+        "events":[
+            {"id":"SYN:CHRONICLE_EVENT_V1","source_id":sources[0]["source_id"],
+             "revision":"v1","occurred_on":"2026-09-10",
+             "typed_key":["SYN:CHRONICLE","INITIATIVE","FILE_1"],
+             "amendment_of":None},
+            {"id":"SYN:CHRONICLE_EVENT_V2","source_id":sources[1]["source_id"],
+             "revision":"v2","occurred_on":"2026-09-10",
+             "typed_key":["SYN:CHRONICLE","INITIATIVE","FILE_1"],
+             "amendment_of":"SYN:CHRONICLE_EVENT_V1"},
+        ],
+        "first_public_at_real":None,"source_crosswalk_certified":False,
+        "independent_denominator":None,"rights_independently_verified":False,
+    }
+
+
+def _bitemporal_actor_event(*, at: str, wire: dict | None = None) -> tuple[dict,dict]:
+    """The actual TemporalLedger validates both editions and typed referents.
+
+    This is an explicitly authored SYNTHETIC amendment chain across two
+    documentary editions, not a certified cross-source identity crosswalk.
+    TemporalLedger supplies the bitemporal visibility and SHA-bound receipts;
+    this adapter alone resolves the declared chain of event corrections.
+    """
+    if type(at) is not str or at not in CUTS.values():
+        raise RuntimeError("BITEMPORAL_UNDECLARED_KNOWLEDGE_CUT")
+    fixture=_bitemporal_fixture() if wire is None else wire
+    if (not isinstance(fixture,dict) or
+            set(fixture)!=set(_bitemporal_fixture()) or
+            fixture["issuer"]!="SYN:CHRONICLE" or
+            fixture["actor_id"]!="SYN:CHRONICLE_ACTOR" or
+            fixture["institution_id"]!="SYN:CHRONICLE_OFFICE" or
+            any(fixture[k] is not v for k,v in (
+                ("first_public_at_real",None),
+                ("source_crosswalk_certified",False),
+                ("independent_denominator",None),
+                ("rights_independently_verified",False)))):
+        raise RuntimeError("BITEMPORAL_UNATTESTED_IDENTITY_OR_GATE")
+    sources=fixture["sources"]
+    roles=fixture["roles"]
+    events=fixture["events"]
+    if (not isinstance(sources,list) or len(sources)!=2
+            or not isinstance(roles,list) or len(roles)!=2
+            or not isinstance(events,list) or len(events)!=2):
+        raise RuntimeError("BITEMPORAL_TWO_REVISIONS_REQUIRED")
+    expected=_bitemporal_fixture()
+    # An exact fixed-fixture protocol is safer than accepting self-labelled
+    # synthetic bytes and arbitrary issuer-local IDs at a process boundary.
+    for index,(source,canonical) in enumerate(zip(sources,expected["sources"])):
+        if (not isinstance(source,dict) or set(source)!=set(canonical)
+                or any(source[k]!=canonical[k] for k in (
+                    "source_id","text","captured_at","first_public_at"))
+                or source["sha256"]!=_sha(source["text"])
+                or source["sha256"]!=canonical["sha256"]):
+            raise RuntimeError("BITEMPORAL_SOURCE_BYTES_OR_SHA_MISMATCH")
+    if (roles!=expected["roles"] or events!=expected["events"]):
+        raise RuntimeError("BITEMPORAL_TYPED_AMENDMENT_CROSSWALK_MISMATCH")
+
+    ledger=TemporalLedger()
+    actor=SourceRef(sources[0]["source_id"],"ACTOR","A")
+    office=SourceRef(sources[0]["source_id"],"INSTITUTION","O")
+    for source in sources:
+        receipt=FileReceipt(source["source_id"],source["sha256"],
+            len(source["text"].encode("utf-8")),source["captured_at"],
+            "SYNTHETIC","SYNTHETIC")
+        ledger.register_source(receipt)
+    initial=sources[0]
+    for subject,record_id,predicate in (
+        (actor,"ACTOR_A","SYNTHETIC_PUBLIC_ACTOR"),
+        (office,"OFFICE_O","SYNTHETIC_PUBLIC_INSTITUTION")):
+        ledger.add(TemporalRecord(kind="ENTITY",source_id=initial["source_id"],
+            source_record_id=record_id,revision="v1",
+            source_sha256=initial["sha256"],subject=subject,
+            predicate=predicate,object=None,
+            valid_from="2026-09-01T00:00:00Z",valid_to=None,
+            first_public_at=initial["first_public_at"],
+            recorded_at=initial["captured_at"],value="DOCUMENTED_SYNTHETIC"))
+    for role in roles:
+        source=next(s for s in sources if s["source_id"]==role["source_id"])
+        ledger.add(TemporalRecord(kind="ROLE",source_id=role["source_id"],
+            source_record_id=role["id"],revision=role["revision"],
+            source_sha256=source["sha256"],subject=actor,
+            predicate="SYNTHETIC_OFFICE",object=office,
+            valid_from=role["valid_from"]+"T00:00:00Z",
+            valid_to=(role["valid_to"]+"T00:00:00Z") if role["valid_to"] else None,
+            first_public_at=source["first_public_at"],
+            recorded_at=source["captured_at"],value=role["revision"]))
+    for event in events:
+        source=next(s for s in sources if s["source_id"]==event["source_id"])
+        ledger.add(TemporalRecord(kind="EVENT",source_id=event["source_id"],
+            source_record_id=event["id"],revision=event["revision"],
+            source_sha256=source["sha256"],
+            subject=SourceRef(event["source_id"],"EVENT","FILE_1"),
+            predicate="SYNTHETIC_AMENDED_INITIATIVE",object=None,
+            valid_from=event["occurred_on"]+"T00:00:00Z",valid_to=None,
+            first_public_at=source["first_public_at"],
+            recorded_at=source["captured_at"],value=event["revision"]))
+
+    views={}
+    for valid_day in BITEMPORAL_VALID_DAYS:
+        snap=ledger.snapshot(as_of=at,valid_at=valid_day+"T12:00:00Z")
+        known=[r.source_record_id for r in snap.records
+               if r.kind=="EVENT" and r.predicate=="SYNTHETIC_AMENDED_INITIATIVE"]
+        if not known or known not in ([events[0]["id"]],
+                                      [events[0]["id"],events[1]["id"]]):
+            raise RuntimeError("BITEMPORAL_REVISION_CHAIN_DIVERGENCE")
+        views[valid_day]={
+            "actor_source_local_identity_count":sum(
+                r.kind=="ENTITY" and r.subject==actor for r in snap.records),
+            "role_assertions_visible_at_valid_day":sum(
+                r.kind=="ROLE" and r.subject==actor for r in snap.records),
+            "role_observation_state":("OBSERVED" if any(
+                r.kind=="ROLE" and r.subject==actor for r in snap.records)
+                else "NOT_OBSERVED"),
+            "event_documentary_revisions_known":len(known),
+            "logical_events_after_typed_amendment":1,
+            "selected_revision":"v2" if len(known)==2 else "v1",
+        }
+    return ({
+        "schema":"pfl.synthetic_bitemporal_actor_event_oracle.v1",
+        "views_by_valid_day":views,
+        "visible_source_receipts":sum(
+            utc(s["captured_at"])<=utc(at) and
+            utc(s["first_public_at"])<=utc(at) for s in sources),
+        "fixture_source_sha_checked":True,
+        "typed_amendment_fixture_checked":True,
+        "first_public_at_real":None,"rights_independently_verified":False,
+        "source_crosswalk_certified":False,"independent_denominator":None,
+        "real_actor_identity_verified":False,"empirical_event_count_admitted":False,
+    },fixture)
 
 
 def _rights(assets: list[dict], *, at: str) -> dict:
@@ -405,10 +569,10 @@ def _capture_rivals(at: str) -> tuple[dict, dict]:
 
 
 def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
-                    experiment: dict | None) -> dict:
+                    experiment: dict | None, timeline: dict) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
     request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
-             "assets":assets,"experiment":experiment}
+             "assets":assets,"experiment":experiment,"timeline":timeline}
     try:
         proc=subprocess.run(["node",str(runner)],input=json.dumps(request),
             text=True,capture_output=True,timeout=5,check=False)
@@ -432,6 +596,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
         "raw_rights_blocker", "real_denominator", "first_public_at_real",
         "publisher_authenticated", "source_identity_crosswalk_certified",
         "observational_equivalence_experiment",
+        "bitemporal_actor_event_equivalence",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -500,8 +665,11 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
                                  receipts=receipts)
     denominator=_denominator(at)
     rivals,experiment=_capture_rivals(at) if cut=="late" else (None,None)
+    bitemporal,timeline=_bitemporal_actor_event(at=at)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
-                              experiment=experiment)
+                              experiment=experiment,timeline=timeline)
+    if warehouse.get("bitemporal_actor_event_equivalence") != bitemporal:
+        raise RuntimeError("CROSS_LANGUAGE_BITEMPORAL_CONTRACT_DIVERGENCE")
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,
