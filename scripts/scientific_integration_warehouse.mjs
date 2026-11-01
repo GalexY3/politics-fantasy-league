@@ -17,10 +17,104 @@ const registeredFixtureSha=Object.freeze({
 });
 const scenarios=new Set(['baseline','rights_spoof','privacy_probe']);
 const fail=(message)=>{throw Error(message)};
+const exactKeys=(obj,keys)=>obj!==null&&!Array.isArray(obj)&&
+ typeof obj==='object'&&Object.keys(obj).sort().join(',')===keys.slice().sort().join(',');
+
+function checkSyntheticRivals(experiment,cut){
+ if(cut==='early'){
+  if(experiment!==null)fail('FUTURE_RIVAL_PROJECTION_AT_EARLY_CUT');
+  return null;
+ }
+ if(!exactKeys(experiment,['schema','as_of','hypotheses',
+    'synthetic_fixture_ids_by_channel','capture_at_by_channel',
+    'exposure_window_by_regime',
+    'first_public_at','independent_registry_total',
+    'source_identity_crosswalk_verified','reuse_rights_independently_verified'])||
+    experiment.schema!=='pfl.synthetic_observational_equivalence_wire.v1'||
+    experiment.as_of!==cuts.late||experiment.first_public_at!==null||
+    experiment.independent_registry_total!==null||
+    experiment.source_identity_crosswalk_verified!==false||
+    experiment.reuse_rights_independently_verified!==false)
+  fail('UNTRUSTED_OR_FUTURE_RIVAL_WITNESS');
+ const labels=['CAPTURE_EXPANSION','STABLE_CAPTURE'];
+ const regimes=['BEFORE_REFORM','AFTER_REFORM'];
+ const channels=['ELECTRONIC','PAPER'];
+ if(!exactKeys(experiment.hypotheses,labels)||
+    !exactKeys(experiment.synthetic_fixture_ids_by_channel,regimes)||
+    !exactKeys(experiment.capture_at_by_channel,regimes)||
+    !exactKeys(experiment.exposure_window_by_regime,regimes))
+  fail('RIVAL_IDENTITY_OR_PROJECTION_MISMATCH');
+ const published={BEFORE_REFORM:{ELECTRONIC:2,PAPER:8},
+   AFTER_REFORM:{ELECTRONIC:12,PAPER:8}};
+ const expected={CAPTURE_EXPANSION:'EQUAL_UNDER_ASSUMPTIONS',
+   STABLE_CAPTURE:'RISING_UNDER_ASSUMPTIONS'};
+ const windows={BEFORE_REFORM:{first_day:'2026-09-01',last_day:'2026-09-30'},
+  AFTER_REFORM:{first_day:'2026-10-01',last_day:'2026-10-30'}};
+ for(const regime of regimes){
+  const ids=experiment.synthetic_fixture_ids_by_channel[regime];
+  const captures=experiment.capture_at_by_channel[regime];
+  const window=experiment.exposure_window_by_regime[regime];
+  if(!exactKeys(ids,channels)||!exactKeys(captures,channels))
+   fail('RIVAL_IDENTITY_OR_PROJECTION_MISMATCH');
+  if(!exactKeys(window,['first_day','last_day'])||
+     window.first_day!==windows[regime].first_day||
+     window.last_day!==windows[regime].last_day)
+   fail('RIVAL_EXPOSURE_WINDOW_MISMATCH');
+  for(const channel of channels){
+   if(ids[channel]!==`SYNTHETIC:${regime}:${channel}`||
+      captures[channel]!=='2026-10-31T12:00:00Z')
+    fail('RIVAL_IDENTITY_OR_CAPTURE_ASOF_MISMATCH');
+  }
+ }
+ const before=published.BEFORE_REFORM.ELECTRONIC+published.BEFORE_REFORM.PAPER;
+ const after=published.AFTER_REFORM.ELECTRONIC+published.AFTER_REFORM.PAPER;
+ const captureExpansion={before:2*before,after:after};
+ const stableCapture={before:2*before,after:2*after};
+ const assumedIntake={CAPTURE_EXPANSION:{
+    BEFORE_REFORM:captureExpansion.before,AFTER_REFORM:captureExpansion.after},
+   STABLE_CAPTURE:{BEFORE_REFORM:stableCapture.before,
+    AFTER_REFORM:stableCapture.after}};
+ for(const label of labels){
+  const hypothesis=experiment.hypotheses[label];
+  if(!exactKeys(hypothesis,['visible_by_channel','hypothetical_intake_by_regime',
+        'hypothetical_trend_sign'])||
+     !exactKeys(hypothesis.visible_by_channel,regimes)||
+     hypothesis.hypothetical_trend_sign!==expected[label])
+    fail('RIVAL_MECHANISM_OR_TREND_MISMATCH');
+  if(!exactKeys(hypothesis.hypothetical_intake_by_regime,regimes)||
+     regimes.some(r=>hypothesis.hypothetical_intake_by_regime[r]!==assumedIntake[label][r]))
+   fail('RIVAL_LATENT_SCENARIO_NOT_MATCHING_ASSUMPTIONS');
+  for(const regime of regimes){
+   const cells=hypothesis.visible_by_channel[regime];
+   if(!exactKeys(cells,channels))fail('RIVAL_PROJECTION_CHANNEL_MISMATCH');
+   for(const channel of channels){
+    if(!Number.isInteger(cells[channel])||
+       cells[channel]!==published[regime][channel])
+     fail('RIVAL_PROJECTION_CHANNEL_MISMATCH');
+   }
+  }
+ }
+ // Two DGPs, one publication vector. Only the counterfactual *assumption*
+ // changes: capture expands from 1/2 to 1, or capture remains at 1/2.
+ // These totals are invented latent states, never measured risk sets.
+ if(captureExpansion.before!==captureExpansion.after||
+    stableCapture.after<=stableCapture.before)
+  fail('RIVAL_MECHANISMS_NOT_DISCRIMINATING');
+ return {schema:'pfl.synthetic_observational_equivalence_oracle.v1',
+  status:'OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED',
+  same_published_by_channel:true,opposed_synthetic_trend_signs:true,
+  synthetic_published_totals:{before,after},
+  synthetic_intake_under_assumptions:{CAPTURE_EXPANSION:captureExpansion,
+   STABLE_CAPTURE:stableCapture},
+  independent_registry_witness:false,first_public_at:null,
+  source_identity_crosswalk_verified:false,rights_independently_verified:false,
+  real_causal_effect_identified:false,empirical_estimand_admitted:false};
+}
 
 function run(v){
  if(!v||Array.isArray(v)||typeof v!=='object'||
-    Object.keys(v).sort().join(',')!=='assets,cut,scenario,sha256' ||
+    !['assets,cut,experiment,scenario,sha256','assets,cut,scenario,sha256']
+      .includes(Object.keys(v).sort().join(',')) ||
     !Object.hasOwn(cuts,v.cut)||!scenarios.has(v.scenario))fail('SYNTHETIC_INPUT_ONLY');
  if(v.sha256!==ownSha)fail('SYNTHETIC_SHA_MISMATCH');
  if(!Array.isArray(v.assets)||v.assets.length!==2)fail('TWO_SYNTHETIC_ASSETS_REQUIRED');
@@ -38,6 +132,8 @@ function run(v){
  });
  if(verifiedAssets.map(x=>x.id).sort().join(',')!==allowedIds.join(','))
   fail('DUPLICATE_OR_MISSING_ASSET_ROLE');
+ if(!Object.hasOwn(v,'experiment'))fail('SYNTHETIC_RIVAL_WIRE_REQUIRED');
+ const observationalEquivalence=checkSyntheticRivals(v.experiment??null,v.cut);
  const reg=W.empty();
  const base={kind:'SYNTHETIC',state:'TEST_FIXTURE',rights:'SYNTHETIC',
   url:'https://example.invalid/pfl-synthetic-no-external-source'};
@@ -112,6 +208,7 @@ function run(v){
   real_people_scoring_enabled:audit.gate.can_score_real_people,
   raw_rights_blocker:v.scenario==='rights_spoof'&&
    audit.gate.blockers.includes('RIGHTS_NOT_VERIFIED_FOR_REDISTRIBUTION'),
+  observational_equivalence_experiment:observationalEquivalence,
   real_denominator:null,first_public_at_real:null,
   publisher_authenticated:false,source_identity_crosswalk_certified:false};
 }

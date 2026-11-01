@@ -500,3 +500,135 @@ def test_node_ipc_rejects_forged_positive_scientific_authority(monkeypatch):
     monkeypatch.setattr(lab.subprocess,"run",forked_child)
     with pytest.raises(RuntimeError,match="CROSS_LANGUAGE_CONTRACT_DIVERGENCE"):
         lab.report(cut="late")
+
+
+def _controlled_observational_equivalence_node(experiment, cut="late"):
+    """The actual Node CLI bridge, with no originals or outside network."""
+    from politics_fantasy.scientific_integration_lab import _assets, _sha, FAKE_PARITY
+    node=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    return subprocess.run(["node",str(node)],input=json.dumps({
+        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),"experiment":experiment,
+    }),text=True,capture_output=True,timeout=5)
+
+
+def test_controlled_observational_equivalence_two_dgps_one_public_projection():
+    """New E2E capability, not a formerly failing empirical defect."""
+    early=report(cut="early")
+    late=report(cut="late")
+    assert early["capture_models"] is None
+    assert early["warehouse"]["observational_equivalence_experiment"] is None
+    assert late["capture_models"]["same_visible_projection"] is True
+    assert late["capture_models"]["different_hypothetical_trend_sign"] is True
+    oracle=late["warehouse"]["observational_equivalence_experiment"]
+    assert oracle["schema"]=="pfl.synthetic_observational_equivalence_oracle.v1"
+    assert oracle["status"]=="OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED"
+    assert oracle["same_published_by_channel"] is True
+    assert oracle["opposed_synthetic_trend_signs"] is True
+    assert oracle["synthetic_published_totals"]=={"before":10,"after":20}
+    assert oracle["synthetic_intake_under_assumptions"]=={
+        "CAPTURE_EXPANSION":{"before":20,"after":20},
+        "STABLE_CAPTURE":{"before":20,"after":40}}
+    assert oracle["empirical_estimand_admitted"] is False
+    assert oracle["real_causal_effect_identified"] is False
+    assert oracle["independent_registry_witness"] is False
+    assert oracle["first_public_at"] is None
+    assert oracle["rights_independently_verified"] is False
+    assert oracle["source_identity_crosswalk_verified"] is False
+    assert late["independent_all_received_denominator"] is None
+    assert late["rights"]["reuse_admitted"] is False
+    assert late["R5"]=="STOP_R5"
+
+
+@pytest.mark.parametrize("falsifier,expected_error", [
+    ("same_aggregate_different_channel","RIVAL_PROJECTION_CHANNEL_MISMATCH"),
+    ("source_id_collision","RIVAL_IDENTITY_OR_CAPTURE_ASOF_MISMATCH"),
+    ("capture_after_asof","RIVAL_IDENTITY_OR_CAPTURE_ASOF_MISMATCH"),
+    ("exposure_window_shift","RIVAL_EXPOSURE_WINDOW_MISMATCH"),
+    ("latent_report_drift","RIVAL_LATENT_SCENARIO_NOT_MATCHING_ASSUMPTIONS"),
+    ("rights_claim","UNTRUSTED_OR_FUTURE_RIVAL_WITNESS"),
+    ("first_public_claim","UNTRUSTED_OR_FUTURE_RIVAL_WITNESS"),
+    ("opposite_trend_falsified","RIVAL_MECHANISM_OR_TREND_MISMATCH"),
+])
+def test_controlled_observational_equivalence_rejects_adversarial_wire(
+        falsifier, expected_error):
+    if shutil.which("node") is None:
+        pytest.skip("Node not installed")
+    from politics_fantasy.scientific_integration_lab import _capture_rivals, CUTS
+    _,wire=_capture_rivals(CUTS["late"])
+    wire=json.loads(json.dumps(wire))
+    if falsifier=="same_aggregate_different_channel":
+        # BEFORE total is still 10; a total-only oracle would miss the swap.
+        cells=wire["hypotheses"]["STABLE_CAPTURE"]["visible_by_channel"]["BEFORE_REFORM"]
+        cells["PAPER"]-=1;cells["ELECTRONIC"]+=1
+    elif falsifier=="source_id_collision":
+        wire["synthetic_fixture_ids_by_channel"]["BEFORE_REFORM"]["PAPER"]="SYNTHETIC:PAN24"
+    elif falsifier=="capture_after_asof":
+        wire["capture_at_by_channel"]["AFTER_REFORM"]["PAPER"]="2026-11-02T12:00:00Z"
+    elif falsifier=="exposure_window_shift":
+        wire["exposure_window_by_regime"]["AFTER_REFORM"]["last_day"]="2026-10-29"
+    elif falsifier=="latent_report_drift":
+        wire["hypotheses"]["CAPTURE_EXPANSION"]["hypothetical_intake_by_regime"][
+            "AFTER_REFORM"]=40
+    elif falsifier=="rights_claim":
+        wire["reuse_rights_independently_verified"]=True
+    elif falsifier=="first_public_claim":
+        wire["first_public_at"]="2026-09-01T00:00:00Z"
+    else:
+        wire["hypotheses"]["STABLE_CAPTURE"]["hypothetical_trend_sign"]="EQUAL_UNDER_ASSUMPTIONS"
+    result=_controlled_observational_equivalence_node(wire)
+    assert result.returncode != 0
+    assert expected_error in result.stderr
+    assert result.stdout == ""
+
+
+def test_controlled_observational_equivalence_blocks_early_lookahead():
+    if shutil.which("node") is None:
+        pytest.skip("Node not installed")
+    from politics_fantasy.scientific_integration_lab import _capture_rivals, CUTS
+    _,wire=_capture_rivals(CUTS["late"])
+    result=_controlled_observational_equivalence_node(wire,cut="early")
+    assert result.returncode != 0
+    assert "FUTURE_RIVAL_PROJECTION_AT_EARLY_CUT" in result.stderr
+
+
+def test_controlled_observational_equivalence_reaches_http_and_fails_closed(
+        tmp_path, monkeypatch):
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            res=conn.getresponse()
+            status=res.status;cache=res.getheader("Cache-Control")
+            body=json.loads(res.read());conn.close()
+            return status,cache,body
+        early=get("early")
+        late=get("late")
+        assert early[0]==late[0]==200
+        assert early[1]==late[1]=="no-store"
+        assert early[2]["warehouse"]["observational_equivalence_experiment"] is None
+        assert late[2]["warehouse"]["observational_equivalence_experiment"][
+            "status"]=="OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED"
+        assert late[2]["independent_all_received_denominator"] is None
+        assert late[2]["R5"]=="STOP_R5"
+        actual=lab._capture_rivals
+        def mismatched_projection(at):
+            comparison,wire=actual(at)
+            wire=json.loads(json.dumps(wire))
+            wire["hypotheses"]["STABLE_CAPTURE"]["visible_by_channel"][
+                "BEFORE_REFORM"]["PAPER"]-=1
+            wire["hypotheses"]["STABLE_CAPTURE"]["visible_by_channel"][
+                "BEFORE_REFORM"]["ELECTRONIC"]+=1
+            return comparison,wire
+        monkeypatch.setattr(lab,"_capture_rivals",mismatched_projection)
+        broken=get("late")
+        assert broken[0]==503
+        assert broken[1]=="no-store"
+        assert broken[2]=={"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"}
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)

@@ -408,3 +408,83 @@ externo de solicitudes con denegadas/pendientes. La [FAQ de datos.gob.es](https:
 documenta que, para ese portal, `Recibido` aún no es público. No se han
 abierto distribuciones, originales, editores condicionados ni PII.
 **`NO_DIFFERENTIAL_ALL_RECEIVED_SOURCE_STOP_LOCAL_R5`, 0/6 gates, 0 AB**.
+
+## PR22 · experimento controlado de equivalencia observacional entre Python, Node y HTTP (NONCYCLE)
+
+**Objeto incremental, no reparación de un bug previo.** El comparador PR18
+`compare_capture_hypotheses` ya demostraba dentro de Python que dos hipótesis
+con las mismas publicaciones por canal admitían signos distintos de entradas
+latentes. La nueva capacidad comprueba **independientemente en el proceso Node**
+que el conjunto de cuatro celdas, ventanas, relojes de captura, identidades
+de fixture y escenarios hipotéticos derivados de PR18 **es exactamente el
+mismo** antes de exponerlo por el consumidor Python y la ruta HTTP existente.
+Un hash autoconsistente o coincidencia de sumas no equivale a este contrato.
+
+El diseño experimental es estrictamente ficticio: **antes de la reforma**
+(`01/09–30/09/2026`) aparecen ocho publicaciones `PAPER` y dos `ELECTRONIC`;
+**después** (`01/10–30/10/2026`) ocho `PAPER` y doce `ELECTRONIC`.
+Ambos escenarios comparten por completo estas cuatro observaciones y el
+instante de captura local artificial `31/10/2026 12:00Z`. Cambia únicamente
+el mecanismo hipotético de observación, no los datos visibles:
+
+| Protocolo rival sintético | Cobertura supuesta antes | Cobertura supuesta después | Entradas ficticias implícitas antes → después | Diagnóstico condicionado |
+| --- | --- | --- | --- | --- |
+| `CAPTURE_EXPANSION` | 1/2 | 1 | 20 → 20 | Sin cambio en el total latente construido |
+| `STABLE_CAPTURE` | 1/2 | 1/2 | 20 → 40 | Crecimiento en el total latente construido |
+
+**La igualdad de las publicaciones no identifica qué mecanismo es correcto.**
+Los pares 20→20 y 20→40 son **estados latentes inventados bajo supuestos
+deterministas**, no estimaciones de solicitudes reales, totales de registros,
+efectos de reforma, tasas de éxito o denominadores certificados. Un testigo
+discriminante exigiría un inventario independiente de todas las entradas de
+la misma institución, régimen, ventana y canal, junto con el mecanismo de
+publicación/captura, derechos por distribución y fechas históricas
+atestadas. Ninguno está presente aquí.
+
+**Circuito real reutilizado:** `_capture_rivals()` sigue invocando los dos
+`audit_regime_capture` y `compare_capture_hypotheses` de PR18. Construye un
+recibo **solamente sintético de desafío IPC**, que incluye por hipótesis las
+cuatro publicaciones, conteos latentes condicionales, signos, IDs de fixture,
+ventanas, capturas, `first_public_at=null`, `independent_registry_total=null`
+y derechos/crosswalk no acreditados. `scientific_integration_warehouse.mjs`
+valida el esquema exacto, aplica un oráculo Node determinista *separado* de
+los cálculos Python, exige todos los estratos y recalcula las dos parejas
+latentes bajo las fracciones indicadas. Python vuelve a validar el objeto
+Node completo y solo entonces responde en
+`GET /api/scientific-integration-lab?cut=late`. En `cut=early` el resultado
+del experimento es `null`; una proyección futura enviada al Node es rechazada.
+
+Los IDs `SYNTHETIC:BEFORE_REFORM:PAPER`, etc. identifican **estratos del
+experimento**, no los activos `SYNTHETIC:PAN24`, `SYNTHETIC:IAEN24`, los
+actores `SYN:ACTOR` ni los episodios de registro `SYNTHETIC:ENTRY*`.
+La comprobación de igualdad de IDs dentro del fixture **no crea un crosswalk
+interinstitucional** ni una fuente independiente. Tampoco altera los
+recibos `FileReceipt`, la reconciliación de censura, las negativas,
+el sistema de roles, ni el gate de reutilización de PR16.
+
+**Oráculos nuevos, sin fingir PREPATCH de defecto inexistente:** el test
+`test_controlled_observational_equivalence_two_dgps_one_public_projection`
+prueba que las cuatro publicaciones son iguales y los signos latentes
+opuestos. Ocho variantes adversariales modifican por separado: distribución
+por canal con el mismo total, identidad de fuente sustituyéndola por PAN24,
+captura futura, ventana de exposición, conteo latente incoherente, bandera
+de derechos, declaración de primera publicación y signo hipotético. Node
+debe rechazar todas; otra prueba rechaza el desafío tardío en el corte temprano.
+El test de ruta HTTP local comprueba `200` para los dos horizontes,
+`null` temprano, diagnóstico sintético tardío, `no-store`, y `503` al
+inyectar una deriva de canal que mantiene la misma suma total. Ningún test
+consume archivos originales o PII.
+
+**QA exclusiva de once pruebas nuevas:**
+`PYTHONPATH=src python -m pytest -q tests/test_synthetic_scientific_integration_lab.py -k controlled_observational_equivalence`
+→ **11/11 PASS**, con **30 tests históricos deseleccionados**. `node --check`
+del puente, `py_compile` del módulo integrado y `git diff --check`: PASS.
+El primer intento de pytest sin `PYTHONPATH` no colectó ninguna prueba
+(`ModuleNotFoundError`); no se presentó como rojo prepatch científico.
+No se repitieron las suites completas históricas de Node ni PP04.
+
+**Resultado:** nueva capacidad de falsación transversal de dos mecanismos
+ficticios, **NONCYCLE**, sin atestación de primera publicidad, sin fuente
+de derechos, sin denominador de todas las entradas, sin estimando empírico,
+sin scoring y sin promoción de los sistemas externos. **R5 STOP,
+0/6 gates, 0 AB científicos; no main, CI ni despliegue.**

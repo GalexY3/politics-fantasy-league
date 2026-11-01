@@ -335,7 +335,7 @@ def _denominator(at: str) -> dict:
         query_as_of=at,locally_known_safe_by=EARLY_CAPTURE)
 
 
-def _capture_rivals(at: str) -> dict:
+def _capture_rivals(at: str) -> tuple[dict, dict]:
     def cells(pre: Fraction,post: Fraction):
         def cell(regime,channel,count):
             before=regime=="BEFORE_REFORM"
@@ -356,12 +356,59 @@ def _capture_rivals(at: str) -> dict:
             "legal_calendar_zone":"Europe/Madrid"}
     equal=audit_regime_capture(strata=cells(Fraction(1,2),Fraction(1,1)),**params)
     rising=audit_regime_capture(strata=cells(Fraction(1,2),Fraction(1,2)),**params)
-    return compare_capture_hypotheses(left=equal,right=rising)
+    comparison=compare_capture_hypotheses(left=equal,right=rising)
+    if (comparison["same_visible_projection"] is not True
+            or comparison["different_hypothetical_trend_sign"] is not True
+            or comparison["real_reform_effect_identified"] is not False):
+        raise RuntimeError("CONTROLLED_RIVAL_DESIGN_NOT_OBSERVATIONALLY_EQUIVALENT")
+    # This is a bounded engineering challenge for a SECOND computation of the
+    # SAME invented observation, not an independently observed source. The
+    # identical synthetic fixture keys do not correspond to the PAN/IAEN
+    # documentary assets, the institutional actors or a registry of entrants.
+    hypotheses={
+        label:{
+            "visible_by_channel":{
+                regime:result["periods"][regime]["visible_by_channel"]
+                for regime in ("BEFORE_REFORM","AFTER_REFORM")},
+            "hypothetical_intake_by_regime":{
+                regime:result["periods"][regime]["hypothetical_intake_lower"]
+                for regime in ("BEFORE_REFORM","AFTER_REFORM")},
+            "hypothetical_trend_sign":result["hypothetical_trend_sign"],
+        }
+        for label,result in (("CAPTURE_EXPANSION",equal),
+                             ("STABLE_CAPTURE",rising))
+    }
+    if any(result["periods"][regime]["hypothetical_intake_lower"] !=
+           result["periods"][regime]["hypothetical_intake_upper"]
+           for result in (equal,rising)
+           for regime in ("BEFORE_REFORM","AFTER_REFORM")):
+        raise RuntimeError("CONTROLLED_RIVAL_ASSUMPTION_NOT_EXACT")
+    experiment={
+        "schema":"pfl.synthetic_observational_equivalence_wire.v1",
+        "as_of":at,
+        "hypotheses":hypotheses,
+        "synthetic_fixture_ids_by_channel":{
+            regime:equal["periods"][regime]["synthetic_fixture_ids_by_channel"]
+            for regime in ("BEFORE_REFORM","AFTER_REFORM")},
+        "capture_at_by_channel":{
+            regime:equal["periods"][regime]["capture_at_by_channel"]
+            for regime in ("BEFORE_REFORM","AFTER_REFORM")},
+        "exposure_window_by_regime":{
+            regime:equal["periods"][regime]["exposure_window"]
+            for regime in ("BEFORE_REFORM","AFTER_REFORM")},
+        "first_public_at":None,
+        "independent_registry_total":None,
+        "source_identity_crosswalk_verified":False,
+        "reuse_rights_independently_verified":False,
+    }
+    return comparison,experiment
 
 
-def _node_warehouse(*, cut: str, scenario: str, assets: list[dict]) -> dict:
+def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
+                    experiment: dict | None) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
-    request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),"assets":assets}
+    request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
+             "assets":assets,"experiment":experiment}
     try:
         proc=subprocess.run(["node",str(runner)],input=json.dumps(request),
             text=True,capture_output=True,timeout=5,check=False)
@@ -384,6 +431,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict]) -> dict:
         "rights_independent_attestation_available", "real_people_scoring_enabled",
         "raw_rights_blocker", "real_denominator", "first_public_at_real",
         "publisher_authenticated", "source_identity_crosswalk_certified",
+        "observational_equivalence_experiment",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -403,7 +451,24 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict]) -> dict:
                    for k in ("roles_visible_as_of", "roles_at_valid_day_and_cut",
                              "decisions_visible_as_of", "source_count_visible_as_of"))
             or data.get("assets_verified_by_bytes")!=[
-                {"id":a["id"],"sha256":a["sha256"]} for a in assets]):
+                {"id":a["id"],"sha256":a["sha256"]} for a in assets]
+            or data.get("observational_equivalence_experiment") !=
+               (None if cut == "early" else {
+                   "schema":"pfl.synthetic_observational_equivalence_oracle.v1",
+                   "status":"OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED",
+                   "same_published_by_channel":True,
+                   "opposed_synthetic_trend_signs":True,
+                   "synthetic_published_totals":{"before":10,"after":20},
+                   "synthetic_intake_under_assumptions":{
+                       "CAPTURE_EXPANSION":{"before":20,"after":20},
+                       "STABLE_CAPTURE":{"before":20,"after":40}},
+                   "independent_registry_witness":False,
+                   "first_public_at":None,
+                   "source_identity_crosswalk_verified":False,
+                   "rights_independently_verified":False,
+                   "real_causal_effect_identified":False,
+                   "empirical_estimand_admitted":False,
+               })):
         raise RuntimeError("CROSS_LANGUAGE_CONTRACT_DIVERGENCE")
     # SHA/identity details are checked SERVER-SIDE but must not be exposed at
     # an earlier knowledge cut. The bridge is never a second source witness.
@@ -431,7 +496,9 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
                                  episodes=episodes,procedural=procedure,
                                  receipts=receipts)
     denominator=_denominator(at)
-    warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets)
+    rivals,experiment=_capture_rivals(at) if cut=="late" else (None,None)
+    warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
+                              experiment=experiment)
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,
@@ -448,7 +515,6 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
             "count_is_source_internal_only","two_parsers_are_independent_sources")}
     else:
         pp04=None
-    rivals=_capture_rivals(at) if cut=="late" else None
     lineage=institutional_report(as_of=at,cut_on="2023-12-31")
     if (denominator.get("independent_denominator_certified") is not False
             or lineage.get("legal_identity_authenticated") is not False):
