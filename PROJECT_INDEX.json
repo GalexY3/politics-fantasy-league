@@ -10,12 +10,12 @@
     "data": 34,
     "evidence": 378,
     "experimental_code": 39,
-    "operations": 108,
+    "operations": 109,
     "reference": 96,
-    "research": 1995,
-    "runtime": 110,
+    "research": 1996,
+    "runtime": 112,
     "task_queue": 120,
-    "verification": 261
+    "verification": 267
   },
   "files": [
     {
@@ -11384,6 +11384,11 @@
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
     },
     {
+      "path": "research/PFL_POLICY_PUBLICAS_20261031/PP04C_BRANCH_PARSER_RECONCILIATION_20261101.md",
+      "category": "research",
+      "purpose": "Preguntas, campañas, análisis y resultados de investigación"
+    },
+    {
       "path": "research/PFL_POLICY_PUBLICAS_20261031/PP04_ORIGINALS_AND_SOURCE_LOCAL_INVENTORY_REPORT.md",
       "category": "research",
       "purpose": "Preguntas, campañas, análisis y resultados de investigación"
@@ -12254,6 +12259,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/pp04_extract_authorized_local_originals.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/progress_report.mjs",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12639,12 +12649,22 @@
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
+      "path": "src/politics_fantasy/pan_iaen_cross_parser_audit.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
       "path": "src/politics_fantasy/pan_iaen_original_frame.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
     {
       "path": "src/politics_fantasy/pan_iaen_preaccess_gate.py",
+      "category": "runtime",
+      "purpose": "Aplicación, reglas y almacenamiento del prototipo"
+    },
+    {
+      "path": "src/politics_fantasy/pan_iaen_source_block_parser.py",
       "category": "runtime",
       "purpose": "Aplicación, reglas y almacenamiento del prototipo"
     },
@@ -15750,6 +15770,36 @@
     },
     {
       "path": "tests/test_political_universe.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_ambiguous_status_falsifiers.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_block_parser_edge_falsifiers.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_dual_parser_compatibility.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_roman_ordinal_status_regression.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_source_block_parser_original_tests.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_pp04_unplanned_editorial_bullet_falsifiers.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
