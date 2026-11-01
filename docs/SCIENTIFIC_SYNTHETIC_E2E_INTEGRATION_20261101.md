@@ -1308,3 +1308,102 @@ Recibo técnico de la capacidad: `docs/S8_SYNTHETIC_SCIENTIFIC_UI_RECEIPT.json`.
 Su resultado es ingeniería sintética revisable en la PR #22 DRAFT, sin CI ni
 fusión a `main`; el estado de tests y los SHA efectivos se registran en el
 recibo después de la verificación local.
+
+## PR22 · S8.1: cierre de regresiones IPC históricas e interfaz E2E real (NONCYCLE)
+
+**Alcance y base.** Checkout aislado `PFL-SCIENTIFIC-E2E-20261101`, HEAD inicial
+`774acbcad05bb3814fce4691978e5b2c4c326e21`, rama de PR #22 DRAFT.
+La auditoría de contexto comprobó los 3.307 archivos rastreados por SHA,
+con índice válido; ese inventario de hashes **no supone lectura semántica
+de las 3.307 rutas**. Se examinaron las funciones de montaje de IPC y los
+contratos S4–S7 necesarios para los falsadores, el servicio HTTP y el JS
+de laboratorio y su motor de interacción. No se inspeccionó `PFL-trabajo`.
+
+### Los siete PREPATCH reproducidos (solo tests/harness)
+
+Antes de editar, se ejecutaron **exactamente los siete tests anteriormente
+fallidos**, con **7 FAIL / 156 deseleccionados**. Cuatro devolvían
+`TYPED_CHAIN_WIRE_REQUIRED`, uno `B0_B3_WIRE_REQUIRED`, uno
+`WITNESS_MATRIX_WIRE_REQUIRED`. La séptima aserción buscaba la subcadena
+`synthetic_binary` en el JSON agregado de S3 y la prohibía aunque la etiqueta
+de procedencia **`INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES`**
+es un texto público, seguro y no contiene filas.
+
+La reparación se limitó a `tests/test_synthetic_scientific_integration_lab.py`:
+el helper `_complete_s7_node_test_request` usa **los factories de los fixtures
+Python reales** para completar exactamente el IPC exigido por el ejecutable
+Node S4–S7 y acepta sustituir el único contrato bajo falsación. Los wrappers
+standalone S3, bitemporal, cadena tipada, B0/B3 y matriz S6 invocan ahora
+el **mismo Node real**, sin modificar su allowlist ni introducir simuladores
+de oráculos. La aserción S3 comprueba que no haya un objeto de
+`observations` de filas binarias ni claves privadas sintéticas, y exige
+conservar la atribución agregada segura. La batería específica pasó a
+**7 PASS / 156 deseleccionados**. Esta corrección es de **harness de QA
+obsoleto**, no un fallo de producción ni un ciclo AB.
+
+### End-to-end por HTTP y Chrome nativo
+
+`tests/test_s8_closeout_live_http.py` arranca un `ThreadingHTTPServer` de
+`handler_factory` sobre `127.0.0.1` y una base SQLite **exclusivamente
+ficticia y temporal**, con `seed_demo`. El proceso real Python llama a
+`scripts/scientific_integration_warehouse.mjs` mediante su subprocess Node
+original. El cliente `tests/test_s8_closeout_http_ui.mjs` ejecuta el
+**`web/app.js` distribuido** dentro de Node VM; únicamente el DOM y las
+descargas son sustitutos, mientras `fetch` y los JSON son los **HTTP reales**.
+Se verifican `as_of` early/late, `valid_at` institucional y de crónica,
+primera publicidad inventada filtrada sin anticipar capturas, S3 racional,
+B0/B3 y los veinte S7 con `NEITHER`/`CONFLICT`/`INADMISSIBLE`, catálogo
+2/6, no fuga de ID/SHA de fuentes internas, ocho escenarios cerrados
+de dry-run con rechazo R5, JSON exportado con SHA exacto y alteración
+adversarial del SHA **después** de recibir la respuesta HTTP auténtica.
+
+Otra prueba induce deliberadamente un drift en `stdout` del Node **real**
+después de computar, cambiando solo el resultado `S7_NEITHER_APPROVED`.
+El servidor debe entregar 503 con `Cache-Control: no-store` y error
+`SYNTHETIC_BRIDGE_UNAVAILABLE`, y el JS debe ocultar resultados, sin
+fallback científico. Los tests existentes de HTTP 503 adversarial también
+se reejecutaron en la suite Python íntegra.
+
+`tests/test_s8_closeout_chrome_cdp.mjs` añadió click-through **de navegador
+real**: Chrome Windows headless, CDP por WebSocket nativo Node v24,
+**sin Playwright/Selenium ni instalación adicional**, perfil y directorio
+de descargas temporales aislados. Se ejecutaron DOM y botones reales,
+recalculando cortes, filtros, vistas bitemporales, dry-run y exportación
+con WebCrypto. Después se alteró la **respuesta de exportación en tránsito
+en el propio navegador de prueba**, sin tocar el servidor: el UI mostró
+`Exportación bloqueada`. El test capturó PNG en memoria y calculó su
+SHA-256 para recibo temporal; no se incorporó screenshot al repositorio.
+Una prueba headless con estos eventos **no certifica** accesibilidad
+integral ni equivalencia funcional con todos los navegadores/dispositivos.
+
+**QA de cierre:** suite Python de los contratos existentes y tres E2E nuevos
+**166 PASS / 0 FAIL**; suite combinada UI Node S8/R21 **7 PASS / 0 FAIL**;
+validación sintáctica Node y `git diff --check` PASS. El registro del test
+E2E acredita que Chrome visitó localmente `http://127.0.0.1:<puerto>`, no
+que se desplegara el producto en internet. Los siete FAIL históricos dejan
+de estar pendientes **solo respecto a ese checkout y estos contratos**;
+los controles negativos 503 permanecen vigentes. No se modificó un solo
+archivo de producción ni se relajó Node, Python, el HTTP o las políticas
+de derechos/privacidad.
+
+### Registro versionado, límites y siguiente puerta
+
+El catálogo operativo S8 existente conserva `descriptor_recipe`, SHA de
+**bytes del descriptor público ficticio** distintos de los SHA de originales
+internos que el backend comprueba sin exponerlos. Sus vistas bitemporales
+ya usan conocimiento `as_of` y validez `valid_at` separados, y la tabla
+consultable contiene fuente local **solo mediante un descriptor público
+anónimo**: no ofrece una API de consulta arbitraria por ID original o de
+crosswalk entre fuentes. La vía de admisión sigue siendo `GET` de ocho
+fixtures cerrados con `status=REJECTED_R5`: **no se implementa importación
+real, POST genérico, carga de originales ni persistencia de fuentes nuevas**.
+Ese acceso adicional requiere en el futuro identidad/cobertura,
+derechos por recurso/finalidad, autenticación, versiones, temporalidad,
+`first_public_at` real y denominador independiente; sus atributos no
+se han certificado por el mero paso de pruebas sintéticas. Por eso no
+se amplía el catálogo, el grafo ni el gate actual de forma redundante.
+
+Recibo de esta continuación: `docs/S8_SYNTHETIC_CLOSEOUT_RECEIPT.json`.
+Esta actuación es **NONCYCLE, R5 STOP, 0/6 gates, 0 AB científicos**,
+sin originales, PII, términos, acceso web externo, CI, merge, despliegue ni
+cambio de la clasificación del hito a `DONE`.

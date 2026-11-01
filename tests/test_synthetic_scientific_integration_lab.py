@@ -654,20 +654,45 @@ def test_node_ipc_rejects_forged_positive_scientific_authority(monkeypatch):
         lab.report(cut="late")
 
 
-def _controlled_observational_equivalence_node(experiment, cut="late"):
-    """The actual Node CLI bridge, with no originals or outside network."""
+def _complete_s7_node_test_request(*, cut="late", **overrides):
+    """Supply CURRENT closed S4–S7 IPC prerequisites to standalone test callers.
+
+    Each focused test can replace exactly the fixture it is falsifying. Other
+    inputs are generated from the same production Python fixture factories;
+    the real Node executable still independently rejects any tampering. This
+    repairs stale test harness assembly, not production validation rules.
+    """
     from politics_fantasy.scientific_integration_lab import (
-        _assets, _sha, FAKE_PARITY, _bitemporal_fixture,
-        _partial_identification_fixture,
+        _assets,_sha,FAKE_PARITY,_bitemporal_fixture,
+        _partial_identification_fixture,_capture_rivals,CUTS,
+        _typed_institutional_chain_fixture,_b0_b3_fixture,
+        _b0_b3_witness_matrix_fixture,_s7_witness_sets_fixture,
     )
-    node=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    return subprocess.run(["node",str(node)],input=json.dumps({
+    chain=_typed_institutional_chain_fixture()
+    matrix=_b0_b3_witness_matrix_fixture(chain)
+    request={
         "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),"experiment":experiment,
+        "assets":_assets(),
+        "experiment":_capture_rivals(CUTS["late"])[1] if cut=="late" else None,
         "timeline":_bitemporal_fixture(),
         "partial_identification":(
             _partial_identification_fixture() if cut=="late" else None),
-    }),text=True,capture_output=True,timeout=5)
+        "chain":chain,"b0_b3":_b0_b3_fixture(chain),
+        "witness_matrix":matrix,
+        "s7_witness_sets":_s7_witness_sets_fixture(chain,matrix),
+    }
+    if not set(overrides).issubset(request):
+        raise AssertionError("UNDECLARED_TEST_IPC_OVERRIDE")
+    request.update(overrides)
+    return request
+
+
+def _controlled_observational_equivalence_node(experiment, cut="late"):
+    """The actual Node CLI bridge, with no originals or outside network."""
+    node=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    return subprocess.run(["node",str(node)],input=json.dumps(
+        _complete_s7_node_test_request(cut=cut,experiment=experiment),
+        separators=(",",":")),text=True,capture_output=True,timeout=6)
 
 
 def test_controlled_observational_equivalence_two_dgps_one_public_projection():
@@ -819,18 +844,10 @@ def test_controlled_observational_equivalence_reaches_http_and_fails_closed(
 
 def _bitemporal_actor_event_node(wire,cut="late"):
     """Invoke the existing actual JS warehouse CLI with Python fixture bytes."""
-    from politics_fantasy.scientific_integration_lab import (
-        _assets,_capture_rivals,_sha,FAKE_PARITY,CUTS,
-        _partial_identification_fixture,
-    )
     runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    experiment=_capture_rivals(CUTS["late"])[1] if cut=="late" else None
-    return subprocess.run(["node",str(runner)],input=json.dumps({
-        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),"experiment":experiment,"timeline":wire,
-        "partial_identification":(
-            _partial_identification_fixture() if cut=="late" else None),
-    }),text=True,capture_output=True,timeout=5)
+    return subprocess.run(["node",str(runner)],input=json.dumps(
+        _complete_s7_node_test_request(cut=cut,timeline=wire),
+        separators=(",",":")),text=True,capture_output=True,timeout=6)
 
 
 def test_bitemporal_actor_event_same_fixture_python_node_two_knowledge_cuts():
@@ -971,16 +988,10 @@ def test_bitemporal_actor_event_http_aggregates_redacted_and_ipc_503(tmp_path,mo
 
 def _s3_real_node(wire, *, cut="late"):
     """Actual existing Node program, not a mocked rational implementation."""
-    from politics_fantasy.scientific_integration_lab import (
-        _assets, _capture_rivals, _bitemporal_fixture, _sha, FAKE_PARITY, CUTS,
-    )
     runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    experiment=_capture_rivals(CUTS["late"])[1] if cut=="late" else None
-    return subprocess.run(["node",str(runner)],input=json.dumps({
-        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),"experiment":experiment,
-        "timeline":_bitemporal_fixture(),"partial_identification":wire,
-    }),text=True,capture_output=True,timeout=5)
+    return subprocess.run(["node",str(runner)],input=json.dumps(
+        _complete_s7_node_test_request(cut=cut,partial_identification=wire),
+        separators=(",",":")),text=True,capture_output=True,timeout=6)
 
 
 def test_s3_new_exact_partial_identification_python_node_and_http_projection():
@@ -1116,7 +1127,12 @@ def test_s3_ratio_math_drift_from_real_node_forces_http_503(tmp_path,monkeypatch
         oracle=late[2]["warehouse"]["partial_identification_oracle"]
         assert oracle["change_bounds"]=={"lower":"-11/52","upper":"47/119"}
         serialized=json.dumps(late[2]).lower()
-        assert "synthetic_binary" not in serialized  # No row-level binary data.
+        # The S3 label `INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES`
+        # is public *aggregate provenance*. Check private/row-level leakage,
+        # never prohibit an innocuous substring of that approved label.
+        assert "independent_synthetic_binary_s3_not_chain_outcomes" in serialized
+        assert "observations\": {" not in serialized
+        assert "synthetic_binary_case_id" not in serialized
         assert "observed_negative_is_administrative_failure\": false" in serialized
         assert late[2]["independent_all_received_denominator"] is None
         assert late[2]["R5"]=="STOP_R5"
@@ -1249,20 +1265,10 @@ def test_followup_type_drift_must_fail_closed_actual_http_prepatch(
 
 def _typed_institutional_chain_real_node(wire,cut="late"):
     """The unchanged Node executable, with all *other* established fixtures."""
-    from politics_fantasy.scientific_integration_lab import (
-        _assets,_capture_rivals,_bitemporal_fixture,
-        _partial_identification_fixture,_sha,FAKE_PARITY,CUTS,
-    )
     runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    return subprocess.run(["node",str(runner)],input=json.dumps({
-        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),"experiment":(
-            _capture_rivals(CUTS["late"])[1] if cut=="late" else None),
-        "timeline":_bitemporal_fixture(),
-        "partial_identification":(
-            _partial_identification_fixture() if cut=="late" else None),
-        "chain":wire,
-    }),text=True,capture_output=True,timeout=5)
+    return subprocess.run(["node",str(runner)],input=json.dumps(
+        _complete_s7_node_test_request(cut=cut,chain=wire),
+        separators=(",",":")),text=True,capture_output=True,timeout=6)
 
 
 def test_typed_institutional_chain_is_new_noncycle_five_family_replay():
@@ -1429,19 +1435,8 @@ def test_typed_institutional_chain_real_http_redacts_and_503_on_node_drift(
 
 def _b0_b3_actual_node(wire, *, cut="late"):
     """Only the existing process bridge; no second JS implementation in tests."""
-    from politics_fantasy.scientific_integration_lab import (
-        _assets,_capture_rivals,_bitemporal_fixture,_partial_identification_fixture,
-        _typed_institutional_chain_fixture,_sha,FAKE_PARITY,CUTS,
-    )
     runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    request={"cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),
-        "experiment":(_capture_rivals(CUTS["late"])[1] if cut=="late" else None),
-        "timeline":_bitemporal_fixture(),
-        "partial_identification":(
-            _partial_identification_fixture() if cut=="late" else None),
-        "chain":_typed_institutional_chain_fixture(),
-        "b0_b3":wire}
+    request=_complete_s7_node_test_request(cut=cut,b0_b3=wire)
     return subprocess.run(["node",str(runner)],input=json.dumps(
         request,separators=(",",":")),text=True,capture_output=True,timeout=5)
 
@@ -1710,19 +1705,8 @@ def test_b0_b3_real_http_redacted_and_ipc_drift_fails_closed_503(tmp_path,monkey
 
 def _witness_matrix_actual_node(wire,cut="late"):
     """Direct existing JS program: fixed independent witness bytes, no originals."""
-    from politics_fantasy.scientific_integration_lab import (
-        _assets,_capture_rivals,_bitemporal_fixture,_partial_identification_fixture,
-        _typed_institutional_chain_fixture,_b0_b3_fixture,_sha,FAKE_PARITY,CUTS,
-    )
-    chain=_typed_institutional_chain_fixture()
     script=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
-    payload={"cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
-        "assets":_assets(),"experiment":(
-            _capture_rivals(CUTS["late"])[1] if cut=="late" else None),
-        "timeline":_bitemporal_fixture(),"chain":chain,
-        "partial_identification":(
-            _partial_identification_fixture() if cut=="late" else None),
-        "b0_b3":_b0_b3_fixture(chain),"witness_matrix":wire}
+    payload=_complete_s7_node_test_request(cut=cut,witness_matrix=wire)
     return subprocess.run(["node",str(script)],input=json.dumps(
         payload,separators=(",",":")),text=True,capture_output=True,timeout=6)
 
