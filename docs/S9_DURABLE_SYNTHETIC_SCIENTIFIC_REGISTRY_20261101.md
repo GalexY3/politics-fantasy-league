@@ -27,9 +27,9 @@ eventos de jugadores. Su creación es idempotente y siempre carga las mismas
 siete distribuciones sintéticas cerradas. Un registro de admisión de fuentes
 externas no existe; `POST /api/scientific-registry` no está permitido.
 
-## Estructura SQLite v1→v2
+## Estructura SQLite v1→v2 (fase S9 publicada inicialmente)
 
-El esquema tiene `PRAGMA user_version=2`, `registry_meta` con identificador
+La fase inicial S9 se publicó con `PRAGMA user_version=2`, `registry_meta` con identificador
 de fixture y SHA del manifiesto, `schema_history` con versiones 1 y 2, tabla
 `distribution` de documentos con BLOB UTF-8, tabla `typed_fact` de registros
 por emisor y clave tipada y tabla `typed_edge` de enlaces declarados dentro
@@ -165,3 +165,91 @@ medición de efectos, despliegue, CI ni merge de `main`.
 
 El recibo técnico con SHA de los archivos, suite y HEAD se conserva en
 `docs/S9_DURABLE_SYNTHETIC_REGISTRY_RECEIPT.json`, una vez concluido el QA.
+
+## Continuación S9.1 · GAP #1: historial cerrado de preadmisión (SQLite v3)
+
+**Naturaleza:** nueva capacidad funcional, NONCYCLE. El problema observado
+era que las ocho consultas `synthetic_candidate_admission` de S8 devolvían
+`REJECTED_R5` sin dejar una historia duradera de su *evaluación* en S9.
+No existía un defecto de producción PREPATCH que justificara declarar
+tests de regresión rojos. La incorporación S9.1 no abre fuentes, derechos
+ni validadores externos.
+
+El fixture S8 existente tiene una particularidad crucial: sus ocho
+escenarios (`baseline`, `sha_spoof`, `issuer_spoof`, `rights_missing`,
+`first_public_missing`, `crosswalk_missing`, `denominator_missing` y
+`coverage_missing`) utilizan el **mismo `distribution_id` fuente-local y
+los mismos bytes de base**. Son ocho variantes de un procedimiento de
+comprobación, **no** ocho fuentes originales, actores, ediciones, decisiones
+ni entradas administrativas distintas. Por eso se adopta una tabla nueva
+`assessment_event`, aislada de `distribution`, `typed_fact` y `typed_edge`.
+
+La migración explícita `PRAGMA user_version=3` conserva el histórico 1, 2
+y añade la entrada 3 a `schema_history`. Se lleva a cabo en la misma
+transacción `BEGIN IMMEDIATE` que valida/siembra la base. Se comprobaron
+upgrades desde SQLite v1 y v2 sin alterar los siete BLOB documentales,
+veinte hechos tipados ni seis aristas. Las ocho evaluaciones deterministas
+se almacenan como **dieciséis eventos inmutables**, dos por ID público
+`S9:ASSESS_01…08`: `REGISTERED` seguido de
+`ASSESSED_REJECTED_R5`, sin ningún estado `APPROVED` ni posibilidad de
+promover permisos reales. Los ocho ID de evaluación son pseudónimos
+opacos, no source IDs; la tabla conserva los identificadores fuente-local,
+emisor alegado, hashes y bytes del recibo **únicamente dentro de SQLite**.
+
+El `captured_at` **inventado** de su fuente es
+`2026-10-31T12:00:00Z`; los relojes ficticios de registro y evaluación
+son `2026-10-31T12:15:00Z` y `2026-10-31T13:00:00Z`. El conocimiento
+público del **recibo de evaluación ficticio** se estipula a
+`2026-10-31T13:00:00Z`. Esto **no** certifica la primera publicación real
+de la supuesta distribución de origen: en particular,
+`first_public_missing` conserva la carencia de esa fecha en el candidato.
+Un corte de conocimiento temprano ve cero evaluaciones y el tardío ve
+ocho; el filtro de publicación hasta el 30 de octubre deja cero incluso
+en corte tardío. Los eventos de auditoría no utilizan el día de vigencia
+del hecho (`valid_at`), evitando interpretar una revisión administrativa
+ficticia como acontecimiento anterior o como testigo de una decisión real.
+
+Los recibos privados usan bytes JSON UTF-8 canónicos, SHA-256 exacto,
+identificador de evaluación, variante, número y estado de transición,
+timestamp, issuer y fuente-local ficticios, y el resultado calculado por
+`synthetic_candidate_admission` sin alterar sus comprobaciones. La tabla
+contiene dos triggers adicionales de inmutabilidad (ocho en total),
+`CHECK` para prohibir autenticación real, admisión de derechos, denominador,
+`first_public_at_real` y filas de fuente importadas; el auditor comprueba
+el SHA de cada recibo, los dieciséis registros completos y **el DDL
+íntegro** en cada consulta. Manipular bytes/SHA/estado/emisor/tiempos o
+eliminar un trigger deja el endpoint científico en HTTP 503,
+sin autocorrección silenciosa del histórico.
+
+Sin modificar su ruta ni sus filtros, `GET /api/scientific-registry` publica
+ahora `registry.schema_version=3`, `registry.migration_history=[1,2,3]` y
+`snapshot.admission_assessments`, con el esquema
+`pfl.synthetic_admission_assessments.v1`. El objeto contiene
+`assessment_count`, `registered_count`, `assessed_rejected_r5_count`,
+`history_event_count`, `assessments` y los límites de admisión.
+Cada evaluación incluye un ID público opaco, variante, estado final
+`ASSESSED_REJECTED_R5`, `revision=assessment_v1`, captura,
+`registered_at`, `assessed_at`, las dos transiciones de historia,
+**las siete comprobaciones internas y todos los motivos de bloqueo**
+devueltos por S8. Contiene asimismo `public_receipt_sha256` calculado
+sobre esos campos públicos; no expone ni la fuente-local privada ni el
+emisor alegado. El recibo general `snapshot_receipt` ya existente
+incorpora automáticamente la proyección y su digest SHA-256 cambia con
+el corte/filtro: **no hace falta un segundo endpoint ni un segundo DGP**.
+Cuando `family` no es `all`, las evaluaciones se omiten, porque no tienen
+atribución fiable a PP04/CHAIN/CHRONICLE.
+
+El conjunto de pruebas focales S9.1 verifica los ocho resultados S8
+sin reimplementarlos, las dieciséis transiciones, integridad de cada
+recibo, reinicios de dos procesos Python, migración **v1/v2→v3**,
+no alteración de las anteriores 7/20/6 filas, no anticipación temporal,
+no fuga del source ID, 8 alteraciones SQL intencionadas, triggers,
+restricciones `CHECK` y HTTP 400/503. La batería Python S9+S10
+finalizó **47/47 PASS** tras agregar 14 controles nuevos. La actualización
+del frontend S9.1, su validación y la publicación Git de PR22
+se gestionan conjuntamente con el agente principal por su titularidad
+exclusiva de `app.js` y tests JS.
+
+**Sin admisión empírica:** R5 STOP; cero fuentes reales importadas;
+cero permisos de distribución acreditados; `real_first_public_at=null`;
+denominador independiente nulo; cero ciclos AB; 0/6 puertas.

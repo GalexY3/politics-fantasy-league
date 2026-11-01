@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -108,7 +108,9 @@ function validRegistryPayload(x,cut,validAt,family,published){
   &&x.R5==='STOP_R5'&&x.release_gates_passed===0
   &&x.scientific_ab_cycles===0&&x.independent_denominator===null
   &&x.real_source_ingestion_allowed===false
-  &&r?.schema_version===2&&r.persistent===true
+  &&r?.schema_version===3&&r.persistent===true
+  &&Array.isArray(r.migration_history)
+  &&r.migration_history.join(',')==='1,2,3'
   &&r.source_catalog_kind==='FIXED_PUBLIC_DESCRIPTORS_ONLY'
   &&r.source_bytes_exposed===false&&r.private_source_ids_exposed===false
   &&r.originals_accepted===false&&r.fixture_bytes_sha256_checked_at_read===true
@@ -138,6 +140,22 @@ function validRegistryPayload(x,cut,validAt,family,published){
   &&s.episodes?.source_local_all_received_denominator===null
   &&s.pp04?.unplanned_is_a_terminal_negative===false
   &&s.pp04?.independent_crosswalk_between_pan_iaen===false
+  &&s.admission_assessments?.schema==='pfl.synthetic_admission_assessments.v1'
+  &&Array.isArray(s.admission_assessments.assessments)
+  &&s.admission_assessments.assessment_count===s.admission_assessments.assessments.length
+  &&s.admission_assessments.source_rows_ingested===0
+  &&s.admission_assessments.real_admission_allowed===false
+  &&s.admission_assessments.independent_denominator===null
+  &&s.admission_assessments.assessments.every(a=>
+   /^S9:ASSESS_0[1-8]$/.test(a.assessment_id)
+   &&a.status==='ASSESSED_REJECTED_R5'
+   &&Array.isArray(a.blockers)&&a.blockers.length>0
+   &&Array.isArray(a.history)&&a.history.length===2
+   &&a.history[0].status==='REGISTERED'
+   &&a.history[1].status==='ASSESSED_REJECTED_R5'
+   &&a.rights_for_public_display===false
+   &&a.real_original_admitted===false&&a.source_rows_imported===0
+   &&/^[a-f0-9]{64}$/.test(a.public_receipt_sha256))
   &&m?.s3_s7_endpoint==='/api/scientific-integration-lab'
   &&m.computed_from_registry===false
   &&m.separate_existing_python_node_oracle===true
@@ -178,10 +196,12 @@ async function verifyRegistryReceipt(x){
 }
 function invalidateScientificRegistry(){
  ++ui.scienceRegistryRequest;
+ ++ui.scienceRegistryExportGeneration;
  ui.scienceRegistry=null;ui.scienceRegistryLoading=false;ui.scienceRegistryError=null;
 }
 async function loadScientificRegistry(){
  const ticket=++ui.scienceRegistryRequest;
+ ++ui.scienceRegistryExportGeneration;
  const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
  const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
  ui.scienceRegistry=null;ui.scienceRegistryError=null;ui.scienceRegistryLoading=true;
@@ -211,6 +231,51 @@ async function loadScientificRegistry(){
    if(ui.tab==='scientific')draw();
   }
  }
+}
+async function exportScientificRegistry(){
+ const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
+ const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
+ const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
+ const exportTicket=++ui.scienceRegistryExportGeneration;
+ const data=ui.scienceRegistry;
+ if(!data||ui.scienceRegistryLoading||ui.scienceRegistryError
+    ||!ui.scientific||ui.scientificLoading||ui.scientificError
+    ||!validSciencePayload(ui.scientific)||!globalThis.crypto?.subtle){
+  notice('Snapshot S9 no exportable: primero verifica el registro y el Laboratorio',true);
+  return;
+ }
+ try{
+  if(!validRegistryPayload(data,cut,validAt,family,published)
+     ||!await verifyRegistryReceipt(data))throw new Error('Recibo SHA o contrato S9 inválido');
+  // Recheck after the asynchronous digest: a filter A→B→A or a later 503
+  // must invalidate even an otherwise perfectly hashed old snapshot.
+  if(registryTicket!==ui.scienceRegistryRequest
+     ||scienceTicket!==ui.scienceRequest
+     ||exportTicket!==ui.scienceRegistryExportGeneration
+     ||data!==ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError
+     ||cut!==ui.scienceCut||validAt!==ui.scienceRegistryValid
+     ||family!==ui.scienceRegistryFamily||published!==ui.scienceRegistryPublished
+     ||!ui.scientific||ui.scientificLoading||ui.scientificError
+     ||!validSciencePayload(ui.scientific))throw new Error('Corte S9 obsoleto tras cambiar la selección o fallar la recarga');
+  const receipt=data.snapshot_receipt;
+  const exportBody={
+   schema:'pfl.synthetic_scientific_registry_browser_export.v1',
+   evidence_class:'SYNTHETIC_LAB_ONLY',
+   query:{cut,as_of:data.as_of,valid_at:validAt,family,published_until:data.published_until},
+   source_contract:data.schema,
+   receipt_schema:receipt.schema,
+   snapshot_receipt:receipt,
+   R5:'STOP_R5',release_gates_passed:0,scientific_ab_cycles:0,
+   external_authenticity_certified:false,rights_for_public_display_admitted:false
+  };
+  const blob=new Blob([JSON.stringify(exportBody,null,2)+'\n'],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  a.download='pfl-s9-registry-'+cut+'-'+validAt+'-'+receipt.sha256.slice(0,12)+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  notice('Snapshot S9 sintético exportado; SHA-256 público '+receipt.sha256);
+ }catch(e){notice('Exportación S9 bloqueada: '+e.message,true);}
 }
 async function loadScientific(){
  const ticket=++ui.scienceRequest;
@@ -687,7 +752,10 @@ function scientificRegistryPanel(){
   +'<label for="science-registry-family">Familia de fuente<select id="science-registry-family">'+familyOptions+'</select></label>'
   +'<label for="science-registry-publication">Primera publicación ficticia<select id="science-registry-publication">'+publishedOptions+'</select></label>'
   +'<button class="btn secondary" data-action="science-registry-load" '
-  +(!ui.scientific||ui.scienceRegistryLoading?'disabled':'')+'>Consultar registro persistente</button></div>';
+  +(!ui.scientific||ui.scienceRegistryLoading?'disabled':'')+'>Consultar registro persistente</button>'
+  +'<button class="btn secondary" data-action="science-registry-export" '
+  +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
+  +'>Exportar snapshot S9 + SHA</button></div>';
  const intro='<section class="card science-registry" aria-label="Registro persistente del Observatorio">'
   +'<div class="section-title"><h2>S9 · Registro persistente de fuentes y relaciones</h2>'
   +'<span>SQLITE LOCAL · 100% SINTÉTICO · R5 STOP</span></div>'
@@ -704,7 +772,8 @@ function scientificRegistryPanel(){
     ui.scienceRegistryFamily,ui.scienceRegistryPublished))
   return intro+'<p role="alert" class="warning">El contrato del registro es incompatible; vista bloqueada.</p></section>';
  const tabs={sources:'Distribuciones y revisiones',chain:'Actor, organización y proceso',
-  chronicle:'Roles y eventos',episodes:'Estados de episodios',quality:'Calidad y límites'};
+  chronicle:'Roles y eventos',episodes:'Estados de episodios',
+  admission:'Preadmisión y rechazos',quality:'Calidad y límites'};
  const navigation='<nav class="science-registry-nav" aria-label="Contenido del registro">'
   +Object.entries(tabs).map(([id,label])=>'<button class="btn secondary '
    +(id===ui.scienceRegistryTab?'registry-active':'')+'" data-action="science-registry-tab" '
@@ -762,6 +831,27 @@ function scientificRegistryPanel(){
    +', NO INCLUIDAS '+esc(pp.not_included_source_local_not_negative)
    +'. No se interpreta una no inclusión como rechazo ni como episodio censurado.</p>'
    +'<p class="warning">Censura derecha independiente: NO acreditada. Denominador inicial independiente: DESCONOCIDO.</p>';
+ }else if(ui.scienceRegistryTab==='admission'){
+  const a=s.admission_assessments;
+  const rows=a.assessments.map(x=>'<tr><td><code>'+esc(x.assessment_id)
+   +'</code><small class="science-minor">'+esc(x.candidate)
+   +' · '+esc(x.revision)+'</small></td><td>'
+   +x.history.map(h=>'<div>'+esc(h.status)+' · '+esc(h.recorded_at)+'</div>').join('')
+   +'</td><td>'+esc(x.status)+'</td><td>'
+   +x.blockers.map(b=>'<div>'+esc(b)+'</div>').join('')
+   +'</td><td><details><summary>Recibo público de evaluación</summary><code class="science-digest">'
+   +esc(x.public_receipt_sha256)+'</code></details></td></tr>').join('');
+  content='<p class="help">'+count(a.assessment_count)
+   +' evaluaciones ficticias visibles; registro y evaluación son etapas separadas. '
+   +'Estas pruebas comparten un único identificador de distribución en el laboratorio S8: '
+   +'NO son ocho fuentes, ocho decisiones ni ocho revisiones documentales. '
+   +'Ninguna ha superado R5 ni autoriza publicación.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Evaluación</th><th>Historial sintético</th><th>Resultado</th>'
+   +'<th>Bloqueos</th><th>Integridad</th></tr></thead><tbody>'+rows
+   +'</tbody></table></div><p class="warning">'
+   +'La admisión científica y los derechos externos siguen NO acreditados; '
+   +'la primera publicidad es un dato del fixture, no una fecha histórica.</p>';
  }else{
   content='<div class="metrics">'
    +stat('Migración del esquema',r.schema_version,'Base SQLite del fixture, no fuente administrativa')
@@ -922,8 +1012,9 @@ document.addEventListener('click',async e=>{
  if(act.dataset.action==='science-export'){await exportScientific();return;}
  if(act.dataset.action==='science-probe'){await probeScientificAdmission();return;}
  if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
+ if(act.dataset.action==='science-registry-export'){await exportScientificRegistry();return;}
  if(act.dataset.action==='science-registry-tab'){
-  if(['sources','chain','chronicle','episodes','quality'].includes(act.dataset.registry)){
+  if(['sources','chain','chronicle','episodes','admission','quality'].includes(act.dataset.registry)){
    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
   }
   return;

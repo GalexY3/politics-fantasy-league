@@ -2,8 +2,9 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createServer as httpServer} from 'node:http';
 import {createServer as portServer} from 'node:net';
-import {readFileSync,existsSync,mkdtempSync,rmSync} from 'node:fs';
+import {readFileSync,existsSync,mkdtempSync,rmSync,mkdirSync,readdirSync} from 'node:fs';
 import {spawn,execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {setTimeout as delay} from 'node:timers/promises';
@@ -54,6 +55,8 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
  }
  const scratch=mkdtempSync(join(tmpdir(),'pfl-s9-chrome-'));
  const registryDb=join(scratch,'synthetic.sqlite3');
+ const downloadsDir=join(scratch,'downloads');
+ mkdirSync(downloadsDir);
  const port=await freePort(),cdpPort=await freePort();
  const base='http://127.0.0.1:'+port;
  let failRegistry=false,chrome=null,socket=null;
@@ -127,12 +130,35 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    return result.result?.value;
   };
   await cdp('Runtime.enable');
+  await cdp('Browser.setDownloadBehavior',{behavior:'allow',
+    downloadPath:downloadsDir,eventsEnabled:true});
   await poll(()=>js("Boolean(document.querySelector('#auth-form'))"));
   await js("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.club='demo';document.querySelector('[data-tab=\"scientific\"]').click();true");
   await poll(()=>js("Boolean(ui.scientific&&ui.scientific.cut==='late'&&document.querySelector('[data-action=\"science-registry-load\"]'))"));
   await js("document.querySelector('[data-action=\"science-registry-load\"]').click();true");
   await poll(()=>js("Boolean(ui.scienceRegistry&&ui.scienceRegistry.registry.visible_distribution_count===6)"));
   assert.equal(await js("document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  // S9.1: perform a genuine mouse click in native Chrome and verify that its
+  // browser-downloaded JSON contains the exact WebCrypto-verified S9 receipt,
+  // rather than accidentally exporting the S8 laboratory receipt.
+  await js("document.querySelector('[data-action=\"science-registry-export\"]').scrollIntoView({block:'center'});true");
+  const point=await js("(()=>{const r=document.querySelector('[data-action=\"science-registry-export\"]').getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};})()");
+  await cdp('Input.dispatchMouseEvent',{type:'mousePressed',
+    x:point.x,y:point.y,button:'left',clickCount:1});
+  await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
+    x:point.x,y:point.y,button:'left',clickCount:1});
+  const saved=await poll(()=>readdirSync(downloadsDir).find(x=>
+    /^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
+  const exported=JSON.parse(readFileSync(join(downloadsDir,saved),'utf8'));
+  assert.equal(exported.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
+  assert.equal(exported.R5,'STOP_R5');
+  const canonical=Buffer.from(exported.snapshot_receipt.canonical_json,'utf8');
+  assert.equal(createHash('sha256').update(canonical).digest('hex'),
+    exported.snapshot_receipt.sha256);
+  assert.doesNotMatch(JSON.stringify(exported),/SYN:CHAIN_V1|SYN:S9_INTERNAL_STAGE/);
+  // The same current view must expose persistent synthetic assessment history.
+  await js("document.querySelector('[data-registry=\"admission\"]').click();true");
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S9:ASSESS_08')"),true);
   assert.equal(await js("document.querySelector('#content').innerText.includes('SYN:CHAIN_V1')"),false);
   assert.equal(await js("getComputedStyle(document.querySelector('.science-registry')).display!=='none'"),true);
   await js("(()=>{const e=document.getElementById('science-registry-family');e.value='CHAIN';e.dispatchEvent(new Event('change',{bubbles:true}));return true;})()");

@@ -18,7 +18,7 @@ from threading import RLock
 
 from . import scientific_integration_lab as lab
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 FAMILY_FILTERS = frozenset(("all", "PP04", "CHAIN", "CHRONICLE"))
 VALID_DAYS = frozenset(("2026-09-11", "2026-09-15", "2026-10-10"))
 PUBLICATION_FILTERS = frozenset(("as_of", "2026-09-19T12:00:00Z",
@@ -27,6 +27,15 @@ PURPOSE = "PUBLIC_AGGREGATE_DISPLAY"
 FIXTURE_ID = "PFL_S9_CLOSED_AUTHOR_SYNTHETIC_V1"
 SYNTHETIC_ONLY = "SYNTHETIC_LAB_ONLY"
 _INITIALIZATION_LOCK = RLock()
+_ASSESSMENT_VARIANTS = (
+    "baseline", "sha_spoof", "issuer_spoof", "rights_missing",
+    "first_public_missing", "crosswalk_missing", "denominator_missing",
+    "coverage_missing",
+)
+_ASSESSMENT_CAPTURED = "2026-10-31T12:00:00Z"
+_ASSESSMENT_REGISTERED = "2026-10-31T12:15:00Z"
+_ASSESSMENT_ASSESSED = "2026-10-31T13:00:00Z"
+_ASSESSMENT_PUBLIC = _ASSESSMENT_ASSESSED
 
 
 class RegistryIntegrityError(RuntimeError):
@@ -221,6 +230,72 @@ def _closed_edges() -> list[dict]:
     ]
 
 
+def _closed_assessment_events() -> list[dict]:
+    """Exactly eight evaluations, two immutable status transitions each.
+
+    All variants share one *fictional candidate source*. They are NOT eight
+    distributions, eight documentary revisions or eight observed decisions.
+    This is a permanent registry of local assessment *events*, not admission.
+    """
+    if set(_ASSESSMENT_VARIANTS) != lab.S8_CANDIDATES:
+        raise RegistryIntegrityError("REGISTRY_CANDIDATE_ALLOWLIST_DRIFT")
+    events=[]
+    for index,candidate in enumerate(_ASSESSMENT_VARIANTS,start=1):
+        fixture=lab._s8_candidate_fixture(candidate)
+        verdict=lab.synthetic_candidate_admission(candidate=candidate)
+        if (fixture["captured_at"]!=_ASSESSMENT_CAPTURED or
+                verdict["status"]!="REJECTED_R5" or
+                verdict["R5"]!="STOP_R5" or
+                verdict["source_rows_imported"]!=0 or
+                verdict["real_original_admitted"] is not False or
+                verdict["distribution_id"]!=fixture["distribution_id"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_FIXTURE_NOT_CLOSED")
+        public_id=f"S9:ASSESS_{index:02d}"
+        for sequence,status,recorded in (
+                (1,"REGISTERED",_ASSESSMENT_REGISTERED),
+                (2,"ASSESSED_REJECTED_R5",_ASSESSMENT_ASSESSED)):
+            # The raw, SOURCE-LOCAL issuer and source identifier are retained
+            # only in the private SHA-bound SQLite receipt, NEVER in the UI.
+            receipt={
+                "schema":"pfl.synthetic_assessment_event_private.v1",
+                "assessment_id":public_id,
+                "candidate":candidate,
+                "status":status,"sequence":sequence,
+                "recorded_at":recorded,
+                "captured_at_fixture":fixture["captured_at"],
+                "fixture_source_id":fixture["distribution_id"],
+                "fixture_issuer_claim":fixture["issuer"],
+                "fixture_claimed_source_sha256":fixture["source_sha256"],
+                "fixture_actual_source_sha256":_sha(fixture["bytes"].encode("utf-8")),
+                "fixture_first_public_at":fixture["first_public_at_fixture"],
+                "fixture_rights_for_public_display":False,
+                "fixture_real_first_public_at":None,
+                "dry_run_result":verdict if sequence==2 else None,
+            }
+            receipt_bytes=_json(receipt).encode("utf-8")
+            events.append({
+                "event_id":f"S9:AUDIT_{index:02d}_{sequence}",
+                "assessment_id":public_id,
+                "candidate":candidate,
+                "event_sequence":sequence,
+                "status":status,
+                "revision":1,
+                "captured_at":fixture["captured_at"],
+                "recorded_at":recorded,
+                "first_public_known_at":_ASSESSMENT_PUBLIC,
+                "fixture_source_id":fixture["distribution_id"],
+                "fixture_issuer_claim":fixture["issuer"],
+                "receipt_bytes":receipt_bytes,
+                "receipt_sha256":_sha(receipt_bytes),
+                "rights_for_public_display":0,
+                "real_issuer_authenticated":0,
+                "real_first_public_at":None,
+                "independent_denominator":None,
+                "source_rows_imported":0,
+            })
+    return events
+
+
 SOURCES_COLUMNS=("source_id","public_id","family","issuer","revision",
     "amendment_of","source_bytes","source_sha256","captured_at",
     "first_public_known_at","first_public_at_real","purpose",
@@ -233,6 +308,12 @@ FACT_COLUMNS=("fact_id","source_id","issuer","kind","source_local_key",
 EDGE_COLUMNS=("edge_id","source_id","issuer","from_kind","from_local",
     "to_kind","to_local","relation","valid_from","observed_at",
     "official_crosswalk_verified")
+ASSESSMENT_COLUMNS=("event_id","assessment_id","candidate","event_sequence",
+    "status","revision","captured_at","recorded_at",
+    "first_public_known_at","fixture_source_id","fixture_issuer_claim",
+    "receipt_bytes","receipt_sha256","rights_for_public_display",
+    "real_issuer_authenticated","real_first_public_at",
+    "independent_denominator","source_rows_imported")
 _TRIGGER_DEFINITIONS={
     "registry_distribution_immutable_update":("UPDATE","distribution","IMMUTABLE_SOURCE_REVISION"),
     "registry_distribution_immutable_delete":("DELETE","distribution","IMMUTABLE_SOURCE_REVISION"),
@@ -240,6 +321,8 @@ _TRIGGER_DEFINITIONS={
     "registry_fact_immutable_delete":("DELETE","typed_fact","IMMUTABLE_TYPED_RECORD"),
     "registry_edge_immutable_update":("UPDATE","typed_edge","IMMUTABLE_TYPED_EDGE"),
     "registry_edge_immutable_delete":("DELETE","typed_edge","IMMUTABLE_TYPED_EDGE"),
+    "registry_assessment_immutable_update":("UPDATE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
+    "registry_assessment_immutable_delete":("DELETE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
 }
 
 
@@ -363,6 +446,47 @@ def _migration_v2(db: sqlite3.Connection) -> None:
     db.execute("PRAGMA user_version=2")
 
 
+def _migration_v3(db: sqlite3.Connection) -> None:
+    """Append-only candidate *assessments*, with no FK into source tables."""
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE assessment_event (
+            event_id TEXT PRIMARY KEY,
+            assessment_id TEXT NOT NULL,
+            candidate TEXT NOT NULL CHECK(candidate IN (
+                'baseline','sha_spoof','issuer_spoof','rights_missing',
+                'first_public_missing','crosswalk_missing',
+                'denominator_missing','coverage_missing')),
+            event_sequence INTEGER NOT NULL CHECK(event_sequence IN (1,2)),
+            status TEXT NOT NULL CHECK(status IN ('REGISTERED','ASSESSED_REJECTED_R5')),
+            revision INTEGER NOT NULL CHECK(revision=1),
+            captured_at TEXT NOT NULL,
+            recorded_at TEXT NOT NULL,
+            first_public_known_at TEXT NOT NULL,
+            fixture_source_id TEXT NOT NULL,
+            fixture_issuer_claim TEXT NOT NULL,
+            receipt_bytes BLOB NOT NULL,
+            receipt_sha256 TEXT NOT NULL,
+            rights_for_public_display INTEGER NOT NULL DEFAULT 0 CHECK(rights_for_public_display=0),
+            real_issuer_authenticated INTEGER NOT NULL DEFAULT 0 CHECK(real_issuer_authenticated=0),
+            real_first_public_at TEXT CHECK(real_first_public_at IS NULL),
+            independent_denominator INTEGER CHECK(independent_denominator IS NULL),
+            source_rows_imported INTEGER NOT NULL DEFAULT 0 CHECK(source_rows_imported=0),
+            UNIQUE(assessment_id,event_sequence),
+            CHECK((event_sequence=1 AND status='REGISTERED') OR
+                  (event_sequence=2 AND status='ASSESSED_REJECTED_R5'))
+        );
+        CREATE INDEX idx_registry_assessment_time
+          ON assessment_event(recorded_at,first_public_known_at,assessment_id);
+        INSERT INTO schema_history VALUES(3,'ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION',
+          '2026-11-01T12:00:00Z');
+        CREATE TRIGGER registry_assessment_immutable_update BEFORE UPDATE ON assessment_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ASSESSMENT_EVENT'); END;
+        CREATE TRIGGER registry_assessment_immutable_delete BEFORE DELETE ON assessment_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ASSESSMENT_EVENT'); END;
+    """)
+    db.execute("PRAGMA user_version=3")
+
+
 def _manifest_hash() -> str:
     def public_source(s:dict) -> dict:
         return {k:(s[k].hex() if isinstance(s[k],bytes) else s[k])
@@ -385,6 +509,7 @@ def _expected_schema_sha256() -> str:
         db.execute("BEGIN IMMEDIATE")
         _migration_v1(db)
         _migration_v2(db)
+        _migration_v3(db)
         result=_schema_sha256(db)
         db.rollback()
         return result
@@ -392,7 +517,7 @@ def _expected_schema_sha256() -> str:
 
 def _migrate(db: sqlite3.Connection) -> None:
     version=db.execute("PRAGMA user_version").fetchone()[0]
-    if version not in (0,1,2):
+    if version not in (0,1,2,3):
         raise RegistryIntegrityError("REGISTRY_UNKNOWN_SCHEMA_VERSION")
     if version==0:
         if db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").fetchone()[0]:
@@ -401,6 +526,9 @@ def _migrate(db: sqlite3.Connection) -> None:
         version=1
     if version==1:
         _migration_v2(db)
+        version=2
+    if version==2:
+        _migration_v3(db)
     if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
         raise RegistryIntegrityError("REGISTRY_MIGRATION_DIVERGENCE")
 
@@ -422,6 +550,8 @@ def _seed(db:sqlite3.Connection) -> None:
     _insert_rows(db,"distribution",SOURCES_COLUMNS,sources)
     _insert_rows(db,"typed_fact",FACT_COLUMNS,facts)
     _insert_rows(db,"typed_edge",EDGE_COLUMNS,edges)
+    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                 _closed_assessment_events())
 
 
 def _actual_rows(db:sqlite3.Connection,table:str,columns:tuple) -> list[dict]:
@@ -430,7 +560,7 @@ def _actual_rows(db:sqlite3.Connection,table:str,columns:tuple) -> list[dict]:
     return [dict(row) for row in rows]
 
 
-def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict]]:
+def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list[dict]]:
     if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
         raise RegistryIntegrityError("REGISTRY_SCHEMA_VERSION_MISMATCH")
     if _schema_sha256(db)!=_expected_schema_sha256():
@@ -442,7 +572,8 @@ def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict]]:
         raise RegistryIntegrityError("REGISTRY_MANIFEST_OR_ADMISSION_DIVERGENCE")
     versions=[tuple(r) for r in db.execute("SELECT * FROM schema_history ORDER BY version")]
     if versions!=[(1,"REGISTRY_SOURCES_BLOB_SHA","2026-11-01T12:00:00Z"),
-                  (2,"REGISTRY_SOURCE_LOCAL_TYPED_EDGES","2026-11-01T12:00:00Z")]:
+                  (2,"REGISTRY_SOURCE_LOCAL_TYPED_EDGES","2026-11-01T12:00:00Z"),
+                  (3,"ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION","2026-11-01T12:00:00Z")]:
         raise RegistryIntegrityError("REGISTRY_SCHEMA_HISTORY_CORRUPTED")
     triggers={r[0]:r[1] for r in db.execute(
         "SELECT name,sql FROM sqlite_master WHERE type='trigger'")}
@@ -506,7 +637,25 @@ def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict]]:
             if (edge["issuer"],kind,key) not in indexed:
                 raise RegistryIntegrityError("REGISTRY_EDGE_UNKNOWN_TYPED_KEY")
         _day(edge["valid_from"])
-    return actual_s,actual_f,actual_e
+    assessment_events=_actual_rows(db,"assessment_event",ASSESSMENT_COLUMNS)
+    expected_assessments=sorted(_closed_assessment_events(),key=lambda x:x["event_id"])
+    if len(assessment_events)!=len(expected_assessments):
+        raise RegistryIntegrityError("REGISTRY_ASSESSMENT_EVENT_SET_INCOMPLETE")
+    for actual,expected in zip(assessment_events,expected_assessments):
+        if (type(actual["receipt_bytes"]) is not bytes or
+                _sha(actual["receipt_bytes"])!=actual["receipt_sha256"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_RECEIPT_SHA_MISMATCH")
+        if (actual["captured_at"]>actual["recorded_at"] or
+                actual["recorded_at"]>actual["first_public_known_at"] or
+                actual["event_sequence"] not in (1,2)):
+            # A registration may be published with its later assessment, but
+            # the fictitious observed sequence cannot run backwards in time.
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_TEMPORAL_CONTRADICTION")
+        for field in ("captured_at","recorded_at","first_public_known_at"):
+            _timestamp(actual[field])
+        if actual!=expected:
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_CLOSED_RECEIPT_DIVERGENCE")
+    return actual_s,actual_f,actual_e,assessment_events
 
 
 def seed_registry(path:Path) -> None:
@@ -551,6 +700,16 @@ def _seed_registry_locked(path:Path) -> None:
                         raise RegistryIntegrityError("REGISTRY_V1_MIGRATION_MANIFEST_MISMATCH")
                     _insert_rows(db,"typed_fact",FACT_COLUMNS,_closed_facts())
                     _insert_rows(db,"typed_edge",EDGE_COLUMNS,_closed_edges())
+                    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                                 _closed_assessment_events())
+                elif before==2 and present==1:
+                    # Upgrade an existing intact v2; never replace its 7/20/6
+                    # documents, facts or edges, even on a rejected fixture.
+                    if any(db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+                           for table in ("assessment_event",)):
+                        raise RegistryIntegrityError("REGISTRY_V2_PARTIAL_ASSESSMENT_MIGRATION")
+                    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                                 _closed_assessment_events())
                 _audit(db)
                 db.commit()
             except Exception:
@@ -564,6 +723,70 @@ def _visible(source:dict,as_of:str,published_until:str) -> bool:
     return (source["captured_at"]<=as_of and
             source["first_public_known_at"]<=as_of and
             source["first_public_known_at"]<=published_until)
+
+
+def _assessment_projection(*, events:list[dict],as_of:str,
+                           published_until:str,family:str) -> dict:
+    """Only public closed-fixture checks/blockers; never raw/claimed issuer ID.
+
+    Assessment knowledge is its own audit clock, NOT event `valid_at` or a
+    real publisher's first-public timestamp. A source's absence cannot turn
+    into an administrative rejection by inspecting this synthetic journal.
+    """
+    visible=[row for row in events if family=="all" and
+             row["captured_at"]<=as_of and row["recorded_at"]<=as_of and
+             row["first_public_known_at"]<=as_of and
+             row["first_public_known_at"]<=published_until]
+    by_id={}
+    for event in visible:
+        by_id.setdefault(event["assessment_id"],[]).append(event)
+    assessments=[]
+    for assessment_id,history in sorted(by_id.items()):
+        history.sort(key=lambda e:e["event_sequence"])
+        if ([x["event_sequence"] for x in history]!=[1,2] or
+                [x["status"] for x in history]!=
+                ["REGISTERED","ASSESSED_REJECTED_R5"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_PUBLICATION_PARTIAL")
+        assessment_payload=json.loads(history[1]["receipt_bytes"])
+        original=assessment_payload["dry_run_result"]
+        if (type(original) is not dict or original["status"]!="REJECTED_R5"
+                or original["source_rows_imported"]!=0 or
+                original["real_original_admitted"] is not False):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_STATUS_PROMOTION")
+        descriptor={
+            "assessment_id":assessment_id,
+            "candidate":history[1]["candidate"],
+            "status":"ASSESSED_REJECTED_R5",
+            "revision":"assessment_v1",
+            "captured_at_fixture":history[0]["captured_at"],
+            "registered_at":history[0]["recorded_at"],
+            "assessed_at":history[1]["recorded_at"],
+            "history":[{"status":row["status"],
+                        "recorded_at":row["recorded_at"]} for row in history],
+            "checks":original["checks"],
+            "blockers":original["blockers"],
+            "rights_for_public_display":False,
+            "real_original_admitted":False,
+            "real_issuer_authenticated":False,
+            "real_first_public_at":None,
+            "source_rows_imported":0,
+        }
+        descriptor["public_receipt_sha256"]=_sha(_json(descriptor).encode("utf-8"))
+        assessments.append(descriptor)
+    return {
+        "schema":"pfl.synthetic_admission_assessments.v1",
+        "assessment_count":len(assessments),
+        "registered_count":len(assessments),
+        "assessed_rejected_r5_count":len(assessments),
+        "history_event_count":2*len(assessments),
+        "assessments":assessments,
+        "assessment_temporal_axis":"AS_OF_NOT_FACT_VALID_AT",
+        "source_rows_ingested":0,
+        "independent_denominator":None,
+        "real_admission_allowed":False,
+        "source_local_identifiers_exposed":False,
+        "official_issuer_authenticated":False,
+    }
 
 
 def _snapshot(*,sources:list[dict],facts:list[dict],edges:list[dict],
@@ -679,7 +902,7 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
     seed_registry(Path(path))
     try:
         with _connect(Path(path)) as db:
-            sources,facts,edges=_audit(db)
+            sources,facts,edges,assessment_events=_audit(db)
     except sqlite3.DatabaseError as exc:
         raise RegistryIntegrityError("REGISTRY_READ_SQLITE_CORRUPTION") from exc
     visible=[s for s in sources if s["public_id"] is not None and
@@ -704,6 +927,9 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
     snapshot=_snapshot(sources=sources,facts=facts,edges=edges,
                        as_of=as_of,valid_at=valid_at,family=family,
                        published_until=ceiling)
+    snapshot["admission_assessments"]=_assessment_projection(
+        events=assessment_events,as_of=as_of,
+        published_until=ceiling,family=family)
     # A separate, reproducible receipt for the exact PUBLIC query projection.
     # No private source bytes/IDs, no claim of an independent publisher's sig.
     receipt_scope={
@@ -730,7 +956,7 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
         "family":family,"published_until":ceiling,
         "registry": {
             "schema_version":SCHEMA_VERSION,"persistent":True,
-            "migration_history":[1,2],
+            "migration_history":[1,2,3],
             "source_catalog_kind":"FIXED_PUBLIC_DESCRIPTORS_ONLY",
             "distributions":registry_sources,
             "visible_distribution_count":len(registry_sources),

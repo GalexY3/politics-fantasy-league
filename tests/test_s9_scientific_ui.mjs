@@ -38,7 +38,7 @@ function syntheticReport() {
 }
 
 function harness() {
-  const elements = {}, listeners = {}, requests = [], downloads = [];
+  const elements = {}, listeners = {}, requests = [], downloads = [], blobExports = [];
   const pendingExports = [];
   let reloadStatus = 503;
   let registryHandler = null;
@@ -54,7 +54,7 @@ function harness() {
     body: {appendChild() {}}
   };
   class LocalURL extends URL {}
-  LocalURL.createObjectURL = () => 'blob:synthetic';
+  LocalURL.createObjectURL = blob => {blobExports.push(blob);return 'blob:synthetic';};
   LocalURL.revokeObjectURL = () => {};
   const fetch = route => {
     requests.push(route);
@@ -88,7 +88,7 @@ function harness() {
       canonical_json, bytes, sha256, R5: 'STOP_R5', empirical_data_exported: false
     })});
   }
-  return {ctx, elements, listeners, requests, downloads, pendingExports,
+  return {ctx, elements, listeners, requests, downloads, blobExports, pendingExports,
     resolveExport, setReloadStatus(status) {reloadStatus=status;},
     setRegistryHandler(handler) {registryHandler=handler;}};
 }
@@ -270,6 +270,112 @@ test('S9 registry browser-side WebCrypto rejects receipt SHA drift and content m
     assert.equal(runInContext('ui.scienceRegistry',h.ctx),null,tamper);
     assert.match(String(runInContext('ui.scienceRegistryError',h.ctx)),/SHA de recibo incompatible/);
   }
+});
+
+test('S9.1 registry export downloads the exact SHA-verified public snapshot, not the S8 report',async()=>{
+  const h=harness();
+  registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  const panel=runInContext('scientificRegistryPanel()',h.ctx);
+  assert.match(panel,/data-action="science-registry-export"/);
+  await runInContext('exportScientificRegistry()',h.ctx);
+  assert.equal(h.downloads.length,1);
+  assert.match(h.downloads[0],/^pfl-s9-registry-late-2026-09-15-[0-9a-f]{12}\.json$/);
+  const exported=JSON.parse(await h.blobExports[0].text());
+  assert.equal(exported.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
+  assert.equal(exported.source_contract,'pfl.synthetic_scientific_registry.v1');
+  assert.equal(exported.R5,'STOP_R5');
+  assert.equal(exported.external_authenticity_certified,false);
+  assert.equal(exported.query.valid_at,'2026-09-15');
+  const bytes=Buffer.from(exported.snapshot_receipt.canonical_json,'utf8');
+  assert.equal(bytes.length,exported.snapshot_receipt.bytes);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),exported.snapshot_receipt.sha256);
+  assert.doesNotMatch(await h.blobExports[0].text(),/SYN:CHAIN_V1|SYN:CHRONICLE_V2|SYN:S9_INTERNAL_STAGE/);
+});
+
+test('S9.1 registry export blocks a public receipt whose SHA changed after load',async()=>{
+  const h=harness();
+  registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  runInContext("ui.scienceRegistry.snapshot_receipt.sha256='0'.repeat(64)",h.ctx);
+  await runInContext('exportScientificRegistry()',h.ctx);
+  assert.equal(h.downloads.length,0);
+});
+
+test('S9.1 registry export rejects an in-flight A-to-B-to-A registry selection',async()=>{
+  const h=harness();
+  registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  let finishDigest=null;
+  h.ctx.crypto={subtle:{digest(algorithm,bytes){
+    return new Promise(resolve=>{finishDigest=()=>resolve(webcrypto.subtle.digest(algorithm,bytes));});
+  }}};
+  const pending=runInContext('exportScientificRegistry()',h.ctx);
+  await delay(0);
+  assert.equal(typeof finishDigest,'function');
+  h.ctx.crypto=webcrypto;
+  await h.listeners.change({target:{id:'science-registry-valid',value:'2026-09-11'}});
+  await h.listeners.change({target:{id:'science-registry-valid',value:'2026-09-15'}});
+  assert.ok(runInContext('ui.scienceRegistry',h.ctx));
+  finishDigest();
+  await pending;
+  assert.equal(h.downloads.length,0,'A newly verified A cannot authorize the previous A receipt');
+});
+
+test('S9.1 registry export rejects an in-flight receipt after current HTTP 503',async()=>{
+  const h=harness();
+  registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  let finishDigest=null;
+  h.ctx.crypto={subtle:{digest(algorithm,bytes){
+    return new Promise(resolve=>{finishDigest=()=>resolve(webcrypto.subtle.digest(algorithm,bytes));});
+  }}};
+  const pending=runInContext('exportScientificRegistry()',h.ctx);
+  await delay(0);
+  assert.equal(typeof finishDigest,'function');
+  h.ctx.crypto=webcrypto;
+  registryEndpoint(h,()=>({ok:false,status:503}));
+  await runInContext('loadScientificRegistry()',h.ctx);
+  assert.match(String(runInContext('ui.scienceRegistryError',h.ctx)),/503/);
+  finishDigest();
+  await pending;
+  assert.equal(h.downloads.length,0);
+});
+
+test('S9.1 durable assessment history is navigable, redacted, and never eight independent sources',async()=>{
+  const h=harness();
+  registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  const a=runInContext('ui.scienceRegistry.snapshot.admission_assessments',h.ctx);
+  assert.ok(a,String(runInContext('ui.scienceRegistryError',h.ctx)));
+  assert.equal(a.assessment_count,8);
+  assert.equal(a.history_event_count,16);
+  assert.equal(a.source_rows_ingested,0);
+  assert.equal(a.real_admission_allowed,false);
+  assert.equal(a.assessments.filter(x=>x.status==='ASSESSED_REJECTED_R5').length,8);
+  runInContext("ui.scienceRegistryTab='admission'",h.ctx);
+  const html=runInContext('scientificRegistryPanel()',h.ctx);
+  assert.match(html,/S9:ASSESS_08/);
+  assert.match(html,/NO son ocho fuentes/);
+  assert.doesNotMatch(html,/SYN:S8_NEW_DISTRIBUTION|SYN:CHAIN_V1|SYN:S9_INTERNAL_STAGE/);
+  const early=actualRegistry('early','2026-09-15','all','as_of');
+  assert.equal(early.snapshot.admission_assessments.assessment_count,0);
+  const censored=actualRegistry('late','2026-09-15','all','2026-10-30T12:00:00Z');
+  assert.equal(censored.snapshot.admission_assessments.assessment_count,0);
+});
+
+test('S9.1 browser rejects assessment-stage spoofing unless it matches canonical SHA receipt',async()=>{
+  const h=harness();
+  registryEndpoint(h,url=>{
+    const q=url.searchParams;
+    const data=actualRegistry(q.get('cut'),q.get('valid_at'),
+      q.get('family'),q.get('published_until'));
+    data.snapshot.admission_assessments.assessments[0].history[0].status='EMPIRICALLY_ADMITTED';
+    return {ok:true,json:async()=>data};
+  });
+  await runInContext('loadScientificRegistry()',h.ctx);
+  assert.equal(runInContext('ui.scienceRegistry',h.ctx),null);
+  assert.match(String(runInContext('ui.scienceRegistryError',h.ctx)),/Registro incongruente|SHA de recibo incompatible/);
 });
 
 async function freeLocalPort(){

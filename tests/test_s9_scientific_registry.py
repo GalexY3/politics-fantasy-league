@@ -67,8 +67,8 @@ def _assert_gate(payload:dict):
         "separate_existing_python_node_oracle":True,
         "empirical_model_admitted":False,
     }
-    assert payload["registry"]["schema_version"]==2
-    assert payload["registry"]["migration_history"]==[1,2]
+    assert payload["registry"]["schema_version"]==3
+    assert payload["registry"]["migration_history"]==[1,2,3]
     assert payload["registry"]["source_bytes_exposed"] is False
     assert payload["registry"]["private_source_ids_exposed"] is False
     assert payload["registry"]["originals_accepted"] is False
@@ -78,6 +78,25 @@ def _assert_gate(payload:dict):
     assert payload["snapshot"]["episodes"]["right_censor_independently_attested"] is False
     assert payload["snapshot"]["pp04"]["unplanned_is_a_terminal_negative"] is False
     assert payload["snapshot"]["pp04"]["independent_crosswalk_between_pan_iaen"] is False
+    assessments=payload["snapshot"]["admission_assessments"]
+    assert assessments["schema"]=="pfl.synthetic_admission_assessments.v1"
+    assert assessments["assessment_temporal_axis"]=="AS_OF_NOT_FACT_VALID_AT"
+    assert assessments["assessment_count"] in (0,8)
+    assert assessments["registered_count"]==assessments["assessment_count"]
+    assert assessments["assessed_rejected_r5_count"]==assessments["assessment_count"]
+    assert assessments["history_event_count"]==assessments["assessment_count"]*2
+    assert assessments["source_rows_ingested"]==0
+    assert assessments["real_admission_allowed"] is False
+    assert assessments["independent_denominator"] is None
+    assert assessments["source_local_identifiers_exposed"] is False
+    for entry in assessments["assessments"]:
+        assert entry["status"]=="ASSESSED_REJECTED_R5"
+        assert entry["source_rows_imported"]==0
+        assert entry["rights_for_public_display"] is False
+        assert entry["real_original_admitted"] is False
+        assert entry["real_first_public_at"] is None
+        verified={k:v for k,v in entry.items() if k!="public_receipt_sha256"}
+        assert hashlib.sha256(registry._json(verified).encode()).hexdigest()==entry["public_receipt_sha256"]
     receipt=payload["snapshot_receipt"]
     assert receipt["schema"]=="pfl.synthetic_registry_snapshot_receipt.v1"
     assert receipt["content_scope"]=="CLOSED_PUBLIC_SYNTHETIC_QUERY_ONLY"
@@ -92,7 +111,9 @@ def _assert_gate(payload:dict):
     raw=json.dumps(payload,ensure_ascii=False)
     for internal in ("SYN:CHRONICLE", "SYN:CHAIN", "SYN:S9_INTERNAL_STAGE",
                      "SYNTHETIC:IAEN24", "SYNTHETIC:PAN24",
-                     "SYNTHETIC_STAGE_DOCUMENT", "SYNTHETIC TYPED CHAIN"):
+                     "SYNTHETIC_STAGE_DOCUMENT", "SYNTHETIC TYPED CHAIN",
+                     "SYN:S8_NEW_DISTRIBUTION", "SYN:S8_LOCAL_TEST",
+                     "REAL:UNVERIFIED", "SYNTHETIC S8 ADMISSION FIXTURE"):
         assert internal not in raw,internal
 
 
@@ -105,7 +126,7 @@ def test_s9_atomic_seed_restart_exact_bytes_and_versioned_schema(db):
     assert first["registry"]["recorded_distribution_count"]==6
     assert first["registry"]["internal_uncatalogued_fixture_receipts"]==1
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==2
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
         recorded=con.execute("SELECT source_id,source_bytes,source_sha256 FROM distribution ORDER BY 1").fetchall()
         assert len(recorded)==7
         for source_id,bytes_,sha in recorded:
@@ -115,6 +136,7 @@ def test_s9_atomic_seed_restart_exact_bytes_and_versioned_schema(db):
             "SYN:CHAIN","SYN:CHRONICLE","SYN:PP04_PARSER","SYN:S9_LOCAL_STAGE"}
         assert con.execute("SELECT COUNT(*) FROM typed_fact").fetchone()[0]==20
         assert con.execute("SELECT COUNT(*) FROM typed_edge").fetchone()[0]==6
+        assert con.execute("SELECT COUNT(*) FROM assessment_event").fetchone()[0]==16
     registry.seed_registry(db)
     second=registry.query_registry(db,cut="late")
     assert second==first
@@ -148,7 +170,7 @@ def test_s9_two_independent_python_processes_restart_same_real_sqlite_bytes(db):
     assert db.exists()
     with sqlite3.connect(db) as con:
         before_rows=con.execute("SELECT source_id,source_bytes,source_sha256 FROM distribution ORDER BY 1").fetchall()
-        assert con.execute("PRAGMA user_version").fetchone()[0]==2
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
     second=external_read()
     assert second==first
     assert second["registry"]["persistent"] is True
@@ -159,7 +181,187 @@ def test_s9_two_independent_python_processes_restart_same_real_sqlite_bytes(db):
     _assert_gate(second)
 
 
-def test_s9_v1_to_v2_transactional_migration_preserves_existing_source_bytes(db):
+def test_s9_1_v3_eight_dry_run_assessments_are_immutable_separate_records(db):
+    from politics_fantasy.scientific_integration_lab import synthetic_candidate_admission
+
+    late=registry.query_registry(db,cut="late")
+    panel=late["snapshot"]["admission_assessments"]
+    assert panel["assessment_count"]==8
+    assert panel["registered_count"]==8
+    assert panel["assessed_rejected_r5_count"]==8
+    assert panel["history_event_count"]==16
+    assert len({row["assessment_id"] for row in panel["assessments"]})==8
+    assert {row["candidate"] for row in panel["assessments"]}==set(registry._ASSESSMENT_VARIANTS)
+    for row in panel["assessments"]:
+        assert row["status"]=="ASSESSED_REJECTED_R5"
+        assert row["captured_at_fixture"]=="2026-10-31T12:00:00Z"
+        assert row["history"]==[
+            {"status":"REGISTERED","recorded_at":"2026-10-31T12:15:00Z"},
+            {"status":"ASSESSED_REJECTED_R5","recorded_at":"2026-10-31T13:00:00Z"},
+        ]
+        raw=synthetic_candidate_admission(candidate=row["candidate"])
+        assert row["checks"]==raw["checks"]
+        assert row["blockers"]==raw["blockers"]
+        assert row["source_rows_imported"]==raw["source_rows_imported"]==0
+    with sqlite3.connect(db) as con:
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("SELECT COUNT(*) FROM distribution").fetchone()[0]==7
+        assert con.execute("SELECT COUNT(*) FROM typed_fact").fetchone()[0]==20
+        assert con.execute("SELECT COUNT(*) FROM typed_edge").fetchone()[0]==6
+        assert con.execute("SELECT COUNT(*) FROM assessment_event").fetchone()[0]==16
+        rows=con.execute("SELECT assessment_id,event_sequence,status,receipt_bytes,receipt_sha256 "
+                         "FROM assessment_event ORDER BY event_id").fetchall()
+        assert len({r[0] for r in rows})==8
+        for _,sequence,status,body,digest in rows:
+            assert sequence==1 if status=="REGISTERED" else sequence==2
+            assert hashlib.sha256(body).hexdigest()==digest
+            assert json.loads(body)["status"]==status
+        private_sources={r[0] for r in con.execute(
+            "SELECT DISTINCT fixture_source_id FROM assessment_event")}
+        assert private_sources=={"SYN:S8_NEW_DISTRIBUTION"}
+        assert not con.execute("SELECT 1 FROM distribution WHERE source_id='SYN:S8_NEW_DISTRIBUTION'").fetchone()
+    _assert_gate(late)
+
+
+def test_s9_1_assessments_do_not_leak_across_knowledge_or_publication_cut(db):
+    early=registry.query_registry(db,cut="early")
+    late=registry.query_registry(db,cut="late")
+    prior=registry.query_registry(db,cut="late",published_until="2026-10-30T12:00:00Z")
+    chain=registry.query_registry(db,cut="late",family="CHAIN")
+    other_valid=registry.query_registry(db,cut="late",valid_at="2026-09-11")
+    a=lambda r:r["snapshot"]["admission_assessments"]
+    assert (a(early)["assessment_count"],a(prior)["assessment_count"],
+            a(chain)["assessment_count"],a(late)["assessment_count"])==(0,0,0,8)
+    assert a(other_valid)==a(late)  # audit clock != event's valid_at
+    for item in (early,late,prior,chain):
+        assert item["snapshot"]["admission_assessments"]==json.loads(
+            item["snapshot_receipt"]["canonical_json"])["snapshot"]["admission_assessments"]
+        _assert_gate(item)
+    assert late["snapshot_receipt_sha256"]!=early["snapshot_receipt_sha256"]
+    assert prior["snapshot_receipt_sha256"]!=late["snapshot_receipt_sha256"]
+
+
+def test_s9_1_v2_to_v3_migration_preserves_all_previous_bytes_and_typed_rows(db):
+    # Construct a real previous-version S9 fixture; NO fake reset/reseed.
+    with registry._connect(db) as con:
+        con.execute("BEGIN IMMEDIATE")
+        registry._migration_v1(con)
+        registry._migration_v2(con)
+        con.execute("INSERT INTO registry_meta VALUES(1,?,?,?,?)",(
+            registry.FIXTURE_ID,registry._manifest_hash(),
+            "2026-11-01T12:00:00Z","STOP_R5"))
+        registry._insert_rows(con,"distribution",registry.SOURCES_COLUMNS,
+                              registry._closed_sources())
+        registry._insert_rows(con,"typed_fact",registry.FACT_COLUMNS,
+                              registry._closed_facts())
+        registry._insert_rows(con,"typed_edge",registry.EDGE_COLUMNS,
+                              registry._closed_edges())
+        assert con.execute("PRAGMA user_version").fetchone()[0]==2
+        original={table:[tuple(row) for row in con.execute(f"SELECT * FROM {table} ORDER BY 1")]
+                  for table in ("distribution","typed_fact","typed_edge")}
+        con.commit()
+    registry.seed_registry(db)
+    with sqlite3.connect(db) as con:
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("SELECT COUNT(*) FROM assessment_event").fetchone()[0]==16
+        assert [r[0] for r in con.execute("SELECT version FROM schema_history ORDER BY version")]==[1,2,3]
+        for table,rows in original.items():
+            assert list(con.execute(f"SELECT * FROM {table} ORDER BY 1"))==rows
+    assert registry.query_registry(db)["snapshot"]["admission_assessments"]["assessment_count"]==8
+
+
+def test_s9_1_two_process_restart_assessments_retained_and_sha_stable(db):
+    root=Path(__file__).resolve().parents[1]/"src"
+    env={**os.environ,"PYTHONPATH":str(root)}
+    def replay():
+        proc=subprocess.run([sys.executable,"-m","politics_fantasy.scientific_registry",
+                             "--db",str(db)],cwd=root.parent,env=env,
+                            capture_output=True,text=True,timeout=12)
+        assert proc.returncode==0,proc.stderr
+        return json.loads(proc.stdout)
+    first=replay()
+    with sqlite3.connect(db) as con:
+        before=con.execute("SELECT event_id,receipt_bytes,receipt_sha256 FROM assessment_event ORDER BY event_id").fetchall()
+    second=replay()
+    with sqlite3.connect(db) as con:
+        after=con.execute("SELECT event_id,receipt_bytes,receipt_sha256 FROM assessment_event ORDER BY event_id").fetchall()
+    assert before==after and len(before)==16
+    assert first==second
+    assert first["snapshot_receipt_sha256"]==second["snapshot_receipt_sha256"]
+
+
+@pytest.mark.parametrize("field,value",[
+    ("receipt_bytes",b"SYNTHETIC ALTERED ASSESSMENT"),
+    ("receipt_sha256","0"*64),
+    ("fixture_source_id","REAL:PERSON"),
+    ("fixture_issuer_claim","REAL:INSTITUTION"),
+    ("recorded_at","2026-11-02T13:00:00Z"),
+    ("first_public_known_at","2026-09-19T12:00:00Z"),
+    ("captured_at","2026-10-30T11:00:00Z"),
+    ("candidate","baseline"),
+])
+def test_s9_1_tampered_assessment_event_even_with_trigger_bypass_is_503(db,field,value):
+    registry.seed_registry(db)
+    with sqlite3.connect(db) as con:
+        trigger="registry_assessment_immutable_update"
+        old=con.execute("SELECT sql FROM sqlite_master WHERE name=?",(trigger,)).fetchone()[0]
+        con.execute(f"DROP TRIGGER {trigger}")
+        con.execute(f"UPDATE assessment_event SET {field}=? WHERE event_id='S9:AUDIT_02_2'",
+                    (value,))
+        con.execute(old)
+        con.commit()
+    with pytest.raises(registry.RegistryIntegrityError):
+        registry.query_registry(db)
+
+
+def test_s9_1_assessment_event_immutability_and_rights_check_constraint(db):
+    registry.seed_registry(db)
+    with sqlite3.connect(db) as con:
+        for sql in (
+            "UPDATE assessment_event SET status='REGISTERED' WHERE event_id='S9:AUDIT_02_2'",
+            "DELETE FROM assessment_event WHERE event_id='S9:AUDIT_02_2'",
+        ):
+            with pytest.raises(sqlite3.DatabaseError,match="IMMUTABLE_ASSESSMENT_EVENT"):
+                con.execute(sql)
+        update=con.execute("SELECT sql FROM sqlite_master WHERE name='registry_assessment_immutable_update'").fetchone()[0]
+        con.execute("DROP TRIGGER registry_assessment_immutable_update")
+        for sql in (
+            "UPDATE assessment_event SET rights_for_public_display=1",
+            "UPDATE assessment_event SET real_issuer_authenticated=1",
+            "UPDATE assessment_event SET source_rows_imported=1",
+            "UPDATE assessment_event SET real_first_public_at='2026-10-30T12:00:00Z'",
+            "UPDATE assessment_event SET independent_denominator=2",
+        ):
+            with pytest.raises(sqlite3.IntegrityError):
+                con.execute(sql)
+        con.execute(update)
+        con.commit()
+    _assert_gate(registry.query_registry(db))
+
+
+def test_s9_1_http_v3_200_400_503_and_no_internal_source_leak(local_registry_http):
+    get,path=local_registry_http
+    status,cache,late=get("/api/scientific-registry?cut=late")
+    assert status==200 and cache=="no-store"
+    _assert_gate(late)
+    assert len(late["snapshot"]["admission_assessments"]["assessments"])==8
+    status,_,early=get("/api/scientific-registry?cut=early")
+    assert status==200 and early["snapshot"]["admission_assessments"]["assessment_count"]==0
+    status,_,invalid=get("/api/scientific-registry?assessment_id=S9%3AASSESS_01")
+    assert status==400 and invalid=={"error":"INVALID_SYNTHETIC_REGISTRY_QUERY"}
+    with sqlite3.connect(path) as con:
+        trigger="registry_assessment_immutable_update"
+        statement=con.execute("SELECT sql FROM sqlite_master WHERE name=?",(trigger,)).fetchone()[0]
+        con.execute(f"DROP TRIGGER {trigger}")
+        con.execute("UPDATE assessment_event SET receipt_sha256=? WHERE event_id='S9:AUDIT_02_2'",
+                    ("0"*64,))
+        con.execute(statement)
+        con.commit()
+    status,cache,failed=get("/api/scientific-registry?cut=late")
+    assert (status,cache,failed)==(503,"no-store",{"error":"SYNTHETIC_REGISTRY_UNAVAILABLE"})
+
+
+def test_s9_v1_to_v3_transactional_migration_preserves_existing_source_bytes(db):
     with registry._connect(db) as con:
         con.execute("BEGIN IMMEDIATE")
         registry._migration_v1(con)
@@ -174,11 +376,12 @@ def test_s9_v1_to_v2_transactional_migration_preserves_existing_source_bytes(db)
         con.commit()
     registry.seed_registry(db)
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==2
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
         post_sha=hashlib.sha256(b"".join(row[0] for row in
             con.execute("SELECT source_bytes FROM distribution ORDER BY 1"))).hexdigest()
         assert pre_sha==post_sha
-        assert con.execute("SELECT count(*) FROM schema_history").fetchone()[0]==2
+        assert con.execute("SELECT count(*) FROM schema_history").fetchone()[0]==3
+        assert con.execute("SELECT count(*) FROM assessment_event").fetchone()[0]==16
     assert registry.query_registry(db)["R5"]=="STOP_R5"
 
 
@@ -317,7 +520,7 @@ def test_s9_unchanged_schema_version_but_weakened_table_ddl_fails_closed(db):
     registry.seed_registry(db)
     with sqlite3.connect(db) as con:
         con.execute("ALTER TABLE distribution ADD COLUMN unapproved_payload BLOB")
-        assert con.execute("PRAGMA user_version").fetchone()[0]==2
+        assert con.execute("PRAGMA user_version").fetchone()[0]==3
         con.commit()
     with pytest.raises(registry.RegistryIntegrityError,match="SCHEMA_DDL_HASH_DIVERGENCE"):
         registry.query_registry(db)
