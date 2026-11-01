@@ -981,3 +981,134 @@ PII, CI, `main`, merge ni despliegue. La población de PP04
 `test_synthetic_scientific_integration_lab.py` =
 `e7b16dc188101b88853277cb5e8b5be02adebaebeb2430329f3a485b64dec8c3`.
 SHA del código no equivale a autenticidad de documentos administrativos.
+
+## PR22 · matriz de testigos diferenciales B0/B3 — capacidad nueva NONCYCLE
+
+Esta capacidad extiende el experimento anterior B0 calendario frente a
+B3 selección/publicación **sin crear una fuente empírica**. Ambos mecanismos
+siguen compartiendo exactamente **cuatro episodios recibidos hipotéticos**,
+dos ediciones publicadas, sus SHA-256 por fuente y revisión, claves tipadas
+de actor, organización, comunicación, decisión y proceso, y la misma
+proyección pública a `early` y `late`. La nueva matriz responde una
+pregunta diferente: **qué clase de testigo adicional sería admisible al
+corte de conocimiento y cuál de los dos mecanismos, si alguno, quedaría
+refutado**. Las once filas son **escenarios alternativos**; no son once
+observaciones reales simultáneas ni se combinan en un expediente.
+
+### Contrato congelado y relojes
+
+El esquema de entrada existente en el IPC incorpora
+`pfl.synthetic_b0_b3_witness_matrix_wire.v1`, que incluye referencias
+source-local y los SHA exactos de las dos ediciones de la cadena más
+**once recibos documentales totalmente inventados**. Por testigo se
+conserva, exclusivamente dentro de Python/Node: ID del escenario, tipo
+de declaración, emisor ficticio, bytes y SHA-256, clave tipada, fecha de
+validez, `first_public_at` ficticio, `captured_at`, suficiencia del enlace
+y exhaustividad pretendida. El testigo de dos ediciones vincula sus
+dos SHA a un único activo/distribución ficticio, sin confundir edición
+con entidad o evento adicional.
+
+El oráculo de salida
+`pfl.synthetic_b0_b3_witness_matrix_oracle.v1` **no incluye bytes,
+SHA ni identidades source-local**: ofrece para cada caso/corte
+`witness_admissibility`, `compatible_mechanisms`, `falsified`,
+`identified_from_observation`, `identification_scope`,
+`causal_identified=false` y `real_evidence_admitted=false`. La expresión
+`identified_from_observation=true` solo indica **identificación condicional
+al testigo inventado dentro del laboratorio**; nunca acredita identificación
+empírica, una selección realmente observada ni causalidad.
+
+El corte **early** pregunta por conocimiento
+`as_of=2026-10-15T12:00:00Z` y estado válido el **15/10**;
+**late** pregunta por conocimiento `as_of=2026-11-01T12:00:00Z`
+y estado válido el **31/10**. No basta que una declaración afirme
+referirse a una fecha pasada: su captura y su primera publicación
+**ficticia** deben ser anteriores o iguales al corte. Tampoco se admite
+una declaración relativa a un día de validez posterior a la consulta.
+
+### Resultados de la matriz congelada
+
+Las abreviaturas **B0+B3** indican compatibilidad con ambas hipótesis;
+**B0** o **B3** indican identificación exclusivamente condicional al
+testigo inventado. `NO CONOCIDO` no es una negación, y `INADMISIBLE`
+no es un resultado administrativo.
+
+| Escenario independiente | Early | Late | Justificación diferencial |
+| --- | --- | --- | --- |
+| Ningún testigo | B0+B3 | B0+B3 | La observación publicada es igual |
+| Registro independiente simulado `ALL_RECEIVED`, N=4 | B0+B3 | B0+B3 | Ambos estipulan N=4; el denominador igual no discrimina |
+| Documento incompleto o sin enlace tipado | INADMISIBLE, B0+B3 | INADMISIBLE, B0+B3 | No se adjudica identidad ni episodio sin crosswalk específico |
+| E3 rechazado el **10/10**, documento independiente, capturado/publicado antes de late | NO CONOCIDO, B0+B3 | **B3**, B0 refutado | Contradice la ausencia de terminal en B0 |
+| E3 sigue pendiente al **31/10**, registro exhaustivo hipotético | NO CONOCIDO, B0+B3 | **B0**, B3 refutado | Contradice el rechazo de E3 el 10/10 que estipula B3 |
+| E2 pendiente | B0+B3 | B0+B3 | Pendencia conocida no es rechazo ni censura |
+| E4 con testigo ficticio de censura a derecha | NO CONOCIDO, B0+B3 | B0+B3 | Censura de seguimiento no demuestra resultado terminal |
+| Dos ediciones del mismo activo con recibos SHA auténticos del **fixture** | NO CONOCIDO, B0+B3 | B0+B3 | Dos versiones idénticas a las publicadas no informan del mecanismo de selección |
+| Log de regla de selección independientemente comprobado **en el fixture** y concordante con B3 | NO CONOCIDO, B0+B3 | **B3**, B0 refutado | Exige comprobar regla, versión, decisión temporal y aplicación al mismo activo |
+| Testigo publicado y capturado **después de ambos `as_of`** | NO CONOCIDO, B0+B3 | NO CONOCIDO, B0+B3 | No hay *lookahead* admisible |
+| `first_public_at` retrospectivo 19/09, pero captura local 31/10 | NO CONOCIDO, B0+B3 | B0+B3 | Una fecha pública antigua no retrotrae el conocimiento local ni discrimina por sí misma |
+
+El testigo E3 de pendencia exhaustiva lleva fecha válida **31/10**,
+publicación ficticia **31/10 a las 13:00 UTC** y captura **01/11 a las
+08:00 UTC**, ambas anteriores al corte tardío del 01/11 a las 12:00;
+no se inventa una publicación anterior al estado que se pretende
+documentar. La primera publicación **real** continúa siendo `null`.
+
+### Criterios de aceptación, rechazos y consecuencias epistemológicas
+
+La capacidad solo considera hipotéticamente admisibles los documentos
+con **estructura exacta**, familia y enlace tipados del caso, `source_id`
+y SHA de los bytes sintéticos esperados, fechas de publicación/captura
+válidas para el corte y testigo suficientemente exhaustivo cuando la
+afirmación lo requiere. Un enlace incompleto se conserva como
+`INADMISSIBLE_INCOMPLETE_OR_UNLINKED` sin refutar modelo alguno. Las
+mutaciones de SHA, fuente, familia, enlace, exhaustividad, fecha, orden,
+activo/distribución, derechos o declaraciones de denominador y crosswalk
+**reales** se rechazan cerradamente antes de emitir un oráculo. Los
+testigos válidos del laboratorio llevan el estado inequívoco
+`ADMISSIBLE_HYPOTHETICAL_ONLY`.
+
+Python verifica `FileReceipt` de cada testigo y ejecuta
+`assess_distribution_rights` **por activo y propósito**: el supuesto
+`LOCAL_ACADEMIC_READ` jamás certifica
+`PUBLIC_AGGREGATE_DISPLAY` ni la reutilización de originales.
+Node reconstruye por separado la matriz, los contenidos sintéticos y
+sus SHA con `crypto.createHash`, y valida el esquema completo. El
+consumidor Python coteja el resultado íntegro por JSON canónico tipado;
+el HTTP ya existente solo devuelve agregados sin PII y responde
+**503/no-store** ante divergencia real de IPC, incluso si la discrepancia
+se introduce después de ejecutar el Node genuino.
+
+La matriz conserva explícitamente la distinción **resultado negativo
+administrativo observado** frente a **rechazo E3 oculto e hipotético bajo
+B3**. `E2=PENDING` no equivale a negativo, `E4=RIGHT_CENSOR` no equivale
+a rechazo y el universo `NO INCLUIDAS` de PP04 nunca se usa como grupo
+de negativos. No se inventa un denominador de entradas, un documento
+oficial ni una prueba histórica disponible para identificar la selección.
+
+Se conserva la referencia independiente S3, **no calibrada sobre esta
+cadena**: `r = P(publicado|Y=1) / P(publicado|Y=0)` en `[1/2,2/1]`,
+región no causal del cambio `[-11/52,47/119]`, **no una odds ratio**.
+Está bloqueada en `early` por conocimiento temporal y disponible como
+oráculo de sensibilidad ficticio en `late`. En todos los casos
+`real_independent_all_received=null`, `real_first_public_at=null`,
+`rights_for_public_display_admitted=false`,
+`real_crosswalk_verified=false`, `causal_identified=false`,
+**R5 STOP, 0 AB científicos, 0/6 puertas empíricas**.
+
+**Pruebas focales nuevas** (`-k witness_matrix`): paridad Python/Node
+con el **mismo wire**, matriz caso por caso early/late, contraste de
+revisión y recibos exactos, anti-lookahead, admisibilidad/invalidación,
+alteraciones SHA, familia, derechos, crosswalk, fechas y exhaustividad,
+S3 racional exacta y servidor HTTP con Node auténtico adulterado para
+contradecir la refutación de E3. **20 PASS, 107 deseleccionados**.
+`node --check`, `py_compile`, `git diff --check`: PASS. No se repiten
+las 22/35/18 pruebas anteriores, PP04 ni las 41 Node históricas. Es una
+capacidad **NONCYCLE**, sin fabricar un fallo PREPATCH inexistente.
+
+**SHA-256 del código y los tests después de QA focal:** Python
+`f53fc104863a15c9b23bf916b585affb59f5a19f173bec7a48202d07e66bb2e7`,
+Node
+`d15a686cc8c6d78d8d217a74d128ac524341bd397b5522e7c7bef1f4ff6b770e`,
+tests
+`8f35e0b4cbcb72a45c1fce01444c2c96c8d0237e181fa263e348e55304ab0f45`.
+Estas huellas no autentican derechos ni fuentes originales.

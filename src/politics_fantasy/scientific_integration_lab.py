@@ -796,6 +796,212 @@ def _b0_b3_equivalence(*, chain: dict, at: str,
     },w)
 
 
+def _b0_b3_witness_matrix_fixture(chain: dict) -> dict:
+    """Fixed, invented counterfactual witnesses; never real admission evidence.
+
+    Publication and capture are distinct clocks. Source receipts are the
+    existing chain editions for the two-vintage experiment, otherwise a
+    separate synthetic document with its exact byte digest. Even an internally
+    linked witness cannot certify publisher rights or independent provenance.
+    """
+    e2=["SYN:CHAIN","PROCESS","HIDDEN2"]
+    e3=["SYN:CHAIN","PROCESS","HIDDEN3"]
+    e4=["SYN:CHAIN","PROCESS","HIDDEN4"]
+    early_public="2026-09-19T12:00:00Z"
+    late_public="2026-10-30T12:00:00Z"
+    later="2026-11-03T12:00:00Z"
+    definitions=(
+        ("NONE","NONE",None,None,None,None,False,False),
+        ("ALL_RECEIVED_N4","INDEPENDENT_ALL_RECEIVED_N4",None,
+         "2026-09-10",early_public,EARLY_CAPTURE,True,True),
+        ("INCOMPLETE_UNLINKED","INCOMPLETE_UNLINKED",None,
+         "2026-09-10",early_public,EARLY_CAPTURE,False,False),
+        ("E3_REJECTED_OCT10","E3_REJECTED",e3,
+         "2026-10-10",late_public,LATE_CAPTURE,True,True),
+        ("E3_PENDING_EXHAUSTIVE_OCT31","E3_STILL_PENDING_EXHAUSTIVE",e3,
+         "2026-10-31","2026-10-31T13:00:00Z",
+         "2026-11-01T08:00:00Z",True,True),
+        ("E2_PENDING","E2_PENDING",e2,
+         "2026-09-12",early_public,EARLY_CAPTURE,True,False),
+        ("E4_RIGHT_CENSOR","E4_RIGHT_CENSOR_NOT_REJECTED",e4,
+         "2026-10-10",late_public,LATE_CAPTURE,True,False),
+        ("TWO_VINTAGES_EXACT_SHA","TWO_VINTAGES_SAME_ASSET",None,
+         "2026-10-30",late_public,LATE_CAPTURE,True,True),
+        ("SELECTION_LOG_B3_VERIFIED_RULE","SELECTION_LOG_RULE_MATCHES_B3",e3,
+         "2026-10-20",late_public,LATE_CAPTURE,True,True),
+        ("WITNESS_AFTER_LATE_CUT","E3_REJECTED",e3,
+         "2026-10-10","2026-11-03T10:00:00Z",later,True,True),
+        ("RETROSPECTIVE_FIRST_PUBLIC","RETROSPECTIVE_SOURCE_FIRST_PUBLIC",None,
+         "2026-09-19",early_public,LATE_CAPTURE,True,True),
+    )
+    rows=[]
+    for case_id,kind,subject,valid_day,published,captured,linked,exhaustive in definitions:
+        body=(f"SYNTHETIC DIFFERENTIAL WITNESS\nCASE:{case_id}\n"
+              f"KIND:{kind}\n") if kind!="NONE" else None
+        rows.append({
+            "case":case_id,"kind":kind,"source_id":(
+                "SYN:WITNESS_"+case_id if body else None),
+            "issuer":"SYN:INDEPENDENT_WITNESS_LAB" if body else None,
+            "bytes":body,"sha256":_sha(body) if body else None,
+            "subject_key":subject,"valid_on":valid_day,
+            "first_public_at":published,"captured_at":captured,
+            "source_local_linked_in_fixture":linked,
+            "claim_exhaustive_in_fixture":exhaustive,
+            "published_asset_vintages":([{
+                "distribution_id":"SYN:CHAIN_PUBLISHED_ASSET",
+                "source_id":s["source_id"],"sha256":s["sha256"]}
+                for s in chain["sources"]] if kind=="TWO_VINTAGES_SAME_ASSET"
+                else []),
+        })
+    return {
+        "schema":"pfl.synthetic_b0_b3_witness_matrix_wire.v1",
+        "chain_issuer":chain["issuer"],
+        "chain_distribution_receipts":[{"source_id":s["source_id"],
+             "sha256":s["sha256"]} for s in chain["sources"]],
+        "witnesses":rows,
+        "requested_purpose":"PUBLIC_AGGREGATE_DISPLAY",
+        "hypothetical_document_purpose":"LOCAL_ACADEMIC_READ",
+        "rights_by_distribution_and_purpose_admitted":False,
+        "real_independent_registry_total":None,
+        "real_first_public_at":None,
+        "real_official_crosswalk_verified":False,
+        "real_witness_independence_verified":False,
+        "causal_identified":False,
+    }
+
+
+def _b0_b3_witness_matrix(*, chain: dict, at: str,
+                          b0_b3: dict,
+                          wire: dict | None = None) -> tuple[dict,dict]:
+    """What each hypothetical witness can, and cannot, distinguish by cut."""
+    if at not in CUTS.values():
+        raise RuntimeError("WITNESS_MATRIX_UNDECLARED_CUT")
+    expected=_b0_b3_witness_matrix_fixture(chain)
+    w=expected if wire is None else wire
+    if (type(w) is not dict or set(w)!=set(expected) or
+            any(type(w[k]) is not type(expected[k]) or w[k]!=expected[k]
+                for k in expected if k not in (
+                    "witnesses","chain_distribution_receipts"))):
+        raise RuntimeError("WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF")
+    if (json.dumps(w["chain_distribution_receipts"],sort_keys=True,
+                   separators=(",",":"))!=json.dumps(
+                   expected["chain_distribution_receipts"],sort_keys=True,
+                   separators=(",",":"))):
+        raise RuntimeError("WITNESS_MATRIX_CHAIN_SHA_MISMATCH")
+    if type(w["witnesses"]) is not list or len(w["witnesses"])!=len(expected["witnesses"]):
+        raise RuntimeError("WITNESS_MATRIX_CASES_MISSING")
+    for row,canonical in zip(w["witnesses"],expected["witnesses"]):
+        if (type(row) is not dict or set(row)!=set(canonical) or
+                json.dumps(row,sort_keys=True,separators=(",",":"))!=
+                json.dumps(canonical,sort_keys=True,separators=(",",":")) or
+                (row["bytes"] is not None and
+                 row["sha256"]!=_sha(row["bytes"]))):
+            raise RuntimeError("WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF")
+        if row["bytes"] is not None:
+            # A genuine SHA of invented bytes does NOT grant real rights.
+            # Check this asset and its distinct requested purpose individually.
+            receipt=FileReceipt(row["source_id"],row["sha256"],
+                len(row["bytes"].encode("utf-8")),row["captured_at"],
+                "SYNTHETIC","SYNTHETIC")
+            if not receipt.query_admitted or utc(row["first_public_at"])>utc(
+                    row["captured_at"]):
+                raise RuntimeError("WITNESS_MATRIX_RECEIPT_TIME_INVALID")
+            legal=assess_distribution_rights({
+                "distribution_id":receipt.source_id,
+                "asset_sha256":receipt.sha256,
+                "asset_url":"https://example.invalid/fictional-witness-only",
+                "historical_as_of":at,"first_public_at":None,
+                "requested_purpose":w["requested_purpose"],
+                "rights":{"kind":"PUBLISHER_ASSET_SPECIFIC",
+                    "distribution_id":receipt.source_id,
+                    "asset_sha256":receipt.sha256,
+                    "covered_purposes":[w["hypothetical_document_purpose"]],
+                    "notice_published_at":row["first_public_at"],
+                    "terms_mode":"PUBLISHER_OPEN_NOTICE",
+                    "terms_reviewed_by_human":False,
+                    "rights_reviewed_by_human":False}})
+            if legal["reuse_admitted"] or legal["empirical_r5_open"]:
+                raise RuntimeError("WITNESS_MATRIX_UNTRUSTED_RIGHTS_PROMOTION")
+    if (b0_b3.get("status")!=
+            "B0_B3_FULL_PUBLIC_PROJECTION_EQUIVALENT_NOT_IDENTIFIED" or
+            b0_b3.get("hypothetical_all_received_by_mechanism")!={
+                "B0_CALENDAR":4,"B3_SELECTION_PUBLICATION":4}):
+        raise RuntimeError("WITNESS_MATRIX_BASE_DGP_CHANGED")
+    cases={}
+    for name,query_cut in CUTS.items():
+        if utc(query_cut)>utc(at):
+            continue
+        query_valid_day="2026-10-15" if name=="early" else "2026-10-31"
+        evaluations=[]
+        for case in w["witnesses"]:
+            cid=case["case"]
+            # An unlinked or incomplete witness cannot be rescued merely
+            # because it was captured early or carries plausible SHA bytes.
+            if cid=="NONE":
+                admissibility="NONE"
+            elif not case["source_local_linked_in_fixture"]:
+                admissibility="INADMISSIBLE_INCOMPLETE_OR_UNLINKED"
+            elif (utc(case["captured_at"])>utc(query_cut) or
+                  utc(case["first_public_at"])>utc(query_cut)):
+                admissibility="NOT_KNOWN_AT_CUT"
+            elif case["valid_on"]>query_valid_day:
+                admissibility="NOT_VALID_AT_QUERY_DAY"
+            else:
+                admissibility="ADMISSIBLE_HYPOTHETICAL_ONLY"
+                if case["kind"]=="TWO_VINTAGES_SAME_ASSET":
+                    if any(utc(s["captured_at"])>utc(query_cut) or
+                           utc(s["first_public_at"])>utc(query_cut)
+                           for s in chain["sources"]):
+                        admissibility="NOT_KNOWN_AT_CUT"
+            compatible=["B0_CALENDAR","B3_SELECTION_PUBLICATION"]
+            falsified=[]
+            if admissibility=="ADMISSIBLE_HYPOTHETICAL_ONLY":
+                if cid in ("E3_REJECTED_OCT10","SELECTION_LOG_B3_VERIFIED_RULE"):
+                    compatible=["B3_SELECTION_PUBLICATION"]
+                    falsified=["B0_CALENDAR"]
+                elif cid=="E3_PENDING_EXHAUSTIVE_OCT31":
+                    compatible=["B0_CALENDAR"]
+                    falsified=["B3_SELECTION_PUBLICATION"]
+            evaluations.append({
+                "case":cid,"witness_admissibility":admissibility,
+                "compatible_mechanisms":compatible,
+                "falsified":falsified,
+                "identified_from_observation":bool(falsified),
+                "identification_scope":"SYNTHETIC_COUNTERFACTUAL_ONLY",
+                "causal_identified":False,
+                "real_evidence_admitted":False,
+                "retrospective_first_public_precedes_capture":bool(
+                    cid=="RETROSPECTIVE_FIRST_PUBLIC" and
+                    admissibility=="ADMISSIBLE_HYPOTHETICAL_ONLY"),
+            })
+        cases[name]={"as_of":query_cut,"valid_at":query_valid_day,
+                     "evaluations":evaluations}
+    s3=b0_b3["s3_external_sensitivity"]
+    return ({
+        "schema":"pfl.synthetic_b0_b3_witness_matrix_oracle.v1",
+        "status":"HYPOTHETICAL_DISCRIMINATION_NOT_REAL_ADMISSION",
+        "cases_by_knowledge_cut":cases,
+        "all_received_same_four_not_discriminating":True,
+        "exact_two_published_vintages_not_discriminating":True,
+        "selection_log_requires_independent_rule_validation":True,
+        "first_public_alone_not_discriminating":True,
+        "pending_is_not_negative":True,"right_censor_is_not_rejection":True,
+        "hidden_e3_rejection_is_not_observed_administrative_negative":True,
+        "s3_exact_noncausal_reference":None if s3 is None else {
+            "source":"INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES",
+            "ratio_definition":"P_PUBLISHED_GIVEN_Y1_OVER_P_PUBLISHED_GIVEN_Y0",
+            "ratio_range":s3["ratio_range"],
+            "noncausal_change_range":s3["noncausal_change_range"],
+            "odds_ratio":False,"chain_calibration_verified":False},
+        "real_independent_all_received":None,
+        "real_first_public_at":None,
+        "rights_for_public_display_admitted":False,
+        "real_crosswalk_verified":False,
+        "real_witness_independence_verified":False,
+        "causal_identified":False,"scientific_cycles":0,
+    },w)
+
+
 def _rights(assets: list[dict], *, at: str) -> dict:
     results = {}
     for asset in assets:
@@ -1126,12 +1332,12 @@ def _capture_rivals(at: str) -> tuple[dict, dict]:
 def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                     experiment: dict | None, timeline: dict,
                     partial_identification: dict | None, chain: dict,
-                    b0_b3: dict) -> dict:
+                    b0_b3: dict, witness_matrix: dict) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
     request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
              "assets":assets,"experiment":experiment,"timeline":timeline,
              "partial_identification":partial_identification,"chain":chain,
-             "b0_b3":b0_b3}
+             "b0_b3":b0_b3,"witness_matrix":witness_matrix}
     try:
         # Keep the *fixed* multi-contract fixture bounded without weakening
         # Node's independent source allowlists or the closed IPC schema.
@@ -1140,7 +1346,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
             text=True,capture_output=True,timeout=5,check=False)
     except (OSError,subprocess.TimeoutExpired) as exc:
         raise RuntimeError("SYNTHETIC_NODE_BRIDGE_UNAVAILABLE") from exc
-    if proc.returncode!=0 or len(proc.stdout)>9000:
+    if proc.returncode!=0 or len(proc.stdout)>18000:
         raise RuntimeError("SYNTHETIC_NODE_BRIDGE_REJECTED")
     try:
         data=json.loads(proc.stdout)
@@ -1162,6 +1368,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
         "partial_identification_oracle",
         "typed_institutional_chain",
         "b0_b3_observational_equivalence",
+        "b0_b3_witness_matrix",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -1245,10 +1452,12 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
     typed_chain,chain_wire=_typed_institutional_chain(at=at)
     b0_b3_oracle,b0_b3_wire=_b0_b3_equivalence(
         chain=chain_wire,at=at,s3_oracle=partial_oracle)
+    matrix_oracle,matrix_wire=_b0_b3_witness_matrix(
+        chain=chain_wire,at=at,b0_b3=b0_b3_oracle)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
                               experiment=experiment,timeline=timeline,
                               partial_identification=partial_wire,chain=chain_wire,
-                              b0_b3=b0_b3_wire)
+                              b0_b3=b0_b3_wire,witness_matrix=matrix_wire)
     if warehouse.get("bitemporal_actor_event_equivalence") != bitemporal:
         raise RuntimeError("CROSS_LANGUAGE_BITEMPORAL_CONTRACT_DIVERGENCE")
     if warehouse.get("partial_identification_oracle") != partial_oracle:
@@ -1261,6 +1470,10 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
                    sort_keys=True,separators=(",",":")) !=
             json.dumps(b0_b3_oracle,sort_keys=True,separators=(",",":"))):
         raise RuntimeError("CROSS_LANGUAGE_B0_B3_HYPOTHESIS_DIVERGENCE")
+    if (json.dumps(warehouse.get("b0_b3_witness_matrix"),
+                   sort_keys=True,separators=(",",":")) !=
+            json.dumps(matrix_oracle,sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("CROSS_LANGUAGE_WITNESS_MATRIX_DIVERGENCE")
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,

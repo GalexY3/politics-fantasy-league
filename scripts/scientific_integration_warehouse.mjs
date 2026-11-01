@@ -573,9 +573,153 @@ function replayB0B3(w,chain,cut,s3){
   empirical_causal_effect_identified:false,scientific_cycles:0};
 }
 
+function expectedB0B3WitnessMatrix(chain){
+ const e2=['SYN:CHAIN','PROCESS','HIDDEN2'];
+ const e3=['SYN:CHAIN','PROCESS','HIDDEN3'];
+ const e4=['SYN:CHAIN','PROCESS','HIDDEN4'];
+ const earlyPub='2026-09-19T12:00:00Z',latePub='2026-10-30T12:00:00Z';
+ const earlyCapture='2026-09-20T12:00:00Z',lateCapture='2026-10-31T12:00:00Z';
+ const defs=[
+  ['NONE','NONE',null,null,null,null,false,false],
+  ['ALL_RECEIVED_N4','INDEPENDENT_ALL_RECEIVED_N4',null,
+   '2026-09-10',earlyPub,earlyCapture,true,true],
+  ['INCOMPLETE_UNLINKED','INCOMPLETE_UNLINKED',null,
+   '2026-09-10',earlyPub,earlyCapture,false,false],
+  ['E3_REJECTED_OCT10','E3_REJECTED',e3,
+   '2026-10-10',latePub,lateCapture,true,true],
+  ['E3_PENDING_EXHAUSTIVE_OCT31','E3_STILL_PENDING_EXHAUSTIVE',e3,
+   '2026-10-31','2026-10-31T13:00:00Z','2026-11-01T08:00:00Z',true,true],
+  ['E2_PENDING','E2_PENDING',e2,
+   '2026-09-12',earlyPub,earlyCapture,true,false],
+  ['E4_RIGHT_CENSOR','E4_RIGHT_CENSOR_NOT_REJECTED',e4,
+   '2026-10-10',latePub,lateCapture,true,false],
+  ['TWO_VINTAGES_EXACT_SHA','TWO_VINTAGES_SAME_ASSET',null,
+   '2026-10-30',latePub,lateCapture,true,true],
+  ['SELECTION_LOG_B3_VERIFIED_RULE','SELECTION_LOG_RULE_MATCHES_B3',e3,
+   '2026-10-20',latePub,lateCapture,true,true],
+  ['WITNESS_AFTER_LATE_CUT','E3_REJECTED',e3,
+   '2026-10-10','2026-11-03T10:00:00Z','2026-11-03T12:00:00Z',true,true],
+  ['RETROSPECTIVE_FIRST_PUBLIC','RETROSPECTIVE_SOURCE_FIRST_PUBLIC',null,
+   '2026-09-19',earlyPub,lateCapture,true,true],
+ ];
+ const witnesses=defs.map(([id,kind,subject,validOn,published,captured,linked,exhaustive])=>{
+  const body=kind==='NONE'?null:
+   `SYNTHETIC DIFFERENTIAL WITNESS\nCASE:${id}\nKIND:${kind}\n`;
+  return {case:id,kind,
+   source_id:body===null?null:`SYN:WITNESS_${id}`,
+   issuer:body===null?null:'SYN:INDEPENDENT_WITNESS_LAB',
+   bytes:body,
+   sha256:body===null?null:createHash('sha256').update(Buffer.from(body,'utf8')).digest('hex'),
+   subject_key:subject,valid_on:validOn,first_public_at:published,
+   captured_at:captured,source_local_linked_in_fixture:linked,
+   claim_exhaustive_in_fixture:exhaustive,
+   published_asset_vintages:kind==='TWO_VINTAGES_SAME_ASSET'?
+    chain.sources.map(s=>({distribution_id:'SYN:CHAIN_PUBLISHED_ASSET',
+     source_id:s.source_id,sha256:s.sha256})):[]};
+ });
+ return {schema:'pfl.synthetic_b0_b3_witness_matrix_wire.v1',
+  chain_issuer:chain.issuer,
+  chain_distribution_receipts:chain.sources.map(s=>({
+   source_id:s.source_id,sha256:s.sha256})),
+  witnesses,requested_purpose:'PUBLIC_AGGREGATE_DISPLAY',
+  hypothetical_document_purpose:'LOCAL_ACADEMIC_READ',
+  rights_by_distribution_and_purpose_admitted:false,
+  real_independent_registry_total:null,real_first_public_at:null,
+  real_official_crosswalk_verified:false,
+  real_witness_independence_verified:false,causal_identified:false};
+}
+
+function replayB0B3WitnessMatrix(w,chain,cut,b0b3){
+ const expected=expectedB0B3WitnessMatrix(chain);
+ const fixed=Object.keys(expected).filter(k=>
+  k!=='witnesses'&&k!=='chain_distribution_receipts');
+ if(!exactKeys(w,Object.keys(expected))||fixed.some(k=>w[k]!==expected[k]))
+  fail('WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF');
+ if(canonical(w.chain_distribution_receipts)!==canonical(expected.chain_distribution_receipts))
+  fail('WITNESS_MATRIX_CHAIN_SHA_MISMATCH');
+ if(!Array.isArray(w.witnesses)||w.witnesses.length!==expected.witnesses.length)
+  fail('WITNESS_MATRIX_CASES_MISSING');
+ for(let i=0;i<w.witnesses.length;i++){
+  const row=w.witnesses[i],canonicalRow=expected.witnesses[i];
+  if(!exactKeys(row,Object.keys(canonicalRow))||canonical(row)!==canonical(canonicalRow)||
+     (row.bytes!==null&&row.sha256!==createHash('sha256').update(
+       Buffer.from(row.bytes,'utf8')).digest('hex')))
+    fail('WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF');
+  if(row.bytes!==null&&Date.parse(row.first_public_at)>Date.parse(row.captured_at))
+    fail('WITNESS_MATRIX_RECEIPT_TIME_INVALID');
+ }
+ if(b0b3.status!=='B0_B3_FULL_PUBLIC_PROJECTION_EQUIVALENT_NOT_IDENTIFIED'||
+    canonical(b0b3.hypothetical_all_received_by_mechanism)!==
+    canonical({B0_CALENDAR:4,B3_SELECTION_PUBLICATION:4}))
+  fail('WITNESS_MATRIX_BASE_DGP_CHANGED');
+ const rows={};
+ const knowledgeCuts=cut==='early'?['early']:['early','late'];
+ for(const c of knowledgeCuts){
+  const asOf=cuts[c];
+  const validDay=c==='early'?'2026-10-15':'2026-10-31';
+  const evaluations=w.witnesses.map(item=>{
+   const id=item.case;
+   let admissibility;
+   if(id==='NONE')admissibility='NONE';
+   else if(!item.source_local_linked_in_fixture)
+    admissibility='INADMISSIBLE_INCOMPLETE_OR_UNLINKED';
+   else if(Date.parse(item.captured_at)>Date.parse(asOf)||
+           Date.parse(item.first_public_at)>Date.parse(asOf))
+    admissibility='NOT_KNOWN_AT_CUT';
+   else if(item.valid_on>validDay)
+    admissibility='NOT_VALID_AT_QUERY_DAY';
+   else{
+    admissibility='ADMISSIBLE_HYPOTHETICAL_ONLY';
+    if(item.kind==='TWO_VINTAGES_SAME_ASSET'&&chain.sources.some(s=>
+       Date.parse(s.captured_at)>Date.parse(asOf)||
+       Date.parse(s.first_public_at)>Date.parse(asOf)))
+      admissibility='NOT_KNOWN_AT_CUT';
+   }
+   let compatible=['B0_CALENDAR','B3_SELECTION_PUBLICATION'];
+   let falsified=[];
+   if(admissibility==='ADMISSIBLE_HYPOTHETICAL_ONLY'){
+    if(id==='E3_REJECTED_OCT10'||id==='SELECTION_LOG_B3_VERIFIED_RULE'){
+     compatible=['B3_SELECTION_PUBLICATION'];falsified=['B0_CALENDAR'];
+    }else if(id==='E3_PENDING_EXHAUSTIVE_OCT31'){
+     compatible=['B0_CALENDAR'];falsified=['B3_SELECTION_PUBLICATION'];
+    }
+   }
+   return {case:id,witness_admissibility:admissibility,
+    compatible_mechanisms:compatible,falsified,
+    identified_from_observation:falsified.length>0,
+    identification_scope:'SYNTHETIC_COUNTERFACTUAL_ONLY',
+    causal_identified:false,real_evidence_admitted:false,
+    retrospective_first_public_precedes_capture:
+     id==='RETROSPECTIVE_FIRST_PUBLIC'&&
+     admissibility==='ADMISSIBLE_HYPOTHETICAL_ONLY'};
+  });
+  rows[c]={as_of:asOf,valid_at:validDay,evaluations};
+ }
+ const s3=b0b3.s3_external_sensitivity;
+ return {schema:'pfl.synthetic_b0_b3_witness_matrix_oracle.v1',
+  status:'HYPOTHETICAL_DISCRIMINATION_NOT_REAL_ADMISSION',
+  cases_by_knowledge_cut:rows,
+  all_received_same_four_not_discriminating:true,
+  exact_two_published_vintages_not_discriminating:true,
+  selection_log_requires_independent_rule_validation:true,
+  first_public_alone_not_discriminating:true,
+  pending_is_not_negative:true,right_censor_is_not_rejection:true,
+  hidden_e3_rejection_is_not_observed_administrative_negative:true,
+  s3_exact_noncausal_reference:s3===null?null:{
+   source:'INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES',
+   ratio_definition:'P_PUBLISHED_GIVEN_Y1_OVER_P_PUBLISHED_GIVEN_Y0',
+   ratio_range:s3.ratio_range,noncausal_change_range:s3.noncausal_change_range,
+   odds_ratio:false,chain_calibration_verified:false},
+  real_independent_all_received:null,real_first_public_at:null,
+  rights_for_public_display_admitted:false,
+  real_crosswalk_verified:false,real_witness_independence_verified:false,
+  causal_identified:false,scientific_cycles:0};
+}
+
 function run(v){
  if(!v||Array.isArray(v)||typeof v!=='object'||
-    !['assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline',
+    !['assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline,witness_matrix',
+      'assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline',
       'assets,chain,cut,experiment,partial_identification,scenario,sha256,timeline',
       'assets,cut,experiment,partial_identification,scenario,sha256,timeline',
       'assets,cut,experiment,scenario,sha256,timeline',
@@ -609,6 +753,8 @@ function run(v){
  const typedChain=replayTypedChain(v.chain,v.cut);
  if(!Object.hasOwn(v,'b0_b3'))fail('B0_B3_WIRE_REQUIRED');
  const b0B3=replayB0B3(v.b0_b3,v.chain,v.cut,partialIdentification);
+ if(!Object.hasOwn(v,'witness_matrix'))fail('WITNESS_MATRIX_WIRE_REQUIRED');
+ const witnessMatrix=replayB0B3WitnessMatrix(v.witness_matrix,v.chain,v.cut,b0B3);
  const reg=W.empty();
  const base={kind:'SYNTHETIC',state:'TEST_FIXTURE',rights:'SYNTHETIC',
   url:'https://example.invalid/pfl-synthetic-no-external-source'};
@@ -688,13 +834,14 @@ function run(v){
   partial_identification_oracle:partialIdentification,
   typed_institutional_chain:typedChain,
   b0_b3_observational_equivalence:b0B3,
+  b0_b3_witness_matrix:witnessMatrix,
   real_denominator:null,first_public_at_real:null,
   publisher_authenticated:false,source_identity_crosswalk_certified:false};
 }
 
 let data='';
 try{
- for await(const part of stdin){data+=part;if(data.length>12288)fail('SYNTHETIC_INPUT_TOO_LARGE');}
+ for await(const part of stdin){data+=part;if(data.length>24576)fail('SYNTHETIC_INPUT_TOO_LARGE');}
  const payload=JSON.parse(data);
  stdout.write(JSON.stringify(run(payload))+'\n');
 }catch(e){

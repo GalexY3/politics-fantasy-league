@@ -1554,3 +1554,266 @@ def test_b0_b3_real_http_redacted_and_ipc_drift_fails_closed_503(tmp_path,monkey
             503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _witness_matrix_actual_node(wire,cut="late"):
+    """Direct existing JS program: fixed independent witness bytes, no originals."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_capture_rivals,_bitemporal_fixture,_partial_identification_fixture,
+        _typed_institutional_chain_fixture,_b0_b3_fixture,_sha,FAKE_PARITY,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    script=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    payload={"cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),"experiment":(
+            _capture_rivals(CUTS["late"])[1] if cut=="late" else None),
+        "timeline":_bitemporal_fixture(),"chain":chain,
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
+        "b0_b3":_b0_b3_fixture(chain),"witness_matrix":wire}
+    return subprocess.run(["node",str(script)],input=json.dumps(
+        payload,separators=(",",":")),text=True,capture_output=True,timeout=6)
+
+
+def test_witness_matrix_new_noncycle_full_early_late_cross_language():
+    """NEW witness-admissibility matrix, not a fabricated PREPATCH regression."""
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_fixture,_b0_b3_equivalence,
+        _b0_b3_witness_matrix_fixture,_b0_b3_witness_matrix,
+        _partial_identification_fixture,_partial_identification,CUTS,_sha,
+    )
+    chain=_typed_institutional_chain_fixture()
+    wire=_b0_b3_witness_matrix_fixture(chain)
+    assert len(wire["witnesses"])==11
+    assert set(wire)=={
+        "schema","chain_issuer","chain_distribution_receipts","witnesses",
+        "requested_purpose","hypothetical_document_purpose",
+        "rights_by_distribution_and_purpose_admitted",
+        "real_independent_registry_total","real_first_public_at",
+        "real_official_crosswalk_verified","real_witness_independence_verified",
+        "causal_identified"}
+    assert wire["requested_purpose"]=="PUBLIC_AGGREGATE_DISPLAY"
+    assert wire["hypothetical_document_purpose"]=="LOCAL_ACADEMIC_READ"
+    assert wire["chain_distribution_receipts"]==[
+        {"source_id":s["source_id"],"sha256":s["sha256"]}
+        for s in chain["sources"]]
+    for row in wire["witnesses"]:
+        if row["bytes"] is not None:
+            assert row["sha256"]==_sha(row["bytes"])
+        assert row["issuer"] is None or row["issuer"]=="SYN:INDEPENDENT_WITNESS_LAB"
+    for cut in ("early","late"):
+        s3=(_partial_identification(_partial_identification_fixture())
+            if cut=="late" else None)
+        baseline,_=_b0_b3_equivalence(chain=chain,at=CUTS[cut],s3_oracle=s3)
+        python_oracle,_=_b0_b3_witness_matrix(chain=chain,at=CUTS[cut],
+            b0_b3=baseline,wire=wire)
+        assert python_oracle["schema"]=="pfl.synthetic_b0_b3_witness_matrix_oracle.v1"
+        assert python_oracle["status"]=="HYPOTHETICAL_DISCRIMINATION_NOT_REAL_ADMISSION"
+        assert python_oracle["all_received_same_four_not_discriminating"] is True
+        assert python_oracle["exact_two_published_vintages_not_discriminating"] is True
+        for key in ("rights_for_public_display_admitted","real_crosswalk_verified",
+                    "real_witness_independence_verified","causal_identified"):
+            assert python_oracle[key] is False
+        assert python_oracle["real_independent_all_received"] is None
+        assert python_oracle["real_first_public_at"] is None
+        assert python_oracle["scientific_cycles"]==0
+        if shutil.which("node") is not None:
+            actual_node=_witness_matrix_actual_node(wire,cut=cut)
+            assert actual_node.returncode==0,actual_node.stderr
+            assert json.loads(actual_node.stdout)["b0_b3_witness_matrix"]==python_oracle
+        api=report(cut=cut)
+        assert api["warehouse"]["b0_b3_witness_matrix"]==python_oracle
+        assert api["R5"]=="STOP_R5"
+        assert api["scientific_AB_cycles"]==0
+        assert api["independent_all_received_denominator"] is None
+
+
+def test_witness_matrix_eleven_discriminating_cases_and_knowledge_cuts():
+    """Evaluate each named S6 case, not only aggregate count equality."""
+    early=report(cut="early")["warehouse"]["b0_b3_witness_matrix"]
+    late=report(cut="late")["warehouse"]["b0_b3_witness_matrix"]
+    assert set(early["cases_by_knowledge_cut"])=={"early"}
+    assert set(late["cases_by_knowledge_cut"])=={"early","late"}
+    assert late["cases_by_knowledge_cut"]["early"]==early["cases_by_knowledge_cut"]["early"]
+    e=early["cases_by_knowledge_cut"]["early"]
+    l=late["cases_by_knowledge_cut"]["late"]
+    assert e["as_of"]=="2026-10-15T12:00:00Z"
+    assert e["valid_at"]=="2026-10-15"
+    assert l["as_of"]=="2026-11-01T12:00:00Z"
+    assert l["valid_at"]=="2026-10-31"
+    assert len(e["evaluations"])==len(l["evaluations"])==11
+    early_cases={row["case"]:row for row in e["evaluations"]}
+    late_cases={row["case"]:row for row in l["evaluations"]}
+    both=["B0_CALENDAR","B3_SELECTION_PUBLICATION"]
+    b0=["B0_CALENDAR"]
+    b3=["B3_SELECTION_PUBLICATION"]
+    for case in ("NONE","ALL_RECEIVED_N4","INCOMPLETE_UNLINKED",
+                 "E2_PENDING","E4_RIGHT_CENSOR","TWO_VINTAGES_EXACT_SHA",
+                 "WITNESS_AFTER_LATE_CUT","RETROSPECTIVE_FIRST_PUBLIC"):
+        assert late_cases[case]["compatible_mechanisms"]==both
+        assert late_cases[case]["falsified"]==[]
+        assert late_cases[case]["identified_from_observation"] is False
+    for case in ("E3_REJECTED_OCT10","SELECTION_LOG_B3_VERIFIED_RULE"):
+        assert late_cases[case]["compatible_mechanisms"]==b3
+        assert late_cases[case]["falsified"]==b0
+        assert late_cases[case]["identified_from_observation"] is True
+    assert late_cases["E3_PENDING_EXHAUSTIVE_OCT31"]["compatible_mechanisms"]==b0
+    assert late_cases["E3_PENDING_EXHAUSTIVE_OCT31"]["falsified"]==b3
+    assert late_cases["E3_PENDING_EXHAUSTIVE_OCT31"]["identified_from_observation"] is True
+    assert early_cases["E3_REJECTED_OCT10"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert early_cases["E3_PENDING_EXHAUSTIVE_OCT31"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert late_cases["INCOMPLETE_UNLINKED"]["witness_admissibility"]==(
+        "INADMISSIBLE_INCOMPLETE_OR_UNLINKED")
+    assert early_cases["INCOMPLETE_UNLINKED"]["witness_admissibility"]==(
+        "INADMISSIBLE_INCOMPLETE_OR_UNLINKED")
+    assert late_cases["ALL_RECEIVED_N4"]["witness_admissibility"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert late_cases["E2_PENDING"]["witness_admissibility"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert late_cases["E4_RIGHT_CENSOR"]["witness_admissibility"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert early_cases["TWO_VINTAGES_EXACT_SHA"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert late_cases["TWO_VINTAGES_EXACT_SHA"]["witness_admissibility"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert late_cases["WITNESS_AFTER_LATE_CUT"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert early_cases["WITNESS_AFTER_LATE_CUT"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert early_cases["RETROSPECTIVE_FIRST_PUBLIC"]["witness_admissibility"]=="NOT_KNOWN_AT_CUT"
+    assert late_cases["RETROSPECTIVE_FIRST_PUBLIC"]["witness_admissibility"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert late_cases["RETROSPECTIVE_FIRST_PUBLIC"]["retrospective_first_public_precedes_capture"] is True
+    for row in (*e["evaluations"],*l["evaluations"]):
+        assert row["causal_identified"] is False
+        assert row["real_evidence_admitted"] is False
+        assert row["identification_scope"]=="SYNTHETIC_COUNTERFACTUAL_ONLY"
+    assert early["s3_exact_noncausal_reference"] is None
+    assert late["s3_exact_noncausal_reference"]=={
+        "source":"INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES",
+        "ratio_definition":"P_PUBLISHED_GIVEN_Y1_OVER_P_PUBLISHED_GIVEN_Y0",
+        "ratio_range":{"lower":"1/2","upper":"2/1"},
+        "noncausal_change_range":{"lower":"-11/52","upper":"47/119"},
+        "odds_ratio":False,"chain_calibration_verified":False}
+    assert late["pending_is_not_negative"] is True
+    assert late["right_censor_is_not_rejection"] is True
+    assert late["hidden_e3_rejection_is_not_observed_administrative_negative"] is True
+
+
+@pytest.mark.parametrize("tamper,error",[
+    ("witness_sha","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("witness_source_id","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("witness_type","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("link_spoof","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("witness_typed_scope","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("witness_publication_time","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("witness_capture_time","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("alter_vintage_sha","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("chain_sha","WITNESS_MATRIX_CHAIN_SHA_MISMATCH"),
+    ("rights_purpose","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("rights_admitted","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("real_crosswalk","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("real_independence","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("real_denominator","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("real_first_public","WITNESS_MATRIX_REAL_RIGHTS_OR_SCOPE_SPOOF"),
+    ("claim_exhaustiveness","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+    ("change_order","WITNESS_MATRIX_BYTES_SHA_TYPE_OR_LINK_SPOOF"),
+])
+def test_witness_matrix_invalid_spoof_fails_closed_in_python_and_real_node(tamper,error):
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_fixture,_b0_b3_equivalence,
+        _b0_b3_witness_matrix_fixture,_b0_b3_witness_matrix,
+        _partial_identification_fixture,_partial_identification,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    wire=json.loads(json.dumps(_b0_b3_witness_matrix_fixture(chain)))
+    rows={row["case"]:row for row in wire["witnesses"]}
+    if tamper=="witness_sha":
+        rows["E3_REJECTED_OCT10"]["sha256"]="0"*64
+    elif tamper=="witness_source_id":
+        rows["E3_REJECTED_OCT10"]["source_id"]="SYN:FORGED_WITNESS"
+    elif tamper=="witness_type":
+        rows["E3_REJECTED_OCT10"]["kind"]="COMMUNICATION"
+    elif tamper=="link_spoof":
+        rows["E3_REJECTED_OCT10"]["source_local_linked_in_fixture"]=False
+    elif tamper=="witness_typed_scope":
+        rows["E3_REJECTED_OCT10"]["subject_key"]=["SYN:CHAIN","DECISION","HIDDEN3"]
+    elif tamper=="witness_publication_time":
+        rows["E3_REJECTED_OCT10"]["first_public_at"]="2026-09-01T12:00:00Z"
+    elif tamper=="witness_capture_time":
+        rows["E3_REJECTED_OCT10"]["captured_at"]="2026-09-03T12:00:00Z"
+    elif tamper=="alter_vintage_sha":
+        rows["TWO_VINTAGES_EXACT_SHA"]["published_asset_vintages"][1]["sha256"]="f"*64
+    elif tamper=="chain_sha":
+        wire["chain_distribution_receipts"][0]["sha256"]="0"*64
+    elif tamper=="rights_purpose":
+        wire["requested_purpose"]="PUBLIC_ORIGINAL_REDISTRIBUTION"
+    elif tamper=="rights_admitted":
+        wire["rights_by_distribution_and_purpose_admitted"]=True
+    elif tamper=="real_crosswalk":
+        wire["real_official_crosswalk_verified"]=True
+    elif tamper=="real_independence":
+        wire["real_witness_independence_verified"]=True
+    elif tamper=="real_denominator":
+        wire["real_independent_registry_total"]=4
+    elif tamper=="real_first_public":
+        wire["real_first_public_at"]="2026-10-30T12:00:00Z"
+    elif tamper=="claim_exhaustiveness":
+        rows["E3_PENDING_EXHAUSTIVE_OCT31"]["claim_exhaustive_in_fixture"]=False
+    else:
+        wire["witnesses"].reverse()
+    b0b3,_=_b0_b3_equivalence(chain=chain,at=CUTS["late"],
+        s3_oracle=_partial_identification(_partial_identification_fixture()))
+    with pytest.raises(RuntimeError,match=error):
+        _b0_b3_witness_matrix(chain=chain,at=CUTS["late"],b0_b3=b0b3,wire=wire)
+    if shutil.which("node") is not None:
+        node=_witness_matrix_actual_node(wire)
+        assert node.returncode!=0
+        assert error in node.stderr
+        assert node.stdout==""
+
+
+def test_witness_matrix_http_redacted_and_node_contradiction_returns_503(tmp_path,monkeypatch):
+    """Catches a false mechanism refutation after independently running Node."""
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            response=conn.getresponse()
+            status,cache=response.status,response.getheader("Cache-Control")
+            data=json.loads(response.read());conn.close()
+            return status,cache,data
+        for cut in ("early","late"):
+            status,cache,body=get(cut)
+            assert (status,cache)==(200,"no-store")
+            oracle=body["warehouse"]["b0_b3_witness_matrix"]
+            assert oracle["status"]=="HYPOTHETICAL_DISCRIMINATION_NOT_REAL_ADMISSION"
+            assert oracle["real_independent_all_received"] is None
+            assert oracle["real_first_public_at"] is None
+            assert oracle["rights_for_public_display_admitted"] is False
+            assert body["scientific_AB_cycles"]==0
+            assert body["R5"]=="STOP_R5"
+            rendered=json.dumps(body)
+            chain=lab._typed_institutional_chain_fixture()
+            matrix=lab._b0_b3_witness_matrix_fixture(chain)
+            for row in matrix["witnesses"]:
+                if row["bytes"] is not None:
+                    assert row["bytes"] not in rendered
+                    assert row["source_id"] not in rendered
+                    assert row["sha256"] not in rendered
+            assert "HIDDEN3" not in rendered
+        genuine=lab.subprocess.run
+        def changed_real_node(*args,**kwargs):
+            observed=genuine(*args,**kwargs)
+            assert observed.returncode==0,observed.stderr
+            payload=json.loads(observed.stdout)
+            rows=payload["b0_b3_witness_matrix"]["cases_by_knowledge_cut"][
+                "late"]["evaluations"]
+            e3=next(row for row in rows if row["case"]=="E3_REJECTED_OCT10")
+            e3["compatible_mechanisms"]=["B0_CALENDAR","B3_SELECTION_PUBLICATION"]
+            e3["falsified"]=[]
+            e3["identified_from_observation"]=False
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(payload),stderr=observed.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",changed_real_node)
+        assert get("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
