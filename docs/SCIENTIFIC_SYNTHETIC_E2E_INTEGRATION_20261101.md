@@ -359,3 +359,52 @@ No permite deducir cifras ni reglas de publicación de otros editores.
 Ninguna ficha nueva encontrada entre metadatos R5–R30 ofrece el padrón
 independiente, dos vintages auténticas y licencias exigidos por R5.
 Informe: [R31 PREACCESO STOP](../research/PFL_SYSTEM20_20261031/ROUND_REPORT31_CATALOG_SELECTION_GATE_20261101.md).
+
+## Nueva regresión E2E PP04: las dos poblaciones editoriales deben llegar al HTTP
+
+**Hallazgo incremental y observable:** en el HEAD anterior de PR22
+`707f5d1ecaa0eb6445d28d706319b56cbd9f8a83`, el parser real
+`audit_pp04_dual_parsers` calculaba un recuento explícito
+`line_parser_unplanned_entries_source_local` para las iniciativas
+`NO INCLUIDAS`, en un universo distinto de `planned_count`. Pero el
+consumidor `scientific_integration_lab.report` omitía esa clave al proyectar
+el objeto `pp04` hacia el HTTP. El indicador
+`not_included_4221_excluded=True` no sustituye el recuento de otras
+secciones NO INCLUIDAS: confundía exclusión de 4.22.1 del universo de
+previstas con preservación completa de la población documental alterna.
+
+**Falsador PREPATCH congelado:**
+`test_pp04_http_consumer_must_preserve_both_source_local_documentary_populations`
+en `tests/test_synthetic_scientific_integration_lab.py`. Con llamadas
+verdaderas a `report(cut='early'|'late')`, comprobó que `early.pp04=None`
+y que `late.pp04.planned_count=2`, pero falló **1/1 ROJO** por
+`KeyError: 'line_parser_unplanned_entries_source_local'`. Código Python
+SHA previo **`35574fefd7b6b3f28d5c49063fb737d40a253320022ed8938ea47e23935f9844`**;
+test PREPATCH **`f32ea59c7160aa15f2abb4a0e3488850769de4bb9e929f591ff27b8ef96ceee8`**.
+
+Corrección **en el mismo consumidor**, sin tocar los parsers PR21 ni sus
+109 tests históricos: proyección de la clave source-local exacta junto con
+`planned_count`, `approved_count`, `pending_unsplit_count` y el
+indicador de sección 4.22.1 excluida. Ambos recuentos se mantienen
+**sintéticos, documentales y disjuntos por heading de IAEN**; no se suman
+para construir una población inicial de expedientes ni se inferiere que
+`NO INCLUIDAS` signifique solicitudes denegadas o decisiones negativas.
+`item_crosswalk_verified=False`, derechos `reuse_admitted=False`,
+`independent_all_received_denominator=None`, `R5=STOP_R5`.
+
+**QA POSTPATCH:** dos tests focales nuevos **2/2 PASS**, el segundo con
+servidor HTTP real en loopback, `cut=early` sin información posterior,
+`cut=late` con 2 previstas y 2 NO INCLUIDAS, respuesta `Cache-Control: no-store`
+sin datos reales; suite completa del consumidor actualizada **30/30 Python
+PASS**, `compileall` Python y `node --check` PASS. Las pruebas históricas
+**41/41 Node y 109/109 PP04 no se han repetido** porque esos módulos no
+cambiaron; no se presenta QA nominal como certificación científica.
+
+**R33 preacceso documental, NO nueva cohorte:** criba oficial de índices
+`datos.gob.es` frente a R5–R32, que reencontró BDNS (familia R11),
+Madrid AIP (R11) y AGE (R32), todos ya excluidos para R5. La [ficha BDNS](https://datos.gob.es/es/catalogo/e05250001-base-de-datos-nacional-de-subvenciones)
+describe concesiones publicables con retención, no el censo original
+externo de solicitudes con denegadas/pendientes. La [FAQ de datos.gob.es](https://datos.gob.es/es/preguntas-frecuentes/que-significan-los-estados-de-la-seccion-disponibilidad-de-datos)
+documenta que, para ese portal, `Recibido` aún no es público. No se han
+abierto distribuciones, originales, editores condicionados ni PII.
+**`NO_DIFFERENTIAL_ALL_RECEIVED_SOURCE_STOP_LOCAL_R5`, 0/6 gates, 0 AB**.

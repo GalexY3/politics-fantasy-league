@@ -228,6 +228,53 @@ def test_reconcile_cannot_accept_procedural_counts_not_derived_from_episodes():
                             procedural=forged, receipts=receipts)
 
 
+def test_pp04_http_consumer_must_preserve_both_source_local_documentary_populations():
+    """Falsifier: the actual dual parser counts NO INCLUIDAS but HTTP drops it.
+
+    A boolean about 4.22.1 alone does not expose the other UNPLANNED entries.
+    Neither count is an independently authenticated entry denominator.
+    """
+    early=report(cut="early")
+    late=report(cut="late")
+    assert early["pp04"] is None
+    assert late["pp04"]["planned_count"] == 2
+    assert late["pp04"]["line_parser_unplanned_entries_source_local"] == 2
+    assert late["pp04"]["approved_count"] == 1
+    assert late["pp04"]["pending_unsplit_count"] == 1
+    assert late["pp04"]["not_included_4221_excluded"] is True
+    assert late["pp04"]["count_is_source_internal_only"] is True
+    assert late["pp04"]["item_crosswalk_verified"] is False
+    assert late["independent_all_received_denominator"] is None
+
+
+def test_pp04_documentary_populations_reach_actual_local_http_without_lookahead(tmp_path):
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            res=conn.getresponse()
+            status=res.status;cache=res.getheader("Cache-Control")
+            payload=json.loads(res.read());conn.close()
+            return status,cache,payload
+        early=get("early")
+        late=get("late")
+        assert early[0]==late[0]==200
+        assert early[1]==late[1]=="no-store"
+        assert early[2]["pp04"] is None
+        assert late[2]["pp04"]["planned_count"]==2
+        assert late[2]["pp04"]["line_parser_unplanned_entries_source_local"]==2
+        assert late[2]["pp04"]["not_included_4221_excluded"] is True
+        assert late[2]["pp04"]["item_crosswalk_verified"] is False
+        assert late[2]["independent_all_received_denominator"] is None
+        assert late[2]["R5"]=="STOP_R5"
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
 def test_http_rejects_internal_cross_cut_divergence_instead_of_returning_200(tmp_path, monkeypatch):
     """An incoherent Python consumer must cause HTTP 503, not a mixed JSON."""
     from politics_fantasy import scientific_integration_lab as lab

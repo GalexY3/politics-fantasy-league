@@ -440,6 +440,10 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
         # The internal parser count does not create a registry denominator.
         pp04={k:parsed[k] for k in (
             "planned_count","approved_count","pending_unsplit_count",
+            # Preserve BOTH source-local documentary populations. The
+            # unplanned count is NOT a negative/terminal case count and
+            # cannot be promoted into an independent all-received frame.
+            "line_parser_unplanned_entries_source_local",
             "not_included_4221_excluded","item_crosswalk_verified",
             "count_is_source_internal_only","two_parsers_are_independent_sources")}
     else:
