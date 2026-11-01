@@ -1817,3 +1817,349 @@ def test_witness_matrix_http_redacted_and_node_contradiction_returns_503(tmp_pat
             503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _s7_actual_node(wire,cut="late"):
+    """Actual independent Node consumer, same fixed S6+S7 universe."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_capture_rivals,_bitemporal_fixture,
+        _partial_identification_fixture,_typed_institutional_chain_fixture,
+        _b0_b3_fixture,_b0_b3_witness_matrix_fixture,_sha,FAKE_PARITY,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    script=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    req={"cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),
+        "experiment":(_capture_rivals(CUTS["late"])[1] if cut=="late" else None),
+        "timeline":_bitemporal_fixture(),
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
+        "chain":chain,"b0_b3":_b0_b3_fixture(chain),
+        "witness_matrix":_b0_b3_witness_matrix_fixture(chain),
+        "s7_witness_sets":wire}
+    return subprocess.run(["node",str(script)],input=json.dumps(
+        req,separators=(",",":")),text=True,capture_output=True,timeout=6)
+
+
+def _s7_python_oracles(cut="late"):
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_equivalence,
+        _b0_b3_witness_matrix,_s7_witness_sets,
+        _partial_identification_fixture,_partial_identification,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    s3=_partial_identification(_partial_identification_fixture()) if cut=="late" else None
+    b0b3,_=_b0_b3_equivalence(chain=chain,at=CUTS[cut],s3_oracle=s3)
+    matrix,matrix_wire=_b0_b3_witness_matrix(chain=chain,at=CUTS[cut],b0_b3=b0b3)
+    s7,wire=_s7_witness_sets(chain=chain,at=CUTS[cut],
+                            matrix_wire=matrix_wire,matrix_oracle=matrix)
+    return chain,matrix,matrix_wire,s7,wire
+
+
+def test_s7_schema_fixture_signatures_and_real_node_parity_both_cuts():
+    from politics_fantasy.scientific_integration_lab import (
+        S7_CASE_MEMBERS,S7_FIXTURE_MAC_KEY,
+    )
+    import hmac
+    from hashlib import sha256
+    assert len(S7_CASE_MEMBERS)==20
+    for cut in ("early","late"):
+        chain,matrix,matrix_wire,py,wire=_s7_python_oracles(cut)
+        assert wire["schema"]=="pfl.synthetic_b0_b3_witness_sets_wire.v1"
+        assert wire["s6_schema"]=="pfl.synthetic_b0_b3_witness_matrix_wire.v1"
+        assert len(wire["witness_sets"])==20
+        assert len(wire["s7_extra_witnesses"])==8
+        assert wire["chain_distribution_receipts"]==matrix_wire["chain_distribution_receipts"]
+        assert [(x["case"],x["witness_ids"]) for x in wire["witness_sets"]]==[
+            (case,list(ids)) for case,ids in S7_CASE_MEMBERS]
+        for witness in wire["s7_extra_witnesses"]:
+            assert witness["signature_scheme"]=="SYNTHETIC_HMAC_SHA256_NOT_OFFICIAL"
+            assert witness["signature"]==hmac.new(S7_FIXTURE_MAC_KEY,
+                witness["bytes"].encode(),sha256).hexdigest()
+            if witness["id"]!="S7_BAD_SHA":
+                assert witness["sha256"]==sha256(witness["bytes"].encode()).hexdigest()
+        assert py["schema"]=="pfl.synthetic_b0_b3_witness_sets_oracle.v1"
+        assert py["status_vocabulary"]==[
+            "INCONCLUSIVE","B0_ONLY","B3_ONLY","NEITHER","CONFLICT","INADMISSIBLE"]
+        assert py["same_independent_hypothetical_N"]==4
+        assert py["real_denominator"] is None
+        assert py["real_first_public_at"] is None
+        assert py["real_issuer_authenticated"] is False
+        assert py["real_rights_admitted"] is False
+        assert py["real_crosswalk_verified"] is False
+        assert py["real_independence_verified"] is False
+        assert py["causal_identified"] is False
+        assert py["scientific_AB_cycles"]==0
+        if shutil.which("node") is not None:
+            proc=_s7_actual_node(wire,cut)
+            assert proc.returncode==0,proc.stderr
+            assert json.loads(proc.stdout)["b0_b3_witness_sets"]==py
+        api=report(cut=cut)
+        assert api["warehouse"]["b0_b3_witness_sets"]==py
+        assert api["R5"]=="STOP_R5"
+        assert api["scientific_AB_cycles"]==0
+
+
+def test_s7_adjudication_neither_conflict_and_inconclusive_with_reasons():
+    early=report(cut="early")["warehouse"]["b0_b3_witness_sets"]
+    late=report(cut="late")["warehouse"]["b0_b3_witness_sets"]
+    assert set(early["sets_by_knowledge_cut"])=={"early"}
+    assert set(late["sets_by_knowledge_cut"])=={"early","late"}
+    assert late["sets_by_knowledge_cut"]["early"]==early["sets_by_knowledge_cut"]["early"]
+    for cut in ("early","late"):
+        rows=late["sets_by_knowledge_cut"][cut]["sets"]
+        assert len(rows)==20
+        assert len({r["case"] for r in rows})==20
+        for r in rows:
+            assert r["causal_identified"] is False
+            assert r["real_evidence_admitted"] is False
+            assert r["identification_scope"]=="SYNTHETIC_COUNTERFACTUAL_ONLY"
+    rows={r["case"]:r for r in late["sets_by_knowledge_cut"]["late"]["sets"]}
+    both=["B0_CALENDAR","B3_SELECTION_PUBLICATION"]
+    for name in ("S7_NONE","S7_N4_SAME","S7_TWO_VINTAGES","S7_PENDING_CENSOR",
+                 "S7_WITNESS_AFTER_CUT","S7_RETROSPECTIVE_FIRST_PUBLIC"):
+        assert rows[name]["status"]=="INCONCLUSIVE"
+        assert rows[name]["compatible_mechanisms"]==both
+        assert rows[name]["falsified"]==[]
+    assert rows["S7_B0_ONLY"]["status"]=="B0_ONLY"
+    assert rows["S7_B0_ONLY"]["compatible_mechanisms"]==["B0_CALENDAR"]
+    assert rows["S7_B0_ONLY"]["falsified"]==["B3_SELECTION_PUBLICATION"]
+    for name in ("S7_B3_ONLY","S7_SELECTION_LOG_B3"):
+        assert rows[name]["status"]=="B3_ONLY"
+        assert rows[name]["compatible_mechanisms"]==["B3_SELECTION_PUBLICATION"]
+        assert rows[name]["falsified"]==["B0_CALENDAR"]
+    approved=rows["S7_NEITHER_APPROVED"]
+    assert approved["status"]=="NEITHER"
+    assert approved["compatible_mechanisms"]==[]
+    assert approved["falsified"]==both
+    assert approved["signed_approved_fixture_only"] is True
+    assert approved["identified_from_observation"] is False
+    assert approved["reason"]=="SIGNED_SYNTHETIC_APPROVAL_REFUTES_BOTH_STIPULATED_DGPS"
+    for name in ("S7_CONFLICT_SAME_TERMINAL_DAY","S7_CONFLICT_PENDING_VS_REJECTED"):
+        conflict=rows[name]
+        assert conflict["status"]=="CONFLICT"
+        assert conflict["compatible_mechanisms"]==both
+        assert conflict["falsified"]==[]
+        assert conflict["witnesses_retained_without_attribution"] is True
+        assert conflict["contradiction"]["same_typed_episode"] is True
+        assert conflict["contradiction"]["episode_family"]=="PROCESS"
+        assert conflict["contradiction"]["evidence_rows_retained"]==2
+    terminal=rows["S7_CONFLICT_SAME_TERMINAL_DAY"]["contradiction"]
+    assert terminal["same_valid_day"] is True
+    assert terminal["terminal_stage"]=="TERMINAL"
+    assert terminal["kind"]=="SAME_EPISODE_TERMINAL_STAGE_DAY_DIFFERENT_OUTCOME"
+    assert rows["S7_CONFLICT_PENDING_VS_REJECTED"]["contradiction"]["same_valid_day"] is False
+    assert late["neither_is_not_an_ipc_error"] is True
+    assert late["retains_unselected_models_on_conflict"] is True
+    assert late["pending_not_rejection"] is True
+    assert late["right_censor_not_rejection"] is True
+    assert late["hidden_negative_is_not_administrative_negative"] is True
+
+
+def test_s7_inadmissible_well_formed_differs_from_corrupt_contract():
+    rows={r["case"]:r for r in report(cut="late")["warehouse"][
+        "b0_b3_witness_sets"]["sets_by_knowledge_cut"]["late"]["sets"]}
+    expected={
+        "S7_INADMISSIBLE_SHA":"SHA_DOES_NOT_MATCH_BYTES",
+        "S7_INADMISSIBLE_ISSUER":"UNTRUSTED_ISSUER",
+        "S7_INADMISSIBLE_CROSSWALK":"MISSING_TYPED_CROSSWALK",
+        "S7_INADMISSIBLE_INDEPENDENCE":"SOURCE_NOT_INDEPENDENT",
+        "S7_INADMISSIBLE_EXHAUSTIVITY":"NONEXHAUSTIVE_PENDING_RECORD",
+        "S7_INADMISSIBLE_TIME":"IMPOSSIBLE_PUBLICATION_CAPTURE_ORDER",
+        "S7_INADMISSIBLE_PURPOSE":"PURPOSE_NOT_COVERED_IN_FIXTURE",
+        "S7_INADMISSIBLE_INCOMPLETE":"S6_INADMISSIBLE_INCOMPLETE_OR_UNLINKED",
+    }
+    for name,reason in expected.items():
+        row=rows[name]
+        assert row["status"]=="INADMISSIBLE"
+        assert row["compatible_mechanisms"]==["B0_CALENDAR","B3_SELECTION_PUBLICATION"]
+        assert row["falsified"]==[]
+        assert row["identified_from_observation"] is False
+        assert row["witness_admissibility"][0]["status"]=="INADMISSIBLE"
+        assert row["witness_admissibility"][0]["reason"]==reason
+    assert report(cut="late")["warehouse"]["b0_b3_witness_sets"][
+        "invalid_well_formed_evidence_is_not_ipc_corruption"] is True
+
+
+def test_s7_early_lookahead_and_retrospective_publication_no_leak():
+    early=report(cut="early")["warehouse"]["b0_b3_witness_sets"]
+    late=report(cut="late")["warehouse"]["b0_b3_witness_sets"]
+    e={r["case"]:r for r in early["sets_by_knowledge_cut"]["early"]["sets"]}
+    l={r["case"]:r for r in late["sets_by_knowledge_cut"]["late"]["sets"]}
+    for case in ("S7_B0_ONLY","S7_B3_ONLY","S7_SELECTION_LOG_B3",
+                 "S7_NEITHER_APPROVED","S7_CONFLICT_SAME_TERMINAL_DAY",
+                 "S7_CONFLICT_PENDING_VS_REJECTED","S7_INADMISSIBLE_SHA",
+                 "S7_INADMISSIBLE_ISSUER","S7_INADMISSIBLE_CROSSWALK",
+                 "S7_INADMISSIBLE_INDEPENDENCE","S7_INADMISSIBLE_EXHAUSTIVITY",
+                 "S7_INADMISSIBLE_TIME","S7_INADMISSIBLE_PURPOSE"):
+        assert e[case]["status"]=="INCONCLUSIVE"
+        assert all(w["status"]=="NOT_KNOWN_AT_CUT" for w in e[case]["witness_admissibility"])
+    assert e["S7_INADMISSIBLE_INCOMPLETE"]["status"]=="INADMISSIBLE"
+    assert e["S7_WITNESS_AFTER_CUT"]["status"]=="INCONCLUSIVE"
+    assert l["S7_WITNESS_AFTER_CUT"]["status"]=="INCONCLUSIVE"
+    assert all(row["status"]=="NOT_KNOWN_AT_CUT" for row in
+               l["S7_WITNESS_AFTER_CUT"]["witness_admissibility"])
+    assert e["S7_RETROSPECTIVE_FIRST_PUBLIC"]["status"]=="INCONCLUSIVE"
+    assert e["S7_RETROSPECTIVE_FIRST_PUBLIC"]["witness_admissibility"][0]["status"]=="NOT_KNOWN_AT_CUT"
+    assert l["S7_RETROSPECTIVE_FIRST_PUBLIC"]["status"]=="INCONCLUSIVE"
+    assert l["S7_RETROSPECTIVE_FIRST_PUBLIC"]["witness_admissibility"][0]["status"]=="ADMISSIBLE_HYPOTHETICAL_ONLY"
+    assert early["s3_exact_binary_reference"] is None
+    assert late["s3_exact_binary_reference"]=={
+        "q_before":"3/5","q_after":"7/10",
+        "selection_ratio_bounds":{"lower":"1/2","upper":"2/1"},
+        "noncausal_change_bounds":{"lower":"-11/52","upper":"47/119"},
+        "odds_ratio":False,"chain_calibration_verified":False}
+
+
+@pytest.mark.parametrize("tamper,error",[
+    ("signed_e3_outcome","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("signed_e3_signature","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("signed_e3_sha","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("signed_e3_bytes","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("semantic_key","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("case_extra_source","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("case_extra_issuer","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("tampered_conflict_set","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("inject_witness_id","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("reordered_sets","S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER"),
+    ("rights_promoted","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("real_denominator","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("real_first_public","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("official_crosswalk","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("issuer_authenticated","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("chain_sha","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+    ("schema","S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF"),
+])
+def test_s7_malformed_ipc_tamper_rejected_both_python_and_node(tamper,error):
+    from politics_fantasy.scientific_integration_lab import _s7_witness_sets,CUTS
+    chain,matrix,matrix_wire,baseline,wire=_s7_python_oracles()
+    wire=json.loads(json.dumps(wire))
+    extras={r["id"]:r for r in wire["s7_extra_witnesses"]}
+    if tamper=="signed_e3_outcome":
+        extras["S7_E3_APPROVED_OCT10"]["outcome"]="REJECTED"
+    elif tamper=="signed_e3_signature":
+        extras["S7_E3_APPROVED_OCT10"]["signature"]="f"*64
+    elif tamper=="signed_e3_sha":
+        extras["S7_E3_APPROVED_OCT10"]["sha256"]="0"*64
+    elif tamper=="signed_e3_bytes":
+        extras["S7_E3_APPROVED_OCT10"]["bytes"]+="INJECTED\n"
+    elif tamper=="semantic_key":
+        extras["S7_E3_APPROVED_OCT10"]["subject_key"]=["SYN:CHAIN","DECISION","D1"]
+    elif tamper=="case_extra_source":
+        extras["S7_E3_APPROVED_OCT10"]["source_id"]="SYN:WITNESS_FORGED"
+    elif tamper=="case_extra_issuer":
+        extras["S7_E3_APPROVED_OCT10"]["issuer"]="SYN:FORGED"
+    elif tamper=="tampered_conflict_set":
+        next(x for x in wire["witness_sets"] if x["case"]=="S7_CONFLICT_SAME_TERMINAL_DAY")[
+            "witness_ids"]=["E3_REJECTED_OCT10"]
+    elif tamper=="inject_witness_id":
+        wire["witness_sets"][0]["witness_ids"]=["SYN:UNREGISTERED"]
+    elif tamper=="reordered_sets":
+        wire["witness_sets"].reverse()
+    elif tamper=="rights_promoted":
+        wire["real_public_display_rights"]=True
+    elif tamper=="real_denominator":
+        wire["real_independent_registry_total"]=4
+    elif tamper=="real_first_public":
+        wire["real_first_public_at"]="2026-09-19T12:00:00Z"
+    elif tamper=="official_crosswalk":
+        wire["real_crosswalk_verified"]=True
+    elif tamper=="issuer_authenticated":
+        wire["real_issuer_authenticated"]=True
+    elif tamper=="chain_sha":
+        wire["chain_distribution_receipts"][1]["sha256"]="0"*64
+    else:
+        wire["schema"]="pfl.synthetic_b0_b3_witness_sets_wire.v2"
+    with pytest.raises(RuntimeError,match=error):
+        _s7_witness_sets(chain=chain,at=CUTS["late"],
+            matrix_wire=matrix_wire,matrix_oracle=matrix,wire=wire)
+    if shutil.which("node") is not None:
+        proc=_s7_actual_node(wire)
+        assert proc.returncode!=0
+        assert error in proc.stderr
+        assert proc.stdout==""
+
+
+def test_s7_http_neither_and_conflict_are_200_redacted_but_ipc_drift_503(
+        tmp_path,monkeypatch):
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            res=conn.getresponse()
+            status,cache=res.status,res.getheader("Cache-Control")
+            payload=json.loads(res.read());conn.close()
+            return status,cache,payload
+        for cut in ("early","late"):
+            status,cache,data=get(cut)
+            assert (status,cache)==(200,"no-store")
+            s7=data["warehouse"]["b0_b3_witness_sets"]
+            assert s7["real_first_public_at"] is None
+            assert s7["real_denominator"] is None
+            assert s7["real_rights_admitted"] is False
+            assert data["R5"]=="STOP_R5"
+            assert data["scientific_AB_cycles"]==0
+            raw=json.dumps(data)
+            _,_,_,_,wire=_s7_python_oracles(cut)
+            for r in wire["s7_extra_witnesses"]:
+                for field in ("bytes","source_id","sha256","signature","distribution_id"):
+                    assert r[field] not in raw
+            assert "HIDDEN3" not in raw
+            if cut=="late":
+                results={r["case"]:r for r in s7["sets_by_knowledge_cut"]["late"]["sets"]}
+                assert results["S7_NEITHER_APPROVED"]["status"]=="NEITHER"
+                assert results["S7_CONFLICT_SAME_TERMINAL_DAY"]["status"]=="CONFLICT"
+                assert results["S7_INADMISSIBLE_SHA"]["status"]=="INADMISSIBLE"
+        original=lab.subprocess.run
+        def falsify_genuine_node(*args,**kwargs):
+            response=original(*args,**kwargs)
+            assert response.returncode==0,response.stderr
+            output=json.loads(response.stdout)
+            item=next(row for row in output["b0_b3_witness_sets"][
+                "sets_by_knowledge_cut"]["late"]["sets"] if row["case"]=="S7_NEITHER_APPROVED")
+            item["status"]="B3_ONLY"
+            item["compatible_mechanisms"]=["B3_SELECTION_PUBLICATION"]
+            item["falsified"]=["B0_CALENDAR"]
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(output),stderr=response.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",falsify_genuine_node)
+        assert get("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+@pytest.mark.parametrize("tamper",["semantic_key","unregistered_source_id"])
+def test_s7_http_semantic_key_or_source_spoof_produces_503(tmp_path,monkeypatch,tamper):
+    """A corrupted source/typed family cannot cross Python→real Node→HTTP."""
+    from politics_fantasy import scientific_integration_lab as lab
+    genuine=lab._s7_witness_sets_fixture
+    def forged_fixture(chain,matrix):
+        result=genuine(chain,matrix)
+        approved=next(w for w in result["s7_extra_witnesses"] if
+            w["id"]=="S7_E3_APPROVED_OCT10")
+        if tamper=="semantic_key":
+            approved["subject_key"]=["SYN:CHAIN","DECISION","D1"]
+        else:
+            approved["source_id"]="SYN:UNREGISTERED_WITNESS_SOURCE"
+        return result
+    monkeypatch.setattr(lab,"_s7_witness_sets_fixture",forged_fixture)
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=6)
+        conn.request("GET","/api/scientific-integration-lab?cut=late")
+        res=conn.getresponse()
+        status,cache=res.status,res.getheader("Cache-Control")
+        payload=json.loads(res.read());conn.close()
+        assert (status,cache,payload)==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)

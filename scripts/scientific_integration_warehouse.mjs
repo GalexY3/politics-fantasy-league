@@ -2,7 +2,7 @@
  * No network, file I/O, user supplied identities, URLs, people or cases.
  * A SHA of these fictitious bytes is a parity check, NOT publisher evidence.
  */
-import {createHash} from 'node:crypto';
+import {createHash,createHmac} from 'node:crypto';
 import {stdin,stdout,stderr} from 'node:process';
 import * as W from '../src/politics_fantasy/evidence_warehouse.mjs';
 
@@ -716,9 +716,216 @@ function replayB0B3WitnessMatrix(w,chain,cut,b0b3){
   causal_identified:false,scientific_cycles:0};
 }
 
+
+const S7_TEST_KEY='PFL_S7_SYNTHETIC_HMAC_TEST_KEY_NOT_OFFICIAL_V1';
+const S7_CASE_MEMBERS=[
+ ['S7_NONE',[]],
+ ['S7_N4_SAME',['ALL_RECEIVED_N4']],
+ ['S7_TWO_VINTAGES',['TWO_VINTAGES_EXACT_SHA']],
+ ['S7_PENDING_CENSOR',['E2_PENDING','E4_RIGHT_CENSOR']],
+ ['S7_B0_ONLY',['E3_PENDING_EXHAUSTIVE_OCT31']],
+ ['S7_B3_ONLY',['E3_REJECTED_OCT10']],
+ ['S7_SELECTION_LOG_B3',['SELECTION_LOG_B3_VERIFIED_RULE']],
+ ['S7_NEITHER_APPROVED',['S7_E3_APPROVED_OCT10']],
+ ['S7_CONFLICT_SAME_TERMINAL_DAY',['S7_E3_APPROVED_OCT10','E3_REJECTED_OCT10']],
+ ['S7_CONFLICT_PENDING_VS_REJECTED',['E3_REJECTED_OCT10','E3_PENDING_EXHAUSTIVE_OCT31']],
+ ['S7_INADMISSIBLE_SHA',['S7_BAD_SHA']],
+ ['S7_INADMISSIBLE_ISSUER',['S7_BAD_ISSUER']],
+ ['S7_INADMISSIBLE_CROSSWALK',['S7_BAD_CROSSWALK']],
+ ['S7_INADMISSIBLE_INDEPENDENCE',['S7_NONINDEPENDENT']],
+ ['S7_INADMISSIBLE_EXHAUSTIVITY',['S7_NONEXHAUSTIVE']],
+ ['S7_INADMISSIBLE_TIME',['S7_BAD_TIME']],
+ ['S7_INADMISSIBLE_PURPOSE',['S7_BAD_PURPOSE']],
+ ['S7_INADMISSIBLE_INCOMPLETE',['INCOMPLETE_UNLINKED']],
+ ['S7_WITNESS_AFTER_CUT',['WITNESS_AFTER_LATE_CUT']],
+ ['S7_RETROSPECTIVE_FIRST_PUBLIC',['RETROSPECTIVE_FIRST_PUBLIC']],
+];
+
+function expectedS7WitnessSets(chain,matrix){
+ const e3=['SYN:CHAIN','PROCESS','HIDDEN3'];
+ const trusted='SYN:INDEPENDENT_WITNESS_LAB',
+  p='SYNTHETIC_WITNESS_REPLAY',
+  pub='2026-10-30T12:00:00Z',cap='2026-10-31T12:00:00Z';
+ const specs=[
+  ['S7_E3_APPROVED_OCT10','APPROVED',e3,true,true,true,true,trusted,pub,cap,p,false],
+  ['S7_BAD_SHA','APPROVED',e3,true,true,true,true,trusted,pub,cap,p,true],
+  ['S7_BAD_ISSUER','APPROVED',e3,true,true,true,true,'SYN:UNATTESTED_WITNESS_ISSUER',pub,cap,p,false],
+  ['S7_BAD_CROSSWALK','APPROVED',['SYN:CHAIN','DECISION','D1'],true,true,true,true,trusted,pub,cap,p,false],
+  ['S7_NONINDEPENDENT','APPROVED',e3,false,true,true,true,trusted,pub,cap,p,false],
+  ['S7_NONEXHAUSTIVE','STILL_PENDING',e3,true,true,false,true,trusted,
+   '2026-10-31T13:00:00Z','2026-11-01T08:00:00Z',p,false],
+  ['S7_BAD_TIME','APPROVED',e3,true,true,true,true,trusted,
+   '2026-10-31T13:00:00Z','2026-10-29T12:00:00Z',p,false],
+  ['S7_BAD_PURPOSE','APPROVED',e3,true,true,true,true,trusted,pub,cap,'LOCAL_ACADEMIC_READ',false],
+ ];
+ const extras=specs.map(([id,outcome,subject,independent,linked,exhaustive,complete,issuer,
+     firstPublic,captured,coveredPurpose,badSha])=>{
+  const body=`SYNTHETIC S7 WITNESS\nCASE:${id}\nOUTCOME:${outcome}\nVALID_ON:2026-10-10\n`;
+  const digest=createHash('sha256').update(Buffer.from(body,'utf8')).digest('hex');
+  const sig=createHmac('sha256',Buffer.from(S7_TEST_KEY,'utf8')).update(Buffer.from(body,'utf8')).digest('hex');
+  return {id,kind:outcome==='APPROVED'?'E3_TERMINAL':'E3_STILL_PENDING_EXHAUSTIVE',
+   issuer,source_id:'SYN:WITNESS_'+id,distribution_id:'SYN:S7_ASSET_'+id,
+   bytes:body,sha256:badSha?'f'.repeat(64):digest,
+   signature_scheme:'SYNTHETIC_HMAC_SHA256_NOT_OFFICIAL',signature:sig,
+   subject_key:subject,stage:outcome==='APPROVED'?'TERMINAL':'FOLLOWUP_STATUS',
+   outcome,valid_on:outcome==='APPROVED'?'2026-10-10':'2026-10-31',
+   first_public_at:firstPublic,captured_at:captured,
+   independent_in_fixture:independent,linked_in_fixture:linked,
+   exhaustive_in_fixture:exhaustive,complete_in_fixture:complete,
+   covered_purpose:coveredPurpose};
+ });
+ const known=new Set([...matrix.witnesses.map(s=>s.case),...extras.map(s=>s.id)]);
+ const sets=S7_CASE_MEMBERS.map(([id, members])=>{
+  if(members.length!==new Set(members).size||members.some(m=>!known.has(m)))
+   fail('S7_UNDECLARED_WITNESS_SET_REFERENCE');
+  return {case:id,witness_ids:members};
+ });
+ return {schema:'pfl.synthetic_b0_b3_witness_sets_wire.v1',
+  s6_schema:matrix.schema,
+  chain_distribution_receipts:matrix.chain_distribution_receipts,
+  s7_extra_witnesses:extras,witness_sets:sets,
+  replay_purpose:p,
+  real_public_display_rights:false,real_independent_registry_total:null,
+  real_first_public_at:null,real_issuer_authenticated:false,
+  real_crosswalk_verified:false,real_independent_sources_verified:false,
+  causal_identified:false};
+}
+
+function replayS7WitnessSets(w,chain,cut,matrix,matrixOracle){
+ const expected=expectedS7WitnessSets(chain,matrix);
+ const fixed=Object.keys(expected).filter(k=>!['s7_extra_witnesses','witness_sets'].includes(k));
+ if(!exactKeys(w,Object.keys(expected))||fixed.some(k=>
+   canonical(w[k])!==canonical(expected[k])))
+  fail('S7_CLOSED_SCOPE_OR_REAL_AUTHORITY_SPOOF');
+ for(const k of ['s7_extra_witnesses','witness_sets']){
+  if(canonical(w[k])!==canonical(expected[k]))
+   fail('S7_UNDECLARED_WITNESS_OR_SIGNATURE_TAMPER');
+ }
+ if(matrixOracle.status!=='HYPOTHETICAL_DISCRIMINATION_NOT_REAL_ADMISSION'||
+    matrixOracle.real_independent_all_received!==null)
+  fail('S7_S6_REPLAY_SCOPE_CHANGED');
+ const extraMap=new Map(w.s7_extra_witnesses.map(r=>[r.id,r]));
+ const s6Map=new Map(matrix.witnesses.map(r=>[r.case,r]));
+ const both=['B0_CALENDAR','B3_SELECTION_PUBLICATION'];
+ const evaluations={};
+ for(const c of (cut==='early'?['early']:['early','late'])){
+  const asOf=cuts[c];
+  const s6=new Map(matrixOracle.cases_by_knowledge_cut[c].evaluations.map(r=>[r.case,r]));
+  const validAt=matrixOracle.cases_by_knowledge_cut[c].valid_at;
+  const sets=[];
+  for(const ensemble of w.witness_sets){
+   const assessed=[];
+   for(const id of ensemble.witness_ids){
+    let admissibility,reason,claim,stage,validOn,subject,signed;
+    if(s6Map.has(id)){
+     const row=s6Map.get(id),evalRow=s6.get(id);
+     admissibility=evalRow.witness_admissibility;
+     reason='S6_'+admissibility;
+     claim=row.kind==='E3_APPROVED'?'APPROVED':row.kind==='E3_REJECTED'?'REJECTED':
+      row.kind==='E3_STILL_PENDING_EXHAUSTIVE'?'STILL_PENDING':null;
+     signed=row.bytes!==null&&row.sha256===createHash('sha256').update(Buffer.from(row.bytes,'utf8')).digest('hex');
+     stage=['APPROVED','REJECTED'].includes(claim)?'TERMINAL':'FOLLOWUP_STATUS';
+     validOn=row.valid_on;subject=row.subject_key;
+    }else{
+     const row=extraMap.get(id);
+     if(!row)fail('S7_UNKNOWN_WITNESS_ID');
+     const digest=createHash('sha256').update(Buffer.from(row.bytes,'utf8')).digest('hex');
+     const sig=createHmac('sha256',Buffer.from(S7_TEST_KEY,'utf8')).update(
+      Buffer.from(row.bytes,'utf8')).digest('hex');
+     signed=row.signature===sig;
+     if(!signed)fail('S7_SIGNATURE_BYTES_MISMATCH');
+     reason='VERIFIED_SYNTHETIC_ONLY';
+     // A future witness cannot even reveal its intrinsic invalidity at early.
+     if(Date.parse(row.captured_at)>Date.parse(asOf)||
+        Date.parse(row.first_public_at)>Date.parse(asOf))reason='NOT_KNOWN_AT_CUT';
+     else if(row.valid_on>validAt)reason='NOT_YET_VALID_AT_QUERY_DAY';
+     else if(row.sha256!==digest)reason='SHA_DOES_NOT_MATCH_BYTES';
+     else if(row.issuer!=='SYN:INDEPENDENT_WITNESS_LAB')reason='UNTRUSTED_ISSUER';
+     else if(canonical(row.subject_key)!==canonical(['SYN:CHAIN','PROCESS','HIDDEN3'])||
+             !row.linked_in_fixture)reason='MISSING_TYPED_CROSSWALK';
+     else if(!row.independent_in_fixture)reason='SOURCE_NOT_INDEPENDENT';
+     else if(!row.complete_in_fixture)reason='INCOMPLETE_DOCUMENT';
+     else if(row.outcome==='STILL_PENDING'&&!row.exhaustive_in_fixture)
+      reason='NONEXHAUSTIVE_PENDING_RECORD';
+     else if(Date.parse(row.first_public_at)>Date.parse(row.captured_at))
+      reason='IMPOSSIBLE_PUBLICATION_CAPTURE_ORDER';
+     else if(row.covered_purpose!==w.replay_purpose)
+      reason='PURPOSE_NOT_COVERED_IN_FIXTURE';
+     admissibility=reason==='VERIFIED_SYNTHETIC_ONLY'?'ADMISSIBLE_HYPOTHETICAL_ONLY':
+      ['NOT_KNOWN_AT_CUT','NOT_YET_VALID_AT_QUERY_DAY'].includes(reason)?
+      'NOT_KNOWN_AT_CUT':'INADMISSIBLE';
+     claim=row.outcome;stage=row.stage;validOn=row.valid_on;subject=row.subject_key;
+    }
+    if(s6Map.has(id)&&admissibility.startsWith('INADMISSIBLE'))admissibility='INADMISSIBLE';
+    if(s6Map.has(id)&&admissibility==='NOT_VALID_AT_QUERY_DAY')admissibility='NOT_KNOWN_AT_CUT';
+    assessed.push({id,admissibility,reason,claim,stage,valid_on:validOn,
+     subject_key:subject,signed_fixture:signed});
+   }
+   const known=assessed.filter(x=>x.admissibility==='ADMISSIBLE_HYPOTHETICAL_ONLY');
+   const invalid=assessed.filter(x=>x.admissibility==='INADMISSIBLE');
+   const future=assessed.filter(x=>x.admissibility==='NOT_KNOWN_AT_CUT');
+   const approved=known.filter(x=>x.claim==='APPROVED');
+   const rejected=known.filter(x=>x.claim==='REJECTED');
+   const pending=known.filter(x=>x.claim==='STILL_PENDING');
+   const sameTerminal=approved.some(a=>rejected.some(r=>
+    canonical(a.subject_key)===canonical(r.subject_key)&&
+    a.stage==='TERMINAL'&&r.stage==='TERMINAL'&&a.valid_on===r.valid_on));
+   const incompatiblePending=rejected.some(r=>pending.some(p=>
+    canonical(r.subject_key)===canonical(p.subject_key)&&r.valid_on<=p.valid_on));
+   const contradiction=sameTerminal?'SAME_EPISODE_TERMINAL_STAGE_DAY_DIFFERENT_OUTCOME':
+    incompatiblePending?'EXHAUSTIVE_PENDING_CONTRADICTS_EARLIER_TERMINAL':null;
+   let status='INCONCLUSIVE',compatible=[...both],falsified=[],
+     reason='PUBLISHED_PROJECTION_EQUIVALENT';
+   if(invalid.length){status='INADMISSIBLE';reason='WITNESS_NOT_ADMISSIBLE_IN_SYNTHETIC_REPLAY';}
+   else if(contradiction){status='CONFLICT';reason=contradiction;}
+   else if(approved.length){status='NEITHER';compatible=[];falsified=[...both];
+    reason='SIGNED_SYNTHETIC_APPROVAL_REFUTES_BOTH_STIPULATED_DGPS';}
+   else if(rejected.length||known.some(x=>x.id==='SELECTION_LOG_B3_VERIFIED_RULE')){
+    status='B3_ONLY';compatible=['B3_SELECTION_PUBLICATION'];falsified=['B0_CALENDAR'];
+    reason='E3_REJECTED_OR_VERIFIED_B3_SELECTION_RULE';
+   }else if(pending.length){status='B0_ONLY';compatible=['B0_CALENDAR'];
+    falsified=['B3_SELECTION_PUBLICATION'];
+    reason='EXHAUSTIVE_E3_PENDING_CONTRADICTS_B3_TERMINAL';}
+   else if(future.length){reason='SOME_WITNESSES_NOT_KNOWN_AT_CUT';}
+   sets.push({case:ensemble.case,status,compatible_mechanisms:compatible,falsified,
+    identified_from_observation:['B0_ONLY','B3_ONLY'].includes(status),
+    identification_scope:'SYNTHETIC_COUNTERFACTUAL_ONLY',
+    causal_identified:false,real_evidence_admitted:false,reason,
+    witness_admissibility:assessed.map(x=>({case:x.id,status:x.admissibility,reason:x.reason})),
+    contradiction:contradiction===null?null:{kind:contradiction,episode_family:'PROCESS',
+      same_typed_episode:true,
+      terminal_stage:sameTerminal?'TERMINAL':'TERMINAL_VS_EXHAUSTIVE_PENDING',
+      same_valid_day:sameTerminal,evidence_rows_retained:known.length},
+    witnesses_retained_without_attribution:status==='CONFLICT',
+    signed_approved_fixture_only:approved.length>0});
+  }
+  evaluations[c]={as_of:asOf,valid_at:validAt,sets};
+ }
+ const ref=matrixOracle.s3_exact_noncausal_reference;
+ return {schema:'pfl.synthetic_b0_b3_witness_sets_oracle.v1',
+  sets_by_knowledge_cut:evaluations,
+  status_vocabulary:['INCONCLUSIVE','B0_ONLY','B3_ONLY','NEITHER','CONFLICT','INADMISSIBLE'],
+  same_independent_hypothetical_N:4,
+  retains_unselected_models_on_conflict:true,
+  neither_is_not_an_ipc_error:true,
+  invalid_well_formed_evidence_is_not_ipc_corruption:true,
+  hidden_negative_is_not_administrative_negative:true,
+  pending_not_rejection:true,right_censor_not_rejection:true,
+  s3_exact_binary_reference:ref===null?null:{
+   q_before:s3String(s3Rat(6n,10n)),q_after:s3String(s3Rat(7n,10n)),
+   selection_ratio_bounds:ref.ratio_range,
+   noncausal_change_bounds:ref.noncausal_change_range,
+   odds_ratio:false,chain_calibration_verified:false},
+  real_denominator:null,real_first_public_at:null,
+  real_rights_admitted:false,real_issuer_authenticated:false,
+  real_crosswalk_verified:false,real_independence_verified:false,
+  causal_identified:false,scientific_AB_cycles:0};
+}
+
 function run(v){
  if(!v||Array.isArray(v)||typeof v!=='object'||
-    !['assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline,witness_matrix',
+    !['assets,b0_b3,chain,cut,experiment,partial_identification,s7_witness_sets,scenario,sha256,timeline,witness_matrix',
+      'assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline,witness_matrix',
       'assets,b0_b3,chain,cut,experiment,partial_identification,scenario,sha256,timeline',
       'assets,chain,cut,experiment,partial_identification,scenario,sha256,timeline',
       'assets,cut,experiment,partial_identification,scenario,sha256,timeline',
@@ -755,6 +962,13 @@ function run(v){
  const b0B3=replayB0B3(v.b0_b3,v.chain,v.cut,partialIdentification);
  if(!Object.hasOwn(v,'witness_matrix'))fail('WITNESS_MATRIX_WIRE_REQUIRED');
  const witnessMatrix=replayB0B3WitnessMatrix(v.witness_matrix,v.chain,v.cut,b0B3);
+ // Backwards-compatible direct CLI S6 fixture requests reuse precisely the
+ // same *server-owned*, closed S7 manifest. The Python→Node HTTP boundary
+ // always supplies the explicit S7 wire and checks it independently.
+ const s7Wire=Object.hasOwn(v,'s7_witness_sets')?v.s7_witness_sets:
+  expectedS7WitnessSets(v.chain,v.witness_matrix);
+ const s7Sets=replayS7WitnessSets(s7Wire,v.chain,v.cut,
+  v.witness_matrix,witnessMatrix);
  const reg=W.empty();
  const base={kind:'SYNTHETIC',state:'TEST_FIXTURE',rights:'SYNTHETIC',
   url:'https://example.invalid/pfl-synthetic-no-external-source'};
@@ -835,13 +1049,14 @@ function run(v){
   typed_institutional_chain:typedChain,
   b0_b3_observational_equivalence:b0B3,
   b0_b3_witness_matrix:witnessMatrix,
+  b0_b3_witness_sets:s7Sets,
   real_denominator:null,first_public_at_real:null,
   publisher_authenticated:false,source_identity_crosswalk_certified:false};
 }
 
 let data='';
 try{
- for await(const part of stdin){data+=part;if(data.length>24576)fail('SYNTHETIC_INPUT_TOO_LARGE');}
+ for await(const part of stdin){data+=part;if(data.length>49152)fail('SYNTHETIC_INPUT_TOO_LARGE');}
  const payload=JSON.parse(data);
  stdout.write(JSON.stringify(run(payload))+'\n');
 }catch(e){

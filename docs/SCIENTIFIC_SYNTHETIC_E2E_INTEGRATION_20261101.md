@@ -1112,3 +1112,143 @@ Node
 tests
 `8f35e0b4cbcb72a45c1fce01444c2c96c8d0237e181fa263e348e55304ab0f45`.
 Estas huellas no autentican derechos ni fuentes originales.
+
+## PR22 · S7: conjuntos robustos de testigos diferenciales (NONCYCLE)
+
+**Capacidad nueva, no incidencia PREPATCH.** El oráculo S6 de once
+testigos individuales permanece inalterado y sirve como fuente de
+admisibilidad sintética. S7 añade veinte **conjuntos alternativos de
+testigos** contra los mismos modelos B0 calendario y B3
+selección/publicación, que estipulan N=4, dos ediciones SHA verificadas
+y exactamente la misma proyección publicada de actor, organización,
+comunicación, decisión y proceso. Los conjuntos son escenarios de
+contraste: **no son veinte documentos históricos ni pruebas acumuladas**.
+
+### Contrato, firmas y salidas
+
+El nuevo contrato cerrado `pfl.synthetic_b0_b3_witness_sets_wire.v1`
+viaja en el IPC con el campo `s7_witness_sets`. Contiene el esquema S6,
+los recibos SHA exactos de las dos ediciones de la cadena, ocho testigos
+adicionales inventados `s7_extra_witnesses`, y veinte entradas
+`witness_sets` con `{case,witness_ids}`. Cada testigo nuevo conserva
+tipo, emisor, distribución, `source_id`, bytes y digest SHA-256,
+referencia tipada, fase administrativa, resultado alegado, fechas de
+validez, publicación/captura, completitud, independencia, exhaustividad,
+crosswalk y propósito. Su campo `signature_scheme` declara
+`SYNTHETIC_HMAC_SHA256_NOT_OFFICIAL`. Python y Node recalculan
+**independientemente** ese HMAC sobre los bytes inventados mediante una
+clave pública de prueba incluida en el repositorio. **No es una firma
+administrativa, un secreto de producción ni una autenticación real de
+emisor, independencia o derechos**.
+
+El nuevo oráculo `pfl.synthetic_b0_b3_witness_sets_oracle.v1` se
+expone solo como agregados en
+`warehouse.b0_b3_witness_sets.sets_by_knowledge_cut.{early,late}.sets`.
+Cada conjunto proporciona `case`, `status`, `compatible_mechanisms`,
+`falsified`, `identified_from_observation`, `reason`,
+`witness_admissibility` por miembro y, si procede, la prueba
+`contradiction` con familia, fase, igualdad de episodio y fecha,
+y número de documentos retenidos. Se omiten de HTTP los bytes, SHA,
+HMAC, distribuciones e identificadores source-local de los testigos.
+
+Los **seis estados** son `INCONCLUSIVE`, `B0_ONLY`, `B3_ONLY`,
+`NEITHER`, `CONFLICT` e `INADMISSIBLE`. `NEITHER` significa que un
+**único testigo sintético admisible**, E3 APPROVED el 10/10, contradice
+ambos DGP estipulados. Es un resultado científico-condicional del
+fixture, **no** un error HTTP, ni una afirmación de que E3 haya sido
+aprobado realmente. `CONFLICT` significa que **dos testigos
+individualmente admisibles son contradictorios**: la máquina conserva
+los dos y suspende la adjudicación; no descarta uno, no atribuye
+intenciones y no afirma falsación simultánea de B0 y B3. En cambio,
+`INADMISSIBLE` indica evidencia documental bien formada dentro del
+esquema cerrado pero no apta para sostener una conclusión. Una
+alteración del *wire* registrado, la firma, la identidad tipada,
+los SHA, el esquema o el IPC es **corrupción contractual y causa 503**:
+no puede confundirse con `INADMISSIBLE`.
+
+### Matriz de veinte conjuntos
+
+Los resultados de la columna `late` se obtienen con el mismo corte
+`as_of=2026-11-01T12:00:00Z`, válido a `31/10`; `early` corresponde a
+`as_of=2026-10-15T12:00:00Z`, válido a `15/10`.
+
+| ID S7 | `late.status` | Efecto condicional |
+| --- | --- | --- |
+| `S7_NONE` | `INCONCLUSIVE` | Ningún testigo; B0 y B3 retenidos |
+| `S7_N4_SAME` | `INCONCLUSIVE` | N=4 en ambos; no discrimina |
+| `S7_TWO_VINTAGES` | `INCONCLUSIVE` | Dos ediciones del mismo activo con recibos SHA; no discrimina |
+| `S7_PENDING_CENSOR` | `INCONCLUSIVE` | E2 pendiente y E4 censurado, sin crear negativas |
+| `S7_B0_ONLY` | `B0_ONLY` | E3 STILL_PENDING exhaustivo 31/10 refuta B3 |
+| `S7_B3_ONLY` | `B3_ONLY` | E3 REJECTED 10/10 refuta B0 |
+| `S7_SELECTION_LOG_B3` | `B3_ONLY` | Regla editorial sintética verificada y contrastada |
+| `S7_NEITHER_APPROVED` | `NEITHER` | E3 APPROVED 10/10, HMAC sintético correcto, refuta ambos |
+| `S7_CONFLICT_SAME_TERMINAL_DAY` | `CONFLICT` | E3 APPROVED y E3 REJECTED, mismo episodio, fase TERMINAL y día 10/10 |
+| `S7_CONFLICT_PENDING_VS_REJECTED` | `CONFLICT` | E3 REJECTED 10/10 contradice pendencia exhaustiva 31/10 |
+| `S7_INADMISSIBLE_SHA` | `INADMISSIBLE` | SHA alegado no coincide con bytes del fixture |
+| `S7_INADMISSIBLE_ISSUER` | `INADMISSIBLE` | Emisor ficticio no aceptado en el laboratorio |
+| `S7_INADMISSIBLE_CROSSWALK` | `INADMISSIBLE` | Clave tipada apunta a decisión en vez de episodio E3 |
+| `S7_INADMISSIBLE_INDEPENDENCE` | `INADMISSIBLE` | Sin independencia acreditada siquiera en el fixture |
+| `S7_INADMISSIBLE_EXHAUSTIVITY` | `INADMISSIBLE` | Pendencia E3 sin testigo exhaustivo |
+| `S7_INADMISSIBLE_TIME` | `INADMISSIBLE` | Primera publicación alegada posterior a captura |
+| `S7_INADMISSIBLE_PURPOSE` | `INADMISSIBLE` | Finalidad sintética del documento no cubre el replay |
+| `S7_INADMISSIBLE_INCOMPLETE` | `INADMISSIBLE` | Documento S6 temprano incompleto y sin enlace |
+| `S7_WITNESS_AFTER_CUT` | `INCONCLUSIVE` | Captura posterior incluso al corte tardío: no puede usarse |
+| `S7_RETROSPECTIVE_FIRST_PUBLIC` | `INCONCLUSIVE` | Publicación ficticia antigua y captura posterior no retrotraen conocimiento |
+
+En el corte **early**, los casos E3 de octubre y los nuevos documentos
+adicionales aún no capturados son `INCONCLUSIVE` con
+`NOT_KNOWN_AT_CUT`: no se anticipa siquiera su invalidez documental.
+El documento S6 `INCOMPLETE_UNLINKED` sí está conocido en early y
+permanece `INADMISSIBLE`. El testigo tardío de noviembre sigue
+inutilizable también en late. Las etiquetas de escenario son un
+**catálogo contrafactual fijado por el programador**, no noticias
+retroactivas sobre hechos públicos.
+
+El conflicto terminal comprueba internamente **la misma referencia
+tipada E3, el mismo `stage=TERMINAL` y el mismo día válido** con
+resultados excluyentes; la salida conserva ambos recibos conceptuales
+sin elegir «ganador». El segundo conflicto compara rechazo terminal
+10/10 con un inventario exhaustivo que todavía afirma pendencia a 31/10.
+En ambos, la compatibilidad se conserva como *no adjudicada*, no como
+prueba positiva de los modelos.
+
+### Garantías epistémicas y QA
+
+Todos los derechos reales para publicar agregados derivados de
+originales permanecen bloqueados: la función Python
+`assess_distribution_rights` se ejecuta por activo y finalidad, sin
+confundir una cobertura de replay ficticio con consentimiento del
+editor. No existe `real_denominator`, `real_first_public_at`,
+autenticidad oficial de emisor, crosswalk real, acreditación de
+independencia, admisión causal ni ciclos AB. E3 rechazado u aprobado
+es un resultado oculto **solamente hipotético**; E2 pendiente no es
+rechazo, E4 censura a derecha no es rechazo, y PP04 `NO INCLUIDAS`
+continúa separado del universo de negativas administrativas.
+
+La sensibilidad S3 sigue siendo **independiente de estos expedientes**.
+Se reproduce con racionales exactos Python `Fraction` y Node `BigInt`:
+`q_before=3/5`, `q_after=7/10`, razón
+`r=P(publicado|Y=1)/P(publicado|Y=0) ∈ [1/2,2/1]`
+(**no una odds ratio**) y límites no causales de cambio
+`[-11/52,47/119]`. Early muestra `null` en el bloque S3.
+
+Pruebas **exclusivamente nuevas**, seleccionadas con `-k s7_`:
+paridad independiente de los dos motores sobre ambos cortes, las veinte
+filas y seis estados, reproducción de las contradicciones con identidad
+de episodio/fase/fecha, firma ficticia válida, evidencia formalmente
+inadmisible, testigos futuros, privacidad, 503 ante alteración posterior
+de Node y 503 ante inyección de identidad tipada o `source_id` inválidos
+en el servidor real. **24 PASS, 127 deseleccionadas**; `node --check`,
+`python -m py_compile` y `git diff --check` PASS. No se ejecutaron
+las suites históricas S6, S5, S3, PP04 ni las 41 pruebas Node. Como
+capacidad nueva **no se inventa una prueba roja PREPATCH**.
+
+**Recibos S7 SHA-256 tras QA focal:** Python
+`fe32ae28fb300c1f3cd0c7565f10b9c840f9e4a6428bb15bd468776a39b02bb4`,
+Node
+`890c5e8fbad150f74d23c2831d4504a472912b69723b1d097a891cb879c197a9`,
+tests
+`eabdefecb6261dbcac6638b82f9f56d5d48d8570ee82bd98fdbf211c22d4d22d`.
+Estos SHA atestiguan únicamente los bytes del código local sometido a
+las pruebas nuevas: no derechos de fuentes, publicidad real ni una
+identificación científica de mecanismos políticos.
