@@ -102,7 +102,10 @@ function checkSyntheticRivals(experiment,cut){
   fail('RIVAL_MECHANISMS_NOT_DISCRIMINATING');
  return {schema:'pfl.synthetic_observational_equivalence_oracle.v1',
   status:'OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED',
-  same_published_by_channel:true,opposed_synthetic_trend_signs:true,
+  same_published_by_channel:true,different_synthetic_trajectories:true,
+  hypothetical_change_by_mechanism:{
+   CAPTURE_EXPANSION:'ZERO_CHANGE_UNDER_ASSUMPTIONS',
+   STABLE_CAPTURE:'POSITIVE_CHANGE_UNDER_ASSUMPTIONS'},
   synthetic_published_totals:{before,after},
   synthetic_intake_under_assumptions:{CAPTURE_EXPANSION:captureExpansion,
    STABLE_CAPTURE:stableCapture},

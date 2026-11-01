@@ -524,7 +524,10 @@ def test_controlled_observational_equivalence_two_dgps_one_public_projection():
     assert oracle["schema"]=="pfl.synthetic_observational_equivalence_oracle.v1"
     assert oracle["status"]=="OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED"
     assert oracle["same_published_by_channel"] is True
-    assert oracle["opposed_synthetic_trend_signs"] is True
+    assert oracle["different_synthetic_trajectories"] is True
+    assert oracle["hypothetical_change_by_mechanism"]=={
+        "CAPTURE_EXPANSION":"ZERO_CHANGE_UNDER_ASSUMPTIONS",
+        "STABLE_CAPTURE":"POSITIVE_CHANGE_UNDER_ASSUMPTIONS"}
     assert oracle["synthetic_published_totals"]=={"before":10,"after":20}
     assert oracle["synthetic_intake_under_assumptions"]=={
         "CAPTURE_EXPANSION":{"before":20,"after":20},
@@ -548,7 +551,7 @@ def test_controlled_observational_equivalence_two_dgps_one_public_projection():
     ("latent_report_drift","RIVAL_LATENT_SCENARIO_NOT_MATCHING_ASSUMPTIONS"),
     ("rights_claim","UNTRUSTED_OR_FUTURE_RIVAL_WITNESS"),
     ("first_public_claim","UNTRUSTED_OR_FUTURE_RIVAL_WITNESS"),
-    ("opposite_trend_falsified","RIVAL_MECHANISM_OR_TREND_MISMATCH"),
+    ("trajectory_class_falsified","RIVAL_MECHANISM_OR_TREND_MISMATCH"),
 ])
 def test_controlled_observational_equivalence_rejects_adversarial_wire(
         falsifier, expected_error):
@@ -614,6 +617,10 @@ def test_controlled_observational_equivalence_reaches_http_and_fails_closed(
         assert early[2]["warehouse"]["observational_equivalence_experiment"] is None
         assert late[2]["warehouse"]["observational_equivalence_experiment"][
             "status"]=="OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED"
+        assert late[2]["warehouse"]["observational_equivalence_experiment"][
+            "hypothetical_change_by_mechanism"]=={
+                "CAPTURE_EXPANSION":"ZERO_CHANGE_UNDER_ASSUMPTIONS",
+                "STABLE_CAPTURE":"POSITIVE_CHANGE_UNDER_ASSUMPTIONS"}
         assert late[2]["independent_all_received_denominator"] is None
         assert late[2]["R5"]=="STOP_R5"
         actual=lab._capture_rivals
@@ -630,5 +637,23 @@ def test_controlled_observational_equivalence_reaches_http_and_fails_closed(
         assert broken[0]==503
         assert broken[1]=="no-store"
         assert broken[2]=={"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"}
+        # A drifted Node stdout must also be rejected after a genuine Node
+        # execution, even when its source SHA, scenario and all counts agree.
+        monkeypatch.setattr(lab,"_capture_rivals",actual)
+        genuine_run=lab.subprocess.run
+        def divergent_node_response(*args,**kwargs):
+            result=genuine_run(*args,**kwargs)
+            assert result.returncode==0
+            payload=json.loads(result.stdout)
+            oracle=payload["observational_equivalence_experiment"]
+            oracle["hypothetical_change_by_mechanism"][
+                "CAPTURE_EXPANSION"]="NEGATIVE_CHANGE_UNDER_ASSUMPTIONS"
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(payload),stderr=result.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",divergent_node_response)
+        ipc_drift=get("late")
+        assert ipc_drift[0]==503
+        assert ipc_drift[1]=="no-store"
+        assert ipc_drift[2]=={"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"}
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)

@@ -413,8 +413,9 @@ abierto distribuciones, originales, editores condicionados ni PII.
 
 **Objeto incremental, no reparación de un bug previo.** El comparador PR18
 `compare_capture_hypotheses` ya demostraba dentro de Python que dos hipótesis
-con las mismas publicaciones por canal admitían signos distintos de entradas
-latentes. La nueva capacidad comprueba **independientemente en el proceso Node**
+con las mismas publicaciones por canal admitían **clases de variación distintas**
+en las entradas latentes (cambio nulo frente a cambio positivo), **no signos
+matemáticamente opuestos**. La nueva capacidad comprueba **independientemente en el proceso Node**
 que el conjunto de cuatro celdas, ventanas, relojes de captura, identidades
 de fixture y escenarios hipotéticos derivados de PR18 **es exactamente el
 mismo** antes de exponerlo por el consumidor Python y la ruta HTTP existente.
@@ -433,7 +434,8 @@ el mecanismo hipotético de observación, no los datos visibles:
 | `STABLE_CAPTURE` | 1/2 | 1/2 | 20 → 40 | Crecimiento en el total latente construido |
 
 **La igualdad de las publicaciones no identifica qué mecanismo es correcto.**
-Los pares 20→20 y 20→40 son **estados latentes inventados bajo supuestos
+Los pares 20→20 y 20→40 describen **trayectorias latentes incompatibles**
+—estancamiento frente a crecimiento—, **no caída frente a subida**. Son construcciones inventadas bajo supuestos
 deterministas**, no estimaciones de solicitudes reales, totales de registros,
 efectos de reforma, tasas de éxito o denominadores certificados. Un testigo
 discriminante exigiría un inventario independiente de todas las entradas de
@@ -444,7 +446,7 @@ atestadas. Ninguno está presente aquí.
 **Circuito real reutilizado:** `_capture_rivals()` sigue invocando los dos
 `audit_regime_capture` y `compare_capture_hypotheses` de PR18. Construye un
 recibo **solamente sintético de desafío IPC**, que incluye por hipótesis las
-cuatro publicaciones, conteos latentes condicionales, signos, IDs de fixture,
+cuatro publicaciones, conteos latentes condicionales, clases de variación, IDs de fixture,
 ventanas, capturas, `first_public_at=null`, `independent_registry_total=null`
 y derechos/crosswalk no acreditados. `scientific_integration_warehouse.mjs`
 valida el esquema exacto, aplica un oráculo Node determinista *separado* de
@@ -464,15 +466,21 @@ el sistema de roles, ni el gate de reutilización de PR16.
 
 **Oráculos nuevos, sin fingir PREPATCH de defecto inexistente:** el test
 `test_controlled_observational_equivalence_two_dgps_one_public_projection`
-prueba que las cuatro publicaciones son iguales y los signos latentes
-opuestos. Ocho variantes adversariales modifican por separado: distribución
+prueba que las cuatro publicaciones son iguales y las trayectorias latentes
+incompatibles: `ZERO_CHANGE_UNDER_ASSUMPTIONS` para `CAPTURE_EXPANSION`
+y `POSITIVE_CHANGE_UNDER_ASSUMPTIONS` para `STABLE_CAPTURE`. El oráculo publica
+`different_synthetic_trajectories=true`, **no** un indicador de signos opuestos.
+Ocho variantes adversariales modifican por separado: distribución
 por canal con el mismo total, identidad de fuente sustituyéndola por PAN24,
 captura futura, ventana de exposición, conteo latente incoherente, bandera
 de derechos, declaración de primera publicación y signo hipotético. Node
 debe rechazar todas; otra prueba rechaza el desafío tardío en el corte temprano.
 El test de ruta HTTP local comprueba `200` para los dos horizontes,
 `null` temprano, diagnóstico sintético tardío, `no-store`, y `503` al
-inyectar una deriva de canal que mantiene la misma suma total. Ningún test
+inyectar una deriva de canal que mantiene la misma suma total. En ese mismo
+test se altera a continuación **únicamente** la clase de cambio de una
+respuesta generada por Node real, simulando deriva del IPC: Python exige el
+contrato exacto y HTTP devuelve 503, nunca un diagnóstico falso. Ningún test
 consume archivos originales o PII.
 
 **QA exclusiva de once pruebas nuevas:**

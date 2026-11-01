@@ -457,7 +457,10 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                    "schema":"pfl.synthetic_observational_equivalence_oracle.v1",
                    "status":"OBSERVATIONALLY_EQUIVALENT_NOT_IDENTIFIED",
                    "same_published_by_channel":True,
-                   "opposed_synthetic_trend_signs":True,
+                   "different_synthetic_trajectories":True,
+                   "hypothetical_change_by_mechanism":{
+                       "CAPTURE_EXPANSION":"ZERO_CHANGE_UNDER_ASSUMPTIONS",
+                       "STABLE_CAPTURE":"POSITIVE_CHANGE_UNDER_ASSUMPTIONS"},
                    "synthetic_published_totals":{"before":10,"after":20},
                    "synthetic_intake_under_assumptions":{
                        "CAPTURE_EXPANSION":{"before":20,"after":20},
