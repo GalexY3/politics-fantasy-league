@@ -56,6 +56,11 @@ BITEMPORAL_BYTES = (
     "EDITION:V2\nACTOR:A\nEVENT:E1_REVISED\n",
 )
 
+# S3 mathematics, reconstructed from the user-supplied exact rational oracle.
+# These are observed binary *fixture categories*, not administrative decisions.
+S3_BINARY = {"before": (6, 4), "after": (7, 3)}
+S3_RATIO_RANGE = (Fraction(1, 2), Fraction(2, 1))
+
 PAN_TEXT = (
     "SYNTHETIC DOCUMENT FIXTURE\n"
     "REAL DECRETO A\nObjetivo: alfa\nMinisterio: A\n"
@@ -79,6 +84,107 @@ IAEN_TEXT = (
 def _sha(text: str | bytes) -> str:
     body = text.encode("utf-8") if isinstance(text, str) else text
     return hashlib.sha256(body).hexdigest()
+
+
+def _partial_identification_fixture() -> dict:
+    """Immutable, aggregate-only S3 wire; no real intake or case identities."""
+    return {
+        "schema": "pfl.synthetic_partial_identification_wire.v1",
+        "as_of": CUTS["late"],
+        "population": "SYNTHETIC_OBSERVED_BINARY_ONLY",
+        "observations": {
+            period: {"observed_positive": positive,
+                     "observed_negative": negative,
+                     "documented_censor_witnesses": 0}
+            for period, (positive, negative) in S3_BINARY.items()
+        },
+        "selection_ratio_positive_to_negative": {
+            "lower": "1/2", "upper": "2/1",
+        },
+        "independent_registry_total": None,
+        "first_public_at_real": None,
+        "rights_independently_verified": False,
+        "causal_effect_claimed": False,
+        "administrative_negative_claimed": False,
+    }
+
+
+def _rational(value: Fraction) -> str:
+    """Canonical exact fraction, including denominator one and negative signs."""
+    return f"{value.numerator}/{value.denominator}"
+
+
+def _partial_identification(wire: dict) -> dict:
+    """S3 selection sensitivity; intervals are conditional, never causal.
+
+    Let q=P(Y=1 | observed), r=Pr(observed | Y=1)/Pr(observed | Y=0).
+    Population prevalence p=q/(q+r(1-q)), decreasing in r. Without a
+    restriction on r>0 the closure for a prevalence is [0,1], and the
+    prevalence *change* has only the trivial closure [-1,1].
+    """
+    reference = _partial_identification_fixture()
+    if (type(wire) is not dict or set(wire) != set(reference)
+            or wire["schema"] != reference["schema"]
+            or wire["as_of"] != CUTS["late"]
+            or wire["population"] != reference["population"]
+            or any(wire[k] is not reference[k] for k in (
+                "independent_registry_total", "first_public_at_real",
+                "rights_independently_verified", "causal_effect_claimed",
+                "administrative_negative_claimed"))):
+        raise RuntimeError("S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT")
+    rows = wire["observations"]
+    if (type(rows) is not dict or set(rows) != set(S3_BINARY)):
+        raise RuntimeError("S3_BINARY_FRAME_MISMATCH")
+    for period, (positive, negative) in S3_BINARY.items():
+        row = rows[period]
+        if (type(row) is not dict or set(row) != {
+                "observed_positive", "observed_negative",
+                "documented_censor_witnesses"} or
+                type(row["observed_positive"]) is not int or
+                type(row["observed_negative"]) is not int or
+                type(row["documented_censor_witnesses"]) is not int or
+                (row["observed_positive"], row["observed_negative"],
+                 row["documented_censor_witnesses"]) != (positive, negative, 0)):
+            raise RuntimeError("S3_BINARY_FRAME_MISMATCH")
+    ratio = wire["selection_ratio_positive_to_negative"]
+    if (type(ratio) is not dict or set(ratio) != {"lower", "upper"} or
+            ratio != {"lower": "1/2", "upper": "2/1"}):
+        raise RuntimeError("S3_RATIO_RANGE_SPOOF_OR_SWAP")
+    lower_r, upper_r = S3_RATIO_RANGE
+    if not 0 < lower_r <= upper_r:
+        raise RuntimeError("S3_RATIO_RANGE_SPOOF_OR_SWAP")
+    shares = {}
+    bounds = {}
+    for period, (positive, negative) in S3_BINARY.items():
+        q = Fraction(positive, positive + negative)
+        p_at_upper = q / (q + upper_r * (1 - q))
+        p_at_lower = q / (q + lower_r * (1 - q))
+        shares[period] = _rational(q)
+        bounds[period] = (p_at_upper, p_at_lower)
+    change_lower = bounds["after"][0] - bounds["before"][1]
+    change_upper = bounds["after"][1] - bounds["before"][0]
+    return {
+        "schema": "pfl.synthetic_partial_identification_oracle.v1",
+        "status": "ASSUMPTION_CONDITIONAL_NONCAUSAL_BOUNDS",
+        "observed_positive_share": shares,
+        "selection_ratio_positive_to_negative": {
+            "lower": _rational(lower_r), "upper": _rational(upper_r)},
+        "prevalence_bounds": {
+            period: {"lower": _rational(lo), "upper": _rational(hi)}
+            for period, (lo, hi) in bounds.items()},
+        "change_bounds": {"lower": _rational(change_lower),
+                          "upper": _rational(change_upper)},
+        "without_ratio_restriction": {
+            "nontrivial_bounds_available": False,
+            "trivial_change_closure": {"lower": "-1/1", "upper": "1/1"}},
+        "documented_censor_witnesses": {"before": 0, "after": 0},
+        "observed_negative_is_administrative_failure": False,
+        "independent_registry_total": None,
+        "first_public_at_real": None,
+        "rights_independently_verified": False,
+        "causal_effect_identified": False,
+        "empirical_estimand_admitted": False,
+    }
 
 
 def _assets() -> list[dict]:
@@ -569,10 +675,12 @@ def _capture_rivals(at: str) -> tuple[dict, dict]:
 
 
 def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
-                    experiment: dict | None, timeline: dict) -> dict:
+                    experiment: dict | None, timeline: dict,
+                    partial_identification: dict | None) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
     request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
-             "assets":assets,"experiment":experiment,"timeline":timeline}
+             "assets":assets,"experiment":experiment,"timeline":timeline,
+             "partial_identification":partial_identification}
     try:
         proc=subprocess.run(["node",str(runner)],input=json.dumps(request),
             text=True,capture_output=True,timeout=5,check=False)
@@ -597,6 +705,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
         "publisher_authenticated", "source_identity_crosswalk_certified",
         "observational_equivalence_experiment",
         "bitemporal_actor_event_equivalence",
+        "partial_identification_oracle",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -636,7 +745,10 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                    "rights_independently_verified":False,
                    "real_causal_effect_identified":False,
                    "empirical_estimand_admitted":False,
-               })):
+               })
+            or data.get("partial_identification_oracle") !=
+               (None if cut == "early" else
+                _partial_identification(partial_identification))):
         raise RuntimeError("CROSS_LANGUAGE_CONTRACT_DIVERGENCE")
     # SHA/identity details are checked SERVER-SIDE but must not be exposed at
     # an earlier knowledge cut. The bridge is never a second source witness.
@@ -665,11 +777,16 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
                                  receipts=receipts)
     denominator=_denominator(at)
     rivals,experiment=_capture_rivals(at) if cut=="late" else (None,None)
+    partial_wire=_partial_identification_fixture() if cut=="late" else None
+    partial_oracle=_partial_identification(partial_wire) if cut=="late" else None
     bitemporal,timeline=_bitemporal_actor_event(at=at)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
-                              experiment=experiment,timeline=timeline)
+                              experiment=experiment,timeline=timeline,
+                              partial_identification=partial_wire)
     if warehouse.get("bitemporal_actor_event_equivalence") != bitemporal:
         raise RuntimeError("CROSS_LANGUAGE_BITEMPORAL_CONTRACT_DIVERGENCE")
+    if warehouse.get("partial_identification_oracle") != partial_oracle:
+        raise RuntimeError("CROSS_LANGUAGE_S3_PARTIAL_IDENTIFICATION_DIVERGENCE")
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,

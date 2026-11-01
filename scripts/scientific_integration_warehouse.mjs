@@ -114,6 +114,82 @@ function checkSyntheticRivals(experiment,cut){
   real_causal_effect_identified:false,empirical_estimand_admitted:false};
 }
 
+// Independent S3 arithmetic: BigInt rationals, no floating-point rounding and
+// no reuse of Python fractions. Binary negatives are *not* administrative
+// denials, and a zero censor witness is not a negative decision.
+function s3Rat(n,d=1n){
+ if(d===0n)fail('S3_ZERO_DENOMINATOR');
+ if(d<0n){n=-n;d=-d;}
+ let a=n<0n?-n:n,b=d;
+ while(b!==0n){const t=a%b;a=b;b=t;}
+ return {n:n/a,d:d/a};
+}
+const s3Plus=(a,b)=>s3Rat(a.n*b.d+b.n*a.d,a.d*b.d);
+const s3Minus=(a,b)=>s3Rat(a.n*b.d-b.n*a.d,a.d*b.d);
+const s3Times=(a,b)=>s3Rat(a.n*b.n,a.d*b.d);
+const s3Divide=(a,b)=>s3Rat(a.n*b.d,a.d*b.n);
+const s3String=(v)=>`${v.n}/${v.d}`;
+
+function checkS3PartialIdentification(s3,cut){
+ if(cut==='early'){
+  if(s3!==null)fail('S3_FUTURE_PARTIAL_IDENTIFICATION_AT_EARLY_CUT');
+  return null;
+ }
+ if(!exactKeys(s3,['schema','as_of','population','observations',
+     'selection_ratio_positive_to_negative','independent_registry_total',
+     'first_public_at_real','rights_independently_verified',
+     'causal_effect_claimed','administrative_negative_claimed'])||
+    s3.schema!=='pfl.synthetic_partial_identification_wire.v1'||
+    s3.as_of!==cuts.late||s3.population!=='SYNTHETIC_OBSERVED_BINARY_ONLY'||
+    s3.independent_registry_total!==null||s3.first_public_at_real!==null||
+    s3.rights_independently_verified!==false||
+    s3.causal_effect_claimed!==false||
+    s3.administrative_negative_claimed!==false)
+  fail('S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT');
+ const periods=['before','after'];
+ const observed={before:{observed_positive:6,observed_negative:4,
+    documented_censor_witnesses:0},
+   after:{observed_positive:7,observed_negative:3,
+    documented_censor_witnesses:0}};
+ if(!exactKeys(s3.observations,periods))fail('S3_BINARY_FRAME_MISMATCH');
+ for(const p of periods){
+  const row=s3.observations[p];
+  const keys=['observed_positive','observed_negative','documented_censor_witnesses'];
+  if(!exactKeys(row,keys)||keys.some(k=>!Number.isSafeInteger(row[k])||
+       row[k]!==observed[p][k]))fail('S3_BINARY_FRAME_MISMATCH');
+ }
+ const ratio=s3.selection_ratio_positive_to_negative;
+ if(!exactKeys(ratio,['lower','upper'])||ratio.lower!=='1/2'||
+    ratio.upper!=='2/1')fail('S3_RATIO_RANGE_SPOOF_OR_SWAP');
+ const rMin=s3Rat(1n,2n),rMax=s3Rat(2n,1n),one=s3Rat(1n);
+ const shares={},bounds={};
+ for(const p of periods){
+  const row=observed[p];
+  const q=s3Rat(BigInt(row.observed_positive),
+    BigInt(row.observed_positive+row.observed_negative));
+  const truePrevalence=(r)=>s3Divide(q,
+    s3Plus(q,s3Times(r,s3Minus(one,q))));
+  shares[p]=s3String(q);
+  bounds[p]={lower:truePrevalence(rMax),upper:truePrevalence(rMin)};
+ }
+ const deltaLow=s3Minus(bounds.after.lower,bounds.before.upper);
+ const deltaHigh=s3Minus(bounds.after.upper,bounds.before.lower);
+ return {schema:'pfl.synthetic_partial_identification_oracle.v1',
+  status:'ASSUMPTION_CONDITIONAL_NONCAUSAL_BOUNDS',
+  observed_positive_share:shares,
+  selection_ratio_positive_to_negative:{lower:s3String(rMin),upper:s3String(rMax)},
+  prevalence_bounds:Object.fromEntries(periods.map(p=>[p,{
+    lower:s3String(bounds[p].lower),upper:s3String(bounds[p].upper)}])),
+  change_bounds:{lower:s3String(deltaLow),upper:s3String(deltaHigh)},
+  without_ratio_restriction:{nontrivial_bounds_available:false,
+    trivial_change_closure:{lower:'-1/1',upper:'1/1'}},
+  documented_censor_witnesses:{before:0,after:0},
+  observed_negative_is_administrative_failure:false,
+  independent_registry_total:null,first_public_at_real:null,
+  rights_independently_verified:false,causal_effect_identified:false,
+  empirical_estimand_admitted:false};
+}
+
 function replayBitemporal(timeline,cut){
  if(!exactKeys(timeline,['schema','issuer','sources','actor_id','institution_id',
    'roles','events','first_public_at_real','source_crosswalk_certified',
@@ -219,7 +295,8 @@ function replayBitemporal(timeline,cut){
 
 function run(v){
  if(!v||Array.isArray(v)||typeof v!=='object'||
-    !['assets,cut,experiment,scenario,sha256,timeline',
+    !['assets,cut,experiment,partial_identification,scenario,sha256,timeline',
+      'assets,cut,experiment,scenario,sha256,timeline',
       'assets,cut,experiment,scenario,sha256',
       'assets,cut,scenario,sha256']
       .includes(Object.keys(v).sort().join(',')) ||
@@ -244,6 +321,8 @@ function run(v){
  const observationalEquivalence=checkSyntheticRivals(v.experiment??null,v.cut);
  if(!Object.hasOwn(v,'timeline'))fail('BITEMPORAL_WIRE_REQUIRED');
  const bitemporal=replayBitemporal(v.timeline,v.cut);
+ if(!Object.hasOwn(v,'partial_identification'))fail('S3_PARTIAL_IDENTIFICATION_WIRE_REQUIRED');
+ const partialIdentification=checkS3PartialIdentification(v.partial_identification,v.cut);
  const reg=W.empty();
  const base={kind:'SYNTHETIC',state:'TEST_FIXTURE',rights:'SYNTHETIC',
   url:'https://example.invalid/pfl-synthetic-no-external-source'};
@@ -320,6 +399,7 @@ function run(v){
    audit.gate.blockers.includes('RIGHTS_NOT_VERIFIED_FOR_REDISTRIBUTION'),
   observational_equivalence_experiment:observationalEquivalence,
   bitemporal_actor_event_equivalence:bitemporal,
+  partial_identification_oracle:partialIdentification,
   real_denominator:null,first_public_at_real:null,
   publisher_authenticated:false,source_identity_crosswalk_certified:false};
 }

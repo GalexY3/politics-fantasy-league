@@ -586,3 +586,100 @@ pero ninguna autenticación real del emisor, derechos, versión oficial,
 `real_actor_identity_verified=false` son invariantes del nuevo oráculo.
 **R5 STOP, 0/6 gates, 0 AB empíricos, sin scoring, originales, PII,
 main, CI ni despliegue.**
+
+## PR22 · identificación parcial S3: dos observaciones binarias y selección hipotética
+
+**Alcance diferencial, NONCYCLE.** En el checkout de PR22 se añadió al
+consumidor Python/Node/HTTP **existente** un tercer experimento sintético,
+sin nuevo módulo ni ruta ni fuente de datos. El archivo suplementario
+`/mnt/data/PFL_S3_repro/pfl_identificacion_parcial.py` no estaba disponible
+en el entorno local de esta ejecución; las fórmulas y valores del oráculo
+se reconstruyeron de forma conservadora a partir de los racionales exactos
+aportados en la autorización. Por tanto no se afirma haber ejecutado el
+código original del suplemento.
+
+La observación ficticia solo tiene dos categorías binarias: antes
+`positive=6, negative=4`; después `positive=7, negative=3`. Ningún
+`negative` de este fixture representa una **inadmisión, desestimación, rechazo,
+norma no aprobada ni otro outcome administrativo**. Tampoco equivale a
+censura: el fixture registra **cero testigos de censura documentada** en
+ambos periodos, sin restar negativas ni deducir cierres.
+
+Definimos `q=P(Y=1 | observado)` y una razón de probabilidad de observación
+hipotética `r=P(observado | Y=1)/P(observado | Y=0)`. Para `r>0` la proporción
+subyacente compatible es
+
+\[
+ p=\frac{q}{q+r(1-q)}.
+\]
+
+El cálculo exacto con `fractions.Fraction` en Python y una implementación
+**independiente** de racionales con `BigInt` y máximo común divisor en Node
+produce, bajo el supuesto condicional `r∈[1/2,2]` en cada periodo:
+
+| Valor ficticio | Racional exacto |
+| --- | --- |
+| Fracción positiva observada antes y después | `3/5`; `7/10` |
+| Región de prevalencia antes | `[3/7, 3/4]` |
+| Región de prevalencia después | `[7/13, 14/17]` |
+| Cambio compatible después menos antes | `[-11/52, 47/119]` |
+
+El extremo inferior del cambio se calcula `7/13 - 3/4`; el superior,
+`14/17 - 3/7`, manteniendo ambos supuestos por periodo y sin postular un
+acoplamiento no observado entre razones de selección. Al retirar **toda**
+restricción de razón de observación, no quedan cotas informativas de
+prevalencia más estrechas que `[0,1]`, ni del cambio más estrechas que su
+clausura trivial `[-1,1]`. Son **regiones identificadas condicionales a
+supuestos ficticios**, no intervalos de confianza, estimaciones de la
+población española, efectos causales, evidencia de selección real ni tasas
+de negativas institucionales.
+
+**Frontera de IPC:** `_partial_identification_fixture()` crea únicamente
+el esquema `pfl.synthetic_partial_identification_wire.v1` sin filas, personas,
+textos, originales ni capturas auténticas. `_partial_identification()`
+valida el esquema cerrado, los conteos exactos, el orden/cotas de `r`, los
+contadores de censura cero y las banderas de autoridad inactivas; devuelve
+fracciones canónicas `n/d`. El puente Node recibe el mismo wire, comprueba
+independientemente sus invariantes y recalcula el oráculo completo
+`pfl.synthetic_partial_identification_oracle.v1`. Python compara **todos**
+los campos de retorno de Node, nunca solamente los extremos numéricos.
+En `cut=early` **ambos** tienen `partial_identification_oracle=null`; en
+`cut=late` la ruta ya existente `GET /api/scientific-integration-lab`
+expone solo un agregado sin identidades ni datos originales. Deriva Node
+en cualquier fracción, categoría o autoridad → excepción Python →
+**HTTP 503**, nunca respuesta aparentemente certificada.
+
+**Falsación focal nueva:** permutación del orden de los periodos y los campos;
+intercambio o suplantación de `r` mínimo/máximo; cambio de cualquiera de
+los recuentos de observación; transformación espuria de cero testigos de
+censura en una categoría negativa; falsas declaraciones de denominador
+independiente, derechos, primera publicación, causalidad o negativa
+administrativa; transmisión de un oráculo futuro al corte temprano; y
+mutación de `-11/52` a `-10/52` **después de ejecutar Node real** para
+comprobar el rechazo por el servidor local. Los tests no contaminan los
+fixtures PP04 ni el programa de equivalencia observacional anterior.
+
+Los bloqueos permanecen en `independent_registry_total=null`,
+`first_public_at_real=null`, `rights_independently_verified=false`,
+`causal_effect_identified=false`, `empirical_estimand_admitted=false`,
+`R5=STOP_R5`, **0/6 gates y 0 ciclos AB**. Ningún original público/privado,
+persona, censo real o supuesto de causalidad entra en la ruta.
+
+**QA focal de esta entrega:** `PYTHONPATH=src python -m pytest -q
+tests/test_synthetic_scientific_integration_lab.py -k
+'s3 or controlled_observational_equivalence or bitemporal_actor_event'`
+→ **35 PASS / 30 deseleccionados**. Incluye 13 pruebas seleccionadas por
+`s3`, validación de paridad de racionales exactos, spoof de derechos,
+denominador y tiempo, invariancia de orden, protección del corte temprano y
+la respuesta HTTP 503 de un Node real deliberadamente divergente. `node
+--check`, `python -m py_compile` y `git diff --check`: PASS. No se
+reejecutaron las 41 pruebas históricas Node ni las 109 pruebas PP04.
+
+**Recibos SHA-256 (bytes tras QA, antes del commit):** Python
+`26aed3e87e69f7da7524d34a056de17480b27744a4b390170c0da4db48877aab`,
+Node
+`fed4254a121484e6426ff69e434cfbc1b54ae92a87d19901767502dde7446799`,
+tests
+`9a71e0b900e09326a21cf6f3f3eddc4e7ccc279483f3682cabff66b9fbef94d3`.
+Estos hashes corroboran el código local probado, **no** autenticidad de
+originales ni suficiencia científica.

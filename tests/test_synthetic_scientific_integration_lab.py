@@ -504,11 +504,17 @@ def test_node_ipc_rejects_forged_positive_scientific_authority(monkeypatch):
 
 def _controlled_observational_equivalence_node(experiment, cut="late"):
     """The actual Node CLI bridge, with no originals or outside network."""
-    from politics_fantasy.scientific_integration_lab import _assets, _sha, FAKE_PARITY
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _sha, FAKE_PARITY, _bitemporal_fixture,
+        _partial_identification_fixture,
+    )
     node=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
     return subprocess.run(["node",str(node)],input=json.dumps({
         "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
         "assets":_assets(),"experiment":experiment,
+        "timeline":_bitemporal_fixture(),
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
     }),text=True,capture_output=True,timeout=5)
 
 
@@ -663,12 +669,15 @@ def _bitemporal_actor_event_node(wire,cut="late"):
     """Invoke the existing actual JS warehouse CLI with Python fixture bytes."""
     from politics_fantasy.scientific_integration_lab import (
         _assets,_capture_rivals,_sha,FAKE_PARITY,CUTS,
+        _partial_identification_fixture,
     )
     runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
     experiment=_capture_rivals(CUTS["late"])[1] if cut=="late" else None
     return subprocess.run(["node",str(runner)],input=json.dumps({
         "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
         "assets":_assets(),"experiment":experiment,"timeline":wire,
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
     }),text=True,capture_output=True,timeout=5)
 
 
@@ -802,6 +811,172 @@ def test_bitemporal_actor_event_http_aggregates_redacted_and_ipc_503(tmp_path,mo
             return subprocess.CompletedProcess(args[0],0,
                 stdout=json.dumps(rows),stderr=proc.stderr)
         monkeypatch.setattr(lab.subprocess,"run",mutated_node)
+        assert request("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _s3_real_node(wire, *, cut="late"):
+    """Actual existing Node program, not a mocked rational implementation."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _capture_rivals, _bitemporal_fixture, _sha, FAKE_PARITY, CUTS,
+    )
+    runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    experiment=_capture_rivals(CUTS["late"])[1] if cut=="late" else None
+    return subprocess.run(["node",str(runner)],input=json.dumps({
+        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),"experiment":experiment,
+        "timeline":_bitemporal_fixture(),"partial_identification":wire,
+    }),text=True,capture_output=True,timeout=5)
+
+
+def test_s3_new_exact_partial_identification_python_node_and_http_projection():
+    """S3 is a new noncausal, conditional sensitivity capability, not a bug fix."""
+    from politics_fantasy.scientific_integration_lab import (
+        _partial_identification, _partial_identification_fixture,
+    )
+    wire=_partial_identification_fixture()
+    py=_partial_identification(wire)
+    assert py["observed_positive_share"]=={"before":"3/5","after":"7/10"}
+    assert py["selection_ratio_positive_to_negative"]=={"lower":"1/2","upper":"2/1"}
+    assert py["prevalence_bounds"]=={
+        "before":{"lower":"3/7","upper":"3/4"},
+        "after":{"lower":"7/13","upper":"14/17"}}
+    assert py["change_bounds"]=={"lower":"-11/52","upper":"47/119"}
+    assert py["without_ratio_restriction"]=={
+        "nontrivial_bounds_available":False,
+        "trivial_change_closure":{"lower":"-1/1","upper":"1/1"}}
+    assert py["documented_censor_witnesses"]=={"before":0,"after":0}
+    assert py["observed_negative_is_administrative_failure"] is False
+    assert py["first_public_at_real"] is None
+    assert py["independent_registry_total"] is None
+    assert py["rights_independently_verified"] is False
+    assert py["causal_effect_identified"] is False
+    assert py["empirical_estimand_admitted"] is False
+    late=report(cut="late")
+    early=report(cut="early")
+    assert late["warehouse"]["partial_identification_oracle"]==py
+    assert early["warehouse"]["partial_identification_oracle"] is None
+    assert early["independent_all_received_denominator"] is None
+    assert late["R5"]=="STOP_R5" and late["scientific_AB_cycles"]==0
+    if shutil.which("node") is not None:
+        p=_s3_real_node(wire)
+        assert p.returncode==0,p.stderr
+        assert json.loads(p.stdout)["partial_identification_oracle"]==py
+
+
+def test_s3_observation_order_and_field_order_invariant_in_both_languages():
+    from politics_fantasy.scientific_integration_lab import (
+        _partial_identification, _partial_identification_fixture,
+    )
+    baseline=_partial_identification_fixture()
+    reordered=json.loads(json.dumps(baseline))
+    reordered["observations"]={k:dict(reversed(list(v.items()))) for k,v in
+                               reversed(list(reordered["observations"].items()))}
+    reordered={k:reordered[k] for k in reversed(list(reordered))}
+    assert _partial_identification(reordered)==_partial_identification(baseline)
+    if shutil.which("node") is not None:
+        node=_s3_real_node(reordered)
+        assert node.returncode==0,node.stderr
+        assert json.loads(node.stdout)["partial_identification_oracle"]==(
+            _partial_identification(baseline))
+
+
+@pytest.mark.parametrize("change,error",[
+    ("swap_ratio","S3_RATIO_RANGE_SPOOF_OR_SWAP"),
+    ("spoof_ratio","S3_RATIO_RANGE_SPOOF_OR_SWAP"),
+    ("denominator_spoof","S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT"),
+    ("rights_spoof","S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT"),
+    ("first_public_spoof","S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT"),
+    ("causal_claim","S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT"),
+    ("admin_negative_claim","S3_UNTRUSTED_REAL_SOURCE_OR_KNOWLEDGE_CUT"),
+    ("observation_count_spoof","S3_BINARY_FRAME_MISMATCH"),
+    ("censor_as_negative","S3_BINARY_FRAME_MISMATCH"),
+])
+def test_s3_new_wire_spoofs_fail_closed_python_and_independent_node(change,error):
+    from politics_fantasy.scientific_integration_lab import (
+        _partial_identification, _partial_identification_fixture,
+    )
+    wire=_partial_identification_fixture()
+    if change=="swap_ratio":
+        wire["selection_ratio_positive_to_negative"]={"lower":"2/1","upper":"1/2"}
+    elif change=="spoof_ratio":
+        wire["selection_ratio_positive_to_negative"]["upper"]="3/1"
+    elif change=="denominator_spoof":
+        wire["independent_registry_total"]=20
+    elif change=="rights_spoof":
+        wire["rights_independently_verified"]=True
+    elif change=="first_public_spoof":
+        wire["first_public_at_real"]="2026-09-01T12:00:00Z"
+    elif change=="causal_claim":
+        wire["causal_effect_claimed"]=True
+    elif change=="admin_negative_claim":
+        wire["administrative_negative_claimed"]=True
+    elif change=="observation_count_spoof":
+        wire["observations"]["before"]["observed_negative"]=5
+    else:
+        # A zero documented censor witness cannot be reclassified as a
+        # counted negative administrative event or a known censored case.
+        wire["observations"]["before"]["documented_censor_witnesses"]=4
+    with pytest.raises(RuntimeError,match=error):
+        _partial_identification(wire)
+    if shutil.which("node") is not None:
+        node=_s3_real_node(wire)
+        assert node.returncode!=0
+        assert error in node.stderr
+        assert node.stdout==""
+
+
+def test_s3_partial_identification_early_lookahead_is_rejected_by_node():
+    from politics_fantasy.scientific_integration_lab import _partial_identification_fixture
+    assert report(cut="early")["warehouse"]["partial_identification_oracle"] is None
+    if shutil.which("node") is not None:
+        injected=_s3_real_node(_partial_identification_fixture(),cut="early")
+        assert injected.returncode!=0
+        assert "S3_FUTURE_PARTIAL_IDENTIFICATION_AT_EARLY_CUT" in injected.stderr
+        assert injected.stdout==""
+        safe=_s3_real_node(None,cut="early")
+        assert safe.returncode==0,safe.stderr
+        assert json.loads(safe.stdout)["partial_identification_oracle"] is None
+
+
+def test_s3_ratio_math_drift_from_real_node_forces_http_503(tmp_path,monkeypatch):
+    """Compute real Node output, mutate ONLY its rational answer, then HTTP 503."""
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def request(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            reply=conn.getresponse()
+            status,cache=reply.status,reply.getheader("Cache-Control")
+            body=json.loads(reply.read());conn.close()
+            return status,cache,body
+        early=request("early")
+        late=request("late")
+        assert (early[0],early[1])==(200,"no-store")
+        assert early[2]["warehouse"]["partial_identification_oracle"] is None
+        assert (late[0],late[1])==(200,"no-store")
+        oracle=late[2]["warehouse"]["partial_identification_oracle"]
+        assert oracle["change_bounds"]=={"lower":"-11/52","upper":"47/119"}
+        serialized=json.dumps(late[2]).lower()
+        assert "synthetic_binary" not in serialized  # No row-level binary data.
+        assert "observed_negative_is_administrative_failure\": false" in serialized
+        assert late[2]["independent_all_received_denominator"] is None
+        assert late[2]["R5"]=="STOP_R5"
+        actual=lab.subprocess.run
+        def drifted_rational_stdout(*args,**kwargs):
+            result=actual(*args,**kwargs)
+            assert result.returncode==0,result.stderr
+            body=json.loads(result.stdout)
+            body["partial_identification_oracle"]["change_bounds"]["lower"]="-10/52"
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(body),stderr=result.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",drifted_rational_stdout)
         assert request("late")==(
             503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
