@@ -1252,3 +1252,59 @@ tests
 Estos SHA atestiguan únicamente los bytes del código local sometido a
 las pruebas nuevas: no derechos de fuentes, publicidad real ni una
 identificación científica de mecanismos políticos.
+
+## PR22 · S8: interfaz científica y observatorio sintético ejecutable (NONCYCLE)
+
+La aplicación local incorpora una pestaña **Laboratorio científico** que ejecuta
+`GET /api/scientific-integration-lab?cut=early|late&scenario=baseline|rights_spoof|privacy_probe`.
+El navegador comprueba el esquema cerrado y los bloqueos R5, y oculta resultados
+ante 503 o discrepancia. Muestra la sensibilidad de selección S3 con intervalos
+racionales no causales; los modelos B0 (calendario) y B3 (selección/publicación)
+observacionalmente equivalentes; y los veinte conjuntos de testigos S7,
+manteniendo sus seis estados y distinción entre `NEITHER`, `CONFLICT` e
+`INADMISSIBLE`. El observatorio incluye un grafo **ficticio** tipado por actor,
+organización, comunicación, decisión y proceso, navegable por `as_of` y
+`valid_at` independiente, más una crónica de roles/eventos documentalmente
+revisados. No une ambos dominios por identidad real ni contabiliza una revisión
+como otra decisión/persona. Los testigos S7 internos permanecen redactados.
+
+`explorer.catalog.distributions` aporta un catálogo filtrable por conocimiento
+y por primera publicación **inventada** del descriptor (19/09 o 30/10, nunca
+posterior a `as_of`). Cada edición declara familia, revisión, emisor ficticio,
+captura y publicación simuladas, SHA-256 del **descriptor público sintético**,
+calidad estrictamente interna, cobertura temporal real nula, motivo de
+inadmisión y derechos de uso público no acreditados. Los SHA y los ID internos
+de los originales de prueba de Python/Node nunca atraviesan HTTP: se verifica
+su integridad *dentro* del proceso y se ofrecen recibos diferentes para los
+descriptores públicos, conservando contratos anteriores de redacción.
+
+`GET /api/scientific-lab-export?cut=&scenario=&published_until=` devuelve el
+recibo `pfl.synthetic_scientific_export_receipt.v1`: `canonical_json` construido
+mediante JSON UTF-8, claves ordenadas y separadores compactos; `bytes` y
+`sha256` sobre **exactamente esos bytes**. WebCrypto vuelve a verificar la
+huella antes de descargar el archivo. El límite de publicación filtra solo el
+catálogo sintético del JSON exportado y nunca modifica los oráculos S3/S7
+independientes del corte de conocimiento; el filtro futuro es error 400.
+
+`GET /api/scientific-lab-admission?candidate=baseline|sha_spoof|issuer_spoof|rights_missing|first_public_missing|crosswalk_missing|denominator_missing|coverage_missing`
+es una **prueba seca de ocho variantes cerradas** de un único documento inventado.
+Valida SHA, emisor permitido, orden de publicación/captura, enlace tipado,
+registro de entradas, cobertura y finalidad, y siempre devuelve
+`status=REJECTED_R5`, `source_rows_imported=0` y causas de bloqueo externo.
+Incluso el candidato íntegro internamente carece de autenticación real,
+denominador independiente, derechos por recurso/finalidad, fecha de primera
+publicación real, crosswalk oficial y testigo independiente. **No existe
+ingesta de nuevas distribuciones reales ni POST de importación**. El dry-run
+sirve para diseñar y probar futuros requisitos de admisión sin abrir R5.
+
+Los nuevos tests focales HTTP + Python y el harness Node VM ejecutan la UI
+efectiva (incluidos eventos de cambio de `as_of`/`valid_at`/filtro, verificación
+WebCrypto y rechazo de un SHA alterado). La VM no equivale a una prueba manual
+de navegador real, accesibilidad completa ni despliegue. Los módulos del
+proyecto y las fuentes reales españolas siguen separados: **R5 STOP, cero
+ciclos AB científicos, cero autorización de original, cero gates superados**.
+
+Recibo técnico de la capacidad: `docs/S8_SYNTHETIC_SCIENTIFIC_UI_RECEIPT.json`.
+Su resultado es ingeniería sintética revisable en la PR #22 DRAFT, sin CI ni
+fusión a `main`; el estado de tests y los SHA efectivos se registran en el
+recibo después de la verificación local.

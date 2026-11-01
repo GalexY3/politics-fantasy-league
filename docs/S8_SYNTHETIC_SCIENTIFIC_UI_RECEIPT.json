@@ -1,0 +1,98 @@
+{
+  "schema": "pfl.synthetic_scientific_s8_technical_receipt.v1",
+  "date": "2026-11-01",
+  "evidence_class": "LOCAL_SYNTHETIC_ENGINEERING_NONCYCLE",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "pull_request": 22,
+  "head_before": "3c63fbac2b3df636e7fbdda8deaf2a663c01dbb0",
+  "http_get_routes": {
+    "scientific_report": "/api/scientific-integration-lab?cut=early|late&scenario=baseline|rights_spoof|privacy_probe",
+    "export_receipt": "/api/scientific-lab-export?cut=early|late&scenario=baseline|rights_spoof|privacy_probe&published_until=2026-09-19T12:00:00Z",
+    "admission_dry_run": "/api/scientific-lab-admission?candidate=baseline|sha_spoof|issuer_spoof|rights_missing|first_public_missing|crosswalk_missing|denominator_missing|coverage_missing"
+  },
+  "http_post_ingestion": false,
+  "report_fields": [
+    "explorer.catalog.distributions",
+    "explorer.observatory.typed_graph_by_valid_day",
+    "explorer.observatory.chronicle_by_valid_day",
+    "warehouse.partial_identification_oracle",
+    "warehouse.b0_b3_observational_equivalence",
+    "warehouse.b0_b3_witness_sets.sets_by_knowledge_cut"
+  ],
+  "known_as_of_cuts": {
+    "early": "2026-10-15T12:00:00Z",
+    "late": "2026-11-01T12:00:00Z"
+  },
+  "synthetic_catalog": {
+    "early_visible_descriptors": 2,
+    "late_visible_descriptors": 6,
+    "sha256_scope": "PUBLIC_DESCRIPTOR_BYTES_ONLY",
+    "descriptor_recipe": "S8_PUBLIC_DESCRIPTOR_V1",
+    "internal_fixture_sha256_checked_but_not_released": true,
+    "source_local_ids_hidden": true,
+    "historical_coverage_certified": false,
+    "actual_first_public_at_certified": false,
+    "distribution_rights_attested": false
+  },
+  "s7": {
+    "sets_per_cut": 20,
+    "status_vocabulary": [
+      "INCONCLUSIVE", "B0_ONLY", "B3_ONLY", "NEITHER",
+      "CONFLICT", "INADMISSIBLE"
+    ],
+    "witness_originals_or_sha_exposed": false,
+    "synthetic_stipulations_are_real_evidence": false
+  },
+  "bitemporal": {
+    "institutional_valid_days": ["2026-09-11", "2026-09-15"],
+    "chronicle_valid_days": ["2026-09-15", "2026-10-10"],
+    "typed_families": ["ACTOR", "ORGANIZATION", "COMMUNICATION", "PROCESS", "DECISION"],
+    "official_identity_crosswalk": false
+  },
+  "export": {
+    "schema": "pfl.synthetic_scientific_export_receipt.v1",
+    "content_encoding": "JSON_UTF8_SORTED_KEYS_COMPACT_V1",
+    "digest": "SHA256_OF_CANONICAL_JSON_UTF8",
+    "browser_verification": "WEB_CRYPTO_SUBTLE_DIGEST_BEFORE_DOWNLOAD",
+    "future_first_public_filter_rejected": true
+  },
+  "candidate_admission": {
+    "status": "REJECTED_R5",
+    "variants": 8,
+    "source_rows_imported": 0,
+    "real_ingestion_available": false,
+    "dry_run_only": true
+  },
+  "local_validation": {
+    "focused_python_passed": 15,
+    "focused_python_failed": 0,
+    "node_ui_interaction_passed": 3,
+    "node_ui_interaction_failed": 0,
+    "node_ui_combined_with_r21_passed": 7,
+    "node_ui_combined_with_r21_failed": 0,
+    "historical_python_suite_passed": 156,
+    "historical_python_suite_failed": 7,
+    "historical_failure_note": "Legacy standalone Node callers omit newly required S4-S7 IPC wires (six tests); one existing S3 redaction expectation conflicts with a current B0/B3 aggregate label. No S8-specific test failed. These remain pending separately.",
+    "browser_click_through_verified": false,
+    "ui_events_exercised_via": "NODE_VM_REAL_APP_JS_DOM_FETCH_HARNESS"
+  },
+  "source_sha256": {
+    "src/politics_fantasy/scientific_integration_lab.py": "d23276f4d5cd337e57ba754ed93090a6c2eddf5b4dda36fa5475fdff7b779f0a",
+    "src/politics_fantasy/server.py": "7bd097e7146e5577478c0a1d5acb763c72abc3854031f3e304d831c737d61763",
+    "src/politics_fantasy/web/app.js": "c82bd5713219b1fb35ac5798954a1485a1de159438f268de250373556cf74beb",
+    "src/politics_fantasy/web/index.html": "0d65cb5a3e95ca9d0eb0b4ceba3a4314b9446ff0d1df7f62016dfbcda255c1ca",
+    "src/politics_fantasy/web/style.css": "6da6ccf72d9a6d9b1beffd03b2e5a9a4c0ca54c3740da95aecc48ebc0e49878b",
+    "tests/test_synthetic_scientific_integration_lab.py": "78a35142deb22c83a935dd3dbbc110777fa49febcfd8868b0ad577454d011046",
+    "tests/test_s8_scientific_ui.mjs": "2460dfc8fa958c0ae2ab6f1739c8c6439dcc54698e6167c3a1d8db65bf026926"
+  },
+  "admission_and_release": {
+    "R5": "STOP_R5",
+    "scientific_ab_cycles": 0,
+    "release_gates_passed": 0,
+    "real_denominator": null,
+    "real_first_public_at": null,
+    "real_source_rights_verified": false,
+    "real_people_scoring": false,
+    "empirical_effect_identified": false
+  }
+}

@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0 };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -50,6 +50,94 @@ function stat(title,value,explanation){return `<article class="card metric"><lab
 function heading(kicker,title,desc){return `<header class="head"><div><p class="eyebrow">${esc(kicker)}</p><h1>${esc(title)}</h1><p>${esc(desc)}</p></div></header>`;}
 function row(f,act){return `<div class="listrow">${avatar(f)}<div class="identity"><strong>${esc(f.display_name)}</strong><small>${esc(f.role)} · ${esc(f.group_name)}</small></div><div class="amount">${money(f.price)}</div>${act||''}</div>`;}
 function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Las figuras, transacciones y puntuaciones de fantasy son ficticias. El piloto de votaciones manuales es exploratorio; los CSV de iniciativas oficiales únicamente acreditan metadatos capturados, no resultados históricos ni puntuaciones de personas.</div>`;}
+function scienceUrl(route){return '/api/'+route+'?cut='+encodeURIComponent(ui.scienceCut)+'&scenario='+encodeURIComponent(ui.scienceScenario);}
+function sciencePublishedLimit(){
+ const max=ui.scienceCut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z';
+ return ['2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(ui.scienceFirstPublic)
+    && ui.scienceFirstPublic<=max?ui.scienceFirstPublic:max;
+}
+function validSciencePayload(x){
+ const e=x?.explorer;
+ return x?.schema==='pfl.synthetic_scientific_integration_lab.v1'
+   && x.evidence_class==='SYNTHETIC_LAB_ONLY'
+   && x.cut===ui.scienceCut && x.scenario===ui.scienceScenario
+   && x.R5==='STOP_R5' && x.scientific_AB_cycles===0
+   && x.release_gates_passed===0 && x.real_corpus_ingestion_allowed===false
+   && x.scientific_estimator_admitted===false
+   && x.independent_all_received_denominator===null
+   && e?.schema==='pfl.synthetic_scientific_explorer.v1'
+   && e.admission?.R5==='STOP_R5' && e.admission?.real_denominator===null
+   && e.admission?.real_distribution_rights_admitted===false
+   && e.catalog?.schema==='pfl.synthetic_distribution_catalog.v1'
+   && e.catalog?.witness_distributions_redacted===true
+   && Array.isArray(e.catalog.distributions)
+   && e.catalog.distributions.every(d=>d.empirical_distribution_admitted===false
+      && d.rights_for_requested_purpose_admitted===false)
+   && e.observatory?.schema==='pfl.synthetic_bitemporal_observatory.v1'
+   && e.observatory.real_actor_identity_verified===false
+   && x.warehouse?.b0_b3_witness_sets?.schema==='pfl.synthetic_b0_b3_witness_sets_oracle.v1'
+   && x.warehouse.b0_b3_witness_sets.real_rights_admitted===false
+   && x.warehouse.b0_b3_witness_sets.real_denominator===null;
+}
+async function loadScientific(){
+ const ticket=++ui.scienceRequest;
+ ui.scientific=null;ui.scientificError=null;ui.scientificLoading=true;
+ if(ui.tab==='scientific')draw();
+ try{
+  const response=await fetch(scienceUrl('scientific-integration-lab'),{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Contrato HTTP '+response.status+'; laboratorio rechazado');
+  const data=await response.json();
+  if(!validSciencePayload(data))throw new Error('Contrato científico incongruente; vista bloqueada');
+  if(ticket===ui.scienceRequest)ui.scientific=data;
+ }catch(e){if(ticket===ui.scienceRequest)ui.scientificError=String(e.message);}
+ finally{if(ticket===ui.scienceRequest){ui.scientificLoading=false;if(ui.tab==='scientific')draw();}}
+}
+async function exportScientific(){
+ const cut=ui.scienceCut,scenario=ui.scienceScenario;
+ if(!ui.scientific||!validSciencePayload(ui.scientific)||!globalThis.crypto?.subtle){notice('Exportación no verificable en este entorno',true);return;}
+ try{
+  const response=await fetch(scienceUrl('scientific-lab-export')+'&published_until='+encodeURIComponent(sciencePublishedLimit()),{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Exportación rechazada (HTTP '+response.status+')');
+  const receipt=await response.json();
+  if(receipt.schema!=='pfl.synthetic_scientific_export_receipt.v1'
+    ||receipt.canonicalization!=='JSON_UTF8_SORTED_KEYS_COMPACT_V1'
+    ||receipt.R5!=='STOP_R5'||receipt.empirical_data_exported!==false
+    ||!(/^[a-f0-9]{64}$/.test(receipt.sha256))
+    ||typeof receipt.canonical_json!=='string')throw new Error('Recibo inválido');
+  const bytes=new TextEncoder().encode(receipt.canonical_json);
+  const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)))
+   .map(b=>b.toString(16).padStart(2,'0')).join('');
+  const data=JSON.parse(receipt.canonical_json);
+  if(hash!==receipt.sha256||bytes.length!==receipt.bytes
+     ||cut!==ui.scienceCut||scenario!==ui.scienceScenario
+     ||!validSciencePayload(data))throw new Error('SHA o contrato del recibo no coincide');
+  const blob=new Blob([JSON.stringify(receipt,null,2)+'\n'],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  a.download='pfl-s8-'+cut+'-'+scenario+'-'+hash.slice(0,12)+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  const target=el('science-export-status');if(target)target.textContent='SHA-256 del contenido canónico: '+hash+' · '+bytes.length+' bytes. Recibo y JSON incluidos en la descarga.';
+  notice('Recibo SHA-256 verificado y exportado');
+ }catch(e){notice('Exportación bloqueada: '+e.message,true);}
+}
+async function probeScientificAdmission(){
+ ui.scienceAdmitting=true;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
+ const candidate=ui.scienceCandidate;
+ try{
+  const response=await fetch('/api/scientific-lab-admission?candidate='+encodeURIComponent(candidate),{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Rechazo del contrato HTTP '+response.status);
+  const result=await response.json();
+  if(result.schema!=='pfl.synthetic_distribution_admission_dry_run.v1'
+    ||result.evidence_class!=='SYNTHETIC_LAB_ONLY'||result.candidate!==candidate
+    ||result.status!=='REJECTED_R5'||result.R5!=='STOP_R5'
+    ||result.real_original_admitted!==false||result.source_rows_imported!==0
+    ||result.real_person_scoring!==false||!Array.isArray(result.blockers)
+    ||!result.blockers.length)throw new Error('Validación de admisión incompatible');
+  if(candidate===ui.scienceCandidate)ui.scienceAdmission=result;
+ }catch(e){ui.scienceAdmissionError=String(e.message);}
+ finally{ui.scienceAdmitting=false;if(ui.tab==='scientific')draw();}
+}
 function voteBar(r,i){
  const label=`Votación ${i+1}: sí ${r.yes}, no ${r.no}, abstención ${r.abstain}. Total ${r.total}.`;
  const pct=n=>r.total>0?100*n/r.total:0;
@@ -430,6 +518,40 @@ function institutionalLineagePanel(){
    +'<p class="help">Comparaciones cerradas del mismo fixture: <a href="'+jsonLink('2026-04-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">antes del puente documental tardío</a> y <a href="'+jsonLink('2026-08-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">después de la constatación local</a>. No contienen registros auténticos.</p>'
    +'<p class="warning">No existe denominador independiente, permiso de distribución, primera publicación histórica certificada, pendientes/censura observados ni A–J admitido. R5 STOP; 0 AB científicos. Los informes de Luhmann, Easton y Deutsch siguen hipótesis rivales, no resultados.</p></section>';
 }
+function scientificLaboratory(){
+ const intro=heading('INFRAESTRUCTURA / CIENCIA DE DATOS SOCIALES','Laboratorio científico · S8','Exploración ejecutable de fuentes sintéticas, cortes temporales, rivales B0/B3, sensibilidad S3 y conjuntos de testigos S7.');
+ const control=`<section class="science-toolbar card" aria-label="Controles del laboratorio"><label for="science-cut">Conocimiento (as_of)<select id="science-cut"><option value="early" ${ui.scienceCut==='early'?'selected':''}>15 oct 2026 · temprano</option><option value="late" ${ui.scienceCut==='late'?'selected':''}>1 nov 2026 · tardío</option></select></label><label for="science-first-public">Publicación del fixture hasta<select id="science-first-public"><option value="as_of" ${ui.scienceFirstPublic==='as_of'?'selected':''}>Fecha de conocimiento</option><option value="2026-09-19T12:00:00Z" ${ui.scienceFirstPublic==='2026-09-19T12:00:00Z'?'selected':''}>19 sep 2026</option>${ui.scienceCut==='late'?'<option value="2026-10-30T12:00:00Z" '+(ui.scienceFirstPublic==='2026-10-30T12:00:00Z'?'selected':'')+'>30 oct 2026</option>':''}</select></label><label for="science-scenario">Prueba de robustez<select id="science-scenario"><option value="baseline" ${ui.scienceScenario==='baseline'?'selected':''}>Base</option><option value="rights_spoof" ${ui.scienceScenario==='rights_spoof'?'selected':''}>Derechos fingidos</option><option value="privacy_probe" ${ui.scienceScenario==='privacy_probe'?'selected':''}>Sondeo de privacidad</option></select></label><button class="btn secondary" data-action="science-reload">Recalcular</button><button class="btn" data-action="science-export" ${!ui.scientific||ui.scientificLoading?'disabled':''}>Exportar JSON + SHA</button></section>`;
+ const stop='<p class="warning"><strong>R5 STOP · 0/6 puertas.</strong> El ensayo no contiene expedientes o actores políticos españoles reales. No hay denominador independiente, autenticación oficial, derechos por finalidad, crosswalk externo ni primera publicación histórica acreditados.</p>';
+ if(ui.scientificLoading)return intro+control+stop+'<section class="card" role="status">Ejecutando la paridad Python–Node…</section>';
+ if(ui.scientificError)return intro+control+stop+'<section class="card" role="alert"><h2>Servicio científico rechazado</h2><p class="warning">'+esc(ui.scientificError)+'</p><p>Sin sustituciones automáticas.</p></section>';
+ const p=ui.scientific;
+ if(!p)return intro+control+stop+'<section class="card"><button class="btn" data-action="science-reload">Cargar el laboratorio</button></section>';
+ if(!validSciencePayload(p))return intro+control+stop+'<p class="warning">Contratos no verificables.</p>';
+ const e=p.explorer,w=p.warehouse,s3=w.partial_identification_oracle,b=w.b0_b3_observational_equivalence,s7=w.b0_b3_witness_sets;
+ const cases=s7.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
+ if(!Array.isArray(cases)||cases.length!==20||b?.all_published_source_sha_and_typed_revisions_equal!==true)return intro+control+stop+'<p class="warning">Falta el oráculo S7/B0/B3 de veinte conjuntos. Vista rechazada.</p>';
+ const labels={INCONCLUSIVE:'No concluyente',B0_ONLY:'Solo B0',B3_ONLY:'Solo B3',NEITHER:'Ninguno',CONFLICT:'Conflicto',INADMISSIBLE:'Inadmisible'};
+ const publicationLimit=sciencePublishedLimit();
+ const visibleDistributions=e.catalog.distributions.filter(d=>d.first_public_at_fixture<=publicationLimit&&d.captured_at_fixture<=p.as_of);
+ const metrics='<section class="metrics">'+stat('Distribuciones visibles',visibleDistributions.length+' / '+e.catalog.visible_distribution_count,'Filtro editorial ficticio y corte de conocimiento')+stat('Conjuntos S7',cases.length,'Escenarios alternativos, no casos reales')+stat('Modelos rivales','B0 / B3','Mismo conjunto publicado')+stat('Puertas científicas','0 / 6','R5 STOP')+'</section>';
+ const compare=`<section class="card"><div class="section-title"><h2>B0 calendario frente a B3 selección</h2><span>EQUIVALENCIA OBSERVACIONAL HIPOTÉTICA</span></div><div class="science-rivals"><article><strong>B0 · calendario</strong><p>E3 no tiene decisión terminal al corte tardío. La publicación se estipula por calendario.</p><p>N = ${esc(b.hypothetical_all_received_by_mechanism.B0_CALENDAR)} · cobertura publicada ${esc(b.hypothetical_publication_coverage.B0_CALENDAR)}</p></article><article><strong>B3 · selección</strong><p>E3 fue rechazado ficticiamente el 10/10 y quedó sin publicar.</p><p>N = ${esc(b.hypothetical_all_received_by_mechanism.B3_SELECTION_PUBLICATION)} · cobertura publicada ${esc(b.hypothetical_publication_coverage.B3_SELECTION_PUBLICATION)}</p></article></div><p class="footnote">Las dos hipótesis generan idénticas revisiones, entidades y procesos publicados. La igualdad del N supuesto no distingue mecanismos. E2 pendiente y E4 censurado no constituyen rechazos.</p></section>`;
+ const sens=s3?`<section class="card"><h2>S3 · identificación parcial bajo selección</h2><p class="help">Las cuotas observadas pasan de ${esc(s3.observed_positive_share.before)} a ${esc(s3.observed_positive_share.after)}, con razón de selección supuesta ${esc(s3.selection_ratio_positive_to_negative.lower)}–${esc(s3.selection_ratio_positive_to_negative.upper)} (no odds ratio).</p><div class="metrics">${stat('Antes',s3.prevalence_bounds.before.lower+' a '+s3.prevalence_bounds.before.upper,'Intervalo condicional')}${stat('Después',s3.prevalence_bounds.after.lower+' a '+s3.prevalence_bounds.after.upper,'Intervalo condicional')}${stat('Cambio',s3.change_bounds.lower+' a '+s3.change_bounds.upper,'No causal')}</div><p class="footnote">Sin supuesto de selección: cambio compatible ${esc(s3.without_ratio_restriction.trivial_change_closure.lower)} a ${esc(s3.without_ratio_restriction.trivial_change_closure.upper)}. Negativos binarios inventados, no decisiones administrativas.</p></section>`:'<section class="card"><h2>S3 · identificación parcial</h2><p class="warning">Aún no conocida en el corte temprano. No se adelanta la evidencia tardía.</p></section>';
+ const counts=Object.keys(labels).map(k=>labels[k]+': '+cases.filter(c=>c.status===k).length).join(' · ');
+ const setRows=cases.map(c=>`<tr><td><code>${esc(c.case)}</code></td><td>${esc(labels[c.status]||'RECHAZADO')}</td><td>${esc((c.compatible_mechanisms||[]).join(' / ')||'Sin adjudicar')}</td><td>${esc(c.reason)}</td><td><details><summary>${(c.witness_admissibility||[]).length} testigos</summary>${(c.witness_admissibility||[]).map(t=>'<p class="footnote"><strong>'+esc(t.case)+'</strong> · '+esc(t.status)+' · '+esc(t.reason)+'</p>').join('')||'<p class="footnote">Ninguno</p>'}${c.contradiction?'<p class="footnote">Conflicto: '+esc(c.contradiction.kind)+'; '+count(c.contradiction.evidence_rows_retained)+' declaraciones conservadas.</p>':''}</details></td></tr>`).join('');
+ const sets=`<section class="card"><div class="section-title"><h2>S7 · conjuntos de testigos diferenciales</h2><span>SEIS ESTADOS · 20 ESCENARIOS</span></div><p class="help">${esc(counts)}</p><p class="help"><strong>NEITHER</strong>: un testigo sintético admisible refuta ambos DGP estipulados; no es fallo HTTP. <strong>CONFLICT</strong>: dos testimonios incompatibles quedan retenidos sin elegir. <strong>INADMISSIBLE</strong>: evidencia insuficiente, no resolución científica.</p><div class="tablewrap"><table class="science-table"><thead><tr><th>Conjunto</th><th>Estado</th><th>Compatibilidad</th><th>Justificación</th><th>Testigos</th></tr></thead><tbody>${setRows}</tbody></table></div></section>`;
+ const validDays=['2026-09-11','2026-09-15'];const valid=validDays.includes(ui.scienceValid)?ui.scienceValid:validDays[1];
+ const chronDays=['2026-09-15','2026-10-10'];const chronValid=chronDays.includes(ui.scienceChronicleValid)?ui.scienceChronicleValid:chronDays[1];
+ const graph=e.observatory.typed_graph_by_valid_day?.[valid],chron=e.observatory.chronicle_by_valid_day?.[chronValid];
+ const graphHTML=graph&&Array.isArray(graph.nodes)&&Array.isArray(graph.edges)?`<div class="science-graph"><div class="science-graph-nodes">${graph.nodes.map(n=>'<span class="science-node"><small>'+esc(n.kind)+'</small><strong>'+esc(n.label)+'</strong></span>').join('')}</div><ul class="science-relations">${graph.edges.map(r=>'<li>'+esc(graph.nodes.find(n=>n.id===r.from)?.label||'')+' → '+esc(graph.nodes.find(n=>n.id===r.to)?.label||'')+' <small>'+esc(r.kind)+'</small></li>').join('')}</ul></div>`:'<p class="warning">Grafo no verificable</p>';
+ const time=`<section class="card"><div class="section-title"><h2>Observatorio bitemporal sintético</h2><span>AS_OF ≠ VALID_AT</span></div><div class="science-toolbar"><label for="science-valid">Vigencia · cadena institucional<select id="science-valid">${validDays.map(d=>'<option value="'+d+'" '+(d===valid?'selected':'')+'>'+d+'</option>').join('')}</select></label><label for="science-chronicle">Vigencia · roles y eventos<select id="science-chronicle">${chronDays.map(d=>'<option value="'+d+'" '+(d===chronValid?'selected':'')+'>'+d+'</option>').join('')}</select></label></div><p class="help">Conocimiento ${esc(p.as_of)}; vigencia de la cadena ${esc(valid)}. Actor, organización, comunicación, proceso y decisión se proyectan mediante identificadores tipados; las dos cronologías no comparten un crosswalk real.</p>${graphHTML}<p class="footnote">Proceso ${esc(graph?.process_state)} · revisiones conocidas de una comunicación ${esc(graph?.communication_documentary_revisions)} · comunicaciones lógicas ${esc(graph?.logical_communications)} · 0 rechazos inferidos.</p>${chron?'<p class="science-chronicle">Crónica '+esc(chronValid)+': rol '+esc(chron.role_observation_state)+' · '+esc(chron.event_documentary_revisions_known)+' revisiones de evento · '+esc(chron.logical_events_after_typed_amendment)+' evento lógico · versión '+esc(chron.selected_revision)+'.</p>':'<p class="warning">Crónica no disponible</p>'}</section>`;
+ const sourceRows=visibleDistributions.map(d=>`<tr><td><code>${esc(d.distribution_id)}</code><small class="science-minor">${esc(d.family)} · ${esc(d.revision_or_asset_kind)}</small></td><td>${esc(d.issuer_fixture)}</td><td>${esc(d.captured_at_fixture)}</td><td>${esc(d.first_public_at_fixture)}</td><td><details><summary>SHA y calidad</summary><code class="science-digest">${esc(d.sha256)}</code><p>${count(d.byte_length)} bytes · ${esc(d.quality_gate)}</p><p>Cobertura temporal: ${esc(d.coverage_temporal?.state)}</p></details></td><td><strong>NO ADMITIDA</strong><small class="science-minor">${esc(d.admissibility_reason)}</small></td></tr>`).join('');
+ const sources=`<section class="card"><div class="section-title"><h2>Catálogo de fuentes sintéticas</h2><span>PROCEDENCIA, CALIDAD Y DERECHOS</span></div><p class="help">Filtro de primera publicación <em>inventada</em> ≤ ${esc(publicationLimit)}, sin exceder as_of ni adelantar capturas. Cobertura temporal de cada distribución: <strong>no acreditada</strong>. La validación SHA solo prueba bytes del fixture local; no demuestra integridad externa, completitud o derechos. Los recibos adversariales S7 permanecen ocultos.</p><div class="tablewrap"><table><thead><tr><th>Distribución / revisión</th><th>Emisor ficticio</th><th>Captura inventada</th><th>Publicación inventada</th><th>SHA / calidad / cobertura</th><th>Admisibilidad y derechos</th></tr></thead><tbody>${sourceRows}</tbody></table></div></section>`;
+ const exportPanel=`<section class="card"><h2>Exportación y reproducción</h2><p class="help">La descarga incluye el contenido JSON canónico, su recibo SHA-256 y los metadatos de canonicalización. WebCrypto verifica el SHA del contenido antes de permitir la descarga. Una deriva entre Node/Python devuelve 503, sin resultados sustitutivos.</p><p id="science-export-status" class="science-digest footnote" role="status">Exportación pendiente; datos sintéticos exclusivamente.</p><p class="footnote">${esc(e.admission.R5)} · ${p.scientific_AB_cycles} ciclos científicos · sin permiso de distribución externa acreditado.</p></section>`;
+ const candidateOptions={baseline:'Fixture coherente (sin autoridad real)',sha_spoof:'SHA incompatible',issuer_spoof:'Emisor no autorizado',rights_missing:'Sin propósito declarado',first_public_missing:'Sin publicación declarada',crosswalk_missing:'Sin enlace tipado',denominator_missing:'Sin registro completo',coverage_missing:'Cobertura incompleta'};
+ const admission=ui.scienceAdmission;
+ const candidatePanel=`<section class="card"><div class="section-title"><h2>Admisión de una distribución nueva · dry-run</h2><span>SIEMPRE R5 STOP</span></div><p class="help">Ensaya ocho variantes cerradas de un único documento enteramente inventado. El validador coteja SHA, emisor, fecha, crosswalk, universo y alcance de derechos; nunca importa archivos ni habilita datos reales.</p><div class="science-toolbar"><label for="science-candidate">Candidato sintético<select id="science-candidate">${Object.entries(candidateOptions).map(([v,label])=>'<option value="'+v+'" '+(v===ui.scienceCandidate?'selected':'')+'>'+esc(label)+'</option>').join('')}</select></label><button class="btn secondary" data-action="science-probe" ${ui.scienceAdmitting?'disabled':''}>Comprobar incorporación</button></div>${ui.scienceAdmissionError?'<p role="alert" class="warning">'+esc(ui.scienceAdmissionError)+'</p>':admission&&admission.candidate===ui.scienceCandidate?'<p class="warning"><strong>'+esc(admission.status)+'</strong> · '+admission.blockers.length+' bloqueos; '+count(Object.values(admission.checks).filter(Boolean).length)+' de '+count(Object.keys(admission.checks).length)+' coherencias internas del fixture.</p><details><summary>Detalle de bloqueos y validaciones</summary><p class="help">'+admission.blockers.map(esc).join(' · ')+'</p><div class="tablewrap"><table><tbody>'+Object.entries(admission.checks).map(([k,v])=>'<tr><td>'+esc(k)+'</td><td>'+(v?'PASA (SOLO FIXTURE)':'FALLA')+'</td></tr>').join('')+'</tbody></table></div></details>':'<p class="footnote" role="status">Selecciona un escenario y ejecuta el validador de admisión.</p>'}</section>`;
+ return intro+control+stop+metrics+compare+sens+sets+time+sources+candidatePanel+exportPanel;
+}
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
@@ -482,9 +604,9 @@ function progress(){
  <section class='card'><h2>Preparación de lanzamiento</h2><p class='warning'>El proyecto NO está listo para publicación multiusuario ni para puntuar figuras políticas reales.</p><ul>${critical}</ul><p class='help'>Progreso y preparación de lanzamiento son métricas diferentes: una puerta crítica pendiente puede impedir operar aunque el índice global aumente.</p></section>
  <h2>Detalle de las sublíneas y sus fuentes</h2>${lanes}<section class='card'><h2>Cuando crece el alcance</h2><p class='help'>Cada revisión conserva el indicador anterior y separa los puntos ganados por trabajo de los puntos ganados o perdidos por una ampliación/reponderación de objetivos. Ejemplo histórico hipotético, calculado sobre la revisión 1 (no sobre el porcentaje actual): añadir cobertura municipal nacional completa sin construirla cambiaba 33,725 % a 32,330 % (−1,395 puntos de alcance, 0 de trabajo). El avance actual de la revisión 2 incorpora trabajo verificado y sigue sin ampliar el alcance.</p></section>`;
 }
-const pages={overview,club,market,rounds,observatory,atlas,progress};
+const pages={overview,club,market,rounds,observatory,scientific:scientificLaboratory,atlas,progress};
 function authScreen(){
- ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
+ ++ui.scienceRequest;ui.scientific=null;ui.scientificError=null;ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
  el('account-logout').hidden=true;el('account-name').textContent='';
  el('club-select').innerHTML='';
  el('crumb').textContent='CUENTA LOCAL';
@@ -511,7 +633,7 @@ async function bootstrap(){
  await refresh();
 }
 
-function draw(){if(!ui.state)return;let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';document.querySelectorAll('[data-tab]').forEach(n=>{const current=n.dataset.tab===ui.tab;n.classList.toggle('active',current);if(current)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
+function draw(){if(!ui.state)return;let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';document.querySelectorAll('[data-tab]').forEach(n=>{const current=n.dataset.tab===ui.tab;n.classList.toggle('active',current);if(current)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','scientific':'LABORATORIO CIENTÍFICO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
 async function perform(kind,id){if(kind==='pick'){ui.picks=ui.picks.includes(id)?ui.picks.filter(x=>x!==id):ui.picks.length<3?[...ui.picks,id]:ui.picks;draw();return;}
 try{const c=selected();if(['buy','sell'].includes(kind)){await call('/api/'+kind,{club_id:c.id,figure_id:id});notice(kind==='buy'?'Fichaje registrado.':'Venta registrada.');}else if(kind==='save-lineup'){await call('/api/lineup',{club_id:c.id,round_id:upcoming().id,figures:ui.picks});notice('Alineación guardada en SQLite.');}else if(kind==='simulate-round'){await call('/api/simulate-round',{round_id:id});ui.picks=null;notice('Jornada ficticia simulada y cerrada.');}await refresh();}catch(e){notice(e.message,true);}}
 document.addEventListener('submit',async e=>{
@@ -534,6 +656,27 @@ document.addEventListener('click',async e=>{
   try{await call('/api/logout',{});}catch(_){/* A failed logout cannot authorize access. */}
   authScreen();return;
  }
- const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();return;}const act=e.target.closest('[data-action]');if(act)perform(act.dataset.action,act.dataset.id);});
+ const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();if(ui.tab==='scientific'&&!ui.scientific&&!ui.scientificLoading)await loadScientific();return;}
+ const act=e.target.closest('[data-action]');if(!act)return;
+ if(act.dataset.action==='science-reload'){await loadScientific();return;}
+ if(act.dataset.action==='science-export'){await exportScientific();return;}
+ if(act.dataset.action==='science-probe'){await probeScientificAdmission();return;}
+ perform(act.dataset.action,act.dataset.id);});
+document.addEventListener('change',async e=>{
+ if(e.target.id==='science-cut'&&['early','late'].includes(e.target.value)){
+  ui.scienceCut=e.target.value;if(ui.scienceCut==='early'&&ui.scienceFirstPublic==='2026-10-30T12:00:00Z')ui.scienceFirstPublic='as_of';await loadScientific();
+ }else if(e.target.id==='science-first-public'&&['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(e.target.value)){
+  if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
+  ui.scienceFirstPublic=e.target.value;draw();
+ }else if(e.target.id==='science-scenario'&&['baseline','rights_spoof','privacy_probe'].includes(e.target.value)){
+  ui.scienceScenario=e.target.value;await loadScientific();
+ }else if(e.target.id==='science-candidate'&&['baseline','sha_spoof','issuer_spoof','rights_missing','first_public_missing','crosswalk_missing','denominator_missing','coverage_missing'].includes(e.target.value)){
+  ui.scienceCandidate=e.target.value;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
+ }else if(e.target.id==='science-valid'&&['2026-09-11','2026-09-15'].includes(e.target.value)){
+  ui.scienceValid=e.target.value;draw();
+ }else if(e.target.id==='science-chronicle'&&['2026-09-15','2026-10-10'].includes(e.target.value)){
+  ui.scienceChronicleValid=e.target.value;draw();
+ }
+});
 el('club-select').addEventListener('change',async e=>{if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
 bootstrap().catch(e=>{el('content').innerHTML=`<p class="warning">No se ha podido cargar la demo: ${esc(e.message)}</p>`;});

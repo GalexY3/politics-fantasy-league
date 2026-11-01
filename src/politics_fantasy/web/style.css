@@ -23,3 +23,28 @@
 .scope-track{margin:12px 0}
 
 .auth-actions{display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+
+/* S8 · fixed synthetic science workbench (strict self-only CSP). */
+.science-toolbar{display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin:0 0 18px}
+.science-toolbar label{display:flex;flex-direction:column;gap:7px;font-size:11px;font-weight:650;color:var(--muted)}
+.science-toolbar select{font-size:12px;min-width:190px}
+.science-toolbar .btn{min-height:39px}
+.science-rivals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:16px 0}
+.science-rivals article{background:#112837;border:1px solid var(--edge2);border-radius:9px;padding:17px}
+.science-rivals strong{color:var(--mint)}
+.science-rivals p{font-size:12px;line-height:1.7;color:var(--muted);margin-bottom:0}
+.science-table td{white-space:normal;min-width:125px;vertical-align:top;line-height:1.6}
+.science-table td:first-child{min-width:205px}
+.science-table td:nth-child(4){min-width:220px}
+.science-table details{max-width:360px}
+.science-graph{padding:18px;background:#0e2231;border:1px solid var(--edge2);border-radius:10px}
+.science-graph-nodes{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:17px}
+.science-node{display:flex;flex-direction:column;gap:5px;padding:14px 16px;border:1px solid #4b756f;border-radius:9px;min-width:140px;flex:1}
+.science-node small{color:var(--teal);font-size:10px;letter-spacing:1.2px}
+.science-node strong{font-size:12px}
+.science-relations{padding-left:20px;margin:0;color:var(--text);font-size:12px;line-height:1.9}
+.science-relations small{color:var(--muted)}
+.science-chronicle{margin-top:15px;padding:15px;border-left:3px solid var(--teal);background:#102b31;font-size:12px;line-height:1.8}
+.science-minor{display:block;font-size:10px;color:var(--muted);margin-top:5px}
+.science-digest{overflow-wrap:anywhere;word-break:break-word;font-size:11px}
+@media(max-width:730px){.science-rivals{grid-template-columns:1fr}.science-toolbar select{width:100%;min-width:0}.science-toolbar label{width:100%}}

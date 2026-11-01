@@ -39,6 +39,10 @@ CUTS = {
     "late": "2026-11-01T12:00:00Z",
 }
 SCENARIOS = frozenset({"baseline", "rights_spoof", "privacy_probe"})
+S8_CANDIDATES = frozenset({"baseline", "sha_spoof", "issuer_spoof",
+                           "rights_missing", "first_public_missing",
+                           "crosswalk_missing", "denominator_missing",
+                           "coverage_missing"})
 SYNTHETIC_FOLLOWUP_CROSSWALK = {
     # Exact, server-owned demonstration of a 1:1 documentary link. In a
     # real corpus this requires independently authenticated official IDs.
@@ -1746,6 +1750,291 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
     return data
 
 
+def _s8_candidate_fixture(candidate: str) -> dict:
+    """One closed fake future distribution; this is not an upload contract."""
+    if type(candidate) is not str or candidate not in S8_CANDIDATES:
+        raise ValueError("INVALID_S8_CANDIDATE")
+    bytes_ = "SYNTHETIC S8 ADMISSION FIXTURE\nACTOR:A\nPROCESS:P999\n"
+    return {
+        "distribution_id": "SYN:S8_NEW_DISTRIBUTION",
+        "issuer": "SYN:S8_LOCAL_TEST" if candidate != "issuer_spoof" else "REAL:UNVERIFIED",
+        "bytes": bytes_,
+        "source_sha256": (_sha(bytes_) if candidate != "sha_spoof" else "0" * 64),
+        "captured_at": "2026-10-31T12:00:00Z",
+        "first_public_at_fixture": ("2026-10-30T12:00:00Z" if
+                                   candidate != "first_public_missing" else None),
+        "fixture_crosswalk": candidate != "crosswalk_missing",
+        "fixture_all_received_register": candidate != "denominator_missing",
+        "fixture_coverage_exhaustive": candidate != "coverage_missing",
+        "fixture_purpose_claim": ("LOCAL_ACADEMIC_READ" if
+                                  candidate != "rights_missing" else None),
+        "real_first_public_at": None,
+        "real_publisher_authenticated": False,
+        "real_denominator_certified": False,
+        "real_official_crosswalk_verified": False,
+        "real_rights_for_public_display": False,
+        "real_independent_sources_verified": False,
+    }
+
+
+def synthetic_candidate_admission(*, candidate: str = "baseline",
+                                  wire: dict | None = None) -> dict:
+    """Fail-closed synthetic admission dry run on a fixed fictional asset.
+
+    An API caller selects one of eight predefined corruption variants; no
+    original bytes, URLs, actor IDs, user payloads or private source can enter.
+    Exact fixture comparison ensures nobody can promote real attestations via
+    this function's optional *test-only* wire parameter.
+    """
+    expected = _s8_candidate_fixture(candidate)
+    raw = expected if wire is None else wire
+    if (type(raw) is not dict or
+            json.dumps(raw, sort_keys=True, separators=(",", ":")) !=
+            json.dumps(expected, sort_keys=True, separators=(",", ":"))):
+        raise RuntimeError("S8_CANDIDATE_CLOSED_SCOPE_VIOLATION")
+    checks = {
+        "fixture_sha256_matches_bytes": raw["source_sha256"] == _sha(raw["bytes"]),
+        "fixture_issuer_allowlisted": raw["issuer"] == "SYN:S8_LOCAL_TEST",
+        "fixture_capture_and_publication_order": (
+            raw["first_public_at_fixture"] is not None and
+            utc(raw["first_public_at_fixture"]) <= utc(raw["captured_at"])),
+        "fixture_typed_crosswalk_complete": raw["fixture_crosswalk"],
+        "fixture_all_received_register_complete":
+            raw["fixture_all_received_register"],
+        "fixture_coverage_exhaustive": raw["fixture_coverage_exhaustive"],
+        "fixture_purpose_claim_present":
+            raw["fixture_purpose_claim"] is not None,
+    }
+    rights = assess_distribution_rights({
+        "distribution_id": raw["distribution_id"],
+        "asset_sha256": _sha(raw["bytes"]),
+        "asset_url": "https://example.invalid/s8-fixed-fixture-only",
+        "historical_as_of": CUTS["late"],
+        "first_public_at": None,
+        "requested_purpose": "PUBLIC_AGGREGATE_DISPLAY",
+        "rights": None if raw["fixture_purpose_claim"] is None else {
+            "kind": "PUBLISHER_ASSET_SPECIFIC",
+            "distribution_id": raw["distribution_id"],
+            "asset_sha256": raw["source_sha256"],
+            "covered_purposes": [raw["fixture_purpose_claim"]],
+            "notice_published_at": raw["first_public_at_fixture"],
+            "terms_mode": "PUBLISHER_OPEN_NOTICE",
+            "terms_reviewed_by_human": False,
+            "rights_reviewed_by_human": False,
+        },
+    })
+    if rights["reuse_admitted"] or rights["empirical_r5_open"]:
+        raise RuntimeError("S8_CANDIDATE_REAL_RIGHTS_PROMOTION")
+    blockers = ["FIXTURE_" + name.upper() + "_FAILED"
+                for name, passed in checks.items() if not passed]
+    blockers.extend(("REAL_PUBLISHER_AUTHENTICATION_MISSING",
+                     "ASSET_PURPOSE_RIGHTS_NOT_ATTESTED",
+                     "REAL_FIRST_PUBLIC_AT_MISSING",
+                     "INDEPENDENT_ALL_RECEIVED_DENOMINATOR_MISSING",
+                     "OFFICIAL_TYPED_CROSSWALK_MISSING",
+                     "INDEPENDENT_SOURCE_CONFIRMATION_MISSING"))
+    return {
+        "schema": "pfl.synthetic_distribution_admission_dry_run.v1",
+        "evidence_class": "SYNTHETIC_LAB_ONLY",
+        "candidate": candidate,
+        "distribution_id": "SYN:S8_NEW_DISTRIBUTION",
+        "fixture_sha256": _sha(raw["bytes"]),
+        "checks": checks,
+        "blockers": blockers,
+        "status": "REJECTED_R5",
+        "real_original_admitted": False,
+        "source_rows_imported": 0,
+        "real_person_scoring": False,
+        "R5": "STOP_R5",
+    }
+
+
+def _scientific_explorer(*, cut: str, scenario: str, assets: list[dict],
+                         timeline: dict, chain: dict, warehouse: dict) -> dict:
+    """Redacted, fixed S8 projection of already cross-checked synthetic contracts.
+
+    The catalog inventories immutable *invented* distributions. It does not
+    enumerate S6/S7 witness bytes, identifiers, signatures or receipts; those
+    belong exclusively to the closed Python/Node adversarial fixtures.
+    """
+    as_of = CUTS[cut]
+    catalog = []
+
+    def include(source_id: str, issuer: str, family: str, text: str,
+                digest: str, captured: str, published: str):
+        if utc(captured) > utc(as_of) or utc(published) > utc(as_of):
+            return
+        if digest != _sha(text):
+            raise RuntimeError("S8_CATALOG_SOURCE_SHA_MISMATCH")
+        # Existing Python/Node HTTP privacy contracts deliberately redact the
+        # internal typed-chain and chronicle IDs, source SHA, and fixture bytes.
+        # The catalog instead SHA-receipts its *public descriptors*. The
+        # underlying source SHA is checked locally above but never released.
+        display_id = f"S8:PUBLIC_DESCRIPTOR_{len(catalog)+1:02d}"
+        descriptor = (f"S8 PUBLIC SYNTHETIC CATALOG\nDISTRIBUTION:{display_id}\n"
+                      f"FAMILY:{family}\nCAPTURE:{captured}\n"
+                      f"PUBLICATION:{published}\n")
+        catalog.append({
+            "distribution_id": display_id,
+            "issuer_fixture": "FICTIONAL_" + family,
+            "family": family,
+            "sha256": _sha(descriptor),
+            "byte_length": len(descriptor.encode("utf-8")),
+            "descriptor_recipe": "S8_PUBLIC_DESCRIPTOR_V1",
+            "captured_at_fixture": captured,
+            "first_public_at_fixture": published,
+            "provenance": "SYNTHETIC_PUBLIC_DESCRIPTOR_SHA256",
+            "revision_or_asset_kind": (
+                "FIXTURE_EDITION_V1" if source_id.endswith("_V1") else
+                "FIXTURE_EDITION_V2" if source_id.endswith("_V2") else
+                "FICTIONAL_PP04_PARSER_TEXT"),
+            "coverage_temporal": {
+                "first_valid_day_certified": None,
+                "last_valid_day_certified": None,
+                "state": "DISTRIBUTION_COVERAGE_UNATTESTED"},
+            "quality_gate": "PUBLIC_DESCRIPTOR_SHA256_AND_INTERNAL_FIXTURE_BYTES_VERIFIED_ONLY",
+            "admissibility_reason":
+                "REAL_RIGHTS_FIRST_PUBLIC_DENOMINATOR_AND_IDENTITY_UNVERIFIED",
+            "requested_purpose": "PUBLIC_AGGREGATE_DISPLAY",
+            "real_publisher_authenticated": False,
+            "real_first_public_at": None,
+            "rights_for_requested_purpose_admitted": False,
+            "empirical_distribution_admitted": False,
+        })
+
+    for asset in assets:
+        include(asset["id"], "SYNTHETIC:PP04", "PP04_PARSER_FIXTURE",
+                asset["text"], asset["sha256"], LATE_CAPTURE, LATE_PUBLIC)
+    for fixture, family in ((timeline, "ACTOR_ROLE_EVENT"),
+                            (chain, "TYPED_INSTITUTIONAL_CHAIN")):
+        for source in fixture["sources"]:
+            include(source["source_id"], fixture["issuer"], family,
+                    source["text"], source["sha256"],
+                    source["captured_at"], source["first_public_at"])
+
+    typed = warehouse["typed_institutional_chain"]
+    chronicle = warehouse["bitemporal_actor_event_equivalence"]
+    if (typed["schema"] != "pfl.synthetic_typed_institutional_chain_oracle.v1"
+            or chronicle["schema"] !=
+            "pfl.synthetic_bitemporal_actor_event_oracle.v1"
+            or len(catalog) != (2 if cut == "early" else 6)
+            or len({d["distribution_id"] for d in catalog}) != len(catalog)):
+        raise RuntimeError("S8_SYNTHETIC_CATALOG_OR_ORACLE_DIVERGENCE")
+
+    graph = {}
+    for valid_day in CHAIN_VALID_DAYS:
+        state = typed["views_by_valid_day"][valid_day]
+        nodes = [
+            {"id": "actor", "kind": "ACTOR", "label": "Actor A ficticio"},
+            {"id": "organization", "kind": "ORGANIZATION",
+             "label": "Organización O ficticia"},
+        ]
+        edges = [{"from": "actor", "to": "organization",
+                  "kind": "SYNTHETIC_DOCUMENTED_ASSOCIATION"}]
+        if state["logical_communications"]:
+            nodes.append({"id": "communication", "kind": "COMMUNICATION",
+                          "label": "Comunicación C1"})
+            edges.append({"from": "actor", "to": "communication",
+                          "kind": "SYNTHETIC_AUTHORSHIP"})
+        if state["process_episode_visible"]:
+            nodes.append({"id": "process", "kind": "PROCESS",
+                          "label": "Proceso P1"})
+            if state["logical_communications"]:
+                edges.append({"from": "communication", "to": "process",
+                              "kind": "SYNTHETIC_PROCESS_REFERENCE"})
+        if state["logical_decisions"]:
+            nodes.append({"id": "decision", "kind": "DECISION",
+                          "label": "Decisión D1"})
+            edges.append({"from": "decision", "to": "process",
+                          "kind": "SYNTHETIC_DOCUMENTED_RESOLUTION"})
+        graph[valid_day] = {
+            "valid_at": valid_day,
+            "knowledge_as_of": as_of,
+            "nodes": nodes, "edges": edges,
+            "communication_documentary_revisions":
+                state["communication_documentary_revisions_known"],
+            "logical_communications": state["logical_communications"],
+            "process_state": state["process_state"],
+            "negative_decisions": state["negative_decisions"],
+            "censor_witnesses": state["censor_witnesses"],
+        }
+    # The two chronicle days are a different synthetic valid-time axis. Never
+    # crosswalk their role/event IDs into the typed P1 process by name.
+    chronicle_views = chronicle["views_by_valid_day"]
+    if (set(chronicle_views) != set(BITEMPORAL_VALID_DAYS)
+            or set(graph) != set(CHAIN_VALID_DAYS)):
+        raise RuntimeError("S8_BITEMPORAL_VIEW_SCHEMA_DRIFT")
+    return {
+        "schema": "pfl.synthetic_scientific_explorer.v1",
+        "evidence_class": "SYNTHETIC_LAB_ONLY",
+        "as_of": as_of,
+        "cut": cut,
+        "scenario": scenario,
+        "catalog": {"schema": "pfl.synthetic_distribution_catalog.v1",
+                    "distributions": catalog,
+                    "visible_distribution_count": len(catalog),
+                    "witness_distributions_redacted": True,
+                    "independent_rights_verified": False},
+        "observatory": {
+            "schema": "pfl.synthetic_bitemporal_observatory.v1",
+            "typed_graph_by_valid_day": graph,
+            "chronicle_by_valid_day": chronicle_views,
+            "temporal_domains_joined_as_real_identities": False,
+            "real_actor_identity_verified": False,
+            "real_outcomes_attested": False,
+        },
+        "admission": {"R5": "STOP_R5", "scientific_AB_cycles": 0,
+                      "real_denominator": None,
+                      "real_first_public_at": None,
+                      "real_distribution_rights_admitted": False,
+                      "real_person_scoring": False,
+                      "real_source_ingestion": False},
+    }
+
+
+def scientific_export_receipt(*, cut: str = "late",
+                              scenario: str = "baseline",
+                              published_until: str | None = None) -> dict:
+    """Portable, exact UTF-8 JSON bytes plus SHA-256, from the redacted API.
+
+    JSON contents are stable across Python versions by this fixed canonical
+    encoding. The digest attests only bytes of a synthetic local export.
+    """
+    payload = report(cut=cut, scenario=scenario)
+    if (published_until is not None and (
+            type(published_until) is not str or
+            published_until not in ("2026-09-19T12:00:00Z",
+                                    "2026-10-30T12:00:00Z", *CUTS.values()) or
+            utc(published_until) > utc(CUTS[cut]))):
+        raise ValueError("S8_INVALID_PUBLICATION_FILTER")
+    # An optional simulated publication ceiling narrows only the synthetic
+    # catalog. S3/S7/B0/B3 oracles keep their independently checked as_of.
+    publication_ceiling = published_until or CUTS[cut]
+    catalog = payload["explorer"]["catalog"]
+    catalog["distributions"] = [
+        d for d in catalog["distributions"]
+        if utc(d["first_public_at_fixture"]) <= utc(publication_ceiling)
+        and utc(d["captured_at_fixture"]) <= utc(CUTS[cut])
+    ]
+    catalog["visible_distribution_count"] = len(catalog["distributions"])
+    catalog["publication_filter_fixture"] = publication_ceiling
+    if (payload["R5"] != "STOP_R5"
+            or payload["scientific_AB_cycles"] != 0
+            or payload["real_corpus_ingestion_allowed"] is not False):
+        raise RuntimeError("S8_EXPORT_ADMISSION_PROMOTION")
+    canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True,
+                           separators=(",", ":"), allow_nan=False)
+    return {
+        "schema": "pfl.synthetic_scientific_export_receipt.v1",
+        "canonicalization": "JSON_UTF8_SORTED_KEYS_COMPACT_V1",
+        "sha256": _sha(canonical),
+        "bytes": len(canonical.encode("utf-8")),
+        "canonical_json": canonical,
+        "R5": "STOP_R5",
+        "empirical_data_exported": False,
+    }
+
+
 def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
     """Consume actual contracts; no input for originals is ever accepted."""
     if type(cut) is not str or cut not in CUTS:
@@ -1836,7 +2125,11 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
             "source_reuse_rights_verified":lineage["source_reuse_rights_verified"],
             "historical_first_public_at":lineage["historical_first_public_at"],
             "complete_explicit_lineage_links":lineage["complete_explicit_lineage_links"]},
-        "warehouse":warehouse,"independent_all_received_denominator":None,
+        "warehouse":warehouse,
+        "explorer":_scientific_explorer(cut=cut,scenario=scenario,
+            assets=assets,timeline=timeline,chain=chain_wire,
+            warehouse=warehouse),
+        "independent_all_received_denominator":None,
         "right_censoring_independently_attested":False,
         "real_corpus_ingestion_allowed":False,"real_people_scoring_enabled":False,
         "scientific_estimator_admitted":False,"scientific_AB_cycles":0,

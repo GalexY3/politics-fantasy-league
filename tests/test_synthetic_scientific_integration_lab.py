@@ -275,6 +275,158 @@ def test_pp04_documentary_populations_reach_actual_local_http_without_lookahead(
         server.shutdown();server.server_close();thread.join(timeout=5)
 
 
+@pytest.mark.parametrize("cut,count_expected",[("early",2),("late",6)])
+def test_s8_explorer_catalog_and_bitemporal_cuts_are_source_bound(cut,count_expected):
+    from politics_fantasy.scientific_integration_lab import _sha
+    result=report(cut=cut)
+    explorer=result["explorer"]
+    assert explorer["schema"]=="pfl.synthetic_scientific_explorer.v1"
+    assert explorer["admission"]=={
+        "R5":"STOP_R5","scientific_AB_cycles":0,
+        "real_denominator":None,"real_first_public_at":None,
+        "real_distribution_rights_admitted":False,
+        "real_person_scoring":False,"real_source_ingestion":False}
+    catalog=explorer["catalog"]
+    assert catalog["visible_distribution_count"]==count_expected
+    assert len(catalog["distributions"])==count_expected
+    assert len({d["distribution_id"] for d in catalog["distributions"]})==count_expected
+    for item in catalog["distributions"]:
+        assert len(item["sha256"])==64
+        assert item["descriptor_recipe"]=="S8_PUBLIC_DESCRIPTOR_V1"
+        descriptor=(f"S8 PUBLIC SYNTHETIC CATALOG\nDISTRIBUTION:{item['distribution_id']}\n"
+                    f"FAMILY:{item['family']}\nCAPTURE:{item['captured_at_fixture']}\n"
+                    f"PUBLICATION:{item['first_public_at_fixture']}\n")
+        assert item["sha256"]==_sha(descriptor)
+        assert item["byte_length"]==len(descriptor.encode("utf-8"))
+        assert item["captured_at_fixture"]<=result["as_of"]
+        assert item["first_public_at_fixture"]<=result["as_of"]
+        assert item["coverage_temporal"]["first_valid_day_certified"] is None
+        assert item["coverage_temporal"]["last_valid_day_certified"] is None
+        assert item["quality_gate"]=="PUBLIC_DESCRIPTOR_SHA256_AND_INTERNAL_FIXTURE_BYTES_VERIFIED_ONLY"
+        assert item["rights_for_requested_purpose_admitted"] is False
+        assert item["empirical_distribution_admitted"] is False
+    graph=explorer["observatory"]
+    assert graph["real_actor_identity_verified"] is False
+    assert graph["temporal_domains_joined_as_real_identities"] is False
+    assert set(graph["typed_graph_by_valid_day"])=={"2026-09-11","2026-09-15"}
+    assert set(graph["chronicle_by_valid_day"])=={"2026-09-15","2026-10-10"}
+    for view in graph["typed_graph_by_valid_day"].values():
+        assert view["knowledge_as_of"]==result["as_of"]
+        assert view["negative_decisions"]==0
+        assert view["censor_witnesses"]==0
+        assert all(n["kind"] in ("ACTOR","ORGANIZATION","COMMUNICATION",
+                                  "PROCESS","DECISION") for n in view["nodes"])
+    raw=json.dumps(result)
+    assert "S7_E3_APPROVED_OCT10" in raw  # safe, redacted case label
+    assert "SYN:S7_ASSET_" not in raw
+    assert "SYNTHETIC S7 WITNESS\\n" not in raw
+    if cut=="early":
+        assert all(d["revision_or_asset_kind"]!="FIXTURE_EDITION_V2"
+                   for d in catalog["distributions"])
+
+
+@pytest.mark.parametrize("candidate,missing_gate",[
+    ("sha_spoof","fixture_sha256_matches_bytes"),
+    ("issuer_spoof","fixture_issuer_allowlisted"),
+    ("rights_missing","fixture_purpose_claim_present"),
+    ("first_public_missing","fixture_capture_and_publication_order"),
+    ("crosswalk_missing","fixture_typed_crosswalk_complete"),
+    ("denominator_missing","fixture_all_received_register_complete"),
+    ("coverage_missing","fixture_coverage_exhaustive"),
+])
+def test_s8_dry_run_rejects_every_fixture_defect(candidate,missing_gate):
+    from politics_fantasy.scientific_integration_lab import synthetic_candidate_admission
+    result=synthetic_candidate_admission(candidate=candidate)
+    assert result["schema"]=="pfl.synthetic_distribution_admission_dry_run.v1"
+    assert result["status"]=="REJECTED_R5"
+    assert result["R5"]=="STOP_R5"
+    assert result["source_rows_imported"]==0
+    assert result["real_original_admitted"] is False
+    assert result["checks"][missing_gate] is False
+    assert any(missing_gate.upper() in reason for reason in result["blockers"])
+
+
+def test_s8_dry_run_complete_fake_fixture_still_rejected_and_real_promotions_blocked():
+    from politics_fantasy.scientific_integration_lab import (
+        synthetic_candidate_admission,_s8_candidate_fixture)
+    baseline=synthetic_candidate_admission(candidate="baseline")
+    assert all(baseline["checks"].values())
+    assert baseline["status"]=="REJECTED_R5"
+    assert len(baseline["blockers"])>=6
+    forged=_s8_candidate_fixture("baseline")
+    forged["real_publisher_authenticated"]=True
+    with pytest.raises(RuntimeError,match="S8_CANDIDATE_CLOSED_SCOPE_VIOLATION"):
+        synthetic_candidate_admission(candidate="baseline",wire=forged)
+    with pytest.raises(ValueError,match="INVALID_S8_CANDIDATE"):
+        synthetic_candidate_admission(candidate="import_url")
+
+
+def test_s8_export_receipts_sha_and_first_public_filter_are_exact():
+    from politics_fantasy.scientific_integration_lab import scientific_export_receipt,_sha
+    for cut in ("early","late"):
+        rec=scientific_export_receipt(cut=cut)
+        assert rec["schema"]=="pfl.synthetic_scientific_export_receipt.v1"
+        assert rec["R5"]=="STOP_R5"
+        assert rec["empirical_data_exported"] is False
+        assert rec["sha256"]==_sha(rec["canonical_json"])
+        assert rec["bytes"]==len(rec["canonical_json"].encode("utf-8"))
+        content=json.loads(rec["canonical_json"])
+        assert content["R5"]=="STOP_R5"
+        assert content["explorer"]["catalog"]["visible_distribution_count"]==(
+            2 if cut=="early" else 6)
+    filtered=scientific_export_receipt(cut="late",
+               published_until="2026-09-19T12:00:00Z")
+    payload=json.loads(filtered["canonical_json"])
+    assert payload["explorer"]["catalog"]["visible_distribution_count"]==2
+    assert payload["warehouse"]["b0_b3_witness_sets"]["schema"]==(
+        "pfl.synthetic_b0_b3_witness_sets_oracle.v1")
+    assert all(item["first_public_at_fixture"]<="2026-09-19T12:00:00Z"
+               for item in payload["explorer"]["catalog"]["distributions"])
+    with pytest.raises(ValueError,match="S8_INVALID_PUBLICATION_FILTER"):
+        scientific_export_receipt(cut="early",
+            published_until="2026-10-30T12:00:00Z")
+
+
+def test_s8_real_http_catalog_export_and_admission_are_closed(tmp_path,monkeypatch):
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(route,host=None):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=8)
+            conn.request("GET",route,headers={"Host":host} if host else {})
+            res=conn.getresponse()
+            out=(res.status,res.getheader("Cache-Control"),json.loads(res.read()))
+            conn.close()
+            return out
+        for cut,n in (("early",2),("late",6)):
+            status,cache,body=get("/api/scientific-integration-lab?cut="+cut)
+            assert (status,cache)==(200,"no-store")
+            assert body["explorer"]["catalog"]["visible_distribution_count"]==n
+        status,cache,export=get("/api/scientific-lab-export?cut=late&published_until=2026-09-19T12%3A00%3A00Z")
+        assert (status,cache)==(200,"no-store")
+        assert export["sha256"]==lab._sha(export["canonical_json"])
+        assert json.loads(export["canonical_json"])["explorer"]["catalog"]["visible_distribution_count"]==2
+        assert get("/api/scientific-lab-admission?candidate=sha_spoof")[2]["status"]=="REJECTED_R5"
+        for route in ("/api/scientific-lab-admission?candidate=actual_upload",
+                      "/api/scientific-lab-admission?candidate=baseline&candidate=sha_spoof",
+                      "/api/scientific-lab-admission?url=https%3A%2F%2Fexample.invalid",
+                      "/api/scientific-lab-export?cut=early&published_until=2026-10-30T12%3A00%3A00Z",
+                      "/api/scientific-lab-export?cut=late&bytes=secret"):
+            assert get(route)[0]==400
+        assert get("/api/scientific-lab-admission","outside.invalid")[0]==403
+        assert get("/api/scientific-lab-export","outside.invalid")[0]==403
+        original=lab.subprocess.run
+        monkeypatch.setattr(lab.subprocess,"run",lambda *a,**k: (_ for _ in ()).throw(OSError("synthetic simulated Node outage")))
+        assert get("/api/scientific-lab-export")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+        monkeypatch.setattr(lab.subprocess,"run",original)
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
 def test_http_rejects_internal_cross_cut_divergence_instead_of_returning_200(tmp_path, monkeypatch):
     """An incoherent Python consumer must cause HTTP 503, not a mixed JSON."""
     from politics_fantasy import scientific_integration_lab as lab

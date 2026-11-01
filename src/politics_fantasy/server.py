@@ -33,7 +33,11 @@ from .procedural_population_readiness import report as population_readiness_repo
 from .retained_integrity_status import status as retained_integrity_status
 from .registration_readiness_query import registration_readiness
 from .synthetic_institutional_demo import report as institutional_lineage_demo
-from .scientific_integration_lab import report as scientific_integration_report
+from .scientific_integration_lab import (
+    report as scientific_integration_report,
+    scientific_export_receipt,
+    synthetic_candidate_admission,
+)
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -232,19 +236,43 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                         cut_on=parsed.get('cut_on',['2023-12-31'])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_SYNTHETIC_LINEAGE_CUT'})
-            if route == '/api/scientific-integration-lab':
+            if route == '/api/scientific-lab-admission':
+                try:
+                    parsed = parse_qs(urlsplit(self.path).query,
+                                      keep_blank_values=True,strict_parsing=True,
+                                      max_num_fields=1)
+                    if (not set(parsed).issubset({'candidate'}) or
+                            any(len(v)!=1 for v in parsed.values())):
+                        raise ValueError('UNSUPPORTED_SYNTHETIC_ADMISSION_QUERY')
+                    return self.reply(200,synthetic_candidate_admission(
+                        candidate=parsed.get('candidate',['baseline'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_ADMISSION_QUERY'})
+                except RuntimeError:
+                    return self.reply(503,{'error':'SYNTHETIC_ADMISSION_UNAVAILABLE'})
+            if route in ('/api/scientific-integration-lab',
+                         '/api/scientific-lab-export'):
                 # Fixed Python/Node fixtures, NOT a route to ingest originals,
                 # source URLs, citizen records or a real denominator. No POST.
                 query=urlsplit(self.path).query
                 try:
+                    exporting = route == '/api/scientific-lab-export'
                     parsed=parse_qs(query,keep_blank_values=True,
-                                    strict_parsing=True,max_num_fields=2)
-                    if (not set(parsed).issubset({'cut','scenario'})
+                                    strict_parsing=True,
+                                    max_num_fields=3 if exporting else 2)
+                    allowed={'cut','scenario','published_until'} if exporting else {'cut','scenario'}
+                    if (not set(parsed).issubset(allowed)
                             or any(len(v)!=1 for v in parsed.values())):
                         raise ValueError('UNSUPPORTED_SYNTHETIC_LAB_QUERY')
-                    return self.reply(200,scientific_integration_report(
-                        cut=parsed.get('cut',['late'])[0],
-                        scenario=parsed.get('scenario',['baseline'])[0]))
+                    params = {
+                        'cut': parsed.get('cut',['late'])[0],
+                        'scenario': parsed.get('scenario',['baseline'])[0],
+                    }
+                    if exporting:
+                        return self.reply(200,scientific_export_receipt(
+                            **params,
+                            published_until=parsed.get('published_until',[None])[0]))
+                    return self.reply(200,scientific_integration_report(**params))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_SYNTHETIC_LAB_QUERY'})
                 except RuntimeError:
