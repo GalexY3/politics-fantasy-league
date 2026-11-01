@@ -1031,3 +1031,245 @@ def test_s3_node_ipc_boolean_integer_type_confusion_must_fail_closed_prepatch(
             503, "no-store", {"error": "SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
         server.shutdown(); server.server_close(); thread.join(timeout=5)
+
+
+@pytest.mark.parametrize("field,invalid", [
+    ("negative_as_boolean", True),
+    ("pending_as_float", 2.0),
+])
+def test_followup_structurally_equal_but_json_type_invalid_must_fail_prepatch(
+        field, invalid):
+    """New material PREPATCH falsifier, distinct from the fixed S3 IPC bug.
+
+    Both source contracts are valid until the procedural aggregate is altered:
+    Python's `dict ==` incorrectly regards True as 1 and 2.0 as 2.
+    """
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _temporal, _procedural, _reconcile_followup, CUTS,
+    )
+    _,snapshot,receipts=_temporal(_assets(),at=CUTS["late"])
+    procedural,episodes=_procedural(CUTS["late"])
+    forged=json.loads(json.dumps(procedural))
+    if field=="negative_as_boolean":
+        assert forged["terminal_by_cause"]["INADMITTED"]==1
+        forged["terminal_by_cause"]["INADMITTED"]=invalid
+    else:
+        assert forged["observed_pending_at_last_witness"]==2
+        forged["observed_pending_at_last_witness"]=invalid
+    with pytest.raises(RuntimeError,match="FOLLOWUP_CUT_MISMATCH"):
+        _reconcile_followup(snapshot=snapshot,episodes=episodes,
+                            procedural=forged,receipts=receipts)
+
+
+@pytest.mark.parametrize("field,invalid", [
+    ("negative_as_boolean", True),
+    ("pending_as_float", 2.0),
+])
+def test_followup_type_drift_must_fail_closed_actual_http_prepatch(
+        tmp_path,monkeypatch,field,invalid):
+    """Actual local HTTP consumer and real Node, no client-submitted originals."""
+    from politics_fantasy import scientific_integration_lab as lab
+    actual=lab._procedural
+    def falsified_procedure(at):
+        result,episodes=actual(at)
+        result=json.loads(json.dumps(result))
+        if field=="negative_as_boolean":
+            result["terminal_by_cause"]["INADMITTED"]=invalid
+        else:
+            result["observed_pending_at_last_witness"]=invalid
+        return result,episodes
+    monkeypatch.setattr(lab,"_procedural",falsified_procedure)
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+        conn.request("GET","/api/scientific-integration-lab?cut=late")
+        response=conn.getresponse()
+        status,cache=response.status,response.getheader("Cache-Control")
+        payload=json.loads(response.read());conn.close()
+        assert (status,cache,payload)==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _typed_institutional_chain_real_node(wire,cut="late"):
+    """The unchanged Node executable, with all *other* established fixtures."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_capture_rivals,_bitemporal_fixture,
+        _partial_identification_fixture,_sha,FAKE_PARITY,CUTS,
+    )
+    runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    return subprocess.run(["node",str(runner)],input=json.dumps({
+        "cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),"experiment":(
+            _capture_rivals(CUTS["late"])[1] if cut=="late" else None),
+        "timeline":_bitemporal_fixture(),
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
+        "chain":wire,
+    }),text=True,capture_output=True,timeout=5)
+
+
+def test_typed_institutional_chain_is_new_noncycle_five_family_replay():
+    """New capability, not a prepatch defect: exactly one authored case."""
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain,_typed_institutional_chain_fixture,
+        CUTS,_sha,
+    )
+    wire=_typed_institutional_chain_fixture()
+    assert [s["sha256"] for s in wire["sources"]]==[
+        _sha(s["text"]) for s in wire["sources"]]
+    assert wire["typed_keys"]["actor"]!=wire["typed_keys"]["organization"]
+    assert wire["typed_keys"]["communication"]!=wire["typed_keys"]["decision"]
+    assert wire["typed_keys"]["process"] not in (
+        wire["typed_keys"]["communication"],wire["typed_keys"]["decision"])
+    assert wire["communications"][1]["amendment_of"]==wire["communications"][0]["id"]
+    assert wire["decision"]["amendment_of"] is None
+    assert wire["process"]["entry_sha256"]==wire["sources"][0]["sha256"]
+    assert wire["process"]["approval"]["source_sha256"]==wire["sources"][1]["sha256"]
+    for cut in ("early","late"):
+        py,_=_typed_institutional_chain(at=CUTS[cut],wire=wire)
+        assert py["schema"]=="pfl.synthetic_typed_institutional_chain_oracle.v1"
+        assert py["visible_source_receipts"]==(1 if cut=="early" else 2)
+        assert py["same_fixture_source_sha_checked"] is True
+        assert py["typed_cross_family_links_checked"] is True
+        for flag in ("source_asset_rights_admitted","public_display_purpose_admitted",
+                     "real_actor_identity_verified","real_decision_outcome_attested",
+                     "real_censoring_attested","empirical_estimand_admitted"):
+            assert py[flag] is False
+        assert py["first_public_at_real"] is None
+        assert py["independent_denominator"] is None
+        if shutil.which("node") is not None:
+            node=_typed_institutional_chain_real_node(wire,cut)
+            assert node.returncode==0,node.stderr
+            assert json.loads(node.stdout)["typed_institutional_chain"]==py
+        api=report(cut=cut)
+        assert api["warehouse"]["typed_institutional_chain"]==py
+        assert api["scientific_AB_cycles"]==0
+        assert api["independent_all_received_denominator"] is None
+        assert api["R5"]=="STOP_R5"
+
+
+def test_typed_institutional_chain_knowledge_and_valid_day_do_not_collide():
+    early=report(cut="early")["warehouse"]["typed_institutional_chain"]
+    late=report(cut="late")["warehouse"]["typed_institutional_chain"]
+    pre="2026-09-11";post="2026-09-15"
+    assert early["views_by_valid_day"][pre]["logical_decisions"]==0
+    assert early["views_by_valid_day"][post]["logical_decisions"]==0
+    assert late["views_by_valid_day"][pre]["logical_decisions"]==0
+    assert late["views_by_valid_day"][post]["logical_decisions"]==1
+    assert early["views_by_valid_day"][post]["process_state"]=="PENDING_AS_OF_EVIDENCE"
+    assert late["views_by_valid_day"][post]["process_state"]=="APPROVED_AS_OF_EVIDENCE"
+    assert late["views_by_valid_day"][pre]["process_state"]=="UNKNOWN_FOLLOWUP"
+    for result in (early,late):
+        for day in (pre,post):
+            view=result["views_by_valid_day"][day]
+            assert (view["actor_visible"],view["organization_visible"],
+                    view["process_episode_visible"],view["logical_communications"])==(1,1,1,1)
+            assert view["negative_decisions"]==view["censor_witnesses"]==0
+            assert view["communication_documentary_revisions_known"]==(
+                1 if result is early else 2)
+    assert all(late["views_by_valid_day"][day]["logical_communications"]==1
+               for day in (pre,post))  # Two revisions are not two events.
+    assert early["views_by_valid_day"][post]["pending_not_negative"]==1
+    assert late["views_by_valid_day"][post]["pending_not_negative"]==0
+
+
+@pytest.mark.parametrize("tamper,error",[
+    ("source_sha_spoof","CHAIN_SOURCE_RECEIPT_MISMATCH"),
+    ("source_id_spoof","CHAIN_SOURCE_RECEIPT_MISMATCH"),
+    ("capture_lookahead","CHAIN_SOURCE_RECEIPT_MISMATCH"),
+    ("semantic_communication_as_decision","CHAIN_TYPED_SOURCE_LINK_MISMATCH"),
+    ("decision_as_communication","CHAIN_TYPED_SOURCE_LINK_MISMATCH"),
+    ("communication_as_second_decision","CHAIN_TYPED_SOURCE_LINK_MISMATCH"),
+    ("process_approval_wrong_sha","CHAIN_TYPED_SOURCE_LINK_MISMATCH"),
+    ("process_wrong_typed_key","CHAIN_TYPED_SOURCE_LINK_MISMATCH"),
+    ("rights_spoof","CHAIN_RIGHTS_FRAME_OR_ISSUER_PROMOTION"),
+    ("denominator_spoof","CHAIN_RIGHTS_FRAME_OR_ISSUER_PROMOTION"),
+    ("first_public_real_spoof","CHAIN_RIGHTS_FRAME_OR_ISSUER_PROMOTION"),
+])
+def test_typed_institutional_chain_fake_source_or_role_rejected_both_engines(tamper,error):
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain,_typed_institutional_chain_fixture,CUTS,
+    )
+    wire=json.loads(json.dumps(_typed_institutional_chain_fixture()))
+    if tamper=="source_sha_spoof":
+        wire["sources"][1]["sha256"]="0"*64
+    elif tamper=="source_id_spoof":
+        wire["sources"][1]["source_id"]="SYN:OTHER_V2"
+    elif tamper=="capture_lookahead":
+        wire["sources"][1]["captured_at"]="2026-11-03T12:00:00Z"
+    elif tamper=="semantic_communication_as_decision":
+        wire["communications"][0]["kind"]="DECISION"
+    elif tamper=="decision_as_communication":
+        wire["decision"]["kind"]="COMMUNICATION"
+    elif tamper=="communication_as_second_decision":
+        wire["communications"][1]["process_key"]=wire["typed_keys"]["decision"]
+    elif tamper=="process_approval_wrong_sha":
+        wire["process"]["approval"]["source_sha256"]="f"*64
+    elif tamper=="process_wrong_typed_key":
+        wire["process"]["typed_key"]=wire["typed_keys"]["decision"]
+    elif tamper=="rights_spoof":
+        wire["rights_by_asset_purpose_admitted"]=True
+    elif tamper=="denominator_spoof":
+        wire["independent_denominator"]=1
+    else:
+        wire["first_public_at_real"]="2026-09-01T00:00:00Z"
+    with pytest.raises(RuntimeError,match=error):
+        _typed_institutional_chain(at=CUTS["late"],wire=wire)
+    if shutil.which("node") is not None:
+        node=_typed_institutional_chain_real_node(wire)
+        assert node.returncode!=0
+        assert error in node.stderr
+        assert node.stdout==""
+
+
+def test_typed_institutional_chain_real_http_redacts_and_503_on_node_drift(
+        tmp_path,monkeypatch):
+    """Actual loopback server, real Node computation, synthetic-only IPC drift."""
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            response=conn.getresponse()
+            status,cache=response.status,response.getheader("Cache-Control")
+            body=json.loads(response.read());conn.close()
+            return status,cache,body
+        for cut in ("early","late"):
+            status,cache,payload=get(cut)
+            assert (status,cache)==(200,"no-store")
+            chain=payload["warehouse"]["typed_institutional_chain"]
+            assert chain["source_asset_rights_admitted"] is False
+            assert chain["first_public_at_real"] is None
+            assert chain["independent_denominator"] is None
+            assert payload["pp04"] is None if cut=="early" else payload["pp04"]["not_included_4221_excluded"] is True
+            raw=json.dumps(payload)
+            for source in lab._typed_institutional_chain_fixture()["sources"]:
+                assert source["sha256"] not in raw
+                assert source["text"] not in raw
+                assert source["source_id"] not in raw
+            assert "SYNTHETIC:CHAIN_EPISODE1" not in raw
+            assert "SYN:CHAIN_COMM" not in raw
+            assert "SYN:CHAIN_DEC" not in raw
+        genuine=lab.subprocess.run
+        def corrupt_node_after_actual_run(*args,**kwargs):
+            produced=genuine(*args,**kwargs)
+            assert produced.returncode==0,produced.stderr
+            response=json.loads(produced.stdout)
+            response["typed_institutional_chain"]["views_by_valid_day"][
+                "2026-09-15"]["logical_decisions"]=2
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(response),stderr=produced.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",corrupt_node_after_actual_run)
+        assert get("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)

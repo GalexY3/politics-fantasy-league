@@ -735,3 +735,126 @@ prueba focal
 `c2000dca548008614e78f90094a56d098805720cf8f055a83d82f65b787d0c86`.
 Node no se modificó y conserva
 `fed4254a121484e6426ff69e434cfbc1b54ae92a87d19901767502dde7446799`.
+
+## PR22 · cadena transversal tipada: actor, organización, comunicación, decisión y proceso
+
+**Capacidad NUEVA de ingeniería, `NONCYCLE`, no reparación de un defecto
+empírico ni de la anterior cadena bitemporal.** La función
+`_bitemporal_actor_event` ya validaba actor, institución, rol y revisión
+documental de un evento. `procedural_stage_accounting` modelaba episodios
+de manera separada. Hasta esta ampliación ninguna composición E2E exigía
+un **único origen con recibos SHA por edición**, referencias tipadas y los
+mismos relojes de conocimiento y validez para las **cinco familias**.
+
+La capacidad se incorporó exclusivamente en `scientific_integration_lab.py`,
+`scientific_integration_warehouse.mjs` y la ruta HTTP existente; no se creó
+un módulo, esquema de ingestión real, nueva ruta, nueva PR ni ciclo AB.
+`_typed_institutional_chain_fixture` define exactamente **dos cuerpos
+documentales inventados** de un mismo emisor `SYN:CHAIN`. Cada uno tiene su
+SHA-256 real de los bytes del fixture, `source_id`, `captured_at` y
+`first_public_at` **ficticio** propio. Python registra los recibos exactos
+en `TemporalLedger` y Node recalcula **independientemente** ambos digests
+antes de construir entidades y eventos con el almacén existente.
+
+Las claves tipadas incluyen las familias `ACTOR`, `ORGANIZATION`,
+`COMMUNICATION`, `DECISION` y `PROCESS`; una referencia a organización o
+persona nunca sustituye otra categoría mediante similitud de nombres.
+La comunicación C1 tiene dos **revisiones documentales** (la segunda con
+`amendment_of` explícito), pero **una sola comunicación lógica**. La
+decisión D1, fechada ficticiamente el 14/09/2026 y conocida únicamente en
+la edición capturada el 31/10/2026, es un evento **diferente**: ni el
+acto de emitir C1 ni su revisión cuentan como aprobación administrativa.
+El proceso P1 está modelado como **un `EntryEpisode`**, con testigo de
+pendencia conocido en el corte temprano y acto final `APPROVED` conocido
+en el tardío. No se convierte el episodio en un `W.event` adicional, ni
+se crean dos procesos por las dos versiones de fuente.
+
+| Vista sintética | `early` 15/10/2026 | `late` 01/11/2026 |
+| --- | ---: | ---: |
+| Recibos de edición visibles según captura/publicación ficticia | 1 | 2 |
+| Revisiones conocidas de comunicación C1 | 1 | 2 |
+| Comunicaciones lógicas | 1 | 1 |
+| Decisiones visibles con `valid_at=11/09/2026` | 0 | 0 |
+| Decisiones visibles con `valid_at=15/09/2026` | 0 | 1 |
+| Estado P1 para `valid_at=15/09/2026` | `PENDING_AS_OF_EVIDENCE` | `APPROVED_AS_OF_EVIDENCE` |
+| Negativas y censuras observadas en la cadena | 0 y 0 | 0 y 0 |
+
+El corte `early` puede desconocer una decisión que jurídicamente se
+representa como ocurrida en septiembre, porque su publicación/captura
+**ficticia** es posterior. A su vez, consultar `valid_at=11/09` aun con
+`as_of=late` **no** convierte una decisión del 14/09 en decisión del 11/09.
+Esto es una comprobación de ingeniería de conocimiento frente a validez,
+no una verificación histórica de una actuación española.
+
+**Unión de contratos:** Python aplica `FileReceipt` + `TemporalRecord`,
+`TemporalLedger.snapshot(as_of,valid_at)`, `EntryEpisode`, `PendingWitness`,
+`StageAct`, `audit_lab` y `assess_distribution_rights` **por distribución
+y propósito**. Para ambas ediciones, la finalidad `LOCAL_ACADEMIC_READ`
+declarada por el fixture **no** cubre `PUBLIC_AGGREGATE_DISPLAY`: el gate
+no admite reutilización ni evidencia empírica. Node utiliza
+`W.source/entity/event/asOf/auditBundle`, valida el wire de claves y
+enlaces tipados completos, y reconstruye la misma proyección agregada.
+Python compara con JSON canónico la salida íntegra de Node; una deriva
+observable causa **HTTP 503**, no resultados inventados. En HTTP se ocultan
+bytes, SHA, IDs de actor/evento y episodio: solo se exponen agregados
+con `Cache-Control: no-store`.
+
+**QA nueva, sin PREPATCH ficticio para la capacidad:** tests focales de
+paridad entre motores en ambos cortes, dos fechas de validez, clasificación
+de eventos y revisión, vinculación exacta de SHA a cada familia y episodio,
+rechazo de `source_id`/SHA/captura futura/mezcla COMMUNICATION↔DECISION,
+alteración de claves de proceso, suplantación de derechos, denominador y
+`first_public_at_real`; y un test HTTP con Node real adulterado únicamente
+en `logical_decisions`, que debe devolver 503. Ninguna prueba accede a
+originales de PAN/IAEN, personas reales o fuentes privadas.
+
+La política de evidencia sigue conservando `first_public_at_real=null`,
+`independent_denominator=null`, `official_identity_crosswalk_verified=false`,
+`real_outcomes_attested=false`, `rights_by_asset_purpose_admitted=false`,
+`real_decision_outcome_attested=false`, `real_censoring_attested=false`,
+`R5=STOP_R5`, **0/6 gates y 0 ciclos científicos**. PP04 y su población
+`NO INCLUIDAS` no reciben nuevos emparejamientos ni denominadores.
+
+### Defecto material independiente priorizado: tipos procedimentales al unir cortes
+
+Una auditoría externa identificó un fallo **alcanzable** en el consumidor
+existente `_reconcile_followup`: `reconstructed != procedural` permitía
+agregados JSON semánticamente inválidos por igualdad de Python entre
+`1`/`True` y `2`/`2.0`. Dos alteraciones sintéticas, una en
+`terminal_by_cause.INADMITTED`, otra en
+`observed_pending_at_last_witness`, sobrevivían y se exponían en
+`GET /api/scientific-integration-lab?cut=late` con **HTTP 200**, incluso
+cuando la llamada ejecutaba Node genuino. No hay evidencia de explotación
+externa, de acceso a expedientes reales ni de cambio de estimando.
+
+**PREPATCH congelado:** test único parametrizado en el archivo de tests
+existente, con dos oráculos del helper y dos de HTTP, **4/4 FAIL reales**
+(67 tests antiguos deseleccionados). SHA producción PREPATCH
+`dddb22c94fbccc854ccaa868d933dda56b578786d416528657dc241260cc8608`
+y test congelado
+`9d9194890b3605eebad40b8028e61d2d45ca904b60d504e1b552b9f3756d2367`.
+El código productivo previo ya contenía la nueva cadena `NONCYCLE` aún
+sin publicar, pero la función vulnerable seguía exactamente sin parche.
+
+**Reparación local:** comparar el agregado procedimental reconstruido
+completo y la salida recibida con **JSON canónico tipado**, de forma que
+`true` no sea un entero y `2.0` no sustituya al contador natural `2`.
+Solo cambia el contrato ya existente `_reconcile_followup`, no la clase
+de decisiones, el mecanismo de censura ni los registros de fuentes.
+**POSTPATCH:** los cuatro falsadores rojos pasaron **4/4 PASS**.
+
+**QA final focal conjunta:** `PYTHONPATH=src python -m pytest -q
+tests/test_synthetic_scientific_integration_lab.py -k
+'typed_institutional_chain or followup_structurally_equal_but_json_type_invalid_must_fail_prepatch or followup_type_drift_must_fail_closed_actual_http_prepatch'`
+→ **18 PASS, 67 deseleccionados**. `node --check`, `python -m
+py_compile` y `git diff --check`: PASS. No se reejecutaron las 35 S3,
+11 bitemporales, 109 PP04 ni 41 Node históricas. Sin CI, main o despliegue.
+
+**Recibos SHA-256 de producción y test después de QA:** Python
+`2ac2a5546e58e45d2733747a44b0d9d2f639b66f883029f519e7dbdb62bc905c`,
+Node
+`c5db9a77c831c9e21f6380916bc7acb209888933d8cdb2e8b1b4b1a762ee6732`,
+tests
+`ef0720582da8910e23b3a9897fdf2308533e2de4e776d6d78d5502b58a333be7`.
+Son huellas de bytes de software de laboratorio, **no** recibos de
+originales ni acreditación de acceso científico a datos reales.

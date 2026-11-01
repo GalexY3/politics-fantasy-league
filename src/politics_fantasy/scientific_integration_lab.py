@@ -55,6 +55,14 @@ BITEMPORAL_BYTES = (
     "SYNTHETIC BITEMPORAL FIXTURE\nISSUER:SYN:CHRONICLE\n"
     "EDITION:V2\nACTOR:A\nEVENT:E1_REVISED\n",
 )
+CHAIN_BYTES = (
+    "SYNTHETIC TYPED CHAIN\nISSUER:SYN:CHAIN\nEDITION:V1\nACTOR:A\n"
+    "ORGANIZATION:O\nCOMMUNICATION:C1\nPROCESS:P1_PENDING\n",
+    "SYNTHETIC TYPED CHAIN\nISSUER:SYN:CHAIN\nEDITION:V2\nACTOR:A\n"
+    "ORGANIZATION:O\nCOMMUNICATION:C1_REVISED\nDECISION:D1_APPROVED\n"
+    "PROCESS:P1_APPROVED\n",
+)
+CHAIN_VALID_DAYS = ("2026-09-11", "2026-09-15")
 
 # S3 mathematics, reconstructed from the user-supplied exact rational oracle.
 # These are observed binary *fixture categories*, not administrative decisions.
@@ -351,6 +359,228 @@ def _bitemporal_actor_event(*, at: str, wire: dict | None = None) -> tuple[dict,
     },fixture)
 
 
+def _typed_institutional_chain_fixture() -> dict:
+    """One synthetic issuer, two byte editions, five *distinct* typed families.
+
+    The explicit source-scoped identifiers are neither official IDs nor a
+    person crosswalk. A communication amendment is not a second communication
+    or an administrative decision; PROCESS is an EntryEpisode, not a Node event.
+    """
+    sources=[{
+        "source_id":f"SYN:CHAIN_V{i}","text":body,"sha256":_sha(body),
+        "captured_at":capture,"first_public_at":published,
+    } for i,(body,capture,published) in enumerate(zip(CHAIN_BYTES,
+        (EARLY_CAPTURE,LATE_CAPTURE),
+        ("2026-09-19T12:00:00Z",LATE_PUBLIC)),start=1)]
+    typed={"actor":["SYN:CHAIN","ACTOR","A"],
+           "organization":["SYN:CHAIN","ORGANIZATION","O"],
+           "communication":["SYN:CHAIN","COMMUNICATION","C1"],
+           "decision":["SYN:CHAIN","DECISION","D1"],
+           "process":["SYN:CHAIN","PROCESS","P1"]}
+    return {
+        "schema":"pfl.synthetic_typed_institutional_chain_wire.v1",
+        "issuer":"SYN:CHAIN","sources":sources,"typed_keys":typed,
+        "communications":[{
+            "kind":"COMMUNICATION","id":f"SYN:CHAIN_COMM_V{i}",
+            "source_id":source["source_id"],"source_sha256":source["sha256"],
+            "revision":f"v{i}","occurred_on":"2026-09-10",
+            "amendment_of":None if i==1 else "SYN:CHAIN_COMM_V1",
+            "actor_key":typed["actor"],"organization_key":typed["organization"],
+            "process_key":typed["process"],
+        } for i,source in enumerate(sources,start=1)],
+        "decision":{
+            "kind":"DECISION","id":"SYN:CHAIN_DEC_V2",
+            "source_id":sources[1]["source_id"],
+            "source_sha256":sources[1]["sha256"],"revision":"v1",
+            "occurred_on":"2026-09-14","amendment_of":None,
+            "actor_key":typed["actor"],"organization_key":typed["organization"],
+            "process_key":typed["process"],
+        },
+        "process":{
+            "kind":"PROCESS_EPISODE","episode_id":"SYNTHETIC:CHAIN_EPISODE1",
+            "typed_key":typed["process"],"entry_on":"2026-09-05",
+            "entry_source_id":sources[0]["source_id"],
+            "entry_sha256":sources[0]["sha256"],
+            "entry_observed_at":EARLY_CAPTURE,
+            "communication_key":typed["communication"],
+            "decision_key":typed["decision"],
+            "pending":{"on":"2026-09-12","observed_at":EARLY_CAPTURE,
+                       "source_id":sources[0]["source_id"],
+                       "source_sha256":sources[0]["sha256"]},
+            "approval":{"stage":"APPROVED","on":"2026-09-14",
+                        "documented_on":"2026-09-19",
+                        "observed_at":LATE_CAPTURE,
+                        "source_id":sources[1]["source_id"],
+                        "source_sha256":sources[1]["sha256"]},
+        },
+        "rights_purpose":"PUBLIC_AGGREGATE_DISPLAY",
+        "source_asset_covered_purpose":"LOCAL_ACADEMIC_READ",
+        "rights_by_asset_purpose_admitted":False,
+        "first_public_at_real":None,"independent_denominator":None,
+        "official_identity_crosswalk_verified":False,
+        "real_outcomes_attested":False,
+    }
+
+
+def _typed_institutional_chain(*, at: str,
+                               wire: dict | None = None) -> tuple[dict,dict]:
+    """Replay source+SHA+knowledge+valid-day through five invented categories.
+
+    TemporalLedger authenticates internal *fixture* receipts and editions;
+    audit_lab gives the independent procedural-stage interpretation. Both
+    computations bind the same typed source-local process to the same bytes.
+    """
+    if at not in CUTS.values():
+        raise RuntimeError("CHAIN_KNOWLEDGE_CUT_INVALID")
+    expected=_typed_institutional_chain_fixture()
+    w=expected if wire is None else wire
+    flags=("rights_purpose","source_asset_covered_purpose",
+           "rights_by_asset_purpose_admitted","first_public_at_real",
+           "independent_denominator","official_identity_crosswalk_verified",
+           "real_outcomes_attested")
+    if (type(w) is not dict or set(w)!=set(expected) or
+            any(type(w[k]) is not type(expected[k]) or w[k]!=expected[k]
+                for k in ("schema","issuer",*flags))):
+        raise RuntimeError("CHAIN_RIGHTS_FRAME_OR_ISSUER_PROMOTION")
+    sources=w["sources"]
+    if (type(sources) is not list or len(sources)!=2):
+        raise RuntimeError("CHAIN_SOURCE_RECEIPT_MISMATCH")
+    receipts={}
+    ledger=TemporalLedger()
+    for source,ref in zip(sources,expected["sources"]):
+        if (type(source) is not dict or set(source)!=set(ref) or
+                any(source[k]!=ref[k] for k in
+                    ("source_id","text","captured_at","first_public_at")) or
+                source["sha256"]!=_sha(source["text"]) or
+                source["sha256"]!=ref["sha256"]):
+            raise RuntimeError("CHAIN_SOURCE_RECEIPT_MISMATCH")
+        receipt=FileReceipt(source["source_id"],source["sha256"],
+            len(source["text"].encode()),source["captured_at"],
+            "SYNTHETIC","SYNTHETIC")
+        ledger.register_source(receipt)
+        receipts[(receipt.source_id,receipt.sha256)]=receipt
+        # Purpose/asset-bound rights: a local academic read claim cannot
+        # admit the different purpose of public aggregate display.
+        verdict=assess_distribution_rights({
+            "distribution_id":receipt.source_id,"asset_sha256":receipt.sha256,
+            "asset_url":"https://example.invalid/synthetic-typed-chain",
+            "historical_as_of":at,"first_public_at":None,
+            "requested_purpose":w["rights_purpose"],
+            "rights":{"kind":"PUBLISHER_ASSET_SPECIFIC",
+                "distribution_id":receipt.source_id,
+                "asset_sha256":receipt.sha256,
+                "covered_purposes":[w["source_asset_covered_purpose"]],
+                "notice_published_at":source["first_public_at"],
+                "terms_mode":"PUBLISHER_OPEN_NOTICE",
+                "terms_reviewed_by_human":False,
+                "rights_reviewed_by_human":False}})
+        if verdict["reuse_admitted"] or verdict["empirical_r5_open"]:
+            raise RuntimeError("CHAIN_RIGHTS_PROMOTED")
+    if json.dumps({k:w[k] for k in ("typed_keys","communications","decision","process")},
+                  sort_keys=True,separators=(",",":")) != json.dumps(
+                 {k:expected[k] for k in ("typed_keys","communications","decision","process")},
+                  sort_keys=True,separators=(",",":")):
+        raise RuntimeError("CHAIN_TYPED_SOURCE_LINK_MISMATCH")
+    actor=SourceRef(sources[0]["source_id"],"ACTOR","A")
+    org=SourceRef(sources[0]["source_id"],"ORGANIZATION","O")
+    process=SourceRef(sources[0]["source_id"],"PROCESS","P1")
+    first=sources[0]
+    for subject,kind in ((actor,"ACTOR"),(org,"ORGANIZATION"),
+                         (process,"PROCESS")):
+        ledger.add(TemporalRecord(kind="ENTITY",source_id=first["source_id"],
+            source_record_id=kind,revision="v1",source_sha256=first["sha256"],
+            subject=subject,predicate="SYNTHETIC_"+kind,object=None,
+            valid_from="2026-09-05T00:00:00Z",valid_to=None,
+            first_public_at=first["first_public_at"],
+            recorded_at=first["captured_at"],value="DOCUMENTED_FIXTURE"))
+    for event in [*w["communications"],w["decision"]]:
+        source=next(s for s in sources if s["source_id"]==event["source_id"])
+        if (event["source_id"],event["source_sha256"]) not in receipts:
+            raise RuntimeError("CHAIN_SOURCE_RECEIPT_MISMATCH")
+        ledger.add(TemporalRecord(kind="EVENT",source_id=source["source_id"],
+            source_record_id=event["id"],revision=event["revision"],
+            source_sha256=source["sha256"],
+            subject=SourceRef(source["source_id"],event["kind"],
+                              "C1" if event["kind"]=="COMMUNICATION" else "D1"),
+            predicate="SYNTHETIC_"+event["kind"],object=None,
+            valid_from=event["occurred_on"]+"T00:00:00Z",valid_to=None,
+            first_public_at=source["first_public_at"],
+            recorded_at=source["captured_at"],value=event["revision"]))
+    p=w["process"]
+    frame=_population_target(unit="REGISTRY_INITIAL_WRITING")
+    episode=EntryEpisode(episode_id=p["episode_id"],frame=frame,
+        entry_on=p["entry_on"],entry_observed_at=p["entry_observed_at"],
+        entry_sha_claim=p["entry_sha256"],channel="PAPER",
+        acts=(StageAct(stage=p["approval"]["stage"],
+             occurred_on=p["approval"]["on"],
+             documented_on=p["approval"]["documented_on"],
+             observed_at=p["approval"]["observed_at"],
+             document_sha_claim=p["approval"]["source_sha256"],
+             legal_calendar_zone="Europe/Madrid"),),
+        pending=(PendingWitness(pending_on=p["pending"]["on"],
+             observed_at=p["pending"]["observed_at"],
+             document_sha_claim=p["pending"]["source_sha256"],
+             legal_calendar_zone="Europe/Madrid"),))
+    if (p["entry_source_id"],p["entry_sha256"]) not in receipts or any(
+            (p[k]["source_id"],p[k]["source_sha256"]) not in receipts
+            for k in ("pending","approval")):
+        raise RuntimeError("CHAIN_PROCESS_SOURCE_RECEIPT_MISMATCH")
+    proc=audit_lab(frame=frame,episodes=(episode,),as_of=at)
+    # The stage report has only an as_of clock. The valid-day projection is
+    # deliberately additional; no future decision may enter an earlier day.
+    views={}
+    for valid_day in CHAIN_VALID_DAYS:
+        snap=ledger.snapshot(as_of=at,valid_at=valid_day+"T12:00:00Z")
+        comms=[r for r in snap.records if r.kind=="EVENT" and
+               r.predicate=="SYNTHETIC_COMMUNICATION"]
+        decisions=[r for r in snap.records if r.kind=="EVENT" and
+                   r.predicate=="SYNTHETIC_DECISION"]
+        expected_comm=1 if at==CUTS["early"] else 2
+        expected_dec=int(at==CUTS["late"] and valid_day>="2026-09-14")
+        if (len(comms)!=expected_comm or len(decisions)!=expected_dec or
+                [r.source_record_id for r in comms] != [
+                    e["id"] for e in w["communications"][:expected_comm]] or
+                (decisions and decisions[0].source_record_id!=w["decision"]["id"])):
+            raise RuntimeError("CHAIN_TYPED_TEMPORAL_DIVERGENCE")
+        pending=int(not decisions and valid_day>=p["pending"]["on"])
+        views[valid_day]={
+            "actor_visible":int(any(r.kind=="ENTITY" and r.subject==actor
+                                   for r in snap.records)),
+            "organization_visible":int(any(r.kind=="ENTITY" and r.subject==org
+                                          for r in snap.records)),
+            "communication_documentary_revisions_known":len(comms),
+            "logical_communications":int(bool(comms)),
+            "decision_documentary_revisions_known":len(decisions),
+            "logical_decisions":len(decisions),
+            "process_episode_visible":int(any(r.kind=="ENTITY" and
+                r.subject==process for r in snap.records)),
+            "process_state":("APPROVED_AS_OF_EVIDENCE" if decisions else
+                 "PENDING_AS_OF_EVIDENCE" if pending else "UNKNOWN_FOLLOWUP"),
+            "pending_not_negative":pending,
+            "negative_decisions":0,"censor_witnesses":0,
+        }
+    if (proc["all_received_denominator"] is not None or
+            proc["terminal_by_cause"]["INADMITTED"]!=0 or
+            proc["terminal_by_cause"]["REJECTED"]!=0 or
+            proc["unknown_followup"] != (0 if at==CUTS["late"] else 0) or
+            proc["terminal_by_cause"]["APPROVED"] != int(at==CUTS["late"])):
+        raise RuntimeError("CHAIN_PROCEDURAL_CLASSIFICATION_DIVERGENCE")
+    return ({
+        "schema":"pfl.synthetic_typed_institutional_chain_oracle.v1",
+        "views_by_valid_day":views,
+        "visible_source_receipts":1 if at==CUTS["early"] else 2,
+        "same_fixture_source_sha_checked":True,
+        "typed_cross_family_links_checked":True,
+        "source_asset_rights_admitted":False,
+        "public_display_purpose_admitted":False,
+        "first_public_at_real":None,"independent_denominator":None,
+        "real_actor_identity_verified":False,
+        "real_decision_outcome_attested":False,
+        "real_censoring_attested":False,
+        "empirical_estimand_admitted":False,
+    },w)
+
+
 def _rights(assets: list[dict], *, at: str) -> dict:
     results = {}
     for asset in assets:
@@ -525,7 +755,11 @@ def _reconcile_followup(*, snapshot: Snapshot,
     # individually-valid aggregates (e.g. late censor + early pending/unknown).
     reconstructed = audit_lab(frame=episodes[0].frame, episodes=episodes,
                               as_of=snapshot.as_of)
-    if reconstructed != procedural:
+    # Exact JSON types matter at the procedure→temporal reconciliation seam.
+    # Python equality would accept `1 == True` or `2 == 2.0`, silently
+    # reclassifying a negative count as a boolean or pending as a float.
+    if (json.dumps(reconstructed,sort_keys=True,separators=(",",":")) !=
+            json.dumps(procedural,sort_keys=True,separators=(",",":"))):
         raise RuntimeError("FOLLOWUP_CUT_MISMATCH")
     claims = [r for r in snapshot.records
               if r.predicate == "OBSERVATION_WINDOW_ENDED_WITHOUT_DECISION"]
@@ -676,11 +910,11 @@ def _capture_rivals(at: str) -> tuple[dict, dict]:
 
 def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                     experiment: dict | None, timeline: dict,
-                    partial_identification: dict | None) -> dict:
+                    partial_identification: dict | None, chain: dict) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
     request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
              "assets":assets,"experiment":experiment,"timeline":timeline,
-             "partial_identification":partial_identification}
+             "partial_identification":partial_identification,"chain":chain}
     try:
         proc=subprocess.run(["node",str(runner)],input=json.dumps(request),
             text=True,capture_output=True,timeout=5,check=False)
@@ -706,6 +940,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
         "observational_equivalence_experiment",
         "bitemporal_actor_event_equivalence",
         "partial_identification_oracle",
+        "typed_institutional_chain",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -786,13 +1021,18 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
     partial_wire=_partial_identification_fixture() if cut=="late" else None
     partial_oracle=_partial_identification(partial_wire) if cut=="late" else None
     bitemporal,timeline=_bitemporal_actor_event(at=at)
+    typed_chain,chain_wire=_typed_institutional_chain(at=at)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
                               experiment=experiment,timeline=timeline,
-                              partial_identification=partial_wire)
+                              partial_identification=partial_wire,chain=chain_wire)
     if warehouse.get("bitemporal_actor_event_equivalence") != bitemporal:
         raise RuntimeError("CROSS_LANGUAGE_BITEMPORAL_CONTRACT_DIVERGENCE")
     if warehouse.get("partial_identification_oracle") != partial_oracle:
         raise RuntimeError("CROSS_LANGUAGE_S3_PARTIAL_IDENTIFICATION_DIVERGENCE")
+    if (json.dumps(warehouse.get("typed_institutional_chain"),
+                   sort_keys=True,separators=(",",":")) !=
+            json.dumps(typed_chain,sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("CROSS_LANGUAGE_TYPED_CHAIN_DIVERGENCE")
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,
