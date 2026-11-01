@@ -311,3 +311,51 @@ contiene metadatos sobre Tipo, Estado, fecha, origen, unidad, provincia y
 referencia. Es identidad documental nueva frente a R5–R29, pero no
 padrón independiente de recepción ni derecho adjudicado por activo. No
 se visitó ninguna distribución ni editor sujeto a condiciones.
+
+## Falsador PREPATCH: dos agregados correctos unidos en horizontes distintos
+
+La revisión adversarial posterior al HEAD PR22
+`11ecfd92facf8c30a33dafa77a8aca92db0d7ebe` identificó un **fallo
+material nuevo de composición** en `_reconcile_followup`: el `Snapshot`
+temporal porta su propio `as_of`, pero el dict de
+`procedural_stage_accounting.audit_lab` no lo incluye. Dos resultados
+individualmente válidos podían unirse sin comprobar si correspondían al
+mismo corte. En una llamada sintética verdadera, el snapshot tardío
+`2026-11-01T12:00:00Z` con `unknown_followup=4` del corte temprano produjo
+un diagnóstico *híbrido* de **1 testigo de censura enlazado, 3
+desconocidos restantes, 1 pendiente y 0 inadmitidos**, mientras que la
+composición coherente tardía mostraba 1, 0, 2 y 1. No se demostró
+explotación por un cliente remoto: el endpoint público del laboratorio
+selecciona ambos relojes conjuntamente, aunque el helper es alcanzable por
+otros consumidores internos.
+
+Oráculos añadidos ANTES del parche:
+`test_reconcile_rejects_genuinely_valid_procedural_output_from_wrong_cut`
+y `test_reconcile_cannot_accept_procedural_counts_not_derived_from_episodes`
+fallaron **2/2 PREPATCH**, porque el helper aceptaba respectivamente un
+agregado de corte anterior y un contador adulterado. SHA PREPATCH Python
+`5ac507e08ce04bba43edb087f0a883ee270d85a9989e0075f609304f50a873d3`,
+test `f60ff1478cabb782832dbed520e8ee8414be5d3d69cb03ac5537a2ebc0872143`.
+No se usaron originales ni datos de casos españoles.
+
+Corrección: sin tocar `audit_lab` ni crear módulos, la frontera E2E vuelve
+a ejecutarlo con **los mismos episodios y exactamente `snapshot.as_of`**;
+compara el contrato de salida COMPLETO y rechaza el cruce con
+`FOLLOWUP_CUT_MISMATCH`. Un tercer test focal modifica solo el reloj
+interno del consumidor y comprueba **HTTP 503 y `Cache-Control: no-store`**
+en lugar de 200 con una interpretación histórica mezclada. Los controles
+positivos `early`, `late`, PP04, derechos de distribución y Node permanecen
+inmutables; la nueva inspección es de ingeniería sintética, **no apertura
+de derechos ni acreditación de censura real**.
+
+## R31: resultado documental negativo, sin nueva cohorte
+
+La [FAQ oficial del agregador](https://datos.gob.es/es/preguntas-frecuentes)
+documenta explícitamente que una solicitud de datos recién recibida no es
+todavía pública y solo se publica en un estado posterior de asignación.
+Esto confirma, para ESE procedimiento, la diferencia entre recibir y
+publicar y refuerza la definición operacional de población de entrada.
+No permite deducir cifras ni reglas de publicación de otros editores.
+Ninguna ficha nueva encontrada entre metadatos R5–R30 ofrece el padrón
+independiente, dos vintages auténticas y licencias exigidos por R5.
+Informe: [R31 PREACCESO STOP](../research/PFL_SYSTEM20_20261031/ROUND_REPORT31_CATALOG_SELECTION_GATE_20261101.md).

@@ -249,6 +249,14 @@ def _reconcile_followup(*, snapshot: Snapshot,
     frame_ids = {e.episode_id for e in episodes}
     if len(frame_ids) != len(episodes) or not frame_ids:
         raise RuntimeError("DUPLICATE_OR_EMPTY_SYNTHETIC_EPISODE_FRAME")
+    # A source-local stage report deliberately does not expose as_of. The
+    # assembly boundary must therefore REPLAY the original contract against
+    # the ledger's own knowledge horizon, rather than combining unrelated
+    # individually-valid aggregates (e.g. late censor + early pending/unknown).
+    reconstructed = audit_lab(frame=episodes[0].frame, episodes=episodes,
+                              as_of=snapshot.as_of)
+    if reconstructed != procedural:
+        raise RuntimeError("FOLLOWUP_CUT_MISMATCH")
     claims = [r for r in snapshot.records
               if r.predicate == "OBSERVATION_WINDOW_ENDED_WITHOUT_DECISION"]
     seen = set()

@@ -196,6 +196,60 @@ def test_observed_pending_or_terminal_step_cannot_be_censored(known_kind):
             procedural=replay, receipts=receipts)
 
 
+def test_reconcile_rejects_genuinely_valid_procedural_output_from_wrong_cut():
+    """PREPATCH: mixed temporal cut and stage cut silently produced a hybrid."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _temporal, _procedural, _reconcile_followup, CUTS,
+    )
+    _, late_snapshot, receipts = _temporal(_assets(), at=CUTS["late"])
+    early_procedural, early_episodes = _procedural(CUTS["early"])
+    late_procedural, late_episodes = _procedural(CUTS["late"])
+    assert early_procedural["unknown_followup"] == 4
+    assert late_procedural["unknown_followup"] == 1
+    # Two correct contracts from DIFFERENT knowledge cuts must fail the join.
+    with pytest.raises(RuntimeError, match="FOLLOWUP_CUT_MISMATCH"):
+        _reconcile_followup(snapshot=late_snapshot, episodes=early_episodes,
+                            procedural=early_procedural, receipts=receipts)
+    matched = _reconcile_followup(snapshot=late_snapshot, episodes=late_episodes,
+                                  procedural=late_procedural, receipts=receipts)
+    assert matched["explicit_censor_witnesses"] == 1
+    assert matched["unknown_without_censor_witness"] == 0
+
+
+def test_reconcile_cannot_accept_procedural_counts_not_derived_from_episodes():
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _temporal, _procedural, _reconcile_followup, CUTS,
+    )
+    _, snapshot, receipts = _temporal(_assets(), at=CUTS["late"])
+    procedural, episodes = _procedural(CUTS["late"])
+    forged = dict(procedural, observed_pending_at_last_witness=0)
+    with pytest.raises(RuntimeError, match="FOLLOWUP_CUT_MISMATCH"):
+        _reconcile_followup(snapshot=snapshot, episodes=episodes,
+                            procedural=forged, receipts=receipts)
+
+
+def test_http_rejects_internal_cross_cut_divergence_instead_of_returning_200(tmp_path, monkeypatch):
+    """An incoherent Python consumer must cause HTTP 503, not a mixed JSON."""
+    from politics_fantasy import scientific_integration_lab as lab
+    actual = lab._procedural
+    monkeypatch.setattr(lab, "_procedural", lambda at: actual(lab.CUTS["early"]))
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+        conn.request("GET","/api/scientific-integration-lab?cut=late")
+        res=conn.getresponse()
+        body=json.loads(res.read())
+        assert res.status==503
+        assert res.getheader("Cache-Control")=="no-store"
+        assert body=={"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"}
+        conn.close()
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)
+
+
 def test_early_http_aggregate_must_not_reveal_later_asset_hashes_or_ids():
     """Falsifier: knowing *of* tomorrow's bytes is knowledge-time leakage."""
     early = report(cut="early")
