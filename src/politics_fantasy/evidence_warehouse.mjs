@@ -45,7 +45,8 @@ export function source(reg,v){
   check(v.digest_recomputed===true,"RAW_REQUIRES_RECOMPUTED_DIGEST");
  }else check(v.sha256===null||v.sha256===undefined,"UNVERIFIED_SOURCE_CLAIMS_HASH");
  let o={id:v.id,kind:v.kind,state:v.state,url:v.url,observed_at:v.observed_at,first_public_at:v.first_public_at??null,
-  sha256:v.sha256??null,rights:v.rights,scope:v.scope??"UNSPECIFIED",digest_recomputed:v.state==="RAW_CAPTURED"};
+  sha256:v.sha256??null,rights:v.rights,scope:v.scope??"UNSPECIFIED",
+  rights_claim_is_independently_attested:false,digest_recomputed:v.state==="RAW_CAPTURED"};
  reg.sources.push(o);return o;
 }
 export function entity(reg,v){
@@ -127,7 +128,13 @@ export function claim(reg,v){
 export function asOf(reg,cutoff){
  check(instant(cutoff),"ASOF_DATE");
  const t=Date.parse(cutoff);
- const permitted=new Set(reg.sources.filter(s=>s.state!=="DOCUMENTED_ONLY"&&Date.parse(s.observed_at)<=t&&s.first_public_at!==null&&Date.parse(s.first_public_at)<=t).map(s=>s.id));
+ // Synthetic fixture clocks can demonstrate the interface. Caller-declared
+ // dates on captured originals are NOT an authenticated historical publication
+ // witness and cannot create source visibility in this offline warehouse.
+ const permitted=new Set(reg.sources.filter(s=>s.state==="TEST_FIXTURE"&&
+  s.kind==="SYNTHETIC"&&s.rights==="SYNTHETIC"&&
+  Date.parse(s.observed_at)<=t&&s.first_public_at!==null&&
+  Date.parse(s.first_public_at)<=t).map(s=>s.id));
  const visible=x=>permitted.has(x.source_id)&&x.first_public_at!==null&&Date.parse(x.first_public_at)<=t&&Date.parse(x.observed_at)<=t;
  return {as_of:cutoff,source_count:permitted.size,roles:reg.roles.filter(visible),events:reg.events.filter(visible),claims:reg.claims.filter(visible)}
 }
@@ -174,11 +181,19 @@ export function evidenceGate(reg){
  const captured=reg.sources.filter(s=>s.state==="RAW_CAPTURED");
  const blockers=[];
  if(!captured.length)blockers.push("NO_ORIGINAL_RAW_CAPTURED");
- if(captured.some(s=>s.rights!=="OPEN_LICENSE_VERIFIED"))blockers.push("RIGHTS_NOT_VERIFIED_FOR_REDISTRIBUTION");
+ // OPEN_LICENSE_VERIFIED is text supplied by a JSON bundle. The only
+ // computed property here is the local file digest; no authenticated
+ // permission-by-distribution, publisher signature, terms or use exists.
+ if(captured.length)blockers.push("RIGHTS_NOT_VERIFIED_FOR_REDISTRIBUTION");
  if(!reg.entities.some(e=>e.type==="PERSON_PUBLIC"))blockers.push("NO_VERIFIED_PUBLIC_PERSON_COHORT");
  if(reg.sources.some(s=>s.first_public_at===null))blockers.push("SOURCE_PUBLICATION_DATE_UNKNOWN");
+ const syntheticOrIndexOnly=reg.sources.length>0&&reg.sources.every(s=>
+  s.state==="DOCUMENTED_ONLY"||
+  (s.state==="TEST_FIXTURE"&&s.kind==="SYNTHETIC"&&s.rights==="SYNTHETIC"));
  return {can_publish_field_people:false,can_infer_influence:false,can_score_real_people:false,
- sources_raw:captureLength(captured),blockers,read_only_aggregate_display_allowed:true}
+ sources_raw:captureLength(captured),blockers,
+ rights_independent_attestation_available:false,
+ read_only_aggregate_display_allowed:syntheticOrIndexOnly}
 }
 function captureLength(xs){return xs.length}
 export function auditBundle(reg){
