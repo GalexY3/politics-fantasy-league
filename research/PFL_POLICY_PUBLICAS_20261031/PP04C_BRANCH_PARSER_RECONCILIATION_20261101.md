@@ -114,6 +114,49 @@ QA Linux ni prueba de una publicación R5-admisible.
 
 ## Integración recomendada, no ejecutada
 
+### Auditoría adversarial posterior a PR #21, 1/11/2026
+
+La PR #21 se publicó originalmente en HEAD
+`6dc7f1609ec2db87f7213c4fc8d4f56152c76656`, cuya regresión **histórica**
+fue 104/104 Python. Una revisión independiente estrictamente de solo lectura
+comprobó ese HEAD, ambas interfaces #11/#12 y los falsadores originales; no
+repitió la regresión sin modificaciones. Descubrió una inconsistencia **nueva**:
+ambos parsers clasificaban por el texto de la categoría sin comprobar el
+ordinal romano obligatorio del IAEN2024 (I = Aprobadas; II = Pendientes de
+aprobación). Un fixture inventado con `I. Pendientes de aprobación` y
+`II. Aprobadas` conservaba 1 aprobado, 1 pendiente y
+`count_and_section_status_agreement=true`, sin distinguir el encabezado
+incorrecto. Esta falla es distinta del caso previo de categoría romana
+desconocida y del encabezado semánticamente mixto.
+
+Se congeló ANTES de editar código el nuevo test
+`tests/test_pp04_roman_ordinal_status_regression.py`, SHA-256 inicial
+`e0f54cef2d6b87ebbd603d337eade2b6f0e49b0417465a31f76dbb1d6d311981`;
+el código PREPATCH coincidía con las huellas anteriores
+`0e493f0d...` y `95205088...`. Ejecución focal inicial: **3 FAIL esperados,
+1 control PASS**. La corrección vincula explícitamente I→APPROVED y
+II→PENDING en ambos parsers, sin inferir subclases de los pendientes.
+Un segundo adversarial en el mismo test —categorías correctas pero aparición
+II antes de I— falló antes de añadir comprobación de orden: **1 FAIL esperado,
+4 PASS**. El ajuste posterior exige orden romano no decreciente dentro de
+cada subsección planificada, sin exigir que una sección contenga ambas
+categorías. Estos límites son específicos del contrato documental IAEN2024;
+otros originales con otra estructura requieren un parser/versionado distinto.
+
+Se ejecutaron entonces las **13 suites afectadas, 109/109 Python PASS** en
+Windows con `PYTHONPATH=src`, `compileall` PASS. Nuevas huellas finales:
+
+- `pan_iaen_original_frame.py`:
+  `634b0cec41007ee2948e81d9a607808afcdd78f3ce7463e0792732335f647d40`.
+- `pan_iaen_source_block_parser.py`:
+  `f9a44f09219ab5e210d0fde2647a733ef097227428e9c94f3446937490e6bf87`.
+- Test ordinal ampliado:
+  `2460b3bea8c313de6a42217709bf116fca0a2e6658027b06a84a9d118234f86a`.
+
+No hubo lectura de PDFs, casos ni outcomes para esta auditoría; los recuentos
+del informe fuente y la integridad de documentos originales no se revalidan
+mediante estos tests. **R5 STOP, 0 ciclos científicos, 0 autorizaciones**.
+
 Revisar esta rama **encima de PR #12**, que depende de PR #10, preservando
 el parser de líneas y su subpoblación `UNPLANNED`. La funcionalidad de
 PR #11 está portada con pruebas independientes; evitar fusionar después

@@ -28,7 +28,7 @@ _TITLE_START = re.compile(
 _REPORT_SECTION = re.compile(r"(?m)^[ \t]*4\.(\d{1,2})\.1\.[ \t]*-[ \t]*")
 _BULLET = re.compile(r"(?mi)^[ \t]*-[ \t]+(?=(?:Real[ \t]+Decreto|Ley|Proyecto|Anteproyecto))")
 _STAGE = re.compile(
-    r"(?mi)^[ \t]*(?:I|II|III)\.[ \t]*(Aprobadas|Pendientes[ \t]+de[ \t]+aprobaci[oó]n|Desistidas)[ \t\r]*$"
+    r"(?mi)^[ \t]*(I|II|III)\.[ \t]*(Aprobadas|Pendientes[ \t]+de[ \t]+aprobaci[oó]n|Desistidas)[ \t\r]*$"
 )
 _ROMAN_ANY = re.compile(r"(?mi)^[ \t]*[IVX]+\.[ \t]+\S")
 _SOURCE_PAGE = re.compile(r"^\s*\d{1,3}\s*$")
@@ -180,16 +180,27 @@ def parse_report_ministry_listings(page_texts: tuple[str, ...],
         # Do not let an unknown Roman-numeral stage inherit the preceding
         # approved/pending label. This is the same fail-closed rule as the
         # line-oriented parser's recognition of untrusted section headings.
-        if any(_STAGE.match(segment, roman.start()) is None
-               for roman in _ROMAN_ANY.finditer(segment)):
-            raise GateError("IAEN_UNKNOWN_HEADING_CLASS")
+        last_planned_stage_index = 0
+        for roman in _ROMAN_ANY.finditer(segment):
+            stage = _STAGE.match(segment, roman.start())
+            if stage is None:
+                raise GateError("IAEN_UNKNOWN_HEADING_CLASS")
+            ordinal, name = stage.group(1).upper(), stage.group(2).lower()
+            if not ((ordinal == "I" and name == "aprobadas")
+                    or (ordinal == "II" and "pendientes" in name)
+                    or (ordinal == "III" and name == "desistidas")):
+                raise GateError("IAEN_STAGE_ORDINAL_LABEL_MISMATCH")
+            stage_index = {"I": 1, "II": 2, "III": 3}[ordinal]
+            if stage_index < last_planned_stage_index:
+                raise GateError("IAEN_STAGE_ORDER_MISMATCH")
+            last_planned_stage_index = stage_index
         heads = list(_STAGE.finditer(segment))
         bullets = list(_BULLET.finditer(segment))
         for j, bullet in enumerate(bullets):
             earlier = [h for h in heads if h.start() < bullet.start()]
             if not earlier:
                 raise GateError("IAEN_UNCLASSIFIED_PLANNED_LISTING")
-            status_label = earlier[-1].group(1).lower()
+            status_label = earlier[-1].group(2).lower()
             if "aprobadas" in status_label:
                 status = "APPROVED_AS_REPORTED"
             elif "pendientes" in status_label:

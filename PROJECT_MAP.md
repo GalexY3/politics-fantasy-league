@@ -45,7 +45,7 @@ El catálogo completo está en [PROJECT_INDEX.json](PROJECT_INDEX.json). Solo li
 | `research` | 1996 | Preguntas, campañas, análisis y resultados de investigación |
 | `runtime` | 112 | Aplicación, reglas y almacenamiento del prototipo |
 | `task_queue` | 120 | Expedientes y resultados de ejecución |
-| `verification` | 266 | Pruebas y ejecutores de comprobación |
+| `verification` | 267 | Pruebas y ejecutores de comprobación |
 
 ## Dónde guardar trabajo nuevo
 

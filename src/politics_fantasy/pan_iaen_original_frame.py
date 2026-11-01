@@ -29,7 +29,7 @@ _PAN_OBJECTIVE = re.compile(r"^\s*Objetivo:")
 _PAN_MINISTRY = re.compile(r"^\s*Ministerio:")
 _DEPARTMENT = re.compile(r"^\s*4\.(\d{1,2})\.-\s*(.*)")
 _SUBSECTION = re.compile(r"^\s*4\.(\d{1,2})\.(\d+)\.-\s*(.*)")
-_ROMAN_STATUS = re.compile(r"^\s*[IVX]+\.\s+(.+)", flags=re.I)
+_ROMAN_STATUS = re.compile(r"^\s*([IVX]+)\.\s+(.+)", flags=re.I)
 _BULLET = re.compile(r"^\s*-\s+\S")
 _NORMATIVE_ENTRY = re.compile(
     r"^\s*-\s+(?:Real\s+Decreto(?:[- ]Ley)?|Ley|RD|Orden|Decreto|"
@@ -111,12 +111,17 @@ def _heading_status(line: str) -> str | None:
     m = _ROMAN_STATUS.match(line)
     if not m:
         return None
-    decomposed = unicodedata.normalize("NFKD", m.group(1))
+    ordinal = m.group(1).upper()
+    decomposed = unicodedata.normalize("NFKD", m.group(2))
     unaccented = "".join(ch for ch in decomposed if not unicodedata.combining(ch))
     compact = re.sub(r"[^A-Z0-9]", "", unaccented.upper())
     if compact == "PENDIENTESDEAPROBACION":
+        if ordinal != "II":
+            raise FrameParseError("IAEN_STAGE_ORDINAL_LABEL_MISMATCH")
         return "PENDING_UNSPECIFIED_AS_OF_REPORT"
     if compact == "APROBADAS":
+        if ordinal != "I":
+            raise FrameParseError("IAEN_STAGE_ORDINAL_LABEL_MISMATCH")
         return "APPROVED_AS_OF_REPORT"
     return None
 
@@ -142,6 +147,7 @@ def parse_iaen_ministry_bullets(
     planned_departments: set[str] = set()
     unplanned_number_anomalies: set[str] = set()
     section_count = 0
+    last_planned_stage_index = 0
     for pno in range(start_page_index, len(pages)):
         for lineno, line in enumerate(pages[pno].splitlines(), start=1):
             if _END_REPORT.match(line):
@@ -155,6 +161,7 @@ def parse_iaen_ministry_bullets(
                 population = None
                 section_id = None
                 status = None
+                last_planned_stage_index = 0
                 started = True
                 continue
             sub = _SUBSECTION.match(line)
@@ -164,6 +171,7 @@ def parse_iaen_ministry_bullets(
                 section_id = f"4.{sub.group(1)}.{sub.group(2)}"
                 population = _heading_population(sub.group(3))
                 status = None
+                last_planned_stage_index = 0
                 section_count += 1
                 if population == "PLANNED":
                     planned_departments.add(department)
@@ -176,6 +184,10 @@ def parse_iaen_ministry_bullets(
                 # not inherit the preceding "Aprobadas" status for new bullets.
                 if header_status is None:
                     raise FrameParseError("IAEN_UNSUPPORTED_PLANNED_STATUS_HEADING")
+                stage_index = 1 if header_status == "APPROVED_AS_OF_REPORT" else 2
+                if stage_index < last_planned_stage_index:
+                    raise FrameParseError("IAEN_STAGE_ORDER_MISMATCH")
+                last_planned_stage_index = stage_index
                 status = header_status
             if _BULLET.match(line) and population is not None:
                 # The source's ordinary bullet syntax is not a legal-act
