@@ -11,6 +11,10 @@ observed M yields ceil(M/U) <= received <= floor(M/L). L=0 leaves its upper
 bound unknown. Different period/channel coverage assumptions may be compatible
 with exactly the same observed publications and disagree about the sign of an
 entry trend. Statistical uncertainty and causal attribution are not included.
+
+R24: comparison is conditioned on exact exposure windows, artificial cell
+identity, capture snapshots and the PAPER/ELECTRONIC projection, never merely
+on the sum of the two channels. These metadata are not real witness receipts.
 """
 from __future__ import annotations
 
@@ -143,12 +147,29 @@ def audit_regime_capture(*, strata: tuple[FictionalCaptureStratum, ...],
     periods = {}
     for regime in sorted(REGIMES):
         cells = [c for c in strata if c.regime == regime]
+        by_channel = {c.channel: c for c in cells}
         bounds = [c.partial_intake_bounds() for c in cells]
         lower = sum(lo for lo, _ in bounds)
         upper = (sum(hi for _, hi in bounds)
                  if all(hi is not None for _, hi in bounds) else None)
         periods[regime] = {
             "visible_source_local_documents": sum(c.observed_published for c in cells),
+            "visible_by_channel": {
+                channel: by_channel[channel].observed_published
+                for channel in sorted(CHANNELS)
+            },
+            "exposure_window": {
+                "first_day": cells[0].first_day,
+                "last_day": cells[0].last_day,
+            },
+            "capture_at_by_channel": {
+                channel: by_channel[channel].locally_captured_at
+                for channel in sorted(CHANNELS)
+            },
+            "synthetic_fixture_ids_by_channel": {
+                channel: by_channel[channel].fixture_id
+                for channel in sorted(CHANNELS)
+            },
             "hypothetical_intake_lower": lower,
             "hypothetical_intake_upper": upper,
             "missingness_or_right_censoring_attested": False,
@@ -160,7 +181,7 @@ def audit_regime_capture(*, strata: tuple[FictionalCaptureStratum, ...],
     new_low, new_high = after["hypothetical_intake_lower"], after["hypothetical_intake_upper"]
     sign = _trend_from_bounds(old_low, old_high, new_low, new_high)
     return {
-        "schema": "pfl.synthetic_regime_capture_sensitivity.v1",
+        "schema": "pfl.synthetic_regime_capture_sensitivity.v2",
         "evidence_class": "SYNTHETIC_LAB_ONLY",
         "legal_calendar_zone": legal_calendar_zone,
         "reform_on": reform_on,
@@ -193,7 +214,7 @@ def _check_synthetic_capture_report(report: dict) -> None:
             "real_causal_mechanism_identified", "cross_regime_case_links_certified",
             "regime_change_is_causal_exposure", "AB_scientific_cycles",
             "personal_case_ids_or_outcomes",
-        } or report["schema"] != "pfl.synthetic_regime_capture_sensitivity.v1"
+        } or report["schema"] != "pfl.synthetic_regime_capture_sensitivity.v2"
             or report["evidence_class"] != "SYNTHETIC_LAB_ONLY"):
         raise GateError("ONLY_SYNTHETIC_CAPTURE_REPORTS_COMPARABLE")
     if (type(report["legal_calendar_zone"]) is not str
@@ -218,22 +239,69 @@ def _check_synthetic_capture_report(report: dict) -> None:
     periods = report["periods"]
     if type(periods) is not dict or set(periods) != REGIMES:
         raise GateError("INVALID_SYNTHETIC_REPORT_PERIODS")
+    seen_fixture_ids = set()
     for regime in REGIMES:
         p = periods[regime]
         if (type(p) is not dict or set(p) != {
                 "visible_source_local_documents", "hypothetical_intake_lower",
                 "hypothetical_intake_upper", "missingness_or_right_censoring_attested",
-                "all_received_population_certified",
+            "all_received_population_certified", "visible_by_channel",
+            "exposure_window", "capture_at_by_channel",
+            "synthetic_fixture_ids_by_channel",
         } or p["missingness_or_right_censoring_attested"] is not False
                 or p["all_received_population_certified"] is not False):
             raise GateError("INVALID_SYNTHETIC_REPORT_PERIODS")
+        window = p["exposure_window"]
+        if (type(window) is not dict
+                or set(window) != {"first_day", "last_day"}):
+            raise GateError("INVALID_SYNTHETIC_EXPOSURE_WINDOW")
+        first, last = day(window["first_day"]), day(window["last_day"])
+        if first > last:
+            raise GateError("INVALID_SYNTHETIC_EXPOSURE_WINDOW")
+        by_channel = p["visible_by_channel"]
+        if (type(by_channel) is not dict
+                or set(by_channel) != CHANNELS
+                or any(type(n) is not int or not 0 <= n <= MAX_VISIBLE
+                       for n in by_channel.values())):
+            raise GateError("INVALID_SYNTHETIC_CHANNEL_PROJECTION")
+        captured = p["capture_at_by_channel"]
+        fixture_ids = p["synthetic_fixture_ids_by_channel"]
+        if (type(captured) is not dict or set(captured) != CHANNELS
+                or type(fixture_ids) is not dict
+                or set(fixture_ids) != CHANNELS):
+            raise GateError("INVALID_SYNTHETIC_CAPTURE_IDENTITY")
+        for channel in CHANNELS:
+            if (type(fixture_ids[channel]) is not str
+                    or not fixture_ids[channel].startswith("SYNTHETIC:")
+                    or len(fixture_ids[channel]) > 100
+                    or fixture_ids[channel] in seen_fixture_ids):
+                raise GateError("INVALID_SYNTHETIC_CAPTURE_IDENTITY")
+            seen_fixture_ids.add(fixture_ids[channel])
+            if utc(captured[channel]) > utc(report["as_of"]):
+                raise GateError("SYNTHETIC_CAPTURE_AFTER_REPORT_KNOWLEDGE_CUT")
+            if not legal_day_completed(
+                    cut_on=window["last_day"],
+                    as_of=captured[channel],
+                    legal_calendar_zone=report["legal_calendar_zone"]):
+                raise GateError("SYNTHETIC_REPORT_CAPTURE_BEFORE_PERIOD_COMPLETED")
         m, lo, hi = (p["visible_source_local_documents"],
                      p["hypothetical_intake_lower"], p["hypothetical_intake_upper"])
+        if m != sum(by_channel.values()):
+            raise GateError("INCONSISTENT_CHANNEL_PROJECTION")
         if (type(m) is not int or type(lo) is not int or m < 0
                 or m > 2 * MAX_VISIBLE or lo < m
                 or (hi is not None and (type(hi) is not int or hi < lo))):
             raise GateError("INCONSISTENT_SYNTHETIC_REPORT_BOUNDS")
     old, new = periods["BEFORE_REFORM"], periods["AFTER_REFORM"]
+    old_first = day(old["exposure_window"]["first_day"])
+    old_last = day(old["exposure_window"]["last_day"])
+    new_first = day(new["exposure_window"]["first_day"])
+    new_last = day(new["exposure_window"]["last_day"])
+    reform = day(report["reform_on"])
+    if old_last + timedelta(days=1) != reform or new_first != reform:
+        raise GateError("INCONSISTENT_SYNTHETIC_EXPOSURE_BOUNDARY")
+    if old_last - old_first != new_last - new_first:
+        raise GateError("INCONSISTENT_SYNTHETIC_EXPOSURE_DURATION")
     derived = _trend_from_bounds(old["hypothetical_intake_lower"],
                                  old["hypothetical_intake_upper"],
                                  new["hypothetical_intake_lower"],
@@ -250,18 +318,34 @@ def compare_capture_hypotheses(*, left: dict, right: dict) -> dict:
             or left["as_of"] != right["as_of"]
             or left["legal_calendar_zone"] != right["legal_calendar_zone"]):
         raise GateError("NONCOMPARABLE_HYPOTHETICAL_PERIODS")
+    if any(left["periods"][regime]["exposure_window"]
+           != right["periods"][regime]["exposure_window"]
+           for regime in REGIMES):
+        raise GateError("NONCOMPARABLE_EXPOSURE_WINDOWS")
+    if any(
+            left["periods"][regime][field] != right["periods"][regime][field]
+            for regime in REGIMES for field in (
+                "capture_at_by_channel", "synthetic_fixture_ids_by_channel"
+            )):
+        raise GateError("NONCOMPARABLE_CAPTURE_IDENTITY")
     projection_equal = all(
+        left["periods"][r]["visible_by_channel"]
+        == right["periods"][r]["visible_by_channel"]
+        for r in REGIMES
+    )
+    totals_equal = all(
         left["periods"][r]["visible_source_local_documents"]
         == right["periods"][r]["visible_source_local_documents"]
         for r in REGIMES
     )
     diverge = left["hypothetical_trend_sign"] != right["hypothetical_trend_sign"]
     return {
-        "schema": "pfl.synthetic_regime_observational_equivalence.v1",
+        "schema": "pfl.synthetic_regime_observational_equivalence.v2",
         "status": ("REGIME_SELECTION_ALTERNATIVES_UNRESOLVED"
                    if projection_equal and diverge
                    else "NO_DIFFERENTIAL_WITNESS_FROM_THESE_FIXTURES"),
         "same_visible_projection": projection_equal,
+        "same_aggregated_totals_only": totals_equal and not projection_equal,
         "different_hypothetical_trend_sign": diverge,
         "fictional_registration_trend_not_identified_from_publications": projection_equal and diverge,
         "real_reform_effect_identified": False,

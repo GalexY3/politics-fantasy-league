@@ -33,6 +33,7 @@ from .procedural_population_readiness import report as population_readiness_repo
 from .retained_integrity_status import status as retained_integrity_status
 from .registration_readiness_query import registration_readiness
 from .synthetic_institutional_demo import report as institutional_lineage_demo
+from .scientific_integration_lab import report as scientific_integration_report
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -231,6 +232,25 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                         cut_on=parsed.get('cut_on',['2023-12-31'])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_SYNTHETIC_LINEAGE_CUT'})
+            if route == '/api/scientific-integration-lab':
+                # Fixed Python/Node fixtures, NOT a route to ingest originals,
+                # source URLs, citizen records or a real denominator. No POST.
+                query=urlsplit(self.path).query
+                try:
+                    parsed=parse_qs(query,keep_blank_values=True,
+                                    strict_parsing=True,max_num_fields=2)
+                    if (not set(parsed).issubset({'cut','scenario'})
+                            or any(len(v)!=1 for v in parsed.values())):
+                        raise ValueError('UNSUPPORTED_SYNTHETIC_LAB_QUERY')
+                    return self.reply(200,scientific_integration_report(
+                        cut=parsed.get('cut',['late'])[0],
+                        scenario=parsed.get('scenario',['baseline'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_LAB_QUERY'})
+                except RuntimeError:
+                    # A missing Node runtime or failed cross-language
+                    # integrity check must NOT fall back to a fabricated pass.
+                    return self.reply(503,{'error':'SYNTHETIC_BRIDGE_UNAVAILABLE'})
             if route == '/api/official-nominations':
                 return self.reply(200,nomination_atlas_status())
             if route == '/api/verified-candidacies':
