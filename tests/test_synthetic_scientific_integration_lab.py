@@ -112,6 +112,90 @@ def test_fake_censor_witness_cannot_join_pending_case_or_wrong_digest():
             episodes=episodes,procedural=stage,receipts=receipts)
 
 
+@pytest.mark.parametrize("future_kind", ["PENDING", "APPROVED", "VISIBLE_ADMITTED"])
+def test_future_or_nonterminal_step_cannot_invalidate_visible_censor_witness(future_kind):
+    """Future evidence must stay future; ADMITTED is not a terminal act.
+
+    PREPATCH fixture uses the real auditor + real temporal ledger. No real cases.
+    """
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _temporal, _procedural, _reconcile_followup, CUTS,
+    )
+    from politics_fantasy.procedural_stage_accounting import (
+        PendingWitness, StageAct, audit_lab,
+    )
+    at = CUTS["late"]
+    _, snapshot, receipts = _temporal(_assets(), at=at)
+    baseline_procedure, episodes = _procedural(at)
+    baseline = _reconcile_followup(
+        snapshot=snapshot, episodes=episodes,
+        procedural=baseline_procedure, receipts=receipts)
+    assert baseline["explicit_censor_witnesses"] == 1
+    episode = episodes[3]  # exact server-owned SYNTHETIC:ENTRY4
+    if future_kind == "PENDING":
+        future = PendingWitness(
+            pending_on="2026-11-03", observed_at="2026-11-04T12:00:00Z",
+            document_sha_claim=episode.entry_sha_claim,
+            legal_calendar_zone="Europe/Madrid")
+        mutated_episode = replace(episode, pending=(future,))
+    elif future_kind == "APPROVED":
+        future = StageAct(
+            stage="APPROVED", occurred_on="2026-11-03",
+            documented_on="2026-11-04", observed_at="2026-11-05T12:00:00Z",
+            document_sha_claim=episode.entry_sha_claim,
+            legal_calendar_zone="Europe/Madrid")
+        mutated_episode = replace(episode, acts=(future,))
+    else:
+        future = StageAct(
+            stage="ADMITTED", occurred_on="2026-09-11",
+            documented_on="2026-09-12", observed_at="2026-09-20T12:00:00Z",
+            document_sha_claim=episode.entry_sha_claim,
+            legal_calendar_zone="Europe/Madrid")
+        mutated_episode = replace(episode, acts=(future,))
+    changed = episodes[:3] + (mutated_episode,) + episodes[4:]
+    replay = audit_lab(frame=episode.frame, episodes=changed, as_of=at)
+    assert replay == baseline_procedure  # original stage contract is bitemporal
+    # The integration wrapper MUST preserve that invariant too.
+    assert _reconcile_followup(
+        snapshot=snapshot, episodes=changed,
+        procedural=replay, receipts=receipts) == baseline
+
+
+@pytest.mark.parametrize("known_kind", ["PENDING", "REJECTED"])
+def test_observed_pending_or_terminal_step_cannot_be_censored(known_kind):
+    """Control: the temporal gate may not simply ignore ALL stage evidence."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets, _temporal, _procedural, _reconcile_followup, CUTS,
+    )
+    from politics_fantasy.procedural_stage_accounting import (
+        PendingWitness, StageAct, audit_lab,
+    )
+    at = CUTS["late"]
+    _, snapshot, receipts = _temporal(_assets(), at=at)
+    _, episodes = _procedural(at)
+    ep = episodes[3]
+    if known_kind == "PENDING":
+        note = PendingWitness(
+            pending_on="2026-09-12", observed_at="2026-10-31T12:00:00Z",
+            document_sha_claim=ep.entry_sha_claim,
+            legal_calendar_zone="Europe/Madrid")
+        changed_ep = replace(ep, pending=(note,))
+    else:
+        note = StageAct(
+            stage="REJECTED", occurred_on="2026-09-11",
+            documented_on="2026-09-12", observed_at="2026-10-31T12:00:00Z",
+            document_sha_claim=ep.entry_sha_claim,
+            legal_calendar_zone="Europe/Madrid")
+        changed_ep = replace(ep, acts=(note,))
+    modified = episodes[:3] + (changed_ep,) + episodes[4:]
+    replay = audit_lab(frame=ep.frame, episodes=modified, as_of=at)
+    assert replay["unknown_followup"] == 0
+    with pytest.raises(RuntimeError, match="CENSOR_WITNESS_EPISODE_LINK_INVALID"):
+        _reconcile_followup(
+            snapshot=snapshot, episodes=modified,
+            procedural=replay, receipts=receipts)
+
+
 def test_early_http_aggregate_must_not_reveal_later_asset_hashes_or_ids():
     """Falsifier: knowing *of* tomorrow's bytes is knowledge-time leakage."""
     early = report(cut="early")

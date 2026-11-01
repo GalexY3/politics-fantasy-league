@@ -260,3 +260,54 @@ construidas**, no una tasa de riesgo ni población española. En ambos cortes
 ficha oficial de datos.gob.es con cinco formatos, no cinco vintages ni
 registro inicial independiente. `NEW_CATALOG_METADATA_ONLY_STOP_LOCAL_R5`.
 Comparada con R11/R13/R14/R26/R27/R28; no GET de editor ni originales.
+
+## Revisión posterior PR22: retroactividad por etapa aún no conocida
+
+Una auditoría adversarial independiente sobre HEAD
+`52d8025338b04a68fb98b5c7e1be13560e679263` de la PR #22 localizó
+un fallo **nuevo y alcanzable en el helper** `_reconcile_followup`. El
+contrato base `procedural_stage_accounting.audit_lab` filtra `StageAct` y
+`PendingWitness` por `safe(observed_at) <= as_of`, pero el nuevo helper
+rechazaba una evidencia de censura visible con el simple predicado
+`episode.acts or episode.pending`, incluso cuando esos otros documentos
+solo se conocerían en fechas posteriores al corte. También impedía censura
+ficticia tras una etapa no terminal ya conocida (p. ej. `ADMITTED`).
+
+**PREPATCH congelado:** test parametrizado
+`test_future_or_nonterminal_step_cannot_invalidate_visible_censor_witness`
+con tres modificaciones de `SYNTHETIC:ENTRY4`, todas legales según
+`EntryEpisode`: un PendingWitness capturado **04/11/2026**, un StageAct
+`APPROVED` capturado **05/11/2026**, y una etapa `ADMITTED` no terminal
+capturada en septiembre. El corte de diagnóstico es el mismo
+`2026-11-01T12:00:00Z`; el `TemporalLedger.snapshot` y `audit_lab`
+originales no cambian su diagnóstico (`unknown_followup=1`, censura
+derivada tardía=1). Sin embargo, **3 FAIL esperados** en el helper integrado
+con `CENSOR_WITNESS_EPISODE_LINK_INVALID`. Huellas PREPATCH:
+`scientific_integration_lab.py`
+`7cdd6c92447f20029242fb72c4c079d5a8f9ac8926bab0a80b7f118367d311a9`;
+test inicial con dos casos
+`fe32aa33c0e854ec4e29f6ec12ee0a51cfebf30d47f01486449c6dff8ebb7414`.
+La tercera variante `VISIBLE_ADMITTED` también se ejecutó roja antes de
+modificar código.
+
+**Corrección integrable sin nuevos módulos:** el helper importa `safe`,
+`TERMINAL`, `utc`, `day` y `legal_civil_date` del contrato ya utilizado.
+Solo una etapa **terminal** conocida en el corte, o un PendingWitness
+documentado y observado antes de él, contradicen la vista de censura;
+una transición no terminal permitida no es por sí misma decisión final.
+La identificación de episodio sigue exacta, el SHA del FileReceipt sigue
+siendo del **activo correspondiente** y el resultado continúa declarando
+`real_censoring_attested=false`.
+
+**Controles positivos añadidos:** dos pruebas confirman que si la entrada
+ficticia realmente tiene, en el mismo corte, un pendiente o una decisión
+`REJECTED` observados, la vista de censura los rechaza. Los tests históricos
+PP04 y Node no son reejecutados sin cambios relevantes en esos módulos.
+**R5 STOP, 0/6 gates, 0 AB, 0 originales/PII**.
+
+**R30 preacceso, fuera del pipeline:**
+[Catálogo Junta de Castilla y León: sugerencias y quejas](../research/PFL_SYSTEM20_20261031/ROUND_REPORT30_CYL_SUGERENCIAS_PREACCESS_20261101.md)
+contiene metadatos sobre Tipo, Estado, fecha, origen, unidad, provincia y
+referencia. Es identidad documental nueva frente a R5–R29, pero no
+padrón independiente de recepción ni derecho adjudicado por activo. No
+se visitó ninguna distribución ni editor sujeto a condiciones.

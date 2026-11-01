@@ -22,8 +22,9 @@ from .denominator_lineage_contract import (
 )
 from .pan_iaen_cross_parser_audit import audit_pp04_dual_parsers
 from .procedural_stage_accounting import (
-    EntryEpisode, StageAct, PendingWitness, audit_lab,
+    EntryEpisode, StageAct, PendingWitness, TERMINAL, audit_lab, safe,
 )
+from .procedural_index_contract import utc, day, legal_civil_date
 from .r5_asset_rights_gate import assess_distribution_rights
 from .synthetic_institutional_demo import report as institutional_report
 from .synthetic_regime_capture_sensitivity import (
@@ -244,6 +245,7 @@ def _reconcile_followup(*, snapshot: Snapshot,
     """
     if not isinstance(snapshot, Snapshot) or not isinstance(procedural, dict):
         raise RuntimeError("SYNTHETIC_FOLLOWUP_CONTRACT_REQUIRED")
+    t=utc(snapshot.as_of)
     frame_ids = {e.episode_id for e in episodes}
     if len(frame_ids) != len(episodes) or not frame_ids:
         raise RuntimeError("DUPLICATE_OR_EMPTY_SYNTHETIC_EPISODE_FRAME")
@@ -268,9 +270,21 @@ def _reconcile_followup(*, snapshot: Snapshot,
             claim.subject.authority,claim.subject.family,
             claim.subject.local_id,claim.source_record_id))
         episode = next((e for e in episodes if e.episode_id == episode_id), None)
+        # `audit_lab` filters by the exact observation-time cutoff. Applying
+        # a timeless `if episode.acts or episode.pending` here caused future
+        # documents to invalidate an earlier, already visible censor witness.
+        # Mere ADMITTED/HEARD steps are also NOT terminal decisions.
+        observed_terminal = episode is not None and any(
+            a.stage in TERMINAL and safe(a.observed_at) <= t
+            for a in episode.acts)
+        observed_pending = episode is not None and any(
+            safe(p.observed_at) <= t and
+            day(p.pending_on) <= legal_civil_date(
+                snapshot.as_of, episode.frame.legal_calendar_zone)
+            for p in episode.pending)
         if (episode_id in seen or episode is None
                 or claim.valid_from[:10] < episode.entry_on
-                or episode.acts or episode.pending):
+                or observed_terminal or observed_pending):
             raise RuntimeError("CENSOR_WITNESS_EPISODE_LINK_INVALID")
         seen.add(episode_id)
     unknown = procedural.get("unknown_followup")
