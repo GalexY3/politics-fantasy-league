@@ -48,3 +48,15 @@
 .science-minor{display:block;font-size:10px;color:var(--muted);margin-top:5px}
 .science-digest{overflow-wrap:anywhere;word-break:break-word;font-size:11px}
 @media(max-width:730px){.science-rivals{grid-template-columns:1fr}.science-toolbar select{width:100%;min-width:0}.science-toolbar label{width:100%}}
+
+/* S9 · bitemporal, source-scoped and synthetic-only persisted registry. */
+.science-registry{margin:22px 0}
+.science-registry-toolbar{align-items:end}
+.science-registry-toolbar label{flex:1 1 190px}
+.science-registry-nav,.science-registry-kinds{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.science-registry-nav .btn{white-space:normal;text-align:left}
+.science-registry .registry-active{background:#234b44;border-color:#6bb5a0;color:#e5fff2}
+.science-registry .science-graph{margin:16px 0}
+.science-registry .science-relations{min-height:8px}
+.science-registry .science-table code{overflow-wrap:anywhere;word-break:break-word}
+@media(max-width:730px){.science-registry-nav .btn{width:100%}.science-registry-toolbar label{flex-basis:100%}}

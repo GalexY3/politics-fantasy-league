@@ -37,6 +37,7 @@ function setup(){
   if(url.pathname==='/api/scientific-lab-export'){
    const result=structuredClone(reports[cut]);
    result.scenario=scenario;
+   result.explorer.catalog.publication_filter_fixture=url.searchParams.get('published_until');
    const json=JSON.stringify(result);
    const sha=createHash('sha256').update(json).digest('hex');
    return {ok:true,json:async()=>({schema:'pfl.synthetic_scientific_export_receipt.v1',

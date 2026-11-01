@@ -38,6 +38,11 @@ from .scientific_integration_lab import (
     scientific_export_receipt,
     synthetic_candidate_admission,
 )
+from .scientific_registry import (
+    query_registry as scientific_registry_query,
+    registry_path as scientific_registry_path,
+    RegistryIntegrityError,
+)
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -250,6 +255,28 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                     return self.reply(400,{'error':'INVALID_SYNTHETIC_ADMISSION_QUERY'})
                 except RuntimeError:
                     return self.reply(503,{'error':'SYNTHETIC_ADMISSION_UNAVAILABLE'})
+            if route == '/api/scientific-registry':
+                # S9 is an allowlisted, *persistent synthetic-only* SQLite
+                # source registry. No user-provided body, SQL, source ID, URL,
+                # file path, original or arbitrary issuer reaches the DB.
+                try:
+                    parsed=parse_qs(urlsplit(self.path).query,
+                                    keep_blank_values=True,strict_parsing=True,
+                                    max_num_fields=4)
+                    allowed={'cut','valid_at','family','published_until'}
+                    if not set(parsed).issubset(allowed) or any(
+                            len(values)!=1 for values in parsed.values()):
+                        raise ValueError('REGISTRY_QUERY_NOT_CLOSED')
+                    return self.reply(200,scientific_registry_query(
+                        scientific_registry_path(db_path),
+                        cut=parsed.get('cut',['late'])[0],
+                        valid_at=parsed.get('valid_at',['2026-09-15'])[0],
+                        family=parsed.get('family',['all'])[0],
+                        published_until=parsed.get('published_until',['as_of'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_REGISTRY_QUERY'})
+                except (RegistryIntegrityError,RuntimeError,OSError):
+                    return self.reply(503,{'error':'SYNTHETIC_REGISTRY_UNAVAILABLE'})
             if route in ('/api/scientific-integration-lab',
                          '/api/scientific-lab-export'):
                 # Fixed Python/Node fixtures, NOT a route to ingest originals,
