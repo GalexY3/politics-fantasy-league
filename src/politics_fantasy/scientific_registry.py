@@ -18,7 +18,7 @@ from threading import RLock
 
 from . import scientific_integration_lab as lab
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 FAMILY_FILTERS = frozenset(("all", "PP04", "CHAIN", "CHRONICLE"))
 VALID_DAYS = frozenset(("2026-09-11", "2026-09-15", "2026-10-10"))
 PUBLICATION_FILTERS = frozenset(("as_of", "2026-09-19T12:00:00Z",
@@ -36,6 +36,125 @@ _ASSESSMENT_CAPTURED = "2026-10-31T12:00:00Z"
 _ASSESSMENT_REGISTERED = "2026-10-31T12:15:00Z"
 _ASSESSMENT_ASSESSED = "2026-10-31T13:00:00Z"
 _ASSESSMENT_PUBLIC = _ASSESSMENT_ASSESSED
+_INTAKE_FIXTURE_KEYS = (
+    "sandbox_alpha_v1", "sandbox_beta_v1",
+    "sandbox_alpha_v2", "sandbox_bad_issuer",
+)
+
+
+def _authored_intake_fixture(fixture_id: str) -> dict:
+    """Only explicitly authored synthetic options; not a user-data parser.
+
+    `recorded_at_fixture` and similar values are invented scenario clocks,
+    NEVER the wall-clock enrollment time or real publication of a source.
+    """
+    if type(fixture_id) is not str or fixture_id not in _INTAKE_FIXTURE_KEYS:
+        raise ValueError("UNSUPPORTED_AUTHOR_CLOSED_SYNTHETIC_FIXTURE")
+    cases={
+        "sandbox_alpha_v1":dict(public_id="S9:INTAKE_01",group="A",revision=1,
+            issuer="SYN:S9_AUTHOR_ALPHA",expected_issuer="SYN:S9_AUTHOR_ALPHA",
+            source_local_id="AUTHOR_ALPHA:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T12:00:00Z",registered_at="2026-10-31T12:10:00Z",
+            assessed_at="2026-10-31T12:20:00Z",valid_from="2026-09-11",
+            label="Documento ficticio A · versión 1"),
+        "sandbox_beta_v1":dict(public_id="S9:INTAKE_02",group="B",revision=1,
+            issuer="SYN:S9_AUTHOR_BETA",expected_issuer="SYN:S9_AUTHOR_BETA",
+            source_local_id="AUTHOR_BETA:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T12:30:00Z",registered_at="2026-10-31T12:40:00Z",
+            assessed_at="2026-10-31T12:50:00Z",valid_from="2026-10-10",
+            label="Documento ficticio B · versión 1"),
+        "sandbox_alpha_v2":dict(public_id="S9:INTAKE_03",group="A",revision=2,
+            issuer="SYN:S9_AUTHOR_ALPHA",expected_issuer="SYN:S9_AUTHOR_ALPHA",
+            source_local_id="AUTHOR_ALPHA:FILE_1",amendment_of="sandbox_alpha_v1",
+            captured_at="2026-10-31T13:00:00Z",registered_at="2026-10-31T13:10:00Z",
+            assessed_at="2026-10-31T13:20:00Z",valid_from="2026-09-15",
+            label="Documento ficticio A · versión 2"),
+        "sandbox_bad_issuer":dict(public_id="S9:INTAKE_04",group="X",revision=1,
+            issuer="REAL:UNVERIFIED_FIXTURE",expected_issuer="SYN:S9_AUTHOR_SANDBOX_X",
+            source_local_id="AUTHOR_REJECTED:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T13:30:00Z",registered_at="2026-10-31T13:40:00Z",
+            assessed_at="2026-10-31T13:50:00Z",valid_from="2026-09-15",
+            label="Documento ficticio con emisor inválido"),
+    }
+    item={**cases[fixture_id],"fixture_id":fixture_id,
+          "source_first_public_at_fixture":"2026-10-30T12:00:00Z",
+          "receipt_first_public_at_fixture":cases[fixture_id]["assessed_at"],
+          "provenance":"AUTHOR_CLOSED_SANDBOX_FICTION_NOT_AN_ORIGINAL",
+          "quality_gate":"AUTHOR_CLOSED_SANDBOX_ONLY"}
+    # Each revision has distinct BYTES; v2 keeps the SAME typed source-local
+    # identity, and does not add a second actor, institution or decision.
+    item["source_bytes"]=("SYNTHETIC S9 AUTHOR-CLOSED INTAKE\n"
+        f"FICTION:{item['group']}\nEDITION:V{item['revision']}\n"
+        "ACTOR:LOCAL_ACTOR\nORGANIZATION:LOCAL_ORG\nPROCESS:LOCAL_PROCESS\n"
+        ).encode("utf-8")
+    item["typed_manifest"]={
+        "schema":"pfl.synthetic_intake_typed_local_manifest.v1",
+        "issuer":item["issuer"],"source_local_id":item["source_local_id"],
+        "revision":item["revision"],"amendment_of":item["amendment_of"],
+        "valid_from":item["valid_from"],
+        "nodes":[{"kind":k,"local_id":f"{item['group']}:LOCAL_{k}"}
+                 for k in ("ACTOR","ORGANIZATION","PROCESS")],
+        "edges":[
+            {"from_kind":"ACTOR","from_local":f"{item['group']}:LOCAL_ACTOR",
+             "to_kind":"ORGANIZATION","to_local":f"{item['group']}:LOCAL_ORGANIZATION",
+             "kind":"AUTHOR_CLOSED_DOCUMENTARY_ASSOCIATION"},
+            {"from_kind":"ORGANIZATION","from_local":f"{item['group']}:LOCAL_ORGANIZATION",
+             "to_kind":"PROCESS","to_local":f"{item['group']}:LOCAL_PROCESS",
+             "kind":"AUTHOR_CLOSED_DOCUMENTARY_PROCESS_LINK"},
+        ],
+    }
+    return item
+
+
+def _intake_authored_events(fixture_id: str) -> list[dict]:
+    """Two SHA-bound events for ONE fixture; malformed examples end REJECTED."""
+    fixture=_authored_intake_fixture(fixture_id)
+    is_valid=fixture["issuer"]==fixture["expected_issuer"]
+    terminal="SANDBOX_VALIDATED" if is_valid else "SANDBOX_REJECTED"
+    reason="NONE" if is_valid else "ISSUER_NOT_ALLOWLISTED"
+    typed_bytes=_json(fixture["typed_manifest"]).encode("utf-8")
+    source=fixture["source_bytes"]
+    events=[]
+    for sequence,status,recorded_at in (
+            (1,"SANDBOX_REGISTERED",fixture["registered_at"]),
+            (2,terminal,fixture["assessed_at"])):
+        body={
+            "schema":"pfl.synthetic_intake_private_event.v1",
+            "fixture_id":fixture_id,"intake_id":fixture["public_id"],
+            "sequence":sequence,"status":status,"reason_code":reason if sequence==2 else "NONE",
+            "recorded_at_fixture":recorded_at,
+            "captured_at_fixture":fixture["captured_at"],
+            "source_first_public_at_fixture":fixture["source_first_public_at_fixture"],
+            "receipt_first_public_at_fixture":fixture["receipt_first_public_at_fixture"],
+            "issuer_claim":fixture["issuer"],
+            "source_local_id":fixture["source_local_id"],
+            "revision":fixture["revision"],"amendment_of":fixture["amendment_of"],
+            "source_sha256":_sha(source),"typed_manifest_sha256":_sha(typed_bytes),
+            "rights_for_public_display":False,"real_first_public_at":None,
+            "source_rows_inserted_in_canonical":0,
+        }
+        receipt_bytes=_json(body).encode("utf-8")
+        events.append({
+            "event_id":f"{fixture['public_id']}:EVENT_{sequence}",
+            "intake_id":fixture["public_id"],"fixture_id":fixture_id,
+            "event_sequence":sequence,"status":status,
+            "reason_code":reason if sequence==2 else "NONE",
+            "issuer_claim":fixture["issuer"],
+            "source_local_id":fixture["source_local_id"],
+            "revision":fixture["revision"],"amendment_of":fixture["amendment_of"],
+            "captured_at":fixture["captured_at"],
+            "recorded_at":recorded_at,
+            "first_public_known_at":fixture["receipt_first_public_at_fixture"],
+            "source_first_public_at":fixture["source_first_public_at_fixture"],
+            "valid_from":fixture["valid_from"],
+            "source_bytes":source,"source_sha256":_sha(source),
+            "typed_manifest_bytes":typed_bytes,"typed_manifest_sha256":_sha(typed_bytes),
+            "receipt_bytes":receipt_bytes,"receipt_sha256":_sha(receipt_bytes),
+            "rights_for_public_display":0,"issuer_authenticated_real":0,
+            "first_public_at_real":None,"independent_denominator":None,
+            "canonical_rows_imported":0,
+        })
+    return events
 
 
 class RegistryIntegrityError(RuntimeError):
@@ -314,6 +433,13 @@ ASSESSMENT_COLUMNS=("event_id","assessment_id","candidate","event_sequence",
     "receipt_bytes","receipt_sha256","rights_for_public_display",
     "real_issuer_authenticated","real_first_public_at",
     "independent_denominator","source_rows_imported")
+INTAKE_COLUMNS=("event_id","intake_id","fixture_id","event_sequence","status",
+    "reason_code","issuer_claim","source_local_id","revision","amendment_of",
+    "captured_at","recorded_at","first_public_known_at",
+    "source_first_public_at","valid_from","source_bytes","source_sha256",
+    "typed_manifest_bytes","typed_manifest_sha256","receipt_bytes",
+    "receipt_sha256","rights_for_public_display","issuer_authenticated_real",
+    "first_public_at_real","independent_denominator","canonical_rows_imported")
 _TRIGGER_DEFINITIONS={
     "registry_distribution_immutable_update":("UPDATE","distribution","IMMUTABLE_SOURCE_REVISION"),
     "registry_distribution_immutable_delete":("DELETE","distribution","IMMUTABLE_SOURCE_REVISION"),
@@ -323,6 +449,8 @@ _TRIGGER_DEFINITIONS={
     "registry_edge_immutable_delete":("DELETE","typed_edge","IMMUTABLE_TYPED_EDGE"),
     "registry_assessment_immutable_update":("UPDATE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
     "registry_assessment_immutable_delete":("DELETE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
+    "registry_intake_immutable_update":("UPDATE","synthetic_intake_event","IMMUTABLE_SYNTHETIC_INTAKE_EVENT"),
+    "registry_intake_immutable_delete":("DELETE","synthetic_intake_event","IMMUTABLE_SYNTHETIC_INTAKE_EVENT"),
 }
 
 
@@ -487,6 +615,56 @@ def _migration_v3(db: sqlite3.Connection) -> None:
     db.execute("PRAGMA user_version=3")
 
 
+def _migration_v4(db: sqlite3.Connection) -> None:
+    """Optional explicitly enrolled sandbox overlay, not a canonical corpus."""
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE synthetic_intake_event (
+            event_id TEXT PRIMARY KEY,
+            intake_id TEXT NOT NULL,
+            fixture_id TEXT NOT NULL CHECK(fixture_id IN (
+                'sandbox_alpha_v1','sandbox_beta_v1','sandbox_alpha_v2','sandbox_bad_issuer')),
+            event_sequence INTEGER NOT NULL CHECK(event_sequence IN(1,2)),
+            status TEXT NOT NULL CHECK(status IN(
+                'SANDBOX_REGISTERED','SANDBOX_VALIDATED','SANDBOX_REJECTED')),
+            reason_code TEXT NOT NULL CHECK(reason_code IN('NONE','ISSUER_NOT_ALLOWLISTED')),
+            issuer_claim TEXT NOT NULL,
+            source_local_id TEXT NOT NULL,
+            revision INTEGER NOT NULL CHECK(revision IN(1,2)),
+            amendment_of TEXT,
+            captured_at TEXT NOT NULL,
+            recorded_at TEXT NOT NULL,
+            first_public_known_at TEXT NOT NULL,
+            source_first_public_at TEXT NOT NULL,
+            valid_from TEXT NOT NULL,
+            source_bytes BLOB NOT NULL,
+            source_sha256 TEXT NOT NULL,
+            typed_manifest_bytes BLOB NOT NULL,
+            typed_manifest_sha256 TEXT NOT NULL,
+            receipt_bytes BLOB NOT NULL,
+            receipt_sha256 TEXT NOT NULL,
+            rights_for_public_display INTEGER NOT NULL DEFAULT 0 CHECK(rights_for_public_display=0),
+            issuer_authenticated_real INTEGER NOT NULL DEFAULT 0 CHECK(issuer_authenticated_real=0),
+            first_public_at_real TEXT CHECK(first_public_at_real IS NULL),
+            independent_denominator INTEGER CHECK(independent_denominator IS NULL),
+            canonical_rows_imported INTEGER NOT NULL DEFAULT 0 CHECK(canonical_rows_imported=0),
+            UNIQUE(fixture_id,event_sequence),
+            UNIQUE(intake_id,event_sequence),
+            CHECK((event_sequence=1 AND status='SANDBOX_REGISTERED' AND reason_code='NONE')
+               OR (event_sequence=2 AND status='SANDBOX_VALIDATED' AND reason_code='NONE')
+               OR (event_sequence=2 AND status='SANDBOX_REJECTED' AND reason_code='ISSUER_NOT_ALLOWLISTED'))
+        );
+        CREATE INDEX idx_registry_intake_time
+          ON synthetic_intake_event(first_public_known_at,recorded_at,valid_from,fixture_id);
+        INSERT INTO schema_history VALUES(4,'AUTHOR_CLOSED_OPTIONAL_INTAKE_OVERLAY',
+          '2026-11-02T00:00:00Z');
+        CREATE TRIGGER registry_intake_immutable_update BEFORE UPDATE ON synthetic_intake_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SYNTHETIC_INTAKE_EVENT'); END;
+        CREATE TRIGGER registry_intake_immutable_delete BEFORE DELETE ON synthetic_intake_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SYNTHETIC_INTAKE_EVENT'); END;
+    """)
+    db.execute("PRAGMA user_version=4")
+
+
 def _manifest_hash() -> str:
     def public_source(s:dict) -> dict:
         return {k:(s[k].hex() if isinstance(s[k],bytes) else s[k])
@@ -510,6 +688,7 @@ def _expected_schema_sha256() -> str:
         _migration_v1(db)
         _migration_v2(db)
         _migration_v3(db)
+        _migration_v4(db)
         result=_schema_sha256(db)
         db.rollback()
         return result
@@ -517,7 +696,7 @@ def _expected_schema_sha256() -> str:
 
 def _migrate(db: sqlite3.Connection) -> None:
     version=db.execute("PRAGMA user_version").fetchone()[0]
-    if version not in (0,1,2,3):
+    if version not in (0,1,2,3,4):
         raise RegistryIntegrityError("REGISTRY_UNKNOWN_SCHEMA_VERSION")
     if version==0:
         if db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").fetchone()[0]:
@@ -529,6 +708,9 @@ def _migrate(db: sqlite3.Connection) -> None:
         version=2
     if version==2:
         _migration_v3(db)
+        version=3
+    if version==3:
+        _migration_v4(db)
     if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
         raise RegistryIntegrityError("REGISTRY_MIGRATION_DIVERGENCE")
 
@@ -560,7 +742,7 @@ def _actual_rows(db:sqlite3.Connection,table:str,columns:tuple) -> list[dict]:
     return [dict(row) for row in rows]
 
 
-def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list[dict]]:
+def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list[dict],list[dict]]:
     if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
         raise RegistryIntegrityError("REGISTRY_SCHEMA_VERSION_MISMATCH")
     if _schema_sha256(db)!=_expected_schema_sha256():
@@ -573,7 +755,8 @@ def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list
     versions=[tuple(r) for r in db.execute("SELECT * FROM schema_history ORDER BY version")]
     if versions!=[(1,"REGISTRY_SOURCES_BLOB_SHA","2026-11-01T12:00:00Z"),
                   (2,"REGISTRY_SOURCE_LOCAL_TYPED_EDGES","2026-11-01T12:00:00Z"),
-                  (3,"ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION","2026-11-01T12:00:00Z")]:
+                  (3,"ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION","2026-11-01T12:00:00Z"),
+                  (4,"AUTHOR_CLOSED_OPTIONAL_INTAKE_OVERLAY","2026-11-02T00:00:00Z")]:
         raise RegistryIntegrityError("REGISTRY_SCHEMA_HISTORY_CORRUPTED")
     triggers={r[0]:r[1] for r in db.execute(
         "SELECT name,sql FROM sqlite_master WHERE type='trigger'")}
@@ -655,7 +838,34 @@ def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list
             _timestamp(actual[field])
         if actual!=expected:
             raise RegistryIntegrityError("REGISTRY_ASSESSMENT_CLOSED_RECEIPT_DIVERGENCE")
-    return actual_s,actual_f,actual_e,assessment_events
+    intake_events=_actual_rows(db,"synthetic_intake_event",INTAKE_COLUMNS)
+    by_fixture:dict[str,list[dict]]={}
+    for event in intake_events:
+        fixture_id=event["fixture_id"]
+        if fixture_id not in _INTAKE_FIXTURE_KEYS:
+            raise RegistryIntegrityError("REGISTRY_UNSUPPORTED_INTAKE_OVERLAY_ID")
+        for body,digest in (("source_bytes","source_sha256"),
+                            ("typed_manifest_bytes","typed_manifest_sha256"),
+                            ("receipt_bytes","receipt_sha256")):
+            if type(event[body]) is not bytes or _sha(event[body])!=event[digest]:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_BYTES_SHA_TAMPER")
+        for clock in ("captured_at","recorded_at","first_public_known_at",
+                      "source_first_public_at"):
+            _timestamp(event[clock])
+        _day(event["valid_from"])
+        if (event["source_first_public_at"]>event["captured_at"] or
+                event["captured_at"]>event["recorded_at"] or
+                event["recorded_at"]>event["first_public_known_at"]):
+            raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_CLOCK_CONTRADICTION")
+        by_fixture.setdefault(fixture_id,[]).append(event)
+    for fixture_id,actual in by_fixture.items():
+        expected=sorted(_intake_authored_events(fixture_id),key=lambda e:e["event_id"])
+        actual.sort(key=lambda e:e["event_id"])
+        if actual!=expected:
+            raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_CLOSED_FIXTURE_DIVERGENCE")
+    if "sandbox_alpha_v2" in by_fixture and "sandbox_alpha_v1" not in by_fixture:
+        raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_MISSING_REVISION_PARENT")
+    return actual_s,actual_f,actual_e,assessment_events,intake_events
 
 
 def seed_registry(path:Path) -> None:
@@ -717,6 +927,67 @@ def _seed_registry_locked(path:Path) -> None:
                 raise
     except sqlite3.DatabaseError as exc:
         raise RegistryIntegrityError("REGISTRY_SQLITE_INTEGRITY_FAILURE") from exc
+
+
+def _fixture_wire_fingerprint(fixture:dict) -> str:
+    """Type-strict byte-level comparison for test-only `wire` overrides."""
+    if type(fixture) is not dict or type(fixture.get("source_bytes")) is not bytes:
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_INVALID")
+    normalized={k:(v.hex() if type(v) is bytes else v)
+                for k,v in fixture.items()}
+    try:
+        return _sha(_json(normalized).encode("utf-8"))
+    except (TypeError,ValueError) as exc:
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_INVALID") from exc
+
+
+def enroll_synthetic_fixture(path:Path,fixture_id:str,*,wire:dict|None=None) -> dict:
+    """Explicit, replay-safe, author-only enrollment of ONE synthetic option.
+
+    No HTTP/API upload, remote fetch, arbitrary document bytes or real source
+    validation. `wire` is strictly an adversarial-test override: even if it
+    equals the authored bytes it cannot add a novel source to the allowlist.
+    Historical fixture times are stipulated, never actual enrollment clocks.
+    """
+    fixture=_authored_intake_fixture(fixture_id)  # reject ID BEFORE DB creation
+    if wire is not None and _fixture_wire_fingerprint(wire)!=_fixture_wire_fingerprint(fixture):
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_SPOOF_REJECTED")
+    seed_registry(Path(path))
+    try:
+        with _connect(Path(path)) as db:
+            db.execute("BEGIN IMMEDIATE")
+            try:
+                *_,events=_audit(db)
+                enrolled={row["fixture_id"] for row in events}
+                if (fixture["amendment_of"] is not None and
+                        fixture["amendment_of"] not in enrolled):
+                    raise ValueError("SANDBOX_REVISION_PREREQUISITE_REQUIRED")
+                exists=fixture_id in enrolled
+                proposed=_intake_authored_events(fixture_id)
+                if not exists:
+                    _insert_rows(db,"synthetic_intake_event",INTAKE_COLUMNS,proposed)
+                _audit(db)  # verify entire append-only ledger before COMMIT
+                db.commit()
+            except Exception:
+                db.rollback()
+                raise
+    except sqlite3.DatabaseError as exc:
+        raise RegistryIntegrityError("SANDBOX_SQLITE_ENROLLMENT_FAILED") from exc
+    terminal=proposed[-1]
+    return {
+        "schema":"pfl.synthetic_intake_enrollment_result.v1",
+        "intake_id":fixture["public_id"],
+        "label":fixture["label"],
+        "status":terminal["status"],
+        "reason_code":terminal["reason_code"],
+        "revision":"fixture_v"+str(fixture["revision"]),
+        "event_count_appended":0 if exists else 2,
+        "idempotent_replay":exists,
+        "canonical_sources_imported":0,
+        "real_source_admitted":False,
+        "rights_for_public_display":False,
+        "R5":"STOP_R5",
+    }
 
 
 def _visible(source:dict,as_of:str,published_until:str) -> bool:
@@ -786,6 +1057,127 @@ def _assessment_projection(*, events:list[dict],as_of:str,
         "real_admission_allowed":False,
         "source_local_identifiers_exposed":False,
         "official_issuer_authenticated":False,
+    }
+
+
+def _synthetic_intake_projection(*,events:list[dict],as_of:str,
+                                 published_until:str,valid_at:str,
+                                 family:str) -> dict:
+    """Only pseudonymous authored records, no local source keys or bytes."""
+    visible=[event for event in events if family=="all" and
+             event["captured_at"]<=as_of and event["recorded_at"]<=as_of and
+             event["first_public_known_at"]<=as_of and
+             event["first_public_known_at"]<=published_until]
+    by_fixture:dict[str,list[dict]]={}
+    for event in visible:
+        by_fixture.setdefault(event["fixture_id"],[]).append(event)
+    entries=[]
+    validated_groups:dict[str,list[dict]]={}
+    for fixture_id in _INTAKE_FIXTURE_KEYS:
+        history=sorted(by_fixture.get(fixture_id,[]),key=lambda x:x["event_sequence"])
+        if not history:
+            continue
+        if len(history)!=2 or [x["status"] for x in history][0]!="SANDBOX_REGISTERED":
+            raise RegistryIntegrityError("REGISTRY_INTAKE_PUBLICATION_PARTIAL")
+        fixture=_authored_intake_fixture(fixture_id)
+        terminal=history[-1]
+        if terminal["status"]=="SANDBOX_VALIDATED":
+            validated_groups.setdefault(fixture["group"],[]).append({
+                "fixture":fixture,
+                "manifest":json.loads(terminal["typed_manifest_bytes"]),
+            })
+        entry={
+            "intake_id":fixture["public_id"],
+            "label":fixture["label"],
+            "status":terminal["status"],
+            "reason_code":terminal["reason_code"],
+            "revision":"fixture_v"+str(fixture["revision"]),
+            "amendment_of":None if fixture["amendment_of"] is None else
+                _authored_intake_fixture(fixture["amendment_of"])["public_id"],
+            "quality_gate":fixture["quality_gate"],
+            "provenance":fixture["provenance"],
+            "valid_from":fixture["valid_from"],
+            "captured_at_fixture":fixture["captured_at"],
+            "source_first_public_at_fixture":fixture["source_first_public_at_fixture"],
+            "receipt_first_public_at_fixture":fixture["receipt_first_public_at_fixture"],
+            "registered_at_fixture":fixture["registered_at"],
+            "validated_at_fixture":fixture["assessed_at"],
+            "history":[{"status":row["status"],
+                        "recorded_at_fixture":row["recorded_at"]}
+                       for row in history],
+            "rights_for_public_display":False,
+            "real_first_public_at":None,
+            "real_issuer_authenticated":False,
+            "empirical_admitted":False,
+            "canonical_source_rows_imported":0,
+        }
+        entry["public_descriptor_sha256"]=_sha(_json(entry).encode("utf-8"))
+        entries.append(entry)
+    groups_valid={group:[r for r in revisions if r["fixture"]["valid_from"]<=valid_at]
+                  for group,revisions in validated_groups.items()}
+    group_nodes=[]
+    group_edges=[]
+    graph_sources=0
+    for group,revisions in sorted(groups_valid.items()):
+        if not revisions:
+            continue
+        graph_sources+=1
+        revisions.sort(key=lambda r:r["fixture"]["revision"])
+        # Stable opaque references across revisions: never expose the actual
+        # typed source-local identity (`AUTHOR_*:FILE_1` / `A:LOCAL_ACTOR`).
+        public_root=_authored_intake_fixture(
+            "sandbox_alpha_v1" if group=="A" else "sandbox_beta_v1")["public_id"]
+        labels={"ACTOR":"Actor ficticio", "ORGANIZATION":"Organización ficticia",
+                "PROCESS":"Proceso ficticio"}
+        manifest=revisions[-1]["manifest"]  # latest visible typed documentary version
+        ref_by_typed={}
+        for node in manifest["nodes"]:
+            kind=node["kind"]
+            if kind not in labels:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_UNSUPPORTED_NODE_TYPE")
+            ref=f"{public_root}:N_{kind}"
+            typed=(kind,node["local_id"])
+            if typed in ref_by_typed:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_DUPLICATE_TYPED_NODE")
+            ref_by_typed[typed]=ref
+            group_nodes.append({
+                "id":ref,"kind":kind,"label":labels[kind],
+                "documentary_revision_count":len(revisions),
+                "logical_identity_count":1,
+            })
+        for edge in manifest["edges"]:
+            frm=(edge["from_kind"],edge["from_local"])
+            to=(edge["to_kind"],edge["to_local"])
+            if frm not in ref_by_typed or to not in ref_by_typed:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_EDGE_ENDPOINT_MISSING")
+            group_edges.append({"from":ref_by_typed[frm],
+                                "to":ref_by_typed[to],"kind":edge["kind"]})
+    return {
+        "schema":"pfl.synthetic_intake_overlay.v1",
+        "intake_count":len(entries),
+        "registered_count":len(entries),
+        "validated_count":sum(x["status"]=="SANDBOX_VALIDATED" for x in entries),
+        "rejected_count":sum(x["status"]=="SANDBOX_REJECTED" for x in entries),
+        "history_event_count":2*len(entries),
+        "logical_source_count":len(validated_groups),
+        "documentary_revision_count":sum(len(x) for x in validated_groups.values()),
+        "logical_decisions_count":0,
+        "entries":entries,
+        "graph":{
+            "nodes":group_nodes,"edges":group_edges,
+            "node_count":len(group_nodes),"edge_count":len(group_edges),
+            "logical_source_count_valid_at":graph_sources,
+            "cross_issuer_links_created":False,
+            "revisions_are_not_new_actors_or_decisions":True,
+        },
+        "temporal_axis":"AUTHOR_STIPULATED_FIXTURE_CLOCKS_NOT_REAL_ENROLLMENT_TIME",
+        "real_enrollment_at":None,
+        "source_rows_added_to_canonical":0,
+        "independent_denominator":None,
+        "real_source_ingestion_allowed":False,
+        "source_local_identifiers_exposed":False,
+        "rights_for_public_display":False,
+        "scientific_admission_allowed":False,
     }
 
 
@@ -902,7 +1294,7 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
     seed_registry(Path(path))
     try:
         with _connect(Path(path)) as db:
-            sources,facts,edges,assessment_events=_audit(db)
+            sources,facts,edges,assessment_events,intake_events=_audit(db)
     except sqlite3.DatabaseError as exc:
         raise RegistryIntegrityError("REGISTRY_READ_SQLITE_CORRUPTION") from exc
     visible=[s for s in sources if s["public_id"] is not None and
@@ -930,6 +1322,9 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
     snapshot["admission_assessments"]=_assessment_projection(
         events=assessment_events,as_of=as_of,
         published_until=ceiling,family=family)
+    snapshot["synthetic_intake"]=_synthetic_intake_projection(
+        events=intake_events,as_of=as_of,published_until=ceiling,
+        valid_at=valid_at,family=family)
     # A separate, reproducible receipt for the exact PUBLIC query projection.
     # No private source bytes/IDs, no claim of an independent publisher's sig.
     receipt_scope={
@@ -956,7 +1351,7 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
         "family":family,"published_until":ceiling,
         "registry": {
             "schema_version":SCHEMA_VERSION,"persistent":True,
-            "migration_history":[1,2,3],
+            "migration_history":[1,2,3,4],
             "source_catalog_kind":"FIXED_PUBLIC_DESCRIPTORS_ONLY",
             "distributions":registry_sources,
             "visible_distribution_count":len(registry_sources),
@@ -983,16 +1378,25 @@ def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
 
 
 def main() -> None:
-    """Offline allowlisted CLI: no input paths to ingest; only local DB path."""
+    """Offline allowlisted CLI; no source path/payload/URL/rights supplied."""
     import argparse
     ap=argparse.ArgumentParser(description="Seed or inspect fixed synthetic S9 registry")
     ap.add_argument("--db",type=Path,required=True,
                     help="Path for *synthetic* SQLite registry; no source bytes accepted")
     ap.add_argument("--seed",action="store_true",
                     help="atomically replay the same hardcoded fictional fixture")
+    ap.add_argument("--enroll",choices=_INTAKE_FIXTURE_KEYS,
+                    help="explicitly enroll ONE of four author-closed sandbox fixture options")
     args=ap.parse_args()
-    seed_registry(args.db)
-    if args.seed:
+    if args.seed and args.enroll:
+        ap.error("CHOOSE_EITHER_SEED_OR_EXPLICIT_ENROLLMENT")
+    if args.enroll:
+        try:
+            print(_json(enroll_synthetic_fixture(args.db,args.enroll)))
+        except (RegistryIntegrityError,ValueError) as exc:
+            ap.error(str(exc))
+    elif args.seed:
+        seed_registry(args.db)
         print(_json({"schema":"pfl.synthetic_registry_offline_seed.v1",
                      "status":"FIXTURE_REPLAY_VERIFIED", "R5":"STOP_R5",
                      "real_source_ingested":False}))

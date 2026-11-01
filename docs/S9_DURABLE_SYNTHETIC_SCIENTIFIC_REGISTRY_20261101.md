@@ -253,3 +253,123 @@ exclusiva de `app.js` y tests JS.
 **Sin admisión empírica:** R5 STOP; cero fuentes reales importadas;
 cero permisos de distribución acreditados; `real_first_public_at=null`;
 denominador independiente nulo; cero ciclos AB; 0/6 puertas.
+
+## Continuación diferencial S9 v4 · ingestión explícita de fixtures sintéticos cerrados
+
+**Capacidad informática nueva, NONCYCLE; no se atribuyen falsadores PREPATCH.**
+La fase v3 registraba ocho evaluaciones del **mismo** candidato ficticio,
+no incorporaba distribuciones nuevas. La fase v4 habilita una operación
+efectiva y durable **exclusivamente sobre cuatro opciones preescritas en
+el código**, sin admisión de bytes arbitrarios, URLs, archivos descargados,
+personas reales, original administrativo, credenciales ni licencias:
+
+```text
+PYTHONPATH=src python -m politics_fantasy.scientific_registry --db <ruta_sqlite_solo_sintetica> --enroll sandbox_alpha_v1
+PYTHONPATH=src python -m politics_fantasy.scientific_registry --db <ruta_sqlite_solo_sintetica> --enroll sandbox_beta_v1
+PYTHONPATH=src python -m politics_fantasy.scientific_registry --db <ruta_sqlite_solo_sintetica> --enroll sandbox_alpha_v2
+PYTHONPATH=src python -m politics_fantasy.scientific_registry --db <ruta_sqlite_solo_sintetica> --enroll sandbox_bad_issuer
+```
+
+No son rutas web ni mecanismos de carga de ficheros. Existe también
+`enroll_synthetic_fixture(path, fixture_id)` para llamadas **internas**;
+rechaza IDs no enumerados y alteraciones del supuesto fixture, sin
+incorporarlas. La opción `wire` está limitada a falsación de tests y debe
+ser exactamente igual, byte por byte y campo por campo, a la definición
+cerrada por el autor. Dos procesos Python separados pueden incorporar
+sucesivamente **A v1 y B v1**, documentos distintos con emisores y
+identidades fuente-local distintos; otro proceso puede reiniciar y
+recuperar ambos. La opción A v2 es una **revisión** de A v1: requiere
+que la primera esté previamente incorporada y no aumenta el número de
+fuentes, actores, organizaciones, procesos o decisiones lógicas. La opción
+de emisor malformado sigue siendo un testigo **rechazado** y nunca entra
+en el grafo de fuentes validadas.
+
+### Modelo de persistencia, separación y auditoría
+
+La migración transaccional `PRAGMA user_version=4` añade
+`synthetic_intake_event` y dos triggers de inmutabilidad (diez en total);
+preserva las versiones 1, 2 y 3 del esquema, los **siete BLOB canónicos,
+veinte hechos, seis enlaces y dieciséis eventos de las ocho evaluaciones
+históricas**. Este overlay empieza **vacío incluso después de seed/restart**:
+ninguna fuente se «incorpora» por el mero arranque del servidor. Un acto
+de CLI explícito inserta atómicamente exactamente dos eventos por opción:
+`SANDBOX_REGISTERED` y `SANDBOX_VALIDATED`, o
+`SANDBOX_REGISTERED` y `SANDBOX_REJECTED` si el emisor no está permitido.
+Repetir el mismo enrolamiento devuelve el estado histórico sin insertar
+nuevas filas. Una revisión prematura (A v2 antes de A v1) se rechaza
+sin escribir eventos. `SANDBOX_VALIDATED` **solo valida la coherencia del
+fixture inventado**, no equivale a autenticidad real ni a superar R5.
+
+Cada fila persistida conserva, **solo en la base local**, la identidad
+fuente-local, emisor declarado, revisión, `amendment_of` tipado, bytes
+exactos del documento, SHA-256 de esos bytes, manifiesto tipado UTF-8
+con SHA-256 y recibo canónico privado con SHA-256. El manifiesto declara
+un actor ficticio, una organización ficticia y un proceso ficticio, más
+dos enlaces fuente-local tipados por emisor; la V2 de A conserva los
+mismos tres identificadores lógicos. El auditor coteja en cada lectura
+todos los campos con las **cuatro definiciones cerradas de autor**,
+verifica los tres hashes y el DDL completo contra un esquema v4
+construido en memoria, además de comprobar la secuencia de revisión.
+Manipulaciones de fuente, emisor, SHA, manifiesto, tiempos, derechos o
+DDL llevan a fallo cerrado del `GET /api/scientific-registry` con 503,
+no a una historia sintética resuelta artificialmente.
+
+Se preservan restricciones SQL `CHECK` que obligan a
+`rights_for_public_display=0`, `issuer_authenticated_real=0`,
+`first_public_at_real=NULL`, `independent_denominator=NULL` y
+`canonical_rows_imported=0`. El registro canónico S9 sigue teniendo
+seis descriptores públicos y un recibo interno; sus recuentos no incluyen
+las incorporaciones opcionales, y los 16 eventos de evaluación tampoco
+se convierten en fuentes. Ningún endpoint POST está habilitado.
+
+### Consulta pública y bitemporalidad
+
+El GET **conserva su esquema exterior**
+`pfl.synthetic_scientific_registry.v1` y sus filtros cerrados; cambia
+`registry.schema_version` a 4 y `migration_history` a `[1,2,3,4]`.
+Incorpora `snapshot.synthetic_intake`, un resumen estrictamente
+pseudonimizado con esquema `pfl.synthetic_intake_overlay.v1`, recuentos
+de registros, validados, rechazados, eventos, fuentes lógicas, revisiones
+documentales y decisiones (siempre cero), y `entries` con ID opaco,
+revisión, `amendment_of` **opaco**, procedencia ficticia, calidad,
+estado, motivo de rechazo y fechas de laboratorio. `graph.nodes` expone
+solo los tipos `ACTOR`, `ORGANIZATION` y `PROCESS`, etiquetas ficticias,
+ID públicos opacos y número de revisiones; `graph.edges` expone enlaces
+internos tipados por emisor sin ningún source ID real ni original.
+
+La proyección del grafo **lee el manifiesto tipado efectivamente
+persistido y validado por SHA**. El `valid_at` restringe la vigencia
+documental de los nodos sin modificar las fechas de conocimiento ni
+contar A v2 como actor o proceso adicional. `as_of` y
+`published_until` filtran los eventos con sus tiempos de **ficción**.
+Los relojes `captured_at_fixture`, `registered_at_fixture`,
+`validated_at_fixture`, `source_first_public_at_fixture` y
+`receipt_first_public_at_fixture` están **estipulados por el laboratorio,
+no determinados a partir de un enrolamiento físico ocurrido en 2026**.
+`real_enrollment_at` queda explícitamente en `null`. Por ello estas
+consultas reproducen escenarios contrafactuales sin certificar que una
+fuente nueva existiera efectivamente en octubre; no deben interpretarse
+como evidencia bitemporal de fuentes reales.
+
+El nuevo campo entra en `snapshot` y, por tanto, en la misma
+canonicalización JSON UTF-8 y SHA-256 de `snapshot_receipt`; el hash
+cambia respecto al S9.1 anterior **incluso con el overlay vacío**, porque
+el contrato del contenido público ha crecido. Dos enrolamientos
+secuenciales alteran nuevamente el recibo; los bytes y SHA internos nunca
+se exponen. Se mantiene la independencia del modelo S3/B0/B3/S7: el
+overlay no recalcula DGP, no afecta a indicadores de personas reales y
+no abre puertas científicas.
+
+Pruebas focales nuevas (`tests/test_s9_v4_author_closed_intake.py`):
+dos CLI distintos que modifican realmente SQLite, reinicio, replay
+idempotente y concurrente, revisión A v2 con prerrequisito, rechazo de
+emisor, migraciones v1/v2/v3→v4 sin pérdida de bytes, comprobación
+source-local tipada, diferencia entre `valid_at` y relojes ficticios,
+recibo SHA, manipulación adversarial de bytes/emisor/revisión/DDL,
+restricciones SQL de derechos y HTTP 400/503. **No se inventaron
+falsadores PREPATCH ni se volvieron a ejecutar como parte de esta fase
+las 199 pruebas Python históricas.**
+
+**Límites inalterados:** R5 STOP; 0 AB científicos; 0/6 gates; no fuente
+externa adquirida, no población real, sin derechos empíricos,
+denominador independiente desconocido y ninguna conclusión causal.

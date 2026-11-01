@@ -108,9 +108,9 @@ function validRegistryPayload(x,cut,validAt,family,published){
   &&x.R5==='STOP_R5'&&x.release_gates_passed===0
   &&x.scientific_ab_cycles===0&&x.independent_denominator===null
   &&x.real_source_ingestion_allowed===false
-  &&r?.schema_version===3&&r.persistent===true
+  &&r?.schema_version===4&&r.persistent===true
   &&Array.isArray(r.migration_history)
-  &&r.migration_history.join(',')==='1,2,3'
+  &&r.migration_history.join(',')==='1,2,3,4'
   &&r.source_catalog_kind==='FIXED_PUBLIC_DESCRIPTORS_ONLY'
   &&r.source_bytes_exposed===false&&r.private_source_ids_exposed===false
   &&r.originals_accepted===false&&r.fixture_bytes_sha256_checked_at_read===true
@@ -156,6 +156,61 @@ function validRegistryPayload(x,cut,validAt,family,published){
    &&a.rights_for_public_display===false
    &&a.real_original_admitted===false&&a.source_rows_imported===0
    &&/^[a-f0-9]{64}$/.test(a.public_receipt_sha256))
+  &&s.synthetic_intake?.schema==='pfl.synthetic_intake_overlay.v1'
+  &&Array.isArray(s.synthetic_intake.entries)
+  &&s.synthetic_intake.intake_count===s.synthetic_intake.entries.length
+  &&Number.isSafeInteger(s.synthetic_intake.registered_count)
+  &&Number.isSafeInteger(s.synthetic_intake.validated_count)
+  &&Number.isSafeInteger(s.synthetic_intake.rejected_count)
+  &&s.synthetic_intake.validated_count+s.synthetic_intake.rejected_count===s.synthetic_intake.intake_count
+  &&s.synthetic_intake.history_event_count===2*s.synthetic_intake.intake_count
+  &&s.synthetic_intake.logical_decisions_count===0
+  &&s.synthetic_intake.source_rows_added_to_canonical===0
+  &&s.synthetic_intake.independent_denominator===null
+  &&s.synthetic_intake.real_source_ingestion_allowed===false
+  &&s.synthetic_intake.source_local_identifiers_exposed===false
+  &&s.synthetic_intake.rights_for_public_display===false
+  &&s.synthetic_intake.scientific_admission_allowed===false
+  &&s.synthetic_intake.real_enrollment_at===null
+  &&s.synthetic_intake.temporal_axis==='AUTHOR_STIPULATED_FIXTURE_CLOCKS_NOT_REAL_ENROLLMENT_TIME'
+  &&s.synthetic_intake.entries.every(e=>
+   /^S9:INTAKE_0[1-4]$/.test(e.intake_id)
+   &&typeof e.label==='string'
+   &&['SANDBOX_VALIDATED','SANDBOX_REJECTED'].includes(e.status)
+   &&['NONE','ISSUER_NOT_ALLOWLISTED'].includes(e.reason_code)
+   &&/^fixture_v[12]$/.test(e.revision)
+   &&(e.amendment_of===null||/^S9:INTAKE_0[1-4]$/.test(e.amendment_of))
+   &&e.quality_gate==='AUTHOR_CLOSED_SANDBOX_ONLY'
+   &&typeof e.captured_at_fixture==='string'&&e.captured_at_fixture<=at
+   &&typeof e.receipt_first_public_at_fixture==='string'
+   &&e.receipt_first_public_at_fixture<=ceiling
+   &&typeof e.source_first_public_at_fixture==='string'
+   &&typeof e.valid_from==='string'
+   &&Array.isArray(e.history)&&e.history.length===2
+   &&e.history[0].status==='SANDBOX_REGISTERED'
+   &&e.history[1].status===e.status
+   &&e.history.every(h=>typeof h.recorded_at_fixture==='string')
+   &&e.rights_for_public_display===false
+   &&e.empirical_admitted===false
+   &&e.real_first_public_at===null&&e.real_issuer_authenticated===false
+   &&e.canonical_source_rows_imported===0
+   &&/^[a-f0-9]{64}$/.test(e.public_descriptor_sha256))
+  &&s.synthetic_intake.graph?.cross_issuer_links_created===false
+  &&Array.isArray(s.synthetic_intake.graph?.nodes)
+  &&Array.isArray(s.synthetic_intake.graph?.edges)
+  &&s.synthetic_intake.graph.node_count===s.synthetic_intake.graph.nodes.length
+  &&s.synthetic_intake.graph.edge_count===s.synthetic_intake.graph.edges.length
+  &&s.synthetic_intake.graph.revisions_are_not_new_actors_or_decisions===true
+  &&s.synthetic_intake.graph.nodes.every(n=>
+   /^S9:INTAKE_0[1-4]:N_(ACTOR|ORGANIZATION|PROCESS)$/.test(n.id)
+   &&['ACTOR','ORGANIZATION','PROCESS'].includes(n.kind)
+   &&typeof n.label==='string'
+   &&Number.isSafeInteger(n.documentary_revision_count)
+   &&n.logical_identity_count===1)
+  &&s.synthetic_intake.graph.edges.every(e=>
+   ['AUTHOR_CLOSED_DOCUMENTARY_ASSOCIATION','AUTHOR_CLOSED_DOCUMENTARY_PROCESS_LINK'].includes(e.kind)
+   &&s.synthetic_intake.graph.nodes.some(n=>n.id===e.from)
+   &&s.synthetic_intake.graph.nodes.some(n=>n.id===e.to))
   &&m?.s3_s7_endpoint==='/api/scientific-integration-lab'
   &&m.computed_from_registry===false
   &&m.separate_existing_python_node_oracle===true
@@ -773,7 +828,7 @@ function scientificRegistryPanel(){
   return intro+'<p role="alert" class="warning">El contrato del registro es incompatible; vista bloqueada.</p></section>';
  const tabs={sources:'Distribuciones y revisiones',chain:'Actor, organización y proceso',
   chronicle:'Roles y eventos',episodes:'Estados de episodios',
-  admission:'Preadmisión y rechazos',quality:'Calidad y límites'};
+  admission:'Preadmisión y rechazos',intake:'Incorporación sintética',quality:'Calidad y límites'};
  const navigation='<nav class="science-registry-nav" aria-label="Contenido del registro">'
   +Object.entries(tabs).map(([id,label])=>'<button class="btn secondary '
    +(id===ui.scienceRegistryTab?'registry-active':'')+'" data-action="science-registry-tab" '
@@ -852,6 +907,39 @@ function scientificRegistryPanel(){
    +'</tbody></table></div><p class="warning">'
    +'La admisión científica y los derechos externos siguen NO acreditados; '
    +'la primera publicidad es un dato del fixture, no una fecha histórica.</p>';
+ }else if(ui.scienceRegistryTab==='intake'){
+  const intake=s.synthetic_intake,graph=intake.graph;
+  const rows=intake.entries.map(x=>'<tr><td><code>'+esc(x.intake_id)
+   +'</code><small class="science-minor">'+esc(x.label)+' · '+esc(x.revision)
+   +'</small></td><td>'+esc(x.status)+'<small class="science-minor">'
+   +esc(x.reason_code)+'</small></td><td>'+x.history.map(h=>'<div>'
+   +esc(h.status)+' · '+esc(h.recorded_at_fixture)+'</div>').join('')
+   +'</td><td>'+esc(x.receipt_first_public_at_fixture)
+   +'<small class="science-minor">Fuente ficticia: '+esc(x.source_first_public_at_fixture)+'</small>'
+   +'<small class="science-minor">Captura ficticia: '+esc(x.captured_at_fixture)
+   +'</small></td><td><details><summary>SHA del descriptor</summary>'
+   +'<code class="science-digest">'+esc(x.public_descriptor_sha256)
+   +'</code></details></td></tr>').join('');
+  const nodes=graph.nodes.map(n=>'<li><strong>'+esc(n.kind)+'</strong> '
+   +esc(n.label)+' <small>Revisiones documentales: '
+   +count(n.documentary_revision_count)+'</small></li>').join('');
+  const links=graph.edges.map(e=>'<li>'+esc(graph.nodes.find(n=>n.id===e.from)?.label)
+   +' → '+esc(graph.nodes.find(n=>n.id===e.to)?.label)
+   +' <small>'+esc(e.kind)+'</small></li>').join('');
+  content='<p class="help">'+count(intake.intake_count)+' incorporaciones ficticias registradas en el ledger aislado; '
+   +count(intake.validated_count)+' validadas SOLO para el sandbox de ingeniería, '
+   +count(intake.rejected_count)+' rechazadas por controles internos. '
+   +'No existe ingesta de originales externos ni admisión científica o licencia de difusión.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Referencia pública</th><th>Control sandbox</th><th>Historial</th>'
+   +'<th>Primera publicidad inventada</th><th>Huella SHA</th></tr></thead><tbody>'
+   +rows+'</tbody></table></div><p class="help">Grafo fuente-local del sandbox: '
+   +count(graph.nodes.length)+' nodos · '+count(graph.edges.length)
+   +' relaciones; las revisiones no son nuevas decisiones o personas.</p>'
+   +'<ul class="science-relations">'+nodes+links+'</ul>'
+   +'<p class="warning">La incorporación se realiza exclusivamente con fixtures internos autorizados '
+   +'por CLI local. El Observatorio consulta, no acepta archivos ni promueve declaraciones de derechos. '
+   +'Las marcas temporales de estas incorporaciones son imaginarias.</p>';
  }else{
   content='<div class="metrics">'
    +stat('Migración del esquema',r.schema_version,'Base SQLite del fixture, no fuente administrativa')
@@ -1014,7 +1102,7 @@ document.addEventListener('click',async e=>{
  if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
  if(act.dataset.action==='science-registry-export'){await exportScientificRegistry();return;}
  if(act.dataset.action==='science-registry-tab'){
-  if(['sources','chain','chronicle','episodes','admission','quality'].includes(act.dataset.registry)){
+  if(['sources','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
   }
   return;

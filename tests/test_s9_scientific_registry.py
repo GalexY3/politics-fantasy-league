@@ -67,8 +67,8 @@ def _assert_gate(payload:dict):
         "separate_existing_python_node_oracle":True,
         "empirical_model_admitted":False,
     }
-    assert payload["registry"]["schema_version"]==3
-    assert payload["registry"]["migration_history"]==[1,2,3]
+    assert payload["registry"]["schema_version"]==4
+    assert payload["registry"]["migration_history"]==[1,2,3,4]
     assert payload["registry"]["source_bytes_exposed"] is False
     assert payload["registry"]["private_source_ids_exposed"] is False
     assert payload["registry"]["originals_accepted"] is False
@@ -78,6 +78,20 @@ def _assert_gate(payload:dict):
     assert payload["snapshot"]["episodes"]["right_censor_independently_attested"] is False
     assert payload["snapshot"]["pp04"]["unplanned_is_a_terminal_negative"] is False
     assert payload["snapshot"]["pp04"]["independent_crosswalk_between_pan_iaen"] is False
+    intake=payload["snapshot"]["synthetic_intake"]
+    assert intake["schema"]=="pfl.synthetic_intake_overlay.v1"
+    assert intake["intake_count"] in (0,1,2,3,4)
+    assert intake["history_event_count"]==intake["intake_count"]*2
+    assert intake["validated_count"]+intake["rejected_count"]==intake["intake_count"]
+    assert intake["source_rows_added_to_canonical"]==0
+    assert intake["independent_denominator"] is None
+    assert intake["real_source_ingestion_allowed"] is False
+    assert intake["rights_for_public_display"] is False
+    assert intake["scientific_admission_allowed"] is False
+    assert intake["source_local_identifiers_exposed"] is False
+    assert intake["real_enrollment_at"] is None
+    assert intake["logical_decisions_count"]==0
+    assert intake["graph"]["cross_issuer_links_created"] is False
     assessments=payload["snapshot"]["admission_assessments"]
     assert assessments["schema"]=="pfl.synthetic_admission_assessments.v1"
     assert assessments["assessment_temporal_axis"]=="AS_OF_NOT_FACT_VALID_AT"
@@ -113,7 +127,10 @@ def _assert_gate(payload:dict):
                      "SYNTHETIC:IAEN24", "SYNTHETIC:PAN24",
                      "SYNTHETIC_STAGE_DOCUMENT", "SYNTHETIC TYPED CHAIN",
                      "SYN:S8_NEW_DISTRIBUTION", "SYN:S8_LOCAL_TEST",
-                     "REAL:UNVERIFIED", "SYNTHETIC S8 ADMISSION FIXTURE"):
+                     "REAL:UNVERIFIED", "SYNTHETIC S8 ADMISSION FIXTURE",
+                     "AUTHOR_ALPHA:FILE_1", "AUTHOR_BETA:FILE_1",
+                     "SYN:S9_AUTHOR_ALPHA", "SYN:S9_AUTHOR_BETA",
+                     "REAL:UNVERIFIED_FIXTURE", "SYNTHETIC S9 AUTHOR-CLOSED INTAKE"):
         assert internal not in raw,internal
 
 
@@ -126,7 +143,7 @@ def test_s9_atomic_seed_restart_exact_bytes_and_versioned_schema(db):
     assert first["registry"]["recorded_distribution_count"]==6
     assert first["registry"]["internal_uncatalogued_fixture_receipts"]==1
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
         recorded=con.execute("SELECT source_id,source_bytes,source_sha256 FROM distribution ORDER BY 1").fetchall()
         assert len(recorded)==7
         for source_id,bytes_,sha in recorded:
@@ -170,7 +187,7 @@ def test_s9_two_independent_python_processes_restart_same_real_sqlite_bytes(db):
     assert db.exists()
     with sqlite3.connect(db) as con:
         before_rows=con.execute("SELECT source_id,source_bytes,source_sha256 FROM distribution ORDER BY 1").fetchall()
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
     second=external_read()
     assert second==first
     assert second["registry"]["persistent"] is True
@@ -204,7 +221,7 @@ def test_s9_1_v3_eight_dry_run_assessments_are_immutable_separate_records(db):
         assert row["blockers"]==raw["blockers"]
         assert row["source_rows_imported"]==raw["source_rows_imported"]==0
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
         assert con.execute("SELECT COUNT(*) FROM distribution").fetchone()[0]==7
         assert con.execute("SELECT COUNT(*) FROM typed_fact").fetchone()[0]==20
         assert con.execute("SELECT COUNT(*) FROM typed_edge").fetchone()[0]==6
@@ -262,9 +279,9 @@ def test_s9_1_v2_to_v3_migration_preserves_all_previous_bytes_and_typed_rows(db)
         con.commit()
     registry.seed_registry(db)
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
         assert con.execute("SELECT COUNT(*) FROM assessment_event").fetchone()[0]==16
-        assert [r[0] for r in con.execute("SELECT version FROM schema_history ORDER BY version")]==[1,2,3]
+        assert [r[0] for r in con.execute("SELECT version FROM schema_history ORDER BY version")]==[1,2,3,4]
         for table,rows in original.items():
             assert list(con.execute(f"SELECT * FROM {table} ORDER BY 1"))==rows
     assert registry.query_registry(db)["snapshot"]["admission_assessments"]["assessment_count"]==8
@@ -361,7 +378,7 @@ def test_s9_1_http_v3_200_400_503_and_no_internal_source_leak(local_registry_htt
     assert (status,cache,failed)==(503,"no-store",{"error":"SYNTHETIC_REGISTRY_UNAVAILABLE"})
 
 
-def test_s9_v1_to_v3_transactional_migration_preserves_existing_source_bytes(db):
+def test_s9_v1_to_v4_transactional_migration_preserves_existing_source_bytes(db):
     with registry._connect(db) as con:
         con.execute("BEGIN IMMEDIATE")
         registry._migration_v1(con)
@@ -376,11 +393,11 @@ def test_s9_v1_to_v3_transactional_migration_preserves_existing_source_bytes(db)
         con.commit()
     registry.seed_registry(db)
     with sqlite3.connect(db) as con:
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
         post_sha=hashlib.sha256(b"".join(row[0] for row in
             con.execute("SELECT source_bytes FROM distribution ORDER BY 1"))).hexdigest()
         assert pre_sha==post_sha
-        assert con.execute("SELECT count(*) FROM schema_history").fetchone()[0]==3
+        assert con.execute("SELECT count(*) FROM schema_history").fetchone()[0]==4
         assert con.execute("SELECT count(*) FROM assessment_event").fetchone()[0]==16
     assert registry.query_registry(db)["R5"]=="STOP_R5"
 
@@ -520,7 +537,7 @@ def test_s9_unchanged_schema_version_but_weakened_table_ddl_fails_closed(db):
     registry.seed_registry(db)
     with sqlite3.connect(db) as con:
         con.execute("ALTER TABLE distribution ADD COLUMN unapproved_payload BLOB")
-        assert con.execute("PRAGMA user_version").fetchone()[0]==3
+        assert con.execute("PRAGMA user_version").fetchone()[0]==4
         con.commit()
     with pytest.raises(registry.RegistryIntegrityError,match="SCHEMA_DDL_HASH_DIVERGENCE"):
         registry.query_registry(db)

@@ -162,6 +162,26 @@ function actualRegistry(cut='late',validAt='2026-09-15',family='all',published='
       PYTHONDONTWRITEBYTECODE:'1',PYTHONIOENCODING:'utf-8'}}));
 }
 
+// Independent Python/SQLite source of truth for the *optional* post-S9.1
+// authored-sandbox intake. Nothing is auto-enrolled by S9 registry seeding.
+function actualRegistryWithIntake(ids,cut='late',validAt='2026-09-15',family='all',published='as_of') {
+  const root=new URL('../',import.meta.url).pathname.replace(/^\/(?=[A-Z]:)/i,'');
+  const code=[
+    'import json,sys,tempfile',
+    'from pathlib import Path',
+    'from politics_fantasy.scientific_registry import query_registry,enroll_synthetic_fixture',
+    'with tempfile.TemporaryDirectory(prefix="pfl-s9-intake-test-") as folder:',
+    '    path=Path(folder)/"closed-synthetic.sqlite3"',
+    '    for fixture_id in sys.argv[5].split(","):',
+    '        if fixture_id: enroll_synthetic_fixture(path,fixture_id)',
+    '    result=query_registry(path,cut=sys.argv[1],valid_at=sys.argv[2],family=sys.argv[3],published_until=sys.argv[4])',
+    '    print(json.dumps(result,ensure_ascii=False))'
+  ].join('\n');
+  return JSON.parse(execFileSync('python',['-B','-c',code,cut,validAt,family,published,ids.join(',')],
+    {cwd:root,encoding:'utf8',env:{...process.env,PYTHONPATH:'src',
+      PYTHONDONTWRITEBYTECODE:'1',PYTHONIOENCODING:'utf-8'}}));
+}
+
 function registryEndpoint(h, override=null) {
   h.setRegistryHandler(async route=>{
     const url=new URL(route,'http://127.0.0.1');
@@ -376,6 +396,69 @@ test('S9.1 browser rejects assessment-stage spoofing unless it matches canonical
   await runInContext('loadScientificRegistry()',h.ctx);
   assert.equal(runInContext('ui.scienceRegistry',h.ctx),null);
   assert.match(String(runInContext('ui.scienceRegistryError',h.ctx)),/Registro incongruente|SHA de recibo incompatible/);
+});
+
+test('S9.2 zero-intake baseline is still verifiable and carries no source promotion',async()=>{
+  const h=harness();registryEndpoint(h);
+  await runInContext('loadScientificRegistry()',h.ctx);
+  const p=runInContext('ui.scienceRegistry',h.ctx);
+  assert.ok(p,String(runInContext('ui.scienceRegistryError',h.ctx)));
+  assert.equal(p.registry.schema_version,4);
+  assert.equal(p.snapshot.synthetic_intake.intake_count,0);
+  assert.equal(p.snapshot.synthetic_intake.source_rows_added_to_canonical,0);
+  assert.equal(p.registry.recorded_distribution_count,6);
+  assert.equal(await runInContext('verifyRegistryReceipt(ui.scienceRegistry)',h.ctx),true);
+});
+
+test('S9.2 actual independently enrolled fixtures appear in the Observatorio only at valid fictional cut',async()=>{
+  const ids=['sandbox_alpha_v1','sandbox_beta_v1','sandbox_alpha_v2','sandbox_bad_issuer'];
+  const late=actualRegistryWithIntake(ids);
+  const i=late.snapshot.synthetic_intake;
+  assert.equal(i.intake_count,4);
+  assert.equal(i.registered_count,4);
+  assert.equal(i.validated_count,3);
+  assert.equal(i.rejected_count,1);
+  assert.equal(i.history_event_count,8);
+  assert.equal(i.logical_source_count,2,'A revision cannot count as a third logical source');
+  assert.equal(i.logical_decisions_count,0);
+  assert.equal(i.source_rows_added_to_canonical,0);
+  assert.equal(late.registry.recorded_distribution_count,6);
+  const h=harness();
+  h.setRegistryHandler(async()=>({ok:true,json:async()=>late}));
+  await runInContext('loadScientificRegistry()',h.ctx);
+  assert.ok(runInContext('ui.scienceRegistry',h.ctx),
+    String(runInContext('ui.scienceRegistryError',h.ctx)));
+  assert.equal(await runInContext('verifyRegistryReceipt(ui.scienceRegistry)',h.ctx),true);
+  runInContext("ui.scienceRegistryTab='intake'",h.ctx);
+  const html=runInContext('scientificRegistryPanel()',h.ctx);
+  assert.match(html,/S9:INTAKE_04/);
+  assert.match(html,/SANDBOX_REJECTED/);
+  assert.doesNotMatch(html,/SYN:CHAIN_V1|SYN:S9_INTERNAL_STAGE|SYN:LOCAL_SANDBOX/);
+  await runInContext('exportScientificRegistry()',h.ctx);
+  assert.equal(h.downloads.length,1);
+  const receipt=JSON.parse(await h.blobExports[0].text());
+  assert.equal(receipt.source_contract,'pfl.synthetic_scientific_registry.v1');
+  const bytes=Buffer.from(receipt.snapshot_receipt.canonical_json,'utf8');
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),receipt.snapshot_receipt.sha256);
+  assert.equal(JSON.parse(receipt.snapshot_receipt.canonical_json).snapshot.synthetic_intake.intake_count,4);
+  const early=actualRegistryWithIntake(ids,'early');
+  assert.equal(early.snapshot.synthetic_intake.intake_count,0);
+  const before=actualRegistryWithIntake(ids,'late','2026-09-15','all','2026-10-30T12:00:00Z');
+  assert.equal(before.snapshot.synthetic_intake.intake_count,0);
+});
+
+test('S9.2 altered public overlay digest or fake real rights cannot render or export',async()=>{
+  for(const tamper of ['DIGEST','RIGHTS']){
+    const h=harness();
+    const p=actualRegistryWithIntake(['sandbox_alpha_v1']);
+    if(tamper==='DIGEST')p.snapshot.synthetic_intake.entries[0].public_descriptor_sha256='0'.repeat(64);
+    else p.snapshot.synthetic_intake.entries[0].rights_for_public_display=true;
+    h.setRegistryHandler(async()=>({ok:true,json:async()=>p}));
+    await runInContext('loadScientificRegistry()',h.ctx);
+    assert.equal(runInContext('ui.scienceRegistry',h.ctx),null,tamper);
+    await runInContext('exportScientificRegistry()',h.ctx);
+    assert.equal(h.downloads.length,0,tamper);
+  }
 });
 
 async function freeLocalPort(){

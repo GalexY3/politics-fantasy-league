@@ -91,6 +91,15 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   }catch(e){return reply(res,503,{error:'SYNTHETIC_FIXTURE_UNAVAILABLE'});}
  });
  try{
+  // A real persistent, explicitly triggered synthetic intake precedes the
+  // browser session. The public HTTP endpoint cannot ingest originals.
+  python(['-c',[
+   'import sys',
+   'from pathlib import Path',
+   'from politics_fantasy.scientific_registry import enroll_synthetic_fixture',
+   'for name in ("sandbox_alpha_v1","sandbox_beta_v1","sandbox_bad_issuer"):',
+   '    enroll_synthetic_fixture(Path(sys.argv[1]),name)'
+  ].join('\n'),registryDb]);
   await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));
   chrome=spawn(CHROME,[
    '--headless=new','--no-first-run','--no-default-browser-check',
@@ -138,6 +147,11 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   await js("document.querySelector('[data-action=\"science-registry-load\"]').click();true");
   await poll(()=>js("Boolean(ui.scienceRegistry&&ui.scienceRegistry.registry.visible_distribution_count===6)"));
   assert.equal(await js("document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  assert.equal(await js('ui.scienceRegistry.registry.schema_version'),4);
+  await js("document.querySelector('[data-registry=\"intake\"]').click();true");
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S9:INTAKE_04')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('SANDBOX_REJECTED')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('SYN:LOCAL_SANDBOX')"),false);
   // S9.1: perform a genuine mouse click in native Chrome and verify that its
   // browser-downloaded JSON contains the exact WebCrypto-verified S9 receipt,
   // rather than accidentally exporting the S8 laboratory receipt.
