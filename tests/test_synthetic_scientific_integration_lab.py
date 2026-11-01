@@ -1273,3 +1273,284 @@ def test_typed_institutional_chain_real_http_redacts_and_503_on_node_drift(
             503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
+
+
+def _b0_b3_actual_node(wire, *, cut="late"):
+    """Only the existing process bridge; no second JS implementation in tests."""
+    from politics_fantasy.scientific_integration_lab import (
+        _assets,_capture_rivals,_bitemporal_fixture,_partial_identification_fixture,
+        _typed_institutional_chain_fixture,_sha,FAKE_PARITY,CUTS,
+    )
+    runner=Path(__file__).resolve().parents[1]/"scripts"/"scientific_integration_warehouse.mjs"
+    request={"cut":cut,"scenario":"baseline","sha256":_sha(FAKE_PARITY),
+        "assets":_assets(),
+        "experiment":(_capture_rivals(CUTS["late"])[1] if cut=="late" else None),
+        "timeline":_bitemporal_fixture(),
+        "partial_identification":(
+            _partial_identification_fixture() if cut=="late" else None),
+        "chain":_typed_institutional_chain_fixture(),
+        "b0_b3":wire}
+    return subprocess.run(["node",str(runner)],input=json.dumps(
+        request,separators=(",",":")),text=True,capture_output=True,timeout=5)
+
+
+def test_b0_b3_new_noncycle_full_five_family_equivalence_both_cuts():
+    """NEW engineering capability, no invented prepatch failure."""
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_fixture,
+        _b0_b3_equivalence,_partial_identification,
+        _partial_identification_fixture,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    wire=_b0_b3_fixture(chain)
+    assert wire["chain_issuer"]==chain["issuer"]
+    assert wire["published_receipts"]==[
+        {"source_id":s["source_id"],"sha256":s["sha256"]}
+        for s in chain["sources"]]
+    assert wire["typed_keys"]==chain["typed_keys"]
+    for cut in ("early","late"):
+        s3=(_partial_identification(_partial_identification_fixture())
+            if cut=="late" else None)
+        py,_=_b0_b3_equivalence(chain=chain,at=CUTS[cut],
+                               s3_oracle=s3,wire=wire)
+        assert py["schema"]=="pfl.synthetic_b0_b3_observational_equivalence_oracle.v1"
+        assert py["status"]=="B0_B3_FULL_PUBLIC_PROJECTION_EQUIVALENT_NOT_IDENTIFIED"
+        assert py["all_published_source_sha_and_typed_revisions_equal"] is True
+        assert py["hypothetical_all_received_by_mechanism"]=={
+            "B0_CALENDAR":4,"B3_SELECTION_PUBLICATION":4}
+        assert py["hypothetical_unpublished_processes"]=={
+            "B0_CALENDAR":3,"B3_SELECTION_PUBLICATION":3}
+        assert py["hypothetical_publication_coverage"]=={
+            "B0_CALENDAR":"1/4","B3_SELECTION_PUBLICATION":"1/4"}
+        assert py["hypothetical_e3_status_by_mechanism"]=={
+            "B0_CALENDAR":"NO_TERMINAL_AT_LATE_HEARING_FUTURE_2026_11_05",
+            "B3_SELECTION_PUBLICATION":"REJECTED_2026_10_10_WITHHELD_FROM_PUBLICATION"}
+        assert py["hypothetical_e3_terminal_on_by_mechanism"]=={
+            "B0_CALENDAR":None,"B3_SELECTION_PUBLICATION":"2026-10-10"}
+        assert py["hypothetical_e2_pending_both"] is True
+        assert py["hypothetical_e4_right_censor_not_rejection_both"] is True
+        for w in py["discriminating_witness_requirements"].values():
+            assert w["available"] is False
+        assert py["discriminating_witness_requirements"][
+            "independent_first_public_by_distribution"]["alone_discriminates_mechanisms"] is False
+        assert py["discriminating_witness_requirements"][
+            "independent_all_received_registry"]["alone_discriminates_mechanisms"] is False
+        assert py["discriminating_witness_requirements"][
+            "independent_e3_terminal_status_document"]["would_discriminate_at_late_cut"] is True
+        assert py["real_all_received_denominator"] is None
+        assert py["real_first_public_at"] is None
+        assert py["rights_for_public_aggregate_admitted"] is False
+        assert py["real_historical_selection_witness"] is False
+        assert py["official_crosswalk_verified"] is False
+        assert py["empirical_causal_effect_identified"] is False
+        assert py["scientific_cycles"]==0
+        for ck,observation in py["observations_by_knowledge_cut"].items():
+            for day,view in observation["valid_days"].items():
+                assert view["full_typed_sha_revision_projection_equal"] is True
+                assert set(view["published_records_by_family"])=={
+                    "ACTOR","ORGANIZATION","COMMUNICATION","DECISION","PROCESS"}
+                assert view["published_records_by_family"]["ACTOR"]==1
+                assert view["published_records_by_family"]["ORGANIZATION"]==1
+                assert view["published_records_by_family"]["COMMUNICATION"]>=1
+                assert view["published_records_by_family"]["PROCESS"]>=1
+                assert view["logical_communications"]==1
+                assert view["logical_decisions"] in (0,1)
+        if shutil.which("node") is not None:
+            child=_b0_b3_actual_node(wire,cut=cut)
+            assert child.returncode==0,child.stderr
+            assert json.loads(child.stdout)["b0_b3_observational_equivalence"]==py
+        api=report(cut=cut)
+        assert api["warehouse"]["b0_b3_observational_equivalence"]==py
+        assert api["independent_all_received_denominator"] is None
+        assert api["rights"]["reuse_admitted"] is False
+        assert api["scientific_AB_cycles"]==0
+        assert api["R5"]=="STOP_R5"
+
+
+def test_b0_b3_early_late_replay_real_facts_not_empty_aggregate_and_no_lookahead():
+    early=report(cut="early")["warehouse"]["b0_b3_observational_equivalence"]
+    late=report(cut="late")["warehouse"]["b0_b3_observational_equivalence"]
+    assert set(early["observations_by_knowledge_cut"])=={"early"}
+    assert set(late["observations_by_knowledge_cut"])=={"early","late"}
+    assert late["observations_by_knowledge_cut"]["early"]==(
+        early["observations_by_knowledge_cut"]["early"])
+    old=early["observations_by_knowledge_cut"]["early"]["valid_days"]
+    new=late["observations_by_knowledge_cut"]["late"]["valid_days"]
+    assert old["2026-09-11"]["published_records_by_family"]=={
+        "ACTOR":1,"ORGANIZATION":1,"COMMUNICATION":1,
+        "DECISION":0,"PROCESS":1}
+    assert old["2026-09-15"]["published_records_by_family"]=={
+        "ACTOR":1,"ORGANIZATION":1,"COMMUNICATION":1,
+        "DECISION":0,"PROCESS":2}
+    assert old["2026-09-15"]["process_state"]=="PENDING_AS_OF_EVIDENCE"
+    assert new["2026-09-11"]["published_records_by_family"]=={
+        "ACTOR":1,"ORGANIZATION":1,"COMMUNICATION":2,
+        "DECISION":0,"PROCESS":1}
+    assert new["2026-09-15"]["published_records_by_family"]=={
+        "ACTOR":1,"ORGANIZATION":1,"COMMUNICATION":2,
+        "DECISION":1,"PROCESS":3}
+    assert new["2026-09-15"]["logical_communications"]==1
+    assert new["2026-09-15"]["logical_decisions"]==1
+    assert new["2026-09-15"]["process_state"]=="APPROVED_AS_OF_EVIDENCE"
+    assert early["s3_external_sensitivity"] is None
+    assert late["s3_external_sensitivity"]=={
+        "source":"INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES",
+        "ratio_definition":"P_PUBLISHED_GIVEN_Y1_OVER_P_PUBLISHED_GIVEN_Y0",
+        "odds_ratio":False,
+        "ratio_range":{"lower":"1/2","upper":"2/1"},
+        "noncausal_change_range":{"lower":"-11/52","upper":"47/119"},
+        "chain_calibration_verified":False}
+    assert late["hypothetical_unpublished_processes"]["B3_SELECTION_PUBLICATION"]==3
+    assert late["hypothetical_all_received_by_mechanism"]=={
+        "B0_CALENDAR":4,"B3_SELECTION_PUBLICATION":4}
+    assert late["real_all_received_denominator"] is None
+    assert late["empirical_causal_effect_identified"] is False
+
+
+@pytest.mark.parametrize("tamper,error",[
+    ("receipt_sha","B0_B3_SOURCE_SHA_OR_TYPED_SCOPE_MISMATCH"),
+    ("receipt_source_id","B0_B3_SOURCE_SHA_OR_TYPED_SCOPE_MISMATCH"),
+    ("typed_decision_as_communication","B0_B3_SOURCE_SHA_OR_TYPED_SCOPE_MISMATCH"),
+    ("swap_published_revision_order","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("calendar_selection_semantics","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("hidden_process_relabelled","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("same_n_broken","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("e3_terminal_outcome_swapped","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("e3_terminal_timestamp_spoof","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("e4_censor_as_rejected","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("registry_witness_spoof","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("e3_witness_spoof","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("selection_log_spoof","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("first_public_witness_spoof","B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF"),
+    ("real_denominator_spoof","B0_B3_REAL_AUTHORITY_PROMOTION"),
+    ("real_first_public_spoof","B0_B3_REAL_AUTHORITY_PROMOTION"),
+    ("rights_spoof","B0_B3_REAL_AUTHORITY_PROMOTION"),
+    ("causal_spoof","B0_B3_REAL_AUTHORITY_PROMOTION"),
+])
+def test_b0_b3_adversarial_wire_rejected_by_python_and_independent_node(tamper,error):
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_fixture,
+        _b0_b3_equivalence,_partial_identification,
+        _partial_identification_fixture,CUTS,
+    )
+    chain=_typed_institutional_chain_fixture()
+    wire=json.loads(json.dumps(_b0_b3_fixture(chain)))
+    if tamper=="receipt_sha":
+        wire["published_receipts"][1]["sha256"]="0"*64
+    elif tamper=="receipt_source_id":
+        wire["published_receipts"][0]["source_id"]="SYN:FORGED"
+    elif tamper=="typed_decision_as_communication":
+        wire["typed_keys"]["decision"]=wire["typed_keys"]["communication"]
+    elif tamper=="swap_published_revision_order":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["published_source_ids"].reverse()
+    elif tamper=="calendar_selection_semantics":
+        wire["mechanisms"]["B0_CALENDAR"]["publication_mechanism"]="SELECTED_AND_HELD_QUEUE"
+    elif tamper=="hidden_process_relabelled":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["hypothetical_hidden_process_keys"][1]=[
+            "SYN:CHAIN","DECISION","HIDDEN3"]
+    elif tamper=="same_n_broken":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["hypothetical_all_received"]=5
+    elif tamper=="e3_terminal_outcome_swapped":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["hypothetical_e3_status"]="APPROVED"
+    elif tamper=="e3_terminal_timestamp_spoof":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["hypothetical_e3_terminal_on"]="2026-11-02"
+    elif tamper=="e4_censor_as_rejected":
+        wire["mechanisms"]["B3_SELECTION_PUBLICATION"]["hypothetical_e4_status"]="REJECTED"
+    elif tamper=="registry_witness_spoof":
+        wire["discriminating_witnesses"]["independent_all_received_registry_available"]=True
+    elif tamper=="e3_witness_spoof":
+        wire["discriminating_witnesses"]["independent_e3_terminal_status_document_available"]=True
+    elif tamper=="selection_log_spoof":
+        wire["discriminating_witnesses"]["publisher_selection_log_available"]=True
+    elif tamper=="first_public_witness_spoof":
+        wire["discriminating_witnesses"]["historical_first_public_attested"]=True
+    elif tamper=="real_denominator_spoof":
+        wire["real_independent_all_received"]=2
+    elif tamper=="real_first_public_spoof":
+        wire["real_first_public_at"]="2026-10-30T12:00:00Z"
+    elif tamper=="rights_spoof":
+        wire["rights_by_distribution_and_purpose_admitted"]=True
+    else:
+        wire["causal_effect_identified"]=True
+    with pytest.raises(RuntimeError,match=error):
+        _b0_b3_equivalence(chain=chain,at=CUTS["late"],wire=wire,
+            s3_oracle=_partial_identification(_partial_identification_fixture()))
+    if shutil.which("node") is not None:
+        node=_b0_b3_actual_node(wire)
+        assert node.returncode!=0
+        assert error in node.stderr
+        assert node.stdout==""
+
+
+def test_b0_b3_s3_lookahead_or_mismatched_sensitivity_is_not_accepted():
+    from politics_fantasy.scientific_integration_lab import (
+        _typed_institutional_chain_fixture,_b0_b3_equivalence,
+        _partial_identification,_partial_identification_fixture,CUTS,
+    )
+    s3=_partial_identification(_partial_identification_fixture())
+    with pytest.raises(RuntimeError,match="B0_B3_S3_LOOKAHEAD_OR_MISSING_ORACLE"):
+        _b0_b3_equivalence(chain=_typed_institutional_chain_fixture(),
+            at=CUTS["early"],s3_oracle=s3)
+    tampered=json.loads(json.dumps(s3))
+    tampered["change_bounds"]["lower"]="-10/52"
+    with pytest.raises(RuntimeError,match="B0_B3_S3_REFERENCE_DIVERGENCE"):
+        _b0_b3_equivalence(chain=_typed_institutional_chain_fixture(),
+            at=CUTS["late"],s3_oracle=tampered)
+    assert report(cut="early")["warehouse"]["b0_b3_observational_equivalence"][
+        "s3_external_sensitivity"] is None
+
+
+def test_b0_b3_real_http_redacted_and_ipc_drift_fails_closed_503(tmp_path,monkeypatch):
+    from politics_fantasy import scientific_integration_lab as lab
+    server=ThreadingHTTPServer(("127.0.0.1",0),handler_factory(
+        tmp_path/"synthetic-demo.sqlite",None,None))
+    thread=Thread(target=server.serve_forever,daemon=True)
+    thread.start()
+    try:
+        def get(cut):
+            conn=http.client.HTTPConnection("127.0.0.1",server.server_port,timeout=5)
+            conn.request("GET","/api/scientific-integration-lab?cut="+cut)
+            response=conn.getresponse()
+            status,cache=response.status,response.getheader("Cache-Control")
+            data=json.loads(response.read());conn.close()
+            return status,cache,data
+        for cut in ("early","late"):
+            status,cache,body=get(cut)
+            assert (status,cache)==(200,"no-store")
+            oracle=body["warehouse"]["b0_b3_observational_equivalence"]
+            assert oracle["status"]=="B0_B3_FULL_PUBLIC_PROJECTION_EQUIVALENT_NOT_IDENTIFIED"
+            assert oracle["real_all_received_denominator"] is None
+            assert oracle["real_first_public_at"] is None
+            assert oracle["rights_for_public_aggregate_admitted"] is False
+            assert body["independent_all_received_denominator"] is None
+            assert body["scientific_AB_cycles"]==0
+            assert body["R5"]=="STOP_R5"
+            rendered=json.dumps(body)
+            for source in lab._typed_institutional_chain_fixture()["sources"]:
+                assert source["sha256"] not in rendered
+                assert source["source_id"] not in rendered
+                assert source["text"] not in rendered
+            for restricted in ("SYNTHETIC:CHAIN_EPISODE1", "SYN:CHAIN_COMM_V1",
+                               "SYN:CHAIN_COMM_V2", "SYN:CHAIN_DEC_V2",
+                               "HIDDEN2","HIDDEN3","HIDDEN4"):
+                assert restricted not in rendered
+            if cut=="early":
+                assert oracle["s3_external_sensitivity"] is None
+        actual=lab.subprocess.run
+        def altered_real_node(*args,**kwargs):
+            observed=actual(*args,**kwargs)
+            assert observed.returncode==0,observed.stderr
+            child=json.loads(observed.stdout)
+            view=child["b0_b3_observational_equivalence"][
+                "observations_by_knowledge_cut"]["late"]["valid_days"]["2026-09-15"]
+            # Same total number of published rows, but cross-family
+            # misclassification of a communication as a decision.
+            view["published_records_by_family"]["COMMUNICATION"]-=1
+            view["published_records_by_family"]["DECISION"]+=1
+            return subprocess.CompletedProcess(args[0],0,
+                stdout=json.dumps(child),stderr=observed.stderr)
+        monkeypatch.setattr(lab.subprocess,"run",altered_real_node)
+        assert get("late")==(
+            503,"no-store",{"error":"SYNTHETIC_BRIDGE_UNAVAILABLE"})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=5)

@@ -581,6 +581,221 @@ def _typed_institutional_chain(*, at: str,
     },w)
 
 
+def _b0_b3_fixture(chain: dict) -> dict:
+    """Two explicitly hypothetical DGPs sharing the SAME published chain.
+
+    Both hypotheses stipulate the SAME four hypothetical first-received
+    episodes. B0 does not observe an E3 terminal decision by the late cut;
+    B3 supposes a rejected E3 hidden from publication. In both, E2 is pending
+    and E4 has ONLY a fictional censor witness. The published source is still
+    the single typed P1 chain in both. Equal N cannot discriminate models.
+    """
+    ids=[source["source_id"] for source in chain["sources"]]
+    hidden=[["SYN:CHAIN","PROCESS",f"HIDDEN{i}"] for i in (2,3,4)]
+    return {
+        "schema":"pfl.synthetic_b0_b3_full_observation_wire.v1",
+        "chain_issuer":chain["issuer"],
+        "published_receipts":[{"source_id":s["source_id"],
+                                "sha256":s["sha256"]} for s in chain["sources"]],
+        "typed_keys":chain["typed_keys"],
+        "mechanisms":{
+            "B0_CALENDAR":{
+                "publication_mechanism":"FIXED_CALENDAR_NO_FILTER",
+                "hypothetical_all_received":4,
+                "hypothetical_unpublished_episodes":3,
+                "hypothetical_hidden_process_keys":hidden,
+                "hypothetical_e2_status":"PENDING_NOT_NEGATIVE",
+                "hypothetical_e3_status":"NO_TERMINAL_AT_LATE_HEARING_FUTURE_2026_11_05",
+                "hypothetical_e3_terminal_on":None,
+                "hypothetical_e4_status":"RIGHT_CENSOR_WITNESS_NOT_REJECTION",
+                "published_source_ids":ids,
+                "hypothetical_release_trigger":"SCHEDULED_2026_10_30",
+            },
+            "B3_SELECTION_PUBLICATION":{
+                "publication_mechanism":"SELECTED_AND_HELD_QUEUE",
+                "hypothetical_all_received":4,
+                "hypothetical_unpublished_episodes":3,
+                "hypothetical_hidden_process_keys":hidden,
+                "hypothetical_e2_status":"PENDING_NOT_NEGATIVE",
+                "hypothetical_e3_status":"REJECTED_2026_10_10_WITHHELD_FROM_PUBLICATION",
+                "hypothetical_e3_terminal_on":"2026-10-10",
+                "hypothetical_e4_status":"RIGHT_CENSOR_WITNESS_NOT_REJECTION",
+                "published_source_ids":ids,
+                "hypothetical_release_trigger":"SELECTED_2026_10_20_FOR_2026_10_30",
+            },
+        },
+        "discriminating_witnesses":{
+            "independent_all_received_registry_available":False,
+            "independent_e3_terminal_status_document_available":False,
+            "publisher_selection_log_available":False,
+            "historical_first_public_attested":False,
+        },
+        "real_independent_all_received":None,
+        "real_first_public_at":None,
+        "rights_by_distribution_and_purpose_admitted":False,
+        "official_crosswalk_verified":False,
+        "causal_effect_identified":False,
+    }
+
+
+def _b0_b3_published_rows(chain: dict, *, as_of: str,
+                          valid_day: str, mechanism: dict) -> tuple:
+    """Exact visible source+SHA+typed-key+revision+valid-day projection.
+
+    This internal trace is never emitted in HTTP. It is intentionally richer
+    than a count: a swapped source SHA, revised communication ID or family
+    would change the equality oracle even if all marginal counts agreed.
+    """
+    sources={s["source_id"]:s for s in chain["sources"]}
+    types=chain["typed_keys"]
+    facts=[]
+    def add(family: str, typed_key: list, source_id: str,
+            revision: str, valid_on: str, semantic: str):
+        if source_id not in mechanism["published_source_ids"]:
+            return
+        source=sources[source_id]
+        if (utc(source["captured_at"])<=utc(as_of)
+                and utc(source["first_public_at"])<=utc(as_of)
+                and valid_on<=valid_day):
+            facts.append((family,tuple(typed_key),source_id,source["sha256"],
+                          revision,valid_on,semantic))
+    first=chain["sources"][0]["source_id"]
+    p=chain["process"]
+    add("ACTOR",types["actor"],first,"v1",p["entry_on"],"ENTITY")
+    add("ORGANIZATION",types["organization"],first,"v1",p["entry_on"],"ENTITY")
+    add("PROCESS",types["process"],p["entry_source_id"],"entry",
+        p["entry_on"],"ENTRY_NOT_DENOMINATOR")
+    add("PROCESS",types["process"],p["pending"]["source_id"],"pending",
+        p["pending"]["on"],"PENDING_NOT_REJECTED")
+    add("PROCESS",types["process"],p["approval"]["source_id"],"approved",
+        p["approval"]["on"],"APPROVED_FIXTURE_ONLY")
+    for c in chain["communications"]:
+        add("COMMUNICATION",types["communication"],c["source_id"],
+            c["revision"],c["occurred_on"],"EMITTED_NOT_DECISION")
+    d=chain["decision"]
+    add("DECISION",types["decision"],d["source_id"],d["revision"],
+        d["occurred_on"],"SEPARATE_INSTITUTIONAL_DECISION")
+    # B3 has a hypothetical, *unpublished* latent process. It has NO
+    # authenticated source+SHA and therefore NEVER enters a published trace.
+    return tuple(sorted(facts))
+
+
+def _b0_b3_equivalence(*, chain: dict, at: str,
+                       s3_oracle: dict | None,
+                       wire: dict | None = None) -> tuple[dict,dict]:
+    """Full five-family observable equivalence, witness design not inference."""
+    if at not in CUTS.values():
+        raise RuntimeError("B0_B3_KNOWLEDGE_CUT_INVALID")
+    expected=_b0_b3_fixture(chain)
+    w=expected if wire is None else wire
+    gates=("real_independent_all_received","real_first_public_at",
+           "rights_by_distribution_and_purpose_admitted",
+           "official_crosswalk_verified","causal_effect_identified")
+    if (type(w) is not dict or set(w)!=set(expected)
+            or any(type(w[k]) is not type(expected[k]) or w[k]!=expected[k]
+                   for k in ("schema","chain_issuer",*gates))):
+        raise RuntimeError("B0_B3_REAL_AUTHORITY_PROMOTION")
+    if (json.dumps({k:w[k] for k in ("published_receipts","typed_keys")},
+                   sort_keys=True,separators=(",",":"))!=
+            json.dumps({k:expected[k] for k in ("published_receipts","typed_keys")},
+                       sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("B0_B3_SOURCE_SHA_OR_TYPED_SCOPE_MISMATCH")
+    if (json.dumps({k:w[k] for k in ("mechanisms","discriminating_witnesses")},
+                   sort_keys=True,separators=(",",":"))!=
+            json.dumps({k:expected[k] for k in ("mechanisms","discriminating_witnesses")},
+                       sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("B0_B3_HYPOTHESIS_OR_WITNESS_SPOOF")
+    observations={}
+    for cut_name,cut_at in CUTS.items():
+        # Deliberately replay both historical cuts, not just the query cut.
+        if utc(cut_at)>utc(at):
+            continue
+        chain_projection,_=_typed_institutional_chain(at=cut_at,wire=chain)
+        daily={}
+        for valid_day in CHAIN_VALID_DAYS:
+            left=_b0_b3_published_rows(chain,as_of=cut_at,valid_day=valid_day,
+                                       mechanism=w["mechanisms"]["B0_CALENDAR"])
+            right=_b0_b3_published_rows(chain,as_of=cut_at,valid_day=valid_day,
+                                        mechanism=w["mechanisms"]["B3_SELECTION_PUBLICATION"])
+            if left!=right or not left:
+                raise RuntimeError("B0_B3_PUBLISHED_TYPED_PROJECTION_DIVERGENCE")
+            counts={name:sum(row[0]==name for row in left) for name in
+                    ("ACTOR","ORGANIZATION","COMMUNICATION","DECISION","PROCESS")}
+            view=chain_projection["views_by_valid_day"][valid_day]
+            if (counts["ACTOR"]!=view["actor_visible"] or
+                    counts["ORGANIZATION"]!=view["organization_visible"] or
+                    counts["COMMUNICATION"]!=view["communication_documentary_revisions_known"] or
+                    counts["DECISION"]!=view["decision_documentary_revisions_known"] or
+                    counts["PROCESS"]!=(view["process_episode_visible"]+
+                        int(valid_day>=chain["process"]["pending"]["on"])+
+                        view["logical_decisions"])):
+                raise RuntimeError("B0_B3_CHAIN_REPLAY_INCONSISTENT")
+            daily[valid_day]={
+                "full_typed_sha_revision_projection_equal":True,
+                "published_records_by_family":counts,
+                "logical_communications":view["logical_communications"],
+                "logical_decisions":view["logical_decisions"],
+                "process_state":view["process_state"],
+            }
+        observations[cut_name]={
+            "source_editions_visible":chain_projection["visible_source_receipts"],
+            "valid_days":daily,
+        }
+    if (s3_oracle is None)!=(at==CUTS["early"]):
+        raise RuntimeError("B0_B3_S3_LOOKAHEAD_OR_MISSING_ORACLE")
+    if (s3_oracle is not None and
+            json.dumps(s3_oracle,sort_keys=True,separators=(",",":")) !=
+            json.dumps(_partial_identification(_partial_identification_fixture()),
+                       sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("B0_B3_S3_REFERENCE_DIVERGENCE")
+    s3=None if s3_oracle is None else {
+        "source":"INDEPENDENT_SYNTHETIC_BINARY_S3_NOT_CHAIN_OUTCOMES",
+        "ratio_definition":"P_PUBLISHED_GIVEN_Y1_OVER_P_PUBLISHED_GIVEN_Y0",
+        "odds_ratio":False,
+        "ratio_range":s3_oracle["selection_ratio_positive_to_negative"],
+        "noncausal_change_range":s3_oracle["change_bounds"],
+        "chain_calibration_verified":False,
+    }
+    return ({
+        "schema":"pfl.synthetic_b0_b3_observational_equivalence_oracle.v1",
+        "status":"B0_B3_FULL_PUBLIC_PROJECTION_EQUIVALENT_NOT_IDENTIFIED",
+        "observations_by_knowledge_cut":observations,
+        "all_published_source_sha_and_typed_revisions_equal":True,
+        "hypothetical_all_received_by_mechanism":{"B0_CALENDAR":4,
+            "B3_SELECTION_PUBLICATION":4},
+        "hypothetical_unpublished_processes":{"B0_CALENDAR":3,
+            "B3_SELECTION_PUBLICATION":3},
+        "hypothetical_publication_coverage":{"B0_CALENDAR":"1/4",
+            "B3_SELECTION_PUBLICATION":"1/4"},
+        "hypothetical_e3_status_by_mechanism":{
+            "B0_CALENDAR":"NO_TERMINAL_AT_LATE_HEARING_FUTURE_2026_11_05",
+            "B3_SELECTION_PUBLICATION":"REJECTED_2026_10_10_WITHHELD_FROM_PUBLICATION"},
+        "hypothetical_e3_terminal_on_by_mechanism":{
+            "B0_CALENDAR":None,"B3_SELECTION_PUBLICATION":"2026-10-10"},
+        "hypothetical_e2_pending_both":True,
+        "hypothetical_e4_right_censor_not_rejection_both":True,
+        "hypothetical_release_causes":{"B0_CALENDAR":"SCHEDULED_2026_10_30",
+            "B3_SELECTION_PUBLICATION":"SELECTED_2026_10_20_FOR_2026_10_30"},
+        "discriminating_witness_requirements":{
+            "independent_all_received_registry":{
+                "available":False,"hypothetical_counts_match":True,
+                "alone_discriminates_mechanisms":False},
+            "independent_e3_terminal_status_document":{
+                "available":False,"would_discriminate_at_late_cut":True},
+            "authenticated_publication_selection_log":{
+                "available":False,"would_distinguish_release_mechanisms":True},
+            "independent_first_public_by_distribution":{
+                "available":False,"alone_discriminates_mechanisms":False}},
+        "s3_external_sensitivity":s3,
+        "real_all_received_denominator":None,"real_first_public_at":None,
+        "rights_for_public_aggregate_admitted":False,
+        "real_historical_selection_witness":False,
+        "official_crosswalk_verified":False,
+        "empirical_causal_effect_identified":False,
+        "scientific_cycles":0,
+    },w)
+
+
 def _rights(assets: list[dict], *, at: str) -> dict:
     results = {}
     for asset in assets:
@@ -910,17 +1125,22 @@ def _capture_rivals(at: str) -> tuple[dict, dict]:
 
 def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
                     experiment: dict | None, timeline: dict,
-                    partial_identification: dict | None, chain: dict) -> dict:
+                    partial_identification: dict | None, chain: dict,
+                    b0_b3: dict) -> dict:
     runner=Path(__file__).resolve().parents[2]/"scripts"/"scientific_integration_warehouse.mjs"
     request={"cut":cut,"scenario":scenario,"sha256":_sha(FAKE_PARITY),
              "assets":assets,"experiment":experiment,"timeline":timeline,
-             "partial_identification":partial_identification,"chain":chain}
+             "partial_identification":partial_identification,"chain":chain,
+             "b0_b3":b0_b3}
     try:
-        proc=subprocess.run(["node",str(runner)],input=json.dumps(request),
+        # Keep the *fixed* multi-contract fixture bounded without weakening
+        # Node's independent source allowlists or the closed IPC schema.
+        proc=subprocess.run(["node",str(runner)],input=json.dumps(
+            request,separators=(",",":")),
             text=True,capture_output=True,timeout=5,check=False)
     except (OSError,subprocess.TimeoutExpired) as exc:
         raise RuntimeError("SYNTHETIC_NODE_BRIDGE_UNAVAILABLE") from exc
-    if proc.returncode!=0 or len(proc.stdout)>5000:
+    if proc.returncode!=0 or len(proc.stdout)>9000:
         raise RuntimeError("SYNTHETIC_NODE_BRIDGE_REJECTED")
     try:
         data=json.loads(proc.stdout)
@@ -941,6 +1161,7 @@ def _node_warehouse(*, cut: str, scenario: str, assets: list[dict],
         "bitemporal_actor_event_equivalence",
         "partial_identification_oracle",
         "typed_institutional_chain",
+        "b0_b3_observational_equivalence",
     }
     expected_visible = 1 if cut == "early" else 2
     if (not isinstance(data,dict)
@@ -1022,9 +1243,12 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
     partial_oracle=_partial_identification(partial_wire) if cut=="late" else None
     bitemporal,timeline=_bitemporal_actor_event(at=at)
     typed_chain,chain_wire=_typed_institutional_chain(at=at)
+    b0_b3_oracle,b0_b3_wire=_b0_b3_equivalence(
+        chain=chain_wire,at=at,s3_oracle=partial_oracle)
     warehouse=_node_warehouse(cut=cut,scenario=scenario,assets=assets,
                               experiment=experiment,timeline=timeline,
-                              partial_identification=partial_wire,chain=chain_wire)
+                              partial_identification=partial_wire,chain=chain_wire,
+                              b0_b3=b0_b3_wire)
     if warehouse.get("bitemporal_actor_event_equivalence") != bitemporal:
         raise RuntimeError("CROSS_LANGUAGE_BITEMPORAL_CONTRACT_DIVERGENCE")
     if warehouse.get("partial_identification_oracle") != partial_oracle:
@@ -1033,6 +1257,10 @@ def report(*,cut: str = "late",scenario: str = "baseline") -> dict:
                    sort_keys=True,separators=(",",":")) !=
             json.dumps(typed_chain,sort_keys=True,separators=(",",":"))):
         raise RuntimeError("CROSS_LANGUAGE_TYPED_CHAIN_DIVERGENCE")
+    if (json.dumps(warehouse.get("b0_b3_observational_equivalence"),
+                   sort_keys=True,separators=(",",":")) !=
+            json.dumps(b0_b3_oracle,sort_keys=True,separators=(",",":"))):
+        raise RuntimeError("CROSS_LANGUAGE_B0_B3_HYPOTHESIS_DIVERGENCE")
     if temporal["pp04_asset_receipts_visible"]==2:
         parsed=audit_pp04_dual_parsers(
             (PAN_TEXT,),(IAEN_TEXT,),expected_plan_count=2,

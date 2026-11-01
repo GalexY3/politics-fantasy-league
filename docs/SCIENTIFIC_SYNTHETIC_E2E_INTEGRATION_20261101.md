@@ -858,3 +858,126 @@ tests
 `ef0720582da8910e23b3a9897fdf2308533e2de4e776d6d78d5502b58a333be7`.
 Son huellas de bytes de software de laboratorio, **no** recibos de
 originales ni acreditación de acceso científico a datos reales.
+
+## PR22 · experimento B0 calendario frente a B3 selección/publicación (NONCYCLE)
+
+**Capacidad nueva, no defecto PREPATCH ni reutilización nominal del rival
+anterior.** El experimento `CAPTURE_EXPANSION` frente a `STABLE_CAPTURE`
+comparaba totales por canal y períodos. Esta nueva instrumentación utiliza
+el **mismo wire sintético de las cinco familias** (`ACTOR`, `ORGANIZATION`,
+`COMMUNICATION`, `DECISION`, `PROCESS`) y ambas ediciones de la cadena
+tipada, con su `source_id` y SHA-256 **exacto por fuente/revisión**. Para
+cada `as_of` temprano y tardío se calcula una proyección de hechos
+identificados por **familia, clave tipada, emisor, SHA, revisión, fecha de
+validez y semántica**. La comparación completa se realiza internamente;
+HTTP muestra solo recuentos y estados agregados, nunca identificadores,
+bytes ni SHA privados del fixture.
+
+Los **dos procesos generadores de datos (DGP)** estipulan el MISMO N=4
+hipotético de primeros episodios recibidos, NO un N empírico ni un censo
+administrativo autenticado. Los tres episodios adicionales E2, E3 y E4
+son supuestos latentes sin recibo de publicación: no aparecen como hechos
+observados. La proyección pública conserva el episodio publicado P1,
+su comunicación C1 con dos revisiones, la decisión D1 distinta y las
+identidades source-local de actor y organización. En el corte temprano
+solo se conoce la primera edición; en el tardío se conocen ambas.
+
+| Elemento exclusivamente hipotético | B0, calendario | B3, selección/publicación |
+| --- | --- | --- |
+| N de primeros episodios recibidos | 4 | 4 |
+| Episodios sin publicación específica | 3 | 3 |
+| Fracción hipotética de procesos publicados | `1/4` | `1/4` |
+| Causa postulada de salida de la segunda edición | Calendario de publicación del 30/10 | Selección editorial el 20/10 para publicación el 30/10 |
+| E2 | Pendiente; no negativo | Pendiente; no negativo |
+| E3 al corte tardío del 01/11 | Sin acto terminal conocido; audiencia futura ficticia el 05/11 | Rechazo ficticio del 10/10, **no publicado** |
+| E4 | Testigo de censura a derecha estrictamente hipotético | El mismo testigo de censura, nunca rechazo |
+
+Esta comparación evita tomar la distinta cobertura o el distinto
+denominador como respuesta: **hasta un supuesto registro independiente
+que confirmase exactamente N=4 no discriminaría entre B0 y B3**.
+El testigo diferencial necesario es **documentación independiente,
+tipada y temporalmente admisible del estado administrativo de E3**, o
+un **registro verificable de decisiones de selección y calendario de
+publicación**. Un certificado de rechazo de E3 fechado y publicado con
+conocimiento admisible al corte tardío falsaría la variante B0; un
+testigo independiente que acreditase ausencia de acto terminal hasta el
+corte podría falsar la variante B3. El mero `first_public_at` de las dos
+ediciones compartidas **tampoco discrimina** los mecanismos: podrían
+generar exactamente las mismas fechas de publicación. Ninguno de esos
+testigos diferenciales existe en el laboratorio como evidencia real;
+se registran como `available=false`.
+
+| Proyección observada del **mismo fixture** | Early, `valid_at=15/09` | Late, `valid_at=15/09` |
+| --- | ---: | ---: |
+| Actor / organización | 1 / 1 | 1 / 1 |
+| Revisiones documentales de comunicación C1 | 1 | 2 |
+| Comunicaciones lógicas | 1 | 1 |
+| Decisiones D1 visibles | 0 | 1 |
+| Hechos documentales de proceso P1 (entrada, pendencia, aprobación) | 2 | 3 |
+| Estado publicado del proceso P1 | Pendiente | Aprobado |
+
+Al consultar `valid_at=11/09` aun con el corte `as_of=late`, no se
+adelanta la decisión del 14/09. Al reproducir el corte `early` dentro
+de la consulta `late`, la firma completa de las observaciones anteriores
+permanece idéntica. Se contrasta la igualdad interna de **cada tupla
+tipada, fuente/recibo, revisión y fecha**, no solamente la igualdad de
+recuentos marginales. La revisión C1 v2 no se cuenta como una segunda
+comunicación; la comunicación no es una decisión; P1 no son dos
+episodios por sus documentos; los tres casos latentes no se suman a
+`terminal_by_cause`, pendientes observados ni censuras reales.
+
+**Sensibilidad S3:** el experimento reutiliza **sin recalibración** el
+oráculo S3 ya calculado independientemente en Python `Fraction` y Node
+`BigInt`: `r=P(publicado|Y=1)/P(publicado|Y=0) ∈ [1/2,2/1]` y
+`Δ∈[-11/52,47/119]`, siendo `r` una **razón de probabilidades de
+selección condicionales y NO una odds ratio**. Los binarios S3 6/4 y
+7/3 NO proceden de esta cadena, no cuantifican sus casos y no autorizan
+una interpretación causal. El bloque S3 está `null` en `early`, pues
+su información sintética se incorpora únicamente al corte tardío.
+
+**Contratos y defensa:** Python crea un wire `pfl.synthetic_b0_b3_full_observation_wire.v1`
+con dos mecanismos congelados y un oráculo
+`pfl.synthetic_b0_b3_observational_equivalence_oracle.v1`; Node valida
+la misma estructura cerrada, los SHA/source_id de la cadena, sus claves
+tipadas, los cuatro casos estipulados y la no disponibilidad de los
+testigos, y vuelve a calcular las proyecciones exactas con el almacén
+ya existente. Python compara canónicamente el resultado completo del
+proceso Node para impedir deslizamientos de familia, fechas y tipos JSON.
+La ruta HTTP existente devuelve **503** y `Cache-Control: no-store` si
+Node se desvía incluso cuando el agregado total de eventos permanece
+constante. Las fronteras de IPC se mantienen acotadas: entrada máxima
+12 288 caracteres y salida máxima 9 000, exclusivamente para los
+fixtures sintéticos enumerados, sin aceptar archivos, URL, identidades
+o fuentes suministrados por el cliente.
+
+**QA focal nueva:** tests seleccionados con `-k 'b0_b3'` verifican la
+igualdad no vacía de las cinco familias en early y late, fechas de
+validez distintas, recibos fuente y hashes, revisión vs evento,
+N=4 en ambos mecanismos, estado diferencial E3 y testigos ausentes,
+E2 pendiente, E4 censura no equiparada a rechazo, razones S3 exactas,
+contratos cerrados frente a spoof de `source_id`/SHA, semántica, tiempo
+ficticio, denominador, derechos, publicación y causa, y prueba HTTP
+real de discrepancia Node que intercambia una comunicación por una
+decisión **manteniendo constante la suma total**. **22 PASS,
+85 deseleccionados**; `node --check`, `py_compile` y `git diff --check`
+PASS. Es una capacidad nueva `NONCYCLE`: **NO hay PREPATCH rojo
+ficticio**; tampoco se reejecutaron las 18 pruebas focales de la fase
+anterior ni las suites históricas S3, bitemporal, PP04 o Node.
+
+**Puertas inalteradas:** `real_all_received_denominator=null`,
+`real_first_public_at=null`, testigos externos `available=false`,
+`rights_for_public_aggregate_admitted=false`,
+`official_crosswalk_verified=false`, `empirical_causal_effect_identified=false`,
+`scientific_cycles=0`, `R5=STOP_R5`, **0 AB**, sin acceso a originales,
+PII, CI, `main`, merge ni despliegue. La población de PP04
+`NO INCLUIDAS` sigue excluida; E3 hipotéticamente rechazado bajo B3
+**no** se promueve a negativo administrativo observado.
+
+**Recibos SHA-256 de la capacidad B0/B3 tras QA focal:**
+`scientific_integration_lab.py` =
+`fbfc896fe0350da5c8a0141596d79b216ef02a719a0221bdcf42f188f006d686`,
+`scientific_integration_warehouse.mjs` =
+`3cfcec205e00acbf6921924c8db70364804ffd1b789d717510f75482c9e4998b`,
+`test_synthetic_scientific_integration_lab.py` =
+`e7b16dc188101b88853277cb5e8b5be02adebaebeb2430329f3a485b64dec8c3`.
+SHA del código no equivale a autenticidad de documentos administrativos.
