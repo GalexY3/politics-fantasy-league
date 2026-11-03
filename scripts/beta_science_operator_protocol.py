@@ -9,6 +9,8 @@ diagnostic, empirical admission or a release gate. No identities are collected.
   python -B scripts/beta_science_operator_protocol.py --new-session outside_repo.json
   python -B scripts/beta_science_operator_protocol.py --evaluate input.json
   python -B scripts/beta_science_operator_protocol.py --evaluate-to input.json output.json
+  python -B scripts/beta_science_operator_protocol.py --prepare-form coded_v2.json participant_v2.html private_rubric_v2.json
+  python -B scripts/beta_science_operator_protocol.py --evaluate-form coded_v2.json private_rubric_v2.json result_v2.json
   python -B scripts/beta_science_operator_protocol.py --participant-handout outside_repo.html
   python -B scripts/beta_science_operator_protocol.py --template-to outside_repo_rubric.json
   python -B scripts/beta_science_operator_protocol.py --self-check
@@ -21,6 +23,8 @@ from html import escape
 import json
 import os
 from pathlib import Path
+import secrets
+import re
 
 INPUT_SCHEMA = "pfl.beta_science_operator_observations.v1"
 TEMPLATE_SCHEMA = "pfl.beta_science_operator_template.v1"
@@ -28,6 +32,10 @@ PARTICIPANT_SHEET_SCHEMA = "pfl.beta_science_operator_participant_sheet.v1"
 RESULT_SCHEMA = "pfl.beta_science_operator_evaluation.v1"
 SELF_SCHEMA = "pfl.beta_science_operator_self_check.v1"
 NEW_SESSION_SCHEMA = "pfl.beta_science_operator_session_creation.v1"
+FORM_INPUT_SCHEMA = "pfl.beta_science_operator_observations.v2"
+FORM_TEMPLATE_SCHEMA = "pfl.beta_science_operator_template.v2"
+FORM_RESULT_SCHEMA = "pfl.beta_science_operator_evaluation.v2"
+FORM_REFERENCE_PATTERN = re.compile(r"^[0-9a-f]{32}$")
 MAX_INPUT_BYTES = 16384
 MAX_HANDOUT_BYTES = 65536
 MISSING = "NOT_OBSERVED"
@@ -410,15 +418,8 @@ def _inside_git_worktree(parent: Path) -> bool:
                for ancestor in (parent, *parent.parents))
 
 
-def _write_external_utf8(path: str, content: str, *, maximum: int,
-                         error_prefix: str) -> tuple[int, str]:
-    """Write a newly named, standalone UTF-8 file only outside all Git trees.
-
-    Inspect both the lexical destination and the resolved parent so an
-    in-checkout name or an external directory link into the checkout cannot
-    bypass the guard. Validate before opening; no mkdir, no network, no output
-    containing the supplied path or an operating-system exception.
-    """
+def _external_destination(path: str, error_prefix: str) -> Path:
+    """Reject existing, linked, ADS and Git-path destinations without writing."""
     checkout = Path(__file__).resolve(strict=True).parents[1]
     checkout_lexical = Path(os.path.abspath(__file__)).parents[1]
     if not path or "\x00" in path:
@@ -450,6 +451,13 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
         raise
     except (OSError, ValueError, RuntimeError) as exc:
         raise ProtocolError(error_prefix + "_PATH_INVALID") from exc
+    return destination
+
+
+def _write_external_utf8(path: str, content: str, *, maximum: int,
+                         error_prefix: str) -> tuple[int, str]:
+    """Create standalone UTF-8 bytes once, never echo names or exceptions."""
+    destination = _external_destination(path, error_prefix)
     bytes_to_write = content.encode("utf-8")
     if len(bytes_to_write) > maximum:
         raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
@@ -490,13 +498,14 @@ def new_session(path: str) -> dict:
     }
 
 
-def participant_handout() -> str:
+def participant_handout(sheet: dict | None = None, form_reference: str | None = None) -> str:
     """Offline printable rendering of the EXISTING blind participant sheet.
 
     No form, telemetry, JavaScript, server URLs, or answer key. The scientific
     meanings are unchanged from --participant-sheet, which remains canonical.
     """
-    sheet = participant_sheet()
+    if sheet is None:
+        sheet = participant_sheet()
     if set(HANDOUT_ES) != set(BY_ID):
         raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
     blocks = []
@@ -532,6 +541,9 @@ def participant_handout() -> str:
         '.option{padding:.4rem .7rem;border-left:2px solid #777}'
         '@media print{body{margin:0;max-width:none}}</style></head>\n'
         '<body><h1>Politics Fantasy League — synthetic science beta</h1>\n'
+        + ('<p class="form-ref">Referencia del formulario (no identifica '
+           'a ninguna persona): ' + escape(form_reference) + '</p>\n'
+           if form_reference is not None else '') +
         '<p lang="es">Hoja bilingüe de apoyo: traducción no validada con '
         'participantes. Puedes detenerte cuando quieras; no anotes nombres, '
         'identificadores ni direcciones privadas.</p>\n'
@@ -598,6 +610,266 @@ def evaluate_to(source: str, destination: str) -> dict:
         "participant_identity_collected": False,
         "R5": "STOP_R5",
         "gate_eligibility": "OPERATOR_NOT_ASSESSED",
+    }
+
+
+def _canonical_sha(value: object) -> str:
+    return hashlib.sha256((json_line(value) + "\n").encode("utf-8")).hexdigest()
+
+
+def _form_tasks(correct_a: frozenset[str]) -> tuple[dict, ...]:
+    """CSPRNG-assigned six A / six B, without changing scientific semantics."""
+    prepared = []
+    for original in TASKS:
+        item = dict(original)
+        opts = [dict(option) for option in original["scientific_options"]]
+        should_first = item["task_id"] in correct_a
+        is_first = opts[0]["code"] == item["correct_answer_code"]
+        if should_first != is_first:
+            opts.reverse()
+        item["scientific_options"] = opts
+        prepared.append(item)
+    return tuple(prepared)
+
+
+def _form_sheet(tasks: tuple[dict, ...]) -> dict:
+    return {
+        "schema": PARTICIPANT_SHEET_SCHEMA,
+        "tasks": [{
+            "task_id": item["task_id"],
+            "operator_action": item["operator_action"],
+            "scientific_question": item["scientific_question"],
+            "scientific_options": [
+                {"code": label, "meaning": option["meaning"]}
+                for label, option in zip(("A", "B"), item["scientific_options"], strict=True)
+            ],
+        } for item in tasks],
+    }
+
+
+def _form_rubric(tasks: tuple[dict, ...], form_id: str,
+                 handout_sha: str) -> dict:
+    return {
+        "schema": FORM_TEMPLATE_SCHEMA,
+        "form_id": form_id,
+        "form_reference": form_id[:12],
+        "handout_sha256": handout_sha,
+        "task_count": len(TASKS),
+        "instrument_definition_sha256": _canonical_sha(template()),
+        "tasks": [{
+            "task_id": task["task_id"],
+            "correct_answer_code": ("A" if task["scientific_options"][0]["code"]
+                                    == task["correct_answer_code"] else "B"),
+            "participant_option_to_scientific_code": {
+                label: option["code"]
+                for label, option in zip(("A", "B"), task["scientific_options"], strict=True)
+            },
+            "scientific_options": [
+                {"code": label, "meaning": option["meaning"]}
+                for label, option in zip(("A", "B"), task["scientific_options"], strict=True)
+            ],
+        } for task in tasks],
+    }
+
+
+def prepare_form(session_path: str, participant_html_path: str,
+                 rubric_path: str) -> dict:
+    """Create one versioned, separately keyed, randomly balanced form.
+
+    Legacy v1 tools stay untouched. Three destinations must already have
+    existing external parents. The participant and rubric parents must differ,
+    so the answer key is not accidentally placed alongside the handout.
+    """
+    locations = [
+        _external_destination(session_path, "OPERATOR_FORM"),
+        _external_destination(participant_html_path, "OPERATOR_FORM"),
+        _external_destination(rubric_path, "OPERATOR_FORM"),
+    ]
+    normalized = [os.path.normcase(str(item.resolve(strict=False))) for item in locations]
+    if len(set(normalized)) != 3:
+        raise ProtocolError("OPERATOR_FORM_PATH_COLLISION")
+    if (locations[1].parent.resolve(strict=True)
+            == locations[2].parent.resolve(strict=True)):
+        raise ProtocolError("OPERATOR_FORM_KEY_NOT_SEPARATED")
+    # cryptographic RNG: every invocation samples a fresh independent layout.
+    # Neither the form reference nor the SHA is an empirical or RNG-quality
+    # certification. The A/B assignment is hidden only by the private rubric.
+    form_id = secrets.token_hex(16)
+    correct_a = frozenset(secrets.SystemRandom().sample(
+        [task["task_id"] for task in TASKS], len(TASKS) // 2))
+    tasks = _form_tasks(correct_a)
+    sheet = _form_sheet(tasks)
+    handout = participant_handout(sheet, form_id[:12])
+    handout_sha = hashlib.sha256(handout.encode("utf-8")).hexdigest()
+    rubric = _form_rubric(tasks, form_id, handout_sha)
+    rubric_sha = _canonical_sha(rubric)
+    session = {
+        "schema": FORM_INPUT_SCHEMA,
+        "form_id": form_id,
+        "handout_sha256": handout_sha,
+        "rubric_sha256": rubric_sha,
+        "observations": [{
+            "task_id": task["task_id"],
+            "technical": MISSING,
+            "scientific": MISSING,
+            "usability": MISSING,
+        } for task in tasks],
+    }
+    # Write the supervisor-only material first; publish the participant
+    # handout LAST. Any recoverable failure removes only files we created
+    # and whose inode has not changed since their creation.
+    created: list[tuple[Path, int, int]] = []
+    try:
+        for dest, content in (
+            (locations[2], json_line(rubric) + "\n"),
+            (locations[0], json_line(session) + "\n"),
+            (locations[1], handout),
+        ):
+            _write_external_utf8(
+                str(dest), content,
+                maximum=MAX_HANDOUT_BYTES if dest != locations[0] else MAX_INPUT_BYTES,
+                error_prefix="OPERATOR_FORM",
+            )
+            stat = dest.stat()
+            created.append((dest, stat.st_dev, stat.st_ino))
+    except (ProtocolError, OSError) as exc:
+        for dest, dev, ino in reversed(created):
+            try:
+                stat = dest.stat()
+                if stat.st_dev == dev and stat.st_ino == ino:
+                    dest.unlink()
+            except OSError:
+                pass
+        if isinstance(exc, ProtocolError):
+            raise
+        raise ProtocolError("OPERATOR_FORM_WRITE_FAILED") from exc
+    return {
+        "schema": FORM_TEMPLATE_SCHEMA,
+        "status": "OPERATOR_FORM_PREPARED",
+        "form_version": "v2",
+        "form_reference": form_id[:12],
+        "correct_A_count": len(correct_a),
+        "correct_B_count": len(TASKS) - len(correct_a),
+        "handout_sha256": handout_sha,
+        "rubric_sha256": rubric_sha,
+        "participant_count": None,
+        "participants_observed": False,
+        "R5": "STOP_R5",
+    }
+
+
+def _read_and_verify_form_rubric(value: object) -> dict:
+    """Strictly bind A/B codes to the specific, non-public session rubric."""
+    keys = {"schema", "form_id", "form_reference", "handout_sha256",
+            "task_count", "instrument_definition_sha256", "tasks"}
+    if type(value) is not dict or set(value) != keys:
+        raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+    if (value["schema"] != FORM_TEMPLATE_SCHEMA
+            or type(value["form_id"]) is not str
+            or not FORM_REFERENCE_PATTERN.fullmatch(value["form_id"])
+            or value["form_reference"] != value["form_id"][:12]
+            or type(value["handout_sha256"]) is not str
+            or not re.fullmatch(r"[0-9a-f]{64}", value["handout_sha256"])
+            or value["task_count"] != len(TASKS)
+            or value["instrument_definition_sha256"] != _canonical_sha(template())
+            or type(value["tasks"]) is not list
+            or len(value["tasks"]) != len(TASKS)):
+        raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+    expected_fields = {"task_id", "correct_answer_code",
+                       "participant_option_to_scientific_code", "scientific_options"}
+    positions = []
+    for received, canonical in zip(value["tasks"], TASKS, strict=True):
+        if type(received) is not dict or set(received) != expected_fields:
+            raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+        options = received["participant_option_to_scientific_code"]
+        visible = received["scientific_options"]
+        if (received["task_id"] != canonical["task_id"]
+                or type(options) is not dict
+                or set(options) != {"A", "B"}
+                or type(visible) is not list
+                or len(visible) != 2
+                or any(type(o) is not dict or set(o) != {"code", "meaning"}
+                       for o in visible)
+                or [o["code"] for o in visible] != ["A", "B"]
+                or set(options.values())
+                != {o["code"] for o in canonical["scientific_options"]}
+                or any(
+                    option["meaning"] != next(
+                        (c["meaning"] for c in canonical["scientific_options"]
+                         if c["code"] == options[label]), None)
+                    for label, option in zip(("A", "B"), visible, strict=True)
+                )):
+            raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+        correct = next(
+            label for label in ("A", "B")
+            if options[label] == canonical["correct_answer_code"]
+        )
+        if received["correct_answer_code"] != correct:
+            raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+        positions.append(correct)
+    if positions.count("A") != positions.count("B"):
+        raise ProtocolError("OPERATOR_FORM_RUBRIC_INVALID")
+    return value
+
+
+def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
+    """Fail closed on mismatched versioned forms BEFORE any output write."""
+    session = read_json(source_path)
+    rubric = _read_and_verify_form_rubric(read_json(rubric_path))
+    if (type(session) is not dict
+            or set(session) != {
+                "schema", "form_id", "handout_sha256",
+                "rubric_sha256", "observations"
+            }
+            or session["schema"] != FORM_INPUT_SCHEMA
+            or session["form_id"] != rubric["form_id"]
+            or session["handout_sha256"] != rubric["handout_sha256"]
+            or session["rubric_sha256"] != _canonical_sha(rubric)):
+        raise ProtocolError("OPERATOR_FORM_MISMATCH")
+    if type(session["observations"]) is not list:
+        raise ProtocolError("OPERATOR_SCHEMA_INVALID")
+    normalized = []
+    for entry in session["observations"]:
+        if type(entry) is not dict or set(entry) != INPUT_KEYS:
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+        ident = entry["task_id"]
+        if type(ident) is not str or ident not in BY_ID:
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+        if type(entry["scientific"]) is not str or entry["scientific"] not in {
+            "A", "B", MISSING
+        }:
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+        options = next(
+            task["participant_option_to_scientific_code"] for task in rubric["tasks"]
+            if task["task_id"] == ident
+        )
+        normalized.append({
+            **entry,
+            "scientific": (options[entry["scientific"]]
+                           if entry["scientific"] != MISSING else MISSING),
+        })
+    legacy = evaluate({"schema": INPUT_SCHEMA, "observations": normalized})
+    result = {
+        **legacy,
+        "schema": FORM_RESULT_SCHEMA,
+        "form_version": "v2",
+        "instrument_binding": "MATCHED_V2_FORM_AND_RUBRIC",
+        "form_binding": "MATCHED_V2_FORM_AND_RUBRIC",
+        "form_reference": rubric["form_reference"],
+        "handout_sha256": rubric["handout_sha256"],
+        "operator_instrument_sha256": _canonical_sha(rubric),
+    }
+    length, sha = _write_external_utf8(
+        output_path, json_line(result) + "\n",
+        maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": FORM_RESULT_SCHEMA,
+        "status": "OPERATOR_FORM_EVALUATION_EXPORTED",
+        "bytes": length,
+        "sha256": sha,
+        "participant_count": None,
+        "R5": "STOP_R5",
     }
 
 
@@ -669,6 +941,7 @@ def evaluate(value: object) -> dict:
                      "scientific": sci, "usability": ux})
     return {
         "schema": RESULT_SCHEMA, "status": "OPERATOR_EVALUATION_COMPLETE",
+        "instrument_binding": "LEGACY_UNBOUND",
         # Identifies the exact locally used scoring rubric and its A/B mapping.
         # This is a reproducibility fingerprint, NOT a signature or evidence
         # that any particular participant answered these questions.
@@ -718,6 +991,10 @@ def main(argv: list[str] | None = None) -> int:
     exclusive.add_argument("--new-session", metavar="JSON_FILE")
     exclusive.add_argument("--evaluate", metavar="JSON_FILE")
     exclusive.add_argument("--evaluate-to", nargs=2, metavar=("INPUT_JSON", "OUTPUT_JSON"))
+    exclusive.add_argument("--prepare-form", nargs=3, metavar=(
+        "CODED_V2_JSON", "PARTICIPANT_V2_HTML", "OPERATOR_V2_RUBRIC_JSON"))
+    exclusive.add_argument("--evaluate-form", nargs=3, metavar=(
+        "CODED_V2_JSON", "OPERATOR_V2_RUBRIC_JSON", "RESULT_V2_JSON"))
     exclusive.add_argument("--self-check", action="store_true")
     try:
         args = parser.parse_args(argv)
@@ -736,6 +1013,10 @@ def main(argv: list[str] | None = None) -> int:
             result = new_session(args.new_session)
         elif args.evaluate_to is not None:
             result = evaluate_to(*args.evaluate_to)
+        elif args.prepare_form is not None:
+            result = prepare_form(*args.prepare_form)
+        elif args.evaluate_form is not None:
+            result = evaluate_form(*args.evaluate_form)
         elif args.self_check:
             result = {
                 "schema": SELF_SCHEMA, "status": "OPERATOR_INSTRUMENT_VALID",

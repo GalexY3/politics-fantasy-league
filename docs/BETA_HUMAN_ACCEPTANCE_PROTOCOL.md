@@ -60,7 +60,7 @@ nunca acierto ni fallo ficticio.
 
 ## Instrumento ejecutable y registro local opcional
 
-La CLI dispone de nueve rutas independientes que no llaman al servidor
+La CLI dispone de once rutas independientes que no llaman al servidor
 ni modifican SQLite:
 
     python -B scripts/beta_science_operator_protocol.py --self-check
@@ -72,6 +72,83 @@ ni modifican SQLite:
     python -B scripts/beta_science_operator_protocol.py --new-session RUTA_JSON_LOCAL_EXTERNA
     python -B scripts/beta_science_operator_protocol.py --evaluate RUTA_JSON_LOCAL
     python -B scripts/beta_science_operator_protocol.py --evaluate-to RUTA_JSON_LOCAL RUTA_RESULTADO_JSON_EXTERNA
+    python -B scripts/beta_science_operator_protocol.py --prepare-form FICHA_V2_JSON HOJA_V2_HTML RÚBRICA_PRIVADA_V2_JSON
+    python -B scripts/beta_science_operator_protocol.py --evaluate-form FICHA_V2_JSON RÚBRICA_PRIVADA_V2_JSON RESULTADO_V2_JSON
+
+**Modalidad preferente para una primera sesión nueva: v2 versionada.**
+`--prepare-form` genera con un solo mandato tres artefactos vinculados:
+hoja bilingüe HTML de las mismas doce tareas, fichero JSON de
+observaciones y rúbrica cerrada exclusiva del supervisor. Usa una
+fuente de aleatoriedad criptográfica del sistema operativo para elegir
+la asignación A/B de **cada nueva ficha**, imponiendo seis opciones
+correctas en A y seis en B. Es asignación aleatoria real por sesión
+local, no la asignación determinista pública del formulario v1.
+Las posiciones pueden coincidir entre dos sesiones por azar; el
+protocolo no promete secuencias únicas ni el cegamiento de una
+persona que haya visto la rúbrica. Esta asignación no significa que
+personas hayan sido asignadas experimentalmente ni valida la
+equivalencia de los doce ítems o de la traducción española.
+
+La rúbrica JSON y la ficha JSON deben estar en un directorio de
+supervisión distinto del directorio del HTML participante; el
+comando rechaza compartir directorio de rúbrica y HTML, rutas
+repetidas, rutas dentro de cualquier Git o ADS NTFS. Deben existir
+previamente los directorios de destino. Los tres archivos se crean
+exclusivamente, sin sobreescribir; si se detecta un error recuperable
+durante la creación se intenta revertir solo los ficheros nuevos.
+No se promete atomicidad frente a corte brusco de alimentación.
+Tener carpetas diferentes NO constituye por sí solo control de permisos:
+en Windows los archivos heredan ACL del directorio y el protocolo no
+audita esas ACL. La persona supervisora debe custodiar la rúbrica y la
+ficha fuera de la vista y del acceso de quien participe (por ejemplo,
+cuenta del sistema o soporte separado); el HTML no lleva la clave,
+pero tener acceso al repositorio o a la carpeta privada permite
+descubrirla. No atribuir cegamiento efectivo a una prueba automatizada.
+Cada ficha recibe un identificador de formulario aleatorio
+de 128 bits no derivado de persona; únicamente su referencia
+corta aparece en el HTML para cotejo local, sin captura de
+nombre, correo ni actividad de la participante.
+
+La ficha de observaciones usa el esquema
+`pfl.beta_science_operator_observations.v2`. Los campos superiores
+`form_id`, `handout_sha256` y `rubric_sha256` se conservan sin
+modificar durante pausas, reinicios del servidor o ediciones
+manuales. Solo se rellenan los cuatro campos cerrados de cada una
+de las doce observaciones; en v2 el campo `scientific` acepta
+exclusivamente `A`, `B` o `NOT_OBSERVED`, NO los códigos
+`SCI_OP...` internos de v1. La distinción de `TECH_COMPLETED`,
+`TECH_FAILED`, `TECH_BLOCKED` y `NOT_OBSERVED` se mantiene:
+ninguna comprensión se puntúa sin finalización técnica. Las
+respuestas ausentes o tareas no observadas se consignan de forma
+explícita y no se convierten en errores de interpretación.
+
+`--evaluate-form` comprueba **antes de crear ningún resultado**:
+esquema/versiones, correspondencia exacta de formulario y rúbrica,
+huellas de hoja y clave, mapeo A/B cerrado contra el instrumento,
+doce IDs únicos, veto técnico y ausencia de campos personales.
+Publica solo clasificaciones de comprensión (`SCI_CORRECT`,
+`SCI_INCORRECT`, `NOT_OBSERVED`) y conteos cerrados, nunca
+identidades ni transcripciones originales. El resultado v2 declara
+`instrument_binding=MATCHED_V2_FORM_AND_RUBRIC`; una discrepancia
+de formulario/versión se rechaza fail-closed, sin generar archivo.
+Las huellas SHA-256 son de integridad y correspondencia de bytes,
+no firmas, garantías contra un operador adversarial ni evidencias
+de que los ítems se aplicaron realmente a seres humanos.
+La evaluación v2 comprueba además el SHA de definición del instrumento
+que incluye la rúbrica actual: una futura modificación semántica de los
+ítems necesita una migración o evaluador específico explícito, nunca
+reinterpretación silenciosa de una ficha v2 anterior.
+
+**Histórico v1 preservado:** los nueve comandos anteriores no
+reinterpretan formularios ni mutan registros. Las fichas
+`pfl.beta_science_operator_observations.v1` pueden evaluarse
+explícitamente por `--evaluate` o `--evaluate-to`, con su
+anterior mapeo SCI y clave A/B pública, pero sus resultados
+identifican ahora `instrument_binding=LEGACY_UNBOUND`.
+La mera inclusión del SHA de la rúbrica actual en un resultado
+v1 no puede probar qué hoja recibió una persona anteriormente.
+Una ficha v1 no es admitida en `--evaluate-form` ni una v2
+se puntúa con `--evaluate`: la compatibilidad no mezcla esquemas.
 
 Las tres rutas nuevas de escritura producen directamente archivos UTF-8
 en el directorio externo ya existente, con apertura exclusiva sin sobrescribir

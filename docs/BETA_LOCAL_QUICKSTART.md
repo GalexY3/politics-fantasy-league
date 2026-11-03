@@ -15,18 +15,28 @@ una carpeta de sesión nueva en el perfil local, con espacio y acentos válidos:
     $base = Join-Path $env:LOCALAPPDATA 'PFL prueba científica supervisada'
     New-Item -ItemType Directory -Force (Join-Path $base 'participante'), (Join-Path $base 'supervisor'), (Join-Path $base 'sqlite') | Out-Null
     python -B scripts/beta_science_operator_protocol.py --self-check
-    python -B scripts/beta_science_operator_protocol.py --participant-handout (Join-Path $base 'participante\hoja-bilingüe.html')
-    python -B scripts/beta_science_operator_protocol.py --template-to (Join-Path $base 'supervisor\rubrica-privada.json')
-    python -B scripts/beta_science_operator_protocol.py --new-session (Join-Path $base 'supervisor\observaciones.json')
+    python -B scripts/beta_science_operator_protocol.py --prepare-form (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'participante\hoja-v2.html') (Join-Path $base 'supervisor\rubrica-privada-v2.json')
 
-Cada acción devuelve un JSON corto con `status`; requiere `OPERATOR_INSTRUMENT_VALID`,
-`OPERATOR_HANDOUT_CREATED`, `OPERATOR_RUBRIC_CREATED` y `OPERATOR_SESSION_CREATED`.
+Se requieren los estados `OPERATOR_INSTRUMENT_VALID` y `OPERATOR_FORM_PREPARED`.
+La segunda operación genera simultáneamente tres ficheros UTF-8 propios de
+**una sola versión v2**, con asignación real de posiciones correctas
+A/B obtenida mediante CSPRNG y equilibrada 6/6. No reutilizar un formulario
+entre participantes, compartir rúbricas ni generar el HTML por separado
+mediante los comandos v1. La referencia corta de formulario en el HTML
+es un código aleatorio local para cotejo, no una identidad personal ni
+autenticación criptográfica. El SHA del HTML y el de la rúbrica quedan
+vinculados a la ficha, pero no acreditan que alguien haya leído el papel.
 La hoja HTML se abre localmente sin conexión; muestra preguntas bilingües
 derivadas de las doce tareas **ya existentes**, pero la traducción al español
 es un apoyo no validado psicométricamente. La rúbrica y el JSON de
 observaciones quedan fuera del directorio `participante`, bajo el control
 del supervisor. No compartir respuestas correctas, nombres, credenciales,
 capturas ni URL privadas; no crear repositorios en estas carpetas.
+Las carpetas separadas no aplican ACL protectoras por sí mismas:
+la rúbrica y el JSON del supervisor requieren permisos y custodia
+reales fuera de la vista de la persona participante. Un usuario con
+acceso al repositorio puede ver las soluciones históricas v1; un
+usuario con acceso a la rúbrica v2 puede conocer las de esa variante.
 Si un archivo existe, el protocolo NO lo sobrescribe: usar una carpeta
 vacía para otra sesión, sin borrar ni reutilizar fichas anteriores.
 
@@ -48,7 +58,14 @@ sin introducir claves SCI ante la participante. El HTML es de lectura:
 no recoge clics, respuestas ni métricas. Toda respuesta se incorpora
 **manualmente**, si procede y sin PII, a los códigos cerrados de
 `observaciones.json`; una tarea técnica fallida o bloqueada exige respuesta
-científica `NOT_OBSERVED`.
+científica `NOT_OBSERVED`. **En v2, la columna `scientific`
+de `observaciones-v2.json` solo acepta `A`, `B` o `NOT_OBSERVED`;
+nunca transcribir códigos internos `SCI_OP...` de la rúbrica ni las
+respuestas a un formulario distinto.** No alterar los campos `schema`,
+`form_id`, `handout_sha256` o `rubric_sha256` de la ficha creada.
+El archivo puede conservarse tras una interrupción y seguir editándose
+manualmente; no hay borrado automático ni almacenamiento de respuestas
+en la web. Las tareas no observadas permanecen marcadas expresamente.
 
 Para una **interrupción o reinicio**, detener con Ctrl+C y conservar
 únicamente la ficha externa. El marcador `pfl_guest=v1` conserva siete
@@ -63,11 +80,20 @@ válido. Las descargas S9 se verifican offline con los comprobadores
 
 Tras la observación, y solo si hay alguna tarea realmente codificada:
 
-    python -B scripts/beta_science_operator_protocol.py --evaluate-to (Join-Path $base 'supervisor\observaciones.json') (Join-Path $base 'supervisor\resultado-verificado.json')
+    python -B scripts/beta_science_operator_protocol.py --evaluate-form (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'supervisor\rubrica-privada-v2.json') (Join-Path $base 'supervisor\resultado-verificado-v2.json')
 
-`OPERATOR_EVALUATION_EXPORTED` implica solamente que el archivo local
+`OPERATOR_FORM_EVALUATION_EXPORTED` implica solamente que el archivo local
 de códigos superó el contrato, no que una persona realmente participara
-ni que se superase una puerta científica. Si hay doce NOT_OBSERVED,
+ni que se superase una puerta científica. La evaluación obliga a que la
+rúbrica y la ficha sean de **la misma versión v2, formulario aleatorio,
+SHA de hoja y SHA de clave**; un formulario mezclado se rechaza antes
+de escribir resultado con `OPERATOR_FORM_MISMATCH`. La salida distingue
+la ejecución técnica, la comprensión clasificada solo tras
+`TECH_COMPLETED` y la usabilidad, y marca
+`instrument_binding=MATCHED_V2_FORM_AND_RUBRIC`. No constituye prueba
+de integridad frente a un supervisor que modifica deliberadamente
+todos los archivos; las huellas son comprobaciones de consistencia,
+no firmas digitales. Si hay doce NOT_OBSERVED,
 `OPERATOR_NO_OBSERVATIONS` es correcto y **no** debe existir
 `resultado-verificado.json`. Otros rechazos incluyen
 `OPERATOR_SESSION_INCOMPLETE`, `OPERATOR_INPUT_INVALID`,
@@ -75,6 +101,18 @@ ni que se superase una puerta científica. Si hay doce NOT_OBSERVED,
 `OPERATOR_OUTPUT_PATH_FORBIDDEN` y, en Windows, el veto ADS
 `OPERATOR_OUTPUT_PATH_INVALID`. Los errores no revelan rutas ni PII.
 No redirigir el resultado con `>` en PowerShell 5.1.
+
+**Compatibilidad explícita:** las nueve acciones anteriores
+`--participant-sheet`, `--participant-handout`, `--template`,
+`--template-to`, `--blank-session`, `--new-session`, `--evaluate`,
+`--evaluate-to` y `--self-check` permanecen disponibles para fichas
+históricas **v1**. Ese instrumento tenía una clave A/B pública, fija
+y repetible y permitía códigos internos SCI sin identificador de
+formulario; por ello sus resultados nuevos llevan
+`instrument_binding=LEGACY_UNBOUND` aunque incluyan la huella de la
+rúbrica actual. **No** debe puntuarse una ficha v1 como si fuese v2,
+ni trasladar el resultado antiguo a una nueva variante. Para una
+primera sesión supervisada nueva, usar preferentemente v2.
 
 Cerrar con Ctrl+C, comprobar que el puerto antiguo ya no responde y
 conservar o suprimir **manualmente** los ficheros propios fuera de Git

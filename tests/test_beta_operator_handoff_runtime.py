@@ -216,6 +216,57 @@ def test_operator_reboot_rebind_and_export_synthetic_coded_session(tmp_path: Pat
         assert exported_path.read_bytes() == exported_bytes
         assert session.read_bytes() == source_before
 
+        # Opt-in v2 instrument lives in separate supervisor/participant
+        # directories, while the real science-only HTTP server stays alive.
+        # These are invented fixture codes; NO person was observed.
+        v2_private = external / "Supervisor v2"
+        v2_public = external / "Participante v2"
+        v2_private.mkdir()
+        v2_public.mkdir()
+        v2_source = v2_private / "observaciones ciegas v2.json"
+        v2_handout = v2_public / "hoja sin clave v2.html"
+        v2_rubric = v2_private / "rubrica de operador v2.json"
+        v2_output = v2_private / "resultado clasificado v2.json"
+        rc, v2_ready, ready_stdout = _protocol_with_raw(
+            "--prepare-form", v2_source, v2_handout, v2_rubric)
+        assert rc == 0 and v2_ready["status"] == "OPERATOR_FORM_PREPARED"
+        assert v2_ready["correct_A_count"] == v2_ready["correct_B_count"] == 6
+        _assert_no_path_or_people(
+            ready_stdout, v2_source, v2_handout, v2_rubric)
+        v2_body = json.loads(v2_source.read_text(encoding="utf-8"))
+        v2_key = json.loads(v2_rubric.read_text(encoding="utf-8"))
+        assert v2_body["schema"] == "pfl.beta_science_operator_observations.v2"
+        assert v2_body["form_id"] == v2_key["form_id"]
+        assert hashlib.sha256(v2_handout.read_bytes()).hexdigest() == (
+            v2_body["handout_sha256"])
+        assert "SCI_OP" not in v2_handout.read_text(encoding="utf-8")
+        v2_correct = v2_key["tasks"][0]["correct_answer_code"]
+        v2_body["observations"][0].update(
+            technical="TECH_COMPLETED", scientific=v2_correct,
+            usability="UX_CLEAR")
+        v2_body["observations"][8].update(
+            technical="TECH_BLOCKED", scientific="NOT_OBSERVED",
+            usability="UX_BLOCKED")
+        v2_source.write_bytes(
+            (json.dumps(v2_body, sort_keys=True, separators=(",", ":"),
+                        ensure_ascii=True) + "\n").encode("utf-8"))
+        rc, v2_receipt, v2_raw = _protocol_with_raw(
+            "--evaluate-form", v2_source, v2_rubric, v2_output)
+        assert rc == 0 and v2_receipt["status"] == (
+            "OPERATOR_FORM_EVALUATION_EXPORTED")
+        _assert_no_path_or_people(
+            v2_raw, v2_source, v2_rubric, v2_output)
+        v2_result = json.loads(v2_output.read_text(encoding="utf-8"))
+        assert v2_result["instrument_binding"] == (
+            "MATCHED_V2_FORM_AND_RUBRIC")
+        assert v2_result["rollup"]["technical"]["TECH_COMPLETED"] == 1
+        assert v2_result["rollup"]["technical"]["TECH_BLOCKED"] == 1
+        assert v2_result["rollup"]["scientific"]["SCI_CORRECT"] == 1
+        assert v2_result["rollup"]["scientific"]["NOT_OBSERVED"] == 11
+        assert v2_result["participant_count"] is None
+        assert hashlib.sha256(scientific_db.read_bytes()).hexdigest() == db_sha_before
+        _assert_no_game_files(db)
+
     assert hashlib.sha256(scientific_db.read_bytes()).hexdigest() == db_sha_before
     _assert_no_game_files(db)
 
