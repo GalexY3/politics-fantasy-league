@@ -429,7 +429,19 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
 
 
 def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT,
-          field_path: Path | None=FIELD, scientific_only: bool=False):
+          field_path: Path | None=FIELD, scientific_only: bool=False,
+          resume_guest_query: str | None=None):
+    # run_demo validates the complete seven-field query. Direct internal
+    # callers must at least not bypass the no-account boundary or inject a
+    # second line into the local startup banner. Reject before any DB/socket.
+    if resume_guest_query is not None and (
+            not scientific_only or type(resume_guest_query) is not str
+            or len(resume_guest_query) > 640
+            or not resume_guest_query.startswith('pfl_guest=v1&')
+            or any(ord(char) < 33 or ord(char) > 126
+                   for char in resume_guest_query)
+            or any(char in resume_guest_query for char in '#?\\')):
+        raise ValueError('Consulta científica reanudable no válida')
     # Existing direct handler_factory() use is maintained for legacy unit tests.
     # serve() uses a mandatory account boundary: it NEVER serves the shared demo
     # game's club data to authenticated users.
@@ -443,6 +455,10 @@ def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT,
     print(f'Politics Fantasy League · '
           f'{"CIENCIA SINTÉTICA SIN CUENTAS" if scientific_only else "DEMO SINTÉTICA"}'
           f' · http://127.0.0.1:{server.server_port}',flush=True)
+    if resume_guest_query is not None:
+        print(f'REANUDAR CONSULTA CIENTÍFICA · '
+              f'http://127.0.0.1:{server.server_port}/?{resume_guest_query}',
+              flush=True)
     print('SOLO localhost; NO publicar a internet. '
           +('Sin cuentas, mercado ni operaciones POST.' if scientific_only
             else 'Cuentas locales con sesiones; sin puntos políticos reales.'),flush=True)

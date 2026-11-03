@@ -1,5 +1,5 @@
 {
-  "revision": 47,
+  "revision": 48,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1279,5 +1279,42 @@
     "fantasy_redesign_deferred": true,
     "reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_GUEST_QUERY_RECOVERY_RECEIPT_20261103.json"
+  },
+  "local_beta_dynamic_port_guest_resume": {
+    "date": "2026-11-03",
+    "baseline_published_head": "b330a69c12ee3df8439d9f8542c9c9adec8c42a3",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_NONCYCLE_GUEST_PORT_RELOCATION",
+    "launcher_command": "python run_demo.py --science-only --port 0 --resume-guest-query URL_O_QUERY",
+    "only_allowed_in_science_only": true,
+    "old_origin_and_port_reused": false,
+    "live_loopback_port_read_from_actual_bound_socket": true,
+    "guest_link_emitted_after_successful_bind": true,
+    "query_fields": [
+      "pfl_guest", "cut", "valid_at", "family",
+      "published_until", "scenario", "view"
+    ],
+    "query_uses_existing_scientific_registry_and_lab_enums": true,
+    "unknown_duplicate_malformed_or_external_host_fails_closed": true,
+    "unbound_or_stopped_server_claimed_available": false,
+    "link_proves_document_provenance_or_entitlements": false,
+    "no_fantasy_account_or_http_write_in_guest_flow": true,
+    "sqlite_v4_schema_modified": false,
+    "s9_pair_export_contract_modified": false,
+    "os_process_restart_and_browser_sha_verification": "tests/test_s9_chrome_registry.mjs",
+    "launcher_focal_tests": "tests/test_beta_guest_link_launcher.py",
+    "runner": "python scripts/beta_acceptance.py",
+    "state": "READY_REVIEW",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "fantasy_redesign_deferred": true,
+    "guide": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_DYNAMIC_PORT_RESUME_RECEIPT_20261103.json"
   }
 }

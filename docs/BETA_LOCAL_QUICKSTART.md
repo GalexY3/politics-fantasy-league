@@ -171,6 +171,37 @@ protocolo/host/puerto del enlace por los del nuevo servidor local antes de
 abrirlo. No se redirige automáticamente a otro servicio ni se habilita el
 acceso desde fuera de 127.0.0.1.
 
+El lanzador dispone además de un procedimiento explícito para recuperar el
+**enlace de consulta** sin arrastrar un puerto caducado. Cierra el proceso
+anterior y ejecuta, sustituyendo el ejemplo por una URL de visitante realmente
+copiada desde el Observatorio (entre comillas por los caracteres `&`):
+
+    python run_demo.py --science-only --port 0 --resume-guest-query "http://127.0.0.1:8787/?pfl_guest=v1&cut=late&valid_at=2026-09-15&family=all&published_until=as_of&scenario=baseline&view=compare"
+
+La primera línea del terminal anuncia **el puerto local efectivamente
+asignado**. Solo después de enlazar el socket correctamente, una línea
+`REANUDAR CONSULTA CIENTÍFICA` debe mostrar la URL validada con **ese
+puerto nuevo**, no el del marcador antiguo. Debes abrir o copiar esta
+**nueva** dirección; la antigua no se considera disponible. También se
+acepta únicamente la consulta relativa, comenzando por `?pfl_guest=v1`,
+para no depender de una dirección anterior. El enlace entrante ha de ser
+una selección visitante cerrada, no una URL con usuario/contraseña, fragmentos,
+identificadores internos o un dominio externo. Una selección inválida
+impide el arranque antes de abrir el servicio o crear bases.
+
+La dirección nueva acredita únicamente que el socket local ha conseguido
+abrirse: **no certifica que SQLite esté sano ni que la consulta científica
+sea admisible**. Si los endpoints devuelven HTTP 400/503, la pantalla debe
+rechazar datos y descargas hasta un nuevo GET y verificación SHA satisfactorios.
+Si se cierra el servidor, la URL deja de estar disponible; ni el viejo
+marcador ni la salida anterior del terminal constituyen un servicio activo.
+
+El argumento solo puede usarse junto con `--science-only`; no habilita
+cuentas, redirecciones, acceso público ni ninguna escritura. No convierte
+un marcador en evidencia: después de abrir el navegador hay que volver a
+verificar los recibos SHA y, para las exportaciones emparejadas, ejecutar
+`scripts/compare_scientific_exports.py --pair` sobre la nueva descarga.
+
 El único contrato permitido de URL visitante es
 `pfl_guest=v1`, `cut`, `valid_at`, `family`, `published_until`,
 `scenario` y `view`. Se exigen exactamente esas siete claves, sin

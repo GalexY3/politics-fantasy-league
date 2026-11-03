@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createServer as httpServer} from 'node:http';
 import {createServer as portServer} from 'node:net';
 import {readFileSync,existsSync,mkdtempSync,rmSync,mkdirSync,readdirSync,unlinkSync} from 'node:fs';
-import {spawn,execFileSync} from 'node:child_process';
+import {spawn,spawnSync,execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -88,6 +88,64 @@ async function stopChild(child,timeoutMs=2500){
   child.once('error',finish);
   try{child.kill();}catch(_){finish();}
  });
+}
+
+// The real OS, not a speculative free-port probe, selects --port 0.
+// Only capture the two public banner lines; never print process output or
+// diagnostic URLs from failed launchers (they may include untrusted inputs).
+function launchScienceOnly(dbPath,resumeGuestQuery=null){
+ const args=['-B','-u','run_demo.py','--science-only','--port','0','--db',dbPath];
+ if(resumeGuestQuery!==null)args.push('--resume-guest-query',resumeGuestQuery);
+ const child=spawn('python',args,{
+  cwd:ROOT,env:PYENV,stdio:['ignore','pipe','ignore'],windowsHide:true
+ });
+ const lines=[];
+ let buffer='';
+ child.stdout.setEncoding('utf8');
+ child.stdout.on('data',chunk=>{
+  buffer=(buffer+chunk).slice(-4096);
+  for(let n=buffer.indexOf('\n');n!==-1;n=buffer.indexOf('\n')){
+   const line=buffer.slice(0,n).trim();
+   buffer=buffer.slice(n+1);
+   if(line.startsWith('Politics Fantasy League · ')
+      ||line.startsWith('REANUDAR CONSULTA CIENTÍFICA · '))
+    lines.push(line.slice(0,1024));
+  }
+ });
+ child.on('error',()=>{/* A bounded poll reports a failed startup safely. */});
+ return {child,lines};
+}
+
+async function advertisedScienceLink(launcher,{resume=false}={}){
+ const banner=await poll(()=>{
+  if(launcher.child.exitCode!==null||launcher.child.signalCode!==null)
+   throw Error('SCIENCE_ONLY_LAUNCHER_EXITED');
+  const line=launcher.lines.find(x=>x.startsWith('Politics Fantasy League · '));
+  if(!line)return null;
+  const match=line.match(/http:\/\/127\.0\.0\.1:(\d{1,5})(?:\s|$)/);
+  return match?Number(match[1]):null;
+ },150);
+ assert.ok(Number.isInteger(banner)&&banner>0&&banner<65536);
+ const base='http://127.0.0.1:'+banner;
+ let link=null;
+ if(resume){
+  const announced=await poll(()=>{
+   if(launcher.child.exitCode!==null||launcher.child.signalCode!==null)
+    throw Error('SCIENCE_ONLY_RESUME_EXITED');
+   const line=launcher.lines.find(x=>x.startsWith('REANUDAR CONSULTA CIENTÍFICA · '));
+   return line||null;
+  },150);
+  link=announced.split(' · ').slice(1).join(' · ').trim();
+  const parsed=new URL(link);
+  assert.equal(parsed.origin,base,'Resume banner MUST use actual OS-bound port');
+  assert.equal(parsed.pathname,'/');
+  assert.equal(parsed.hash,'');
+ }
+ await poll(async()=>{
+  const response=await fetch(base+'/api/session',{signal:AbortSignal.timeout(1200)});
+  return response.status===401&&(await response.json()).science_only===true;
+ },150);
+ return {base,port:banner,link};
 }
 
 test('S9 Chrome native CDP: live DOM observes registry late/early, source family, valid_at and 503', {
@@ -635,16 +693,12 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   unlinkSync(join(downloadsDir,saved));
   const scienceDir=join(scratch,'science-only');
   mkdirSync(scienceDir);
-  const sciencePort=await freePort();
-  const scienceBase='http://127.0.0.1:'+sciencePort;
-  scienceServer=spawn('python',['-B','run_demo.py','--science-only',
-    '--port',String(sciencePort),'--db',join(scienceDir,'science.db')],
-    {cwd:ROOT,env:PYENV,stdio:'ignore',windowsHide:true});
-  await poll(async()=>{
-   const response=await fetch(scienceBase+'/api/session');
-   return response.status===401&&(await response.json()).science_only===true;
-  });
-  await cdp('Page.enable');
+  const scienceDb=join(scienceDir,'science.db');
+  const firstScienceLauncher=launchScienceOnly(scienceDb);
+  scienceServer=firstScienceLauncher.child;
+  const firstScienceLink=await advertisedScienceLink(firstScienceLauncher);
+  let scienceBase=firstScienceLink.base;
+  const firstSciencePort=firstScienceLink.port;
   const scienceStart=browserRequests.length;
   await cdp('Page.navigate',{url:scienceBase+'/'});
   await poll(()=>js("Boolean(ui.guest && ui.state===null && ui.session===null && ui.csrf===null && ui.scientific && ui.scienceRegistry && document.querySelector('[data-action=\"science-registry-export\"]'))"));
@@ -683,12 +737,29 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   await js("document.getElementById('guest-exit').click();true");
   assert.equal(await js("ui.guest && ui.scienceOnly && document.querySelector('#auth-form')===null && ui.scienceRegistry!==null"),true);
   assert.equal(await js("document.querySelector('#content').innerText.includes('Crear cuenta')"),false);
-  // Real operating-system restart: the SAME Chrome target loads a nondefault
-  // guest bookmark from the science-only Python server, then the server process
-  // is stopped and restarted on the SAME loopback port AND SQLite directory.
+  // An actual science-only visitor CHOOSES its own nondefault filters in the
+  // real DOM, then bookmarks the canonical URL. This first Python subprocess
+  // has port=0 assigned by its bound listening socket, NOT by freePort().
+  const scienceBefore=browserRequests.length;
+  await selectGuest('science-cut','early',
+   "Boolean(ui.guest&&ui.scienceOnly&&ui.scienceCut==='early'&&ui.scientific?.cut==='early'&&ui.scienceRegistry?.cut==='early'&&!ui.scienceRegistryLoading)");
+  await js("document.querySelector('[data-tab=\"observatory\"]').click();true");
+  await poll(()=>js("Boolean(ui.tab==='observatory'&&document.getElementById('science-registry-valid'))"));
+  await selectGuest('science-registry-valid','2026-10-10',
+   "Boolean(ui.scienceRegistry?.valid_at==='2026-10-10'&&!ui.scienceRegistryLoading)");
+  await selectGuest('science-registry-family','CHAIN',
+   "Boolean(ui.scienceRegistry?.family==='CHAIN'&&!ui.scienceRegistryLoading)");
+  await selectGuest('science-registry-publication','2026-09-19T12:00:00Z',
+   "Boolean(ui.scienceRegistry?.published_until==='2026-09-19T12:00:00Z'&&!ui.scienceRegistryLoading)");
+  await js("document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"compare\"]').click();true");
+  await poll(()=>js("Boolean(ui.scienceRegistryTab==='compare'&&!ui.scienceRegistryCompareLoading&&ui.scienceRegistryComparison&&!ui.scienceRegistryCompareError)"));
+  const scienceBookmark=await js('location.href');
+  assert.equal(new URL(scienceBookmark).origin,scienceBase);
+  assert.deepEqual([...new URL(scienceBookmark).searchParams.values()],
+   expectedSelection);
+  // The executable never receives a private/receipt-bearing URL.
+  assert.doesNotMatch(scienceBookmark,/SYN:|AUTHOR_|password|cookie|csrf|account/i);
   // Neither the browser nor this test synthesizes a registry result.
-  const scienceBookmark=scienceBase+new URL(bookmarkedGuestUrl).pathname
-   +new URL(bookmarkedGuestUrl).search;
   const freshScienceGets=(begin)=>{
    const seen=browserRequests.slice(begin).filter(r=>r.url.startsWith(scienceBase));
    const registry=seen.filter(r=>r.method==='GET'
@@ -707,8 +778,6 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
     ||['/api/state','/api/register','/api/login'].includes(new URL(r.url).pathname)),[]);
    return registry.length;
   };
-  const scienceBefore=browserRequests.length;
-  await navigateAndLoad(scienceBookmark);
   const scienceOriginal=await restoredFromBrowser();
   assert.equal(await js("ui.scienceOnly===true&&document.getElementById('guest-exit').hidden"),true);
   const originalScienceGets=freshScienceGets(scienceBefore);
@@ -721,18 +790,50 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   const durableRegistry=join(scienceDir,'scientific_registry_synthetic.sqlite3');
   assert.equal(existsSync(durableRegistry),true);
   const originalDbDigest=createHash('sha256').update(readFileSync(durableRegistry)).digest('hex');
-  // The launcher uses only localhost, a disposable science-only DB, and no
-  // accounts. Poll its real /api/session before navigating the browser again.
-  scienceServer=spawn('python',['-B','run_demo.py','--science-only',
-   '--port',String(sciencePort),'--db',join(scienceDir,'science.db')],
-   {cwd:ROOT,env:PYENV,stdio:'ignore',windowsHide:true});
+  // Invalid resume instructions fail BEFORE binding any listener. A rejected
+  // input must not print a startup banner, create SQLite or fetch science.
+  const malformedResume=[
+   scienceBookmark+'&rights_for_public_display_admitted=true',
+   scienceBookmark+'&unknown_selection=1',
+   'http://example.invalid:49321/'+new URL(scienceBookmark).search,
+  ];
+  const beforeBadLauncherRequests=browserRequests.length;
+  for(const [index,badUrl] of malformedResume.entries()){
+   const unusableDb=join(scienceDir,'invalid-'+index,'science.db');
+   const rejected=spawnSync('python',['-B','run_demo.py','--science-only',
+    '--port','0','--db',unusableDb,'--resume-guest-query',badUrl],{
+    cwd:ROOT,env:PYENV,encoding:'utf8',timeout:6000,windowsHide:true
+   });
+   assert.equal(rejected.error,undefined,'Rejected launcher must terminate cleanly');
+   assert.equal(rejected.status,2,'Invalid query rejected before socket binding');
+   assert.doesNotMatch(rejected.stdout||'',/Politics Fantasy League ·|REANUDAR CONSULTA CIENTÍFICA ·/);
+   assert.doesNotMatch(rejected.stderr||'',/rights_for_public_display_admitted|unknown_selection|example\.invalid|SYN:|AUTHOR_/);
+   assert.equal(existsSync(unusableDb),false);
+   assert.equal(existsSync(join(scienceDir,'invalid-'+index)),false);
+  }
+  assert.equal(browserRequests.length,beforeBadLauncherRequests,
+   'Rejected launcher must not contact the existing browser or issue science GETs');
+  // A *second independent* port 0 is now bound by the OS: reuse the same
+  // SQLite directory, not the old socket number or the old browser origin.
+  const secondScienceLauncher=launchScienceOnly(scienceDb,scienceBookmark);
+  scienceServer=secondScienceLauncher.child;
+  const newScienceLink=await advertisedScienceLink(secondScienceLauncher,{resume:true});
   assert.notEqual(scienceServer.pid,previousServerPid);
-  await poll(async()=>{
-   const response=await fetch(scienceBase+'/api/session');
-   return response.status===401&&(await response.json()).science_only===true;
-  },150);
+  scienceBase=newScienceLink.base;
+  const resumedUrl=new URL(newScienceLink.link);
+  assert.equal(resumedUrl.origin,scienceBase);
+  assert.equal(Number(resumedUrl.port),newScienceLink.port);
+  assert.deepEqual([...resumedUrl.searchParams.keys()],allowedKeys);
+  assert.deepEqual([...resumedUrl.searchParams.values()],expectedSelection);
+  if(newScienceLink.port!==firstSciencePort){
+   assert.notEqual(resumedUrl.port,String(firstSciencePort),
+    'The launcher must not advertise the stopped old OS port');
+  }
+  assert.equal(resumedUrl.pathname,'/');
+  assert.equal(resumedUrl.hash,'');
+  assert.doesNotMatch(newScienceLink.link,/SYN:|AUTHOR_|source_id|password|csrf|account/i);
   const restartedScienceStart=browserRequests.length;
-  await navigateAndLoad(scienceBookmark);
+  await navigateAndLoad(newScienceLink.link);
   const scienceRestarted=await restoredFromBrowser();
   const restartedScienceGets=freshScienceGets(restartedScienceStart);
   assert.equal(scienceRestarted.current.snapshot_receipt.sha256,originalScienceDigest);
@@ -772,6 +873,11 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    science_only_before_restart_registry_gets:originalScienceGets,
    science_only_after_restart_registry_gets:restartedScienceGets,
    science_only_restart_processes:2,
+   port_assigned_by_os:true,
+   original_port:firstSciencePort,
+   resumed_port:newScienceLink.port,
+   port_changed:newScienceLink.port!==firstSciencePort,
+   launcher_invalid_links_rejected:malformedResume.length,
    registry_receipt_sha256:originalScienceDigest,
    persisted_sqlite_sha256:originalDbDigest,
    offline_pair_pass:true,guest_only:true,R5:'STOP_R5',
