@@ -81,7 +81,12 @@ vez y sin sobrescribir archivos existentes:
 La CLI produce el fichero UTF-8 con las doce tareas OP01--OP12, todas
 marcadas NOT_OBSERVED, y emite a la consola solo el código de éxito,
 nunca la ruta ni el contenido. No crea nada si la ruta ya existe
-o esta dentro del repositorio. La persona puede abstenerse; el
+o está dentro del repositorio. En Windows tampoco admite un nombre
+de destino NTFS con dos puntos, porque podría apuntar a un flujo
+alternativo de datos (ADS) de un archivo preexistente, incluso mediante
+un hardlink exterior hacia un inode de otro repositorio. La salida
+ante esa ruta es únicamente OPERATOR_SESSION_PATH_INVALID, sin crear
+el flujo ni imprimir la ruta. La persona puede abstenerse; el
 operador modifica exclusivamente los cuatro campos cerrados en
 una copia local opcional, sin subirla a Git.
 
@@ -95,6 +100,13 @@ TECH_BLOCKED o NOT_OBSERVED también se rechazan.
 
 La hoja `--participant-sheet` incluye preguntas y opciones, pero no revela
 la solución, las explicaciones de evaluación ni los IDs de automatización.
+El orden de las respuestas A/B permanece equilibrado (seis correctas A y
+seis B), pero ya no sigue la alternancia predecible A-B-A-B por número de
+tarea. La asignación es determinista y reproducible a partir de un orden
+público derivado de los identificadores del instrumento: no equivale a
+aleatorización por participante ni acredita ausencia de sesgos de respuesta.
+La correspondencia de cada elección con el código científico sigue estando
+solo en la rúbrica del operador, y debe permanecer oculta al participante.
 La rúbrica `--template` es SOLO para el observador y contiene los
 criterios, el código de respuesta correcta y los valores válidos de la
 ficha. No mostrar la rúbrica al participante antes de registrar

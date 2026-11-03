@@ -369,7 +369,10 @@ y los criterios reservados al operador mediante comandos independientes:
 
 La hoja del participante muestra opciones A/B opacas, no los códigos
 SCI que revelan contenido ni una posición sistemática de la respuesta
-correcta. Solo la rúbrica del operador relaciona A/B con SCI_OPxx.
+correcta. La clave se contrabalancea 6/6 sin alternancia simple por paridad
+de tarea, pero su orden fijo y público NO constituye aleatorización de
+participantes ni validación humana. Solo la rúbrica del operador relaciona
+A/B con SCI_OPxx.
 La nueva ficha contiene las doce tareas OP01--OP12 con todos los valores
 NOT_OBSERVED; por sí misma no prueba participación.
 
@@ -379,6 +382,10 @@ escribir UTF-16LE, incompatible con el contrato JSON UTF-8. La ruta
 de salida debe existir solo como ubicación elegida FUERA del checkout
 y la CLI no sobrescribe ficheros existentes. No imprime esa ruta ni
 resultados humanos.
+En Windows se rechazan asimismo los nombres de archivo con ':'
+por los flujos alternativos de NTFS: un hardlink exterior podría
+referenciar el mismo inode que un fichero de Git. No usar ADS como
+almacenamiento de fichas; usar un JSON ordinario nuevo y externo.
 
 
 El registro voluntario se limita a un JSON local con esquema cerrado

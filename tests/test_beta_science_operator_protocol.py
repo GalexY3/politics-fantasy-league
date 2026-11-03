@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -102,6 +103,24 @@ def test_prepatch_red_participant_sheet_opaque_balanced_ab_without_answer_leaks(
     assert "SCI_OP01_EQUIVALENT" not in raw
     assert "SCI_OP03_NONCAUSAL_BOUNDS" not in raw
     assert "correct_answer_code" not in raw
+
+
+def test_prepatch_red_correct_position_not_deducible_from_task_parity():
+    """An ABAB... answer sequence remains guessable after one known answer.
+
+    This is a methodological falsifier, not a participant observation.
+    """
+    _, rubric, _ = cli("--template")
+    _, sheet, _ = cli("--participant-sheet")
+    positions = []
+    for item, handed in zip(rubric["tasks"], sheet["tasks"], strict=True):
+        assert [choice["code"] for choice in handed["scientific_options"]] == ["A", "B"]
+        mapping = item["participant_option_to_scientific_code"]
+        positions.append(next(label for label, code in mapping.items()
+                              if code == item["correct_answer_code"]))
+    assert positions.count("A") == positions.count("B") == 6
+    assert positions != ["A" if i % 2 == 0 else "B" for i in range(12)]
+    assert positions != ["B" if i % 2 == 0 else "A" for i in range(12)]
 
 
 def test_prepatch_red_empty_observation_list_must_be_incomplete(tmp_path):
@@ -459,6 +478,49 @@ def test_new_session_refuses_any_other_git_worktree(tmp_path):
     assert str(destination) not in stdout
     assert not destination.exists()
     assert {entry.name for entry in external_repo.iterdir()} == {".git"}
+
+
+@pytest.mark.parametrize("hardlink_into_git", (False, True))
+def test_prepatch_red_new_session_rejects_windows_ntfs_ads_destination(
+    tmp_path, hardlink_into_git,
+):
+    """NTFS ADS writes are not standalone sessions; hardlinks alias Git files.
+
+    The fixture is disposable, outside either project checkout, and is never
+    user or institutional material. Unix has no NTFS ADS and is not covered.
+    """
+    if sys.platform != "win32":
+        # Not an NTFS ADS test on POSIX, where ':' is a literal filename.
+        # This limitation is explicitly recorded in the operator receipt.
+        return
+    repo = tmp_path / "synthetic_git_canary"
+    repo.mkdir()
+    (repo / ".git").mkdir()
+    original = repo / "protected_fixture.txt"
+    original.write_bytes(b"DISPOSABLE_GIT_SOURCE_BYTES")
+    outside = tmp_path / "external_sessions"
+    outside.mkdir()
+    alias = outside / "hardlinked_alias.txt"
+    if hardlink_into_git:
+        os.link(original, alias)
+        assert os.path.samefile(original, alias)
+    else:
+        alias.write_bytes(b"DISPOSABLE_OUTSIDE_BYTES")
+    before = alias.read_bytes()
+    target = Path(str(alias) + ":operator_protocol")
+    original_stream = Path(str(original) + ":operator_protocol")
+    assert not target.exists()
+    assert not original_stream.exists()
+    rc, result, stdout = cli("--new-session", str(target))
+    assert rc == 1
+    assert result["status"] == "OPERATOR_REJECTED"
+    assert result["error_code"] == "OPERATOR_SESSION_PATH_INVALID"
+    assert str(target) not in stdout
+    assert alias.read_bytes() == before
+    assert original.read_bytes() == b"DISPOSABLE_GIT_SOURCE_BYTES"
+    assert not target.exists(), "No alternate data stream may be created"
+    assert not original_stream.exists(), "Hardlink must not add an ADS inside Git"
+    assert {p.name for p in outside.iterdir()} == {alias.name}
 
 
 def test_new_session_refuses_missing_parent_existing_directory_and_existing_file(

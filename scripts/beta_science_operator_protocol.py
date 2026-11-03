@@ -13,6 +13,7 @@ diagnostic, empirical admission or a release gate. No identities are collected.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -149,16 +150,36 @@ SPECS = (
 )
 
 
+def _balanced_a_task_ids() -> frozenset[str]:
+    """Stable balanced order without a task-number parity answer pattern.
+
+    This ranking is public and reproducible, not a secret or participant
+    randomization. It avoids a deterministic ABAB answer-key cue in the
+    static handout while retaining six correct A and six correct B choices.
+    """
+    ids = [spec[0] for spec in SPECS]
+    ranking = sorted(
+        ids,
+        key=lambda ident: hashlib.sha256(
+            (PARTICIPANT_SHEET_SCHEMA + "|" + ident).encode("ascii")
+        ).digest(),
+    )
+    return frozenset(ranking[: len(ids) // 2])
+
+
+CORRECT_A_TASK_IDS = _balanced_a_task_ids()
+
+
 def _task(spec: tuple) -> dict:
     (tid, machine, area, title, action, technical, question, correct,
      wrong, correct_meaning, wrong_meaning, explanation, usability) = spec
-    # Alternate the keyed correct option across A/B in a deterministic,
-    # reproducible 6/6 balance. The operator SCI_* codes are unchanged.
+    # Deterministically counterbalance without the trivially predictable
+    # odd/even cue. Underlying SCI_* codes and grading remain unchanged.
     options = [
         {"code": "SCI_" + tid + "_" + correct, "meaning": correct_meaning},
         {"code": "SCI_" + tid + "_" + wrong, "meaning": wrong_meaning},
     ]
-    if int(tid[2:]) % 2 == 0:
+    if tid not in CORRECT_A_TASK_IDS:
         options.reverse()
     return {
         "task_id": tid, "technical_task_ids": list(machine), "area": area,
@@ -213,6 +234,14 @@ def verify_instrument() -> None:
     if (not 8 <= len(TASKS) <= 12 or len(BY_ID) != len(TASKS)
             or {t["area"] for t in TASKS} != set(AREAS)
             or mapped != expected_machine):
+        raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
+    positions = [
+        "A" if item["scientific_options"][0]["code"] == item["correct_answer_code"]
+        else "B" for item in TASKS
+    ]
+    if (positions.count("A") != positions.count("B")
+            or positions == ["A" if i % 2 == 0 else "B" for i in range(len(TASKS))]
+            or positions == ["B" if i % 2 == 0 else "A" for i in range(len(TASKS))]):
         raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
     for t in TASKS:
         codes = [option["code"] for option in t["scientific_options"]]
@@ -334,6 +363,11 @@ def new_session(path: str) -> dict:
         raise ProtocolError("OPERATOR_SESSION_PATH_INVALID")
     try:
         destination = Path(os.path.abspath(path))
+        # NTFS treats a name containing a colon as an alternate data stream
+        # on an existing inode, not as a new standalone file. An external
+        # hardlink may otherwise alias a Git-tracked file across this guard.
+        if os.name == "nt" and ":" in destination.name:
+            raise ProtocolError("OPERATOR_SESSION_PATH_INVALID")
         if (not destination.name or
                 _within(destination, checkout) or
                 _within(destination, checkout_lexical)):
