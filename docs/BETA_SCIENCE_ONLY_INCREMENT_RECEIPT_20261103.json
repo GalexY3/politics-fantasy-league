@@ -1,0 +1,56 @@
+{
+    "schema":  "pfl.beta_science_only_increment_receipt.v1",
+    "date":  "2026-11-03",
+    "baseline_sha":  "3e83f2d7a605ddd8d34237c38c038a19c7b1fa98",
+    "pr":  "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "code_evidence_scope":  "UNCOMMITTED_WORKTREE_PRECOMMIT",
+    "testing":  {
+                    "python_focal_pass":  26,
+                    "node_focal_pass":  34,
+                    "chrome_real_scientific_pass":  1,
+                    "chrome_real_keyboard_pass":  1,
+                    "total_focal_pass":  62,
+                    "acceptance_runner":  "python scripts/beta_acceptance.py",
+                    "actual_python_node_http":  true,
+                    "browser_real_cdp":  true,
+                    "full_wcag_audit":  false,
+                    "historic_166_199_python_repeated":  false
+                },
+    "capacity":  [
+                     "science_only_no_accounts_local_mode",
+                     "strict_http_get_whitelist_and_post_denial",
+                     "guest_s9_canonical_sha_export_with_inflight_invalidations",
+                     "start_and_restart_isolation_two_accounts_own_dbs",
+                     "focused_keyboard_and_ax_tree_error_recovery",
+                     "one_command_beta_acceptance"
+                 ],
+    "limitations":  {
+                        "R5":  "STOP_R5",
+                        "release_gates_passed":  0,
+                        "scientific_AB_R_cycles_added":  0,
+                        "real_sources_admitted":  0,
+                        "rights_certified":  false,
+                        "public_hosting_authorized":  false,
+                        "main_merged":  false,
+                        "expensive_CI_triggered":  false,
+                        "synthetic_only":  true,
+                        "original_s9_docx_unchanged":  true
+                    },
+    "source_sha256":  {
+                          ".gitignore":  "3b57d37430d8036c90267da5dd143a4d4fea87b984580b270269313e287a75d2",
+                          "HANDOFF.md":  "70f0130a3bcd7b944a9439d4d8a7d7de212bb7ab92caa2686955c5010e0ad258",
+                          "PROJECT_STATE.json":  "e3ab701eb7be1b259b86ffdd9abbcdb392a36cceeac935f219be6824185bace5",
+                          "docs/BETA_LOCAL_QUICKSTART.md":  "c8fba3502f7c1ddb740afa7f2d9f51e753d5be7479c35d4e469b02004aa4af55",
+                          "run_demo.py":  "dcd8f046b4d2d31cf5084910387d71ed592f02bb8444e8ed2efbe6cd7d23a1d6",
+                          "scripts/beta_acceptance.py":  "69b1833ef7371af45a6e23fa981dbc0d1e5e28333e062532c11a3bedf2ebea51",
+                          "src/politics_fantasy/beta_readiness.py":  "dfbca7e61034e29fb8993a305a73c559b2183fbeb94574bad2a23f132cfb00fa",
+                          "src/politics_fantasy/server.py":  "19fdc555228607aeed68cd8f1b838ab9a25e4ae03d11453f524bc8127ea0191c",
+                          "src/politics_fantasy/web/app.js":  "4cca07664cf9e81788bdc94ab09ac95c236f6999ed03b183c12ceaaa26b70a3e",
+                          "tests/test_beta_acceptance_runner.py":  "1153ad5c74e00a333d4118183ea48ed183360662956da614e71d40d8ac9c8267",
+                          "tests/test_beta_accessibility.mjs":  "56b077677f38f15de604e2522a0a16d072cf0c88bc8c57d4fd573595c2aecb4e",
+                          "tests/test_beta_restart_isolation.py":  "520b0a875c3e7088d80f6672282895b572d6322e6ba913d16db8a1957d74554e",
+                          "tests/test_beta_science_only.py":  "fe1b911b39cc9d3df7ec007efb0621a0df4c7b38ad5bbe9c025d35efcad6fd84",
+                          "tests/test_beta_scientific_guest.mjs":  "14b31be4a1b5bd12fe6b9aa7b6c741fd0834ac11542c05e146c144d999c078ed",
+                          "tests/test_s9_chrome_registry.mjs":  "f7ac24fe409d016e79132cfee19ac7b4a3b22c0e036a9e028c676de44c1c4d88"
+                      }
+}

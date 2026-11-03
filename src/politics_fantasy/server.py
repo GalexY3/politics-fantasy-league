@@ -62,7 +62,8 @@ def _unique_request_json_pairs(pairs):
 
 
 def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None,
-                    accounts_path: Path | None=None):
+                    accounts_path: Path | None=None, *,
+                    scientific_only: bool=False):
     # accounts_path=None exists solely for old single-user test harnesses.
     # The real serve() ALWAYS supplies an accounts_path and enforces identity.
     class Handler(BaseHTTPRequestHandler):
@@ -120,7 +121,24 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
             route=urlsplit(self.path).path
+            if scientific_only:
+                # An opt-in, NO-ACCOUNTS scientific demo. Deny every game and
+                # general data route BEFORE legacy None-account dispatch.
+                # Explicit whitelist, not a route-name prefix check.
+                safe_routes={
+                    '/','/index.html','/app.js','/style.css',
+                    '/api/session','/api/health','/api/beta-readiness',
+                    '/api/scientific-integration-lab',
+                    '/api/scientific-registry',
+                    '/api/scientific-lab-export',
+                }
+                if route not in safe_routes:
+                    return self.reply(404,{'error':'SCIENCE_ONLY_ROUTE_UNAVAILABLE'})
             if route == '/api/session':
+                if scientific_only:
+                    return self.reply(401,{'authenticated':False,
+                                           'science_only':True,
+                                           'error':'LOCAL_SCIENCE_ONLY'})
                 if accounts_path is None:
                     return self.reply(200,{'authenticated':False,'legacy_test_mode':True})
                 session = self._identity()
@@ -150,7 +168,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 try:
                     payload = beta_readiness(
                         bind_host=self.server.server_address[0],
-                        accounts_path=accounts_path, web_root=WEB)
+                        accounts_path=accounts_path, web_root=WEB,
+                        scientific_only=scientific_only)
                 except (BetaReadinessUnavailable, OSError):
                     return self.reply(503,{'ok':False,
                                            'error':'BETA_READINESS_UNAVAILABLE'})
@@ -327,6 +346,10 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
             if route == '/api/actors':
                 return self.reply(200,local_actor_universe_status())
             if route == '/api/health':
+                if scientific_only:
+                    return self.reply(200,{'ok':True,'mode':'SYNTHETIC_SCIENCE_ONLY',
+                                           'real_player_scoring':False,
+                                           'accounts_enabled':False})
                 return self.reply(200,{'ok':True,'mode':'SYNTHETIC_DEMO','real_player_scoring':False})
             assets={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/style.css':'style.css'}
             filename=assets.get(route)
@@ -337,6 +360,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
         def do_POST(self):
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
+            if scientific_only:
+                return self.reply(404,{'error':'SCIENCE_ONLY_WRITE_UNAVAILABLE'})
             if urlsplit(self.path).path not in ('/api/register','/api/login','/api/logout',
                                                     '/api/clubs','/api/buy','/api/sell',
                                                     '/api/lineup','/api/simulate-round'):
@@ -403,16 +428,24 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
     return Handler
 
 
-def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT, field_path: Path | None=FIELD):
+def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT,
+          field_path: Path | None=FIELD, scientific_only: bool=False):
     # Existing direct handler_factory() use is maintained for legacy unit tests.
     # serve() uses a mandatory account boundary: it NEVER serves the shared demo
     # game's club data to authenticated users.
     auth_db=db_path.parent/'accounts.sqlite3'
-    accounts.init_accounts(auth_db)
+    if not scientific_only:
+        accounts.init_accounts(auth_db)
     server=ThreadingHTTPServer(('127.0.0.1',port),
-                               handler_factory(db_path,pilot_path,field_path,auth_db))
-    print(f'Politics Fantasy League · DEMO SINTÉTICA · http://127.0.0.1:{server.server_port}',flush=True)
-    print('Cuentas locales con sesiones; NO exponer a internet. No hay puntos políticos reales.',flush=True)
+                               handler_factory(db_path,pilot_path,field_path,
+                                               None if scientific_only else auth_db,
+                                               scientific_only=scientific_only))
+    print(f'Politics Fantasy League · '
+          f'{"CIENCIA SINTÉTICA SIN CUENTAS" if scientific_only else "DEMO SINTÉTICA"}'
+          f' · http://127.0.0.1:{server.server_port}',flush=True)
+    print('SOLO localhost; NO publicar a internet. '
+          +('Sin cuentas, mercado ni operaciones POST.' if scientific_only
+            else 'Cuentas locales con sesiones; sin puntos políticos reales.'),flush=True)
     try:
         server.serve_forever()
     finally:

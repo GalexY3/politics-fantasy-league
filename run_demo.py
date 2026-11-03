@@ -22,10 +22,20 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description='Inicia la demo sintética local de PFL.')
     parser.add_argument('--port', type=port_number, default=8787,
                         help='Puerto de loopback (0 = elegir puerto libre; por defecto: 8787)')
-    parser.add_argument('--db', type=Path, default=ROOT/'data'/'demo'/'game.db',
+    parser.add_argument('--db', type=Path, default=None,
                         help='Ruta de la base de datos local de la demo')
+    parser.add_argument('--science-only', action='store_true',
+                        help='Observatorio y Laboratorio en localhost, sin cuentas Fantasy ni POST')
     args = parser.parse_args(argv)
-    serve(args.db, port=args.port)
+    # The scientific-only default is in a DIFFERENT directory, preventing
+    # accidental sharing with demo accounts when --db is omitted.
+    default_db=(ROOT/'data'/'science_beta'/'science.db' if args.science_only
+                else ROOT/'data'/'demo'/'game.db')
+    db=args.db if args.db is not None else default_db
+    if args.science_only:
+        serve(db,port=args.port,scientific_only=True)
+    else:
+        serve(db,port=args.port)
 
 
 if __name__=='__main__':

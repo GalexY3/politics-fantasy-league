@@ -1,5 +1,5 @@
 {
-  "revision": 42,
+  "revision": 43,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1102,6 +1102,53 @@
     "p1_accounts_status_unchanged": "READY_REVIEW",
     "p2_playable_status_unchanged": "QUEUED",
     "next_beta_priority": "Human browser acceptance and accessibility of anonymous scientific visitor flow; local startup portability and documented blocked release gates",
+    "reference": "docs/BETA_LOCAL_QUICKSTART.md"
+  },
+  "local_beta_science_only_checkpoint": {
+    "date": "2026-11-03",
+    "baseline_committed_head": "3e83f2d7a605ddd8d34237c38c038a19c7b1fa98",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_SCIENCE_ONLY_NONCYCLE",
+    "scientific_only_launcher": "python run_demo.py --science-only",
+    "science_only_accounts_and_post_disabled": true,
+    "science_only_default_registry_isolated_in_gitignored_directory": true,
+    "science_only_anonymous_frontend_auto_entry": true,
+    "science_only_fantasy_routes_unavailable": true,
+    "guest_s9_public_receipt_export_sha256_verified": true,
+    "guest_export_stale_races_rejected": [
+      "first_public_A_B_A",
+      "as_of_A_B_A",
+      "valid_at_A_B_A",
+      "family_A_B_A",
+      "HTTP_503",
+      "guest_return_to_login"
+    ],
+    "scientific_registry_schema_version": 4,
+    "scientific_v3_assessment_ledger_preserved": true,
+    "scientific_v4_intake_ledger_preserved": true,
+    "two_distinct_local_server_process_restarts_tested": true,
+    "two_account_isolation_from_scientific_registry_tested": true,
+    "browser_keyboard_axtree_tested": true,
+    "full_wcag_conformance_attested": false,
+    "focal_beta_acceptance_command": "python scripts/beta_acceptance.py",
+    "focal_precommit_tests": {
+      "python": 26,
+      "node": 34,
+      "chrome_scientific": 1,
+      "chrome_keyboard": 1,
+      "total": 62,
+      "evidence_scope": "UNCOMMITTED_WORKTREE_AT_TEST_TIME"
+    },
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_ab_cycles": 0,
+    "new_spanish_empirical_sources_admitted": 0,
+    "real_rights_certified": false,
+    "public_beta_authorized": false,
+    "human_user_acceptance_completed": false,
+    "fantasy_redesign_deferred": true,
+    "next_beta_priority": "Manual local acceptance and recoverable navigation, accessible scientific review of timeline revisions, targeted P1/P2 functional blockers",
     "reference": "docs/BETA_LOCAL_QUICKSTART.md"
   }
 }

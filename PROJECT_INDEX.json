@@ -10,12 +10,12 @@
     "data": 34,
     "evidence": 378,
     "experimental_code": 39,
-    "operations": 112,
-    "reference": 103,
+    "operations": 113,
+    "reference": 104,
     "research": 2000,
     "runtime": 116,
     "task_queue": 120,
-    "verification": 283
+    "verification": 287
   },
   "files": [
     {
@@ -965,6 +965,11 @@
     },
     {
       "path": "docs/BETA_LOCAL_QUICKSTART.md",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/BETA_SCIENCE_ONLY_INCREMENT_RECEIPT_20261103.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -12184,6 +12189,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/beta_acceptance.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/beta_scientific_smoke.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -15344,12 +15354,32 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_beta_acceptance_runner.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_accessibility.mjs",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_beta_local_launcher.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
       "path": "tests/test_beta_readiness_endpoint.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_restart_isolation.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_science_only.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

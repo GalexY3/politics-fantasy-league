@@ -30,6 +30,18 @@ devuelve código no cero. Su regresión reproducible es:
 
     python -m pytest -q tests/test_beta_scientific_smoke.py
 
+La **aceptación focal conjunta**, que incluye reinicios sobre SQLite
+persistente, separación de dos cuentas, acceso científico sin cuentas,
+exportación SHA y recorridos de navegador Chromium, se ejecuta con:
+
+    python scripts/beta_acceptance.py
+
+Produce un recibo JSON con las pruebas realmente superadas, HEAD Git y
+hashes SHA-256 de sus ficheros de prueba. Sale con código no cero si falta
+una dependencia, un test esperado, Chrome o un contraste falla. El resultado
+se limita a esta beta local; no sustituye el conjunto histórico de tests,
+una revisión de seguridad de producción o un gate científico.
+
 ## Arrancar el prototipo interactivo
 
     python run_demo.py
@@ -48,14 +60,34 @@ de prueba, se puede elegir una ruta distinta:
 El parámetro --port 0 pide al sistema un puerto libre y muestra la URL real.
 No existe una opción --host para habilitar interfaces públicas.
 
+## Modo recomendado para examinar solamente el núcleo científico
+
+    python run_demo.py --science-only --port 0
+
+El modo **science-only** no inicia ni escribe ninguna cuenta Fantasy, no
+ofrece endpoints de estado de juego, mercado, fichajes o jornadas y **deniega
+cualquier POST**. Solo permite los activos web, la señal de sesión
+no autenticada, el estado de salud, la preparación de beta, el Laboratorio
+y el registro científico con sus consultas/exportaciones sintéticas. La
+interfaz inicia directamente la visita científica de solo lectura cuando
+detecta este modo. El puerto continúa limitado a 127.0.0.1.
+
+Por defecto, el registro SQLite se crea en
+data/science_beta/scientific_registry_synthetic.sqlite3, un directorio
+**distinto de** data/demo/ y excluido expresamente de Git. También puede
+elegirse otra ruta de base independiente mediante --db; el registro científico
+se ubica junto a ella, sin necesitar un fichero de juego.
+
 **Primera visita, sin cuenta:** desde la pantalla de acceso, pulsa
 «Entrar al Observatorio y Laboratorio». El visitante dispone únicamente
 de esas dos pestañas; puede examinar los cortes del laboratorio y el
 registro sintético S9 con su SHA verificado, sin crear una cuenta ni
 acceder al mercado, los clubes o las operaciones POST. El botón de retorno
 devuelve al formulario de acceso. Un HTTP 503 o un recibo SHA incompatible
-bloquean la vista en vez de conservar datos obsoletos. La exportación y
-las acciones de preadmisión quedan fuera del modo visitante.
+bloquean la vista en vez de conservar datos obsoletos. La exportación S9
+se permite únicamente para la proyección **pública sintética con SHA
+verificado**; la preadmisión interactiva, la exportación S8 independiente
+y cualquier escritura quedan fuera del modo visitante.
 
 El Laboratorio muestra modelos rivales B0/B3, sensibilidad condicional S3,
 testigos S7 y el registro histórico-relacional sintético S9. Una validación

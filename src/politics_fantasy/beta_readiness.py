@@ -69,7 +69,8 @@ def beta_readiness(*, bind_host: str, accounts_path: Path | None,
                    web_root: Path, release_path: Path = RELEASE_GATES,
                    ledger_path: Path = SYSTEM20_LEDGER,
                    state_path: Path = PROJECT_STATE,
-                   progress_path: Path | None = None) -> dict:
+                   progress_path: Path | None = None,
+                   scientific_only: bool=False) -> dict:
     """Return a bounded anonymous status; never expose paths or account data."""
     gates_doc = _authority(Path(release_path), 'pfl.release_gates.v1')
     gates = gates_doc.get('gates')
@@ -103,12 +104,16 @@ def beta_readiness(*, bind_host: str, accounts_path: Path | None,
 
     runtime_checks = {
         'loopback_binding': bind_host == '127.0.0.1',
-        'accounts_schema_readable': _accounts_schema_ready(accounts_path),
         'web_assets_present': all(
             (Path(web_root) / name).is_file() and
             (Path(web_root) / name).stat().st_size > 0
             for name in WEB_ASSETS),
     }
+    if scientific_only:
+        # Deliberately no user accounts: do not open or create a fantasy DB.
+        runtime_checks['accounts_disabled_intentionally'] = accounts_path is None
+    else:
+        runtime_checks['accounts_schema_readable'] = _accounts_schema_ready(accounts_path)
     runtime_ready = all(runtime_checks.values())
     # These are solely manifest claims. The GET handler cannot independently
     # corroborate their issuer, rights or suitability for deployment.
@@ -119,7 +124,8 @@ def beta_readiness(*, bind_host: str, accounts_path: Path | None,
         'ok': runtime_ready,
         'local_runtime': {
             'status': 'READY_FOR_LOCAL_PREFLIGHT' if runtime_ready else 'UNAVAILABLE',
-            'scope': 'LOOPBACK_SYNTHETIC_DEMO',
+            'scope': ('LOOPBACK_SYNTHETIC_SCIENCE_ONLY' if scientific_only
+                      else 'LOOPBACK_SYNTHETIC_DEMO'),
             'checks': runtime_checks,
             'anonymous_readiness_get': True,
             'full_user_journey_attested': False,

@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', guest:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
+const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -289,7 +289,7 @@ async function loadScientificRegistry(){
  }
 }
 async function exportScientificRegistry(){
- if(ui.guest)return;
+ if(ui.guest&&ui.tab!=='observatory')return;
  const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
  const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
  const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
@@ -812,9 +812,9 @@ function scientificRegistryPanel(){
   +'<label for="science-registry-publication">Primera publicación ficticia<select id="science-registry-publication">'+publishedOptions+'</select></label>'
   +'<button class="btn secondary" data-action="science-registry-load" '
   +(!ui.scientific||ui.scienceRegistryLoading?'disabled':'')+'>Consultar registro persistente</button>'
-  +(ui.guest?'':'<button class="btn secondary" data-action="science-registry-export" '
-   +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
-   +'>Exportar snapshot S9 + SHA</button>')+'</div>';
+  +'<button class="btn secondary" data-action="science-registry-export" '
+  +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
+  +'>Exportar snapshot S9 + SHA</button></div>';
  const intro='<section class="card science-registry" aria-label="Registro persistente del Observatorio">'
   +'<div class="section-title"><h2>S9 · Registro persistente de fuentes y relaciones</h2>'
   +'<span>SQLITE LOCAL · 100% SINTÉTICO · R5 STOP</span></div>'
@@ -1057,7 +1057,7 @@ function navigationMode(mode){
   if(active)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');
  });
  el('club-select').hidden=mode!=='account';
- el('guest-exit').hidden=mode!=='guest';
+ el('guest-exit').hidden=mode!=='guest'||ui.scienceOnly;
 }
 function guestScienceView(){
  const p=ui.scientific,e=p.explorer,w=p.warehouse;
@@ -1166,6 +1166,17 @@ function authScreen(){
 async function bootstrap(){
  const response=await fetch('/api/session',{cache:'no-store',credentials:'same-origin'});
  if(response.status===404){return refresh();} // Explicit legacy handler test mode.
+ if(response.status===401){
+  // The isolated --science-only server declares itself without creating a game
+  // session. An ordinary unauthorized account server still shows the login.
+  try{
+   const mode=await response.json();
+   if(mode?.science_only===true&&mode.authenticated===false){
+    ui.scienceOnly=true;
+    return enterGuest();
+   }
+  }catch(_){/* Missing/malformed mode declarations do not open a guest session. */}
+ }
  if(!response.ok){authScreen();return;}
  const session=await response.json();
  if(!session.authenticated){return refresh();} // Legacy test-mode endpoint.
@@ -1195,8 +1206,12 @@ document.addEventListener('submit',async e=>{
  } catch(err){el('auth-error').textContent=String(err.message);}
 });
 document.addEventListener('click',async e=>{
- if(e.target.closest('#guest-exit')&&ui.guest){ui.tab='overview';authScreen();return;}
+ if(e.target.closest('#guest-exit')&&ui.guest){
+  if(ui.scienceOnly)return;
+  ui.tab='overview';authScreen();return;
+ }
  if(e.target.closest('#account-logout')){
+  if(ui.guest)return;
   try{await call('/api/logout',{});}catch(_){/* A failed logout cannot authorize access. */}
   authScreen();return;
  }
@@ -1213,6 +1228,9 @@ document.addEventListener('click',async e=>{
  if(ui.guest){
   if(act.dataset.action==='guest-reload'){await reloadGuest();return;}
   if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
+  if(act.dataset.action==='science-registry-export'&&ui.tab==='observatory'){
+   await exportScientificRegistry();return;
+  }
   if(act.dataset.action==='science-registry-tab'){
    if(['sources','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
     ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
