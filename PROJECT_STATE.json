@@ -1,5 +1,5 @@
 {
-  "revision": 51,
+  "revision": 52,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1436,5 +1436,60 @@
     "public_beta_authorized": false,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_GUEST_S8_EXPLORATION_RECEIPT_20261103.json"
+  },
+  "local_beta_scientific_state_and_scope": {
+    "date": "2026-11-03",
+    "baseline_published_head": "7c465c19f9819303f0848573e6ab8cc40dbcb4b0",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_S8_ASYNC_STATE_GUARDS_AND_S9_FAMILY_SCOPE",
+    "s8_admission_request_invalidated_by": [
+      "candidate",
+      "scenario",
+      "cut",
+      "first_public",
+      "science_valid_at",
+      "chronicle_valid_at",
+      "S9_family",
+      "S9_published_until",
+      "S9_valid_at",
+      "reload",
+      "tab_change",
+      "logout"
+    ],
+    "s8_export_request_invalidated_on_same_selection_context": true,
+    "s8_old_HTTP503_toast_suppressed_after_logout": true,
+    "s8_old_A_B_A_success_catch_finally_does_not_override_new": true,
+    "s9_direct_assessment_and_intake_family_scope_disclosed": true,
+    "s9_filtered_zero_not_global_denominator_or_negative": true,
+    "s9_family_all_allows_legitimately_empty_intake": true,
+    "new_http_api_or_scientific_sqlite_schema": false,
+    "s8_export_contract_changed": false,
+    "s9_pair_and_single_export_contract_changed": false,
+    "new_prepatch_red_test_cases": [
+      "PREPATCH RED S8 admission discarded after scenario and knowledge-cut changes",
+      "PREPATCH RED S8 admission discarded after local first-public filtering",
+      "PREPATCH RED S8 export late failure must not display toast after logout",
+      "PREPATCH RED S8 export stale success after candidate or validity filter",
+      "PREPATCH RED S9 admission direct family filter distinguishes exclusion from zero global assessments",
+      "PREPATCH RED S9 intake direct family filter distinguishes excluded authored enrollment from zero registered globally"
+    ],
+    "tests": [
+      "tests/test_s8_scientific_ui.mjs",
+      "tests/test_beta_registry_comparison.mjs",
+      "tests/test_s8_closeout_chrome_cdp.mjs",
+      "tests/test_s8_closeout_live_http.py"
+    ],
+    "runner": "python scripts/beta_acceptance.py",
+    "status": "READY_REVIEW",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_SCIENTIFIC_STATE_AND_SCOPE_RECEIPT_20261103.json"
   }
 }

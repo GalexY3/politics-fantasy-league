@@ -299,6 +299,35 @@ de un candidato anterior después de cambiar la selección,
 incluido HTTP 503 y secuencias A→B→A. No permite admisión
 científica real.
 
+## Cancelación de consultas anteriores y alcance de familia S9
+
+En una cuenta local, el dry-run S8 asocia cada respuesta con la generación
+de selección: candidato, corte, escenario, primera publicación ficticia,
+vigencias bitemporales, filtros S9, recarga, cambio de vista o cierre de
+sesión. Ante A→B→A, un resultado, error HTTP 503 o finalización
+tardíos de A no deben sobrescribir el nuevo A. Esta invalidación
+de tickets no afirma cancelar físicamente una solicitud enviada.
+Las exportaciones S8 comprueban la generación antes de descargar
+y silencian el error de una sesión anterior tras salir de la cuenta.
+Un SHA válido del fixture no autoriza reutilizar un archivo obsoleto.
+
+En el Observatorio S9, las vistas Preadmisión e Incorporaciones usan
+el universo fuente-local de familia Todas. Las familias CHAIN,
+CHRONICLE o PP04 excluyen esa sección de la proyección, que puede
+regresar cero filas sin que el ledger original esté vacío.
+La UI informa «Fuera del filtro de familia» en esas dos vistas.
+Volver a Todas permite distinguir la exclusión de la ausencia real
+de incorporaciones en una base SQLite sintética vacía. No se
+imputan negativos, cohortes ni denegaciones por la selección.
+
+Para comprobar la exportación S8 en una cuenta de la demostración,
+la prueba CDP Chrome utiliza el gestor de descargas real en un
+directorio temporal aislado. El archivo se abre desde disco y se
+verifican su JSON canónico, bytes, SHA y condiciones sintéticas;
+una respuesta alterada no puede producir una segunda descarga.
+Las exportaciones S9 individual y emparejada y los verificadores
+offline Python conservan los contratos independientes existentes.
+
 ## Bloqueos de la beta pública
 
 STOP_R5 permanece, con **0/6 puertas** y cero ciclos AB-R nuevos.

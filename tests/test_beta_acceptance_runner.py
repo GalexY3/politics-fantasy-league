@@ -105,3 +105,20 @@ def test_focal_browser_and_node_commands_explicitly_pin_tap(monkeypatch):
             assert "--test-reporter=tap" in command
         else:
             assert "--test-reporter=tap" not in command
+
+
+def test_runner_rejects_skipped_native_chrome_in_python_stage(monkeypatch):
+    # The S8 browser test used to be optional. When included in the beta gate,
+    # a skip must not masquerade as a successful physical JSON download.
+    monkeypatch.setattr(
+        acceptance.subprocess, "run",
+        lambda *_a, **_k: SimpleNamespace(
+            returncode=0, stdout="245 passed, 1 skipped in 45.2s", stderr="",
+        ),
+    )
+    result = acceptance._run("python", ("fixture",), timeout=1)
+    assert result == {
+        "label": "python",
+        "status": "FAILED",
+        "error": "REQUIRED_PYTHON_TEST_SKIPPED",
+    }

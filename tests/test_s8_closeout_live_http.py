@@ -109,5 +109,18 @@ def test_s8_native_chrome_click_through_from_actual_localhost(s8_live_loopback):
     assert result["source_catalog"]=={"early":2,"late":6,"filtered":2}
     assert result["dry_run"]=="REJECTED_R5"
     assert result["sha_tamper_rejected"] is True
+    assert result["download_verified_from_disk"] is True
+    assert result["download_sha256"]==result["sha256_export"]
+    assert result["download_file_name"]==(
+        f"pfl-s8-late-baseline-{result['sha256_export'][:12]}.json")
+    assert result["canonical_bytes"]>0
+    assert result["download_bytes"]>result["canonical_bytes"]
+    assert result["download_cut"]=="late"
+    assert result["download_scenario"]=="baseline"
+    assert result["download_first_public"]=="2026-09-19T12:00:00Z"
+    assert result["download_R5"]=="STOP_R5"
+    assert result["download_gates"]==0
+    assert result["downloads_after_tamper"]==1
+    assert result["sha_tamper_no_second_download"] is True
     assert len(result["ui_screenshot_sha256"])==64
     print("S8_CHROME_CDP_RECEIPT="+json.dumps(result,sort_keys=True))

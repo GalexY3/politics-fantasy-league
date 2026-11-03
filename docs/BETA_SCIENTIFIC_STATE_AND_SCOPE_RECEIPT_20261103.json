@@ -1,0 +1,163 @@
+{
+  "acceptance": {
+    "command": "python -B scripts/beta_acceptance.py",
+    "human_acceptance_completed": false,
+    "postcommit_clean_head_acceptance_pending_at_receipt_creation": true,
+    "s8_chrome_in_python_stage_required_and_skip_is_rejected": true,
+    "s9_native_chrome_real_pair_download_offline_comparison_preserved": true,
+    "stopped_server_not_counted_as_live": true,
+    "worktree": {
+      "checks": [
+        {
+          "label": "python",
+          "status": "PASS",
+          "tests_passed": 246
+        },
+        {
+          "label": "node",
+          "status": "PASS",
+          "tests_passed": 116
+        },
+        {
+          "label": "chrome_s9",
+          "status": "PASS",
+          "tests_passed": 1
+        },
+        {
+          "label": "chrome_accessibility",
+          "status": "PASS",
+          "tests_passed": 1
+        }
+      ],
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "status": "PASS",
+      "tests_passed": 364,
+      "working_tree_modified_at_execution": true
+    }
+  },
+  "baseline_published_head": "7c465c19f9819303f0848573e6ab8cc40dbcb4b0",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "chrome_s8_physical_file": {
+    "R5": "STOP_R5",
+    "bootstrap_ready_observed_before_click": true,
+    "canonical_json_utf8_bytes": 50019,
+    "canonical_sha256": "2e940df566f0241b95c4d7eca0e066ae2b7697de264a2254289440ed3f27ad63",
+    "cut": "late",
+    "disk_json_download_bytes": 54601,
+    "first_public_at_fixture_limit": "2026-09-19T12:00:00Z",
+    "native_chrome_CDP_used": true,
+    "one_isolated_download_directory_and_browser": true,
+    "python_fixture_runs_real_loopback_HTTP_and_Node": true,
+    "release_gates_passed": 0,
+    "scenario": "baseline",
+    "schema": "pfl.synthetic_scientific_export_receipt.v1",
+    "tampered_SHA_yields_no_second_download": true
+  },
+  "date": "2026-11-03",
+  "file_count": 10,
+  "file_manifest_basis": "EXACT_STAGED_GIT_BLOBS",
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 107301,
+      "sha256": "f25b8588c1ff7ce10bd22cd2ad9a0d3a066f097cc3277aa04506951f41d6a260"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 88931,
+      "sha256": "4744b8c25b5a8b9947472a7f5805016cfc9be185186b4958be87e29da9557261"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 19453,
+      "sha256": "e6f79aefd5f48223ef60f94aa145721237f4b156fb3cc5ff298862631140aae8"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7173,
+      "sha256": "9a077fa7718db7999f4add8725e44be9e1737a908fa5216f6f357188b4e25f03"
+    },
+    "src/politics_fantasy/web/app.js": {
+      "bytes": 169481,
+      "sha256": "e494563141eb803cb7993528af6f1b2fcced9850a66f91c9618f6a22510646be"
+    },
+    "tests/test_beta_acceptance_runner.py": {
+      "bytes": 4801,
+      "sha256": "5c717c465d32d8e400c53da837b834b502013f399ce0ed8b925e193276b23823"
+    },
+    "tests/test_beta_registry_comparison.mjs": {
+      "bytes": 46178,
+      "sha256": "2c2232e2072d8bf07e0d9e0aa98d70c47413a1c47d53de3b4e0cafaec7ead08f"
+    },
+    "tests/test_s8_closeout_chrome_cdp.mjs": {
+      "bytes": 15673,
+      "sha256": "156e8174725a1b79b29ecda03d9ef0eab049476079df2b3085c93b8a4aec0468"
+    },
+    "tests/test_s8_closeout_live_http.py": {
+      "bytes": 5598,
+      "sha256": "01ab9b9adb4c55c4e5b6e14f9b79bbc7f08cf226f68f72e325b9d02ce959e663"
+    },
+    "tests/test_s8_scientific_ui.mjs": {
+      "bytes": 13815,
+      "sha256": "81d30097fde7f8814766b39dc001e960c987faba5d0adc14193817ca95555360"
+    }
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "S9_DOCX_rebuilt": false,
+    "academic_v09_integrated": false,
+    "causal_effect_identified": false,
+    "independent_ALL_RECEIVED_denominator_accredited": false,
+    "official_first_public_at_accredited": false,
+    "public_beta_authorized": false,
+    "publisher_authenticity_certified": false,
+    "real_spanish_empirical_sources_admitted": 0,
+    "release_gates_passed": 0,
+    "rights_for_public_display_admitted": false,
+    "scientific_AB_R_cycles_added": 0,
+    "two_authentic_external_vintages_accredited": false
+  },
+  "new_functionality": {
+    "existing_s9_individual_and_pair_contract_modified": false,
+    "existing_seven_field_guest_url_contract_modified": false,
+    "new_endpoints": 0,
+    "s8_A_B_A_stale_response_does_not_override_new_ticket": true,
+    "s8_account_dry_run_generation_invalidation": [
+      "candidate",
+      "scenario",
+      "cut",
+      "first_public",
+      "science_valid_at",
+      "chronicle_valid_at",
+      "registry_valid_at",
+      "registry_family",
+      "registry_first_public",
+      "reload",
+      "tab_exit",
+      "logout"
+    ],
+    "s8_export_no_old_HTTP_503_notice_on_login_after_logout": true,
+    "s8_export_no_stale_SHA_download_after_filter_change": true,
+    "s8_generation_guards_success_catch_finally": true,
+    "s9_direct_admission_intake_filtered_family_discloses_exclusion": true,
+    "s9_filtered_zeros_not_claimed_as_global": true,
+    "scientific_registry_sqlite_schema_modified": false
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_red": {
+    "genuine_new_bug_tests_run_before_corresponding_production_patch": true,
+    "no_fictitious_prepatch_for_new_chrome_download_check": true,
+    "node_cases": [
+      "PREPATCH RED S8 admission discarded after scenario and knowledge-cut changes",
+      "PREPATCH RED S8 admission discarded after local first-public filtering",
+      "PREPATCH RED S8 export late failure must not display toast after logout",
+      "PREPATCH RED S8 export stale success after candidate or validity filter",
+      "PREPATCH RED S9 admission direct family filter distinguishes exclusion from zero global assessments",
+      "PREPATCH RED S9 intake direct family filter distinguishes excluded authored enrollment from zero registered globally"
+    ],
+    "postpatch_all_cases_pass": true,
+    "s8_old_export_toast_exit_code": 1,
+    "s8_scenario_and_publication_exit_code": 1,
+    "s8_stale_SHA_download_exit_code": 1,
+    "s9_family_scoping_exit_code": 1
+  },
+  "publication_status_at_receipt_creation": "UNCOMMITTED_STAGED_BLOBS",
+  "schema": "pfl.beta_scientific_state_and_scope_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_ASYNC_BETA_GUARDS_AND_S9_SCOPE_READOUT"
+}

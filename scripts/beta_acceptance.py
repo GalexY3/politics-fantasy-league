@@ -5,7 +5,8 @@ Run from any directory:
 
 This is not the full historical suite, remote CI, or a public-release gate.
 It exercises only the beta's affected local paths: Python HTTP/restart/roles,
-Node S8/S9 read-only and SHA consumers, and the native Chrome guest journeys.
+Node S8/S9 SHA consumers, native Chrome account S8 physical export, and native
+Chrome S9 guest journeys (including independently verified downloaded bytes).
 No originals, accounts from the user's demo, external services or real
 politicians are consulted; tests use disposable loopback fixtures.
 """
@@ -23,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PYTHON_TESTS = (
     "tests/test_beta_acceptance_runner.py",
     "tests/test_beta_scientific_smoke.py",
+    "tests/test_s8_closeout_live_http.py",
     "tests/test_beta_readiness_endpoint.py",
     "tests/test_beta_local_launcher.py",
     "tests/test_beta_guest_link_launcher.py",
@@ -80,6 +82,11 @@ def _run(label: str, command: tuple[str, ...], *, timeout: int) -> dict:
                 "exit_code": completed.returncode,
                 "failing_tests": failed[:5],
                 "failure_identifiers_present": bool(failed)}
+    # Native S8 Chrome is now part of the REQUIRED local Python gate. A
+    # skipped browser test cannot be counted as a completed physical download.
+    if label == "python" and re.search(r"\b\d+ skipped\b", output):
+        return {"label": label, "status": "FAILED",
+                "error": "REQUIRED_PYTHON_TEST_SKIPPED"}
     if not match or int(match.group(1)) < 1:
         return {"label": label, "status": "FAILED", "error": "NO_VERIFIABLE_PASS_TOTAL"}
     return {"label": label, "status": "PASS", "tests_passed": int(match.group(1))}

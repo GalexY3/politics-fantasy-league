@@ -29,12 +29,32 @@ function pythonRegistry(cut,validAt,family,published){
  }
  return structuredClone(cache.get(key));
 }
+const ENROLLED_PYCODE=[
+ 'import json,tempfile,sys',
+ 'from pathlib import Path',
+ 'from politics_fantasy.scientific_registry import enroll_synthetic_fixture,query_registry',
+ 'with tempfile.TemporaryDirectory(prefix="pfl-registry-guest-filter-") as folder:',
+ '    db=Path(folder)/"fixture.sqlite3"',
+ '    enroll_synthetic_fixture(db,"sandbox_alpha_v1")',
+ '    result=query_registry(db,cut=sys.argv[1],valid_at=sys.argv[2],family=sys.argv[3],published_until=sys.argv[4])',
+ '    print(json.dumps(result,ensure_ascii=False))'
+].join('\n');
+const enrolledCache=new Map();
+function enrolledPythonRegistry(cut,validAt,family,published){
+ const key=[cut,validAt,family,published].join('|');
+ if(!enrolledCache.has(key)){
+  enrolledCache.set(key,JSON.parse(execFileSync('python',
+   ['-B','-c',ENROLLED_PYCODE,cut,validAt,family,published],
+   {cwd:ROOT,env:PYENV,encoding:'utf8',maxBuffer:3*1024*1024,timeout:12000})));
+ }
+ return structuredClone(enrolledCache.get(key));
+}
 const lab=Object.fromEntries(['early','late'].map(cut=>[
  cut,JSON.parse(execFileSync('python',['-B','scripts/run_scientific_integration_lab.py','--cut',cut],
   {cwd:ROOT,env:PYENV,encoding:'utf8',maxBuffer:3*1024*1024,timeout:12000}))
 ]));
 
-function harness({href='http://localhost/',scienceOnly=false}={}){
+function harness({href='http://localhost/',scienceOnly=false,registrySource=pythonRegistry}={}){
  const elements={},listeners={},requests=[],downloads=[],blobs=[];
  const location={href};
  const historyWrites=[];
@@ -79,7 +99,7 @@ function harness({href='http://localhost/',scienceOnly=false}={}){
    const publication=q.get('published_until')||'as_of';
    registryQueries++;
    if(compareFail&&cut===compareFail.cut)return{ok:false,status:compareFail.status};
-   const data=pythonRegistry(cut,valid,family,publication);
+   const data=registrySource(cut,valid,family,publication);
    if(rightsSpoof&&cut==='early'){
     data.registry.distributions[0].rights_for_public_display=true;
    }
@@ -224,6 +244,46 @@ test('filtered family does not present an excluded intake overlay as zero negati
  assert.match(t.elements.content.innerHTML,/Fuera del filtro de familia/);
  assert.match(t.elements.content.innerHTML,/una familia filtrada no representa cero rechazos/);
  assert.equal(pair.late.registry.distributions.every(d=>d.family==='CHAIN'),true);
+ onlyGet(t.requests);
+});
+
+test('PREPATCH RED S9 admission direct family filter distinguishes exclusion from zero global assessments',async()=>{
+ const t=harness();await t.guest();
+ await t.click('science-registry-tab','admission');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.admission_assessments.assessment_count'),8);
+ assert.match(t.elements.content.innerHTML,/8 evaluaciones ficticias visibles/);
+ await t.change('science-registry-family','CHAIN');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.admission_assessments.assessment_count'),0,
+  'The author-closed family projection excludes all eight otherwise valid S9 assessments');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'admission');
+ assert.match(t.elements.content.innerHTML,/Fuera del filtro de familia/,
+  'Direct admission tab must disclose exclusion instead of reporting an empty global ledger');
+ assert.doesNotMatch(t.elements.content.innerHTML,/\b0 evaluaciones ficticias visibles\b/);
+ await t.change('science-registry-family','all');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.admission_assessments.assessment_count'),8);
+ assert.match(t.elements.content.innerHTML,/8 evaluaciones ficticias visibles/);
+ assert.equal(t.evalJs('ui.scienceRegistryError'),null);
+ onlyGet(t.requests);
+});
+
+test('PREPATCH RED S9 intake direct family filter distinguishes excluded authored enrollment from zero registered globally',async()=>{
+ const t=harness({registrySource:enrolledPythonRegistry});await t.guest();
+ await t.click('science-registry-tab','intake');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.synthetic_intake.intake_count'),1);
+ assert.match(t.elements.content.innerHTML,/1 incorporaciones ficticias registradas/);
+ assert.match(t.elements.content.innerHTML,/S9:INTAKE_01/);
+ await t.change('science-registry-family','CHAIN');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.synthetic_intake.intake_count'),0,
+  'The actual SHA-verified CHAIN projection cannot include the authored overlay');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'intake');
+ assert.match(t.elements.content.innerHTML,/Fuera del filtro de familia/,
+  'Direct intake tab must not say zero global registrations or rejections');
+ assert.doesNotMatch(t.elements.content.innerHTML,/\b0 incorporaciones ficticias registradas\b/);
+ assert.doesNotMatch(t.elements.content.innerHTML,/\b0 rechazadas por controles internos\b/);
+ await t.change('science-registry-family','all');
+ assert.equal(t.evalJs('ui.scienceRegistry.snapshot.synthetic_intake.intake_count'),1);
+ assert.match(t.elements.content.innerHTML,/1 incorporaciones ficticias registradas/);
+ assert.equal(t.evalJs('ui.scienceRegistryError'),null);
  onlyGet(t.requests);
 });
 

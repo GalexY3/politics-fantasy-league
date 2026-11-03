@@ -11,8 +11,8 @@ const reports=Object.fromEntries(['early','late'].map(cut=>[
  cut,JSON.parse(execFileSync('python',[root.pathname.replace(/^\/(?=[A-Z]:)/i,''),'--cut',cut],{encoding:'utf8',maxBuffer:1024*1024}))
 ]));
 
-function setup({deferAdmission=false}={}){
- const listeners={},elements={},routes=[],downloads=[],admissionPending=[];
+function setup({deferAdmission=false,deferExport=false}={}){
+ const listeners={},elements={},routes=[],downloads=[],admissionPending=[],exportPending=[];
  let badDigest=false;
  const doc={
   getElementById(id){return elements[id]??=( {innerHTML:'',textContent:'',hidden:false,addEventListener(){}} );},
@@ -35,6 +35,7 @@ function setup({deferAdmission=false}={}){
    return {ok:true,json:async()=>result};
   }
   if(url.pathname==='/api/scientific-lab-export'){
+   if(deferExport)return new Promise(resolve=>exportPending.push({resolve}));
    const result=structuredClone(reports[cut]);
    result.scenario=scenario;
    result.explorer.catalog.publication_filter_fixture=url.searchParams.get('published_until');
@@ -61,7 +62,7 @@ function setup({deferAdmission=false}={}){
  const context=createContext(globals);
  runInContext(script.slice(0,script.lastIndexOf('bootstrap().catch')),context);
  runInContext("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.club='demo';ui.tab='scientific';",context);
- return {listeners,elements,routes,downloads,admissionPending,context,setBadDigest(value){badDigest=value;}};
+ return {listeners,elements,routes,downloads,admissionPending,exportPending,context,setBadDigest(value){badDigest=value;}};
 }
 
 test('S8 actual UI loads late 20-set S7, S3, B0/B3 and six source distributions',async()=>{
@@ -134,4 +135,141 @@ test('PREPATCH RED S8 admission late failure belongs only to initiating candidat
  assert.equal(runInContext('ui.scienceAdmissionError',t.context),null,
   'Late 503 for baseline must not become sha_spoof admission error');
  assert.doesNotMatch(t.elements.content.innerHTML,/Rechazo del contrato HTTP 503/);
+});
+
+
+test('PREPATCH RED S8 admission discarded after scenario and knowledge-cut changes',async()=>{
+ for(const [id,value] of [['science-scenario','rights_spoof'],['science-cut','early']]){
+  const t=setup({deferAdmission:true});
+  await runInContext('loadScientific()',t.context);
+  const act=action=>({target:{closest(selector){return selector==='[data-action]'?
+   {dataset:{action}}:null;}}});
+  const pending=t.listeners.click(act('science-probe'));
+  assert.equal(t.admissionPending.length,1);
+  await t.listeners.change({target:{id,value}});
+  assert.equal(runInContext('ui.scienceAdmission',t.context),null);
+  t.admissionPending[0].resolve({ok:false,status:503});
+  await pending;
+  assert.equal(runInContext('ui.scienceAdmissionError',t.context),null,
+   'Stale candidate request must not report HTTP 503 after '+id);
+  assert.equal(runInContext('ui.scienceAdmitting',t.context),false,
+   'Stale finally must not re-arm spinner after '+id);
+ }
+});
+
+test('PREPATCH RED S8 admission discarded after local first-public filtering',async()=>{
+ const t=setup({deferAdmission:true});
+ await runInContext('loadScientific()',t.context);
+ const act=action=>({target:{closest(selector){return selector==='[data-action]'?
+  {dataset:{action}}:null;}}});
+ const pending=t.listeners.click(act('science-probe'));
+ await t.listeners.change({target:{id:'science-first-public',value:'2026-09-19T12:00:00Z'}});
+ t.admissionPending[0].resolve({ok:false,status:503});
+ await pending;
+ assert.equal(runInContext('ui.scienceAdmissionError',t.context),null,
+  'Stale HTTP error must not survive the publication filter');
+ assert.equal(runInContext('ui.scienceAdmitting',t.context),false);
+});
+
+
+test('PREPATCH RED S8 export late failure must not display toast after logout',async()=>{
+ const t=setup({deferExport:true});
+ await runInContext('loadScientific()',t.context);
+ const pending=runInContext('exportScientific()',t.context);
+ assert.equal(t.exportPending.length,1);
+ runInContext('authScreen()',t.context);
+ assert.equal(runInContext('ui.state',t.context),null);
+ t.exportPending[0].resolve({ok:false,status:503});
+ await pending;
+ assert.equal(t.downloads.length,0);
+ assert.equal(t.elements.toast?.textContent||'','',
+  'Old export failure must not leak a toast onto the login screen');
+});
+
+
+test('PREPATCH RED S8 export stale success after candidate or validity filter',async()=>{
+ for(const [id,value] of [['science-candidate','sha_spoof'],['science-valid','2026-09-11']]){
+  const t=setup({deferExport:true});
+  await runInContext('loadScientific()',t.context);
+  const pending=runInContext('exportScientific()',t.context);
+  assert.equal(t.exportPending.length,1);
+  await t.listeners.change({target:{id,value}});
+  const body=structuredClone(reports.late);
+  body.explorer.catalog.publication_filter_fixture=body.as_of;
+  const canonical_json=JSON.stringify(body);
+  const sha256=createHash('sha256').update(canonical_json).digest('hex');
+  t.exportPending[0].resolve({ok:true,json:async()=>({
+   schema:'pfl.synthetic_scientific_export_receipt.v1',
+   canonicalization:'JSON_UTF8_SORTED_KEYS_COMPACT_V1',
+   canonical_json,bytes:Buffer.byteLength(canonical_json),sha256,
+   R5:'STOP_R5',empirical_data_exported:false
+  })});
+  await pending;
+  assert.equal(t.downloads.length,0,
+   'Changed '+id+' must invalidate prior in-flight S8 export, even if SHA is valid');
+ }
+});
+
+test('S8 admission success from scenario A must not appear under scenario B',async()=>{
+ const t=setup({deferAdmission:true});
+ await runInContext('loadScientific()',t.context);
+ const act=action=>({target:{closest(selector){return selector==='[data-action]'?
+   {dataset:{action}}:null;}}});
+ const pending=t.listeners.click(act('science-probe'));
+ await t.listeners.change({target:{id:'science-scenario',value:'rights_spoof'}});
+ t.admissionPending[0].resolve({ok:true,json:async()=>({
+  schema:'pfl.synthetic_distribution_admission_dry_run.v1',
+  evidence_class:'SYNTHETIC_LAB_ONLY',candidate:'baseline',
+  status:'REJECTED_R5',R5:'STOP_R5',real_original_admitted:false,
+  source_rows_imported:0,real_person_scoring:false,blockers:['REAL_RIGHTS_MISSING'],
+  checks:{fixture_sha256_matches_bytes:true}
+ })});
+ await pending;
+ assert.equal(runInContext('ui.scienceAdmission',t.context),null);
+ assert.equal(runInContext('ui.scienceAdmitting',t.context),false);
+});
+
+
+test('S8 admission A-B-A preserves newer pending status against old success/catch/finally',async()=>{
+ const t=setup({deferAdmission:true});
+ await runInContext('loadScientific()',t.context);
+ const act=action=>({target:{closest(selector){return selector==='[data-action]'?
+  {dataset:{action}}:null;}}});
+ const old=t.listeners.click(act('science-probe')); // A baseline
+ await t.listeners.change({target:{id:'science-candidate',value:'sha_spoof'}}); // B
+ await t.listeners.change({target:{id:'science-candidate',value:'baseline'}}); // A again
+ const current=t.listeners.click(act('science-probe'));
+ assert.equal(t.admissionPending.length,2);
+ t.admissionPending[0].resolve({ok:false,status:503});
+ await old;
+ assert.equal(runInContext('ui.scienceAdmissionError',t.context),null);
+ assert.equal(runInContext('ui.scienceAdmitting',t.context),true,
+  'Old A finally must not clear new A still-pending request');
+ t.admissionPending[1].resolve({ok:true,json:async()=>({
+  schema:'pfl.synthetic_distribution_admission_dry_run.v1',
+  evidence_class:'SYNTHETIC_LAB_ONLY',candidate:'baseline',
+  status:'REJECTED_R5',R5:'STOP_R5',real_original_admitted:false,
+  source_rows_imported:0,real_person_scoring:false,blockers:['REAL_RIGHTS_MISSING'],
+  checks:{fixture_sha256_matches_bytes:true}
+ })});
+ await current;
+ assert.equal(runInContext('ui.scienceAdmitting',t.context),false);
+ assert.equal(runInContext('ui.scienceAdmission.candidate',t.context),'baseline');
+ assert.equal(runInContext('ui.scienceAdmissionError',t.context),null);
+});
+
+test('S8 admission delayed request discarded after reload and logout',async()=>{
+ for(const action of ['reload','logout']){
+  const t=setup({deferAdmission:true});
+  await runInContext('loadScientific()',t.context);
+  const act=name=>({target:{closest(selector){return selector==='[data-action]'?
+   {dataset:{action:name}}:null;}}});
+  const pending=t.listeners.click(act('science-probe'));
+  if(action==='reload')await runInContext('loadScientific()',t.context);
+  else runInContext('authScreen()',t.context);
+  t.admissionPending[0].resolve({ok:false,status:503});
+  await pending;
+  assert.equal(runInContext('ui.scienceAdmissionError',t.context),null);
+  assert.equal(runInContext('ui.scienceAdmitting',t.context),false);
+ }
 });
