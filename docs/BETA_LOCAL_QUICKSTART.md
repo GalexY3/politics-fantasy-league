@@ -236,6 +236,18 @@ El único contrato permitido de URL visitante es
 `scenario` y `view`. Se exigen exactamente esas siete claves, sin
 duplicados ni extras y con valores de las listas cerradas del fixture S9.
 La publicación estipulada de 30/10 no puede elegirse con `cut=early`.
+La vista `view` conserva cualquiera de las **ocho secciones existentes**
+del registro: `sources` (distribuciones y revisiones), `compare` (cortes),
+`chain` (actores y procesos fuente-locales), `chronicle` (roles y eventos),
+`episodes`, `admission` (preadmisiones), `intake` (registro de
+incorporaciones sintéticas) y `quality`. Al seleccionar una sección,
+su URL se actualiza **sin capturar los contenidos**, y al volver a abrirla
+se muestra esa misma sección únicamente tras GET y SHA nuevos. La selección
+de tipo de nodo dentro de un grafo vuelve a `ALL` después de una recarga;
+no debe confundirse el filtro visual con el estado de conocimiento
+acreditado. En una base `science-only` recién creada, la sección `intake`
+puede contener **cero** incorporaciones: no se crean registros ficticios
+solo para rellenar una vista.
 Las URL extrañas, repetidas o cronológicamente incompatibles se bloquean
 **sin consultar el Laboratorio ni el Observatorio**, y ofrecen «Restablecer
 consulta» para volver a una selección segura. Un HTTP 400/503 o un SHA

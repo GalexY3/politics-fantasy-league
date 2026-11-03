@@ -607,6 +607,48 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(offlineRestored.publisher_identity_verified,false);
   assert.equal(offlineRestored.rights_for_public_display_admitted,false);
   unlinkSync(join(downloadsDir,restoredPairFile));
+  // REGRESSION: a visitor inspecting an institutional source-local subview
+  // must be able to bookmark/reopen THAT subview after a real Page.navigate,
+  // not silently fall back to the distributions table. The existing seven
+  // query keys are unchanged and receipts MUST be fetched and rehashed.
+  for(const [subview,publicLabel] of [
+   ['chain','relaciones explícitas del mismo emisor'],
+   ['admission','S9:ASSESS_08'],
+   ['intake','S9:INTAKE_04'],
+  ]){
+   const deepLink=new URL(bookmarkedGuestUrl);
+   deepLink.searchParams.set('cut','late');
+   deepLink.searchParams.set('family','all');
+   deepLink.searchParams.set('published_until','as_of');
+   deepLink.searchParams.set('view',subview);
+   const requestsBeforeSubview=observedRequests.length;
+   await navigateAndLoad(deepLink.href);
+   await explicitAnonymousGuestEntry();
+   await poll(()=>js("Boolean(ui.guest&&!ui.guestUrlError&&ui.scienceRegistry?.cut==='late'&&ui.scienceRegistry?.family==='all'&&!ui.scienceRegistryLoading&&ui.scienceRegistryTab==="+
+    JSON.stringify(subview)+"&&document.querySelector('[data-registry="+
+    JSON.stringify(subview)+"]')?.getAttribute('aria-pressed')==='true')"));
+   const visible=await js('document.querySelector("#content").innerText');
+   assert.ok(visible.includes(publicLabel),'Expected synthetic subview content: '+subview);
+   const current=await js('ui.scienceRegistry.snapshot_receipt');
+   assert.equal(createHash('sha256').update(current.canonical_json,'utf8').digest('hex'),
+    current.sha256,'Guest subview must verify fresh SHA: '+subview);
+   assert.deepEqual([...new URL(await js('location.href')).searchParams.keys()],allowedKeys);
+   assert.equal(new URL(await js('location.href')).searchParams.get('view'),subview);
+   const scientificGets=observedRequests.slice(requestsBeforeSubview)
+    .filter(x=>x.path==='/api/scientific-registry');
+   assert.ok(scientificGets.length>=1,'Subview reload must issue a NEW S9 GET');
+   assert.deepEqual(observedRequests.slice(requestsBeforeSubview).filter(x=>
+    x.method!=='GET'||['/api/state','/api/register','/api/login'].includes(x.path)),[]);
+   if(subview==='admission'){
+    const beforeReload=observedRequests.length;
+    await navigateAndLoad();
+    await explicitAnonymousGuestEntry();
+    await poll(()=>js("Boolean(ui.guest&&ui.scienceRegistryTab==='admission'&&ui.scienceRegistry?.family==='all'&&!ui.scienceRegistryLoading&&document.querySelector('#content').innerText.includes('S9:ASSESS_08'))"));
+    assert.equal((await js('ui.scienceRegistry.snapshot_receipt.sha256')),current.sha256);
+    assert.ok(observedRequests.slice(beforeReload).some(x=>
+     x.method==='GET'&&x.path==='/api/scientific-registry'));
+   }
+  }
   // Malformed URL intent is rejected BEFORE any scientific GET or cached
   // results. An explicit reset produces only safe default guest parameters.
   const unknown=new URL(bookmarkedGuestUrl);unknown.searchParams.set('unknown','x');
@@ -866,6 +908,40 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(durableOffline.publisher_identity_verified,false);
   assert.equal(durableOffline.rights_for_public_display_admitted,false);
   unlinkSync(join(downloadsDir,durablePairFile));
+  // The REAL restarted science-only SQLite service must also restore an
+  // institutional preadmission/ledger subview, not just the comparison tab.
+  // The URL is selection intent only; every reload requires a fresh S9 GET
+  // and SHA-256, and never opens a Fantasy account or an original source.
+  const admissionLink=new URL(newScienceLink.link);
+  admissionLink.searchParams.set('cut','late');
+  admissionLink.searchParams.set('family','all');
+  admissionLink.searchParams.set('published_until','as_of');
+  admissionLink.searchParams.set('view','admission');
+  const beforeAdmission=browserRequests.length;
+  await navigateAndLoad(admissionLink.href);
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceOnly&&!ui.guestUrlError&&ui.scienceRegistryTab==='admission'&&ui.scienceRegistry?.cut==='late'&&ui.scienceRegistry?.family==='all'&&!ui.scienceRegistryLoading&&document.querySelector('#content').innerText.includes('S9:ASSESS_08'))"));
+  const admissionsReceipt=await js('ui.scienceRegistry.snapshot_receipt');
+  assert.equal(createHash('sha256').update(admissionsReceipt.canonical_json,'utf8').digest('hex'),
+   admissionsReceipt.sha256,'Real restarted Python registry must verify public preadmission S9');
+  assert.equal(new URL(await js('location.href')).searchParams.get('view'),'admission');
+  assert.ok(browserRequests.slice(beforeAdmission).some(r=>
+   r.method==='GET'&&r.url.startsWith(scienceBase)&&new URL(r.url).pathname==='/api/scientific-registry'));
+  await js(`document.querySelector('[data-action="science-registry-tab"][data-registry="intake"]').click();true`);
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceRegistryTab==='intake'&&ui.scienceRegistry?.snapshot.synthetic_intake.intake_count===0&&document.querySelector('#content').innerText.includes('0 incorporaciones ficticias'))"));
+  const intakeLink=await js('location.href');
+  assert.equal(new URL(intakeLink).searchParams.get('view'),'intake');
+  const beforeIntakeReload=browserRequests.length;
+  await navigateAndLoad();
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceOnly&&!ui.guestUrlError&&ui.scienceRegistryTab==='intake'&&ui.scienceRegistry?.family==='all'&&ui.scienceRegistry?.snapshot.synthetic_intake.intake_count===0&&!ui.scienceRegistryLoading&&document.querySelector('#content').innerText.includes('0 incorporaciones ficticias'))"));
+  assert.equal(await js('ui.scienceRegistry.snapshot_receipt.sha256'),admissionsReceipt.sha256);
+  assert.equal(await js('location.href'),intakeLink);
+  assert.ok(browserRequests.slice(beforeIntakeReload).some(r=>
+   r.method==='GET'&&r.url.startsWith(scienceBase)&&new URL(r.url).pathname==='/api/scientific-registry'));
+  assert.equal(createHash('sha256').update(readFileSync(durableRegistry)).digest('hex'),
+   originalDbDigest,'Institutional read-only navigation must not mutate persistent SQLite');
+  assert.deepEqual(browserRequests.slice(beforeAdmission).filter(r=>
+   r.method!=='GET'||['/api/state','/api/register','/api/login'].includes(new URL(r.url).pathname)),[]);
+  assert.equal(existsSync(join(scienceDir,'accounts.sqlite3')),false);
   console.log('S9_GUEST_URL_CDP '+JSON.stringify({
    one_chrome:true,facade_initial_registry_gets:firstReloadGets,
    facade_reload_registry_gets:secondReloadGets,

@@ -180,6 +180,22 @@ def test_relative_and_old_bookmark_are_normalized_using_real_launcher():
     assert doctor.parse_guest_recipe(old)["view"] == "sources"
 
 
+@pytest.mark.parametrize("view", (
+    "chain", "chronicle", "episodes", "admission", "intake", "quality",
+))
+def test_running_science_doctor_accepts_existing_public_institutional_subview(view):
+    # The same versioned seven-field recipe must be usable by browser,
+    # dynamic-port launcher and GET-only running-instance verifier.
+    recipe = doctor.DEFAULT_QUERY.replace("view=compare", "view=" + view)
+    parsed = doctor.parse_guest_recipe(
+        "http://127.0.0.1:49881/" + recipe
+    )
+    assert parsed["view"] == view
+    assert parsed["cut"] == "late"
+    assert parsed["family"] == "all"
+    assert parsed["published_until"] == "as_of"
+
+
 @pytest.mark.parametrize("field,value,error", [
     ("/api/session", {"authenticated": True}, "SCIENCE_ONLY_REQUIRED"),
     ("/api/session", {"science_only": False}, "SCIENCE_ONLY_REQUIRED"),

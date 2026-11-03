@@ -84,6 +84,7 @@ const REGISTRY_VALID_DAYS=['2026-09-11','2026-09-15','2026-10-10'];
 const REGISTRY_FAMILIES=['all','PP04','CHAIN','CHRONICLE'];
 const REGISTRY_PUBLICATION=['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'];
 const REGISTRY_KINDS=['ALL','ACTOR','ORGANIZATION','COMMUNICATION','DECISION','PROCESS','ROLE','EVENT'];
+const GUEST_REGISTRY_VIEWS=['sources','compare','chain','chronicle','episodes','admission','intake','quality'];
 const GUEST_URL_FIELDS=['pfl_guest','cut','valid_at','family','published_until','scenario','view'];
 const GUEST_URL_DEFAULT={cut:'late',validAt:'2026-09-15',family:'all',
  published:'as_of',scenario:'baseline',view:'sources'};
@@ -116,7 +117,7 @@ function guestUrlSelection(){
    ||!REGISTRY_PUBLICATION.includes(published)
    ||(cut==='early'&&published==='2026-10-30T12:00:00Z')
    ||!['baseline','rights_spoof','privacy_probe'].includes(scenario)
-   ||!['sources','compare'].includes(view))return null;
+   ||!GUEST_REGISTRY_VIEWS.includes(view))return null;
   return {cut,validAt,family,published,scenario,view};
  }catch(_){return null;}
 }
@@ -130,7 +131,7 @@ function mirrorGuestUrlSelection(){
   url.search='';
   const values=['v1',ui.scienceCut,ui.scienceRegistryValid,
    ui.scienceRegistryFamily,ui.scienceRegistryPublished,ui.scienceScenario,
-   ui.scienceRegistryTab==='compare'?'compare':'sources'];
+   GUEST_REGISTRY_VIEWS.includes(ui.scienceRegistryTab)?ui.scienceRegistryTab:'sources'];
   GUEST_URL_FIELDS.forEach((key,i)=>url.searchParams.set(key,values[i]));
   globalThis.history.replaceState(null,'',url.pathname+url.search);
  }catch(_){/* URL mirroring is optional; integrity checks still apply. */}
@@ -1567,7 +1568,7 @@ document.addEventListener('click',async e=>{
    await exportScientificRegistry();return;
   }
   if(act.dataset.action==='science-registry-tab'){
-   if(['sources','compare','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
+   if(GUEST_REGISTRY_VIEWS.includes(act.dataset.registry)){
     ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';
     mirrorGuestUrlSelection();draw();
     if(ui.scienceRegistryTab==='compare')await loadRegistryComparison();

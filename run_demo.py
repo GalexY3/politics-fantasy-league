@@ -75,7 +75,9 @@ def resume_guest_query(value: str) -> str:
             or (fields['published_until'] != 'as_of' and
                 fields['published_until'] > CUTS[fields['cut']])
             or fields['scenario'] not in SCENARIOS
-            or fields['view'] not in ('sources', 'compare')):
+            or fields['view'] not in (
+                'sources', 'compare', 'chain', 'chronicle',
+                'episodes', 'admission', 'intake', 'quality')):
         raise invalid()
     return urlencode([(key, fields[key]) for key in GUEST_QUERY_KEYS])
 

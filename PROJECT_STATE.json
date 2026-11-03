@@ -1,5 +1,5 @@
 {
-  "revision": 49,
+  "revision": 50,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1351,5 +1351,45 @@
     "fantasy_redesign_deferred": true,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_LIVE_INSTANCE_DIAGNOSTIC_RECEIPT_20261103.json"
+  },
+  "local_beta_institutional_subview_deep_links": {
+    "date": "2026-11-03",
+    "baseline_published_head": "3f3dcf32081391c1b21a4ca8f82fe5df8a251099",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "SYNTHETIC_LOCAL_GUEST_INSTITUTIONAL_SUBVIEW_RECOVERY",
+    "existing_guest_url_schema": "pfl_guest=v1",
+    "query_field_count_unchanged": 7,
+    "guest_registry_views": [
+      "sources", "compare", "chain", "chronicle",
+      "episodes", "admission", "intake", "quality"
+    ],
+    "python_node_chrome_guest_url_allowlist_aligned": true,
+    "guest_reopen_requires_fresh_http_and_sha": true,
+    "guest_view_restored_from_url_evidence_bytes": false,
+    "private_source_ids_in_url": false,
+    "graph_node_kind_filter_persisted_in_url": false,
+    "invalid_or_forged_view_fails_before_science_get": true,
+    "accounts_consume_guest_url": false,
+    "new_http_api_or_sqlite_migration": false,
+    "existing_single_and_pair_s9_exports_changed": false,
+    "real_science_only_empty_intake_handled_without_enrollment": true,
+    "prepatch_red_verified": {
+      "python_subviews": 6,
+      "node_subviews": 2,
+      "cause": "NONCOMPARISON_VIEWS_FELL_BACK_TO_SOURCES"
+    },
+    "native_chrome_subview_and_dynamic_port_regression": "tests/test_s9_chrome_registry.mjs",
+    "runner": "python scripts/beta_acceptance.py",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "fantasy_redesign_deferred": true,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_INSTITUTIONAL_SUBVIEW_RECOVERY_RECEIPT_20261103.json"
   }
 }

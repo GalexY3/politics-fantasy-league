@@ -1,0 +1,154 @@
+{
+  "baseline_published_head": "3f3dcf32081391c1b21a4ca8f82fe5df8a251099",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "file_manifest_basis": "EXACT_STAGED_GIT_BLOBS",
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 104694,
+      "sha256": "fbb9f3f969d82bb5d1cfc4e67737c1150166ad636f282543cf9c3a3a45ecb923"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 84576,
+      "sha256": "a9be4983ca23bfd3f0910759aedc34639565784ead10670ba558e009d0a54fdb"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 15625,
+      "sha256": "e40278213cc96246134e29211afca207fa70b697ce8a5d83aa3c6416ec0a6793"
+    },
+    "run_demo.py": {
+      "bytes": 5576,
+      "sha256": "45c5b9e0951dcb09411213900fb20d4260f7a609c69384801d582ca6919d980f"
+    },
+    "src/politics_fantasy/web/app.js": {
+      "bytes": 158555,
+      "sha256": "fd6271e92ac573a08fbcfb1f4beb9dd4ecfe569353f4e73733e5e7df30bc6709"
+    },
+    "tests/test_beta_guest_link_launcher.py": {
+      "bytes": 15035,
+      "sha256": "895fada9c526ef131b3edda72dec4bf7fd53b1d98e9f1bff0c3bd60871155bd4"
+    },
+    "tests/test_beta_live_science_doctor.py": {
+      "bytes": 18428,
+      "sha256": "3fbe525250ab46583c96f61ca9e394e4f507f5953cfd3eba01f53642e5032fa8"
+    },
+    "tests/test_beta_registry_comparison.mjs": {
+      "bytes": 42490,
+      "sha256": "66deb7fc827efbcb556258763b27375754057fa5ad951c8bce6bad215f945724"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 65142,
+      "sha256": "a293e3258c3acefd6162ee073de26db9372d162e1ee3002e5dd8cab8e926def9"
+    }
+  },
+  "guest_url_contract": {
+    "allowed_existing_s9_views": [
+      "sources",
+      "compare",
+      "chain",
+      "chronicle",
+      "episodes",
+      "admission",
+      "intake",
+      "quality"
+    ],
+    "exact_keys": [
+      "pfl_guest",
+      "cut",
+      "valid_at",
+      "family",
+      "published_until",
+      "scenario",
+      "view"
+    ],
+    "fresh_GET_SHA_on_restore": true,
+    "guest_only_no_fantasy_authentication": true,
+    "historical_and_old_sources_compare_links_preserved": true,
+    "no_additional_query_keys": true,
+    "offline_verifier_or_comparator_code_changed": false,
+    "original_snapshot_and_pair_receipt_schemas_changed": false,
+    "private_identifiers_in_url": false,
+    "public_data_cached_in_url": false,
+    "query_field_count": 7,
+    "registry_sqlite_backend_changed": false,
+    "stale_exports_rejected_on_filter_A_B_A_or_HTTP503": true,
+    "valid_at_as_of_first_public_clocks_not_conflated": true,
+    "validated_before_network": true,
+    "version": "pfl_guest=v1"
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "academic_v09_integrated": false,
+    "authentic_two_vintages_accredited": false,
+    "existing_S9_DOCX_rebuilt": false,
+    "historical_change_or_causality_established": false,
+    "historical_first_public_accredited": false,
+    "human_acceptance_completed": false,
+    "independent_denominator_accredited": false,
+    "new_scientific_AB_R_cycles": 0,
+    "public_beta_authorized": false,
+    "publisher_authenticity_verified": false,
+    "release_gates_passed": 0,
+    "rights_for_public_display_admitted": false,
+    "spanish_real_empirical_sources_admitted": 0
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_red": {
+    "node": {
+      "before_browser_edit": true,
+      "command": "node --test --test-name-pattern=PREPATCH RED guest bookmarked S9 tests/test_beta_registry_comparison.mjs",
+      "error": "bookmarked view unexpectedly became sources",
+      "failed": 2
+    },
+    "production_cause": "NONCOMPARE_S9_SUBVIEW_SERIALIZED_AS_SOURCES_AND_REJECTED_ON_RELOAD",
+    "python": {
+      "before_python_parser_edit": true,
+      "command": "python -B -m pytest -q --tb=line tests/test_beta_guest_link_launcher.py::test_guest_link_preserves_public_institutional_subview",
+      "error": "Enlace de consulta cient?fica no v?lido",
+      "failed": 6
+    }
+  },
+  "publication_status_at_receipt_creation": "UNCOMMITTED_WORKTREE",
+  "schema": "pfl.beta_institutional_subview_recovery_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_8_INSTITUTIONAL_SUBVIEWS_RESTORE",
+  "verification": {
+    "chrome_native_real": {
+      "actual_os_science_only_subviews": [
+        "admission",
+        "intake"
+      ],
+      "command": "node --test --test-reporter=tap tests/test_s9_chrome_registry.mjs",
+      "existing_browser_pair_download_offline_comparison_pass": true,
+      "facade_subviews": [
+        "chain",
+        "admission",
+        "intake"
+      ],
+      "fresh_sha_independently_checked": true,
+      "passed": 1,
+      "real_empty_intake_zero_without_injection": true,
+      "same_scientific_sqlite_two_processes": true,
+      "status": "PASS"
+    },
+    "historical_full_suite_reexecuted": false,
+    "node_affected": {
+      "command": "node --test --test-reporter=tap tests/test_beta_registry_comparison.mjs tests/test_beta_scientific_guest.mjs tests/test_s8_scientific_ui.mjs tests/test_s9_scientific_ui.mjs",
+      "passed": 98,
+      "status": "PASS"
+    },
+    "postcommit_beta_acceptance": "REQUIRED_ON_CLEAN_PUBLISHED_HEAD",
+    "python_launcher_and_doctor_focal": {
+      "passed": 114,
+      "status": "PASS"
+    },
+    "worktree_beta_acceptance": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "node": 98,
+      "python": 242,
+      "source_kind": "UNCOMMITTED_WORKTREE",
+      "status": "PASS",
+      "total": 342
+    }
+  }
+}

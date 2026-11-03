@@ -279,6 +279,71 @@ const guestLink=(values={})=>{
  return 'http://localhost/?'+query.toString();
 };
 
+for(const [view,panelText] of [
+ ['admission','Historial sintético'],
+ ['intake','Control sandbox']
+]){
+ test('PREPATCH RED guest bookmarked S9 '+view+' panel survives reboot',async()=>{
+  const original=harness();
+  await original.guest();
+  await original.click('science-registry-tab',view);
+  assert.equal(original.evalJs('ui.scienceRegistryTab'),view);
+  assert.match(original.elements.content.innerHTML,new RegExp(panelText));
+  assert.equal(original.getHref(),guestLink({view}),
+   'selected public S9 subview must be mirrored into the seven-field URL');
+  const restored=harness({href:original.getHref(),scienceOnly:true});
+  await restored.guest();
+  assert.equal(restored.evalJs('ui.scienceRegistryTab'),view);
+  assert.match(restored.elements.content.innerHTML,new RegExp(panelText));
+  assert.equal(restored.digestCalls(),1,'reload verifies fresh S9, not URL evidence');
+  onlyGet(restored.requests);
+ });
+}
+
+for(const [view,panelText] of [
+ ['chain','relaciones explícitas del mismo emisor'],
+ ['chronicle','relaciones explícitas del mismo emisor'],
+ ['episodes','Censura derecha independiente'],
+ ['admission','Historial sintético'],
+ ['intake','Control sandbox'],
+ ['quality','Migración del esquema']
+]){
+ test('guest S9 '+view+' subview survives reload and independent science-only reboot',async()=>{
+  const selected=harness();
+  await selected.guest();
+  const originalRegistryQueries=selected.registryQueries();
+  await selected.click('science-registry-tab',view);
+  assert.equal(selected.evalJs('ui.scienceRegistryTab'),view);
+  assert.match(selected.elements.content.innerHTML,new RegExp(panelText));
+  assert.equal(selected.getHref(),guestLink({view}));
+  assert.equal(selected.registryQueries(),originalRegistryQueries,
+   'Selecting a verified S9 subview needs no new GET');
+  assert.equal(selected.evalJs('ui.scienceRegistryComparison'),null,
+   'Only compare requires independently verified early and late projections');
+  const shaCalls=selected.digestCalls();
+  await selected.click('guest-reload');
+  assert.equal(selected.evalJs('ui.scienceRegistryTab'),view);
+  assert.match(selected.elements.content.innerHTML,new RegExp(panelText));
+  assert.equal(selected.digestCalls(),shaCalls+1,
+   'Guest retry verifies a fresh single S9 SHA receipt');
+  assert.equal(selected.getHref(),guestLink({view}));
+  const restored=harness({href:selected.getHref(),scienceOnly:true});
+  await restored.guest();
+  assert.equal(restored.evalJs('ui.scienceRegistryTab'),view);
+  assert.match(restored.elements.content.innerHTML,new RegExp(panelText));
+  assert.equal(restored.evalJs('ui.scienceRegistryError'),null);
+  assert.equal(restored.evalJs('ui.scienceRegistryComparison'),null);
+  assert.equal(restored.digestCalls(),1,'New browser reload never trusts URL as evidence');
+  assert.equal(restored.registryQueries(),1,
+   'Exactly one current S9 projection GET for a non-comparison subview');
+  assert.equal(restored.getHref(),guestLink({view}));
+  assert.equal(restored.historyWrites[0].requestCount,1,
+   'The restored selection precedes every scientific GET');
+  onlyGet(selected.requests);
+  onlyGet(restored.requests);
+ });
+}
+
 test('guest mirrors exact allowlisted selection as a reproducible, credential-free URL',async()=>{
  const t=harness();await t.guest();
  await t.change('science-cut','early');
@@ -375,6 +440,8 @@ const invalidGuestUrls=[
  ['trailing separator',canonicalGuestUrl+'&'],
  ['empty separator',canonicalGuestUrl.replace('&family=all','&&family=all')],
  ['wrong marker',canonicalGuestUrl.replace('pfl_guest=v1','pfl_guest=v2')],
+ ['unknown registry subview',guestLink({view:'private_account'})],
+ ['subview with encoded control',guestLink({view:'admission\nsource_id'})],
  ['invalid scenario',canonicalGuestUrl.replace('scenario=baseline','scenario=rights_unknown')],
  ['missing field',canonicalGuestUrl.replace('&view=compare','')],
  ['unallowlisted date',canonicalGuestUrl.replace('valid_at=2026-09-15','valid_at=2026-12-20')],
@@ -434,6 +501,46 @@ test('an established Fantasy account never interprets or overwrites a hostile gu
  assert.equal(t.evalJs('ui.session'),'existing-account');
 });
 
+test('an authenticated Fantasy session cannot consume a valid public admission subview link',async()=>{
+ const url=guestLink({view:'admission',family:'CHAIN'});
+ const t=harness({href:url});
+ await t.evalJs('bootstrap()');
+ assert.equal(t.evalJs('ui.guest'),false);
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'sources');
+ t.evalJs("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.session='account-existing'");
+ await t.evalJs('enterGuest()');
+ t.evalJs('mirrorGuestUrlSelection()');
+ assert.equal(t.evalJs('ui.guest'),false);
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'sources');
+ assert.equal(t.evalJs('ui.scienceRegistry'),null);
+ assert.equal(t.getHref(),url);
+ assert.equal(t.historyWrites.length,0);
+ assert.equal(t.requests.length,1,'Authenticated Fantasy never loads scientific URL in guest mode');
+});
+
+test('reentering guest with spoofed view fail-closes an earlier validated admission panel',async()=>{
+ const t=harness({scienceOnly:true});
+ await t.guest();
+ await t.click('science-registry-tab','admission');
+ assert.match(t.elements.content.innerHTML,/Historial sintético/);
+ const priorRequests=t.requests.length;
+ t.evalJs('location.href='+JSON.stringify(guestLink({view:'secret_actor_graph'})));
+ await t.evalJs('enterGuest()');
+ assert.equal(t.requests.length,priorRequests,
+  'Invalid subview does not request S8/S9 nor reuse old SHA-verified data');
+ assert.equal(t.evalJs('ui.guestUrlError')!==null,true);
+ assert.equal(t.evalJs('ui.scientific'),null);
+ assert.equal(t.evalJs('ui.scienceRegistry'),null);
+ assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+ assert.match(t.elements.content.innerHTML,/Restablecer consulta/);
+ assert.doesNotMatch(t.elements.content.innerHTML,/Historial sintético/);
+ await t.click('guest-url-reset');
+ assert.equal(t.evalJs('ui.guestUrlError'),null);
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'sources');
+ assert.equal(t.getHref(),guestLink());
+ onlyGet(t.requests);
+});
+
 for(const endpoint of ['registry','lab']){
  test('restored comparison retains selected URL through '+endpoint+' HTTP503 and verifies fresh data on retry',async()=>{
   const url=guestLink({view:'compare',family:'CHAIN'});
@@ -475,6 +582,76 @@ test('restored in-flight comparison A→B→A cannot republish stale data despit
  await t.click('science-registry-compare-load');
  assert.ok(t.evalJs('ui.scienceRegistryComparison'),'User-initiated fresh query can now succeed');
  assert.equal(t.getHref(),url);
+ onlyGet(t.requests);
+});
+
+test('restored admission subview forbids a stale S9 download across valid_at A→B→A',async()=>{
+ const url=guestLink({view:'admission'});
+ const t=harness({href:url,scienceOnly:true});
+ await t.guest();
+ assert.match(t.elements.content.innerHTML,/Historial sintético/);
+ t.pauseNextDigest();
+ const pending=t.click('science-registry-export');
+ assert.equal(t.hasPendingDigest(),true,'Single S9 export awaits WebCrypto');
+ await t.change('science-registry-valid','2026-10-10');
+ await t.change('science-registry-valid','2026-09-15');
+ assert.equal(t.getHref(),url,'A→B→A returns to identical public bookmark');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'admission');
+ assert.match(t.elements.content.innerHTML,/Historial sintético/);
+ t.releaseDigest();await pending;
+ assert.equal(t.downloads.length,0);
+ assert.equal(t.blobs.length,0);
+ assert.ok(t.evalJs('ui.scienceRegistry'));
+ assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+ onlyGet(t.requests);
+});
+
+test('restored episodes subview fails closed during HTTP503 with pending single-export SHA',async()=>{
+ const url=guestLink({view:'episodes'});
+ const t=harness({href:url,scienceOnly:true});
+ await t.guest();
+ assert.match(t.elements.content.innerHTML,/Censura derecha independiente/);
+ t.pauseNextDigest();
+ const pending=t.click('science-registry-export');
+ assert.equal(t.hasPendingDigest(),true);
+ t.setFail('late',503);
+ await t.click('science-registry-load');
+ assert.equal(t.evalJs('ui.scienceRegistry'),null);
+ assert.match(t.evalJs('ui.scienceRegistryError'),/503/);
+ assert.doesNotMatch(t.elements.content.innerHTML,/Censura derecha independiente/);
+ t.releaseDigest();await pending;
+ assert.equal(t.downloads.length,0);
+ assert.equal(t.blobs.length,0);
+ assert.equal(t.getHref(),url);
+ t.setFail(null,null);
+ const previousSha=t.digestCalls();
+ await t.click('guest-reload');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'episodes');
+ assert.match(t.elements.content.innerHTML,/Censura derecha independiente/);
+ assert.equal(t.evalJs('ui.scienceRegistryError'),null);
+ assert.ok(t.digestCalls()>previousSha,'Retry requires fresh SHA');
+ assert.equal(t.getHref(),url);
+ onlyGet(t.requests);
+});
+
+test('view compare→admission→compare rejects stale in-flight pair download despite identical link',async()=>{
+ const url=guestLink({view:'compare'});
+ const t=harness({href:url,scienceOnly:true});
+ await t.guest();
+ assert.ok(t.evalJs('ui.scienceRegistryComparison'));
+ t.pauseNextDigest();
+ const pending=t.click('science-registry-pair-export');
+ assert.equal(t.hasPendingDigest(),true);
+ await t.click('science-registry-tab','admission');
+ assert.equal(t.getHref(),guestLink({view:'admission'}));
+ assert.match(t.elements.content.innerHTML,/Historial sintético/);
+ await t.click('science-registry-tab','compare');
+ assert.equal(t.getHref(),url);
+ assert.ok(t.evalJs('ui.scienceRegistryComparison'),
+  'Current compare view must fetch a new independently verified pair');
+ t.releaseDigest();await pending;
+ assert.equal(t.downloads.length,0);
+ assert.equal(t.blobs.length,0);
  onlyGet(t.requests);
 });
 

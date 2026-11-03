@@ -70,6 +70,26 @@ def test_url_parser_rebinds_only_allowlisted_seven_fields(value, expected):
     assert "localhost" not in expected and "127.0.0.1" not in expected
 
 
+@pytest.mark.parametrize("institutional_view", (
+    "chain", "chronicle", "episodes", "admission", "intake", "quality",
+))
+def test_guest_link_preserves_public_institutional_subview(institutional_view):
+    """PREPATCH: source-local institutional tabs became 'sources' on reload.
+
+    The launcher must accept the same exact seven-filter URL that the real
+    guest browser can bookmark; no new field, private source ID or receipt.
+    """
+    bookmarked = recipe(
+        cut="early", valid_at="2026-10-10", family="all",
+        published_until="2026-09-19T12:00:00Z",
+        view=institutional_view,
+    )
+    expected = bookmarked[1:]
+    assert run_demo.resume_guest_query(
+        "http://127.0.0.1:41552/" + bookmarked
+    ) == expected
+
+
 def test_out_of_order_encoded_fields_are_normalized_once_without_stale_origin():
     query = recipe(cut="early", family="PP04", scenario="rights_spoof")
     entries = list(reversed(query[1:].split("&")))
