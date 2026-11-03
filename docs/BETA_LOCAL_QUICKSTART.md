@@ -39,6 +39,16 @@ la DACL del **mismo HANDLE** mediante `GetSecurityInfo`, y los bytes
 se consumen por ese descriptor, nunca reabriendo la ruta tras la
 auditoría. Una sustitución de inode entre inspección y apertura se
 rechaza antes de registrar una revisión o publicar puntuaciones.
+Para las salidas privadas v2, el publicador audita también la DACL del
+archivo temporal recién abierto mediante su HANDLE **antes de escribir**,
+revalida permisos de archivo/carpeta antes de enlazar el nombre final y
+comprueba la DACL del inode publicado mientras conserva su alias temporal.
+Una ACE heredable `Everyone READ` introducida entre la comprobación
+inicial del supervisor y la creación del temporal produce rechazo
+`OPERATOR_PRIVATE_OUTPUT_UNVERIFIED` o
+`OPERATOR_PRIVATE_DIR_UNVERIFIED`, sin exportación válida. Se aplica a
+ficha/rúbrica de `--prepare-form`, a `--record-form`, a `--evaluate-form`
+y al recibo `--verify-chain-to`; el HTML participante es público por diseño.
 En POSIX se usa `O_NOFOLLOW` cuando está disponible y se comprueba
 `fstat` sobre el descriptor abierto. Se siguen rechazando
 alias simbólicos y archivos con varios hardlinks. Esto **no** prueba
@@ -49,10 +59,17 @@ supervisor ni certifica la confidencialidad en un equipo comprometido.
 En POSIX se exige propietario actual y modo `0700`. El estado
 `POSIX_MODE_0700_ONLY` **no certifica** ACL extendidas,
 montajes remotos, políticas MAC ni aislamiento real entre personas.
+En POSIX, el temporal privado nuevo se ajusta adicionalmente a
+modo `0600` con `fchmod` antes de escribir, pero este camino no se
+ha ejecutado en Linux durante la aceptación Windows.
 La comprobación de identidad del descriptor tampoco certifica
 ausencia de sustituciones en los directorios ancestros, uso de ACL
 extendidas ni resistencia frente a un adversario que controle la
 misma cuenta o los permisos del sistema.
+No se certifica ausencia de exposiciones transitorias con cambios
+arbitrarios de ACL ni resistencia a cambios posteriores del supervisor,
+administradores o el mismo token. Los falsadores NTFS usaron una
+única identidad Windows, no un atacante con cuenta separada.
 Si los permisos no se pueden comprobar, la preparación v2 se
 detiene antes de crear la clave. El supervisor debe custodiar
 la cuenta y el directorio privado y comprobar las ACL reales

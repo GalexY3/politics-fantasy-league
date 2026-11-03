@@ -116,6 +116,17 @@ Un token sin privilegio de crear symlinks no pudo ejecutar el caso
 positivo de alias simbólico en este equipo (WinError 1314); ello no
 constituye una prueba de ese ataque. Tampoco se ha ejecutado una
 prueba adversarial con cambio concurrente de directorios ancestros.
+En escritura, una carrera NTFS **distinta** permitía que el temporal
+heredase una ACE `Everyone READ` introducida entre la comprobación
+de la carpeta supervisora y la apertura real del archivo nuevo.
+Dos falsadores RED PREPATCH publicaron así una revisión codificada
+y una evaluación sintéticas con DACL amplia. La publicación privada
+v2 ahora audita el HANDLE nuevo antes de escribir bytes, revalida
+la DACL y carpeta antes del hardlink, y comprueba el inode publicado
+mientras conserva su alias temporal. El HTML participante continúa
+siendo público por diseño. No se acredita con ello aislamiento
+entre cuentas Windows diferentes, protección frente a cambios
+posteriores de administradores ni un ensayo en Linux.
 El supervisor
 no debe compartir la misma cuenta del sistema con la participante.
 En POSIX se comprueba el modo `0700` y propietario, no ACL extendidas.

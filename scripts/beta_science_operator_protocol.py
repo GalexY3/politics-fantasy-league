@@ -731,7 +731,8 @@ def new_private_dir(path: str) -> dict:
 
 
 def _write_external_utf8(path: str, content: str, *, maximum: int,
-                         error_prefix: str) -> tuple[int, str]:
+                         error_prefix: str,
+                         private_output: bool = False) -> tuple[int, str]:
     """Publish only complete, fsynced UTF-8 bytes under a new final name.
 
     Stage a private randomly named file in the same directory, fsync it,
@@ -754,11 +755,40 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
             stage_created = True
             identity = os.fstat(stream.fileno())
             stage_identity = (identity.st_dev, identity.st_ino)
+            if private_output:
+                # The parent can acquire a broad inheritable ACE after the
+                # caller's earlier check. Audit the actual new file handle
+                # BEFORE writing any private bytes or publishing its name.
+                if not stat.S_ISREG(identity.st_mode) or identity.st_nlink != 1:
+                    raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
+                if os.name == "nt":
+                    if not _windows_dacl_safe_fd(
+                            stream.fileno(), require_protected=False):
+                        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
+                else:
+                    os.fchmod(stream.fileno(), 0o600)
+                    secured = os.fstat(stream.fileno())
+                    if (secured.st_uid != os.geteuid()
+                            or stat.S_IMODE(secured.st_mode) != 0o600):
+                        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
+                _private_directory_status(destination.parent)
             stream.write(bytes_to_write)
             stream.flush()
             os.fsync(stream.fileno())
+            if private_output:
+                if os.name == "nt" and not _windows_dacl_safe_fd(
+                        stream.fileno(), require_protected=False):
+                    raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
+                _private_directory_status(destination.parent)
         os.link(stage, destination)
         linked = True
+        if private_output:
+            # The stage alias is retained until the published inode passes
+            # its final ACL check; on failure finally unlinks our inode only.
+            if os.name == "nt" and not _windows_dacl_safe(
+                    destination, require_protected=False):
+                raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
+            _private_directory_status(destination.parent)
         stage.unlink()
         stage_created = False
         # On POSIX directory fsync makes the rename/link durable across an
@@ -1055,6 +1085,7 @@ def prepare_form(session_path: str, participant_html_path: str,
                 str(dest), content,
                 maximum=MAX_HANDOUT_BYTES if dest != locations[0] else MAX_INPUT_BYTES,
                 error_prefix="OPERATOR_FORM",
+                private_output=dest != locations[1],
             )
             stat = dest.stat()
             created.append((dest, stat.st_dev, stat.st_ino))
@@ -1233,6 +1264,7 @@ def record_form(source_path: str, destination_path: str, task_id: str,
     size, digest = _write_external_utf8(
         destination_path, json_line(successor) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+        private_output=True,
     )
     return {
         "schema": FORM_INPUT_SCHEMA,
@@ -1266,6 +1298,7 @@ def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
     length, sha = _write_external_utf8(
         output_path, json_line(result) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+        private_output=True,
     )
     return {
         "schema": FORM_RESULT_SCHEMA,
@@ -1417,6 +1450,7 @@ def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
     size, sha = _write_external_utf8(
         output_path, json_line(report) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+        private_output=True,
     )
     return {
         "schema": FORM_CHAIN_SCHEMA,

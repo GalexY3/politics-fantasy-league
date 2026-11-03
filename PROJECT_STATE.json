@@ -1,5 +1,5 @@
 {
-  "revision": 61,
+  "revision": 62,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1896,7 +1896,47 @@
     "scientific_AB_R_cycles_added": 0,
     "R5": "STOP_R5",
     "launch_gates_passed": 0,
-    "publication_state": "READY_REVIEW",
+    "publication_state": "PUBLISHED_E2E_ACCEPTED",
+    "published_commit": "4c4519834c817d3f696930574cdf7c5decf605e0",
+    "clean_committed_head_acceptance_passed": 552,
     "receipt": "docs/BETA_OPERATOR_PRIVATE_READER_RACE_RECEIPT_20261103.json"
+  },
+  "local_beta_private_output_acl_inheritance_race": {
+    "date": "2026-11-03",
+    "baseline_published_head": "4c4519834c817d3f696930574cdf7c5decf605e0",
+    "scope": "LOCAL_SYNTHETIC_V2_PRIVATE_OUTPUT_INHERITED_ACL_RACE_NONCYCLE",
+    "genuine_prepatch_red": {
+      "record_form_public_acl_inherited_before_stage_open": "1_FAILED_RC0_EXPORTED_BROAD_DACL",
+      "evaluate_form_public_acl_inherited_before_stage_open": "1_FAILED_RC0_EXPORTED_BROAD_DACL",
+      "total": "2_FAILED_1_DESELECTED",
+      "original_safe_parent": "WINDOWS_NATIVE_DACL_CHECKED",
+      "mutated_parent_and_stage_and_final": "ICACLS_EVERYONE_OI_CI_READ_CONFIRMED_GET_ACL"
+    },
+    "private_publication_audits_actual_open_stage_fd_before_any_bytes": true,
+    "windows_handle_get_security_info_and_final_file_dacl_checked": true,
+    "private_parent_rechecked_before_and_after_link": true,
+    "fail_closed_private_output_on_public_acl": true,
+    "public_participant_html_intentionally_unrestricted": true,
+    "posix_private_output_mode_0600_set_by_fchmod": true,
+    "native_posix_tested_in_this_increment": false,
+    "public_stage_bytes_written_before_rejection": false,
+    "other_windows_user_token_tested": false,
+    "same_token_or_administrator_future_acl_change_excluded": false,
+    "concurrent_parent_path_swap_tested": false,
+    "new_python_test": "tests/test_beta_operator_private_write_race.py",
+    "new_python_focal_postpatch_passed": 5,
+    "combined_focal_python_postpatch_passed": 180,
+    "integrated_uncommitted_worktree_passed": 557,
+    "integrated_uncommitted_worktree_counts": "435_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "integrated_worktree_execution_source_kind": "UNCOMMITTED_WORKTREE",
+    "required_skips": 0,
+    "existing_v1_and_v2_schema_preserved": true,
+    "human_participants_observed": 0,
+    "new_empirical_spanish_sources": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_PRIVATE_WRITE_RACE_RECEIPT_20261103.json"
   }
 }
