@@ -94,7 +94,8 @@ personas hayan sido asignadas experimentalmente ni valida la
 equivalencia de los doce ítems o de la traducción española.
 
 La rúbrica JSON y la ficha JSON deben estar en un directorio de
-supervisión distinto del directorio del HTML participante; el
+supervisión **común y auditado**, distinto del directorio del HTML
+participante; el
 comando rechaza compartir directorio de rúbrica o ficha con HTML, rutas
 repetidas, rutas dentro de cualquier Git o ADS NTFS. Deben existir
 previamente los directorios de destino. El directorio del supervisor
@@ -103,13 +104,34 @@ siempre vacío y fuera de Git con `--new-private-dir`. En Windows,
 la auditoría es nativa sobre SID, propietario y DACL (herencia
 desactivada; solo titular, OWNER RIGHTS, SYSTEM y administradores).
 La clave y las fichas se leen únicamente si el inode no tiene alias
-de hardlink o symlink y no tiene ACE de lectura adicional. El supervisor
+de hardlink o symlink y no tiene ACE de lectura adicional. Tras la
+inspección previa de la ruta, una apertura única verifica `fstat`
+e identidad del inode y, en Windows, `GetSecurityInfo` sobre el
+HANDLE del fichero **realmente leído**. Esto cierra la carrera
+demostrada entre auditoría DACL por nombre y reapertura posterior
+del origen; una sustitución detectada rechaza el registro y la
+evaluación sin crear archivos sucesores. En POSIX se añade
+`O_NOFOLLOW` cuando está disponible, sin certificar ACL extendidas.
+Un token sin privilegio de crear symlinks no pudo ejecutar el caso
+positivo de alias simbólico en este equipo (WinError 1314); ello no
+constituye una prueba de ese ataque. Tampoco se ha ejecutado una
+prueba adversarial con cambio concurrente de directorios ancestros.
+El supervisor
 no debe compartir la misma cuenta del sistema con la participante.
 En POSIX se comprueba el modo `0700` y propietario, no ACL extendidas.
 No se ha ejecutado una comprobación positiva con dos tokens humanos
 independientes. Los tres archivos se crean
 exclusivamente, sin sobreescribir; si se detecta un error recuperable
 durante la creación se intenta revertir solo los ficheros nuevos.
+Una preparación con dos directorios privados diferentes se rechaza
+ahora con `OPERATOR_FORM_PRIVATE_PARENTS_MISMATCH`, antes de escribir:
+de otro modo `--prepare-form` aceptaba archivos que el contrato de
+`--evaluate-form` no podía puntuar por la discrepancia de carpetas.
+Las fichas v2 antiguas creadas en esa disposición no se migran:
+la supervisora puede trasladar una copia byte-a-byte de la rúbrica
+original a la carpeta privada auditada de la ficha y conservar su
+identificador y hashes, sin generar una hoja distinta ni alterar
+las observaciones previas.
 No se promete atomicidad de los tres archivos como transacción ante
 corte brusco de alimentación. Cada archivo individual se escribe a
 un temporal exclusivo, se sincronizan sus bytes y se publica con

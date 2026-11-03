@@ -1,5 +1,5 @@
 {
-  "revision": 60,
+  "revision": 61,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1865,5 +1865,38 @@
     "scientific_AB_R_cycles_added": 0,
     "publication_state": "READY_REVIEW",
     "receipt": "docs/BETA_OPERATOR_ARTIFACT_SECURITY_RECEIPT_20261103.json"
+  },
+  "local_beta_private_read_descriptor_integrity": {
+    "date": "2026-11-03",
+    "baseline_published_head": "af40685f84209c93efa4a70cf843dd078bd7ead9",
+    "scope": "LOCAL_SYNTHETIC_V2_PRIVATE_FILE_TOCTOU_AND_SPLIT_PARENT_NONCYCLE",
+    "genuine_prepatch_red": {
+      "split_private_parents": "1_FAILED_24_DESELECTED",
+      "path_acl_to_reopen_inode_swap": "3_FAILED_3_DESELECTED",
+      "forensic_observation": "PUBLIC_ACL_SUBSTITUTE_BYTES_IN_SUCCESSOR_AND_EVALUATION_SHA"
+    },
+    "split_form_rubric_private_parents_rejected_before_write": true,
+    "historical_split_v2_recovery_preserves_exact_rubric_bytes": true,
+    "single_descriptor_private_input_read": true,
+    "windows_get_security_info_over_open_handle": true,
+    "fstat_identifies_audited_inode": true,
+    "posix_no_follow_when_available": true,
+    "cross_user_windows_token_isolation_tested": false,
+    "windows_symlink_positive_fixture_available": false,
+    "windows_parent_directory_swap_attack_tested": false,
+    "posix_extended_acl_certified": false,
+    "focal_python_previous_integration_passed": 174,
+    "private_read_race_focal_postpatch_passed": 7,
+    "integrated_uncommitted_worktree_passed": 552,
+    "integrated_uncommitted_worktree_counts": "430_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "integrated_uncommitted_worktree_execution_source_kind": "UNCOMMITTED_WORKTREE",
+    "required_skips": 0,
+    "human_participants_observed": 0,
+    "new_empirical_spanish_sources": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "R5": "STOP_R5",
+    "launch_gates_passed": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_PRIVATE_READER_RACE_RECEIPT_20261103.json"
   }
 }

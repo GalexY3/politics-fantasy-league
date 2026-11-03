@@ -32,19 +32,47 @@ actual, herencia DACL desactivada y solo entradas de acceso permitidas
 para titular, derechos de propietario, SYSTEM y Administradores.
 Una carpeta que permita lectura a `Everyone`, `Users`, o grupos
 no contemplados se rechaza con `OPERATOR_PRIVATE_DIR_UNVERIFIED`.
-Se comprueba también la DACL del archivo privado antes de leerlo
-y se rechazan alias de enlace simbólico y archivos con varios
-hardlinks. Esto **no** prueba acceso desde un segundo token de
+Se inspeccionan los alias y la DACL por ruta, pero la lectura v2
+además abre el archivo una sola vez y compara el identificador del
+archivo abierto con el inspeccionado. En Windows se vuelve a consultar
+la DACL del **mismo HANDLE** mediante `GetSecurityInfo`, y los bytes
+se consumen por ese descriptor, nunca reabriendo la ruta tras la
+auditoría. Una sustitución de inode entre inspección y apertura se
+rechaza antes de registrar una revisión o publicar puntuaciones.
+En POSIX se usa `O_NOFOLLOW` cuando está disponible y se comprueba
+`fstat` sobre el descriptor abierto. Se siguen rechazando
+alias simbólicos y archivos con varios hardlinks. Esto **no** prueba
+acceso desde un segundo token de
 Windows, no impide acceso de administradores o del propio
 supervisor ni certifica la confidencialidad en un equipo comprometido.
 
 En POSIX se exige propietario actual y modo `0700`. El estado
 `POSIX_MODE_0700_ONLY` **no certifica** ACL extendidas,
 montajes remotos, políticas MAC ni aislamiento real entre personas.
+La comprobación de identidad del descriptor tampoco certifica
+ausencia de sustituciones en los directorios ancestros, uso de ACL
+extendidas ni resistencia frente a un adversario que controle la
+misma cuenta o los permisos del sistema.
 Si los permisos no se pueden comprobar, la preparación v2 se
 detiene antes de crear la clave. El supervisor debe custodiar
 la cuenta y el directorio privado y comprobar las ACL reales
 con las herramientas apropiadas del sistema operativo.
+**La ficha de observaciones y la rúbrica deben crearse dentro de la
+misma carpeta privada auditada.** La hoja HTML debe estar en otra
+carpeta accesible a la participante. El CLI rechaza ahora una
+preparación con dos carpetas supervisoras distintas mediante
+`OPERATOR_FORM_PRIVATE_PARENTS_MISMATCH`, porque el registro y la
+evaluación posteriores exigen la misma carpeta privada para fichero
+de origen, rúbrica y resultado. No se crean archivos ante ese error.
+
+Si una ficha v2 histórica se creó cuando todavía se admitían dos
+carpetas supervisoras distintas, sus bytes y asignación A/B **no
+cambian**. Para evaluarla, la supervisora debe colocar una copia
+íntegra de la rúbrica en la carpeta privada auditada de la ficha
+(con permisos seguros y sin alterar contenido), comprobar
+`rubric_sha256` y continuar usando las rutas de esa carpeta.
+No ejecutar `--prepare-form` otra vez para sustituirla ni considerar
+que esa copia prueba por sí sola cuándo se distribuyó el formulario.
 La operación `--prepare-form` genera tres ficheros UTF-8 propios de
 **una sola versión v2**, con asignación real de posiciones correctas
 A/B obtenida mediante CSPRNG y equilibrada 6/6. No reutilizar un formulario

@@ -456,6 +456,77 @@ def test_prepatch_red_v2_coded_observations_must_not_share_participant_folder(
         assert str(path) not in raw
 
 
+def test_prepatch_red_prepare_form_must_reject_split_private_parents(
+    tmp_path: Path,
+):
+    """A form that cannot later be evaluated is an invalid prepared session.
+
+    Both private directories have genuinely restricted permissions. The
+    prepatch flaw is that --prepare-form accepts separate private parents
+    but --evaluate-form requires all scored artifacts in one parent.
+    """
+    coded = tmp_path / "supervisor coded Ω"
+    secret = tmp_path / "supervisor rubric á"
+    public = tmp_path / "participant public Ω"
+    os.mkdir(coded, mode=0o700)
+    os.mkdir(secret, mode=0o700)
+    public.mkdir()
+    session = coded / "coded.json"
+    handout = public / "sheet.html"
+    rubric = secret / "key.json"
+    rc, rejected, raw = run_cli("--prepare-form", session, handout, rubric)
+    assert rc != 0
+    assert rejected["status"] == "OPERATOR_REJECTED"
+    assert rejected["error_code"] == "OPERATOR_FORM_PRIVATE_PARENTS_MISMATCH"
+    assert not session.exists() and not handout.exists() and not rubric.exists()
+    for path in (session, handout, rubric):
+        assert str(path) not in raw
+
+
+def test_v2_historical_split_private_parents_can_be_reconciled_without_rekeying(
+    tmp_path: Path,
+):
+    """A formerly split v2 form remains usable with its original key bytes.
+
+    All fixture codes are synthetic; moving the same original key into
+    the form's audited directory does not generate a new A/B assignment.
+    """
+    session, key, _, root, _, original_key = _prepared_v2(
+        tmp_path, "historic_split")
+    other_private = tmp_path / "previous supervisor key folder"
+    os.mkdir(other_private, mode=0o700)
+    detached_key = other_private / "original rubric unchanged.json"
+    original_bytes = original_key.read_bytes()
+    detached_key.write_bytes(original_bytes)
+    original_key.unlink()
+    coded = root.parent / "synthetic recorded.json"
+    rc, receipt, _ = run_cli(
+        "--record-form", root, coded, "OP01",
+        "TECH_COMPLETED", "A", "UX_CLEAR")
+    assert rc == 0 and receipt["status"] == "OPERATOR_FORM_OBSERVATION_RECORDED"
+    rejected_output = root.parent / "must not close mixed private roots.json"
+    rc, rejected, _ = run_cli(
+        "--evaluate-form", coded, detached_key, rejected_output)
+    assert rc == 1
+    assert rejected["error_code"] == "OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH"
+    assert not rejected_output.exists()
+    # Recover only the original key's bytes under a newly created basename
+    # inside the coded form's private directory.
+    recovered_key = root.parent / "original rubric restored byte for byte.json"
+    recovered_key.write_bytes(original_bytes)
+    assert recovered_key.read_bytes() == original_bytes
+    scored = root.parent / "historical v2 scored synthetic.json"
+    rc, evaluation, _ = run_cli("--evaluate-form", coded, recovered_key, scored)
+    assert rc == 0 and evaluation["status"] == "OPERATOR_FORM_EVALUATION_EXPORTED"
+    output = json.loads(scored.read_bytes())
+    assert output["form_version"] == "v2"
+    assert output["form_binding"] == "MATCHED_V2_FORM_AND_RUBRIC"
+    assert output["instrument_binding"] == "MATCHED_V2_FORM_AND_RUBRIC"
+    assert output["handout_sha256"] == session["handout_sha256"]
+    assert output["operator_instrument_sha256"] == session["rubric_sha256"]
+    assert key["form_id"] == session["form_id"]
+
+
 def test_v2_evaluate_form_output_write_once_outside_git_and_no_ads(
     tmp_path: Path,
 ):

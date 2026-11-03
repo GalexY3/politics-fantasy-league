@@ -488,6 +488,19 @@ def _private_directory_status(path: Path) -> str:
 
 
 def _windows_dacl_safe(path: Path, *, require_protected: bool) -> bool:
+    return _windows_dacl_safe_object(path, require_protected=require_protected,
+                                     opened_handle=False)
+
+
+def _windows_dacl_safe_fd(fd: int, *, require_protected: bool) -> bool:
+    """Audit the NT security descriptor of the SAME open file we will read."""
+    return _windows_dacl_safe_object(fd, require_protected=require_protected,
+                                     opened_handle=True)
+
+
+def _windows_dacl_safe_object(resource: Path | int, *,
+                              require_protected: bool,
+                              opened_handle: bool) -> bool:
     """Read the REAL local NT security descriptor through native Win32 APIs.
 
     No shell, external service, locale-dependent name parsing, ACL mutation,
@@ -509,6 +522,11 @@ def _windows_dacl_safe(path: Path, *, require_protected: bool) -> bool:
             ctypes.POINTER(ptr), ctypes.POINTER(ptr),
             ctypes.POINTER(ptr), ctypes.POINTER(ptr))
         adv.GetNamedSecurityInfoW.restype = dword
+        adv.GetSecurityInfo.argtypes = (
+            wintypes.HANDLE, dword, dword, ctypes.POINTER(ptr),
+            ctypes.POINTER(ptr), ctypes.POINTER(ptr),
+            ctypes.POINTER(ptr), ctypes.POINTER(ptr))
+        adv.GetSecurityInfo.restype = dword
         adv.GetSecurityDescriptorControl.argtypes = (
             ptr, ctypes.POINTER(word), ctypes.POINTER(dword))
         adv.GetSecurityDescriptorControl.restype = wintypes.BOOL
@@ -573,9 +591,16 @@ def _windows_dacl_safe(path: Path, *, require_protected: bool) -> bool:
         owner = ptr()
         dacl = ptr()
         descriptor = ptr()
-        status = adv.GetNamedSecurityInfoW(
-            str(path), 1, 1 | 4, ctypes.byref(owner), None,
-            ctypes.byref(dacl), None, ctypes.byref(descriptor))
+        if opened_handle:
+            import msvcrt
+            status = adv.GetSecurityInfo(
+                wintypes.HANDLE(msvcrt.get_osfhandle(resource)), 1, 1 | 4,
+                ctypes.byref(owner), None, ctypes.byref(dacl), None,
+                ctypes.byref(descriptor))
+        else:
+            status = adv.GetNamedSecurityInfoW(
+                str(resource), 1, 1 | 4, ctypes.byref(owner), None,
+                ctypes.byref(dacl), None, ctypes.byref(descriptor))
         if status != 0 or not descriptor.value:
             return False
         try:
@@ -616,7 +641,12 @@ def _windows_dacl_safe(path: Path, *, require_protected: bool) -> bool:
 
 
 def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
-    """Exclude symlink/hardlink aliases and broadly readable private inodes."""
+    """Read only bytes from an audited descriptor, not a later pathname open.
+
+    The preliminary path inspection preserves alias/directory checks, while
+    fstat and Windows GetSecurityInfo bind inode and DACL to the open handle.
+    """
+    fd = None
     try:
         candidate = Path(path)
         if (candidate.is_symlink()
@@ -632,11 +662,32 @@ def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
             raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
         if os.name != "nt" and metadata.st_uid != os.geteuid():
             raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+        flags |= getattr(os, "O_NOINHERIT", 0)
+        flags |= getattr(os, "O_NOFOLLOW", 0)
+        fd = os.open(candidate, flags)
+        opened = os.fstat(fd)
+        if (not stat.S_ISREG(opened.st_mode) or opened.st_nlink != 1
+                or (opened.st_dev, opened.st_ino) !=
+                   (metadata.st_dev, metadata.st_ino)):
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN")
+        if os.name == "nt":
+            if not _windows_dacl_safe_fd(fd, require_protected=False):
+                raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
+        elif opened.st_uid != os.geteuid():
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
+        # The bytes are read from the SAME open object audited by fstat/DACL.
+        with os.fdopen(fd, "rb") as stream:
+            fd = None
+            raw = stream.read(MAX_INPUT_BYTES + 1)
+        return _parse_json_bytes(raw)
     except ProtocolError:
         raise
     except (OSError, ValueError, RuntimeError) as exc:
         raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED") from exc
-    return _read_json_with_bytes(path)
+    finally:
+        if fd is not None:
+            os.close(fd)
 
 
 def audit_private_dir(path: str) -> dict:
@@ -955,6 +1006,13 @@ def prepare_form(session_path: str, participant_html_path: str,
             in (locations[0].parent.resolve(strict=True),
                 locations[2].parent.resolve(strict=True))):
         raise ProtocolError("OPERATOR_FORM_KEY_NOT_SEPARATED")
+    # Later record/evaluate/chain operations deliberately require one audited
+    # private parent. Do not publish a form that cannot be closed through the
+    # same supported workflow merely because two different private directories
+    # independently pass their ACL checks.
+    if (locations[0].parent.resolve(strict=True)
+            != locations[2].parent.resolve(strict=True)):
+        raise ProtocolError("OPERATOR_FORM_PRIVATE_PARENTS_MISMATCH")
     # Separate names are not OS privacy. Enforce a checked restricted
     # descriptor on BOTH coded observations and the secret answer key.
     for private in (locations[0].parent, locations[2].parent):
@@ -1462,6 +1520,11 @@ def _read_json_with_bytes(path: str) -> tuple[object, bytes]:
             raw = stream.read(MAX_INPUT_BYTES + 1)
     except OSError as exc:
         raise ProtocolError("OPERATOR_FILE_UNAVAILABLE") from exc
+    return _parse_json_bytes(raw)
+
+
+def _parse_json_bytes(raw: bytes) -> tuple[object, bytes]:
+    """Shared size-bounded strict JSON parser, independent of file reopening."""
     if len(raw) > MAX_INPUT_BYTES:
         raise ProtocolError("OPERATOR_FILE_TOO_LARGE")
     try:
