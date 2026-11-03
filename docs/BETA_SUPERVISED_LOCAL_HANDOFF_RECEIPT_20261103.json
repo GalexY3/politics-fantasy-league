@@ -1,0 +1,153 @@
+{
+  "baseline_published_head": "c75630273df2e37c8c887cb2c772fd093ce50fe5",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "executed_checks": {
+    "browser_physical_s9_download": "EXISTING_NATIVE_CDP_AND_INDEPENDENT_OFFLINE_VERIFIER_REUSED",
+    "clean_committed_head": "REVERIFY_AFTER_PUBLICATION",
+    "focal_operator_http_two_processes": {
+      "failed": 0,
+      "passed": 73,
+      "skipped": 0
+    },
+    "integrated_worktree_after_fixes": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 120,
+      "python": 328,
+      "status": "PASS",
+      "total_passed": 450,
+      "working_tree_modified_at_execution": true
+    },
+    "node_download_ready": {
+      "failed": 0,
+      "passed": 2
+    },
+    "original_windows_symlink_creation": "NOT_VERIFIED_WINERROR_1314",
+    "windows_real_junction": "VERIFIED_REJECTED"
+  },
+  "genuine_prepatch_falsifier": {
+    "correction": "SHARED_CDP_DOWNLOAD_READINESS_PARSEABLE_JSON_CANONICAL_BYTES_SHA256",
+    "exact_failure": "SyntaxError: Unexpected end of JSON input",
+    "first_two_runner_results": "328_PYTHON_PASS_118_NODE_PASS_1_CHROME_S9_PASS_CHROME_ACCESSIBILITY_NONZERO_EXIT",
+    "helper_synthetic_regressions": "2_PASS_PARTIAL_BYTES_AND_BAD_SHA",
+    "integrated_worktree_attempts_failed": 2,
+    "isolated_chrome_accessibility": "1_PASS",
+    "new_operator_capabilities_claimed_as_prepatch_bugs": false,
+    "postpatch_sequential": "S9_CHROME_1_PASS_THEN_ACCESSIBILITY_1_PASS",
+    "production_regression_identified": false,
+    "sequential_prepatch": "S9_CHROME_PASS_THEN_ACCESSIBILITY_FAIL",
+    "stack_location": "tests/test_beta_accessibility.mjs:247",
+    "verified_cause": "JSON_FILENAME_VISIBLE_BEFORE_CONTENT_COMPLETE"
+  },
+  "git_staged_blobs": {
+    "HANDOFF.md": {
+      "bytes": 117507,
+      "sha256": "dcc50f07af752dc05401339474fff3bad9c4cbae459bbf12c896bf394906ee38",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 99525,
+      "sha256": "34e3d5cc74509a14e4ea405d5f4778333b02ccbe687cdef2d032fd04ff0a54ec",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 12185,
+      "sha256": "285485cdcb34c9e8b55ab7b36851dfc1fbb9e7d61957cd9d33b205d836245ee9",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 29295,
+      "sha256": "3e2b8d1de3c4a063e48fbf1ea4134b7251274a5745ab92a25ad9979235f3c2bc",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7363,
+      "sha256": "3975e51818e31f9f835ec6e54286e1917e99f0cadd13e9471550076c7541fe08",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 37128,
+      "sha256": "477d0ec7d6f92bd3865fad1cc47861587b620e5c7fe1e59f45e11a0a174ce680",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/beta_chrome_download_ready.mjs": {
+      "bytes": 1025,
+      "sha256": "a62324f34afe85c1845a187b7531819ee510e7ead6f53cabec705e8930c72fd6",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_accessibility.mjs": {
+      "bytes": 14145,
+      "sha256": "bc7ba7c41e52c8bdb7b5c3529155147ff01bb111610827ef69fdc9b0d0473888",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_download_ready.mjs": {
+      "bytes": 2386,
+      "sha256": "9b410b5f65f2fd48ae66f9bc7633c04a00794e1fcb317979f50c426aab494792",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_handoff_runtime.py": {
+      "bytes": 15023,
+      "sha256": "fead68dc9a9f08acc52d63994fc2e40059369f73a54638dd13041662b351f906",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_science_operator_protocol.py": {
+      "bytes": 33794,
+      "sha256": "e14dae2938235d13cc4cf885f10c5f2179d9b7a4a495e645937b789394d56296",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 75232,
+      "sha256": "76ac33c9b6921a4c4238e9625a409d358db335f128422d944fe18d583e60ba59",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "new_capabilities": {
+    "dead_port_doctor_fail_new_port_verified_seven_key_link": true,
+    "existing_operator_cli_extended": [
+      "--participant-handout EXTERNAL_HTML",
+      "--template-to EXTERNAL_JSON",
+      "--evaluate-to CODED_INPUT EXTERNAL_RESULT_JSON"
+    ],
+    "ntfs_ads_and_symlink_git_guard_reused": true,
+    "operator_participant_instrument": "EXISTING_12_TASKS_NO_NEW_QUESTIONNAIRE",
+    "participant_handout": "STATIC_OFFLINE_BILINGUAL_HTML_NO_JS_NO_FORM_NO_NETWORK_NO_ANSWER_KEY",
+    "preexisting_session_cli_preserved": true,
+    "public_early_late_sha_and_sqlite_bytes_unchanged": true,
+    "python_processes": 2,
+    "registered_game_or_accounts_writes": false,
+    "result": "UTF8_CANONICAL_CLOSED_CODE_ONLY_POST_VALIDATION_EXCLUSIVE_NO_OVERWRITE",
+    "rubric": "OPERATOR_ONLY_UTF8_EXCLUSIVE_NO_OVERWRITE_EXTERNAL_GIT",
+    "rubric_fingerprint": "SHA256_OF_EXACT_UTF8_TEMPLATE_OUTPUT_INCLUDING_FINAL_NEWLINE",
+    "same_disposable_sqlite": true,
+    "spanish_translation_status": "UNVALIDATED_HUMAN_SEMANTIC_EQUIVALENCE"
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "schema": "pfl.beta_supervised_local_handoff_receipt.v1",
+  "scientific_and_human_limits": {
+    "R5": "STOP_R5",
+    "answer_key_assignment": "PUBLIC_DETERMINISTIC_AB_BALANCED_6_6",
+    "docx_s9_modified": false,
+    "external_source_authenticity_certified": false,
+    "fantasy_reworked": false,
+    "fixture_codes_are_actual_humans": false,
+    "human_acceptance_completed": false,
+    "human_comprehension_scores_computed": false,
+    "human_sessions_performed": 0,
+    "human_usability_scores_computed": false,
+    "individual_randomization_claimed": false,
+    "memory_v09_integrated": false,
+    "new_empirical_spanish_sources_admitted": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "original_sources_accessed": false,
+    "participant_count": 0,
+    "public_beta_authorized": false,
+    "release_gates_passed": 0,
+    "rights_for_external_publication_admitted": false,
+    "s9_pair_and_snapshot_contracts_changed": false,
+    "spanish_display_translation_empirically_validated": false,
+    "sqlite_transactional_revision_contracts_changed": false
+  },
+  "scope": "LOCAL_SYNTHETIC_OPERATOR_HANDOFF_WITH_NATIVE_CDP_READY_FIX_NONCYCLE"
+}

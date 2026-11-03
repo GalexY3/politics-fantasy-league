@@ -5,6 +5,84 @@ exclusivamente en 127.0.0.1. No autoriza publicar un servicio, incorporar
 originales españoles ni puntuar personas políticas reales. La centralidad
 corresponde al Observatorio y al Laboratorio; Fantasy es subordinado.
 
+## Una sesión supervisada local desde cero (Windows PowerShell 5.1)
+
+Realizar en un ordenador bajo control de la persona supervisora, desde
+la raíz de ESTE checkout y con Python/Node instalados. Este ejemplo crea
+solo ficheros fuera del repositorio; no genera ni simula participantes. Elegir
+una carpeta de sesión nueva en el perfil local, con espacio y acentos válidos:
+
+    $base = Join-Path $env:LOCALAPPDATA 'PFL prueba científica supervisada'
+    New-Item -ItemType Directory -Force (Join-Path $base 'participante'), (Join-Path $base 'supervisor'), (Join-Path $base 'sqlite') | Out-Null
+    python -B scripts/beta_science_operator_protocol.py --self-check
+    python -B scripts/beta_science_operator_protocol.py --participant-handout (Join-Path $base 'participante\hoja-bilingüe.html')
+    python -B scripts/beta_science_operator_protocol.py --template-to (Join-Path $base 'supervisor\rubrica-privada.json')
+    python -B scripts/beta_science_operator_protocol.py --new-session (Join-Path $base 'supervisor\observaciones.json')
+
+Cada acción devuelve un JSON corto con `status`; requiere `OPERATOR_INSTRUMENT_VALID`,
+`OPERATOR_HANDOUT_CREATED`, `OPERATOR_RUBRIC_CREATED` y `OPERATOR_SESSION_CREATED`.
+La hoja HTML se abre localmente sin conexión; muestra preguntas bilingües
+derivadas de las doce tareas **ya existentes**, pero la traducción al español
+es un apoyo no validado psicométricamente. La rúbrica y el JSON de
+observaciones quedan fuera del directorio `participante`, bajo el control
+del supervisor. No compartir respuestas correctas, nombres, credenciales,
+capturas ni URL privadas; no crear repositorios en estas carpetas.
+Si un archivo existe, el protocolo NO lo sobrescribe: usar una carpeta
+vacía para otra sesión, sin borrar ni reutilizar fichas anteriores.
+
+En una **segunda consola** y desde el mismo checkout:
+
+    python -B run_demo.py --science-only --port 0 --db (Join-Path $base 'sqlite\fantasy-no-usado.sqlite3')
+
+Abrir solo la URL `http://127.0.0.1:PUERTO/` anunciada al enlazar el
+socket. En la primera consola verificar ese puerto efectivo:
+
+    python -B scripts/diagnose_live_science_beta.py --origin http://127.0.0.1:PUERTO
+
+Se exige `status=PASS` con GET y SHA de ambos cortes antes de presentar
+la pantalla. La persona participante puede recorrer Laboratorio (B0/B3,
+S3, S7), las ocho vistas de Observatorio S9 y descargar/exportar
+documentos públicos sintéticos verificables. La supervisora observa por
+separado la ejecución técnica, la comprensión y la facilidad de uso,
+sin introducir claves SCI ante la participante. El HTML es de lectura:
+no recoge clics, respuestas ni métricas. Toda respuesta se incorpora
+**manualmente**, si procede y sin PII, a los códigos cerrados de
+`observaciones.json`; una tarea técnica fallida o bloqueada exige respuesta
+científica `NOT_OBSERVED`.
+
+Para una **interrupción o reinicio**, detener con Ctrl+C y conservar
+únicamente la ficha externa. El marcador `pfl_guest=v1` conserva siete
+campos de selección, NO el puerto válido ni la evidencia. Reiniciar con
+la misma `--db` y `--port 0`, y ejecutar el diagnóstico del nuevo
+`--origin` usando `--guest-query 'URL_ANTIGUA_COMPLETA'` y
+`--emit-verified-guest-url`. Abrir únicamente `verified_guest_url`
+tras PASS; el doctor no resucita el puerto viejo ni asume que su SHA sea
+válido. Las descargas S9 se verifican offline con los comprobadores
+`verify_scientific_snapshot.py` y
+`compare_scientific_exports.py --pair` descritos más abajo.
+
+Tras la observación, y solo si hay alguna tarea realmente codificada:
+
+    python -B scripts/beta_science_operator_protocol.py --evaluate-to (Join-Path $base 'supervisor\observaciones.json') (Join-Path $base 'supervisor\resultado-verificado.json')
+
+`OPERATOR_EVALUATION_EXPORTED` implica solamente que el archivo local
+de códigos superó el contrato, no que una persona realmente participara
+ni que se superase una puerta científica. Si hay doce NOT_OBSERVED,
+`OPERATOR_NO_OBSERVATIONS` es correcto y **no** debe existir
+`resultado-verificado.json`. Otros rechazos incluyen
+`OPERATOR_SESSION_INCOMPLETE`, `OPERATOR_INPUT_INVALID`,
+`OPERATOR_JSON_INVALID`, `OPERATOR_OUTPUT_EXISTS`,
+`OPERATOR_OUTPUT_PATH_FORBIDDEN` y, en Windows, el veto ADS
+`OPERATOR_OUTPUT_PATH_INVALID`. Los errores no revelan rutas ni PII.
+No redirigir el resultado con `>` en PowerShell 5.1.
+
+Cerrar con Ctrl+C, comprobar que el puerto antiguo ya no responde y
+conservar o suprimir **manualmente** los ficheros propios fuera de Git
+según la decisión legítima de la persona supervisora. La aplicación
+no borra de forma automática documentación humana ni realiza
+telemetría. El único ensayo automatizado de este procedimiento usa
+fixtures inventados y no acredita validación humana.
+
 ## Comprobar el núcleo científico
 
 Desde la raíz del repositorio, con Python y Node.js instalados (esta

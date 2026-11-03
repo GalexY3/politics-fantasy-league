@@ -7,6 +7,7 @@ import {createServer} from 'node:net';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {setTimeout as delay} from 'node:timers/promises';
+import {completedJsonDownload} from './beta_chrome_download_ready.mjs';
 
 // Narrow native-Chrome keyboard/accessibility acceptance against real Python
 // loopback runtimes. Separate from the S9 mouse/fixture smoke. No user DBs.
@@ -200,9 +201,8 @@ test('Chrome CDP: visitor keyboard Tab/Enter/Shift-Tab, narrow viewport, aria/al
   assert.equal(await js("document.activeElement.matches('[data-action=\"science-registry-export\"]')"),true,
    'Tab must return to the export action');
   await key('Enter');
-  const saved=await poll(()=>readdirSync(downloadDir)
-    .find(x=>/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
-  const exported=JSON.parse(readFileSync(join(downloadDir,saved),'utf8'));
+  const {name:saved,data:exported}=await completedJsonDownload(
+   downloadDir,/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/,poll);
   const sha=createHash('sha256').update(exported.snapshot_receipt.canonical_json,'utf8').digest('hex');
   assert.equal(sha,exported.snapshot_receipt.sha256);
   assert.equal(exported.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
@@ -242,9 +242,8 @@ test('Chrome CDP: visitor keyboard Tab/Enter/Shift-Tab, narrow viewport, aria/al
   assert.equal(await js("document.querySelector('#content').innerText.includes('R5 STOP')"),true);
   await tabTo('[data-action="science-registry-export"]',100);
   await key('Enter');
-  const second=await poll(()=>readdirSync(downloadDir)
-    .find(x=>/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
-  const scienceExport=JSON.parse(readFileSync(join(downloadDir,second),'utf8'));
+  const {data:scienceExport}=await completedJsonDownload(
+   downloadDir,/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/,poll);
   assert.equal(createHash('sha256').update(scienceExport.snapshot_receipt.canonical_json,'utf8').digest('hex'),
    scienceExport.snapshot_receipt.sha256);
   assert.equal(scienceExport.R5,'STOP_R5');

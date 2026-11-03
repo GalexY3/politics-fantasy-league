@@ -8,12 +8,16 @@ diagnostic, empirical admission or a release gate. No identities are collected.
   python -B scripts/beta_science_operator_protocol.py --blank-session
   python -B scripts/beta_science_operator_protocol.py --new-session outside_repo.json
   python -B scripts/beta_science_operator_protocol.py --evaluate input.json
+  python -B scripts/beta_science_operator_protocol.py --evaluate-to input.json output.json
+  python -B scripts/beta_science_operator_protocol.py --participant-handout outside_repo.html
+  python -B scripts/beta_science_operator_protocol.py --template-to outside_repo_rubric.json
   python -B scripts/beta_science_operator_protocol.py --self-check
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
+from html import escape
 import json
 import os
 from pathlib import Path
@@ -25,6 +29,7 @@ RESULT_SCHEMA = "pfl.beta_science_operator_evaluation.v1"
 SELF_SCHEMA = "pfl.beta_science_operator_self_check.v1"
 NEW_SESSION_SCHEMA = "pfl.beta_science_operator_session_creation.v1"
 MAX_INPUT_BYTES = 16384
+MAX_HANDOUT_BYTES = 65536
 MISSING = "NOT_OBSERVED"
 TECH_CODES = ("TECH_COMPLETED", "TECH_BLOCKED", "TECH_FAILED", MISSING)
 UX_CODES = ("UX_CLEAR", "UX_FRICTION", "UX_BLOCKED", MISSING)
@@ -148,6 +153,62 @@ SPECS = (
      "The publication clock is not interchangeable with event validity.",
      "The reason for capping or resetting the publication selection is clear."),
 )
+
+
+# Secondary bilingual display only: these twelve translations are an
+# unvalidated human-facing aid, not a separate scored scientific instrument.
+# Each tuple translates the participant action, question, and the two
+# canonical meaning strings in their SPECS (correct, alternate) order.
+HANDOUT_ES = {
+    "OP01": ("Examina el calendario B0 y la publicación selectiva B3 del corte tardío.",
+             "¿Basta la evidencia publicada para distinguir ambos mecanismos?",
+             "B0 y B3 presentan evidencia publicada indistinguible.",
+             "La evidencia publicada demuestra B0."),
+    "OP02": ("Localiza E2 pendiente y E4 censurado por la derecha en los mecanismos.",
+             "¿E2 pendiente y E4 censurado son rechazos?",
+             "Ninguno de los dos estados acredita un resultado negativo definitivo.",
+             "Ambos son rechazos conocidos."),
+    "OP03": ("Selecciona el conocimiento tardío y examina la identificación parcial S3.",
+             "¿Qué identifica el intervalo S3?",
+             "El intervalo condicional [-11/52, 47/119] no es causal.",
+             "S3 demuestra un efecto causal positivo."),
+    "OP04": ("Cambia al conocimiento temprano y examina S3 de nuevo.",
+             "¿Pueden retrotraerse las cotas S3 tardías al as_of temprano?",
+             "No; el corte temprano carece de esa evidencia S3.",
+             "Sí; los resultados tardíos ya eran observables en el corte temprano."),
+    "OP05": ("Examina los testigos tardíos S7: CONFLICT, NEITHER e INADMISSIBLE.",
+             "¿En qué se diferencian NEITHER, CONFLICT e INADMISSIBLE?",
+             "NEITHER refuta ambos modelos; CONFLICT retiene evidencia rival; INADMISSIBLE carece de evidencia utilizable.",
+             "Los tres son errores HTTP."),
+    "OP06": ("Cambia el filtro de familia S9 de Todas a CHAIN.",
+             "¿Demuestra este filtro una vinculación real de identidades?",
+             "No; CHAIN es una familia sintética tipada de fuentes.",
+             "Sí; las familias coincidentes autentican personas."),
+    "OP07": ("Cambia valid_at y el corte de conocimiento S9; examina la comparación.",
+             "¿Equivalen la vigencia histórica y el conocimiento as_of?",
+             "No; vigencia y conocimiento disponible responden a preguntas distintas.",
+             "Sí; ambos relojes deben coincidir siempre."),
+    "OP08": ("Examina los descriptores públicos S8 y las revisiones S9.",
+             "¿Añade cada revisión documental una persona o decisión única?",
+             "No; una versión puede revisar el mismo evento o registro lógico.",
+             "Sí; el número de revisiones equivale al de decisiones o personas."),
+    "OP09": ("Examina las pestañas S9 Preadmisión, Incorporaciones y Calidad.",
+             "¿Autoriza una incorporación ficticia a admitir fuentes empíricas?",
+             "No; el registro estipulado no autentica derechos ni admite fuentes reales.",
+             "Sí; la incorporación concede derechos sobre fuentes reales."),
+    "OP10": ("Obtén los recibos S9 individual y emparejado y verifica sus SHA sin conexión.",
+             "¿Qué demuestra la coincidencia de un SHA sintético?",
+             "Los bytes sintéticos canónicos concuerdan con el recibo, no con autenticidad o derechos externos.",
+             "El SHA autentica al emisor, los derechos y conclusiones causales."),
+    "OP11": ("Compara el marcador antiguo con el origen nuevo de --science-only --port 0 verificado por el diagnóstico.",
+             "¿Demuestra un marcador antiguo que el servidor sigue activo?",
+             "No; es una receta de consulta que exige verificar el puerto actual.",
+             "Sí; el origen antiguo sigue activo porque existe un marcador."),
+    "OP12": ("Fija published_until del corte tardío a 30 de octubre y cambia al corte temprano.",
+             "¿Puede conocerse una publicación del 30 de octubre el 15 de octubre gracias a un valid_at anterior?",
+             "No; la visibilidad de publicaciones está limitada por el conocimiento as_of.",
+             "Sí; un valid_at anterior anticipa publicaciones futuras."),
+}
 
 
 def _balanced_a_task_ids() -> frozenset[str]:
@@ -349,8 +410,9 @@ def _inside_git_worktree(parent: Path) -> bool:
                for ancestor in (parent, *parent.parents))
 
 
-def new_session(path: str) -> dict:
-    """Create a blank UTF-8 JSON file outside the checkout, never overwrite.
+def _write_external_utf8(path: str, content: str, *, maximum: int,
+                         error_prefix: str) -> tuple[int, str]:
+    """Write a newly named, standalone UTF-8 file only outside all Git trees.
 
     Inspect both the lexical destination and the resolved parent so an
     in-checkout name or an external directory link into the checkout cannot
@@ -360,36 +422,36 @@ def new_session(path: str) -> dict:
     checkout = Path(__file__).resolve(strict=True).parents[1]
     checkout_lexical = Path(os.path.abspath(__file__)).parents[1]
     if not path or "\x00" in path:
-        raise ProtocolError("OPERATOR_SESSION_PATH_INVALID")
+        raise ProtocolError(error_prefix + "_PATH_INVALID")
     try:
         destination = Path(os.path.abspath(path))
         # NTFS treats a name containing a colon as an alternate data stream
         # on an existing inode, not as a new standalone file. An external
         # hardlink may otherwise alias a Git-tracked file across this guard.
         if os.name == "nt" and ":" in destination.name:
-            raise ProtocolError("OPERATOR_SESSION_PATH_INVALID")
+            raise ProtocolError(error_prefix + "_PATH_INVALID")
         if (not destination.name or
                 _within(destination, checkout) or
                 _within(destination, checkout_lexical)):
-            raise ProtocolError("OPERATOR_SESSION_PATH_FORBIDDEN")
+            raise ProtocolError(error_prefix + "_PATH_FORBIDDEN")
         parent = destination.parent
         if not parent.is_dir():
-            raise ProtocolError("OPERATOR_SESSION_PARENT_UNAVAILABLE")
+            raise ProtocolError(error_prefix + "_PARENT_UNAVAILABLE")
         resolved_parent = parent.resolve(strict=True)
         if (_within(resolved_parent, checkout) or
                 _within(resolved_parent, checkout_lexical)
                 or destination.name == ".git"
                 or _inside_git_worktree(parent)
                 or _inside_git_worktree(resolved_parent)):
-            raise ProtocolError("OPERATOR_SESSION_PATH_FORBIDDEN")
+            raise ProtocolError(error_prefix + "_PATH_FORBIDDEN")
         if os.path.lexists(destination):
-            raise ProtocolError("OPERATOR_SESSION_EXISTS")
+            raise ProtocolError(error_prefix + "_EXISTS")
     except ProtocolError:
         raise
     except (OSError, ValueError, RuntimeError) as exc:
-        raise ProtocolError("OPERATOR_SESSION_PATH_INVALID") from exc
-    bytes_to_write = (json_line(blank_session()) + "\n").encode("utf-8")
-    if len(bytes_to_write) > MAX_INPUT_BYTES:
+        raise ProtocolError(error_prefix + "_PATH_INVALID") from exc
+    bytes_to_write = content.encode("utf-8")
+    if len(bytes_to_write) > maximum:
         raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
     created = False
     try:
@@ -397,15 +459,26 @@ def new_session(path: str) -> dict:
         with destination.open("xb") as stream:
             created = True
             stream.write(bytes_to_write)
+            stream.flush()
+            os.fsync(stream.fileno())
     except FileExistsError as exc:
-        raise ProtocolError("OPERATOR_SESSION_EXISTS") from exc
+        raise ProtocolError(error_prefix + "_EXISTS") from exc
     except OSError as exc:
         if created:
             try:
                 destination.unlink()
             except OSError:
                 pass
-        raise ProtocolError("OPERATOR_SESSION_WRITE_FAILED") from exc
+        raise ProtocolError(error_prefix + "_WRITE_FAILED") from exc
+    return len(bytes_to_write), hashlib.sha256(bytes_to_write).hexdigest()
+
+
+def new_session(path: str) -> dict:
+    """Create exactly the canonical blank UTF-8 JSON outside Git, write once."""
+    _write_external_utf8(
+        path, json_line(blank_session()) + "\n",
+        maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_SESSION",
+    )
     return {
         "schema": NEW_SESSION_SCHEMA,
         "status": "OPERATOR_SESSION_CREATED",
@@ -414,6 +487,117 @@ def new_session(path: str) -> dict:
         "participant_count": None,
         "participants_observed": False,
         "R5": "STOP_R5",
+    }
+
+
+def participant_handout() -> str:
+    """Offline printable rendering of the EXISTING blind participant sheet.
+
+    No form, telemetry, JavaScript, server URLs, or answer key. The scientific
+    meanings are unchanged from --participant-sheet, which remains canonical.
+    """
+    sheet = participant_sheet()
+    if set(HANDOUT_ES) != set(BY_ID):
+        raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
+    blocks = []
+    for task in sheet["tasks"]:
+        original = next(spec for spec in SPECS if spec[0] == task["task_id"])
+        es_action, es_question, es_correct, es_wrong = HANDOUT_ES[task["task_id"]]
+        meanings_es = {original[9]: es_correct, original[10]: es_wrong}
+        if (set(meanings_es) != {c["meaning"] for c in task["scientific_options"]}
+                or any(not text.strip() for text in HANDOUT_ES[task["task_id"]])):
+            raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
+        parts = [
+            '<li class="task">',
+            '<h2>' + escape(task["task_id"]) + '</h2>',
+            '<p><strong>Action:</strong> ' + escape(task["operator_action"]) + '</p>',
+            '<p lang="es"><strong>Acción:</strong> ' + escape(es_action) + '</p>',
+            '<p><strong>Question:</strong> ' + escape(task["scientific_question"]) + '</p>',
+            '<p lang="es"><strong>Pregunta:</strong> ' + escape(es_question) + '</p>',
+        ]
+        for choice in task["scientific_options"]:
+            parts.append('<p class="option">' + choice["code"] + ' — '
+                         + escape(choice["meaning"]) + '</p>')
+            parts.append('<p class="option" lang="es">' + choice["code"] + ' — '
+                         + escape(meanings_es[choice["meaning"]]) + '</p>')
+        parts.append('</li>')
+        blocks.append("\n".join(parts))
+    return (
+        '<!doctype html>\n<html lang="en"><head><meta charset="utf-8">\n'
+        '<title>PFL — synthetic science beta — participant sheet</title>\n'
+        '<style>body{font:16px/1.5 system-ui,sans-serif;max-width:48rem;'
+        'margin:2rem auto;padding:0 1rem;color:#171717}'
+        'li{margin-bottom:2rem;break-inside:avoid}'
+        'h2{font-size:1.15rem}p{margin:.6rem 0}'
+        '.option{padding:.4rem .7rem;border-left:2px solid #777}'
+        '@media print{body{margin:0;max-width:none}}</style></head>\n'
+        '<body><h1>Politics Fantasy League — synthetic science beta</h1>\n'
+        '<p lang="es">Hoja bilingüe de apoyo: traducción no validada con '
+        'participantes. Puedes detenerte cuando quieras; no anotes nombres, '
+        'identificadores ni direcciones privadas.</p>\n'
+        '<p>Participant-facing tasks only. No real institutional evidence, '
+        'no participant record, no correct-answer key. '
+        'Do not write personal identifiers or private URLs on this sheet. '
+        'You may stop at any point.</p>\n'
+        '<ol>\n' + "\n".join(blocks) + '\n</ol>\n'
+        '<p>End of participant handout. Technical outcomes and optional '
+        'answers are recorded separately by the supervisor, locally.</p>'
+        '\n</body></html>\n'
+    )
+
+
+def write_participant_handout(path: str) -> dict:
+    length, sha = _write_external_utf8(
+        path, participant_handout(),
+        maximum=MAX_HANDOUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": PARTICIPANT_SHEET_SCHEMA,
+        "status": "OPERATOR_HANDOUT_CREATED",
+        "format": "STATIC_OFFLINE_HTML_UTF8",
+        "bytes": length,
+        "sha256": sha,
+        "participant_count": None,
+        "participants_observed": False,
+        "R5": "STOP_R5",
+    }
+
+
+def write_operator_rubric(path: str) -> dict:
+    """Store the existing operator-only answer key separately, in UTF-8."""
+    length, sha = _write_external_utf8(
+        path, json_line(template()) + "\n",
+        maximum=MAX_HANDOUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": TEMPLATE_SCHEMA,
+        "status": "OPERATOR_RUBRIC_CREATED",
+        "encoding": "UTF-8",
+        "bytes": length,
+        "sha256": sha,
+        "participant_count": None,
+        "participants_observed": False,
+        "R5": "STOP_R5",
+    }
+
+
+def evaluate_to(source: str, destination: str) -> dict:
+    """Validate all coded observations before creating a durable UTF-8 result."""
+    result = evaluate(read_json(source))
+    length, sha = _write_external_utf8(
+        destination, json_line(result) + "\n",
+        maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": RESULT_SCHEMA,
+        "status": "OPERATOR_EVALUATION_EXPORTED",
+        "encoding": "UTF-8",
+        "bytes": length,
+        "sha256": sha,
+        "participant_count": None,
+        "participant_identity_collected": False,
+        "R5": "STOP_R5",
+        "gate_eligibility": "OPERATOR_NOT_ASSESSED",
     }
 
 
@@ -485,6 +669,12 @@ def evaluate(value: object) -> dict:
                      "scientific": sci, "usability": ux})
     return {
         "schema": RESULT_SCHEMA, "status": "OPERATOR_EVALUATION_COMPLETE",
+        # Identifies the exact locally used scoring rubric and its A/B mapping.
+        # This is a reproducibility fingerprint, NOT a signature or evidence
+        # that any particular participant answered these questions.
+        "operator_instrument_sha256": hashlib.sha256(
+            (json_line(template()) + "\n").encode("utf-8")
+        ).hexdigest(),
         "evidence_class": "OPERATOR_CODED_OBSERVATION_ONLY",
         "R5": "STOP_R5", "gate_eligibility": "OPERATOR_NOT_ASSESSED",
         "participant_count": None, "participant_identity_collected": False,
@@ -521,22 +711,31 @@ def main(argv: list[str] | None = None) -> int:
     parser = SafeParser(description="Local closed PFL science operator protocol")
     exclusive = parser.add_mutually_exclusive_group(required=True)
     exclusive.add_argument("--template", action="store_true")
+    exclusive.add_argument("--template-to", metavar="OPERATOR_JSON_FILE")
     exclusive.add_argument("--participant-sheet", action="store_true")
+    exclusive.add_argument("--participant-handout", metavar="HTML_FILE")
     exclusive.add_argument("--blank-session", action="store_true")
     exclusive.add_argument("--new-session", metavar="JSON_FILE")
     exclusive.add_argument("--evaluate", metavar="JSON_FILE")
+    exclusive.add_argument("--evaluate-to", nargs=2, metavar=("INPUT_JSON", "OUTPUT_JSON"))
     exclusive.add_argument("--self-check", action="store_true")
     try:
         args = parser.parse_args(argv)
         verify_instrument()
         if args.template:
             result = template()
+        elif args.template_to is not None:
+            result = write_operator_rubric(args.template_to)
         elif args.participant_sheet:
             result = participant_sheet()
+        elif args.participant_handout is not None:
+            result = write_participant_handout(args.participant_handout)
         elif args.blank_session:
             result = blank_session()
         elif args.new_session is not None:
             result = new_session(args.new_session)
+        elif args.evaluate_to is not None:
+            result = evaluate_to(*args.evaluate_to)
         elif args.self_check:
             result = {
                 "schema": SELF_SCHEMA, "status": "OPERATOR_INSTRUMENT_VALID",

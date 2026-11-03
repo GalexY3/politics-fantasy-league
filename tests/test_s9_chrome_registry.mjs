@@ -8,6 +8,7 @@ import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {setTimeout as delay} from 'node:timers/promises';
+import {completedJsonDownload as completedDownload} from './beta_chrome_download_ready.mjs';
 
 // One native Chrome/CDP smoke: real DOM, fetch, CSS and WebCrypto. Only a
 // loopback, synthetic-only HTTP facade is exposed; no official files or websites.
@@ -53,20 +54,7 @@ async function poll(fn,attempts=100){
 }
 
 async function completedJsonDownload(folder,pattern){
- // Chrome may expose the final .json filename before the write is complete.
- // Observe a parseable, fully written receipt instead of merely the directory
- // entry; the content assertions below remain independent of this wait.
- return poll(()=>{
-  const name=readdirSync(folder).find(entry=>pattern.test(entry));
-  if(!name)return null;
-  const data=JSON.parse(readFileSync(join(folder,name),'utf8'));
-  const receipt=data?.snapshot_receipt??data?.pair_receipt;
-  if(typeof receipt?.canonical_json!=='string'
-     ||receipt.sha256!==createHash('sha256').update(receipt.canonical_json,'utf8').digest('hex')
-     ||receipt.bytes!==Buffer.byteLength(receipt.canonical_json,'utf8'))
-   throw Error('Downloaded S9 JSON has an incomplete or invalid SHA receipt');
-  return {name,data};
- },180);
+ return completedDownload(folder,pattern,poll);
 }
 
 async function stopChild(child,timeoutMs=2500){

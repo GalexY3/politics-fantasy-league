@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from html import escape
 import os
 from pathlib import Path
 import subprocess
@@ -168,6 +169,80 @@ def test_participant_sheet_contains_only_questions_options_actions_and_ids():
     assert "participant_option_to_scientific_code" not in stdout
     assert "technical_task_ids" not in stdout
     assert "OPERATOR_NOT_ASSESSED" not in stdout
+
+
+def test_operator_printable_handout_is_static_blind_and_external_utf8(tmp_path):
+    folder = tmp_path / "Hoja participante - prueba científica"
+    folder.mkdir()
+    output = folder / "Participant sheet áéü.html"
+    rc, result, stdout = cli("--participant-handout", str(output))
+    assert rc == 0 and result["status"] == "OPERATOR_HANDOUT_CREATED"
+    assert result["schema"] == "pfl.beta_science_operator_participant_sheet.v1"
+    assert result["format"] == "STATIC_OFFLINE_HTML_UTF8"
+    assert result["participant_count"] is None
+    assert result["participants_observed"] is False
+    assert output.is_file()
+    data = output.read_bytes()
+    assert not data.startswith((b"\xff\xfe", b"\xef\xbb\xbf"))
+    assert len(data) == result["bytes"]
+    import hashlib
+    assert hashlib.sha256(data).hexdigest() == result["sha256"]
+    html = data.decode("utf-8")
+    assert '<meta charset="utf-8">' in html
+    assert '<html lang="en">' in html
+    assert html.count('<li class="task">') == 12
+    assert html.count('<strong>Acción:</strong>') == 12
+    assert html.count('<strong>Pregunta:</strong>') == 12
+    assert html.count('class="option" lang="es"') == 24
+    assert "traducción no validada con participantes" in html
+    assert "<script" not in html and "<form" not in html
+    assert "http:" not in html and "https:" not in html
+    assert "SCI_OP" not in html and "correct_answer_code" not in html
+    assert "scientific_explanation" not in html
+    _, sheet, _ = cli("--participant-sheet")
+    for task in sheet["tasks"]:
+        assert escape(task["operator_action"]) in html
+        assert escape(task["scientific_question"]) in html
+        for choice in task["scientific_options"]:
+            assert (choice["code"] + " — " + escape(choice["meaning"])) in html
+    assert str(output) not in stdout and output.name not in stdout
+    assert "Participant sheet" not in stdout
+    before = data
+    rc, rejected, stdout = cli("--participant-handout", str(output))
+    assert rc == 1 and rejected["error_code"] == "OPERATOR_OUTPUT_EXISTS"
+    assert output.read_bytes() == before
+    assert str(output) not in stdout
+    illegal = ROOT / "__participant_sheet_must_not_be_created__.html"
+    assert not illegal.exists()
+    rc, rejected, stdout = cli("--participant-handout", str(illegal))
+    assert rc == 1 and rejected["error_code"] == "OPERATOR_OUTPUT_PATH_FORBIDDEN"
+    assert not illegal.exists() and str(illegal) not in stdout
+
+
+def test_operator_scoring_receipt_contains_reproducible_rubric_fingerprint(tmp_path):
+    import hashlib
+    _, template_data, template_raw = cli("--template")
+    expected = hashlib.sha256(template_raw.encode("utf-8")).hexdigest()
+    answer_key_path = tmp_path / "only supervisor rubric é.json"
+    key_rc, key_result, key_stdout = cli("--template-to", str(answer_key_path))
+    assert key_rc == 0 and key_result["status"] == "OPERATOR_RUBRIC_CREATED"
+    assert key_result["sha256"] == expected
+    assert key_result["participant_count"] is None
+    assert answer_key_path.read_bytes() == template_raw.encode("utf-8")
+    assert answer_key_path.read_bytes()[-1:] == b"\n"
+    assert json.loads(answer_key_path.read_text("utf-8")) == template_data
+    assert str(answer_key_path) not in key_stdout
+    repeated_rc, repeated_result, _ = cli("--template-to", str(answer_key_path))
+    assert repeated_rc == 1 and repeated_result["error_code"] == "OPERATOR_OUTPUT_EXISTS"
+    _, blank, _ = cli("--blank-session")
+    blank["observations"][0]["technical"] = "TECH_COMPLETED"
+    source = write_submission(tmp_path, blank)
+    rc, evaluated, _ = cli("--evaluate", str(source))
+    assert rc == 0 and evaluated["status"] == "OPERATOR_EVALUATION_COMPLETE"
+    assert evaluated["operator_instrument_sha256"] == expected
+    assert len(evaluated["operator_instrument_sha256"]) == 64
+    assert evaluated["rollup"]["scientific"][MISSING] == 12
+    assert evaluated["participant_count"] is None
 
 
 @pytest.mark.parametrize("technical", (

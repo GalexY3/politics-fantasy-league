@@ -60,15 +60,48 @@ nunca acierto ni fallo ficticio.
 
 ## Instrumento ejecutable y registro local opcional
 
-La CLI dispone de seis rutas independientes que no llaman al servidor
+La CLI dispone de nueve rutas independientes que no llaman al servidor
 ni modifican SQLite:
 
     python -B scripts/beta_science_operator_protocol.py --self-check
     python -B scripts/beta_science_operator_protocol.py --participant-sheet
+    python -B scripts/beta_science_operator_protocol.py --participant-handout RUTA_HTML_EXTERNA
     python -B scripts/beta_science_operator_protocol.py --template
+    python -B scripts/beta_science_operator_protocol.py --template-to RUTA_RUBRICA_JSON_EXTERNA
     python -B scripts/beta_science_operator_protocol.py --blank-session
     python -B scripts/beta_science_operator_protocol.py --new-session RUTA_JSON_LOCAL_EXTERNA
     python -B scripts/beta_science_operator_protocol.py --evaluate RUTA_JSON_LOCAL
+    python -B scripts/beta_science_operator_protocol.py --evaluate-to RUTA_JSON_LOCAL RUTA_RESULTADO_JSON_EXTERNA
+
+Las tres rutas nuevas de escritura producen directamente archivos UTF-8
+en el directorio externo ya existente, con apertura exclusiva sin sobrescribir
+y con una única respuesta de estado por consola, que solo comunica código,
+SHA-256 y longitud cuando procede. No emplear `>` de PowerShell 5.1
+para conservar resultados; la redirección puede codificar UTF-16LE.
+`--participant-handout` contiene las doce preguntas existentes en un
+HTML estático, imprimible, bilingüe (inglés original más traducción española
+de apoyo), sin formularios, conexiones, JavaScript ni claves.
+La traducción no se ha validado con participantes y su equivalencia semántica
+no debe darse por supuesta. La rúbrica `--template-to` lleva las
+correspondencias A/B→SCI y soluciones: guardarla en un directorio de acceso
+exclusivo del supervisor y **no** presentarla junto a la hoja participante.
+`--new-session` guarda la ficha de códigos aparte; nunca guardarla junto
+al HTML destinado a la persona participante.
+
+`--evaluate-to` valida primero el archivo de origen completo (doce IDs,
+esquema cerrado, veto técnico y códigos), sin crear destino alguno si hay
+error. Si es válido, guarda exclusivamente el resultado clasificado en otro
+JSON UTF-8 y no sustituye ni altera la ficha fuente. La salida incluye
+`operator_instrument_sha256`, SHA-256 de los bytes de la misma plantilla
+`--template` / `--template-to` (incluido salto de línea), como referencia
+reproducible de la versión de rúbrica empleada. No es una firma, no
+acredita respuestas humanas y no enlaza automáticamente a ninguna identidad.
+El resultado exportado no es reutilizable como ficha de observaciones; tiene
+un esquema diferente. La creación de fichas, rúbricas, HTML y resultados
+comparte restricciones fail-closed sobre checkout, Git ajenos, directorios
+enlazados, existentes y NTFS ADS. Ante interrupción se conserva la ficha
+original fuera de Git: una ficha toda NOT_OBSERVED no obtiene resultado
+y las ausencias se codifican explícitamente sin imputar comprensión.
 
 En Windows, evitar redirigir la salida de --blank-session mediante
 PowerShell 5.1: su redirección puede generar UTF-16LE, que el evaluador
