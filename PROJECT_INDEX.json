@@ -10,12 +10,12 @@
     "data": 34,
     "evidence": 378,
     "experimental_code": 39,
-    "operations": 115,
-    "reference": 110,
+    "operations": 116,
+    "reference": 111,
     "research": 2000,
     "runtime": 116,
     "task_queue": 120,
-    "verification": 292
+    "verification": 294
   },
   "files": [
     {
@@ -975,6 +975,11 @@
     },
     {
       "path": "docs/BETA_GUEST_QUERY_RECOVERY_RECEIPT_20261103.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/BETA_LIVE_INSTANCE_DIAGNOSTIC_RECEIPT_20261103.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -12284,6 +12289,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/diagnose_live_science_beta.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/diff_parcan_capture_vintages.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -15410,6 +15420,16 @@
     },
     {
       "path": "tests/test_beta_guest_link_launcher.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_live_science_doctor.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_live_science_doctor_runtime.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

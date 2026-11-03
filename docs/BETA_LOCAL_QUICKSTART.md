@@ -196,6 +196,35 @@ rechazar datos y descargas hasta un nuevo GET y verificación SHA satisfactorios
 Si se cierra el servidor, la URL deja de estar disponible; ni el viejo
 marcador ni la salida anterior del terminal constituyen un servicio activo.
 
+## Diagnosticar una instancia científica local que ya está ejecutándose
+
+El smoke `scripts/beta_scientific_smoke.py` crea un servidor desechable para
+probar el código. No comprueba si **tu propio proceso** iniciado en otro
+terminal está vivo. Para ese caso, toma la dirección local que acaba de
+anunciar el lanzador (cambia el puerto si fue elegido con `--port 0`) y
+ejecuta en otro terminal:
+
+    python -B scripts/diagnose_live_science_beta.py --origin http://127.0.0.1:8787
+
+También puedes añadir `--guest-query` con la URL anterior de visitante
+entre comillas. El diagnóstico utiliza solo la **selección** de esa URL
+para contrastarla contra la **instancia actualmente indicada en --origin**;
+no contacta con el servidor antiguo ni confía en datos o SHA contenidos
+en un marcador. Comprueba GET de sesión anónima, modo científico exclusivo,
+salud/preparación del servidor, contrato del Laboratorio, dos respuestas del
+registro S9 independientes (early/late), sus recibos canónicos mediante el
+verificador offline existente y su comparación sintética.
+
+La salida es una línea JSON `PASS` o `FAIL` con contadores/SHAs públicos
+o un código seguro de error. No escribe cuentas, no ingiere originales, no
+altera SQLite y no incluye respuestas brutas. Un servidor detenido debe
+aparecer como `SERVER_UNAVAILABLE`; errores HTTP 400/503, contratos,
+derechos o integridad incorrectos se indican como fallos distintos. El
+resultado `PASS` es un **diagnóstico de ingeniería local**, nunca una
+firma, certificación histórica, licencia, aprobación humana o puerta R5.
+Solo acepta una dirección de **127.0.0.1** con puerto explícito: no es
+un auditor remoto ni se debe exponer el servidor para ejecutarlo.
+
 El argumento solo puede usarse junto con `--science-only`; no habilita
 cuentas, redirecciones, acceso público ni ninguna escritura. No convierte
 un marcador en evidencia: después de abrir el navegador hay que volver a

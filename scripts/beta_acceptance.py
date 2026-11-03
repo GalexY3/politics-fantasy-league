@@ -26,6 +26,8 @@ PYTHON_TESTS = (
     "tests/test_beta_readiness_endpoint.py",
     "tests/test_beta_local_launcher.py",
     "tests/test_beta_guest_link_launcher.py",
+    "tests/test_beta_live_science_doctor.py",
+    "tests/test_beta_live_science_doctor_runtime.py",
     "tests/test_beta_science_only.py",
     "tests/test_beta_restart_isolation.py",
     "tests/test_beta_concurrent_science_http.py",

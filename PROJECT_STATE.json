@@ -1,5 +1,5 @@
 {
-  "revision": 48,
+  "revision": 49,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1316,5 +1316,40 @@
     "fantasy_redesign_deferred": true,
     "guide": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_DYNAMIC_PORT_RESUME_RECEIPT_20261103.json"
+  },
+  "local_beta_live_instance_diagnostics": {
+    "date": "2026-11-03",
+    "baseline_published_head": "8bd8dfbe17e830f102aa44240f7f5a5bf39ecd42",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_NONCYCLE_RUNNING_INSTANCE_GET_ONLY_DIAGNOSTIC",
+    "cli": "python -B scripts/diagnose_live_science_beta.py --origin http://127.0.0.1:PORT",
+    "accepts_existing_guest_filter_intent": true,
+    "loopback_only_with_explicit_port": true,
+    "connection_to_old_bookmark_origin_attempted": false,
+    "startup_or_sqlite_mutation_by_diagnostic": false,
+    "http_posts_or_account_writes": 0,
+    "reuse_existing_offline_snapshot_and_comparison_verifiers": true,
+    "read_only_science_only_mode_required": true,
+    "offline_server_and_registry_unavailable_distinguished": true,
+    "raw_response_payload_in_diagnostic_output": false,
+    "public_source_provenance_or_rights_certified": false,
+    "valid_synthetic_temporal_pair_proves_history": false,
+    "scientific_sqlite_schema_modified": false,
+    "S8_S9_receipt_or_synthetic_fixture_contract_modified": false,
+    "worker_unit_test": "tests/test_beta_live_science_doctor.py",
+    "worker_os_process_e2e": "tests/test_beta_live_science_doctor_runtime.py",
+    "runner": "python scripts/beta_acceptance.py",
+    "status": "READY_REVIEW",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "new_real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_release_authorized": false,
+    "fantasy_redesign_deferred": true,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_LIVE_INSTANCE_DIAGNOSTIC_RECEIPT_20261103.json"
   }
 }
