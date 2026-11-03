@@ -1,5 +1,5 @@
 {
-  "revision": 45,
+  "revision": 46,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1211,5 +1211,38 @@
     "release_receipt": "docs/BETA_OFFLINE_AND_TEMPORAL_COMPARISON_RECEIPT_20261103.json",
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "offline_reference": "docs/BETA_SNAPSHOT_OFFLINE_VERIFICATION.md"
+  },
+  "local_beta_atomic_cut_pair_checkpoint": {
+    "date": "2026-11-03",
+    "baseline_committed_head": "47892cdc398be5f84b43bf52b161c680aa20061e",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "scope": "SYNTHETIC_LOCAL_NONCYCLE_ATOMIC_BROWSER_PAIR",
+    "paired_browser_export_schema": "pfl.synthetic_scientific_registry_browser_pair_export.v1",
+    "paired_browser_envelope_receipt_schema": "pfl.synthetic_scientific_registry_browser_pair_receipt.v1",
+    "paired_independent_nested_sha256_receipts": 2,
+    "offline_pair_comparison_command": "python scripts/compare_scientific_exports.py --pair downloaded-pair.json",
+    "legacy_two_file_comparison_preserved": true,
+    "single_s9_export_preserved": true,
+    "pair_has_no_external_signature_or_publisher_authentication": true,
+    "pair_no_source_rights_or_originals_admitted": true,
+    "science_only_two_real_server_restart_test": "tests/test_beta_restart_isolation.py",
+    "separate_scientific_sqlite_persisted_on_restart": true,
+    "science_only_accounts_created": 0,
+    "science_only_fantasy_database_created": false,
+    "scientific_registry_backend_modified": false,
+    "b0_b3_s7_s3_semantics_unchanged": true,
+    "synthetic_intake_family_all_only": true,
+    "old_science_only_intermittent_failure_cause_verified": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_ab_cycles": 0,
+    "new_real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "human_acceptance_completed": false,
+    "public_beta_authorized": false,
+    "fantasy_redesign_deferred": true,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "release_receipt": "docs/BETA_ATOMIC_PAIR_ACCEPTANCE_RECEIPT_20261103.json"
   }
 }

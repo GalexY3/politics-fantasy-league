@@ -52,6 +52,64 @@ evaluaciones R5 y los cuatro posibles intake de ficción, con versiones,
 eventos, estados, recuentos y grafos. Un SHA recalculado después de falsificar
 un descriptor, un reloj temporal o un permiso no basta para pasar.
 
+## Comparación offline de dos cortes S9
+
+El comparador acepta **dos modalidades**, ambas exclusivamente locales y
+sintéticas. El modo anterior conserva sus dos argumentos posicionales:
+
+    python -B scripts/compare_scientific_exports.py early.json late.json
+
+El modo nuevo admite un único archivo de par descargado como conjunto desde
+la interfaz científica, sin abrir cuentas, SQLite ni conexión HTTP:
+
+    python -B scripts/compare_scientific_exports.py --pair downloaded-pair.json
+
+El formato del archivo es
+*pfl.synthetic_scientific_registry_browser_pair_export.v1* y contiene
+**exactamente**: schema, evidence_class, comparison_kind, exports, R5,
+release_gates_passed, scientific_ab_cycles, rights_for_public_display_admitted,
+external_authenticity_certified y pair_receipt. El objeto exports tiene
+únicamente early y late; **cada uno es el objeto completo** de once campos de
+la exportación S9 individual, con su propio recibo SHA-256 íntegro. No son
+resúmenes, enlaces ni referencias a documentos originales.
+
+El recibo de par tiene **exactamente** los campos schema, canonicalization,
+canonical_json, bytes y sha256. Su schema es
+*pfl.synthetic_scientific_registry_browser_pair_receipt.v1* y utiliza la
+canonicalización JSON_UTF8_SORTED_KEYS_COMPACT_V1. El JSON canónico contiene
+todo el envelope superior **excepto** pair_receipt: UTF-8, claves ordenadas,
+separadores compactos y SHA-256 calculado sobre los bytes exactos. La
+interfaz, cuando proporciona esta descarga conjunta, es responsable de
+calcular el SHA mediante WebCrypto y de iniciar **una sola descarga**.
+El consumidor offline no fabrica el recibo, no solicita nuevas consultas
+al backend y no afirma haber comprobado cómo se inició la descarga.
+
+Al ejecutar --pair, el comparador limita el archivo a **1 MiB**, rechaza
+claves JSON duplicadas y números no finitos, comprueba los campos y
+marcadores de bloqueo exactos, vuelve a calcular longitud, SHA-256 y bytes
+canónicos del sobre excluyendo pair_receipt, y verifica por **separado** ambos
+objetos S9 mediante verify_scientific_snapshot.verify. Solo entonces compara
+los descriptores públicos. Ambos cortes deben compartir familia y valid_at;
+el reloj early ha de preceder al late, y la fecha máxima de publicación de
+early es el mínimo entre la fecha de late y el as_of de early. Así, un par
+con dos recibos individualmente válidos pero filtros incompatibles también
+queda bloqueado.
+
+El nombre recomendado de la única descarga es
+*pfl-s9-pair-VÁLIDO-HASTA-PRIMEROS12SHA.json*, concretado por el contrato
+como pfl-s9-pair-<valid_at>-<12 primeros caracteres del SHA del par>.json;
+el nombre del fichero no constituye una prueba criptográfica y el CLI
+no exige que el archivo conserve su nombre original. Con --pair, la línea
+JSON de salida mantiene todos los campos de la comparación anterior y añade
+**pair_sha256** cuando el resultado es PASS; FAIL conserva solo campos
+seguros y un error_code, sin rutas, trazas ni contenido descargado.
+
+Los descriptores públicos S9 no son IDs internos de fuente, identidades
+personales ni unidades de decisión. Las diferencias son **visibilidad de
+fixtures estipulados**, no estimaciones de cambios políticos reales.
+La consistencia de una descarga conjunta no prueba un origen externo,
+independencia documental, simultaneidad observacional o derechos.
+
 ## Límite probatorio
 
 El SHA acredita **integridad y consistencia local** del conjunto de bytes,
@@ -69,6 +127,10 @@ abrirla a internet ni puntuar actores reales.
 Prueba focal:
 
     PYTHONPATH=src python -m pytest -q tests/test_beta_snapshot_verifier.py
+
+Pruebas de comparación S9 individual y conjunta:
+
+    PYTHONPATH=src python -m pytest -q tests/test_beta_offline_cut_comparison.py
 
 En PowerShell, establecer previamente PYTHONPATH=src con
 $env:PYTHONPATH='src'.

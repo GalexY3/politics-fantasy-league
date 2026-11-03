@@ -73,6 +73,23 @@ cambiado realmente una institución española. En la interfaz, la pestaña
 «Comparar cortes» ofrece la misma distinción mediante dos consultas GET
 independientes SHA-verificadas, sin iniciar sesión de Fantasy.
 
+Para evitar dos descargas manuales, desde la pestaña **«Comparar cortes»**
+puedes guardar una única **pareja verificable**. Se trata de un sobre JSON
+con **dos exportaciones S9 completas, cada una con su SHA-256 canónico**, y
+un tercer recibo SHA-256 del sobre conjunto. Tras guardarlo, también es
+posible comprobarlo y compararlo sin servidor ni cuenta:
+
+    python scripts/compare_scientific_exports.py --pair "pareja-s9.json"
+
+El modo `--pair` verifica de manera independiente las dos exportaciones y
+la serialización exacta del sobre antes de producir los mismos contadores
+descriptivos. Los dos archivos individuales siguen siendo válidos mediante
+el comando anterior. La pareja **no** es un documento firmado oficialmente,
+un reconocimiento de derechos, una observación institucional auténtica ni
+una prueba de cambio causal. Una selección que cambie durante la digestión,
+un HTTP 400/503 o una consulta obsoleta bloquean la descarga en vez de
+reutilizar los datos anteriores.
+
 ## Arrancar el prototipo interactivo
 
     python run_demo.py
@@ -102,6 +119,13 @@ no autenticada, el estado de salud, la preparación de beta, el Laboratorio
 y el registro científico con sus consultas/exportaciones sintéticas. La
 interfaz inicia directamente la visita científica de solo lectura cuando
 detecta este modo. El puerto continúa limitado a 127.0.0.1.
+
+La prueba focal de reinicio `tests/test_beta_restart_isolation.py` también
+abre y cierra **dos procesos reales science-only** contra el mismo registro
+SQLite sintético de prueba, verifica sus recibos antes/después de inscribir
+fixtures ficticios por CLI, y comprueba el HTTP 503 de una copia deliberadamente
+adulterada. El registro original no se modifica durante esa prueba de
+recuperación; ninguna cuenta o base Fantasy se crea por este recorrido.
 
 Por defecto, el registro SQLite se crea en
 data/science_beta/scientific_registry_synthetic.sqlite3, un directorio

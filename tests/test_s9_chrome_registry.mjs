@@ -60,7 +60,7 @@ async function completedJsonDownload(folder,pattern){
   const name=readdirSync(folder).find(entry=>pattern.test(entry));
   if(!name)return null;
   const data=JSON.parse(readFileSync(join(folder,name),'utf8'));
-  const receipt=data?.snapshot_receipt;
+  const receipt=data?.snapshot_receipt??data?.pair_receipt;
   if(typeof receipt?.canonical_json!=='string'
      ||receipt.sha256!==createHash('sha256').update(receipt.canonical_json,'utf8').digest('hex')
      ||receipt.bytes!==Buffer.byteLength(receipt.canonical_json,'utf8'))
@@ -270,6 +270,48 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    r.method!=='GET'||r.path!=='/api/scientific-registry'),[]);
   assert.equal(observedRequests.slice(compareStart).filter(r=>
    r.path==='/api/scientific-registry').length,2);
+  // Real Chrome click -> ONE physical paired download -> independently
+  // recomputed envelope/children digests -> offline Python --pair CLI PASS.
+  assert.equal(await js("(()=>{const b=document.querySelector('[data-action=\"science-registry-pair-export\"]');return Boolean(b&&!b.disabled&&b.textContent.includes('Descargar pareja verificable'));})()"),true);
+  await js("document.querySelector('[data-action=\"science-registry-pair-export\"]').scrollIntoView({block:'center'});true");
+  const pairPoint=await js("(()=>{const r=document.querySelector('[data-action=\"science-registry-pair-export\"]').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};})()");
+  await cdp('Input.dispatchMouseEvent',{type:'mousePressed',
+   x:pairPoint.x,y:pairPoint.y,button:'left',clickCount:1});
+  await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
+   x:pairPoint.x,y:pairPoint.y,button:'left',clickCount:1});
+  const {name:pairSaved,data:pairExport}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-pair-2026-09-15-[a-f0-9]{12}\.json$/);
+  assert.equal(pairExport.schema,'pfl.synthetic_scientific_registry_browser_pair_export.v1');
+  assert.equal(pairExport.comparison_kind,'AUTHOR_STIPULATED_SNAPSHOT_VISIBILITY_NOT_REAL_CHANGE');
+  assert.deepEqual(Object.keys(pairExport.exports).sort(),['early','late']);
+  assert.equal(pairExport.R5,'STOP_R5');
+  assert.equal(pairExport.release_gates_passed,0);
+  assert.equal(pairExport.scientific_ab_cycles,0);
+  assert.equal(pairExport.rights_for_public_display_admitted,false);
+  assert.equal(pairExport.external_authenticity_certified,false);
+  assert.equal(createHash('sha256').update(pairExport.pair_receipt.canonical_json,'utf8').digest('hex'),
+   pairExport.pair_receipt.sha256);
+  assert.equal(Buffer.byteLength(pairExport.pair_receipt.canonical_json,'utf8'),
+   pairExport.pair_receipt.bytes);
+  for(const cut of ['early','late']){
+   const nested=pairExport.exports[cut];
+   assert.equal(nested.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
+   assert.equal(nested.query.cut,cut);
+   assert.equal(nested.query.valid_at,'2026-09-15');
+   assert.equal(nested.query.family,'all');
+   assert.equal(nested.snapshot_receipt.sha256,compared[cut].snapshot_receipt.sha256);
+   assert.equal(createHash('sha256').update(nested.snapshot_receipt.canonical_json,'utf8').digest('hex'),
+    nested.snapshot_receipt.sha256);
+  }
+  const offlinePair=JSON.parse(python(['scripts/compare_scientific_exports.py',
+   '--pair',join(downloadsDir,pairSaved)]));
+  assert.equal(offlinePair.status,'PASS');
+  assert.equal(offlinePair.pair_sha256,pairExport.pair_receipt.sha256);
+  assert.equal(offlinePair.early.sha256,pairExport.exports.early.snapshot_receipt.sha256);
+  assert.equal(offlinePair.late.sha256,pairExport.exports.late.snapshot_receipt.sha256);
+  assert.equal(offlinePair.rights_for_public_display_admitted,false);
+  assert.equal(offlinePair.scientific_ab_cycles,0);
+  unlinkSync(join(downloadsDir,pairSaved));
   // A filter change must remove BOTH previous projections, not merely hide
   // their panel while retaining stale receipts in memory.
   await js("(()=>{const n=document.getElementById('science-registry-family');n.value='CHAIN';n.dispatchEvent(new Event('change',{bubbles:true}));return true;})()");

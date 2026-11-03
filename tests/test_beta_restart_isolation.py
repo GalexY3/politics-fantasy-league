@@ -42,10 +42,12 @@ def _environment() -> dict[str, str]:
 
 
 @contextmanager
-def running_beta(game_db: Path):
+def running_beta(game_db: Path, *, science_only: bool = False):
     """Start the real launcher on an OS-selected loopback port, then stop it."""
+    arguments = ([sys.executable, "-B", str(RUN_DEMO), "--science-only"]
+                 if science_only else [sys.executable, "-B", str(RUN_DEMO)])
     process = subprocess.Popen(
-        [sys.executable, "-B", str(RUN_DEMO), "--port", "0", "--db", str(game_db)],
+        [*arguments, "--port", "0", "--db", str(game_db)],
         cwd=ROOT, env=_environment(), stdout=subprocess.PIPE,
         stderr=subprocess.PIPE, text=True, encoding="utf-8",
     )
@@ -378,3 +380,79 @@ def test_two_real_server_processes_retain_s9_sha_and_isolate_local_accounts(tmp_
         f"receipt_sha256={restart_sha} sqlite_sha256={second_db_sha} "
         "invalid_query_http=400 invalid_post_http=404 tampered_copy_http=503"
     )
+
+
+def test_science_only_two_process_restart_and_recovery_without_fantasy_store(tmp_path):
+    """Visitor-only startup→ingest→restart has a persistent, exact S9 receipt.
+
+    This is a new acceptance control, not an invented PREPATCH regression.
+    Any deliberately corrupted registry is an isolated disposable COPY.
+    """
+    game_unused = tmp_path / "science-only" / "unused-game.sqlite3"
+    science_db = game_unused.parent / REGISTRY_NAME
+    account_db = game_unused.parent / "accounts.sqlite3"
+    browser = Client()
+    late_query = "/api/scientific-registry?cut=late&valid_at=2026-10-10"
+    early_query = "/api/scientific-registry?cut=early&valid_at=2026-10-10"
+
+    with running_beta(game_unused, science_only=True) as (port1, pid1):
+        health = get(browser, port1, "/api/health")
+        assert health["mode"] == "SYNTHETIC_SCIENCE_ONLY"
+        assert health["accounts_enabled"] is False
+        assert get(browser, port1, "/api/session", status=401)["science_only"] is True
+        assert get(browser, port1, "/api/state", status=404) == {
+            "error": "SCIENCE_ONLY_ROUTE_UNAVAILABLE"}
+        _science_lab(browser, port1)
+        original = get(browser, port1, late_query)
+        original_sha = _receipt_sha(original)
+        _intake(original, 0, valid=0, rejected=0)
+        for fixture in ("sandbox_alpha_v1", "sandbox_beta_v1"):
+            result = _enroll_from_separate_process(science_db, fixture)
+            assert result["status"] == "SANDBOX_VALIDATED"
+            assert result["real_source_admitted"] is False
+        late = get(browser, port1, late_query)
+        enrolled_sha = _receipt_sha(late)
+        assert enrolled_sha != original_sha
+        _intake(late, 2, valid=2, rejected=0)
+        assert get(browser, port1, late_query)["snapshot_receipt_sha256"] == enrolled_sha
+        early = get(browser, port1, early_query)
+        _intake(early, 0, valid=0, rejected=0)
+        assert get(browser, port1,
+                   "/api/scientific-registry?cut=late&family=CHAIN"
+                   )["snapshot"]["synthetic_intake"]["intake_count"] == 0
+        status, error, _ = browser.request(
+            port1, "POST", "/api/scientific-registry", payload={})
+        assert status == 404 and error == {"error": "SCIENCE_ONLY_WRITE_UNAVAILABLE"}
+        assert get(browser, port1,
+                   "/api/scientific-registry?cut=nonsense",
+                   status=400) == {"error": "INVALID_SYNTHETIC_REGISTRY_QUERY"}
+        assert not game_unused.exists() and not account_db.exists()
+        assert not (game_unused.parent / "accounts").exists()
+
+    original_bytes_sha = hashlib.sha256(science_db.read_bytes()).hexdigest()
+    with running_beta(game_unused, science_only=True) as (port2, pid2):
+        assert pid1 != pid2
+        assert get(browser, port2, "/api/health")["accounts_enabled"] is False
+        assert get(browser, port2, "/api/session", status=401)["science_only"] is True
+        _science_lab(browser, port2)
+        persisted = get(browser, port2, late_query)
+        assert _receipt_sha(persisted) == enrolled_sha
+        assert persisted["snapshot"]["synthetic_intake"] == late["snapshot"]["synthetic_intake"]
+        _intake(get(browser, port2, early_query), 0, valid=0, rejected=0)
+        assert not game_unused.exists() and not account_db.exists()
+    assert hashlib.sha256(science_db.read_bytes()).hexdigest() == original_bytes_sha
+    assert {"registry_meta", "synthetic_intake_event"} <= _sqlite_tables(science_db)
+    assert not {"account", "club", "account_session"} & _sqlite_tables(science_db)
+
+    # Corrupt only a private disposable database, NEVER the verified original.
+    copy_root = tmp_path / "science-only-corrupted-copy"
+    copy_root.mkdir()
+    copy_db = copy_root / REGISTRY_NAME
+    shutil.copy2(science_db, copy_db)
+    with sqlite3.connect(copy_db) as handle:
+        handle.execute("DROP TRIGGER registry_distribution_immutable_update")
+    with running_beta(copy_root / "unused.sqlite3", science_only=True) as (port3, _):
+        assert get(browser, port3, late_query, status=503) == {
+            "error": "SYNTHETIC_REGISTRY_UNAVAILABLE"}
+        assert not (copy_root / "accounts.sqlite3").exists()
+    assert hashlib.sha256(science_db.read_bytes()).hexdigest() == original_bytes_sha
