@@ -60,7 +60,7 @@ nunca acierto ni fallo ficticio.
 
 ## Instrumento ejecutable y registro local opcional
 
-La CLI dispone de doce rutas independientes que no llaman al servidor
+La CLI dispone de quince rutas independientes que no llaman al servidor
 ni modifican SQLite:
 
     python -B scripts/beta_science_operator_protocol.py --self-check
@@ -75,6 +75,9 @@ ni modifican SQLite:
     python -B scripts/beta_science_operator_protocol.py --prepare-form FICHA_V2_JSON HOJA_V2_HTML RÚBRICA_PRIVADA_V2_JSON
     python -B scripts/beta_science_operator_protocol.py --record-form FICHA_V2_ACTUAL_JSON FICHA_V2_SIGUIENTE_JSON OP01 TECH_COMPLETED A UX_CLEAR
     python -B scripts/beta_science_operator_protocol.py --evaluate-form FICHA_V2_JSON RÚBRICA_PRIVADA_V2_JSON RESULTADO_V2_JSON
+    python -B scripts/beta_science_operator_protocol.py --new-private-dir DIRECTORIO_SUPERVISOR_EXTERNO
+    python -B scripts/beta_science_operator_protocol.py --audit-private-dir DIRECTORIO_SUPERVISOR_EXTERNO
+    python -B scripts/beta_science_operator_protocol.py --verify-chain-to RECIBO_JSON PRIVADA_RÚBRICA_JSON RESULTADO_JSON FICHA_RAÍZ_V2_JSON REVISIÓN_1_JSON REVISIÓN_2_JSON
 
 **Modalidad preferente para una primera sesión nueva: v2 versionada.**
 `--prepare-form` genera con un solo mandato tres artefactos vinculados:
@@ -94,13 +97,27 @@ La rúbrica JSON y la ficha JSON deben estar en un directorio de
 supervisión distinto del directorio del HTML participante; el
 comando rechaza compartir directorio de rúbrica o ficha con HTML, rutas
 repetidas, rutas dentro de cualquier Git o ADS NTFS. Deben existir
-previamente los directorios de destino. Los tres archivos se crean
+previamente los directorios de destino. El directorio del supervisor
+debe comprobarse primero con `--audit-private-dir`, o crearse
+siempre vacío y fuera de Git con `--new-private-dir`. En Windows,
+la auditoría es nativa sobre SID, propietario y DACL (herencia
+desactivada; solo titular, OWNER RIGHTS, SYSTEM y administradores).
+La clave y las fichas se leen únicamente si el inode no tiene alias
+de hardlink o symlink y no tiene ACE de lectura adicional. El supervisor
+no debe compartir la misma cuenta del sistema con la participante.
+En POSIX se comprueba el modo `0700` y propietario, no ACL extendidas.
+No se ha ejecutado una comprobación positiva con dos tokens humanos
+independientes. Los tres archivos se crean
 exclusivamente, sin sobreescribir; si se detecta un error recuperable
 durante la creación se intenta revertir solo los ficheros nuevos.
-No se promete atomicidad frente a corte brusco de alimentación.
+No se promete atomicidad de los tres archivos como transacción ante
+corte brusco de alimentación. Cada archivo individual se escribe a
+un temporal exclusivo, se sincronizan sus bytes y se publica con
+un enlace de creación exclusiva sin sobrescritura. Un corte puede
+dejar temporales huérfanos, por lo que la recuperación se verifica
+contra el contenido y no por la sola existencia de un nombre.
 Tener carpetas diferentes NO constituye por sí solo control de permisos:
-en Windows los archivos heredan ACL del directorio y el protocolo no
-audita esas ACL. La persona supervisora debe custodiar la rúbrica y la
+la persona supervisora debe custodiar la rúbrica y la
 ficha fuera de la vista y del acceso de quien participe (por ejemplo,
 cuenta del sistema o soporte separado); el HTML no lleva la clave,
 pero tener acceso al repositorio o a la carpeta privada permite
@@ -132,6 +149,16 @@ y rechaza la repetición de una tarea ya anotada con
 `OPERATOR_OBSERVATION_ALREADY_RECORDED`. La ficha de origen y
 las revisiones anteriores permanecen sin sobrescribir; el archivo
 sucesor conserva `form_id` y ambas huellas de hoja/rúbrica. Una
+revisión nueva incorpora además `predecessor_sha256`, SHA del
+archivo exacto que dio origen a esa revisión; las fichas v2
+anteriores no se modifican retrospectivamente para simular un
+historial de cambios que no guardaron. `--verify-chain-to`
+comprueba un listado **ordenado** de raíz, revisiones y evaluación
+contra la clave privada, sin fusionar sesiones distintas:
+una tarea nueva por eslabón, cero modificaciones a tareas previas,
+igualdad de hashes y resultado final recalculado. Un resultado
+compatible sólo acredita continuidad entre los archivos ofrecidos,
+no firmas ni autoría, derechos o consentimiento humanos. Una
 corrección legítima se realiza desde una revisión previa intacta,
 con destino nuevo, y se documenta como bifurcación, no como
 reescritura silenciosa. Los acuses de cada paso exponen únicamente

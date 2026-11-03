@@ -1,5 +1,5 @@
 {
-  "revision": 59,
+  "revision": 60,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1803,7 +1803,67 @@
     "R5": "STOP_R5",
     "release_gates_passed": 0,
     "scientific_AB_R_cycles_added": 0,
-    "publication_state": "READY_REVIEW",
+    "publication_state": "PUBLISHED_E2E_ACCEPTED",
+    "published_commit": "b56703c4e0e222bb4acf16fb4b69a967d77f199c",
+    "clean_committed_head_acceptance_passed": 510,
     "receipt": "docs/BETA_OPERATOR_CODED_REVISION_RECEIPT_20261103.json"
+  },
+  "local_beta_os_acl_and_artifact_lineage": {
+    "date": "2026-11-03",
+    "baseline_published_head": "b56703c4e0e222bb4acf16fb4b69a967d77f199c",
+    "scope": "LOCAL_SYNTHETIC_OPERATOR_V2_REAL_FILESYSTEM_SECURITY_NONCYCLE",
+    "genuine_prepatch_falsifiers": [
+      "test_prepatch_red_recorded_successor_persists_exact_predecessor_sha",
+      "test_prepatch_red_publicly_readable_supervisor_key_is_not_rejected",
+      "test_prepatch_red_record_form_must_not_publish_private_revision_to_public_dir",
+      "test_prepatch_red_evaluate_form_must_not_export_private_scores_to_public_dir",
+      "test_prepatch_red_record_form_rejects_public_acl_hardlink_under_private_parent"
+    ],
+    "prepatch_red_executions": [
+      "2_FAILED_SESSION_11387",
+      "2_FAILED_SESSION_6298",
+      "1_FAILED_SESSION_HARDLINK_PREPATCH"
+    ],
+    "new_actions": [
+      "--new-private-dir",
+      "--audit-private-dir",
+      "--verify-chain-to"
+    ],
+    "windows_native_dacl_audit": "OWNER_SID_INHERITANCE_PROTECTED_ALLOWLISTED_TRUSTEES",
+    "private_parent_and_private_input_file_dacl_checked": true,
+    "synthetic_windows_everyone_read_acl_rejected": true,
+    "synthetic_windows_broad_acl_hardlink_rejected": true,
+    "windows_symbolic_link_creation_privilege_verified": false,
+    "windows_junction_and_ads_negative_tests_executed": true,
+    "other_os_token_tested": false,
+    "administrative_or_same_token_access_excluded": false,
+    "posix_validation": "OWNER_MODE_0700_ONLY_NOT_EXECUTED_IN_WINDOWS_RUN",
+    "posix_extended_acls_verified": false,
+    "historical_v1_and_existing_v2_root_schemas_preserved": true,
+    "v2_revision_predecessor_sha256_optional": true,
+    "chain_verifies_one_new_task_per_step": true,
+    "chain_verifies_exact_bytes_final_evaluation_and_rubric": true,
+    "chain_proves_human_authorship": false,
+    "individual_utf8_staged_fsync_atomic_create_only_hardlink": true,
+    "crash_or_power_loss_actually_simulated": false,
+    "controlled_fsync_and_race_injection_tests": 2,
+    "three_separate_outputs_transactionally_atomic": false,
+    "new_python_security_contract_tests_passed": 30,
+    "new_python_atomic_publish_contract_tests_passed": 3,
+    "combined_focal_python_passed": 166,
+    "integrated_uncommitted_worktree_passed": 543,
+    "integrated_uncommitted_worktree_counts": "421_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "two_real_science_only_os_processes_and_sqlite_unchanged": true,
+    "previous_guest_and_s9_contracts_reused": true,
+    "human_participants_observed": 0,
+    "human_validation_complete": false,
+    "new_empirical_spanish_sources": 0,
+    "sqlite_or_s9_contract_changes": 0,
+    "docx_s9_changed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_ARTIFACT_SECURITY_RECEIPT_20261103.json"
   }
 }

@@ -221,7 +221,17 @@ def test_operator_reboot_rebind_and_export_synthetic_coded_session(tmp_path: Pat
         # These are invented fixture codes; NO person was observed.
         v2_private = external / "Supervisor v2"
         v2_public = external / "Participante v2"
-        v2_private.mkdir()
+        private_rc, private_created, private_raw = _protocol_with_raw(
+            "--new-private-dir", v2_private)
+        assert private_rc == 0
+        assert private_created["status"] == "OPERATOR_PRIVATE_DIR_CREATED"
+        assert private_created["other_user_token_tested"] is False
+        _assert_no_path_or_people(private_raw, v2_private)
+        audit_rc, audit_result, audit_raw = _protocol_with_raw(
+            "--audit-private-dir", v2_private)
+        assert audit_rc == 0
+        assert audit_result["status"] == "OPERATOR_PRIVATE_DIR_CHECKED"
+        _assert_no_path_or_people(audit_raw, v2_private)
         v2_public.mkdir()
         v2_source = v2_private / "observaciones ciegas v2.json"
         v2_handout = v2_public / "hoja sin clave v2.html"
@@ -272,6 +282,18 @@ def test_operator_reboot_rebind_and_export_synthetic_coded_session(tmp_path: Pat
         v2_result = json.loads(v2_output.read_text(encoding="utf-8"))
         assert v2_result["coded_input_sha256"] == recorded2["destination_sha256"]
         assert v2_result["coded_input_bytes"] == len(v2_revision2.read_bytes())
+        v2_chain_receipt = v2_private / "recibo cadena sintética v2.json"
+        rc, chain_export, chain_raw = _protocol_with_raw(
+            "--verify-chain-to", v2_chain_receipt, v2_rubric, v2_output,
+            v2_source, v2_revision1, v2_revision2)
+        assert rc == 0 and chain_export["status"] == (
+            "OPERATOR_FORM_CHAIN_VERIFIED")
+        assert chain_export["links_verified"] == 2
+        _assert_no_path_or_people(chain_raw, v2_chain_receipt)
+        verified_chain = json.loads(v2_chain_receipt.read_text(encoding="utf-8"))
+        assert verified_chain["links_verified"] == 2
+        assert verified_chain["final_sha256"] == v2_result["coded_input_sha256"]
+        assert verified_chain["human_observation_verified"] is False
         assert v2_result["instrument_binding"] == (
             "MATCHED_V2_FORM_AND_RUBRIC")
         assert v2_result["rollup"]["technical"]["TECH_COMPLETED"] == 1

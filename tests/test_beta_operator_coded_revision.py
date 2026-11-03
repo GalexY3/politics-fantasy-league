@@ -122,7 +122,8 @@ def test_v2_record_form_two_step_synthetic_chain_and_exact_export_sha(
     assert snapshot1["rubric_sha256"] == blank["rubric_sha256"]
     assert snapshot1["handout_sha256"] == blank["handout_sha256"]
     assert len(snapshot1["observations"]) == 12
-    assert set(snapshot1) == set(blank)
+    assert set(snapshot1) == set(blank) | {"predecessor_sha256"}
+    assert snapshot1["predecessor_sha256"] == hashlib.sha256(root_bytes).hexdigest()
     by_id1 = {x["task_id"]: x for x in snapshot1["observations"]}
     assert by_id1["OP09"] == {
         "task_id": "OP09", "technical": "TECH_BLOCKED",

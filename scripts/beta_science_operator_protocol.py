@@ -11,6 +11,9 @@ diagnostic, empirical admission or a release gate. No identities are collected.
   python -B scripts/beta_science_operator_protocol.py --evaluate-to input.json output.json
   python -B scripts/beta_science_operator_protocol.py --prepare-form coded_v2.json participant_v2.html private_rubric_v2.json
   python -B scripts/beta_science_operator_protocol.py --record-form current_v2.json next_v2.json OP01 TECH_COMPLETED A UX_CLEAR
+  python -B scripts/beta_science_operator_protocol.py --new-private-dir outside_git_private_folder
+  python -B scripts/beta_science_operator_protocol.py --audit-private-dir outside_git_private_folder
+  python -B scripts/beta_science_operator_protocol.py --verify-chain-to external_chain_report.json private_rubric.json evaluated_result.json initial.json revision1.json
   python -B scripts/beta_science_operator_protocol.py --evaluate-form coded_v2.json private_rubric_v2.json result_v2.json
   python -B scripts/beta_science_operator_protocol.py --participant-handout outside_repo.html
   python -B scripts/beta_science_operator_protocol.py --template-to outside_repo_rubric.json
@@ -19,6 +22,7 @@ diagnostic, empirical admission or a release gate. No identities are collected.
 from __future__ import annotations
 
 import argparse
+import ctypes
 import hashlib
 from html import escape
 import json
@@ -26,6 +30,7 @@ import os
 from pathlib import Path
 import secrets
 import re
+import stat
 
 INPUT_SCHEMA = "pfl.beta_science_operator_observations.v1"
 TEMPLATE_SCHEMA = "pfl.beta_science_operator_template.v1"
@@ -36,6 +41,8 @@ NEW_SESSION_SCHEMA = "pfl.beta_science_operator_session_creation.v1"
 FORM_INPUT_SCHEMA = "pfl.beta_science_operator_observations.v2"
 FORM_TEMPLATE_SCHEMA = "pfl.beta_science_operator_template.v2"
 FORM_RESULT_SCHEMA = "pfl.beta_science_operator_evaluation.v2"
+FORM_CHAIN_SCHEMA = "pfl.beta_science_operator_revision_chain.v1"
+PRIVATE_DIR_SCHEMA = "pfl.beta_science_operator_private_directory.v1"
 FORM_REFERENCE_PATTERN = re.compile(r"^[0-9a-f]{32}$")
 MAX_INPUT_BYTES = 16384
 MAX_HANDOUT_BYTES = 65536
@@ -455,30 +462,285 @@ def _external_destination(path: str, error_prefix: str) -> Path:
     return destination
 
 
+def _private_directory_status(path: Path) -> str:
+    """Verify the OS descriptor of a PRIVATE directory, never its name alone.
+
+    Windows: require inheritance disabled and only the owning user,
+    OWNER RIGHTS, LocalSystem and Administrators in allow ACEs.
+    POSIX: require owner current euid and 0700 mode; expanded ACLs or
+    alternative user credentials are NOT certified by this mode-only check.
+    """
+    if (not path.is_dir() or path.is_symlink()
+            or (hasattr(path, "is_junction") and path.is_junction())):
+        raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED")
+    if os.name != "nt":
+        try:
+            info = path.stat()
+            if (info.st_uid != os.geteuid()
+                    or stat.S_IMODE(info.st_mode) != 0o700):
+                raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED")
+            return "POSIX_MODE_0700_ONLY"
+        except (OSError, AttributeError) as exc:
+            raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED") from exc
+    if not _windows_dacl_safe(path, require_protected=True):
+        raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED")
+    return "WINDOWS_RESTRICTED_DACL_CHECKED"
+
+
+def _windows_dacl_safe(path: Path, *, require_protected: bool) -> bool:
+    """Read the REAL local NT security descriptor through native Win32 APIs.
+
+    No shell, external service, locale-dependent name parsing, ACL mutation,
+    or disclosure of account SIDs. Unknown/complex ACE types fail closed.
+    Require owner=current user and only owner-rights/System/Admin/current SID
+    allow ACEs. Even such a DACL cannot prove a second identity was tested.
+    """
+    if os.name != "nt":
+        return False
+    try:
+        from ctypes import wintypes
+        ptr = ctypes.c_void_p
+        word = wintypes.WORD
+        dword = wintypes.DWORD
+        adv = ctypes.WinDLL("advapi32", use_last_error=True)
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        adv.GetNamedSecurityInfoW.argtypes = (
+            wintypes.LPWSTR, dword, dword, ctypes.POINTER(ptr),
+            ctypes.POINTER(ptr), ctypes.POINTER(ptr),
+            ctypes.POINTER(ptr), ctypes.POINTER(ptr))
+        adv.GetNamedSecurityInfoW.restype = dword
+        adv.GetSecurityDescriptorControl.argtypes = (
+            ptr, ctypes.POINTER(word), ctypes.POINTER(dword))
+        adv.GetSecurityDescriptorControl.restype = wintypes.BOOL
+        adv.GetAclInformation.argtypes = (ptr, ptr, dword, dword)
+        adv.GetAclInformation.restype = wintypes.BOOL
+        adv.GetAce.argtypes = (ptr, dword, ctypes.POINTER(ptr))
+        adv.GetAce.restype = wintypes.BOOL
+        adv.ConvertSidToStringSidW.argtypes = (
+            ptr, ctypes.POINTER(wintypes.LPWSTR))
+        adv.ConvertSidToStringSidW.restype = wintypes.BOOL
+        adv.OpenProcessToken.argtypes = (
+            wintypes.HANDLE, dword, ctypes.POINTER(wintypes.HANDLE))
+        adv.OpenProcessToken.restype = wintypes.BOOL
+        adv.GetTokenInformation.argtypes = (
+            wintypes.HANDLE, dword, ptr, dword, ctypes.POINTER(dword))
+        adv.GetTokenInformation.restype = wintypes.BOOL
+        kernel.GetCurrentProcess.restype = wintypes.HANDLE
+        kernel.CloseHandle.argtypes = (wintypes.HANDLE,)
+        kernel.CloseHandle.restype = wintypes.BOOL
+        kernel.LocalFree.argtypes = (ptr,)
+        kernel.LocalFree.restype = ptr
+
+        class SidAndAttributes(ctypes.Structure):
+            _fields_ = [("sid", ptr), ("attributes", dword)]
+
+        class AceHeader(ctypes.Structure):
+            _fields_ = [("type", ctypes.c_ubyte),
+                        ("flags", ctypes.c_ubyte),
+                        ("size", ctypes.c_ushort)]
+
+        class AclSizeInformation(ctypes.Structure):
+            _fields_ = [("count", dword),
+                        ("bytes_used", dword),
+                        ("bytes_free", dword)]
+
+        def stringify_sid(sid: int) -> str:
+            out = wintypes.LPWSTR()
+            if not adv.ConvertSidToStringSidW(ptr(sid), ctypes.byref(out)):
+                raise OSError("SID_CONVERSION_FAILED")
+            try:
+                return out.value
+            finally:
+                kernel.LocalFree(ctypes.cast(out, ptr))
+
+        token = wintypes.HANDLE()
+        if not adv.OpenProcessToken(
+                kernel.GetCurrentProcess(), 0x0008, ctypes.byref(token)):
+            return False
+        try:
+            size = dword()
+            adv.GetTokenInformation(token, 1, None, 0, ctypes.byref(size))
+            if size.value < ctypes.sizeof(SidAndAttributes):
+                return False
+            buf = ctypes.create_string_buffer(size.value)
+            if not adv.GetTokenInformation(
+                    token, 1, buf, size.value, ctypes.byref(size)):
+                return False
+            current = stringify_sid(
+                ctypes.cast(buf, ctypes.POINTER(SidAndAttributes)).contents.sid)
+        finally:
+            kernel.CloseHandle(token)
+        owner = ptr()
+        dacl = ptr()
+        descriptor = ptr()
+        status = adv.GetNamedSecurityInfoW(
+            str(path), 1, 1 | 4, ctypes.byref(owner), None,
+            ctypes.byref(dacl), None, ctypes.byref(descriptor))
+        if status != 0 or not descriptor.value:
+            return False
+        try:
+            if not dacl.value or stringify_sid(owner.value) != current:
+                return False
+            control = word()
+            revision = dword()
+            if not adv.GetSecurityDescriptorControl(
+                    descriptor, ctypes.byref(control), ctypes.byref(revision)):
+                return False
+            if require_protected and not (control.value & 0x1000):
+                return False
+            info = AclSizeInformation()
+            if not adv.GetAclInformation(
+                    dacl, ctypes.byref(info), ctypes.sizeof(info), 2):
+                return False
+            allowed_sids = {
+                current, "S-1-3-4",  # OWNER RIGHTS
+                "S-1-5-18",         # Local System
+                "S-1-5-32-544",     # Builtin Administrators
+            }
+            if info.count < 1:
+                return False
+            for i in range(info.count):
+                ace = ptr()
+                if not adv.GetAce(dacl, i, ctypes.byref(ace)):
+                    return False
+                header = ctypes.cast(ace, ctypes.POINTER(AceHeader)).contents
+                if header.type != 0 or header.size < 12:
+                    return False
+                if stringify_sid(ace.value + 8) not in allowed_sids:
+                    return False
+            return True
+        finally:
+            kernel.LocalFree(descriptor)
+    except (OSError, TypeError, ValueError, OverflowError, AttributeError):
+        return False
+
+
+def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
+    """Exclude symlink/hardlink aliases and broadly readable private inodes."""
+    try:
+        candidate = Path(path)
+        if (candidate.is_symlink()
+                or (hasattr(candidate, "is_junction")
+                    and candidate.is_junction())):
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN")
+        metadata = candidate.stat()
+        if not candidate.is_file() or metadata.st_nlink != 1:
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN")
+        _private_directory_status(candidate.resolve(strict=True).parent)
+        if os.name == "nt" and not _windows_dacl_safe(
+                candidate, require_protected=False):
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
+        if os.name != "nt" and metadata.st_uid != os.geteuid():
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
+    except ProtocolError:
+        raise
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED") from exc
+    return _read_json_with_bytes(path)
+
+
+def audit_private_dir(path: str) -> dict:
+    """Check current ACL/mode without echoing path, account, or ACL entries."""
+    try:
+        parent = Path(os.path.abspath(path))
+        if _within(parent, Path(__file__).resolve().parents[1]):
+            raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED")
+        status = _private_directory_status(parent)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise ProtocolError("OPERATOR_PRIVATE_DIR_UNVERIFIED") from exc
+    return {
+        "schema": PRIVATE_DIR_SCHEMA,
+        "status": "OPERATOR_PRIVATE_DIR_CHECKED",
+        "permission_evidence": status,
+        "other_user_token_tested": False,
+        "administrator_access_possible": True,
+        "participant_count": None,
+        "R5": "STOP_R5",
+    }
+
+
+def new_private_dir(path: str) -> dict:
+    """Make a brand-new restricted private parent rather than mutate an ACL."""
+    destination = _external_destination(path, "OPERATOR_PRIVATE_DIR")
+    created = False
+    try:
+        os.mkdir(destination, mode=0o700)
+        created = True
+        result = audit_private_dir(str(destination))
+    except (OSError, ProtocolError) as exc:
+        if created:
+            try:
+                destination.rmdir()
+            except OSError:
+                pass
+        if isinstance(exc, ProtocolError):
+            raise
+        raise ProtocolError("OPERATOR_PRIVATE_DIR_CREATE_FAILED") from exc
+    return {**result, "status": "OPERATOR_PRIVATE_DIR_CREATED"}
+
+
 def _write_external_utf8(path: str, content: str, *, maximum: int,
                          error_prefix: str) -> tuple[int, str]:
-    """Create standalone UTF-8 bytes once, never echo names or exceptions."""
+    """Publish only complete, fsynced UTF-8 bytes under a new final name.
+
+    Stage a private randomly named file in the same directory, fsync it,
+    then make the final path appear with an atomic create-only hardlink.
+    The final name is never a partially written file during normal execution;
+    power loss may still strand a staging file or an extra hardlink. It does
+    NOT make the three separate --prepare-form outputs one transaction.
+    """
     destination = _external_destination(path, error_prefix)
     bytes_to_write = content.encode("utf-8")
     if len(bytes_to_write) > maximum:
         raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
-    created = False
+    stage = destination.parent / (".pfl-stage-" + secrets.token_hex(16) + ".tmp")
+    stage_created = False
+    linked = False
+    stage_identity = None
     try:
-        # 'xb' is mandatory: atomic create-only; never read or overwrite.
-        with destination.open("xb") as stream:
-            created = True
+        # Both staging and publication use create-only semantics.
+        with stage.open("xb") as stream:
+            stage_created = True
+            identity = os.fstat(stream.fileno())
+            stage_identity = (identity.st_dev, identity.st_ino)
             stream.write(bytes_to_write)
             stream.flush()
             os.fsync(stream.fileno())
+        os.link(stage, destination)
+        linked = True
+        stage.unlink()
+        stage_created = False
+        # On POSIX directory fsync makes the rename/link durable across an
+        # orderly power failure when supported; Windows file data was fsynced,
+        # but directory metadata durability is not independently certified.
+        if os.name != "nt":
+            try:
+                descriptor = os.open(destination.parent, os.O_RDONLY | os.O_DIRECTORY)
+                try:
+                    os.fsync(descriptor)
+                finally:
+                    os.close(descriptor)
+            except (OSError, AttributeError):
+                pass
     except FileExistsError as exc:
         raise ProtocolError(error_prefix + "_EXISTS") from exc
     except OSError as exc:
-        if created:
+        raise ProtocolError(error_prefix + "_WRITE_FAILED") from exc
+    finally:
+        if stage_created and stage_identity is not None:
             try:
-                destination.unlink()
+                identity = stage.stat()
+                if (identity.st_dev, identity.st_ino) == stage_identity:
+                    if linked:
+                        try:
+                            published = destination.stat()
+                            if (published.st_dev, published.st_ino) == stage_identity:
+                                destination.unlink()
+                        except OSError:
+                            pass
+                    stage.unlink()
             except OSError:
                 pass
-        raise ProtocolError(error_prefix + "_WRITE_FAILED") from exc
     return len(bytes_to_write), hashlib.sha256(bytes_to_write).hexdigest()
 
 
@@ -693,6 +955,10 @@ def prepare_form(session_path: str, participant_html_path: str,
             in (locations[0].parent.resolve(strict=True),
                 locations[2].parent.resolve(strict=True))):
         raise ProtocolError("OPERATOR_FORM_KEY_NOT_SEPARATED")
+    # Separate names are not OS privacy. Enforce a checked restricted
+    # descriptor on BOTH coded observations and the secret answer key.
+    for private in (locations[0].parent, locations[2].parent):
+        _private_directory_status(private)
     # cryptographic RNG: every invocation samples a fresh independent layout.
     # Neither the form reference nor the SHA is an empirical or RNG-quality
     # certification. The A/B assignment is hidden only by the private rubric.
@@ -821,12 +1087,15 @@ def _validate_v2_coded_session(value: object) -> dict:
     NOT successful evaluations until the final --evaluate-form step. Every
     revision must preserve all twelve task rows and the original form binding.
     """
+    standard = {"schema", "form_id", "handout_sha256",
+                "rubric_sha256", "observations"}
     if (type(value) is not dict
-            or set(value) != {
-                "schema", "form_id", "handout_sha256",
-                "rubric_sha256", "observations"
-            }
+            or set(value) not in (standard, standard | {"predecessor_sha256"})
             or value["schema"] != FORM_INPUT_SCHEMA):
+        raise ProtocolError("OPERATOR_FORM_MISMATCH")
+    if ("predecessor_sha256" in value and (
+            type(value["predecessor_sha256"]) is not str
+            or re.fullmatch(r"[0-9a-f]{64}", value["predecessor_sha256"]) is None)):
         raise ProtocolError("OPERATOR_FORM_MISMATCH")
     if (type(value["form_id"]) is not str
             or not FORM_REFERENCE_PATTERN.fullmatch(value["form_id"])
@@ -873,7 +1142,7 @@ def record_form(source_path: str, destination_path: str, task_id: str,
     earlier untouched source revision and choosing a NEW destination.
     Rubric-scoped scoring remains exclusively in --evaluate-form.
     """
-    source, raw_source = _read_json_with_bytes(source_path)
+    source, raw_source = _read_private_json_with_bytes(source_path)
     session = _validate_v2_coded_session(source)
     if type(task_id) is not str or task_id not in BY_ID:
         raise ProtocolError("OPERATOR_INPUT_INVALID")
@@ -893,7 +1162,16 @@ def record_form(source_path: str, destination_path: str, task_id: str,
          if entry["task_id"] == task_id else dict(entry))
         for entry in session["observations"]
     ]
-    successor = _validate_v2_coded_session({**session, "observations": new_rows})
+    target = _external_destination(destination_path, "OPERATOR_OUTPUT")
+    source_parent = Path(source_path).resolve(strict=True).parent
+    if target.parent.resolve(strict=True) != source_parent:
+        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
+    _private_directory_status(source_parent)
+    successor = _validate_v2_coded_session({
+        **session,
+        "predecessor_sha256": hashlib.sha256(raw_source).hexdigest(),
+        "observations": new_rows,
+    })
     size, digest = _write_external_utf8(
         destination_path, json_line(successor) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
@@ -913,9 +1191,36 @@ def record_form(source_path: str, destination_path: str, task_id: str,
 
 def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
     """Fail closed on mismatched versioned forms BEFORE any output write."""
-    session, raw_coded = _read_json_with_bytes(source_path)
+    session, raw_coded = _read_private_json_with_bytes(source_path)
     session = _validate_v2_coded_session(session)
-    rubric = _read_and_verify_form_rubric(read_json(rubric_path))
+    rubric = _read_and_verify_form_rubric(
+        _read_private_json_with_bytes(rubric_path)[0])
+    # Semantic mismatch takes precedence over a second private folder
+    # mismatch; neither error may create output.
+    result = _score_v2_form(session, raw_coded, rubric)
+    target = _external_destination(output_path, "OPERATOR_OUTPUT")
+    source_parent = Path(source_path).resolve(strict=True).parent
+    rubric_parent = Path(rubric_path).resolve(strict=True).parent
+    if (target.parent.resolve(strict=True) != source_parent
+            or source_parent != rubric_parent):
+        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
+    _private_directory_status(source_parent)
+    length, sha = _write_external_utf8(
+        output_path, json_line(result) + "\n",
+        maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": FORM_RESULT_SCHEMA,
+        "status": "OPERATOR_FORM_EVALUATION_EXPORTED",
+        "bytes": length,
+        "sha256": sha,
+        "participant_count": None,
+        "R5": "STOP_R5",
+    }
+
+
+def _score_v2_form(session: dict, raw_coded: bytes, rubric: dict) -> dict:
+    """Deterministic v2 score shared by evaluation and offline chain audit."""
     if (type(session) is not dict
             or session["form_id"] != rubric["form_id"]
             or session["handout_sha256"] != rubric["handout_sha256"]
@@ -960,14 +1265,106 @@ def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
         "coded_input_sha256": hashlib.sha256(raw_coded).hexdigest(),
         "coded_input_bytes": len(raw_coded),
     }
-    length, sha = _write_external_utf8(
-        output_path, json_line(result) + "\n",
+    return result
+
+
+def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
+                    root_path: str, *revisions: str) -> dict:
+    """Verify an explicit immutable v2 revision chain against its final score.
+
+    Every successor must cite exact predecessor bytes, change exactly ONE
+    previously untouched coded task, keep all other rows/fields identical,
+    and remain bound to the SAME private rubric and form. This verifies
+    continuity of supplied files, not their authorship or human provenance.
+    """
+    if not revisions or len(revisions) > len(TASKS):
+        raise ProtocolError("OPERATOR_CHAIN_INVALID")
+    target = _external_destination(output_path, "OPERATOR_OUTPUT")
+    paths = (root_path, *revisions)
+    private_parent = target.parent.resolve(strict=True)
+    for source_path in (*paths, rubric_path, result_path):
+        try:
+            if Path(source_path).resolve(strict=True).parent != private_parent:
+                raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
+        except OSError as exc:
+            raise ProtocolError("OPERATOR_FILE_UNAVAILABLE") from exc
+    _private_directory_status(private_parent)
+    rubric = _read_and_verify_form_rubric(
+        _read_private_json_with_bytes(rubric_path)[0])
+    source_data = []
+    for path in paths:
+        item, raw = _read_private_json_with_bytes(path)
+        item = _validate_v2_coded_session(item)
+        if (item["form_id"] != rubric["form_id"]
+                or item["handout_sha256"] != rubric["handout_sha256"]
+                or item["rubric_sha256"] != _canonical_sha(rubric)):
+            raise ProtocolError("OPERATOR_FORM_MISMATCH")
+        if [x["task_id"] for x in item["observations"]] != [
+                task["task_id"] for task in TASKS]:
+            raise ProtocolError("OPERATOR_CHAIN_INVALID")
+        source_data.append((item, raw))
+    root = source_data[0][0]
+    if ("predecessor_sha256" in root
+            or any(any(row[key] != MISSING for key in (
+                "technical", "scientific", "usability"))
+                   for row in root["observations"])):
+        raise ProtocolError("OPERATOR_CHAIN_INVALID")
+    steps = []
+    for (before, raw_before), (after, raw_after) in zip(
+            source_data, source_data[1:], strict=False):
+        if after.get("predecessor_sha256") != hashlib.sha256(raw_before).hexdigest():
+            raise ProtocolError("OPERATOR_CHAIN_INVALID")
+        changed = [
+            (old, new) for old, new in zip(
+                before["observations"], after["observations"], strict=True)
+            if old != new
+        ]
+        if len(changed) != 1:
+            raise ProtocolError("OPERATOR_CHAIN_INVALID")
+        old, new = changed[0]
+        if (any(old[key] != MISSING for key in (
+                "technical", "scientific", "usability"))
+                or all(new[key] == MISSING for key in (
+                    "technical", "scientific", "usability"))
+                or {k: v for k, v in before.items() if k not in (
+                    "observations", "predecessor_sha256")}
+                != {k: v for k, v in after.items() if k not in (
+                    "observations", "predecessor_sha256")}):
+            raise ProtocolError("OPERATOR_CHAIN_INVALID")
+        steps.append({
+            "task_id": old["task_id"],
+            "source_sha256": hashlib.sha256(raw_before).hexdigest(),
+            "destination_sha256": hashlib.sha256(raw_after).hexdigest(),
+        })
+    final, raw_final = source_data[-1]
+    expected = _score_v2_form(final, raw_final, rubric)
+    actual, raw_result = _read_private_json_with_bytes(result_path)
+    if actual != expected:
+        raise ProtocolError("OPERATOR_CHAIN_RESULT_MISMATCH")
+    report = {
+        "schema": FORM_CHAIN_SCHEMA,
+        "status": "OPERATOR_FORM_CHAIN_VERIFIED",
+        "form_reference": rubric["form_reference"],
+        "root_sha256": hashlib.sha256(source_data[0][1]).hexdigest(),
+        "final_sha256": hashlib.sha256(raw_final).hexdigest(),
+        "result_sha256": hashlib.sha256(raw_result).hexdigest(),
+        "result_bytes": len(raw_result),
+        "links_verified": len(steps),
+        "task_ids_recorded": [step["task_id"] for step in steps],
+        "edges": steps,
+        "participant_count": None,
+        "R5": "STOP_R5",
+        "human_observation_verified": False,
+    }
+    size, sha = _write_external_utf8(
+        output_path, json_line(report) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
     )
     return {
-        "schema": FORM_RESULT_SCHEMA,
-        "status": "OPERATOR_FORM_EVALUATION_EXPORTED",
-        "bytes": length,
+        "schema": FORM_CHAIN_SCHEMA,
+        "status": "OPERATOR_FORM_CHAIN_VERIFIED",
+        "links_verified": len(steps),
+        "bytes": size,
         "sha256": sha,
         "participant_count": None,
         "R5": "STOP_R5",
@@ -1097,6 +1494,8 @@ def main(argv: list[str] | None = None) -> int:
     exclusive.add_argument("--participant-handout", metavar="HTML_FILE")
     exclusive.add_argument("--blank-session", action="store_true")
     exclusive.add_argument("--new-session", metavar="JSON_FILE")
+    exclusive.add_argument("--new-private-dir", metavar="PRIVATE_DIR")
+    exclusive.add_argument("--audit-private-dir", metavar="PRIVATE_DIR")
     exclusive.add_argument("--evaluate", metavar="JSON_FILE")
     exclusive.add_argument("--evaluate-to", nargs=2, metavar=("INPUT_JSON", "OUTPUT_JSON"))
     exclusive.add_argument("--prepare-form", nargs=3, metavar=(
@@ -1106,6 +1505,7 @@ def main(argv: list[str] | None = None) -> int:
     exclusive.add_argument("--record-form", nargs=6, metavar=(
         "CODED_V2_SOURCE", "CODED_V2_SUCCESSOR", "OP_TASK_ID",
         "TECH_CODE", "A_OR_B_OR_NOT_OBSERVED", "UX_CODE"))
+    exclusive.add_argument("--verify-chain-to", nargs="+", metavar="PATH")
     exclusive.add_argument("--self-check", action="store_true")
     try:
         args = parser.parse_args(argv)
@@ -1122,6 +1522,10 @@ def main(argv: list[str] | None = None) -> int:
             result = blank_session()
         elif args.new_session is not None:
             result = new_session(args.new_session)
+        elif args.new_private_dir is not None:
+            result = new_private_dir(args.new_private_dir)
+        elif args.audit_private_dir is not None:
+            result = audit_private_dir(args.audit_private_dir)
         elif args.evaluate_to is not None:
             result = evaluate_to(*args.evaluate_to)
         elif args.prepare_form is not None:
@@ -1130,6 +1534,8 @@ def main(argv: list[str] | None = None) -> int:
             result = evaluate_form(*args.evaluate_form)
         elif args.record_form is not None:
             result = record_form(*args.record_form)
+        elif args.verify_chain_to is not None:
+            result = verify_chain_to(*args.verify_chain_to)
         elif args.self_check:
             result = {
                 "schema": SELF_SCHEMA, "status": "OPERATOR_INSTRUMENT_VALID",

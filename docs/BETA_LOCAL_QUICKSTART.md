@@ -13,12 +13,39 @@ solo ficheros fuera del repositorio; no genera ni simula participantes. Elegir
 una carpeta de sesión nueva en el perfil local, con espacio y acentos válidos:
 
     $base = Join-Path $env:LOCALAPPDATA 'PFL prueba científica supervisada'
-    New-Item -ItemType Directory -Force (Join-Path $base 'participante'), (Join-Path $base 'supervisor'), (Join-Path $base 'sqlite') | Out-Null
+    New-Item -ItemType Directory -Force (Join-Path $base 'participante'), (Join-Path $base 'sqlite') | Out-Null
+    python -B scripts/beta_science_operator_protocol.py --new-private-dir (Join-Path $base 'supervisor')
+    python -B scripts/beta_science_operator_protocol.py --audit-private-dir (Join-Path $base 'supervisor')
     python -B scripts/beta_science_operator_protocol.py --self-check
     python -B scripts/beta_science_operator_protocol.py --prepare-form (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'participante\hoja-v2.html') (Join-Path $base 'supervisor\rubrica-privada-v2.json')
 
-Se requieren los estados `OPERATOR_INSTRUMENT_VALID` y `OPERATOR_FORM_PREPARED`.
-La segunda operación genera simultáneamente tres ficheros UTF-8 propios de
+Se requieren los estados `OPERATOR_PRIVATE_DIR_CREATED`,
+`OPERATOR_PRIVATE_DIR_CHECKED`, `OPERATOR_INSTRUMENT_VALID`
+y `OPERATOR_FORM_PREPARED`. Para cada sesión se utiliza una carpeta
+`supervisor` **nueva**: el comando no modifica ACL de directorios
+preexistentes ni sobreescribe materiales.
+
+En Windows con Python 3.13 o posterior, `--new-private-dir`
+crea una carpeta con herencia de permisos restringida; el protocolo
+lee su descriptor NTFS mediante las API nativas y exige propietario
+actual, herencia DACL desactivada y solo entradas de acceso permitidas
+para titular, derechos de propietario, SYSTEM y Administradores.
+Una carpeta que permita lectura a `Everyone`, `Users`, o grupos
+no contemplados se rechaza con `OPERATOR_PRIVATE_DIR_UNVERIFIED`.
+Se comprueba también la DACL del archivo privado antes de leerlo
+y se rechazan alias de enlace simbólico y archivos con varios
+hardlinks. Esto **no** prueba acceso desde un segundo token de
+Windows, no impide acceso de administradores o del propio
+supervisor ni certifica la confidencialidad en un equipo comprometido.
+
+En POSIX se exige propietario actual y modo `0700`. El estado
+`POSIX_MODE_0700_ONLY` **no certifica** ACL extendidas,
+montajes remotos, políticas MAC ni aislamiento real entre personas.
+Si los permisos no se pueden comprobar, la preparación v2 se
+detiene antes de crear la clave. El supervisor debe custodiar
+la cuenta y el directorio privado y comprobar las ACL reales
+con las herramientas apropiadas del sistema operativo.
+La operación `--prepare-form` genera tres ficheros UTF-8 propios de
 **una sola versión v2**, con asignación real de posiciones correctas
 A/B obtenida mediante CSPRNG y equilibrada 6/6. No reutilizar un formulario
 entre participantes, compartir rúbricas ni generar el HTML por separado
@@ -33,8 +60,10 @@ observaciones quedan fuera del directorio `participante`, bajo el control
 del supervisor. No compartir respuestas correctas, nombres, credenciales,
 capturas ni URL privadas; no crear repositorios en estas carpetas.
 Las carpetas separadas no aplican ACL protectoras por sí mismas:
-la rúbrica y el JSON del supervisor requieren permisos y custodia
-reales fuera de la vista de la persona participante. Un usuario con
+esta modalidad verifica el descriptor real de la carpeta privada y
+de los archivos leídos antes de procesar códigos o rúbricas.
+La supervisora debe custodiar igualmente la cuenta y los ficheros,
+fuera de la vista de la participante. Un usuario con
 acceso al repositorio puede ver las soluciones históricas v1; un
 usuario con acceso a la rúbrica v2 puede conocer las de esa variante.
 Si un archivo existe, el protocolo NO lo sobrescribe: usar una carpeta
@@ -96,6 +125,13 @@ registrada permanece `NOT_OBSERVED`. No generar observaciones
 ficticias para completar cuotas. El comando NO requiere leer ni
 mostrar la clave de respuestas.
 
+Cada sucesor conserva `predecessor_sha256` de los **bytes originales**
+de su predecesora. Las fichas raíz v2 ya publicadas siguen teniendo su
+esquema histórico sin ese campo: no se les atribuye retrospectivamente
+una cadena verificada. Las revisiones nuevas mantienen el mismo
+`schema` v2 e incorporan el enlace opcional. Solo una revisión
+que realmente añade una tarea puede ser eslabón válido.
+
 Para una **interrupción o reinicio**, detener con Ctrl+C y conservar
 únicamente la ficha externa. El marcador `pfl_guest=v1` conserva siete
 campos de selección, NO el puerto válido ni la evidencia. Reiniciar con
@@ -110,6 +146,37 @@ válido. Las descargas S9 se verifican offline con los comprobadores
 Tras la observación, y solo si hay alguna tarea realmente codificada:
 
     python -B scripts/beta_science_operator_protocol.py --evaluate-form (Join-Path $base 'supervisor\ULTIMA-REVISION-v2.json') (Join-Path $base 'supervisor\rubrica-privada-v2.json') (Join-Path $base 'supervisor\resultado-verificado-v2.json')
+
+Para cerrar una cadena real, suministrar los nombres *efectivamente
+guardados y en orden*, desde la ficha original hasta la última
+revisión. Por ejemplo, para un caso de **solo dos revisiones**
+(la sintaxis es ilustrativa, no observaciones humanas):
+
+    python -B scripts/beta_science_operator_protocol.py --verify-chain-to (Join-Path $base 'supervisor\cadena-verificada.json') (Join-Path $base 'supervisor\rubrica-privada-v2.json') (Join-Path $base 'supervisor\resultado-verificado-v2.json') (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'supervisor\revision-v2-01.json') (Join-Path $base 'supervisor\revision-v2-02.json')
+
+El estado `OPERATOR_FORM_CHAIN_VERIFIED` exige que cada eslabón
+cite el SHA exacto del fichero anterior, que añada una sola tarea
+previamente no codificada, que todas las demás permanezcan idénticas,
+que se mantengan forma/versión/rúbrica y que el resultado final
+coincida íntegramente con la puntuación obtenida de los mismos bytes.
+El recibo final, creado exclusivamente en la carpeta privada, incluye
+SHA de raíz, último fichero y resultado, sin respuestas originales.
+Una revisión editada, omitida, reordenada o con otro formulario produce
+rechazo sin crear recibo. El encadenamiento no certifica autoría,
+consentimiento ni ausencia de reconstrucción intencionada de archivos
+por una persona con control de todos ellos.
+
+La escritura de un **archivo individual** sigue un protocolo
+de publicación íntegra: archivo temporal de nombre impredecible
+en el mismo directorio, escritura/flush/fsync, aparición del nombre
+definitivo mediante enlace exclusivo, retirada del temporal y,
+cuando el sistema lo permite, sincronización del directorio.
+Un corte súbito puede dejar un temporal `.pfl-stage-*.tmp` o un
+enlace adicional; no reutilizar esos ficheros sin inspección,
+no borrarlos automáticamente y no asumir atomicidad de la
+generación de los tres materiales originales como conjunto.
+En Windows no se certifica la durabilidad del metadato de directorio
+ante fallo eléctrico.
 
 `OPERATOR_FORM_EVALUATION_EXPORTED` implica solamente que el archivo local
 de códigos superó el contrato, no que una persona realmente participara

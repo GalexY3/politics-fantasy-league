@@ -26,6 +26,8 @@ PYTHON_TESTS = (
     "tests/test_beta_science_operator_protocol.py",
     "tests/test_beta_operator_instrument_versioning.py",
     "tests/test_beta_operator_coded_revision.py",
+    "tests/test_beta_operator_artifact_security.py",
+    "tests/test_beta_operator_atomic_publish.py",
     "tests/test_beta_supervised_runtime.py",
     "tests/test_beta_operator_handoff_runtime.py",
     "tests/test_beta_scientific_smoke.py",
@@ -100,7 +102,9 @@ def _run(label: str, command: tuple[str, ...], *, timeout: int) -> dict:
 
 def run() -> dict:
     steps = (
-        ("python", (sys.executable, "-B", "-m", "pytest", "-q", *PYTHON_TESTS), 90),
+        # Native NTFS ACL, junction, hardlink and fault-injected fsync tests
+        # are required, not optional; keep a bounded but realistic local gate.
+        ("python", (sys.executable, "-B", "-m", "pytest", "-q", *PYTHON_TESTS), 240),
         # Pin TAP rather than Node's environment-sensitive default reporter.
         # On failure its "not ok" identifiers can be safely redacted by _run,
         # without copying a traceback, local paths, cookies or fixture bytes.

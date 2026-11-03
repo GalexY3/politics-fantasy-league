@@ -6,6 +6,7 @@ Additional v2 contract tests use independently CSPRNG-assigned local forms.
 All written payloads are anonymous synthetic harness data in tmp_path.
 """
 from __future__ import annotations
+import os
 
 import hashlib
 import json
@@ -121,7 +122,9 @@ def test_prepatch_red_legacy_v1_scoring_receipt_must_disclose_unbound_status(
 def _prepared_v2(tmp_path: Path, stem: str) -> tuple[dict, dict, str, Path, Path, Path]:
     private = tmp_path / ("private rubric " + stem)
     public = tmp_path / ("public participant " + stem)
-    private.mkdir()
+    # The product now refuses private artifacts in inherited/public ACL
+    # directories. Python >=3.13 on Windows creates a protected 0700 DACL.
+    os.mkdir(private, mode=0o700)
     public.mkdir()
     session = private / ("sesion " + stem + ".json")
     rubric = private / ("rubrica " + stem + ".json")
