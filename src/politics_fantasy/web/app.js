@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL', scienceRegistryComparison:null, scienceRegistryCompareError:null, scienceRegistryCompareLoading:false, scienceRegistryCompareRequest:0, scienceRegistryPairExportGeneration:0 };
+const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL', scienceRegistryComparison:null, scienceRegistryCompareError:null, scienceRegistryCompareLoading:false, scienceRegistryCompareRequest:0, scienceRegistryPairExportGeneration:0, guestUrlError:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -84,6 +84,57 @@ const REGISTRY_VALID_DAYS=['2026-09-11','2026-09-15','2026-10-10'];
 const REGISTRY_FAMILIES=['all','PP04','CHAIN','CHRONICLE'];
 const REGISTRY_PUBLICATION=['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'];
 const REGISTRY_KINDS=['ALL','ACTOR','ORGANIZATION','COMMUNICATION','DECISION','PROCESS','ROLE','EVENT'];
+const GUEST_URL_FIELDS=['pfl_guest','cut','valid_at','family','published_until','scenario','view'];
+const GUEST_URL_DEFAULT={cut:'late',validAt:'2026-09-15',family:'all',
+ published:'as_of',scenario:'baseline',view:'sources'};
+function guestUrlSelection(){
+ // A URL is a QUERY INTENT, never a cached receipt or an admission claim.
+ // No interpretation occurs in authenticated Fantasy or before guest entry.
+ const href=globalThis.location?.href;
+ if(typeof href!=='string')return {...GUEST_URL_DEFAULT};
+ try{
+  const url=new URL(href);
+  if(!url.search)return {...GUEST_URL_DEFAULT};
+  const rawFields=url.search.slice(1).split('&');
+  if(url.search.length>640||/%(?![a-fA-F0-9]{2})/.test(url.search)
+    ||rawFields.length!==GUEST_URL_FIELDS.length
+    ||rawFields.some(field=>!field.includes('=')||field.startsWith('=')))
+   return null;
+  const entries=[...url.searchParams];
+  if(entries.length!==GUEST_URL_FIELDS.length
+   ||entries.some(([key])=>!GUEST_URL_FIELDS.includes(key))
+   ||new Set(entries.map(([key])=>key)).size!==GUEST_URL_FIELDS.length)
+   return null;
+  const q=url.searchParams;
+  const cut=q.get('cut'),validAt=q.get('valid_at'),family=q.get('family');
+  const published=q.get('published_until'),scenario=q.get('scenario');
+  const view=q.get('view');
+  if(q.get('pfl_guest')!=='v1'
+   ||!['early','late'].includes(cut)
+   ||!REGISTRY_VALID_DAYS.includes(validAt)
+   ||!REGISTRY_FAMILIES.includes(family)
+   ||!REGISTRY_PUBLICATION.includes(published)
+   ||(cut==='early'&&published==='2026-10-30T12:00:00Z')
+   ||!['baseline','rights_spoof','privacy_probe'].includes(scenario)
+   ||!['sources','compare'].includes(view))return null;
+  return {cut,validAt,family,published,scenario,view};
+ }catch(_){return null;}
+}
+function mirrorGuestUrlSelection(){
+ if(!ui.guest||ui.guestUrlError||typeof globalThis.location?.href!=='string'
+    ||typeof globalThis.history?.replaceState!=='function')return;
+ try{
+  const url=new URL(globalThis.location.href);
+  // Assign every allowlisted field from current UI values. Never copy a
+  // raw query, fragment, credentials, game state or private identifiers.
+  url.search='';
+  const values=['v1',ui.scienceCut,ui.scienceRegistryValid,
+   ui.scienceRegistryFamily,ui.scienceRegistryPublished,ui.scienceScenario,
+   ui.scienceRegistryTab==='compare'?'compare':'sources'];
+  GUEST_URL_FIELDS.forEach((key,i)=>url.searchParams.set(key,values[i]));
+  globalThis.history.replaceState(null,'',url.pathname+url.search);
+ }catch(_){/* URL mirroring is optional; integrity checks still apply. */}
+}
 function validRegistryPayload(x,cut,validAt,family,published){
  const at=cut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z';
  const ceiling=published==='as_of'?at:published;
@@ -1340,6 +1391,13 @@ function guestScienceView(){
 function guestView(){
  const banner='<p class="warning"><strong>VISITA CIENTÍFICA · SOLO LECTURA · R5 STOP.</strong> '
   +'Exploración sintética sin cuenta ni datos de clubes. No hay evidencia real admitida, puntuaciones políticas ni predicciones validadas.</p>';
+ if(ui.guestUrlError)
+  return banner+'<section class="card" role="alert" aria-label="Selección científica de URL rechazada">'
+   +'<h2>Enlace de consulta rechazado</h2><p class="warning">'+esc(ui.guestUrlError)
+   +'</p><p class="help">El enlace solo puede seleccionar filtros ficticios permitidos; '
+   +'nunca constituye prueba de autenticidad ni sustituye la verificación de SHA-256. '
+   +'No se han consultado resultados científicos.</p>'
+   +'<button class="btn secondary" data-action="guest-url-reset">Restablecer consulta</button></section>';
  if(ui.scientificError||ui.scienceRegistryError)
   return banner+heading('CONSULTA BLOQUEADA','Datos científicos no disponibles',
    'El servidor rechazó el contrato o la verificación de integridad. No se muestran resultados antiguos.')
@@ -1366,22 +1424,49 @@ function drawGuest(){
  el('crumb').textContent=ui.tab==='observatory'?'OBSERVATORIO · VISITANTE':'LABORATORIO · VISITANTE';
  el('content').innerHTML=guestView();
 }
-async function reloadGuest(){
- if(!ui.guest)return;
+async function reloadGuest(restoreCompare=false){
+ if(!ui.guest||ui.guestUrlError)return;
  const previous=ui.scienceRequest;
  await loadScientific();
  // A return to login or a newer request invalidates the old response.
  if(!ui.guest||ui.scienceRequest!==previous+1||!ui.scientific)return;
- await loadScientificRegistry();
+ const registryLoad=loadScientificRegistry(),ticket=ui.scienceRegistryRequest;
+ await registryLoad;
+ if(restoreCompare&&ui.guest&&!ui.guestUrlError
+    &&ui.scienceRequest===previous+1&&ui.scienceRegistryRequest===ticket
+    &&ui.scientific&&!ui.scientificError&&!ui.scientificLoading
+    &&ui.scienceRegistry&&!ui.scienceRegistryError&&!ui.scienceRegistryLoading
+    &&ui.scienceRegistryTab==='compare')
+  await loadRegistryComparison();
 }
-async function enterGuest(){
+async function enterGuest(resetUrl=false){
  if(ui.state||ui.session)return;
+ // A new entry, including a second entry during a pending GET, must discard
+ // all prior verified state BEFORE parsing an untrusted location query.
+ ++ui.scienceRequest;++ui.scienceExportGeneration;
+ invalidateScientificRegistry();
+ ui.scientific=null;ui.scientificError=null;ui.scientificLoading=false;
  ui.guest=true;ui.tab='observatory';ui.picks=null;
  ui.scienceScenario='baseline';ui.scienceCut='late';
  ui.scienceRegistryFamily='all';ui.scienceRegistryValid='2026-09-15';
  ui.scienceRegistryPublished='as_of';ui.scienceRegistryTab='sources';
+ ui.scienceFirstPublic='as_of';ui.scienceRegistryKind='ALL';
+ ui.guestUrlError=null;
+ const selection=resetUrl?{...GUEST_URL_DEFAULT}:guestUrlSelection();
+ if(!selection){
+  ui.guestUrlError='Parámetros de URL desconocidos, repetidos, malformados o fuera del reloj ficticio permitido.';
+  drawGuest();return;
+ }
+ ui.scienceCut=selection.cut;
+ ui.scienceScenario=selection.scenario;
+ ui.scienceRegistryValid=selection.validAt;
+ ui.scienceRegistryFamily=selection.family;
+ ui.scienceRegistryPublished=selection.published;
+ ui.scienceRegistryTab=selection.view;
+ mirrorGuestUrlSelection();
  drawGuest();
- await reloadGuest();
+ // A restored comparison always refetches and WebCrypto-verifies both cuts.
+ await reloadGuest(true);
 }
 function authScreen(){
  ui.guest=false;++ui.scienceRequest;++ui.scienceExportGeneration;
@@ -1469,7 +1554,8 @@ document.addEventListener('click',async e=>{
  const act=e.target.closest('[data-action]');if(!act)return;
  if(act.dataset.action==='guest-enter'){await enterGuest();return;}
  if(ui.guest){
-  if(act.dataset.action==='guest-reload'){await reloadGuest();return;}
+  if(act.dataset.action==='guest-url-reset'){await enterGuest(true);return;}
+  if(act.dataset.action==='guest-reload'){await reloadGuest(true);return;}
   if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
   if(act.dataset.action==='science-registry-compare-load'){
    await loadRegistryComparison();return;
@@ -1482,7 +1568,8 @@ document.addEventListener('click',async e=>{
   }
   if(act.dataset.action==='science-registry-tab'){
    if(['sources','compare','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
-    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
+    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';
+    mirrorGuestUrlSelection();draw();
     if(ui.scienceRegistryTab==='compare')await loadRegistryComparison();
    }
    return;
@@ -1520,21 +1607,24 @@ document.addEventListener('change',async e=>{
    if(ui.scienceFirstPublic==='2026-10-30T12:00:00Z')ui.scienceFirstPublic='as_of';
    if(ui.scienceRegistryPublished==='2026-10-30T12:00:00Z')ui.scienceRegistryPublished='as_of';
   }
-  if(ui.guest)await reloadGuest();else await loadScientific();
+  if(ui.guest){mirrorGuestUrlSelection();await reloadGuest();}else await loadScientific();
  }else if(e.target.id==='science-first-public'&&['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(e.target.value)){
   if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
   ui.scienceFirstPublic=e.target.value;++ui.scienceExportGeneration;
   invalidateRegistryComparison();draw();
  }else if(e.target.id==='science-scenario'&&['baseline','rights_spoof','privacy_probe'].includes(e.target.value)){
   ui.scienceScenario=e.target.value;
-  if(ui.guest)await reloadGuest();else await loadScientific();
+  if(ui.guest){mirrorGuestUrlSelection();await reloadGuest();}else await loadScientific();
  }else if(e.target.id==='science-registry-valid'&&REGISTRY_VALID_DAYS.includes(e.target.value)){
-  ui.scienceRegistryValid=e.target.value;await loadScientificRegistry();
+  ui.scienceRegistryValid=e.target.value;
+  mirrorGuestUrlSelection();await loadScientificRegistry();
  }else if(e.target.id==='science-registry-family'&&REGISTRY_FAMILIES.includes(e.target.value)){
-  ui.scienceRegistryFamily=e.target.value;ui.scienceRegistryKind='ALL';await loadScientificRegistry();
+  ui.scienceRegistryFamily=e.target.value;ui.scienceRegistryKind='ALL';
+  mirrorGuestUrlSelection();await loadScientificRegistry();
  }else if(e.target.id==='science-registry-publication'&&REGISTRY_PUBLICATION.includes(e.target.value)){
   if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
-  ui.scienceRegistryPublished=e.target.value;await loadScientificRegistry();
+  ui.scienceRegistryPublished=e.target.value;
+  mirrorGuestUrlSelection();await loadScientificRegistry();
  }else if(e.target.id==='science-candidate'&&['baseline','sha_spoof','issuer_spoof','rights_missing','first_public_missing','crosswalk_missing','denominator_missing','coverage_missing'].includes(e.target.value)){
   ui.scienceCandidate=e.target.value;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
  }else if(e.target.id==='science-valid'&&['2026-09-11','2026-09-15'].includes(e.target.value)){

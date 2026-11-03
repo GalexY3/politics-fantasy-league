@@ -91,7 +91,7 @@ async function stopChild(child,timeoutMs=2500){
 }
 
 test('S9 Chrome native CDP: live DOM observes registry late/early, source family, valid_at and 503', {
- timeout:45000
+ timeout:70000
 },async t=>{
  if(!existsSync(CHROME)||typeof WebSocket!=='function'){
   t.skip('Local Chrome or builtin WebSocket not available');return;
@@ -102,11 +102,12 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
  mkdirSync(downloadsDir);
  let base='http://127.0.0.1';
  let failRegistry=false,chrome=null,socket=null,scienceServer=null;
+ let bookmarkedGuestUrl=null;
  const observedRequests=[];
  const browserRequests=[];
  const server=httpServer((req,res)=>{
   const url=new URL(req.url,base);
-  observedRequests.push({method:req.method,path:url.pathname});
+  observedRequests.push({method:req.method,path:url.pathname,search:url.search});
   try{
    if(url.pathname==='/')return reply(res,200,
     readFileSync(join(ROOT,'src/politics_fantasy/web/index.html'),'utf8'),
@@ -172,8 +173,10 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   });
   let nextId=0;
   const waiting=new Map();
+  let pageLoadEvents=0;
   socket.addEventListener('message',event=>{
    const message=JSON.parse(event.data);
+   if(message.method==='Page.loadEventFired')pageLoadEvents++;
    if(message.method==='Network.requestWillBeSent'){
     const req=message.params?.request;
     if(req)browserRequests.push({method:req.method,url:req.url});
@@ -195,6 +198,7 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   };
   await cdp('Runtime.enable');
   await cdp('Network.enable');
+  await cdp('Page.enable');
   await cdp('Browser.setDownloadBehavior',{behavior:'allow',
     downloadPath:downloadsDir,eventsEnabled:true});
   await poll(()=>js("Boolean(document.querySelector('#auth-form'))"));
@@ -381,6 +385,43 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(await js("document.querySelector('[data-action=\"science-export\"]')===null && document.querySelector('[data-action=\"science-probe\"]')===null"),true);
   await js("document.querySelector('[data-tab=\"observatory\"]').click();true");
   assert.equal(await js("ui.guest && ui.tab==='observatory' && document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  // User-driven, NONDEFAULT guest selection. These are ordinary DOM change
+  // events, not injected UI state; the URL must encode the closed seven-key
+  // selection in order, including the comparison view, without evidence bytes.
+  const selectGuest=async (id,value,ready)=>{
+   const changed=await js("(()=>{const e=document.getElementById("+JSON.stringify(id)+");"
+    +"if(!e||![...e.options].some(o=>o.value==="+JSON.stringify(value)+"))return false;"
+    +"e.value="+JSON.stringify(value)+";e.dispatchEvent(new Event('change',{bubbles:true}));return true;})()");
+   assert.equal(changed,true,'Guest filter control must be present: '+id);
+   await poll(()=>js(ready));
+  };
+  // 'science-cut' lives in the scientific Laboratory toolbar, while source
+  // family/valid_at/publication live in the Observatory registry toolbar.
+  await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest&&ui.tab==='scientific'&&document.getElementById('science-cut'))"));
+  await selectGuest('science-cut','early',
+   "Boolean(ui.guest&&ui.scienceCut==='early'&&ui.scientific?.cut==='early'&&ui.scienceRegistry?.cut==='early'&&!ui.scienceRegistryLoading)");
+  await js("document.querySelector('[data-tab=\"observatory\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest&&ui.tab==='observatory'&&document.getElementById('science-registry-valid'))"));
+  await selectGuest('science-registry-valid','2026-10-10',
+   "Boolean(ui.scienceRegistry?.valid_at==='2026-10-10'&&!ui.scienceRegistryLoading)");
+  await selectGuest('science-registry-family','CHAIN',
+   "Boolean(ui.scienceRegistry?.family==='CHAIN'&&!ui.scienceRegistryLoading)");
+  await selectGuest('science-registry-publication','2026-09-19T12:00:00Z',
+   "Boolean(ui.scienceRegistry?.published_until==='2026-09-19T12:00:00Z'&&!ui.scienceRegistryLoading)");
+  await js("document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"compare\"]').click();true");
+  await poll(()=>js("Boolean(ui.scienceRegistryTab==='compare'&&!ui.scienceRegistryCompareLoading&&ui.scienceRegistryComparison&&!ui.scienceRegistryCompareError)"));
+  const chosenUrl=await js('location.href');
+  const chosen=new URL(chosenUrl);
+  const allowedKeys=['pfl_guest','cut','valid_at','family','published_until','scenario','view'];
+  const expectedSelection=['v1','early','2026-10-10','CHAIN',
+   '2026-09-19T12:00:00Z','baseline','compare'];
+  assert.deepEqual([...chosen.searchParams.keys()],allowedKeys);
+  assert.deepEqual([...chosen.searchParams.values()],expectedSelection);
+  assert.equal(chosen.origin,base);
+  assert.equal(chosen.pathname,'/');
+  bookmarkedGuestUrl=chosenUrl;
+  assert.doesNotMatch(chosenUrl,/SYN:|AUTHOR_|csrf|password|source_id|account/i);
   const forbidden=observedRequests.slice(guestStart).filter(r=>
     r.method!=='GET' || !['/api/scientific-integration-lab','/api/scientific-registry'].includes(r.path));
   assert.deepEqual(forbidden,[], 'Guest session has no /api/state, POST, login or registration calls');
@@ -391,6 +432,155 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(await js("document.getElementById('guest-exit').hidden"),true);
   assert.equal(await js("ui.state===null && ui.scientific===null && ui.scienceRegistry===null"),true);
   assert.deepEqual(observedRequests.slice(guestStart).filter(r=>r.method!=='GET'||r.path==='/api/state'||r.path==='/api/register'||r.path==='/api/login'),[]);
+  // Reload the ACTUAL bookmarked query in the SAME Chrome target, with no
+  // synthetic JS state injection. Waiting on Page.loadEventFired and fully
+  // verified DOM avoids treating an old execution context as a new visit.
+  const navigateAndLoad=async (url=null)=>{
+   const before=pageLoadEvents;
+   if(url===null)await cdp('Page.reload',{ignoreCache:true});
+   else await cdp('Page.navigate',{url});
+   await poll(()=>pageLoadEvents>before);
+  };
+  const explicitAnonymousGuestEntry=async()=>{
+   // The ordinary (accounts-enabled) 401 must still show LOGIN. A bookmark
+   // cannot silently open a session or treat URL parameters as credentials.
+   await poll(()=>js("Boolean(!ui.guest&&ui.state===null&&ui.session===null&&document.querySelector('#auth-form')&&document.querySelector('[data-action=\"guest-enter\"]'))"));
+   await js("document.querySelector('[data-action=\"guest-enter\"]').click();true");
+  };
+  const restoredFromBrowser=async()=>{
+   await poll(()=>js("Boolean(ui.guest&&!ui.guestUrlError&&ui.state===null&&ui.session===null&&ui.csrf===null&&ui.tab==='observatory'&&ui.scienceCut==='early'&&ui.scienceRegistryValid==='2026-10-10'&&ui.scienceRegistryFamily==='CHAIN'&&ui.scienceRegistryPublished==='2026-09-19T12:00:00Z'&&ui.scienceRegistryTab==='compare'&&ui.scientific?.cut==='early'&&ui.scienceRegistry?.cut==='early'&&!ui.scienceRegistryLoading&&ui.scienceRegistryComparison&&!ui.scienceRegistryCompareLoading&&!ui.scienceRegistryCompareError&&document.querySelector('[data-action=\"science-registry-pair-export\"]'))"));
+   const receipts=await js("(()=>({current:ui.scienceRegistry,early:ui.scienceRegistryComparison.early,late:ui.scienceRegistryComparison.late}))()");
+   for(const [name,body] of Object.entries(receipts)){
+    const rec=body.snapshot_receipt;
+    const bytes=Buffer.from(rec.canonical_json,'utf8');
+    assert.equal(rec.bytes,bytes.length,name+' canonical UTF8 byte count');
+    assert.equal(rec.sha256,createHash('sha256').update(bytes).digest('hex'),
+     name+' independently recomputed Node SHA-256');
+    assert.equal(body.snapshot_receipt_sha256,rec.sha256);
+    assert.equal(body.R5,'STOP_R5');
+    assert.equal(body.release_gates_passed,0);
+    assert.equal(body.scientific_ab_cycles,0);
+    assert.equal(body.family,'CHAIN');
+    assert.equal(body.valid_at,'2026-10-10');
+    assert.equal(body.published_until,'2026-09-19T12:00:00Z');
+   }
+   assert.equal(receipts.early.cut,'early');
+   assert.equal(receipts.late.cut,'late');
+   assert.equal(receipts.current.cut,'early');
+   assert.equal(receipts.early.registry.visible_distribution_count,1);
+   assert.equal(receipts.late.registry.visible_distribution_count,1);
+   assert.deepEqual([...new URL(await js('location.href')).searchParams.values()],
+    expectedSelection);
+   return receipts;
+  };
+  const assertFreshBrowserGets=(begin)=>{
+   const seen=observedRequests.slice(begin);
+   const reg=seen.filter(x=>x.method==='GET'&&x.path==='/api/scientific-registry');
+   assert.ok(reg.length>=3,'Guest restore must issue current+two fresh registry GETs');
+   for(const cut of ['early','late']){
+    const matches=reg.filter(x=>{
+     const q=new URLSearchParams(x.search);
+     return q.get('cut')===cut&&q.get('family')==='CHAIN'
+      &&q.get('valid_at')==='2026-10-10'
+      &&q.get('published_until')==='2026-09-19T12:00:00Z';
+    });
+    assert.ok(matches.length>0,'Missing new SHA-backed '+cut+' GET');
+   }
+   assert.ok(seen.some(x=>x.path==='/api/scientific-integration-lab'));
+   assert.deepEqual(seen.filter(x=>x.method!=='GET'
+    ||['/api/state','/api/register','/api/login'].includes(x.path)),[]);
+   return reg.length;
+  };
+  const bookmarkStart=observedRequests.length;
+  await navigateAndLoad(bookmarkedGuestUrl);
+  assert.deepEqual(observedRequests.slice(bookmarkStart).filter(r=>
+   ['/api/scientific-registry','/api/scientific-integration-lab'].includes(r.path)),[],
+   'Ordinary anonymous URL must not query science before explicit guest entry');
+  await explicitAnonymousGuestEntry();
+  const firstRestore=await restoredFromBrowser();
+  const firstReloadGets=assertFreshBrowserGets(bookmarkStart);
+  const reloadStart=observedRequests.length;
+  await navigateAndLoad();
+  await explicitAnonymousGuestEntry();
+  const secondRestore=await restoredFromBrowser();
+  const secondReloadGets=assertFreshBrowserGets(reloadStart);
+  for(const name of ['current','early','late']){
+   assert.equal(firstRestore[name].snapshot_receipt.sha256,
+    secondRestore[name].snapshot_receipt.sha256,
+    'Page.reload must revalidate the same authored public projection');
+  }
+  // A real 503 *after* navigation must preserve the selected query yet erase
+  // all old receipts and the export control. Browser retry obtains NEW GETs.
+  failRegistry=true;
+  await navigateAndLoad();
+  await explicitAnonymousGuestEntry();
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceRegistry===null&&ui.scienceRegistryComparison===null&&ui.scienceRegistryError?.includes('503')&&document.querySelector('#content [role=\"alert\"]')&&document.querySelector('[data-action=\"guest-reload\"]')&&!document.querySelector('[data-action=\"science-registry-pair-export\"]'))"));
+  assert.deepEqual([...new URL(await js('location.href')).searchParams.values()],
+   expectedSelection);
+  failRegistry=false;
+  const retryStart=observedRequests.length;
+  await js("document.querySelector('[data-action=\"guest-reload\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceRegistry&&!ui.scienceRegistryError&&!ui.scienceRegistryLoading&&document.querySelector('[data-action=\"science-registry-compare-load\"]'))"));
+  await js("document.querySelector('[data-action=\"science-registry-compare-load\"]').click();true");
+  await restoredFromBrowser();
+  const recoveredGets=assertFreshBrowserGets(retryStart);
+  // The recovered pair is downloaded by real Chrome, then independently
+  // parsed and verified by the UNMODIFIED Python offline --pair CLI.
+  await js("document.querySelector('[data-action=\"science-registry-pair-export\"]').scrollIntoView({block:'center'});true");
+  const freshPoint=await js("(()=>{const r=document.querySelector('[data-action=\"science-registry-pair-export\"]').getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2};})()");
+  await cdp('Input.dispatchMouseEvent',{type:'mousePressed',
+   x:freshPoint.x,y:freshPoint.y,button:'left',clickCount:1});
+  await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
+   x:freshPoint.x,y:freshPoint.y,button:'left',clickCount:1});
+  const {name:restoredPairFile,data:restoredPair}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-pair-2026-10-10-[a-f0-9]{12}\.json$/);
+  assert.equal(restoredPair.pair_receipt.sha256,
+   createHash('sha256').update(restoredPair.pair_receipt.canonical_json,'utf8').digest('hex'));
+  assert.equal(restoredPair.pair_receipt.bytes,
+   Buffer.byteLength(restoredPair.pair_receipt.canonical_json,'utf8'));
+  assert.equal(restoredPair.exports.early.query.family,'CHAIN');
+  assert.equal(restoredPair.exports.late.query.valid_at,'2026-10-10');
+  const offlineRestored=JSON.parse(python(['scripts/compare_scientific_exports.py',
+   '--pair',join(downloadsDir,restoredPairFile)]));
+  assert.equal(offlineRestored.status,'PASS');
+  assert.equal(offlineRestored.pair_sha256,restoredPair.pair_receipt.sha256);
+  assert.equal(offlineRestored.early.sha256,restoredPair.exports.early.snapshot_receipt.sha256);
+  assert.equal(offlineRestored.late.sha256,restoredPair.exports.late.snapshot_receipt.sha256);
+  assert.equal(offlineRestored.publisher_identity_verified,false);
+  assert.equal(offlineRestored.rights_for_public_display_admitted,false);
+  unlinkSync(join(downloadsDir,restoredPairFile));
+  // Malformed URL intent is rejected BEFORE any scientific GET or cached
+  // results. An explicit reset produces only safe default guest parameters.
+  const unknown=new URL(bookmarkedGuestUrl);unknown.searchParams.set('unknown','x');
+  const future=new URL(bookmarkedGuestUrl);
+  future.searchParams.set('published_until','2026-10-30T12:00:00Z');
+  const wrongFamily=new URL(bookmarkedGuestUrl);
+  wrongFamily.searchParams.set('family','REAL_ACTORS');
+  const invalidUrls=[
+   bookmarkedGuestUrl+'&cut=late',
+   unknown.href,
+   future.href,
+   wrongFamily.href,
+  ];
+  for(const invalidUrl of invalidUrls){
+   const invalidBegin=observedRequests.length;
+   await navigateAndLoad(invalidUrl);
+   await explicitAnonymousGuestEntry();
+   await poll(()=>js("Boolean(ui.guest&&ui.guestUrlError&&ui.scientific===null&&ui.scienceRegistry===null&&ui.scienceRegistryComparison===null&&document.querySelector('#content [role=\"alert\"]')&&document.querySelector('[data-action=\"guest-url-reset\"]'))"));
+   assert.deepEqual(observedRequests.slice(invalidBegin).filter(x=>
+    ['/api/scientific-registry','/api/scientific-integration-lab'].includes(x.path)),[],
+    'Malformed guest URL must not trigger scientific GETs');
+   await js("document.querySelector('[data-action=\"guest-url-reset\"]').click();true");
+   await poll(()=>js("Boolean(ui.guest&&!ui.guestUrlError&&ui.scienceRegistry?.cut==='late'&&ui.scienceRegistryFamily==='all'&&ui.scienceRegistryValid==='2026-09-15'&&ui.scienceRegistryPublished==='as_of'&&ui.scientific?.cut==='late'&&!ui.scienceRegistryLoading)"));
+   assert.deepEqual([...new URL(await js('location.href')).searchParams.values()],
+    ['v1','late','2026-09-15','all','as_of','baseline','sources']);
+  }
+  assert.deepEqual(observedRequests.slice(bookmarkStart).filter(x=>
+   x.method!=='GET'||['/api/state','/api/login','/api/register'].includes(x.path)),[]);
+  // Restore original smoke precondition: a plain login screen, not a
+  // deep-linked guest, before the established authenticated S9 probe.
+  await navigateAndLoad(base+'/');
+  await poll(()=>js("Boolean(!ui.guest&&ui.state===null&&document.querySelector('#auth-form')&&document.querySelector('[data-action=\"guest-enter\"]'))"));
   // Keep the pre-existing S9 native Chrome flow and export assertions unchanged.
   await js("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.club='demo';document.querySelector('[data-tab=\"scientific\"]').click();true");
   await poll(()=>js("Boolean(ui.scientific&&ui.scientific.cut==='late'&&document.querySelector('[data-action=\"science-registry-load\"]'))"));
@@ -493,6 +683,100 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   await js("document.getElementById('guest-exit').click();true");
   assert.equal(await js("ui.guest && ui.scienceOnly && document.querySelector('#auth-form')===null && ui.scienceRegistry!==null"),true);
   assert.equal(await js("document.querySelector('#content').innerText.includes('Crear cuenta')"),false);
+  // Real operating-system restart: the SAME Chrome target loads a nondefault
+  // guest bookmark from the science-only Python server, then the server process
+  // is stopped and restarted on the SAME loopback port AND SQLite directory.
+  // Neither the browser nor this test synthesizes a registry result.
+  const scienceBookmark=scienceBase+new URL(bookmarkedGuestUrl).pathname
+   +new URL(bookmarkedGuestUrl).search;
+  const freshScienceGets=(begin)=>{
+   const seen=browserRequests.slice(begin).filter(r=>r.url.startsWith(scienceBase));
+   const registry=seen.filter(r=>r.method==='GET'
+    &&new URL(r.url).pathname==='/api/scientific-registry');
+   assert.ok(registry.length>=3,'Science-only must re-fetch current and two compare receipts');
+   for(const cut of ['early','late']){
+    assert.ok(registry.some(request=>{
+     const q=new URL(request.url).searchParams;
+     return q.get('cut')===cut&&q.get('valid_at')==='2026-10-10'
+      &&q.get('family')==='CHAIN'
+      &&q.get('published_until')==='2026-09-19T12:00:00Z';
+    }),'Missing restored '+cut+' cut in real Python HTTP');
+   }
+   assert.ok(seen.some(r=>new URL(r.url).pathname==='/api/scientific-integration-lab'));
+   assert.deepEqual(seen.filter(r=>r.method!=='GET'
+    ||['/api/state','/api/register','/api/login'].includes(new URL(r.url).pathname)),[]);
+   return registry.length;
+  };
+  const scienceBefore=browserRequests.length;
+  await navigateAndLoad(scienceBookmark);
+  const scienceOriginal=await restoredFromBrowser();
+  assert.equal(await js("ui.scienceOnly===true&&document.getElementById('guest-exit').hidden"),true);
+  const originalScienceGets=freshScienceGets(scienceBefore);
+  const originalScienceDigest=scienceOriginal.current.snapshot_receipt.sha256;
+  const originalPairDigests=['early','late'].map(k=>
+   scienceOriginal[k].snapshot_receipt.sha256);
+  const previousServerPid=scienceServer.pid;
+  await stopChild(scienceServer);
+  scienceServer=null;
+  const durableRegistry=join(scienceDir,'scientific_registry_synthetic.sqlite3');
+  assert.equal(existsSync(durableRegistry),true);
+  const originalDbDigest=createHash('sha256').update(readFileSync(durableRegistry)).digest('hex');
+  // The launcher uses only localhost, a disposable science-only DB, and no
+  // accounts. Poll its real /api/session before navigating the browser again.
+  scienceServer=spawn('python',['-B','run_demo.py','--science-only',
+   '--port',String(sciencePort),'--db',join(scienceDir,'science.db')],
+   {cwd:ROOT,env:PYENV,stdio:'ignore',windowsHide:true});
+  assert.notEqual(scienceServer.pid,previousServerPid);
+  await poll(async()=>{
+   const response=await fetch(scienceBase+'/api/session');
+   return response.status===401&&(await response.json()).science_only===true;
+  },150);
+  const restartedScienceStart=browserRequests.length;
+  await navigateAndLoad(scienceBookmark);
+  const scienceRestarted=await restoredFromBrowser();
+  const restartedScienceGets=freshScienceGets(restartedScienceStart);
+  assert.equal(scienceRestarted.current.snapshot_receipt.sha256,originalScienceDigest);
+  assert.deepEqual(['early','late'].map(k=>scienceRestarted[k].snapshot_receipt.sha256),
+   originalPairDigests,'Independent S9 receipts persist byte-identically after OS restart');
+  assert.equal(createHash('sha256').update(readFileSync(durableRegistry)).digest('hex'),
+   originalDbDigest,'The scientific SQLite was not reseeded or mutated on restart/read');
+  assert.equal(existsSync(join(scienceDir,'accounts.sqlite3')),false);
+  assert.equal(existsSync(join(scienceDir,'accounts')),false);
+  assert.equal(existsSync(join(scienceDir,'science.db')),false);
+  // Real Chrome downloads a *second* pair after the actual process restart;
+  // the independent CLI must accept the exact re-created synthetic receipts.
+  await js("document.querySelector('[data-action=\"science-registry-pair-export\"]').scrollIntoView({block:'center'});true");
+  const durablePairPoint=await js("(()=>{const r=document.querySelector('[data-action=\"science-registry-pair-export\"]').getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};})()");
+  await cdp('Input.dispatchMouseEvent',{type:'mousePressed',
+   x:durablePairPoint.x,y:durablePairPoint.y,button:'left',clickCount:1});
+  await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
+   x:durablePairPoint.x,y:durablePairPoint.y,button:'left',clickCount:1});
+  const {name:durablePairFile,data:durablePair}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-pair-2026-10-10-[a-f0-9]{12}\.json$/);
+  const durableOffline=JSON.parse(python([
+   'scripts/compare_scientific_exports.py','--pair',
+   join(downloadsDir,durablePairFile)]));
+  assert.equal(durableOffline.status,'PASS');
+  assert.equal(durableOffline.pair_sha256,durablePair.pair_receipt.sha256);
+  assert.equal(durableOffline.early.sha256,originalPairDigests[0]);
+  assert.equal(durableOffline.late.sha256,originalPairDigests[1]);
+  assert.equal(durableOffline.R5,'STOP_R5');
+  assert.equal(durableOffline.real_sources_admitted,0);
+  assert.equal(durableOffline.publisher_identity_verified,false);
+  assert.equal(durableOffline.rights_for_public_display_admitted,false);
+  unlinkSync(join(downloadsDir,durablePairFile));
+  console.log('S9_GUEST_URL_CDP '+JSON.stringify({
+   one_chrome:true,facade_initial_registry_gets:firstReloadGets,
+   facade_reload_registry_gets:secondReloadGets,
+   facade_503_recovery_registry_gets:recoveredGets,
+   science_only_before_restart_registry_gets:originalScienceGets,
+   science_only_after_restart_registry_gets:restartedScienceGets,
+   science_only_restart_processes:2,
+   registry_receipt_sha256:originalScienceDigest,
+   persisted_sqlite_sha256:originalDbDigest,
+   offline_pair_pass:true,guest_only:true,R5:'STOP_R5',
+   public_release_gates:0,scientific_ab_cycles:0
+  }));
  }finally{
   if(socket)socket.close();
   await Promise.all([stopChild(chrome),stopChild(scienceServer)]);

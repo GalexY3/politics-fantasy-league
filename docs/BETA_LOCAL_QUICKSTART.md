@@ -150,6 +150,44 @@ de sandbox no es admisión científica, licencia, evidencia histórica
 española ni estimación causal. El contrato técnico está en
 docs/S9_DURABLE_SYNTHETIC_SCIENTIFIC_REGISTRY_20261101.md.
 
+## Recuperar una consulta anónima tras cerrar o reiniciar
+
+El **modo visitante** conserva la selección científica en la **URL del propio
+navegador**, no en cuentas, almacenamiento local ni bases Fantasy. Se puede
+copiar la dirección de la pestaña del Observatorio después de seleccionar
+el corte, la vigencia `valid_at`, la familia, el techo ficticio de
+publicación, el escenario del Laboratorio y «Comparar cortes». Al reabrirla
+tras recargar la página o reiniciar `run_demo.py --science-only` contra el
+mismo directorio SQLite, se restablecen **los filtros**, pero **no** los
+resultados ni los recibos previos: el navegador vuelve a solicitar al
+servidor ambas proyecciones y recalcula sus SHA-256. Sin servicio disponible
+no se recupera un registro del pasado desde la URL.
+
+Para que el mismo enlace funcione tras reiniciar, utiliza **el mismo puerto
+local**, por ejemplo `python run_demo.py --science-only --port 8787`, y el
+mismo directorio SQLite. Con `--port 0`, el sistema puede seleccionar un
+puerto diferente en cada arranque: en ese caso, hay que sustituir el
+protocolo/host/puerto del enlace por los del nuevo servidor local antes de
+abrirlo. No se redirige automáticamente a otro servicio ni se habilita el
+acceso desde fuera de 127.0.0.1.
+
+El único contrato permitido de URL visitante es
+`pfl_guest=v1`, `cut`, `valid_at`, `family`, `published_until`,
+`scenario` y `view`. Se exigen exactamente esas siete claves, sin
+duplicados ni extras y con valores de las listas cerradas del fixture S9.
+La publicación estipulada de 30/10 no puede elegirse con `cut=early`.
+Las URL extrañas, repetidas o cronológicamente incompatibles se bloquean
+**sin consultar el Laboratorio ni el Observatorio**, y ofrecen «Restablecer
+consulta» para volver a una selección segura. Un HTTP 400/503 o un SHA
+incompatible siguen invalidando el contenido y la exportación; el enlace
+por sí solo **no** es un recibo, una copia de originales ni una autorización.
+
+Esta persistencia se limita al modo **visitante**. Nunca implica sesión
+de usuario, autenticación, escrituras HTTP ni almacenamiento de credenciales.
+No se comparten identificadores privados, originales o bytes de fuente-local
+en la URL. Una consulta guardada no prueba que el mismo corte estuviera
+disponible históricamente: todos los relojes S9 siguen siendo ficticios.
+
 ## Bloqueos de la beta pública
 
 STOP_R5 permanece, con **0/6 puertas** y cero ciclos AB-R nuevos.

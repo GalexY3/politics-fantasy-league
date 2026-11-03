@@ -1,5 +1,5 @@
 {
-  "revision": 46,
+  "revision": 47,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1244,5 +1244,40 @@
     "fantasy_redesign_deferred": true,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "release_receipt": "docs/BETA_ATOMIC_PAIR_ACCEPTANCE_RECEIPT_20261103.json"
+  },
+  "local_beta_anonymous_query_recovery": {
+    "date": "2026-11-03",
+    "baseline_committed_head": "c699b87d8eaeaf83c4cd5f4ba840370ca21c1097",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_NONCYCLE_GUEST_QUERY_RECOVERY",
+    "guest_url_schema": "pfl_guest=v1",
+    "guest_url_allowed_only_public_s9_filters": true,
+    "guest_url_duplicate_unknown_invalid_or_future_query_rejected": true,
+    "guest_query_restores_only_filter_intent_never_snapshot_bytes": true,
+    "guest_query_restores_verified_comparison_via_fresh_http_and_webcrypto": true,
+    "client_account_state_written": false,
+    "local_storage_or_cookie_state_written_for_guest_query": false,
+    "guest_api_post_or_state_called": false,
+    "browser_url_is_not_scientific_evidence_or_rights": true,
+    "early_late_and_publication_clock_preserved": true,
+    "existing_s9_pair_export_and_offline_contract_preserved": true,
+    "existing_sqlite_v3_v4_schema_preserved": true,
+    "science_only_restart_and_persistence_still_required": true,
+    "focal_node_and_native_chrome_evidence": "tests/test_beta_registry_comparison.mjs; tests/test_s9_chrome_registry.mjs",
+    "focal_acceptance": "python scripts/beta_acceptance.py",
+    "focal_runner_deterministic_tap_diagnostics": true,
+    "old_intermittent_startup_cause_established": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_ab_cycles_added": 0,
+    "real_empirical_spanish_sources_admitted": 0,
+    "publisher_identity_verified": false,
+    "rights_for_public_display_admitted": false,
+    "human_acceptance_completed": false,
+    "public_release_authorized": false,
+    "fantasy_redesign_deferred": true,
+    "reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_GUEST_QUERY_RECOVERY_RECEIPT_20261103.json"
   }
 }

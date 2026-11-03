@@ -84,10 +84,15 @@ def _run(label: str, command: tuple[str, ...], *, timeout: int) -> dict:
 def run() -> dict:
     steps = (
         ("python", (sys.executable, "-B", "-m", "pytest", "-q", *PYTHON_TESTS), 90),
-        ("node", ("node", "--test", *NODE_TESTS), 90),
+        # Pin TAP rather than Node's environment-sensitive default reporter.
+        # On failure its "not ok" identifiers can be safely redacted by _run,
+        # without copying a traceback, local paths, cookies or fixture bytes.
+        ("node", ("node", "--test", "--test-reporter=tap", *NODE_TESTS), 90),
         # Separate invocations avoid concurrent native-Chrome launches.
-        ("chrome_s9", ("node", "--test", BROWSER_TESTS[0]), 60),
-        ("chrome_accessibility", ("node", "--test", BROWSER_TESTS[1]), 60),
+        ("chrome_s9", ("node", "--test", "--test-reporter=tap",
+                        BROWSER_TESTS[0]), 60),
+        ("chrome_accessibility", ("node", "--test", "--test-reporter=tap",
+                                   BROWSER_TESTS[1]), 60),
     )
     results = []
     for label, command, timeout in steps:

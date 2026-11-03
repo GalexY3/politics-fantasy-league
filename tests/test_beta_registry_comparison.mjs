@@ -34,13 +34,19 @@ const lab=Object.fromEntries(['early','late'].map(cut=>[
   {cwd:ROOT,env:PYENV,encoding:'utf8',maxBuffer:3*1024*1024,timeout:12000}))
 ]));
 
-function harness(){
+function harness({href='http://localhost/',scienceOnly=false}={}){
  const elements={},listeners={},requests=[],downloads=[],blobs=[];
+ const location={href};
+ const historyWrites=[];
+ const history={replaceState(state,title,path){
+  historyWrites.push({state,title,path,requestCount:requests.length});
+  location.href=new URL(path,location.href).href;
+ }};
  const tabs=['overview','club','market','rounds','observatory','scientific','atlas','progress']
   .map(tab=>({dataset:{tab},hidden:false,classList:{toggle(){}},
    setAttribute(){},removeAttribute(){}}));
  let compareFail=null,rightsSpoof=false,badSha=false,holdNext=false,pending=null;
- let pauseDigest=false,pendingDigest=null,labFail=null;
+ let pauseDigest=false,pendingDigest=null,labFail=null,digestCalls=0;
  let registryQueries=0;
  class LocalURL extends URL{}
  LocalURL.createObjectURL=blob=>{blobs.push(blob);return 'blob:synthetic-compare-test';};
@@ -57,7 +63,9 @@ function harness(){
   requests.push({route,method:options.method||'GET'});
   const url=new URL(route,'http://localhost');
   if(url.pathname==='/api/session')return{ok:false,status:401,
-   json:async()=>({authenticated:false,error:'AUTH_REQUIRED'})};
+   json:async()=>scienceOnly
+    ?({authenticated:false,science_only:true,error:'LOCAL_SCIENCE_ONLY'})
+    :({authenticated:false,error:'AUTH_REQUIRED'})};
   if(url.pathname==='/api/scientific-integration-lab'){
    if(labFail!==null)return{ok:false,status:labFail};
    const data=structuredClone(lab[url.searchParams.get('cut')||'late']);
@@ -85,13 +93,14 @@ function harness(){
   throw Error('Forbidden account API route: '+route);
  };
  const crypto={subtle:{digest:(...args)=>{
+  digestCalls++;
   if(!pauseDigest)return webcrypto.subtle.digest(...args);
   pauseDigest=false;
   return new Promise((resolve,reject)=>{
    pendingDigest=()=>webcrypto.subtle.digest(...args).then(resolve,reject);
   });
  }}};
- const context=createContext({document,fetch,URL:LocalURL,TextEncoder,Blob,crypto,
+ const context=createContext({document,fetch,URL:LocalURL,location,history,TextEncoder,Blob,crypto,
   Intl,Date,Number,String,Error,console,setTimeout(){},clearTimeout(){}});
  runInContext(SOURCE.slice(0,SOURCE.lastIndexOf('bootstrap().catch')),context);
  const evalJs=expression=>runInContext(expression,context);
@@ -102,8 +111,10 @@ function harness(){
  }}});
  const change=(id,value)=>listeners.change({target:{id,value}});
  return{
-  elements,requests,downloads,blobs,evalJs,click,change,
-  guest:async()=>{await evalJs('bootstrap()');await click('guest-enter');},
+  elements,requests,downloads,blobs,evalJs,click,change,historyWrites,
+  getHref:()=>location.href,
+  digestCalls:()=>digestCalls,
+  guest:async()=>{await evalJs('bootstrap()');if(!evalJs('ui.guest'))await click('guest-enter');},
   setFail(cut,status){compareFail={cut,status};},
   setLabFail(status){labFail=status;},
   setRightsSpoof(enabled){rightsSpoof=enabled;},
@@ -256,6 +267,216 @@ for(const status of [400,503]){
   onlyGet(t.requests);
  });
 }
+
+const guestLink=(values={})=>{
+ const entries=[
+  ['pfl_guest','v1'],['cut','late'],['valid_at','2026-09-15'],
+  ['family','all'],['published_until','as_of'],
+  ['scenario','baseline'],['view','sources']
+ ];
+ const query=new URLSearchParams(entries);
+ for(const [name,value] of Object.entries(values))query.set(name,value);
+ return 'http://localhost/?'+query.toString();
+};
+
+test('guest mirrors exact allowlisted selection as a reproducible, credential-free URL',async()=>{
+ const t=harness();await t.guest();
+ await t.change('science-cut','early');
+ await t.change('science-registry-valid','2026-10-10');
+ await t.change('science-registry-family','CHAIN');
+ await t.change('science-registry-publication','2026-09-19T12:00:00Z');
+ await t.change('science-scenario','privacy_probe');
+ await t.click('science-registry-tab','compare');
+ const expected=guestLink({
+  cut:'early',valid_at:'2026-10-10',family:'CHAIN',
+  published_until:'2026-09-19T12:00:00Z',
+  scenario:'privacy_probe',view:'compare'
+ });
+ assert.equal(t.getHref(),expected);
+ assert.ok(t.historyWrites.length>=7);
+ assert.ok(t.historyWrites.every(x=>x.state===null&&x.title===''));
+ const params=[...new URL(t.getHref()).searchParams];
+ assert.deepEqual(params.map(([k])=>k),
+  ['pfl_guest','cut','valid_at','family','published_until','scenario','view']);
+ assert.doesNotMatch(t.getHref(),/username|password|csrf|token|S9:PUBLIC|snapshot_receipt/);
+ assert.equal(t.evalJs('ui.scienceRegistryComparison.early.cut'),'early');
+ assert.equal(t.evalJs('ui.scienceRegistryComparison.late.cut'),'late');
+ onlyGet(t.requests);
+});
+
+test('reloaded science-only URL restores filters BEFORE GET then verifies current and both comparison SHA afresh',async()=>{
+ const url=guestLink({
+  cut:'early',valid_at:'2026-10-10',family:'CHAIN',
+  published_until:'2026-09-19T12:00:00Z',
+  scenario:'privacy_probe',view:'compare'
+ });
+ const t=harness({href:url,scienceOnly:true});
+ t.pauseNextDigest();
+ const opening=t.evalJs('bootstrap()');
+ for(let i=0;i<100&&!t.hasPendingDigest();i++)await new Promise(setImmediate);
+ assert.equal(t.hasPendingDigest(),true,'A fresh WebCrypto verification must occur after network GET');
+ assert.equal(t.evalJs('ui.scienceRegistry'),null,'No S9 result visible while SHA unresolved');
+ assert.equal(t.evalJs('ui.scienceRegistryComparison'),null,'URL never supplies a trusted pair');
+ t.releaseDigest();
+ await opening;
+ assert.equal(t.evalJs('ui.guest'),true);
+ assert.equal(t.evalJs('ui.scienceCut'),'early');
+ assert.equal(t.evalJs('ui.scienceScenario'),'privacy_probe');
+ assert.equal(t.evalJs('ui.scienceRegistryValid'),'2026-10-10');
+ assert.equal(t.evalJs('ui.scienceRegistryFamily'),'CHAIN');
+ assert.equal(t.evalJs('ui.scienceRegistryPublished'),'2026-09-19T12:00:00Z');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'compare');
+ assert.ok(t.evalJs('ui.scienceRegistryComparison'));
+ assert.equal(t.digestCalls(),3,'Current S9 + independently verified early/late');
+ assert.equal(t.historyWrites[0].requestCount,1,
+  'Only anonymous /api/session occurs before URL has been normalized');
+ const scienceRequests=t.requests.filter(x=>x.route.includes('/api/scientific-'));
+ assert.equal(scienceRequests.length,4,'S8, current S9, both comparison S9 cuts');
+ assert.ok(scienceRequests[0].route.includes('cut=early'));
+ for(const req of scienceRequests.filter(x=>x.route.startsWith('/api/scientific-registry'))){
+  const query=new URL(req.route,'http://localhost').searchParams;
+  assert.equal(query.get('valid_at'),'2026-10-10');
+  assert.equal(query.get('family'),'CHAIN');
+ }
+ assert.equal(t.getHref(),url);
+ assert.match(t.elements.content.innerHTML,/Comparar cortes/);
+ onlyGet(t.requests);
+});
+
+test('explicit visitor entry restores the canonical link without account/session APIs',async()=>{
+ const url=guestLink({cut:'late',family:'CHRONICLE',
+  published_until:'2026-10-30T12:00:00Z',view:'sources'});
+ const t=harness({href:url});
+ await t.evalJs('bootstrap()');
+ assert.equal(t.evalJs('ui.guest'),false);
+ assert.equal(t.evalJs('ui.scienceRegistry'),null);
+ assert.equal(t.historyWrites.length,0,'Account login view does not consume URL');
+ assert.equal(t.getHref(),url);
+ assert.equal(t.requests.length,1);
+ await t.click('guest-enter');
+ assert.equal(t.evalJs('ui.guest'),true);
+ assert.equal(t.evalJs('ui.scienceCut'),'late');
+ assert.equal(t.evalJs('ui.scienceRegistryFamily'),'CHRONICLE');
+ assert.equal(t.evalJs('ui.scienceRegistryPublished'),'2026-10-30T12:00:00Z');
+ assert.equal(t.evalJs('ui.scienceRegistryTab'),'sources');
+ assert.equal(t.evalJs('ui.scienceRegistry.family'),'CHRONICLE');
+ assert.equal(t.evalJs('ui.scienceRegistry.published_until'),'2026-10-30T12:00:00Z');
+ assert.equal(t.digestCalls(),1,'Single fresh S9 receipt, not cached URL data');
+ assert.equal(t.requests.filter(x=>x.route.startsWith('/api/scientific-registry')).length,1);
+ assert.equal(t.getHref(),url);
+ onlyGet(t.requests);
+});
+
+const canonicalGuestUrl=guestLink({view:'compare'});
+const invalidGuestUrls=[
+ ['duplicate cut',canonicalGuestUrl+'&cut=early'],
+ ['unknown field',canonicalGuestUrl+'&username=IGNORED_CANARY'],
+ ['malformed percent',canonicalGuestUrl.replace('cut=late','cut=%ZZ')],
+ ['trailing separator',canonicalGuestUrl+'&'],
+ ['empty separator',canonicalGuestUrl.replace('&family=all','&&family=all')],
+ ['wrong marker',canonicalGuestUrl.replace('pfl_guest=v1','pfl_guest=v2')],
+ ['invalid scenario',canonicalGuestUrl.replace('scenario=baseline','scenario=rights_unknown')],
+ ['missing field',canonicalGuestUrl.replace('&view=compare','')],
+ ['unallowlisted date',canonicalGuestUrl.replace('valid_at=2026-09-15','valid_at=2026-12-20')],
+ ['future early publication',guestLink({cut:'early',
+  published_until:'2026-10-30T12:00:00Z',view:'compare'})],
+ ['oversized query',canonicalGuestUrl+'&x='+'z'.repeat(700)],
+ ['SHA masquerading as selector',canonicalGuestUrl+'&sha256='+'f'.repeat(64)]
+];
+for(const [label,href] of invalidGuestUrls){
+ test('invalid guest URL '+label+' fails closed without any S8/S9 GET and offers explicit reset',async()=>{
+  const t=harness({href,scienceOnly:true});
+  await t.guest();
+  assert.equal(t.evalJs('ui.guest'),true);
+  assert.equal(t.evalJs('ui.scientific'),null);
+  assert.equal(t.evalJs('ui.scienceRegistry'),null);
+  assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+  assert.match(t.elements.content.innerHTML,/Selección científica de URL rechazada/);
+  assert.match(t.elements.content.innerHTML,/Restablecer consulta/);
+  assert.equal(t.requests.length,1,'Only /api/session, no scientific data leaked');
+  assert.equal(t.historyWrites.length,0,'Reject URL without silently normalizing it');
+  await t.click('guest-reload');
+  assert.equal(t.requests.length,1,'Retry cannot bypass invalid URL gate');
+  await t.click('guest-url-reset');
+  assert.equal(t.evalJs('ui.guestUrlError'),null);
+  assert.ok(t.evalJs('ui.scientific'));
+  assert.ok(t.evalJs('ui.scienceRegistry'));
+  assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+  assert.equal(t.getHref(),guestLink());
+  assert.equal(t.evalJs('ui.scienceRegistryTab'),'sources');
+  assert.ok(t.digestCalls()>=1);
+  onlyGet(t.requests);
+ });
+}
+
+test('changing to early cut from late-publication selection normalizes URL before any new GET',async()=>{
+ const t=harness();await t.guest();
+ await t.change('science-registry-publication','2026-10-30T12:00:00Z');
+ assert.equal(new URL(t.getHref()).searchParams.get('published_until'),'2026-10-30T12:00:00Z');
+ await t.change('science-cut','early');
+ assert.equal(t.evalJs('ui.scienceRegistryPublished'),'as_of');
+ assert.equal(t.getHref(),guestLink({cut:'early'}));
+ assert.equal(t.evalJs('ui.scienceRegistry.cut'),'early');
+ onlyGet(t.requests);
+});
+
+test('an established Fantasy account never interprets or overwrites a hostile guest URL',async()=>{
+ const url=canonicalGuestUrl+'&username=ACCOUNT_CANARY';
+ const t=harness({href:url});
+ t.evalJs("ui.state={clubs:[{id:'demo',name:'demo'}]};ui.session='existing-account'");
+ await t.evalJs('enterGuest()');
+ assert.equal(t.evalJs('ui.guest'),false);
+ assert.equal(t.evalJs('ui.guestUrlError'),null);
+ t.evalJs('mirrorGuestUrlSelection()');
+ assert.equal(t.getHref(),url);
+ assert.equal(t.historyWrites.length,0);
+ assert.equal(t.requests.length,0);
+ assert.equal(t.evalJs('ui.session'),'existing-account');
+});
+
+for(const endpoint of ['registry','lab']){
+ test('restored comparison retains selected URL through '+endpoint+' HTTP503 and verifies fresh data on retry',async()=>{
+  const url=guestLink({view:'compare',family:'CHAIN'});
+  const t=harness({href:url,scienceOnly:true});
+  if(endpoint==='registry')t.setFail('late',503);
+  else t.setLabFail(503);
+  await t.guest();
+  assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+  assert.equal(t.evalJs('ui.scienceRegistry'),null);
+  assert.match(t.elements.content.innerHTML,/Reintentar consulta/);
+  assert.equal(t.getHref(),url);
+  t.setFail(null,null);
+  t.setLabFail(null);
+  const before=t.digestCalls();
+  await t.click('guest-reload');
+  assert.equal(t.evalJs('ui.guestUrlError'),null);
+  assert.equal(t.evalJs('ui.scienceRegistryTab'),'compare');
+  assert.ok(t.evalJs('ui.scienceRegistryComparison'));
+  assert.ok(t.digestCalls()>=before+3);
+  assert.equal(t.getHref(),url);
+  onlyGet(t.requests);
+ });
+}
+
+test('restored in-flight comparison A→B→A cannot republish stale data despite identical final URL',async()=>{
+ const url=guestLink({view:'compare'});
+ const t=harness({href:url,scienceOnly:true});
+ t.holdNextEarly();
+ const opening=t.evalJs('bootstrap()');
+ for(let i=0;i<100&&!t.pending();i++)await new Promise(setImmediate);
+ assert.equal(t.pending(),true,'Early comparison GET must be pending');
+ assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+ await t.change('science-registry-valid','2026-10-10');
+ await t.change('science-registry-valid','2026-09-15');
+ assert.equal(t.getHref(),url);
+ t.release();await opening;
+ assert.equal(t.evalJs('ui.scienceRegistryComparison'),null);
+ assert.ok(t.evalJs('ui.scienceRegistry'));
+ await t.click('science-registry-compare-load');
+ assert.ok(t.evalJs('ui.scienceRegistryComparison'),'User-initiated fresh query can now succeed');
+ assert.equal(t.getHref(),url);
+ onlyGet(t.requests);
+});
 
 for(const [name,change] of [
  ['valid_at',t=>t.change('science-registry-valid','2026-10-10')],
