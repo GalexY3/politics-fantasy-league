@@ -1,0 +1,147 @@
+{
+  "baseline_published_head": "576b594a25132a8fa0d1037a0b318e62f5b7d8e2",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "file_count": 8,
+  "file_manifest_basis": "EXACT_STAGED_GIT_BLOBS",
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 105826,
+      "sha256": "dbd01fbcc5242f5e700facf2e199c2f43ba03242a99cfbc76765c1168c63b538"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 86436,
+      "sha256": "34db738c4fbe8f35b527154a00589b21a136a217888add9734daa10d015696c3"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 17771,
+      "sha256": "59f5b9a2e0f0e4c32dfc3145a001698aa69312b241ce840ab9a732bd4ca92a35"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 6723,
+      "sha256": "076dee5d8533c7d33a05bb8d6d9f5448083371c3ba4f70820c2de2f7442f7513"
+    },
+    "src/politics_fantasy/web/app.js": {
+      "bytes": 167531,
+      "sha256": "cd2960d0e94017910cb0037f94c224e56803d2350aafcaab26932eaab8b5c748"
+    },
+    "tests/test_beta_guest_lab_explorer.mjs": {
+      "bytes": 13994,
+      "sha256": "ef4a184094750ee145d3267540cb705e9738f929abfd9a2574df7486d0610df3"
+    },
+    "tests/test_s8_scientific_ui.mjs": {
+      "bytes": 7075,
+      "sha256": "387371458b44e80d754036688801deeebc7aa9c470c08e1f7567a965e57905c5"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 72259,
+      "sha256": "18da6c5d864d04137f0e3e11cc03e398b0d91907d3e9d5e0537eab4e7aaebf69"
+    }
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "causal_effect_identified": false,
+    "independent_all_received_registry_admitted": false,
+    "public_beta_authorized": false,
+    "publisher_authenticity_certified": false,
+    "real_first_public_accredited": false,
+    "real_spanish_empirical_sources_admitted": 0,
+    "release_gates_passed": 0,
+    "rights_for_public_display_admitted": false,
+    "scientific_AB_R_cycles_added": 0
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_red": {
+    "actual": "Rechazo del contrato HTTP 503",
+    "command": "node --test --test-reporter=tap --test-name-pattern=PREPATCH RED S8 admission late failure tests/test_s8_scientific_ui.mjs",
+    "executed_before_app_js_change": true,
+    "exit_code": 1,
+    "expected": "null",
+    "failed": 1,
+    "file": "tests/test_s8_scientific_ui.mjs",
+    "genuine_existing_defect": true,
+    "postpatch_focal_test_passed": true,
+    "test": "PREPATCH RED S8 admission late failure belongs only to initiating candidate"
+  },
+  "product_contract": {
+    "account_dry_run_A_B_A_stale_receipt_rejected": true,
+    "exact_guest_url_keys": [
+      "pfl_guest",
+      "cut",
+      "valid_at",
+      "family",
+      "published_until",
+      "scenario",
+      "view"
+    ],
+    "existing_s9_pair_stale_on_filters": true,
+    "guest_admission_probe_available": false,
+    "guest_laboratory_panels": [
+      "mechanisms",
+      "s3",
+      "witnesses",
+      "distributions"
+    ],
+    "guest_s8_export_available": false,
+    "guest_url_contract_changed": false,
+    "logout_during_pending_request_invalidates_result": true,
+    "new_http_endpoint_or_sqlite_migration": false,
+    "s3_bounds_assumption_conditional_and_noncausal": true,
+    "s3_early_future_lookahead_blocked": true,
+    "s7_statuses": [
+      "INCONCLUSIVE",
+      "B0_ONLY",
+      "B3_ONLY",
+      "NEITHER",
+      "CONFLICT",
+      "INADMISSIBLE"
+    ],
+    "s7_witness_sets_per_cut": 20,
+    "s8_catalogue_filter_uses_first_public_and_capture_clocks": true,
+    "s8_descriptor_sha_revision_and_rights_readonly": true,
+    "s9_individual_or_pair_receipt_contract_changed": false,
+    "scientific_states_are_not_http_errors": true
+  },
+  "publication_status_at_receipt_creation": "UNCOMMITTED_STAGED_BLOBS",
+  "schema": "pfl.beta_guest_s8_exploration_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_GUEST_S8_EVIDENCE_EXPLORER_AND_RACE_GUARD",
+  "verification": {
+    "chrome_native_CDP_real": true,
+    "chrome_real_download_s9_pair_and_offline_verifier": true,
+    "human_acceptance_completed": false,
+    "no_http_post_or_game_account_in_guest_flow": true,
+    "persistent_sqlite_unchanged_by_guest_navigation": true,
+    "postcommit_clean_head_acceptance_pending_at_creation": true,
+    "runner": "python -B scripts/beta_acceptance.py",
+    "two_distinct_real_science_only_processes_verified": true,
+    "valid_guest_publication_requery_and_SHA_verified": true,
+    "worktree": {
+      "checks": [
+        {
+          "label": "python",
+          "status": "PASS",
+          "tests_passed": 242
+        },
+        {
+          "label": "node",
+          "status": "PASS",
+          "tests_passed": 107
+        },
+        {
+          "label": "chrome_s9",
+          "status": "PASS",
+          "tests_passed": 1
+        },
+        {
+          "label": "chrome_accessibility",
+          "status": "PASS",
+          "tests_passed": 1
+        }
+      ],
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "status": "PASS",
+      "tests_passed": 351,
+      "working_tree_modified_at_execution": true
+    }
+  }
+}

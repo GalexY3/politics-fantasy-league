@@ -260,6 +260,45 @@ No se comparten identificadores privados, originales o bytes de fuente-local
 en la URL. Una consulta guardada no prueba que el mismo corte estuviera
 disponible históricamente: todos los relojes S9 siguen siendo ficticios.
 
+## Explorador S8 de solo lectura en el Laboratorio visitante
+
+El Laboratorio del visitante ofrece cuatro paneles: **mecanismos B0/B3**,
+**sensibilidad condicional S3**, **testigos S7** y **distribuciones S8**.
+El resultado procede del GET sintético del Laboratorio, no de fuentes
+externas. No autoriza exportación S8, simulación de incorporación,
+credenciales ni escritura de una cuenta; el Observatorio S9 conserva sus
+exportaciones y verificadores offline separados.
+
+B0 calendario y B3 selección editorial muestran la misma proyección
+publicada; E2 pendiente y E4 censurado no son rechazos. Las cotas S3, solo
+visibles en el corte tardío, dependen de un supuesto de selección,
+no son causales ni estimaciones de expedientes reales. Los veinte testigos
+diferencian NEITHER, CONFLICT e INADMISSIBLE como estados *científicos*
+de fixtures: nunca equivalen a HTTP 400/503. Se preservan contradicciones.
+
+En la tabla S8, el filtro de primera publicación ficticia reutiliza
+el campo `published_until` de la URL visitante de **siete claves
+exactas**, sin guardar contenido. Solo aparecen descriptores públicos
+con `first_public_at_fixture` anterior al techo seleccionado y
+`captured_at_fixture` no posterior a `as_of`. El corte
+temprano prohíbe la fecha del 30 de octubre. Cambiar el filtro
+refresca el registro S9 e invalida recibos anteriores. El SHA local no
+demuestra autenticidad del emisor, derechos, censo ni primera publicación
+histórica. Oculto en el filtro no es negativo ni rechazo ni ausencia.
+
+Para aceptación humana (todavía pendiente): arrancar
+`python run_demo.py --science-only --port 0`, abrir Laboratorio,
+inspeccionar los cuatro paneles, comparar S3 early/late y los veinte
+S7, cambiar el techo ficticio de publicación, regresar al
+Observatorio, reanudar la URL de siete campos tras reinicio y verificar
+offline una descarga S9 nueva. Este recorrido no convierte un test
+automatizado en aceptación humana.
+
+El dry-run S8 en cuenta local descarta las respuestas tardías
+de un candidato anterior después de cambiar la selección,
+incluido HTTP 503 y secuencias A→B→A. No permite admisión
+científica real.
+
 ## Bloqueos de la beta pública
 
 STOP_R5 permanece, con **0/6 puertas** y cero ciclos AB-R nuevos.

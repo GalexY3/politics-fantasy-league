@@ -35,6 +35,7 @@ PYTHON_TESTS = (
     "tests/test_beta_offline_cut_comparison.py",
 )
 NODE_TESTS = (
+    "tests/test_beta_guest_lab_explorer.mjs",
     "tests/test_beta_registry_comparison.mjs",
     "tests/test_beta_scientific_guest.mjs",
     "tests/test_s8_scientific_ui.mjs",

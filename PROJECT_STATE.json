@@ -1,5 +1,5 @@
 {
-  "revision": 50,
+  "revision": 51,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1391,5 +1391,50 @@
     "fantasy_redesign_deferred": true,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_INSTITUTIONAL_SUBVIEW_RECOVERY_RECEIPT_20261103.json"
+  },
+  "local_beta_guest_s8_exploration": {
+    "date": "2026-11-03",
+    "baseline_published_head": "576b594a25132a8fa0d1037a0b318e62f5b7d8e2",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_GUEST_S8_READONLY_AND_ACCOUNT_DRY_RUN_RACE_GUARD",
+    "guest_laboratory_panels": [
+      "mechanisms",
+      "s3",
+      "witnesses",
+      "distributions"
+    ],
+    "s3_early_lookahead_blocked": true,
+    "s3_late_bounds_conditional_not_causal": true,
+    "s7_witness_sets_exposed_in_guest": 20,
+    "s7_conflict_not_http_failure": true,
+    "public_descriptor_first_public_and_as_of_filtered": true,
+    "guest_url_keys_unchanged": 7,
+    "reuses_guest_published_until": true,
+    "guest_s8_export_or_admission_available": false,
+    "account_dry_run_old_candidate_error_invalidated": true,
+    "prepatch_red": {
+      "node_case": "PREPATCH RED S8 admission late failure belongs only to initiating candidate",
+      "failed_before_app_js_patch": 1,
+      "actual_error": "Rechazo del contrato HTTP 503"
+    },
+    "new_http_api_or_sqlite_schema": false,
+    "original_s9_export_and_pair_contract_changed": false,
+    "tests": [
+      "tests/test_s8_scientific_ui.mjs",
+      "tests/test_beta_guest_lab_explorer.mjs",
+      "tests/test_s9_chrome_registry.mjs"
+    ],
+    "runner": "python scripts/beta_acceptance.py",
+    "status": "READY_REVIEW",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "new_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_GUEST_S8_EXPLORATION_RECEIPT_20261103.json"
   }
 }

@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL', scienceRegistryComparison:null, scienceRegistryCompareError:null, scienceRegistryCompareLoading:false, scienceRegistryCompareRequest:0, scienceRegistryPairExportGeneration:0, guestUrlError:null };
+const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceAdmissionRequest:0, scienceGuestPanel:'mechanisms', scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL', scienceRegistryComparison:null, scienceRegistryCompareError:null, scienceRegistryCompareLoading:false, scienceRegistryCompareRequest:0, scienceRegistryPairExportGeneration:0, guestUrlError:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -604,8 +604,10 @@ async function exportScientific(){
 
 async function probeScientificAdmission(){
  if(ui.guest)return;
+ const ticket=++ui.scienceAdmissionRequest,candidate=ui.scienceCandidate;
+ const current=()=>!ui.guest&&ticket===ui.scienceAdmissionRequest
+  &&candidate===ui.scienceCandidate;
  ui.scienceAdmitting=true;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
- const candidate=ui.scienceCandidate;
  try{
   const response=await fetch('/api/scientific-lab-admission?candidate='+encodeURIComponent(candidate),{cache:'no-store',credentials:'same-origin'});
   if(!response.ok)throw new Error('Rechazo del contrato HTTP '+response.status);
@@ -616,9 +618,9 @@ async function probeScientificAdmission(){
     ||result.real_original_admitted!==false||result.source_rows_imported!==0
     ||result.real_person_scoring!==false||!Array.isArray(result.blockers)
     ||!result.blockers.length)throw new Error('Validación de admisión incompatible');
-  if(candidate===ui.scienceCandidate)ui.scienceAdmission=result;
- }catch(e){ui.scienceAdmissionError=String(e.message);}
- finally{ui.scienceAdmitting=false;if(ui.tab==='scientific')draw();}
+  if(current())ui.scienceAdmission=result;
+ }catch(e){if(current())ui.scienceAdmissionError=String(e.message);}
+ finally{if(current()){ui.scienceAdmitting=false;if(ui.tab==='scientific')draw();}}
 }
 function voteBar(r,i){
  const label=`Votación ${i+1}: sí ${r.yes}, no ${r.no}, abstención ${r.abstain}. Total ${r.total}.`;
@@ -1354,40 +1356,164 @@ function navigationMode(mode){
  el('club-select').hidden=mode!=='account';
  el('guest-exit').hidden=mode!=='guest'||ui.scienceOnly;
 }
+const GUEST_SCIENCE_PANELS=['mechanisms','s3','witnesses','distributions'];
 function guestScienceView(){
- const p=ui.scientific,e=p.explorer,w=p.warehouse;
- const cases=w?.b0_b3_witness_sets?.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
+ const p=ui.scientific,e=p?.explorer,w=p?.warehouse;
  const b=w?.b0_b3_observational_equivalence;
+ const cases=w?.b0_b3_witness_sets?.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
  const states=['INCONCLUSIVE','B0_ONLY','B3_ONLY','NEITHER','CONFLICT','INADMISSIBLE'];
- if(!Array.isArray(cases)||cases.length!==20
-    ||!cases.every(c=>c&&states.includes(c.status)&&typeof c.case==='string')
-    ||b?.all_published_source_sha_and_typed_revisions_equal!==true)
-  return '<section class="card" role="alert"><p class="warning">El contrato de escenarios S7 no es verificable. Vista bloqueada.</p></section>';
- const counts=states.map(s=>'<tr><td>'+esc(s)+'</td><td>'+count(cases.filter(c=>c.status===s).length)+'</td></tr>').join('');
- const rows=cases.map(c=>'<tr><td><code>'+esc(c.case)+'</code></td><td>'+esc(c.status)
-  +'</td><td>'+esc((c.compatible_mechanisms||[]).join(' / ')||'Sin adjudicar')
-  +'</td><td>'+esc(c.reason)+'</td></tr>').join('');
- return heading('CONSULTA ABIERTA · S8','Laboratorio científico',
-  'Comparación de mecanismos, censura y conjuntos de testigos con datos íntegramente sintéticos.')
-  +'<section class="science-toolbar card" aria-label="Corte de laboratorio para visitantes">'
-  +'<label for="science-cut">Conocimiento (as_of)<select id="science-cut"><option value="early" '
-  +(ui.scienceCut==='early'?'selected':'')+'>15 oct 2026</option><option value="late" '
-  +(ui.scienceCut==='late'?'selected':'')+'>1 nov 2026</option></select></label>'
+ const distributions=e?.catalog?.distributions;
+ // Public guest panels are drawn only after the S8 and independent S9
+ // contracts have been verified. All displayed records stay synthetic.
+ if(!validSciencePayload(p)||!Array.isArray(cases)||cases.length!==20
+    ||!cases.every(c=>c&&states.includes(c.status)&&typeof c.case==='string'
+       &&typeof c.reason==='string'&&Array.isArray(c.compatible_mechanisms)
+       &&Array.isArray(c.witness_admissibility))
+    ||b?.all_published_source_sha_and_typed_revisions_equal!==true
+    ||!Array.isArray(distributions)
+    ||!distributions.every(d=>d&&typeof d.distribution_id==='string'
+       &&typeof d.first_public_at_fixture==='string'
+       &&typeof d.captured_at_fixture==='string'
+       &&typeof d.family==='string'&&typeof d.issuer_fixture==='string'
+       &&typeof d.revision_or_asset_kind==='string'
+       &&typeof d.quality_gate==='string'&&typeof d.admissibility_reason==='string'
+       &&typeof d.coverage_temporal?.state==='string'
+       &&/^[a-f0-9]{64}$/.test(d.sha256)
+       &&d.empirical_distribution_admitted===false
+       &&d.rights_for_requested_purpose_admitted===false))
+  return '<section class="card" role="alert"><p class="warning">El contrato público S8 no es verificable. Vista bloqueada.</p></section>';
+ const publish=ui.scienceRegistryPublished==='as_of'?p.as_of:ui.scienceRegistryPublished;
+ const publishedUntil=publish<=p.as_of?publish:p.as_of;
+ const visible=distributions.filter(d=>d.first_public_at_fixture<=publishedUntil
+  &&d.captured_at_fixture<=p.as_of);
+ const titles={mechanisms:'Mecanismos B0 y B3',s3:'S3 · identificación parcial',
+  witnesses:'Testigos diferenciales sintéticos S7',distributions:'Distribuciones y revisiones S8'};
+ const current=GUEST_SCIENCE_PANELS.includes(ui.scienceGuestPanel)
+  ?ui.scienceGuestPanel:'mechanisms';
+ const navigation='<nav class="science-registry-nav" aria-label="Vistas del Laboratorio S8">'
+  +GUEST_SCIENCE_PANELS.map(panel=>'<button type="button" class="btn secondary '
+   +(current===panel?'registry-active':'')+'" data-action="science-guest-panel" data-panel="'
+   +panel+'" aria-pressed="'+(current===panel?'true':'false')+'">'+esc(titles[panel])+'</button>').join('')
+  +'</nav>';
+ const publications=REGISTRY_PUBLICATION.filter(v=>v==='as_of'
+  ||v<=(ui.scienceCut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z'));
+ const publicationOptions=publications.map(v=>'<option value="'+esc(v)+'" '
+  +(v===ui.scienceRegistryPublished?'selected':'')+'>'
+  +esc(v==='as_of'?'Hasta as_of':v)+'</option>').join('');
+ const toolbar='<section class="science-toolbar card" aria-label="Corte de laboratorio para visitantes">'
+  +'<label for="science-cut">Conocimiento (as_of)<select id="science-cut">'
+  +'<option value="early" '+(ui.scienceCut==='early'?'selected':'')+'>15 oct 2026</option>'
+  +'<option value="late" '+(ui.scienceCut==='late'?'selected':'')+'>1 nov 2026</option></select></label>'
   +'<label for="science-scenario">Escenario sintético<select id="science-scenario">'
   +['baseline','rights_spoof','privacy_probe'].map(v=>'<option value="'+v+'" '
-  +(ui.scienceScenario===v?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>'
-  +'<button class="btn secondary" data-action="guest-reload">Actualizar consulta</button></section>'
-  +'<section class="metrics">'+stat('Corte conocido',ui.scienceCut==='early'?'Temprano':'Tardío','Reloj del fixture')
-  +stat('Escenarios S7',cases.length,'Conjuntos estipulados')
-  +stat('Distribuciones',e.catalog.distributions.length,'Sin originales publicados')
-  +stat('Puertas R5','0 / 6','Admisión detenida')+'</section>'
-  +'<section class="card"><h2>B0 y B3 · mecanismos rivales</h2>'
-  +'<p class="help">Los mecanismos de calendario (B0) y selección de publicación (B3) son observacionalmente equivalentes en los materiales publicados por este fixture. La ausencia de un resultado no demuestra rechazo.</p>'
-  +'<p class="footnote">Corte: '+esc(p.as_of)+' · escenario: '+esc(p.scenario)+' · sin denominador independiente ni derechos de difusión empírica acreditados.</p>'
-  +'<div class="tablewrap"><table><thead><tr><th>Estado S7</th><th>Conjuntos</th></tr></thead><tbody>'+counts+'</tbody></table></div></section>'
-  +'<section class="card"><h2>Testigos diferenciales sintéticos</h2>'
-  +'<p class="help">INADMISSIBLE significa evidencia insuficiente. CONFLICT conserva testimonios incompatibles. NEITHER indica incompatibilidad con ambos mecanismos estipulados, nunca una refutación empírica.</p>'
-  +'<div class="tablewrap"><table><thead><tr><th>Conjunto</th><th>Estado</th><th>Mecanismos compatibles</th><th>Justificación del fixture</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+   +(ui.scienceScenario===v?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>'
+  +'<label for="science-registry-publication">Primera publicación ficticia'
+  +'<select id="science-registry-publication">'+publicationOptions+'</select></label>'
+  +'<button class="btn secondary" data-action="guest-reload">Actualizar consulta</button></section>';
+ const metrics='<section class="metrics">'
+  +stat('Conocimiento',ui.scienceCut==='early'?'Temprano':'Tardío','Corte sintético')
+  +stat('Conjuntos S7',cases.length,'Escenarios alternativos')
+  +stat('Distribuciones visibles',visible.length+' / '+distributions.length,'Publicación y captura ficticias')
+  +stat('Puertas R5','0 / 6','Sin admisión de originales')+'</section>';
+ let panel='';
+ if(current==='mechanisms'){
+  const n=b.hypothetical_all_received_by_mechanism||{};
+  const coverage=b.hypothetical_publication_coverage||{};
+  panel='<section class="card" aria-label="Mecanismos rivales B0 y B3">'
+   +'<h2>B0 y B3 · equivalencia observacional</h2>'
+   +'<p class="help">Dos hipótesis generan las mismas proyecciones publicadas, sus revisiones tipadas y SHA del fixture; esa coincidencia no identifica el mecanismo de publicación.</p>'
+   +'<div class="science-rivals"><article><strong>B0 · calendario</strong>'
+   +'<p>Publicación estipulada por calendario. No se conoce una decisión terminal de E3 en esta hipótesis.</p>'
+   +'<p>N hipotético: '+esc(n.B0_CALENDAR)+' · cobertura publicada: '
+   +esc(coverage.B0_CALENDAR)+'</p></article>'
+   +'<article><strong>B3 · selección de publicación</strong>'
+   +'<p>En esta hipótesis alternativa, E3 termina ficticiamente en rechazo y no se publica.</p>'
+   +'<p>N hipotético: '+esc(n.B3_SELECTION_PUBLICATION)+' · cobertura publicada: '
+   +esc(coverage.B3_SELECTION_PUBLICATION)+'</p></article></div>'
+   +'<p class="footnote">E2 sigue pendiente en ambas hipótesis. E4 está censurado por la derecha, nunca contabilizado como rechazo. Un mismo denominador supuesto no discrimina calendario frente a selección.</p>'
+   +'<p class="warning">R5 STOP: no hay denominador independiente, causalidad identificada ni evidencia administrativa española admitida.</p></section>';
+ }else if(current==='s3'){
+  const s3=ui.scienceCut==='late'?w.partial_identification_oracle:null;
+  if(!s3){
+   panel='<section class="card" aria-label="S3 · identificación parcial">'
+    +'<h2>S3 · identificación parcial</h2>'
+    +'<p class="warning">'+(ui.scienceCut==='early'
+     ?'Aún no conocida en el corte temprano. No se anticipan cotas o resultados del corte tardío.'
+     :'Oráculo S3 ausente en corte tardío; vista bloqueada.')
+    +'</p></section>';
+  }else if(s3.schema!=='pfl.synthetic_partial_identification_oracle.v1'
+       ||s3.empirical_estimand_admitted!==false||s3.causal_effect_identified!==false
+       ||!s3.prevalence_bounds?.before||!s3.prevalence_bounds?.after
+       ||!s3.change_bounds||!s3.observed_positive_share
+       ||!s3.selection_ratio_positive_to_negative
+       ||!s3.without_ratio_restriction?.trivial_change_closure){
+   panel='<section class="card" role="alert">Oráculo S3 incompatible; vista bloqueada.</section>';
+  }else{
+   const ratio=s3.selection_ratio_positive_to_negative;
+   const before=s3.prevalence_bounds.before,after=s3.prevalence_bounds.after;
+   const changes=s3.change_bounds,unconstrained=s3.without_ratio_restriction.trivial_change_closure;
+   panel='<section class="card" aria-label="S3 · identificación parcial">'
+    +'<h2>S3 · identificación parcial bajo selección</h2>'
+    +'<p class="help">Proporción positiva observada: antes '+esc(s3.observed_positive_share.before)
+    +', después '+esc(s3.observed_positive_share.after)+'. La razón supuesta P(publicado|Y=1) / P(publicado|Y=0) va de '
+    +esc(ratio.lower)+' a '+esc(ratio.upper)+'; no es una odds ratio.</p>'
+    +'<div class="metrics">'
+    +stat('Prevalencia antes',esc(before.lower)+' a '+esc(before.upper),'Cotas racionales condicionales')
+    +stat('Prevalencia después',esc(after.lower)+' a '+esc(after.upper),'Cotas racionales condicionales')
+    +stat('Cambio',esc(changes.lower)+' a '+esc(changes.upper),'Asociación no causal')
+    +'</div><p class="footnote">Sin restricción de selección: cambio compatible '
+    +esc(unconstrained.lower)+' a '+esc(unconstrained.upper)
+    +'. Son escenarios binarios inventados, sin muestra administrativa real ni estimando empírico admitido.</p>'
+    +'<p class="warning">R5 STOP · Sin identificación causal ni validación externa.</p></section>';
+  }
+ }else if(current==='witnesses'){
+  const counts=states.map(status=>esc(status)+': '+count(cases.filter(c=>c.status===status).length)).join(' · ');
+  const rows=cases.map(c=>{
+   const witnesses=c.witness_admissibility.map(t=>'<p class="footnote"><strong>'
+    +esc(t?.case)+'</strong> · '+esc(t?.status)+' · '+esc(t?.reason)+'</p>').join('');
+   const conflict=c.contradiction
+    ?'<p class="footnote">CONFLICT · '+esc(c.contradiction.kind)
+     +' · declaraciones retenidas '+esc(c.contradiction.evidence_rows_retained)+'</p>':'';
+   return '<tr><td><code>'+esc(c.case)+'</code></td><td>'+esc(c.status)
+    +'</td><td>'+esc(c.compatible_mechanisms.join(' / ')||'Sin adjudicar')
+    +'</td><td>'+esc(c.reason)+'</td><td><details><summary>'
+    +count(c.witness_admissibility.length)+' testigos; ver admisibilidad</summary>'
+    +(witnesses||'<p class="footnote">Sin testigos</p>')+conflict+'</details></td></tr>';
+  }).join('');
+  panel='<section class="card" aria-label="Testigos diferenciales S7">'
+   +'<h2>S7 · testigos diferenciales sintéticos</h2><p class="help">'+counts+'</p>'
+   +'<p class="help">NEITHER: testigo sintético admisible incompatible con ambos mecanismos estipulados. CONFLICT: declaraciones incompatibles retenidas. INADMISSIBLE: testigo no admisible. Ninguno constituye prueba empírica española.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Conjunto</th><th>Estado</th><th>Mecanismos</th><th>Justificación</th><th>Testigos y contradicción</th>'
+   +'</tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+ }else if(current==='distributions'){
+  const rows=visible.map(d=>'<tr><td><code>'+esc(d.distribution_id)
+   +'</code><small class="science-minor">'+esc(d.family)+' · '
+   +esc(d.revision_or_asset_kind)+'</small></td>'
+   +'<td>'+esc(d.issuer_fixture)+'</td>'
+   +'<td>'+esc(d.first_public_at_fixture)+'</td>'
+   +'<td>'+esc(d.captured_at_fixture)+'</td>'
+   +'<td><code class="science-digest">'+esc(d.sha256)+'</code>'
+   +'<small class="science-minor">'+esc(d.quality_gate)+' · '
+   +esc(d.coverage_temporal?.state)+'</small></td>'
+   +'<td><strong>NO ADMITIDA</strong><small class="science-minor">'
+   +esc(d.admissibility_reason)+'</small>'
+   +'<small class="science-minor">Derechos para finalidad declarada: NO ACREDITADOS</small></td></tr>').join('');
+  panel='<section class="card" aria-label="Catálogo público S8">'
+   +'<h2>S8 · catálogo de fuentes sintéticas</h2>'
+   +'<p class="help">Distribuciones capturadas hasta as_of '+esc(p.as_of)
+   +' y publicadas ficticiamente hasta '+esc(publishedUntil)
+   +'. SHA de descriptor público, revisión y controles del fixture; sin enlaces ni bytes originales privados. Las fechas y los permisos reales no están acreditados.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Distribución / revisión</th>'
+   +'<th>Emisor ficticio</th><th>Primera publicación ficticia</th>'
+   +'<th>Captura ficticia</th><th>SHA / calidad / cobertura</th><th>Admisibilidad y derechos</th>'
+   +'</tr></thead><tbody>'+rows+'</tbody></table></div>'
+   +(rows?'':'<p role="status">No hay distribuciones visibles para el corte elegido.</p>')
+   +'<p class="warning">R5 STOP · Datos exclusivamente sintéticos; ninguna distribución empírica admitida.</p></section>';
+ }
+ return heading('CONSULTA ABIERTA · S8','Laboratorio científico',
+  'Exploración de mecanismos, cotas, testigos y fuentes con datos íntegramente sintéticos.')
+  +toolbar+metrics+navigation+panel;
 }
 function guestView(){
  const banner='<p class="warning"><strong>VISITA CIENTÍFICA · SOLO LECTURA · R5 STOP.</strong> '
@@ -1444,10 +1570,11 @@ async function enterGuest(resetUrl=false){
  if(ui.state||ui.session)return;
  // A new entry, including a second entry during a pending GET, must discard
  // all prior verified state BEFORE parsing an untrusted location query.
- ++ui.scienceRequest;++ui.scienceExportGeneration;
+ ++ui.scienceRequest;++ui.scienceExportGeneration;++ui.scienceAdmissionRequest;
  invalidateScientificRegistry();
  ui.scientific=null;ui.scientificError=null;ui.scientificLoading=false;
- ui.guest=true;ui.tab='observatory';ui.picks=null;
+ ui.scienceAdmission=null;ui.scienceAdmissionError=null;ui.scienceAdmitting=false;
+ ui.scienceGuestPanel='mechanisms';ui.guest=true;ui.tab='observatory';ui.picks=null;
  ui.scienceScenario='baseline';ui.scienceCut='late';
  ui.scienceRegistryFamily='all';ui.scienceRegistryValid='2026-09-15';
  ui.scienceRegistryPublished='as_of';ui.scienceRegistryTab='sources';
@@ -1470,8 +1597,9 @@ async function enterGuest(resetUrl=false){
  await reloadGuest(true);
 }
 function authScreen(){
- ui.guest=false;++ui.scienceRequest;++ui.scienceExportGeneration;
+ ui.guest=false;++ui.scienceRequest;++ui.scienceExportGeneration;++ui.scienceAdmissionRequest;
  invalidateScientificRegistry();ui.scientific=null;ui.scientificError=null;
+ ui.scienceAdmission=null;ui.scienceAdmissionError=null;ui.scienceAdmitting=false;
  ui.scientificLoading=false;ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
  el('account-logout').hidden=true;el('account-name').textContent='';
  el('club-select').innerHTML='';navigationMode('login');
@@ -1555,6 +1683,12 @@ document.addEventListener('click',async e=>{
  const act=e.target.closest('[data-action]');if(!act)return;
  if(act.dataset.action==='guest-enter'){await enterGuest();return;}
  if(ui.guest){
+  if(act.dataset.action==='science-guest-panel'){
+   if(ui.tab==='scientific'&&GUEST_SCIENCE_PANELS.includes(act.dataset.panel)){
+    ui.scienceGuestPanel=act.dataset.panel;draw();
+   }
+   return;
+  }
   if(act.dataset.action==='guest-url-reset'){await enterGuest(true);return;}
   if(act.dataset.action==='guest-reload'){await reloadGuest(true);return;}
   if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
@@ -1627,7 +1761,8 @@ document.addEventListener('change',async e=>{
   ui.scienceRegistryPublished=e.target.value;
   mirrorGuestUrlSelection();await loadScientificRegistry();
  }else if(e.target.id==='science-candidate'&&['baseline','sha_spoof','issuer_spoof','rights_missing','first_public_missing','crosswalk_missing','denominator_missing','coverage_missing'].includes(e.target.value)){
-  ui.scienceCandidate=e.target.value;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
+  ++ui.scienceAdmissionRequest;ui.scienceCandidate=e.target.value;
+  ui.scienceAdmission=null;ui.scienceAdmissionError=null;ui.scienceAdmitting=false;draw();
  }else if(e.target.id==='science-valid'&&['2026-09-11','2026-09-15'].includes(e.target.value)){
   ui.scienceValid=e.target.value;draw();
  }else if(e.target.id==='science-chronicle'&&['2026-09-15','2026-10-10'].includes(e.target.value)){

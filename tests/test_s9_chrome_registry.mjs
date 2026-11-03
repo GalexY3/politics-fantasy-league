@@ -436,8 +436,9 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(offlineGuest.synthetic_only,true);
   unlinkSync(join(downloadsDir,guestSaved));
   await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
-  await poll(()=>js("Boolean(ui.guest && ui.tab==='scientific' && document.querySelector('#content').innerText.includes('Testigos diferenciales sintéticos'))"));
+  await poll(()=>js("Boolean(ui.guest && ui.tab==='scientific' && document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"mechanisms\"]') && document.querySelector('#content').innerText.includes('B0 y B3'))"));
   assert.equal(await js("document.querySelector('#content').innerText.includes('B0 y B3')"),true);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"witnesses\"]').click();true");
   assert.equal(await js("document.querySelector('#content').innerText.includes('S7_NEITHER_APPROVED')"),true);
   assert.equal(await js("document.querySelector('#content').innerText.includes('S7_CONFLICT_SAME_TERMINAL_DAY')"),true);
   assert.equal(await js("document.querySelector('[data-action=\"science-export\"]')===null && document.querySelector('[data-action=\"science-probe\"]')===null"),true);
@@ -775,6 +776,7 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
     ['/api/state','/api/register','/api/login','/api/scientific-lab-export'].includes(r.path)),[]);
   await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
   assert.equal(await js("document.querySelector('#content').innerText.includes('B0 y B3')"),true);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"witnesses\"]').click();true");
   assert.equal(await js("document.querySelector('#content').innerText.includes('S7_NEITHER_APPROVED')"),true);
   await js("document.getElementById('guest-exit').click();true");
   assert.equal(await js("ui.guest && ui.scienceOnly && document.querySelector('#auth-form')===null && ui.scienceRegistry!==null"),true);
@@ -941,6 +943,72 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    originalDbDigest,'Institutional read-only navigation must not mutate persistent SQLite');
   assert.deepEqual(browserRequests.slice(beforeAdmission).filter(r=>
    r.method!=='GET'||['/api/state','/api/register','/api/login'].includes(new URL(r.url).pathname)),[]);
+  assert.equal(existsSync(join(scienceDir,'accounts.sqlite3')),false);
+  // New S8 visitor explorer: exercise its real four-panel DOM on the same
+  // Chrome and independently restarted science-only SQLite server. The prior
+  // S9 receipt was SHA-verified; these visits must not create an account,
+  // contact a real source, request S8 export, or mutate the persistent DB.
+  const labExplorerStart=browserRequests.length;
+  await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest&&ui.scienceOnly&&ui.tab==='scientific'&&ui.scientific&&ui.scienceRegistry&&!ui.scienceRegistryLoading&&document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"mechanisms\"]'))"));
+  assert.equal(await js("document.querySelector('#content').querySelector('#science-registry-publication')!==null"),true);
+  for(const panel of ['mechanisms','s3','witnesses','distributions']){
+   const clicked=await js("(()=>{const b=document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\""+panel+"\"]');if(!b)return false;b.click();return true;})()");
+   assert.equal(clicked,true,'Missing S8 visitor panel '+panel);
+   assert.equal(await js("ui.tab==='scientific'&&document.querySelector('#content').innerText.includes('R5 STOP')"),true);
+  }
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"mechanisms\"]').click();true");
+  assert.equal(await js("document.querySelector('#content').innerText.includes('B0')&&document.querySelector('#content').innerText.includes('B3')"),true);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"s3\"]').click();true");
+  assert.equal(await js("ui.scientific.warehouse.partial_identification_oracle.change_bounds.lower==='-11/52'&&document.querySelector('#content').innerText.includes('-11/52')"),true);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"witnesses\"]').click();true");
+  const twentyS7=await js("(()=>{const sets=ui.scientific.warehouse.b0_b3_witness_sets.sets_by_knowledge_cut.late.sets;const dom=document.querySelector('#content').innerText;return{count:sets.length,all:sets.every(x=>dom.includes(x.case)),conflicts:sets.filter(x=>x.status==='CONFLICT'&&x.contradiction).length,containsConflict:dom.includes('S7_CONFLICT_SAME_TERMINAL_DAY'),containsHttpError:dom.includes('HTTP 503')};})()");
+  assert.equal(twentyS7.count,20);
+  assert.equal(twentyS7.all,true);
+  assert.equal(twentyS7.conflicts,2);
+  assert.equal(twentyS7.containsConflict,true);
+  assert.equal(twentyS7.containsHttpError,false);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"distributions\"]').click();true");
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S8:PUBLIC_DESCRIPTOR_01')&&document.querySelector('#content').innerText.includes('DISTRIBUTION_COVERAGE_UNATTESTED')"),true);
+  assert.equal(await js("document.querySelector('[data-action=\"science-export\"]')===null&&document.querySelector('[data-action=\"science-probe\"]')===null"),true);
+  const guestLabBefore=browserRequests.length;
+  await selectGuest('science-registry-publication','2026-09-19T12:00:00Z',
+   "Boolean(ui.scienceRegistry?.published_until==='2026-09-19T12:00:00Z'&&!ui.scienceRegistryLoading)");
+  const labBookmark=new URL(await js('location.href'));
+  assert.deepEqual([...labBookmark.searchParams.keys()],allowedKeys);
+  assert.equal(labBookmark.searchParams.get('published_until'),'2026-09-19T12:00:00Z');
+  const filteredS8=await js("(()=>{const e=ui.scientific.explorer.catalog.distributions,limit='2026-09-19T12:00:00Z',html=document.querySelector('#content').textContent;const visible=e.filter(d=>d.first_public_at_fixture<=limit&&d.captured_at_fixture<=ui.scientific.as_of),hidden=e.filter(d=>!visible.includes(d));return{rows:document.querySelectorAll('#content tbody tr').length,visible:visible.length,matched:visible.every(d=>html.includes(d.distribution_id)&&html.includes(d.sha256)),futureAbsent:hidden.every(d=>!html.includes(d.sha256))};})()");
+  assert.deepEqual(filteredS8,{rows:2,visible:2,matched:true,futureAbsent:true},
+   'Publication ceiling must filter exact descriptor SHA/revision; public IDs renumber per cut');
+  const filteredReceipt=await js('ui.scienceRegistry.snapshot_receipt');
+  assert.equal(createHash('sha256').update(filteredReceipt.canonical_json,'utf8').digest('hex'),filteredReceipt.sha256);
+  assert.ok(browserRequests.slice(guestLabBefore).some(r=>{
+   if(r.method!=='GET'||!r.url.startsWith(scienceBase))return false;
+   const u=new URL(r.url);
+   return u.pathname==='/api/scientific-registry'
+    &&u.searchParams.get('published_until')==='2026-09-19T12:00:00Z';
+  }));
+  await selectGuest('science-cut','early',
+   "Boolean(ui.scienceCut==='early'&&ui.scientific?.cut==='early'&&ui.scienceRegistry?.cut==='early'&&!ui.scienceRegistryLoading)");
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"s3\"]').click();true");
+  assert.equal(await js("ui.scientific.warehouse.partial_identification_oracle===null&&!document.querySelector('#content').innerText.includes('-11/52')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S3')"),true);
+  await js("document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"distributions\"]').click();true");
+  assert.equal(await js("ui.scientific.explorer.catalog.distributions.length===2&&document.querySelectorAll('#content tbody tr').length===2"),true);
+  await js("document.querySelector('[data-tab=\"observatory\"]').click();true");
+  // A prior bookmarked institutional intake view remains selected across
+  // Observatory/Laboratory navigation; explicitly open the public S9 sources.
+  await js("document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"sources\"]').click();true");
+  assert.equal(await js("ui.guest&&ui.tab==='observatory'&&document.querySelector('#content').innerText.includes('S9:PUBLIC_01')"),true);
+  await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
+  assert.equal(await js("ui.guest&&ui.tab==='scientific'&&document.querySelector('[data-action=\"science-guest-panel\"][data-panel=\"witnesses\"]')!==null"),true);
+  const onlyGuestLabGets=browserRequests.slice(labExplorerStart)
+   .filter(r=>r.url.startsWith(scienceBase));
+  assert.deepEqual(onlyGuestLabGets.filter(r=>r.method!=='GET'
+   ||['/api/state','/api/login','/api/register','/api/scientific-lab-export',
+       '/api/scientific-lab-admission'].includes(new URL(r.url).pathname)),[]);
+  assert.equal(createHash('sha256').update(readFileSync(durableRegistry)).digest('hex'),
+   originalDbDigest,'S8 visitor explorer must not change S9 SQLite bytes');
   assert.equal(existsSync(join(scienceDir,'accounts.sqlite3')),false);
   console.log('S9_GUEST_URL_CDP '+JSON.stringify({
    one_chrome:true,facade_initial_registry_gets:firstReloadGets,

@@ -11,8 +11,8 @@ const reports=Object.fromEntries(['early','late'].map(cut=>[
  cut,JSON.parse(execFileSync('python',[root.pathname.replace(/^\/(?=[A-Z]:)/i,''),'--cut',cut],{encoding:'utf8',maxBuffer:1024*1024}))
 ]));
 
-function setup(){
- const listeners={},elements={},routes=[],downloads=[];
+function setup({deferAdmission=false}={}){
+ const listeners={},elements={},routes=[],downloads=[],admissionPending=[];
  let badDigest=false;
  const doc={
   getElementById(id){return elements[id]??=( {innerHTML:'',textContent:'',hidden:false,addEventListener(){}} );},
@@ -46,6 +46,7 @@ function setup(){
     R5:'STOP_R5',empirical_data_exported:false})};
   }
   if(url.pathname==='/api/scientific-lab-admission'){
+   if(deferAdmission)return new Promise(resolve=>admissionPending.push({candidate:url.searchParams.get('candidate'),resolve}));
    return {ok:true,json:async()=>({schema:'pfl.synthetic_distribution_admission_dry_run.v1',
      evidence_class:'SYNTHETIC_LAB_ONLY',candidate:url.searchParams.get('candidate'),
      status:'REJECTED_R5',R5:'STOP_R5',real_original_admitted:false,
@@ -60,7 +61,7 @@ function setup(){
  const context=createContext(globals);
  runInContext(script.slice(0,script.lastIndexOf('bootstrap().catch')),context);
  runInContext("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.club='demo';ui.tab='scientific';",context);
- return {listeners,elements,routes,downloads,context,setBadDigest(value){badDigest=value;}};
+ return {listeners,elements,routes,downloads,admissionPending,context,setBadDigest(value){badDigest=value;}};
 }
 
 test('S8 actual UI loads late 20-set S7, S3, B0/B3 and six source distributions',async()=>{
@@ -115,4 +116,22 @@ test('S8 dry-run button stays fail closed, real export interaction checks SHA be
  t.setBadDigest(true);
  await t.listeners.click(act('science-export'));
  assert.equal(t.downloads.length,1,'bad SHA must never trigger download');
+});
+
+
+test('PREPATCH RED S8 admission late failure belongs only to initiating candidate',async()=>{
+ const t=setup({deferAdmission:true});
+ await runInContext('loadScientific()',t.context);
+ const act=action=>({target:{closest(selector){return selector==='[data-action]'?
+  {dataset:{action}}:null;}}});
+ const first=t.listeners.click(act('science-probe'));
+ assert.equal(t.admissionPending.length,1);
+ assert.equal(t.admissionPending[0].candidate,'baseline');
+ await t.listeners.change({target:{id:'science-candidate',value:'sha_spoof'}});
+ assert.match(t.elements.content.innerHTML,/value="sha_spoof" selected/);
+ t.admissionPending[0].resolve({ok:false,status:503});
+ await first;
+ assert.equal(runInContext('ui.scienceAdmissionError',t.context),null,
+  'Late 503 for baseline must not become sha_spoof admission error');
+ assert.doesNotMatch(t.elements.content.innerHTML,/Rechazo del contrato HTTP 503/);
 });
