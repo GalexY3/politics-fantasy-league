@@ -640,6 +640,15 @@ def _windows_dacl_safe_object(resource: Path | int, *,
         return False
 
 
+class _AuditedPrivateBytes(bytes):
+    """Exact source bytes with the parent inode audited during their read."""
+
+    def __new__(cls, raw: bytes, parent_id: tuple[int, int]):
+        instance = super().__new__(cls, raw)
+        instance.private_parent_id = parent_id
+        return instance
+
+
 def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
     """Read only bytes from an audited descriptor, not a later pathname open.
 
@@ -661,7 +670,10 @@ def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
         metadata = candidate.stat()
         if not candidate.is_file() or metadata.st_nlink != 1:
             raise ProtocolError("OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN")
-        _private_directory_status(candidate.resolve(strict=True).parent)
+        audited_parent = candidate.resolve(strict=True).parent
+        _private_directory_status(audited_parent)
+        parent_info = audited_parent.stat()
+        parent_id = (parent_info.st_dev, parent_info.st_ino)
         if os.name == "nt" and not _windows_dacl_safe(
                 candidate, require_protected=False):
             raise ProtocolError("OPERATOR_PRIVATE_FILE_UNVERIFIED")
@@ -685,7 +697,8 @@ def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
         with os.fdopen(fd, "rb") as stream:
             fd = None
             raw = stream.read(MAX_INPUT_BYTES + 1)
-        return _parse_json_bytes(raw)
+        parsed, raw = _parse_json_bytes(raw)
+        return parsed, _AuditedPrivateBytes(raw, parent_id)
     except ProtocolError:
         raise
     except (OSError, ValueError, RuntimeError) as exc:
@@ -1345,10 +1358,11 @@ def record_form(source_path: str, destination_path: str, task_id: str,
         for entry in session["observations"]
     ]
     target = _external_destination(destination_path, "OPERATOR_OUTPUT")
-    source_parent = Path(source_path).resolve(strict=True).parent
-    if target.parent.resolve(strict=True) != source_parent:
+    target_parent = target.parent.resolve(strict=True)
+    target_info = target_parent.stat()
+    if (target_info.st_dev, target_info.st_ino) != raw_source.private_parent_id:
         raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
-    _private_directory_status(source_parent)
+    _private_directory_status(target_parent)
     successor = _validate_v2_coded_session({
         **session,
         "predecessor_sha256": hashlib.sha256(raw_source).hexdigest(),
@@ -1376,18 +1390,19 @@ def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
     """Fail closed on mismatched versioned forms BEFORE any output write."""
     session, raw_coded = _read_private_json_with_bytes(source_path)
     session = _validate_v2_coded_session(session)
-    rubric = _read_and_verify_form_rubric(
-        _read_private_json_with_bytes(rubric_path)[0])
+    rubric_read, raw_rubric = _read_private_json_with_bytes(rubric_path)
+    rubric = _read_and_verify_form_rubric(rubric_read)
     # Semantic mismatch takes precedence over a second private folder
     # mismatch; neither error may create output.
     result = _score_v2_form(session, raw_coded, rubric)
     target = _external_destination(output_path, "OPERATOR_OUTPUT")
-    source_parent = Path(source_path).resolve(strict=True).parent
-    rubric_parent = Path(rubric_path).resolve(strict=True).parent
-    if (target.parent.resolve(strict=True) != source_parent
-            or source_parent != rubric_parent):
+    target_parent = target.parent.resolve(strict=True)
+    target_info = target_parent.stat()
+    current_parent_id = (target_info.st_dev, target_info.st_ino)
+    if (raw_coded.private_parent_id != raw_rubric.private_parent_id
+            or current_parent_id != raw_coded.private_parent_id):
         raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
-    _private_directory_status(source_parent)
+    _private_directory_status(target_parent)
     length, sha = _write_external_utf8(
         output_path, json_line(result) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
@@ -1466,6 +1481,8 @@ def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
     target = _external_destination(output_path, "OPERATOR_OUTPUT")
     paths = (root_path, *revisions)
     private_parent = target.parent.resolve(strict=True)
+    parent_info = private_parent.stat()
+    required_parent_id = (parent_info.st_dev, parent_info.st_ino)
     for source_path in (*paths, rubric_path, result_path):
         try:
             if Path(source_path).resolve(strict=True).parent != private_parent:
@@ -1473,11 +1490,15 @@ def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
         except OSError as exc:
             raise ProtocolError("OPERATOR_FILE_UNAVAILABLE") from exc
     _private_directory_status(private_parent)
-    rubric = _read_and_verify_form_rubric(
-        _read_private_json_with_bytes(rubric_path)[0])
+    rubric_value, rubric_bytes = _read_private_json_with_bytes(rubric_path)
+    if rubric_bytes.private_parent_id != required_parent_id:
+        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
+    rubric = _read_and_verify_form_rubric(rubric_value)
     source_data = []
     for path in paths:
         item, raw = _read_private_json_with_bytes(path)
+        if raw.private_parent_id != required_parent_id:
+            raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
         item = _validate_v2_coded_session(item)
         if (item["form_id"] != rubric["form_id"]
                 or item["handout_sha256"] != rubric["handout_sha256"]
@@ -1523,6 +1544,8 @@ def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
     final, raw_final = source_data[-1]
     expected = _score_v2_form(final, raw_final, rubric)
     actual, raw_result = _read_private_json_with_bytes(result_path)
+    if raw_result.private_parent_id != required_parent_id:
+        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
     if actual != expected:
         raise ProtocolError("OPERATOR_CHAIN_RESULT_MISMATCH")
     report = {
@@ -1540,6 +1563,10 @@ def verify_chain_to(output_path: str, rubric_path: str, result_path: str,
         "R5": "STOP_R5",
         "human_observation_verified": False,
     }
+    current_parent = target.parent.resolve(strict=True).stat()
+    if ((current_parent.st_dev, current_parent.st_ino)
+            != required_parent_id):
+        raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH")
     size, sha = _write_external_utf8(
         output_path, json_line(report) + "\n",
         maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",

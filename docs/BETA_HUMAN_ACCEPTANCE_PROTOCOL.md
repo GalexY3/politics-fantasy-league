@@ -118,8 +118,23 @@ pero pueden almacenar bytes distintos; se falsó una aceptación anterior
 tanto al registrar una ficha como al evaluar contra una rúbrica ADS.
 Un token sin privilegio de crear symlinks no pudo ejecutar el caso
 positivo de alias simbólico en este equipo (WinError 1314); ello no
-constituye una prueba de ese ataque. Tampoco se ha ejecutado una
-prueba adversarial con cambio concurrente de directorios ancestros.
+constituye una prueba de ese ataque. Sí se ejecutaron tres falsadores
+RED PREPATCH de sustitución concurrente de **carpetas supervisoras**
+por junction NTFS: `--record-form` y `--evaluate-form` volvían a
+resolver la ruta después de haber leído bytes desde otro directorio
+privado ya auditado, mientras `--verify-chain-to` podía comprobar
+los nombres ANTES de leer archivos de otra carpeta. Los recibos
+resultantes llevaban SHA correctos de los bytes P1, pero el destino
+y la rúbrica P2 no compartían realmente el directorio fuente leído.
+Cada lectura privada v2 retiene ahora también la identidad del inode
+de la carpeta privada auditada, asociada a sus mismos bytes, y la
+compara con las identidades de los directorios de rúbrica, revisiones,
+resultado y salida antes de admitir la operación. La discordancia
+se rechaza con `OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH`. Se trató
+de una violación de procedencia/localidad, no de una fuga pública
+ni de una prueba de acceso entre cuentas distintas. La auditoría
+de la carpeta no retiene un HANDLE permanente contra todos los
+cambios simultáneos de ancestros: no se atribuye inmunidad absoluta.
 En escritura, una carrera NTFS **distinta** permitía que el temporal
 heredase una ACE `Everyone READ` introducida entre la comprobación
 de la carpeta supervisora y la apertura real del archivo nuevo.

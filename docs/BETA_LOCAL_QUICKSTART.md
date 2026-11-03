@@ -39,6 +39,20 @@ la DACL del **mismo HANDLE** mediante `GetSecurityInfo`, y los bytes
 se consumen por ese descriptor, nunca reabriendo la ruta tras la
 auditoría. Una sustitución de inode entre inspección y apertura se
 rechaza antes de registrar una revisión o publicar puntuaciones.
+Cada lectura privada v2 conserva junto a sus bytes exactos la
+identidad de la carpeta auditada durante esa misma lectura
+(`st_dev/st_ino`). El registro de revisiones, la evaluación con
+rúbrica y la verificación de cadena exigen que esas identidades
+coincidan con la carpeta real de salida, en vez de resolver otra
+vez la ruta de origen tras consumir sus bytes. Se reprodujeron
+tres falsadores RED PREPATCH con dos carpetas NTFS privadas distintas:
+un junction de P1 a P2 permitía publicar como si procedieran de P2
+datos que se habían leído y auditado efectivamente desde P1.
+El rechazo usa `OPERATOR_PRIVATE_OUTPUT_PARENT_MISMATCH`.
+El inode de carpeta se observa por la ruta auditada, no mediante
+un HANDLE persistente del directorio. No se acredita resistencia
+absoluta ante alteraciones arbitrarias de ancestros ni frente a
+dos identidades Windows independientes.
 En NTFS, un archivo `ficha.json:stream` puede compartir inode y DACL
 con `ficha.json` mientras contiene bytes diferentes: el lector privado
 v2 rechaza **también los ADS de origen**, no solo los destinos ADS, con
