@@ -27,8 +27,12 @@ PYTHON_TESTS = (
     "tests/test_beta_local_launcher.py",
     "tests/test_beta_science_only.py",
     "tests/test_beta_restart_isolation.py",
+    "tests/test_beta_concurrent_science_http.py",
+    "tests/test_beta_snapshot_verifier.py",
+    "tests/test_beta_offline_cut_comparison.py",
 )
 NODE_TESTS = (
+    "tests/test_beta_registry_comparison.mjs",
     "tests/test_beta_scientific_guest.mjs",
     "tests/test_s8_scientific_ui.mjs",
     "tests/test_s9_scientific_ui.mjs",

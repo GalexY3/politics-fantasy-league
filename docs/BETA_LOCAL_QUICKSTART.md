@@ -44,6 +44,35 @@ una dependencia, un test esperado, Chrome o un contraste falla. El resultado
 se limita a esta beta local; no sustituye el conjunto histórico de tests,
 una revisión de seguridad de producción o un gate científico.
 
+## Reutilizar los recibos sin abrir el servidor
+
+En el **Observatorio**, «Exportar snapshot S9 + SHA» descarga un archivo JSON
+correspondiente al corte, familia, vigencia y límite de primera publicación
+ficticia actualmente seleccionados. Se puede comprobar ese archivo **sin
+cuentas, navegador, bases SQLite, red ni fuentes originales**:
+
+    python scripts/verify_scientific_snapshot.py "mi-snapshot-s9.json"
+
+El verificador offline valida el contrato cerrado, la serialización canónica
+exacta, SHA-256, longitud, límites temporales, revisiones, fuente-localidad,
+privacidad, derechos y estado R5. Su salida JSON contiene solo un resumen
+seguro, o un código de rechazo si encuentra una contradicción. La coincidencia
+del hash prueba consistencia de bytes con el recibo, **no** que el emisor sea
+una autoridad real ni que los derechos permitan republicar datos.
+
+Tras exportar por separado un corte temprano y otro tardío con los mismos
+`valid_at` y filtro de familia, se puede generar una comparación offline:
+
+    python scripts/compare_scientific_exports.py "temprano.json" "tardio.json"
+
+Este segundo comando verifica ambos recibos de forma independiente antes de
+comparar. Solo representa **visibilidad documental bajo relojes ficticios
+estipulados**: no implica que un documento ausente fuera rechazado, que una
+revisión equivalga a otra decisión, que se conozca el denominador ni que haya
+cambiado realmente una institución española. En la interfaz, la pestaña
+«Comparar cortes» ofrece la misma distinción mediante dos consultas GET
+independientes SHA-verificadas, sin iniciar sesión de Fantasy.
+
 ## Arrancar el prototipo interactivo
 
     python run_demo.py

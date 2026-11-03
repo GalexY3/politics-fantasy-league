@@ -10,12 +10,12 @@
     "data": 34,
     "evidence": 378,
     "experimental_code": 39,
-    "operations": 113,
-    "reference": 105,
+    "operations": 115,
+    "reference": 107,
     "research": 2000,
     "runtime": 116,
     "task_queue": 120,
-    "verification": 287
+    "verification": 291
   },
   "files": [
     {
@@ -974,7 +974,17 @@
       "purpose": "Manuales, contratos y referencias"
     },
     {
+      "path": "docs/BETA_OFFLINE_AND_TEMPORAL_COMPARISON_RECEIPT_20261103.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
       "path": "docs/BETA_SCIENCE_ONLY_INCREMENT_RECEIPT_20261103.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/BETA_SNAPSHOT_OFFLINE_VERIFICATION.md",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -12254,6 +12264,11 @@
       "purpose": "Herramientas, configuración y operación local"
     },
     {
+      "path": "scripts/compare_scientific_exports.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
       "path": "scripts/diff_parcan_capture_vintages.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
@@ -12440,6 +12455,11 @@
     },
     {
       "path": "scripts/verify_interior_originals.py",
+      "category": "operations",
+      "purpose": "Herramientas, configuración y operación local"
+    },
+    {
+      "path": "scripts/verify_scientific_snapshot.py",
       "category": "operations",
       "purpose": "Herramientas, configuración y operación local"
     },
@@ -15369,12 +15389,27 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_beta_concurrent_science_http.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_beta_local_launcher.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_beta_offline_cut_comparison.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_beta_readiness_endpoint.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_registry_comparison.mjs",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },
@@ -15395,6 +15430,11 @@
     },
     {
       "path": "tests/test_beta_scientific_smoke.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_snapshot_verifier.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

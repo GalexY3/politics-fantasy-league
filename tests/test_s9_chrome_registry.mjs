@@ -231,6 +231,69 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
       .map(b=>b.toString(16).padStart(2,'0')).join('');
     return r.sha256===sha && x.snapshot_receipt_sha256===sha && bytes.length===r.bytes;
   })()`),true);
+  // The anonymous Observatorio compares two independently verified S9
+  // projections in the real DOM. This precedes the historical auth spoof
+  // and preserves the original single-snapshot download journey below.
+  assert.equal(await js("(()=>{const n=document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"compare\"]');return Boolean(n&&n.getAttribute('aria-pressed')==='false'&&n.textContent.includes('Comparar cortes'));})()"),true);
+  const compareStart=observedRequests.length;
+  await js("document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"compare\"]').click();true");
+  await poll(()=>js("Boolean(!ui.scienceRegistryCompareLoading&&(ui.scienceRegistryComparison||ui.scienceRegistryCompareError))"));
+  assert.equal(await js('ui.scienceRegistryCompareError'),null,'Both WebCrypto S9 comparisons must validate');
+  await poll(()=>js("Boolean(ui.scienceRegistryComparison&&document.querySelector('[aria-label=\"Comparación bitemporal de registros S9\"]')?.textContent.includes('Solo visible en late'))"));
+  const compareDom=await js("(()=>{const n=document.querySelector('[aria-label=\"Comparación bitemporal de registros S9\"]');return {tab:ui.scienceRegistryTab,exists:Boolean(n),hasLabel:Boolean(n?.textContent.includes('Solo visible en late')),hasHtml:Boolean(n?.innerHTML.includes('Solo visible en late')),hasSummary:Boolean(n?.textContent.includes('Descriptores revisados'))};})()");
+  assert.equal(compareDom.tab,'compare');
+  assert.equal(compareDom.exists,true);
+  assert.equal(compareDom.hasLabel,true,'Chrome comparison DOM: '+JSON.stringify(compareDom));
+  assert.equal(await js("document.querySelector('[data-registry=\"compare\"]').getAttribute('aria-pressed')"),'true');
+  assert.equal(await js("document.querySelector('[aria-label=\"Comparación bitemporal de registros S9\"]').textContent.includes('Comparar cortes')"),true);
+  const compared=await js("(()=>{const x=ui.scienceRegistryComparison;return {queries:x.queries,early:x.early,late:x.late};})()");
+  assert.equal(compared.early.registry.visible_distribution_count,2);
+  assert.equal(compared.late.registry.visible_distribution_count,6);
+  assert.equal(compared.early.cut,'early');
+  assert.equal(compared.late.cut,'late');
+  for(const [cut,snapshot] of [['early',compared.early],['late',compared.late]]){
+   const receipt=snapshot.snapshot_receipt;
+   const canonical=Buffer.from(receipt.canonical_json,'utf8');
+   assert.equal(createHash('sha256').update(canonical).digest('hex'),receipt.sha256,
+    cut+' independent Node SHA-256');
+   assert.equal(canonical.length,receipt.bytes);
+   assert.equal(receipt.sha256,snapshot.snapshot_receipt_sha256);
+   assert.equal(receipt.external_authenticity_certified,false);
+   assert.equal(snapshot.R5,'STOP_R5');
+   assert.equal(snapshot.release_gates_passed,0);
+   assert.equal(snapshot.scientific_ab_cycles,0);
+  }
+  assert.equal(await js("document.querySelector('#content').textContent.includes('Solo visible en late')"),true);
+  assert.equal(await js("document.querySelector('#content').textContent.includes('S9:PUBLIC_06')"),true);
+  assert.equal(await js("ui.scienceRegistry.registry.visible_distribution_count===6&&ui.state===null&&ui.session===null"),true);
+  assert.deepEqual(observedRequests.slice(compareStart).filter(r=>
+   r.method!=='GET'||r.path!=='/api/scientific-registry'),[]);
+  assert.equal(observedRequests.slice(compareStart).filter(r=>
+   r.path==='/api/scientific-registry').length,2);
+  // A filter change must remove BOTH previous projections, not merely hide
+  // their panel while retaining stale receipts in memory.
+  await js("(()=>{const n=document.getElementById('science-registry-family');n.value='CHAIN';n.dispatchEvent(new Event('change',{bubbles:true}));return true;})()");
+  await poll(()=>js("Boolean(ui.scienceRegistry&&ui.scienceRegistryFamily==='CHAIN'&&!ui.scienceRegistryLoading&&ui.scienceRegistryComparison===null&&document.querySelector('#content').textContent.includes('Selecciona «Consultar ambos cortes verificados»'))"));
+  assert.equal(await js("document.querySelector('#content').textContent.includes('Solo visible en late')"),false);
+  assert.equal(await js("document.querySelector('#content').textContent.includes('Selecciona «Consultar ambos cortes verificados»')"),true);
+  await js("document.querySelector('[data-action=\"science-registry-compare-load\"]').click();true");
+  await poll(()=>js("Boolean(ui.scienceRegistryComparison&&!ui.scienceRegistryCompareLoading&&ui.scienceRegistryComparison.late.family==='CHAIN'&&document.querySelector('#content').textContent.includes('Descriptores revisados'))"));
+  // Failure of either paired query must clear a previously valid pair and
+  // display only the fail-closed alert, never its former descriptor rows.
+  failRegistry=true;
+  await js("document.querySelector('[data-action=\"science-registry-compare-load\"]').click();true");
+  await poll(()=>js("Boolean(ui.scienceRegistryCompareError&&ui.scienceRegistryCompareError.includes('503')&&!ui.scienceRegistryCompareLoading&&document.querySelector('#content').textContent.includes('Comparación invalidada'))"));
+  assert.equal(await js('ui.scienceRegistryComparison===null'),true);
+  assert.equal(await js("document.querySelector('[aria-label=\"Comparación bitemporal de registros S9\"] [role=\"alert\"]')!==null"),true);
+  assert.equal(await js("document.querySelector('#content').textContent.includes('Comparación invalidada')"),true);
+  assert.equal(await js("document.querySelector('#content').textContent.includes('Descriptores revisados')"),false);
+  failRegistry=false;
+  await js("(()=>{const n=document.getElementById('science-registry-family');n.value='all';n.dispatchEvent(new Event('change',{bubbles:true}));return true;})()");
+  await poll(()=>js("Boolean(ui.scienceRegistry&&!ui.scienceRegistryLoading&&ui.scienceRegistryFamily==='all'&&ui.scienceRegistry.registry.visible_distribution_count===6&&document.querySelector('[data-registry=\"sources\"]'))"));
+  await js("document.querySelector('[data-action=\"science-registry-tab\"][data-registry=\"sources\"]').click();true");
+  assert.equal(await js("document.querySelector('[data-registry=\"sources\"]').getAttribute('aria-pressed')"),'true');
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  assert.equal(await js("(()=>{const b=document.querySelector('[data-action=\"science-registry-export\"]');return Boolean(b&&!b.disabled);})()"),true);
   // The anonymous visitor uses the actual Chrome mouse and download manager.
   // The saved JSON is verified independently of app.js and removed before the
   // existing authenticated test downloads a file with the same basename.
@@ -259,6 +322,14 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(guestCanonical.length,guestExport.snapshot_receipt.bytes);
   assert.match(guestSaved,new RegExp(guestExport.snapshot_receipt.sha256.slice(0,12)));
   assert.doesNotMatch(JSON.stringify(guestExport),/SYN:CHAIN_V1|SYN:S9_INTERNAL_STAGE/);
+  // Independent offline acceptance: the actual browser-downloaded bytes
+  // must pass the stdlib-only S9 verifier, not just the in-app WebCrypto SHA.
+  const offlineGuest=JSON.parse(python(['scripts/verify_scientific_snapshot.py',
+   join(downloadsDir,guestSaved)]));
+  assert.equal(offlineGuest.status,'PASS');
+  assert.equal(offlineGuest.sha256,guestExport.snapshot_receipt.sha256);
+  assert.equal(offlineGuest.cut,'late');
+  assert.equal(offlineGuest.synthetic_only,true);
   unlinkSync(join(downloadsDir,guestSaved));
   await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
   await poll(()=>js("Boolean(ui.guest && ui.tab==='scientific' && document.querySelector('#content').innerText.includes('Testigos diferenciales sintéticos'))"));

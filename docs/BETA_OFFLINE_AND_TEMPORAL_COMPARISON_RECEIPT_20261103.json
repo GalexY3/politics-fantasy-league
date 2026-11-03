@@ -1,0 +1,122 @@
+{
+  "baseline_committed_head": "3bcc1b579ad1e4dc63c2d037119b5b3e779f23c1",
+  "date": "2026-11-03",
+  "evidence_class": "SYNTHETIC_LAB_ONLY_NONCYCLE",
+  "features": {
+    "anonymous_guest": "GET only; no /api/state or account POST",
+    "backend_registry_modified": false,
+    "chrome_download_verification": "actual Chrome-downloaded JSON passed standalone Python offline verifier with SHA parity",
+    "observatory_bitemporal_tab": "two independent verified early/late S9 GET receipts",
+    "offline_browser_json_verifier": "scripts/verify_scientific_snapshot.py",
+    "offline_two_cut_comparator": "scripts/compare_scientific_exports.py",
+    "parallel_sqlite_scientific_gets": 16,
+    "synthetic_intake_family_projection": "family=all only; other families filtered, not negative",
+    "synthetic_only": true
+  },
+  "files_hash_basis": "INDEX_STAGED_GIT_BLOB_BYTES_EXACT",
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 92501,
+      "sha256": "5667fc5241097f5c008a8ad12fee90fb93e64df402ef34907c247925df450c60"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 75266,
+      "sha256": "9059d8aba11185818d2ec59d7e57933f31bc0659a86343db9b117185950a5a2a"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 7223,
+      "sha256": "d529a4f952be8ecb404e5352291dc760069add029a33ebc5ad2e978076ab3e17"
+    },
+    "docs/BETA_SNAPSHOT_OFFLINE_VERIFICATION.md": {
+      "bytes": 3729,
+      "sha256": "e04e9dbaa8ca8644cbafb3484291173aded5427f601b47ad8f40da5db4ddc2d4"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 6170,
+      "sha256": "1f67957885015d57384516271e2c5bb9962139a39362fb06ad1060463895b9a1"
+    },
+    "scripts/compare_scientific_exports.py": {
+      "bytes": 6462,
+      "sha256": "cb594adc06ac0bb569981c9953e2198340d05ceaea0a6d0d78f90e76f0af0465"
+    },
+    "scripts/verify_scientific_snapshot.py": {
+      "bytes": 34926,
+      "sha256": "915a3a369ff8364f96b99b9f9b788dccfad7868c7072991a52f45d041c4e3408"
+    },
+    "src/politics_fantasy/web/app.js": {
+      "bytes": 148548,
+      "sha256": "00a3436aaace8d6fb32abaa210d1fddeaf1f8f9b130668ed0c8cdcb22cb308de"
+    },
+    "tests/test_beta_concurrent_science_http.py": {
+      "bytes": 5824,
+      "sha256": "1ee826fb0a553e6162f110a9ad0c7b29336250914417f73f587fd69c55021f39"
+    },
+    "tests/test_beta_offline_cut_comparison.py": {
+      "bytes": 7095,
+      "sha256": "6446353766f5f12a9ec4a47276074b9fee96379e965da3790033d767a58401cc"
+    },
+    "tests/test_beta_registry_comparison.mjs": {
+      "bytes": 14488,
+      "sha256": "e482ab95f66b248dab0f53f02720862fa4f99a8d0cedca79923ea399e9ff18cd"
+    },
+    "tests/test_beta_snapshot_verifier.py": {
+      "bytes": 15404,
+      "sha256": "1eb855a062b62ecbb9196b17c6694f049dff99115719ec02a28c4f17b4bee867"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 31930,
+      "sha256": "9f065c9884c67b0b2efa252f2b8a13b8398cb3316ac35a0a67bae48b8c52f8a7"
+    }
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "publication_status_at_receipt_creation": "UNCOMMITTED_WORKTREE",
+  "quality": {
+    "chrome_native_s9": {
+      "command": "node --test tests/test_s9_chrome_registry.mjs",
+      "passed": 1
+    },
+    "concurrent_repeats": 3,
+    "full_worktree_acceptance": {
+      "chrome_keyboard": 1,
+      "chrome_s9": 1,
+      "command": "python scripts/beta_acceptance.py",
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 49,
+      "passed": 122,
+      "python": 71,
+      "status": "PASS"
+    },
+    "historical_166_or_199_suites_rerun": false,
+    "initial_acceptance_failure": {
+      "cause": "UNDETERMINED",
+      "subsequent_acceptance": "122 PASS",
+      "subsequent_direct_python_suite": "71 PASS",
+      "subsequent_isolated": "PASS",
+      "test": "tests/test_beta_science_only.py::test_science_only_actual_launcher_anonymous_and_separate_from_accounts"
+    },
+    "node_focal": {
+      "command": "node --test tests/test_beta_registry_comparison.mjs tests/test_beta_scientific_guest.mjs tests/test_s8_scientific_ui.mjs tests/test_s9_scientific_ui.mjs",
+      "passed": 49
+    },
+    "postcommit_clean_head_acceptance": "REQUIRED_AFTER_COMMIT",
+    "prepatch_failure_for_new_feature_fabricated": false,
+    "python_focal_addition": {
+      "command": "python -B -m pytest -q tests/test_beta_snapshot_verifier.py tests/test_beta_offline_cut_comparison.py tests/test_beta_concurrent_science_http.py",
+      "passed": 44
+    }
+  },
+  "schema": "pfl.beta_offline_temporal_comparison_receipt.v1",
+  "scientific_release": {
+    "R5": "STOP_R5",
+    "causal_claims": false,
+    "human_acceptance_completed": false,
+    "independent_denominator_verified": false,
+    "new_real_spanish_sources_admitted": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "official_first_public_verified": false,
+    "public_release_authorized": false,
+    "publisher_identity_verified": false,
+    "release_gates_passed": 0,
+    "rights_for_public_display_admitted": false
+  }
+}
