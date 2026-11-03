@@ -21,6 +21,7 @@ from .actor_api import local_actor_universe_status
 from .electoral_atlas import atlas_status
 from .evidence_warehouse_status import status as evidence_status
 from .progress_api import progress_status
+from .beta_readiness import beta_readiness, BetaReadinessUnavailable
 from .candidacy_api import status as official_candidacies_status
 from .nomination_atlas import status as nomination_atlas_status
 from .source_eligibility import policy_status
@@ -33,6 +34,16 @@ from .procedural_population_readiness import report as population_readiness_repo
 from .retained_integrity_status import status as retained_integrity_status
 from .registration_readiness_query import registration_readiness
 from .synthetic_institutional_demo import report as institutional_lineage_demo
+from .scientific_integration_lab import (
+    report as scientific_integration_report,
+    scientific_export_receipt,
+    synthetic_candidate_admission,
+)
+from .scientific_registry import (
+    query_registry as scientific_registry_query,
+    registry_path as scientific_registry_path,
+    RegistryIntegrityError,
+)
 
 HERE=Path(__file__).resolve().parent
 WEB=HERE/'web'
@@ -51,7 +62,8 @@ def _unique_request_json_pairs(pairs):
 
 
 def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | None=None,
-                    accounts_path: Path | None=None):
+                    accounts_path: Path | None=None, *,
+                    scientific_only: bool=False):
     # accounts_path=None exists solely for old single-user test harnesses.
     # The real serve() ALWAYS supplies an accounts_path and enforces identity.
     class Handler(BaseHTTPRequestHandler):
@@ -109,7 +121,24 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
             route=urlsplit(self.path).path
+            if scientific_only:
+                # An opt-in, NO-ACCOUNTS scientific demo. Deny every game and
+                # general data route BEFORE legacy None-account dispatch.
+                # Explicit whitelist, not a route-name prefix check.
+                safe_routes={
+                    '/','/index.html','/app.js','/style.css',
+                    '/api/session','/api/health','/api/beta-readiness',
+                    '/api/scientific-integration-lab',
+                    '/api/scientific-registry',
+                    '/api/scientific-lab-export',
+                }
+                if route not in safe_routes:
+                    return self.reply(404,{'error':'SCIENCE_ONLY_ROUTE_UNAVAILABLE'})
             if route == '/api/session':
+                if scientific_only:
+                    return self.reply(401,{'authenticated':False,
+                                           'science_only':True,
+                                           'error':'LOCAL_SCIENCE_ONLY'})
                 if accounts_path is None:
                     return self.reply(200,{'authenticated':False,'legacy_test_mode':True})
                 session = self._identity()
@@ -133,6 +162,18 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,local_field_status(field_path))
             if route == '/api/progress':
                 return self.reply(200,progress_status())
+            if route == '/api/beta-readiness':
+                if urlsplit(self.path).query:
+                    return self.reply(400,{'error':'INVALID_BETA_READINESS_QUERY'})
+                try:
+                    payload = beta_readiness(
+                        bind_host=self.server.server_address[0],
+                        accounts_path=accounts_path, web_root=WEB,
+                        scientific_only=scientific_only)
+                except (BetaReadinessUnavailable, OSError):
+                    return self.reply(503,{'ok':False,
+                                           'error':'BETA_READINESS_UNAVAILABLE'})
+                return self.reply(200 if payload['ok'] else 503,payload)
             if route == '/api/eligibility-policy':
                 return self.reply(200,policy_status())
             if route == '/api/source-stages':
@@ -231,6 +272,71 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                         cut_on=parsed.get('cut_on',['2023-12-31'])[0]))
                 except ValueError:
                     return self.reply(400,{'error':'INVALID_SYNTHETIC_LINEAGE_CUT'})
+            if route == '/api/scientific-lab-admission':
+                try:
+                    parsed = parse_qs(urlsplit(self.path).query,
+                                      keep_blank_values=True,strict_parsing=True,
+                                      max_num_fields=1)
+                    if (not set(parsed).issubset({'candidate'}) or
+                            any(len(v)!=1 for v in parsed.values())):
+                        raise ValueError('UNSUPPORTED_SYNTHETIC_ADMISSION_QUERY')
+                    return self.reply(200,synthetic_candidate_admission(
+                        candidate=parsed.get('candidate',['baseline'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_ADMISSION_QUERY'})
+                except RuntimeError:
+                    return self.reply(503,{'error':'SYNTHETIC_ADMISSION_UNAVAILABLE'})
+            if route == '/api/scientific-registry':
+                # S9 is an allowlisted, *persistent synthetic-only* SQLite
+                # source registry. No user-provided body, SQL, source ID, URL,
+                # file path, original or arbitrary issuer reaches the DB.
+                try:
+                    parsed=parse_qs(urlsplit(self.path).query,
+                                    keep_blank_values=True,strict_parsing=True,
+                                    max_num_fields=4)
+                    allowed={'cut','valid_at','family','published_until'}
+                    if not set(parsed).issubset(allowed) or any(
+                            len(values)!=1 for values in parsed.values()):
+                        raise ValueError('REGISTRY_QUERY_NOT_CLOSED')
+                    return self.reply(200,scientific_registry_query(
+                        scientific_registry_path(db_path),
+                        cut=parsed.get('cut',['late'])[0],
+                        valid_at=parsed.get('valid_at',['2026-09-15'])[0],
+                        family=parsed.get('family',['all'])[0],
+                        published_until=parsed.get('published_until',['as_of'])[0]))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_REGISTRY_QUERY'})
+                except (RegistryIntegrityError,RuntimeError,OSError):
+                    return self.reply(503,{'error':'SYNTHETIC_REGISTRY_UNAVAILABLE'})
+            if route in ('/api/scientific-integration-lab',
+                         '/api/scientific-lab-export'):
+                # Fixed Python/Node fixtures, NOT a route to ingest originals,
+                # source URLs, citizen records or a real denominator. No POST.
+                query=urlsplit(self.path).query
+                try:
+                    exporting = route == '/api/scientific-lab-export'
+                    parsed=parse_qs(query,keep_blank_values=True,
+                                    strict_parsing=True,
+                                    max_num_fields=3 if exporting else 2)
+                    allowed={'cut','scenario','published_until'} if exporting else {'cut','scenario'}
+                    if (not set(parsed).issubset(allowed)
+                            or any(len(v)!=1 for v in parsed.values())):
+                        raise ValueError('UNSUPPORTED_SYNTHETIC_LAB_QUERY')
+                    params = {
+                        'cut': parsed.get('cut',['late'])[0],
+                        'scenario': parsed.get('scenario',['baseline'])[0],
+                    }
+                    if exporting:
+                        return self.reply(200,scientific_export_receipt(
+                            **params,
+                            published_until=parsed.get('published_until',[None])[0]))
+                    return self.reply(200,scientific_integration_report(**params))
+                except ValueError:
+                    return self.reply(400,{'error':'INVALID_SYNTHETIC_LAB_QUERY'})
+                except RuntimeError:
+                    # A missing Node runtime or failed cross-language
+                    # integrity check must NOT fall back to a fabricated pass.
+                    return self.reply(503,{'error':'SYNTHETIC_BRIDGE_UNAVAILABLE'})
             if route == '/api/official-nominations':
                 return self.reply(200,nomination_atlas_status())
             if route == '/api/verified-candidacies':
@@ -240,6 +346,10 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
             if route == '/api/actors':
                 return self.reply(200,local_actor_universe_status())
             if route == '/api/health':
+                if scientific_only:
+                    return self.reply(200,{'ok':True,'mode':'SYNTHETIC_SCIENCE_ONLY',
+                                           'real_player_scoring':False,
+                                           'accounts_enabled':False})
                 return self.reply(200,{'ok':True,'mode':'SYNTHETIC_DEMO','real_player_scoring':False})
             assets={'/':'index.html','/index.html':'index.html','/app.js':'app.js','/style.css':'style.css'}
             filename=assets.get(route)
@@ -250,6 +360,8 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
         def do_POST(self):
             if not self._is_local_host():
                 return self.reply(403,{'error':'LOCAL_HOST_REQUIRED'})
+            if scientific_only:
+                return self.reply(404,{'error':'SCIENCE_ONLY_WRITE_UNAVAILABLE'})
             if urlsplit(self.path).path not in ('/api/register','/api/login','/api/logout',
                                                     '/api/clubs','/api/buy','/api/sell',
                                                     '/api/lineup','/api/simulate-round'):
@@ -316,16 +428,40 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
     return Handler
 
 
-def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT, field_path: Path | None=FIELD):
+def serve(db_path: Path, *, port: int=8787, pilot_path: Path | None=PILOT,
+          field_path: Path | None=FIELD, scientific_only: bool=False,
+          resume_guest_query: str | None=None):
+    # run_demo validates the complete seven-field query. Direct internal
+    # callers must at least not bypass the no-account boundary or inject a
+    # second line into the local startup banner. Reject before any DB/socket.
+    if resume_guest_query is not None and (
+            not scientific_only or type(resume_guest_query) is not str
+            or len(resume_guest_query) > 640
+            or not resume_guest_query.startswith('pfl_guest=v1&')
+            or any(ord(char) < 33 or ord(char) > 126
+                   for char in resume_guest_query)
+            or any(char in resume_guest_query for char in '#?\\')):
+        raise ValueError('Consulta científica reanudable no válida')
     # Existing direct handler_factory() use is maintained for legacy unit tests.
     # serve() uses a mandatory account boundary: it NEVER serves the shared demo
     # game's club data to authenticated users.
     auth_db=db_path.parent/'accounts.sqlite3'
-    accounts.init_accounts(auth_db)
+    if not scientific_only:
+        accounts.init_accounts(auth_db)
     server=ThreadingHTTPServer(('127.0.0.1',port),
-                               handler_factory(db_path,pilot_path,field_path,auth_db))
-    print(f'Politics Fantasy League · DEMO SINTÉTICA · http://127.0.0.1:{server.server_port}',flush=True)
-    print('Cuentas locales con sesiones; NO exponer a internet. No hay puntos políticos reales.',flush=True)
+                               handler_factory(db_path,pilot_path,field_path,
+                                               None if scientific_only else auth_db,
+                                               scientific_only=scientific_only))
+    print(f'Politics Fantasy League · '
+          f'{"CIENCIA SINTÉTICA SIN CUENTAS" if scientific_only else "DEMO SINTÉTICA"}'
+          f' · http://127.0.0.1:{server.server_port}',flush=True)
+    if resume_guest_query is not None:
+        print(f'REANUDAR CONSULTA CIENTÍFICA · '
+              f'http://127.0.0.1:{server.server_port}/?{resume_guest_query}',
+              flush=True)
+    print('SOLO localhost; NO publicar a internet. '
+          +('Sin cuentas, mercado ni operaciones POST.' if scientific_only
+            else 'Cuentas locales con sesiones; sin puntos políticos reales.'),flush=True)
     try:
         server.serve_forever()
     finally:

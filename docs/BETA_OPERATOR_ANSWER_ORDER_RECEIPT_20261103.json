@@ -1,0 +1,116 @@
+{
+  "baseline_published_head": "65c29815c5ded7ede0e934676fb87f31acedf313",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "coverage_limits": {
+    "R5": "STOP_R5",
+    "empirical_spanish_sources_admitted": 0,
+    "fixed_answer_key_is_public": true,
+    "human_comprehension_results": 0,
+    "human_participants_observed": 0,
+    "human_satisfaction_results": 0,
+    "intermittent_chrome_accessibility_root_cause": "UNVERIFIED",
+    "ntfs_ads_rejection_verified_on_windows": true,
+    "ordinary_windows_symlink_protection": "NOT_VERIFIED_WINDOWS_WINERROR_1314",
+    "per_participant_answer_randomization": false,
+    "public_beta_or_deployment_authorized": false,
+    "release_gates_passed": 0,
+    "rights_or_publisher_authenticity_admitted": false,
+    "scientific_AB_R_cycles_added": 0,
+    "windows_junction_rejection": "VERIFIED"
+  },
+  "date": "2026-11-03",
+  "existing_draft_pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "git_staged_blob_manifest": {
+    "HANDOFF.md": {
+      "bytes": 113457,
+      "sha256": "df56dec4c4572eca162b53b1369209de79a862563ba6a9c9611fc28497c68722",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 96834,
+      "sha256": "dc7b111b786cc1912281b6808d9536b7b7bf403feac1f54f934d4864d2bae7aa",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 9842,
+      "sha256": "aa906a7e26938aaeb06bf985e1588a3b8b36acaea254d52a3ea6015b0d70d412",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 24539,
+      "sha256": "9108228254f9764ad8f31e120811c8ba3ab8fcdf60c2e9e44756167da0100fb5",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 26403,
+      "sha256": "607ab11ef20df8a33785251d01b9924dfd22c057e010d902f4eac0a5bc01e65b",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_science_operator_protocol.py": {
+      "bytes": 29822,
+      "sha256": "ae9932ed0fbc698d68d098e245fc0e0e8fac90e7706f54b159ed0871666a2574",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "schema": "pfl.beta_operator_answer_order_ads_hardening_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_OPERATOR_ONLY",
+  "tests": {
+    "clean_committed_head": "VERIFY_AFTER_PUBLICATION",
+    "focal_python": {
+      "failed": 0,
+      "passed": 68,
+      "skipped": 0
+    },
+    "integrated_uncommitted_worktree": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 118,
+      "passed": 443,
+      "python": 323,
+      "skipped": 0,
+      "status": "PASS"
+    }
+  },
+  "verified_changes": {
+    "ab_position_sequence_after": "ABBABABAABBA",
+    "backend_changed": false,
+    "balanced_A_B": [
+      6,
+      6
+    ],
+    "docx_changed": false,
+    "new_http_routes": 0,
+    "new_session_ads_path_rejection_code": "OPERATOR_SESSION_PATH_INVALID",
+    "new_session_utf8_exclusive_create_preserved": true,
+    "operator_rubric_separated_from_participant_sheet": true,
+    "position_assignment": "PUBLIC_DETERMINISTIC_SHA256_TASK_ID_RANK",
+    "s9_pair_contract_changed": false,
+    "scientific_registry_schema_changed": false,
+    "session_completeness_and_technical_veto_preserved": true,
+    "windows_junction_rejection_preserved": true
+  },
+  "verified_prepatch_red": [
+    {
+      "actual_sequence": "ABABABABABAB",
+      "defect": "PUBLICLY_PREDICTABLE_ANSWER_KEY_BY_TASK_PARITY",
+      "deselected": 54,
+      "failed": 1,
+      "source_edited_after_red": true,
+      "test": "test_prepatch_red_correct_position_not_deducible_from_task_parity"
+    },
+    {
+      "ads_write_reproduced_prepatch": true,
+      "defect": "NTFS_ADS_HARDLINK_CROSS_REPOSITORY_WRITE",
+      "deselected": 55,
+      "failed": 2,
+      "original_git_fixture_type": "DISPOSABLE_SYNTHETIC_ONLY",
+      "source_edited_after_red": true,
+      "test": "test_prepatch_red_new_session_rejects_windows_ntfs_ads_destination",
+      "test_variants": [
+        "False",
+        "True"
+      ]
+    }
+  ]
+}

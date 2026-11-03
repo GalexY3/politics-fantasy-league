@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null };
+const ui = { tab:'overview', guest:false, scienceOnly:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceAdmissionRequest:0, scienceGuestPanel:'mechanisms', scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL', scienceRegistryComparison:null, scienceRegistryCompareError:null, scienceRegistryCompareLoading:false, scienceRegistryCompareRequest:0, scienceRegistryPairExportGeneration:0, guestUrlError:null };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -18,6 +18,7 @@ const day = iso => new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',
 const money = n => `${count(n)} CR`;
 function notice(msg, error=false){ const t=el('toast'); t.textContent=msg; t.className=error?'visible error':'visible'; clearTimeout(notice.timer); notice.timer=setTimeout(()=>t.className='',3600); }
 async function call(route, body){
+ if(ui.guest)throw new Error('Operaciones de cuenta no disponibles en modo visitante');
  const headers={'Content-Type':'application/json','X-PFL-Request':'1'};
  if(ui.csrf)headers['X-PFL-CSRF']=ui.csrf;
  const response=await fetch(route,{method:'POST',headers,credentials:'same-origin',body:JSON.stringify(body)});
@@ -50,6 +51,600 @@ function stat(title,value,explanation){return `<article class="card metric"><lab
 function heading(kicker,title,desc){return `<header class="head"><div><p class="eyebrow">${esc(kicker)}</p><h1>${esc(title)}</h1><p>${esc(desc)}</p></div></header>`;}
 function row(f,act){return `<div class="listrow">${avatar(f)}<div class="identity"><strong>${esc(f.display_name)}</strong><small>${esc(f.role)} · ${esc(f.group_name)}</small></div><div class="amount">${money(f.price)}</div>${act||''}</div>`;}
 function warning(){return `<div class="warning"><strong>ENTORNO EXPERIMENTAL.</strong> Las figuras, transacciones y puntuaciones de fantasy son ficticias. El piloto de votaciones manuales es exploratorio; los CSV de iniciativas oficiales únicamente acreditan metadatos capturados, no resultados históricos ni puntuaciones de personas.</div>`;}
+function scienceUrl(route){return '/api/'+route+'?cut='+encodeURIComponent(ui.scienceCut)+'&scenario='+encodeURIComponent(ui.scienceScenario);}
+function sciencePublishedLimit(){
+ const max=ui.scienceCut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z';
+ return ['2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(ui.scienceFirstPublic)
+    && ui.scienceFirstPublic<=max?ui.scienceFirstPublic:max;
+}
+function validSciencePayload(x){
+ const e=x?.explorer;
+ return x?.schema==='pfl.synthetic_scientific_integration_lab.v1'
+   && x.evidence_class==='SYNTHETIC_LAB_ONLY'
+   && x.cut===ui.scienceCut && x.scenario===ui.scienceScenario
+   && x.R5==='STOP_R5' && x.scientific_AB_cycles===0
+   && x.release_gates_passed===0 && x.real_corpus_ingestion_allowed===false
+   && x.scientific_estimator_admitted===false
+   && x.independent_all_received_denominator===null
+   && e?.schema==='pfl.synthetic_scientific_explorer.v1'
+   && e.admission?.R5==='STOP_R5' && e.admission?.real_denominator===null
+   && e.admission?.real_distribution_rights_admitted===false
+   && e.catalog?.schema==='pfl.synthetic_distribution_catalog.v1'
+   && e.catalog?.witness_distributions_redacted===true
+   && Array.isArray(e.catalog.distributions)
+   && e.catalog.distributions.every(d=>d.empirical_distribution_admitted===false
+      && d.rights_for_requested_purpose_admitted===false)
+   && e.observatory?.schema==='pfl.synthetic_bitemporal_observatory.v1'
+   && e.observatory.real_actor_identity_verified===false
+   && x.warehouse?.b0_b3_witness_sets?.schema==='pfl.synthetic_b0_b3_witness_sets_oracle.v1'
+   && x.warehouse.b0_b3_witness_sets.real_rights_admitted===false
+   && x.warehouse.b0_b3_witness_sets.real_denominator===null;
+}
+const REGISTRY_VALID_DAYS=['2026-09-11','2026-09-15','2026-10-10'];
+const REGISTRY_FAMILIES=['all','PP04','CHAIN','CHRONICLE'];
+const REGISTRY_PUBLICATION=['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'];
+const REGISTRY_KINDS=['ALL','ACTOR','ORGANIZATION','COMMUNICATION','DECISION','PROCESS','ROLE','EVENT'];
+const GUEST_REGISTRY_VIEWS=['sources','compare','chain','chronicle','episodes','admission','intake','quality'];
+const GUEST_URL_FIELDS=['pfl_guest','cut','valid_at','family','published_until','scenario','view'];
+const GUEST_URL_DEFAULT={cut:'late',validAt:'2026-09-15',family:'all',
+ published:'as_of',scenario:'baseline',view:'sources'};
+function guestUrlSelection(){
+ // A URL is a QUERY INTENT, never a cached receipt or an admission claim.
+ // No interpretation occurs in authenticated Fantasy or before guest entry.
+ const href=globalThis.location?.href;
+ if(typeof href!=='string')return {...GUEST_URL_DEFAULT};
+ try{
+  const url=new URL(href);
+  if(!url.search)return {...GUEST_URL_DEFAULT};
+  const rawFields=url.search.slice(1).split('&');
+  if(url.search.length>640||/%(?![a-fA-F0-9]{2})/.test(url.search)
+    ||rawFields.length!==GUEST_URL_FIELDS.length
+    ||rawFields.some(field=>!field.includes('=')||field.startsWith('=')))
+   return null;
+  const entries=[...url.searchParams];
+  if(entries.length!==GUEST_URL_FIELDS.length
+   ||entries.some(([key])=>!GUEST_URL_FIELDS.includes(key))
+   ||new Set(entries.map(([key])=>key)).size!==GUEST_URL_FIELDS.length)
+   return null;
+  const q=url.searchParams;
+  const cut=q.get('cut'),validAt=q.get('valid_at'),family=q.get('family');
+  const published=q.get('published_until'),scenario=q.get('scenario');
+  const view=q.get('view');
+  if(q.get('pfl_guest')!=='v1'
+   ||!['early','late'].includes(cut)
+   ||!REGISTRY_VALID_DAYS.includes(validAt)
+   ||!REGISTRY_FAMILIES.includes(family)
+   ||!REGISTRY_PUBLICATION.includes(published)
+   ||(cut==='early'&&published==='2026-10-30T12:00:00Z')
+   ||!['baseline','rights_spoof','privacy_probe'].includes(scenario)
+   ||!GUEST_REGISTRY_VIEWS.includes(view))return null;
+  return {cut,validAt,family,published,scenario,view};
+ }catch(_){return null;}
+}
+function mirrorGuestUrlSelection(){
+ if(!ui.guest||ui.guestUrlError||typeof globalThis.location?.href!=='string'
+    ||typeof globalThis.history?.replaceState!=='function')return;
+ try{
+  const url=new URL(globalThis.location.href);
+  // Assign every allowlisted field from current UI values. Never copy a
+  // raw query, fragment, credentials, game state or private identifiers.
+  url.search='';
+  const values=['v1',ui.scienceCut,ui.scienceRegistryValid,
+   ui.scienceRegistryFamily,ui.scienceRegistryPublished,ui.scienceScenario,
+   GUEST_REGISTRY_VIEWS.includes(ui.scienceRegistryTab)?ui.scienceRegistryTab:'sources'];
+  GUEST_URL_FIELDS.forEach((key,i)=>url.searchParams.set(key,values[i]));
+  globalThis.history.replaceState(null,'',url.pathname+url.search);
+ }catch(_){/* URL mirroring is optional; integrity checks still apply. */}
+}
+function validRegistryPayload(x,cut,validAt,family,published){
+ const at=cut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z';
+ const ceiling=published==='as_of'?at:published;
+ const r=x?.registry,s=x?.snapshot,g=s?.graph,m=x?.models;
+ const distributionFields=new Set(['public_id','family','revision','descriptor_recipe',
+  'sha256_public_descriptor','descriptor_byte_length','issuer_fixture',
+  'first_public_at_fixture','captured_at_fixture','real_first_public_at',
+  'real_publisher_authenticated','coverage_temporal','quality_gate','provenance',
+  'requested_purpose','rights_for_public_display','empirical_admitted','immutable_revision']);
+ const graphIsSafe=part=>part===null||(part&&typeof part==='object'
+  &&Array.isArray(part.nodes)&&Array.isArray(part.edges)
+  &&part.node_count===part.nodes.length&&part.edge_count===part.edges.length
+  &&part.amendments_count_as_new_people_or_decisions===false
+  &&part.nodes.every(n=>REGISTRY_KINDS.includes(n.kind)
+    &&typeof n.label==='string'&&/^S9:(CHAIN|CHRONICLE):NODE_[0-9]{2}$/.test(n.id)
+    &&Number.isSafeInteger(n.documentary_revision_count))
+  &&part.edges.every(e=>typeof e.kind==='string'
+    &&part.nodes.some(n=>n.id===e.from)&&part.nodes.some(n=>n.id===e.to)));
+ return x?.schema==='pfl.synthetic_scientific_registry.v1'
+  &&x.evidence_class==='SYNTHETIC_LAB_ONLY'
+  &&x.cut===cut&&x.as_of===at&&x.valid_at===validAt
+  &&x.family===family&&x.published_until===ceiling
+  &&x.R5==='STOP_R5'&&x.release_gates_passed===0
+  &&x.scientific_ab_cycles===0&&x.independent_denominator===null
+  &&x.real_source_ingestion_allowed===false
+  &&r?.schema_version===4&&r.persistent===true
+  &&Array.isArray(r.migration_history)
+  &&r.migration_history.join(',')==='1,2,3,4'
+  &&r.source_catalog_kind==='FIXED_PUBLIC_DESCRIPTORS_ONLY'
+  &&r.source_bytes_exposed===false&&r.private_source_ids_exposed===false
+  &&r.originals_accepted===false&&r.fixture_bytes_sha256_checked_at_read===true
+  &&r.recorded_distribution_count===6&&r.internal_uncatalogued_fixture_receipts===1
+  &&Array.isArray(r.distributions)&&r.visible_distribution_count===r.distributions.length
+  &&r.distributions.every(d=>d&&typeof d==='object'
+    &&Object.keys(d).every(k=>distributionFields.has(k))
+    &&/^S9:PUBLIC_0[1-6]$/.test(d.public_id)
+    &&['PP04','CHAIN','CHRONICLE'].includes(d.family)
+    &&(family==='all'||d.family===family)
+    &&/^fixture_v[12]$/.test(d.revision)
+    &&d.descriptor_recipe==='S9_PUBLIC_SYNTHETIC_DESCRIPTOR_V1'
+    &&/^[a-f0-9]{64}$/.test(d.sha256_public_descriptor)
+    &&Number.isSafeInteger(d.descriptor_byte_length)&&d.descriptor_byte_length>0
+    &&d.first_public_at_fixture<=ceiling&&d.captured_at_fixture<=at
+    &&d.real_first_public_at===null&&d.real_publisher_authenticated===false
+    &&d.coverage_temporal==='DISTRIBUTION_COVERAGE_UNATTESTED'
+    &&d.provenance==='AUTHORED_SYNTHETIC_FIXTURE_NOT_OFFICIAL'
+    &&d.requested_purpose==='PUBLIC_AGGREGATE_DISPLAY'
+    &&d.rights_for_public_display===false&&d.empirical_admitted===false
+    &&d.immutable_revision===true)
+  &&s?.knowledge_as_of===at&&s.valid_at===validAt
+  &&g?.cross_issuer_links_created===false
+  &&graphIsSafe(g.chain)&&graphIsSafe(g.chronicle)
+  &&s.episodes?.right_censor_independently_attested===false
+  &&s.episodes?.unobserved_is_negative===false
+  &&s.episodes?.source_local_all_received_denominator===null
+  &&s.pp04?.unplanned_is_a_terminal_negative===false
+  &&s.pp04?.independent_crosswalk_between_pan_iaen===false
+  &&s.admission_assessments?.schema==='pfl.synthetic_admission_assessments.v1'
+  &&Array.isArray(s.admission_assessments.assessments)
+  &&s.admission_assessments.assessment_count===s.admission_assessments.assessments.length
+  &&s.admission_assessments.source_rows_ingested===0
+  &&s.admission_assessments.real_admission_allowed===false
+  &&s.admission_assessments.independent_denominator===null
+  &&s.admission_assessments.assessments.every(a=>
+   /^S9:ASSESS_0[1-8]$/.test(a.assessment_id)
+   &&a.status==='ASSESSED_REJECTED_R5'
+   &&Array.isArray(a.blockers)&&a.blockers.length>0
+   &&Array.isArray(a.history)&&a.history.length===2
+   &&a.history[0].status==='REGISTERED'
+   &&a.history[1].status==='ASSESSED_REJECTED_R5'
+   &&a.rights_for_public_display===false
+   &&a.real_original_admitted===false&&a.source_rows_imported===0
+   &&/^[a-f0-9]{64}$/.test(a.public_receipt_sha256))
+  &&s.synthetic_intake?.schema==='pfl.synthetic_intake_overlay.v1'
+  &&Array.isArray(s.synthetic_intake.entries)
+  &&s.synthetic_intake.intake_count===s.synthetic_intake.entries.length
+  &&Number.isSafeInteger(s.synthetic_intake.registered_count)
+  &&Number.isSafeInteger(s.synthetic_intake.validated_count)
+  &&Number.isSafeInteger(s.synthetic_intake.rejected_count)
+  &&s.synthetic_intake.validated_count+s.synthetic_intake.rejected_count===s.synthetic_intake.intake_count
+  &&s.synthetic_intake.history_event_count===2*s.synthetic_intake.intake_count
+  &&s.synthetic_intake.logical_decisions_count===0
+  &&s.synthetic_intake.source_rows_added_to_canonical===0
+  &&s.synthetic_intake.independent_denominator===null
+  &&s.synthetic_intake.real_source_ingestion_allowed===false
+  &&s.synthetic_intake.source_local_identifiers_exposed===false
+  &&s.synthetic_intake.rights_for_public_display===false
+  &&s.synthetic_intake.scientific_admission_allowed===false
+  &&s.synthetic_intake.real_enrollment_at===null
+  &&s.synthetic_intake.temporal_axis==='AUTHOR_STIPULATED_FIXTURE_CLOCKS_NOT_REAL_ENROLLMENT_TIME'
+  &&s.synthetic_intake.entries.every(e=>
+   /^S9:INTAKE_0[1-4]$/.test(e.intake_id)
+   &&typeof e.label==='string'
+   &&['SANDBOX_VALIDATED','SANDBOX_REJECTED'].includes(e.status)
+   &&['NONE','ISSUER_NOT_ALLOWLISTED'].includes(e.reason_code)
+   &&/^fixture_v[12]$/.test(e.revision)
+   &&(e.amendment_of===null||/^S9:INTAKE_0[1-4]$/.test(e.amendment_of))
+   &&e.quality_gate==='AUTHOR_CLOSED_SANDBOX_ONLY'
+   &&typeof e.captured_at_fixture==='string'&&e.captured_at_fixture<=at
+   &&typeof e.receipt_first_public_at_fixture==='string'
+   &&e.receipt_first_public_at_fixture<=ceiling
+   &&typeof e.source_first_public_at_fixture==='string'
+   &&typeof e.valid_from==='string'
+   &&Array.isArray(e.history)&&e.history.length===2
+   &&e.history[0].status==='SANDBOX_REGISTERED'
+   &&e.history[1].status===e.status
+   &&e.history.every(h=>typeof h.recorded_at_fixture==='string')
+   &&e.rights_for_public_display===false
+   &&e.empirical_admitted===false
+   &&e.real_first_public_at===null&&e.real_issuer_authenticated===false
+   &&e.canonical_source_rows_imported===0
+   &&/^[a-f0-9]{64}$/.test(e.public_descriptor_sha256))
+  &&s.synthetic_intake.graph?.cross_issuer_links_created===false
+  &&Array.isArray(s.synthetic_intake.graph?.nodes)
+  &&Array.isArray(s.synthetic_intake.graph?.edges)
+  &&s.synthetic_intake.graph.node_count===s.synthetic_intake.graph.nodes.length
+  &&s.synthetic_intake.graph.edge_count===s.synthetic_intake.graph.edges.length
+  &&s.synthetic_intake.graph.revisions_are_not_new_actors_or_decisions===true
+  &&s.synthetic_intake.graph.nodes.every(n=>
+   /^S9:INTAKE_0[1-4]:N_(ACTOR|ORGANIZATION|PROCESS)$/.test(n.id)
+   &&['ACTOR','ORGANIZATION','PROCESS'].includes(n.kind)
+   &&typeof n.label==='string'
+   &&Number.isSafeInteger(n.documentary_revision_count)
+   &&n.logical_identity_count===1)
+  &&s.synthetic_intake.graph.edges.every(e=>
+   ['AUTHOR_CLOSED_DOCUMENTARY_ASSOCIATION','AUTHOR_CLOSED_DOCUMENTARY_PROCESS_LINK'].includes(e.kind)
+   &&s.synthetic_intake.graph.nodes.some(n=>n.id===e.from)
+   &&s.synthetic_intake.graph.nodes.some(n=>n.id===e.to))
+  &&m?.s3_s7_endpoint==='/api/scientific-integration-lab'
+  &&m.computed_from_registry===false
+  &&m.separate_existing_python_node_oracle===true
+  &&m.empirical_model_admitted===false;
+}
+function registryCanonicalJson(value){
+ return JSON.stringify(value,(_key,item)=>item&&!Array.isArray(item)
+  &&typeof item==='object'?Object.fromEntries(Object.keys(item).sort()
+   .map(key=>[key,item[key]])):item);
+}
+async function verifyRegistryReceipt(x){
+ const receipt=x?.snapshot_receipt;
+ if(!globalThis.crypto?.subtle
+    ||receipt?.schema!=='pfl.synthetic_registry_snapshot_receipt.v1'
+    ||receipt.canonicalization!=='JSON_UTF8_SORTED_KEYS_COMPACT_V1'
+    ||receipt.content_scope!=='CLOSED_PUBLIC_SYNTHETIC_QUERY_ONLY'
+    ||receipt.external_authenticity_certified!==false
+    ||typeof receipt.canonical_json!=='string'
+    ||typeof receipt.bytes!=='number'
+    ||!/^[a-f0-9]{64}$/.test(receipt.sha256)
+    ||x.snapshot_receipt_sha256!==receipt.sha256)return false;
+ const bytes=new TextEncoder().encode(receipt.canonical_json);
+ if(bytes.length!==receipt.bytes)return false;
+ const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)))
+  .map(b=>b.toString(16).padStart(2,'0')).join('');
+ if(hash!==receipt.sha256)return false;
+ let parsed;
+ try{parsed=JSON.parse(receipt.canonical_json);}catch(_){return false;}
+ const expected={
+  schema:'pfl.synthetic_scientific_registry_snapshot.v1',
+  cut:x.cut,as_of:x.as_of,valid_at:x.valid_at,
+  family:x.family,published_until:x.published_until,
+  distributions:x.registry.distributions,snapshot:x.snapshot
+ };
+ // Content agreement is necessary even when the independently computed digest matches.
+ // The local SHA is NOT proof of publisher identity, first-public date or reuse rights.
+ return registryCanonicalJson(parsed)===registryCanonicalJson(expected);
+}
+function invalidateScientificAdmission(){
+ ++ui.scienceAdmissionRequest;
+ // A valid SHA from an older UI context must never authorize an S8 download.
+ ++ui.scienceExportGeneration;
+ ui.scienceAdmission=null;
+ ui.scienceAdmissionError=null;
+ ui.scienceAdmitting=false;
+}
+function invalidateScientificRegistry(){
+ ++ui.scienceRegistryRequest;
+ ++ui.scienceRegistryExportGeneration;
+ invalidateRegistryComparison();
+ ui.scienceRegistry=null;ui.scienceRegistryLoading=false;ui.scienceRegistryError=null;
+}
+function invalidateRegistryComparison(){
+ ++ui.scienceRegistryCompareRequest;
+ ++ui.scienceRegistryPairExportGeneration;
+ ui.scienceRegistryComparison=null;
+ ui.scienceRegistryCompareError=null;
+ ui.scienceRegistryCompareLoading=false;
+}
+async function loadScientificRegistry(){
+ invalidateScientificAdmission();
+ const ticket=++ui.scienceRegistryRequest;
+ ++ui.scienceRegistryExportGeneration;
+ invalidateRegistryComparison();
+ const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
+ const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
+ ui.scienceRegistry=null;ui.scienceRegistryError=null;ui.scienceRegistryLoading=true;
+ if(ui.guest||ui.tab==='scientific')draw();
+ try{
+  if(!ui.scientific||ui.scientificLoading||ui.scientificError
+     ||!validSciencePayload(ui.scientific))throw new Error('Laboratorio no validado; registro bloqueado');
+  const url='/api/scientific-registry?cut='+encodeURIComponent(cut)
+   +'&valid_at='+encodeURIComponent(validAt)
+   +'&family='+encodeURIComponent(family)
+   +'&published_until='+encodeURIComponent(published);
+  const response=await fetch(url,{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Registro persistente rechazado (HTTP '+response.status+')');
+  const data=await response.json();
+  if(!validRegistryPayload(data,cut,validAt,family,published)
+    ||!await verifyRegistryReceipt(data))
+   throw new Error('Registro incongruente o SHA de recibo incompatible');
+  if(ticket===ui.scienceRegistryRequest&&ui.scienceCut===cut
+    &&ui.scienceRegistryValid===validAt&&ui.scienceRegistryFamily===family
+    &&ui.scienceRegistryPublished===published&&ui.scientific
+    &&validSciencePayload(ui.scientific))ui.scienceRegistry=data;
+ }catch(e){
+  if(ticket===ui.scienceRegistryRequest)ui.scienceRegistryError=String(e.message);
+ }finally{
+  if(ticket===ui.scienceRegistryRequest){
+   ui.scienceRegistryLoading=false;
+   if(ui.guest||ui.tab==='scientific')draw();
+  }
+ }
+}
+async function loadRegistryComparison(){
+ const ticket=++ui.scienceRegistryCompareRequest;
+ ++ui.scienceRegistryPairExportGeneration;
+ const validAt=ui.scienceRegistryValid,family=ui.scienceRegistryFamily;
+ const published=ui.scienceRegistryPublished,cut=ui.scienceCut;
+ const firstPublic=ui.scienceFirstPublic;
+ const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
+ const current=ui.scienceRegistry;
+ const ready=()=>ticket===ui.scienceRegistryCompareRequest
+  &&registryTicket===ui.scienceRegistryRequest&&scienceTicket===ui.scienceRequest
+  &&current===ui.scienceRegistry&&!ui.scienceRegistryLoading&&!ui.scienceRegistryError
+  &&ui.scientific&&!ui.scientificLoading&&!ui.scientificError
+  &&validSciencePayload(ui.scientific)
+  &&cut===ui.scienceCut&&validAt===ui.scienceRegistryValid
+  &&family===ui.scienceRegistryFamily&&published===ui.scienceRegistryPublished
+  &&firstPublic===ui.scienceFirstPublic;
+ ui.scienceRegistryComparison=null;ui.scienceRegistryCompareError=null;
+ ui.scienceRegistryCompareLoading=true;
+ if(ui.guest||ui.tab==='scientific')draw();
+ try{
+  if(!current||!globalThis.crypto?.subtle||!ready()
+   ||!validRegistryPayload(current,cut,validAt,family,published))
+   throw new Error('Consulta S9 principal no validada; comparación bloqueada');
+  // Two independent public projections. The early publication ceiling cannot
+  // include a fictional event published after its author-stipulated as_of.
+  const cuts=['early','late'];
+  const queries=cuts.map(c=>({
+   cut:c,validAt,family,
+   published:published==='as_of'||(c==='early'&&published>'2026-10-15T12:00:00Z')
+    ?'as_of':published
+  }));
+  const snapshots=await Promise.all(queries.map(async q=>{
+   const url='/api/scientific-registry?cut='+encodeURIComponent(q.cut)
+    +'&valid_at='+encodeURIComponent(q.validAt)
+    +'&family='+encodeURIComponent(q.family)
+    +'&published_until='+encodeURIComponent(q.published);
+   const response=await fetch(url,{cache:'no-store',credentials:'same-origin'});
+   if(!response.ok)throw new Error('Comparación S9 rechazada (HTTP '+response.status+')');
+   const data=await response.json();
+   if(!validRegistryPayload(data,q.cut,q.validAt,q.family,q.published)
+    ||!await verifyRegistryReceipt(data))
+    throw new Error('Comparación S9 incompatible, derechos fingidos o SHA no verificable');
+   return data;
+  }));
+  if(!ready())throw new Error('Comparación S9 obsoleta tras cambiar la selección');
+  ui.scienceRegistryComparison={queries,early:snapshots[0],late:snapshots[1]};
+ }catch(error){
+  if(ticket===ui.scienceRegistryCompareRequest){
+   ui.scienceRegistryComparison=null;
+   ui.scienceRegistryCompareError=String(error.message);
+  }
+ }finally{
+  if(ticket===ui.scienceRegistryCompareRequest){
+   ui.scienceRegistryCompareLoading=false;
+   if(ui.guest||ui.tab==='scientific')draw();
+  }
+ }
+}
+function registryBrowserExportBody(data,cut,validAt,family){
+ const receipt=data.snapshot_receipt;
+ return {
+  schema:'pfl.synthetic_scientific_registry_browser_export.v1',
+  evidence_class:'SYNTHETIC_LAB_ONLY',
+  query:{cut,as_of:data.as_of,valid_at:validAt,family,published_until:data.published_until},
+  source_contract:data.schema,
+  receipt_schema:receipt.schema,
+  snapshot_receipt:receipt,
+  R5:'STOP_R5',release_gates_passed:0,scientific_ab_cycles:0,
+  external_authenticity_certified:false,rights_for_public_display_admitted:false
+ };
+}
+async function exportRegistryComparison(){
+ if(ui.guest&&ui.tab!=='observatory')return;
+ const pair=ui.scienceRegistryComparison;
+ const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
+ const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
+ const firstPublic=ui.scienceFirstPublic,tab=ui.scienceRegistryTab;
+ const compareTicket=ui.scienceRegistryCompareRequest;
+ const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
+ const exportTicket=++ui.scienceRegistryPairExportGeneration;
+ const currentRegistry=ui.scienceRegistry;
+ const ready=()=>pair&&pair===ui.scienceRegistryComparison
+  &&compareTicket===ui.scienceRegistryCompareRequest
+  &&registryTicket===ui.scienceRegistryRequest
+  &&scienceTicket===ui.scienceRequest
+  &&exportTicket===ui.scienceRegistryPairExportGeneration
+  &&currentRegistry===ui.scienceRegistry
+  &&ui.scienceRegistryValid===validAt&&ui.scienceRegistryFamily===family
+  &&ui.scienceRegistryPublished===published&&ui.scienceFirstPublic===firstPublic
+  &&ui.scienceCut===cut&&ui.scienceRegistryTab===tab&&tab==='compare'
+  &&(ui.guest?ui.tab==='observatory':ui.tab==='scientific')
+  &&!ui.scienceRegistryLoading&&!ui.scienceRegistryError
+  &&!ui.scienceRegistryCompareLoading&&!ui.scienceRegistryCompareError
+  &&ui.scientific&&!ui.scientificLoading&&!ui.scientificError
+  &&validSciencePayload(ui.scientific);
+ if(!ready()||!globalThis.crypto?.subtle){
+  notice('Descarga pareada bloqueada: verifica antes ambos cortes sintéticos',true);
+  return;
+ }
+ try{
+  const queries=pair.queries;
+  if(!Array.isArray(queries)||queries.length!==2
+   ||queries[0].cut!=='early'||queries[1].cut!=='late'
+   ||queries.some(q=>q.validAt!==validAt||q.family!==family)
+   ||queries.some(q=>q.published!==(published==='as_of'
+       ||(q.cut==='early'&&published>'2026-10-15T12:00:00Z')
+      ?'as_of':published)))
+   throw new Error('Selección de publicación pareada incompatible');
+  const snapshots=[pair.early,pair.late];
+  for(let i=0;i<2;i++){
+   const q=queries[i],data=snapshots[i];
+   if(!validRegistryPayload(data,q.cut,validAt,family,q.published)
+    ||!await verifyRegistryReceipt(data))
+    throw new Error('Recibo SHA, derechos o contrato S9 pareado incompatible');
+   if(!ready())throw new Error('Comparación obsoleta durante la verificación SHA');
+  }
+  const envelope={
+   schema:'pfl.synthetic_scientific_registry_browser_pair_export.v1',
+   evidence_class:'SYNTHETIC_LAB_ONLY',
+   comparison_kind:'AUTHOR_STIPULATED_SNAPSHOT_VISIBILITY_NOT_REAL_CHANGE',
+   exports:{
+    early:registryBrowserExportBody(pair.early,'early',validAt,family),
+    late:registryBrowserExportBody(pair.late,'late',validAt,family)
+   },
+   R5:'STOP_R5',release_gates_passed:0,scientific_ab_cycles:0,
+   rights_for_public_display_admitted:false,external_authenticity_certified:false
+  };
+  // Hash the exact compact, recursively sorted UTF-8 envelope with WebCrypto;
+  // neither a server route nor one of the child snapshot hashes is a pair SHA.
+  const canonical_json=registryCanonicalJson(envelope);
+  const canonicalBytes=new TextEncoder().encode(canonical_json);
+  const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',canonicalBytes)))
+   .map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(!ready())throw new Error('Comparación pareada obsoleta antes de descargar');
+  const output={...envelope,pair_receipt:{
+   schema:'pfl.synthetic_scientific_registry_browser_pair_receipt.v1',
+   canonicalization:'JSON_UTF8_SORTED_KEYS_COMPACT_V1',
+   canonical_json,bytes:canonicalBytes.length,sha256
+  }};
+  const bytes=JSON.stringify(output,null,2)+'\n';
+  if(new TextEncoder().encode(bytes).length>1048576)
+   throw new Error('Comparación pareada excede 1 MiB; descarga bloqueada');
+  if(!ready())throw new Error('Comparación pareada obsoleta antes de descargar');
+  const blob=new Blob([bytes],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  a.download='pfl-s9-pair-'+validAt+'-'+sha256.slice(0,12)+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  notice('Pareja S9 sintética exportada y sellada con SHA-256 '+sha256);
+ }catch(error){if(ready())notice('Exportación de pareja S9 bloqueada: '+error.message,true);}
+}
+async function exportScientificRegistry(){
+ if(ui.guest&&ui.tab!=='observatory')return;
+ const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
+ const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
+ const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
+ const exportTicket=++ui.scienceRegistryExportGeneration;
+ const data=ui.scienceRegistry;
+ const current=()=>registryTicket===ui.scienceRegistryRequest
+  &&scienceTicket===ui.scienceRequest
+  &&exportTicket===ui.scienceRegistryExportGeneration
+  &&data===ui.scienceRegistry
+  &&cut===ui.scienceCut&&validAt===ui.scienceRegistryValid
+  &&family===ui.scienceRegistryFamily&&published===ui.scienceRegistryPublished
+  &&(ui.guest?ui.tab==='observatory':ui.tab==='scientific'&&!!ui.state);
+ if(!data||ui.scienceRegistryLoading||ui.scienceRegistryError
+    ||!ui.scientific||ui.scientificLoading||ui.scientificError
+    ||!validSciencePayload(ui.scientific)||!globalThis.crypto?.subtle){
+  notice('Snapshot S9 no exportable: primero verifica el registro y el Laboratorio',true);
+  return;
+ }
+ try{
+  if(!validRegistryPayload(data,cut,validAt,family,published)
+     ||!await verifyRegistryReceipt(data))throw new Error('Recibo SHA o contrato S9 inválido');
+  // Recheck after the asynchronous digest: a filter A→B→A or a later 503
+  // must invalidate even an otherwise perfectly hashed old snapshot.
+  if(registryTicket!==ui.scienceRegistryRequest
+     ||scienceTicket!==ui.scienceRequest
+     ||exportTicket!==ui.scienceRegistryExportGeneration
+     ||data!==ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError
+     ||cut!==ui.scienceCut||validAt!==ui.scienceRegistryValid
+     ||family!==ui.scienceRegistryFamily||published!==ui.scienceRegistryPublished
+     ||!ui.scientific||ui.scientificLoading||ui.scientificError
+     ||!validSciencePayload(ui.scientific))throw new Error('Corte S9 obsoleto tras cambiar la selección o fallar la recarga');
+  const receipt=data.snapshot_receipt;
+  const exportBody=registryBrowserExportBody(data,cut,validAt,family);
+  const blob=new Blob([JSON.stringify(exportBody,null,2)+'\n'],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  a.download='pfl-s9-registry-'+cut+'-'+validAt+'-'+receipt.sha256.slice(0,12)+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  notice('Snapshot S9 sintético exportado; SHA-256 público '+receipt.sha256);
+ }catch(e){if(current())notice('Exportación S9 bloqueada: '+e.message,true);}
+}
+async function loadScientific(){
+ const ticket=++ui.scienceRequest;
+ invalidateScientificAdmission();
+ invalidateScientificRegistry();
+ ui.scientific=null;ui.scientificError=null;ui.scientificLoading=true;
+ if(ui.guest||ui.tab==='scientific')draw();
+ try{
+  const response=await fetch(scienceUrl('scientific-integration-lab'),{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Contrato HTTP '+response.status+'; laboratorio rechazado');
+  const data=await response.json();
+  if(!validSciencePayload(data))throw new Error('Contrato científico incongruente; vista bloqueada');
+  if(ticket===ui.scienceRequest)ui.scientific=data;
+ }catch(e){if(ticket===ui.scienceRequest)ui.scientificError=String(e.message);}
+ finally{if(ticket===ui.scienceRequest){ui.scientificLoading=false;if(ui.guest||ui.tab==='scientific')draw();}}
+}
+async function exportScientific(){
+ if(ui.guest)return;
+ const cut=ui.scienceCut,scenario=ui.scienceScenario;
+ const knowledgeTicket=ui.scienceRequest;
+ const exportTicket=++ui.scienceExportGeneration;
+ const selectedPublication=ui.scienceFirstPublic;
+ const publishedUntil=sciencePublishedLimit();
+ const stillCurrent=()=>!ui.guest&&ui.tab==='scientific'&&!!ui.state
+  &&knowledgeTicket===ui.scienceRequest
+  &&exportTicket===ui.scienceExportGeneration
+  &&cut===ui.scienceCut&&scenario===ui.scienceScenario
+  &&selectedPublication===ui.scienceFirstPublic
+  &&publishedUntil===sciencePublishedLimit();
+ if(!ui.scientific||ui.scientificLoading||ui.scientificError
+    ||!validSciencePayload(ui.scientific)||!globalThis.crypto?.subtle){
+  notice('Exportación no verificable en este entorno',true);return;
+ }
+ try{
+  // Snapshot all three server parameters: UI changes must not retarget an in-flight receipt.
+  const route='/api/scientific-lab-export?cut='+encodeURIComponent(cut)
+   +'&scenario='+encodeURIComponent(scenario)
+   +'&published_until='+encodeURIComponent(publishedUntil);
+  const response=await fetch(route,{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Exportación rechazada (HTTP '+response.status+')');
+  const receipt=await response.json();
+  if(receipt?.schema!=='pfl.synthetic_scientific_export_receipt.v1'
+    ||receipt.canonicalization!=='JSON_UTF8_SORTED_KEYS_COMPACT_V1'
+    ||receipt.R5!=='STOP_R5'||receipt.empirical_data_exported!==false
+    ||!(/^[a-f0-9]{64}$/.test(receipt.sha256))
+    ||typeof receipt.canonical_json!=='string')throw new Error('Recibo inválido');
+  const bytes=new TextEncoder().encode(receipt.canonical_json);
+  const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)))
+   .map(b=>b.toString(16).padStart(2,'0')).join('');
+  const data=JSON.parse(receipt.canonical_json);
+  // A correct SHA alone cannot authorize a download for a now-obsolete UI selection.
+  if(hash!==receipt.sha256||bytes.length!==receipt.bytes
+     ||knowledgeTicket!==ui.scienceRequest
+     ||exportTicket!==ui.scienceExportGeneration
+     ||cut!==ui.scienceCut||scenario!==ui.scienceScenario
+     ||selectedPublication!==ui.scienceFirstPublic
+     ||publishedUntil!==sciencePublishedLimit()
+     ||ui.scientificLoading||ui.scientificError||!ui.scientific
+     ||!validSciencePayload(ui.scientific)
+     ||data?.explorer?.catalog?.publication_filter_fixture!==publishedUntil
+     ||!validSciencePayload(data))throw new Error('Recibo obsoleto o contrato SHA/selección incompatible');
+  const blob=new Blob([JSON.stringify(receipt,null,2)+'\n'],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  a.download='pfl-s8-'+cut+'-'+scenario+'-'+hash.slice(0,12)+'.json';
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  const target=el('science-export-status');if(target)target.textContent='SHA-256 del contenido canónico: '+hash+' · '+bytes.length+' bytes. Recibo y JSON incluidos en la descarga.';
+  notice('Recibo SHA-256 verificado y exportado');
+ }catch(e){if(stillCurrent())notice('Exportación bloqueada: '+e.message,true);}
+}
+
+async function probeScientificAdmission(){
+ if(ui.guest)return;
+ const ticket=++ui.scienceAdmissionRequest,candidate=ui.scienceCandidate;
+ const current=()=>!ui.guest&&ticket===ui.scienceAdmissionRequest
+  &&candidate===ui.scienceCandidate&&ui.tab==='scientific'&&!!ui.state;
+ ui.scienceAdmitting=true;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
+ try{
+  const response=await fetch('/api/scientific-lab-admission?candidate='+encodeURIComponent(candidate),{cache:'no-store',credentials:'same-origin'});
+  if(!response.ok)throw new Error('Rechazo del contrato HTTP '+response.status);
+  const result=await response.json();
+  if(result.schema!=='pfl.synthetic_distribution_admission_dry_run.v1'
+    ||result.evidence_class!=='SYNTHETIC_LAB_ONLY'||result.candidate!==candidate
+    ||result.status!=='REJECTED_R5'||result.R5!=='STOP_R5'
+    ||result.real_original_admitted!==false||result.source_rows_imported!==0
+    ||result.real_person_scoring!==false||!Array.isArray(result.blockers)
+    ||!result.blockers.length)throw new Error('Validación de admisión incompatible');
+  if(current())ui.scienceAdmission=result;
+ }catch(e){if(current())ui.scienceAdmissionError=String(e.message);}
+ finally{if(current()){ui.scienceAdmitting=false;if(ui.tab==='scientific')draw();}}
+}
 function voteBar(r,i){
  const label=`Votación ${i+1}: sí ${r.yes}, no ${r.no}, abstención ${r.abstain}. Total ${r.total}.`;
  const pct=n=>r.total>0?100*n/r.total:0;
@@ -430,6 +1025,314 @@ function institutionalLineagePanel(){
    +'<p class="help">Comparaciones cerradas del mismo fixture: <a href="'+jsonLink('2026-04-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">antes del puente documental tardío</a> y <a href="'+jsonLink('2026-08-01T00:00:00Z')+'" target="_blank" rel="noopener noreferrer">después de la constatación local</a>. No contienen registros auténticos.</p>'
    +'<p class="warning">No existe denominador independiente, permiso de distribución, primera publicación histórica certificada, pendientes/censura observados ni A–J admitido. R5 STOP; 0 AB científicos. Los informes de Luhmann, Easton y Deutsch siguen hipótesis rivales, no resultados.</p></section>';
 }
+function scientificRegistryPanel(){
+ const option=(value,label,selected)=>'<option value="'+esc(value)+'" '
+  +(value===selected?'selected':'')+'>'+esc(label)+'</option>';
+ const validOptions=REGISTRY_VALID_DAYS.map(d=>option(d,d,ui.scienceRegistryValid)).join('');
+ const familyNames={all:'Todas las familias',PP04:'PP04 · dos universos',
+  CHAIN:'Cadena institucional',CHRONICLE:'Crónica de rol y evento'};
+ const familyOptions=REGISTRY_FAMILIES.map(f=>option(f,familyNames[f],ui.scienceRegistryFamily)).join('');
+ const pubs=REGISTRY_PUBLICATION.filter(d=>d==='as_of'
+  ||d<=(ui.scienceCut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z'));
+ const publishedOptions=pubs.map(v=>option(v,v==='as_of'?'Hasta as_of':v,ui.scienceRegistryPublished)).join('');
+ const toolbar='<div class="science-toolbar science-registry-toolbar">'
+  +'<label for="science-registry-valid">Vigencia del registro (valid_at)<select id="science-registry-valid">'+validOptions+'</select></label>'
+  +'<label for="science-registry-family">Familia de fuente<select id="science-registry-family">'+familyOptions+'</select></label>'
+  +'<label for="science-registry-publication">Primera publicación ficticia<select id="science-registry-publication">'+publishedOptions+'</select></label>'
+  +'<button class="btn secondary" data-action="science-registry-load" '
+  +(!ui.scientific||ui.scienceRegistryLoading?'disabled':'')+'>Consultar registro persistente</button>'
+  +'<button class="btn secondary" data-action="science-registry-export" '
+  +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
+  +'>Exportar snapshot S9 + SHA</button></div>';
+ const intro='<section class="card science-registry" aria-label="Registro persistente del Observatorio">'
+  +'<div class="section-title"><h2>S9 · Registro persistente de fuentes y relaciones</h2>'
+  +'<span>SQLITE LOCAL · 100% SINTÉTICO · R5 STOP</span></div>'
+  +'<p class="help">Consulta bitemporal a un registro local de distribuciones y hechos ficticios con revisión y SHA verificados en el servidor. '
+  +'El identificador mostrado es del descriptor público sintético; no es un ID fuente-local ni un original. '
+  +'Ni el registro ni sus revisiones acreditan autoridades reales, censo completo, derechos de distribución o inferencia causal.</p>'
+  +toolbar;
+ if(ui.scienceRegistryLoading)return intro+'<p role="status" class="help">Comprobando la integridad del registro…</p></section>';
+ if(ui.scienceRegistryError)return intro+'<p role="alert" class="warning">'
+  +esc(ui.scienceRegistryError)+'. No se muestran datos sustitutivos.</p></section>';
+ const p=ui.scienceRegistry;
+ if(!p)return intro+'<p class="help" role="status">Pulsa «Consultar registro persistente» para cargar un corte sintético sin originales.</p></section>';
+ if(!validRegistryPayload(p,ui.scienceCut,ui.scienceRegistryValid,
+    ui.scienceRegistryFamily,ui.scienceRegistryPublished))
+  return intro+'<p role="alert" class="warning">El contrato del registro es incompatible; vista bloqueada.</p></section>';
+ const tabs={sources:'Distribuciones y revisiones',compare:'Comparar cortes',
+  chain:'Actor, organización y proceso',
+  chronicle:'Roles y eventos',episodes:'Estados de episodios',
+  admission:'Preadmisión y rechazos',intake:'Incorporación sintética',quality:'Calidad y límites'};
+ const navigation='<nav class="science-registry-nav" aria-label="Contenido del registro">'
+  +Object.entries(tabs).map(([id,label])=>'<button class="btn secondary '
+   +(id===ui.scienceRegistryTab?'registry-active':'')+'" data-action="science-registry-tab" '
+   +'data-registry="'+esc(id)+'" aria-pressed="'+(id===ui.scienceRegistryTab?'true':'false')+'">'
+   +esc(label)+'</button>').join('')+'</nav>';
+ const r=p.registry,s=p.snapshot,graph=s.graph;
+ let content='';
+ if(ui.scienceRegistryTab==='compare'){
+  content=registryComparisonPanel();
+ }else if(ui.scienceRegistryTab==='sources'){
+  const rows=r.distributions.map(d=>'<tr><td><code>'+esc(d.public_id)+'</code>'
+   +'<small class="science-minor">'+esc(d.family)+' · '+esc(d.revision)+'</small></td>'
+   +'<td>'+esc(d.first_public_at_fixture)+'</td><td>'+esc(d.captured_at_fixture)+'</td>'
+   +'<td><details><summary>SHA de descriptor público</summary><code class="science-digest">'
+   +esc(d.sha256_public_descriptor)+'</code><small class="science-minor">'
+   +esc(d.descriptor_byte_length)+' bytes · '+esc(d.quality_gate)+'</small></details></td>'
+   +'<td>NO ADMITIDA<small class="science-minor">'
+   +esc(d.coverage_temporal)+' · derechos NO acreditados</small></td></tr>').join('');
+  content='<p class="help">'+count(r.visible_distribution_count)+' de '
+   +count(r.recorded_distribution_count)+' descriptores públicos presentes en la base. '
+   +'Las revisiones no son nuevas decisiones, personas o entradas iniciales.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr><th>Descriptor / revisión</th>'
+   +'<th>Publicación inventada</th><th>Captura inventada</th>'
+   +'<th>Integridad</th><th>Calidad y derechos</th></tr></thead><tbody>'+rows
+   +'</tbody></table></div>';
+ }else if(ui.scienceRegistryTab==='chain'||ui.scienceRegistryTab==='chronicle'){
+  const g=graph[ui.scienceRegistryTab];
+  const kinds=REGISTRY_KINDS.filter(k=>k==='ALL'||(g?.nodes||[]).some(n=>n.kind===k));
+  const kindButtons='<div class="science-registry-kinds">'+kinds.map(k=>
+   '<button class="btn small secondary '+(ui.scienceRegistryKind===k?'registry-active':'')
+   +'" data-action="science-registry-kind" data-kind="'+esc(k)+'">'+esc(k)+'</button>').join('')+'</div>';
+  if(!g)content='<p class="help">Esta familia no se incluye en el filtro seleccionado; no se construyen enlaces entre emisores.</p>';
+  else{
+   const shown=g.nodes.filter(n=>ui.scienceRegistryKind==='ALL'||n.kind===ui.scienceRegistryKind);
+   const visibleIds=new Set(shown.map(n=>n.id));
+   const links=g.edges.filter(e=>visibleIds.has(e.from)&&visibleIds.has(e.to));
+   content=kindButtons+'<p class="help">'+count(shown.length)+' nodos tipados · '
+    +count(links.length)+' relaciones explícitas del mismo emisor; 0 enlaces externos autenticados.</p>'
+    +'<div class="science-graph"><div class="science-graph-nodes">'
+    +shown.map(n=>'<span class="science-node"><small>'+esc(n.kind)+'</small><strong>'
+      +esc(n.label)+'</strong><small>Revisiones documentales: '
+      +count(n.documentary_revision_count)+'</small></span>').join('')
+    +'</div><ul class="science-relations">'+links.map(e=>'<li>'
+      +esc(shown.find(n=>n.id===e.from)?.label)+' → '
+      +esc(shown.find(n=>n.id===e.to)?.label)+' <small>'
+      +esc(e.kind)+'</small></li>').join('')+'</ul></div>';
+  }
+ }else if(ui.scienceRegistryTab==='episodes'){
+  const e=s.episodes,pp=s.pp04;
+  content='<div class="metrics">'
+   +stat('Proceso de cadena',e.chain_process_state,'Pendencia, aprobación y censura son estados distintos')
+   +stat('Inadmisión explícita',count(e.explicit_negative_documented),'Solo testigo sintético de etapa')
+   +stat('Pendencia documentada',count(e.pending_documented_not_negative),'Nunca equivale a negativa')
+   +stat('Aprobación explícita',count(e.explicit_approval_documented),'No es un estimando empírico')
+   +'</div><p class="help">PP04, universo fuente-local separado: planificadas aprobadas '
+   +esc(pp.included_planned_approved)+', pendientes '+esc(pp.included_pending_not_negative)
+   +', NO INCLUIDAS '+esc(pp.not_included_source_local_not_negative)
+   +'. No se interpreta una no inclusión como rechazo ni como episodio censurado.</p>'
+   +'<p class="warning">Censura derecha independiente: NO acreditada. Denominador inicial independiente: DESCONOCIDO.</p>';
+ }else if(ui.scienceRegistryTab==='admission'){
+  if(p.family!=='all'){
+   content='<section class="card" role="status"><strong>Fuera del filtro de familia</strong>'
+    +'<p>Las evaluaciones de preadmisión S9 se proyectan en el universo '
+    +'fuente-local de familia Todas. La selección '+esc(p.family)
+    +' excluye esa sección: no significa cero evaluaciones, cero rechazos '
+    +'ni ausencia de expedientes reales. Selecciona Todas para consultar '
+    +'el ledger sintético sin filtro de familia.</p></section>';
+  }else{
+  const a=s.admission_assessments;
+  const rows=a.assessments.map(x=>'<tr><td><code>'+esc(x.assessment_id)
+   +'</code><small class="science-minor">'+esc(x.candidate)
+   +' · '+esc(x.revision)+'</small></td><td>'
+   +x.history.map(h=>'<div>'+esc(h.status)+' · '+esc(h.recorded_at)+'</div>').join('')
+   +'</td><td>'+esc(x.status)+'</td><td>'
+   +x.blockers.map(b=>'<div>'+esc(b)+'</div>').join('')
+   +'</td><td><details><summary>Recibo público de evaluación</summary><code class="science-digest">'
+   +esc(x.public_receipt_sha256)+'</code></details></td></tr>').join('');
+  content='<p class="help">'+count(a.assessment_count)
+   +' evaluaciones ficticias visibles; registro y evaluación son etapas separadas. '
+   +'Estas pruebas comparten un único identificador de distribución en el laboratorio S8: '
+   +'NO son ocho fuentes, ocho decisiones ni ocho revisiones documentales. '
+   +'Ninguna ha superado R5 ni autoriza publicación.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Evaluación</th><th>Historial sintético</th><th>Resultado</th>'
+   +'<th>Bloqueos</th><th>Integridad</th></tr></thead><tbody>'+rows
+   +'</tbody></table></div><p class="warning">'
+   +'La admisión científica y los derechos externos siguen NO acreditados; '
+   +'la primera publicidad es un dato del fixture, no una fecha histórica.</p>';
+  }
+ }else if(ui.scienceRegistryTab==='intake'){
+  if(p.family!=='all'){
+   content='<section class="card" role="status"><strong>Fuera del filtro de familia</strong>'
+    +'<p>El ledger de incorporaciones ficticias S9 se proyecta en '
+    +'familia Todas; la familia '+esc(p.family)
+    +' lo excluye por alcance. No equivale a cero incorporaciones '
+    +'globales, cero validaciones ni cero rechazos. Selecciona Todas '
+    +'para consultar los registros fuente-locales existentes o comprobar '
+    +'una SQLite sintética sin incorporaciones.</p></section>';
+  }else{
+  const intake=s.synthetic_intake,graph=intake.graph;
+  const rows=intake.entries.map(x=>'<tr><td><code>'+esc(x.intake_id)
+   +'</code><small class="science-minor">'+esc(x.label)+' · '+esc(x.revision)
+   +'</small></td><td>'+esc(x.status)+'<small class="science-minor">'
+   +esc(x.reason_code)+'</small></td><td>'+x.history.map(h=>'<div>'
+   +esc(h.status)+' · '+esc(h.recorded_at_fixture)+'</div>').join('')
+   +'</td><td>'+esc(x.receipt_first_public_at_fixture)
+   +'<small class="science-minor">Fuente ficticia: '+esc(x.source_first_public_at_fixture)+'</small>'
+   +'<small class="science-minor">Captura ficticia: '+esc(x.captured_at_fixture)
+   +'</small></td><td><details><summary>SHA del descriptor</summary>'
+   +'<code class="science-digest">'+esc(x.public_descriptor_sha256)
+   +'</code></details></td></tr>').join('');
+  const nodes=graph.nodes.map(n=>'<li><strong>'+esc(n.kind)+'</strong> '
+   +esc(n.label)+' <small>Revisiones documentales: '
+   +count(n.documentary_revision_count)+'</small></li>').join('');
+  const links=graph.edges.map(e=>'<li>'+esc(graph.nodes.find(n=>n.id===e.from)?.label)
+   +' → '+esc(graph.nodes.find(n=>n.id===e.to)?.label)
+   +' <small>'+esc(e.kind)+'</small></li>').join('');
+  content='<p class="help">'+count(intake.intake_count)+' incorporaciones ficticias registradas en el ledger aislado; '
+   +count(intake.validated_count)+' validadas SOLO para el sandbox de ingeniería, '
+   +count(intake.rejected_count)+' rechazadas por controles internos. '
+   +'No existe ingesta de originales externos ni admisión científica o licencia de difusión.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Referencia pública</th><th>Control sandbox</th><th>Historial</th>'
+   +'<th>Primera publicidad inventada</th><th>Huella SHA</th></tr></thead><tbody>'
+   +rows+'</tbody></table></div><p class="help">Grafo fuente-local del sandbox: '
+   +count(graph.nodes.length)+' nodos · '+count(graph.edges.length)
+   +' relaciones; las revisiones no son nuevas decisiones o personas.</p>'
+   +'<ul class="science-relations">'+nodes+links+'</ul>'
+   +'<p class="warning">La incorporación se realiza exclusivamente con fixtures internos autorizados '
+   +'por CLI local. El Observatorio consulta, no acepta archivos ni promueve declaraciones de derechos. '
+   +'Las marcas temporales de estas incorporaciones son imaginarias.</p>';
+  }
+ }else{
+  content='<div class="metrics">'
+   +stat('Migración del esquema',r.schema_version,'Base SQLite del fixture, no fuente administrativa')
+   +stat('Distribuciones públicas',r.recorded_distribution_count,'Una fuente interna queda oculta')
+   +stat('Recibos internos ocultos',r.internal_uncatalogued_fixture_receipts,'No pasan a HTTP')
+   +stat('Puertas R5',p.release_gates_passed+' / 6','Bloqueadas')
+   +'</div><p class="help">Integridad de bytes del fixture al consultar: '
+   +esc(r.fixture_bytes_sha256_checked_at_read)+'. Derechos para PUBLIC_AGGREGATE_DISPLAY: '
+   +'NO acreditados. El registro persistente no alimenta los oráculos S3/S7 y no acredita '
+   +'independencia de fuente, resultado causal ni puntuaciones de personas reales.</p>';
+ }
+ return intro+navigation+'<p class="footnote">as_of='+esc(p.as_of)+' · valid_at='
+  +esc(p.valid_at)+' · publicación inventada hasta '+esc(p.published_until)
+  +' · familia '+esc(p.family)+' · hash público ≠ SHA de bytes internos.</p>'
+  +content+'</section>';
+}
+function registryComparisonPanel(){
+ const intro='<section aria-label="Comparación bitemporal de registros S9">'
+  +'<h3>Comparar cortes · early ↔ late</h3>'
+  +'<p class="help">Dos consultas S9 independientes y verificadas por SHA-256 con la misma vigencia (valid_at) y familia. '
+  +'Si el límite de primera publicación seleccionado supera el reloj early, en early se usa as_of y se declara expresamente. '
+  +'Los relojes, publicaciones y datos son estipulaciones del autor del fixture, no cambios históricos observados en España.</p>'
+  +'<button class="btn secondary" data-action="science-registry-compare-load" '
+  +(ui.scienceRegistryCompareLoading||ui.scienceRegistryLoading?'disabled':'')
+  +'>Consultar ambos cortes verificados</button>';
+ if(ui.scienceRegistryCompareLoading)
+  return intro+'<p role="status">Verificando dos proyecciones y recibos independientes…</p></section>';
+ if(ui.scienceRegistryCompareError)
+  return intro+'<p role="alert" class="warning">'+esc(ui.scienceRegistryCompareError)
+   +'. Comparación invalidada; no se muestran resultados anteriores.</p></section>';
+ const pair=ui.scienceRegistryComparison;
+ if(!pair)return intro+'<p role="status" class="help">Selecciona «Consultar ambos cortes verificados».</p></section>';
+ const {early:a,late:b,queries}=pair;
+ if(!validRegistryPayload(a,'early',ui.scienceRegistryValid,ui.scienceRegistryFamily,queries[0].published)
+   ||!validRegistryPayload(b,'late',ui.scienceRegistryValid,ui.scienceRegistryFamily,queries[1].published))
+  return intro+'<p role="alert" class="warning">La selección ha cambiado; comparación bloqueada.</p></section>';
+ const early=new Map(a.registry.distributions.map(d=>[d.public_id,d]));
+ const late=new Map(b.registry.distributions.map(d=>[d.public_id,d]));
+ const ids=[...new Set([...early.keys(),...late.keys()])].sort();
+ const added=ids.filter(id=>!early.has(id)&&late.has(id));
+ const missing=ids.filter(id=>early.has(id)&&!late.has(id));
+ const revised=ids.filter(id=>early.has(id)&&late.has(id)
+  &&(early.get(id).sha256_public_descriptor!==late.get(id).sha256_public_descriptor
+   ||early.get(id).revision!==late.get(id).revision));
+ const descriptors=ids.map(id=>{
+  const left=early.get(id),right=late.get(id);
+  const state=!left?'Visible solo late':!right?'No visible late'
+   :revised.includes(id)?'Descriptor/revisión distintos':'Descriptor sin diferencias';
+  return '<tr><td><code>'+esc(id)+'</code></td><td>'+esc(left?.revision||'No visible')
+   +'</td><td>'+esc(right?.revision||'No visible')
+   +'</td><td>'+esc(state)+'</td></tr>';
+ }).join('');
+ const graphCount=(x,part,field)=>x.snapshot.graph[part]===null
+  ?'Fuera de familia':count(x.snapshot.graph[part][field]);
+ const assessments=x=>x.snapshot.admission_assessments;
+ const intake=x=>x.snapshot.synthetic_intake;
+ const allFamilyCount=(x,value)=>x.family==='all'?count(value):'Fuera del filtro de familia';
+ const counts=[
+  ['Descriptores públicos visibles',count(a.registry.visible_distribution_count),
+   count(b.registry.visible_distribution_count)],
+  ['Cadena fuente-local · nodos tipados',graphCount(a,'chain','node_count'),graphCount(b,'chain','node_count')],
+  ['Cadena fuente-local · enlaces tipados',graphCount(a,'chain','edge_count'),graphCount(b,'chain','edge_count')],
+  ['Crónica fuente-local · nodos tipados',graphCount(a,'chronicle','node_count'),graphCount(b,'chronicle','node_count')],
+  ['Crónica fuente-local · enlaces tipados',graphCount(a,'chronicle','edge_count'),graphCount(b,'chronicle','edge_count')],
+  ['Evaluaciones sandbox S9 · expedientes',allFamilyCount(a,assessments(a).assessment_count),
+   allFamilyCount(b,assessments(b).assessment_count)],
+  ['Evaluaciones sandbox S9 · eventos de registro/rechazo',allFamilyCount(a,assessments(a).history_event_count),
+   allFamilyCount(b,assessments(b).history_event_count)],
+  ['Incorporación sintética · entradas',allFamilyCount(a,intake(a).intake_count),
+   allFamilyCount(b,intake(b).intake_count)],
+  ['Incorporación sintética · eventos de historial',allFamilyCount(a,intake(a).history_event_count),
+   allFamilyCount(b,intake(b).history_event_count)],
+  ['Incorporación sintética · enlaces fuente-local tipados',
+   allFamilyCount(a,intake(a).graph.edge_count),allFamilyCount(b,intake(b).graph.edge_count)]
+ ];
+ const table=(headers,rows)=>'<div class="tablewrap"><table class="science-table"><thead><tr>'
+  +headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'
+  +rows.join('')+'</tbody></table></div>';
+ const countRows=counts.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>');
+ const clock=x=>'<code>'+esc(x.as_of)+'</code> · primera publicación hasta <code>'
+  +esc(x.published_until)+'</code> · SHA del snapshot <code class="science-digest">'
+  +esc(x.snapshot_receipt.sha256)+'</code>';
+ return intro+'<p><button class="btn secondary" data-action="science-registry-pair-export" '
+  +(!ui.scienceRegistryCompareLoading&&!ui.scienceRegistryCompareError
+   &&ui.scientific&&!ui.scientificLoading&&!ui.scientificError?'':'disabled')
+  +'>Descargar pareja verificable</button></p>'
+  +'<div class="metrics">'
+  +stat('Solo visible en late',added.length,'Proyección, no alta real')
+  +stat('No visible en late',missing.length,'Ausencia ≠ negativa')
+  +stat('Descriptores revisados',revised.length,'Revisión ≠ nueva decisión')
+  +'</div><div class="metrics"><section class="card"><h4>Early · reloj ficticio</h4><p>'
+  +clock(a)+'</p></section><section class="card"><h4>Late · reloj ficticio</h4><p>'
+  +clock(b)+'</p></section></div>'
+  +'<h4>Recuento de proyecciones por corte</h4>'
+  +table(['Medida tipada','Early','Late'],countRows)
+  +'<h4>Presencia y revisión por descriptor público</h4>'
+  +table(['ID público','Early','Late','Comparación documental'],[descriptors])
+  +'<p class="warning">Solo descriptores públicos del fixture. La no visibilidad, la pendencia y la censura '
+  +'NO equivalen a rechazo; dos revisiones documentales no son dos decisiones. '
+  +'El overlay de incorporación se consulta únicamente con familia «Todas»; '
+  +'una familia filtrada no representa cero rechazos ni cero expedientes reales. '
+  +'Sin fuente auténtica, denominador independiente, primera publicación real ni derechos acreditados. '
+  +'R5 STOP · 0/6 puertas · 0 ciclos AB científicos.</p></section>';
+}
+function scientificLaboratory(){
+ const intro=heading('INFRAESTRUCTURA / CIENCIA DE DATOS SOCIALES','Laboratorio científico · S8','Exploración ejecutable de fuentes sintéticas, cortes temporales, rivales B0/B3, sensibilidad S3 y conjuntos de testigos S7.');
+ const control=`<section class="science-toolbar card" aria-label="Controles del laboratorio"><label for="science-cut">Conocimiento (as_of)<select id="science-cut"><option value="early" ${ui.scienceCut==='early'?'selected':''}>15 oct 2026 · temprano</option><option value="late" ${ui.scienceCut==='late'?'selected':''}>1 nov 2026 · tardío</option></select></label><label for="science-first-public">Publicación del fixture hasta<select id="science-first-public"><option value="as_of" ${ui.scienceFirstPublic==='as_of'?'selected':''}>Fecha de conocimiento</option><option value="2026-09-19T12:00:00Z" ${ui.scienceFirstPublic==='2026-09-19T12:00:00Z'?'selected':''}>19 sep 2026</option>${ui.scienceCut==='late'?'<option value="2026-10-30T12:00:00Z" '+(ui.scienceFirstPublic==='2026-10-30T12:00:00Z'?'selected':'')+'>30 oct 2026</option>':''}</select></label><label for="science-scenario">Prueba de robustez<select id="science-scenario"><option value="baseline" ${ui.scienceScenario==='baseline'?'selected':''}>Base</option><option value="rights_spoof" ${ui.scienceScenario==='rights_spoof'?'selected':''}>Derechos fingidos</option><option value="privacy_probe" ${ui.scienceScenario==='privacy_probe'?'selected':''}>Sondeo de privacidad</option></select></label><button class="btn secondary" data-action="science-reload">Recalcular</button><button class="btn" data-action="science-export" ${!ui.scientific||ui.scientificLoading?'disabled':''}>Exportar JSON + SHA</button></section>`;
+ const stop='<p class="warning"><strong>R5 STOP · 0/6 puertas.</strong> El ensayo no contiene expedientes o actores políticos españoles reales. No hay denominador independiente, autenticación oficial, derechos por finalidad, crosswalk externo ni primera publicación histórica acreditados.</p>';
+ if(ui.scientificLoading)return intro+control+stop+'<section class="card" role="status">Ejecutando la paridad Python–Node…</section>';
+ if(ui.scientificError)return intro+control+stop+'<section class="card" role="alert"><h2>Servicio científico rechazado</h2><p class="warning">'+esc(ui.scientificError)+'</p><p>Sin sustituciones automáticas.</p></section>';
+ const p=ui.scientific;
+ if(!p)return intro+control+stop+'<section class="card"><button class="btn" data-action="science-reload">Cargar el laboratorio</button></section>';
+ if(!validSciencePayload(p))return intro+control+stop+'<p class="warning">Contratos no verificables.</p>';
+ const e=p.explorer,w=p.warehouse,s3=w.partial_identification_oracle,b=w.b0_b3_observational_equivalence,s7=w.b0_b3_witness_sets;
+ const cases=s7.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
+ if(!Array.isArray(cases)||cases.length!==20||b?.all_published_source_sha_and_typed_revisions_equal!==true)return intro+control+stop+'<p class="warning">Falta el oráculo S7/B0/B3 de veinte conjuntos. Vista rechazada.</p>';
+ const labels={INCONCLUSIVE:'No concluyente',B0_ONLY:'Solo B0',B3_ONLY:'Solo B3',NEITHER:'Ninguno',CONFLICT:'Conflicto',INADMISSIBLE:'Inadmisible'};
+ const publicationLimit=sciencePublishedLimit();
+ const visibleDistributions=e.catalog.distributions.filter(d=>d.first_public_at_fixture<=publicationLimit&&d.captured_at_fixture<=p.as_of);
+ const metrics='<section class="metrics">'+stat('Distribuciones visibles',visibleDistributions.length+' / '+e.catalog.visible_distribution_count,'Filtro editorial ficticio y corte de conocimiento')+stat('Conjuntos S7',cases.length,'Escenarios alternativos, no casos reales')+stat('Modelos rivales','B0 / B3','Mismo conjunto publicado')+stat('Puertas científicas','0 / 6','R5 STOP')+'</section>';
+ const compare=`<section class="card"><div class="section-title"><h2>B0 calendario frente a B3 selección</h2><span>EQUIVALENCIA OBSERVACIONAL HIPOTÉTICA</span></div><div class="science-rivals"><article><strong>B0 · calendario</strong><p>E3 no tiene decisión terminal al corte tardío. La publicación se estipula por calendario.</p><p>N = ${esc(b.hypothetical_all_received_by_mechanism.B0_CALENDAR)} · cobertura publicada ${esc(b.hypothetical_publication_coverage.B0_CALENDAR)}</p></article><article><strong>B3 · selección</strong><p>E3 fue rechazado ficticiamente el 10/10 y quedó sin publicar.</p><p>N = ${esc(b.hypothetical_all_received_by_mechanism.B3_SELECTION_PUBLICATION)} · cobertura publicada ${esc(b.hypothetical_publication_coverage.B3_SELECTION_PUBLICATION)}</p></article></div><p class="footnote">Las dos hipótesis generan idénticas revisiones, entidades y procesos publicados. La igualdad del N supuesto no distingue mecanismos. E2 pendiente y E4 censurado no constituyen rechazos.</p></section>`;
+ const sens=s3?`<section class="card"><h2>S3 · identificación parcial bajo selección</h2><p class="help">Las cuotas observadas pasan de ${esc(s3.observed_positive_share.before)} a ${esc(s3.observed_positive_share.after)}, con razón de selección supuesta ${esc(s3.selection_ratio_positive_to_negative.lower)}–${esc(s3.selection_ratio_positive_to_negative.upper)} (no odds ratio).</p><div class="metrics">${stat('Antes',s3.prevalence_bounds.before.lower+' a '+s3.prevalence_bounds.before.upper,'Intervalo condicional')}${stat('Después',s3.prevalence_bounds.after.lower+' a '+s3.prevalence_bounds.after.upper,'Intervalo condicional')}${stat('Cambio',s3.change_bounds.lower+' a '+s3.change_bounds.upper,'No causal')}</div><p class="footnote">Sin supuesto de selección: cambio compatible ${esc(s3.without_ratio_restriction.trivial_change_closure.lower)} a ${esc(s3.without_ratio_restriction.trivial_change_closure.upper)}. Negativos binarios inventados, no decisiones administrativas.</p></section>`:'<section class="card"><h2>S3 · identificación parcial</h2><p class="warning">Aún no conocida en el corte temprano. No se adelanta la evidencia tardía.</p></section>';
+ const counts=Object.keys(labels).map(k=>labels[k]+': '+cases.filter(c=>c.status===k).length).join(' · ');
+ const setRows=cases.map(c=>`<tr><td><code>${esc(c.case)}</code></td><td>${esc(labels[c.status]||'RECHAZADO')}</td><td>${esc((c.compatible_mechanisms||[]).join(' / ')||'Sin adjudicar')}</td><td>${esc(c.reason)}</td><td><details><summary>${(c.witness_admissibility||[]).length} testigos</summary>${(c.witness_admissibility||[]).map(t=>'<p class="footnote"><strong>'+esc(t.case)+'</strong> · '+esc(t.status)+' · '+esc(t.reason)+'</p>').join('')||'<p class="footnote">Ninguno</p>'}${c.contradiction?'<p class="footnote">Conflicto: '+esc(c.contradiction.kind)+'; '+count(c.contradiction.evidence_rows_retained)+' declaraciones conservadas.</p>':''}</details></td></tr>`).join('');
+ const sets=`<section class="card"><div class="section-title"><h2>S7 · conjuntos de testigos diferenciales</h2><span>SEIS ESTADOS · 20 ESCENARIOS</span></div><p class="help">${esc(counts)}</p><p class="help"><strong>NEITHER</strong>: un testigo sintético admisible refuta ambos DGP estipulados; no es fallo HTTP. <strong>CONFLICT</strong>: dos testimonios incompatibles quedan retenidos sin elegir. <strong>INADMISSIBLE</strong>: evidencia insuficiente, no resolución científica.</p><div class="tablewrap"><table class="science-table"><thead><tr><th>Conjunto</th><th>Estado</th><th>Compatibilidad</th><th>Justificación</th><th>Testigos</th></tr></thead><tbody>${setRows}</tbody></table></div></section>`;
+ const validDays=['2026-09-11','2026-09-15'];const valid=validDays.includes(ui.scienceValid)?ui.scienceValid:validDays[1];
+ const chronDays=['2026-09-15','2026-10-10'];const chronValid=chronDays.includes(ui.scienceChronicleValid)?ui.scienceChronicleValid:chronDays[1];
+ const graph=e.observatory.typed_graph_by_valid_day?.[valid],chron=e.observatory.chronicle_by_valid_day?.[chronValid];
+ const graphHTML=graph&&Array.isArray(graph.nodes)&&Array.isArray(graph.edges)?`<div class="science-graph"><div class="science-graph-nodes">${graph.nodes.map(n=>'<span class="science-node"><small>'+esc(n.kind)+'</small><strong>'+esc(n.label)+'</strong></span>').join('')}</div><ul class="science-relations">${graph.edges.map(r=>'<li>'+esc(graph.nodes.find(n=>n.id===r.from)?.label||'')+' → '+esc(graph.nodes.find(n=>n.id===r.to)?.label||'')+' <small>'+esc(r.kind)+'</small></li>').join('')}</ul></div>`:'<p class="warning">Grafo no verificable</p>';
+ const time=`<section class="card"><div class="section-title"><h2>Observatorio bitemporal sintético</h2><span>AS_OF ≠ VALID_AT</span></div><div class="science-toolbar"><label for="science-valid">Vigencia · cadena institucional<select id="science-valid">${validDays.map(d=>'<option value="'+d+'" '+(d===valid?'selected':'')+'>'+d+'</option>').join('')}</select></label><label for="science-chronicle">Vigencia · roles y eventos<select id="science-chronicle">${chronDays.map(d=>'<option value="'+d+'" '+(d===chronValid?'selected':'')+'>'+d+'</option>').join('')}</select></label></div><p class="help">Conocimiento ${esc(p.as_of)}; vigencia de la cadena ${esc(valid)}. Actor, organización, comunicación, proceso y decisión se proyectan mediante identificadores tipados; las dos cronologías no comparten un crosswalk real.</p>${graphHTML}<p class="footnote">Proceso ${esc(graph?.process_state)} · revisiones conocidas de una comunicación ${esc(graph?.communication_documentary_revisions)} · comunicaciones lógicas ${esc(graph?.logical_communications)} · 0 rechazos inferidos.</p>${chron?'<p class="science-chronicle">Crónica '+esc(chronValid)+': rol '+esc(chron.role_observation_state)+' · '+esc(chron.event_documentary_revisions_known)+' revisiones de evento · '+esc(chron.logical_events_after_typed_amendment)+' evento lógico · versión '+esc(chron.selected_revision)+'.</p>':'<p class="warning">Crónica no disponible</p>'}</section>`;
+ const sourceRows=visibleDistributions.map(d=>`<tr><td><code>${esc(d.distribution_id)}</code><small class="science-minor">${esc(d.family)} · ${esc(d.revision_or_asset_kind)}</small></td><td>${esc(d.issuer_fixture)}</td><td>${esc(d.captured_at_fixture)}</td><td>${esc(d.first_public_at_fixture)}</td><td><details><summary>SHA y calidad</summary><code class="science-digest">${esc(d.sha256)}</code><p>${count(d.byte_length)} bytes · ${esc(d.quality_gate)}</p><p>Cobertura temporal: ${esc(d.coverage_temporal?.state)}</p></details></td><td><strong>NO ADMITIDA</strong><small class="science-minor">${esc(d.admissibility_reason)}</small></td></tr>`).join('');
+ const sources=`<section class="card"><div class="section-title"><h2>Catálogo de fuentes sintéticas</h2><span>PROCEDENCIA, CALIDAD Y DERECHOS</span></div><p class="help">Filtro de primera publicación <em>inventada</em> ≤ ${esc(publicationLimit)}, sin exceder as_of ni adelantar capturas. Cobertura temporal de cada distribución: <strong>no acreditada</strong>. La validación SHA solo prueba bytes del fixture local; no demuestra integridad externa, completitud o derechos. Los recibos adversariales S7 permanecen ocultos.</p><div class="tablewrap"><table><thead><tr><th>Distribución / revisión</th><th>Emisor ficticio</th><th>Captura inventada</th><th>Publicación inventada</th><th>SHA / calidad / cobertura</th><th>Admisibilidad y derechos</th></tr></thead><tbody>${sourceRows}</tbody></table></div></section>`;
+ const exportPanel=`<section class="card"><h2>Exportación y reproducción</h2><p class="help">La descarga incluye el contenido JSON canónico, su recibo SHA-256 y los metadatos de canonicalización. WebCrypto verifica el SHA del contenido antes de permitir la descarga. Una deriva entre Node/Python devuelve 503, sin resultados sustitutivos.</p><p id="science-export-status" class="science-digest footnote" role="status">Exportación pendiente; datos sintéticos exclusivamente.</p><p class="footnote">${esc(e.admission.R5)} · ${p.scientific_AB_cycles} ciclos científicos · sin permiso de distribución externa acreditado.</p></section>`;
+ const candidateOptions={baseline:'Fixture coherente (sin autoridad real)',sha_spoof:'SHA incompatible',issuer_spoof:'Emisor no autorizado',rights_missing:'Sin propósito declarado',first_public_missing:'Sin publicación declarada',crosswalk_missing:'Sin enlace tipado',denominator_missing:'Sin registro completo',coverage_missing:'Cobertura incompleta'};
+ const admission=ui.scienceAdmission;
+ const candidatePanel=`<section class="card"><div class="section-title"><h2>Admisión de una distribución nueva · dry-run</h2><span>SIEMPRE R5 STOP</span></div><p class="help">Ensaya ocho variantes cerradas de un único documento enteramente inventado. El validador coteja SHA, emisor, fecha, crosswalk, universo y alcance de derechos; nunca importa archivos ni habilita datos reales.</p><div class="science-toolbar"><label for="science-candidate">Candidato sintético<select id="science-candidate">${Object.entries(candidateOptions).map(([v,label])=>'<option value="'+v+'" '+(v===ui.scienceCandidate?'selected':'')+'>'+esc(label)+'</option>').join('')}</select></label><button class="btn secondary" data-action="science-probe" ${ui.scienceAdmitting?'disabled':''}>Comprobar incorporación</button></div>${ui.scienceAdmissionError?'<p role="alert" class="warning">'+esc(ui.scienceAdmissionError)+'</p>':admission&&admission.candidate===ui.scienceCandidate?'<p class="warning"><strong>'+esc(admission.status)+'</strong> · '+admission.blockers.length+' bloqueos; '+count(Object.values(admission.checks).filter(Boolean).length)+' de '+count(Object.keys(admission.checks).length)+' coherencias internas del fixture.</p><details><summary>Detalle de bloqueos y validaciones</summary><p class="help">'+admission.blockers.map(esc).join(' · ')+'</p><div class="tablewrap"><table><tbody>'+Object.entries(admission.checks).map(([k,v])=>'<tr><td>'+esc(k)+'</td><td>'+(v?'PASA (SOLO FIXTURE)':'FALLA')+'</td></tr>').join('')+'</tbody></table></div></details>':'<p class="footnote" role="status">Selecciona un escenario y ejecuta el validador de admisión.</p>'}</section>`;
+ return intro+control+stop+metrics+compare+sens+sets+time+scientificRegistryPanel()+sources+candidatePanel+exportPanel;
+}
 function evidencePanel(){const x=ui.evidence||{};
 const t=x.entities_by_type||{};
 const groups=Object.keys(t).sort().map(k=>esc(k)+': '+count(t[k])).join(' · ');
@@ -482,11 +1385,266 @@ function progress(){
  <section class='card'><h2>Preparación de lanzamiento</h2><p class='warning'>El proyecto NO está listo para publicación multiusuario ni para puntuar figuras políticas reales.</p><ul>${critical}</ul><p class='help'>Progreso y preparación de lanzamiento son métricas diferentes: una puerta crítica pendiente puede impedir operar aunque el índice global aumente.</p></section>
  <h2>Detalle de las sublíneas y sus fuentes</h2>${lanes}<section class='card'><h2>Cuando crece el alcance</h2><p class='help'>Cada revisión conserva el indicador anterior y separa los puntos ganados por trabajo de los puntos ganados o perdidos por una ampliación/reponderación de objetivos. Ejemplo histórico hipotético, calculado sobre la revisión 1 (no sobre el porcentaje actual): añadir cobertura municipal nacional completa sin construirla cambiaba 33,725 % a 32,330 % (−1,395 puntos de alcance, 0 de trabajo). El avance actual de la revisión 2 incorpora trabajo verificado y sigue sin ampliar el alcance.</p></section>`;
 }
-const pages={overview,club,market,rounds,observatory,atlas,progress};
+const pages={overview,club,market,rounds,observatory,scientific:scientificLaboratory,atlas,progress};
+const GUEST_TABS=['observatory','scientific'];
+function navigationMode(mode){
+ el('navigation').hidden=mode==='login';
+ document.querySelectorAll('[data-tab]').forEach(n=>{
+  n.hidden=mode==='guest'&&!GUEST_TABS.includes(n.dataset.tab);
+  const active=mode!=='login'&&n.dataset.tab===ui.tab;
+  n.classList.toggle('active',active);
+  if(active)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');
+ });
+ el('club-select').hidden=mode!=='account';
+ el('guest-exit').hidden=mode!=='guest'||ui.scienceOnly;
+}
+const GUEST_SCIENCE_PANELS=['mechanisms','s3','witnesses','distributions'];
+function guestScienceView(){
+ const p=ui.scientific,e=p?.explorer,w=p?.warehouse;
+ const b=w?.b0_b3_observational_equivalence;
+ const cases=w?.b0_b3_witness_sets?.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
+ const states=['INCONCLUSIVE','B0_ONLY','B3_ONLY','NEITHER','CONFLICT','INADMISSIBLE'];
+ const distributions=e?.catalog?.distributions;
+ // Public guest panels are drawn only after the S8 and independent S9
+ // contracts have been verified. All displayed records stay synthetic.
+ if(!validSciencePayload(p)||!Array.isArray(cases)||cases.length!==20
+    ||!cases.every(c=>c&&states.includes(c.status)&&typeof c.case==='string'
+       &&typeof c.reason==='string'&&Array.isArray(c.compatible_mechanisms)
+       &&Array.isArray(c.witness_admissibility))
+    ||b?.all_published_source_sha_and_typed_revisions_equal!==true
+    ||!Array.isArray(distributions)
+    ||!distributions.every(d=>d&&typeof d.distribution_id==='string'
+       &&typeof d.first_public_at_fixture==='string'
+       &&typeof d.captured_at_fixture==='string'
+       &&typeof d.family==='string'&&typeof d.issuer_fixture==='string'
+       &&typeof d.revision_or_asset_kind==='string'
+       &&typeof d.quality_gate==='string'&&typeof d.admissibility_reason==='string'
+       &&typeof d.coverage_temporal?.state==='string'
+       &&/^[a-f0-9]{64}$/.test(d.sha256)
+       &&d.empirical_distribution_admitted===false
+       &&d.rights_for_requested_purpose_admitted===false))
+  return '<section class="card" role="alert"><p class="warning">El contrato público S8 no es verificable. Vista bloqueada.</p></section>';
+ const publish=ui.scienceRegistryPublished==='as_of'?p.as_of:ui.scienceRegistryPublished;
+ const publishedUntil=publish<=p.as_of?publish:p.as_of;
+ const visible=distributions.filter(d=>d.first_public_at_fixture<=publishedUntil
+  &&d.captured_at_fixture<=p.as_of);
+ const titles={mechanisms:'Mecanismos B0 y B3',s3:'S3 · identificación parcial',
+  witnesses:'Testigos diferenciales sintéticos S7',distributions:'Distribuciones y revisiones S8'};
+ const current=GUEST_SCIENCE_PANELS.includes(ui.scienceGuestPanel)
+  ?ui.scienceGuestPanel:'mechanisms';
+ const navigation='<nav class="science-registry-nav" aria-label="Vistas del Laboratorio S8">'
+  +GUEST_SCIENCE_PANELS.map(panel=>'<button type="button" class="btn secondary '
+   +(current===panel?'registry-active':'')+'" data-action="science-guest-panel" data-panel="'
+   +panel+'" aria-pressed="'+(current===panel?'true':'false')+'">'+esc(titles[panel])+'</button>').join('')
+  +'</nav>';
+ const publications=REGISTRY_PUBLICATION.filter(v=>v==='as_of'
+  ||v<=(ui.scienceCut==='early'?'2026-10-15T12:00:00Z':'2026-11-01T12:00:00Z'));
+ const publicationOptions=publications.map(v=>'<option value="'+esc(v)+'" '
+  +(v===ui.scienceRegistryPublished?'selected':'')+'>'
+  +esc(v==='as_of'?'Hasta as_of':v)+'</option>').join('');
+ const toolbar='<section class="science-toolbar card" aria-label="Corte de laboratorio para visitantes">'
+  +'<label for="science-cut">Conocimiento (as_of)<select id="science-cut">'
+  +'<option value="early" '+(ui.scienceCut==='early'?'selected':'')+'>15 oct 2026</option>'
+  +'<option value="late" '+(ui.scienceCut==='late'?'selected':'')+'>1 nov 2026</option></select></label>'
+  +'<label for="science-scenario">Escenario sintético<select id="science-scenario">'
+  +['baseline','rights_spoof','privacy_probe'].map(v=>'<option value="'+v+'" '
+   +(ui.scienceScenario===v?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>'
+  +'<label for="science-registry-publication">Primera publicación ficticia'
+  +'<select id="science-registry-publication">'+publicationOptions+'</select></label>'
+  +'<button class="btn secondary" data-action="guest-reload">Actualizar consulta</button></section>';
+ const metrics='<section class="metrics">'
+  +stat('Conocimiento',ui.scienceCut==='early'?'Temprano':'Tardío','Corte sintético')
+  +stat('Conjuntos S7',cases.length,'Escenarios alternativos')
+  +stat('Distribuciones visibles',visible.length+' / '+distributions.length,'Publicación y captura ficticias')
+  +stat('Puertas R5','0 / 6','Sin admisión de originales')+'</section>';
+ let panel='';
+ if(current==='mechanisms'){
+  const n=b.hypothetical_all_received_by_mechanism||{};
+  const coverage=b.hypothetical_publication_coverage||{};
+  panel='<section class="card" aria-label="Mecanismos rivales B0 y B3">'
+   +'<h2>B0 y B3 · equivalencia observacional</h2>'
+   +'<p class="help">Dos hipótesis generan las mismas proyecciones publicadas, sus revisiones tipadas y SHA del fixture; esa coincidencia no identifica el mecanismo de publicación.</p>'
+   +'<div class="science-rivals"><article><strong>B0 · calendario</strong>'
+   +'<p>Publicación estipulada por calendario. No se conoce una decisión terminal de E3 en esta hipótesis.</p>'
+   +'<p>N hipotético: '+esc(n.B0_CALENDAR)+' · cobertura publicada: '
+   +esc(coverage.B0_CALENDAR)+'</p></article>'
+   +'<article><strong>B3 · selección de publicación</strong>'
+   +'<p>En esta hipótesis alternativa, E3 termina ficticiamente en rechazo y no se publica.</p>'
+   +'<p>N hipotético: '+esc(n.B3_SELECTION_PUBLICATION)+' · cobertura publicada: '
+   +esc(coverage.B3_SELECTION_PUBLICATION)+'</p></article></div>'
+   +'<p class="footnote">E2 sigue pendiente en ambas hipótesis. E4 está censurado por la derecha, nunca contabilizado como rechazo. Un mismo denominador supuesto no discrimina calendario frente a selección.</p>'
+   +'<p class="warning">R5 STOP: no hay denominador independiente, causalidad identificada ni evidencia administrativa española admitida.</p></section>';
+ }else if(current==='s3'){
+  const s3=ui.scienceCut==='late'?w.partial_identification_oracle:null;
+  if(!s3){
+   panel='<section class="card" aria-label="S3 · identificación parcial">'
+    +'<h2>S3 · identificación parcial</h2>'
+    +'<p class="warning">'+(ui.scienceCut==='early'
+     ?'Aún no conocida en el corte temprano. No se anticipan cotas o resultados del corte tardío.'
+     :'Oráculo S3 ausente en corte tardío; vista bloqueada.')
+    +'</p></section>';
+  }else if(s3.schema!=='pfl.synthetic_partial_identification_oracle.v1'
+       ||s3.empirical_estimand_admitted!==false||s3.causal_effect_identified!==false
+       ||!s3.prevalence_bounds?.before||!s3.prevalence_bounds?.after
+       ||!s3.change_bounds||!s3.observed_positive_share
+       ||!s3.selection_ratio_positive_to_negative
+       ||!s3.without_ratio_restriction?.trivial_change_closure){
+   panel='<section class="card" role="alert">Oráculo S3 incompatible; vista bloqueada.</section>';
+  }else{
+   const ratio=s3.selection_ratio_positive_to_negative;
+   const before=s3.prevalence_bounds.before,after=s3.prevalence_bounds.after;
+   const changes=s3.change_bounds,unconstrained=s3.without_ratio_restriction.trivial_change_closure;
+   panel='<section class="card" aria-label="S3 · identificación parcial">'
+    +'<h2>S3 · identificación parcial bajo selección</h2>'
+    +'<p class="help">Proporción positiva observada: antes '+esc(s3.observed_positive_share.before)
+    +', después '+esc(s3.observed_positive_share.after)+'. La razón supuesta P(publicado|Y=1) / P(publicado|Y=0) va de '
+    +esc(ratio.lower)+' a '+esc(ratio.upper)+'; no es una odds ratio.</p>'
+    +'<div class="metrics">'
+    +stat('Prevalencia antes',esc(before.lower)+' a '+esc(before.upper),'Cotas racionales condicionales')
+    +stat('Prevalencia después',esc(after.lower)+' a '+esc(after.upper),'Cotas racionales condicionales')
+    +stat('Cambio',esc(changes.lower)+' a '+esc(changes.upper),'Asociación no causal')
+    +'</div><p class="footnote">Sin restricción de selección: cambio compatible '
+    +esc(unconstrained.lower)+' a '+esc(unconstrained.upper)
+    +'. Son escenarios binarios inventados, sin muestra administrativa real ni estimando empírico admitido.</p>'
+    +'<p class="warning">R5 STOP · Sin identificación causal ni validación externa.</p></section>';
+  }
+ }else if(current==='witnesses'){
+  const counts=states.map(status=>esc(status)+': '+count(cases.filter(c=>c.status===status).length)).join(' · ');
+  const rows=cases.map(c=>{
+   const witnesses=c.witness_admissibility.map(t=>'<p class="footnote"><strong>'
+    +esc(t?.case)+'</strong> · '+esc(t?.status)+' · '+esc(t?.reason)+'</p>').join('');
+   const conflict=c.contradiction
+    ?'<p class="footnote">CONFLICT · '+esc(c.contradiction.kind)
+     +' · declaraciones retenidas '+esc(c.contradiction.evidence_rows_retained)+'</p>':'';
+   return '<tr><td><code>'+esc(c.case)+'</code></td><td>'+esc(c.status)
+    +'</td><td>'+esc(c.compatible_mechanisms.join(' / ')||'Sin adjudicar')
+    +'</td><td>'+esc(c.reason)+'</td><td><details><summary>'
+    +count(c.witness_admissibility.length)+' testigos; ver admisibilidad</summary>'
+    +(witnesses||'<p class="footnote">Sin testigos</p>')+conflict+'</details></td></tr>';
+  }).join('');
+  panel='<section class="card" aria-label="Testigos diferenciales S7">'
+   +'<h2>S7 · testigos diferenciales sintéticos</h2><p class="help">'+counts+'</p>'
+   +'<p class="help">NEITHER: testigo sintético admisible incompatible con ambos mecanismos estipulados. CONFLICT: declaraciones incompatibles retenidas. INADMISSIBLE: testigo no admisible. Ninguno constituye prueba empírica española.</p>'
+   +'<div class="tablewrap"><table class="science-table"><thead><tr>'
+   +'<th>Conjunto</th><th>Estado</th><th>Mecanismos</th><th>Justificación</th><th>Testigos y contradicción</th>'
+   +'</tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+ }else if(current==='distributions'){
+  const rows=visible.map(d=>'<tr><td><code>'+esc(d.distribution_id)
+   +'</code><small class="science-minor">'+esc(d.family)+' · '
+   +esc(d.revision_or_asset_kind)+'</small></td>'
+   +'<td>'+esc(d.issuer_fixture)+'</td>'
+   +'<td>'+esc(d.first_public_at_fixture)+'</td>'
+   +'<td>'+esc(d.captured_at_fixture)+'</td>'
+   +'<td><code class="science-digest">'+esc(d.sha256)+'</code>'
+   +'<small class="science-minor">'+esc(d.quality_gate)+' · '
+   +esc(d.coverage_temporal?.state)+'</small></td>'
+   +'<td><strong>NO ADMITIDA</strong><small class="science-minor">'
+   +esc(d.admissibility_reason)+'</small>'
+   +'<small class="science-minor">Derechos para finalidad declarada: NO ACREDITADOS</small></td></tr>').join('');
+  panel='<section class="card" aria-label="Catálogo público S8">'
+   +'<h2>S8 · catálogo de fuentes sintéticas</h2>'
+   +'<p class="help">Distribuciones capturadas hasta as_of '+esc(p.as_of)
+   +' y publicadas ficticiamente hasta '+esc(publishedUntil)
+   +'. SHA de descriptor público, revisión y controles del fixture; sin enlaces ni bytes originales privados. Las fechas y los permisos reales no están acreditados.</p>'
+   +'<div class="tablewrap"><table><thead><tr><th>Distribución / revisión</th>'
+   +'<th>Emisor ficticio</th><th>Primera publicación ficticia</th>'
+   +'<th>Captura ficticia</th><th>SHA / calidad / cobertura</th><th>Admisibilidad y derechos</th>'
+   +'</tr></thead><tbody>'+rows+'</tbody></table></div>'
+   +(rows?'':'<p role="status">No hay distribuciones visibles para el corte elegido.</p>')
+   +'<p class="warning">R5 STOP · Datos exclusivamente sintéticos; ninguna distribución empírica admitida.</p></section>';
+ }
+ return heading('CONSULTA ABIERTA · S8','Laboratorio científico',
+  'Exploración de mecanismos, cotas, testigos y fuentes con datos íntegramente sintéticos.')
+  +toolbar+metrics+navigation+panel;
+}
+function guestView(){
+ const banner='<p class="warning"><strong>VISITA CIENTÍFICA · SOLO LECTURA · R5 STOP.</strong> '
+  +'Exploración sintética sin cuenta ni datos de clubes. No hay evidencia real admitida, puntuaciones políticas ni predicciones validadas.</p>';
+ if(ui.guestUrlError)
+  return banner+'<section class="card" role="alert" aria-label="Selección científica de URL rechazada">'
+   +'<h2>Enlace de consulta rechazado</h2><p class="warning">'+esc(ui.guestUrlError)
+   +'</p><p class="help">El enlace solo puede seleccionar filtros ficticios permitidos; '
+   +'nunca constituye prueba de autenticidad ni sustituye la verificación de SHA-256. '
+   +'No se han consultado resultados científicos.</p>'
+   +'<button class="btn secondary" data-action="guest-url-reset">Restablecer consulta</button></section>';
+ if(ui.scientificError||ui.scienceRegistryError)
+  return banner+heading('CONSULTA BLOQUEADA','Datos científicos no disponibles',
+   'El servidor rechazó el contrato o la verificación de integridad. No se muestran resultados antiguos.')
+   +'<section class="card" role="alert"><p class="warning">'
+   +esc(ui.scientificError||ui.scienceRegistryError)+'</p><button class="btn secondary" data-action="guest-reload">Reintentar consulta</button></section>';
+ if(ui.scientificLoading||ui.scienceRegistryLoading||!ui.scientific||!ui.scienceRegistry)
+  return banner+heading('CONSULTA ABIERTA','Cargando Observatorio y Laboratorio',
+   'Validando los contratos científicos y el recibo SHA-256 antes de mostrar resultados.')
+   +'<section class="card" role="status">Consulta en curso…</section>';
+ if(!validSciencePayload(ui.scientific)
+    ||!validRegistryPayload(ui.scienceRegistry,ui.scienceCut,ui.scienceRegistryValid,
+      ui.scienceRegistryFamily,ui.scienceRegistryPublished))
+  return banner+'<section class="card" role="alert">Contratos científicos incompatibles; vista bloqueada.</section>';
+ if(ui.tab==='observatory')return banner
+  +heading('CONSULTA ABIERTA · S9','Observatorio documental sintético',
+   'Fuentes, versiones, grafos y cronologías con trazabilidad temporal de un registro local cerrado.')
+  +scientificRegistryPanel();
+ return banner+guestScienceView();
+}
+function drawGuest(){
+ navigationMode('guest');
+ el('account-name').textContent='VISITANTE';
+ el('account-logout').hidden=true;
+ el('crumb').textContent=ui.tab==='observatory'?'OBSERVATORIO · VISITANTE':'LABORATORIO · VISITANTE';
+ el('content').innerHTML=guestView();
+}
+async function reloadGuest(restoreCompare=false){
+ if(!ui.guest||ui.guestUrlError)return;
+ const previous=ui.scienceRequest;
+ await loadScientific();
+ // A return to login or a newer request invalidates the old response.
+ if(!ui.guest||ui.scienceRequest!==previous+1||!ui.scientific)return;
+ const registryLoad=loadScientificRegistry(),ticket=ui.scienceRegistryRequest;
+ await registryLoad;
+ if(restoreCompare&&ui.guest&&!ui.guestUrlError
+    &&ui.scienceRequest===previous+1&&ui.scienceRegistryRequest===ticket
+    &&ui.scientific&&!ui.scientificError&&!ui.scientificLoading
+    &&ui.scienceRegistry&&!ui.scienceRegistryError&&!ui.scienceRegistryLoading
+    &&ui.scienceRegistryTab==='compare')
+  await loadRegistryComparison();
+}
+async function enterGuest(resetUrl=false){
+ if(ui.state||ui.session)return;
+ // A new entry, including a second entry during a pending GET, must discard
+ // all prior verified state BEFORE parsing an untrusted location query.
+ ++ui.scienceRequest;++ui.scienceExportGeneration;++ui.scienceAdmissionRequest;
+ invalidateScientificRegistry();
+ ui.scientific=null;ui.scientificError=null;ui.scientificLoading=false;
+ ui.scienceAdmission=null;ui.scienceAdmissionError=null;ui.scienceAdmitting=false;
+ ui.scienceGuestPanel='mechanisms';ui.guest=true;ui.tab='observatory';ui.picks=null;
+ ui.scienceScenario='baseline';ui.scienceCut='late';
+ ui.scienceRegistryFamily='all';ui.scienceRegistryValid='2026-09-15';
+ ui.scienceRegistryPublished='as_of';ui.scienceRegistryTab='sources';
+ ui.scienceFirstPublic='as_of';ui.scienceRegistryKind='ALL';
+ ui.guestUrlError=null;
+ const selection=resetUrl?{...GUEST_URL_DEFAULT}:guestUrlSelection();
+ if(!selection){
+  ui.guestUrlError='Parámetros de URL desconocidos, repetidos, malformados o fuera del reloj ficticio permitido.';
+  drawGuest();return;
+ }
+ ui.scienceCut=selection.cut;
+ ui.scienceScenario=selection.scenario;
+ ui.scienceRegistryValid=selection.validAt;
+ ui.scienceRegistryFamily=selection.family;
+ ui.scienceRegistryPublished=selection.published;
+ ui.scienceRegistryTab=selection.view;
+ mirrorGuestUrlSelection();
+ drawGuest();
+ // A restored comparison always refetches and WebCrypto-verifies both cuts.
+ await reloadGuest(true);
+}
 function authScreen(){
- ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
+ ui.guest=false;++ui.scienceRequest;++ui.scienceExportGeneration;++ui.scienceAdmissionRequest;
+ invalidateScientificRegistry();ui.scientific=null;ui.scientificError=null;
+ ui.scienceAdmission=null;ui.scienceAdmissionError=null;ui.scienceAdmitting=false;
+ ui.scientificLoading=false;ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
  el('account-logout').hidden=true;el('account-name').textContent='';
- el('club-select').innerHTML='';
+ el('club-select').innerHTML='';navigationMode('login');
  el('crumb').textContent='CUENTA LOCAL';
  el('content').innerHTML=`<section class="card" aria-label="Acceso a la demostración ficticia">
  <div class="section-title"><h2>Cuenta local del prototipo</h2></div>
@@ -498,11 +1656,26 @@ function authScreen(){
  <div class="auth-actions">
  <button class="btn" type="submit" name="intent" value="login">Iniciar sesión</button>
  <button class="btn secondary" type="submit" name="intent" value="register">Crear cuenta</button>
- </div></form><p id="auth-error" class="help" role="status"></p></section>`;
+ </div></form><p id="auth-error" class="help" role="status"></p></section>
+ <section class="card" aria-label="Acceso científico como visitante">
+ <div class="section-title"><h2>Explorar sin cuenta</h2><span>SOLO LECTURA</span></div>
+ <p class="help">Consulta el Observatorio y el Laboratorio científicos con datos sintéticos y recibos de integridad. No accederás a clubes, mercado, jornadas ni información de cuentas.</p>
+ <button class="btn secondary" type="button" data-action="guest-enter">Entrar al Observatorio y Laboratorio</button></section>`;
 }
 async function bootstrap(){
  const response=await fetch('/api/session',{cache:'no-store',credentials:'same-origin'});
  if(response.status===404){return refresh();} // Explicit legacy handler test mode.
+ if(response.status===401){
+  // The isolated --science-only server declares itself without creating a game
+  // session. An ordinary unauthorized account server still shows the login.
+  try{
+   const mode=await response.json();
+   if(mode?.science_only===true&&mode.authenticated===false){
+    ui.scienceOnly=true;
+    return enterGuest();
+   }
+  }catch(_){/* Missing/malformed mode declarations do not open a guest session. */}
+ }
  if(!response.ok){authScreen();return;}
  const session=await response.json();
  if(!session.authenticated){return refresh();} // Legacy test-mode endpoint.
@@ -511,12 +1684,14 @@ async function bootstrap(){
  await refresh();
 }
 
-function draw(){if(!ui.state)return;let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';document.querySelectorAll('[data-tab]').forEach(n=>{const current=n.dataset.tab===ui.tab;n.classList.toggle('active',current);if(current)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
+function draw(){if(ui.guest){drawGuest();return;}if(!ui.state)return;navigationMode('account');let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','scientific':'LABORATORIO CIENTÍFICO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
 async function perform(kind,id){if(kind==='pick'){ui.picks=ui.picks.includes(id)?ui.picks.filter(x=>x!==id):ui.picks.length<3?[...ui.picks,id]:ui.picks;draw();return;}
+ if(ui.guest)return;
 try{const c=selected();if(['buy','sell'].includes(kind)){await call('/api/'+kind,{club_id:c.id,figure_id:id});notice(kind==='buy'?'Fichaje registrado.':'Venta registrada.');}else if(kind==='save-lineup'){await call('/api/lineup',{club_id:c.id,round_id:upcoming().id,figures:ui.picks});notice('Alineación guardada en SQLite.');}else if(kind==='simulate-round'){await call('/api/simulate-round',{round_id:id});ui.picks=null;notice('Jornada ficticia simulada y cerrada.');}await refresh();}catch(e){notice(e.message,true);}}
 document.addEventListener('submit',async e=>{
  if(e.target.id!=='auth-form')return;
  e.preventDefault();
+ if(ui.guest)return;
  const fields=new FormData(e.target);
  const username=String(fields.get('username')||'');
  const password=String(fields.get('password')||'');
@@ -530,10 +1705,115 @@ document.addEventListener('submit',async e=>{
  } catch(err){el('auth-error').textContent=String(err.message);}
 });
 document.addEventListener('click',async e=>{
+ if(e.target.closest('#guest-exit')&&ui.guest){
+  if(ui.scienceOnly)return;
+  ui.tab='overview';authScreen();return;
+ }
  if(e.target.closest('#account-logout')){
+  if(ui.guest)return;
+  // Invalidate on click, before the potentially delayed HTTP logout resolves.
+  invalidateScientificAdmission();
+  ++ui.scienceRequest;
+  invalidateScientificRegistry();
   try{await call('/api/logout',{});}catch(_){/* A failed logout cannot authorize access. */}
   authScreen();return;
  }
- const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();return;}const act=e.target.closest('[data-action]');if(act)perform(act.dataset.action,act.dataset.id);});
-el('club-select').addEventListener('change',async e=>{if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
+ const nav=e.target.closest('[data-nav],[data-tab]');if(nav){
+  const tab=nav.dataset.nav||nav.dataset.tab;
+  if(ui.guest){if(GUEST_TABS.includes(tab)){ui.tab=tab;draw();}return;}
+  if(!ui.state||!Object.hasOwn(pages,tab))return;
+  if(ui.tab==='scientific'&&tab!=='scientific')invalidateScientificAdmission();
+  ui.tab=tab;ui.picks=null;draw();
+  if(ui.tab==='scientific'&&!ui.scientific&&!ui.scientificLoading)await loadScientific();
+  return;
+ }
+ const act=e.target.closest('[data-action]');if(!act)return;
+ if(act.dataset.action==='guest-enter'){await enterGuest();return;}
+ if(ui.guest){
+  if(act.dataset.action==='science-guest-panel'){
+   if(ui.tab==='scientific'&&GUEST_SCIENCE_PANELS.includes(act.dataset.panel)){
+    ui.scienceGuestPanel=act.dataset.panel;draw();
+   }
+   return;
+  }
+  if(act.dataset.action==='guest-url-reset'){await enterGuest(true);return;}
+  if(act.dataset.action==='guest-reload'){await reloadGuest(true);return;}
+  if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
+  if(act.dataset.action==='science-registry-compare-load'){
+   await loadRegistryComparison();return;
+  }
+  if(act.dataset.action==='science-registry-pair-export'&&ui.tab==='observatory'){
+   await exportRegistryComparison();return;
+  }
+  if(act.dataset.action==='science-registry-export'&&ui.tab==='observatory'){
+   await exportScientificRegistry();return;
+  }
+  if(act.dataset.action==='science-registry-tab'){
+   if(GUEST_REGISTRY_VIEWS.includes(act.dataset.registry)){
+    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';
+    mirrorGuestUrlSelection();draw();
+    if(ui.scienceRegistryTab==='compare')await loadRegistryComparison();
+   }
+   return;
+  }
+  if(act.dataset.action==='science-registry-kind'){
+   if(REGISTRY_KINDS.includes(act.dataset.kind)){ui.scienceRegistryKind=act.dataset.kind;draw();}
+  }
+  return;
+ }
+ if(act.dataset.action==='science-reload'){await loadScientific();return;}
+ if(act.dataset.action==='science-export'){await exportScientific();return;}
+ if(act.dataset.action==='science-probe'){await probeScientificAdmission();return;}
+ if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
+ if(act.dataset.action==='science-registry-compare-load'){await loadRegistryComparison();return;}
+ if(act.dataset.action==='science-registry-pair-export'){await exportRegistryComparison();return;}
+ if(act.dataset.action==='science-registry-export'){await exportScientificRegistry();return;}
+ if(act.dataset.action==='science-registry-tab'){
+  if(['sources','compare','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
+   ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
+   if(ui.scienceRegistryTab==='compare')await loadRegistryComparison();
+  }
+  return;
+ }
+ if(act.dataset.action==='science-registry-kind'){
+  if(REGISTRY_KINDS.includes(act.dataset.kind)){ui.scienceRegistryKind=act.dataset.kind;draw();}
+  return;
+ }
+ perform(act.dataset.action,act.dataset.id);});
+document.addEventListener('change',async e=>{
+ if(ui.guest&&!['science-cut','science-scenario','science-registry-valid',
+   'science-registry-family','science-registry-publication'].includes(e.target.id))return;
+ if(e.target.id==='science-cut'&&['early','late'].includes(e.target.value)){
+  ui.scienceCut=e.target.value;
+  if(ui.scienceCut==='early'){
+   if(ui.scienceFirstPublic==='2026-10-30T12:00:00Z')ui.scienceFirstPublic='as_of';
+   if(ui.scienceRegistryPublished==='2026-10-30T12:00:00Z')ui.scienceRegistryPublished='as_of';
+  }
+  if(ui.guest){mirrorGuestUrlSelection();await reloadGuest();}else await loadScientific();
+ }else if(e.target.id==='science-first-public'&&['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(e.target.value)){
+  if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
+  invalidateScientificAdmission();ui.scienceFirstPublic=e.target.value;
+  invalidateRegistryComparison();draw();
+ }else if(e.target.id==='science-scenario'&&['baseline','rights_spoof','privacy_probe'].includes(e.target.value)){
+  ui.scienceScenario=e.target.value;
+  if(ui.guest){mirrorGuestUrlSelection();await reloadGuest();}else await loadScientific();
+ }else if(e.target.id==='science-registry-valid'&&REGISTRY_VALID_DAYS.includes(e.target.value)){
+  ui.scienceRegistryValid=e.target.value;
+  mirrorGuestUrlSelection();await loadScientificRegistry();
+ }else if(e.target.id==='science-registry-family'&&REGISTRY_FAMILIES.includes(e.target.value)){
+  ui.scienceRegistryFamily=e.target.value;ui.scienceRegistryKind='ALL';
+  mirrorGuestUrlSelection();await loadScientificRegistry();
+ }else if(e.target.id==='science-registry-publication'&&REGISTRY_PUBLICATION.includes(e.target.value)){
+  if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
+  ui.scienceRegistryPublished=e.target.value;
+  mirrorGuestUrlSelection();await loadScientificRegistry();
+ }else if(e.target.id==='science-candidate'&&['baseline','sha_spoof','issuer_spoof','rights_missing','first_public_missing','crosswalk_missing','denominator_missing','coverage_missing'].includes(e.target.value)){
+  invalidateScientificAdmission();ui.scienceCandidate=e.target.value;draw();
+ }else if(e.target.id==='science-valid'&&['2026-09-11','2026-09-15'].includes(e.target.value)){
+  invalidateScientificAdmission();ui.scienceValid=e.target.value;draw();
+ }else if(e.target.id==='science-chronicle'&&['2026-09-15','2026-10-10'].includes(e.target.value)){
+  invalidateScientificAdmission();ui.scienceChronicleValid=e.target.value;draw();
+ }
+});
+el('club-select').addEventListener('change',async e=>{if(ui.guest||!ui.state)return;if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
 bootstrap().catch(e=>{el('content').innerHTML=`<p class="warning">No se ha podido cargar la demo: ${esc(e.message)}</p>`;});

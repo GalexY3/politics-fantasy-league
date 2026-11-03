@@ -1,0 +1,128 @@
+{
+  "schema": "pfl.synthetic_scientific_s8_closeout_receipt.v1",
+  "record_date": "2026-11-01",
+  "evidence_class": "LOCAL_ENGINEERING_QA_SYNTHETIC_NONCYCLE",
+  "revision": "S8.1_CLOSEOUT_AFTER_S8",
+  "base_commit": "774acbcad05bb3814fce4691978e5b2c4c326e21",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "github_pull_request": 22,
+  "production_contract_changed": false,
+  "ipc_standalone_test_harness": {
+    "schema": "CLOSED_S4_S7_CURRENT_WIRE",
+    "prepatch_focal_failed": 7,
+    "prepatch_focal_deselected": 156,
+    "prepatch_failure_kinds": {
+      "TYPED_CHAIN_WIRE_REQUIRED": 4,
+      "B0_B3_WIRE_REQUIRED": 1,
+      "WITNESS_MATRIX_WIRE_REQUIRED": 1,
+      "S3_AGGREGATE_LABEL_FALSE_REDACTION_ASSERTION": 1
+    },
+    "postpatch_same_focal_passed": 7,
+    "postpatch_same_focal_failed": 0,
+    "repair_files": ["tests/test_synthetic_scientific_integration_lab.py"],
+    "new_fixture_helper": "_complete_s7_node_test_request",
+    "actual_node_executable_preserved": "scripts/scientific_integration_warehouse.mjs",
+    "negative_ipc_rejection_503_preserved": true,
+    "row_level_binary_data_disclosed": false,
+    "safe_aggregated_s3_provenance_label_retained": true
+  },
+  "real_end_to_end": {
+    "server": "Python ThreadingHTTPServer(127.0.0.1,0) handler_factory",
+    "database": "EPHEMERAL_SYNTHETIC_SQLITE_SEED_DEMO",
+    "backend": "REAL_PYTHON_REPORT_SUBPROCESS_ACTUAL_NODE_WAREHOUSE",
+    "frontend": "SHIPPED_WEB_APP_JS",
+    "node_vm_real_http": {
+      "test_module": "tests/test_s8_closeout_http_ui.mjs",
+      "python_driver": "tests/test_s8_closeout_live_http.py",
+      "fetch_http_responses_mocked": false,
+      "dom_virtualized": true,
+      "browser_download_virtualized": true,
+      "cross_language_503_adversarial_test": true,
+      "passes": 2
+    },
+    "native_browser_real_click_through": {
+      "test_module": "tests/test_s8_closeout_chrome_cdp.mjs",
+      "engine": "CHROME_HEADLESS_WINDOWS",
+      "driver": "NODE_V24_NATIVE_WEBSOCKET_CDP",
+      "third_party_browser_packages_installed": false,
+      "isolated_ephemeral_browser_profile": true,
+      "isolated_ephemeral_download_folder": true,
+      "download_isolation": "BROWSER_SET_DOWNLOAD_BEHAVIOR",
+      "real_dom_events": true,
+      "real_webcrypto_sha256_verification": true,
+      "post_http_corrupted_sha256_rejected_in_browser": true,
+      "screenshot_saved_to_repository": false,
+      "in_memory_screenshot_sha256_sample": "d21e3ceb9e7d76bc8a9d4d57c30b36f70f7b6de8f2e2de944654029fd5ec63ef",
+      "passes": 1,
+      "limitations": "HEADLESS_CHROME_ONLY_NOT_ACCESSIBILITY_OR_CROSS_BROWSER_CERTIFICATION"
+    },
+    "controls_exercised": [
+      "as_of_early_late", "typed_graph_valid_at", "chronicle_valid_at",
+      "synthetic_first_public_filter_without_lookahead",
+      "s3_noncausal_bounds", "b0_b3_equivalent_models",
+      "s7_20_sets_six_states", "catalog_descriptor_2_6_redacted",
+      "closed_candidate_admission_rejected_r5", "real_http_export_canonical_json_sha256",
+      "altered_response_digest_blocked", "actual_node_stdout_drift_to_http_503"
+    ],
+    "catalog_distributions_early": 2,
+    "catalog_distributions_late": 6,
+    "catalog_distributions_filtered_to_old_publication_fixture": 2,
+    "s7_witness_set_count_per_cut": 20,
+    "observed_export_sha256": "2e940df566f0241b95c4d7eca0e066ae2b7697de264a2254289440ed3f27ad63",
+    "observed_export_conditions": {
+      "cut": "late",
+      "scenario": "baseline",
+      "published_until": "2026-09-19T12:00:00Z"
+    },
+    "actual_external_network_access": false
+  },
+  "validation": {
+    "historical_plus_new_python_test_total_passed": 166,
+    "historical_plus_new_python_test_failed": 0,
+    "standalone_node_ui_tests_passed": 7,
+    "standalone_node_ui_tests_failed": 0,
+    "native_chrome_test_passed": 1,
+    "node_vm_live_http_tests_passed": 2,
+    "postfix_seven_legacy_tests_passed": 7,
+    "remaining_known_test_failures_in_executed_scopes": 0,
+    "node_syntax_check": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "existing_functionality_reused": {
+    "public_descriptor_recipe": "S8_PUBLIC_DESCRIPTOR_V1",
+    "public_descriptor_sha256_not_private_asset_sha256": true,
+    "source_local_private_ids_exposed": false,
+    "source_local_query_scope": "READ_ONLY_PUBLIC_SYNTHETIC_DESCRIPTOR_TABLE",
+    "arbitrary_original_id_query_api_implemented": false,
+    "synthetic_bitemporal_graph": true,
+    "independent_as_of_and_valid_at": true,
+    "candidate_dry_run_closed_variants": 8,
+    "real_import_endpoint_available": false,
+    "candidate_status": "REJECTED_R5",
+    "new_source_rows_admitted": 0
+  },
+  "sha256": {
+    "tests/test_synthetic_scientific_integration_lab.py": "d0b99bd8639c5f396fad03d1e6615f32f4cbabb8939f00aeec4fa27fb0425666",
+    "tests/test_s8_closeout_live_http.py": "e2dec61767634be351b7320a6615a39ff8356a2485fce4b32dce306e1ebd2c17",
+    "tests/test_s8_closeout_http_ui.mjs": "3a3d8a6746a93d0135db32b39dfa1a231cf992a5188f1f47090b7e15ff54caf5",
+    "tests/test_s8_closeout_chrome_cdp.mjs": "6d2a88431d3675e8e7c8d9ca58d0f8a4e9bc0a9b654cb388da412acf2dbcaa4d",
+    "src/politics_fantasy/scientific_integration_lab.py": "d23276f4d5cd337e57ba754ed93090a6c2eddf5b4dda36fa5475fdff7b779f0a",
+    "scripts/scientific_integration_warehouse.mjs": "890c5e8fbad150f74d23c2831d4504a472912b69723b1d097a891cb879c197a9",
+    "src/politics_fantasy/server.py": "7bd097e7146e5577478c0a1d5acb763c72abc3854031f3e304d831c737d61763",
+    "src/politics_fantasy/web/app.js": "c82bd5713219b1fb35ac5798954a1485a1de159438f268de250373556cf74beb",
+    "docs/SCIENTIFIC_SYNTHETIC_E2E_INTEGRATION_20261101.md": "3b5163d6b596628436157d599dd72fb5b7b93d23c6c42c60062ee6286cf13beb",
+    "HANDOFF.md": "8a784858edc4265218c65f5dd3fe798208831783275f266ecfd843314a80d399"
+  },
+  "release_gate": {
+    "R5": "STOP_R5",
+    "scientific_ab_cycles": 0,
+    "release_gates_passed": 0,
+    "real_denominator": null,
+    "real_first_public_at": null,
+    "real_issuer_authenticated": false,
+    "real_rights_admitted": false,
+    "real_crosswalk_authenticated": false,
+    "real_people_scoring": false,
+    "real_empirical_effect_identified": false
+  }
+}

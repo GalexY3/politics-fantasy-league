@@ -1,0 +1,115 @@
+{
+  "baseline_published_head": "b330a69c12ee3df8439d9f8542c9c9adec8c42a3",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 99829,
+      "sha256": "eb7ba30266fc3a5201265093506caf251770752bab463eb016013dc526d529c2"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 80848,
+      "sha256": "90f44b9e761116e10139a2765be5e963abfc5f82e1aa68579a461d9eec42195f"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 13067,
+      "sha256": "fcef8209a5cc192d9f91e0079c5b363f9e78279f531506ec84975bf1640d00b2"
+    },
+    "run_demo.py": {
+      "bytes": 5475,
+      "sha256": "e9edf4b079c014431912d26f0b9e00c702479475a9f6748fc7dcf62f3aeaf0b3"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 6577,
+      "sha256": "a64204285cf46eb359f21b9f82244b5849b99a4f50f54cde502c05d89f7bffb2"
+    },
+    "src/politics_fantasy/server.py": {
+      "bytes": 27397,
+      "sha256": "27eef22747f06b37d101d4765dc2a2286f1f87e567beca81d92eea7abf7b1755"
+    },
+    "tests/test_beta_guest_link_launcher.py": {
+      "bytes": 14287,
+      "sha256": "033f5c559e42344ffcea64485b410ae0ed2043f652d5f3e8e56895cd771b5d19"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 59352,
+      "sha256": "97dd1c04dcfa243d495c13d9a91a5469818f209c1d654679356ce2be547f7eb5"
+    }
+  },
+  "implementation": {
+    "accepted_full_origin": "HTTP_LOOPBACK_127_0_0_1_OR_LOCALHOST_WITH_VALID_OLD_PORT_ONLY",
+    "accepted_relative_form": "?pfl_guest=v1&cut=...&valid_at=...&family=...&published_until=...&scenario=...&view=...",
+    "account_db_or_fantasy_user_state_written": false,
+    "browser_autolaunch_or_public_binding": false,
+    "duplicate_extra_malformed_or_external_origin_rejected_before_db_or_socket": true,
+    "existing_default_banner_preserved": true,
+    "existing_registry_lab_enums_reused": true,
+    "fields_exact_7": true,
+    "http_503_invalidates_stale_webcrypto_receipts": true,
+    "new_link_printed_only_after_successful_bind": true,
+    "old_port_not_forced": true,
+    "only_science_only": true,
+    "option": "python -B run_demo.py --science-only --port 0 --resume-guest-query URL_O_QUERY",
+    "original_S9_individual_or_pair_envelopes_changed": false,
+    "outgoing_origin": "http://127.0.0.1:<ACTUAL_SERVER_BOUND_PORT>/",
+    "query_origin": "BROWSER_GUEST_FILTER_SELECTION_NOT_EVIDENCE",
+    "science_sqlite_registry_backend_changed": false
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "academic_v09_integrated": false,
+    "authentic_vintages_accredited": false,
+    "existing_S9_DOCX_rebuilt": false,
+    "external_denominator_accredited": false,
+    "historical_first_public_accredited": false,
+    "human_review_completed": false,
+    "new_official_spanish_empirical_sources_admitted": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "originals_or_PII_used": false,
+    "public_beta_authorized": false,
+    "publisher_identity_verified": false,
+    "release_gates_passed": 0,
+    "source_distribution_rights_admitted": false
+  },
+  "manifest_hash_basis": "EXACT_STAGED_GIT_BLOBS",
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "schema": "pfl.beta_dynamic_port_resume_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_PORT_RELOCATION_AND_S9_BETA",
+  "source_kind_at_creation": "UNCOMMITTED_WORKTREE",
+  "validation": {
+    "clean_committed_head_acceptance": "REQUIRED_AFTER_PUBLICATION",
+    "historical_full_tests_reexecuted": false,
+    "native_chrome_two_independent_agent_runs": {
+      "downloaded_pair_offline_python_verification": "PASS",
+      "one_chrome_per_run": true,
+      "real_sequential_python_processes": 2,
+      "runs": 2,
+      "same_persistent_scientific_sqlite": true,
+      "status": "PASS",
+      "tests_per_run": 1,
+      "three_fresh_S9_GETs_after_resume": true,
+      "two_OS_assigned_ports": true
+    },
+    "old_readiness_intermittent_failure_cause_verified": false,
+    "old_science_only_intermittent_failure_cause_verified": false,
+    "python_affected": {
+      "command": "python -B -m pytest -q tests/test_beta_acceptance_runner.py tests/test_beta_scientific_smoke.py tests/test_beta_readiness_endpoint.py tests/test_beta_local_launcher.py tests/test_beta_guest_link_launcher.py tests/test_beta_science_only.py tests/test_beta_restart_isolation.py tests/test_beta_concurrent_science_http.py tests/test_beta_snapshot_verifier.py tests/test_beta_offline_cut_comparison.py",
+      "passed": 170,
+      "status": "PASS"
+    },
+    "python_launcher_focus": {
+      "command": "python -B -m pytest -q tests/test_beta_guest_link_launcher.py tests/test_beta_local_launcher.py tests/test_beta_science_only.py",
+      "passed": 69,
+      "status": "PASS"
+    },
+    "worktree_beta_acceptance": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "node": 83,
+      "python": 170,
+      "source_kind": "UNCOMMITTED_WORKTREE",
+      "status": "PASS",
+      "tests_passed": 255
+    }
+  }
+}

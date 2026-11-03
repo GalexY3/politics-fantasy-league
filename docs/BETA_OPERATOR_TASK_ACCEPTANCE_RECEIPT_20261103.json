@@ -1,0 +1,137 @@
+{
+  "baseline_published_head": "cbe987268a1bfdcf6cc6cc60c76d87a30a47d318",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "file_count": 8,
+  "limitations": {
+    "R5": "STOP_R5",
+    "academic_v09_integrated": false,
+    "causal_effect_identified": false,
+    "docx_s9_modified": false,
+    "external_publisher_authentication": false,
+    "historical_first_public_accredited": false,
+    "independent_all_received_denominator": false,
+    "new_spanish_empirical_sources_admitted": 0,
+    "public_beta_authorized": false,
+    "real_rights_for_public_display_admitted": false,
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "two_authentic_external_vintages": false
+  },
+  "manifest": {
+    "HANDOFF.md": {
+      "bytes": 109972,
+      "sha256": "ae30cd5488539bd738836ec3def4b913d996e9fae357a047a4957f9f4f611b96"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 92715,
+      "sha256": "004f8075aea500dcea88438628772b34a3bdb137424bc24abd1129fed7358672"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 7483,
+      "sha256": "38f44e411056327064e99caeb0ab0bf8af8e2dc0c2744c7697778a09712129f0"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 22915,
+      "sha256": "4f0bb6aae512dc66ab76bbfbca3e330754877f11df89e37b4c5081527f6991db"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7225,
+      "sha256": "009c4f5b742b43dec8867da7e9a18f4de38728ab1c09152f0d43d4fa4fc2a11e"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 19421,
+      "sha256": "19fe34ce3824a9eac0c1eafdfbeedc49ee902738c7d8e823f860aac388520c89"
+    },
+    "tests/test_beta_science_operator_protocol.py": {
+      "bytes": 13856,
+      "sha256": "46a162676af040a6f23510c76337173243bdf1bd803a96e942d1c3f7927e52c3"
+    },
+    "tests/test_s9_chrome_registry.mjs": {
+      "bytes": 75882,
+      "sha256": "8d9566d8b9c2a29fd9c6cff015bfe5ca3cbf581d0f34d7ee1d7445b9565b4407"
+    }
+  },
+  "manifest_basis": "EXACT_STAGED_GIT_BLOBS",
+  "operational": {
+    "canonical_s9_pair_export_changed": false,
+    "chrome_all_eight_s9_views_and_family_scope_checked": true,
+    "chrome_dom_get_sha_real_download_and_offline_cli": true,
+    "chrome_existing_test_extended_no_duplicate_browser_harness": true,
+    "chrome_os_port0_restart_same_sqlite_verified": true,
+    "exact_seven_field_guest_url_preserved": true,
+    "machine_checkpoint_count": 10,
+    "machine_checkpoints": [
+      "LAB_B0_B3",
+      "LAB_S3_TEMPORAL",
+      "LAB_S7_20",
+      "LAB_S8_DESCRIPTORS",
+      "S9_EIGHT_TABS",
+      "S9_FAMILY_SCOPE",
+      "S9_TEMPORAL_COMPARE",
+      "S9_SINGLE_EXPORT_OFFLINE",
+      "S9_PAIR_EXPORT_OFFLINE",
+      "RESTART_DOCTOR_GUEST_LINK"
+    ],
+    "native_chrome_human_comprehension_assessed": false,
+    "new_endpoints": 0,
+    "scientific_sqlite_schema_modified": false
+  },
+  "operator_instrument": {
+    "anonymous_optional_local_codes_only": true,
+    "human_acceptance_completed": false,
+    "human_comprehension_or_satisfaction_rates_computed": false,
+    "human_participants_observed": 0,
+    "missing_or_blocked_not_scored_as_bad_comprehension": true,
+    "modes": [
+      "--self-check",
+      "--template",
+      "--participant-sheet",
+      "--evaluate"
+    ],
+    "no_free_text_names_urls_timestamps_PII_or_telemetry": true,
+    "operator_cli": "scripts/beta_science_operator_protocol.py",
+    "operator_template_includes_closed_criteria": true,
+    "participant_sheet_hides_answer_key": true,
+    "scientific_answer_on_failed_technical_task_rejected": true,
+    "task_count": 12,
+    "technical_scientific_usability_dimensions_distinct": true,
+    "unit_tests_use_ephemeral_synthetic_fixture_not_people": true
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "publication_at_creation": "UNCOMMITTED_STAGED_BLOBS",
+  "schema": "pfl.beta_science_operator_task_acceptance_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_SCIENCE_BETA_OPERATOR_HUMAN_ACCEPTANCE_INSTRUMENT",
+  "worktree_acceptance": {
+    "checks": [
+      {
+        "label": "python",
+        "status": "PASS",
+        "tests_passed": 303
+      },
+      {
+        "label": "node",
+        "status": "PASS",
+        "tests_passed": 118
+      },
+      {
+        "label": "chrome_s9",
+        "status": "PASS",
+        "tests_passed": 1
+      },
+      {
+        "label": "chrome_accessibility",
+        "status": "PASS",
+        "tests_passed": 1
+      }
+    ],
+    "execution_source_kind": "UNCOMMITTED_WORKTREE",
+    "native_chrome_task_assertions": 10,
+    "operator_instrument_python_tests": 39,
+    "postcommit_clean_head_acceptance_pending_at_creation": true,
+    "runner": "python -B scripts/beta_acceptance.py",
+    "status": "PASS",
+    "tests_passed": 423,
+    "working_tree_modified_at_execution": true
+  }
+}

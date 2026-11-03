@@ -1,0 +1,161 @@
+{
+  "baseline_published_head": "31e510fbdbf1b87d6a9d807f687e361b376bb536",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "executed_tests": {
+    "clean_committed_head": "REVERIFY_AFTER_PUBLICATION",
+    "integrated_worktree": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 120,
+      "passed": 572,
+      "python": 450,
+      "required_skips": 0,
+      "status": "PASS",
+      "working_tree_modified_at_execution": true
+    },
+    "security_focal": {
+      "failed": 0,
+      "passed": 30,
+      "skipped": 0
+    },
+    "two_os_science_only_http_sqlite_and_offline_downloads": "REUSED_MANDATORY_INTEGRATED_PYTHON_NODE_CHROME_GATES"
+  },
+  "genuine_red_prepatch": [
+    {
+      "forensic": "same base file inode and ACL but alternate stream bytes can be read as coded v2",
+      "result": "FAILED_PREPATCH_CLI_RC0_ACCEPTED_ADS",
+      "test": "test_prepatch_red_record_form_rejects_private_coded_ntfs_ads_source"
+    },
+    {
+      "forensic": "rubric NTFS alternate stream accepted and scored before repair",
+      "result": "FAILED_PREPATCH_CLI_RC0_ACCEPTED_ADS",
+      "test": "test_prepatch_red_evaluate_form_rejects_private_rubric_ntfs_ads_source"
+    },
+    {
+      "forensic": "after real os.link, preexisting thirdparty inode replaced final name before identity sampled",
+      "result": "FAILED_PREPATCH_THIRD_PARTY_DESTINATION_INODE_DELETED",
+      "test": "test_prepatch_red_postlink_destination_replacement_is_not_deleted_on_failure"
+    },
+    {
+      "forensic": "after real hardlink and audit, stage Path.unlink removed thirdparty replacement",
+      "result": "FAILED_PREPATCH_THIRD_PARTY_STAGE_NAME_INODE_DELETED",
+      "test": "test_prepatch_red_postlink_stage_name_swap_does_not_delete_third_party"
+    }
+  ],
+  "git_staged_blobs": {
+    "HANDOFF.md": {
+      "bytes": 139826,
+      "sha256": "0479fec54efc383b45b943c1f1b6955ce71ea04912ba71ebc720a0a4d3753dda",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_INDEX.json": {
+      "bytes": 631589,
+      "sha256": "0ab1d8a15d345fb38033859f3975fa3b02b69d5dea94784b27b1ee32190b89a0",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_MAP.md": {
+      "bytes": 4280,
+      "sha256": "1c00730837779ce61a824116176044edf0f218f0fd383d128f9af22c7de3e5c2",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 115648,
+      "sha256": "733a40ded055ee8f5ab06c4feef874ce1bb46cdfbac700823ef4aa475d89e37d",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 24602,
+      "sha256": "57a02e93d4ea03db3bba15a41a9d44745e562ec928b51975e890e447bbf42ae5",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 42896,
+      "sha256": "b1b64d6d8bdb76f181d88f19ea6cf1da8f9dfdce0e4154037f8e4ca207b46b8a",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 8067,
+      "sha256": "9a249daa2a6bf7c606d897c8a656eb1c0a56cb49d19360c215b150ada1bf0f11",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 83508,
+      "sha256": "1ea81d7adefc9a964a04779ec9a05f49b593cb0396d6b6219bf938fbd1c2fa5d",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_private_ads_sources.py": {
+      "bytes": 3716,
+      "sha256": "85e5bd5ddd2e2760f6336f8b680168337c35a718a50011c2ce3159c8fcff2d76",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_private_stage_after_link.py": {
+      "bytes": 7675,
+      "sha256": "6925fc14335f537e19b5385f2a4ba613c0b0cbf19b79a3987bd64b66a436594c",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_stage_inode_integrity.py": {
+      "bytes": 7932,
+      "sha256": "9692c15b9ba3cd22d17a63cec263c624e89b72007b0bf3417950ff7599f0eba3",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "administrator_or_same_token_future_acl_change_excluded": false,
+    "cross_user_windows_token_effective_access_tested": false,
+    "docx_s9_modified": false,
+    "human_participants_observed": 0,
+    "launch_gates_passed": 0,
+    "launch_gates_total": 6,
+    "memory_v09_integrated_without_authorized_bytes": false,
+    "new_empirical_spanish_sources": 0,
+    "originals_or_pii_copied_into_git": false,
+    "participant_comprehension_observed": false,
+    "posix_extended_acl_mac_certified": false,
+    "posix_lstat_unlink_atomic_compare": false,
+    "posix_native_tests_this_increment": false,
+    "public_deployment_authorized": false,
+    "real_power_failure_tested": false,
+    "scientific_AB_R_cycles_added": 0,
+    "scientific_s8_s9_sqlite_abh_semantics_modified": false,
+    "third_party_alias_may_remain_after_adversarial_abort": true,
+    "three_file_prepare_transactional_atomicity": false,
+    "windows_symlink_creation_positive_tested": false
+  },
+  "negative_controls": {
+    "old_split_private_parent_rejected": "HISTORICALLY_VERIFIED",
+    "prior_acl_inheritance_stage_red_2": "HISTORICALLY_VERIFIED",
+    "private_read_inode_swap_3_red_prepatch": "HISTORICALLY_VERIFIED",
+    "windows_junction_into_public_or_disposable_git_5_of_5": "HISTORICALLY_VERIFIED_AND_REUSED"
+  },
+  "postpatch_contract": {
+    "existing_v2_form_binding_and_predecessor_sha_preserved": true,
+    "normal_publication_preserves_create_only_fsync_and_sha": true,
+    "ntfs_source_ads_rejected_for_coded_and_rubric": true,
+    "participant_html_remains_public_and_rubric_private": true,
+    "postlink_destination_cleanup_matches_original_stage_inode": true,
+    "private_file_read_same_audited_descriptor_unchanged": true,
+    "published_file_bytes_sha_and_stage_identity_unchanged": true,
+    "stage_and_destination_cleanup_through_ntfs_audited_delete_handle": true,
+    "synthetic_postlink_metadata_failure_reverses_owned_link": true,
+    "third_party_inode_preserved_under_postlink_swap": true
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_red_commands": [
+    "python -B -m pytest -q -p no:cacheprovider tests/test_beta_operator_private_ads_sources.py -k prepatch_red => 2 FAILED/1 deselected",
+    "python -B -m pytest -q -s -p no:cacheprovider tests/test_beta_operator_private_stage_after_link.py -k prepatch_red => 2 FAILED/1 deselected"
+  ],
+  "schema": "pfl.beta_operator_ads_and_handle_cleanup_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_V2_SOURCE_ADS_AND_POSTHARDLINK_HANDLE_BOUND_UNLINK_NONCYCLE",
+  "windows_native_unlink_experiment": {
+    "CreateFileW_DELETE_FILE_READ_ATTRIBUTES_FILE_SHARE_ALL_OPEN_REPARSE_POINT": true,
+    "SetFileInformationByHandle_FileDispositionInfo_success": true,
+    "os_fstat_same_open_delete_handle": true,
+    "os_link_real_ntfs_stage_and_final": true,
+    "performed_in_disposable_windows_temp": true,
+    "same_windows_token_only": true,
+    "stage_removed_and_final_nlink_one": true
+  }
+}

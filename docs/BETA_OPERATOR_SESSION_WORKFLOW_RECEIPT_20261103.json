@@ -1,0 +1,114 @@
+{
+  "acceptance": {
+    "chrome_accessibility_isolated": {
+      "failed": 0,
+      "passed": 1
+    },
+    "clean_committed_head": "REVERIFY_AFTER_PUBLICATION",
+    "focal": {
+      "failed": 0,
+      "python_passed": 65,
+      "skipped": 0
+    },
+    "full_worktree_first": {
+      "chrome_accessibility": "FAIL",
+      "chrome_s9": 1,
+      "node": 118,
+      "python": 320,
+      "status": "FAIL",
+      "total_passed": 439
+    },
+    "full_worktree_second": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 118,
+      "python": 320,
+      "status": "PASS",
+      "total_passed": 440
+    },
+    "intermittent_accessibility_cause": "UNVERIFIED"
+  },
+  "actual_prepatch_red": {
+    "cli_red_test_result": "2 FAILED on original prepatch source; 39 deselected",
+    "guide_additional_boundary_encoding_bug": "RED test 1 FAILED before subsequent guide patch; now PASS",
+    "guide_initial_malformed_accent_words": 48,
+    "powershell_5_1_redirect": "UTF16LE FF-FE-7B-00 before new UTF8 direct-create capability",
+    "scientific_cli": [
+      "test_prepatch_red_participant_sheet_opaque_balanced_ab_without_answer_leaks",
+      "test_prepatch_red_empty_observation_list_must_be_incomplete"
+    ]
+  },
+  "baseline_published_head": "9e676fbf4ced20124c38cabd3593f018fd0f8f2d",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "coverage_limits": {
+    "human_comprehension_observed": false,
+    "human_participants_observed": 0,
+    "merge_or_deployment": false,
+    "original_private_data_copied": false,
+    "real_evidence_admission": false,
+    "s9_docx_changed": false,
+    "synthetic_harness_observations_are_not_humans": true,
+    "windows_junction_into_checkout": "VERIFIED_REJECTED",
+    "windows_regular_symlink_protection": "NOT_VERIFIED_DUE_TO_WINERROR_1314; two cases assert OS privilege refusal, not a symlink check"
+  },
+  "date": "2026-11-03",
+  "git_staged_blob_manifest": {
+    "HANDOFF.md": {
+      "bytes": 111758,
+      "sha256": "cf8b1e3aed9314c3e377ad51ce80c182c7d7748ea3de1f8a991475a5f0a02386",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 94898,
+      "sha256": "5eb7266ba56e4296c29149b97ca4b011da349ad78b5db852970645f3c8c692e6",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 8974,
+      "sha256": "d6fe65376bd71e9ed229f788760b36ded31587c7d6df97a832696d1ed40a0631",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 24101,
+      "sha256": "6679af82a7baa8545ced70df157ad568b883bc2b32d615238bad710cbaab11eb",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7270,
+      "sha256": "b8315bab07e42b19e9af90080f20d63005a7c5d2576272c62b0bde72e8ba9886",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 24950,
+      "sha256": "121c365746c32aa0e1e6c261598b8c8e1fb523a31dfae61511117d6674815202",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_acceptance_runner.py": {
+      "bytes": 5968,
+      "sha256": "f9bb85cf3fd25e5a2536156d0811ac3e5468f676af0984d11299f32221c5dcdf",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_science_operator_protocol.py": {
+      "bytes": 27040,
+      "sha256": "a85d82314cbf6b51aa0855785d7638a8f13fb43be61022a7188e7421fbbdbbce",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_supervised_runtime.py": {
+      "bytes": 14413,
+      "sha256": "51de6b8fd08b33ccdbd21c5238086e7e9745181d720f20760cc2406d2804f695",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "pull_request": 22,
+  "schema": "pfl.beta_operator_session_workflow_receipt.v1",
+  "scope": "SYNTHETIC_LOCAL_SUPERVISED_OPERATOR_NONCYCLE",
+  "verified_increment": {
+    "input_contract": "exact 12 task IDs, empty or all NOT_OBSERVED rejected, no SCI response if TECH not completed",
+    "node_and_chrome": "existing S9 guest, SHA, exports, keyboard and navigation acceptance preserved",
+    "participant_options": "opaque balanced A/B 6 correct each; rubric separate",
+    "real_runtime": "two separate OS run_demo.py --science-only --port 0 processes, same disposable synthetic SQLite; doctor dead/rebound port; early/late SHA; exactly 7 query fields and 8 S9 view values",
+    "rights_and_science": "R5 STOP_R5; zero release gates; zero AB-R cycles; zero official sources",
+    "utf8_session_create": "atomic xb outside checkout; no overwrite, no stdout path"
+  }
+}

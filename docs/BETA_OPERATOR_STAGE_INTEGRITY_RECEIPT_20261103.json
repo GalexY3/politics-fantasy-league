@@ -1,0 +1,147 @@
+{
+  "baseline_published_head": "00edd4a09ad26cc5f47e7671a26f8bf48e8054ad",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "executed_tests": {
+    "clean_committed_head": "REVERIFY_AFTER_PUBLICATION",
+    "destination_junction_negative_control": {
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "integrated_uncommitted_worktree": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 120,
+      "passed": 565,
+      "python": 443,
+      "required_skips": 0,
+      "status": "PASS",
+      "working_tree_modified_at_execution": true
+    },
+    "offline_s9_two_snapshot_pair_and_guest_sha_verification": "REUSED_MANDATORY_NODE_PYTHON_CHROME_GATES",
+    "private_lifecycle_python_focal": {
+      "failed": 0,
+      "passed": 188,
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "stage_and_write_specific_focal": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0,
+      "status": "PASS"
+    },
+    "two_real_os_science_only_processes_same_temporary_sqlite": "REUSED_MANDATORY_PYTHON_GATE"
+  },
+  "genuine_red_prepatch": [
+    {
+      "forensic": "published inode differs from stage opened before fsync; receipt SHA matches intended bytes, not published synthetic replacement",
+      "result": "FAILED_PREPATCH_RC0",
+      "test": "test_prepatch_red_record_form_rejects_replaced_stage_inode_before_hardlink"
+    },
+    {
+      "forensic": "same stage inode modified bytes before hardlink; score receipt SHA differs from published synthetic bytes",
+      "result": "FAILED_PREPATCH_RC0",
+      "test": "test_prepatch_red_evaluate_form_rejects_inplace_stage_byte_tampering"
+    }
+  ],
+  "git_staged_blobs": {
+    "HANDOFF.md": {
+      "bytes": 136299,
+      "sha256": "aa9e3d7e6ec13abcfd4dded8c84830c5b720d0a041f407aa553afbbd00268844",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_INDEX.json": {
+      "bytes": 631075,
+      "sha256": "7605978fa00c7947382e2200cc6f61e9aec9ebad1e48b1103e1ac3c2bc326def",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_MAP.md": {
+      "bytes": 4280,
+      "sha256": "845a3f15ab8f4ed502a5e08b49b983bcfdd40f2ae736156328f6f076cdeac5d4",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 113085,
+      "sha256": "3f85d26aeeddb8439cd53f065b38cc156dae74b53e13956f3aae7a8039ceab35",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 23436,
+      "sha256": "4ca6fdcbd131e2806445b34c29ee95682b5ad6758a3bff8c2974d1b74af410bc",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 41495,
+      "sha256": "e00f4e2628a11baaed0f036191bc59b8bd30bc814eca3374f6f568a5e186df4f",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7952,
+      "sha256": "76c8efea6b2f6e6a6a8fd0366efbce724382c9a260b8a48bdf3359d3b1c5947a",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 80430,
+      "sha256": "7bc50fb786393721574a3324529e7ef61753cff37a1cada00c3434e0ae6ce089",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_destination_alias_race.py": {
+      "bytes": 8372,
+      "sha256": "9c03653f11c0a83d9925a800bb53d310cf1dcb1cd83b83f1fd4575474cbbbd83",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_stage_inode_integrity.py": {
+      "bytes": 5737,
+      "sha256": "32f0216606e98731b395b18f3c203f66c04ba4f3d22d6b8758e78dad717d6f43",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "docx_s9_modified": false,
+    "human_participants_observed": 0,
+    "memory_v09_integrated_without_authorized_bytes": false,
+    "new_empirical_spanish_sources": 0,
+    "new_external_endpoints": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "originals_or_pii_in_git": false,
+    "posix_acl_mac_or_linux_runtime_certified": false,
+    "proof_of_document_authenticity_or_signer": false,
+    "public_deployment_authorized": false,
+    "release_gates_passed": 0,
+    "release_gates_total": 6,
+    "renamed_private_parent_stranded_private_stage_possible": true,
+    "s8_s9_sqlite_abh_semantics_modified": false,
+    "same_token_postverification_mutations_excluded": false,
+    "transient_exposure_under_privileged_acl_mutation_excluded": false,
+    "two_independent_windows_os_tokens_tested": false
+  },
+  "negative_controls": {
+    "junction_negative_is_not_a_demonstrated_new_exploit": true,
+    "junction_private_parent_at_os_link_to_disposable_git": "REJECTED_NO_GIT_OUTPUT",
+    "junction_private_parent_at_os_link_to_public": "REJECTED_NO_PUBLIC_OUTPUT",
+    "junction_private_parent_to_disposable_git_before_stage_open": "REJECTED_NO_GIT_OUTPUT",
+    "junction_private_parent_to_public_before_stage_open": "REJECTED_NO_PUBLIC_OUTPUT",
+    "no_swap_control": "PASS"
+  },
+  "postpatch_contract": {
+    "all_v2_version_binding_and_crypto_predecessor_sha_preserved": true,
+    "name_stability_checked_at_verification_instant": true,
+    "participant_handout_stays_public": true,
+    "postlink_failure_unlinks_only_current_matching_link_inode": true,
+    "private_output_handle_dacl_controls_preserved": true,
+    "published_bytes_compared_exactly_to_fsynced_utf8": true,
+    "published_file_open_handle_inode_checked": true,
+    "stage_link_count_two_before_unlink": true,
+    "stage_open_inode_and_published_inode_match": true,
+    "write_once_no_overwrite_preserved": true
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_execution": "2_FAILED_1_DESELECTED_BEFORE_PRODUCTION_CHANGE",
+  "schema": "pfl.beta_operator_stage_integrity_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_V2_STAGE_INODE_AND_PUBLISHED_BYTES_VERIFICATION_NONCYCLE"
+}

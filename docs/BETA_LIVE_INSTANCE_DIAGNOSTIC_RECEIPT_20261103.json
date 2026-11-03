@@ -1,0 +1,110 @@
+{
+  "baseline_published_head": "8bd8dfbe17e830f102aa44240f7f5a5bf39ecd42",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "epistemic_limits": {
+    "R5": "STOP_R5",
+    "academic_v09_integrated": false,
+    "authentic_vintages_accredited": false,
+    "causal_political_change_measured": false,
+    "existing_S9_DOCX_rebuilt": false,
+    "external_denominator_accredited": false,
+    "human_product_acceptance_completed": false,
+    "new_empirical_spanish_sources_admitted": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "public_beta_authorized": false,
+    "publisher_identity_verified": false,
+    "real_historical_FIRST_PUBLIC_verified": false,
+    "release_gates_passed": 0,
+    "source_distribution_rights_admitted": false
+  },
+  "features": {
+    "browser_guest_query_parser_reused": true,
+    "distinguishes_stopped_server_from_HTTP_400_or_503": true,
+    "entrypoint": "python -B scripts/diagnose_live_science_beta.py --origin http://127.0.0.1:PORT [--guest-query FILTER_RECIPE]",
+    "existing_offline_S9_verifier_reused_for_each_cut": true,
+    "existing_offline_comparator_reused": true,
+    "external_signatures_authenticity_or_rights_certified": false,
+    "http_response_sha_receipt_canonical_rebuilt": true,
+    "max_response_bytes": 1048576,
+    "no_DB_read_or_accounts_written_by_tool": true,
+    "only_GET_numeric_loopback_explicit_port": true,
+    "only_running_server_checked": true,
+    "original_S9_registry_or_browser_contract_changed": false,
+    "per_connection_timeout_seconds": 1.5,
+    "public_descriptor_count_only_no_public_ids_in_output": true,
+    "raw_source_or_account_payload_printed": false,
+    "science_only_mode_and_R5_gates_checked": true,
+    "server_started_by_tool": false,
+    "strict_JSON_no_duplicates_or_nonfinite": true
+  },
+  "files_sha256": {
+    "HANDOFF.md": {
+      "bytes": 102345,
+      "sha256": "18c5dfc6e5bc65072ff98597d48fc2126595d63a5b833609a8db2f7412a3d3ef"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 82703,
+      "sha256": "cdea1fe75104e6c1c559a6d2499e14c3034813768164e41c036fc1b2b29c6688"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 14792,
+      "sha256": "771721059f13c6a182229c7de1e713f8a7fddc47e0ea44752cc3601223414622"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 6677,
+      "sha256": "bb7bebc1ddcf7106bbbafd4bd9edabc7994c2d4457e7698155cf3c813181ac65"
+    },
+    "scripts/diagnose_live_science_beta.py": {
+      "bytes": 21099,
+      "sha256": "b9db4319060f7d3446a040af8c296ca4617789fdda0c8c4a35315a703e9b9881"
+    },
+    "tests/test_beta_live_science_doctor.py": {
+      "bytes": 17775,
+      "sha256": "c9bea6f25451a2fc69648b8940d63cf9f8025088e5d029379d7e2bc4e4145dab"
+    },
+    "tests/test_beta_live_science_doctor_runtime.py": {
+      "bytes": 15780,
+      "sha256": "d46ff373b6bb1753ee143a7eeeb50eae07ff060fba0397578abd9d39fbb9e8d2"
+    }
+  },
+  "manifest_hash_basis": "EXACT_STAGED_GIT_BLOBS",
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "schema": "pfl.beta_live_instance_diagnostic_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_NONCYCLE_LIVE_LOOPBACK_DIAGNOSIS",
+  "source_kind_at_creation": "UNCOMMITTED_WORKTREE",
+  "tests": {
+    "doctor_unit_and_real_process_new": {
+      "command": "python -B -m pytest -q tests/test_beta_live_science_doctor.py tests/test_beta_live_science_doctor_runtime.py",
+      "runtime": 14,
+      "status": "PASS",
+      "tests_passed": 60,
+      "unit": 46
+    },
+    "first_joint_test_writes_concurrent_failures": {
+      "fixed_in": "tests/test_beta_live_science_doctor.py; tests/test_beta_live_science_doctor_runtime.py",
+      "production_backend_modified": false,
+      "root_cause": "TEST_FIXTURE_SIDE_EFFECTS_AND_INVALID_TEST_ASSUMPTIONS"
+    },
+    "historical_full_suite_rerun": false,
+    "independent_two_process_OS_case": {
+      "S9_early_late_shas_stable": true,
+      "copy_tampered_registry_error": "HTTP_503_REGISTRY_UNAVAILABLE",
+      "new_port_with_old_bookmark": "PASS",
+      "no_account_or_game_db": true,
+      "old_port_closed_error": "SERVER_UNAVAILABLE",
+      "same_disposable_scientific_SQLite": true,
+      "status": "PASS"
+    },
+    "postcommit_beta_acceptance": "REQUIRED_AFTER_PUBLICATION",
+    "worktree_beta_acceptance": {
+      "chrome_accessibility": 1,
+      "chrome_scientific": 1,
+      "node": 83,
+      "python": 230,
+      "source_kind": "UNCOMMITTED_WORKTREE",
+      "status": "PASS",
+      "tests_passed": 315
+    }
+  }
+}

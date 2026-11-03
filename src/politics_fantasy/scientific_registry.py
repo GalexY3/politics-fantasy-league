@@ -1,0 +1,1408 @@
+"""S9 durable registry of *closed, authored synthetic fixtures* only.
+
+This deliberately does not accept user bytes, original documents, arbitrary
+publishers, real entitlements, HTTP writes, or an independent denominator.
+Stored source bytes are audited on EVERY read; only redacted descriptors and
+synthetic typed, knowledge/valid-time bounded snapshots cross the HTTP layer.
+"""
+from __future__ import annotations
+
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from functools import lru_cache
+import hashlib
+import json
+from pathlib import Path
+import sqlite3
+from threading import RLock
+
+from . import scientific_integration_lab as lab
+
+SCHEMA_VERSION = 4
+FAMILY_FILTERS = frozenset(("all", "PP04", "CHAIN", "CHRONICLE"))
+VALID_DAYS = frozenset(("2026-09-11", "2026-09-15", "2026-10-10"))
+PUBLICATION_FILTERS = frozenset(("as_of", "2026-09-19T12:00:00Z",
+                                "2026-10-30T12:00:00Z"))
+PURPOSE = "PUBLIC_AGGREGATE_DISPLAY"
+FIXTURE_ID = "PFL_S9_CLOSED_AUTHOR_SYNTHETIC_V1"
+SYNTHETIC_ONLY = "SYNTHETIC_LAB_ONLY"
+_INITIALIZATION_LOCK = RLock()
+_ASSESSMENT_VARIANTS = (
+    "baseline", "sha_spoof", "issuer_spoof", "rights_missing",
+    "first_public_missing", "crosswalk_missing", "denominator_missing",
+    "coverage_missing",
+)
+_ASSESSMENT_CAPTURED = "2026-10-31T12:00:00Z"
+_ASSESSMENT_REGISTERED = "2026-10-31T12:15:00Z"
+_ASSESSMENT_ASSESSED = "2026-10-31T13:00:00Z"
+_ASSESSMENT_PUBLIC = _ASSESSMENT_ASSESSED
+_INTAKE_FIXTURE_KEYS = (
+    "sandbox_alpha_v1", "sandbox_beta_v1",
+    "sandbox_alpha_v2", "sandbox_bad_issuer",
+)
+
+
+def _authored_intake_fixture(fixture_id: str) -> dict:
+    """Only explicitly authored synthetic options; not a user-data parser.
+
+    `recorded_at_fixture` and similar values are invented scenario clocks,
+    NEVER the wall-clock enrollment time or real publication of a source.
+    """
+    if type(fixture_id) is not str or fixture_id not in _INTAKE_FIXTURE_KEYS:
+        raise ValueError("UNSUPPORTED_AUTHOR_CLOSED_SYNTHETIC_FIXTURE")
+    cases={
+        "sandbox_alpha_v1":dict(public_id="S9:INTAKE_01",group="A",revision=1,
+            issuer="SYN:S9_AUTHOR_ALPHA",expected_issuer="SYN:S9_AUTHOR_ALPHA",
+            source_local_id="AUTHOR_ALPHA:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T12:00:00Z",registered_at="2026-10-31T12:10:00Z",
+            assessed_at="2026-10-31T12:20:00Z",valid_from="2026-09-11",
+            label="Documento ficticio A · versión 1"),
+        "sandbox_beta_v1":dict(public_id="S9:INTAKE_02",group="B",revision=1,
+            issuer="SYN:S9_AUTHOR_BETA",expected_issuer="SYN:S9_AUTHOR_BETA",
+            source_local_id="AUTHOR_BETA:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T12:30:00Z",registered_at="2026-10-31T12:40:00Z",
+            assessed_at="2026-10-31T12:50:00Z",valid_from="2026-10-10",
+            label="Documento ficticio B · versión 1"),
+        "sandbox_alpha_v2":dict(public_id="S9:INTAKE_03",group="A",revision=2,
+            issuer="SYN:S9_AUTHOR_ALPHA",expected_issuer="SYN:S9_AUTHOR_ALPHA",
+            source_local_id="AUTHOR_ALPHA:FILE_1",amendment_of="sandbox_alpha_v1",
+            captured_at="2026-10-31T13:00:00Z",registered_at="2026-10-31T13:10:00Z",
+            assessed_at="2026-10-31T13:20:00Z",valid_from="2026-09-15",
+            label="Documento ficticio A · versión 2"),
+        "sandbox_bad_issuer":dict(public_id="S9:INTAKE_04",group="X",revision=1,
+            issuer="REAL:UNVERIFIED_FIXTURE",expected_issuer="SYN:S9_AUTHOR_SANDBOX_X",
+            source_local_id="AUTHOR_REJECTED:FILE_1",amendment_of=None,
+            captured_at="2026-10-31T13:30:00Z",registered_at="2026-10-31T13:40:00Z",
+            assessed_at="2026-10-31T13:50:00Z",valid_from="2026-09-15",
+            label="Documento ficticio con emisor inválido"),
+    }
+    item={**cases[fixture_id],"fixture_id":fixture_id,
+          "source_first_public_at_fixture":"2026-10-30T12:00:00Z",
+          "receipt_first_public_at_fixture":cases[fixture_id]["assessed_at"],
+          "provenance":"AUTHOR_CLOSED_SANDBOX_FICTION_NOT_AN_ORIGINAL",
+          "quality_gate":"AUTHOR_CLOSED_SANDBOX_ONLY"}
+    # Each revision has distinct BYTES; v2 keeps the SAME typed source-local
+    # identity, and does not add a second actor, institution or decision.
+    item["source_bytes"]=("SYNTHETIC S9 AUTHOR-CLOSED INTAKE\n"
+        f"FICTION:{item['group']}\nEDITION:V{item['revision']}\n"
+        "ACTOR:LOCAL_ACTOR\nORGANIZATION:LOCAL_ORG\nPROCESS:LOCAL_PROCESS\n"
+        ).encode("utf-8")
+    item["typed_manifest"]={
+        "schema":"pfl.synthetic_intake_typed_local_manifest.v1",
+        "issuer":item["issuer"],"source_local_id":item["source_local_id"],
+        "revision":item["revision"],"amendment_of":item["amendment_of"],
+        "valid_from":item["valid_from"],
+        "nodes":[{"kind":k,"local_id":f"{item['group']}:LOCAL_{k}"}
+                 for k in ("ACTOR","ORGANIZATION","PROCESS")],
+        "edges":[
+            {"from_kind":"ACTOR","from_local":f"{item['group']}:LOCAL_ACTOR",
+             "to_kind":"ORGANIZATION","to_local":f"{item['group']}:LOCAL_ORGANIZATION",
+             "kind":"AUTHOR_CLOSED_DOCUMENTARY_ASSOCIATION"},
+            {"from_kind":"ORGANIZATION","from_local":f"{item['group']}:LOCAL_ORGANIZATION",
+             "to_kind":"PROCESS","to_local":f"{item['group']}:LOCAL_PROCESS",
+             "kind":"AUTHOR_CLOSED_DOCUMENTARY_PROCESS_LINK"},
+        ],
+    }
+    return item
+
+
+def _intake_authored_events(fixture_id: str) -> list[dict]:
+    """Two SHA-bound events for ONE fixture; malformed examples end REJECTED."""
+    fixture=_authored_intake_fixture(fixture_id)
+    is_valid=fixture["issuer"]==fixture["expected_issuer"]
+    terminal="SANDBOX_VALIDATED" if is_valid else "SANDBOX_REJECTED"
+    reason="NONE" if is_valid else "ISSUER_NOT_ALLOWLISTED"
+    typed_bytes=_json(fixture["typed_manifest"]).encode("utf-8")
+    source=fixture["source_bytes"]
+    events=[]
+    for sequence,status,recorded_at in (
+            (1,"SANDBOX_REGISTERED",fixture["registered_at"]),
+            (2,terminal,fixture["assessed_at"])):
+        body={
+            "schema":"pfl.synthetic_intake_private_event.v1",
+            "fixture_id":fixture_id,"intake_id":fixture["public_id"],
+            "sequence":sequence,"status":status,"reason_code":reason if sequence==2 else "NONE",
+            "recorded_at_fixture":recorded_at,
+            "captured_at_fixture":fixture["captured_at"],
+            "source_first_public_at_fixture":fixture["source_first_public_at_fixture"],
+            "receipt_first_public_at_fixture":fixture["receipt_first_public_at_fixture"],
+            "issuer_claim":fixture["issuer"],
+            "source_local_id":fixture["source_local_id"],
+            "revision":fixture["revision"],"amendment_of":fixture["amendment_of"],
+            "source_sha256":_sha(source),"typed_manifest_sha256":_sha(typed_bytes),
+            "rights_for_public_display":False,"real_first_public_at":None,
+            "source_rows_inserted_in_canonical":0,
+        }
+        receipt_bytes=_json(body).encode("utf-8")
+        events.append({
+            "event_id":f"{fixture['public_id']}:EVENT_{sequence}",
+            "intake_id":fixture["public_id"],"fixture_id":fixture_id,
+            "event_sequence":sequence,"status":status,
+            "reason_code":reason if sequence==2 else "NONE",
+            "issuer_claim":fixture["issuer"],
+            "source_local_id":fixture["source_local_id"],
+            "revision":fixture["revision"],"amendment_of":fixture["amendment_of"],
+            "captured_at":fixture["captured_at"],
+            "recorded_at":recorded_at,
+            "first_public_known_at":fixture["receipt_first_public_at_fixture"],
+            "source_first_public_at":fixture["source_first_public_at_fixture"],
+            "valid_from":fixture["valid_from"],
+            "source_bytes":source,"source_sha256":_sha(source),
+            "typed_manifest_bytes":typed_bytes,"typed_manifest_sha256":_sha(typed_bytes),
+            "receipt_bytes":receipt_bytes,"receipt_sha256":_sha(receipt_bytes),
+            "rights_for_public_display":0,"issuer_authenticated_real":0,
+            "first_public_at_real":None,"independent_denominator":None,
+            "canonical_rows_imported":0,
+        })
+    return events
+
+
+class RegistryIntegrityError(RuntimeError):
+    """A persisted fixture is incomplete, altered or scientifically conflicted."""
+
+
+def _json(obj: object) -> str:
+    return json.dumps(obj,ensure_ascii=False,sort_keys=True,
+                      separators=(",",":"),allow_nan=False)
+
+
+def _sha(body: bytes) -> str:
+    return hashlib.sha256(body).hexdigest()
+
+
+def _timestamp(value: str) -> datetime:
+    if type(value) is not str or not value.endswith("Z"):
+        raise RegistryIntegrityError("REGISTRY_TIMESTAMP_NOT_CANONICAL_UTC")
+    try:
+        parsed=datetime.fromisoformat(value[:-1]+"+00:00")
+    except ValueError as exc:
+        raise RegistryIntegrityError("REGISTRY_TIMESTAMP_INVALID") from exc
+    if parsed.utcoffset().total_seconds()!=0 or parsed.isoformat(
+            timespec="seconds").replace("+00:00","Z")!=value:
+        raise RegistryIntegrityError("REGISTRY_TIMESTAMP_NOT_SECOND_PRECISION")
+    return parsed
+
+
+def _day(value: str) -> str:
+    if type(value) is not str or len(value)!=10:
+        raise RegistryIntegrityError("REGISTRY_DAY_INVALID")
+    try:
+        datetime.strptime(value,"%Y-%m-%d")
+    except ValueError as exc:
+        raise RegistryIntegrityError("REGISTRY_DAY_INVALID") from exc
+    return value
+
+
+def registry_path(game_db: Path) -> Path:
+    """Dedicated database beside the local demo DB, never the account DB."""
+    if not isinstance(game_db,Path):
+        raise ValueError("S9_GAME_DB_PATH_REQUIRED")
+    return game_db.parent/"scientific_registry_synthetic.sqlite3"
+
+
+def _source(*, id: str, public: str | None, family: str, issuer: str,
+            revision: int, prior: str | None, body: str,
+            captured: str, published: str, quality: str,
+            stage: str = "UNATTESTED") -> dict:
+    data=body.encode("utf-8")
+    if not data.startswith(b"SYNTHETIC"):
+        raise RegistryIntegrityError("REGISTRY_FIXTURE_UNSAFE_PREFIX")
+    descriptor=(f"S9 PUBLIC SYNTHETIC DESCRIPTOR\nID:{public}\n"
+                f"FAMILY:{family}\nREVISION:{revision}\n"
+                f"CAPTURE:{captured}\nPUBLICATION:{published}\n").encode("utf-8") if public else b""
+    return dict(source_id=id,public_id=public,family=family,issuer=issuer,
+                revision=revision,amendment_of=prior,source_bytes=data,
+                source_sha256=_sha(data),captured_at=captured,
+                first_public_known_at=published,first_public_at_real=None,
+                purpose=PURPOSE,rights_for_purpose_admitted=0,
+                issuer_authenticated_real=0,independent_denominator=None,
+                quality_gate=quality,coverage_state="DISTRIBUTION_COVERAGE_UNATTESTED",
+                provenance="AUTHORED_SYNTHETIC_FIXTURE_NOT_OFFICIAL",
+                descriptor_bytes=descriptor,descriptor_sha256=_sha(descriptor) if public else None,
+                stage_hint=stage)
+
+
+def _closed_sources() -> list[dict]:
+    chronology=lab._bitemporal_fixture()
+    chain=lab._typed_institutional_chain_fixture()
+    assets=lab._assets()
+    early="2026-09-19T12:00:00Z"
+    late=lab.LATE_PUBLIC
+    rows=[
+        _source(id=chronology["sources"][0]["source_id"],public="S9:PUBLIC_01",
+                family="CHRONICLE",issuer=chronology["issuer"],revision=1,prior=None,
+                body=chronology["sources"][0]["text"],
+                captured=chronology["sources"][0]["captured_at"],published=early,
+                quality="INTERNAL_CHRONICLE_SHA_AND_REVISION_CHECK_ONLY"),
+        _source(id=chain["sources"][0]["source_id"],public="S9:PUBLIC_02",
+                family="CHAIN",issuer=chain["issuer"],revision=1,prior=None,
+                body=chain["sources"][0]["text"],
+                captured=chain["sources"][0]["captured_at"],published=early,
+                quality="INTERNAL_CHAIN_SHA_AND_TYPED_KEY_CHECK_ONLY"),
+        _source(id=chronology["sources"][1]["source_id"],public="S9:PUBLIC_03",
+                family="CHRONICLE",issuer=chronology["issuer"],revision=2,
+                prior=chronology["sources"][0]["source_id"],
+                body=chronology["sources"][1]["text"],
+                captured=chronology["sources"][1]["captured_at"],published=late,
+                quality="INTERNAL_CHRONICLE_SHA_AND_REVISION_CHECK_ONLY"),
+        _source(id=chain["sources"][1]["source_id"],public="S9:PUBLIC_04",
+                family="CHAIN",issuer=chain["issuer"],revision=2,
+                prior=chain["sources"][0]["source_id"],
+                body=chain["sources"][1]["text"],
+                captured=chain["sources"][1]["captured_at"],published=late,
+                quality="INTERNAL_CHAIN_SHA_AND_TYPED_KEY_CHECK_ONLY"),
+        _source(id=assets[0]["id"],public="S9:PUBLIC_05",
+                family="PP04",issuer="SYN:PP04_PARSER",revision=1,prior=None,
+                body=assets[0]["text"],captured=lab.LATE_CAPTURE,published=late,
+                quality="SOURCE_LOCAL_PAN_PARSER_FIXTURE_NOT_OUTCOME"),
+        _source(id=assets[1]["id"],public="S9:PUBLIC_06",
+                family="PP04",issuer="SYN:PP04_PARSER",revision=1,prior=None,
+                body=assets[1]["text"],captured=lab.LATE_CAPTURE,published=late,
+                quality="SOURCE_LOCAL_IAEN_PARSER_FIXTURE_NOT_OUTCOME"),
+        # A documented stage belongs to the existing synthetic procedural
+        # test universe. It is NEVER a new public distribution or true N.
+        _source(id="SYN:S9_INTERNAL_STAGE",public=None,
+                family="STAGE",issuer="SYN:S9_LOCAL_STAGE",revision=1,prior=None,
+                body="SYNTHETIC_STAGE_DOCUMENT\n",captured=lab.LATE_CAPTURE,
+                published=late,quality="INTERNAL_STAGED_PROCEDURE_FIXTURE_ONLY",
+                stage="NON_PUBLIC_EXPLICIT_SYNTHETIC_NEGATIVE_WITNESS"),
+    ]
+    if (rows[4]["source_sha256"]!=assets[0]["sha256"]
+            or rows[5]["source_sha256"]!=assets[1]["sha256"]
+            or rows[-1]["source_sha256"]!=lab._sha(b"SYNTHETIC_STAGE_DOCUMENT\n")):
+        raise RegistryIntegrityError("REGISTRY_SEED_SOURCE_PARITY_FAILED")
+    return rows
+
+
+def _fact(fact_id: str, source_id: str, issuer: str, kind: str, local_key: str,
+          revision: int, amendment_of: str | None, valid_from: str,
+          observed_at: str, *, valid_to: str | None = None,
+          state: str = "DOCUMENTED_SYNTHETIC", target: str | None = None) -> dict:
+    return dict(fact_id=fact_id,source_id=source_id,issuer=issuer,kind=kind,
+                source_local_key=local_key,revision=revision,amendment_of=amendment_of,
+                valid_from=valid_from,valid_to=valid_to,observed_at=observed_at,
+                evidentiary_state=state,target_local_key=target,
+                official_crosswalk_verified=0)
+
+
+def _closed_facts() -> list[dict]:
+    c1,c2="SYN:CHAIN_V1","SYN:CHAIN_V2"
+    h1,h2="SYN:CHRONICLE_V1","SYN:CHRONICLE_V2"
+    early,late=lab.EARLY_CAPTURE,lab.LATE_CAPTURE
+    return [
+        _fact("S9:C:ACTOR",c1,"SYN:CHAIN","ACTOR","A",1,None,"2026-09-05",early),
+        _fact("S9:C:ORG",c1,"SYN:CHAIN","ORGANIZATION","O",1,None,"2026-09-05",early),
+        _fact("S9:C:PROCESS",c1,"SYN:CHAIN","PROCESS","P1",1,None,"2026-09-05",early,state="ENTRY_DOCUMENTED"),
+        _fact("S9:C:COMM_V1",c1,"SYN:CHAIN","COMMUNICATION","C1",1,None,"2026-09-10",early,
+              state="COMMUNICATION_DOCUMENTED",target="PROCESS:P1"),
+        _fact("S9:C:COMM_V2",c2,"SYN:CHAIN","COMMUNICATION","C1",2,"S9:C:COMM_V1","2026-09-10",late,
+              state="COMMUNICATION_AMENDED",target="PROCESS:P1"),
+        _fact("S9:C:DECISION",c2,"SYN:CHAIN","DECISION","D1",1,None,"2026-09-14",late,
+              state="EXPLICIT_APPROVAL_DOCUMENTED_SYNTHETIC",target="PROCESS:P1"),
+        _fact("S9:C:PENDING",c1,"SYN:CHAIN","EPISODE_STAGE","P1:PENDING",1,None,"2026-09-12",early,
+              state="PENDING_NOT_NEGATIVE",target="PROCESS:P1"),
+        _fact("S9:C:APPROVED",c2,"SYN:CHAIN","EPISODE_STAGE","P1:APPROVED",1,None,"2026-09-14",late,
+              state="EXPLICIT_APPROVAL",target="PROCESS:P1"),
+        _fact("S9:H:ACTOR",h1,"SYN:CHRONICLE","ACTOR","A",1,None,"2026-09-01",early),
+        _fact("S9:H:ORG",h1,"SYN:CHRONICLE","ORGANIZATION","O",1,None,"2026-09-01",early),
+        _fact("S9:H:ROLE_V1",h1,"SYN:CHRONICLE","ROLE","OFFICE_ROLE",1,None,"2026-09-01",early,
+              valid_to="2026-10-01",state="ROLE_DOCUMENTED",target="ORGANIZATION:O"),
+        _fact("S9:H:ROLE_V2",h2,"SYN:CHRONICLE","ROLE","OFFICE_ROLE",2,"S9:H:ROLE_V1","2026-10-01",late,
+              state="ROLE_REVISED",target="ORGANIZATION:O"),
+        _fact("S9:H:EVENT_V1",h1,"SYN:CHRONICLE","EVENT","INITIATIVE:FILE_1",1,None,"2026-09-10",early,
+              state="EVENT_DOCUMENTED_NOT_TERMINAL"),
+        _fact("S9:H:EVENT_V2",h2,"SYN:CHRONICLE","EVENT","INITIATIVE:FILE_1",2,"S9:H:EVENT_V1","2026-09-10",late,
+              state="EVENT_REVISED_NOT_SECOND_EVENT"),
+        _fact("S9:P:APPROVED", "SYNTHETIC:IAEN24","SYN:PP04_PARSER","PP04_STATEMENT","INCLUIDAS:APPROVED",1,None,"2026-09-10",late,
+              state="INCLUIDAS_PLANNED_APPROVED_SOURCE_LOCAL_ONLY"),
+        _fact("S9:P:PENDING", "SYNTHETIC:IAEN24","SYN:PP04_PARSER","PP04_STATEMENT","INCLUIDAS:PENDING",1,None,"2026-09-10",late,
+              state="INCLUIDAS_PENDING_NOT_NEGATIVE"),
+        _fact("S9:P:UNPLANNED_1", "SYNTHETIC:IAEN24","SYN:PP04_PARSER","PP04_STATEMENT","NO_INCLUIDAS:1",1,None,"2026-09-10",late,
+              state="NO_INCLUIDAS_NOT_NEGATIVE_NOT_IN_COHORT"),
+        _fact("S9:P:UNPLANNED_2", "SYNTHETIC:IAEN24","SYN:PP04_PARSER","PP04_STATEMENT","NO_INCLUIDAS:2",1,None,"2026-09-10",late,
+              state="NO_INCLUIDAS_NOT_NEGATIVE_NOT_IN_COHORT"),
+        _fact("S9:S:ENTRY", "SYN:S9_INTERNAL_STAGE","SYN:S9_LOCAL_STAGE","EPISODE_STAGE","S9_P2:ENTRY",1,None,"2026-09-02",late,
+              state="ENTRY_DOCUMENTED_SYNTHETIC"),
+        _fact("S9:S:INADMITTED", "SYN:S9_INTERNAL_STAGE","SYN:S9_LOCAL_STAGE","EPISODE_STAGE","S9_P2:INADMITTED",1,None,"2026-09-11",late,
+              state="EXPLICIT_INADMITTED_SYNTHETIC_NOT_CENSOR"),
+    ]
+
+
+def _edge(edge_id: str, source_id: str, issuer: str,
+          from_kind: str, from_local: str, to_kind: str, to_local: str,
+          relation: str, valid_from: str, observed_at: str) -> dict:
+    return dict(edge_id=edge_id,source_id=source_id,issuer=issuer,
+                from_kind=from_kind,from_local=from_local,to_kind=to_kind,
+                to_local=to_local,relation=relation,valid_from=valid_from,
+                observed_at=observed_at,official_crosswalk_verified=0)
+
+
+def _closed_edges() -> list[dict]:
+    early,late=lab.EARLY_CAPTURE,lab.LATE_CAPTURE
+    return [
+        _edge("S9:E:C:ACTOR_ORG","SYN:CHAIN_V1","SYN:CHAIN", "ACTOR","A","ORGANIZATION","O", "ASSOCIATED_WITH_SYNTHETIC", "2026-09-05",early),
+        _edge("S9:E:C:ACTOR_COMM","SYN:CHAIN_V1","SYN:CHAIN", "ACTOR","A","COMMUNICATION","C1", "AUTHORED_SYNTHETIC", "2026-09-10",early),
+        _edge("S9:E:C:COMM_PROCESS","SYN:CHAIN_V1","SYN:CHAIN", "COMMUNICATION","C1","PROCESS","P1", "REFERS_TO_PROCESS_SYNTHETIC", "2026-09-10",early),
+        _edge("S9:E:C:DEC_PROCESS","SYN:CHAIN_V2","SYN:CHAIN", "DECISION","D1","PROCESS","P1", "TERMINAL_STAGE_DOCUMENTED_SYNTHETIC", "2026-09-14",late),
+        _edge("S9:E:H:ACTOR_ORG","SYN:CHRONICLE_V1","SYN:CHRONICLE", "ACTOR","A","ORGANIZATION","O", "FIXTURE_ROLE_RELATION", "2026-09-01",early),
+        _edge("S9:E:H:ROLE_ORG","SYN:CHRONICLE_V1","SYN:CHRONICLE", "ROLE","OFFICE_ROLE","ORGANIZATION","O", "DOCUMENTS_OFFICE_ROLE", "2026-09-01",early),
+    ]
+
+
+def _closed_assessment_events() -> list[dict]:
+    """Exactly eight evaluations, two immutable status transitions each.
+
+    All variants share one *fictional candidate source*. They are NOT eight
+    distributions, eight documentary revisions or eight observed decisions.
+    This is a permanent registry of local assessment *events*, not admission.
+    """
+    if set(_ASSESSMENT_VARIANTS) != lab.S8_CANDIDATES:
+        raise RegistryIntegrityError("REGISTRY_CANDIDATE_ALLOWLIST_DRIFT")
+    events=[]
+    for index,candidate in enumerate(_ASSESSMENT_VARIANTS,start=1):
+        fixture=lab._s8_candidate_fixture(candidate)
+        verdict=lab.synthetic_candidate_admission(candidate=candidate)
+        if (fixture["captured_at"]!=_ASSESSMENT_CAPTURED or
+                verdict["status"]!="REJECTED_R5" or
+                verdict["R5"]!="STOP_R5" or
+                verdict["source_rows_imported"]!=0 or
+                verdict["real_original_admitted"] is not False or
+                verdict["distribution_id"]!=fixture["distribution_id"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_FIXTURE_NOT_CLOSED")
+        public_id=f"S9:ASSESS_{index:02d}"
+        for sequence,status,recorded in (
+                (1,"REGISTERED",_ASSESSMENT_REGISTERED),
+                (2,"ASSESSED_REJECTED_R5",_ASSESSMENT_ASSESSED)):
+            # The raw, SOURCE-LOCAL issuer and source identifier are retained
+            # only in the private SHA-bound SQLite receipt, NEVER in the UI.
+            receipt={
+                "schema":"pfl.synthetic_assessment_event_private.v1",
+                "assessment_id":public_id,
+                "candidate":candidate,
+                "status":status,"sequence":sequence,
+                "recorded_at":recorded,
+                "captured_at_fixture":fixture["captured_at"],
+                "fixture_source_id":fixture["distribution_id"],
+                "fixture_issuer_claim":fixture["issuer"],
+                "fixture_claimed_source_sha256":fixture["source_sha256"],
+                "fixture_actual_source_sha256":_sha(fixture["bytes"].encode("utf-8")),
+                "fixture_first_public_at":fixture["first_public_at_fixture"],
+                "fixture_rights_for_public_display":False,
+                "fixture_real_first_public_at":None,
+                "dry_run_result":verdict if sequence==2 else None,
+            }
+            receipt_bytes=_json(receipt).encode("utf-8")
+            events.append({
+                "event_id":f"S9:AUDIT_{index:02d}_{sequence}",
+                "assessment_id":public_id,
+                "candidate":candidate,
+                "event_sequence":sequence,
+                "status":status,
+                "revision":1,
+                "captured_at":fixture["captured_at"],
+                "recorded_at":recorded,
+                "first_public_known_at":_ASSESSMENT_PUBLIC,
+                "fixture_source_id":fixture["distribution_id"],
+                "fixture_issuer_claim":fixture["issuer"],
+                "receipt_bytes":receipt_bytes,
+                "receipt_sha256":_sha(receipt_bytes),
+                "rights_for_public_display":0,
+                "real_issuer_authenticated":0,
+                "real_first_public_at":None,
+                "independent_denominator":None,
+                "source_rows_imported":0,
+            })
+    return events
+
+
+SOURCES_COLUMNS=("source_id","public_id","family","issuer","revision",
+    "amendment_of","source_bytes","source_sha256","captured_at",
+    "first_public_known_at","first_public_at_real","purpose",
+    "rights_for_purpose_admitted","issuer_authenticated_real",
+    "independent_denominator","quality_gate","coverage_state","provenance",
+    "descriptor_bytes","descriptor_sha256","stage_hint")
+FACT_COLUMNS=("fact_id","source_id","issuer","kind","source_local_key",
+    "revision","amendment_of","valid_from","valid_to","observed_at",
+    "evidentiary_state","target_local_key","official_crosswalk_verified")
+EDGE_COLUMNS=("edge_id","source_id","issuer","from_kind","from_local",
+    "to_kind","to_local","relation","valid_from","observed_at",
+    "official_crosswalk_verified")
+ASSESSMENT_COLUMNS=("event_id","assessment_id","candidate","event_sequence",
+    "status","revision","captured_at","recorded_at",
+    "first_public_known_at","fixture_source_id","fixture_issuer_claim",
+    "receipt_bytes","receipt_sha256","rights_for_public_display",
+    "real_issuer_authenticated","real_first_public_at",
+    "independent_denominator","source_rows_imported")
+INTAKE_COLUMNS=("event_id","intake_id","fixture_id","event_sequence","status",
+    "reason_code","issuer_claim","source_local_id","revision","amendment_of",
+    "captured_at","recorded_at","first_public_known_at",
+    "source_first_public_at","valid_from","source_bytes","source_sha256",
+    "typed_manifest_bytes","typed_manifest_sha256","receipt_bytes",
+    "receipt_sha256","rights_for_public_display","issuer_authenticated_real",
+    "first_public_at_real","independent_denominator","canonical_rows_imported")
+_TRIGGER_DEFINITIONS={
+    "registry_distribution_immutable_update":("UPDATE","distribution","IMMUTABLE_SOURCE_REVISION"),
+    "registry_distribution_immutable_delete":("DELETE","distribution","IMMUTABLE_SOURCE_REVISION"),
+    "registry_fact_immutable_update":("UPDATE","typed_fact","IMMUTABLE_TYPED_RECORD"),
+    "registry_fact_immutable_delete":("DELETE","typed_fact","IMMUTABLE_TYPED_RECORD"),
+    "registry_edge_immutable_update":("UPDATE","typed_edge","IMMUTABLE_TYPED_EDGE"),
+    "registry_edge_immutable_delete":("DELETE","typed_edge","IMMUTABLE_TYPED_EDGE"),
+    "registry_assessment_immutable_update":("UPDATE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
+    "registry_assessment_immutable_delete":("DELETE","assessment_event","IMMUTABLE_ASSESSMENT_EVENT"),
+    "registry_intake_immutable_update":("UPDATE","synthetic_intake_event","IMMUTABLE_SYNTHETIC_INTAKE_EVENT"),
+    "registry_intake_immutable_delete":("DELETE","synthetic_intake_event","IMMUTABLE_SYNTHETIC_INTAKE_EVENT"),
+}
+
+
+@contextmanager
+def _connect(path: Path):
+    db=sqlite3.connect(str(path),timeout=4,isolation_level=None)
+    db.row_factory=sqlite3.Row
+    db.execute("PRAGMA foreign_keys=ON")
+    db.execute("PRAGMA busy_timeout=4000")
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+def _execute_ddl_atomically(db: sqlite3.Connection, statements: str) -> None:
+    """Unlike sqlite3.executescript, do not implicitly COMMIT the caller's TX."""
+    buffer=""
+    for line in statements.splitlines(keepends=True):
+        buffer+=line
+        if sqlite3.complete_statement(buffer):
+            db.execute(buffer.strip())
+            buffer=""
+    if buffer.strip():
+        raise RegistryIntegrityError("REGISTRY_DDL_INCOMPLETE")
+
+
+def _migration_v1(db: sqlite3.Connection) -> None:
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE registry_meta (
+            id INTEGER PRIMARY KEY CHECK(id=1),
+            fixture_id TEXT NOT NULL,
+            manifest_sha256 TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            admission TEXT NOT NULL CHECK(admission='STOP_R5')
+        );
+        CREATE TABLE distribution (
+            source_id TEXT PRIMARY KEY,
+            public_id TEXT UNIQUE,
+            family TEXT NOT NULL CHECK(family IN('PP04','CHAIN','CHRONICLE','STAGE')),
+            issuer TEXT NOT NULL,
+            revision INTEGER NOT NULL CHECK(revision>=1),
+            amendment_of TEXT REFERENCES distribution(source_id),
+            source_bytes BLOB NOT NULL,
+            source_sha256 TEXT NOT NULL,
+            captured_at TEXT NOT NULL,
+            first_public_known_at TEXT NOT NULL,
+            first_public_at_real TEXT CHECK(first_public_at_real IS NULL),
+            purpose TEXT NOT NULL CHECK(purpose='PUBLIC_AGGREGATE_DISPLAY'),
+            rights_for_purpose_admitted INTEGER NOT NULL DEFAULT 0 CHECK(rights_for_purpose_admitted=0),
+            issuer_authenticated_real INTEGER NOT NULL DEFAULT 0 CHECK(issuer_authenticated_real=0),
+            independent_denominator INTEGER CHECK(independent_denominator IS NULL),
+            quality_gate TEXT NOT NULL,
+            coverage_state TEXT NOT NULL CHECK(coverage_state='DISTRIBUTION_COVERAGE_UNATTESTED'),
+            provenance TEXT NOT NULL CHECK(provenance='AUTHORED_SYNTHETIC_FIXTURE_NOT_OFFICIAL'),
+            descriptor_bytes BLOB NOT NULL,
+            descriptor_sha256 TEXT,
+            stage_hint TEXT NOT NULL,
+            CHECK((public_id IS NULL AND descriptor_sha256 IS NULL AND length(descriptor_bytes)=0)
+               OR (public_id IS NOT NULL AND descriptor_sha256 IS NOT NULL AND length(descriptor_bytes)>0))
+        );
+        CREATE INDEX idx_registry_distribution_time
+          ON distribution(captured_at,first_public_known_at,family);
+    """)
+    db.execute("PRAGMA user_version=1")
+
+
+def _migration_v2(db: sqlite3.Connection) -> None:
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE typed_fact (
+            fact_id TEXT PRIMARY KEY,
+            source_id TEXT NOT NULL REFERENCES distribution(source_id),
+            issuer TEXT NOT NULL,
+            kind TEXT NOT NULL CHECK(kind IN('ACTOR','ORGANIZATION','ROLE','EVENT',
+                'COMMUNICATION','DECISION','PROCESS','EPISODE_STAGE','PP04_STATEMENT')),
+            source_local_key TEXT NOT NULL,
+            revision INTEGER NOT NULL CHECK(revision>=1),
+            amendment_of TEXT REFERENCES typed_fact(fact_id),
+            valid_from TEXT NOT NULL,
+            valid_to TEXT,
+            observed_at TEXT NOT NULL,
+            evidentiary_state TEXT NOT NULL,
+            target_local_key TEXT,
+            official_crosswalk_verified INTEGER NOT NULL DEFAULT 0 CHECK(official_crosswalk_verified=0)
+        );
+        CREATE INDEX idx_registry_fact_bitemporal
+          ON typed_fact(issuer,kind,source_local_key,observed_at,valid_from);
+        CREATE TABLE typed_edge (
+            edge_id TEXT PRIMARY KEY,
+            source_id TEXT NOT NULL REFERENCES distribution(source_id),
+            issuer TEXT NOT NULL,
+            from_kind TEXT NOT NULL,
+            from_local TEXT NOT NULL,
+            to_kind TEXT NOT NULL,
+            to_local TEXT NOT NULL,
+            relation TEXT NOT NULL,
+            valid_from TEXT NOT NULL,
+            observed_at TEXT NOT NULL,
+            official_crosswalk_verified INTEGER NOT NULL DEFAULT 0 CHECK(official_crosswalk_verified=0)
+        );
+        CREATE TABLE schema_history (
+            version INTEGER PRIMARY KEY,
+            migration TEXT NOT NULL,
+            applied_at_fixture TEXT NOT NULL
+        );
+        INSERT INTO schema_history VALUES(1,'REGISTRY_SOURCES_BLOB_SHA','2026-11-01T12:00:00Z');
+        INSERT INTO schema_history VALUES(2,'REGISTRY_SOURCE_LOCAL_TYPED_EDGES','2026-11-01T12:00:00Z');
+        CREATE TRIGGER registry_distribution_immutable_update BEFORE UPDATE ON distribution
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SOURCE_REVISION'); END;
+        CREATE TRIGGER registry_distribution_immutable_delete BEFORE DELETE ON distribution
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SOURCE_REVISION'); END;
+        CREATE TRIGGER registry_fact_immutable_update BEFORE UPDATE ON typed_fact
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TYPED_RECORD'); END;
+        CREATE TRIGGER registry_fact_immutable_delete BEFORE DELETE ON typed_fact
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TYPED_RECORD'); END;
+        CREATE TRIGGER registry_edge_immutable_update BEFORE UPDATE ON typed_edge
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TYPED_EDGE'); END;
+        CREATE TRIGGER registry_edge_immutable_delete BEFORE DELETE ON typed_edge
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TYPED_EDGE'); END;
+    """)
+    db.execute("PRAGMA user_version=2")
+
+
+def _migration_v3(db: sqlite3.Connection) -> None:
+    """Append-only candidate *assessments*, with no FK into source tables."""
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE assessment_event (
+            event_id TEXT PRIMARY KEY,
+            assessment_id TEXT NOT NULL,
+            candidate TEXT NOT NULL CHECK(candidate IN (
+                'baseline','sha_spoof','issuer_spoof','rights_missing',
+                'first_public_missing','crosswalk_missing',
+                'denominator_missing','coverage_missing')),
+            event_sequence INTEGER NOT NULL CHECK(event_sequence IN (1,2)),
+            status TEXT NOT NULL CHECK(status IN ('REGISTERED','ASSESSED_REJECTED_R5')),
+            revision INTEGER NOT NULL CHECK(revision=1),
+            captured_at TEXT NOT NULL,
+            recorded_at TEXT NOT NULL,
+            first_public_known_at TEXT NOT NULL,
+            fixture_source_id TEXT NOT NULL,
+            fixture_issuer_claim TEXT NOT NULL,
+            receipt_bytes BLOB NOT NULL,
+            receipt_sha256 TEXT NOT NULL,
+            rights_for_public_display INTEGER NOT NULL DEFAULT 0 CHECK(rights_for_public_display=0),
+            real_issuer_authenticated INTEGER NOT NULL DEFAULT 0 CHECK(real_issuer_authenticated=0),
+            real_first_public_at TEXT CHECK(real_first_public_at IS NULL),
+            independent_denominator INTEGER CHECK(independent_denominator IS NULL),
+            source_rows_imported INTEGER NOT NULL DEFAULT 0 CHECK(source_rows_imported=0),
+            UNIQUE(assessment_id,event_sequence),
+            CHECK((event_sequence=1 AND status='REGISTERED') OR
+                  (event_sequence=2 AND status='ASSESSED_REJECTED_R5'))
+        );
+        CREATE INDEX idx_registry_assessment_time
+          ON assessment_event(recorded_at,first_public_known_at,assessment_id);
+        INSERT INTO schema_history VALUES(3,'ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION',
+          '2026-11-01T12:00:00Z');
+        CREATE TRIGGER registry_assessment_immutable_update BEFORE UPDATE ON assessment_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ASSESSMENT_EVENT'); END;
+        CREATE TRIGGER registry_assessment_immutable_delete BEFORE DELETE ON assessment_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_ASSESSMENT_EVENT'); END;
+    """)
+    db.execute("PRAGMA user_version=3")
+
+
+def _migration_v4(db: sqlite3.Connection) -> None:
+    """Optional explicitly enrolled sandbox overlay, not a canonical corpus."""
+    _execute_ddl_atomically(db,"""
+        CREATE TABLE synthetic_intake_event (
+            event_id TEXT PRIMARY KEY,
+            intake_id TEXT NOT NULL,
+            fixture_id TEXT NOT NULL CHECK(fixture_id IN (
+                'sandbox_alpha_v1','sandbox_beta_v1','sandbox_alpha_v2','sandbox_bad_issuer')),
+            event_sequence INTEGER NOT NULL CHECK(event_sequence IN(1,2)),
+            status TEXT NOT NULL CHECK(status IN(
+                'SANDBOX_REGISTERED','SANDBOX_VALIDATED','SANDBOX_REJECTED')),
+            reason_code TEXT NOT NULL CHECK(reason_code IN('NONE','ISSUER_NOT_ALLOWLISTED')),
+            issuer_claim TEXT NOT NULL,
+            source_local_id TEXT NOT NULL,
+            revision INTEGER NOT NULL CHECK(revision IN(1,2)),
+            amendment_of TEXT,
+            captured_at TEXT NOT NULL,
+            recorded_at TEXT NOT NULL,
+            first_public_known_at TEXT NOT NULL,
+            source_first_public_at TEXT NOT NULL,
+            valid_from TEXT NOT NULL,
+            source_bytes BLOB NOT NULL,
+            source_sha256 TEXT NOT NULL,
+            typed_manifest_bytes BLOB NOT NULL,
+            typed_manifest_sha256 TEXT NOT NULL,
+            receipt_bytes BLOB NOT NULL,
+            receipt_sha256 TEXT NOT NULL,
+            rights_for_public_display INTEGER NOT NULL DEFAULT 0 CHECK(rights_for_public_display=0),
+            issuer_authenticated_real INTEGER NOT NULL DEFAULT 0 CHECK(issuer_authenticated_real=0),
+            first_public_at_real TEXT CHECK(first_public_at_real IS NULL),
+            independent_denominator INTEGER CHECK(independent_denominator IS NULL),
+            canonical_rows_imported INTEGER NOT NULL DEFAULT 0 CHECK(canonical_rows_imported=0),
+            UNIQUE(fixture_id,event_sequence),
+            UNIQUE(intake_id,event_sequence),
+            CHECK((event_sequence=1 AND status='SANDBOX_REGISTERED' AND reason_code='NONE')
+               OR (event_sequence=2 AND status='SANDBOX_VALIDATED' AND reason_code='NONE')
+               OR (event_sequence=2 AND status='SANDBOX_REJECTED' AND reason_code='ISSUER_NOT_ALLOWLISTED'))
+        );
+        CREATE INDEX idx_registry_intake_time
+          ON synthetic_intake_event(first_public_known_at,recorded_at,valid_from,fixture_id);
+        INSERT INTO schema_history VALUES(4,'AUTHOR_CLOSED_OPTIONAL_INTAKE_OVERLAY',
+          '2026-11-02T00:00:00Z');
+        CREATE TRIGGER registry_intake_immutable_update BEFORE UPDATE ON synthetic_intake_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SYNTHETIC_INTAKE_EVENT'); END;
+        CREATE TRIGGER registry_intake_immutable_delete BEFORE DELETE ON synthetic_intake_event
+          BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SYNTHETIC_INTAKE_EVENT'); END;
+    """)
+    db.execute("PRAGMA user_version=4")
+
+
+def _manifest_hash() -> str:
+    def public_source(s:dict) -> dict:
+        return {k:(s[k].hex() if isinstance(s[k],bytes) else s[k])
+                for k in SOURCES_COLUMNS}
+    return _sha(_json({"sources":[public_source(s) for s in _closed_sources()],
+                       "facts":_closed_facts(),"edges":_closed_edges()}).encode("utf-8"))
+
+
+def _schema_sha256(db: sqlite3.Connection) -> str:
+    """Check constraints, columns, indexes AND trigger SQL, not user_version alone."""
+    objects=[tuple(row) for row in db.execute(
+        "SELECT type,name,tbl_name,sql FROM sqlite_master "
+        "WHERE name NOT LIKE 'sqlite_%' ORDER BY type,name")]
+    return _sha(_json(objects).encode("utf-8"))
+
+
+@lru_cache(maxsize=1)
+def _expected_schema_sha256() -> str:
+    with sqlite3.connect(":memory:",isolation_level=None) as db:
+        db.execute("BEGIN IMMEDIATE")
+        _migration_v1(db)
+        _migration_v2(db)
+        _migration_v3(db)
+        _migration_v4(db)
+        result=_schema_sha256(db)
+        db.rollback()
+        return result
+
+
+def _migrate(db: sqlite3.Connection) -> None:
+    version=db.execute("PRAGMA user_version").fetchone()[0]
+    if version not in (0,1,2,3,4):
+        raise RegistryIntegrityError("REGISTRY_UNKNOWN_SCHEMA_VERSION")
+    if version==0:
+        if db.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").fetchone()[0]:
+            raise RegistryIntegrityError("REGISTRY_UNVERSIONED_SCHEMA_NOT_TRUSTED")
+        _migration_v1(db)
+        version=1
+    if version==1:
+        _migration_v2(db)
+        version=2
+    if version==2:
+        _migration_v3(db)
+        version=3
+    if version==3:
+        _migration_v4(db)
+    if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
+        raise RegistryIntegrityError("REGISTRY_MIGRATION_DIVERGENCE")
+
+
+def _insert_rows(db:sqlite3.Connection,table:str,columns:tuple,rows:list[dict]) -> None:
+    fields=",".join(columns)
+    placeholders=",".join("?" for _ in columns)
+    db.executemany(f"INSERT INTO {table}({fields}) VALUES({placeholders})",
+                   [[r[column] for column in columns] for r in rows])
+
+
+def _seed(db:sqlite3.Connection) -> None:
+    sources=_closed_sources()
+    facts=_closed_facts()
+    edges=_closed_edges()
+    digest=_manifest_hash()
+    db.execute("INSERT INTO registry_meta VALUES(1,?,?,?,?)",
+               (FIXTURE_ID,digest,"2026-11-01T12:00:00Z","STOP_R5"))
+    _insert_rows(db,"distribution",SOURCES_COLUMNS,sources)
+    _insert_rows(db,"typed_fact",FACT_COLUMNS,facts)
+    _insert_rows(db,"typed_edge",EDGE_COLUMNS,edges)
+    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                 _closed_assessment_events())
+
+
+def _actual_rows(db:sqlite3.Connection,table:str,columns:tuple) -> list[dict]:
+    selected=",".join(columns)
+    rows=db.execute(f"SELECT {selected} FROM {table} ORDER BY 1").fetchall()
+    return [dict(row) for row in rows]
+
+
+def _audit(db:sqlite3.Connection) -> tuple[list[dict],list[dict],list[dict],list[dict],list[dict]]:
+    if db.execute("PRAGMA user_version").fetchone()[0]!=SCHEMA_VERSION:
+        raise RegistryIntegrityError("REGISTRY_SCHEMA_VERSION_MISMATCH")
+    if _schema_sha256(db)!=_expected_schema_sha256():
+        raise RegistryIntegrityError("REGISTRY_SCHEMA_DDL_HASH_DIVERGENCE")
+    meta=db.execute("SELECT * FROM registry_meta WHERE id=1").fetchone()
+    if (meta is None or meta["fixture_id"]!=FIXTURE_ID or
+            meta["manifest_sha256"]!=_manifest_hash() or
+            meta["admission"]!="STOP_R5"):
+        raise RegistryIntegrityError("REGISTRY_MANIFEST_OR_ADMISSION_DIVERGENCE")
+    versions=[tuple(r) for r in db.execute("SELECT * FROM schema_history ORDER BY version")]
+    if versions!=[(1,"REGISTRY_SOURCES_BLOB_SHA","2026-11-01T12:00:00Z"),
+                  (2,"REGISTRY_SOURCE_LOCAL_TYPED_EDGES","2026-11-01T12:00:00Z"),
+                  (3,"ASSESSMENT_APPEND_ONLY_TWO_EVENT_REJECTION","2026-11-01T12:00:00Z"),
+                  (4,"AUTHOR_CLOSED_OPTIONAL_INTAKE_OVERLAY","2026-11-02T00:00:00Z")]:
+        raise RegistryIntegrityError("REGISTRY_SCHEMA_HISTORY_CORRUPTED")
+    triggers={r[0]:r[1] for r in db.execute(
+        "SELECT name,sql FROM sqlite_master WHERE type='trigger'")}
+    if set(triggers)!=set(_TRIGGER_DEFINITIONS):
+        raise RegistryIntegrityError("REGISTRY_IMMUTABILITY_TRIGGER_MISSING_OR_ADDED")
+    for name,(action,table,error) in _TRIGGER_DEFINITIONS.items():
+        expected=f"CREATE TRIGGER {name} BEFORE {action} ON {table} " \
+                 f"BEGIN SELECT RAISE(ABORT,'{error}'); END"
+        canonical=lambda value: " ".join(value.strip().rstrip(";").split()).lower()
+        if canonical(triggers[name])!=canonical(expected):
+            raise RegistryIntegrityError("REGISTRY_IMMUTABILITY_TRIGGER_BODY_CHANGED")
+    # Per-row bytes receipt checked independently before content comparison.
+    actual_s=_actual_rows(db,"distribution",SOURCES_COLUMNS)
+    expected_s=sorted(_closed_sources(),key=lambda x:x["source_id"])
+    if len(actual_s)!=len(expected_s):
+        raise RegistryIntegrityError("REGISTRY_SOURCE_SET_INCOMPLETE")
+    for source,expected in zip(actual_s,expected_s):
+        if (type(source["source_bytes"]) is not bytes or
+                _sha(source["source_bytes"])!=source["source_sha256"] or
+                (source["public_id"] is not None and
+                 _sha(source["descriptor_bytes"])!=source["descriptor_sha256"])):
+            raise RegistryIntegrityError("REGISTRY_BYTES_SHA_TAMPER")
+        _timestamp(source["first_public_known_at"])
+        _timestamp(source["captured_at"])
+        if _timestamp(source["first_public_known_at"])>_timestamp(source["captured_at"]):
+            raise RegistryIntegrityError("REGISTRY_RETRO_FIRST_PUBLIC_CONTRADICTION")
+        if source!=expected:
+            raise RegistryIntegrityError("REGISTRY_UNAUTHORIZED_SOURCE_REVISION_OR_RIGHTS")
+    actual_f=_actual_rows(db,"typed_fact",FACT_COLUMNS)
+    if actual_f!=sorted(_closed_facts(),key=lambda x:x["fact_id"]):
+        raise RegistryIntegrityError("REGISTRY_TYPED_KEY_OR_AMENDMENT_DIVERGENCE")
+    actual_e=_actual_rows(db,"typed_edge",EDGE_COLUMNS)
+    if actual_e!=sorted(_closed_edges(),key=lambda x:x["edge_id"]):
+        raise RegistryIntegrityError("REGISTRY_SOURCE_LOCAL_CROSSWALK_DIVERGENCE")
+    registered={s["source_id"]:s for s in actual_s}
+    indexed={(f["issuer"],f["kind"],f["source_local_key"])
+             for f in actual_f}
+    facts_by_id={f["fact_id"]:f for f in actual_f}
+    for fact in actual_f:
+        source=registered[fact["source_id"]]
+        _day(fact["valid_from"])
+        if fact["valid_to"] is not None and _day(fact["valid_to"])<=fact["valid_from"]:
+            raise RegistryIntegrityError("REGISTRY_INVALID_VALID_INTERVAL")
+        if (source["issuer"]!=fact["issuer"] or
+                _timestamp(fact["observed_at"])<_timestamp(source["captured_at"])):
+            raise RegistryIntegrityError("REGISTRY_FACT_ISSUER_OR_CAPTURE_CONTRADICTION")
+        if fact["amendment_of"]:
+            predecessor=facts_by_id.get(fact["amendment_of"])
+            if (predecessor is None or
+                    (predecessor["issuer"],predecessor["kind"],predecessor["source_local_key"])!=
+                    (fact["issuer"],fact["kind"],fact["source_local_key"]) or
+                    predecessor["revision"]>=fact["revision"] or
+                    _timestamp(predecessor["observed_at"])>=_timestamp(fact["observed_at"])):
+                raise RegistryIntegrityError("REGISTRY_CONTRADICTORY_AMENDMENT")
+    for edge in actual_e:
+        source=registered[edge["source_id"]]
+        if source["issuer"]!=edge["issuer"]:
+            raise RegistryIntegrityError("REGISTRY_EDGE_CROSS_ISSUER")
+        for kind,key in ((edge["from_kind"],edge["from_local"]),
+                         (edge["to_kind"],edge["to_local"])):
+            if (edge["issuer"],kind,key) not in indexed:
+                raise RegistryIntegrityError("REGISTRY_EDGE_UNKNOWN_TYPED_KEY")
+        _day(edge["valid_from"])
+    assessment_events=_actual_rows(db,"assessment_event",ASSESSMENT_COLUMNS)
+    expected_assessments=sorted(_closed_assessment_events(),key=lambda x:x["event_id"])
+    if len(assessment_events)!=len(expected_assessments):
+        raise RegistryIntegrityError("REGISTRY_ASSESSMENT_EVENT_SET_INCOMPLETE")
+    for actual,expected in zip(assessment_events,expected_assessments):
+        if (type(actual["receipt_bytes"]) is not bytes or
+                _sha(actual["receipt_bytes"])!=actual["receipt_sha256"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_RECEIPT_SHA_MISMATCH")
+        if (actual["captured_at"]>actual["recorded_at"] or
+                actual["recorded_at"]>actual["first_public_known_at"] or
+                actual["event_sequence"] not in (1,2)):
+            # A registration may be published with its later assessment, but
+            # the fictitious observed sequence cannot run backwards in time.
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_TEMPORAL_CONTRADICTION")
+        for field in ("captured_at","recorded_at","first_public_known_at"):
+            _timestamp(actual[field])
+        if actual!=expected:
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_CLOSED_RECEIPT_DIVERGENCE")
+    intake_events=_actual_rows(db,"synthetic_intake_event",INTAKE_COLUMNS)
+    by_fixture:dict[str,list[dict]]={}
+    for event in intake_events:
+        fixture_id=event["fixture_id"]
+        if fixture_id not in _INTAKE_FIXTURE_KEYS:
+            raise RegistryIntegrityError("REGISTRY_UNSUPPORTED_INTAKE_OVERLAY_ID")
+        for body,digest in (("source_bytes","source_sha256"),
+                            ("typed_manifest_bytes","typed_manifest_sha256"),
+                            ("receipt_bytes","receipt_sha256")):
+            if type(event[body]) is not bytes or _sha(event[body])!=event[digest]:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_BYTES_SHA_TAMPER")
+        for clock in ("captured_at","recorded_at","first_public_known_at",
+                      "source_first_public_at"):
+            _timestamp(event[clock])
+        _day(event["valid_from"])
+        if (event["source_first_public_at"]>event["captured_at"] or
+                event["captured_at"]>event["recorded_at"] or
+                event["recorded_at"]>event["first_public_known_at"]):
+            raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_CLOCK_CONTRADICTION")
+        by_fixture.setdefault(fixture_id,[]).append(event)
+    for fixture_id,actual in by_fixture.items():
+        expected=sorted(_intake_authored_events(fixture_id),key=lambda e:e["event_id"])
+        actual.sort(key=lambda e:e["event_id"])
+        if actual!=expected:
+            raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_CLOSED_FIXTURE_DIVERGENCE")
+    if "sandbox_alpha_v2" in by_fixture and "sandbox_alpha_v1" not in by_fixture:
+        raise RegistryIntegrityError("REGISTRY_INTAKE_OVERLAY_MISSING_REVISION_PARENT")
+    return actual_s,actual_f,actual_e,assessment_events,intake_events
+
+
+def seed_registry(path:Path) -> None:
+    """Idempotent atomic replay, serialized within a Python server process."""
+    with _INITIALIZATION_LOCK:
+        _seed_registry_locked(path)
+
+
+def _seed_registry_locked(path:Path) -> None:
+    """Migrate once; do not rewrite or silently heal a corrupted fixture."""
+    path=Path(path)
+    existed=path.exists()
+    if existed and path.stat().st_size==0:
+        raise RegistryIntegrityError("REGISTRY_CORRUPT_EMPTY_EXISTING_DATABASE")
+    path.parent.mkdir(parents=True,exist_ok=True)
+    try:
+        with _connect(path) as db:
+            db.execute("BEGIN IMMEDIATE")
+            try:
+                before=db.execute("PRAGMA user_version").fetchone()[0]
+                _migrate(db)
+                present=db.execute("SELECT count(*) FROM registry_meta").fetchone()[0]
+                if present==0:
+                    if any(db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+                           for table in ("distribution","typed_fact","typed_edge")):
+                        raise RegistryIntegrityError("REGISTRY_PARTIAL_SEED_NOT_REPAIRED")
+                    _seed(db)
+                elif before==1 and present==1:
+                    # The previous version already contained immutable source
+                    # bytes. Migrate their schema IN PLACE, preserving all
+                    # original bytes/revisions and adding only typed tables.
+                    # Any incomplete/tampered v1 data must fail, never reset.
+                    previous=_actual_rows(db,"distribution",SOURCES_COLUMNS)
+                    if (previous!=sorted(_closed_sources(),key=lambda x:x["source_id"])
+                            or any(db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+                                   for table in ("typed_fact","typed_edge"))):
+                        raise RegistryIntegrityError("REGISTRY_V1_MIGRATION_SOURCE_MISMATCH")
+                    meta=db.execute("SELECT * FROM registry_meta").fetchone()
+                    if (meta["fixture_id"]!=FIXTURE_ID or
+                            meta["manifest_sha256"]!=_manifest_hash() or
+                            meta["admission"]!="STOP_R5"):
+                        raise RegistryIntegrityError("REGISTRY_V1_MIGRATION_MANIFEST_MISMATCH")
+                    _insert_rows(db,"typed_fact",FACT_COLUMNS,_closed_facts())
+                    _insert_rows(db,"typed_edge",EDGE_COLUMNS,_closed_edges())
+                    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                                 _closed_assessment_events())
+                elif before==2 and present==1:
+                    # Upgrade an existing intact v2; never replace its 7/20/6
+                    # documents, facts or edges, even on a rejected fixture.
+                    if any(db.execute(f"SELECT count(*) FROM {table}").fetchone()[0]
+                           for table in ("assessment_event",)):
+                        raise RegistryIntegrityError("REGISTRY_V2_PARTIAL_ASSESSMENT_MIGRATION")
+                    _insert_rows(db,"assessment_event",ASSESSMENT_COLUMNS,
+                                 _closed_assessment_events())
+                _audit(db)
+                db.commit()
+            except Exception:
+                db.rollback()
+                raise
+    except sqlite3.DatabaseError as exc:
+        raise RegistryIntegrityError("REGISTRY_SQLITE_INTEGRITY_FAILURE") from exc
+
+
+def _fixture_wire_fingerprint(fixture:dict) -> str:
+    """Type-strict byte-level comparison for test-only `wire` overrides."""
+    if type(fixture) is not dict or type(fixture.get("source_bytes")) is not bytes:
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_INVALID")
+    normalized={k:(v.hex() if type(v) is bytes else v)
+                for k,v in fixture.items()}
+    try:
+        return _sha(_json(normalized).encode("utf-8"))
+    except (TypeError,ValueError) as exc:
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_INVALID") from exc
+
+
+def enroll_synthetic_fixture(path:Path,fixture_id:str,*,wire:dict|None=None) -> dict:
+    """Explicit, replay-safe, author-only enrollment of ONE synthetic option.
+
+    No HTTP/API upload, remote fetch, arbitrary document bytes or real source
+    validation. `wire` is strictly an adversarial-test override: even if it
+    equals the authored bytes it cannot add a novel source to the allowlist.
+    Historical fixture times are stipulated, never actual enrollment clocks.
+    """
+    fixture=_authored_intake_fixture(fixture_id)  # reject ID BEFORE DB creation
+    if wire is not None and _fixture_wire_fingerprint(wire)!=_fixture_wire_fingerprint(fixture):
+        raise RegistryIntegrityError("SANDBOX_AUTHOR_CLOSED_WIRE_SPOOF_REJECTED")
+    seed_registry(Path(path))
+    try:
+        with _connect(Path(path)) as db:
+            db.execute("BEGIN IMMEDIATE")
+            try:
+                *_,events=_audit(db)
+                enrolled={row["fixture_id"] for row in events}
+                if (fixture["amendment_of"] is not None and
+                        fixture["amendment_of"] not in enrolled):
+                    raise ValueError("SANDBOX_REVISION_PREREQUISITE_REQUIRED")
+                exists=fixture_id in enrolled
+                proposed=_intake_authored_events(fixture_id)
+                if not exists:
+                    _insert_rows(db,"synthetic_intake_event",INTAKE_COLUMNS,proposed)
+                _audit(db)  # verify entire append-only ledger before COMMIT
+                db.commit()
+            except Exception:
+                db.rollback()
+                raise
+    except sqlite3.DatabaseError as exc:
+        raise RegistryIntegrityError("SANDBOX_SQLITE_ENROLLMENT_FAILED") from exc
+    terminal=proposed[-1]
+    return {
+        "schema":"pfl.synthetic_intake_enrollment_result.v1",
+        "intake_id":fixture["public_id"],
+        "label":fixture["label"],
+        "status":terminal["status"],
+        "reason_code":terminal["reason_code"],
+        "revision":"fixture_v"+str(fixture["revision"]),
+        "event_count_appended":0 if exists else 2,
+        "idempotent_replay":exists,
+        "canonical_sources_imported":0,
+        "real_source_admitted":False,
+        "rights_for_public_display":False,
+        "R5":"STOP_R5",
+    }
+
+
+def _visible(source:dict,as_of:str,published_until:str) -> bool:
+    return (source["captured_at"]<=as_of and
+            source["first_public_known_at"]<=as_of and
+            source["first_public_known_at"]<=published_until)
+
+
+def _assessment_projection(*, events:list[dict],as_of:str,
+                           published_until:str,family:str) -> dict:
+    """Only public closed-fixture checks/blockers; never raw/claimed issuer ID.
+
+    Assessment knowledge is its own audit clock, NOT event `valid_at` or a
+    real publisher's first-public timestamp. A source's absence cannot turn
+    into an administrative rejection by inspecting this synthetic journal.
+    """
+    visible=[row for row in events if family=="all" and
+             row["captured_at"]<=as_of and row["recorded_at"]<=as_of and
+             row["first_public_known_at"]<=as_of and
+             row["first_public_known_at"]<=published_until]
+    by_id={}
+    for event in visible:
+        by_id.setdefault(event["assessment_id"],[]).append(event)
+    assessments=[]
+    for assessment_id,history in sorted(by_id.items()):
+        history.sort(key=lambda e:e["event_sequence"])
+        if ([x["event_sequence"] for x in history]!=[1,2] or
+                [x["status"] for x in history]!=
+                ["REGISTERED","ASSESSED_REJECTED_R5"]):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_PUBLICATION_PARTIAL")
+        assessment_payload=json.loads(history[1]["receipt_bytes"])
+        original=assessment_payload["dry_run_result"]
+        if (type(original) is not dict or original["status"]!="REJECTED_R5"
+                or original["source_rows_imported"]!=0 or
+                original["real_original_admitted"] is not False):
+            raise RegistryIntegrityError("REGISTRY_ASSESSMENT_STATUS_PROMOTION")
+        descriptor={
+            "assessment_id":assessment_id,
+            "candidate":history[1]["candidate"],
+            "status":"ASSESSED_REJECTED_R5",
+            "revision":"assessment_v1",
+            "captured_at_fixture":history[0]["captured_at"],
+            "registered_at":history[0]["recorded_at"],
+            "assessed_at":history[1]["recorded_at"],
+            "history":[{"status":row["status"],
+                        "recorded_at":row["recorded_at"]} for row in history],
+            "checks":original["checks"],
+            "blockers":original["blockers"],
+            "rights_for_public_display":False,
+            "real_original_admitted":False,
+            "real_issuer_authenticated":False,
+            "real_first_public_at":None,
+            "source_rows_imported":0,
+        }
+        descriptor["public_receipt_sha256"]=_sha(_json(descriptor).encode("utf-8"))
+        assessments.append(descriptor)
+    return {
+        "schema":"pfl.synthetic_admission_assessments.v1",
+        "assessment_count":len(assessments),
+        "registered_count":len(assessments),
+        "assessed_rejected_r5_count":len(assessments),
+        "history_event_count":2*len(assessments),
+        "assessments":assessments,
+        "assessment_temporal_axis":"AS_OF_NOT_FACT_VALID_AT",
+        "source_rows_ingested":0,
+        "independent_denominator":None,
+        "real_admission_allowed":False,
+        "source_local_identifiers_exposed":False,
+        "official_issuer_authenticated":False,
+    }
+
+
+def _synthetic_intake_projection(*,events:list[dict],as_of:str,
+                                 published_until:str,valid_at:str,
+                                 family:str) -> dict:
+    """Only pseudonymous authored records, no local source keys or bytes."""
+    visible=[event for event in events if family=="all" and
+             event["captured_at"]<=as_of and event["recorded_at"]<=as_of and
+             event["first_public_known_at"]<=as_of and
+             event["first_public_known_at"]<=published_until]
+    by_fixture:dict[str,list[dict]]={}
+    for event in visible:
+        by_fixture.setdefault(event["fixture_id"],[]).append(event)
+    entries=[]
+    validated_groups:dict[str,list[dict]]={}
+    for fixture_id in _INTAKE_FIXTURE_KEYS:
+        history=sorted(by_fixture.get(fixture_id,[]),key=lambda x:x["event_sequence"])
+        if not history:
+            continue
+        if len(history)!=2 or [x["status"] for x in history][0]!="SANDBOX_REGISTERED":
+            raise RegistryIntegrityError("REGISTRY_INTAKE_PUBLICATION_PARTIAL")
+        fixture=_authored_intake_fixture(fixture_id)
+        terminal=history[-1]
+        if terminal["status"]=="SANDBOX_VALIDATED":
+            validated_groups.setdefault(fixture["group"],[]).append({
+                "fixture":fixture,
+                "manifest":json.loads(terminal["typed_manifest_bytes"]),
+            })
+        entry={
+            "intake_id":fixture["public_id"],
+            "label":fixture["label"],
+            "status":terminal["status"],
+            "reason_code":terminal["reason_code"],
+            "revision":"fixture_v"+str(fixture["revision"]),
+            "amendment_of":None if fixture["amendment_of"] is None else
+                _authored_intake_fixture(fixture["amendment_of"])["public_id"],
+            "quality_gate":fixture["quality_gate"],
+            "provenance":fixture["provenance"],
+            "valid_from":fixture["valid_from"],
+            "captured_at_fixture":fixture["captured_at"],
+            "source_first_public_at_fixture":fixture["source_first_public_at_fixture"],
+            "receipt_first_public_at_fixture":fixture["receipt_first_public_at_fixture"],
+            "registered_at_fixture":fixture["registered_at"],
+            "validated_at_fixture":fixture["assessed_at"],
+            "history":[{"status":row["status"],
+                        "recorded_at_fixture":row["recorded_at"]}
+                       for row in history],
+            "rights_for_public_display":False,
+            "real_first_public_at":None,
+            "real_issuer_authenticated":False,
+            "empirical_admitted":False,
+            "canonical_source_rows_imported":0,
+        }
+        entry["public_descriptor_sha256"]=_sha(_json(entry).encode("utf-8"))
+        entries.append(entry)
+    groups_valid={group:[r for r in revisions if r["fixture"]["valid_from"]<=valid_at]
+                  for group,revisions in validated_groups.items()}
+    group_nodes=[]
+    group_edges=[]
+    graph_sources=0
+    for group,revisions in sorted(groups_valid.items()):
+        if not revisions:
+            continue
+        graph_sources+=1
+        revisions.sort(key=lambda r:r["fixture"]["revision"])
+        # Stable opaque references across revisions: never expose the actual
+        # typed source-local identity (`AUTHOR_*:FILE_1` / `A:LOCAL_ACTOR`).
+        public_root=_authored_intake_fixture(
+            "sandbox_alpha_v1" if group=="A" else "sandbox_beta_v1")["public_id"]
+        labels={"ACTOR":"Actor ficticio", "ORGANIZATION":"Organización ficticia",
+                "PROCESS":"Proceso ficticio"}
+        manifest=revisions[-1]["manifest"]  # latest visible typed documentary version
+        ref_by_typed={}
+        for node in manifest["nodes"]:
+            kind=node["kind"]
+            if kind not in labels:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_UNSUPPORTED_NODE_TYPE")
+            ref=f"{public_root}:N_{kind}"
+            typed=(kind,node["local_id"])
+            if typed in ref_by_typed:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_DUPLICATE_TYPED_NODE")
+            ref_by_typed[typed]=ref
+            group_nodes.append({
+                "id":ref,"kind":kind,"label":labels[kind],
+                "documentary_revision_count":len(revisions),
+                "logical_identity_count":1,
+            })
+        for edge in manifest["edges"]:
+            frm=(edge["from_kind"],edge["from_local"])
+            to=(edge["to_kind"],edge["to_local"])
+            if frm not in ref_by_typed or to not in ref_by_typed:
+                raise RegistryIntegrityError("REGISTRY_INTAKE_EDGE_ENDPOINT_MISSING")
+            group_edges.append({"from":ref_by_typed[frm],
+                                "to":ref_by_typed[to],"kind":edge["kind"]})
+    return {
+        "schema":"pfl.synthetic_intake_overlay.v1",
+        "intake_count":len(entries),
+        "registered_count":len(entries),
+        "validated_count":sum(x["status"]=="SANDBOX_VALIDATED" for x in entries),
+        "rejected_count":sum(x["status"]=="SANDBOX_REJECTED" for x in entries),
+        "history_event_count":2*len(entries),
+        "logical_source_count":len(validated_groups),
+        "documentary_revision_count":sum(len(x) for x in validated_groups.values()),
+        "logical_decisions_count":0,
+        "entries":entries,
+        "graph":{
+            "nodes":group_nodes,"edges":group_edges,
+            "node_count":len(group_nodes),"edge_count":len(group_edges),
+            "logical_source_count_valid_at":graph_sources,
+            "cross_issuer_links_created":False,
+            "revisions_are_not_new_actors_or_decisions":True,
+        },
+        "temporal_axis":"AUTHOR_STIPULATED_FIXTURE_CLOCKS_NOT_REAL_ENROLLMENT_TIME",
+        "real_enrollment_at":None,
+        "source_rows_added_to_canonical":0,
+        "independent_denominator":None,
+        "real_source_ingestion_allowed":False,
+        "source_local_identifiers_exposed":False,
+        "rights_for_public_display":False,
+        "scientific_admission_allowed":False,
+    }
+
+
+def _snapshot(*,sources:list[dict],facts:list[dict],edges:list[dict],
+              as_of:str,valid_at:str,family:str,published_until:str) -> dict:
+    source_set={s["source_id"] for s in sources if _visible(s,as_of,published_until)}
+    source_issuer={s["source_id"]:s["issuer"] for s in sources}
+    visible_facts=[f for f in facts if f["source_id"] in source_set and
+                   f["observed_at"]<=as_of and f["valid_from"]<=valid_at and
+                   (f["valid_to"] is None or valid_at<f["valid_to"])]
+    chosen_issuer=(None if family=="all" else {
+        "PP04":"SYN:PP04_PARSER","CHAIN":"SYN:CHAIN",
+        "CHRONICLE":"SYN:CHRONICLE"}[family])
+    visible_facts=[f for f in visible_facts if chosen_issuer is None or
+                   f["issuer"]==chosen_issuer]
+    visible_edges=[e for e in edges if e["source_id"] in source_set and
+                   e["observed_at"]<=as_of and e["valid_from"]<=valid_at and
+                   (chosen_issuer is None or e["issuer"]==chosen_issuer)]
+    by_issuer:dict[str,list[dict]]={}
+    for fact in visible_facts:
+        by_issuer.setdefault(fact["issuer"],[]).append(fact)
+
+    def render_graph(issuer:str, label:str) -> dict:
+        all_f=by_issuer.get(issuer,[])
+        entities={}
+        for f in all_f:
+            if f["kind"] in ("ACTOR","ORGANIZATION","COMMUNICATION","DECISION",
+                             "PROCESS","ROLE","EVENT"):
+                name=f["kind"]+":"+f["source_local_key"]
+                # A documentary amendment remains ONE logical node.
+                if name not in entities or f["revision"]>entities[name]["revision"]:
+                    entities[name]=f
+        sorted_keys=sorted(entities)
+        labels={"ACTOR":"Actor ficticio", "ORGANIZATION":"Organización ficticia",
+                "COMMUNICATION":"Comunicación ficticia",
+                "DECISION":"Decisión ficticia", "PROCESS":"Proceso ficticio",
+                "ROLE":"Rol documental ficticio", "EVENT":"Evento documental ficticio"}
+        nodes=[]
+        for i,key in enumerate(sorted_keys,1):
+            kind=entities[key]["kind"]
+            nodes.append({"id":f"S9:{label}:NODE_{i:02d}","kind":kind,
+                          "label":labels[kind],"documentary_revision_count":sum(
+                              x["kind"]==kind and x["source_local_key"]==entities[key]["source_local_key"]
+                              for x in all_f)})
+        node_ids={key:node["id"] for key,node in zip(sorted_keys,nodes)}
+        links=[]
+        for e in visible_edges:
+            if e["issuer"]!=issuer:
+                continue
+            frm=e["from_kind"]+":"+e["from_local"]
+            to=e["to_kind"]+":"+e["to_local"]
+            if frm in node_ids and to in node_ids:
+                links.append({"from":node_ids[frm],"to":node_ids[to],
+                              "kind":e["relation"]})
+        return {"nodes":nodes,"edges":links,"node_count":len(nodes),
+                "edge_count":len(links),"issuer":"FICTIONAL_"+label,
+                "amendments_count_as_new_people_or_decisions":False}
+
+    chain=render_graph("SYN:CHAIN","CHAIN") if family in ("all","CHAIN") else None
+    chronicle=render_graph("SYN:CHRONICLE","CHRONICLE") if family in ("all","CHRONICLE") else None
+    chain_states=[f["evidentiary_state"] for f in by_issuer.get("SYN:CHAIN",[])
+                  if f["kind"]=="EPISODE_STAGE"]
+    stage_states=[f["evidentiary_state"] for f in by_issuer.get("SYN:S9_LOCAL_STAGE",[])
+                  if f["kind"]=="EPISODE_STAGE"]
+    all_stages=chain_states+stage_states
+    if ("EXPLICIT_APPROVAL" in all_stages and "PENDING_NOT_NEGATIVE" not in all_stages):
+        # A late approval may coexist with an earlier documented pending;
+        # no state is made negative by lack of a terminal at another cut.
+        raise RegistryIntegrityError("REGISTRY_EPISODE_STAGE_HISTORY_CONFLICT")
+    if "EXPLICIT_APPROVAL" in chain_states:
+        process_state="APPROVED_AS_OF_SYNTHETIC_EVIDENCE"
+    elif "PENDING_NOT_NEGATIVE" in chain_states:
+        process_state="PENDING_NOT_NEGATIVE"
+    elif any(f["kind"]=="PROCESS" for f in by_issuer.get("SYN:CHAIN",[])):
+        process_state="UNKNOWN_FOLLOWUP_NOT_NEGATIVE"
+    else:
+        process_state="NOT_YET_DOCUMENTED"
+    pp04=[f["evidentiary_state"] for f in by_issuer.get("SYN:PP04_PARSER",[])
+          if f["kind"]=="PP04_STATEMENT"]
+    return {
+        "knowledge_as_of":as_of,"valid_at":valid_at,
+        "graph": {"chain":chain,"chronicle":chronicle,
+                  "cross_issuer_links_created":False},
+        "episodes": {
+            "chain_process_state":process_state,
+            "explicit_negative_documented":sum(s=="EXPLICIT_INADMITTED_SYNTHETIC_NOT_CENSOR"
+                                                for s in all_stages),
+            "explicit_approval_documented":int("EXPLICIT_APPROVAL" in all_stages),
+            "pending_documented_not_negative":int("PENDING_NOT_NEGATIVE" in all_stages),
+            "right_censor_independently_attested":False,
+            "unobserved_is_negative":False,
+            "source_local_all_received_denominator":None,
+        },
+        "pp04": {"included_planned_approved":sum(x=="INCLUIDAS_PLANNED_APPROVED_SOURCE_LOCAL_ONLY" for x in pp04),
+                 "included_pending_not_negative":sum(x=="INCLUIDAS_PENDING_NOT_NEGATIVE" for x in pp04),
+                 "not_included_source_local_not_negative":sum(x=="NO_INCLUIDAS_NOT_NEGATIVE_NOT_IN_COHORT" for x in pp04),
+                 "unplanned_is_a_terminal_negative":False,
+                 "independent_crosswalk_between_pan_iaen":False},
+    }
+
+
+def query_registry(path:Path, *, cut:str="late",valid_at:str="2026-09-15",
+                   family:str="all",published_until:str="as_of") -> dict:
+    """Fixed enum query, all byte-level validation before any JSON projection."""
+    if (type(cut) is not str or cut not in lab.CUTS or
+            type(valid_at) is not str or valid_at not in VALID_DAYS or
+            type(family) is not str or family not in FAMILY_FILTERS or
+            type(published_until) is not str or published_until not in PUBLICATION_FILTERS):
+        raise ValueError("INVALID_CLOSED_SYNTHETIC_REGISTRY_QUERY")
+    as_of=lab.CUTS[cut]
+    ceiling=as_of if published_until=="as_of" else published_until
+    if ceiling>as_of:
+        raise ValueError("REGISTRY_PUBLICATION_CEILING_AFTER_AS_OF")
+    seed_registry(Path(path))
+    try:
+        with _connect(Path(path)) as db:
+            sources,facts,edges,assessment_events,intake_events=_audit(db)
+    except sqlite3.DatabaseError as exc:
+        raise RegistryIntegrityError("REGISTRY_READ_SQLITE_CORRUPTION") from exc
+    visible=[s for s in sources if s["public_id"] is not None and
+             (family=="all" or s["family"]==family) and
+             _visible(s,as_of,ceiling)]
+    registry_sources=[{
+        "public_id":s["public_id"],"family":s["family"],
+        "revision":"fixture_v"+str(s["revision"]),
+        "descriptor_recipe":"S9_PUBLIC_SYNTHETIC_DESCRIPTOR_V1",
+        "sha256_public_descriptor":s["descriptor_sha256"],
+        "descriptor_byte_length":len(s["descriptor_bytes"]),
+        "issuer_fixture":"FICTIONAL_"+s["family"],
+        "first_public_at_fixture":s["first_public_known_at"],
+        "captured_at_fixture":s["captured_at"],
+        "real_first_public_at":None,"real_publisher_authenticated":False,
+        "coverage_temporal":s["coverage_state"],
+        "quality_gate":s["quality_gate"],"provenance":s["provenance"],
+        "requested_purpose":s["purpose"],
+        "rights_for_public_display":False,"empirical_admitted":False,
+        "immutable_revision":True,
+    } for s in visible]
+    snapshot=_snapshot(sources=sources,facts=facts,edges=edges,
+                       as_of=as_of,valid_at=valid_at,family=family,
+                       published_until=ceiling)
+    snapshot["admission_assessments"]=_assessment_projection(
+        events=assessment_events,as_of=as_of,
+        published_until=ceiling,family=family)
+    snapshot["synthetic_intake"]=_synthetic_intake_projection(
+        events=intake_events,as_of=as_of,published_until=ceiling,
+        valid_at=valid_at,family=family)
+    # A separate, reproducible receipt for the exact PUBLIC query projection.
+    # No private source bytes/IDs, no claim of an independent publisher's sig.
+    receipt_scope={
+        "schema":"pfl.synthetic_scientific_registry_snapshot.v1",
+        "cut":cut,"as_of":as_of,"valid_at":valid_at,
+        "family":family,"published_until":ceiling,
+        "distributions":registry_sources,
+        "snapshot":snapshot,
+    }
+    canonical_snapshot=_json(receipt_scope)
+    snapshot_receipt={
+        "schema":"pfl.synthetic_registry_snapshot_receipt.v1",
+        "canonicalization":"JSON_UTF8_SORTED_KEYS_COMPACT_V1",
+        "content_scope":"CLOSED_PUBLIC_SYNTHETIC_QUERY_ONLY",
+        "bytes":len(canonical_snapshot.encode("utf-8")),
+        "sha256":_sha(canonical_snapshot.encode("utf-8")),
+        "canonical_json":canonical_snapshot,
+        "external_authenticity_certified":False,
+    }
+    return {
+        "schema":"pfl.synthetic_scientific_registry.v1",
+        "evidence_class":SYNTHETIC_ONLY,
+        "cut":cut,"as_of":as_of,"valid_at":valid_at,
+        "family":family,"published_until":ceiling,
+        "registry": {
+            "schema_version":SCHEMA_VERSION,"persistent":True,
+            "migration_history":[1,2,3,4],
+            "source_catalog_kind":"FIXED_PUBLIC_DESCRIPTORS_ONLY",
+            "distributions":registry_sources,
+            "visible_distribution_count":len(registry_sources),
+            "recorded_distribution_count":6,
+            "internal_uncatalogued_fixture_receipts":1,
+            "source_bytes_exposed":False,
+            "private_source_ids_exposed":False,
+            "originals_accepted":False,
+            "fixture_bytes_sha256_checked_at_read":True,
+        },
+        "snapshot":snapshot,
+        "snapshot_receipt":snapshot_receipt,
+        "snapshot_receipt_sha256":snapshot_receipt["sha256"],
+        "models": {
+            "s3_s7_endpoint":"/api/scientific-integration-lab",
+            "computed_from_registry":False,
+            "separate_existing_python_node_oracle":True,
+            "empirical_model_admitted":False,
+        },
+        "R5":"STOP_R5", "independent_denominator":None,
+        "real_source_ingestion_allowed":False,"scientific_ab_cycles":0,
+        "release_gates_passed":0,
+    }
+
+
+def main() -> None:
+    """Offline allowlisted CLI; no source path/payload/URL/rights supplied."""
+    import argparse
+    ap=argparse.ArgumentParser(description="Seed or inspect fixed synthetic S9 registry")
+    ap.add_argument("--db",type=Path,required=True,
+                    help="Path for *synthetic* SQLite registry; no source bytes accepted")
+    ap.add_argument("--seed",action="store_true",
+                    help="atomically replay the same hardcoded fictional fixture")
+    ap.add_argument("--enroll",choices=_INTAKE_FIXTURE_KEYS,
+                    help="explicitly enroll ONE of four author-closed sandbox fixture options")
+    args=ap.parse_args()
+    if args.seed and args.enroll:
+        ap.error("CHOOSE_EITHER_SEED_OR_EXPLICIT_ENROLLMENT")
+    if args.enroll:
+        try:
+            print(_json(enroll_synthetic_fixture(args.db,args.enroll)))
+        except (RegistryIntegrityError,ValueError) as exc:
+            ap.error(str(exc))
+    elif args.seed:
+        seed_registry(args.db)
+        print(_json({"schema":"pfl.synthetic_registry_offline_seed.v1",
+                     "status":"FIXTURE_REPLAY_VERIFIED", "R5":"STOP_R5",
+                     "real_source_ingested":False}))
+    else:
+        print(_json(query_registry(args.db)))
+
+
+if __name__=="__main__":
+    main()
