@@ -1,5 +1,5 @@
 {
-  "revision": 58,
+  "revision": 59,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1756,7 +1756,54 @@
     "release_gates_passed": 0,
     "scientific_AB_R_cycles_added": 0,
     "new_empirical_spanish_sources_admitted": 0,
-    "publication_state": "READY_REVIEW",
+    "publication_state": "PUBLISHED_E2E_ACCEPTED",
+    "published_commit": "69bf787397eb94f7ed048f5443fef69bea0dc1c6",
+    "clean_committed_head_acceptance_passed": 473,
     "receipt": "docs/BETA_OPERATOR_FORM_V2_VARIANT_RECEIPT_20261103.json"
+  },
+  "local_beta_immutable_coded_observation_revision": {
+    "date": "2026-11-03",
+    "baseline_published_head": "69bf787397eb94f7ed048f5443fef69bea0dc1c6",
+    "scope": "LOCAL_SYNTHETIC_OPERATOR_V2_CODED_REVISION_PROVENANCE_NONCYCLE",
+    "genuine_prepatch_red": [
+      {
+        "test": "test_prepatch_red_v2_evaluation_binds_exact_source_bytes",
+        "result": "1_FAILED_BEFORE_PRODUCTION_CHANGE",
+        "diagnostic": "KeyError_coded_input_sha256"
+      },
+      {
+        "test": "test_prepatch_red_v2_coded_observations_must_not_share_participant_folder",
+        "result": "1_FAILED_23_DESELECTED_BEFORE_PRODUCTION_CHANGE",
+        "diagnostic": "PREPATCH_ACCEPTED_CODED_FILE_IN_PARTICIPANT_FOLDER"
+      }
+    ],
+    "new_capability": "--record-form",
+    "coded_v2_session_schema_preserved": "pfl.beta_science_operator_observations.v2",
+    "single_task_closed_code_recording": true,
+    "source_and_successor_immutable_files": true,
+    "duplicate_task_recording_rejected": true,
+    "technical_veto_and_no_scientific_imputation": true,
+    "predecessor_and_successor_exact_byte_sha_receipt": true,
+    "evaluation_coded_input_sha256_exact_file_bytes": true,
+    "evaluation_coded_input_bytes": true,
+    "private_coded_file_and_operator_rubric_not_in_participant_handout_parent": true,
+    "new_recording_action_claimed_as_preexisting_bug": false,
+    "synthetic_two_revision_recording_test": true,
+    "two_real_science_only_os_processes_same_sqlite_integration_reused": true,
+    "preexisting_s9_and_chrome_contracts_reused": true,
+    "focal_python_passed": 133,
+    "integrated_uncommitted_worktree_acceptance_passed": 510,
+    "integrated_uncommitted_worktree_acceptance_counts": "388_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "human_participants_observed": 0,
+    "human_acceptance_completed": false,
+    "new_empirical_spanish_sources": 0,
+    "new_endpoints": 0,
+    "sqlite_or_s9_contract_changes": 0,
+    "S9_docx_modified": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_CODED_REVISION_RECEIPT_20261103.json"
   }
 }

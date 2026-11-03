@@ -55,17 +55,46 @@ S3, S7), las ocho vistas de Observatorio S9 y descargar/exportar
 documentos públicos sintéticos verificables. La supervisora observa por
 separado la ejecución técnica, la comprensión y la facilidad de uso,
 sin introducir claves SCI ante la participante. El HTML es de lectura:
-no recoge clics, respuestas ni métricas. Toda respuesta se incorpora
-**manualmente**, si procede y sin PII, a los códigos cerrados de
-`observaciones.json`; una tarea técnica fallida o bloqueada exige respuesta
+no recoge clics, respuestas ni métricas. Toda observación legítima
+se codifica localmente, sin PII, preferentemente mediante
+`--record-form`, en una sucesión de archivos externos; una tarea
+técnica fallida o bloqueada exige respuesta
 científica `NOT_OBSERVED`. **En v2, la columna `scientific`
 de `observaciones-v2.json` solo acepta `A`, `B` o `NOT_OBSERVED`;
 nunca transcribir códigos internos `SCI_OP...` de la rúbrica ni las
 respuestas a un formulario distinto.** No alterar los campos `schema`,
 `form_id`, `handout_sha256` o `rubric_sha256` de la ficha creada.
-El archivo puede conservarse tras una interrupción y seguir editándose
-manualmente; no hay borrado automático ni almacenamiento de respuestas
-en la web. Las tareas no observadas permanecen marcadas expresamente.
+La ficha y sus revisiones pueden conservarse tras una interrupción;
+no hay borrado automático ni almacenamiento de respuestas en la web.
+Las tareas no observadas permanecen marcadas expresamente.
+
+**Captura cerrada recomendada sin editar JSON:** el comando nuevo
+`--record-form` anota exactamente una tarea en una **copia sucesora**
+de la ficha v2. Las opciones son cuatro argumentos cerrados tras las
+dos rutas: ID `OP01`–`OP12`, ejecución
+`TECH_COMPLETED` / `TECH_FAILED` / `TECH_BLOCKED` /
+`NOT_OBSERVED`, respuesta `A` / `B` / `NOT_OBSERVED`
+y observación de uso `UX_CLEAR` / `UX_FRICTION` /
+`UX_BLOCKED` / `NOT_OBSERVED`. No escribir respuesta A/B
+si la ejecución no ha sido `TECH_COMPLETED`. Por ejemplo,
+**solo para ensayar la sintaxis con una tarea ficticia, nunca
+para afirmar que alguien ha participado**:
+
+    python -B scripts/beta_science_operator_protocol.py --record-form (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'supervisor\revision-v2-01.json') OP01 TECH_BLOCKED NOT_OBSERVED UX_BLOCKED
+
+Un resultado `OPERATOR_FORM_OBSERVATION_RECORDED` devuelve
+`source_sha256` y `destination_sha256` de los bytes exactos,
+sin imprimir la ruta ni las respuestas. La ficha anterior **no se
+sobrescribe ni elimina**. En tareas posteriores se utiliza como
+primera ruta el fichero sucesor más reciente y un nuevo nombre
+como destino. Si se detecta un error de transcripción, volver a una
+revisión anterior aún intacta y generar otra rama con nuevo nombre:
+`OPERATOR_OBSERVATION_ALREADY_RECORDED` rechaza una segunda
+anotación sobre la misma tarea de una revisión. Los doce IDs se
+conservan siempre, con ausencia explícita, pero una tarea no
+registrada permanece `NOT_OBSERVED`. No generar observaciones
+ficticias para completar cuotas. El comando NO requiere leer ni
+mostrar la clave de respuestas.
 
 Para una **interrupción o reinicio**, detener con Ctrl+C y conservar
 únicamente la ficha externa. El marcador `pfl_guest=v1` conserva siete
@@ -80,7 +109,7 @@ válido. Las descargas S9 se verifican offline con los comprobadores
 
 Tras la observación, y solo si hay alguna tarea realmente codificada:
 
-    python -B scripts/beta_science_operator_protocol.py --evaluate-form (Join-Path $base 'supervisor\observaciones-v2.json') (Join-Path $base 'supervisor\rubrica-privada-v2.json') (Join-Path $base 'supervisor\resultado-verificado-v2.json')
+    python -B scripts/beta_science_operator_protocol.py --evaluate-form (Join-Path $base 'supervisor\ULTIMA-REVISION-v2.json') (Join-Path $base 'supervisor\rubrica-privada-v2.json') (Join-Path $base 'supervisor\resultado-verificado-v2.json')
 
 `OPERATOR_FORM_EVALUATION_EXPORTED` implica solamente que el archivo local
 de códigos superó el contrato, no que una persona realmente participara
@@ -93,9 +122,18 @@ la ejecución técnica, la comprensión clasificada solo tras
 `instrument_binding=MATCHED_V2_FORM_AND_RUBRIC`. No constituye prueba
 de integridad frente a un supervisor que modifica deliberadamente
 todos los archivos; las huellas son comprobaciones de consistencia,
-no firmas digitales. Si hay doce NOT_OBSERVED,
+no firmas digitales.
+
+`coded_input_sha256` y `coded_input_bytes` identifican los
+**bytes realmente leídos** de la última revisión codificada
+(incluidos espacios y salto final); permiten contrastar el informe
+contra ese fichero conservado, pero no acreditan identidad, consentimiento
+ni autenticidad externa. La ruta `ULTIMA-REVISION-v2.json`
+es un marcador que la persona supervisora debe sustituir por el
+nombre realmente creado, no un archivo creado automáticamente.
+Si las doce tareas siguen totalmente `NOT_OBSERVED`,
 `OPERATOR_NO_OBSERVATIONS` es correcto y **no** debe existir
-`resultado-verificado.json`. Otros rechazos incluyen
+`resultado-verificado-v2.json`. Otros rechazos incluyen
 `OPERATOR_SESSION_INCOMPLETE`, `OPERATOR_INPUT_INVALID`,
 `OPERATOR_JSON_INVALID`, `OPERATOR_OUTPUT_EXISTS`,
 `OPERATOR_OUTPUT_PATH_FORBIDDEN` y, en Windows, el veto ADS

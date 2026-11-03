@@ -25,6 +25,7 @@ PYTHON_TESTS = (
     "tests/test_beta_acceptance_runner.py",
     "tests/test_beta_science_operator_protocol.py",
     "tests/test_beta_operator_instrument_versioning.py",
+    "tests/test_beta_operator_coded_revision.py",
     "tests/test_beta_supervised_runtime.py",
     "tests/test_beta_operator_handoff_runtime.py",
     "tests/test_beta_scientific_smoke.py",

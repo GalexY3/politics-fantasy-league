@@ -10,6 +10,7 @@ diagnostic, empirical admission or a release gate. No identities are collected.
   python -B scripts/beta_science_operator_protocol.py --evaluate input.json
   python -B scripts/beta_science_operator_protocol.py --evaluate-to input.json output.json
   python -B scripts/beta_science_operator_protocol.py --prepare-form coded_v2.json participant_v2.html private_rubric_v2.json
+  python -B scripts/beta_science_operator_protocol.py --record-form current_v2.json next_v2.json OP01 TECH_COMPLETED A UX_CLEAR
   python -B scripts/beta_science_operator_protocol.py --evaluate-form coded_v2.json private_rubric_v2.json result_v2.json
   python -B scripts/beta_science_operator_protocol.py --participant-handout outside_repo.html
   python -B scripts/beta_science_operator_protocol.py --template-to outside_repo_rubric.json
@@ -689,7 +690,8 @@ def prepare_form(session_path: str, participant_html_path: str,
     if len(set(normalized)) != 3:
         raise ProtocolError("OPERATOR_FORM_PATH_COLLISION")
     if (locations[1].parent.resolve(strict=True)
-            == locations[2].parent.resolve(strict=True)):
+            in (locations[0].parent.resolve(strict=True),
+                locations[2].parent.resolve(strict=True))):
         raise ProtocolError("OPERATOR_FORM_KEY_NOT_SEPARATED")
     # cryptographic RNG: every invocation samples a fresh independent layout.
     # Neither the form reference nor the SHA is an empirical or RNG-quality
@@ -812,16 +814,109 @@ def _read_and_verify_form_rubric(value: object) -> dict:
     return value
 
 
-def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
-    """Fail closed on mismatched versioned forms BEFORE any output write."""
-    session = read_json(source_path)
-    rubric = _read_and_verify_form_rubric(read_json(rubric_path))
-    if (type(session) is not dict
-            or set(session) != {
+def _validate_v2_coded_session(value: object) -> dict:
+    """Check the complete, closed v2 input even before a rubric is consulted.
+
+    Intermediate recorder revisions may have no observations at all. They are
+    NOT successful evaluations until the final --evaluate-form step. Every
+    revision must preserve all twelve task rows and the original form binding.
+    """
+    if (type(value) is not dict
+            or set(value) != {
                 "schema", "form_id", "handout_sha256",
                 "rubric_sha256", "observations"
             }
-            or session["schema"] != FORM_INPUT_SCHEMA
+            or value["schema"] != FORM_INPUT_SCHEMA):
+        raise ProtocolError("OPERATOR_FORM_MISMATCH")
+    if (type(value["form_id"]) is not str
+            or not FORM_REFERENCE_PATTERN.fullmatch(value["form_id"])
+            or any(type(value[key]) is not str
+                   or re.fullmatch(r"[0-9a-f]{64}", value[key]) is None
+                   for key in ("handout_sha256", "rubric_sha256"))):
+        raise ProtocolError("OPERATOR_FORM_MISMATCH")
+    rows = value["observations"]
+    if type(rows) is not list:
+        raise ProtocolError("OPERATOR_SCHEMA_INVALID")
+    if len(rows) < len(TASKS):
+        raise ProtocolError("OPERATOR_SESSION_INCOMPLETE")
+    if len(rows) > len(TASKS):
+        raise ProtocolError("OPERATOR_INPUT_INVALID")
+    ids = set()
+    for entry in rows:
+        if type(entry) is not dict or set(entry) != INPUT_KEYS:
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+        tid = entry["task_id"]
+        if type(tid) is not str or tid not in BY_ID or tid in ids:
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+        ids.add(tid)
+        if (type(entry["technical"]) is not str
+                or entry["technical"] not in TECH_CODES
+                or type(entry["scientific"]) is not str
+                or entry["scientific"] not in ("A", "B", MISSING)
+                or type(entry["usability"]) is not str
+                or entry["usability"] not in UX_CODES
+                or (entry["technical"] != "TECH_COMPLETED"
+                    and entry["scientific"] != MISSING)):
+            raise ProtocolError("OPERATOR_INPUT_INVALID")
+    if ids != set(BY_ID):
+        raise ProtocolError("OPERATOR_SESSION_INCOMPLETE")
+    return value
+
+
+def record_form(source_path: str, destination_path: str, task_id: str,
+                technical: str, scientific: str, usability: str) -> dict:
+    """Record one closed-coded task into an immutable successor v2 JSON file.
+
+    This action avoids manual JSON editing, never overwrites the source,
+    preserves the full form binding and refuses to revise a task already
+    recorded. Correcting a transcription requires starting again from an
+    earlier untouched source revision and choosing a NEW destination.
+    Rubric-scoped scoring remains exclusively in --evaluate-form.
+    """
+    source, raw_source = _read_json_with_bytes(source_path)
+    session = _validate_v2_coded_session(source)
+    if type(task_id) is not str or task_id not in BY_ID:
+        raise ProtocolError("OPERATOR_INPUT_INVALID")
+    if (technical not in TECH_CODES or scientific not in ("A", "B", MISSING)
+            or usability not in UX_CODES
+            or (technical != "TECH_COMPLETED" and scientific != MISSING)):
+        raise ProtocolError("OPERATOR_INPUT_INVALID")
+    if all(x == MISSING for x in (technical, scientific, usability)):
+        raise ProtocolError("OPERATOR_OBSERVATION_EMPTY")
+    item = next(row for row in session["observations"]
+                if row["task_id"] == task_id)
+    if any(item[key] != MISSING for key in ("technical", "scientific", "usability")):
+        raise ProtocolError("OPERATOR_OBSERVATION_ALREADY_RECORDED")
+    new_rows = [
+        ({**entry, "technical": technical, "scientific": scientific,
+          "usability": usability}
+         if entry["task_id"] == task_id else dict(entry))
+        for entry in session["observations"]
+    ]
+    successor = _validate_v2_coded_session({**session, "observations": new_rows})
+    size, digest = _write_external_utf8(
+        destination_path, json_line(successor) + "\n",
+        maximum=MAX_INPUT_BYTES, error_prefix="OPERATOR_OUTPUT",
+    )
+    return {
+        "schema": FORM_INPUT_SCHEMA,
+        "status": "OPERATOR_FORM_OBSERVATION_RECORDED",
+        "form_reference": session["form_id"][:12],
+        "task_id": task_id,
+        "source_sha256": hashlib.sha256(raw_source).hexdigest(),
+        "destination_sha256": digest,
+        "destination_bytes": size,
+        "participant_count": None,
+        "R5": "STOP_R5",
+    }
+
+
+def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
+    """Fail closed on mismatched versioned forms BEFORE any output write."""
+    session, raw_coded = _read_json_with_bytes(source_path)
+    session = _validate_v2_coded_session(session)
+    rubric = _read_and_verify_form_rubric(read_json(rubric_path))
+    if (type(session) is not dict
             or session["form_id"] != rubric["form_id"]
             or session["handout_sha256"] != rubric["handout_sha256"]
             or session["rubric_sha256"] != _canonical_sha(rubric)):
@@ -858,6 +953,12 @@ def evaluate_form(source_path: str, rubric_path: str, output_path: str) -> dict:
         "form_reference": rubric["form_reference"],
         "handout_sha256": rubric["handout_sha256"],
         "operator_instrument_sha256": _canonical_sha(rubric),
+        # SHA of the exact bounded UTF-8 observations file that this process
+        # parsed, including its original spacing and final newline. This
+        # establishes byte-level reconciliation, NOT authenticity, consent,
+        # a participant identity or an immutable external record.
+        "coded_input_sha256": hashlib.sha256(raw_coded).hexdigest(),
+        "coded_input_bytes": len(raw_coded),
     }
     length, sha = _write_external_utf8(
         output_path, json_line(result) + "\n",
@@ -957,7 +1058,8 @@ def evaluate(value: object) -> dict:
     }
 
 
-def read_json(path: str) -> object:
+def _read_json_with_bytes(path: str) -> tuple[object, bytes]:
+    """Return the parsed document and the identical bytes that were parsed."""
     try:
         with Path(path).open("rb") as stream:
             raw = stream.read(MAX_INPUT_BYTES + 1)
@@ -966,12 +1068,18 @@ def read_json(path: str) -> object:
     if len(raw) > MAX_INPUT_BYTES:
         raise ProtocolError("OPERATOR_FILE_TOO_LARGE")
     try:
-        return json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs_unique,
-                          parse_constant=_no_constant)
+        value = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs_unique,
+                           parse_constant=_no_constant)
+        return value, raw
     except ProtocolError:
         raise
     except (ValueError, UnicodeError, TypeError, RecursionError) as exc:
         raise ProtocolError("OPERATOR_JSON_INVALID") from exc
+
+
+def read_json(path: str) -> object:
+    """Legacy and v2 readers share the same bounded UTF-8 strict parser."""
+    return _read_json_with_bytes(path)[0]
 
 
 class SafeParser(argparse.ArgumentParser):
@@ -995,6 +1103,9 @@ def main(argv: list[str] | None = None) -> int:
         "CODED_V2_JSON", "PARTICIPANT_V2_HTML", "OPERATOR_V2_RUBRIC_JSON"))
     exclusive.add_argument("--evaluate-form", nargs=3, metavar=(
         "CODED_V2_JSON", "OPERATOR_V2_RUBRIC_JSON", "RESULT_V2_JSON"))
+    exclusive.add_argument("--record-form", nargs=6, metavar=(
+        "CODED_V2_SOURCE", "CODED_V2_SUCCESSOR", "OP_TASK_ID",
+        "TECH_CODE", "A_OR_B_OR_NOT_OBSERVED", "UX_CODE"))
     exclusive.add_argument("--self-check", action="store_true")
     try:
         args = parser.parse_args(argv)
@@ -1017,6 +1128,8 @@ def main(argv: list[str] | None = None) -> int:
             result = prepare_form(*args.prepare_form)
         elif args.evaluate_form is not None:
             result = evaluate_form(*args.evaluate_form)
+        elif args.record_form is not None:
+            result = record_form(*args.record_form)
         elif args.self_check:
             result = {
                 "schema": SELF_SCHEMA, "status": "OPERATOR_INSTRUMENT_VALID",

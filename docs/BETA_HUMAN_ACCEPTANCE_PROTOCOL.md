@@ -60,7 +60,7 @@ nunca acierto ni fallo ficticio.
 
 ## Instrumento ejecutable y registro local opcional
 
-La CLI dispone de once rutas independientes que no llaman al servidor
+La CLI dispone de doce rutas independientes que no llaman al servidor
 ni modifican SQLite:
 
     python -B scripts/beta_science_operator_protocol.py --self-check
@@ -73,6 +73,7 @@ ni modifican SQLite:
     python -B scripts/beta_science_operator_protocol.py --evaluate RUTA_JSON_LOCAL
     python -B scripts/beta_science_operator_protocol.py --evaluate-to RUTA_JSON_LOCAL RUTA_RESULTADO_JSON_EXTERNA
     python -B scripts/beta_science_operator_protocol.py --prepare-form FICHA_V2_JSON HOJA_V2_HTML RÚBRICA_PRIVADA_V2_JSON
+    python -B scripts/beta_science_operator_protocol.py --record-form FICHA_V2_ACTUAL_JSON FICHA_V2_SIGUIENTE_JSON OP01 TECH_COMPLETED A UX_CLEAR
     python -B scripts/beta_science_operator_protocol.py --evaluate-form FICHA_V2_JSON RÚBRICA_PRIVADA_V2_JSON RESULTADO_V2_JSON
 
 **Modalidad preferente para una primera sesión nueva: v2 versionada.**
@@ -91,7 +92,7 @@ equivalencia de los doce ítems o de la traducción española.
 
 La rúbrica JSON y la ficha JSON deben estar en un directorio de
 supervisión distinto del directorio del HTML participante; el
-comando rechaza compartir directorio de rúbrica y HTML, rutas
+comando rechaza compartir directorio de rúbrica o ficha con HTML, rutas
 repetidas, rutas dentro de cualquier Git o ADS NTFS. Deben existir
 previamente los directorios de destino. Los tres archivos se crean
 exclusivamente, sin sobreescribir; si se detecta un error recuperable
@@ -122,6 +123,25 @@ ninguna comprensión se puntúa sin finalización técnica. Las
 respuestas ausentes o tareas no observadas se consignan de forma
 explícita y no se convierten en errores de interpretación.
 
+`--record-form` permite **registrar una tarea por mandato** sin
+editar el JSON a mano: exige ficha v2 existente, las doce tareas,
+identificador y códigos cerrados y un nombre nuevo de archivo externo.
+Comprueba la ausencia de campos adicionales, respuestas A/B con
+`TECH_COMPLETED`, códigos incoherentes, identificadores repetidos,
+y rechaza la repetición de una tarea ya anotada con
+`OPERATOR_OBSERVATION_ALREADY_RECORDED`. La ficha de origen y
+las revisiones anteriores permanecen sin sobrescribir; el archivo
+sucesor conserva `form_id` y ambas huellas de hoja/rúbrica. Una
+corrección legítima se realiza desde una revisión previa intacta,
+con destino nuevo, y se documenta como bifurcación, no como
+reescritura silenciosa. Los acuses de cada paso exponen únicamente
+`source_sha256` y `destination_sha256` de bytes leídos/escritos,
+ID de tarea, referencia corta y estado seguro, nunca respuestas
+ni rutas. No se crea fichero si la observación es vacía o el
+destino está ocupado, dentro de Git o es NTFS ADS. Estos SHA
+no autentican quién introdujo los códigos, ni convierten un
+harness sintético en una sesión humana.
+
 `--evaluate-form` comprueba **antes de crear ningún resultado**:
 esquema/versiones, correspondencia exacta de formulario y rúbrica,
 huellas de hoja y clave, mapeo A/B cerrado contra el instrumento,
@@ -131,6 +151,11 @@ Publica solo clasificaciones de comprensión (`SCI_CORRECT`,
 identidades ni transcripciones originales. El resultado v2 declara
 `instrument_binding=MATCHED_V2_FORM_AND_RUBRIC`; una discrepancia
 de formulario/versión se rechaza fail-closed, sin generar archivo.
+El resultado incluye además `coded_input_sha256` y
+`coded_input_bytes` del archivo **exactamente leído**, incluyendo
+su formato y saltos de línea, de modo que un informe puede cotejarse
+con la revisión codificada concreta que originó la clasificación,
+sin depender de volver a serializar JSON (o de CRLF en Windows).
 Las huellas SHA-256 son de integridad y correspondencia de bytes,
 no firmas, garantías contra un operador adversarial ni evidencias
 de que los ítems se aplicaron realmente a seres humanos.

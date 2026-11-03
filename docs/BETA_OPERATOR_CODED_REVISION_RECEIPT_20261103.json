@@ -1,0 +1,162 @@
+{
+  "baseline_published_head": "69bf787397eb94f7ed048f5443fef69bea0dc1c6",
+  "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+  "date": "2026-11-03",
+  "git_staged_blobs": {
+    "HANDOFF.md": {
+      "bytes": 123660,
+      "sha256": "f53e435460e8d103542c5eac7d67e40b9438e15b3cb799c6d00da37c8560463d",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "PROJECT_STATE.json": {
+      "bytes": 104162,
+      "sha256": "a1f709e238701423c757e8199480b863bff2aa55eb8a1eb06d68d604d04d4988",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md": {
+      "bytes": 18572,
+      "sha256": "d32259417e07745527ddb27c7392e7598646ddeed226c60fa8906424a3858cdc",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "docs/BETA_LOCAL_QUICKSTART.md": {
+      "bytes": 33994,
+      "sha256": "03a84acf31dc2524fdab820d602bb95b9796a60a1367ba9ac08b77911a69e6cb",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_acceptance.py": {
+      "bytes": 7470,
+      "sha256": "ae8cf8b8c046e034bc2489ac393e1a55f153a6bb80f2a43b5fddcf8f69298a9e",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "scripts/beta_science_operator_protocol.py": {
+      "bytes": 55302,
+      "sha256": "b7129325d761c87c55a8894bdebeab4d6af208c1ea04a37279ce744ab1de266a",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_coded_revision.py": {
+      "bytes": 20924,
+      "sha256": "347640b130367674d2232cc6b876ff4abd202313dc5563eee57dcab1c7429901",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_handoff_runtime.py": {
+      "bytes": 18818,
+      "sha256": "4f88a5fdaeb22e1991cb7294fda90ba920fc96b76af3c16f7337fecca9841d87",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    },
+    "tests/test_beta_operator_instrument_versioning.py": {
+      "bytes": 21979,
+      "sha256": "0025b5bcb4a7aff35e97ea1399cb6dd4cb17c01c70b729e3d09d26c5b37ade99",
+      "source": "EXACT_GIT_STAGED_BLOB"
+    }
+  },
+  "limits": {
+    "R5": "STOP_R5",
+    "bilingual_translation_human_equivalence_verified": false,
+    "directory_boundary_enforces_windows_acls": false,
+    "human_identity_or_PII_collected": false,
+    "human_participants_observed": 0,
+    "human_validation_complete": false,
+    "junction_and_ads_rejection": "PREVIOUSLY_VERIFIED_AND_NEW_NEGATIVE_TESTS",
+    "memory_v09_integrated": false,
+    "new_empirical_spanish_sources_admitted": 0,
+    "new_endpoints": 0,
+    "new_scientific_AB_R_cycles": 0,
+    "protected_other_checkout_modified": false,
+    "public_deployment_authorized": false,
+    "regular_windows_symlink_protection": "NOT_VERIFIED_WINERROR_1314_PREVIOUS_SCOPE",
+    "release_gates_passed": 0,
+    "release_gates_total": 6,
+    "retention_rights_or_consent_certified": false,
+    "s9_docx_modified": false,
+    "s9_snapshot_and_pair_contract_modified": false,
+    "sha_proves_authenticity_or_human_identity": false,
+    "source_rights_or_authenticity_certified": false,
+    "sqlite_schema_or_revision_contract_modified": false,
+    "synthetic_harness_outputs_count_as_human": false
+  },
+  "new_capability_contract_not_prepatch_bug": {
+    "ability_to_infer_human_participation": false,
+    "action": "--record-form SOURCE_V2_JSON SUCCESSOR_V2_JSON OPxx TECH A_OR_B UX",
+    "canonical_scoring_and_rubric_unchanged": true,
+    "evaluation_provenance": [
+      "coded_input_sha256",
+      "coded_input_bytes"
+    ],
+    "form_version_and_hashes_preserved": true,
+    "input_schema": "pfl.beta_science_operator_observations.v2",
+    "one_task_per_successor": true,
+    "reader": "single_bounded_UTF8_read_exact_bytes_are_hashed_then_parsed",
+    "receipt_in_stdout": [
+      "source_sha256",
+      "destination_sha256",
+      "destination_bytes",
+      "form_reference",
+      "task_id"
+    ],
+    "repeat_task": "OPERATOR_OBSERVATION_ALREADY_RECORDED",
+    "scientific_codes": [
+      "A",
+      "B",
+      "NOT_OBSERVED"
+    ],
+    "scientific_veto_without_completed_technical": true,
+    "source_mutation": false,
+    "successor_write": "NEW_UTF8_EXCLUSIVE_XB_OUTSIDE_GIT_NO_NTFS_ADS",
+    "task_count": 12,
+    "technical_statuses": [
+      "TECH_COMPLETED",
+      "TECH_FAILED",
+      "TECH_BLOCKED",
+      "NOT_OBSERVED"
+    ],
+    "user_pii_and_extra_fields_rejected": true
+  },
+  "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+  "prepatch_real_falsifiers": [
+    {
+      "after": "v2 receipt has coded_input_sha256 and coded_input_bytes for raw bytes parsed",
+      "before": "v2 EVALUATE only bound private rubric/handout SHA, not exact coded source bytes",
+      "diagnostic": "KeyError: coded_input_sha256",
+      "result": "1_FAILED_BEFORE_PRODUCT_EDIT",
+      "test": "test_prepatch_red_v2_evaluation_binds_exact_source_bytes",
+      "test_receipt": "completed_session_id=51395"
+    },
+    {
+      "after": "--prepare-form rejects same participant parent for both coded source and private rubric",
+      "before": "--prepare-form accepted private-coded-observation file in participant HTML parent",
+      "diagnostic": "assert rc == 1 actual rc == 0",
+      "result": "1_FAILED_23_DESELECTED_BEFORE_PRODUCT_EDIT",
+      "test": "test_prepatch_red_v2_coded_observations_must_not_share_participant_folder",
+      "test_receipt": "completed_session_id=36507"
+    }
+  ],
+  "schema": "pfl.beta_operator_coded_revision_receipt.v1",
+  "scope": "LOCAL_SYNTHETIC_SUPERVISED_V2_CODED_OBSERVATION_REVISION_NONCYCLE",
+  "verified_checks": {
+    "clean_committed_head": "REVERIFY_AFTER_PUBLICATION",
+    "combined_python_focal": {
+      "failed": 0,
+      "passed": 133,
+      "skipped": 0
+    },
+    "guest_url_fields": 7,
+    "integrated_worktree": {
+      "chrome_accessibility": 1,
+      "chrome_s9": 1,
+      "execution_source_kind": "UNCOMMITTED_WORKTREE",
+      "node": 120,
+      "passed": 510,
+      "python": 388,
+      "status": "PASS",
+      "working_tree_modified_at_execution": true
+    },
+    "new_test": "tests/test_beta_operator_coded_revision.py",
+    "new_test_focal_passed": 36,
+    "offline_sha_download": "REUSED_PUBLISHED_NATIVE_CDP_AND_OFFLINE_CHECKS",
+    "old_port_dead_and_new_port_bookmark_verified": true,
+    "real_science_only_processes": 2,
+    "runtime_human_observations": 0,
+    "s9_views": "8_REUSED_PUBLISHED_NATIVE_CDP",
+    "shared_disposable_scientific_sqlite_unchanged": true
+  }
+}

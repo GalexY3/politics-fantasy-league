@@ -428,6 +428,31 @@ def test_v2_prepare_form_rejects_unsafe_three_file_destinations_atomically(
     assert "correct_answer_code" not in raw
 
 
+def test_prepatch_red_v2_coded_observations_must_not_share_participant_folder(
+    tmp_path: Path,
+):
+    """A participant-readable folder must not receive private coded responses.
+
+    This is a real privacy boundary in the three-artifact generator, not a
+    new questionnaire, user identity or OS-ACL assertion.
+    """
+    public = tmp_path / "public participant"
+    private = tmp_path / "private supervisor"
+    public.mkdir()
+    private.mkdir()
+    session = public / "private-coded-observations-misplaced.json"
+    handout = public / "participant-handout.html"
+    rubric = private / "private-operator-rubric.json"
+    rc, rejected, raw = run_cli("--prepare-form", session, handout, rubric)
+    assert rc == 1
+    assert rejected["status"] == "OPERATOR_REJECTED"
+    assert rejected["error_code"] == "OPERATOR_FORM_KEY_NOT_SEPARATED"
+    assert not session.exists() and not handout.exists() and not rubric.exists()
+    assert not any(public.iterdir()) and not any(private.iterdir())
+    for path in (session, handout, rubric):
+        assert str(path) not in raw
+
+
 def test_v2_evaluate_form_output_write_once_outside_git_and_no_ads(
     tmp_path: Path,
 ):

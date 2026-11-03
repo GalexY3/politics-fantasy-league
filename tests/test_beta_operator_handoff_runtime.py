@@ -241,22 +241,37 @@ def test_operator_reboot_rebind_and_export_synthetic_coded_session(tmp_path: Pat
             v2_body["handout_sha256"])
         assert "SCI_OP" not in v2_handout.read_text(encoding="utf-8")
         v2_correct = v2_key["tasks"][0]["correct_answer_code"]
-        v2_body["observations"][0].update(
-            technical="TECH_COMPLETED", scientific=v2_correct,
-            usability="UX_CLEAR")
-        v2_body["observations"][8].update(
-            technical="TECH_BLOCKED", scientific="NOT_OBSERVED",
-            usability="UX_BLOCKED")
-        v2_source.write_bytes(
-            (json.dumps(v2_body, sort_keys=True, separators=(",", ":"),
-                        ensure_ascii=True) + "\n").encode("utf-8"))
+        v2_root_bytes = v2_source.read_bytes()
+        v2_revision1 = v2_private / "revision 1 completada.json"
+        v2_revision2 = v2_private / "revision 2 bloqueada.json"
+        rc, recorded1, recorded1_raw = _protocol_with_raw(
+            "--record-form", v2_source, v2_revision1,
+            "OP01", "TECH_COMPLETED", v2_correct, "UX_CLEAR")
+        assert rc == 0 and recorded1["status"] == (
+            "OPERATOR_FORM_OBSERVATION_RECORDED")
+        _assert_no_path_or_people(
+            recorded1_raw, v2_source, v2_revision1)
+        assert recorded1["source_sha256"] == hashlib.sha256(
+            v2_root_bytes).hexdigest()
+        assert v2_source.read_bytes() == v2_root_bytes
+        rc, recorded2, recorded2_raw = _protocol_with_raw(
+            "--record-form", v2_revision1, v2_revision2,
+            "OP09", "TECH_BLOCKED", "NOT_OBSERVED", "UX_BLOCKED")
+        assert rc == 0 and recorded2["status"] == (
+            "OPERATOR_FORM_OBSERVATION_RECORDED")
+        _assert_no_path_or_people(
+            recorded2_raw, v2_revision1, v2_revision2)
+        assert recorded2["source_sha256"] == recorded1["destination_sha256"]
+        assert v2_source.read_bytes() == v2_root_bytes
         rc, v2_receipt, v2_raw = _protocol_with_raw(
-            "--evaluate-form", v2_source, v2_rubric, v2_output)
+            "--evaluate-form", v2_revision2, v2_rubric, v2_output)
         assert rc == 0 and v2_receipt["status"] == (
             "OPERATOR_FORM_EVALUATION_EXPORTED")
         _assert_no_path_or_people(
-            v2_raw, v2_source, v2_rubric, v2_output)
+            v2_raw, v2_revision2, v2_rubric, v2_output)
         v2_result = json.loads(v2_output.read_text(encoding="utf-8"))
+        assert v2_result["coded_input_sha256"] == recorded2["destination_sha256"]
+        assert v2_result["coded_input_bytes"] == len(v2_revision2.read_bytes())
         assert v2_result["instrument_binding"] == (
             "MATCHED_V2_FORM_AND_RUBRIC")
         assert v2_result["rollup"]["technical"]["TECH_COMPLETED"] == 1
