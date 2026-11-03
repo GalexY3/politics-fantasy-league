@@ -365,6 +365,21 @@ y los criterios reservados al operador mediante comandos independientes:
     python -B scripts/beta_science_operator_protocol.py --self-check
     python -B scripts/beta_science_operator_protocol.py --participant-sheet
     python -B scripts/beta_science_operator_protocol.py --template
+    python -B scripts/beta_science_operator_protocol.py --new-session RUTA_JSON_EXTERNA
+
+La hoja del participante muestra opciones A/B opacas, no los códigos
+SCI que revelan contenido ni una posición sistemática de la respuesta
+correcta. Solo la rúbrica del operador relaciona A/B con SCI_OPxx.
+La nueva ficha contiene las doce tareas OP01--OP12 con todos los valores
+NOT_OBSERVED; por sí misma no prueba participación.
+
+Para Windows PowerShell 5.1, usar --new-session y no redirigir
+--blank-session con el operador de shell >: esa redirección puede
+escribir UTF-16LE, incompatible con el contrato JSON UTF-8. La ruta
+de salida debe existir solo como ubicación elegida FUERA del checkout
+y la CLI no sobrescribe ficheros existentes. No imprime esa ruta ni
+resultados humanos.
+
 
 El registro voluntario se limita a un JSON local con esquema cerrado
 pfl.beta_science_operator_observations.v1 y observaciones de cuatro
@@ -376,6 +391,14 @@ nombres, capturas, direcciones, tiempos ni texto libre. Para evaluar una
 ficha local voluntaria, fuera del repositorio:
 
     python -B scripts/beta_science_operator_protocol.py --evaluate "RUTA_JSON_VOLUNTARIA"
+
+La evaluación exige exactamente doce IDs de tarea, admitiendo
+NOT_OBSERVED en tareas individuales. La ausencia de cualquier tarea
+produce OPERATOR_SESSION_INCOMPLETE; una ficha con todas
+NOT_OBSERVED produce OPERATOR_NO_OBSERVATIONS. Una tarea no completada
+técnicamente no admite respuesta científica, ni correcta ni
+incorrecta. Una respuesta humana no se deduce de los checkpoints
+automáticos.
 
 Este comando emite solo conteos y códigos seguros. No infiere
 participantes ni índices de satisfacción; el operador deberá

@@ -5,6 +5,8 @@ diagnostic, empirical admission or a release gate. No identities are collected.
 
   python -B scripts/beta_science_operator_protocol.py --template
   python -B scripts/beta_science_operator_protocol.py --participant-sheet
+  python -B scripts/beta_science_operator_protocol.py --blank-session
+  python -B scripts/beta_science_operator_protocol.py --new-session outside_repo.json
   python -B scripts/beta_science_operator_protocol.py --evaluate input.json
   python -B scripts/beta_science_operator_protocol.py --self-check
 """
@@ -12,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 INPUT_SCHEMA = "pfl.beta_science_operator_observations.v1"
@@ -19,6 +22,7 @@ TEMPLATE_SCHEMA = "pfl.beta_science_operator_template.v1"
 PARTICIPANT_SHEET_SCHEMA = "pfl.beta_science_operator_participant_sheet.v1"
 RESULT_SCHEMA = "pfl.beta_science_operator_evaluation.v1"
 SELF_SCHEMA = "pfl.beta_science_operator_self_check.v1"
+NEW_SESSION_SCHEMA = "pfl.beta_science_operator_session_creation.v1"
 MAX_INPUT_BYTES = 16384
 MISSING = "NOT_OBSERVED"
 TECH_CODES = ("TECH_COMPLETED", "TECH_BLOCKED", "TECH_FAILED", MISSING)
@@ -148,15 +152,20 @@ SPECS = (
 def _task(spec: tuple) -> dict:
     (tid, machine, area, title, action, technical, question, correct,
      wrong, correct_meaning, wrong_meaning, explanation, usability) = spec
+    # Alternate the keyed correct option across A/B in a deterministic,
+    # reproducible 6/6 balance. The operator SCI_* codes are unchanged.
+    options = [
+        {"code": "SCI_" + tid + "_" + correct, "meaning": correct_meaning},
+        {"code": "SCI_" + tid + "_" + wrong, "meaning": wrong_meaning},
+    ]
+    if int(tid[2:]) % 2 == 0:
+        options.reverse()
     return {
         "task_id": tid, "technical_task_ids": list(machine), "area": area,
         "title": title, "operator_action": action,
         "technical_success_criterion": technical,
         "scientific_question": question,
-        "scientific_options": [
-            {"code": "SCI_" + tid + "_" + correct, "meaning": correct_meaning},
-            {"code": "SCI_" + tid + "_" + wrong, "meaning": wrong_meaning},
-        ],
+        "scientific_options": options,
         "correct_answer_code": "SCI_" + tid + "_" + correct,
         "scientific_explanation": explanation,
         "usability_observation_criterion": usability,
@@ -224,7 +233,15 @@ def template() -> dict:
         "schema": TEMPLATE_SCHEMA,
         "status": "OPERATOR_TEMPLATE_ONLY", "R5": "STOP_R5",
         "scope": "LOCAL_SYNTHETIC_BETA_NO_GATE",
-        "task_count": len(TASKS), "tasks": list(TASKS),
+        "task_count": len(TASKS),
+        "tasks": [{
+            **item,
+            "participant_option_to_scientific_code": {
+                label: option["code"]
+                for label, option in zip(
+                    ("A", "B"), item["scientific_options"], strict=True)
+            },
+        } for item in TASKS],
         "input_contract": {
             "schema": INPUT_SCHEMA,
             "top_level_fields": ["schema", "observations"],
@@ -232,15 +249,22 @@ def template() -> dict:
             "technical_codes": list(TECH_CODES),
             "scientific_codes": "task-specific scientific_options or NOT_OBSERVED",
             "usability_codes": list(UX_CODES),
-            "omitted_task": MISSING,
+            "omitted_task": "OPERATOR_SESSION_INCOMPLETE",
             "response_type": "CLOSED_CODES_ONLY",
+            "participant_option_mapping": (
+                "A and B correspond to positions 0 and 1 in the operator "
+                "scientific_options array. --evaluate accepts the operator SCI_* "
+                "codes, not participant A/B labels."
+            ),
         },
         "instructions": (
             "Operator rubric, NOT a participant record. Use closed codes only. "
             "Do not collect identifiers, timestamps, free text, full URLs, IPs, "
             "credentials, cookies or file paths. For unknown observations use "
-            "NOT_OBSERVED; never impute a participant. technical_task_ids are "
-            "automation identifiers for alignment, NOT evidence of human work."
+            "NOT_OBSERVED explicitly for each unobserved dimension in all "
+            "12 tasks; never impute a participant. A blank or all-unobserved "
+            "session is NOT completed. technical_task_ids are automation "
+            "identifiers for alignment, NOT evidence of human work."
         ),
     }
 
@@ -253,11 +277,109 @@ def participant_sheet() -> dict:
     grading criterion, machine IDs or usability rubric from the operator
     template. The handout is a blank instrument, not a participant record.
     """
-    fields = ("task_id", "operator_action",
-              "scientific_question", "scientific_options")
     return {
         "schema": PARTICIPANT_SHEET_SCHEMA,
-        "tasks": [{key: item[key] for key in fields} for item in TASKS],
+        "tasks": [{
+            "task_id": item["task_id"],
+            "operator_action": item["operator_action"],
+            "scientific_question": item["scientific_question"],
+            "scientific_options": [
+                {"code": label, "meaning": option["meaning"]}
+                for label, option in zip(
+                    ("A", "B"), item["scientific_options"], strict=True)
+            ],
+        } for item in TASKS],
+    }
+
+
+def blank_session() -> dict:
+    """Emit a local editable JSON skeleton; do not create a file or session."""
+    return {
+        "schema": INPUT_SCHEMA,
+        "observations": [{
+            "task_id": item["task_id"],
+            "technical": MISSING,
+            "scientific": MISSING,
+            "usability": MISSING,
+        } for item in TASKS],
+    }
+
+
+def _within(path: Path, root: Path) -> bool:
+    """Inclusive local path containment with native Windows case handling."""
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
+
+
+def _inside_git_worktree(parent: Path) -> bool:
+    # Also refuse other checkout roots, not just this instrument's own tree.
+    return any(os.path.lexists(ancestor / ".git")
+               for ancestor in (parent, *parent.parents))
+
+
+def new_session(path: str) -> dict:
+    """Create a blank UTF-8 JSON file outside the checkout, never overwrite.
+
+    Inspect both the lexical destination and the resolved parent so an
+    in-checkout name or an external directory link into the checkout cannot
+    bypass the guard. Validate before opening; no mkdir, no network, no output
+    containing the supplied path or an operating-system exception.
+    """
+    checkout = Path(__file__).resolve(strict=True).parents[1]
+    checkout_lexical = Path(os.path.abspath(__file__)).parents[1]
+    if not path or "\x00" in path:
+        raise ProtocolError("OPERATOR_SESSION_PATH_INVALID")
+    try:
+        destination = Path(os.path.abspath(path))
+        if (not destination.name or
+                _within(destination, checkout) or
+                _within(destination, checkout_lexical)):
+            raise ProtocolError("OPERATOR_SESSION_PATH_FORBIDDEN")
+        parent = destination.parent
+        if not parent.is_dir():
+            raise ProtocolError("OPERATOR_SESSION_PARENT_UNAVAILABLE")
+        resolved_parent = parent.resolve(strict=True)
+        if (_within(resolved_parent, checkout) or
+                _within(resolved_parent, checkout_lexical)
+                or destination.name == ".git"
+                or _inside_git_worktree(parent)
+                or _inside_git_worktree(resolved_parent)):
+            raise ProtocolError("OPERATOR_SESSION_PATH_FORBIDDEN")
+        if os.path.lexists(destination):
+            raise ProtocolError("OPERATOR_SESSION_EXISTS")
+    except ProtocolError:
+        raise
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise ProtocolError("OPERATOR_SESSION_PATH_INVALID") from exc
+    bytes_to_write = (json_line(blank_session()) + "\n").encode("utf-8")
+    if len(bytes_to_write) > MAX_INPUT_BYTES:
+        raise ProtocolError("OPERATOR_INSTRUMENT_INVALID")
+    created = False
+    try:
+        # 'xb' is mandatory: atomic create-only; never read or overwrite.
+        with destination.open("xb") as stream:
+            created = True
+            stream.write(bytes_to_write)
+    except FileExistsError as exc:
+        raise ProtocolError("OPERATOR_SESSION_EXISTS") from exc
+    except OSError as exc:
+        if created:
+            try:
+                destination.unlink()
+            except OSError:
+                pass
+        raise ProtocolError("OPERATOR_SESSION_WRITE_FAILED") from exc
+    return {
+        "schema": NEW_SESSION_SCHEMA,
+        "status": "OPERATOR_SESSION_CREATED",
+        "encoding": "UTF-8",
+        "tasks_defined": len(TASKS),
+        "participant_count": None,
+        "participants_observed": False,
+        "R5": "STOP_R5",
     }
 
 
@@ -291,11 +413,19 @@ def parse_input(value: object) -> dict[str, dict]:
                 and item["scientific"] != MISSING):
             raise ProtocolError("OPERATOR_INPUT_INVALID")
         found[ident] = item
+    if len(found) != len(TASKS):
+        raise ProtocolError("OPERATOR_SESSION_INCOMPLETE")
     return found
 
 
 def evaluate(value: object) -> dict:
     observations = parse_input(value)
+    if not any(
+        any(entry[field] != MISSING for field in
+            ("technical", "scientific", "usability"))
+        for entry in observations.values()
+    ):
+        raise ProtocolError("OPERATOR_NO_OBSERVATIONS")
     counts = {
         "technical": {code: 0 for code in TECH_CODES},
         "scientific": {code: 0 for code in SCI_CLASSES},
@@ -358,6 +488,8 @@ def main(argv: list[str] | None = None) -> int:
     exclusive = parser.add_mutually_exclusive_group(required=True)
     exclusive.add_argument("--template", action="store_true")
     exclusive.add_argument("--participant-sheet", action="store_true")
+    exclusive.add_argument("--blank-session", action="store_true")
+    exclusive.add_argument("--new-session", metavar="JSON_FILE")
     exclusive.add_argument("--evaluate", metavar="JSON_FILE")
     exclusive.add_argument("--self-check", action="store_true")
     try:
@@ -367,6 +499,10 @@ def main(argv: list[str] | None = None) -> int:
             result = template()
         elif args.participant_sheet:
             result = participant_sheet()
+        elif args.blank_session:
+            result = blank_session()
+        elif args.new_session is not None:
+            result = new_session(args.new_session)
         elif args.self_check:
             result = {
                 "schema": SELF_SCHEMA, "status": "OPERATOR_INSTRUMENT_VALID",

@@ -1,5 +1,5 @@
 {
-  "revision": 54,
+  "revision": 55,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1583,5 +1583,50 @@
     "public_beta_authorized": false,
     "operator_guide": "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md",
     "receipt": "docs/BETA_OPERATOR_TASK_ACCEPTANCE_RECEIPT_20261103.json"
+  },
+  "local_beta_supervised_session_workflow": {
+    "date": "2026-11-03",
+    "baseline_published_head": "9e676fbf4ced20124c38cabd3593f018fd0f8f2d",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_SUPERVISED_OPERATOR_SESSION_CLOSED_AND_NO_ANSWER_LEAK",
+    "existing_instrument_reused": "scripts/beta_science_operator_protocol.py",
+    "new_product_api_endpoints": 0,
+    "new_scientific_sqlite_migrations": 0,
+    "participant_sheet_blind_ab_choices": true,
+    "participant_correct_positions_A": 6,
+    "participant_correct_positions_B": 6,
+    "operator_key_stays_separate": true,
+    "session_requires_12_explicit_task_ids": true,
+    "omitted_session_tasks_fail_closed": true,
+    "all_not_observed_session_not_reported_complete": true,
+    "no_comprehension_without_tech_completed": true,
+    "new_session_utf8_outside_repo_write_once": true,
+    "powershell_5_1_utf16_redirect_failure_reproduced_prepatch": true,
+    "human_protocol_48_malformed_accent_words_fixed": true,
+    "prepatch_red_tests": [
+      "test_prepatch_red_participant_sheet_opaque_balanced_ab_without_answer_leaks",
+      "test_prepatch_red_empty_observation_list_must_be_incomplete"
+    ],
+    "python_supervised_runtime": "tests/test_beta_supervised_runtime.py",
+    "real_science_only_processes": 2,
+    "same_disposable_sqlite": true,
+    "live_doctor_old_dead_port_and_new_url_verified": true,
+    "exact_guest_url_seven_fields": true,
+    "eight_s9_views_closed": true,
+    "chrome_previous_observable_task_instrument_preserved": true,
+    "human_participants_observed": 0,
+    "human_acceptance_completed": false,
+    "human_success_rates_calculated": false,
+    "operator_observations_never_uploaded": true,
+    "state": "READY_REVIEW",
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "real_spanish_empirical_sources_admitted": 0,
+    "external_rights_or_publisher_authenticity_admitted": false,
+    "docx_s9_modified": false,
+    "public_beta_authorized": false,
+    "guide": "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md",
+    "receipt": "docs/BETA_OPERATOR_SESSION_WORKFLOW_RECEIPT_20261103.json"
   }
 }

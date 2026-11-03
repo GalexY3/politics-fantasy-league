@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from types import SimpleNamespace
+from pathlib import Path
+import re
 
 import pytest
 
@@ -122,3 +124,24 @@ def test_runner_rejects_skipped_native_chrome_in_python_stage(monkeypatch):
         "status": "FAILED",
         "error": "REQUIRED_PYTHON_TEST_SKIPPED",
     }
+
+
+def test_supervised_operator_document_is_readable_and_never_claims_human_results():
+    # PREPATCH bug: 48 Spanish accented terms replaced by stray grave marks.
+    guide = (Path(__file__).resolve().parents[1] /
+             "docs" / "BETA_HUMAN_ACCEPTANCE_PROTOCOL.md").read_text(encoding="utf-8")
+    assert not re.search(r"[A-Za-z]" + chr(96) + r"[A-Za-z]+", guide)
+    # Stray accents at word boundaries were missed by the first regression.
+    for malformed in ("`nico", "`nicos", "`xito", "funcion`", "requerir`"):
+        assert malformed not in guide, f"Uncorrected document encoding: {malformed}"
+    assert "aceptaci\u00f3n" in guide
+    assert "Ninguna persona ha participado" in guide
+    assert "NOT_OBSERVED" in guide
+    assert "R5 permanece STOP_R5" in guide
+    assert "scripts/beta_science_operator_protocol.py" in guide
+    assert all(item in guide for item in (
+        "LAB_B0_B3", "LAB_S3_TEMPORAL", "LAB_S7_20",
+        "LAB_S8_DESCRIPTORS", "S9_EIGHT_TABS", "S9_FAMILY_SCOPE",
+        "S9_TEMPORAL_COMPARE", "S9_SINGLE_EXPORT_OFFLINE",
+        "S9_PAIR_EXPORT_OFFLINE", "RESTART_DOCTOR_GUEST_LINK",
+    ))
