@@ -166,6 +166,17 @@ No se ha ejecutado una comprobación positiva con dos tokens humanos
 independientes. Los tres archivos se crean
 exclusivamente, sin sobreescribir; si se detecta un error recuperable
 durante la creación se intenta revertir solo los ficheros nuevos.
+La preparación de tres salidas incluye una garantía adicional ante
+errores recuperables: el publicador comunica al coordinador el inode
+original de cada archivo **antes** de la inspección posterior por ruta.
+Un `PermissionError` después de escribir y fsync/publicar el HTML ya
+no deja la hoja pública huérfana mientras retrocede ficha y rúbrica.
+La reversión compara identidades; en Windows emplea eliminación por
+HANDLE del objeto propio, no por ruta vulnerable a reemplazo. Si otro
+inode ocupa el nombre final se rechaza la operación sin borrar ese
+objeto ajeno. No equivale a atomicidad de los tres archivos ante cortes
+bruscos, ni certifica la ausencia de aliases creados por el mismo token
+después de publicarlos.
 Una preparación con dos directorios privados diferentes se rechaza
 ahora con `OPERATOR_FORM_PRIVATE_PARENTS_MISMATCH`, antes de escribir:
 de otro modo `--prepare-form` aceptaba archivos que el contrato de

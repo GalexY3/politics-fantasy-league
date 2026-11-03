@@ -118,6 +118,18 @@ cambian**. Para evaluarla, la supervisora debe colocar una copia
 `rubric_sha256` y continuar usando las rutas de esa carpeta.
 No ejecutar `--prepare-form` otra vez para sustituirla ni considerar
 que esa copia prueba por sí sola cuándo se distribuyó el formulario.
+El publicador v2 comunica al coordinador de `--prepare-form` la identidad
+del inode **capturada en el descriptor de escritura** nada más completar
+cada archivo, antes de una consulta `stat` posterior por nombre. Si falla
+una comprobación de metadatos después de escribir la tercera hoja HTML,
+la reversión conoce ya las tres identidades y retira solamente sus
+propios nombres, por HANDLE en Windows. Antes de esta corrección,
+un `PermissionError` inmediatamente después del HTML podía dejar
+la hoja pública huérfana mientras se eliminaban ficha y rúbrica.
+Se conserva la comprobación de que el nombre siga apuntando al inode
+creado: un reemplazo por un archivo de un tercero no autoriza borrarlo.
+La reversión de errores recuperables **no** garantiza una transacción
+de tres ficheros ante un apagón o intervención de otro proceso.
 La operación `--prepare-form` genera tres ficheros UTF-8 propios de
 **una sola versión v2**, con asignación real de posiciones correctas
 A/B obtenida mediante CSPRNG y equilibrada 6/6. No reutilizar un formulario

@@ -799,7 +799,9 @@ def _unlink_matching_inode(path: Path, expected: tuple[int, int]) -> bool:
 
 def _write_external_utf8(path: str, content: str, *, maximum: int,
                          error_prefix: str,
-                         private_output: bool = False) -> tuple[int, str]:
+                         private_output: bool = False,
+                         published_files: list[tuple[Path, int, int]] | None = None
+                         ) -> tuple[int, str]:
     """Publish only complete, fsynced UTF-8 bytes under a new final name.
 
     Stage a private randomly named file in the same directory, fsync it,
@@ -893,6 +895,12 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
                     os.close(descriptor)
             except (OSError, AttributeError):
                 pass
+        # The caller coordinating a multi-file form must record ownership
+        # before it performs ANY further pathname/stat operation. The inode
+        # comes from the audited descriptor, never a later pathname snapshot.
+        # This does not make the three writes crash-atomic.
+        if published_files is not None:
+            published_files.append((destination, *stage_identity))
     except FileExistsError as exc:
         raise ProtocolError(error_prefix + "_EXISTS") from exc
     except OSError as exc:
@@ -1171,17 +1179,17 @@ def prepare_form(session_path: str, participant_html_path: str,
                 maximum=MAX_HANDOUT_BYTES if dest != locations[0] else MAX_INPUT_BYTES,
                 error_prefix="OPERATOR_FORM",
                 private_output=dest != locations[1],
+                published_files=created,
             )
-            stat = dest.stat()
-            created.append((dest, stat.st_dev, stat.st_ino))
+            # A postpublication metadata failure can occur after a valid
+            # write. The name is already registered for identity-bound
+            # rollback; also refuse a name changed since publication.
+            observed = dest.stat()
+            if (observed.st_dev, observed.st_ino) != created[-1][1:]:
+                raise ProtocolError("OPERATOR_FORM_PUBLICATION_IDENTITY_CHANGED")
     except (ProtocolError, OSError) as exc:
         for dest, dev, ino in reversed(created):
-            try:
-                stat = dest.stat()
-                if stat.st_dev == dev and stat.st_ino == ino:
-                    dest.unlink()
-            except OSError:
-                pass
+            _unlink_matching_inode(dest, (dev, ino))
         if isinstance(exc, ProtocolError):
             raise
         raise ProtocolError("OPERATOR_FORM_WRITE_FAILED") from exc
