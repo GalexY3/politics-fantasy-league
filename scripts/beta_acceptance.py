@@ -29,6 +29,8 @@ PYTHON_TESTS = (
     "tests/test_beta_operator_artifact_security.py",
     "tests/test_beta_operator_private_read_race.py",
     "tests/test_beta_operator_private_write_race.py",
+    "tests/test_beta_operator_private_ads_sources.py",
+    "tests/test_beta_operator_private_stage_after_link.py",
     "tests/test_beta_operator_stage_inode_integrity.py",
     "tests/test_beta_operator_destination_alias_race.py",
     "tests/test_beta_operator_atomic_publish.py",

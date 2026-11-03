@@ -649,6 +649,11 @@ def _read_private_json_with_bytes(path: str) -> tuple[object, bytes]:
     fd = None
     try:
         candidate = Path(path)
+        # A named NTFS alternate data stream has distinct bytes but shares
+        # its base file's inode and ACL. Descriptor/inode checks cannot
+        # distinguish that alias; reject it before any source is read.
+        if os.name == "nt" and ":" in candidate.name:
+            raise ProtocolError("OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN")
         if (candidate.is_symlink()
                 or (hasattr(candidate, "is_junction")
                     and candidate.is_junction())):
@@ -730,6 +735,68 @@ def new_private_dir(path: str) -> dict:
     return {**result, "status": "OPERATOR_PRIVATE_DIR_CREATED"}
 
 
+def _unlink_matching_inode(path: Path, expected: tuple[int, int]) -> bool:
+    """Remove only the exact inode created by this writer.
+
+    On Windows, use DELETE authority on a freshly opened *file HANDLE*,
+    audit its fstat identity, and delete through SetFileInformationByHandle.
+    The handle binds the deletion to the object even if a concurrent rename
+    later substitutes the pathname. POSIX has no equivalent in this portable
+    path and uses a best-effort identity check immediately before unlink.
+    """
+    if os.name == "nt":
+        try:
+            import msvcrt
+            from ctypes import wintypes
+            kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+            kernel.CreateFileW.argtypes = (
+                wintypes.LPCWSTR, wintypes.DWORD, wintypes.DWORD,
+                ctypes.c_void_p, wintypes.DWORD, wintypes.DWORD, wintypes.HANDLE)
+            kernel.CreateFileW.restype = wintypes.HANDLE
+            kernel.SetFileInformationByHandle.argtypes = (
+                wintypes.HANDLE, ctypes.c_int, ctypes.c_void_p, wintypes.DWORD)
+            kernel.SetFileInformationByHandle.restype = wintypes.BOOL
+            kernel.CloseHandle.argtypes = (wintypes.HANDLE,)
+            kernel.CloseHandle.restype = wintypes.BOOL
+
+            class FileDispositionInfo(ctypes.Structure):
+                _fields_ = [("delete_file", ctypes.c_ubyte)]
+
+            handle = kernel.CreateFileW(
+                str(path), 0x00010000 | 0x00000080,  # DELETE, READ_ATTRIBUTES
+                0x7, None, 3, 0x00200000, None)  # all shares, OPEN_REPARSE_POINT
+            if handle in (None, ctypes.c_void_p(-1).value):
+                return False
+            fd = None
+            try:
+                fd = msvcrt.open_osfhandle(handle, os.O_RDONLY)
+                handle = None  # CRT descriptor now owns the native handle.
+                actual = os.fstat(fd)
+                if (not stat.S_ISREG(actual.st_mode)
+                        or (actual.st_dev, actual.st_ino) != expected):
+                    return False
+                delete = FileDispositionInfo(1)
+                return bool(kernel.SetFileInformationByHandle(
+                    wintypes.HANDLE(msvcrt.get_osfhandle(fd)), 4,
+                    ctypes.byref(delete), ctypes.sizeof(delete)))
+            finally:
+                if fd is not None:
+                    os.close(fd)
+                elif handle not in (None, ctypes.c_void_p(-1).value):
+                    kernel.CloseHandle(handle)
+        except (OSError, ValueError, TypeError, AttributeError):
+            return False
+    try:
+        current = path.lstat()
+        if (not stat.S_ISREG(current.st_mode)
+                or (current.st_dev, current.st_ino) != expected):
+            return False
+        path.unlink()
+        return True
+    except OSError:
+        return False
+
+
 def _write_external_utf8(path: str, content: str, *, maximum: int,
                          error_prefix: str,
                          private_output: bool = False) -> tuple[int, str]:
@@ -783,12 +850,14 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
                 _private_directory_status(destination.parent)
         os.link(stage, destination)
         linked = True
+        # Never learn ownership from a pathname *after* publication: another
+        # inode may have replaced the final name in the intervening instant.
+        linked_identity = stage_identity
         # A create-only hardlink can otherwise bind a DIFFERENT stage inode
         # (or modified bytes) if the stage pathname was exchanged after fsync.
         # The returned receipt must be about the actual published bytes,
         # not merely our earlier write. Keep the stage alias until verified.
         published = destination.stat()
-        linked_identity = (published.st_dev, published.st_ino)
         stage_now = stage.stat()
         with destination.open("rb") as persisted:
             opened = os.fstat(persisted.fileno())
@@ -809,7 +878,8 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
                     destination, require_protected=False):
                 raise ProtocolError("OPERATOR_PRIVATE_OUTPUT_UNVERIFIED")
             _private_directory_status(destination.parent)
-        stage.unlink()
+        if not _unlink_matching_inode(stage, stage_identity):
+            raise ProtocolError(error_prefix + "_STAGE_ALIAS_CHANGED")
         stage_created = False
         # On POSIX directory fsync makes the rename/link durable across an
         # orderly power failure when supported; Windows file data was fsynced,
@@ -830,19 +900,11 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
     finally:
         if stage_created and stage_identity is not None:
             try:
-                # The final name was created by our successful os.link().
-                # During failure, clean only the inode observed immediately
-                # after that link; never unlink a later third-party replacement.
+                # Both removes are identity-bound; Windows deletion is issued
+                # to the actual open handle, never a third-party replacement.
                 if linked and linked_identity is not None:
-                    try:
-                        current = destination.stat()
-                        if (current.st_dev, current.st_ino) == linked_identity:
-                            destination.unlink()
-                    except OSError:
-                        pass
-                identity = stage.stat()
-                if (identity.st_dev, identity.st_ino) == stage_identity:
-                    stage.unlink()
+                    _unlink_matching_inode(destination, linked_identity)
+                _unlink_matching_inode(stage, stage_identity)
             except OSError:
                 pass
     return len(bytes_to_write), hashlib.sha256(bytes_to_write).hexdigest()

@@ -39,6 +39,13 @@ la DACL del **mismo HANDLE** mediante `GetSecurityInfo`, y los bytes
 se consumen por ese descriptor, nunca reabriendo la ruta tras la
 auditoría. Una sustitución de inode entre inspección y apertura se
 rechaza antes de registrar una revisión o publicar puntuaciones.
+En NTFS, un archivo `ficha.json:stream` puede compartir inode y DACL
+con `ficha.json` mientras contiene bytes diferentes: el lector privado
+v2 rechaza **también los ADS de origen**, no solo los destinos ADS, con
+`OPERATOR_PRIVATE_FILE_ALIAS_FORBIDDEN`. Se comprobó con streams
+alternativos reales de ficha codificada y rúbrica, sin alterar los
+archivos base. No considerar las mismas identidad y ACL de un ADS
+como evidencia de que sus bytes proceden de la ficha autorizada.
 Para las salidas privadas v2, el publicador audita también la DACL del
 archivo temporal recién abierto mediante su HANDLE **antes de escribir**,
 revalida permisos de archivo/carpeta antes de enlazar el nombre final y
@@ -50,6 +57,20 @@ sustituye o su contenido cambia antes del hardlink, devuelve
 `OPERATOR_*_PUBLISHED_BYTES_MISMATCH` y retira solamente el
 nombre final cuyo inode corresponde al enlace que acaba de crear.
 El SHA de salida no depende solo de la intención de escritura.
+La retirada de nombres stage/final se hace en Windows sobre un
+`HANDLE` obtenido con autorización de borrado, tras comparar el
+`fstat` de ese HANDLE con el inode original del escritor; se aplica
+`SetFileInformationByHandle(FileDispositionInfo)` al objeto abierto.
+Así, un reemplazo del nombre del destino **después** del hardlink
+no se toma como identidad propia y no se borra un inode ajeno;
+una sustitución del alias stage tampoco puede ocasionar que el
+escritor borre otro archivo por nombre. En POSIX el equivalente
+portátil disponible aquí solo comprueba `lstat` inmediatamente
+antes de `unlink`: no se certifica una operación atómica
+comparar-inode-y-borrar frente a otra identidad con control del directorio.
+Si un tercero introduce un inode ajeno en el nombre final durante
+una carrera, la operación falla sin declarar éxito; ese alias ajeno
+puede permanecer porque su eliminación tampoco sería segura.
 Una ACE heredable `Everyone READ` introducida entre la comprobación
 inicial del supervisor y la creación del temporal produce rechazo
 `OPERATOR_PRIVATE_OUTPUT_UNVERIFIED` o

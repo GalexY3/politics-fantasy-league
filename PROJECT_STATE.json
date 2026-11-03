@@ -1,5 +1,5 @@
 {
-  "revision": 63,
+  "revision": 64,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1974,7 +1974,54 @@
     "new_empirical_spanish_sources": 0,
     "R5": "STOP_R5",
     "release_gates_passed": 0,
-    "publication_state": "READY_REVIEW",
+    "publication_state": "PUBLISHED_E2E_ACCEPTED",
+    "published_commit": "31e510fbdbf1b87d6a9d807f687e361b376bb536",
+    "clean_committed_head_acceptance_passed": 565,
     "receipt": "docs/BETA_OPERATOR_STAGE_INTEGRITY_RECEIPT_20261103.json"
+  },
+  "local_beta_private_ads_and_handle_bound_cleanup": {
+    "date": "2026-11-03",
+    "baseline_published_head": "31e510fbdbf1b87d6a9d807f687e361b376bb536",
+    "scope": "SYNTHETIC_V2_NTFS_PRIVATE_READ_ADS_AND_POSTLINK_CLEANUP_NONCYCLE",
+    "genuine_prepatch_red": {
+      "coded_source_ntfs_ads_accepted": "FAILED_CLI_RC0_WRONG_ALIAS_NOT_REJECTED",
+      "rubric_source_ntfs_ads_accepted": "FAILED_CLI_RC0_WRONG_ALIAS_NOT_REJECTED",
+      "ads_execution": "2_FAILED_1_DESELECTED",
+      "postlink_dest_third_party_replacement_deleted": "FAILED_REAL_NTFS_THIRD_PARTY_INODE_DELETED",
+      "postlink_stage_name_third_party_replacement_deleted": "FAILED_REAL_NTFS_THIRD_PARTY_INODE_DELETED",
+      "postlink_execution": "2_FAILED_1_DESELECTED",
+      "all_falsifiers_executed_before_product_change": true
+    },
+    "reject_private_read_source_ads_win_nt": true,
+    "native_windows_delete_via_audited_handle": true,
+    "native_windows_set_file_information_by_handle": true,
+    "delete_file_identity_compared_with_original_stage_inode": true,
+    "postlink_error_does_not_unlink_third_party_replacement": true,
+    "normal_publication_still_exclusive_fsync_sha_bound": true,
+    "synthetic_postlink_stat_error_recovery_tested": true,
+    "real_power_loss_tested": false,
+    "windows_distinct_os_token_access_tested": false,
+    "posix_unlink_is_check_then_path_and_not_atomic": true,
+    "posix_native_execution_tested": false,
+    "posix_extended_acl_certified": false,
+    "unowned_adversarial_alias_can_remain_after_aborted_link": true,
+    "one_windows_token_ntfs_real_temp_only": true,
+    "new_python_test_files": [
+      "tests/test_beta_operator_private_ads_sources.py",
+      "tests/test_beta_operator_private_stage_after_link.py"
+    ],
+    "new_python_contract_test_added_to_existing": "tests/test_beta_operator_stage_inode_integrity.py",
+    "focused_python_security_postpatch_passed": 30,
+    "integrated_uncommitted_worktree_passed": 572,
+    "integrated_uncommitted_worktree_counts": "450_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "integrated_worktree_source_kind": "UNCOMMITTED_WORKTREE",
+    "required_skips": 0,
+    "human_participants_observed": 0,
+    "new_empirical_spanish_sources": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "R5": "STOP_R5",
+    "launch_gates_passed": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_ADS_AND_CLEANUP_RECEIPT_20261103.json"
   }
 }

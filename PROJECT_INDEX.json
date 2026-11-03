@@ -11,11 +11,11 @@
     "evidence": 378,
     "experimental_code": 39,
     "operations": 117,
-    "reference": 126,
+    "reference": 127,
     "research": 2000,
     "runtime": 116,
     "task_queue": 120,
-    "verification": 308
+    "verification": 310
   },
   "files": [
     {
@@ -1010,6 +1010,11 @@
     },
     {
       "path": "docs/BETA_OFFLINE_AND_TEMPORAL_COMPARISON_RECEIPT_20261103.json",
+      "category": "reference",
+      "purpose": "Manuales, contratos y referencias"
+    },
+    {
+      "path": "docs/BETA_OPERATOR_ADS_AND_CLEANUP_RECEIPT_20261103.json",
       "category": "reference",
       "purpose": "Manuales, contratos y referencias"
     },
@@ -15569,7 +15574,17 @@
       "purpose": "Pruebas y ejecutores de comprobación"
     },
     {
+      "path": "tests/test_beta_operator_private_ads_sources.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
       "path": "tests/test_beta_operator_private_read_race.py",
+      "category": "verification",
+      "purpose": "Pruebas y ejecutores de comprobación"
+    },
+    {
+      "path": "tests/test_beta_operator_private_stage_after_link.py",
       "category": "verification",
       "purpose": "Pruebas y ejecutores de comprobación"
     },

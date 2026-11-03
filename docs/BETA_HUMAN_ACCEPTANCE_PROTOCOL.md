@@ -112,6 +112,10 @@ demostrada entre auditoría DACL por nombre y reapertura posterior
 del origen; una sustitución detectada rechaza el registro y la
 evaluación sin crear archivos sucesores. En POSIX se añade
 `O_NOFOLLOW` cuando está disponible, sin certificar ACL extendidas.
+Se rechazan asimismo los *Alternate Data Streams* NTFS de entrada
+(`archivo.json:stream`): comparten inode y DACL con el archivo base,
+pero pueden almacenar bytes distintos; se falsó una aceptación anterior
+tanto al registrar una ficha como al evaluar contra una rúbrica ADS.
 Un token sin privilegio de crear symlinks no pudo ejecutar el caso
 positivo de alias simbólico en este equipo (WinError 1314); ello no
 constituye una prueba de ese ataque. Tampoco se ha ejecutado una
@@ -141,6 +145,20 @@ Dos intercalaciones NTFS de junction de la carpeta supervisora,
 antes de crear el stage o del hardlink, se rechazaron sin publicación
 pública ni escritura en Git sintético; son controles negativos,
 no defectos adicionales ni pruebas de aislamiento entre usuarios.
+Una carrera posterior al hardlink mostró otros dos defectos
+independientes: la limpieza podía tomar la identidad de un archivo
+ajeno que sustituyese el destino después del enlace, o eliminar
+un archivo ajeno que ocupase el nombre stage durante el `unlink`.
+Dos falsadores RED PREPATCH con archivos NTFS reales reprodujeron
+ambas pérdidas. La limpieza Windows ahora abre cada nombre con
+permiso DELETE y `FILE_FLAG_OPEN_REPARSE_POINT`, coteja el HANDLE
+contra el inode creado y solicita el borrado por
+`SetFileInformationByHandle`, sin un `unlink` posterior basado
+solo en el nombre. Si aparece un alias ajeno falla sin destruirlo.
+POSIX conserva una protección por `lstat` antes de borrar, no una
+garantía atómica frente a carreras concurrentes. El fallo inyectado
+de metadatos tras un hardlink real pasó su prueba de reversión;
+no equivale a ensayar pérdida de energía real.
 El supervisor
 no debe compartir la misma cuenta del sistema con la participante.
 En POSIX se comprueba el modo `0700` y propietario, no ACL extendidas.

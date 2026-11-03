@@ -59,7 +59,14 @@ def test_prepatch_red_record_form_rejects_replaced_stage_inode_before_hardlink(
             destination.read_bytes()).hexdigest()
     assert code != 0, "The publisher must not acknowledge substituted bytes/inode"
     assert response["status"] == "OPERATOR_REJECTED"
-    assert not destination.exists()
+    # An adversary may have supplied the replacement inode as an independent
+    # hardlink source. Fail closed without deleting a third-party inode merely
+    # because we happened to create one of its aliases. If the alias survives,
+    # it must NOT contain the private coded successor or match the receipt.
+    if destination.exists():
+        assert destination.read_bytes() == forgery
+        assert (destination.stat().st_dev, destination.stat().st_ino) == (
+            injected_inode.st_dev, injected_inode.st_ino)
     assert source.read_bytes() == original_source
     assert str(source) not in stdout and str(destination) not in stdout
 
@@ -122,3 +129,42 @@ def test_prepatch_red_evaluate_form_rejects_inplace_stage_byte_tampering(
     assert not destination.exists()
     assert coded.is_file() and source.is_file()
     assert str(destination) not in stdout
+
+
+def test_postlink_stat_io_failure_rolls_back_our_final_inode(
+    tmp_path, monkeypatch, protocol,
+):
+    """Fault-injected metadata error after actual hardlink, not simulated power loss."""
+    _, _, _, source, _, _ = _prepared_v2(tmp_path, "postlink metadata control")
+    before = source.read_bytes()
+    destination = source.parent / "do not strand on postlink metadata error.json"
+    real_link = os.link
+    real_stat = Path.stat
+    observed = {"linked": False, "failed": False}
+
+    def link_then_enable_error(stage, target, *args, **kwargs):
+        result = real_link(stage, target, *args, **kwargs)
+        if Path(target) == destination:
+            observed["linked"] = True
+        return result
+
+    def fail_first_final_stat(path, *args, **kwargs):
+        if (Path(path) == destination and observed["linked"]
+                and not observed["failed"]):
+            observed["failed"] = True
+            raise PermissionError("SYNTHETIC_POSTLINK_STAT_DENIED")
+        return real_stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(protocol.os, "link", link_then_enable_error)
+    monkeypatch.setattr(Path, "stat", fail_first_final_stat)
+    code, response, stdout = _main(
+        protocol, "--record-form", source, destination,
+        "OP01", "TECH_COMPLETED", "A", "UX_CLEAR",
+    )
+    assert observed == {"linked": True, "failed": True}
+    assert code != 0 and response["status"] == "OPERATOR_REJECTED"
+    assert response["error_code"] == "OPERATOR_OUTPUT_WRITE_FAILED"
+    assert not destination.exists()
+    assert not list(source.parent.glob(".pfl-stage-*.tmp"))
+    assert source.read_bytes() == before
+    assert str(source) not in stdout and str(destination) not in stdout
