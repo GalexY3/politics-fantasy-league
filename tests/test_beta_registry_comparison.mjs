@@ -934,3 +934,31 @@ for(const kind of ['registry503','lab503','logout']){
   onlyGet(t.requests);
  });
 }
+
+for(const [kind,action] of [
+ ['single','science-registry-export'],
+ ['pair','science-registry-pair-export']
+]){
+ test('PREPATCH RED S9 stale toast '+kind+' export cannot notify login after guest-exit',async()=>{
+  const t=harness();await t.guest();
+  if(kind==='pair')await t.click('science-registry-tab','compare');
+  assert.ok(t.evalJs('ui.scienceRegistry'));
+  if(kind==='pair')assert.ok(t.evalJs('ui.scienceRegistryComparison'));
+  assert.equal(t.elements.toast?.textContent??'','');
+  t.pauseNextDigest();
+  const pending=t.click(action);
+  assert.equal(t.hasPendingDigest(),true,'Real S9 receipt verification must be in flight');
+  await t.click(null,null,true);
+  assert.equal(t.evalJs('ui.guest'),false);
+  assert.equal(t.evalJs('ui.scienceRegistry'),null);
+  assert.match(t.elements.content.innerHTML,/Cuenta local del prototipo/);
+  assert.equal(t.elements.toast?.textContent??'','');
+  t.releaseDigest();await pending;
+  assert.equal(t.downloads.length,0,'An obsolete guest export must not download');
+  assert.equal(t.blobs.length,0,'An obsolete guest export must not create a blob');
+  assert.match(t.elements.content.innerHTML,/Cuenta local del prototipo/);
+  assert.equal(t.elements.toast?.textContent??'','',
+   'An obsolete guest export must not emit a stale error on the login screen');
+  onlyGet(t.requests);
+ });
+}

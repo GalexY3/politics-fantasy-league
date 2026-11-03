@@ -1,5 +1,5 @@
 {
-  "revision": 52,
+  "revision": 53,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1491,5 +1491,51 @@
     "public_beta_authorized": false,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_SCIENTIFIC_STATE_AND_SCOPE_RECEIPT_20261103.json"
+  },
+  "local_beta_verified_live_link": {
+    "date": "2026-11-03",
+    "baseline_published_head": "eaeb91ff3a9ba9409ee883851dbb13d63e9097f8",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_LIVE_DOCTOR_VERIFIED_GUEST_LINK_AND_S9_STALE_NOTICE",
+    "live_doctor_link_opt_in": "--emit-verified-guest-url",
+    "verified_only_after_live_science_only_and_early_late_SHA_PASS": true,
+    "old_bookmark_port_never_used_as_current_origin": true,
+    "on_failure_no_guest_url": true,
+    "default_diagnostic_contract_unchanged": true,
+    "strict_guest_url_fields": 7,
+    "guest_registry_views": [
+      "sources",
+      "compare",
+      "chain",
+      "chronicle",
+      "episodes",
+      "admission",
+      "intake",
+      "quality"
+    ],
+    "s9_individual_pair_export_contract_changed": false,
+    "s9_stale_export_notice_discarded_after_guest_exit": true,
+    "s9_obsolete_download_still_blocked": true,
+    "new_http_endpoints_or_scientific_sqlite_migrations": false,
+    "new_bug_prepatch_falsators": [
+      "PREPATCH RED S9 stale toast single export cannot notify login after guest-exit",
+      "PREPATCH RED S9 stale toast pair export cannot notify login after guest-exit"
+    ],
+    "tests": [
+      "tests/test_beta_registry_comparison.mjs",
+      "tests/test_beta_live_science_doctor.py",
+      "tests/test_beta_live_science_doctor_runtime.py"
+    ],
+    "runner": "python scripts/beta_acceptance.py",
+    "status": "READY_REVIEW",
+    "human_acceptance_completed": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "real_spanish_empirical_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
+    "receipt": "docs/BETA_VERIFIED_LIVE_GUEST_LINK_RECEIPT_20261103.json"
   }
 }

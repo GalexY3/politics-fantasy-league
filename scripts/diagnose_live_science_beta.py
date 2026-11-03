@@ -421,6 +421,18 @@ def diagnose(port: int, recipe: dict[str, str]) -> dict:
     }
 
 
+def verified_guest_url(port: int, recipe: dict[str, str]) -> str:
+    """Rebind an independently verified recipe to the *current* loopback port.
+
+    This function is called only after diagnose() has passed the complete
+    science-only, early/late SHA and R5 checks, never on a failed request.
+    The launcher rechecks the exact versioned, seven-key allowlist.
+    """
+    query = run_demo.resume_guest_query(
+        "?" + urlencode([(key, recipe[key]) for key in run_demo.GUEST_QUERY_KEYS]))
+    return f"http://127.0.0.1:{port}/?{query}"
+
+
 class SafeParser(argparse.ArgumentParser):
     def error(self, message: str) -> None:
         del message
@@ -431,11 +443,15 @@ def main(argv: list[str] | None = None) -> int:
     parser = SafeParser(description="Diagnostica una beta científica local ya activa.")
     parser.add_argument("--origin", required=True)
     parser.add_argument("--guest-query", default=None)
+    parser.add_argument("--emit-verified-guest-url", action="store_true",
+                        help="Include current loopback guest URL on verified PASS only")
     try:
         args = parser.parse_args(argv)
         port = parse_origin(args.origin)
         recipe = parse_guest_recipe(args.guest_query)
         result = diagnose(port, recipe)
+        if args.emit_verified_guest_url and result["status"] == "PASS":
+            result["verified_guest_url"] = verified_guest_url(port, recipe)
     except DoctorError as exc:
         result = {"schema": SCHEMA, "status": "FAIL", "error_code": str(exc)}
     except (KeyError, TypeError, ValueError, UnicodeError, OverflowError,

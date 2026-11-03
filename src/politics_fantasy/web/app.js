@@ -508,7 +508,7 @@ async function exportRegistryComparison(){
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
   notice('Pareja S9 sintética exportada y sellada con SHA-256 '+sha256);
- }catch(error){notice('Exportación de pareja S9 bloqueada: '+error.message,true);}
+ }catch(error){if(ready())notice('Exportación de pareja S9 bloqueada: '+error.message,true);}
 }
 async function exportScientificRegistry(){
  if(ui.guest&&ui.tab!=='observatory')return;
@@ -517,6 +517,13 @@ async function exportScientificRegistry(){
  const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
  const exportTicket=++ui.scienceRegistryExportGeneration;
  const data=ui.scienceRegistry;
+ const current=()=>registryTicket===ui.scienceRegistryRequest
+  &&scienceTicket===ui.scienceRequest
+  &&exportTicket===ui.scienceRegistryExportGeneration
+  &&data===ui.scienceRegistry
+  &&cut===ui.scienceCut&&validAt===ui.scienceRegistryValid
+  &&family===ui.scienceRegistryFamily&&published===ui.scienceRegistryPublished
+  &&(ui.guest?ui.tab==='observatory':ui.tab==='scientific'&&!!ui.state);
  if(!data||ui.scienceRegistryLoading||ui.scienceRegistryError
     ||!ui.scientific||ui.scientificLoading||ui.scientificError
     ||!validSciencePayload(ui.scientific)||!globalThis.crypto?.subtle){
@@ -545,7 +552,7 @@ async function exportScientificRegistry(){
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
   notice('Snapshot S9 sintético exportado; SHA-256 público '+receipt.sha256);
- }catch(e){notice('Exportación S9 bloqueada: '+e.message,true);}
+ }catch(e){if(current())notice('Exportación S9 bloqueada: '+e.message,true);}
 }
 async function loadScientific(){
  const ticket=++ui.scienceRequest;

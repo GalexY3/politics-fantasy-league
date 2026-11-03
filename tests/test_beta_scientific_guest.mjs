@@ -258,7 +258,8 @@ for(const {name,id,to,from} of [
   await pending;
   assert.equal(t.downloads.length,0,'Old export must stay invalid even after selection returns to A');
   assert.equal(t.blobs.length,0);
-  assert.match(t.elements.toast.textContent,/obsoleto/);
+  assert.equal(t.elements.toast?.textContent||'','',
+    'Old export response must not publish a stale error after filter invalidation');
   assert.ok(t.requests.every(r=>r.method==='GET'));
  });
 }
@@ -275,7 +276,8 @@ test('guest export pending on WebCrypto is invalidated by registry HTTP 503',asy
  t.releaseDigest();await pending;
  assert.equal(t.downloads.length,0);
  assert.equal(t.blobs.length,0);
- assert.match(t.elements.toast.textContent,/obsoleto/);
+ assert.equal(t.elements.toast?.textContent||'','',
+   'Current HTTP 503 is reported by the registry error panel, not by an old export');
  assert.ok(t.requests.every(r=>r.method==='GET'));
 });
 

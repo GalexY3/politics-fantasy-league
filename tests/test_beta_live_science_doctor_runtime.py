@@ -175,12 +175,15 @@ def science_server(db: Path, *, resume: str | None = None,
 
 
 def run_doctor(origin: str, *, guest_query: str | None = None,
+               emit_verified_guest_url: bool = False,
                timeout: float = 25.0) -> tuple[int, dict]:
     args = [
         sys.executable, "-B", str(DOCTOR), "--origin", origin,
     ]
     if guest_query is not None:
         args.extend(("--guest-query", guest_query))
+    if emit_verified_guest_url:
+        args.append("--emit-verified-guest-url")
     process = subprocess.run(
         args, cwd=ROOT, env=ENV, stdin=subprocess.DEVNULL,
         capture_output=True, text=True, encoding="utf-8",
@@ -238,6 +241,13 @@ def test_doctor_real_process_stopped_port_and_rebound_guest_link(tmp_path):
         code, before = run_doctor(old_origin, guest_query=old_guest_url)
         assert code == 0 and before["status"] == "PASS", before.get("error_code")
         _require_synthetic_stop(before)
+        assert "verified_guest_url" not in before
+        code, linked_before = run_doctor(
+            old_origin, guest_query=old_guest_url,
+            emit_verified_guest_url=True)
+        assert code == 0 and linked_before["status"] == "PASS"
+        assert linked_before["verified_guest_url"] == old_guest_url
+        assert _source_digests(linked_before) == _source_digests(before)
         before_digests = _source_digests(before)
         before_counts = (
             before["early"]["visible_public_descriptors"],
@@ -251,9 +261,11 @@ def test_doctor_real_process_stopped_port_and_rebound_guest_link(tmp_path):
 
     # A stopped process's OLD origin must never yield a stale PASS. No browser
     # or old URL cache may make an unavailable local server look live.
-    stopped_code, stopped = run_doctor(old_origin, guest_query=old_guest_url)
+    stopped_code, stopped = run_doctor(
+        old_origin, guest_query=old_guest_url, emit_verified_guest_url=True)
     assert stopped_code != 0 and stopped["status"] == "FAIL"
     assert stopped["error_code"] == "SERVER_UNAVAILABLE"
+    assert "verified_guest_url" not in stopped
     assert not (db.parent / "accounts.sqlite3").exists()
 
     with science_server(db, resume=old_guest_url) as second:
@@ -261,10 +273,19 @@ def test_doctor_real_process_stopped_port_and_rebound_guest_link(tmp_path):
         assert second.origin is not None
         assert second.resumed_url.startswith(f"{second.origin}/?")
         assert urlsplit(second.resumed_url).query == CANONICAL_QUERY
-        if second.port != old_port:
-            assert second.origin != old_origin
+        assert second.port != old_port, "This runtime test requires a re-bound dynamic port"
+        assert second.origin != old_origin
         code, after = run_doctor(second.origin, guest_query=old_guest_url)
         assert code == 0 and after["status"] == "PASS", after.get("error_code")
+        assert "verified_guest_url" not in after
+        code, linked_after = run_doctor(
+            second.origin, guest_query=old_guest_url,
+            emit_verified_guest_url=True)
+        assert code == 0 and linked_after["status"] == "PASS"
+        assert linked_after["verified_guest_url"] == (
+            f"{second.origin}/?{CANONICAL_QUERY}")
+        assert tuple(parse_qsl(urlsplit(linked_after["verified_guest_url"]).query)) == CANONICAL_PAIRS
+        assert _source_digests(linked_after) == _source_digests(after)
         _require_synthetic_stop(after)
         assert _source_digests(after) == before_digests
         assert (
@@ -287,8 +308,11 @@ def test_doctor_real_process_stopped_port_and_rebound_guest_link(tmp_path):
 def test_doctor_refuses_remote_credentials_https_or_unknown_path_without_network(
         tmp_path, url):
     assert DOCTOR.is_file()
-    code, body = run_doctor(url, guest_query=f"http://127.0.0.1:54732/?{CANONICAL_QUERY}")
+    code, body = run_doctor(
+        url, guest_query=f"http://127.0.0.1:54732/?{CANONICAL_QUERY}",
+        emit_verified_guest_url=True)
     assert code != 0 and body["status"] == "FAIL"
+    assert "verified_guest_url" not in body
     assert body.get("public_release_eligible") is not True
     assert not list(tmp_path.iterdir()), "Invalid origin must not create local files"
 
@@ -305,8 +329,11 @@ def test_doctor_rejects_bad_guest_recipe_before_attempting_any_connection(
     assert DOCTOR.is_file()
     # Port 1 is deliberately not started here. GUEST_QUERY_INVALID, rather
     # than SERVER_UNAVAILABLE, proves selection validation precedes I/O.
-    code, body = run_doctor("http://127.0.0.1:1", guest_query=bad_guest_recipe)
+    code, body = run_doctor(
+        "http://127.0.0.1:1", guest_query=bad_guest_recipe,
+        emit_verified_guest_url=True)
     assert code == 1 and body["status"] == "FAIL"
+    assert "verified_guest_url" not in body
     assert body["error_code"] == "GUEST_QUERY_INVALID"
     assert not list(tmp_path.iterdir())
 
@@ -320,6 +347,16 @@ def test_doctor_default_query_still_requires_verified_read_only_science(tmp_path
         _require_synthetic_stop(payload)
         assert payload["early"]["visible_public_descriptors"] == 2
         assert payload["late"]["visible_public_descriptors"] == 6
+        assert "verified_guest_url" not in payload
+        code, linked = run_doctor(
+            server.origin, emit_verified_guest_url=True)
+        assert code == 0 and linked["status"] == "PASS"
+        assert linked["verified_guest_url"] == (
+            f"{server.origin}/?" + urlencode((
+                ("pfl_guest", "v1"), ("cut", "late"),
+                ("valid_at", "2026-09-15"), ("family", "all"),
+                ("published_until", "as_of"), ("scenario", "baseline"),
+                ("view", "compare"))))
         assert not db.exists()
         assert not (db.parent / "accounts.sqlite3").exists()
 
@@ -329,9 +366,11 @@ def test_doctor_rejects_a_real_account_enabled_server(tmp_path):
     db = tmp_path / "isolated-account-mode" / "game.db"
     with science_server(db, science_only=False) as account_server:
         assert account_server.origin is not None
-        code, diagnosis = run_doctor(account_server.origin)
+        code, diagnosis = run_doctor(
+            account_server.origin, emit_verified_guest_url=True)
         assert code != 0 and diagnosis["status"] == "FAIL"
         assert diagnosis["error_code"] == "SCIENCE_ONLY_REQUIRED"
+        assert "verified_guest_url" not in diagnosis
         # Account DB exists only in this isolated *negative-control* fixture.
         assert (db.parent / "accounts.sqlite3").exists()
 
@@ -358,9 +397,11 @@ def test_doctor_fails_closed_on_tampered_copy_of_synthetic_registry(tmp_path):
         assert compromised.origin
         code, failed = run_doctor(
             compromised.origin,
-            guest_query=f"{compromised.origin}/?{CANONICAL_QUERY}")
+            guest_query=f"{compromised.origin}/?{CANONICAL_QUERY}",
+            emit_verified_guest_url=True)
         assert code != 0 and failed["status"] == "FAIL"
         assert failed["error_code"] == "HTTP_503_REGISTRY_UNAVAILABLE"
+        assert "verified_guest_url" not in failed
     assert hashlib.sha256(original.read_bytes()).hexdigest() == original_hash
     assert not (trusted_db.parent / "accounts.sqlite3").exists()
     assert not (tampered_root / "accounts.sqlite3").exists()

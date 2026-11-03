@@ -328,6 +328,29 @@ una respuesta alterada no puede producir una segunda descarga.
 Las exportaciones S9 individual y emparejada y los verificadores
 offline Python conservan los contratos independientes existentes.
 
+## Enlace recuperado de una instancia activa tras verificarla
+
+El doctor de una beta cientifica local ya ejecutandose en otro puerto
+puede emitir opcionalmente una URL vigente de consulta con:
+
+    python -B scripts/diagnose_live_science_beta.py --origin http://127.0.0.1:8787 --guest-query "http://127.0.0.1:8765/?pfl_guest=v1&cut=late&valid_at=2026-09-15&family=all&published_until=as_of&scenario=baseline&view=admission" --emit-verified-guest-url
+
+Solo con status PASS se incluye verified_guest_url, compuesta con el
+puerto actual de --origin y exactamente siete filtros publicos canonicos,
+entre ellos la vista seleccionada de las ocho opciones S9. No se contacta
+con el antiguo servidor. Sin la opcion, el JSON del doctor sigue igual
+y no expone direcciones ni puertos. Ante servidor detenido, otra cuenta,
+HTTP 400/503, SHA o contrato incompatible, FAIL no contiene enlace.
+
+Este enlace refleja disponibilidad en el momento de los GET, no garantiza
+continuidad futura ni autenticidad del emisor, licencia externa, censo
+ALL_RECEIVED, causalidad ni desbloqueo de R5 STOP.
+
+El export S9 individual y emparejado conserva sus bytes/contratos; errores
+de una verificacion SHA antigua que terminan tras salir del Observatorio
+no muestran avisos obsoletos en la pantalla de login, ni producen descarga.
+Los errores de una consulta aun vigente siguen visibles.
+
 ## Bloqueos de la beta pública
 
 STOP_R5 permanece, con **0/6 puertas** y cero ciclos AB-R nuevos.

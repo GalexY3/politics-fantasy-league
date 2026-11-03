@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+from urllib.parse import parse_qsl, urlencode, urlsplit
 
 import pytest
 
@@ -194,6 +195,131 @@ def test_running_science_doctor_accepts_existing_public_institutional_subview(vi
     assert parsed["cut"] == "late"
     assert parsed["family"] == "all"
     assert parsed["published_until"] == "as_of"
+
+
+@pytest.mark.parametrize("view", (
+    "sources", "compare", "chain", "chronicle",
+    "episodes", "admission", "intake", "quality",
+))
+def test_opt_in_verified_url_rebases_all_eight_views_with_canonical_keys(view):
+    # An old loopback origin, mixed input key order and existing case-sensitive
+    # enum values must become exactly the original seven-key canonical recipe.
+    fields = {
+        "view": view, "scenario": "privacy_probe",
+        "published_until": "2026-09-19T12:00:00Z",
+        "family": "CHAIN", "valid_at": "2026-10-10",
+        "cut": "early", "pfl_guest": "v1",
+    }
+    old = "http://127.0.0.1:54321/?" + urlencode(list(fields.items()))
+    parsed = doctor.parse_guest_recipe(old)
+    rebound = doctor.verified_guest_url(49494, parsed)
+    assert rebound.startswith("http://127.0.0.1:49494/?")
+    assert "54321" not in rebound
+    split = urlsplit(rebound)
+    assert split.path == "/" and not split.fragment
+    assert tuple(parse_qsl(split.query, strict_parsing=True)) == tuple(
+        (key, fields[key]) for key in doctor.run_demo.GUEST_QUERY_KEYS)
+    assert split.query == urlencode([
+        (key, fields[key]) for key in doctor.run_demo.GUEST_QUERY_KEYS
+    ])
+    assert len(parse_qsl(split.query)) == 7
+    assert "published_until=2026-09-19T12%3A00%3A00Z" in split.query
+
+
+def test_opt_in_cli_emits_verified_link_only_after_complete_synthetic_pass(
+    monkeypatch, mocked_routes, capsys,
+):
+    seen = mocked_get(monkeypatch, mocked_routes)
+    old = "http://127.0.0.1:54321/" + doctor.DEFAULT_QUERY
+    rc = doctor.main([
+        "--origin", "http://127.0.0.1:49494",
+        "--guest-query", old,
+        "--emit-verified-guest-url",
+    ])
+    output = capsys.readouterr()
+    assert rc == 0 and output.err == ""
+    assert output.out.count("\n") == 1
+    result = json.loads(output.out)
+    assert result["status"] == "PASS"
+    assert result["R5"] == "STOP_R5"
+    assert len(seen) == len(mocked_routes), "Do not emit before final SHA verified GET"
+    assert result["verified_guest_url"] == (
+        "http://127.0.0.1:49494/?" +
+        doctor.run_demo.resume_guest_query(doctor.DEFAULT_QUERY))
+    assert "54321" not in output.out
+    assert "source_id" not in output.out
+    assert result["rights_for_public_display_admitted"] is False
+
+
+def test_cli_default_pass_keeps_identical_private_json_contract(
+    monkeypatch, mocked_routes, capsys,
+):
+    mocked_get(monkeypatch, mocked_routes)
+    rc = doctor.main([
+        "--origin", "http://127.0.0.1:49494",
+        "--guest-query", doctor.DEFAULT_QUERY,
+    ])
+    output = capsys.readouterr()
+    assert rc == 0 and output.err == ""
+    result = json.loads(output.out)
+    assert result["status"] == "PASS"
+    assert "verified_guest_url" not in result
+    assert "127.0.0.1" not in output.out and "49494" not in output.out
+    assert result == doctor.diagnose(49494, doctor.parse_guest_recipe(None))
+
+
+@pytest.mark.parametrize("failure", (
+    "HTTP_400", "HTTP_503", "SHA", "ACCOUNT", "SERVER_UNAVAILABLE",
+))
+def test_opt_in_never_emits_url_when_verification_fails(
+    monkeypatch, mocked_routes, capsys, failure,
+):
+    endpoint = next(key for key in mocked_routes
+                    if key.startswith("/api/scientific-registry?cut=late"))
+    if failure == "HTTP_400":
+        mocked_routes[endpoint] = (400, None)
+    elif failure == "HTTP_503":
+        mocked_routes[endpoint] = (503, None)
+    elif failure == "SHA":
+        mocked_routes[endpoint][1]["snapshot_receipt"]["sha256"] = "0" * 64
+    elif failure == "ACCOUNT":
+        mocked_routes["/api/session"] = (200, {"authenticated": True})
+    else:
+        monkeypatch.setattr(doctor, "_get_json", lambda *_: (
+            _ for _ in ()).throw(doctor.DoctorError("SERVER_UNAVAILABLE")))
+    if failure != "SERVER_UNAVAILABLE":
+        mocked_get(monkeypatch, mocked_routes)
+    rc = doctor.main([
+        "--origin", "http://127.0.0.1:49494",
+        "--guest-query", doctor.DEFAULT_QUERY,
+        "--emit-verified-guest-url",
+    ])
+    output = capsys.readouterr()
+    assert rc == 1 and output.err == ""
+    result = json.loads(output.out)
+    assert result["status"] == "FAIL"
+    assert "verified_guest_url" not in result
+    assert "http://127.0.0.1:49494" not in output.out
+
+
+@pytest.mark.parametrize("invalid", (
+    "--unknown-flag", "--origin", "http://evil.invalid:49494",
+))
+def test_opt_in_rejects_invalid_arguments_without_url(invalid, capsys):
+    argv = ["--origin", "http://127.0.0.1:49494",
+            "--emit-verified-guest-url"]
+    if invalid == "--unknown-flag":
+        argv += [invalid]
+    elif invalid == "--origin":
+        argv = ["--emit-verified-guest-url"]
+    else:
+        argv = ["--origin", invalid, "--emit-verified-guest-url"]
+    rc = doctor.main(argv)
+    output = capsys.readouterr()
+    assert rc == 1 and output.err == ""
+    body = json.loads(output.out)
+    assert body["status"] == "FAIL"
+    assert "verified_guest_url" not in body
 
 
 @pytest.mark.parametrize("field,value,error", [
