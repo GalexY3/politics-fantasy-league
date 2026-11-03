@@ -1,5 +1,5 @@
 {
-  "revision": 41,
+  "revision": 42,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -432,7 +432,7 @@
     "linux_qa_workflow": ".github/workflows/pfl-cutover-linux-qa.yml"
   },
   "publication_status": "MAIN_PR2_MERGED_CODE_REVIEW_PASS",
-  "updated_on": "2026-10-31",
+  "updated_on": "2026-11-03",
   "source_validation": {
     "status": "REVIEW_APPROVED",
     "verified_commit": "074f72e19b522e7a507045e3738609fa5f6139cc",
@@ -1081,5 +1081,27 @@
     "new_ABH_invalid_cycles_this_round": 0,
     "new_ABH_planning_cycles_this_round": 0,
     "round_document": "research/PFL_SYSTEM20_20261031/ROUND_REPORT22_20261031.md"
+  },
+  "local_beta_checkpoint": {
+    "date": "2026-11-03",
+    "branch": "integration/pfl-scientific-synthetic-e2e-20261101",
+    "base_sha": "23559d0ecf7533167e1bb7d8e9c85f50fd572834",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_NONCYCLE",
+    "scientific_guest_mode": "READ_ONLY_WITHOUT_ACCOUNT",
+    "beta_readiness_api": "/api/beta-readiness",
+    "operator_smoke_command": "python scripts/beta_scientific_smoke.py",
+    "operator_smoke_disposable": true,
+    "scientific_registry_schema_version": 4,
+    "release_gates_passed": 0,
+    "R5": "STOP_R5",
+    "new_scientific_ab_cycles": 0,
+    "new_spanish_empirical_sources_admitted": 0,
+    "public_beta_authorized": false,
+    "human_user_acceptance_completed": false,
+    "p1_accounts_status_unchanged": "READY_REVIEW",
+    "p2_playable_status_unchanged": "QUEUED",
+    "next_beta_priority": "Human browser acceptance and accessibility of anonymous scientific visitor flow; local startup portability and documented blocked release gates",
+    "reference": "docs/BETA_LOCAL_QUICKSTART.md"
   }
 }

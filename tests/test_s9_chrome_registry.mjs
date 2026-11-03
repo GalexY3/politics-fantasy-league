@@ -60,8 +60,10 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
  const port=await freePort(),cdpPort=await freePort();
  const base='http://127.0.0.1:'+port;
  let failRegistry=false,chrome=null,socket=null;
+ const observedRequests=[];
  const server=httpServer((req,res)=>{
   const url=new URL(req.url,base);
+  observedRequests.push({method:req.method,path:url.pathname});
   try{
    if(url.pathname==='/')return reply(res,200,
     readFileSync(join(ROOT,'src/politics_fantasy/web/index.html'),'utf8'),
@@ -142,6 +144,50 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   await cdp('Browser.setDownloadBehavior',{behavior:'allow',
     downloadPath:downloadsDir,eventsEnabled:true});
   await poll(()=>js("Boolean(document.querySelector('#auth-form'))"));
+  // Real Chrome anonymous entry: no JS state injection, no login, no account.
+  // The local HTTP facade also records every request Chrome makes, including
+  // unexpected POST/state calls that an ordinary successful fetch test misses.
+  assert.equal(await js("document.querySelector('#auth-form')!==null && !ui.session && !ui.state"),true);
+  assert.equal(await js("document.querySelector('[data-action=\"guest-enter\"]')!==null"),true);
+  const guestStart=observedRequests.length;
+  await js("document.querySelector('[data-action=\"guest-enter\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest && !ui.session && !ui.csrf && !ui.state && ui.scientific && ui.scienceRegistry && !ui.scienceRegistryError)"));
+  assert.equal(await js("ui.scientific.R5==='STOP_R5' && ui.scienceRegistry.R5==='STOP_R5'"),true);
+  assert.equal(await js("document.getElementById('account-name').innerText==='VISITANTE'"),true);
+  assert.equal(await js("document.getElementById('club-select').hidden && document.getElementById('account-logout').hidden"),true);
+  assert.equal(await js("document.getElementById('guest-exit').hidden"),false);
+  assert.equal(await js("[...document.querySelectorAll('[data-tab]')].filter(n=>!n.hidden).map(n=>n.dataset.tab).join(',')"),'observatory,scientific');
+  assert.equal(await js("getComputedStyle(document.querySelector('[data-tab=\"market\"]')).display==='none'"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('R5 STOP')"),true);
+  // The browser itself checks the canonical SHA-256; this assertion separately
+  // recalculates the hash on the visible snapshot in native WebCrypto.
+  assert.equal(await js(`(async()=>{
+    const x=ui.scienceRegistry,r=x.snapshot_receipt;
+    const bytes=new TextEncoder().encode(r.canonical_json);
+    const sha=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)))
+      .map(b=>b.toString(16).padStart(2,'0')).join('');
+    return r.sha256===sha && x.snapshot_receipt_sha256===sha && bytes.length===r.bytes;
+  })()`),true);
+  await js("document.querySelector('[data-tab=\"scientific\"]').click();true");
+  await poll(()=>js("Boolean(ui.guest && ui.tab==='scientific' && document.querySelector('#content').innerText.includes('Testigos diferenciales sintéticos'))"));
+  assert.equal(await js("document.querySelector('#content').innerText.includes('B0 y B3')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S7_NEITHER_APPROVED')"),true);
+  assert.equal(await js("document.querySelector('#content').innerText.includes('S7_CONFLICT_SAME_TERMINAL_DAY')"),true);
+  assert.equal(await js("document.querySelector('[data-action=\"science-export\"]')===null && document.querySelector('[data-action=\"science-probe\"]')===null"),true);
+  await js("document.querySelector('[data-tab=\"observatory\"]').click();true");
+  assert.equal(await js("ui.guest && ui.tab==='observatory' && document.querySelector('#content').innerText.includes('S9:PUBLIC_06')"),true);
+  const forbidden=observedRequests.slice(guestStart).filter(r=>
+    r.method!=='GET' || !['/api/scientific-integration-lab','/api/scientific-registry'].includes(r.path));
+  assert.deepEqual(forbidden,[], 'Guest session has no /api/state, POST, login or registration calls');
+  assert.equal(await js("ui.state===null && ui.csrf===null && ui.session===null"),true);
+  await js("document.getElementById('guest-exit').click();true");
+  await poll(()=>js("Boolean(!ui.guest && document.querySelector('#auth-form') && document.querySelector('[data-action=\"guest-enter\"]'))"));
+  assert.equal(await js("document.getElementById('navigation').hidden"),true);
+  assert.equal(await js("document.getElementById('guest-exit').hidden"),true);
+  assert.equal(await js("ui.state===null && ui.scientific===null && ui.scienceRegistry===null"),true);
+  assert.deepEqual(observedRequests.slice(guestStart).filter(r=>r.method!=='GET'||r.path==='/api/state'||r.path==='/api/register'||r.path==='/api/login'),[]);
+  // Keep the pre-existing S9 native Chrome flow and export assertions unchanged.
   await js("ui.state={clubs:[{id:'demo',name:'Demo'}]};ui.club='demo';document.querySelector('[data-tab=\"scientific\"]').click();true");
   await poll(()=>js("Boolean(ui.scientific&&ui.scientific.cut==='late'&&document.querySelector('[data-action=\"science-registry-load\"]'))"));
   await js("document.querySelector('[data-action=\"science-registry-load\"]').click();true");

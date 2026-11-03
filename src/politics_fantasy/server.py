@@ -21,6 +21,7 @@ from .actor_api import local_actor_universe_status
 from .electoral_atlas import atlas_status
 from .evidence_warehouse_status import status as evidence_status
 from .progress_api import progress_status
+from .beta_readiness import beta_readiness, BetaReadinessUnavailable
 from .candidacy_api import status as official_candidacies_status
 from .nomination_atlas import status as nomination_atlas_status
 from .source_eligibility import policy_status
@@ -143,6 +144,17 @@ def handler_factory(db_path: Path, pilot_path: Path | None, field_path: Path | N
                 return self.reply(200,local_field_status(field_path))
             if route == '/api/progress':
                 return self.reply(200,progress_status())
+            if route == '/api/beta-readiness':
+                if urlsplit(self.path).query:
+                    return self.reply(400,{'error':'INVALID_BETA_READINESS_QUERY'})
+                try:
+                    payload = beta_readiness(
+                        bind_host=self.server.server_address[0],
+                        accounts_path=accounts_path, web_root=WEB)
+                except (BetaReadinessUnavailable, OSError):
+                    return self.reply(503,{'ok':False,
+                                           'error':'BETA_READINESS_UNAVAILABLE'})
+                return self.reply(200 if payload['ok'] else 503,payload)
             if route == '/api/eligibility-policy':
                 return self.reply(200,policy_status())
             if route == '/api/source-stages':

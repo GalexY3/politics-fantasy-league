@@ -1,6 +1,6 @@
 'use strict';
 // Front-end for a LOCAL, FICTIONAL demo. No political measurements are scored here.
-const ui = { tab:'overview', club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
+const ui = { tab:'overview', guest:false, club:'demo', state:null, lab:null, field:null, atlas:null, candidacies:null, nominations:null, evidence:null, scientificSources:null, parcanCohorts:null, proceduralCoverage:null, siapCoverage:null, populationReadiness:null, institutionalLineage:null, progress:null, picks:null, message:'', session:null, csrf:null, scientific:null, scientificError:null, scientificLoading:false, scienceCut:'late', scienceScenario:'baseline', scienceValid:'2026-09-15', scienceChronicleValid:'2026-10-10', scienceFirstPublic:'as_of', scienceCandidate:'baseline', scienceAdmission:null, scienceAdmissionError:null, scienceAdmitting:false, scienceRequest:0, scienceExportGeneration:0, scienceRegistry:null, scienceRegistryLoading:false, scienceRegistryError:null, scienceRegistryRequest:0, scienceRegistryExportGeneration:0, scienceRegistryValid:'2026-09-15', scienceRegistryFamily:'all', scienceRegistryPublished:'as_of', scienceRegistryTab:'sources', scienceRegistryKind:'ALL' };
 const el = id => document.getElementById(id);
 const esc = s => String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Escape alone does not make an untrusted URL safe to navigate.
@@ -18,6 +18,7 @@ const day = iso => new Intl.DateTimeFormat('es-ES',{day:'2-digit',month:'short',
 const money = n => `${count(n)} CR`;
 function notice(msg, error=false){ const t=el('toast'); t.textContent=msg; t.className=error?'visible error':'visible'; clearTimeout(notice.timer); notice.timer=setTimeout(()=>t.className='',3600); }
 async function call(route, body){
+ if(ui.guest)throw new Error('Operaciones de cuenta no disponibles en modo visitante');
  const headers={'Content-Type':'application/json','X-PFL-Request':'1'};
  if(ui.csrf)headers['X-PFL-CSRF']=ui.csrf;
  const response=await fetch(route,{method:'POST',headers,credentials:'same-origin',body:JSON.stringify(body)});
@@ -260,7 +261,7 @@ async function loadScientificRegistry(){
  const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
  const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
  ui.scienceRegistry=null;ui.scienceRegistryError=null;ui.scienceRegistryLoading=true;
- if(ui.tab==='scientific')draw();
+ if(ui.guest||ui.tab==='scientific')draw();
  try{
   if(!ui.scientific||ui.scientificLoading||ui.scientificError
      ||!validSciencePayload(ui.scientific))throw new Error('Laboratorio no validado; registro bloqueado');
@@ -283,11 +284,12 @@ async function loadScientificRegistry(){
  }finally{
   if(ticket===ui.scienceRegistryRequest){
    ui.scienceRegistryLoading=false;
-   if(ui.tab==='scientific')draw();
+   if(ui.guest||ui.tab==='scientific')draw();
   }
  }
 }
 async function exportScientificRegistry(){
+ if(ui.guest)return;
  const cut=ui.scienceCut,validAt=ui.scienceRegistryValid;
  const family=ui.scienceRegistryFamily,published=ui.scienceRegistryPublished;
  const registryTicket=ui.scienceRegistryRequest,scienceTicket=ui.scienceRequest;
@@ -336,7 +338,7 @@ async function loadScientific(){
  const ticket=++ui.scienceRequest;
  invalidateScientificRegistry();
  ui.scientific=null;ui.scientificError=null;ui.scientificLoading=true;
- if(ui.tab==='scientific')draw();
+ if(ui.guest||ui.tab==='scientific')draw();
  try{
   const response=await fetch(scienceUrl('scientific-integration-lab'),{cache:'no-store',credentials:'same-origin'});
   if(!response.ok)throw new Error('Contrato HTTP '+response.status+'; laboratorio rechazado');
@@ -344,9 +346,10 @@ async function loadScientific(){
   if(!validSciencePayload(data))throw new Error('Contrato científico incongruente; vista bloqueada');
   if(ticket===ui.scienceRequest)ui.scientific=data;
  }catch(e){if(ticket===ui.scienceRequest)ui.scientificError=String(e.message);}
- finally{if(ticket===ui.scienceRequest){ui.scientificLoading=false;if(ui.tab==='scientific')draw();}}
+ finally{if(ticket===ui.scienceRequest){ui.scientificLoading=false;if(ui.guest||ui.tab==='scientific')draw();}}
 }
 async function exportScientific(){
+ if(ui.guest)return;
  const cut=ui.scienceCut,scenario=ui.scienceScenario;
  const knowledgeTicket=ui.scienceRequest;
  const exportTicket=++ui.scienceExportGeneration;
@@ -396,6 +399,7 @@ async function exportScientific(){
 }
 
 async function probeScientificAdmission(){
+ if(ui.guest)return;
  ui.scienceAdmitting=true;ui.scienceAdmission=null;ui.scienceAdmissionError=null;draw();
  const candidate=ui.scienceCandidate;
  try{
@@ -808,9 +812,9 @@ function scientificRegistryPanel(){
   +'<label for="science-registry-publication">Primera publicación ficticia<select id="science-registry-publication">'+publishedOptions+'</select></label>'
   +'<button class="btn secondary" data-action="science-registry-load" '
   +(!ui.scientific||ui.scienceRegistryLoading?'disabled':'')+'>Consultar registro persistente</button>'
-  +'<button class="btn secondary" data-action="science-registry-export" '
-  +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
-  +'>Exportar snapshot S9 + SHA</button></div>';
+  +(ui.guest?'':'<button class="btn secondary" data-action="science-registry-export" '
+   +(!ui.scienceRegistry||ui.scienceRegistryLoading||ui.scienceRegistryError||!ui.scientific||ui.scientificLoading||ui.scientificError?'disabled':'')
+   +'>Exportar snapshot S9 + SHA</button>')+'</div>';
  const intro='<section class="card science-registry" aria-label="Registro persistente del Observatorio">'
   +'<div class="section-title"><h2>S9 · Registro persistente de fuentes y relaciones</h2>'
   +'<span>SQLITE LOCAL · 100% SINTÉTICO · R5 STOP</span></div>'
@@ -1043,10 +1047,105 @@ function progress(){
  <h2>Detalle de las sublíneas y sus fuentes</h2>${lanes}<section class='card'><h2>Cuando crece el alcance</h2><p class='help'>Cada revisión conserva el indicador anterior y separa los puntos ganados por trabajo de los puntos ganados o perdidos por una ampliación/reponderación de objetivos. Ejemplo histórico hipotético, calculado sobre la revisión 1 (no sobre el porcentaje actual): añadir cobertura municipal nacional completa sin construirla cambiaba 33,725 % a 32,330 % (−1,395 puntos de alcance, 0 de trabajo). El avance actual de la revisión 2 incorpora trabajo verificado y sigue sin ampliar el alcance.</p></section>`;
 }
 const pages={overview,club,market,rounds,observatory,scientific:scientificLaboratory,atlas,progress};
+const GUEST_TABS=['observatory','scientific'];
+function navigationMode(mode){
+ el('navigation').hidden=mode==='login';
+ document.querySelectorAll('[data-tab]').forEach(n=>{
+  n.hidden=mode==='guest'&&!GUEST_TABS.includes(n.dataset.tab);
+  const active=mode!=='login'&&n.dataset.tab===ui.tab;
+  n.classList.toggle('active',active);
+  if(active)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');
+ });
+ el('club-select').hidden=mode!=='account';
+ el('guest-exit').hidden=mode!=='guest';
+}
+function guestScienceView(){
+ const p=ui.scientific,e=p.explorer,w=p.warehouse;
+ const cases=w?.b0_b3_witness_sets?.sets_by_knowledge_cut?.[ui.scienceCut]?.sets;
+ const b=w?.b0_b3_observational_equivalence;
+ const states=['INCONCLUSIVE','B0_ONLY','B3_ONLY','NEITHER','CONFLICT','INADMISSIBLE'];
+ if(!Array.isArray(cases)||cases.length!==20
+    ||!cases.every(c=>c&&states.includes(c.status)&&typeof c.case==='string')
+    ||b?.all_published_source_sha_and_typed_revisions_equal!==true)
+  return '<section class="card" role="alert"><p class="warning">El contrato de escenarios S7 no es verificable. Vista bloqueada.</p></section>';
+ const counts=states.map(s=>'<tr><td>'+esc(s)+'</td><td>'+count(cases.filter(c=>c.status===s).length)+'</td></tr>').join('');
+ const rows=cases.map(c=>'<tr><td><code>'+esc(c.case)+'</code></td><td>'+esc(c.status)
+  +'</td><td>'+esc((c.compatible_mechanisms||[]).join(' / ')||'Sin adjudicar')
+  +'</td><td>'+esc(c.reason)+'</td></tr>').join('');
+ return heading('CONSULTA ABIERTA · S8','Laboratorio científico',
+  'Comparación de mecanismos, censura y conjuntos de testigos con datos íntegramente sintéticos.')
+  +'<section class="science-toolbar card" aria-label="Corte de laboratorio para visitantes">'
+  +'<label for="science-cut">Conocimiento (as_of)<select id="science-cut"><option value="early" '
+  +(ui.scienceCut==='early'?'selected':'')+'>15 oct 2026</option><option value="late" '
+  +(ui.scienceCut==='late'?'selected':'')+'>1 nov 2026</option></select></label>'
+  +'<label for="science-scenario">Escenario sintético<select id="science-scenario">'
+  +['baseline','rights_spoof','privacy_probe'].map(v=>'<option value="'+v+'" '
+  +(ui.scienceScenario===v?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>'
+  +'<button class="btn secondary" data-action="guest-reload">Actualizar consulta</button></section>'
+  +'<section class="metrics">'+stat('Corte conocido',ui.scienceCut==='early'?'Temprano':'Tardío','Reloj del fixture')
+  +stat('Escenarios S7',cases.length,'Conjuntos estipulados')
+  +stat('Distribuciones',e.catalog.distributions.length,'Sin originales publicados')
+  +stat('Puertas R5','0 / 6','Admisión detenida')+'</section>'
+  +'<section class="card"><h2>B0 y B3 · mecanismos rivales</h2>'
+  +'<p class="help">Los mecanismos de calendario (B0) y selección de publicación (B3) son observacionalmente equivalentes en los materiales publicados por este fixture. La ausencia de un resultado no demuestra rechazo.</p>'
+  +'<p class="footnote">Corte: '+esc(p.as_of)+' · escenario: '+esc(p.scenario)+' · sin denominador independiente ni derechos de difusión empírica acreditados.</p>'
+  +'<div class="tablewrap"><table><thead><tr><th>Estado S7</th><th>Conjuntos</th></tr></thead><tbody>'+counts+'</tbody></table></div></section>'
+  +'<section class="card"><h2>Testigos diferenciales sintéticos</h2>'
+  +'<p class="help">INADMISSIBLE significa evidencia insuficiente. CONFLICT conserva testimonios incompatibles. NEITHER indica incompatibilidad con ambos mecanismos estipulados, nunca una refutación empírica.</p>'
+  +'<div class="tablewrap"><table><thead><tr><th>Conjunto</th><th>Estado</th><th>Mecanismos compatibles</th><th>Justificación del fixture</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+}
+function guestView(){
+ const banner='<p class="warning"><strong>VISITA CIENTÍFICA · SOLO LECTURA · R5 STOP.</strong> '
+  +'Exploración sintética sin cuenta ni datos de clubes. No hay evidencia real admitida, puntuaciones políticas ni predicciones validadas.</p>';
+ if(ui.scientificError||ui.scienceRegistryError)
+  return banner+heading('CONSULTA BLOQUEADA','Datos científicos no disponibles',
+   'El servidor rechazó el contrato o la verificación de integridad. No se muestran resultados antiguos.')
+   +'<section class="card" role="alert"><p class="warning">'
+   +esc(ui.scientificError||ui.scienceRegistryError)+'</p><button class="btn secondary" data-action="guest-reload">Reintentar consulta</button></section>';
+ if(ui.scientificLoading||ui.scienceRegistryLoading||!ui.scientific||!ui.scienceRegistry)
+  return banner+heading('CONSULTA ABIERTA','Cargando Observatorio y Laboratorio',
+   'Validando los contratos científicos y el recibo SHA-256 antes de mostrar resultados.')
+   +'<section class="card" role="status">Consulta en curso…</section>';
+ if(!validSciencePayload(ui.scientific)
+    ||!validRegistryPayload(ui.scienceRegistry,ui.scienceCut,ui.scienceRegistryValid,
+      ui.scienceRegistryFamily,ui.scienceRegistryPublished))
+  return banner+'<section class="card" role="alert">Contratos científicos incompatibles; vista bloqueada.</section>';
+ if(ui.tab==='observatory')return banner
+  +heading('CONSULTA ABIERTA · S9','Observatorio documental sintético',
+   'Fuentes, versiones, grafos y cronologías con trazabilidad temporal de un registro local cerrado.')
+  +scientificRegistryPanel();
+ return banner+guestScienceView();
+}
+function drawGuest(){
+ navigationMode('guest');
+ el('account-name').textContent='VISITANTE';
+ el('account-logout').hidden=true;
+ el('crumb').textContent=ui.tab==='observatory'?'OBSERVATORIO · VISITANTE':'LABORATORIO · VISITANTE';
+ el('content').innerHTML=guestView();
+}
+async function reloadGuest(){
+ if(!ui.guest)return;
+ const previous=ui.scienceRequest;
+ await loadScientific();
+ // A return to login or a newer request invalidates the old response.
+ if(!ui.guest||ui.scienceRequest!==previous+1||!ui.scientific)return;
+ await loadScientificRegistry();
+}
+async function enterGuest(){
+ if(ui.state||ui.session)return;
+ ui.guest=true;ui.tab='observatory';ui.picks=null;
+ ui.scienceScenario='baseline';ui.scienceCut='late';
+ ui.scienceRegistryFamily='all';ui.scienceRegistryValid='2026-09-15';
+ ui.scienceRegistryPublished='as_of';ui.scienceRegistryTab='sources';
+ drawGuest();
+ await reloadGuest();
+}
 function authScreen(){
- ++ui.scienceRequest;invalidateScientificRegistry();ui.scientific=null;ui.scientificError=null;ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
+ ui.guest=false;++ui.scienceRequest;++ui.scienceExportGeneration;
+ invalidateScientificRegistry();ui.scientific=null;ui.scientificError=null;
+ ui.scientificLoading=false;ui.state=null;ui.picks=null;ui.csrf=null;ui.session=null;
  el('account-logout').hidden=true;el('account-name').textContent='';
- el('club-select').innerHTML='';
+ el('club-select').innerHTML='';navigationMode('login');
  el('crumb').textContent='CUENTA LOCAL';
  el('content').innerHTML=`<section class="card" aria-label="Acceso a la demostración ficticia">
  <div class="section-title"><h2>Cuenta local del prototipo</h2></div>
@@ -1058,7 +1157,11 @@ function authScreen(){
  <div class="auth-actions">
  <button class="btn" type="submit" name="intent" value="login">Iniciar sesión</button>
  <button class="btn secondary" type="submit" name="intent" value="register">Crear cuenta</button>
- </div></form><p id="auth-error" class="help" role="status"></p></section>`;
+ </div></form><p id="auth-error" class="help" role="status"></p></section>
+ <section class="card" aria-label="Acceso científico como visitante">
+ <div class="section-title"><h2>Explorar sin cuenta</h2><span>SOLO LECTURA</span></div>
+ <p class="help">Consulta el Observatorio y el Laboratorio científicos con datos sintéticos y recibos de integridad. No accederás a clubes, mercado, jornadas ni información de cuentas.</p>
+ <button class="btn secondary" type="button" data-action="guest-enter">Entrar al Observatorio y Laboratorio</button></section>`;
 }
 async function bootstrap(){
  const response=await fetch('/api/session',{cache:'no-store',credentials:'same-origin'});
@@ -1071,12 +1174,14 @@ async function bootstrap(){
  await refresh();
 }
 
-function draw(){if(!ui.state)return;let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';document.querySelectorAll('[data-tab]').forEach(n=>{const current=n.dataset.tab===ui.tab;n.classList.toggle('active',current);if(current)n.setAttribute('aria-current','page');else n.removeAttribute('aria-current');});el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','scientific':'LABORATORIO CIENTÍFICO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
+function draw(){if(ui.guest){drawGuest();return;}if(!ui.state)return;navigationMode('account');let c=el('club-select'); c.innerHTML=ui.state.clubs.map(x=>`<option value="${esc(x.id)}" ${x.id===ui.club?'selected':''}>${esc(x.name)}</option>`).join('')+'<option value="__new">+ Crear club…</option>';el('crumb').textContent=({'overview':'VISIÓN GENERAL','club':'MI CLUB','market':'MERCADO','rounds':'JORNADAS','observatory':'OBSERVATORIO','scientific':'LABORATORIO CIENTÍFICO','atlas':'ATLAS ELECTORAL','progress':'PROGRESO DEL PROYECTO'})[ui.tab];el('content').innerHTML=pages[ui.tab]();}
 async function perform(kind,id){if(kind==='pick'){ui.picks=ui.picks.includes(id)?ui.picks.filter(x=>x!==id):ui.picks.length<3?[...ui.picks,id]:ui.picks;draw();return;}
+ if(ui.guest)return;
 try{const c=selected();if(['buy','sell'].includes(kind)){await call('/api/'+kind,{club_id:c.id,figure_id:id});notice(kind==='buy'?'Fichaje registrado.':'Venta registrada.');}else if(kind==='save-lineup'){await call('/api/lineup',{club_id:c.id,round_id:upcoming().id,figures:ui.picks});notice('Alineación guardada en SQLite.');}else if(kind==='simulate-round'){await call('/api/simulate-round',{round_id:id});ui.picks=null;notice('Jornada ficticia simulada y cerrada.');}await refresh();}catch(e){notice(e.message,true);}}
 document.addEventListener('submit',async e=>{
  if(e.target.id!=='auth-form')return;
  e.preventDefault();
+ if(ui.guest)return;
  const fields=new FormData(e.target);
  const username=String(fields.get('username')||'');
  const password=String(fields.get('password')||'');
@@ -1090,12 +1195,35 @@ document.addEventListener('submit',async e=>{
  } catch(err){el('auth-error').textContent=String(err.message);}
 });
 document.addEventListener('click',async e=>{
+ if(e.target.closest('#guest-exit')&&ui.guest){ui.tab='overview';authScreen();return;}
  if(e.target.closest('#account-logout')){
   try{await call('/api/logout',{});}catch(_){/* A failed logout cannot authorize access. */}
   authScreen();return;
  }
- const nav=e.target.closest('[data-nav],[data-tab]');if(nav){ui.tab=nav.dataset.nav||nav.dataset.tab;ui.picks=null;draw();if(ui.tab==='scientific'&&!ui.scientific&&!ui.scientificLoading)await loadScientific();return;}
+ const nav=e.target.closest('[data-nav],[data-tab]');if(nav){
+  const tab=nav.dataset.nav||nav.dataset.tab;
+  if(ui.guest){if(GUEST_TABS.includes(tab)){ui.tab=tab;draw();}return;}
+  if(!ui.state||!Object.hasOwn(pages,tab))return;
+  ui.tab=tab;ui.picks=null;draw();
+  if(ui.tab==='scientific'&&!ui.scientific&&!ui.scientificLoading)await loadScientific();
+  return;
+ }
  const act=e.target.closest('[data-action]');if(!act)return;
+ if(act.dataset.action==='guest-enter'){await enterGuest();return;}
+ if(ui.guest){
+  if(act.dataset.action==='guest-reload'){await reloadGuest();return;}
+  if(act.dataset.action==='science-registry-load'){await loadScientificRegistry();return;}
+  if(act.dataset.action==='science-registry-tab'){
+   if(['sources','chain','chronicle','episodes','admission','intake','quality'].includes(act.dataset.registry)){
+    ui.scienceRegistryTab=act.dataset.registry;ui.scienceRegistryKind='ALL';draw();
+   }
+   return;
+  }
+  if(act.dataset.action==='science-registry-kind'){
+   if(REGISTRY_KINDS.includes(act.dataset.kind)){ui.scienceRegistryKind=act.dataset.kind;draw();}
+  }
+  return;
+ }
  if(act.dataset.action==='science-reload'){await loadScientific();return;}
  if(act.dataset.action==='science-export'){await exportScientific();return;}
  if(act.dataset.action==='science-probe'){await probeScientificAdmission();return;}
@@ -1113,18 +1241,21 @@ document.addEventListener('click',async e=>{
  }
  perform(act.dataset.action,act.dataset.id);});
 document.addEventListener('change',async e=>{
+ if(ui.guest&&!['science-cut','science-scenario','science-registry-valid',
+   'science-registry-family','science-registry-publication'].includes(e.target.id))return;
  if(e.target.id==='science-cut'&&['early','late'].includes(e.target.value)){
   ui.scienceCut=e.target.value;
   if(ui.scienceCut==='early'){
    if(ui.scienceFirstPublic==='2026-10-30T12:00:00Z')ui.scienceFirstPublic='as_of';
    if(ui.scienceRegistryPublished==='2026-10-30T12:00:00Z')ui.scienceRegistryPublished='as_of';
   }
-  await loadScientific();
+  if(ui.guest)await reloadGuest();else await loadScientific();
  }else if(e.target.id==='science-first-public'&&['as_of','2026-09-19T12:00:00Z','2026-10-30T12:00:00Z'].includes(e.target.value)){
   if(e.target.value==='2026-10-30T12:00:00Z'&&ui.scienceCut==='early')return;
   ui.scienceFirstPublic=e.target.value;++ui.scienceExportGeneration;draw();
  }else if(e.target.id==='science-scenario'&&['baseline','rights_spoof','privacy_probe'].includes(e.target.value)){
-  ui.scienceScenario=e.target.value;await loadScientific();
+  ui.scienceScenario=e.target.value;
+  if(ui.guest)await reloadGuest();else await loadScientific();
  }else if(e.target.id==='science-registry-valid'&&REGISTRY_VALID_DAYS.includes(e.target.value)){
   ui.scienceRegistryValid=e.target.value;await loadScientificRegistry();
  }else if(e.target.id==='science-registry-family'&&REGISTRY_FAMILIES.includes(e.target.value)){
@@ -1140,5 +1271,5 @@ document.addEventListener('change',async e=>{
   ui.scienceChronicleValid=e.target.value;draw();
  }
 });
-el('club-select').addEventListener('change',async e=>{if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
+el('club-select').addEventListener('change',async e=>{if(ui.guest||!ui.state)return;if(e.target.value==='__new'){const name=prompt('Nombre de tu nuevo club (3–36 caracteres)');if(!name){draw();return;}try{const c=await call('/api/clubs',{name});ui.club=c.id;ui.picks=null;notice('Club creado con 100 créditos.');await refresh();}catch(err){notice(err.message,true);draw();}}else{ui.club=e.target.value;ui.picks=null;draw();}});
 bootstrap().catch(e=>{el('content').innerHTML=`<p class="warning">No se ha podido cargar la demo: ${esc(e.message)}</p>`;});
