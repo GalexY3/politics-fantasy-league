@@ -43,6 +43,13 @@ Para las salidas privadas v2, el publicador audita también la DACL del
 archivo temporal recién abierto mediante su HANDLE **antes de escribir**,
 revalida permisos de archivo/carpeta antes de enlazar el nombre final y
 comprueba la DACL del inode publicado mientras conserva su alias temporal.
+El publicador contrasta además el inode enlazado (`dev`, `ino`,
+recuento de enlaces) y los **bytes completos del nombre final** con
+los escritos y sincronizados originalmente. Si el inode stage se
+sustituye o su contenido cambia antes del hardlink, devuelve
+`OPERATOR_*_PUBLISHED_BYTES_MISMATCH` y retira solamente el
+nombre final cuyo inode corresponde al enlace que acaba de crear.
+El SHA de salida no depende solo de la intención de escritura.
 Una ACE heredable `Everyone READ` introducida entre la comprobación
 inicial del supervisor y la creación del temporal produce rechazo
 `OPERATOR_PRIVATE_OUTPUT_UNVERIFIED` o

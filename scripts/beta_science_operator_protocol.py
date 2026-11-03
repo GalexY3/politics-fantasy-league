@@ -749,6 +749,7 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
     stage_created = False
     linked = False
     stage_identity = None
+    linked_identity = None
     try:
         # Both staging and publication use create-only semantics.
         with stage.open("xb") as stream:
@@ -782,6 +783,25 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
                 _private_directory_status(destination.parent)
         os.link(stage, destination)
         linked = True
+        # A create-only hardlink can otherwise bind a DIFFERENT stage inode
+        # (or modified bytes) if the stage pathname was exchanged after fsync.
+        # The returned receipt must be about the actual published bytes,
+        # not merely our earlier write. Keep the stage alias until verified.
+        published = destination.stat()
+        linked_identity = (published.st_dev, published.st_ino)
+        stage_now = stage.stat()
+        with destination.open("rb") as persisted:
+            opened = os.fstat(persisted.fileno())
+            actual_bytes = persisted.read(len(bytes_to_write) + 1)
+        if (stage_identity != linked_identity
+                or (stage_now.st_dev, stage_now.st_ino) != linked_identity
+                or (opened.st_dev, opened.st_ino) != linked_identity
+                or not stat.S_ISREG(opened.st_mode)
+                or published.st_nlink != 2
+                or actual_bytes != bytes_to_write
+                or (destination.stat().st_dev, destination.stat().st_ino)
+                   != linked_identity):
+            raise ProtocolError(error_prefix + "_PUBLISHED_BYTES_MISMATCH")
         if private_output:
             # The stage alias is retained until the published inode passes
             # its final ACL check; on failure finally unlinks our inode only.
@@ -810,15 +830,18 @@ def _write_external_utf8(path: str, content: str, *, maximum: int,
     finally:
         if stage_created and stage_identity is not None:
             try:
+                # The final name was created by our successful os.link().
+                # During failure, clean only the inode observed immediately
+                # after that link; never unlink a later third-party replacement.
+                if linked and linked_identity is not None:
+                    try:
+                        current = destination.stat()
+                        if (current.st_dev, current.st_ino) == linked_identity:
+                            destination.unlink()
+                    except OSError:
+                        pass
                 identity = stage.stat()
                 if (identity.st_dev, identity.st_ino) == stage_identity:
-                    if linked:
-                        try:
-                            published = destination.stat()
-                            if (published.st_dev, published.st_ino) == stage_identity:
-                                destination.unlink()
-                        except OSError:
-                            pass
                     stage.unlink()
             except OSError:
                 pass

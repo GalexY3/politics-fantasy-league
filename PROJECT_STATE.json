@@ -1,5 +1,5 @@
 {
-  "revision": 62,
+  "revision": 63,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1936,7 +1936,45 @@
     "scientific_AB_R_cycles_added": 0,
     "R5": "STOP_R5",
     "release_gates_passed": 0,
-    "publication_state": "READY_REVIEW",
+    "publication_state": "PUBLISHED_E2E_ACCEPTED",
+    "published_commit": "00edd4a09ad26cc5f47e7671a26f8bf48e8054ad",
+    "clean_committed_head_acceptance_passed": 557,
     "receipt": "docs/BETA_OPERATOR_PRIVATE_WRITE_RACE_RECEIPT_20261103.json"
+  },
+  "local_beta_private_staged_inode_and_bytes_integrity": {
+    "date": "2026-11-03",
+    "baseline_published_head": "00edd4a09ad26cc5f47e7671a26f8bf48e8054ad",
+    "scope": "LOCAL_SYNTHETIC_STAGE_INODE_AND_PUBLISHED_BYTES_NONCYCLE",
+    "genuine_red_prepatch": {
+      "record_form_stage_inode_replaced": "FAILED_OLD_CODE0_SHA_DIFFERENT_FROM_PUBLISHED_BYTES",
+      "evaluate_form_same_inode_stage_bytes_modified": "FAILED_OLD_CODE0_SHA_DIFFERENT_FROM_PUBLISHED_BYTES",
+      "execution": "2_FAILED_1_DESELECTED_BEFORE_PRODUCTION_PATCH"
+    },
+    "stage_and_final_inode_identity_checked": true,
+    "published_bytes_checked_before_successful_receipt": true,
+    "hardlink_count_checked_before_stage_cleanup": true,
+    "destination_cleanup_limited_to_observed_link_inode": true,
+    "private_access_after_publication_not_certified": true,
+    "windows_two_distinct_os_tokens_tested": false,
+    "junction_parent_swap_negative_controls": 5,
+    "junction_to_public_or_disposable_git_no_private_output_observed": true,
+    "junction_swap_after_fsync_can_strand_stage_in_restricted_renamed_folder": true,
+    "new_test_files": [
+      "tests/test_beta_operator_stage_inode_integrity.py",
+      "tests/test_beta_operator_destination_alias_race.py"
+    ],
+    "new_focal_pre_integration_passed": 11,
+    "combined_focal_python_passed": 188,
+    "integrated_uncommitted_worktree_passed": 565,
+    "integrated_uncommitted_worktree_counts": "443_PYTHON_120_NODE_1_CHROME_S9_1_CHROME_ACCESSIBILITY",
+    "integrated_execution_source_kind": "UNCOMMITTED_WORKTREE",
+    "required_skips": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "human_participants_observed": 0,
+    "new_empirical_spanish_sources": 0,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "publication_state": "READY_REVIEW",
+    "receipt": "docs/BETA_OPERATOR_STAGE_INTEGRITY_RECEIPT_20261103.json"
   }
 }

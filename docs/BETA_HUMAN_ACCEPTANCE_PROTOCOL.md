@@ -127,6 +127,20 @@ mientras conserva su alias temporal. El HTML participante continúa
 siendo público por diseño. No se acredita con ello aislamiento
 entre cuentas Windows diferentes, protección frente a cambios
 posteriores de administradores ni un ensayo en Linux.
+Otro defecto RED PREPATCH independiente del control ACL era la
+sustitución del inode stage, o de sus bytes sin alterar el inode,
+después de fsync y antes del hardlink. En ambos casos `--record-form`
+o `--evaluate-form` devolvía un SHA de bytes distintos de los
+realmente publicados. La operación ahora exige que inode stage,
+inode final abierto y bytes íntegros coincidan con la escritura
+original, y rechaza la discrepancia con
+`OPERATOR_*_PUBLISHED_BYTES_MISMATCH`, sin atribuir autenticidad
+externa a la huella ni proteger frente a mutaciones posteriores
+realizadas por la misma identidad con acceso al fichero.
+Dos intercalaciones NTFS de junction de la carpeta supervisora,
+antes de crear el stage o del hardlink, se rechazaron sin publicación
+pública ni escritura en Git sintético; son controles negativos,
+no defectos adicionales ni pruebas de aislamiento entre usuarios.
 El supervisor
 no debe compartir la misma cuenta del sistema con la participante.
 En POSIX se comprueba el modo `0700` y propietario, no ACL extendidas.
