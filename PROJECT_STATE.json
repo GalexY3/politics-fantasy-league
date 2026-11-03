@@ -1,5 +1,5 @@
 {
-  "revision": 53,
+  "revision": 54,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1537,5 +1537,51 @@
     "public_beta_authorized": false,
     "operator_reference": "docs/BETA_LOCAL_QUICKSTART.md",
     "receipt": "docs/BETA_VERIFIED_LIVE_GUEST_LINK_RECEIPT_20261103.json"
+  },
+  "local_beta_operator_protocol": {
+    "date": "2026-11-03",
+    "baseline_published_head": "cbe987268a1bfdcf6cc6cc60c76d87a30a47d318",
+    "pr": "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "scope": "LOCAL_SYNTHETIC_TECHNICAL_OPERATOR_CHECKPOINTS_AND_VOLUNTARY_HUMAN_ASSESSMENT",
+    "instrument": "scripts/beta_science_operator_protocol.py",
+    "human_tasks_defined": 12,
+    "technical_chrome_checkpoints_expected": 10,
+    "technical_chrome_evidence_not_human": true,
+    "human_participants_observed": false,
+    "human_acceptance_completed": false,
+    "human_success_rate_calculated": false,
+    "local_closed_code_observations_only": true,
+    "no_PII_credentials_free_text_telemetry": true,
+    "technical_comprehension_usability_distinct": true,
+    "technical_block_does_not_imply_comprehension_failure": true,
+    "participant_sheet_separate_from_operator_answer_key": true,
+    "no_new_scientific_endpoints_or_sqlite_schema": true,
+    "s9_pair_and_single_export_contracts_unchanged": true,
+    "machine_tasks": [
+      "S9_TEMPORAL_COMPARE",
+      "S9_PAIR_EXPORT_OFFLINE",
+      "S9_SINGLE_EXPORT_OFFLINE",
+      "S9_FAMILY_SCOPE",
+      "RESTART_DOCTOR_GUEST_LINK",
+      "LAB_B0_B3",
+      "LAB_S7_20",
+      "LAB_S8_DESCRIPTORS",
+      "LAB_S3_TEMPORAL",
+      "S9_EIGHT_TABS"
+    ],
+    "tests": [
+      "tests/test_beta_science_operator_protocol.py",
+      "tests/test_s9_chrome_registry.mjs"
+    ],
+    "runner": "python scripts/beta_acceptance.py",
+    "status": "READY_REVIEW",
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "scientific_AB_R_cycles_added": 0,
+    "empirical_spanish_sources_admitted": 0,
+    "rights_for_public_display_admitted": false,
+    "public_beta_authorized": false,
+    "operator_guide": "docs/BETA_HUMAN_ACCEPTANCE_PROTOCOL.md",
+    "receipt": "docs/BETA_OPERATOR_TASK_ACCEPTANCE_RECEIPT_20261103.json"
   }
 }

@@ -351,6 +351,46 @@ de una verificacion SHA antigua que terminan tras salir del Observatorio
 no muestran avisos obsoletos en la pantalla de login, ni producen descarga.
 Los errores de una consulta aun vigente siguen visibles.
 
+## Aceptación científica instrumentada de tareas humanas
+
+El instrumento de operador está descrito en
+[Protocolo de aceptación humana](BETA_HUMAN_ACCEPTANCE_PROTOCOL.md).
+No requiere cuenta, no recopila respuestas automáticamente y no equivale
+a ejecutar un estudio con participantes.
+
+Desde la raíz del repositorio, validar la integridad de la rúbrica,
+consultar la hoja sin soluciones para un participante y mostrar la clave
+y los criterios reservados al operador mediante comandos independientes:
+
+    python -B scripts/beta_science_operator_protocol.py --self-check
+    python -B scripts/beta_science_operator_protocol.py --participant-sheet
+    python -B scripts/beta_science_operator_protocol.py --template
+
+El registro voluntario se limita a un JSON local con esquema cerrado
+pfl.beta_science_operator_observations.v1 y observaciones de cuatro
+campos task_id, technical, scientific y usability (códigos permitidos
+por la rúbrica). Si la persona se abstiene o no se observó una tarea,
+usar NOT_OBSERVED. Nunca asignar una respuesta científica si el acceso
+técnico falló o quedó bloqueado. No registrar datos personales,
+nombres, capturas, direcciones, tiempos ni texto libre. Para evaluar una
+ficha local voluntaria, fuera del repositorio:
+
+    python -B scripts/beta_science_operator_protocol.py --evaluate "RUTA_JSON_VOLUNTARIA"
+
+Este comando emite solo conteos y códigos seguros. No infiere
+participantes ni índices de satisfacción; el operador deberá
+conservar separado cualquier consentimiento/protocolo externo si fuera
+necesario, nunca subir respuestas individuales a Git.
+
+La comprobación técnica usa el recorrido CDP real ya existente,
+que marca diez puntos de control después de verificar cada operación:
+B0/B3, S3, S7, distribuciones S8, ocho pestañas S9, familia,
+comparación temporal, exports individual/pareja y recuperación
+tras reinicio con URL de puerto nuevo. El marcador
+technical_task_ids_passed NO es evidencia de comprensión humana.
+La aceptación general integra tests del instrumento, no respuestas
+de participantes ni admisión científica R5.
+
 ## Bloqueos de la beta pública
 
 STOP_R5 permanece, con **0/6 puertas** y cero ciclos AB-R nuevos.
