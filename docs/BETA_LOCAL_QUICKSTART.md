@@ -7,7 +7,9 @@ corresponde al Observatorio y al Laboratorio; Fantasy es subordinado.
 
 ## Comprobar el núcleo científico
 
-Desde la raíz del repositorio, con Python 3.10+ y Node.js instalados:
+Desde la raíz del repositorio, con Python y Node.js instalados (esta
+validación local se ejecutó con **Python 3.14.3 y Node.js 24.16.0**;
+la compatibilidad de versiones anteriores no se ha revalidado en esta tanda):
 
     python scripts/beta_scientific_smoke.py
 

@@ -34,6 +34,26 @@ def test_runner_rejects_nonzero_exit_even_when_summary_claims_pass(monkeypatch):
     result = acceptance._run("python", ("fixture",), timeout=1)
     assert result["status"] == "FAILED"
     assert result["error"] == "NONZERO_EXIT"
+    assert result["failing_tests"] == []
+    assert result["failure_identifiers_present"] is False
+
+
+def test_runner_keeps_versioned_failure_ids_but_never_raw_traceback(monkeypatch):
+    log = (
+        "FAILED tests/test_beta_restart_isolation.py::test_two_real_server_processes - "
+        "AssertionError\n"
+        "C:\\Users\\test\\private\\accounts.sqlite3 was locked\n"
+    )
+    monkeypatch.setattr(
+        acceptance.subprocess, "run",
+        lambda *_a, **_k: SimpleNamespace(returncode=1, stdout=log, stderr=""),
+    )
+    result = acceptance._run("python", ("fixture",), timeout=1)
+    assert result["status"] == "FAILED"
+    assert result["failure_identifiers_present"] is True
+    assert result["failing_tests"] == [
+        "tests/test_beta_restart_isolation.py::test_two_real_server_processes"]
+    assert "private" not in str(result)
 
 
 def test_runner_rejects_success_without_a_parser_verifiable_pass_total(monkeypatch):

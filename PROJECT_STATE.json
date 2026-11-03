@@ -1,5 +1,5 @@
 {
-  "revision": 43,
+  "revision": 44,
   "required_entry_files": [
     "START_HERE.md",
     "AGENTS.md",
@@ -1150,5 +1150,33 @@
     "fantasy_redesign_deferred": true,
     "next_beta_priority": "Manual local acceptance and recoverable navigation, accessible scientific review of timeline revisions, targeted P1/P2 functional blockers",
     "reference": "docs/BETA_LOCAL_QUICKSTART.md"
+  },
+  "local_beta_focal_acceptance_stability": {
+    "date": "2026-11-03",
+    "initial_science_only_commit": "db992c6ec471c6cbe60ed83ffeb7bceaf98fb00f",
+    "tested_only_in_local_synthetic_environment": true,
+    "reported_precommit_focal_passes": 62,
+    "postcommit_first_python_stage_exit_nonzero": true,
+    "postcommit_second_python_and_node_passed_but_chrome_exit_nonzero": true,
+    "python_failure_identity_recovered": false,
+    "chrome_failure_identity_recovered": false,
+    "python_direct_repeat_successes": 4,
+    "chrome_direct_repeat_successes_after_harness_patch": 2,
+    "source_regression_caused": "UNDETERMINED",
+    "harness_interventions": [
+      "redacted_failed_test_ids_in_acceptance_receipt",
+      "complete_download_sha_byte_length_wait",
+      "reserved_http_port_before_cdp_port",
+      "bounded_last_cdp_error_after_retry",
+      "await_browser_and_python_process_exit_before_temp_cleanup"
+    ],
+    "pass_assessment_policy": "EVERY_ACCEPTANCE_STAGE_MUST_PASS_ON_CLEAN_COMMIT",
+    "full_wcag_compliance_certified": false,
+    "human_beta_approval_attested": false,
+    "R5": "STOP_R5",
+    "release_gates_passed": 0,
+    "new_AB_R_cycles": 0,
+    "real_spanish_sources_admitted": 0,
+    "reference": "docs/BETA_ACCEPTANCE_STABILITY_RECEIPT_20261103.json"
   }
 }

@@ -40,11 +40,54 @@ async function freePort(){
  });
 }
 async function poll(fn,attempts=100){
+ let lastError;
  for(let i=0;i<attempts;i++){
-  try{const value=await fn();if(value)return value;}catch(_){}
+  try{const value=await fn();if(value)return value;}
+  catch(error){lastError=error;}
   await delay(110);
  }
- throw Error('CHROME_LOCAL_SMOKE_POLL_EXHAUSTED');
+ const detail=lastError?String(lastError.message||lastError)
+  .replace(/https?:\/\/\S+/g,'[URL]')
+  .replace(/[A-Za-z]:\\\S+/g,'[PATH]').slice(0,160):'condition not yet met';
+ throw Error('CHROME_LOCAL_SMOKE_POLL_EXHAUSTED ('+detail+')');
+}
+
+async function completedJsonDownload(folder,pattern){
+ // Chrome may expose the final .json filename before the write is complete.
+ // Observe a parseable, fully written receipt instead of merely the directory
+ // entry; the content assertions below remain independent of this wait.
+ return poll(()=>{
+  const name=readdirSync(folder).find(entry=>pattern.test(entry));
+  if(!name)return null;
+  const data=JSON.parse(readFileSync(join(folder,name),'utf8'));
+  const receipt=data?.snapshot_receipt;
+  if(typeof receipt?.canonical_json!=='string'
+     ||receipt.sha256!==createHash('sha256').update(receipt.canonical_json,'utf8').digest('hex')
+     ||receipt.bytes!==Buffer.byteLength(receipt.canonical_json,'utf8'))
+   throw Error('Downloaded S9 JSON has an incomplete or invalid SHA receipt');
+  return {name,data};
+ },180);
+}
+
+async function stopChild(child,timeoutMs=2500){
+ if(!child||child.exitCode!==null||child.signalCode!==null)return;
+ // On Windows kill() requests termination but does not wait for process exit.
+ // Wait for close (stdio/process handles released) before deleting its profile.
+ await new Promise(resolve=>{
+  let finished=false;
+  const finish=()=>{
+   if(finished)return;
+   finished=true;
+   clearTimeout(timer);
+   child.off('close',finish);
+   child.off('error',finish);
+   resolve();
+  };
+  const timer=setTimeout(finish,timeoutMs);
+  child.once('close',finish);
+  child.once('error',finish);
+  try{child.kill();}catch(_){finish();}
+ });
 }
 
 test('S9 Chrome native CDP: live DOM observes registry late/early, source family, valid_at and 503', {
@@ -57,8 +100,7 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
  const registryDb=join(scratch,'synthetic.sqlite3');
  const downloadsDir=join(scratch,'downloads');
  mkdirSync(downloadsDir);
- const port=await freePort(),cdpPort=await freePort();
- const base='http://127.0.0.1:'+port;
+ let base='http://127.0.0.1';
  let failRegistry=false,chrome=null,socket=null,scienceServer=null;
  const observedRequests=[];
  const browserRequests=[];
@@ -103,7 +145,13 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    'for name in ("sandbox_alpha_v1","sandbox_beta_v1","sandbox_bad_issuer"):',
    '    enroll_synthetic_fixture(Path(sys.argv[1]),name)'
   ].join('\n'),registryDb]);
-  await new Promise(resolve=>server.listen(port,'127.0.0.1',resolve));
+  // Keep the HTTP port reserved while obtaining the CDP port: two successive
+  // "find free port then close" calls could otherwise return the same port.
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+  const port=server.address().port;
+  base='http://127.0.0.1:'+port;
+  let cdpPort=await freePort();
+  while(cdpPort===port)cdpPort=await freePort();
   chrome=spawn(CHROME,[
    '--headless=new','--no-first-run','--no-default-browser-check',
    '--disable-gpu','--disable-background-networking','--disable-component-update',
@@ -116,7 +164,7 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
    const response=await fetch('http://127.0.0.1:'+cdpPort+'/json/list');
    const pages=await response.json();
    return pages.find(p=>p.type==='page'&&p.url.startsWith(base));
-  });
+  },180);
   socket=new WebSocket(target.webSocketDebuggerUrl);
   await new Promise((resolve,reject)=>{
    socket.addEventListener('open',resolve,{once:true});
@@ -192,9 +240,8 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
     x:guestPoint.x,y:guestPoint.y,button:'left',clickCount:1});
   await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
     x:guestPoint.x,y:guestPoint.y,button:'left',clickCount:1});
-  const guestSaved=await poll(()=>readdirSync(downloadsDir).find(x=>
-    /^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
-  const guestExport=JSON.parse(readFileSync(join(downloadsDir,guestSaved),'utf8'));
+  const {name:guestSaved,data:guestExport}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/);
   const guestCanonical=Buffer.from(guestExport.snapshot_receipt.canonical_json,'utf8');
   assert.equal(guestExport.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
   assert.equal(guestExport.source_contract,'pfl.synthetic_scientific_registry.v1');
@@ -251,9 +298,8 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
     x:point.x,y:point.y,button:'left',clickCount:1});
   await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
     x:point.x,y:point.y,button:'left',clickCount:1});
-  const saved=await poll(()=>readdirSync(downloadsDir).find(x=>
-    /^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
-  const exported=JSON.parse(readFileSync(join(downloadsDir,saved),'utf8'));
+  const {name:saved,data:exported}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/);
   assert.equal(exported.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
   assert.equal(exported.R5,'STOP_R5');
   const canonical=Buffer.from(exported.snapshot_receipt.canonical_json,'utf8');
@@ -309,9 +355,8 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
     x:sciencePoint.x,y:sciencePoint.y,button:'left',clickCount:1});
   await cdp('Input.dispatchMouseEvent',{type:'mouseReleased',
     x:sciencePoint.x,y:sciencePoint.y,button:'left',clickCount:1});
-  const scienceSaved=await poll(()=>readdirSync(downloadsDir).find(x=>
-    /^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/.test(x)));
-  const scienceExport=JSON.parse(readFileSync(join(downloadsDir,scienceSaved),'utf8'));
+  const {name:scienceSaved,data:scienceExport}=await completedJsonDownload(
+   downloadsDir,/^pfl-s9-registry-late-2026-09-15-[a-f0-9]{12}\.json$/);
   assert.equal(scienceExport.schema,'pfl.synthetic_scientific_registry_browser_export.v1');
   assert.equal(scienceExport.R5,'STOP_R5');
   assert.equal(scienceExport.release_gates_passed,0);
@@ -337,8 +382,7 @@ test('S9 Chrome native CDP: live DOM observes registry late/early, source family
   assert.equal(await js("document.querySelector('#content').innerText.includes('Crear cuenta')"),false);
  }finally{
   if(socket)socket.close();
-  if(chrome&&chrome.exitCode===null)chrome.kill();
-  if(scienceServer&&scienceServer.exitCode===null)scienceServer.kill();
+  await Promise.all([stopChild(chrome),stopChild(scienceServer)]);
   await new Promise(resolve=>server.close(resolve));
   try{rmSync(scratch,{recursive:true,force:true,maxRetries:2,retryDelay:200});}catch(_){}
  }

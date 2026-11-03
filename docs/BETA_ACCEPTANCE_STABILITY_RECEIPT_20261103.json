@@ -1,0 +1,56 @@
+{
+    "schema":  "pfl.beta_acceptance_stability_receipt.v1",
+    "date":  "2026-11-03",
+    "baseline_published_head":  "db992c6ec471c6cbe60ed83ffeb7bceaf98fb00f",
+    "pr":  "https://github.com/GalexY3/politics-fantasy-league/pull/22",
+    "evidence_class":  "LOCAL_SYNTHETIC_QA_NONCYCLE",
+    "failures_observed":  {
+                              "first_postcommit":  "python stage exit1 (identity not retained by old runner)",
+                              "second_postcommit":  "python and node PASS, chrome_s9 stage exit1 (identity not retained)",
+                              "historical_root_cause_verified":  false
+                          },
+    "investigation":  {
+                          "python_direct_repeats_passed":  4,
+                          "chrome_direct_repeats_after_change":  2,
+                          "chrome_races_identified_by_source_review":  [
+                                                                           "filename_before_json_complete",
+                                                                           "poll_exception_swallowed",
+                                                                           "http_cdp_free_port_not_reserved",
+                                                                           "child_exit_not_awaited_before_cleanup"
+                                                                       ],
+                          "production_bug_reproduced":  false
+                      },
+    "harness_changes":  [
+                            "python_node_runner_redacted_failed_test_ids",
+                            "await_parseable_download_and_sha",
+                            "reserve_http_port_before_cdp",
+                            "bounded_redacted_last_poll_error",
+                            "bounded_child_process_exit_before_temp_cleanup"
+                        ],
+    "precommit_followup_acceptance":  {
+                                          "status":  "PASS",
+                                          "python":  27,
+                                          "node":  34,
+                                          "chrome_s9":  1,
+                                          "chrome_keyboard":  1,
+                                          "total":  63,
+                                          "scope":  "UNCOMMITTED_WORKTREE",
+                                          "postcommit_verification":  "MUST_RUN_AFTER_COMMIT"
+                                      },
+    "limits":  {
+                   "R5":  "STOP_R5",
+                   "release_gates_passed":  0,
+                   "AB_R_cycles_added":  0,
+                   "real_corpus_admitted":  0,
+                   "public_deploy_authorized":  false,
+                   "prior_docx_untouched":  true
+               },
+    "source_sha256":  {
+                          "HANDOFF.md":  "53d3682ed0bc3574a7196ac9cd18ed12fc14eb56ed19f9588b94b774fe92041b",
+                          "PROJECT_STATE.json":  "f70b60d81a561f99c476e343a8530c025320041256e2bff73d3b33c33b48e713",
+                          "docs/BETA_LOCAL_QUICKSTART.md":  "c93dcfe5598ad8b707e6ea8f02d226bf0d2b93b81917cc4c77034e262b70b79c",
+                          "scripts/beta_acceptance.py":  "f75595802196a7086b63b8586f0ad0f941e8cec6bf54893ca79ce1069b90289f",
+                          "tests/test_beta_acceptance_runner.py":  "0813c417f541df502fe2c91254ec58336835c5f30e0fa43745d508c02ed88bc3",
+                          "tests/test_s9_chrome_registry.mjs":  "bfa46a208eb74507119b0bf0ff7747ba0c7e3ae3cb8c00ad05f8a4c54489c340"
+                      }
+}

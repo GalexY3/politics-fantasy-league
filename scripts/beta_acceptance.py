@@ -58,8 +58,20 @@ def _run(label: str, command: tuple[str, ...], *, timeout: int) -> dict:
     else:
         match = re.search(r"(?m)^(?:#|ℹ)\s+pass\s+(\d+)\s*$", output)
     if completed.returncode != 0:
+        # Return only identifiers of VERSIONED tests; never copy arbitrary
+        # traceback lines, user paths, cookies or raw fixture bytes into a
+        # public machine-readable acceptance receipt.
+        failed = re.findall(
+            r"(?m)^(?:FAILED|ERROR) (tests/[A-Za-z0-9_./:\[\]-]+)",
+            output)
+        if label.startswith("chrome") or label == "node":
+            failed.extend(re.findall(
+                r"(?m)^\s*not ok \d+ - ([A-Za-z0-9_,.:/() \-]{1,120})\s*$",
+                output))
         return {"label": label, "status": "FAILED", "error": "NONZERO_EXIT",
-                "exit_code": completed.returncode}
+                "exit_code": completed.returncode,
+                "failing_tests": failed[:5],
+                "failure_identifiers_present": bool(failed)}
     if not match or int(match.group(1)) < 1:
         return {"label": label, "status": "FAILED", "error": "NO_VERIFIABLE_PASS_TOTAL"}
     return {"label": label, "status": "PASS", "tests_passed": int(match.group(1))}
